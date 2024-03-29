@@ -7,6 +7,7 @@ import {
 } from '@angular/core';
 import {
     ConstantsService,
+    CustomDateFormat,
     FormTypes,
 } from 'src/app/ui/service/constants.service';
 import { MasterService } from 'src/app/ui/service/master.service';
@@ -29,10 +30,10 @@ export class FormsDashboardComponent
     @ViewChild('formContainer', { read: ViewContainerRef })
     formContainer: ViewContainerRef;
     componentRef: ComponentRef<any>;
+    customDateFormat = CustomDateFormat;
 
     public lstMaster: any[] = [];
     public formDashboardList: any[] = [];
-    items: MenuItem[];
 
     residentAdmissionInfoId: string;
     rangeDates: Date[] | undefined;
@@ -63,24 +64,6 @@ export class FormsDashboardComponent
         this.GetformMaster();
     }
 
-    toggleTieredMenu(menu, event, userid, admissionid) {
-        this.items = [];
-        this.items = [
-            ...this.items,
-            {
-                label: 'View/Edit',
-                icon: 'pi pi-eye',
-                command: () => {
-                    //fetch the form that user wants to edit or view
-                    // var params=encodeURIComponent(btoa("id=" + userid + "&admissionid=" + admissionid));
-                    // window.open("#/profile?q=" + params, "_self");
-                },
-            },
-        ];
-        //console.log('items', this.items);
-        menu.toggle(event);
-    }
-
     GetformMaster() {
         this._UtilityService.showSpinner();
         this.unsubscribe.add = this._MasterServices
@@ -105,10 +88,8 @@ export class FormsDashboardComponent
     }
 
     searchForm(selectedFormId: string, rangeDates: Date[]) {
-        console.log('form Id: ' + selectedFormId);
-        console.log('date Ranges: ' + rangeDates);
-        console.log('ResidenInfo Id: ' + this.residentAdmissionInfoId);
-
+        this._UtilityService.showSpinner();
+        //console.log('date Ranges: ' + rangeDates);
         const residentAdmissionInfoId = this.residentAdmissionInfoId;
         const formMasterId = selectedFormId;
 
@@ -131,18 +112,11 @@ export class FormsDashboardComponent
             .subscribe({
                 next: (data) => {
                     this._UtilityService.hideSpinner();
-
-                    console.log(residentAdmissionInfoId,
-                        formMasterId,
-                        fromDate,
-                        toDate);
-
                     if (data.actionResult.success == true) {
                         var tdata = JSON.parse(data.actionResult.result);
-                        console.log(tdata);
                         tdata = tdata ? tdata : [];
                         this.formDashboardList = tdata;
-                        console.log(this.formDashboardList);
+                        //console.log(this.formDashboardList);
                     } else {
                         this.formDashboardList = [];
                     }
@@ -154,6 +128,13 @@ export class FormsDashboardComponent
             });
     }
 
+    //View/Edit Form
+    OpenForm(formMasterId: string, formId: string) {
+        console.log('Form master id :' + formMasterId);
+        console.log('Form id :' + formId);
+    }
+
+    //Create new Form
     showForm(selectedFormId: string) {
         // Clear existing component if any
         if (this.componentRef) {
@@ -178,5 +159,12 @@ export class FormsDashboardComponent
 
         // Load the component dynamically
         this.componentRef = this.formContainer.createComponent(componentType);
+    }
+
+    //Clear Search
+    ResetModel() {
+        this.formDashboardList = <any>{};
+        this.rangeDates = undefined;
+        this.selectedFormType = null;
     }
 }

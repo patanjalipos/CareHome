@@ -30,7 +30,6 @@ export class PreAdmissionAssessmentFormsComponent
     ) {
         super();
         this._ConstantServices.ActiveMenuName = 'Pre Assessment Admission Form';
-
         this.loginId = localStorage.getItem('userId');
 
         this.unsubscribe.add = this.route.queryParams.subscribe((params) => {
@@ -49,14 +48,14 @@ export class PreAdmissionAssessmentFormsComponent
     }
 
     ngOnInit(): void {
-        this.GetPreAdmissionFormDetails();
+        //this.GetPreAdmissionFormDetails();
         //console.log(this.PreAdmissionAssessmentFormsData);
     }
 
-    GetPreAdmissionFormDetails() {
+    GetPreAdmissionFormDetails(formId: string) {
         this._UtilityService.showSpinner();
         this.unsubscribe.add = this._MasterServices
-            .GetPreAdmissionFormDetails(this.userId)
+            .GetPreAdmissionFormDetails(formId)
             .subscribe({
                 next: (data) => {
                     this._UtilityService.hideSpinner();
@@ -77,13 +76,11 @@ export class PreAdmissionAssessmentFormsComponent
     }
 
     saveAsUnfinished() {
-        console.log('Data saved as unfinished');
         this.PreAdmissionAssessmentFormsData.isFormCompleted = false;
         this.Save();
     }
 
     completeForm() {
-        console.log('Form completed and data saved');
         this.PreAdmissionAssessmentFormsData.isFormCompleted = true;
         this.Save();
     }

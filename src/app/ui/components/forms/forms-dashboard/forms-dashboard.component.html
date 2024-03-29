@@ -26,6 +26,7 @@
                 optionValue="FormMasterId"
                 placeholder="Select"
                 [style]="{ width: '100%' }"
+                (onChange)="searchForm(selectedFormType, rangeDates)"
             >
             </p-dropdown>
         </div>
@@ -40,7 +41,7 @@
                 ></button>
                 <span class="total-txt"> </span>
             </span>
-            <div class="mr-4">
+            <!-- <div class="mr-4">
                 <span class="p-ml-left">
                     <button
                         pButton
@@ -50,10 +51,15 @@
                     ></button>
                     <span class="total-txt"> </span>
                 </span>
-            </div>
+            </div> -->
             <div>
                 <span class="p-ml-left">
-                    <button pButton title="New" label="Clear Search"></button>
+                    <button
+                        pButton
+                        title="New"
+                        label="Clear Search"
+                        (click)="ResetModel()"
+                    ></button>
                     <span class="total-txt"> </span>
                 </span>
             </div>
@@ -76,7 +82,7 @@
             </ng-template>
             <ng-template pTemplate="header">
                 <tr>
-                    <th>Assessment Form</th>
+                    <th pSortableColumn="FormName">Assessment Form</th>
                     <th>Updated By</th>
                     <th>Designation</th>
                     <th>Status</th>
@@ -92,20 +98,18 @@
                     <td>
                         {{ dt.IsCompleted == 1 ? "Completed" : "Incomplete" }}
                     </td>
-                    <td>{{ dt.ModifiedOn }}</td>
+                    <td>
+                        {{
+                            dt.ModifiedOn
+                                | date : customDateFormat.DEF_DATE_TIME
+                        }}
+                    </td>
                     <td>
                         <a
                             title="View/Edit"
+                            (click)="OpenForm(dt.FormMasterId, dt.FormId)"
                         >
                             <i class="fa fa-eye" aria-hidden="true"></i>
-                        </a>
-                        <a
-                            title="Delete"
-                        >
-                            <i
-                                class="fa fa-trash-alt ml-2"
-                                aria-hidden="true"
-                            ></i>
                         </a>
                     </td>
                 </tr>
