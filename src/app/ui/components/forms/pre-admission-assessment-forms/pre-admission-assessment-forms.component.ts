@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { AppComponentBase } from 'src/app/app-component-base';
 import { ConstantsService } from 'src/app/ui/service/constants.service';
+import { DataService } from 'src/app/ui/service/data-service.service';
 import { MasterService } from 'src/app/ui/service/master.service';
 import { UtilityService } from 'src/app/utility/utility.service';
 
@@ -15,25 +16,29 @@ export class PreAdmissionAssessmentFormsComponent
     implements OnInit
 {
     PreAdmissionAssessmentFormsData: any = <any>{};
+    selectedFormId: string;
+
+    //Patient Details
     userId: any;
-    residentAdmissionInfoId: any = null;
+    residentAdmissionInfoId: any;
+    //CreatedBy or ModifiedBy
+    loginId: any;
 
     constructor(
         private _ConstantServices: ConstantsService,
         private route: ActivatedRoute,
         private _MasterServices: MasterService,
-        private _UtilityService: UtilityService
+        private _UtilityService: UtilityService,
+        private _DataService: DataService
     ) {
         super();
         this._ConstantServices.ActiveMenuName = 'Pre Assessment Admission Form';
-
-        //this.loginId = localStorage.getItem('userId');
+        this.loginId = localStorage.getItem('userId');
 
         this.unsubscribe.add = this.route.queryParams.subscribe((params) => {
             var ParamsArray = this._ConstantServices.GetParmasVal(params['q']);
 
             if (ParamsArray?.length > 0) {
-                //console.log('ParamsArray',ParamsArray);
                 this.userId =
                     ParamsArray.find((e) => e.FieldStr == 'id')?.FieldVal ||
                     null;
@@ -44,31 +49,61 @@ export class PreAdmissionAssessmentFormsComponent
         });
     }
 
-    ngOnInit(): void {}
+    ngOnInit(): void {
+        this._DataService.data$.subscribe((data) => {
+            this.selectedFormId = data;
+        });
+
+        if (this.selectedFormId != null) {
+            this.GetPreAdmissionFormDetails(this.selectedFormId);
+        }
+        console.log(this.PreAdmissionAssessmentFormsData);// Not working
+    }
+
+    GetPreAdmissionFormDetails(formId: string) {
+        this._UtilityService.showSpinner();
+        this.unsubscribe.add = this._MasterServices
+            .GetPreAdmissionFormDetails(formId)
+            .subscribe({
+                next: (data) => {
+                    this._UtilityService.hideSpinner();
+                    if (data.actionResult.success == true) {
+                        var tdata = JSON.parse(data.actionResult.result);
+                        tdata = tdata ? tdata : {};
+                        this.PreAdmissionAssessmentFormsData = tdata;
+                        console.log(this.PreAdmissionAssessmentFormsData);//Working 
+                       } else {
+                        this.PreAdmissionAssessmentFormsData = {};
+                    }
+                },
+                error: (e) => {
+                    this._UtilityService.hideSpinner();
+                    this._UtilityService.showErrorAlert(e.message);
+                },
+            });
+    }
 
     saveAsUnfinished() {
-        console.log('Data saved as unfinished');
         this.PreAdmissionAssessmentFormsData.isFormCompleted = false;
         this.Save();
     }
 
     completeForm() {
-        console.log('Form completed and data saved');
         this.PreAdmissionAssessmentFormsData.isFormCompleted = true;
         this.Save();
     }
 
     Save() {
-        //console.log(this.userId + ' ' + this.residentAdmissionInfoId);
         if (this.userId != null && this.residentAdmissionInfoId != null) {
             this.PreAdmissionAssessmentFormsData.userId = this.userId;
             this.PreAdmissionAssessmentFormsData.residentAdmissionInfoId =
                 this.residentAdmissionInfoId;
 
-               console.log(JSON.stringify(this.PreAdmissionAssessmentFormsData).toString());
             this._UtilityService.showSpinner();
             this.unsubscribe.add = this._MasterServices
-                .AddInsertUpdatePreAdmissionAssessmentForm(this.PreAdmissionAssessmentFormsData)
+                .AddInsertUpdatePreAdmissionAssessmentForm(
+                    this.PreAdmissionAssessmentFormsData
+                )
                 .subscribe({
                     next: (data) => {
                         this._UtilityService.hideSpinner();
@@ -80,7 +115,6 @@ export class PreAdmissionAssessmentFormsComponent
                             this._UtilityService.showWarningAlert(
                                 data.actionResult.errMsg
                             );
-                        //this.mode = 'view';
                     },
                     error: (e) => {
                         this._UtilityService.hideSpinner();
