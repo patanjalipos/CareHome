@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { AppComponentBase } from 'src/app/app-component-base';
 import { ConstantsService } from 'src/app/ui/service/constants.service';
+import { DataService } from 'src/app/ui/service/data-service.service';
 import { MasterService } from 'src/app/ui/service/master.service';
 import { UtilityService } from 'src/app/utility/utility.service';
 
@@ -15,6 +16,7 @@ export class PreAdmissionAssessmentFormsComponent
     implements OnInit
 {
     PreAdmissionAssessmentFormsData: any = <any>{};
+    selectedFormId: string;
 
     //Patient Details
     userId: any;
@@ -26,7 +28,8 @@ export class PreAdmissionAssessmentFormsComponent
         private _ConstantServices: ConstantsService,
         private route: ActivatedRoute,
         private _MasterServices: MasterService,
-        private _UtilityService: UtilityService
+        private _UtilityService: UtilityService,
+        private _DataService: DataService
     ) {
         super();
         this._ConstantServices.ActiveMenuName = 'Pre Assessment Admission Form';
@@ -36,7 +39,6 @@ export class PreAdmissionAssessmentFormsComponent
             var ParamsArray = this._ConstantServices.GetParmasVal(params['q']);
 
             if (ParamsArray?.length > 0) {
-                //console.log('ParamsArray',ParamsArray);
                 this.userId =
                     ParamsArray.find((e) => e.FieldStr == 'id')?.FieldVal ||
                     null;
@@ -48,8 +50,14 @@ export class PreAdmissionAssessmentFormsComponent
     }
 
     ngOnInit(): void {
-        //this.GetPreAdmissionFormDetails();
-        //console.log(this.PreAdmissionAssessmentFormsData);
+        this._DataService.data$.subscribe((data) => {
+            this.selectedFormId = data;
+        });
+
+        if (this.selectedFormId != null) {
+            this.GetPreAdmissionFormDetails(this.selectedFormId);
+        }
+        console.log(this.PreAdmissionAssessmentFormsData);// Not working
     }
 
     GetPreAdmissionFormDetails(formId: string) {
@@ -63,8 +71,8 @@ export class PreAdmissionAssessmentFormsComponent
                         var tdata = JSON.parse(data.actionResult.result);
                         tdata = tdata ? tdata : {};
                         this.PreAdmissionAssessmentFormsData = tdata;
-                        //console.log(this.PreAdmissionAssessmentFormsData);
-                    } else {
+                        console.log(this.PreAdmissionAssessmentFormsData);//Working 
+                       } else {
                         this.PreAdmissionAssessmentFormsData = {};
                     }
                 },
