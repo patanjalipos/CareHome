@@ -1,7 +1,9 @@
 import {
     Component,
     ComponentRef,
+    EventEmitter,
     OnInit,
+    Output,
     ViewChild,
     ViewContainerRef,
 } from '@angular/core';
@@ -15,8 +17,8 @@ import { UtilityService } from 'src/app/utility/utility.service';
 import { AppComponentBase } from 'src/app/app-component-base';
 import { PreAdmissionAssessmentFormsComponent } from '../pre-admission-assessment-forms/pre-admission-assessment-forms.component';
 import { NotfoundComponent } from '../../notfound/notfound.component';
-import { MenuItem } from 'primeng/api';
 import { ActivatedRoute } from '@angular/router';
+import { DataService } from 'src/app/ui/service/data-service.service';
 
 @Component({
     selector: 'app-forms-dashboard',
@@ -27,6 +29,8 @@ export class FormsDashboardComponent
     extends AppComponentBase
     implements OnInit
 {
+    //@Output() dataEvent = new EventEmitter<any>();
+
     @ViewChild('formContainer', { read: ViewContainerRef })
     formContainer: ViewContainerRef;
     componentRef: ComponentRef<any>;
@@ -43,6 +47,7 @@ export class FormsDashboardComponent
         private _ConstantServices: ConstantsService,
         private _MasterServices: MasterService,
         private _UtilityService: UtilityService,
+        private _DataService: DataService,
         private route: ActivatedRoute
     ) {
         super();
@@ -129,9 +134,14 @@ export class FormsDashboardComponent
     }
 
     //View/Edit Form
-    OpenForm(formMasterId: string, formId: string) {
-        console.log('Form master id :' + formMasterId);
-        console.log('Form id :' + formId);
+    openForm(formMasterId: string, formId: string) {
+
+        //console.log('Form master id :' + formMasterId);
+        //console.log('Form id :' + formId);
+        //this.dataEvent.emit(formId);
+
+        this._DataService.sendData(formId);
+        this.showForm(formMasterId)
     }
 
     //Create new Form
