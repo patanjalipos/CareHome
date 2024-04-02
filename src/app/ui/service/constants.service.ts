@@ -48,6 +48,12 @@ export enum UserTypes {
   // Billing="6396f00addc59e9aac93b137"
 }
 
+export enum FormTypes {
+  PreAdmsnForm = "65e6db2de37632e29ad778ba",
+  MedicalForm = "65e6db54e37632e29ad778bb",
+  Fitness = "65e6db61e37632e29ad778bc"
+}
+
 export enum AdmissionStatus {
   Unallocated = 0,
   Active = 1,
@@ -70,3 +76,4 @@ export enum CustomDateFormat {
   DEF_DATE_TIME_AMPM = "dd-MM-yyyy HH:mm a" ,
   CalendarFormat="dd-mm-yy" 
 }
+

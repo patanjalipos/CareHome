@@ -205,6 +205,9 @@ export class AppMenuComponent implements OnInit {
                             },                          
                             {
                                 label: 'User Master', icon: 'fa-solid fa-user-tie',routerLink: ['/master/user-master'],queryParams:[]
+                            },
+                            {
+                                label: 'Form Master', icon: 'fa-solid fa-align-justify',class:'big-menu', routerLink: ['/master/form-master'],queryParams:[]
                             }
                         ]
                     },

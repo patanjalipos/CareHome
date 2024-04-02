@@ -13,6 +13,7 @@ const routes: Routes = [
   { path: 'fall-risk-master', loadChildren: () => import('./fall-risk-master/fall-risk-master.module').then(m => m.FallRiskMasterModule) },
   { path: 'home-master', loadChildren: () => import('./home-master/home-master.module').then(m => m.HomeMasterModule) },
   { path: 'location-master', loadChildren: () => import('./location-master/location-master.module').then(m => m.LocationMasterModule) },
+  { path: 'form-master', loadChildren: () => import('./form-master/form-master.module').then(m => m.FormMasterModule) },
   { path: 'user-master', loadChildren: () => import('./user-master/user-master.module').then(m => m.UserMasterModule) },
   { path: '**', redirectTo: '/notfound' }
 ];

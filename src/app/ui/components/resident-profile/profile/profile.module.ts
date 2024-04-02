@@ -11,8 +11,8 @@ import { DropdownModule } from "primeng/dropdown";
 import { InputTextModule } from "primeng/inputtext";
 
 @NgModule({
-  declarations: [
-    ProfileComponent
+  declarations: [ 
+    ProfileComponent 
   ],
   imports: [
     CommonModule,

@@ -135,5 +135,5 @@ export class ProfileComponent extends AppComponentBase implements OnInit {
       this._UtilityService.showWarningAlert("Resident admission details are missing.");
     }
   }
-
+ 
 }
