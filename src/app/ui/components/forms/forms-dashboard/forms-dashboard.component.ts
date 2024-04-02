@@ -134,18 +134,18 @@ export class FormsDashboardComponent
     }
 
     //View/Edit Form
-    openForm(formMasterId: string, formId: string) {
+    OpenForm(formMasterId: string, formId: string, isEditable: boolean) {
 
-        //console.log('Form master id :' + formMasterId);
-        //console.log('Form id :' + formId);
-        //this.dataEvent.emit(formId);
+        // console.log('Form master id :' + formMasterId);
+        // console.log('Form id :' + formId);
+        // this.dataEvent.emit(formId);
 
         this._DataService.sendData(formId);
-        this.showForm(formMasterId)
+        this.ShowForm(formMasterId)
     }
 
     //Create new Form
-    showForm(selectedFormId: string) {
+    ShowForm(selectedFormId: string) {
         // Clear existing component if any
         if (this.componentRef) {
             this.componentRef.destroy();
