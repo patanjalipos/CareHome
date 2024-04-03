@@ -3,8 +3,7 @@
         <div class="formheader">
             <div class="d-flex">
                 <div class="col-md-4">
-                    <label class="form-label"
-                        ><b> Started by (Name) :</b>
+                    <label class="form-label"><b> Started by (Name) :</b>
                     </label>
                 </div>
                 <div class="col-md-4">
@@ -17,8 +16,7 @@
             <div class="d-flex">
                 <div class="col-md-4">
                     <label class="form-label">
-                        <b>Last entered by (Name) :</b></label
-                    >
+                        <b>Last entered by (Name) :</b></label>
                 </div>
                 <div class="col-md-4">
                     <label class="form-label"> <b>Designation :</b></label>
@@ -28,35 +26,22 @@
                 </div>
             </div>
         </div>
-
+ 
         <div class="col-md-4 mt-4">
-            <div class="preform-box">
+            <div class="labelcontent">
                 <p>Name all parties who have assisted with information</p>
             </div>
         </div>
         <div class="col-md-7 mt-4 mb-4">
-            <ng-container *ngIf="isEditable; else readOnlyField">
-                <p-dropdown
-                    pInputText
-                    type="text"
-                    name="PreAdmissionAssessmentFormsData.ChartheadName"
-                    class="form-control"
-                    [(ngModel)]="PreAdmissionAssessmentFormsData.ChartheadName"
-                >
-                </p-dropdown>
-            </ng-container>
-            <ng-template #readOnlyField>
-                <label>{{
-                    PreAdmissionAssessmentFormsData.ChartheadName
-                }}</label>
-            </ng-template>
+            <input pInputText type="text" required name="PreAdmissionAssessmentFormsData.chartheadname"
+                class="form-control" [(ngModel)]="PreAdmissionAssessmentFormsData.chartheadname" />
             <p>include relationship to the resident & contact details</p>
         </div>
         <div class="col-md-1 form-icon mt-4">
             <i class="fa-solid fa-info"></i>
         </div>
         <div class="col-md-4">
-            <div class="preform-box">
+            <div class="labelcontent">
                 <p>
                     Does the person have capacity to consent to care and
                     accommodation
@@ -64,23 +49,10 @@
             </div>
         </div>
         <div class="col-md-7 mb-4">
-            <ng-container *ngIf="isEditable; else readOnlyField">
-                <p-dropdown
-                    *ngIf="isEditable"
-                    name="PreAdmissionAssessmentFormsData.PersonCapacity"
-                    [(ngModel)]="PreAdmissionAssessmentFormsData.PersonCapacity"
-                    [options]="personCapacityOptions"
-                    placeholder="Select"
-                    [style]="{ width: '100%' }"
-                    [disabled]="!isEditable"
-                >
-                </p-dropdown>
-            </ng-container>
-            <ng-template #readOnlyField>
-                <label>{{
-                    PreAdmissionAssessmentFormsData.PersonCapacity
-                }}</label>
-            </ng-template>
+            <p-dropdown name="PreAdmissionAssessmentFormsData.personCapacity"
+                [(ngModel)]="PreAdmissionAssessmentFormsData.personCapacity" [options]="personCapacityOptions"
+                placeholder="Select" [style]="{ width: '100%' }">
+            </p-dropdown>
             <p>
                 If person lacks capacity what powers are they being moved under
                 Section 13ZA, POA, Guardianship
@@ -89,9 +61,9 @@
         <div class="col-md-1 form-icon mt-4">
             <i class="fa-solid fa-info"></i>
         </div>
-
+ 
         <div class="col-md-4">
-            <div class="preform-box">
+            <div class="labelcontent">
                 <p>
                     Have any of the following professional documents been
                     obtained
@@ -99,17 +71,9 @@
             </div>
         </div>
         <div class="col-md-7 mb-4">
-            <p-dropdown
-                *ngIf="isEditable"
-                name="PreAdmissionAssessmentFormsData.ProfessionalDocObtained"
-                [(ngModel)]="
-                    PreAdmissionAssessmentFormsData.ProfessionalDocObtained
-                "
-                [options]="professionalDocObtainedOptions"
-                placeholder="Select"
-                [style]="{ width: '100%' }"
-                [disabled]="!isEditable"
-            >
+            <p-dropdown name="PreAdmissionAssessmentFormsData.professionalDocObtained" [(ngModel)]="
+                    PreAdmissionAssessmentFormsData.professionalDocObtained
+                " [options]="professionalDocObtainedOptions" placeholder="Select" [style]="{ width: '100%' }">
             </p-dropdown>
             <p>
                 If not obtained or in place, AWI certificate and corresponding
@@ -121,40 +85,28 @@
             <i class="fa-solid fa-info"></i>
         </div>
         <div class="col-md-4">
-            <div class="preform-box">
+            <div class="labelcontent">
                 <p>Where is the resident moving in from</p>
             </div>
         </div>
         <div class="col-md-7 mb-4">
-            <p-dropdown
-                *ngIf="isEditable"
-                name="PreAdmissionAssessmentFormsData.ResidentMovingFrom"
-                [(ngModel)]="PreAdmissionAssessmentFormsData.ResidentMovingFrom"
-                [options]="residentMovingOptions"
-                placeholder="Select"
-                [style]="{ width: '100%' }"
-                [disabled]="!isEditable"
-            >
+            <p-dropdown name="PreAdmissionAssessmentFormsData.residentMovingFrom"
+                [(ngModel)]="PreAdmissionAssessmentFormsData.residentMovingFrom" [options]="residentMovingOptions"
+                placeholder="Select" [style]="{ width: '100%' }">
             </p-dropdown>
         </div>
         <div class="col-md-1 form-icon mt-4">
             <i class="fa-solid fa-info"></i>
         </div>
         <div class="col-md-4">
-            <div class="preform-box">
+            <div class="labelcontent">
                 <p>Payment / funding</p>
             </div>
         </div>
         <div class="col-md-7 mb-4">
-            <p-dropdown
-                *ngIf="isEditable"
-                [disabled]="!isEditable"
-                name="PreAdmissionAssessmentFormsData.Payment"
-                [(ngModel)]="PreAdmissionAssessmentFormsData.Payment"
-                [options]="paymentOptionsn"
-                placeholder="Select"
-                [style]="{ width: '100%' }"
-            >
+            <p-dropdown name="PreAdmissionAssessmentFormsData.payment"
+                [(ngModel)]="PreAdmissionAssessmentFormsData.payment" [options]="paymentOptionsn" placeholder="Select"
+                [style]="{ width: '100%' }">
             </p-dropdown>
             <p>Update resident admission details</p>
         </div>
@@ -162,7 +114,7 @@
             <i class="fa-solid fa-info"></i>
         </div>
         <div class="col-md-4">
-            <div class="preform-box">
+            <div class="labelcontent">
                 <p>
                     What are the persons current abilities and how can we
                     continue to use and develop these?
@@ -170,17 +122,9 @@
             </div>
         </div>
         <div class="col-md-7 mb-4">
-            <p-dropdown
-                *ngIf="isEditable"
-                [disabled]="!isEditable"
-                name="PreAdmissionAssessmentFormsData.PeronsCurrentAbilities"
-                [(ngModel)]="
-                    PreAdmissionAssessmentFormsData.PeronsCurrentAbilities
-                "
-                [options]="peronsCurrentAbilitiesOptions"
-                placeholder="Select"
-                [style]="{ width: '100%' }"
-            >
+            <p-dropdown [(ngModel)]="
+                    PreAdmissionAssessmentFormsData.peronsCurrentAbilities
+                " [options]="peronsCurrentAbilitiesOptions" placeholder="Select" [style]="{ width: '100%' }">
             </p-dropdown>
             <p>
                 Focus in this section on the persona abilities not their
@@ -193,43 +137,28 @@
             <i class="fa-solid fa-info"></i>
         </div>
         <div class="col-md-4">
-            <div class="preform-box">
+            <div class="labelcontent">
                 <p>Advanced care planning (ACP)</p>
             </div>
         </div>
         <div class="col-md-7 mb-4">
-            <p-dropdown
-                *ngIf="isEditable"
-                [disabled]="!isEditable"
-                [(ngModel)]="
-                    PreAdmissionAssessmentFormsData.AdvancedCarePlanning
-                "
-                [options]="advancedCarePlanningOptions"
-                placeholder="Select"
-                [style]="{ width: '100%' }"
-            >
+            <p-dropdown [(ngModel)]="
+                    PreAdmissionAssessmentFormsData.advancedCarePlanning
+                " [options]="advancedCarePlanningOptions" placeholder="Select" [style]="{ width: '100%' }">
             </p-dropdown>
         </div>
         <div class="col-md-1 form-icon mt-4">
             <i class="fa-solid fa-info"></i>
         </div>
         <div class="col-md-4">
-            <div class="preform-box">
+            <div class="labelcontent">
                 <p>Medical history and medical conditions</p>
             </div>
         </div>
         <div class="col-md-7 mb-4">
-            <p-dropdown
-                *ngIf="isEditable"
-                [disabled]="!isEditable"
-                [(ngModel)]="
-                    PreAdmissionAssessmentFormsData.MedicalHistoryCondition
-                "
-                name="PreAdmissionAssessmentFormsData.MedicalHistoryCondition"
-                [options]="medicalHistoryConditionOptions"
-                placeholder="Select"
-                [style]="{ width: '100%' }"
-            >
+            <p-dropdown [(ngModel)]="
+                    PreAdmissionAssessmentFormsData.medicalHistoryCondition
+                " [options]="medicalHistoryConditionOptions" placeholder="Select" [style]="{ width: '100%' }">
             </p-dropdown>
             <p>
                 Include any pacemakers, please at the point of pre admission
@@ -241,23 +170,14 @@
             <i class="fa-solid fa-info"></i>
         </div>
         <div class="col-md-4">
-            <div class="preform-box">
+            <div class="labelcontent">
                 <p>Social and spiritual, activities and interests</p>
             </div>
         </div>
         <div class="col-md-7 mb-4">
-            <input
-                *ngIf="isEditable"
-                [disabled]="!isEditable"
-                pInputText
-                type="text"
-                required
-                name="PreAdmissionAssessmentFormsData.SocialActivitiesInterests"
-                class="form-control"
-                [(ngModel)]="
-                    PreAdmissionAssessmentFormsData.SocialActivitiesInterests
-                "
-            />
+            <input pInputText type="text" required name="chartheadname" class="form-control" [(ngModel)]="
+                    PreAdmissionAssessmentFormsData.socialActivitiesInterests
+                " />
             <p>
                 Include hobbies previous and current, whos imoprtant in their
                 lives, any special days/occasions we need to be aware of, what
@@ -268,22 +188,14 @@
             <i class="fa-solid fa-info"></i>
         </div>
         <div class="col-md-4">
-            <div class="preform-box">
+            <div class="labelcontent">
                 <p>Connecting and Communicating</p>
             </div>
         </div>
         <div class="col-md-7 mb-4">
-            <p-dropdown
-                *ngIf="isEditable"
-                [disabled]="!isEditable"
-                name="PreAdmissionAssessmentFormsData.ConnectingAndCommunicating"
-                [(ngModel)]="
-                    PreAdmissionAssessmentFormsData.ConnectingAndCommunicating
-                "
-                [options]="connectingAndCommunicatingOptions"
-                placeholder="Select"
-                [style]="{ width: '100%' }"
-            >
+            <p-dropdown [(ngModel)]="
+                    PreAdmissionAssessmentFormsData.connectingAndCommunicating
+                " [options]="connectingAndCommunicatingOptions" placeholder="Select" [style]="{ width: '100%' }">
             </p-dropdown>
             <p>
                 Include all the applicable options below and expand if required
@@ -294,24 +206,17 @@
             <i class="fa-solid fa-info"></i>
         </div>
         <div class="col-md-4">
-            <div class="preform-box">
+            <div class="labelcontent">
                 <p>
                     Personal safety (probability of resident leaving the home
                     unnoticed)
                 </p>
             </div>
         </div>
-
+ 
         <div class="col-md-7 mb-4">
-            <p-dropdown
-                *ngIf="isEditable"
-                [disabled]="!isEditable"
-                [(ngModel)]="PreAdmissionAssessmentFormsData.PersonalSafety"
-                name="PreAdmissionAssessmentFormsData.PersonalSafety"
-                [options]="personalSafetyOptions"
-                placeholder="Select"
-                [style]="{ width: '100%' }"
-            >
+            <p-dropdown [(ngModel)]="PreAdmissionAssessmentFormsData.personalSafety" [options]="personalSafetyOptions"
+                placeholder="Select" [style]="{ width: '100%' }">
             </p-dropdown>
             <p>
                 Please review in a risk aware manner how can we safely consider
@@ -323,23 +228,14 @@
             <i class="fa-solid fa-info"></i>
         </div>
         <div class="col-md-4">
-            <div class="preform-box">
+            <div class="labelcontent">
                 <p>Leaving the Home unescorted - Herbert protocol</p>
             </div>
         </div>
         <div class="col-md-7 mb-4">
-            <input
-                *ngIf="isEditable"
-                [disabled]="!isEditable"
-                pInputText
-                type="text"
-                required
-                name="PreAdmissionAssessmentFormsData.LeavingHomeUnescorted"
-                class="form-control"
-                [(ngModel)]="
-                    PreAdmissionAssessmentFormsData.LeavingHomeUnescorted
-                "
-            />
+            <input pInputText type="text" required name="chartheadname" class="form-control" [(ngModel)]="
+                    PreAdmissionAssessmentFormsData.leavingHomeUnescorted
+                " />
             <p>
                 Please complete fully the Herbert protocol and request
                 permission for Alzheimer's Scotland Purple alert profile to be
@@ -350,22 +246,14 @@
             <i class="fa-solid fa-info"></i>
         </div>
         <div class="col-md-4">
-            <div class="preform-box">
+            <div class="labelcontent">
                 <p>Does the resident experience any mental health conditions</p>
             </div>
         </div>
         <div class="col-md-7 mb-4">
-            <p-dropdown
-                *ngIf="isEditable"
-                [disabled]="!isEditable"
-                [(ngModel)]="
-                    PreAdmissionAssessmentFormsData.ResidentExpAnyMHConditions
-                "
-                name="PreAdmissionAssessmentFormsData.ResidentExpAnyMHConditions"
-                [options]="residentExpAnyMHConditionsOptions"
-                placeholder="Select"
-                [style]="{ width: '100%' }"
-            >
+            <p-dropdown [(ngModel)]="
+                    PreAdmissionAssessmentFormsData.residentExpAnyMHConditions
+                " [options]="residentExpAnyMHConditionsOptions" placeholder="Select" [style]="{ width: '100%' }">
             </p-dropdown>
             <p>
                 If yes, has this been diagnosed by a GP (state condition) and is
@@ -376,43 +264,27 @@
             <i class="fa-solid fa-info"></i>
         </div>
         <div class="col-md-4">
-            <div class="preform-box">
+            <div class="labelcontent">
                 <p>Speech, sight and hearing</p>
             </div>
         </div>
         <div class="col-md-7 mb-4">
-            <p-dropdown
-                *ngIf="isEditable"
-                [disabled]="!isEditable"
-                [(ngModel)]="PreAdmissionAssessmentFormsData.SpeechSightHearing"
-                name="PreAdmissionAssessmentFormsData.SpeechSightHearing"
-                [options]="speechSightHearingOptions"
-                placeholder="Select"
-                [style]="{ width: '100%' }"
-            >
+            <p-dropdown [(ngModel)]="PreAdmissionAssessmentFormsData.speechSightHearing"
+                [options]="speechSightHearingOptions" placeholder="Select" [style]="{ width: '100%' }">
             </p-dropdown>
         </div>
         <div class="col-md-1 form-icon mt-4">
             <i class="fa-solid fa-info"></i>
         </div>
         <div class="col-md-4">
-            <div class="preform-box">
+            <div class="labelcontent">
                 <p>Speech, sight and hearing details</p>
             </div>
         </div>
         <div class="col-md-7 mb-4">
-            <input
-                *ngIf="isEditable"
-                [disabled]="!isEditable"
-                pInputText
-                type="text"
-                required
-                name="PreAdmissionAssessmentFormsData.SpeechSightHearingDetails"
-                class="form-control"
-                [(ngModel)]="
-                    PreAdmissionAssessmentFormsData.SpeechSightHearingDetails
-                "
-            />
+            <input pInputText type="text" required name="chartheadname" class="form-control" [(ngModel)]="
+                    PreAdmissionAssessmentFormsData.speechSightHearingDetails
+                " />
             <p>
                 Include any diagnosed conditions, aids used and treatment /
                 therapy details
@@ -422,23 +294,14 @@
             <i class="fa-solid fa-info"></i>
         </div>
         <div class="col-md-4">
-            <div class="preform-box">
+            <div class="labelcontent">
                 <p>Breathing and circulation</p>
             </div>
         </div>
         <div class="col-md-7 mb-4">
-            <input
-                *ngIf="isEditable"
-                [disabled]="!isEditable"
-                pInputText
-                type="text"
-                required
-                name="PreAdmissionAssessmentFormsData.BreathingCirculationDetails"
-                class="form-control"
-                [(ngModel)]="
-                    PreAdmissionAssessmentFormsData.BreathingCirculationDetails
-                "
-            />
+            <input pInputText type="text" required name="chartheadname" class="form-control" [(ngModel)]="
+                    PreAdmissionAssessmentFormsData.breathingCirculationDetails
+                " />
             <p>
                 Include all health conditions affecting breathing (COPD, asthma,
                 other, aids used (oxygen etc.), smoking. If oxygen prescribed
@@ -450,43 +313,27 @@
             <i class="fa-solid fa-info"></i>
         </div>
         <div class="col-md-4">
-            <div class="preform-box">
+            <div class="labelcontent">
                 <p>Falls and mobility</p>
             </div>
         </div>
         <div class="col-md-7 mb-4">
-            <p-dropdown
-                *ngIf="isEditable"
-                [disabled]="!isEditable"
-                [(ngModel)]="PreAdmissionAssessmentFormsData.FallsAndMobility"
-                name="PreAdmissionAssessmentFormsData.FallsAndMobility"
-                [options]="fallsAndMobilityOptions"
-                placeholder="Select"
-                [style]="{ width: '100%' }"
-            >
+            <p-dropdown [(ngModel)]="PreAdmissionAssessmentFormsData.fallsAndMobility"
+                [options]="fallsAndMobilityOptions" placeholder="Select" [style]="{ width: '100%' }">
             </p-dropdown>
         </div>
         <div class="col-md-1 form-icon mt-4">
             <i class="fa-solid fa-info"></i>
         </div>
         <div class="col-md-4">
-            <div class="preform-box">
+            <div class="labelcontent">
                 <p>Falls and mobility details</p>
             </div>
         </div>
         <div class="col-md-7 mb-4">
-            <input
-                *ngIf="isEditable"
-                [disabled]="!isEditable"
-                pInputText
-                type="text"
-                required
-                name="PreAdmissionAssessmentFormsData.FallsAndMobilityDetails"
-                class="form-control"
-                [(ngModel)]="
-                    PreAdmissionAssessmentFormsData.FallsAndMobilityDetails
-                "
-            />
+            <input pInputText type="text" required name="chartheadname" class="form-control" [(ngModel)]="
+                    PreAdmissionAssessmentFormsData.fallsAndMobilityDetails
+                " />
             <p>
                 Include mobility level, aids, recent falls (including causes)
                 day / night variance, medication and any referrals
@@ -496,43 +343,27 @@
             <i class="fa-solid fa-info"></i>
         </div>
         <div class="col-md-4">
-            <div class="preform-box">
+            <div class="labelcontent">
                 <p>Pain status</p>
             </div>
         </div>
         <div class="col-md-7 mb-4">
-            <p-dropdown
-                *ngIf="isEditable"
-                [disabled]="!isEditable"
-                [(ngModel)]="PreAdmissionAssessmentFormsData.PainStatus"
-                name="PreAdmissionAssessmentFormsData.PainStatus"
-                [options]="painStatusOptions"
-                placeholder="Select"
-                [style]="{ width: '100%' }"
-            >
+            <p-dropdown [(ngModel)]="PreAdmissionAssessmentFormsData.painStatus" [options]="painStatusOptions"
+                placeholder="Select" [style]="{ width: '100%' }">
             </p-dropdown>
         </div>
         <div class="col-md-1 form-icon mt-4">
             <i class="fa-solid fa-info"></i>
         </div>
         <div class="col-md-4">
-            <div class="preform-box">
+            <div class="labelcontent">
                 <p>Pain management details</p>
             </div>
         </div>
         <div class="col-md-7 mb-4">
-            <input
-                *ngIf="isEditable"
-                [disabled]="!isEditable"
-                pInputText
-                type="text"
-                required
-                name="PreAdmissionAssessmentFormsData.PainManagementDetails"
-                class="form-control"
-                [(ngModel)]="
-                    PreAdmissionAssessmentFormsData.PainManagementDetails
-                "
-            />
+            <input pInputText type="text" required name="chartheadname" class="form-control" [(ngModel)]="
+                    PreAdmissionAssessmentFormsData.painManagementDetails
+                " />
             <p>
                 How would we recognise the resident is experiencing pain how is
                 this assessed do we need to use abbey pain scale or a visual
@@ -545,20 +376,13 @@
             <i class="fa-solid fa-info"></i>
         </div>
         <div class="col-md-4">
-            <div class="preform-box">
+            <div class="labelcontent">
                 <p>Skin assessment</p>
             </div>
         </div>
         <div class="col-md-7 mb-4">
-            <p-dropdown
-                *ngIf="isEditable"
-                [disabled]="!isEditable"
-                [(ngModel)]="PreAdmissionAssessmentFormsData.SkinAssessment"
-                name="PreAdmissionAssessmentFormsData.SkinAssessment"
-                [options]="skinAssessmentOptions"
-                placeholder="Select"
-                [style]="{ width: '100%' }"
-            >
+            <p-dropdown [(ngModel)]="PreAdmissionAssessmentFormsData.skinAssessment" [options]="skinAssessmentOptions"
+                placeholder="Select" [style]="{ width: '100%' }">
             </p-dropdown>
             <p>
                 Include any medical conditions that affect skin or could
@@ -569,66 +393,40 @@
             <i class="fa-solid fa-info"></i>
         </div>
         <div class="col-md-4">
-            <div class="preform-box">
+            <div class="labelcontent">
                 <p>Skin Details</p>
             </div>
         </div>
         <div class="col-md-7 mb-4">
-            <input
-                *ngIf="isEditable"
-                [disabled]="!isEditable"
-                pInputText
-                type="text"
-                required
-                [(ngModel)]="PreAdmissionAssessmentFormsData.SkinDetails"
-                name="PreAdmissionAssessmentFormsData.SkinDetails"
-                class="form-control"
-            />
+            <input pInputText type="text" required name="chartheadname" class="form-control" />
         </div>
         <div class="col-md-1 form-icon mt-4">
             <i class="fa-solid fa-info"></i>
         </div>
-
+ 
         <div class="col-md-4">
-            <div class="preform-box">
+            <div class="labelcontent">
                 <p>Eating and drinking assessment</p>
             </div>
         </div>
         <div class="col-md-7 mb-4">
-            <p-dropdown
-                *ngIf="isEditable"
-                [disabled]="!isEditable"
-                [(ngModel)]="
-                    PreAdmissionAssessmentFormsData.EatingDrinkingAssessment
-                "
-                name="PreAdmissionAssessmentFormsData.EatingDrinkingAssessment"
-                [options]="eatingDrinkingAssessmentOptions"
-                placeholder="Select"
-                [style]="{ width: '100%' }"
-            >
+            <p-dropdown [(ngModel)]="
+                    PreAdmissionAssessmentFormsData.eatingDrinkingAssessment
+                " [options]="eatingDrinkingAssessmentOptions" placeholder="Select" [style]="{ width: '100%' }">
             </p-dropdown>
         </div>
         <div class="col-md-1 form-icon mt-4">
             <i class="fa-solid fa-info"></i>
         </div>
         <div class="col-md-4">
-            <div class="preform-box">
+            <div class="labelcontent">
                 <p>Eating and drinking details</p>
             </div>
         </div>
         <div class="col-md-7 mb-4">
-            <input
-                *ngIf="isEditable"
-                [disabled]="!isEditable"
-                pInputText
-                type="text"
-                required
-                name="PreAdmissionAssessmentFormsData.EatingDrinkingDetails"
-                class="form-control"
-                [(ngModel)]="
-                    PreAdmissionAssessmentFormsData.EatingDrinkingDetails
-                "
-            />
+            <input pInputText type="text" required name="chartheadname" class="form-control" [(ngModel)]="
+                    PreAdmissionAssessmentFormsData.eatingDrinkingDetails
+                " />
             <p>
                 Include likes and dislikes, what makes a meal enjoyable, what
                 they like to eat for their meals, where they like to enjoy their
@@ -639,24 +437,16 @@
         <div class="col-md-1 form-icon mt-4">
             <i class="fa-solid fa-info"></i>
         </div>
-
+ 
         <div class="col-md-4">
-            <div class="preform-box">
+            <div class="labelcontent">
                 <p>Promotion of continence</p>
             </div>
         </div>
         <div class="col-md-7 mb-4">
-            <p-dropdown
-                *ngIf="isEditable"
-                [disabled]="!isEditable"
-                name="PreAdmissionAssessmentFormsData.PromotionOfContinence"
-                [(ngModel)]="
-                    PreAdmissionAssessmentFormsData.PromotionOfContinence
-                "
-                [options]="promotionOfContinenceOptions"
-                placeholder="Select"
-                [style]="{ width: '100%' }"
-            >
+            <p-dropdown [(ngModel)]="
+                    PreAdmissionAssessmentFormsData.promotionOfContinence
+                " [options]="promotionOfContinenceOptions" placeholder="Select" [style]="{ width: '100%' }">
             </p-dropdown>
             <p></p>
         </div>
@@ -664,23 +454,14 @@
             <i class="fa-solid fa-info"></i>
         </div>
         <div class="col-md-4">
-            <div class="preform-box">
+            <div class="labelcontent">
                 <p>Promoting Continence details</p>
             </div>
         </div>
         <div class="col-md-7 mb-4">
-            <input
-                *ngIf="isEditable"
-                [disabled]="!isEditable"
-                pInputText
-                type="text"
-                required
-                name="PreAdmissionAssessmentFormsData.PromotionOfContinenceDetails"
-                class="form-control"
-                [(ngModel)]="
-                    PreAdmissionAssessmentFormsData.PromotionOfContinenceDetails
-                "
-            />
+            <input pInputText type="text" required name="chartheadname" class="form-control" [(ngModel)]="
+                    PreAdmissionAssessmentFormsData.promotionOfContinenceDetails
+                " />
             <p>
                 Include specific aids used, current continence regimes in place
                 to promote continence, medication prescribed, catheter type,
@@ -692,46 +473,29 @@
             <i class="fa-solid fa-info"></i>
         </div>
         <div class="col-md-4">
-            <div class="preform-box">
+            <div class="labelcontent">
                 <p>Feeling fresh and clean and promotion of self identity</p>
             </div>
         </div>
         <div class="col-md-7 mb-4">
-            <p-dropdown
-                *ngIf="isEditable"
-                [disabled]="!isEditable"
-                [(ngModel)]="
-                    PreAdmissionAssessmentFormsData.FeelingFreshAndClean
-                "
-                [options]="feelingFreshAndCleanOptions"
-                name="PreAdmissionAssessmentFormsData.FeelingFreshAndClean"
-                placeholder="Select"
-                [style]="{ width: '100%' }"
-            >
+            <p-dropdown [(ngModel)]="
+                    PreAdmissionAssessmentFormsData.feelingFreshAndClean
+                " [options]="feelingFreshAndCleanOptions" placeholder="Select" [style]="{ width: '100%' }">
             </p-dropdown>
         </div>
         <div class="col-md-1 form-icon mt-4">
             <i class="fa-solid fa-info"></i>
         </div>
-
+ 
         <div class="col-md-4">
-            <div class="preform-box">
+            <div class="labelcontent">
                 <p>Feeling fresh and clean detail</p>
             </div>
         </div>
         <div class="col-md-7 mb-4">
-            <input
-                *ngIf="isEditable"
-                [disabled]="!isEditable"
-                pInputText
-                type="text"
-                required
-                name="PreAdmissionAssessmentFormsData.FeelingFreshAndCleanDetails"
-                class="form-control"
-                [(ngModel)]="
-                    PreAdmissionAssessmentFormsData.FeelingFreshAndCleanDetails
-                "
-            />
+            <input pInputText type="text" required name="chartheadname" class="form-control" [(ngModel)]="
+                    PreAdmissionAssessmentFormsData.feelingFreshAndCleanDetails
+                " />
             <p>
                 What they do prefer baths, showers and how often. What words do
                 they use for having a wash or a freshen up, tips or treats that
@@ -742,45 +506,29 @@
         <div class="col-md-1 form-icon mt-4">
             <i class="fa-solid fa-info"></i>
         </div>
-
+ 
         <div class="col-md-4">
-            <div class="preform-box">
+            <div class="labelcontent">
                 <p>Sleeping and resting</p>
             </div>
         </div>
         <div class="col-md-7 mb-4">
-            <p-dropdown
-                *ngIf="isEditable"
-                [disabled]="!isEditable"
-                name="PreAdmissionAssessmentFormsData.SleepingAndResting"
-                [(ngModel)]="PreAdmissionAssessmentFormsData.SleepingAndResting"
-                [options]="sleepingAndRestiingOptions"
-                placeholder="Select"
-                [style]="{ width: '100%' }"
-            >
+            <p-dropdown [(ngModel)]="PreAdmissionAssessmentFormsData.sleepingAndResting"
+                [options]="sleepingAndRestiingOptions" placeholder="Select" [style]="{ width: '100%' }">
             </p-dropdown>
         </div>
         <div class="col-md-1 form-icon mt-4">
             <i class="fa-solid fa-info"></i>
         </div>
         <div class="col-md-4">
-            <div class="preform-box">
+            <div class="labelcontent">
                 <p>Sleeping and resting details</p>
             </div>
         </div>
         <div class="col-md-7 mb-4">
-            <input
-                *ngIf="isEditable"
-                [disabled]="!isEditable"
-                pInputText
-                type="text"
-                required
-                name="PreAdmissionAssessmentFormsData.SleepingAndRestingDetails"
-                class="form-control"
-                [(ngModel)]="
-                    PreAdmissionAssessmentFormsData.SleepingAndRestingDetails
-                "
-            />
+            <input pInputText type="text" required name="chartheadname" class="form-control" [(ngModel)]="
+                    PreAdmissionAssessmentFormsData.sleepingAndRestingDetails
+                " />
             <p>
                 what makes a good night for the resident. Describe sleeping and
                 waking routine, medication prescribed, number of carers required
@@ -792,45 +540,28 @@
             <i class="fa-solid fa-info"></i>
         </div>
         <div class="col-md-4">
-            <div class="preform-box">
+            <div class="labelcontent">
                 <p>Expressing sexuality</p>
             </div>
         </div>
         <div class="col-md-7 mb-4">
-            <p-dropdown
-                *ngIf="isEditable"
-                [disabled]="!isEditable"
-                name="PreAdmissionAssessmentFormsData.ExpressingSexuality"
-                [(ngModel)]="
-                    PreAdmissionAssessmentFormsData.ExpressingSexuality
-                "
-                [options]="expressingSexualityOptions"
-                placeholder="Select"
-                [style]="{ width: '100%' }"
-            >
+            <p-dropdown [(ngModel)]="
+                    PreAdmissionAssessmentFormsData.expressingSexuality
+                " [options]="expressingSexualityOptions" placeholder="Select" [style]="{ width: '100%' }">
             </p-dropdown>
         </div>
         <div class="col-md-1 form-icon mt-4">
             <i class="fa-solid fa-info"></i>
         </div>
         <div class="col-md-4">
-            <div class="preform-box">
+            <div class="labelcontent">
                 <p>Expressing sexuality details</p>
             </div>
         </div>
         <div class="col-md-7 mb-4">
-            <input
-                *ngIf="isEditable"
-                [disabled]="!isEditable"
-                pInputText
-                type="text"
-                required
-                name="PreAdmissionAssessmentFormsData.ExpressingSexualityDetails"
-                class="form-control"
-                [(ngModel)]="
-                    PreAdmissionAssessmentFormsData.ExpressingSexualityDetails
-                "
-            />
+            <input pInputText type="text" required name="chartheadname" class="form-control" [(ngModel)]="
+                    PreAdmissionAssessmentFormsData.expressingSexualityDetails
+                " />
             <p>
                 Additional information (how can you support the resident with
                 sensitivity and privacy needs. How does the resident express
@@ -843,7 +574,7 @@
             <i class="fa-solid fa-info"></i>
         </div>
         <div class="col-md-4">
-            <div class="preform-box">
+            <div class="labelcontent">
                 <p>
                     How best can we engage, enable and empower the person in
                     every aspect of their life within the community of the Care
@@ -852,24 +583,15 @@
             </div>
         </div>
         <div class="col-md-7 mb-4">
-            <input
-                *ngIf="isEditable"
-                [disabled]="!isEditable"
-                pInputText
-                type="text"
-                required
-                name="PreAdmissionAssessmentFormsData.EngagementEmpowerment"
-                class="form-control"
-                [(ngModel)]="
-                    PreAdmissionAssessmentFormsData.EngagementEmpowerment
-                "
-            />
+            <input pInputText type="text" required name="chartheadname" class="form-control" [(ngModel)]="
+                    PreAdmissionAssessmentFormsData.engagementEmpowerment
+                " />
         </div>
         <div class="col-md-1 form-icon mt-4">
             <i class="fa-solid fa-info"></i>
         </div>
         <div class="col-md-4">
-            <div class="preform-box">
+            <div class="labelcontent">
                 <p>
                     Epilepsy/Seizure Management - What kind of seizures does the
                     resident experience?
@@ -877,17 +599,9 @@
             </div>
         </div>
         <div class="col-md-7 mb-4">
-            <p-dropdown
-                *ngIf="isEditable"
-                [disabled]="!isEditable"
-                name="PreAdmissionAssessmentFormsData.EpilepsySeizureManagement"
-                [(ngModel)]="
-                    PreAdmissionAssessmentFormsData.EpilepsySeizureManagement
-                "
-                [options]="EpilepsySeizureManagementOptions"
-                placeholder="Select"
-                [style]="{ width: '100%' }"
-            >
+            <p-dropdown [(ngModel)]="
+                    PreAdmissionAssessmentFormsData.epilepsySeizureManagement
+                " [options]="EpilepsySeizureManagementOptions" placeholder="Select" [style]="{ width: '100%' }">
             </p-dropdown>
             <p></p>
         </div>
@@ -895,7 +609,7 @@
             <i class="fa-solid fa-info"></i>
         </div>
         <div class="col-md-4">
-            <div class="preform-box">
+            <div class="labelcontent">
                 <p>
                     Is the resident prescribed rescue medications for the
                     management of their seizures
@@ -903,16 +617,8 @@
             </div>
         </div>
         <div class="col-md-7 mb-4">
-            <input
-                *ngIf="isEditable"
-                [disabled]="!isEditable"
-                pInputText
-                type="text"
-                required
-                name="PreAdmissionAssessmentFormsData.RescueMedications"
-                class="form-control"
-                [(ngModel)]="PreAdmissionAssessmentFormsData.RescueMedications"
-            />
+            <input pInputText type="text" required name="chartheadname" class="form-control"
+                [(ngModel)]="PreAdmissionAssessmentFormsData.rescueMedications" />
             <p>
                 Please detail these below alongside when they are to be
                 administered, frequency and time between doses
@@ -922,20 +628,13 @@
             <i class="fa-solid fa-info"></i>
         </div>
         <div class="col-md-4">
-            <div class="preform-box">
+            <div class="labelcontent">
                 <p>Infection status</p>
             </div>
         </div>
         <div class="col-md-7 mb-4">
-            <p-dropdown
-                *ngIf="isEditable"
-                [disabled]="!isEditable"
-                name="PreAdmissionAssessmentFormsData.InfectionStatus"
-                [(ngModel)]="PreAdmissionAssessmentFormsData.InfectionStatus"
-                [options]="infectionStatusOptions"
-                placeholder="Select"
-                [style]="{ width: '100%' }"
-            >
+            <p-dropdown [(ngModel)]="PreAdmissionAssessmentFormsData.infectionStatus" [options]="infectionStatusOptions"
+                placeholder="Select" [style]="{ width: '100%' }">
             </p-dropdown>
             <p></p>
         </div>
@@ -943,21 +642,13 @@
             <i class="fa-solid fa-info"></i>
         </div>
         <div class="col-md-4">
-            <div class="preform-box">
+            <div class="labelcontent">
                 <p>Infection details</p>
             </div>
         </div>
         <div class="col-md-7 mb-4">
-            <input
-                *ngIf="isEditable"
-                [disabled]="!isEditable"
-                pInputText
-                type="text"
-                required
-                name="PreAdmissionAssessmentFormsData.InfectionDetails"
-                class="form-control"
-                [(ngModel)]="PreAdmissionAssessmentFormsData.InfectionDetails"
-            />
+            <input pInputText type="text" required name="chartheadname" class="form-control"
+                [(ngModel)]="PreAdmissionAssessmentFormsData.infectionDetails" />
             <p>
                 Detail how the person presents when they have an infection, what
                 are the soft signs of infection if these are knownInclude type
@@ -968,20 +659,13 @@
             <i class="fa-solid fa-info"></i>
         </div>
         <div class="col-md-4">
-            <div class="preform-box">
+            <div class="labelcontent">
                 <p>Medication</p>
             </div>
         </div>
         <div class="col-md-7 mb-4">
-            <p-dropdown
-                *ngIf="isEditable"
-                [disabled]="!isEditable"
-                [(ngModel)]="PreAdmissionAssessmentFormsData.Medication"
-                name="PreAdmissionAssessmentFormsData.Medication"
-                [options]="medicationOption"
-                placeholder="Select"
-                [style]="{ width: '100%' }"
-            >
+            <p-dropdown [(ngModel)]="PreAdmissionAssessmentFormsData.medication" [options]="medicationOption"
+                placeholder="Select" [style]="{ width: '100%' }">
             </p-dropdown>
             <p></p>
         </div>
@@ -989,21 +673,13 @@
             <i class="fa-solid fa-info"></i>
         </div>
         <div class="col-md-4">
-            <div class="preform-box">
+            <div class="labelcontent">
                 <p>Medication details</p>
             </div>
         </div>
         <div class="col-md-7 mb-4">
-            <input
-                *ngIf="isEditable"
-                [disabled]="!isEditable"
-                pInputText
-                type="text"
-                required
-                name="PreAdmissionAssessmentFormsData.MedicationDetails"
-                class="form-control"
-                [(ngModel)]="PreAdmissionAssessmentFormsData.MedicationDetails"
-            />
+            <input pInputText type="text" required name="chartheadname" class="form-control"
+                [(ngModel)]="PreAdmissionAssessmentFormsData.medicationDetails" />
             <p>
                 refer reader to the MARs sheets for the resident most up to date
                 medications, howveer please explore how they like to take their
@@ -1016,22 +692,14 @@
             <i class="fa-solid fa-info"></i>
         </div>
         <div class="col-md-4">
-            <div class="preform-box">
+            <div class="labelcontent">
                 <p>First aid for epileptic seizure</p>
             </div>
         </div>
         <div class="col-md-7 mb-4">
-            <p-dropdown
-                *ngIf="isEditable"
-                [disabled]="!isEditable"
-                [(ngModel)]="
-                    PreAdmissionAssessmentFormsData.FirstAidEpilepticSeizure
-                "
-                name="PreAdmissionAssessmentFormsData.FirstAidEpilepticSeizure"
-                [options]="firstAidEpilepticSeizureOptions"
-                placeholder="Select"
-                [style]="{ width: '100%' }"
-            >
+            <p-dropdown [(ngModel)]="
+                    PreAdmissionAssessmentFormsData.firstAidEpilepticSeizure
+                " [options]="firstAidEpilepticSeizureOptions" placeholder="Select" [style]="{ width: '100%' }">
             </p-dropdown>
             <p>Choose all statements below</p>
         </div>
@@ -1039,7 +707,7 @@
             <i class="fa-solid fa-info"></i>
         </div>
         <div class="col-md-4">
-            <div class="preform-box">
+            <div class="labelcontent">
                 <p>
                     What is the persons overall goal in being within a Care
                     Community?
@@ -1047,16 +715,8 @@
             </div>
         </div>
         <div class="col-md-7 mb-4">
-            <input
-                *ngIf="isEditable"
-                [disabled]="!isEditable"
-                pInputText
-                type="text"
-                required
-                name="PreAdmissionAssessmentFormsData.OverallGoal"
-                class="form-control"
-                [(ngModel)]="PreAdmissionAssessmentFormsData.OverallGoal"
-            />
+            <input pInputText type="text" required name="chartheadname" class="form-control"
+                [(ngModel)]="PreAdmissionAssessmentFormsData.overallGoal" />
             <p>
                 For example to be safe, to minimise loneliness, to strive and
                 promote abilities, to manage their health needs better.
@@ -1068,26 +728,15 @@
         <div class="d-flex justify-content-end">
             <div>
                 <span class="p-ml-left mr-4">
-                    <button
-                        pButton
-                        title="New"
-                        label="Save as Unfinished"
-                        (click)="saveAsUnfinished()"
-                    ></button>
+                    <button pButton title="New" label="Save as Unfinished" (click)="saveAsUnfinished()"></button>
                     <span class="total-txt"></span>
                 </span>
             </div>
             <div>
                 <span class="p-ml-left mr-4">
-                    <button
-                        pButton
-                        title="New"
-                        label="Complete"
-                        (click)="completeForm()"
-                        [disabled]="
-                            PreAdmissionAssessmentFormsData.IsFormCompleted
-                        "
-                    ></button>
+                    <button pButton title="New" label="Complete" (click)="completeForm()" [disabled]="
+                            PreAdmissionAssessmentFormsData.isFormCompleted
+                        "></button>
                     <span class="total-txt"></span>
                 </span>
             </div>

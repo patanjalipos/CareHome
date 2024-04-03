@@ -13,6 +13,8 @@ import { ToolbarModule } from 'primeng/toolbar';
 import { FormsModule } from '@angular/forms';
 import { DropdownModule } from 'primeng/dropdown';
 import { PreAdmissionAssessmentFormsModule } from '../pre-admission-assessment-forms/pre-admission-assessment-forms.module';
+import { AccidentIncidentNearMissRecordModule } from '../accident-incident-near-miss-record/accident-incident-near-miss-record.module';
+import { AcuteCarePlanInfectionPreventionAndControlModule } from '../acute-care-plan-infection-prevention-and-control/acute-care-plan-infection-prevention-and-control.module';
 
 
 
@@ -36,6 +38,8 @@ import { PreAdmissionAssessmentFormsModule } from '../pre-admission-assessment-f
     InputNumberModule,
     CalendarModule,
     PreAdmissionAssessmentFormsModule,
+    AccidentIncidentNearMissRecordModule,
+    AcuteCarePlanInfectionPreventionAndControlModule,
    
  
 
