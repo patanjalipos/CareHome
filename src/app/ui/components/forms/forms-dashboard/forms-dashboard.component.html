@@ -37,21 +37,10 @@
                     pButton
                     title="New"
                     label="Create Form"
-                    (click)="showForm(selectedFormType)"
+                    (click)="ShowForm(selectedFormType)"
                 ></button>
                 <span class="total-txt"> </span>
             </span>
-            <!-- <div class="mr-4">
-                <span class="p-ml-left">
-                    <button
-                        pButton
-                        title="New"
-                        label="Search"
-                        (click)="searchForm(selectedFormType, rangeDates)"
-                    ></button>
-                    <span class="total-txt"> </span>
-                </span>
-            </div> -->
             <div>
                 <span class="p-ml-left">
                     <button
@@ -106,10 +95,20 @@
                     </td>
                     <td>
                         <a
-                            title="View/Edit"
-                            (click)="openForm(dt.FormMasterId, dt.FormId)"
+                            title="View"
+                            (click)="
+                                OpenForm(dt.FormMasterId, dt.FormId, false)
+                            "
                         >
                             <i class="fa fa-eye" aria-hidden="true"></i>
+                        </a>
+                        <span style="margin-left: 10px"></span>
+                        <!-- Adjust the margin-left as needed -->
+                        <a
+                            title="Edit"
+                            (click)="OpenForm(dt.FormMasterId, dt.FormId, true)"
+                        >
+                            <i class="fa fa-pencil" aria-hidden="true"></i>
                         </a>
                     </td>
                 </tr>
