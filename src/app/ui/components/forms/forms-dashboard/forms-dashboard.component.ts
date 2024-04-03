@@ -19,6 +19,8 @@ import { PreAdmissionAssessmentFormsComponent } from '../pre-admission-assessmen
 import { NotfoundComponent } from '../../notfound/notfound.component';
 import { ActivatedRoute } from '@angular/router';
 import { DataService } from 'src/app/ui/service/data-service.service';
+import { AccidentIncidentNearMissRecordComponent } from '../accident-incident-near-miss-record/accident-incident-near-miss-record.component';
+import { AcuteCarePlanInfectionPreventionAndControlComponent } from '../acute-care-plan-infection-prevention-and-control/acute-care-plan-infection-prevention-and-control.component';
 
 @Component({
     selector: 'app-forms-dashboard',
@@ -151,6 +153,7 @@ export class FormsDashboardComponent
             this.componentRef.destroy();
         }
 
+        console.log(selectedFormId);
         // Determine which component to load based on selectedForm
         let componentType: any;
         switch (selectedFormId) {
@@ -158,11 +161,12 @@ export class FormsDashboardComponent
                 componentType = PreAdmissionAssessmentFormsComponent;
                 break;
             case FormTypes.MedicalForm:
-                componentType = NotfoundComponent;
+                componentType = AccidentIncidentNearMissRecordComponent;
                 break;
             case FormTypes.Fitness:
-                componentType = NotfoundComponent;
+                componentType = AcuteCarePlanInfectionPreventionAndControlComponent;
                 break;
+                
             default:
                 componentType = NotfoundComponent;
         }
