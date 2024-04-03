@@ -1,7 +1,7 @@
 <div *ngIf="mode==null">
     <div class="card">
         <p-table #dt [value]="lstMaster" responsiveLayout="scroll" styleClass="p-datatable-striped" [rowHover]="true"
-            [globalFilterFields]="['chartheadname','chartname']" [scrollable]="true" scrollHeight="calc(100vh - 215px)">
+            [globalFilterFields]="['ChartHeadName','ChartName']" [scrollable]="true" scrollHeight="calc(100vh - 155px)">
             <ng-template pTemplate="caption">
                 <div class="flex justify-content-between flex-column sm:flex-row">
                     <span class="p-ml-left">
@@ -39,12 +39,12 @@
             </ng-template>
             <ng-template pTemplate="body" let-dt let-i="rowIndex">
                 <tr>
-                    <td>{{dt.chartheadname}}</td>
-                    <td>{{dt.chartname}}</td>
-                    <td>{{dt.orderno}}</td>
-                    <td>{{dt.status==true?'Active':'Inactive'}}</td>
+                    <td>{{dt.ChartHeadName}}</td>
+                    <td>{{dt.ChartName}}</td>
+                    <td>{{dt.OrderNo}}</td>
+                    <td>{{dt.Status==1?'Active':'Inactive'}}</td>
                     <td>
-                        <a title="View/Edit" (click)="GetChartMasterById(dt.chartmasterid)">
+                        <a title="View/Edit" (click)="GetChartMasterById(dt.ChartMasterId)">
                             <i class="fa fa-eye" aria-hidden="true"></i>
                         </a>
                     </td>
@@ -60,8 +60,8 @@
             <div class="row">
                 <div class="col-md-3">
                     <label class="form-label">Chart Head Name <span class="required">*</span></label>
-                    <p-dropdown name="ddlHeadName" [options]="lstHeadMaster" [(ngModel)]="master.chartheadmasterid"
-                        [disabled]="mode=='Edit'" optionLabel="chartheadname" optionValue="chartheadmasterid"
+                    <p-dropdown name="ddlHeadName" [options]="lstHeadMaster" [(ngModel)]="master.ChartHeadMasterId"
+                        [disabled]="mode=='Edit'" optionLabel="ChartHeadName" optionValue="ChartHeadMasterId"
                         [filter]="true" placeholder="Please Select Head" [style]="{width: '100%'}">
                     </p-dropdown>
 
@@ -69,19 +69,19 @@
                 </div>
                 <div class="col-md-3">
                     <label class="form-label">Chart Name <span class="required">*</span></label>
-                    <input pInputText type="text" required name="chartheadname" [(ngModel)]="master.chartname"
+                    <input pInputText type="text" required name="chartheadname" [(ngModel)]="master.ChartName"
                         class="form-control" #chartname="ngModel" />
 
                 </div>
                 <div class="col-md-3">
                     <label class="form-label">Order No. <span class="required">*</span></label>
-                    <p-inputNumber [required]="true" name="txtOrder" [(ngModel)]="master.orderno"
+                    <p-inputNumber [required]="true" name="txtOrder" [(ngModel)]="master.OrderNo"
                         mode="decimal" [useGrouping]="false" [maxlength]="2"></p-inputNumber>
 
                 </div>
                 <div class="col-md-3">
                     <label class="form-label">Status<span class="required">*</span></label>
-                    <p-dropdown [required]="true" [options]="stlststatus" [(ngModel)]="master.status"
+                    <p-dropdown [required]="true" [options]="stlststatus" [(ngModel)]="master.Status"
                         [ngModelOptions]="{standalone: true}" optionLabel="name" optionValue="code" placeholder="Select"
                         [style]="{width: '100%'}">
                     </p-dropdown>

@@ -72,12 +72,12 @@ export class PainAssessmentComponent extends AppComponentBase implements OnInit 
   AddPainData() {
     //var ObjectID = require("bson-objectid");
    var jsonObject = {
-      'clinicalpainassesmentid':null,
-      'rating': this.Clinical.rating,
-      'createdon': new Date(),
-      'isfromserver': false
+      'ClinicalPainAssesmentId':null,
+      'Rating': this.Clinical.Rating,
+      'CreatedOn': new Date(),
+      'IsFromServer': false
     };
-     this.lstClinicalPainAssesment = this.lstClinicalPainAssesment.filter(x => x.isfromserver == true);
+     this.lstClinicalPainAssesment = this.lstClinicalPainAssesment.filter(x => x.IsFromServer == true);
     this.lstClinicalPainAssesment.push(jsonObject);
   }
   edit() {
@@ -103,6 +103,7 @@ export class PainAssessmentComponent extends AppComponentBase implements OnInit 
 
   GetClinicalPainAssesmentById(admissionid) {
     var startdate: any = null;
+    this.lstClinicalPainAssesment=[];
     if (this.selecteddate != null && this.selecteddate != undefined)
       startdate = this.datepipe.transform(this.selecteddate, 'yyyy-MM-dd');
     this._UtilityService.showSpinner();
@@ -124,13 +125,13 @@ export class PainAssessmentComponent extends AppComponentBase implements OnInit 
   }
   save() {
     if (this.userid != null && this.admissionid != null) {
-      if (this.lstClinicalPainAssesment.filter(x => x.isfromserver == false)?.length==0) {
+      if (this.lstClinicalPainAssesment.filter(x => x.IsFromServer == false)?.length==0) {
         this._UtilityService.showWarningAlert("Please add new pain assessment");
         return;
       }     
-      this.Clinical.userid = this.userid;
-      this.Clinical.residentadmissioninfoid = this.admissionid;
-      this.Clinical.modifiedby = this.loginId;     
+      this.Clinical.UserId = this.userid;
+      this.Clinical.ResidentAdmissionInfoId = this.admissionid;
+      this.Clinical.ModifiedBy = this.loginId;
       //console.log('Clinical', this.Clinical);
       this._UtilityService.showSpinner();
       this.unsubscribe.add = this._MasterServices.AddInsertUpdatePainAssesment(this.Clinical)
@@ -154,15 +155,15 @@ export class PainAssessmentComponent extends AppComponentBase implements OnInit 
   deletePainData(id) {
     if(id==null)
     {
-      this.lstClinicalPainAssesment = this.lstClinicalPainAssesment.filter(e => e.isfromserver !== false);
+      this.lstClinicalPainAssesment = this.lstClinicalPainAssesment.filter(e => e.IsFromServer !== false);
       this._UtilityService.showSuccessAlert("Clinical pain assesment details deleted successfully");
       return;
     }
-    this.Clinical.StatementType = "delete";
-    this.Clinical.userid = this.userid;
-    this.Clinical.residentadmissioninfoid = this.admissionid;
-    this.Clinical.clinicalpainassesmentid = id;
-    this.Clinical.modifiedby = this.loginId;
+    this.Clinical.statementtype = "Delete";
+    this.Clinical.UserId = this.userid;
+    this.Clinical.ResidentAdmissionInfoId = this.admissionid;
+    this.Clinical.ModifiedBy = this.loginId;
+    this.Clinical.ClinicalPainAssesmentId = id;
     this._UtilityService.showSpinner();
       this.unsubscribe.add = this._MasterServices.AddInsertUpdatePainAssesment(this.Clinical)
         .subscribe
@@ -179,7 +180,7 @@ export class PainAssessmentComponent extends AppComponentBase implements OnInit 
         });    
   }  
   close() {
-    this.Clinical.rating=null;
+    this.Clinical.Rating=null;
     this.mode = 'view';
     this.GetClinicalPainAssesmentById(this.admissionid);
   }  

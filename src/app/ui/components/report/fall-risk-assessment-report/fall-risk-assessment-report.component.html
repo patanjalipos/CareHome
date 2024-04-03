@@ -1,10 +1,10 @@
     <div class="card">
         <p-table #dt [value]="lstReport" responsiveLayout="scroll" styleClass="p-datatable-striped" [rowHover]="true"
-            [globalFilterFields]="['name','status']" [scrollable]="true" scrollHeight="calc(100vh - 215px)">
+            [globalFilterFields]="['FullName','Status']" [scrollable]="true" scrollHeight="calc(100vh - 155px)">
             <ng-template pTemplate="caption">
                 <div class="flex justify-content-between flex-column sm:flex-row">
                     <span class="p-ml-left">                        
-                        <span class="total-txt">
+                        <span class="total-txt total-txt2">
                             {{lstReport?.length>0?'Total Records:
                             '+filteredValuesLength:''}} </span>
                     </span>
@@ -25,16 +25,16 @@
             </ng-template>
             <ng-template pTemplate="header">
                 <tr>
-					<th pSortableColumn="name">Name <p-sortIcon field="name"></p-sortIcon></th>
+					<th pSortableColumn="FullName">Name <p-sortIcon field="FullName"></p-sortIcon></th>
 					<th style="text-align:center ;" pSortableColumn="score">Fall Risk Score <p-sortIcon field="score"></p-sortIcon></th>
-					<th pSortableColumn="status">Status <p-sortIcon field="status"></p-sortIcon></th>
+					<th pSortableColumn="Status">Status <p-sortIcon field="Status"></p-sortIcon></th>
 				</tr>
             </ng-template>
             <ng-template pTemplate="body" let-dt let-i="rowIndex">
                 <tr>
-                    <td>{{dt.name}}</td>
-                    <td>{{dt.score}}</td>
-                    <td><span class="mr-2" [ngStyle]="{'padding':'0px 10px','background-color': statusColor[i]}">&nbsp;</span> {{dt.status}}</td>                   
+                    <td>{{dt.FullName}}</td>
+                    <td>{{dt.Score}}</td>
+                    <td><span class="mr-2" [ngStyle]="{'padding':'0px 8px', 'border-radius': '20px','background-color': statusColor[i]}">&nbsp;</span> {{dt.Status}}</td>                   
                 </tr>
             </ng-template>
         </p-table>

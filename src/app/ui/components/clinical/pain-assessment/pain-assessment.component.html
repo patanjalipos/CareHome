@@ -14,7 +14,7 @@
     </p-header>
     <div class="row mb-4" *ngIf="mode=='edit'">
         <div class="col-md-12 p-slider-outer card">
-            <ngx-slider [(value)]="value" [(ngModel)]="Clinical.rating" [options]="options"
+            <ngx-slider [(value)]="value" [(ngModel)]="Clinical.Rating" [options]="options"
                 (click)="AddPainData()"></ngx-slider>
             <div class="unOrderList">
                 <ul>
@@ -69,11 +69,11 @@
                 </ng-template>
                 <ng-template pTemplate="body" let-dt let-i="rowIndex">
                     <tr>
-                        <td>{{dt.createdon|date: customDateFormat.DEF_DATE_TIME}}</td>
-                        <td>{{dt.rating}}</td>
+                        <td>{{dt.CreatedOn|date: customDateFormat.DEF_DATE_TIME}}</td>
+                        <td>{{dt.Rating}}</td>
                         <!-- <td>
                             <span>
-                                <p-dropdown [options]="options.stepsArray" [(ngModel)]="dt.rating" appendTo="body"
+                                <p-dropdown [options]="options.stepsArray" [(ngModel)]="dt.Rating" appendTo="body"
                                     optionLabel="legend" optionValue="value" [style]="{width: '100%'}">
                                     <ng-template let-item pTemplate="item">
                                         {{item.value}}- {{item.legend}}
@@ -84,24 +84,24 @@
                                 </p-dropdown>
                             </span>
                         </td> -->
-                        <td *ngIf="dt.rating==0 || dt.rating==1 ">
+                        <td *ngIf="dt.Rating==0 || dt.Rating==1 ">
                             <img src="assets/Images/smile.png" alt="" style="width:40px;" />
                         </td>
-                        <td *ngIf="dt.rating==2 ||dt.rating==3">
+                        <td *ngIf="dt.Rating==2 ||dt.Rating==3">
                             <img src="assets/Images/mild-pain.png" alt="" style="width:40px;" />
                         </td>
-                        <td *ngIf="dt.rating==4 ||dt.rating==5 ">
+                        <td *ngIf="dt.Rating==4 ||dt.Rating==5 ">
                             <img src="assets/Images/sad.png" alt="" style="width:40px;" />
                         </td>
-                        <td *ngIf="dt.rating==6 ||dt.rating==7 || dt.rating==8">
+                        <td *ngIf="dt.Rating==6 ||dt.Rating==7 || dt.Rating==8">
                             <img src="assets/Images/sever-pain.png" alt="" style="width:40px;" />
                         </td>
-                        <td *ngIf="dt.rating==9 ||dt.rating==10">
+                        <td *ngIf="dt.Rating==9 ||dt.Rating==10">
                             <img src="assets/Images/crying.png" alt="" style="width:40px;" />
                         </td>
                         <td *ngIf="mode=='edit'">
-                            <i (click)="deletePainData(dt.clinicalpainassesmentid)" title="Delete"
-                                class="fa fa-trash-alt" *ngIf="((currentDate | date:'yyyy-MM-dd') == (dt.createdon| date:'yyyy-MM-dd'))"></i>
+                            <i (click)="deletePainData(dt.ClinicalPainAssesmentId)" title="Delete"
+                                class="fa fa-trash-alt" *ngIf="((currentDate | date:'yyyy-MM-dd') == (dt.CreatedOn| date:'yyyy-MM-dd'))"></i>
                         </td>
                     </tr>
                 </ng-template>

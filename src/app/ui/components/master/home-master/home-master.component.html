@@ -1,7 +1,7 @@
 <div *ngIf="mode==null">
     <div class="card">
         <p-table #dt [value]="lstMaster" responsiveLayout="scroll" styleClass="p-datatable-striped" [rowHover]="true"
-            [globalFilterFields]="['homecode','homename']" [scrollable]="true" scrollHeight="calc(100vh - 215px)">
+            [globalFilterFields]="['HomeCode','HomeName']" [scrollable]="true" scrollHeight="calc(100vh - 155px)">
             <ng-template pTemplate="caption">
                 <div class="flex justify-content-between flex-column sm:flex-row">
                     <span class="p-ml-left">
@@ -42,7 +42,7 @@
                     <td>{{dt.HomeCode}}</td>
                     <td>{{dt.HomeName}}</td>
                     <td>{{dt.OrderNo}}</td>
-                    <td>{{dt.Status==true?'Active':'Inactive'}}</td>
+                    <td>{{dt.Status==1?'Active':'Inactive'}}</td>
                     <td>
                         <a title="View/Edit" (click)="GetHomeMasterById(dt.HomeMasterId)">
                             <i class="fa fa-eye" aria-hidden="true"></i>
@@ -60,29 +60,29 @@
             <div class="row">                
                 <div class="col-md-3">
                     <label class="form-label">Home Code <span class="required">*</span></label>
-                    <input pInputText type="text" required name="homecode" [(ngModel)]="master.homecode"
+                    <input pInputText type="text" required name="homecode" [(ngModel)]="master.HomeCode"
                         class="form-control" #homecode="ngModel" />
 
                 </div>
                 <div class="col-md-3">
                     <label class="form-label">Home Name <span class="required">*</span></label>
-                    <input pInputText type="text" required name="homename" [(ngModel)]="master.homename"
+                    <input pInputText type="text" required name="homename" [(ngModel)]="master.HomeName"
                         class="form-control" #homename="ngModel" />
 
                 </div>
                 <div class="col-md-3">
                     <label class="form-label">Contact No</label>
-                         <p-inputNumber name="contactnumber" [(ngModel)]="master.contactnumber"
+                         <p-inputNumber name="contactnumber" [(ngModel)]="master.ContactNumber"
                         mode="decimal" [useGrouping]="false" [maxlength]="20"></p-inputNumber>  
                 </div>
                 <div class="col-md-3">
                     <label class="form-label">Other Contact No</label>                  
-                        <p-inputNumber name="othercontactnumber" [(ngModel)]="master.othercontactnumber"
+                        <p-inputNumber name="othercontactnumber" [(ngModel)]="master.OtherContactNumber"
                         mode="decimal" [useGrouping]="false" [maxlength]="20"></p-inputNumber>
                 </div>
                 <div class="col-md-3">
                     <label class="form-label">Email Address</label>                    
-                        <input type="text" name="email" pInputText [(ngModel)]="master.emailid"
+                        <input type="text" name="email" pInputText [(ngModel)]="master.EmailId"
                             [style]="{width: '100%'}" pattern="[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,3}$"
                             #emailref="ngModel" />
                            <div class="errorMessage pt-2" *ngIf="emailref.errors &&(emailref.touched || emailref.dirty)">
@@ -91,38 +91,38 @@
                 </div>
                 <div class="col-md-3">
                     <label class="form-label">Fax</label>                   
-                        <p-inputNumber name="faxnumber" [(ngModel)]="master.faxnumber"
+                        <p-inputNumber name="faxnumber" [(ngModel)]="master.FaxNumber"
                         mode="decimal" [useGrouping]="false" [maxlength]="20"></p-inputNumber>                    
                 </div>
                 <div class="col-md-3">
                     <label class="form-label">Country <span class="required">*</span></label>
-                    <p-dropdown [required]="true" name="ddlHeadName" [options]="lstCountryMaster" [(ngModel)]="master.countryid"
-                        optionLabel="name" optionValue="id"
+                    <p-dropdown [required]="true" name="ddlHeadName" [options]="lstCountryMaster" [(ngModel)]="master.CountryId"
+                        optionLabel="name" optionValue="code"
                         [filter]="true" placeholder="Choose country" [style]="{width: '100%'}">
                     </p-dropdown>
                 </div>
                 <div class="col-md-3">
                     <label class="form-label">State</label>
-                    <input pInputText type="text" name="state" [(ngModel)]="master.state"
+                    <input pInputText type="text" name="state" [(ngModel)]="master.State"
                         class="form-control" #statename="ngModel" />
 
                 </div>
                 <div class="col-md-3">
                     <label class="form-label">Address</label>
-                    <input pInputText type="text" name="address" [(ngModel)]="master.address"
+                    <input pInputText type="text" name="address" [(ngModel)]="master.Address"
                         class="form-control" #address="ngModel" />
 
                 </div>
                 
                 <div class="col-md-3">
                     <label class="form-label">Order No. <span class="required">*</span></label>
-                    <p-inputNumber [required]="true" name="txtOrder" [(ngModel)]="master.orderno"
+                    <p-inputNumber [required]="true" name="txtOrder" [(ngModel)]="master.OrderNo"
                         mode="decimal"></p-inputNumber>
 
                 </div>
                 <div class="col-md-3">
                     <label class="form-label">Status<span class="required">*</span></label>
-                    <p-dropdown [required]="true" [options]="stlststatus" [(ngModel)]="master.status"
+                    <p-dropdown [required]="true" [options]="stlststatus" [(ngModel)]="master.Status"
                         [ngModelOptions]="{standalone: true}" optionLabel="name" optionValue="code" placeholder="Select"
                         [style]="{width: '100%'}">
                     </p-dropdown>

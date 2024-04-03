@@ -74,9 +74,9 @@ export class BaselineHealthInformationComponent extends AppComponentBase impleme
   save()
   {
     if (this.userid != null && this.admissionid != null) {      
-      this.Clinical.userid = this.userid;
-      this.Clinical.residentadmissioninfoid = this.admissionid;
-      this.Clinical.modifiedby = localStorage.getItem('userId');
+      this.Clinical.UserId = this.userid;
+      this.Clinical.ResidentAdmissionInfoId = this.admissionid;
+      this.Clinical.ModifiedBy = localStorage.getItem('userId');
       this._UtilityService.showSpinner();
       this.unsubscribe.add = this._MasterServices.AddInsertUpdateClinicalBaselineHealthInfo(this.Clinical)
         .subscribe

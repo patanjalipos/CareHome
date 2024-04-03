@@ -66,7 +66,7 @@ export class SecondPowerOfAttorneyComponent extends AppComponentBase implements 
     }
   } 
   GetContactSecondAttorneyById(admissionid) {
-    this.Contact.StatementType = "Insert";
+    this.Contact.statementtype = "Insert";
     this._UtilityService.showSpinner();   
     this.unsubscribe.add = this._MasterServices.GetContactSecondAttorneyById(admissionid)  
       .subscribe({
@@ -77,7 +77,7 @@ export class SecondPowerOfAttorneyComponent extends AppComponentBase implements 
             tdata = tdata ? tdata : [];
             this.Contact = tdata;       
             //console.log('this.Contact', this.Contact);     
-            this.Contact.StatementType = "Update";
+            this.Contact.statementtype = "Update";
           }
         },
         error: (e) => {
@@ -89,9 +89,10 @@ export class SecondPowerOfAttorneyComponent extends AppComponentBase implements 
   save()
   {
     if (this.userid != null && this.admissionid != null) {      
-      this.Contact.userid = this.userid;
-      this.Contact.residentadmissioninfoid = this.admissionid;
-      this.Contact.modifiedby = localStorage.getItem('userId');
+      this.Contact.UserId = this.userid;
+      this.Contact.ResidentAdmissionInfoId = this.admissionid;
+      this.Contact.ModifiedBy = localStorage.getItem('userId');
+      this.Contact.Telephone = this.Contact.Telephone?.toString() || null;     
       this._UtilityService.showSpinner();
       this.unsubscribe.add = this._MasterServices.AddInsertUpdateContactSecondAttorney(this.Contact)
         .subscribe

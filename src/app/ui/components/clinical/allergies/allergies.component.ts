@@ -105,81 +105,81 @@ constructor(
   {
     this.extraItemRowCounter = this.extraItemRowCounter + 1;
     this.lstExtraItemDetails.push({      
-      sequence: this.extraItemRowCounter,
-      mode:'add',
-      allergen: "",
-      reaction: "",
-      statusList: this.stAllergyStatus,
-      status: 'Active',
-      createdname:"",
-      createdby: this.loginId,
-      createdon: new Date(),
-      modifiedname:"",
-      modifiedby: null,
-      modifiedon:null,
+      Sequence: this.extraItemRowCounter,
+      Mode:'add',
+      Allergen: "",
+      Reaction: "",
+      StatusList: this.stAllergyStatus,
+      Status: 'Active',
+      CreatedName:"",
+      CreatedBy: this.loginId,
+      CreatedOn: new Date(),
+      ModifiedName:"",
+      ModifiedBy: null,
+      ModifiedOn:null,
 
     });
     this.lstExtraItemDetailsFilter.push({      
-      sequence: this.extraItemRowCounter,
-      mode:'add',
-      allergen: "",
-      reaction: "",
-      statusList: this.stAllergyStatus,
-      status: 'Active',
-      createdname:"",
-      createdby: this.loginId,
-      createdon: new Date(),
-      modifiedname:"",
-      modifiedby: null,
-      modifiedon:null,
+      Sequence: this.extraItemRowCounter,
+      Mode:'add',
+      Allergen: "",
+      Reaction: "",
+      StatusList: this.stAllergyStatus,
+      Status: 'Active',
+      CreatedName:"",
+      CreatedBy: this.loginId,
+      CreatedOn: new Date(),
+      ModifiedName:"",
+      ModifiedBy: null,
+      ModifiedOn:null,
 
     });
     this.isDisabled=this.lstExtraItemDetailsFilter.filter(e => e.status === "Active")?.length>0?true:false;             
 
   }
-  RemoveExtraItemDetails(sequence: number) {
-    var x = this.lstExtraItemDetails.find((item) => item.sequence == sequence);
-    if ((x.allergen != "" && x.allergen != null) || (x.reaction != "" && x.reaction != null)) {
+  RemoveExtraItemDetails(Sequence: number) {
+    var x = this.lstExtraItemDetails.find((item) => item.Sequence == Sequence);
+    if ((x.Allergen != "" && x.Allergen != null) || (x.Reaction != "" && x.Reaction != null)) {
       this.confirmationService.confirm({
         message: "Are you sure you want to delete the newly added record?",
         accept: () => {
-          this.lstExtraItemDetails = this.lstExtraItemDetails.filter((item) => item.sequence !== sequence);
-          this.lstExtraItemDetailsFilter = this.lstExtraItemDetailsFilter.filter((item) => item.sequence !== sequence);
+          this.lstExtraItemDetails = this.lstExtraItemDetails.filter((item) => item.Sequence !== Sequence);
+          this.lstExtraItemDetailsFilter = this.lstExtraItemDetailsFilter.filter((item) => item.Sequence !== Sequence);
           this.isDisabled = this.lstExtraItemDetailsFilter.filter(e => e.status === "Active")?.length > 0 ? true : false;
 
         }
       });
       return;
     }
-    this.lstExtraItemDetails = this.lstExtraItemDetails.filter((item) => item.sequence !== sequence);
-    this.lstExtraItemDetailsFilter = this.lstExtraItemDetailsFilter.filter((item) => item.sequence !== sequence);
-    this.isDisabled = this.lstExtraItemDetailsFilter.filter(e => e.status === "Active")?.length > 0 ? true : false;
+    this.lstExtraItemDetails = this.lstExtraItemDetails.filter((item) => item.Sequence !== Sequence);
+    this.lstExtraItemDetailsFilter = this.lstExtraItemDetailsFilter.filter((item) => item.Sequence !== Sequence);
+    this.isDisabled = this.lstExtraItemDetailsFilter.filter(e => e.Status === "Active")?.length > 0 ? true : false;
 
   } 
-  onChangeStatus(sequence: number, status) {
-    var Idx = this.lstExtraItemDetails.findIndex(f => f.sequence == sequence);
+  onChangeStatus(Sequence: number, status) {
+    var Idx = this.lstExtraItemDetails.findIndex(f => f.Sequence == Sequence);
     if (status != 'Active') {
       if (Idx >= 0) {
-        this.lstExtraItemDetails[Idx].modifiedby = this.loginId,
-        this.lstExtraItemDetails[Idx].modifiedon = new Date();        
+        this.lstExtraItemDetails[Idx].ModifiedBy = this.loginId,
+        this.lstExtraItemDetails[Idx].ModifiedOn = new Date();        
       }
     }
     else
     {
-      this.lstExtraItemDetails[Idx].modifiedby = null,
-      this.lstExtraItemDetails[Idx].modifiedon = null;     
+      this.lstExtraItemDetails[Idx].ModifiedBy = null,
+      this.lstExtraItemDetails[Idx].ModifiedOn = null;     
     }
-    var Idx1 = this.lstExtraItemDetailsFilter.findIndex(f => f.sequence == sequence);
+    var Idx1 = this.lstExtraItemDetailsFilter.findIndex(f => f.Sequence == Sequence);
     if (status != 'Active') {
       if (Idx1 >= 0) {
-        this.lstExtraItemDetails[Idx].status = status,
-        this.isDisabled=this.lstExtraItemDetailsFilter.filter(e => e.status === "Active")?.length>0?true:false;       
+        this.lstExtraItemDetails[Idx].Status = status,
+        this.isDisabled=this.lstExtraItemDetailsFilter.filter(e => e.Status === "Active")?.length>0?true:false;       
       }
     }
     //console.log('lstExtraItemDetails', this.lstExtraItemDetails);
   } 
   GetClinicalAllergiesById(admissionid) {
-    this.Clinical.StatementType = "Insert";
+    this.Clinical.statementtype = "Insert";
     this._UtilityService.showSpinner();   
     this.unsubscribe.add = this._MasterServices.GetClinicalAllergiesById(admissionid)  
       .subscribe({
@@ -189,25 +189,25 @@ constructor(
             var tdata = JSON.parse(data.actionResult.result);
             tdata = tdata ? tdata : [];
             this.Clinical = tdata;            
-            this.Clinical.StatementType = "Update";
+            this.Clinical.statementtype = "Update";
             if(data.actionResult.result2!=null && data.actionResult.result2!=undefined && data.actionResult.result2?.length>0)
             {
               var tdata2 = JSON.parse(data.actionResult.result2);
               tdata2 = tdata2 ? tdata2 : [];              
               this.lstExtraItemDetails=tdata2; 
               this.lstExtraItemDetails.forEach((d, index) => { 
-                    d.statusList = this.stAllergyStatus;
+                    d.StatusList = this.stAllergyStatus;
                   }) 
               //console.log('Get-lstExtraItemDetails', this.lstExtraItemDetails);  
               this.extraItemRowCounter=this.lstExtraItemDetails?.length;    
               this.lstExtraItemDetailsFilter=JSON.parse(JSON.stringify(this.lstExtraItemDetails)); 
-              this.isDisabled=this.lstExtraItemDetailsFilter.filter(e => e.status === "Active")?.length>0?true:false;
-              var lstExtraItemDetailsSelected = this.lstExtraItemDetailsFilter.filter(e => e.status === "Active");
+              this.isDisabled=this.lstExtraItemDetailsFilter.filter(e => e.Status === "Active")?.length>0?true:false;
+              var lstExtraItemDetailsSelected = this.lstExtraItemDetailsFilter.filter(e => e.Status === "Active");
               this.allergies="";
               if (lstExtraItemDetailsSelected?.length > 0) {
                 var rcounter = 1;          
                 lstExtraItemDetailsSelected?.map(e => {
-                  this.allergies = (rcounter == lstExtraItemDetailsSelected?.length ? this.allergies + e.allergen : this.allergies + e.allergen + ",");
+                  this.allergies = (rcounter == lstExtraItemDetailsSelected?.length ? this.allergies + e.Allergen : this.allergies + e.Allergen + ",");
                   rcounter = rcounter + 1;
                 });                
               }
@@ -224,25 +224,25 @@ constructor(
   save()
   {
     if (this.userid != null && this.admissionid != null) {      
-      this.Clinical.userid = this.userid;
-      this.Clinical.residentadmissioninfoid = this.admissionid;
-      this.Clinical.modifiedby = this.loginId;
-
+      this.Clinical.UserId = this.userid;
+      this.Clinical.ResidentAdmissionInfoId = this.admissionid;
+      this.Clinical.ModifiedBy = this.loginId;
+      console.log('selectedExtraItemDetails', this.lstExtraItemDetails);
     var selectedExtraItemDetails = [];
     var bl: Boolean = true;
     this.lstExtraItemDetails.forEach(x => {
-      if (x.allergen != "" && x.allergen != null && x.reaction != "" && x.reaction != null) {
+      if (x.Allergen != "" && x.Allergen != null && x.Reaction != "" && x.Reaction != null) {
         var jsonObject = {
-          "clinicalallergieslistid": x.clinicalallergieslistid,
-          "userid": this.userid,
-          "residentadmissioninfoid": this.admissionid,
-          "allergen": x.allergen,
-          "reaction": x.reaction,
-          "status": x.status,
-          "createdby": x.createdby,
-          "createdon": x.createdon,
-          "modifiedby": x.modifiedby, 
-          "modifiedon": x.modifiedon
+          "ClinicalAllergiesListId": x.ClinicalAllergiesListId,
+          "UserId": this.userid,
+          "ResidentAdmissionInfoId": this.admissionid,
+          "Allergen": x.Allergen,
+          "Reaction": x.Reaction,
+          "Status": x.Status,
+          "CreatedBy": x.CreatedBy,
+          "CreatedOn": x.CreatedOn,
+          "ModifiedBy": x.ModifiedBy, 
+          "ModifiedOn": x.ModifiedOn
         }
         selectedExtraItemDetails.push(jsonObject);
       }
@@ -256,7 +256,7 @@ constructor(
       return;
     }
       this.Clinical.clinicalallergieslists = selectedExtraItemDetails;
-      //console.log('Clinical', this.Clinical);
+      console.log('Clinical', this.Clinical);
       this._UtilityService.showSpinner();
       this.unsubscribe.add = this._MasterServices.AddInsertUpdateClinicalAllergies(this.Clinical)
         .subscribe

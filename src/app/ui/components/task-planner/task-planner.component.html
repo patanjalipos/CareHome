@@ -1,7 +1,7 @@
 <div *ngIf="mode==null">
     <div class="card">
         <p-table #dt [value]="lstMaster" responsiveLayout="scroll" styleClass="p-datatable-striped" [rowHover]="true"
-            [globalFilterFields]="['taskname','taskdescription','assignedtoname']" [scrollable]="true" scrollHeight="calc(100vh - 215px)">
+            [globalFilterFields]="['TaskName','TaskDescription','AssignedToName']" [scrollable]="true" scrollHeight="calc(100vh - 155px)">
             <ng-template pTemplate="caption">
                 <div class="flex justify-content-between flex-column sm:flex-row">
                     <span class="p-ml-left">
@@ -40,18 +40,18 @@
             </ng-template>
             <ng-template pTemplate="body" let-dt let-i="rowIndex">
                 <tr>
-                    <td>{{dt.taskname}}</td>
-                    <td>{{dt.taskdescription}}</td>
-                    <td>{{taskPlannerStatus[dt.status]}}</td>
-                    <td>{{dt.createdon | date:customDateFormat.DEF_DATE}}</td>
-                    <td>{{dt.starttime | date:customDateFormat.DEF_DATE_TIME}}</td>
-                    <td>{{dt.duetime | date:customDateFormat.DEF_DATE_TIME}}</td>
-                    <td>{{dt.assignedtoname}}</td>
+                    <td>{{dt.TaskName}}</td>
+                    <td>{{dt.TaskDescription}}</td>
+                    <td>{{taskPlannerStatus[dt.Status]}}</td>
+                    <td>{{dt.CreatedOn | date:customDateFormat.DEF_DATE}}</td>
+                    <td>{{dt.StartTime | date:customDateFormat.DEF_DATE_TIME}}</td>
+                    <td>{{dt.DueTime | date:customDateFormat.DEF_DATE_TIME}}</td>
+                    <td>{{dt.AssignedToName}}</td>
                     <td>
-                        <a title="View/Edit" (click)="GetTaskPlannerById(dt.taskplannerid)">
+                        <a title="View/Edit" (click)="GetTaskPlannerById(dt.TaskPlannerId)">
                             <i class="fa fa-eye" aria-hidden="true"></i>
                         </a>
-                        <a title="Delete" (click)="DeleteTaskPlanner(dt.taskplannerid)">
+                        <a title="Delete" (click)="DeleteTaskPlanner(dt.TaskPlannerId)">
                             <i class="fa fa-trash-alt ml-2" aria-hidden="true"></i>
                         </a>
                     </td>
@@ -68,7 +68,7 @@
                 <div class="col-md-4">                  
                         <label class="form-label">Home <span class="required">*</span></label>
                         <p-dropdown [required]="true" name="ddlHome" [options]="lstHomeMaster"
-                            [(ngModel)]="master.homemasterid" optionLabel="HomeName"
+                            [(ngModel)]="master.HomeMasterId" optionLabel="HomeName"
                             optionValue="HomeMasterId" [filter]="true" placeholder="--select--"
                             [style]="{width: '100%'}" #homeref="ngModel">
                         </p-dropdown>
@@ -77,18 +77,18 @@
             <div class="row">                
                 <div class="col-md-3">
                     <label class="form-label">Task Name <span class="required">*</span></label>
-                    <input pInputText type="text" required name="taskname" [(ngModel)]="master.taskname"
+                    <input pInputText type="text" required name="taskname" [(ngModel)]="master.TaskName"
                         class="form-control" #taskname="ngModel" />
                 </div>
                 <div class="col-md-3">
                     <label class="form-label">Description </label>
                     <textarea [disabled]="mode=='Edit'" class="form-control" rows="4" name="taskdescription"
-                                    [(ngModel)]="master.taskdescription" style="width: 100%;"></textarea>                    
+                                    [(ngModel)]="master.TaskDescription" style="width: 100%;"></textarea>                    
                 </div>
                 <div class="col-md-3">
                     <label class="form-label">Start Time <span class="required">*</span></label>                    
-                        <p-calendar [disabled]="mode=='Edit'" [required]="true" [minDate]="today" [maxDate]="(master.duetime==null || master.duetime==undefined)? false:master.duetime"
-                            [(ngModel)]="master.starttime"
+                        <p-calendar [disabled]="mode=='Edit'" [required]="true" [minDate]="today" [maxDate]="(master.DueTime==null || master.DueTime==undefined)? false:master.DueTime"
+                            [(ngModel)]="master.StartTime"
                             [ngModelOptions]="{standalone: true}" [showIcon]="true" inputId="icon"
                             [showTime]="true" [dateFormat]="customDateFormat.CalendarFormat" #starttimeref="ngModel"
                             class="iconcal"></p-calendar>                    
@@ -96,8 +96,8 @@
                 <div class="col-md-3">
                     <label class="form-label">Due Time <span class="required">*</span></label>                    
                         <p-calendar [disabled]="mode=='Edit'" [required]="true" 
-                            [(ngModel)]="master.duetime"
-                            [ngModelOptions]="{standalone: true}" [showIcon]="true"  [minDate]="(master.starttime==null || master.starttime==undefined)? today:master.starttime" inputId="icon"
+                            [(ngModel)]="master.DueTime"
+                            [ngModelOptions]="{standalone: true}" [showIcon]="true"  [minDate]="(master.StartTime==null || master.StartTime==undefined)? today:master.StartTime" inputId="icon"
                             [showTime]="true" [dateFormat]="customDateFormat.CalendarFormat" #duetimeref="ngModel"
                             class="iconcal"></p-calendar>                    
                 </div>
@@ -107,7 +107,7 @@
                 </div>
                 <div class="col-md-3">
                     <label class="form-label">Status<span class="required">*</span></label>
-                    <p-dropdown [required]="true" [options]="stlststatus" [(ngModel)]="master.status"
+                    <p-dropdown [required]="true" [options]="stlststatus" [(ngModel)]="master.Status"
                         [ngModelOptions]="{standalone: true}" optionLabel="name" optionValue="code" placeholder="Select"
                         [style]="{width: '100%'}">
                     </p-dropdown>

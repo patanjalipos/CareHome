@@ -168,48 +168,51 @@ export class AppMenuComponent implements OnInit {
                     
                     { label: 'Dashboard', icon: 'fa-solid fa-dashboard', routerLink: ['']},
                     {
-                        label: 'Master', icon: 'fa-solid fa-key',
+                        label: 'Master', icon: 'fa-solid fa-folder-tree',
                         items: [
                             {
                                 label: 'Menu Master', icon: 'fa-solid fa-bars', routerLink: ['/master/menu-master'],queryParams:[]
                             },
                             {
-                                label: 'Alert Head Master', icon: 'fa-solid fa-bars', routerLink: ['/master/alert-head-master'],queryParams:[]
+                                label: 'Alert Head Master', icon: 'fa-solid fa-circle-exclamation', routerLink: ['/master/alert-head-master'],queryParams:[]
                             },
                             {
-                                label: 'Alert Master', icon: 'fa-solid fa-bars', routerLink: ['/master/alert-master'],queryParams:[]
+                                label: 'Alert Master', icon: 'fa-solid fa-triangle-exclamation', routerLink: ['/master/alert-master'],queryParams:[]
                             },
                             {
-                                label: 'Chart Head Master', icon: 'fa-solid fa-bars', routerLink: ['/master/chart-head-master'],queryParams:[]
+                                label: 'Chart Head Master', icon: 'fa-solid fa-chart-line', routerLink: ['/master/chart-head-master'],queryParams:[]
                             },
                             {
-                                label: 'Chart Master', icon: 'fa-solid fa-bars', routerLink: ['/master/chart-master'],queryParams:[]
+                                label: 'Chart Master', icon: 'fa-solid fa-chart-area', routerLink: ['/master/chart-master'],queryParams:[]
                             },
                             {
-                                label: 'Indicator Group Master', icon: 'fa-solid fa-bars', routerLink: ['/master/indicator-group-master'],queryParams:[]
+                                label: 'Indicator Group Master', icon: 'fa-solid fa-gauge-high', routerLink: ['/master/indicator-group-master'],queryParams:[]
                             },
                             {
-                                label: 'Indicator Master', icon: 'fa-solid fa-bars', routerLink: ['/master/indicator-master'],queryParams:[]
+                                label: 'Indicator Master', icon: 'fa-solid fa-gauge', routerLink: ['/master/indicator-master'],queryParams:[]
                             },
                             {
-                                label: 'Attorney Type Master', icon: 'fa-solid fa-bars', routerLink: ['/master/attorney-type-master'],queryParams:[]
+                                label: 'Attorney Type Master', icon: 'fa-solid fa-gavel', routerLink: ['/master/attorney-type-master'],queryParams:[]
                             },
                             {
-                                label: 'Fall Risk Master', icon: 'fa-solid fa-bars', routerLink: ['/master/fall-risk-master'],queryParams:[]
+                                label: 'Fall Risk Master', icon: 'fa-solid fa-radiation', routerLink: ['/master/fall-risk-master'],queryParams:[]
                             },
                             {
-                                label: 'Home Master', icon: 'fa-solid fa-bars',class:'big-menu', routerLink: ['/master/home-master'],queryParams:[]
+                                label: 'Home Master', icon: 'fa-solid fa-house-chimney-user',class:'big-menu', routerLink: ['/master/home-master'],queryParams:[]
                             }, 
                             {
-                                label: 'Location Master', icon: 'fa-solid fa-bars',class:'big-menu', routerLink: ['/master/location-master'],queryParams:[]
+                                label: 'Location Master', icon: 'fa-solid fa-location-crosshairs',class:'big-menu', routerLink: ['/master/location-master'],queryParams:[]
                             },                          
                             {
-                                label: 'User Master', icon: 'fa-solid fa-user',routerLink: ['/master/user-master'],queryParams:[]
+                                label: 'User Master', icon: 'fa-solid fa-user-tie',routerLink: ['/master/user-master'],queryParams:[]
+                            },
+                            {
+                                label: 'Form Master', icon: 'fa-solid fa-align-justify',class:'big-menu', routerLink: ['/master/form-master'],queryParams:[]
                             }
                         ]
                     },
-                    { label: 'Resident List', icon: 'fa-solid fa-list', routerLink: ['/resident-list'] },
-                    { label: 'Task Planner', icon: 'fa-solid fa-list-check', routerLink: ['/task-planner'] },
+                    { label: 'Resident List', icon: 'fa-solid fa-person-cane', routerLink: ['/resident-list'] },
+                    { label: 'Task Planner', icon: 'fa-solid fa-bars-progress', routerLink: ['/task-planner'] },
                     { label: 'Activity', icon: 'fa-solid fa-list-check', routerLink: ['/activity'] },
                    
                     // { label: 'Clinical', icon: 'fa-solid fa-stethoscope', routerLink: ['/clinical'] },
@@ -237,16 +240,16 @@ export class AppMenuComponent implements OnInit {
                     { label: 'Fluid Assessment', icon: 'fa-solid fa-glass-water', routerLink: ['/uicare/residentprofile'],queryParams:[encodeURIComponent('&title=Fluid Assessment&seq=3&rId=OMR45345')] },
                     { label: 'Diet Planner', icon: 'fa-solid fa-bowl-rice', routerLink: ['/uicare/residentprofile'],queryParams:[encodeURIComponent('&title=Diet Planner&seq=6&rId=OMR45345')] },
                     {
-                        label: 'Report', icon: 'fa-solid fa-key',
+                        label: 'Report', icon: 'fa-solid fa-file-excel',
                         items: [
                             {
-                                label: 'Fall Risk Report', icon: 'fa-solid fa-list', routerLink: ['/report/fallriskassessmentreport'] 
-                            },                            
+                                label: 'Fall Risk Report', icon: 'fa-solid fa-file-excel', routerLink: ['/report/fallriskassessmentreport'] 
+                            },                             
                         ]
                     },
                     // { label: 'Edit', icon: 'pi pi-user-edit',  routerLink: ['/uicare/fallriskassessmentreport'] },
                     // { label: 'Setting', icon: 'pi pi-cog',  routerLink: ['/uicare/fallriskassessmentreport'] },
-                    { label: 'Logout', icon: 'pi pi-unlock',  routerLink: ['/auth/logout'] },
+                    { label: 'Logout', icon: 'fa-solid fa-right-from-bracket',  routerLink: ['/auth/logout'] },
                     
                 ]
             },

@@ -26,8 +26,8 @@ export class AuthServiceService {
         let params = new HttpParams();
         console.log(environment.BaseUriUser);
         var UserMasterNew:any=<any>{};
-        UserMasterNew.loginid=LoginId;
-        UserMasterNew.password=Password;
+        UserMasterNew.LoginId=LoginId;
+        UserMasterNew.Password=Password;
 
         var data = JSON.stringify(UserMasterNew);
         return this.httpClient.post<any>(environment.BaseUriUser + "api/User/ValidateUser", data, { "headers": reqHeader, "params": params });

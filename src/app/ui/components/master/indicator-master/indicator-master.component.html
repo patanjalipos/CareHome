@@ -1,7 +1,7 @@
 <div *ngIf="mode==null">
     <div class="card">
         <p-table #dt [value]="lstMaster" responsiveLayout="scroll" styleClass="p-datatable-striped" [rowHover]="true"
-            [globalFilterFields]="['groupname','indicatorname']" [scrollable]="true" scrollHeight="calc(100vh - 215px)">
+            [globalFilterFields]="['GroupName','IndicatorName']" [scrollable]="true" scrollHeight="calc(100vh - 155px)">
             <ng-template pTemplate="caption">
                 <div class="flex justify-content-between flex-column sm:flex-row">
                     <span class="p-ml-left">
@@ -39,12 +39,12 @@
             </ng-template>
             <ng-template pTemplate="body" let-dt let-i="rowIndex">
                 <tr>
-                    <td>{{dt.groupname}}</td>
-                    <td>{{dt.indicatorname}}</td>
-                    <td>{{dt.orderno}}</td>
-                    <td>{{dt.status==true?'Active':'Inactive'}}</td>
+                    <td>{{dt.GroupName}}</td>
+                    <td>{{dt.IndicatorName}}</td>
+                    <td>{{dt.OrderNo}}</td>
+                    <td>{{dt.Status==1?'Active':'Inactive'}}</td>
                     <td>
-                        <a title="View/Edit" (click)="GetIndicatorMasterById(dt.indicatormasterid)">
+                        <a title="View/Edit" (click)="GetIndicatorMasterById(dt.IndicatorMasterId)">
                             <i class="fa fa-eye" aria-hidden="true"></i>
                         </a>
                     </td>
@@ -60,8 +60,8 @@
             <div class="row">
                 <div class="col-md-3">
                     <label class="form-label">Indicator Group Name <span class="required">*</span></label>
-                    <p-dropdown name="ddlHeadName" [options]="lstHeadMaster" [(ngModel)]="master.indicatorgroupmasterid"
-                        [disabled]="mode=='Edit'" optionLabel="groupname" optionValue="indicatorgroupmasterid"
+                    <p-dropdown name="ddlHeadName" [options]="lstHeadMaster" [(ngModel)]="master.IndicatorGroupMasterId"
+                        [disabled]="mode=='Edit'" optionLabel="GroupName" optionValue="IndicatorGroupMasterId"
                         [filter]="true" placeholder="Please Select Group" [style]="{width: '100%'}">
                     </p-dropdown>
 
@@ -69,19 +69,19 @@
                 </div>
                 <div class="col-md-3">
                     <label class="form-label">Indicator Name <span class="required">*</span></label>
-                    <input pInputText type="text" required name="indicatorname" [(ngModel)]="master.indicatorname"
+                    <input pInputText type="text" required name="indicatorname" [(ngModel)]="master.IndicatorName"
                         class="form-control" #indicatorname="ngModel" />
 
                 </div>
                 <div class="col-md-3">
                     <label class="form-label">Order No. <span class="required">*</span></label>
-                    <p-inputNumber [required]="true" name="txtOrder" [(ngModel)]="master.orderno"
+                    <p-inputNumber [required]="true" name="txtOrder" [(ngModel)]="master.OrderNo"
                         mode="decimal" [useGrouping]="false" [maxlength]="2"></p-inputNumber>
 
                 </div>
                 <div class="col-md-3">
                     <label class="form-label">Status<span class="required">*</span></label>
-                    <p-dropdown [required]="true" [options]="stlststatus" [(ngModel)]="master.status"
+                    <p-dropdown [required]="true" [options]="stlststatus" [(ngModel)]="master.Status"
                         [ngModelOptions]="{standalone: true}" optionLabel="name" optionValue="code" placeholder="Select"
                         [style]="{width: '100%'}">
                     </p-dropdown>

@@ -29,8 +29,8 @@ export class IndicatorGroupMasterComponent extends AppComponentBase implements O
     super();
     this._ConstantServices.ActiveMenuName = "Indicator Group Master"; 
     this.stlststatus = [
-      { name: 'Active', code: true },
-      { name: 'Inactive', code: false }
+      { name: 'Active', code: 1 },
+      { name: 'Inactive', code: 0 }
     ];    
   } 
   ngOnInit(): void {
@@ -88,7 +88,7 @@ export class IndicatorGroupMasterComponent extends AppComponentBase implements O
     else
       this.master.statementtype = "Update";
     
-    this.master.modifiedby = localStorage.getItem('userId');;  
+    this.master.ModifiedBy = localStorage.getItem('userId');;  
     this._UtilityService.showSpinner();
     this.unsubscribe.add = this._MasterServices.AddInsertUpdateIndicatorGroup(this.master)
       .subscribe({
@@ -116,7 +116,7 @@ export class IndicatorGroupMasterComponent extends AppComponentBase implements O
   }
   ResetModel() {
     this.master = <any>{};
-    this.master.status = true;
+    this.master.Status = 1;
     
   }
   Close() {

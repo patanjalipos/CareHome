@@ -57,13 +57,13 @@ export class ResidentProfileComponent extends AppComponentBase implements OnInit
             var tdata = JSON.parse(data.actionResult.result);
             tdata = tdata ? tdata : [];
             this.ResidentMaster = tdata;
-            if(data.actionResult.result3!=null && data.actionResult.result3!=undefined && data.actionResult.result3?.length>0)
+            if(data.actionResult.result2!=null && data.actionResult.result2!=undefined && data.actionResult.result2?.length>0)
             {
-              var tdata2 = JSON.parse(data.actionResult.result3);
-              this.allergies=tdata2.allergynotes;
-              if(tdata2.allergen)
+              var tdata2 = JSON.parse(data.actionResult.result2);
+              this.allergies=tdata2.AllergyNotes;
+              if(tdata2.Allergen)
               {
-                this.allergies = this.allergies + ', ' + tdata2.allergen;
+                this.allergies = ((this.allergies!='' && this.allergies!=null && this.allergies!=undefined)? (this.allergies + ', ') : this.allergies) + tdata2.Allergen;
               }
                
             }

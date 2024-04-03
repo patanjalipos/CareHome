@@ -18,143 +18,143 @@
                 <h5 class="m-0">Contact note</h5>
                 <div class="col-md-12">
                     <div *ngIf="mode=='edit'">
-                        <input type="text" name="contactnote" pInputText [(ngModel)]="Contact.contactnote"
+                        <input type="text" name="contactnote" pInputText [(ngModel)]="Contact.ContactNote"
                             [style]="{width: '100%'}" class=" mb-2" />
                     </div>
-                    <div class="my-2" *ngIf="mode=='view'">{{Contact.contactnote}}</div>
+                    <div class="my-2" *ngIf="mode=='view'">{{Contact.ContactNote}}</div>
                 </div>
                 <h5 class="m-0">Contact name</h5>
                 <div class="col-md-6">
                     <label class="form-label"><span class="required">*</span> First name</label>
                     <div *ngIf="mode=='edit'">
-                        <input required type="text" name="firstname" pInputText [(ngModel)]="Contact.firstname"
+                        <input required type="text" name="firstname" pInputText [(ngModel)]="Contact.FirstName"
                             [style]="{width: '100%'}" #fNameref="ngModel" class=" mb-2" />
                         <div class="errorMessage pt-2" *ngIf="fNameref.errors &&(fNameref.touched || fNameref.dirty)">
                             <div>First name is required.</div>
                         </div>
                     </div>
-                    <div class="my-2" *ngIf="mode=='view'">{{Contact.firstname}}</div>
+                    <div class="my-2" *ngIf="mode=='view'">{{Contact.FirstName}}</div>
                 </div>
 
                 <div class="col-md-6">
                     <label class="form-label"><span class="required">*</span> Last name</label>
                     <div *ngIf="mode=='edit'">
-                        <input required type="text" name="lastname" pInputText [(ngModel)]="Contact.lastname"
+                        <input required type="text" name="lastname" pInputText [(ngModel)]="Contact.LastName"
                             [style]="{width: '100%'}" #lNameref="ngModel" class=" mb-2"  />
                         <div class="errorMessage pt-2" *ngIf="lNameref.errors &&(lNameref.touched || lNameref.dirty)">
                             <div>Last name is required.</div>
                         </div>
                     </div>
-                    <div class="my-2" *ngIf="mode=='view'">{{Contact.lastname}}</div>
+                    <div class="my-2" *ngIf="mode=='view'">{{Contact.LastName}}</div>
                 </div>
                 <h5 class="m-0">Contact Type</h5>
                 <div class="col-md-12">
                     <label class="form-label">Relationship to Resident</label>
                     <div *ngIf="mode=='edit'">
-                        <input type="text" name="relationship" pInputText [(ngModel)]="Contact.relationship"
+                        <input type="text" name="relationship" pInputText [(ngModel)]="Contact.Relationship"
                             [style]="{width: '100%'}" class=" mb-2"  />
                     </div>
-                    <div class="my-2" *ngIf="mode=='view'">{{Contact.relationship}}</div>
+                    <div class="my-2" *ngIf="mode=='view'">{{Contact.Relationship}}</div>
                 </div>
                 <h5 class="m-0">Contact Details</h5>
                 <div class="col-md-4">
                     <label class="form-label">Mobile</label>
                     <div *ngIf="mode=='edit'">
-                        <p-inputNumber name="mobile" [(ngModel)]="Contact.mobile"
+                        <p-inputNumber name="mobile" [(ngModel)]="Contact.Mobile"
                         mode="decimal" [useGrouping]="false" [maxlength]="20" class=" mb-2" ></p-inputNumber>
                     </div>
-                    <div class="my-2" *ngIf="mode=='view'">{{Contact.mobile}}</div>
+                    <div class="my-2" *ngIf="mode=='view'">{{Contact.Mobile}}</div>
                 </div>
                 <div class="col-md-4">
                     <label class="form-label">Home Telephone</label>
                     <div *ngIf="mode=='edit'">
-                        <p-inputNumber name="hometelephone" [(ngModel)]="Contact.hometelephone"
+                        <p-inputNumber name="hometelephone" [(ngModel)]="Contact.HomeTelephone"
                         mode="decimal" [useGrouping]="false" [maxlength]="20"></p-inputNumber>  
                     </div>
-                    <div class="my-2" *ngIf="mode=='view'">{{Contact.hometelephone}}</div>
+                    <div class="my-2" *ngIf="mode=='view'">{{Contact.HomeTelephone}}</div>
                 </div>
                 <div class="col-md-4">
                     <label class="form-label">Work Telephone</label>
                     <div *ngIf="mode=='edit'">
-                        <p-inputNumber name="worktelephone" [(ngModel)]="Contact.worktelephone"
+                        <p-inputNumber name="worktelephone" [(ngModel)]="Contact.WorkTelephone"
                         mode="decimal" [useGrouping]="false" [maxlength]="20"></p-inputNumber>
                     </div>
-                    <div class="my-2" *ngIf="mode=='view'">{{Contact.worktelephone}}</div>
+                    <div class="my-2" *ngIf="mode=='view'">{{Contact.WorkTelephone}}</div>
                 </div>
                 <div class="col-md-4">
                     <label class="form-label">Email Address</label>
                     <div *ngIf="mode=='edit'">
-                        <input type="text" name="email" pInputText [(ngModel)]="Contact.email"
+                        <input type="text" name="email" pInputText [(ngModel)]="Contact.Email"
                             [style]="{width: '100%'}" pattern="[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,3}$"
                             #emailref="ngModel" class=" mb-2"  />
                            <div class="errorMessage pt-2" *ngIf="emailref.errors &&(emailref.touched || emailref.dirty)">
                                <div>Please enter valid email id.</div>
                            </div>
                     </div>
-                    <div class="my-2" *ngIf="mode=='view'">{{Contact.email}}</div>
+                    <div class="my-2" *ngIf="mode=='view'">{{Contact.Email}}</div>
                 </div>
                 <h5 class="m-0">Contact Address</h5>
                 <div class="col-md-12">
                     <label class="form-label"><span class="required">*</span> Address 1</label>
                     <div *ngIf="mode=='edit'">
-                        <input required type="text" name="address1" pInputText [(ngModel)]="Contact.address1"
+                        <input required type="text" name="address1" pInputText [(ngModel)]="Contact.Address1"
                             [style]="{width: '100%'}" #addressref="ngModel" class=" mb-2"  />
                         <div class="errorMessage pt-2"
                             *ngIf="addressref.errors &&(addressref.touched || addressref.dirty)">
                             Address 1 is required.
                         </div>
                     </div>
-                    <div class="my-2" *ngIf="mode=='view'">{{Contact.address1}}</div>
+                    <div class="my-2" *ngIf="mode=='view'">{{Contact.Address1}}</div>
                 </div>
                 <div class="col-md-12 mt-2">
                     <label class="form-label">Address 2</label>
                     <div *ngIf="mode=='edit'">
-                        <input type="text" name="address2" pInputText [(ngModel)]="Contact.address2"
+                        <input type="text" name="address2" pInputText [(ngModel)]="Contact.Address2"
                             [style]="{width: '100%'}" class=" mb-2"  />
                     </div>
-                    <div class="my-2" *ngIf="mode=='view'">{{Contact.address2}}</div>
+                    <div class="my-2" *ngIf="mode=='view'">{{Contact.Address2}}</div>
                 </div>
                 <div class="col-md-12 mt-2">
                     <label class="form-label">Address 3</label>
                     <div *ngIf="mode=='edit'">
-                        <input type="text" name="address3" pInputText [(ngModel)]="Contact.address3"
+                        <input type="text" name="address3" pInputText [(ngModel)]="Contact.Address3"
                             [style]="{width: '100%'}" class=" mb-2"  />
                     </div>
-                    <div class="my-2" *ngIf="mode=='view'">{{Contact.address3}}</div>
+                    <div class="my-2" *ngIf="mode=='view'">{{Contact.Address3}}</div>
                 </div>
                 <div class="col-md-6 mt-2">
                     <label class="form-label">Town</label>
                     <div *ngIf="mode=='edit'">
-                        <input type="text" name="town" pInputText [(ngModel)]="Contact.town"
+                        <input type="text" name="town" pInputText [(ngModel)]="Contact.Town"
                             [style]="{width: '100%'}" class=" mb-2"  />
                     </div>
-                    <div class="my-2" *ngIf="mode=='view'">{{Contact.town}}</div>
+                    <div class="my-2" *ngIf="mode=='view'">{{Contact.Town}}</div>
                 </div>
                 <div class="col-md-6 mt-2">
                     <label class="form-label">County</label>
                     <div *ngIf="mode=='edit'">
-                        <input type="text" name="txtResidentIndicators" pInputText [(ngModel)]="Contact.county"
+                        <input type="text" name="txtResidentIndicators" pInputText [(ngModel)]="Contact.County"
                             [style]="{width: '100%'}" class=" mb-2"  />
                     </div>
-                    <div class="my-2" *ngIf="mode=='view'">{{Contact.county}}</div>
+                    <div class="my-2" *ngIf="mode=='view'">{{Contact.County}}</div>
                 </div>
                 <div class="col-md-6 mt-2">
                     <label class="form-label">Country</label>
                     <div *ngIf="mode=='edit'">
-                        <p-dropdown name="ddlCountry" [options]="lstCountryMaster" [(ngModel)]="Contact.countryid"
+                        <p-dropdown name="ddlCountry" [options]="lstCountryMaster" [(ngModel)]="Contact.CountryId"
                             optionLabel="name" optionValue="id" [filter]="true" placeholder="Choose country"
                             [style]="{width: '100%'}">
                         </p-dropdown>
                     </div>
-                    <div class="my-2" *ngIf="mode=='view'">{{Contact.countryname}}</div>
+                    <div class="my-2" *ngIf="mode=='view'">{{Contact.CountryName}}</div>
                 </div>
                 <div class="col-md-6 mt-2">
                     <label class="form-label">Postcode</label>
                     <div *ngIf="mode=='edit'">
-                        <input type="text" name="postcode" pInputText [(ngModel)]="Contact.postcode"
+                        <input type="text" name="postcode" pInputText [(ngModel)]="Contact.PostCode"
                             [style]="{width: '100%'}" />
                     </div>
-                    <div class="my-2" *ngIf="mode=='view'">{{Contact.postcode}}</div>
+                    <div class="my-2" *ngIf="mode=='view'">{{Contact.PostCode}}</div>
                 </div>
             </div>
         </div>

@@ -14,7 +14,7 @@
 </p-header>
 <div>
     <p-table class="ColumnFilterTable" #dt [value]="lstFallRiskAssessment"
-    [globalFilterFields]="['fallriskname']" [scrollable]="true" scrollHeight="calc(100vh - 400px)"
+    [globalFilterFields]="['FallRiskName']" [scrollable]="true" scrollHeight="calc(100vh - 400px)"
     responsiveLayout="scroll">
     <ng-template pTemplate="emptymessage" let-columns>
         <tr>
@@ -25,17 +25,17 @@
     </ng-template>    
     <ng-template pTemplate="body" let-item let-i="rowIndex">        
         <tr>
-            <td style="width:70%">                
-                {{item.fallriskname}} 
+            <td class="wth-70">                
+                {{item.FallRiskName}} 
             </td>                      
-            <td style="width:30%">
+            <td class="wth-30"> 
                 <div class="grid formgrid">
                     <div class="field-radiobutton">
-                        <p-radioButton name="rdNo_{{i}}" [value]="isrisk" [(ngModel)]="item.isenable" id="rdEnable_{{i}}" [disabled]="mode=='edit'?false:true"></p-radioButton>
-                        <label for="rdEnable_{{i}}">Yes ({{item.riskpoint}})</label>
+                        <p-radioButton name="rdNo_{{i}}" [value]="isrisk" [(ngModel)]="item.Isenable" id="rdEnable_{{i}}" [disabled]="mode=='edit'?false:true"></p-radioButton>
+                        <label for="rdEnable_{{i}}">Yes ({{item.RiskPoint}})</label>
                     </div>
                     <div class="field-radiobutton pl-2">
-                        <p-radioButton name="rdNo_{{i}}" [value]="!isrisk" [(ngModel)]="item.isenable" id="rdDisable_{{i}}" [disabled]="mode=='edit'?false:true"></p-radioButton>
+                        <p-radioButton name="rdNo_{{i}}" [value]="!isrisk" [(ngModel)]="item.Isenable" id="rdDisable_{{i}}" [disabled]="mode=='edit'?false:true"></p-radioButton>
                         <label for="rdDisable_{{i}}">No</label>
                     </div>
                 </div>

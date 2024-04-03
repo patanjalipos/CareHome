@@ -66,6 +66,7 @@ export class DailyVitalComponent extends AppComponentBase implements OnInit {
 
   GetClinicalDailyVitalById(admissionid) {
     var startdate: any = null;
+    this.lstClinicalVital=[];
     if (this.selecteddate != null && this.selecteddate != undefined)
       startdate = this.datepipe.transform(this.selecteddate, 'yyyy-MM-dd');
     this._UtilityService.showSpinner();
@@ -88,16 +89,16 @@ export class DailyVitalComponent extends AppComponentBase implements OnInit {
 
   save() {
     if (this.userid != null && this.admissionid != null) {
-      if (this.Clinical.bp === undefined && this.Clinical.pr === undefined
-        && this.Clinical.respiration === undefined && this.Clinical.temprature === undefined
-        && this.Clinical.weight === undefined && this.Clinical.fbs === undefined && this.Clinical.ppbs === undefined
-        && this.Clinical.rbs === undefined) {
+      if (this.Clinical.BP === undefined && this.Clinical.PR === undefined
+        && this.Clinical.Respiration === undefined && this.Clinical.Temprature === undefined
+        && this.Clinical.Weight === undefined && this.Clinical.FBS === undefined && this.Clinical.PPBS === undefined
+        && this.Clinical.RBS === undefined) {
         this._UtilityService.showWarningAlert("Please fill atleast one record");
         return;
       }     
-      this.Clinical.userid = this.userid;
-      this.Clinical.residentadmissioninfoid = this.admissionid;
-      this.Clinical.modifiedby = this.loginId;     
+      this.Clinical.UserId = this.userid;
+      this.Clinical.ResidentAdmissionInfoId = this.admissionid;
+      this.Clinical.ModifiedBy = this.loginId;
       //console.log('Clinical', this.Clinical);
       this._UtilityService.showSpinner();
       this.unsubscribe.add = this._MasterServices.AddInsertUpdateDailyVital(this.Clinical)
@@ -122,11 +123,11 @@ export class DailyVitalComponent extends AppComponentBase implements OnInit {
     }
   }
   deleteVitalData(id) {
-    this.Clinical.StatementType = "delete";
-    this.Clinical.userid = this.userid;
-    this.Clinical.residentadmissioninfoid = this.admissionid;
-    this.Clinical.clinicaldailyvitalid = id;
-    this.Clinical.modifiedby = this.loginId;
+    this.Clinical.StatementType = "Delete";
+    this.Clinical.UserId = this.userid;
+    this.Clinical.ResidentAdmissionInfoId = this.admissionid;
+    this.Clinical.ClinicalDailyVitalId = id;
+    this.Clinical.ModifiedBy = this.loginId;    
     this._UtilityService.showSpinner();
       this.unsubscribe.add = this._MasterServices.AddInsertUpdateDailyVital(this.Clinical)
         .subscribe

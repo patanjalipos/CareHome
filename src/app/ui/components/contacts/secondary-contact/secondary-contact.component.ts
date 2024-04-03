@@ -64,7 +64,7 @@ export class SecondaryContactComponent extends AppComponentBase implements OnIni
     }
   }
   GetContactSecondaryById(admissionid) {
-    this.Contact.StatementType = "Insert";
+    this.Contact.statementtype = "Insert";
     this._UtilityService.showSpinner();
     this.unsubscribe.add = this._MasterServices.GetContactSecondaryById(admissionid)
       .subscribe({
@@ -75,7 +75,7 @@ export class SecondaryContactComponent extends AppComponentBase implements OnIni
             tdata = tdata ? tdata : [];
             this.Contact = tdata;
             //console.log('this.Contact', this.Contact);     
-            this.Contact.StatementType = "Update";
+            this.Contact.statementtype = "Update";
           }
         },
         error: (e) => {
@@ -86,9 +86,13 @@ export class SecondaryContactComponent extends AppComponentBase implements OnIni
   }
   save() {
     if (this.userid != null && this.admissionid != null) {
-      this.Contact.userid = this.userid;
-      this.Contact.residentadmissioninfoid = this.admissionid;
-      this.Contact.modifiedby = localStorage.getItem('userId');
+      this.Contact.UserId = this.userid;
+      this.Contact.ResidentAdmissionInfoId = this.admissionid;
+      this.Contact.ModifiedBy = localStorage.getItem('userId');
+      this.Contact.Mobile = this.Contact.Mobile?.toString() || null;
+      this.Contact.HomeTelephone = this.Contact.HomeTelephone?.toString() || null;
+      this.Contact.WorkTelephone = this.Contact.WorkTelephone?.toString() || null;
+     
       this._UtilityService.showSpinner();
       this.unsubscribe.add = this._MasterServices.AddInsertUpdateContactSecondary(this.Contact)
         .subscribe

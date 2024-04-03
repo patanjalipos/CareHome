@@ -35,8 +35,8 @@ export class ActivityComponent extends AppComponentBase implements OnInit {
     super();
     this._ConstantServices.ActiveMenuName = "Activity"; 
     this.stlststatus = [
-      { name: 'Active', code: true },
-      { name: 'Inactive', code: false }
+      { name: 'Active', code: 1 },
+      { name: 'Inactive', code: 0 }
     ];   
   } 
   ngOnInit(): void { 
@@ -108,9 +108,9 @@ export class ActivityComponent extends AppComponentBase implements OnInit {
             var tdata = JSON.parse(data.actionResult.result);
             tdata = tdata ? tdata : [];
             this.master = tdata;
-            if(this.master?.activitytime!=null && this.master?.activitytime!=undefined)
+            if(this.master?.ActivityTime!=null && this.master?.ActivityTime!=undefined)
             {
-              this.master.activitytime = new Date(this.master.activitytime);
+              this.master.ActivityTime = new Date(this.master.ActivityTime);
             }            
             }
         },
@@ -126,7 +126,7 @@ export class ActivityComponent extends AppComponentBase implements OnInit {
     else
       this.master.statementtype = "Update";
     
-    this.master.modifiedby = localStorage.getItem('userId');;  
+    this.master.ModifiedBy = localStorage.getItem('userId');;  
     this._UtilityService.showSpinner();
     this.unsubscribe.add = this._MasterServices.AddInsertUpdateActivity(this.master)
       .subscribe({
@@ -155,9 +155,9 @@ export class ActivityComponent extends AppComponentBase implements OnInit {
   ResetModel() {
     this.master = <any>{};
     if (UserTypes.SuperAdmin !== this.s_userTypeId) {
-      this.master.homemasterid = localStorage.getItem('HomeMasterId');
+      this.master.HomeMasterId = localStorage.getItem('HomeMasterId');
     } 
-    this.master.status = true;    
+    this.master.Status = 1;    
   }
   Close() {
     this.mode = null;
@@ -165,7 +165,7 @@ export class ActivityComponent extends AppComponentBase implements OnInit {
 
   DeleteActivity(id) {
     this.master.StatementType = "Delete";
-    this.master.activityid = id;
+    this.master.ActivityId = id;
     this._UtilityService.showSpinner();
       this.unsubscribe.add = this._MasterServices.AddInsertUpdateActivity(this.master)
         .subscribe

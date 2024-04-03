@@ -1,7 +1,7 @@
-<div *ngIf="mode==null">
+<div *ngIf="mode==null"> 
     <div class="card">
         <p-table #dt [value]="lstMaster" responsiveLayout="scroll" styleClass="p-datatable-striped" [rowHover]="true"
-            [globalFilterFields]="['alertheadname','alertname']" [scrollable]="true" scrollHeight="calc(100vh - 215px)">
+            [globalFilterFields]="['AlertHeadName','AlertName']" [scrollable]="true" scrollHeight="calc(100vh - 155px)">
             <ng-template pTemplate="caption">
                 <div class="flex justify-content-between flex-column sm:flex-row">
                     <span class="p-ml-left">
@@ -39,12 +39,12 @@
             </ng-template>
             <ng-template pTemplate="body" let-dt let-i="rowIndex">
                 <tr>
-                    <td>{{dt.alertheadname}}</td>
-                    <td>{{dt.alertname}}</td>
-                    <td>{{dt.orderno}}</td>
-                    <td>{{dt.status==true?'Active':'Inactive'}}</td>
+                    <td>{{dt.AlertHeadName}}</td>
+                    <td>{{dt.AlertName}}</td>
+                    <td>{{dt.OrderNo}}</td>
+                    <td>{{dt.Status==1?'Active':'Inactive'}}</td>
                     <td>
-                        <a title="View/Edit" (click)="GetAlertMasterById(dt.alertmasterid)">
+                        <a title="View/Edit" (click)="GetAlertMasterById(dt.AlertMasterId)">
                             <i class="fa fa-eye" aria-hidden="true"></i>
                         </a>
                     </td>
@@ -60,8 +60,8 @@
             <div class="row">
                 <div class="col-md-3">
                     <label class="form-label">Alert Head Name <span class="required">*</span></label>
-                    <p-dropdown name="ddlHeadName" [options]="lstHeadMaster" [(ngModel)]="master.alertheadmasterid"
-                        [disabled]="mode=='Edit'" optionLabel="alertheadname" optionValue="alertheadmasterid"
+                    <p-dropdown name="ddlHeadName" [options]="lstHeadMaster" [(ngModel)]="master.AlertHeadMasterId"
+                        [disabled]="mode=='Edit'" optionLabel="AlertHeadName" optionValue="AlertHeadMasterId"
                         [filter]="true" placeholder="Please Select Head" [style]="{width: '100%'}">
                     </p-dropdown>
 
@@ -75,13 +75,13 @@
                 </div>
                 <div class="col-md-3">
                     <label class="form-label">Order No. <span class="required">*</span></label>
-                    <p-inputNumber [required]="true" name="txtOrder" [(ngModel)]="master.orderno"
+                    <p-inputNumber [required]="true" name="txtOrder" [(ngModel)]="master.OrderNo"
                         mode="decimal" [useGrouping]="false" [maxlength]="2"></p-inputNumber>
 
                 </div>
                 <div class="col-md-3">
                     <label class="form-label">Status<span class="required">*</span></label>
-                    <p-dropdown [required]="true" [options]="stlststatus" [(ngModel)]="master.status"
+                    <p-dropdown [required]="true" [options]="stlststatus" [(ngModel)]="master.Status"
                         [ngModelOptions]="{standalone: true}" optionLabel="name" optionValue="code" placeholder="Select"
                         [style]="{width: '100%'}">
                     </p-dropdown>

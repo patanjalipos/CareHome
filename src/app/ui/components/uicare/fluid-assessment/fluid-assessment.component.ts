@@ -189,8 +189,8 @@ export class FluidAssessmentComponent implements OnInit {
         datasets: [
             {
                 label: 'Target',
-                backgroundColor: documentStyle.getPropertyValue('--primary-500'),
-                borderColor: documentStyle.getPropertyValue('--primary-500'),
+                backgroundColor: documentStyle.getPropertyValue('#617C7E'),
+                borderColor: documentStyle.getPropertyValue('#023c40 '),
                 data: [1500, 1500, 1500, 1500, 1600, 1600, 1600,1700,1700,1700,1600,1600,1700,1800,1800,1800,1700,1400,1200,1300,1500,1600,1700,1800,1900,1900,1800,1800,1800,1900,1900,1900]
             },
             {

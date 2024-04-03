@@ -1,7 +1,7 @@
 <div *ngIf="mode==null">
     <div class="card">
         <p-table #dt [value]="lstMaster" responsiveLayout="scroll" styleClass="p-datatable-striped" [rowHover]="true"
-            [globalFilterFields]="['homename','locationname']" [scrollable]="true" scrollHeight="calc(100vh - 215px)">
+            [globalFilterFields]="['HomeName','LocationName']" [scrollable]="true" scrollHeight="calc(100vh - 155px)">
             <ng-template pTemplate="caption">
                 <div class="flex justify-content-between flex-column sm:flex-row">
                     <span class="p-ml-left">
@@ -39,12 +39,12 @@
             </ng-template>
             <ng-template pTemplate="body" let-dt let-i="rowIndex">
                 <tr>
-                    <td>{{dt.homename}}</td>
-                    <td>{{dt.locationname}}</td>
-                    <td>{{dt.orderno}}</td>
-                    <td>{{dt.status==true?'Active':'Inactive'}}</td>
+                    <td>{{dt.HomeName}}</td>
+                    <td>{{dt.LocationName}}</td>
+                    <td>{{dt.OrderNo}}</td>
+                    <td>{{dt.Status==1?'Active':'Inactive'}}</td>
                     <td>
-                        <a title="View/Edit" (click)="GetLocationMasterById(dt.locationmasterid)">
+                        <a title="View/Edit" (click)="GetLocationMasterById(dt.LocationMasterId)">
                             <i class="fa fa-eye" aria-hidden="true"></i>
                         </a>
                     </td>
@@ -60,7 +60,7 @@
             <div class="row">
                 <div class="col-md-3">
                     <label class="form-label">Facility <span class="required">*</span></label>
-                    <p-dropdown name="ddlHomeName" [options]="lstHomeMaster" [(ngModel)]="master.homemasterid"
+                    <p-dropdown name="ddlHomeName" [options]="lstHomeMaster" [(ngModel)]="master.HomeMasterId"
                         [disabled]="mode=='Edit'" optionLabel="HomeName" optionValue="HomeMasterId"
                         [filter]="true" placeholder="Please Select Head" [style]="{width: '100%'}">
                     </p-dropdown>
@@ -69,19 +69,19 @@
                 </div>
                 <div class="col-md-3">
                     <label class="form-label">Location Name <span class="required">*</span></label>
-                    <input pInputText type="text" required name="locationname" [(ngModel)]="master.locationname"
+                    <input pInputText type="text" required name="locationname" [(ngModel)]="master.LocationName"
                         class="form-control" #locationname="ngModel" />
 
                 </div>
                 <div class="col-md-3">
                     <label class="form-label">Order No. <span class="required">*</span></label>
-                    <p-inputNumber [required]="true" name="txtOrder" [(ngModel)]="master.orderno"
+                    <p-inputNumber [required]="true" name="txtOrder" [(ngModel)]="master.OrderNo"
                         mode="decimal" [useGrouping]="false" [maxlength]="2"></p-inputNumber>
 
                 </div>
                 <div class="col-md-3">
                     <label class="form-label">Status<span class="required">*</span></label>
-                    <p-dropdown [required]="true" [options]="stlststatus" [(ngModel)]="master.status"
+                    <p-dropdown [required]="true" [options]="stlststatus" [(ngModel)]="master.Status"
                         [ngModelOptions]="{standalone: true}" optionLabel="name" optionValue="code" placeholder="Select"
                         [style]="{width: '100%'}">
                     </p-dropdown>

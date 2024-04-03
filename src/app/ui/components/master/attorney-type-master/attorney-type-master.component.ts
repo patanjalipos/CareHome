@@ -29,8 +29,8 @@ export class AttorneyTypeMasterComponent extends AppComponentBase implements OnI
     super();
     this._ConstantServices.ActiveMenuName = "Attorney Type Master"; 
     this.stlststatus = [
-      { name: 'Active', code: true },
-      { name: 'Inactive', code: false }
+      { name: 'Active', code: 1 },
+      { name: 'Inactive', code: 0 }
     ];    
   } 
   ngOnInit(): void {
@@ -88,7 +88,7 @@ export class AttorneyTypeMasterComponent extends AppComponentBase implements OnI
     else
       this.master.statementtype = "Update";
     
-    this.master.modifiedby = localStorage.getItem('userId');;  
+    this.master.ModifiedBy = localStorage.getItem('userId');;  
     this._UtilityService.showSpinner();
     this.unsubscribe.add = this._MasterServices.AddInsertUpdateAttorneyType(this.master)
       .subscribe({
@@ -116,7 +116,7 @@ export class AttorneyTypeMasterComponent extends AppComponentBase implements OnI
   }
   ResetModel() {
     this.master = <any>{};
-    this.master.status = true;
+    this.master.Status = 1;
     
   }
   Close() {

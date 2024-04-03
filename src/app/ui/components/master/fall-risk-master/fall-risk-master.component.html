@@ -1,7 +1,7 @@
 <div *ngIf="mode==null">
     <div class="card">
         <p-table #dt [value]="lstMaster" responsiveLayout="scroll" styleClass="p-datatable-striped" [rowHover]="true"
-            [globalFilterFields]="['fallriskname']" [scrollable]="true" scrollHeight="calc(100vh - 215px)">
+            [globalFilterFields]="['FallRiskName']" [scrollable]="true" scrollHeight="calc(100vh - 155px)">
             <ng-template pTemplate="caption">
                 <div class="flex justify-content-between flex-column sm:flex-row">
                     <span class="p-ml-left">
@@ -39,12 +39,12 @@
             </ng-template>
             <ng-template pTemplate="body" let-dt let-i="rowIndex">
                 <tr>
-                    <td>{{dt.fallriskname}}</td>
-                    <td>{{dt.riskpoint}}</td>
-                    <td>{{dt.orderno}}</td>
-                    <td>{{dt.status==true?'Active':'Inactive'}}</td>
+                    <td>{{dt.FallRiskName}}</td>
+                    <td>{{dt.RiskPoint}}</td>
+                    <td>{{dt.OrderNo}}</td>
+                    <td>{{dt.Status==1?'Active':'Inactive'}}</td>
                     <td>
-                        <a title="View/Edit" (click)="GetFallRiskMasterById(dt.fallriskmasterid)">
+                        <a title="View/Edit" (click)="GetFallRiskMasterById(dt.FallRiskMasterId)">
                             <i class="fa fa-eye" aria-hidden="true"></i>
                         </a>
                     </td>
@@ -61,25 +61,25 @@
                 
                 <div class="col-md-3">
                     <label class="form-label">Fall Risk Name <span class="required">*</span></label>
-                    <input pInputText type="text" required name="fallriskname" [(ngModel)]="master.fallriskname"
+                    <input pInputText type="text" required name="fallriskname" [(ngModel)]="master.FallRiskName"
                         class="form-control" #fallriskname="ngModel" />
 
                 </div>
                 <div class="col-md-3">
                     <label class="form-label">Risk Point<span class="required">*</span></label>
-                    <p-inputNumber [required]="true" name="txtriskpoint" [(ngModel)]="master.riskpoint"
+                    <p-inputNumber [required]="true" name="txtriskpoint" [(ngModel)]="master.RiskPoint"
                         mode="decimal" [useGrouping]="false" [min]="1" [max]="4" [maxlength]="1"></p-inputNumber>
 
                 </div>
                 <div class="col-md-3">
                     <label class="form-label">Order No. <span class="required">*</span></label>
-                    <p-inputNumber [required]="true" name="txtOrder" [(ngModel)]="master.orderno"
+                    <p-inputNumber [required]="true" name="txtOrder" [(ngModel)]="master.OrderNo"
                         mode="decimal" [useGrouping]="false" [maxlength]="2"></p-inputNumber>
 
                 </div>
                 <div class="col-md-3">
                     <label class="form-label">Status<span class="required">*</span></label>
-                    <p-dropdown [required]="true" [options]="stlststatus" [(ngModel)]="master.status"
+                    <p-dropdown [required]="true" [options]="stlststatus" [(ngModel)]="master.Status"
                         [ngModelOptions]="{standalone: true}" optionLabel="name" optionValue="code" placeholder="Select"
                         [style]="{width: '100%'}">
                     </p-dropdown>

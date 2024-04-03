@@ -13,8 +13,8 @@
         </div>
     </p-header>
     <div>
-        <p-table class="ColumnFilterTable" #dt [value]="lstResidentAlert" datakey="alertheadname"
-            [globalFilterFields]="['alertname']" [scrollable]="true" scrollHeight="calc(100vh - 400px)"
+        <p-table class="ColumnFilterTable" #dt [value]="lstResidentAlert" datakey="AlertHeadName"
+            [globalFilterFields]="['AlertName']" [scrollable]="true" scrollHeight="calc(100vh - 400px)"
             responsiveLayout="scroll">
             <ng-template pTemplate="emptymessage" let-columns>
                 <tr>
@@ -24,22 +24,22 @@
                 </tr>
             </ng-template>
             <ng-template pTemplate="body" let-item let-i="rowIndex">
-                <tr style="border-top:1px solid #e3e3e3" *ngIf="rowGroupMetadata[item.alertheadname].index == i">
+                <tr style="border-top:1px solid #e3e3e3" *ngIf="rowGroupMetadata[item.AlertHeadName].index == i">
                     <td [colSpan]="mode=='edit'?2:1" style="font-weight:bold;font-size: 16px; width: 100%;">
-                       <span>{{item.alertheadname}}</span>
+                       <span>{{item.AlertHeadName}}</span>
                     </td>
                 </tr>
                 <tr>
                     <td style="width:5%;" *ngIf="mode=='edit'">
                         <span>
-                            <p-checkbox (onChange)="OnEnabled(item.clinicalalertpreferencesid)" name="ChkEnable_{{i}}"
-                                [(ngModel)]="item.isenable" [binary]="true" inputId="binary"></p-checkbox></span>
+                            <p-checkbox (onChange)="OnEnabled(item.ClinicalAlertPreferencesId)" name="ChkEnable_{{i}}"
+                                [(ngModel)]="item.Isenable" [binary]="true" inputId="binary"></p-checkbox></span>
                     </td>
                     <td [ngStyle]="{'width':mode=='edit'? '95%' : '100%'}">
-                        <span *ngIf="mode=='edit'">Enable <b>{{item.alertname}}</b> alert for this resident
-                            {{item.isenable?'':' - alert disabled for this facility'}}</span>
-                        <span *ngIf="mode=='view'">{{item.alertname}} is <span
-                                [ngStyle]="{'font-weight':item.isenable? 'bold' : 'normal'}">{{item.isenable?'Enabled':'Disabled'}}</span>
+                        <span *ngIf="mode=='edit'">Enable <b>{{item.AlertName}}</b> alert for this resident
+                            {{item.Isenable?'':' - alert disabled for this facility'}}</span>
+                        <span *ngIf="mode=='view'">{{item.AlertName}} is <span
+                                [ngStyle]="{'font-weight':item.Isenable? 'bold' : 'normal'}">{{item.Isenable?'Enabled':'Disabled'}}</span>
                             for this resident</span>
                     </td>
                 </tr>

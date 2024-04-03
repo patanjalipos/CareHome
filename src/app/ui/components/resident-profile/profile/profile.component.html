@@ -3,7 +3,7 @@
         <div class="card p-0">
             <div class="card-header">Resident Indicators</div>
             <div class="card-body box-height box-height2">
-                <p-table class="ColumnFilterTable" #dt [value]="lstResidentIndicators" datakey="groupname"
+                <p-table class="ColumnFilterTable" #dt [value]="lstResidentIndicators" datakey="GroupName"
                     [rowHover]="true" [globalFilterFields]="['indicatorname']" [scrollable]="true"
                     scrollHeight="calc(100vh - 10px)" responsiveLayout="scroll">
                     <ng-template pTemplate="emptymessage" let-columns>
@@ -14,14 +14,14 @@
                         </tr>
                     </ng-template>
                     <ng-template pTemplate="body" let-item let-i="rowIndex">
-                        <tr style="border-top: 1px solid #e3e3e3;" *ngIf="rowGroupMetadata[item.groupname].index == i">
+                        <tr style="border-top: 1px solid #e3e3e3;" *ngIf="rowGroupMetadata[item.GroupName].index == i">
                             <td style="font-weight:bold;font-size: 16px; width: 100%;">
-                                <span>{{item.groupname}}</span>
+                                <span>{{item.GroupName}}</span>
                             </td>
                         </tr>
                         <tr>
                             <td style="width: 100%;">
-                                {{item.indicatorname}}
+                                {{item.IndicatorName}}
                             </td>
                         </tr>
                     </ng-template>
@@ -36,32 +36,32 @@
              
                     <div class="row">
                         <div class="col-md-12">
-                            <label class="form-label">Like</label>
+                            <label class="form-label bold">Like</label>
                             <div *ngIf="likemode=='edit'">
                                 <input pInputText type="text" class="form-control" name="txtLikes"
-                                    [(ngModel)]="ResidentMaster.likes" placeholder="" />
+                                    [(ngModel)]="ResidentMaster.Likes" placeholder="" />
                             </div>
-                            <div class="my-2" *ngIf="likemode=='view'">{{ResidentMaster.likes}}</div>
+                            <div class="my-2" *ngIf="likemode=='view'">{{ResidentMaster.Likes}}</div>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-12">
-                            <label class="form-label">Dislikes</label>
+                            <label class="form-label bold">Dislikes</label>
                             <div *ngIf="likemode=='edit'">
                                 <input pInputText type="text" class="form-control" name="txtDislikes"
-                                    [(ngModel)]="ResidentMaster.dislikes" placeholder="" />
+                                    [(ngModel)]="ResidentMaster.Dislikes" placeholder="" />
                             </div>
-                            <div class="my-2" *ngIf="likemode=='view'">{{ResidentMaster.dislikes}}</div>
+                            <div class="my-2" *ngIf="likemode=='view'">{{ResidentMaster.Dislikes}}</div>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-12">
-                            <label class="form-label">Hobbies</label>
+                            <label class="form-label bold">Hobbies</label>
                             <div *ngIf="likemode=='edit'">
                                 <input pInputText type="text" class="form-control" name="txtHobbies"
-                                    [(ngModel)]="ResidentMaster.hobbies" placeholder="" />
+                                    [(ngModel)]="ResidentMaster.Hobbies" placeholder="" />
                             </div>
-                            <div class="my-2" *ngIf="likemode=='view'">{{ResidentMaster.hobbies}}</div>
+                            <div class="my-2" *ngIf="likemode=='view'">{{ResidentMaster.Hobbies}}</div>
                         </div>
 
                     </div>
@@ -91,10 +91,10 @@
                         <div class="col-md-12">
                             <div *ngIf="activitymode=='edit'">
                                 <textarea class="form-control" rows="4" name="activity"
-                                    [(ngModel)]="ResidentMaster.activity" style="width: 100%;"></textarea>
+                                    [(ngModel)]="ResidentMaster.Activity" style="width: 100%;"></textarea>
 
                             </div>
-                            <div class="my-2" *ngIf="activitymode=='view'">{{ResidentMaster.activity}}</div>
+                            <div class="my-2" *ngIf="activitymode=='view'">{{ResidentMaster.Activity}}</div>
                         </div>
                     </div>
                 </div>
@@ -120,9 +120,9 @@
                         <div class="col-md-12">
                             <div *ngIf="appointmentmode=='edit'">
                                 <textarea class="form-control" rows="4" name="appointment"
-                                    [(ngModel)]="ResidentMaster.appointment" style="width: 100%;"></textarea>
+                                    [(ngModel)]="ResidentMaster.Appointment" style="width: 100%;"></textarea>
                             </div>
-                            <div class="my-2" *ngIf="appointmentmode=='view'">{{ResidentMaster.appointment}}</div>
+                            <div class="my-2" *ngIf="appointmentmode=='view'">{{ResidentMaster.Appointment}}</div>
                         </div>
                     </div>
                     <div class="card-footer">

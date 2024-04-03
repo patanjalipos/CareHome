@@ -10,6 +10,7 @@ import { InputTextModule } from 'primeng/inputtext';
 import { SelectButtonModule } from 'primeng/selectbutton';
 import { CheckboxModule } from 'primeng/checkbox';
 import { AccordionModule } from 'primeng/accordion';
+import { DropdownModule } from 'primeng/dropdown';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { AccordionModule } from 'primeng/accordion';
     InputTextModule,
     SelectButtonModule,
     CheckboxModule,
-    AccordionModule
+    AccordionModule,
+    DropdownModule
   ],
   exports:[ResidentPreferencesComponent]
 })

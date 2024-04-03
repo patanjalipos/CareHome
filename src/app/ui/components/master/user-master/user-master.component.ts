@@ -68,8 +68,8 @@ export class UserMasterComponent extends AppComponentBase implements OnInit {
         { name: 'Other', code: 'Other' }
       ];
       this.stlststatus = [
-        { name: 'Active', code: true },
-        { name: 'Inactive', code: false }
+        { name: 'Active', code: 1 },
+        { name: 'Inactive', code: 0 }
       ];
     }
 
@@ -159,12 +159,12 @@ export class UserMasterComponent extends AppComponentBase implements OnInit {
   {
     this.mode = "add";
     this.RegistrationMainModel = <any>{};
-    this.RegistrationMainModel.StatementType ="Insert";
-    this.RegistrationMainModel.dateofbirth = new Date("01/01/2001 00:00:00");
+    this.RegistrationMainModel.statementtype ="Insert";
+    this.RegistrationMainModel.DateOfBirth = new Date("01/01/2001 00:00:00");
     if (UserTypes.SuperAdmin !== this.s_userTypeId) {
-      this.RegistrationMainModel.homemasterid = localStorage.getItem('HomeMasterId');
+      this.RegistrationMainModel.HomeMasterId = localStorage.getItem('HomeMasterId');
     }
-    this.RegistrationMainModel.status = true;    
+    this.RegistrationMainModel.Status = 1;    
   }
   LoadUserDetails(userId)
   {
@@ -180,20 +180,20 @@ export class UserMasterComponent extends AppComponentBase implements OnInit {
             var tdata = JSON.parse(data.actionResult.result);
             tdata = tdata ? tdata : [];
             this.RegistrationMainModel = tdata;
-            if(this.RegistrationMainModel?.dateofbirth!=null && this.RegistrationMainModel?.dateofbirth!=undefined)
+            if(this.RegistrationMainModel?.DateOfBirth!=null && this.RegistrationMainModel?.DateOfBirth!=undefined)
             {
-              var newDate=new Date(this.RegistrationMainModel.dateofbirth);           
-              this.RegistrationMainModel.dateofbirth=newDate;
+              var newDate=new Date(this.RegistrationMainModel.DateOfBirth);           
+              this.RegistrationMainModel.DateOfBirth=newDate;
             }
-            this.RegistrationMainModel.dateofbirth = new Date(this.RegistrationMainModel.dateofbirth);           
+            this.RegistrationMainModel.DateOfBirth = new Date(this.RegistrationMainModel.DateOfBirth);           
             this.mode = "update"; 
-            this.RegistrationMainModel.password = this._EncryptDecryptService.decryptUsingAES256(this.RegistrationMainModel.password);
+            this.RegistrationMainModel.Password = this._EncryptDecryptService.decryptUsingAES256(this.RegistrationMainModel.Password);
             // var encrypt=this._EncryptDecryptService.encryptUsingAES256('12345');
             // console.log('encrypt', encrypt);
             // var decrypt=this._EncryptDecryptService.decryptUsingAES256(encrypt);
             // console.log('decrypt', decrypt);
             //console.log(this.RegistrationMainModel.password);
-            this.RegistrationMainModel.StatementType ="Update";   
+            this.RegistrationMainModel.statementtype ="Update";   
             
             if(data.actionResult.result2?.length>0)
             {
@@ -215,7 +215,11 @@ export class UserMasterComponent extends AppComponentBase implements OnInit {
   Submit()
   {
     this.RegistrationMainModel.lstFacilityMapping=this.lstFacilityResident;
-    this.RegistrationMainModel.password = this._EncryptDecryptService.encryptUsingAES256(this.RegistrationMainModel.password);
+    if(this.RegistrationMainModel.Password!=null && this.RegistrationMainModel.Password!=undefined && this.RegistrationMainModel.Password!="")
+    this.RegistrationMainModel.Password = this._EncryptDecryptService.encryptUsingAES256(this.RegistrationMainModel.Password);
+    this.RegistrationMainModel.Fax = this.RegistrationMainModel.Fax?.toString() || null;
+    this.RegistrationMainModel.EmergencyContactTelephone = this.RegistrationMainModel.EmergencyContactTelephone?.toString() || null;
+    this.RegistrationMainModel.EmergencyContactMobile = this.RegistrationMainModel.EmergencyContactMobile?.toString() || null;
     this._UtilityService.showSpinner();
     this.unsubscribe.add = this._MasterServices.AddInsertUpdateUserMaster(this.RegistrationMainModel)
       .subscribe

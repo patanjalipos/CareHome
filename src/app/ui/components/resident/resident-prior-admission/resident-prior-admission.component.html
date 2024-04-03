@@ -20,9 +20,17 @@
                 <div class="col-md-9">
                     <label class="form-label">Admitted From</label>
                     <div *ngIf="mode=='edit'">
+                        
+                        <div class="fordesk">
                         <p-selectButton [options]="stlstadmitted" [(ngModel)]="ResidentMaster.admittedform"
                             optionLabel="name" optionValue="code" name="admittedform"
                             (onChange)="setSelectedAdmittedForm($event)"></p-selectButton>
+                            </div>
+                        <div class="formobile">
+                            <p-dropdown [options]="stlstadmitted" [(ngModel)]="ResidentMaster.admittedform"
+                                optionLabel="name" optionValue="code" name="admittedform"
+                                (onChange)="setSelectedAdmittedForm($event)"></p-dropdown>
+                                </div>
                     </div>
                     <div class="my-2" *ngIf="mode=='view'">{{ResidentMaster.admittedform}}</div>
                 </div>            

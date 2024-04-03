@@ -58,9 +58,9 @@ export class ChartPreferencesComponent extends AppComponentBase implements OnIni
    
     if(id!=null && id!=undefined)
     {
-    var Idx = this.lstResidentChart.findIndex(f => f.clinicalchartpreferencesid == id);
+    var Idx = this.lstResidentChart.findIndex(f => f.ClinicalChartPreferencesId == id);
     if (Idx >= 0) {
-        this.lstResidentChart[Idx].modifiedby = this.loginId;                
+        this.lstResidentChart[Idx].ModifiedBy = this.loginId;                
       }         
     }
   }
@@ -91,17 +91,17 @@ export class ChartPreferencesComponent extends AppComponentBase implements OnIni
     if (this.lstResidentChart) {
       for (let i = 0; i < this.lstResidentChart.length; i++) {
         let rowData = this.lstResidentChart[i];
-        let chartheadname = rowData.chartheadname;
+        let ChartHeadName = rowData.ChartHeadName;
         if (i == 0) {
-          this.rowGroupMetadata[chartheadname] = { index: 0, size: 1 };
+          this.rowGroupMetadata[ChartHeadName] = { index: 0, size: 1 };
         }
         else {
           let previousRowData = this.lstResidentChart[i - 1];
-          let previousRowGroup = previousRowData.chartheadname;
-          if (chartheadname === previousRowGroup)
-            this.rowGroupMetadata[chartheadname].size++;
+          let previousRowGroup = previousRowData.ChartHeadName;
+          if (ChartHeadName === previousRowGroup)
+            this.rowGroupMetadata[ChartHeadName].size++;
           else
-            this.rowGroupMetadata[chartheadname] = { index: i, size: 1 };
+            this.rowGroupMetadata[ChartHeadName] = { index: i, size: 1 };
         }
       }
       //console.log("data---", this.rowGroupMetadata)      
@@ -110,17 +110,17 @@ export class ChartPreferencesComponent extends AppComponentBase implements OnIni
   save()
   {
     if (this.userid != null && this.admissionid != null) {      
-      this.Clinical.userid = this.userid;
-      this.Clinical.residentadmissioninfoid = this.admissionid;
-      this.Clinical.modifiedby = this.loginId;
+      this.Clinical.UserId = this.userid;
+      this.Clinical.ResidentAdmissionInfoId = this.admissionid;
+      this.Clinical.ModifiedBy = this.loginId;
       var selectedExtraItemDetails = [];      
-      var result=this.lstResidentChart.filter(f=>f.isenable==true || f.clinicalchartpreferencesid!=null);
+      var result=this.lstResidentChart.filter(f=>f.Isenable==true || f.ClinicalChartPreferencesId!=null);
       result.forEach(x => {
         var jsonObject = {
-          "clinicalchartpreferencesid": x.clinicalchartpreferencesid,
-          "chartmasterid": x.chartmasterid,
-          "isenable": x.isenable,
-          "modifiedby": x.modifiedby
+          "ClinicalChartPreferencesId": x.ClinicalChartPreferencesId,
+          "ChartMasterId": x.ChartMasterId,
+          "Isenable": x.Isenable,
+          "ModifiedBy": x.ModifiedBy
         }
         selectedExtraItemDetails.push(jsonObject);      
     });

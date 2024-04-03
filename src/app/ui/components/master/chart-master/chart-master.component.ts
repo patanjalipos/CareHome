@@ -30,8 +30,8 @@ export class ChartMasterComponent extends AppComponentBase implements OnInit {
     super();
     this._ConstantServices.ActiveMenuName = "Chart Master"; 
     this.stlststatus = [
-      { name: 'Active', code: true },
-      { name: 'Inactive', code: false }
+      { name: 'Active', code: 1 },
+      { name: 'Inactive', code: 0 }
     ];    
   } 
   ngOnInit(): void {
@@ -112,7 +112,7 @@ export class ChartMasterComponent extends AppComponentBase implements OnInit {
     else
       this.master.statementtype = "Update";
     
-    this.master.modifiedby = localStorage.getItem('userId');;  
+    this.master.ModifiedBy = localStorage.getItem('userId');;  
     this._UtilityService.showSpinner();
     this.unsubscribe.add = this._MasterServices.AddInsertUpdateChart(this.master)
       .subscribe({
@@ -140,7 +140,7 @@ export class ChartMasterComponent extends AppComponentBase implements OnInit {
   }
   ResetModel() {
     this.master = <any>{};
-    this.master.status = true;
+    this.master.Status = 1;
     
   }
   Close() {

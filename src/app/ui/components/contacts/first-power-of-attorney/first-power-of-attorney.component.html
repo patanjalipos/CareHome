@@ -17,67 +17,67 @@
                 <h5 class="m-0">Contact note</h5>
                 <div class="col-md-12">
                     <div *ngIf="mode=='edit'">
-                        <input type="text" name="contactnote" pInputText [(ngModel)]="Contact.contactnote"
+                        <input type="text" name="contactnote" pInputText [(ngModel)]="Contact.ContactNote"
                             [style]="{width: '100%'}" class="mb-2" />
                     </div>
-                    <div class="my-2" *ngIf="mode=='view'">{{Contact.contactnote}}</div>
+                    <div class="my-2" *ngIf="mode=='view'">{{Contact.ContactNote}}</div>
                 </div>
                 <h5 class="m-0">First power of attorney </h5>
                 <div class="col-md-6">
                     <label class="form-label"><span class="required">*</span> Power of attorney type</label>
                     <div *ngIf="mode=='edit'">
                         <p-dropdown [required]="true" name="ddlAttorneyType" [options]="lstAttorneyTypeMaster"
-                            [(ngModel)]="Contact.attorneytypemasterid" optionLabel="typename"
-                            optionValue="attorneytypemasterid" [filter]="true" placeholder="Select POA Type"
+                            [(ngModel)]="Contact.AttorneyTypeMasterId" optionLabel="TypeName"
+                            optionValue="AttorneyTypeMasterId" [filter]="true" placeholder="Select POA Type"
                             [style]="{width: '100%'}" #poaref="ngModel">
                         </p-dropdown>
                         <div class="errorMessage pt-2" *ngIf="poaref.errors &&(poaref.touched || poaref.dirty)">
                             <div>POA type is required.</div>
                         </div>
                     </div>
-                    <div class="my-2" *ngIf="mode=='view'">{{Contact.typename}}</div>
+                    <div class="my-2" *ngIf="mode=='view'">{{Contact.TypeName}}</div>
                 </div>
 
                 <div class="col-md-6">
                     <label class="form-label">Other type</label>
                     <div *ngIf="mode=='edit'">
-                        <input type="text" name="othertype" pInputText [(ngModel)]="Contact.othertype"
+                        <input type="text" name="othertype" pInputText [(ngModel)]="Contact.OtherType"
                             [style]="{width: '100%'}" />
                     </div>
-                    <div class="my-2" *ngIf="mode=='view'">{{Contact.othertype}}</div>
+                    <div class="my-2" *ngIf="mode=='view'">{{Contact.OtherType}}</div>
                 </div>
                 <h5 class="m-0">Contact name </h5>
                 <div class="col-md-6">
                     <label class="form-label"><span class="required">*</span> First name / Organisation name</label>
                     <div *ngIf="mode=='edit'">
-                        <input required type="text" name="firstname" pInputText [(ngModel)]="Contact.firstname"
+                        <input required type="text" name="firstname" pInputText [(ngModel)]="Contact.FirstName"
                             [style]="{width: '100%'}" #fNameref="ngModel" class="mb-2" />
                         <div class="errorMessage pt-2" *ngIf="fNameref.errors &&(fNameref.touched || fNameref.dirty)">
                             <div>First name is required.</div>
                         </div>
                     </div>
-                    <div class="my-2" *ngIf="mode=='view'">{{Contact.firstname}}</div>
+                    <div class="my-2" *ngIf="mode=='view'">{{Contact.FirstName}}</div>
                 </div>
 
                 <div class="col-md-6">
                     <label class="form-label"><span class="required">*</span> Last name</label>
                     <div *ngIf="mode=='edit'">
-                        <input required type="text" name="lastname" pInputText [(ngModel)]="Contact.lastname"
+                        <input required type="text" name="lastname" pInputText [(ngModel)]="Contact.LastName"
                             [style]="{width: '100%'}" #lNameref="ngModel" />
                         <div class="errorMessage pt-2" *ngIf="lNameref.errors &&(lNameref.touched || lNameref.dirty)">
                             <div>Last name is required.</div>
                         </div>
                     </div>
-                    <div class="my-2" *ngIf="mode=='view'">{{Contact.lastname}}</div>
+                    <div class="my-2" *ngIf="mode=='view'">{{Contact.LastName}}</div>
                 </div>
                 <h5 class="m-0">Contact details</h5>
                 <div class="col-md-6">
                     <label class="form-label">Telephone</label>
                     <div *ngIf="mode=='edit'">
-                        <p-inputNumber name="telephone" [(ngModel)]="Contact.telephone"
+                        <p-inputNumber name="telephone" [(ngModel)]="Contact.Telephone"
                         mode="decimal" [useGrouping]="false" [maxlength]="20"></p-inputNumber>                        
                     </div>
-                    <div class="my-2" *ngIf="mode=='view'">{{Contact.telephone}}</div>
+                    <div class="my-2" *ngIf="mode=='view'">{{Contact.Telephone}}</div>
                 </div>
             </div>        
     </p-accordionTab>

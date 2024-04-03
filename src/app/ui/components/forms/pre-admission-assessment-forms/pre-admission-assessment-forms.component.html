@@ -1,0 +1,983 @@
+<div class="card">
+    <div class="row">
+        <div class="formheader">
+            <div class="d-flex">
+                <div class="col-md-4">
+                    <label class="form-label"
+                        ><b> Started by (Name) :</b>
+                    </label>
+                </div>
+                <div class="col-md-4">
+                    <label class="form-label"><b>Designation :</b> </label>
+                </div>
+                <div class="col-md-4">
+                    <label class="form-label"> <b>Date/Time : </b></label>
+                </div>
+            </div>
+            <div class="d-flex">
+                <div class="col-md-4">
+                    <label class="form-label">
+                        <b>Last entered by (Name) :</b></label
+                    >
+                </div>
+                <div class="col-md-4">
+                    <label class="form-label"> <b>Designation :</b></label>
+                </div>
+                <div class="col-md-4">
+                    <label class="form-label"> <b>Date/Time :</b> </label>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4 mt-4">
+            <div class="preform-box">
+                <p>Name all parties who have assisted with information</p>
+            </div>
+        </div>
+        <div class="col-md-7 mt-4 mb-4">
+            <input
+                pInputText
+                type="text"
+                required
+                name="PreAdmissionAssessmentFormsData.chartheadname"
+                class="form-control"
+                [(ngModel)]="PreAdmissionAssessmentFormsData.chartheadname"
+            />
+            <p>include relationship to the resident & contact details</p>
+        </div>
+        <div class="col-md-1 form-icon mt-4">
+            <i class="fa-solid fa-info"></i>
+        </div>
+        <div class="col-md-4">
+            <div class="preform-box">
+                <p>
+                    Does the person have capacity to consent to care and
+                    accommodation
+                </p>
+            </div>
+        </div>
+        <div class="col-md-7 mb-4">
+            <p-dropdown
+                name="PreAdmissionAssessmentFormsData.personCapacity"
+                [(ngModel)]="PreAdmissionAssessmentFormsData.personCapacity"
+                [options]="personCapacityOptions"
+                placeholder="Select"
+                [style]="{ width: '100%' }"
+            >
+            </p-dropdown>
+            <p>
+                If person lacks capacity what powers are they being moved under
+                Section 13ZA, POA, Guardianship
+            </p>
+        </div>
+        <div class="col-md-1 form-icon mt-4">
+            <i class="fa-solid fa-info"></i>
+        </div>
+
+        <div class="col-md-4">
+            <div class="preform-box">
+                <p>
+                    Have any of the following professional documents been
+                    obtained
+                </p>
+            </div>
+        </div>
+        <div class="col-md-7 mb-4">
+            <p-dropdown
+                name="PreAdmissionAssessmentFormsData.professionalDocObtained"
+                [(ngModel)]="
+                    PreAdmissionAssessmentFormsData.professionalDocObtained
+                "
+                [options]="professionalDocObtainedOptions"
+                placeholder="Select"
+                [style]="{ width: '100%' }"
+            >
+            </p-dropdown>
+            <p>
+                If not obtained or in place, AWI certificate and corresponding
+                treatment plan, copy of Power of Attorney or Guardianship order,
+                copy of Community Treatment Order.
+            </p>
+        </div>
+        <div class="col-md-1 form-icon mt-4">
+            <i class="fa-solid fa-info"></i>
+        </div>
+        <div class="col-md-4">
+            <div class="preform-box">
+                <p>Where is the resident moving in from</p>
+            </div>
+        </div>
+        <div class="col-md-7 mb-4">
+            <p-dropdown
+                name="PreAdmissionAssessmentFormsData.residentMovingFrom"
+                [(ngModel)]="PreAdmissionAssessmentFormsData.residentMovingFrom"
+                [options]="residentMovingOptions"
+                placeholder="Select"
+                [style]="{ width: '100%' }"
+            >
+            </p-dropdown>
+        </div>
+        <div class="col-md-1 form-icon mt-4">
+            <i class="fa-solid fa-info"></i>
+        </div>
+        <div class="col-md-4">
+            <div class="preform-box">
+                <p>Payment / funding</p>
+            </div>
+        </div>
+        <div class="col-md-7 mb-4">
+            <p-dropdown
+                name="PreAdmissionAssessmentFormsData.payment"
+                [(ngModel)]="PreAdmissionAssessmentFormsData.payment"
+                [options]="paymentOptionsn"
+                placeholder="Select"
+                [style]="{ width: '100%' }"
+            >
+            </p-dropdown>
+            <p>Update resident admission details</p>
+        </div>
+        <div class="col-md-1 form-icon mt-4">
+            <i class="fa-solid fa-info"></i>
+        </div>
+        <div class="col-md-4">
+            <div class="preform-box">
+                <p>
+                    What are the persons current abilities and how can we
+                    continue to use and develop these?
+                </p>
+            </div>
+        </div>
+        <div class="col-md-7 mb-4">
+            <p-dropdown
+                [(ngModel)]="
+                    PreAdmissionAssessmentFormsData.peronsCurrentAbilities
+                "
+                [options]="peronsCurrentAbilitiesOptions"
+                placeholder="Select"
+                [style]="{ width: '100%' }"
+            >
+            </p-dropdown>
+            <p>
+                Focus in this section on the persona abilities not their
+                disabilities - positively report that they can recognise the
+                need to attend the toilet however requires support to attend the
+                toilet
+            </p>
+        </div>
+        <div class="col-md-1 form-icon mt-4">
+            <i class="fa-solid fa-info"></i>
+        </div>
+        <div class="col-md-4">
+            <div class="preform-box">
+                <p>Advanced care planning (ACP)</p>
+            </div>
+        </div>
+        <div class="col-md-7 mb-4">
+            <p-dropdown
+                [(ngModel)]="
+                    PreAdmissionAssessmentFormsData.advancedCarePlanning
+                "
+                [options]="advancedCarePlanningOptions"
+                placeholder="Select"
+                [style]="{ width: '100%' }"
+            >
+            </p-dropdown>
+        </div>
+        <div class="col-md-1 form-icon mt-4">
+            <i class="fa-solid fa-info"></i>
+        </div>
+        <div class="col-md-4">
+            <div class="preform-box">
+                <p>Medical history and medical conditions</p>
+            </div>
+        </div>
+        <div class="col-md-7 mb-4">
+            <p-dropdown
+                [(ngModel)]="
+                    PreAdmissionAssessmentFormsData.medicalHistoryCondition
+                "
+                [options]="medicalHistoryConditionOptions"
+                placeholder="Select"
+                [style]="{ width: '100%' }"
+            >
+            </p-dropdown>
+            <p>
+                Include any pacemakers, please at the point of pre admission
+                please request a GP summary print out from their own GP which
+                will detail all Medical history.
+            </p>
+        </div>
+        <div class="col-md-1 form-icon mt-4">
+            <i class="fa-solid fa-info"></i>
+        </div>
+        <div class="col-md-4">
+            <div class="preform-box">
+                <p>Social and spiritual, activities and interests</p>
+            </div>
+        </div>
+        <div class="col-md-7 mb-4">
+            <input
+                pInputText
+                type="text"
+                required
+                name="chartheadname"
+                class="form-control"
+                [(ngModel)]="
+                    PreAdmissionAssessmentFormsData.socialActivitiesInterests
+                "
+            />
+            <p>
+                Include hobbies previous and current, whos imoprtant in their
+                lives, any special days/occasions we need to be aware of, what
+                does a good day look and feel like for them
+            </p>
+        </div>
+        <div class="col-md-1 form-icon mt-4">
+            <i class="fa-solid fa-info"></i>
+        </div>
+        <div class="col-md-4">
+            <div class="preform-box">
+                <p>Connecting and Communicating</p>
+            </div>
+        </div>
+        <div class="col-md-7 mb-4">
+            <p-dropdown
+                [(ngModel)]="
+                    PreAdmissionAssessmentFormsData.connectingAndCommunicating
+                "
+                [options]="connectingAndCommunicatingOptions"
+                placeholder="Select"
+                [style]="{ width: '100%' }"
+            >
+            </p-dropdown>
+            <p>
+                Include all the applicable options below and expand if required
+                using the Other option
+            </p>
+        </div>
+        <div class="col-md-1 form-icon mt-4">
+            <i class="fa-solid fa-info"></i>
+        </div>
+        <div class="col-md-4">
+            <div class="preform-box">
+                <p>
+                    Personal safety (probability of resident leaving the home
+                    unnoticed)
+                </p>
+            </div>
+        </div>
+
+        <div class="col-md-7 mb-4">
+            <p-dropdown
+                [(ngModel)]="PreAdmissionAssessmentFormsData.personalSafety"
+                [options]="personalSafetyOptions"
+                placeholder="Select"
+                [style]="{ width: '100%' }"
+            >
+            </p-dropdown>
+            <p>
+                Please review in a risk aware manner how can we safely consider
+                the resident enablement while considering safety is there any
+                electronic devises we can use to promote safety.
+            </p>
+        </div>
+        <div class="col-md-1 form-icon mt-4">
+            <i class="fa-solid fa-info"></i>
+        </div>
+        <div class="col-md-4">
+            <div class="preform-box">
+                <p>Leaving the Home unescorted - Herbert protocol</p>
+            </div>
+        </div>
+        <div class="col-md-7 mb-4">
+            <input
+                pInputText
+                type="text"
+                required
+                name="chartheadname"
+                class="form-control"
+                [(ngModel)]="
+                    PreAdmissionAssessmentFormsData.leavingHomeUnescorted
+                "
+            />
+            <p>
+                Please complete fully the Herbert protocol and request
+                permission for Alzheimer's Scotland Purple alert profile to be
+                developed
+            </p>
+        </div>
+        <div class="col-md-1 form-icon mt-4">
+            <i class="fa-solid fa-info"></i>
+        </div>
+        <div class="col-md-4">
+            <div class="preform-box">
+                <p>Does the resident experience any mental health conditions</p>
+            </div>
+        </div>
+        <div class="col-md-7 mb-4">
+            <p-dropdown
+                [(ngModel)]="
+                    PreAdmissionAssessmentFormsData.residentExpAnyMHConditions
+                "
+                [options]="residentExpAnyMHConditionsOptions"
+                placeholder="Select"
+                [style]="{ width: '100%' }"
+            >
+            </p-dropdown>
+            <p>
+                If yes, has this been diagnosed by a GP (state condition) and is
+                medication prescribed
+            </p>
+        </div>
+        <div class="col-md-1 form-icon mt-4">
+            <i class="fa-solid fa-info"></i>
+        </div>
+        <div class="col-md-4">
+            <div class="preform-box">
+                <p>Speech, sight and hearing</p>
+            </div>
+        </div>
+        <div class="col-md-7 mb-4">
+            <p-dropdown
+                [(ngModel)]="PreAdmissionAssessmentFormsData.speechSightHearing"
+                [options]="speechSightHearingOptions"
+                placeholder="Select"
+                [style]="{ width: '100%' }"
+            >
+            </p-dropdown>
+        </div>
+        <div class="col-md-1 form-icon mt-4">
+            <i class="fa-solid fa-info"></i>
+        </div>
+        <div class="col-md-4">
+            <div class="preform-box">
+                <p>Speech, sight and hearing details</p>
+            </div>
+        </div>
+        <div class="col-md-7 mb-4">
+            <input
+                pInputText
+                type="text"
+                required
+                name="chartheadname"
+                class="form-control"
+                [(ngModel)]="
+                    PreAdmissionAssessmentFormsData.speechSightHearingDetails
+                "
+            />
+            <p>
+                Include any diagnosed conditions, aids used and treatment /
+                therapy details
+            </p>
+        </div>
+        <div class="col-md-1 form-icon mt-4">
+            <i class="fa-solid fa-info"></i>
+        </div>
+        <div class="col-md-4">
+            <div class="preform-box">
+                <p>Breathing and circulation</p>
+            </div>
+        </div>
+        <div class="col-md-7 mb-4">
+            <input
+                pInputText
+                type="text"
+                required
+                name="chartheadname"
+                class="form-control"
+                [(ngModel)]="
+                    PreAdmissionAssessmentFormsData.breathingCirculationDetails
+                "
+            />
+            <p>
+                Include all health conditions affecting breathing (COPD, asthma,
+                other, aids used (oxygen etc.), smoking. If oxygen prescribed
+                include administration, day night variances and oxygen
+                saturations)
+            </p>
+        </div>
+        <div class="col-md-1 form-icon mt-4">
+            <i class="fa-solid fa-info"></i>
+        </div>
+        <div class="col-md-4">
+            <div class="preform-box">
+                <p>Falls and mobility</p>
+            </div>
+        </div>
+        <div class="col-md-7 mb-4">
+            <p-dropdown
+                [(ngModel)]="PreAdmissionAssessmentFormsData.fallsAndMobility"
+                [options]="fallsAndMobilityOptions"
+                placeholder="Select"
+                [style]="{ width: '100%' }"
+            >
+            </p-dropdown>
+        </div>
+        <div class="col-md-1 form-icon mt-4">
+            <i class="fa-solid fa-info"></i>
+        </div>
+        <div class="col-md-4">
+            <div class="preform-box">
+                <p>Falls and mobility details</p>
+            </div>
+        </div>
+        <div class="col-md-7 mb-4">
+            <input
+                pInputText
+                type="text"
+                required
+                name="chartheadname"
+                class="form-control"
+                [(ngModel)]="
+                    PreAdmissionAssessmentFormsData.fallsAndMobilityDetails
+                "
+            />
+            <p>
+                Include mobility level, aids, recent falls (including causes)
+                day / night variance, medication and any referrals
+            </p>
+        </div>
+        <div class="col-md-1 form-icon mt-4">
+            <i class="fa-solid fa-info"></i>
+        </div>
+        <div class="col-md-4">
+            <div class="preform-box">
+                <p>Pain status</p>
+            </div>
+        </div>
+        <div class="col-md-7 mb-4">
+            <p-dropdown
+                [(ngModel)]="PreAdmissionAssessmentFormsData.painStatus"
+                [options]="painStatusOptions"
+                placeholder="Select"
+                [style]="{ width: '100%' }"
+            >
+            </p-dropdown>
+        </div>
+        <div class="col-md-1 form-icon mt-4">
+            <i class="fa-solid fa-info"></i>
+        </div>
+        <div class="col-md-4">
+            <div class="preform-box">
+                <p>Pain management details</p>
+            </div>
+        </div>
+        <div class="col-md-7 mb-4">
+            <input
+                pInputText
+                type="text"
+                required
+                name="chartheadname"
+                class="form-control"
+                [(ngModel)]="
+                    PreAdmissionAssessmentFormsData.painManagementDetails
+                "
+            />
+            <p>
+                How would we recognise the resident is experiencing pain how is
+                this assessed do we need to use abbey pain scale or a visual
+                pain assessment, Include all prescribed medications, when
+                needed, if the resident can ask for medications and if not, how
+                the home will manage this.
+            </p>
+        </div>
+        <div class="col-md-1 form-icon mt-4">
+            <i class="fa-solid fa-info"></i>
+        </div>
+        <div class="col-md-4">
+            <div class="preform-box">
+                <p>Skin assessment</p>
+            </div>
+        </div>
+        <div class="col-md-7 mb-4">
+            <p-dropdown
+                [(ngModel)]="PreAdmissionAssessmentFormsData.skinAssessment"
+                [options]="skinAssessmentOptions"
+                placeholder="Select"
+                [style]="{ width: '100%' }"
+            >
+            </p-dropdown>
+            <p>
+                Include any medical conditions that affect skin or could
+                increase risk of skin damage, and medication
+            </p>
+        </div>
+        <div class="col-md-1 form-icon mt-4">
+            <i class="fa-solid fa-info"></i>
+        </div>
+        <div class="col-md-4">
+            <div class="preform-box">
+                <p>Skin Details</p>
+            </div>
+        </div>
+        <div class="col-md-7 mb-4">
+            <input
+                pInputText
+                type="text"
+                required
+                name="chartheadname"
+                class="form-control"
+            />
+        </div>
+        <div class="col-md-1 form-icon mt-4">
+            <i class="fa-solid fa-info"></i>
+        </div>
+
+        <div class="col-md-4">
+            <div class="preform-box">
+                <p>Eating and drinking assessment</p>
+            </div>
+        </div>
+        <div class="col-md-7 mb-4">
+            <p-dropdown
+                [(ngModel)]="
+                    PreAdmissionAssessmentFormsData.eatingDrinkingAssessment
+                "
+                [options]="eatingDrinkingAssessmentOptions"
+                placeholder="Select"
+                [style]="{ width: '100%' }"
+            >
+            </p-dropdown>
+        </div>
+        <div class="col-md-1 form-icon mt-4">
+            <i class="fa-solid fa-info"></i>
+        </div>
+        <div class="col-md-4">
+            <div class="preform-box">
+                <p>Eating and drinking details</p>
+            </div>
+        </div>
+        <div class="col-md-7 mb-4">
+            <input
+                pInputText
+                type="text"
+                required
+                name="chartheadname"
+                class="form-control"
+                [(ngModel)]="
+                    PreAdmissionAssessmentFormsData.eatingDrinkingDetails
+                "
+            />
+            <p>
+                Include likes and dislikes, what makes a meal enjoyable, what
+                they like to eat for their meals, where they like to enjoy their
+                meals, do they need any cutlery or crockery, any allergies. Any
+                PEG regime if that is appropriate, professional input
+            </p>
+        </div>
+        <div class="col-md-1 form-icon mt-4">
+            <i class="fa-solid fa-info"></i>
+        </div>
+
+        <div class="col-md-4">
+            <div class="preform-box">
+                <p>Promotion of continence</p>
+            </div>
+        </div>
+        <div class="col-md-7 mb-4">
+            <p-dropdown
+                [(ngModel)]="
+                    PreAdmissionAssessmentFormsData.promotionOfContinence
+                "
+                [options]="promotionOfContinenceOptions"
+                placeholder="Select"
+                [style]="{ width: '100%' }"
+            >
+            </p-dropdown>
+            <p></p>
+        </div>
+        <div class="col-md-1 form-icon mt-4">
+            <i class="fa-solid fa-info"></i>
+        </div>
+        <div class="col-md-4">
+            <div class="preform-box">
+                <p>Promoting Continence details</p>
+            </div>
+        </div>
+        <div class="col-md-7 mb-4">
+            <input
+                pInputText
+                type="text"
+                required
+                name="chartheadname"
+                class="form-control"
+                [(ngModel)]="
+                    PreAdmissionAssessmentFormsData.promotionOfContinenceDetails
+                "
+            />
+            <p>
+                Include specific aids used, current continence regimes in place
+                to promote continence, medication prescribed, catheter type,
+                size frequency of change date of the last change reason for
+                insertion, please complete catheter passport
+            </p>
+        </div>
+        <div class="col-md-1 form-icon mt-4">
+            <i class="fa-solid fa-info"></i>
+        </div>
+        <div class="col-md-4">
+            <div class="preform-box">
+                <p>Feeling fresh and clean and promotion of self identity</p>
+            </div>
+        </div>
+        <div class="col-md-7 mb-4">
+            <p-dropdown
+                [(ngModel)]="
+                    PreAdmissionAssessmentFormsData.feelingFreshAndClean
+                "
+                [options]="feelingFreshAndCleanOptions"
+                placeholder="Select"
+                [style]="{ width: '100%' }"
+            >
+            </p-dropdown>
+        </div>
+        <div class="col-md-1 form-icon mt-4">
+            <i class="fa-solid fa-info"></i>
+        </div>
+
+        <div class="col-md-4">
+            <div class="preform-box">
+                <p>Feeling fresh and clean detail</p>
+            </div>
+        </div>
+        <div class="col-md-7 mb-4">
+            <input
+                pInputText
+                type="text"
+                required
+                name="chartheadname"
+                class="form-control"
+                [(ngModel)]="
+                    PreAdmissionAssessmentFormsData.feelingFreshAndCleanDetails
+                "
+            />
+            <p>
+                What they do prefer baths, showers and how often. What words do
+                they use for having a wash or a freshen up, tips or treats that
+                would help keeping clean and fresh to be extra enjoyable,
+                favourite lotions, potions, smells
+            </p>
+        </div>
+        <div class="col-md-1 form-icon mt-4">
+            <i class="fa-solid fa-info"></i>
+        </div>
+
+        <div class="col-md-4">
+            <div class="preform-box">
+                <p>Sleeping and resting</p>
+            </div>
+        </div>
+        <div class="col-md-7 mb-4">
+            <p-dropdown
+                [(ngModel)]="PreAdmissionAssessmentFormsData.sleepingAndResting"
+                [options]="sleepingAndRestiingOptions"
+                placeholder="Select"
+                [style]="{ width: '100%' }"
+            >
+            </p-dropdown>
+        </div>
+        <div class="col-md-1 form-icon mt-4">
+            <i class="fa-solid fa-info"></i>
+        </div>
+        <div class="col-md-4">
+            <div class="preform-box">
+                <p>Sleeping and resting details</p>
+            </div>
+        </div>
+        <div class="col-md-7 mb-4">
+            <input
+                pInputText
+                type="text"
+                required
+                name="chartheadname"
+                class="form-control"
+                [(ngModel)]="
+                    PreAdmissionAssessmentFormsData.sleepingAndRestingDetails
+                "
+            />
+            <p>
+                what makes a good night for the resident. Describe sleeping and
+                waking routine, medication prescribed, number of carers required
+                to assist. If bed rails are used, ensure full multidisciplinary
+                and any associated assessments are completed
+            </p>
+        </div>
+        <div class="col-md-1 form-icon mt-4">
+            <i class="fa-solid fa-info"></i>
+        </div>
+        <div class="col-md-4">
+            <div class="preform-box">
+                <p>Expressing sexuality</p>
+            </div>
+        </div>
+        <div class="col-md-7 mb-4">
+            <p-dropdown
+                [(ngModel)]="
+                    PreAdmissionAssessmentFormsData.expressingSexuality
+                "
+                [options]="expressingSexualityOptions"
+                placeholder="Select"
+                [style]="{ width: '100%' }"
+            >
+            </p-dropdown>
+        </div>
+        <div class="col-md-1 form-icon mt-4">
+            <i class="fa-solid fa-info"></i>
+        </div>
+        <div class="col-md-4">
+            <div class="preform-box">
+                <p>Expressing sexuality details</p>
+            </div>
+        </div>
+        <div class="col-md-7 mb-4">
+            <input
+                pInputText
+                type="text"
+                required
+                name="chartheadname"
+                class="form-control"
+                [(ngModel)]="
+                    PreAdmissionAssessmentFormsData.expressingSexualityDetails
+                "
+            />
+            <p>
+                Additional information (how can you support the resident with
+                sensitivity and privacy needs. How does the resident express
+                sexuality / sexual needs.) Consider behaviours and communication
+                e.g. unpredictable / inappropriate behaviours. Consider capacity
+                and best interest assessments.
+            </p>
+        </div>
+        <div class="col-md-1 form-icon mt-4">
+            <i class="fa-solid fa-info"></i>
+        </div>
+        <div class="col-md-4">
+            <div class="preform-box">
+                <p>
+                    How best can we engage, enable and empower the person in
+                    every aspect of their life within the community of the Care
+                    Home
+                </p>
+            </div>
+        </div>
+        <div class="col-md-7 mb-4">
+            <input
+                pInputText
+                type="text"
+                required
+                name="chartheadname"
+                class="form-control"
+                [(ngModel)]="
+                    PreAdmissionAssessmentFormsData.engagementEmpowerment
+                "
+            />
+        </div>
+        <div class="col-md-1 form-icon mt-4">
+            <i class="fa-solid fa-info"></i>
+        </div>
+        <div class="col-md-4">
+            <div class="preform-box">
+                <p>
+                    Epilepsy/Seizure Management - What kind of seizures does the
+                    resident experience?
+                </p>
+            </div>
+        </div>
+        <div class="col-md-7 mb-4">
+            <p-dropdown
+                [(ngModel)]="
+                    PreAdmissionAssessmentFormsData.epilepsySeizureManagement
+                "
+                [options]="EpilepsySeizureManagementOptions"
+                placeholder="Select"
+                [style]="{ width: '100%' }"
+            >
+            </p-dropdown>
+            <p></p>
+        </div>
+        <div class="col-md-1 form-icon mt-4">
+            <i class="fa-solid fa-info"></i>
+        </div>
+        <div class="col-md-4">
+            <div class="preform-box">
+                <p>
+                    Is the resident prescribed rescue medications for the
+                    management of their seizures
+                </p>
+            </div>
+        </div>
+        <div class="col-md-7 mb-4">
+            <input
+                pInputText
+                type="text"
+                required
+                name="chartheadname"
+                class="form-control"
+                [(ngModel)]="PreAdmissionAssessmentFormsData.rescueMedications"
+            />
+            <p>
+                Please detail these below alongside when they are to be
+                administered, frequency and time between doses
+            </p>
+        </div>
+        <div class="col-md-1 form-icon mt-4">
+            <i class="fa-solid fa-info"></i>
+        </div>
+        <div class="col-md-4">
+            <div class="preform-box">
+                <p>Infection status</p>
+            </div>
+        </div>
+        <div class="col-md-7 mb-4">
+            <p-dropdown
+                [(ngModel)]="PreAdmissionAssessmentFormsData.infectionStatus"
+                [options]="infectionStatusOptions"
+                placeholder="Select"
+                [style]="{ width: '100%' }"
+            >
+            </p-dropdown>
+            <p></p>
+        </div>
+        <div class="col-md-1 form-icon mt-4">
+            <i class="fa-solid fa-info"></i>
+        </div>
+        <div class="col-md-4">
+            <div class="preform-box">
+                <p>Infection details</p>
+            </div>
+        </div>
+        <div class="col-md-7 mb-4">
+            <input
+                pInputText
+                type="text"
+                required
+                name="chartheadname"
+                class="form-control"
+                [(ngModel)]="PreAdmissionAssessmentFormsData.infectionDetails"
+            />
+            <p>
+                Detail how the person presents when they have an infection, what
+                are the soft signs of infection if these are knownInclude type
+                of infection, location, treatment
+            </p>
+        </div>
+        <div class="col-md-1 form-icon mt-4">
+            <i class="fa-solid fa-info"></i>
+        </div>
+        <div class="col-md-4">
+            <div class="preform-box">
+                <p>Medication</p>
+            </div>
+        </div>
+        <div class="col-md-7 mb-4">
+            <p-dropdown
+                [(ngModel)]="PreAdmissionAssessmentFormsData.medication"
+                [options]="medicationOption"
+                placeholder="Select"
+                [style]="{ width: '100%' }"
+            >
+            </p-dropdown>
+            <p></p>
+        </div>
+        <div class="col-md-1 form-icon mt-4">
+            <i class="fa-solid fa-info"></i>
+        </div>
+        <div class="col-md-4">
+            <div class="preform-box">
+                <p>Medication details</p>
+            </div>
+        </div>
+        <div class="col-md-7 mb-4">
+            <input
+                pInputText
+                type="text"
+                required
+                name="chartheadname"
+                class="form-control"
+                [(ngModel)]="PreAdmissionAssessmentFormsData.medicationDetails"
+            />
+            <p>
+                refer reader to the MARs sheets for the resident most up to date
+                medications, howveer please explore how they like to take their
+                medications, high risk medications, such as lithium,
+                antipsychotics, benzodiazepines, anti coagulants, insulin,
+                epilepsy or Parkinson's meds
+            </p>
+        </div>
+        <div class="col-md-1 form-icon mt-4">
+            <i class="fa-solid fa-info"></i>
+        </div>
+        <div class="col-md-4">
+            <div class="preform-box">
+                <p>First aid for epileptic seizure</p>
+            </div>
+        </div>
+        <div class="col-md-7 mb-4">
+            <p-dropdown
+                [(ngModel)]="
+                    PreAdmissionAssessmentFormsData.firstAidEpilepticSeizure
+                "
+                [options]="firstAidEpilepticSeizureOptions"
+                placeholder="Select"
+                [style]="{ width: '100%' }"
+            >
+            </p-dropdown>
+            <p>Choose all statements below</p>
+        </div>
+        <div class="col-md-1 form-icon mt-4">
+            <i class="fa-solid fa-info"></i>
+        </div>
+        <div class="col-md-4">
+            <div class="preform-box">
+                <p>
+                    What is the persons overall goal in being within a Care
+                    Community?
+                </p>
+            </div>
+        </div>
+        <div class="col-md-7 mb-4">
+            <input
+                pInputText
+                type="text"
+                required
+                name="chartheadname"
+                class="form-control"
+                [(ngModel)]="PreAdmissionAssessmentFormsData.overallGoal"
+            />
+            <p>
+                For example to be safe, to minimise loneliness, to strive and
+                promote abilities, to manage their health needs better.
+            </p>
+        </div>
+        <div class="col-md-1 form-icon mt-4 form-icon">
+            <i class="fa-solid fa-info"></i>
+        </div>
+        <div class="d-flex justify-content-end">
+            <div>
+                <span class="p-ml-left mr-4">
+                    <button
+                        pButton
+                        title="New"
+                        label="Save as Unfinished"
+                        (click)="saveAsUnfinished()"
+                    ></button>
+                    <span class="total-txt"></span>
+                </span>
+            </div>
+            <div>
+                <span class="p-ml-left mr-4">
+                    <button
+                        pButton
+                        title="New"
+                        label="Complete"
+                        (click)="completeForm()"
+                        [disabled]="
+                            PreAdmissionAssessmentFormsData.isFormCompleted
+                        "
+                    ></button>
+                    <span class="total-txt"></span>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>

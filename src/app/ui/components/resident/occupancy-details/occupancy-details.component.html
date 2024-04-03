@@ -20,7 +20,7 @@
                     <label class="form-label"><span class="required">*</span> Admission Date</label>
                     <div *ngIf="mode=='add' || mode=='edit'">
                         <p-calendar [required]="true" [minDate]="today"
-                            [(ngModel)]="ResidentMaster.lastadmissiondate"
+                            [(ngModel)]="ResidentMaster.LastAdmissionDate"
                             [ngModelOptions]="{standalone: true}" [showIcon]="true" inputId="icon"
                             [showTime]="true" [dateFormat]="customDateFormat.CalendarFormat" #admissiondateref="ngModel"
                             class="iconcal"></p-calendar> 
@@ -29,7 +29,7 @@
                             <div>Admission date time is required.</div>
                         </div>
                     </div>
-                    <div class="my-2 bold" *ngIf="mode=='view'">{{ResidentMaster.lastadmissiondate |
+                    <div class="my-2 bold" *ngIf="mode=='view'">{{ResidentMaster.LastAdmissionDate |
                         date:customDateFormat.DEF_DATE_TIME}}</div>
                 </div>
             </div>
@@ -37,7 +37,7 @@
                 <div class="col-md-6">
                     <label class="form-label"><span class="required">*</span> Status</label>
                     <div *ngIf="mode=='add' || mode=='edit'">
-                        <p-dropdown [required]="true" name="ddlStatus" [options]="stlstadmissionstatus" [(ngModel)]="ResidentMaster.admissionstatus"
+                        <p-dropdown [required]="true" name="ddlStatus" [options]="stlstadmissionstatus" [(ngModel)]="ResidentMaster.AdmissionStatus"
                          optionLabel="name" optionValue="code" [filter]="true" placeholder=" "
                             [style]="{width: '100%'}" #statusref="ngModel">
                         </p-dropdown>
@@ -48,28 +48,34 @@
                             <div>Status is required.</div>
                         </div>
                     </div>
-                    <div class="my-2 bold" *ngIf="mode=='view'">{{admissionStatus[ResidentMaster.admissionstatus]}}</div>
+                    <div class="my-2 bold" *ngIf="mode=='view'">{{admissionStatus[ResidentMaster.AdmissionStatus]}}</div>
                 </div>
             </div>
             <div class="row">
                 <div class="col-md-12">
                     <label class="form-label"><span class="required">*</span> Residency</label>
                     <div *ngIf="mode=='add' || mode=='edit'">
-                        <p-selectButton [required]="true"  [options]="stlstresidency" [(ngModel)]="ResidentMaster.residency"
+                        <div class="fordesk">
+                        <p-selectButton [required]="true"  [options]="stlstresidency" [(ngModel)]="ResidentMaster.Residency"
                             optionLabel="name" optionValue="code" name="Residency" #residencyref="ngModel"></p-selectButton>
-                        <div class="col-md-auto errorMessage pt-2"
+                        </div>
+                        <div class="formobile">
+                        <p-dropdown [required]="true"  [options]="stlstresidency" [(ngModel)]="ResidentMaster.Residency"
+                            optionLabel="name" optionValue="code" name="Residency" #residencyref="ngModel"></p-dropdown>
+                        </div>
+                            <div class="col-md-auto errorMessage pt-2"
                             *ngIf="residencyref.errors &&(residencyref.touched || residencyref.dirty)">
                             <div>Residency is required.</div>
                         </div>
                     </div>
-                    <div class="my-2 bold" *ngIf="mode=='view'">{{ResidentMaster.residency}}</div>
+                    <div class="my-2 bold" *ngIf="mode=='view'">{{ResidentMaster.Residency}}</div>
                 </div>
             </div>
             <div class="row">
                 <div class="col-md-6">
                     <label class="form-label"><span class="required">*</span> Facility</label>
                     <div *ngIf="mode=='add' || mode=='edit'">
-                        <p-dropdown [required]="true" name="ddlHome" [options]="lstHomeMaster" [(ngModel)]="ResidentMaster.homemasterid"
+                        <p-dropdown [required]="true" name="ddlHome" [options]="lstHomeMaster" [(ngModel)]="ResidentMaster.HomeMasterId"
                         (onChange)="onChangeFacility()" optionLabel="HomeName" optionValue="HomeMasterId" [filter]="true" placeholder="Choose facilty"
                             [style]="{width: '100%'}" #homeref="ngModel">
                         </p-dropdown>
@@ -78,31 +84,31 @@
                             <div>Facility is required.</div>
                         </div>
                     </div>
-                    <div class="my-2 bold" *ngIf="mode=='view'">{{ResidentMaster.homename}}</div>
+                    <div class="my-2 bold" *ngIf="mode=='view'">{{ResidentMaster.HomeName}}</div>
                 </div>
             </div>
                 <div class="row">
                     <div class="col-md-6">
                         <label class="form-label"><span class="required">*</span> Location</label>
                         <div *ngIf="mode=='add' || mode=='edit'">
-                            <p-dropdown [required]="true" name="ddlLocation" [options]="lstLocationMaster" [(ngModel)]="ResidentMaster.locationmasterid"
-                                optionLabel="locationname" optionValue="locationmasterid" [filter]="true" placeholder="Choose location"
+                            <p-dropdown [required]="true" name="ddlLocation" [options]="lstLocationMaster" [(ngModel)]="ResidentMaster.LocationMasterId"
+                                optionLabel="LocationName" optionValue="LocationMasterId" [filter]="true" placeholder="Choose location"
                                 [style]="{width: '100%'}" #locationref="ngModel">
                             </p-dropdown>
                         </div>
-                        <div class="my-2 bold" *ngIf="mode=='view'">{{ResidentMaster.locationname}}</div>
+                        <div class="my-2 bold" *ngIf="mode=='view'">{{ResidentMaster.LocationName}}</div>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-md-6">
                         <label class="form-label">Medication trolly</label>
                         <div *ngIf="mode=='add' || mode=='edit'">
-                            <p-dropdown name="ddlMedication" [options]="stlstmedication" [(ngModel)]="ResidentMaster.medicationtrolly"
+                            <p-dropdown name="ddlMedication" [options]="stlstmedication" [(ngModel)]="ResidentMaster.MedicationTrolly"
                             optionLabel="name" optionValue="code" [filter]="true" placeholder="Choose medication trolly"
                             [style]="{width: '100%'}" #medicationref="ngModel">
                         </p-dropdown>
                         </div>
-                        <div class="my-2 bold" *ngIf="mode=='view'">{{ResidentMaster.medicationtrolly}}</div>
+                        <div class="my-2 bold" *ngIf="mode=='view'">{{ResidentMaster.MedicationTrolly}}</div>
                     </div>
                 </div>            
         </div>

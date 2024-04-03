@@ -38,12 +38,12 @@ export class MenuItemMasterComponent extends AppComponentBase implements OnInit{
     super();
     this._ConstantServices.ActiveMenuName = "Menu Master"; 
     this.stlststatus = [
-      { name: 'Active', code: true },
-      { name: 'Inactive', code: false }
+      { name: 'Active', code: 1 },
+      { name: 'Inactive', code: 0 }
     ];
     this.stlstsubmenu = [
-      { name: 'Yes', code: true},
-      { name: 'No', code: false }
+      { name: 'Yes', code: 'Y' },
+      { name: 'No', code: 'N' }
     ];
   } 
   ngOnInit(): void {
@@ -119,7 +119,7 @@ export class MenuItemMasterComponent extends AppComponentBase implements OnInit{
               tdata2 = tdata2 ? tdata2 : [];
               var checkedItemArray: any[] = [];
               for (var i = 0; i < tdata2?.length; i++) {
-                checkedItemArray.push(tdata2[i]?.usertypeid);
+                checkedItemArray.push(tdata2[i]?.UserTypeId);
               } 
               this.selectedUserType=checkedItemArray;                                      
             }
@@ -139,15 +139,17 @@ export class MenuItemMasterComponent extends AppComponentBase implements OnInit{
     }
     var checkedItemArray: any[] = [];
     for (var i = 0; i < this.selectedUserType?.length; i++) {
-      checkedItemArray.push(
-        this.selectedUserType[i]
-      );
+      checkedItemArray.push({
+        "id": this.selectedUserType[i]
+      });      
     }
     this.MenuItemMaster.lstUserTypeId = checkedItemArray;
     if (this.mode == "Add")
-      this.MenuItemMaster.StatementType = "Insert";
+      this.MenuItemMaster.statementtype = "Insert";
     else
-      this.MenuItemMaster.StatementType = "Update";
+      this.MenuItemMaster.statementtype = "Update";
+      if (this.MenuItemMaster.SubMenu == 'N')
+      this.MenuItemMaster.ParentMenuId = null;
     this._UtilityService.showSpinner();
     this.unsubscribe.add = this._MasterServices.AddUpdateMenuItemMaster(this.MenuItemMaster)
       .subscribe({
@@ -176,7 +178,7 @@ export class MenuItemMasterComponent extends AppComponentBase implements OnInit{
   ResetModel() {
     this.selectedUserType=[];
     this.MenuItemMaster = <any>{};
-    this.MenuItemMaster.status = true;
+    this.MenuItemMaster.Status = 1;
     this.lstParentMenuItemMaster=JSON.parse(JSON.stringify(this.lstMenuItemMaster));
   }
   CloseModal() {

@@ -88,9 +88,9 @@ export class OccupancyDetailsComponent extends AppComponentBase implements OnIni
       });
   }
   onChangeFacility(){
-    if(this.ResidentMaster.homemasterid!=null && this.ResidentMaster.homemasterid!=undefined)
+    if(this.ResidentMaster.HomeMasterId!=null && this.ResidentMaster.HomeMasterId!=undefined)
     {
-      this.GetLocationMasterByHomeId(this.ResidentMaster.homemasterid);
+      this.GetLocationMasterByHomeId(this.ResidentMaster.HomeMasterId);
     }
     else
     {
@@ -147,9 +147,9 @@ export class OccupancyDetailsComponent extends AppComponentBase implements OnIni
             var tdata = JSON.parse(data.actionResult.result);
             tdata = tdata ? tdata : [];
             this.ResidentMaster = tdata; 
-            if(this.ResidentMaster?.lastadmissiondate!=null && this.ResidentMaster?.lastadmissiondate!=undefined)
+            if(this.ResidentMaster?.LastAdmissionDate!=null && this.ResidentMaster?.LastAdmissionDate!=undefined)
             {
-              this.ResidentMaster.lastadmissiondate = new Date(this.ResidentMaster.lastadmissiondate);
+              this.ResidentMaster.LastAdmissionDate = new Date(this.ResidentMaster.LastAdmissionDate);
             }
             this.onChangeFacility();
           }
@@ -163,10 +163,10 @@ export class OccupancyDetailsComponent extends AppComponentBase implements OnIni
   save()
   {
     if (this.userid != null && this.admissionid != null) {      
-      this.ResidentMaster.userid = this.userid;
-      this.ResidentMaster.residentadmissioninfoid = this.admissionid;
-      this.ResidentMaster.modifiedby = localStorage.getItem('userId');
-      this.ResidentMaster.StatementType = "Update";
+      this.ResidentMaster.UserId = this.userid;
+      this.ResidentMaster.ResidentAdmissionInfoId = this.admissionid;
+      this.ResidentMaster.ModifiedBy = localStorage.getItem('userId');
+      this.ResidentMaster.statementtype = "Update";
       this._UtilityService.showSpinner();
       this.unsubscribe.add = this._MasterServices.AddUpdateResidentOccupancyData(this.ResidentMaster)
         .subscribe

@@ -169,7 +169,7 @@ export class AdminDashboardComponent extends AppComponentBase implements OnInit 
                     label: 'Revenue',
                     backgroundColor: documentStyle.getPropertyValue('--bar-color'),
                     borderColor: documentStyle.getPropertyValue('--bar-color'),
-                    data: [103200, 744336, 354336, 284336, 324336, 304336, 294336, 254336, 484336, 444336, 434336, 344336],
+                    data: [103200, 244336, 354336, 284336, 324336, 304336, 294336, 554336, 784336, 0, 0, 0],
                     barThickness: 8,
                 }
             ]

@@ -24,14 +24,14 @@
             </div>
             <div class="col-md-4">
                 <p-dropdown [required]="true" [options]="lstResidentIndicatorGroups" [(ngModel)]="grouphead"
-                    (onChange)="filterResidentIndicators()" optionLabel="groupname" optionValue="indicatorgroupmasterid"
+                    (onChange)="filterResidentIndicators()" optionLabel="groupname" optionValue="IndicatorGroupMasterId"
                     placeholder="Select" [style]="{width: '100%'}">
                 </p-dropdown>
             </div>
 
         </div>
         <p-table class="ColumnFilterTable" #dt [value]="lstResidentIndicators" [rowHover]="true"
-            [globalFilterFields]="['indicatorname']" [scrollable]="true" scrollHeight="calc(100vh - 400px)"
+            [globalFilterFields]="['IndicatorName']" [scrollable]="true" scrollHeight="calc(100vh - 400px)"
             responsiveLayout="scroll">
             <ng-template pTemplate="emptymessage" let-columns>
                 <tr>
@@ -51,23 +51,23 @@
             <ng-template pTemplate="body" let-item let-i="rowIndex" let-expanded="expanded">
                 <tr>
                     <td style="width: 200px;">
-                        {{item.groupname}}
+                        {{item.GroupName}}
                     </td>
                     <td style="width: 270px;">
-                        {{item.indicatorname}}
+                        {{item.IndicatorName}}
                     </td>
                     <td style="width: 150px;">
-                        <span *ngIf="mode=='view'">{{item.isenable?'Enabled':'Disabled'}}</span>
+                        <span *ngIf="mode=='view'">{{item.Isenable?'Enabled':'Disabled'}}</span>
                         <span *ngIf="mode=='edit'">
-                            <p-checkbox (onChange)="OnEnabled(item.clinicalindicatorid)"
-                                name="ChkEnable_{{i}}" [(ngModel)]="item.isenable" [binary]="true"
+                            <p-checkbox (onChange)="OnEnabled(item.ClinicalIndicatorId)"
+                                name="ChkEnable_{{i}}" [(ngModel)]="item.Isenable" [binary]="true"
                                 inputId="binary"></p-checkbox></span>
                     </td>
                     <td style="width: 150px;">
-                        <span *ngIf="mode=='view'">{{item.isvisible?'Enabled':'Disabled'}}</span>
+                        <span *ngIf="mode=='view'">{{item.Isvisible?'Enabled':'Disabled'}}</span>
                         <span *ngIf="mode=='edit'">
-                            <p-checkbox (onChange)="OnEnabled(item.clinicalindicatorid)"
-                                name="ChkVisible_{{i}}" [(ngModel)]="item.isvisible" [binary]="true"
+                            <p-checkbox (onChange)="OnEnabled(item.ClinicalIndicatorId)"
+                                name="ChkVisible_{{i}}" [(ngModel)]="item.Isvisible" [binary]="true"
                                 inputId="binary"></p-checkbox></span>
                     </td>
                 </tr>

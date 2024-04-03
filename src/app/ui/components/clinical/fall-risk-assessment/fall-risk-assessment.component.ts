@@ -59,9 +59,9 @@ export class FallRiskAssessmentComponent extends AppComponentBase implements OnI
    
     if(id!=null && id!=undefined)
     {
-    var Idx = this.lstFallRiskAssessment.findIndex(f => f.clinicalfallriskassessmentid == id);
+    var Idx = this.lstFallRiskAssessment.findIndex(f => f.ClinicalFallRiskAssessmentId == id);
     if (Idx >= 0) {
-        this.lstFallRiskAssessment[Idx].modifiedby = this.loginId;                
+        this.lstFallRiskAssessment[Idx].ModifiedBy = this.loginId;                
       }         
     }
   }
@@ -89,19 +89,19 @@ export class FallRiskAssessmentComponent extends AppComponentBase implements OnI
   save()
   {
     if (this.userid != null && this.admissionid != null) {      
-      this.Clinical.userid = this.userid;
-      this.Clinical.residentadmissioninfoid = this.admissionid;
-      this.Clinical.modifiedby = this.loginId;
+      this.Clinical.UserId = this.userid;
+      this.Clinical.ResidentAdmissionInfoId = this.admissionid;
+      this.Clinical.ModifiedBy = this.loginId;
       var selectedExtraItemDetails = [];      
-      var result=this.lstFallRiskAssessment.filter(f=>f.isenable==true || f.clinicalfallriskassessmentid!=null);
+      var result=this.lstFallRiskAssessment.filter(f=>f.Isenable==true || f.ClinicalFallRiskAssessmentId!=null);
       console.log('lstFallRiskAssessment', this.lstFallRiskAssessment); 
       console.log('result', result); 
       result.forEach(x => {
         var jsonObject = {
-          "clinicalfallriskassessmentid": x.clinicalfallriskassessmentid,
-          "fallriskmasterid": x.fallriskmasterid,
-          "isenable": x.isenable,
-          "modifiedby": x.modifiedby
+          "ClinicalFallRiskAssessmentId": x.ClinicalFallRiskAssessmentId,
+          "FallRiskMasterId": x.FallRiskMasterId,
+          "Isenable": x.Isenable,
+          "ModifiedBy": x.ModifiedBy
         }
         selectedExtraItemDetails.push(jsonObject);      
     });

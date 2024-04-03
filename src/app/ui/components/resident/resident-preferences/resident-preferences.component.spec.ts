@@ -2,6 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ResidentPreferencesComponent } from './resident-preferences.component';
 
+
 describe('ResidentPreferencesComponent', () => {
   let component: ResidentPreferencesComponent;
   let fixture: ComponentFixture<ResidentPreferencesComponent>;

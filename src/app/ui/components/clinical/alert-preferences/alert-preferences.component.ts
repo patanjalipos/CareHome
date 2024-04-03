@@ -49,9 +49,9 @@ export class AlertPreferencesComponent extends AppComponentBase implements OnIni
   OnEnabled(id) {
 
     if (id != null && id != undefined) {
-      var Idx = this.lstResidentAlert.findIndex(f => f.clinicalalertpreferencesid == id);
+      var Idx = this.lstResidentAlert.findIndex(f => f.ClinicalAlertPreferencesId == id);
       if (Idx >= 0) {
-        this.lstResidentAlert[Idx].modifiedby = this.loginId;
+        this.lstResidentAlert[Idx].ModifiedBy = this.loginId;
       }
     }
   }
@@ -82,17 +82,17 @@ export class AlertPreferencesComponent extends AppComponentBase implements OnIni
     if (this.lstResidentAlert) {
       for (let i = 0; i < this.lstResidentAlert.length; i++) {
         let rowData = this.lstResidentAlert[i];
-        let alertheadname = rowData.alertheadname;
+        let AlertHeadName = rowData.AlertHeadName;
         if (i == 0) {
-          this.rowGroupMetadata[alertheadname] = { index: 0, size: 1 };
+          this.rowGroupMetadata[AlertHeadName] = { index: 0, size: 1 };
         }
         else {
           let previousRowData = this.lstResidentAlert[i - 1];
-          let previousRowGroup = previousRowData.alertheadname;
-          if (alertheadname === previousRowGroup)
-            this.rowGroupMetadata[alertheadname].size++;
+          let previousRowGroup = previousRowData.AlertHeadName;
+          if (AlertHeadName === previousRowGroup)
+            this.rowGroupMetadata[AlertHeadName].size++;
           else
-            this.rowGroupMetadata[alertheadname] = { index: i, size: 1 };
+            this.rowGroupMetadata[AlertHeadName] = { index: i, size: 1 };
         }
       }
       //console.log("data---", this.rowGroupMetadata)      
@@ -100,17 +100,17 @@ export class AlertPreferencesComponent extends AppComponentBase implements OnIni
   }
   save() {
     if (this.userid != null && this.admissionid != null) {
-      this.Clinical.userid = this.userid;
-      this.Clinical.residentadmissioninfoid = this.admissionid;
-      this.Clinical.modifiedby = this.loginId;
+      this.Clinical.UserId = this.userid;
+      this.Clinical.ResidentAdmissionInfoId = this.admissionid;
+      this.Clinical.ModifiedBy = this.loginId;
       var selectedExtraItemDetails = [];
-      var result = this.lstResidentAlert.filter(f => f.isenable == true || f.clinicalalertpreferencesid != null);
+      var result = this.lstResidentAlert.filter(f => f.Isenable == true || f.ClinicalAlertPreferencesId != null);
       result.forEach(x => {
         var jsonObject = {
-          "clinicalalertpreferencesid": x.clinicalalertpreferencesid,
-          "alertmasterid": x.alertmasterid,
-          "isenable": x.isenable,
-          "modifiedby": x.modifiedby
+          "ClinicalAlertPreferencesId": x.ClinicalAlertPreferencesId,
+          "AlertMasterId": x.AlertMasterId,
+          "Isenable": x.Isenable,
+          "ModifiedBy": x.ModifiedBy
         }
         selectedExtraItemDetails.push(jsonObject);
       });

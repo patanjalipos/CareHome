@@ -2,7 +2,7 @@
     <div class="card">
         <p-table #dt [value]="lstUserMaster" styleClass="p-datatable-striped" [rowHover]="true"
             [globalFilterFields]="['HomeCode','HomeName','UserTypeName','LoginId','FullName']"
-            [scrollable]="true" scrollHeight="calc(100vh - 180px)" (onFilter)="onFilter($event, dt)">
+            [scrollable]="true" scrollHeight="calc(100vh - 155px)" (onFilter)="onFilter($event, dt)">
             <ng-template pTemplate="caption">
                 <div class="flex justify-content-between flex-column sm:flex-row">
                     <span class="p-ml-left">
@@ -45,15 +45,15 @@
             </ng-template>
             <ng-template pTemplate="body" let-col let-i="rowIndex">
                 <tr>
-                    <td>{{col.homecode}}</td>
-                    <td>{{col.homename}}</td>
-                    <td>{{col.usertypename}}</td>
-                    <td>{{col.loginid}}</td>
-                    <td>{{col.firstname}} {{col.lastname}}</td>
-                    <td>{{col.status==true?'Active':'Inactive'}}</td>                  
+                    <td>{{col.HomeCode}}</td>
+                    <td>{{col.HomeName}}</td>
+                    <td>{{col.UserTypeName}}</td>
+                    <td>{{col.LoginId}}</td>
+                    <td>{{col.FullName}}</td>
+                    <td>{{col.Status==1?'Active':'Inactive'}}</td>                  
                     <td>
                         <a title="View/Edit" style="cursor: pointer;"
-                            (click)="LoadUserDetails(col.userid)">
+                            (click)="LoadUserDetails(col.UserId)">
                             <i class="fa fa-eye" aria-hidden="true"></i>
                         </a>
                     </td>
@@ -74,7 +74,7 @@
                             placeholder="Please select Home" #homeref="ngModel" (onChange)="SetFacility()">
                         </p-multiSelect> -->
                         <p-dropdown [required]="true" name="ddlHome" [options]="lstHomeMaster"
-                            [(ngModel)]="RegistrationMainModel.homemasterid" optionLabel="HomeName"
+                            [(ngModel)]="RegistrationMainModel.HomeMasterId" optionLabel="HomeName"
                             optionValue="HomeMasterId" [filter]="true" placeholder="--select--"
                             [style]="{width: '100%'}" #homeref="ngModel">
                         </p-dropdown>
@@ -88,25 +88,25 @@
                     <div class="col-md-3">
                         <label class="form-label">First Name<span class="required">*</span></label>
                         <input pInputText type="text" required class="form-control" name="txtFName"
-                        [(ngModel)]="RegistrationMainModel.firstname" placeholder=""
+                        [(ngModel)]="RegistrationMainModel.FirstName" placeholder=""
                         (keypress)="validateText($event)">                                
                     </div>
                     <div class="col-md-3">
                         <label class="form-label">Middle Name</label>
                         <input type="text" pInputText class="form-control" name="txtMiddleName"
-                            [(ngModel)]="RegistrationMainModel.middlename" placeholder=""
+                            [(ngModel)]="RegistrationMainModel.MiddleName" placeholder=""
                             (keypress)="validateText($event)">
                     </div>
                     <div class="col-md-3">
                         <label class="form-label">Last Name</label>
                         <input type="text" pInputText class="form-control" name="txtLname"
-                            [(ngModel)]="RegistrationMainModel.lastname" placeholder=""
+                            [(ngModel)]="RegistrationMainModel.LastName" placeholder=""
                             (keypress)="validateText($event)">
                     </div>
                     <div class="col-md-3">
                         <label class="form-label">Preferred Name</label>
                         <input pInputText type="text" class="form-control" name="txtFHName"
-                            [(ngModel)]="RegistrationMainModel.preferredname"
+                            [(ngModel)]="RegistrationMainModel.PreferredName"
                             placeholder="">
                     </div>
                     <!-- <div class="col-md-3">
@@ -132,18 +132,18 @@
                         <label class="form-label">Login Id</label>
                         <input type="text" pInputText disabled="disabled" class="form-control"
                             placeholder="Login Id" name="txtLoginId"
-                            [(ngModel)]="RegistrationMainModel.loginid">
+                            [(ngModel)]="RegistrationMainModel.LoginId">
                     </div>
                     <div class="col-md-3">
                         <label class="form-label">Password</label>
                         <input type="text" pInputText disabled="disabled" class="form-control"
                             placeholder="Password" name="txtPassword"
-                            [(ngModel)]="RegistrationMainModel.password">
+                            [(ngModel)]="RegistrationMainModel.Password">
                     </div>                    
                     <div class="col-md-3">
                         <label class="form-label">Status <span class="required">*</span></label>
                         <p-dropdown [required]="true" name="ddlStatus" [options]="stlststatus"
-                            [(ngModel)]="RegistrationMainModel.status" optionLabel="name" optionValue="code"
+                            [(ngModel)]="RegistrationMainModel.Status" optionLabel="name" optionValue="code"
                             [filter]="true" placeholder="Please Select Status" [style]="{width: '100%'}">
                         </p-dropdown>
                     </div>
@@ -154,14 +154,14 @@
                     <div class="col-md-3">
                         <label class="form-label">Date Of Birth</label>
                         <p-calendar [maxDate]="todayDate"
-                            [(ngModel)]="RegistrationMainModel.dateofbirth"
+                            [(ngModel)]="RegistrationMainModel.DateOfBirth"
                             [ngModelOptions]="{standalone: true}" [showIcon]="true" inputId="icon"
                             [dateFormat]="customDateFormat.CalendarFormat" #dobref="ngModel" class="iconcal"></p-calendar> 
                     </div>    
                     <div class="col-md-3">
                         <label class="form-label">Title</label>
                         <p-dropdown [required]="true" name="ddlTitle" [options]="stlsttitle"
-                            [(ngModel)]="RegistrationMainModel.title" optionLabel="name" optionValue="code"
+                            [(ngModel)]="RegistrationMainModel.Title" optionLabel="name" optionValue="code"
                             [filter]="true" placeholder="--select--" [style]="{width: '100%'}"
                            >
                         </p-dropdown>                        
@@ -169,12 +169,12 @@
                     <div class="col-md-3">
                         <label class="form-label">Designation</label>
                         <input type="text" pInputText name="txtDesignation" class="form-control"
-                            [(ngModel)]="RegistrationMainModel.designation" (keypress)="validateText($event)" />              
+                            [(ngModel)]="RegistrationMainModel.Designation" (keypress)="validateText($event)" />              
                     </div>
                     <div class="col-md-3">
                         <label class="form-label">Date employment commenced</label>
                         <p-calendar [maxDate]="todayDate"
-                            [(ngModel)]="RegistrationMainModel.employmentdate"
+                            [(ngModel)]="RegistrationMainModel.EmploymentDate"
                             [ngModelOptions]="{standalone: true}" [showIcon]="true" inputId="icon"
                             [dateFormat]="customDateFormat.CalendarFormat" #empdateref="ngModel" class="iconcal"></p-calendar>
                     </div> 
@@ -186,7 +186,7 @@
                         <label class="form-label">User Type<span class="required">*</span></label>
                         <p-dropdown [required]="true"
                             name="ddlUserType" [options]="lstUserType"
-                            [(ngModel)]="RegistrationMainModel.usertypeid" optionLabel="UserTypeName"
+                            [(ngModel)]="RegistrationMainModel.UserTypeId" optionLabel="UserTypeName"
                             optionValue="UserTypeId" [filter]="true" placeholder="--select--"
                             [style]="{width: '100%'}" #usertyperef="ngModel">
                         </p-dropdown>
@@ -199,7 +199,7 @@
                         <label class="form-label">Region</label>
                         <input type="text" pInputText class="form-control"
                         placeholder="Region" name="txtRegion"
-                        [(ngModel)]="RegistrationMainModel.region">
+                        [(ngModel)]="RegistrationMainModel.Region">
                     </div>
                 </div>
             </p-accordionTab> 
@@ -254,12 +254,12 @@
                     <div class="col-md-3">
                         <label class="form-label">Contact address</label>
                         <input type="text" pInputText id='txtAddress' class="form-control" name="txtAddress"
-                            [(ngModel)]="RegistrationMainModel.address" (keypress)="validateText($event)" />
+                            [(ngModel)]="RegistrationMainModel.Address" (keypress)="validateText($event)" />
                     </div>
                     <div class="col-md-3">
                         <label class="form-label">Location</label>
                         <input type="text" pInputText class="form-control" placeholder=""
-                            name="Location" [(ngModel)]="RegistrationMainModel.location">
+                            name="Location" [(ngModel)]="RegistrationMainModel.Location">
                     </div>
                     <div class="col-md-3">
                         <label class="form-label">Phone (area - local)</label>
@@ -268,18 +268,18 @@
                     </div>
                     <div class="col-md-3">
                         <label class="form-label">Fax (area - local)</label>
-                        <p-inputNumber name="fax" [(ngModel)]="RegistrationMainModel.fax"
+                        <p-inputNumber name="fax" [(ngModel)]="RegistrationMainModel.Fax"
                         mode="decimal" [useGrouping]="false" [maxlength]="20"></p-inputNumber>                        
                     </div>
                     <div class="col-md-3">
                         <label class="form-label">Pager (area - local)</label>
                         <input type="text" pInputText class="form-control" placeholder="" name="Pager"
-                            [(ngModel)]="RegistrationMainModel.pager" (keypress)="validateNumber($event)">                        
+                            [(ngModel)]="RegistrationMainModel.Pager" (keypress)="validateNumber($event)">                        
                     </div>
                     <div class="col-md-3">
                         <label class="form-label">Mobile phone </label>
                         <input type="text" pInputText class="form-control" name="txtContactNumber"
-                            [(ngModel)]="RegistrationMainModel.contactnumber" (keypress)="validateNumber($event)"
+                            [(ngModel)]="RegistrationMainModel.ContactNumber" (keypress)="validateNumber($event)"
                             placeholder="" pattern="[0-9]{10}$" minlength="10" maxlength="10"
                             #mobileref="ngModel">
                         <div *ngIf="mobileref.errors &&(mobileref.touched || mobileref.dirty)"
@@ -292,7 +292,7 @@
                     <div class="col-md-3">
                         <label class="form-label">Email address 1</label>
                         <input type="email" pInputText class="form-control" placeholder="" name="txtEmail"
-                            [(ngModel)]="RegistrationMainModel.email1"
+                            [(ngModel)]="RegistrationMainModel.Email1"
                             pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" #emailref1="ngModel">
                         <div *ngIf="emailref1.errors &&(emailref1.touched || emailref1.dirty)"
                             class="alert alert-danger">
@@ -304,7 +304,7 @@
                     <div class="col-md-3">
                         <label class="form-label">Email address 2</label>
                         <input type="email" pInputText class="form-control" placeholder="" name="txtEmail"
-                            [(ngModel)]="RegistrationMainModel.email2"
+                            [(ngModel)]="RegistrationMainModel.Email2"
                             pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" #emailref2="ngModel">
                         <div *ngIf="emailref2.errors &&(emailref2.touched || emailref2.dirty)"
                             class="alert alert-danger">
@@ -315,7 +315,7 @@
                     </div> 
                     <div class="col-md-3">
                         <label class="form-label">Comments</label>
-                        <textarea rows="3" cols="30"  name="comments" [(ngModel)]="RegistrationMainModel.comments"  placeholder="" pInputTextarea></textarea>
+                        <textarea rows="3" cols="30"  name="comments" [(ngModel)]="RegistrationMainModel.Comments"  placeholder="" pInputTextarea></textarea>
                         
                     </div>
                 </div>                
@@ -327,22 +327,22 @@
                         <label class="form-label">Name</label>
                         <input type="text" pInputText class="form-control"
                             placeholder="" name="txtEmergencyContactName"
-                            [(ngModel)]="RegistrationMainModel.emergencycontactname">
+                            [(ngModel)]="RegistrationMainModel.EmergencyContactName">
                     </div>
                     <div class="col-md-3">
                         <label class="form-label">Address</label>
                         <input type="text" pInputText class="form-control"
                             placeholder="" name="txtEmergencyContactAddress"
-                            [(ngModel)]="RegistrationMainModel.emergencycontactaddress">
+                            [(ngModel)]="RegistrationMainModel.EmergencyContactAddress">
                     </div>
                     <div class="col-md-3">
                         <label class="form-label">Telephone</label>
-                        <p-inputNumber [(ngModel)]="RegistrationMainModel.emergencycontacttelephone"
+                        <p-inputNumber [(ngModel)]="RegistrationMainModel.EmergencyContactTelephone"
                                         name="txtEmergencyContactTelephone" mode="decimal" [useGrouping]="false" [maxlength]="20"></p-inputNumber>                        
                     </div>
                     <div class="col-md-3">
                         <label class="form-label">Mobile</label>
-                        <p-inputNumber [(ngModel)]="RegistrationMainModel.emergencycontactmobile"
+                        <p-inputNumber [(ngModel)]="RegistrationMainModel.EmergencyContactMobile"
                                         name="txtEmergencyContactMobile" mode="decimal" [useGrouping]="false" [maxlength]="20"></p-inputNumber>                        
                     </div>
                 </div>

@@ -96,8 +96,8 @@ export class ResidentMasterComponent extends AppComponentBase implements OnInit 
       { name: 'Separated', code: 'Separated' },
     ]
     this.stlststatus = [
-      { name: 'Active', code: true },
-      { name: 'Inactive', code: false }
+      { name: 'Active', code: 1 },
+      { name: 'Inactive', code: 0 }
     ];
     this.lstDependencyMaster = [
       { name: 'Residenttial indenpendent', code: 'Residenttial indenpendent' },
@@ -108,8 +108,20 @@ export class ResidentMasterComponent extends AppComponentBase implements OnInit 
       { name: 'End of life', code: 'End of life' }
     ];
     this.lstRoomMaster = [
+      { name: '101', code: '101' },
+      { name: '102', code: '102' },
+      { name: '103', code: '103' },
+      { name: '104', code: '104' },
+      { name: '105', code: '105' },
+      { name: '201', code: '201' },
+      { name: '202', code: '202' },
+      { name: '203', code: '203' },
+      { name: '204', code: '204' },
+      { name: '205', code: '205' },
+      { name: '301', code: '301' },
       { name: '302', code: '302' },
       { name: '303', code: '303' },
+      { name: '304', code: '304' },
       { name: '305', code: '305' },
     ];
     this.stlstfunding = [
@@ -191,7 +203,7 @@ export class ResidentMasterComponent extends AppComponentBase implements OnInit 
     this.SelectedFile = [];
     this.ResidentMaster = <any>{};    
     this.ResidentMaster.admissionstatus = this.admissionStatus.Unallocated;   
-    this.ResidentMaster.status = true;  
+    this.ResidentMaster.Status = 1;  
     if (UserTypes.SuperAdmin !== this.s_userTypeId) {
       this.ResidentMaster.homemasterid = localStorage.getItem('HomeMasterId');
     } 
@@ -212,9 +224,9 @@ export class ResidentMasterComponent extends AppComponentBase implements OnInit 
             tdata = tdata ? tdata : [];
             this.ResidentMaster = tdata;
             //console.log('this.ResidentMaster', this.ResidentMaster)
-            if(this.ResidentMaster?.dateofbirth!=null && this.ResidentMaster?.dateofbirth!=undefined)
+            if(this.ResidentMaster?.DateOfBirth!=null && this.ResidentMaster?.DateOfBirth!=undefined)
             {
-              this.ResidentMaster.dateofbirth = new Date(this.ResidentMaster.dateofbirth);
+              this.ResidentMaster.DateOfBirth = new Date(this.ResidentMaster.DateOfBirth);
             }
             this.mode = "edit";   
             this.healthcareMode="view";         
@@ -249,13 +261,15 @@ RemoveProfileImage(){
   
   Submit()
   {
-    if (this.ResidentMaster.password != null && this.ResidentMaster.password != undefined && this.ResidentMaster.password != '') {
-      this.ResidentMaster.password = this._EncryptDecryptService.encryptUsingAES256(this.ResidentMaster.password);
+    if (this.ResidentMaster.Password != null && this.ResidentMaster.Password != undefined && this.ResidentMaster.Password != '') {
+      this.ResidentMaster.Password = this._EncryptDecryptService.encryptUsingAES256(this.ResidentMaster.Password);
     }
-    this.ResidentMaster.userid=this.selecteduserid;
-    this.ResidentMaster.residentadmissioninfoid=this.selectedadmissionid;          
-    this.ResidentMaster.usertypeid=this.UserTypes.Resident;
-    this.ResidentMaster.modifiedby = localStorage.getItem('userId');  
+    this.ResidentMaster.UserId=this.selecteduserid;
+    this.ResidentMaster.ResidentAdmissionInfoId=this.selectedadmissionid;          
+    this.ResidentMaster.UserTypeId=this.UserTypes.Resident;
+    this.ResidentMaster.ModifiedBy = localStorage.getItem('userId');  
+    this.ResidentMaster.PayerTelephone = this.ResidentMaster.PayerTelephone?.toString() || null;
+    
     //console.log('ResidentMaster',this.ResidentMaster);
     const formData = new FormData();
     formData.append('data', JSON.stringify(this.ResidentMaster));

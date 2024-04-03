@@ -1,6 +1,6 @@
 <div class="p-fluid">
    <!-- <div class="field row">
-      <div class="col-12 md:col-4 mb-2">
+              <div class="col-12 md:col-4 mb-2">
          <div class="doc-dash mb10">
             <h2 class="dash-head">Today's Occupancy</h2>
             <div class="box-head justify-content-between">
@@ -362,7 +362,7 @@
 </div> -->
 
 
-<div class="row mb-4">
+<div class="row">
    <div class="col-md-9">
       <div class="row">
          <div class="col-md-12">
@@ -375,7 +375,7 @@
                         </div>
                         <div class="top-box-cont">
                            <h2>Total Residents</h2>
-                           <h3>2040</h3>
+                           <h3>200</h3>
                         </div>
                      </div>
                   </div>
@@ -386,7 +386,7 @@
                         </div>
                         <div class="top-box-cont">
                            <h2>Critical Residents</h2>
-                           <h3>120</h3>
+                           <h3>50</h3>
                         </div>
                      </div>
                   </div>
@@ -397,7 +397,7 @@
                         </div>
                         <div class="top-box-cont">
                            <h2>Available Staff</h2>
-                           <h3>2040</h3>
+                           <h3>70</h3>
                         </div>
                      </div>
                   </div>
@@ -408,7 +408,7 @@
                         </div>
                         <div class="top-box-cont">
                            <h2>Revenue (monthly)</h2>
-                           <h3>4800</h3>
+                           <h3>£8m</h3>
                         </div>
                      </div>
                   </div>
@@ -417,16 +417,16 @@
          </div>
       </div>
 
-      <div class="row mt-5">
+      <div class="row mt-3">
          <div class="col-md-3">
             <div class="health-box">
                <div class="health-box-top">
 
                   <div class="top-box-img bg-change">
                      <img src="../../../../../assets/Images/icon-5.svg" width="25px">
-                  </div>                  <h1>ADL Deniel</h1>
+                  </div>                  <h1>ADL Denial</h1>
                </div>
-               <h2>1863</h2>
+               <h2>5</h2>
                <h4>Today's</h4>
             </div>
          </div>
@@ -438,7 +438,7 @@
                      <img src="../../../../../assets/Images/icon-6.svg" width="25px">
                   </div>                  <h1>Bad Mood Count</h1>
                </div>
-               <h2>1863</h2>
+               <h2>2</h2>
                <h4>Last 7 days</h4>
             </div>
          </div>
@@ -450,7 +450,7 @@
                      <img src="../../../../../assets/Images/icon-8.svg" width="25px">
                   </div>                  <h1>Weight loss>5%</h1>
                </div>
-               <h2>1863</h2>
+               <h2>4</h2>
                <h4>Last 30 days</h4>
             </div>
          </div>
@@ -462,14 +462,14 @@
                      <img src="../../../../../assets/Images/icon-7.svg" width="25px">
                   </div>                  <h1>Resident in pain</h1>
                </div>
-               <h2>1863</h2>
+               <h2>1</h2>
                <h4>Last 24 hours</h4>
             </div>
          </div>
       </div>
 
     
-      <div class="doc-dash mt-5">  
+      <div class="doc-dash mt-3">  
       <div class="row">
          <div class="col-md-7">
                
@@ -481,23 +481,23 @@
             
          <div class="col-md-5">
             <div class="row m-0 mt-5 pt-5">
-               <div class="col-md-6">
+               <div class="col-md-6 col-6">
                   <div class="card revenu">
                      <div class="top-box-img">
                      <img src="../../../../../assets/Images/month.svg" width="25px">
                      </div>
-                        <h2><small>This Month</small><br>1863</h2>
-                        <p><i class="fas fa-minus"></i>3.1% <i class="fa-solid fa-arrow-trend-down"></i></p>
+                        <h2><small>This Month</small><br>£8m</h2>
+                        <p><i class="fas fa-plus"></i>20.1% <i class="fa-solid fa-arrow-trend-up"></i></p>
                   </div>
                </div>
-               <div class="col-md-6">
+               <div class="col-md-6 col-6">
                   <div class="card revenu">
                      
                      <div class="top-box-img">
                      <img src="../../../../../assets/Images/year.svg" width="25px">
                      </div>
-                     <h2><small>This Year</small><br>1863</h2>
-                     <p class="red"><i class="fas fa-plus"></i>10.1% <i class="fa-solid fa-arrow-trend-up"></i></p>
+                     <h2><small>This Year</small><br>£120m</h2>
+                     <p><i class="fas fa-plus"></i>10.1% <i class="fa-solid fa-arrow-trend-up"></i></p>
                   </div>
                </div>
             </div>
@@ -509,18 +509,24 @@
       
 
    <div class="col-md-3">
-      <div class="card recent">
-         <h2>Recent Activity</h2>
+      <div class="card recent mb-3">
+         <h2>Recent Activity<a class="acti-add" href=""><i class="fas fa-plus"></i></a></h2>
          <hr class="m-0 my-2" >
+         <div class="box-hgt">
          <div *ngFor="let item of lstActivity">
             <div class="recent-box">
-               <p class="date-box">{{item.activitytime | date: 'dd MMM'}}</p>
-               <p>{{item.activityname}}<br><small>
-                     <i class="fas fa-clock"></i> {{item.activitydescription}}
+               <div class="col-3 p-0">
+               <p class="date-box">{{item.ActivityTime | date: 'dd MMM'}}</p>
+            </div>
+            <div class="col-9 p-0">
+               <p>{{item.ActivityName}}<br><small>
+                     <i class="fas fa-clock"></i> {{item.ActivityDescription}}
                   </small></p>
+                  </div>
             </div>
             <hr class="m-0">
          </div>
+      </div>
          <!-- <div class="recent-box">
             <p class="date-box">03 June</p>
             <p>Meditation Session<br><small>
@@ -543,18 +549,19 @@
          </div> -->
     
       </div>
-      <div class="card recent mt-5 task">
+      <div class="card recent task">
          <h2>Upcoming task</h2>
          <hr class="m-0 my-2" >
+         <div class="box-hgt">
          <div *ngFor="let item of lstTaskPlanner">
-            <p>{{item.taskname}}<br><small>
-               <i class="fas fa-clock"></i> {{item.starttime | date: 'dd MMM yy HH:mm a'}}
+            <p>{{item.TaskName}}<br><small>
+               <i class="fas fa-clock"></i> {{item.StartTime | date: 'dd MMM yy HH:mm a'}}
             </small><br>
-            <span>Assign to - <b> {{item.assignedtoname}}</b></span>
+            <span>Assign to - <b> {{item.AssignedToName}}</b></span>
             </p>
             <hr class="m-0">         
          </div>
-         
+         </div>
          <!-- <p>Meditation Session<br><small>
                <i class="fas fa-clock"></i> 28th Jun 23 at 6:30 pm
             </small><br>

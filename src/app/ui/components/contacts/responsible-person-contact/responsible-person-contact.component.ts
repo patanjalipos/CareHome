@@ -83,21 +83,21 @@ export class ResponsiblePersonContactComponent extends AppComponentBase implemen
             tdata = tdata ? tdata : [];
             if(tdata)
             {
-              this.Contact.contactnote = tdata.contactnote;
-              this.Contact.firstname = tdata.firstname;
-              this.Contact.lastname = tdata.lastname;
-              this.Contact.relationship = tdata.relationship;
-              this.Contact.mobile = tdata.mobile;
-              this.Contact.hometelephone = tdata.hometelephone;
-              this.Contact.worktelephone = tdata.worktelephone;
-              this.Contact.email = tdata.email;
-              this.Contact.address1 = tdata.address1;
-              this.Contact.address2 = tdata.address2;
-              this.Contact.address3 = tdata.address3;
-              this.Contact.town = tdata.town;
-              this.Contact.county = tdata.county;
-              this.Contact.countryid = tdata.countryid;
-              this.Contact.postcode = tdata.postcode;   
+              this.Contact.ContactNote = tdata.ContactNote;
+              this.Contact.FirstName = tdata.FirstName;
+              this.Contact.LastName = tdata.LastName;
+              this.Contact.Relationship = tdata.Relationship;
+              this.Contact.Mobile = tdata.Mobile;
+              this.Contact.HomeTelephone = tdata.HomeTelephone;
+              this.Contact.WorkTelephone = tdata.WorkTelephone;
+              this.Contact.Email = tdata.Email;
+              this.Contact.Address1 = tdata.Address1;
+              this.Contact.Address2 = tdata.Address2;
+              this.Contact.Address3 = tdata.Address3;
+              this.Contact.Town = tdata.Town;
+              this.Contact.County = tdata.County;
+              this.Contact.CountryId = tdata.CountryId;
+              this.Contact.PostCode = tdata.PostCode;   
 
             }
                 
@@ -110,7 +110,7 @@ export class ResponsiblePersonContactComponent extends AppComponentBase implemen
       });
   }  
   GetContactResponsiblePersonById(admissionid) {
-    this.Contact.StatementType = "Insert";
+    this.Contact.statementtype = "Insert";
     this._UtilityService.showSpinner();   
     this.unsubscribe.add = this._MasterServices.GetContactResponsiblePersonById(admissionid)  
       .subscribe({
@@ -121,7 +121,7 @@ export class ResponsiblePersonContactComponent extends AppComponentBase implemen
             tdata = tdata ? tdata : [];
             this.Contact = tdata;       
             //console.log('this.Contact', this.Contact);     
-            this.Contact.StatementType = "Update";
+            this.Contact.statementtype = "Update";
           }
         },
         error: (e) => {
@@ -133,9 +133,13 @@ export class ResponsiblePersonContactComponent extends AppComponentBase implemen
   save()
   {
     if (this.userid != null && this.admissionid != null) {      
-      this.Contact.userid = this.userid;
-      this.Contact.residentadmissioninfoid = this.admissionid;
-      this.Contact.modifiedby = localStorage.getItem('userId');
+      this.Contact.UserId = this.userid;
+      this.Contact.ResidentAdmissionInfoId = this.admissionid;
+      this.Contact.ModifiedBy = localStorage.getItem('userId');
+      this.Contact.Mobile = this.Contact.Mobile?.toString() || null;
+      this.Contact.HomeTelephone = this.Contact.HomeTelephone?.toString() || null;
+      this.Contact.WorkTelephone = this.Contact.WorkTelephone?.toString() || null;
+     
       this._UtilityService.showSpinner();
       this.unsubscribe.add = this._MasterServices.AddInsertUpdateContactResponsiblePerson(this.Contact)
         .subscribe

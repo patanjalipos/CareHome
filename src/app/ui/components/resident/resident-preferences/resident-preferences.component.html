@@ -44,9 +44,18 @@
                 <div class="col-md-12">
                     <label class="form-label">Funeral arrangement</label>
                     <div *ngIf="mode=='edit'">
+                        <div class="fordesk">
                         <p-selectButton [options]="stlstfuneralarrangement"
                             [(ngModel)]="ResidentMaster.funeralarrangement" optionLabel="name" optionValue="code"
                             name="FuneralArrangement"></p-selectButton>
+                            </div>
+                            
+                            <div class="formobile">
+                                <p-dropdown [options]="stlstfuneralarrangement"
+                                    [(ngModel)]="ResidentMaster.funeralarrangement" optionLabel="name" optionValue="code"
+                                    name="FuneralArrangement"></p-dropdown>
+
+                            </div>
                     </div>
                     <div class="my-2" *ngIf="mode=='view'">{{ResidentMaster.funeralarrangement}}</div>
                 </div>

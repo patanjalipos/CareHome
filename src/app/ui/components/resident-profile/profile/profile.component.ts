@@ -38,11 +38,11 @@ export class ProfileComponent extends AppComponentBase implements OnInit {
       if (this.userid != null && this.userid != undefined && this.admissionid != null && this.admissionid != undefined) {
         this.GetClinicalIndicatorById(this.admissionid);
       if(this.residentadmissiondetails){
-        this.ResidentMaster.likes=this.residentadmissiondetails?.likes;
-        this.ResidentMaster.dislikes=this.residentadmissiondetails?.dislikes;
-        this.ResidentMaster.hobbies=this.residentadmissiondetails?.hobbies;
-        this.ResidentMaster.activity=this.residentadmissiondetails?.activity;
-        this.ResidentMaster.appointment=this.residentadmissiondetails?.appointment;
+        this.ResidentMaster.Likes=this.residentadmissiondetails?.Likes;
+        this.ResidentMaster.Dislikes=this.residentadmissiondetails?.Dislikes;
+        this.ResidentMaster.Hobbies=this.residentadmissiondetails?.Hobbies;
+        this.ResidentMaster.Activity=this.residentadmissiondetails?.Activity;
+        this.ResidentMaster.Appointment=this.residentadmissiondetails?.Appointment;
       }
 
       }
@@ -74,17 +74,17 @@ export class ProfileComponent extends AppComponentBase implements OnInit {
       if (this.lstResidentIndicators) {
         for (let i = 0; i < this.lstResidentIndicators.length; i++) {
           let rowData = this.lstResidentIndicators[i];
-          let groupname = rowData.groupname;
+          let GroupName = rowData.GroupName;
           if (i == 0) {
-            this.rowGroupMetadata[groupname] = { index: 0, size: 1 };
+            this.rowGroupMetadata[GroupName] = { index: 0, size: 1 };
           }
           else {
             let previousRowData = this.lstResidentIndicators[i - 1];
-            let previousRowGroup = previousRowData.groupname;
-            if (groupname === previousRowGroup)
-              this.rowGroupMetadata[groupname].size++;
+            let previousRowGroup = previousRowData.GroupName;
+            if (GroupName === previousRowGroup)
+              this.rowGroupMetadata[GroupName].size++;
             else
-              this.rowGroupMetadata[groupname] = { index: i, size: 1 };
+              this.rowGroupMetadata[GroupName] = { index: i, size: 1 };
           }
         }
         //console.log("data---", this.rowGroupMetadata)      
@@ -110,9 +110,9 @@ export class ProfileComponent extends AppComponentBase implements OnInit {
   }
   updateResident() {
     if (this.userid != null && this.admissionid != null) {      
-      this.ResidentMaster.userid = this.userid;
-      this.ResidentMaster.residentadmissioninfoid = this.admissionid;
-      this.ResidentMaster.modifiedby = localStorage.getItem('userId');
+      this.ResidentMaster.UserId = this.userid;
+      this.ResidentMaster.ResidentAdmissionInfoId = this.admissionid;
+      this.ResidentMaster.ModifiedBy = localStorage.getItem('userId');
       this._UtilityService.showSpinner();
       this.unsubscribe.add = this._MasterServices.UpdateResidentAdmissionProfile(this.ResidentMaster)
         .subscribe
@@ -135,5 +135,5 @@ export class ProfileComponent extends AppComponentBase implements OnInit {
       this._UtilityService.showWarningAlert("Resident admission details are missing.");
     }
   }
-
+ 
 }

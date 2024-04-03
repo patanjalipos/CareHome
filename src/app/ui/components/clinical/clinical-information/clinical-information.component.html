@@ -14,20 +14,20 @@
 </p-header>
 <div *ngIf="mode=='view'">
     <span style="color: #808080;">Coronavirus:</span><br>
-    <h5 class="m-0 mb-2">{{Clinical.iscovid?'Is suspected of having or has been diagnosed with COVID-19. Please keep isolated.':''}}</h5>
+    <h5 class="m-0 mb-2">{{Clinical.IsCovid?'Is suspected of having or has been diagnosed with COVID-19. Please keep isolated.':''}}</h5>
     <span style="color: #808080;">Diet:</span><br>
-    <h5 class="m-0 mb-2">{{Clinical.diet}}</h5>
+    <h5 class="m-0 mb-2">{{Clinical.Diet}}</h5>
     <span style="color: #808080;">Special Needs / Diagnosis:</span><br>
-    <h5 class="m-0 mb-2">{{Clinical.diagnosis}}</h5>
+    <h5 class="m-0 mb-2">{{Clinical.Diagnosis}}</h5>
     <span style="color: #808080;">Other information</span><br>
-    <h5 class="m-0 mb-2">{{Clinical.otherinfo}}</h5>
+    <h5 class="m-0 mb-2">{{Clinical.OtherInfo}}</h5>
 </div>
 <div *ngIf="mode=='edit'">
     <div class="row">
         <div class="col-md-6">
             <label>CoronaVirus:</label>
             <div class="field-checkbox">
-                <p-checkbox [(ngModel)]="Clinical.iscovid" [binary]="true" name="DNAR" inputId="binary"></p-checkbox>
+                <p-checkbox [(ngModel)]="Clinical.IsCovid" [binary]="true" name="DNAR" inputId="binary"></p-checkbox>
                 <label for="binary"><b>Has Coronavirus (COVID-19).</b></label>
             </div>
         </div>
@@ -35,19 +35,19 @@
         <div class="row">
         <div class="col-md-6">
             <label>Diet:</label>
-            <textarea class="form-control" rows="4" name="diet" [(ngModel)]="Clinical.diet"
+            <textarea class="form-control" rows="4" name="diet" [(ngModel)]="Clinical.Diet"
                 style="width: 100%;"></textarea>
         </div></div>
         <div class="row">
         <div class="col-md-6">
             <label>Special needs / diagnosis:</label>
-            <textarea class="form-control" rows="4" name="diet" [(ngModel)]="Clinical.diagnosis"
+            <textarea class="form-control" rows="4" name="diet" [(ngModel)]="Clinical.Diagnosis"
                 style="width: 100%;"></textarea>
         </div></div>
         <div class="row">
         <div class="col-md-6">
             <label>Other information:</label>
-            <textarea class="form-control" rows="4" name="diet" [(ngModel)]="Clinical.otherinfo"
+            <textarea class="form-control" rows="4" name="diet" [(ngModel)]="Clinical.OtherInfo"
                 style="width: 100%;"></textarea>
         </div>
     </div>

@@ -135,17 +135,17 @@ export class TaskPlannerComponent extends AppComponentBase implements OnInit {
             var tdata = JSON.parse(data.actionResult.result);
             tdata = tdata ? tdata : [];
             this.master = tdata;
-            if(this.master?.starttime!=null && this.master?.starttime!=undefined)
+            if(this.master?.StartTime!=null && this.master?.StartTime!=undefined)
             {
-              this.master.starttime = new Date(this.master.starttime);
+              this.master.StartTime = new Date(this.master.StartTime);
             }
-            if(this.master?.duetime!=null && this.master?.duetime!=undefined)
+            if(this.master?.DueTime!=null && this.master?.DueTime!=undefined)
             {
-              this.master.duetime = new Date(this.master.duetime);
+              this.master.DueTime = new Date(this.master.DueTime);
             }
             this.stlststatus.forEach(e => {
               var exist = this.stlststatus.find(f => f.code == e.code && e.code==this.taskPlannerStatus.Open);
-              if(exist || (this.master.status==this.taskPlannerStatus.Done))
+              if(exist || (this.master.Status==this.taskPlannerStatus.Done))
               {
                 e.disabled=true;
               } 
@@ -165,8 +165,8 @@ export class TaskPlannerComponent extends AppComponentBase implements OnInit {
       this.master.statementtype = "Insert";
     else
       this.master.statementtype = "Update";
-    this.master.assignedto =  this.selectedUser.userid;
-    this.master.modifiedby = localStorage.getItem('userId');
+    this.master.AssignedTo =  this.selectedUser.UserId;
+    this.master.ModifiedBy = localStorage.getItem('userId');
     this._UtilityService.showSpinner();
     this.unsubscribe.add = this._MasterServices.AddInsertUpdateTaskPlanner(this.master)
       .subscribe({
@@ -195,9 +195,9 @@ export class TaskPlannerComponent extends AppComponentBase implements OnInit {
   ResetModel() {
     this.master = <any>{};
     if (UserTypes.SuperAdmin !== this.s_userTypeId) {
-      this.master.homemasterid = localStorage.getItem('HomeMasterId');
+      this.master.HomeMasterId = localStorage.getItem('HomeMasterId');
     } 
-    this.master.status = this.taskPlannerStatus.Open;
+    this.master.Status = this.taskPlannerStatus.Open;
     this.stlststatus.forEach(e => {
       var exist = this.stlststatus.find(f => f.code == e.code && e.code==this.taskPlannerStatus.Open);
       if(exist)
@@ -214,7 +214,7 @@ export class TaskPlannerComponent extends AppComponentBase implements OnInit {
 
   DeleteTaskPlanner(id) {
     this.master.StatementType = "Delete";
-    this.master.taskplannerid = id;
+    this.master.TaskPlannerId = id;
     this._UtilityService.showSpinner();
       this.unsubscribe.add = this._MasterServices.AddInsertUpdateTaskPlanner(this.master)
         .subscribe

@@ -52,7 +52,7 @@ export class ClinicalInformationComponent extends AppComponentBase implements On
     
   }
   GetClinicalInformationById(admissionid) {
-    this.Clinical.StatementType = "Insert";
+    this.Clinical.statementtype = "Insert";
     this._UtilityService.showSpinner();   
     this.unsubscribe.add = this._MasterServices.GetClinicalInformationById(admissionid)  
       .subscribe({
@@ -63,7 +63,7 @@ export class ClinicalInformationComponent extends AppComponentBase implements On
             tdata = tdata ? tdata : [];
             this.Clinical = tdata;       
             //console.log('this.Clinical', this.Clinical);     
-            this.Clinical.StatementType = "Update";
+            this.Clinical.statementtype = "Update";
           }
         },
         error: (e) => {
@@ -75,9 +75,9 @@ export class ClinicalInformationComponent extends AppComponentBase implements On
   save()
   {
     if (this.userid != null && this.admissionid != null) {      
-      this.Clinical.userid = this.userid;
-      this.Clinical.residentadmissioninfoid = this.admissionid;
-      this.Clinical.modifiedby = localStorage.getItem('userId');
+      this.Clinical.UserId = this.userid;
+      this.Clinical.ResidentAdmissionInfoId = this.admissionid;
+      this.Clinical.ModifiedBy = localStorage.getItem('userId');
       this._UtilityService.showSpinner();
       this.unsubscribe.add = this._MasterServices.AddInsertUpdateClinicalInformation(this.Clinical)
         .subscribe

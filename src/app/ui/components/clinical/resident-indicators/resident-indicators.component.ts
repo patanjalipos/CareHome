@@ -64,7 +64,7 @@ export class ResidentIndicatorsComponent extends AppComponentBase implements OnI
             var tdata = JSON.parse(data.actionResult.result);
             tdata = tdata ? tdata : [];
             this.lstResidentIndicatorGroups = tdata;  
-            this.lstResidentIndicatorGroups.unshift({"indicatorgroupmasterid":"","groupname":"All"});  
+            this.lstResidentIndicatorGroups.unshift({"IndicatorGroupMasterId":"","GroupName":"All"});  
           }
           else {
             this.lstResidentIndicatorGroups = [];            
@@ -92,7 +92,7 @@ export class ResidentIndicatorsComponent extends AppComponentBase implements OnI
   {    
     if(this.status!==null)
     {
-      this.lstResidentIndicators=JSON.parse(JSON.stringify(this.lstResidentIndicatorsFilter.filter(e => e.isenable == this.status || e.isvisible == this.status))); 
+      this.lstResidentIndicators=JSON.parse(JSON.stringify(this.lstResidentIndicatorsFilter.filter(e => e.Isenable == this.status || e.Isvisible == this.status))); 
     }
     else
     {
@@ -100,7 +100,7 @@ export class ResidentIndicatorsComponent extends AppComponentBase implements OnI
     }
     if(this.grouphead!=='')
     {
-      this.lstResidentIndicators=JSON.parse(JSON.stringify(this.lstResidentIndicators.filter(e => e.indicatorgroupmasterid == this.grouphead))); 
+      this.lstResidentIndicators=JSON.parse(JSON.stringify(this.lstResidentIndicators.filter(e => e.IndicatorGroupMasterId == this.grouphead))); 
     }
   }
   OnEnabled(id)
@@ -108,8 +108,8 @@ export class ResidentIndicatorsComponent extends AppComponentBase implements OnI
    
     if(id!=null && id!=undefined)
     {
-    var Idx = this.lstResidentIndicators.findIndex(f => f.clinicalindicatorid == id);
-    var Idx1 = this.lstResidentIndicatorsFilter.findIndex(f => f.clinicalindicatorid == id);    
+    var Idx = this.lstResidentIndicators.findIndex(f => f.ClinicalIndicatorId == id);
+    var Idx1 = this.lstResidentIndicatorsFilter.findIndex(f => f.ClinicalIndicatorId == id);    
     if (Idx >= 0) {
         this.lstResidentIndicators[Idx].modifiedby = this.loginId;                
       } 
@@ -120,7 +120,9 @@ export class ResidentIndicatorsComponent extends AppComponentBase implements OnI
   }
   
   GetClinicalIndicatorById(admissionid) {
-    this.Clinical.StatementType = "Insert";
+    this.Clinical.statementtype = "Insert";
+    this.lstResidentIndicators = [];   
+    this.lstResidentIndicatorsFilter = []; 
     this._UtilityService.showSpinner();   
     this.unsubscribe.add = this._MasterServices.GetClinicalIndicatorById(admissionid)  
       .subscribe({
@@ -131,9 +133,10 @@ export class ResidentIndicatorsComponent extends AppComponentBase implements OnI
             tdata = tdata ? tdata : [];
             this.lstResidentIndicators = tdata;   
             this.lstResidentIndicatorsFilter = tdata; 
+            console.log('lstResidentIndicators1', this.lstResidentIndicators)   
             this.filterResidentIndicators();     
-            //console.log('lstResidentIndicatorsFilter', this.lstResidentIndicatorsFilter)   
-            this.Clinical.StatementType = "Update";            
+            console.log('lstResidentIndicators', this.lstResidentIndicators)   
+            this.Clinical.statementtype = "Update";            
           }
         },
         error: (e) => {
@@ -145,18 +148,18 @@ export class ResidentIndicatorsComponent extends AppComponentBase implements OnI
   save()
   {
     if (this.userid != null && this.admissionid != null) {      
-      this.Clinical.userid = this.userid;
-      this.Clinical.residentadmissioninfoid = this.admissionid;
-      this.Clinical.modifiedby = this.loginId;
+      this.Clinical.UserId = this.userid;
+      this.Clinical.ResidentAdmissionInfoId = this.admissionid;
+      this.Clinical.ModifiedBy = this.loginId;
       var selectedExtraItemDetails = [];      
-      var result=this.lstResidentIndicators.filter(f=>f.isenable==true || f.isvisible==true || f.clinicalindicatorid!=null);
+      var result=this.lstResidentIndicators.filter(f=>f.Isenable==true || f.Isvisible==true || f.ClinicalIndicatorId!=null);
       result.forEach(x => {
         var jsonObject = {
-          "clinicalindicatorid": x.clinicalindicatorid,
-          "indicatorgroupmasterid": x.indicatorgroupmasterid,
-          "indicatormasterid": x.indicatormasterid,
-          "isenable": x.isenable,
-          "isvisible": x.isvisible,
+          "ClinicalIndicatorId": x.ClinicalIndicatorId,
+          "IndicatorGroupMasterId": x.IndicatorGroupMasterId,
+          "IndicatorMasterId": x.IndicatorMasterId,
+          "Isenable": x.Isenable,
+          "Isvisible": x.Isvisible,
           "modifiedby": x.modifiedby
         }
         selectedExtraItemDetails.push(jsonObject);      
