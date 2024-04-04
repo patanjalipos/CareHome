@@ -1553,4 +1553,22 @@ export class MasterService {
                 downloadLink.click();
             });
     }
+
+    GetUserMenuItemAccessByModuleIdTreeTable(
+        userTypeId: string,
+        UserId: string
+    ): Observable<any> {
+        let reqHeader = new HttpHeaders({
+            'Content-Type': 'application/json',
+            'Access-Control-Allow-Origin': environment.BaseUriAdmin,
+        });
+        let params = new HttpParams();
+        params = params.append('userTypeId', userTypeId);
+        params = params.append('UserId', UserId);
+        return this._httpclient.get<any>(
+            environment.BaseUriAdmin +
+                'api/Admin/GetUserMenuItemAccessByModuleIdTreeTable',
+            { headers: reqHeader, params: params }
+        );
+    }
 }
