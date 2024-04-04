@@ -34,6 +34,15 @@ import { GpDoctorVisitCommunicationRecordComponent } from '../gp-doctor-visit-co
 import { ProfessionalVisitCommunicationRecordComponent } from '../professional-visit-communication-record/professional-visit-communication-record.component';
 import { RiskPhysicalDependencyAssessmentComponent } from '../risk-physical-dependency-assessment/risk-physical-dependency-assessment.component';
 import { RiskWaterlowPressureUlcerComponent } from '../risk-waterlow-pressure-ulcer/risk-waterlow-pressure-ulcer.component';
+import { CareHearingAssessmentComponent } from '../care-hearing-assessment/care-hearing-assessment.component';
+import { CareMentalHealthComponent } from '../care-mental-health/care-mental-health.component';
+import { CareSleepAndRestingAssessmentComponent } from '../care-sleep-and-resting-assessment/care-sleep-and-resting-assessment.component';
+import { CareVitaminDSupplementationComponent } from '../care-vitamin-d-supplementation/care-vitamin-d-supplementation.component';
+import { DeliriumRiskAndRiskReductionComponent } from '../delirium-risk-and-risk-reduction/delirium-risk-and-risk-reduction.component';
+import { MustStep5NutritionalManagementComponent } from '../must-step5-nutritional-management/must-step5-nutritional-management.component';
+import { OralHealthRiskAndOralPlanComponent } from '../oral-health-risk-and-oral-plan/oral-health-risk-and-oral-plan.component';
+import { RiskOnTheMoveComponent } from '../risk-on-the-move/risk-on-the-move.component';
+import { CareSpeechLanguageSsessmentComponent } from '../care-speech-language-ssessment/care-speech-language-ssessment.component';
 
 @Component({
     selector: 'app-forms-dashboard',
@@ -51,8 +60,8 @@ export class FormsDashboardComponent
     public lstMaster: any[] = [];
     public formDashboardList: any[] = [];
 
-    selectedFormMasterId : string;
-    selectedFormData : any;
+    selectedFormMasterId: string;
+    selectedFormData: any;
     selectedFormId: string;
 
     residentAdmissionInfoId: string;
@@ -79,7 +88,7 @@ export class FormsDashboardComponent
             }
         });
     }
-x
+    x
     ngOnInit() {
         this.GetformMaster();
     }
@@ -149,14 +158,14 @@ x
     }
 
     //View/Edit Form
-    OpenForm(selectedFormMasterId: string, selectedFormId: string =null, isEditable: boolean = true) {
+    OpenForm(selectedFormMasterId: string, selectedFormId: string = null, isEditable: boolean = true) {
         this.selectedFormId = selectedFormId;
         this.selectedFormMasterId = selectedFormMasterId;
 
         this.selectedFormData = {
             selectedFormID: this.selectedFormId,
             isEditable: isEditable,
-          };
+        };
 
         this._DataService.sendData(this.selectedFormData);
         this.ShowForm(this.selectedFormMasterId)
@@ -216,6 +225,33 @@ x
                 break;
             case FormTypes.RiskAssessmentWaterlow:
                 componentType = RiskWaterlowPressureUlcerComponent;
+                break;
+            case FormTypes.CareAssessmentHearing:
+                componentType = CareHearingAssessmentComponent;
+                break;
+            case FormTypes.CareAssessmentMental:
+                componentType = CareMentalHealthComponent;
+                break;
+            case FormTypes.CareAssessmentSleep:
+                componentType = CareSleepAndRestingAssessmentComponent;
+                break;
+            case FormTypes.CareAssessmentforVitaminD:
+                componentType = CareVitaminDSupplementationComponent;
+                break;
+            case FormTypes.Deliriumrisk:
+                componentType = DeliriumRiskAndRiskReductionComponent;
+                break;
+            case FormTypes.MUSTStep5NutritionalManagement:
+                componentType = MustStep5NutritionalManagementComponent;
+                break;
+            case FormTypes.OralHealthRiskAssessment:
+                componentType = OralHealthRiskAndOralPlanComponent;
+                break;
+            case FormTypes.RiskAssessmentOntheMove:
+                componentType = RiskOnTheMoveComponent;
+                break;
+            case FormTypes.CareAssessmentSpeech:
+                componentType = CareSpeechLanguageSsessmentComponent;
                 break;
             default:
                 componentType = NotfoundComponent;
