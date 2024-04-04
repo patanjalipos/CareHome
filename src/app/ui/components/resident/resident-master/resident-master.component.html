@@ -30,7 +30,8 @@
                                     <button *ngIf="mode=='view'" pButton type="button" label="Edit" class="btn-primary"
                                         (click)="$event.stopPropagation();edit()"></button>
                                     <button *ngIf="mode=='add' || mode=='edit'" pButton type="button" label="Save"
-                                        class="btn-primary" (click)="$event.stopPropagation();Submit()" [disabled]="!myForm.form.valid"></button>
+                                        class="btn-primary" (click)="$event.stopPropagation();Submit()"
+                                        [disabled]="!myForm.form.valid"></button>
                                     <button *ngIf="mode=='add' || mode=='edit'" pButton type="button" label="Cancel"
                                         class="btn-secondary ml-2" (click)="$event.stopPropagation();close();"></button>
                                 </div>
@@ -57,14 +58,14 @@
                                     <label class="form-label">Title</label>
                                     <div *ngIf="mode=='add' || mode=='edit'">
                                         <div class="fordesk">
-                                        <p-selectButton [options]="stlsttitle" [(ngModel)]="ResidentMaster.Title"
-                                            optionLabel="name" optionValue="code" name="Title"
-                                            #titleref="ngModel"></p-selectButton>
+                                            <p-selectButton [options]="stlsttitle" [(ngModel)]="ResidentMaster.Title"
+                                                optionLabel="name" optionValue="code" name="Title"
+                                                #titleref="ngModel"></p-selectButton>
                                         </div>
                                         <div class="formobile">
-                                        <p-dropdown [options]="stlsttitle" [(ngModel)]="ResidentMaster.Title"
-                                            optionLabel="name" optionValue="code" name="Title"
-                                            #titleref="ngModel"></p-dropdown>
+                                            <p-dropdown [options]="stlsttitle" [(ngModel)]="ResidentMaster.Title"
+                                                optionLabel="name" optionValue="code" name="Title"
+                                                #titleref="ngModel"></p-dropdown>
                                         </div>
 
                                         <div class="col-md-auto errorMessage "
@@ -144,13 +145,12 @@
                             <div class="row" *ngIf="mode=='add' || mode=='edit'">
                                 <div class="col-md-12"
                                     *ngIf="(ResidentMaster.ProfileImage==null || ResidentMaster.ProfileImage==undefined || ResidentMaster.ProfileImage=='')">
-                                    <label class="form-label">Resident Photo</label>                                    
-                                    <p-fileUpload name="file[]"
-                                            [showUploadButton]="false" accept="image/*" [multiple]="true"
-                                            [maxFileSize]="1000000" (onSelect)="fileUploader($event)"
-                                            (onClear)="fileUploaderReset();"
-                                            (onRemove)="fileUploaderReset();"></p-fileUpload>
-                                        </div>                                
+                                    <label class="form-label">Resident Photo</label>
+                                    <p-fileUpload name="file[]" [showUploadButton]="false" accept="image/*"
+                                        [multiple]="true" [maxFileSize]="1000000" (onSelect)="fileUploader($event)"
+                                        (onClear)="fileUploaderReset();"
+                                        (onRemove)="fileUploaderReset();"></p-fileUpload>
+                                </div>
                             </div>
                             <div class="row m-0">
                                 <div class="col-md-12 border p-2 bdr6"
@@ -188,15 +188,15 @@
                                 <div class="col-md-12">
                                     <label class="form-label">Gender / sex <span class="required">*</span></label>
                                     <div *ngIf="mode=='add' || mode=='edit'">
-                                        
+
                                         <div class="fordesk">
                                             <p-selectButton [options]="stlstgender" [(ngModel)]="ResidentMaster.Gender"
                                                 optionLabel="name" optionValue="code" name="gender"></p-selectButton>
                                         </div>
                                         <div class="formobile">
-                                        <p-dropdown [options]="stlstgender" [(ngModel)]="ResidentMaster.Gender"
-                                            optionLabel="name" optionValue="code" name="gender"></p-dropdown>
-                                    </div>
+                                            <p-dropdown [options]="stlstgender" [(ngModel)]="ResidentMaster.Gender"
+                                                optionLabel="name" optionValue="code" name="gender"></p-dropdown>
+                                        </div>
                                     </div>
                                     <div class="my-2 bold" *ngIf="mode=='view'">{{ResidentMaster.Gender}}</div>
                                 </div>
@@ -284,8 +284,9 @@
                             <h5 class="mt-5">Admission details</h5>
                             <div class="row">
                                 <div class="col-md-4">
-                                    <label class="form-label">Status</label>                                    
-                                    <div class="my-2 bold" *ngIf="mode=='view'">{{admissionStatus[ResidentMaster.AdmissionStatus]}}</div>
+                                    <label class="form-label">Status</label>
+                                    <div class="my-2 bold" *ngIf="mode=='view'">
+                                        {{admissionStatus[ResidentMaster.AdmissionStatus]}}</div>
                                 </div>
                                 <div class="col-md-4">
                                     <label class="form-label">Residency</label>
@@ -347,7 +348,7 @@
 
                                 </div>
                                 <div class="col-md-4">
-                                    <label class="form-label">Departure Reason</label>                                    
+                                    <label class="form-label">Departure Reason</label>
                                     <div class="my-2 bold" *ngIf="mode=='view'">{{ResidentMaster.DepartureReason}}</div>
                                 </div>
                             </div>
