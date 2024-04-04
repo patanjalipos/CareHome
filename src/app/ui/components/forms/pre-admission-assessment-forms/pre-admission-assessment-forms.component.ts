@@ -15,15 +15,15 @@ export class PreAdmissionAssessmentFormsComponent
     extends AppComponentBase
     implements OnInit
 {
-    PreAdmissionAssessmentFormsData: any=<any>{};
+    PreAdmissionAssessmentFormsData: any = <any>{};
     preSelectedFormData: any; //Form which is selected to edit or view
 
     isEditable: boolean; //Need to be passed from form Dashboard
+    mode: string = null;
 
     //Patient Details
     userId: any;
     residentAdmissionInfoId: any;
-
     //CreatedBy or ModifiedBy
     loginId: any;
 
@@ -60,16 +60,14 @@ export class PreAdmissionAssessmentFormsComponent
 
         alert(this.preSelectedFormData.isEditable);
         this.isEditable = this.preSelectedFormData.isEditable;
-        
+
         if (this.preSelectedFormData.selectedFormID != null) {
-            this.PreAdmissionAssessmentFormsData=<any>{};
+            this.PreAdmissionAssessmentFormsData = <any>{};
             this.GetPreAdmissionFormDetails(
                 this.preSelectedFormData.selectedFormID
             );
-        }
-        else
-        {
-            this.PreAdmissionAssessmentFormsData=<any>{};
+        } else {
+            this.PreAdmissionAssessmentFormsData = <any>{};
         }
     }
 
@@ -138,6 +136,10 @@ export class PreAdmissionAssessmentFormsComponent
                 'Resident admission details are missing.'
             );
         }
+    }
+
+    ResetModel() {
+        this.PreAdmissionAssessmentFormsData = <any>{};
     }
 
     personCapacityOptions: string[] = [

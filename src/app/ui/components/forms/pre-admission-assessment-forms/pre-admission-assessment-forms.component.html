@@ -37,10 +37,12 @@
         <div class="col-md-7 mt-4 mb-4">
             <ng-container *ngIf="isEditable; else readOnlyField">
                 <input
+                    pInputText
                     type="text"
                     name="PreAdmissionAssessmentFormsData.ChartheadName"
                     class="form-control"
                     [(ngModel)]="PreAdmissionAssessmentFormsData.ChartheadName"
+                    [disabled]="!isEditable"
                 />
             </ng-container>
             <ng-template #readOnlyField>
