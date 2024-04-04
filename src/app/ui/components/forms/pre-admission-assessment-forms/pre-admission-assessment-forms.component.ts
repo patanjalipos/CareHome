@@ -15,12 +15,15 @@ export class PreAdmissionAssessmentFormsComponent
     extends AppComponentBase
     implements OnInit
 {
-    PreAdmissionAssessmentFormsData: any = <any>{};
-    selectedFormId: string;
+    PreAdmissionAssessmentFormsData: any | undefined;
+    preSelectedFormData: any; //Form which is selected to edit or view
+
+    isEditable: boolean; //Need to be passed from form Dashboard
 
     //Patient Details
     userId: any;
     residentAdmissionInfoId: any;
+
     //CreatedBy or ModifiedBy
     loginId: any;
 
@@ -33,7 +36,8 @@ export class PreAdmissionAssessmentFormsComponent
     ) {
         super();
         this._ConstantServices.ActiveMenuName = 'Pre Assessment Admission Form';
-        this.loginId = localStorage.getItem('userId');
+
+        this.loginId = '6368fd74757dbcfdbbb1ce4c'; //localStorage.getItem('userId');
 
         this.unsubscribe.add = this.route.queryParams.subscribe((params) => {
             var ParamsArray = this._ConstantServices.GetParmasVal(params['q']);
@@ -51,13 +55,17 @@ export class PreAdmissionAssessmentFormsComponent
 
     ngOnInit(): void {
         this._DataService.data$.subscribe((data) => {
-            this.selectedFormId = data;
+            this.preSelectedFormData = data;
         });
 
-        if (this.selectedFormId != null) {
-            this.GetPreAdmissionFormDetails(this.selectedFormId);
+        alert(this.preSelectedFormData.isEditable);
+        this.isEditable = this.preSelectedFormData.isEditable;
+        
+        if (this.preSelectedFormData.selectedFormID != null) {
+            this.GetPreAdmissionFormDetails(
+                this.preSelectedFormData.selectedFormID
+            );
         }
-        console.log(this.PreAdmissionAssessmentFormsData);// Not working
     }
 
     GetPreAdmissionFormDetails(formId: string) {
@@ -71,8 +79,7 @@ export class PreAdmissionAssessmentFormsComponent
                         var tdata = JSON.parse(data.actionResult.result);
                         tdata = tdata ? tdata : {};
                         this.PreAdmissionAssessmentFormsData = tdata;
-                        console.log(this.PreAdmissionAssessmentFormsData);//Working 
-                       } else {
+                    } else {
                         this.PreAdmissionAssessmentFormsData = {};
                     }
                 },
