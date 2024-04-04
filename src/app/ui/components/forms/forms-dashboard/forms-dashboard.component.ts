@@ -43,8 +43,6 @@ import { RiskWaterlowPressureUlcerComponent } from '../risk-waterlow-pressure-ul
 export class FormsDashboardComponent
     extends AppComponentBase
     implements OnInit {
-    //@Output() dataEvent = new EventEmitter<any>();
-
     @ViewChild('formContainer', { read: ViewContainerRef })
     formContainer: ViewContainerRef;
     componentRef: ComponentRef<any>;
@@ -53,9 +51,12 @@ export class FormsDashboardComponent
     public lstMaster: any[] = [];
     public formDashboardList: any[] = [];
 
+    selectedFormMasterId : string;
+    selectedFormData : any;
+    selectedFormId: string;
+
     residentAdmissionInfoId: string;
     rangeDates: Date[] | undefined;
-    selectedFormType: string;
 
     constructor(
         private _ConstantServices: ConstantsService,
@@ -78,7 +79,7 @@ export class FormsDashboardComponent
             }
         });
     }
-
+x
     ngOnInit() {
         this.GetformMaster();
     }
@@ -106,7 +107,7 @@ export class FormsDashboardComponent
             });
     }
 
-    searchForm(selectedFormId: string, rangeDates: Date[]) {
+    SearchForm(selectedFormId: string, rangeDates: Date[]) {
         this._UtilityService.showSpinner();
         //console.log('date Ranges: ' + rangeDates);
         const residentAdmissionInfoId = this.residentAdmissionInfoId;
@@ -148,27 +149,29 @@ export class FormsDashboardComponent
     }
 
     //View/Edit Form
-    OpenForm(formMasterId: string, formId: string, isEditable: boolean) {
+    OpenForm(selectedFormMasterId: string, selectedFormId: string =null, isEditable: boolean = true) {
+        this.selectedFormId = selectedFormId;
+        this.selectedFormMasterId = selectedFormMasterId;
 
-        // console.log('Form master id :' + formMasterId);
-        // console.log('Form id :' + formId);
-        // this.dataEvent.emit(formId);
+        this.selectedFormData = {
+            selectedFormID: this.selectedFormId,
+            isEditable: isEditable,
+          };
 
-        this._DataService.sendData(formId);
-        this.ShowForm(formMasterId)
+        this._DataService.sendData(this.selectedFormData);
+        this.ShowForm(this.selectedFormMasterId)
     }
 
     //Create new Form
-    ShowForm(selectedFormId: string) {
+    ShowForm(selectedFormMasterId: string) {
         // Clear existing component if any
         if (this.componentRef) {
             this.componentRef.destroy();
         }
-
-        console.log(selectedFormId);
         // Determine which component to load based on selectedForm
         let componentType: any;
-        switch (selectedFormId) {
+
+        switch (selectedFormMasterId) {
             case FormTypes.PreAdmission:
                 componentType = PreAdmissionAssessmentFormsComponent;
                 break;
@@ -214,7 +217,6 @@ export class FormsDashboardComponent
             case FormTypes.RiskAssessmentWaterlow:
                 componentType = RiskWaterlowPressureUlcerComponent;
                 break;
-
             default:
                 componentType = NotfoundComponent;
         }
@@ -227,6 +229,9 @@ export class FormsDashboardComponent
     ResetModel() {
         this.formDashboardList = <any>{};
         this.rangeDates = undefined;
-        this.selectedFormType = null;
+        this.selectedFormMasterId = null;
+        this.selectedFormId = null;
+        this.selectedFormData = null;
+        this.componentRef.destroy();
     }
 }
