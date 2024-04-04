@@ -15,7 +15,7 @@ export class PreAdmissionAssessmentFormsComponent
     extends AppComponentBase
     implements OnInit
 {
-    PreAdmissionAssessmentFormsData: any | undefined;
+    PreAdmissionAssessmentFormsData: any=<any>{};
     preSelectedFormData: any; //Form which is selected to edit or view
 
     isEditable: boolean; //Need to be passed from form Dashboard
@@ -62,9 +62,14 @@ export class PreAdmissionAssessmentFormsComponent
         this.isEditable = this.preSelectedFormData.isEditable;
         
         if (this.preSelectedFormData.selectedFormID != null) {
+            this.PreAdmissionAssessmentFormsData=<any>{};
             this.GetPreAdmissionFormDetails(
                 this.preSelectedFormData.selectedFormID
             );
+        }
+        else
+        {
+            this.PreAdmissionAssessmentFormsData=<any>{};
         }
     }
 
