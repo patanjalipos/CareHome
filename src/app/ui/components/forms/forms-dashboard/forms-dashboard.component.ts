@@ -21,6 +21,19 @@ import { ActivatedRoute } from '@angular/router';
 import { DataService } from 'src/app/ui/service/data-service.service';
 import { AccidentIncidentNearMissRecordComponent } from '../accident-incident-near-miss-record/accident-incident-near-miss-record.component';
 import { AcuteCarePlanInfectionPreventionAndControlComponent } from '../acute-care-plan-infection-prevention-and-control/acute-care-plan-infection-prevention-and-control.component';
+import { BodyMappingRecordComponent } from '../body-mapping-record/body-mapping-record.component';
+import { CareBreathingAndCirculationAssessmentComponent } from '../care-breathing-and-circulation-assessment/care-breathing-and-circulation-assessment.component';
+import { CareContinencePromotionModule } from '../care-continence-promotion/care-continence-promotion.module';
+import { CareEatsAndTreatsComponent } from '../care-eats-and-treats/care-eats-and-treats.component';
+import { CareFeelingFreshAndCleanComponent } from '../care-feeling-fresh-and-clean/care-feeling-fresh-and-clean.component';
+import { CareContinencePromotionComponent } from '../care-continence-promotion/care-continence-promotion.component';
+import { CarePersonalEmergencyEvacuationPlanComponent } from '../care-personal-emergency-evacuation-plan/care-personal-emergency-evacuation-plan.component';
+import { ConnectingAndCommunicatingComponent } from '../connecting-and-communicating/connecting-and-communicating.component';
+import { FamilyCommunicationComponent } from '../family-communication/family-communication.component';
+import { GpDoctorVisitCommunicationRecordComponent } from '../gp-doctor-visit-communication-record/gp-doctor-visit-communication-record.component';
+import { ProfessionalVisitCommunicationRecordComponent } from '../professional-visit-communication-record/professional-visit-communication-record.component';
+import { RiskPhysicalDependencyAssessmentComponent } from '../risk-physical-dependency-assessment/risk-physical-dependency-assessment.component';
+import { RiskWaterlowPressureUlcerComponent } from '../risk-waterlow-pressure-ulcer/risk-waterlow-pressure-ulcer.component';
 
 @Component({
     selector: 'app-forms-dashboard',
@@ -29,8 +42,7 @@ import { AcuteCarePlanInfectionPreventionAndControlComponent } from '../acute-ca
 })
 export class FormsDashboardComponent
     extends AppComponentBase
-    implements OnInit
-{
+    implements OnInit {
     @ViewChild('formContainer', { read: ViewContainerRef })
     formContainer: ViewContainerRef;
     componentRef: ComponentRef<any>;
@@ -158,6 +170,7 @@ x
         }
         // Determine which component to load based on selectedForm
         let componentType: any;
+
         switch (selectedFormMasterId) {
             case FormTypes.PreAdmission:
                 componentType = PreAdmissionAssessmentFormsComponent;
@@ -167,6 +180,42 @@ x
                 break;
             case FormTypes.AcuteCarePlan:
                 componentType = AcuteCarePlanInfectionPreventionAndControlComponent;
+                break;
+            case FormTypes.BodyMappingRecord:
+                componentType = BodyMappingRecordComponent;
+                break;
+            case FormTypes.CareAssessmentBreathing:
+                componentType = CareBreathingAndCirculationAssessmentComponent;
+                break;
+            case FormTypes.CareAssessmentContinence:
+                componentType = CareContinencePromotionComponent;
+                break;
+            case FormTypes.CareAssessmentEats:
+                componentType = CareEatsAndTreatsComponent;
+                break;
+            case FormTypes.CareAssessmentFeeling:
+                componentType = CareFeelingFreshAndCleanComponent;
+                break;
+            case FormTypes.CareAssessmentPersonal:
+                componentType = CarePersonalEmergencyEvacuationPlanComponent;
+                break;
+            case FormTypes.ConnectingandCommunicating:
+                componentType = ConnectingAndCommunicatingComponent;
+                break;
+            case FormTypes.FamilyCommunication:
+                componentType = FamilyCommunicationComponent;
+                break;
+            case FormTypes.GPDoctorVisitCommunicationRecord:
+                componentType = GpDoctorVisitCommunicationRecordComponent;
+                break;
+            case FormTypes.ProfessionalVisitCommunicationRecord:
+                componentType = ProfessionalVisitCommunicationRecordComponent;
+                break;
+            case FormTypes.RiskAssessmentPhysical:
+                componentType = RiskPhysicalDependencyAssessmentComponent;
+                break;
+            case FormTypes.RiskAssessmentWaterlow:
+                componentType = RiskWaterlowPressureUlcerComponent;
                 break;
             default:
                 componentType = NotfoundComponent;
