@@ -49,9 +49,22 @@ export enum UserTypes {
 }
 
 export enum FormTypes {
-  PreAdmsnForm = "65e6db2de37632e29ad778ba",
-  MedicalForm = "65e6db54e37632e29ad778bb",
-  Fitness = "65e6db61e37632e29ad778bc"
+  PreAdmission = "65e6db2de37632e29ad778ba",
+  AccidentIncident = "65e6db54e37632e29ad778bb",
+  AcuteCarePlan = "65e6db61e37632e29ad778bc",
+  BloodTestRecord = "65e950b1ef1f6e9ecaf7dbeb",
+  BodyMappingRecord = "65eee25b34399c226ce7c84c",
+  CareAssessmentBreathing = "65f7bf9db44c935375edd8ff",
+  CareAssessmentContinence = "660cddb2f05fe3604a126e48",
+  CareAssessmentEats = "660cde176532ff5562029d72",
+  CareAssessmentFeeling = "660cde286532ff5562029d73",
+  FamilyCommunication = "65eee23e34399c226ce7c84b",
+  CareAssessmentPersonal = "660cffe0f05fe3604a126e49",
+  ConnectingandCommunicating ="660d0017f05fe3604a126e4a",
+  GPDoctorVisitCommunicationRecord = "660d003bf05fe3604a126e4b",
+  ProfessionalVisitCommunicationRecord = "660d0079f05fe3604a126e4c",
+  RiskAssessmentPhysical="660d009bf05fe3604a126e4d",
+  RiskAssessmentWaterlow = "660d00d3f05fe3604a126e4e"
 }
 
 export enum AdmissionStatus {

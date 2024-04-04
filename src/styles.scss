@@ -553,9 +553,9 @@ p-inputnumber,
     margin-bottom: 10px !important;
 }
 
-.p-button {
-    height: 35px !important;
-}
+// .p-button {
+//     height: 35px !important;
+// }
 
 .p-fileupload-row>div {
     width: auto !important;
@@ -1391,7 +1391,8 @@ p.date-box {
 }
 // form css 
 // new css add {pre admission form css }
-.preform-box p{  font-weight: 600;}
+.labelcontent p{font-weight: 600;}
 .formheader {background-color: #F6F9F9; color: #000; padding: 10px 10px;border-radius: 5px;}
 .p-button { color: #ffffff; background: #023c40;border: 1px solid #023c40;}
 .form-icon i{color: #023c40;}
+.implabel{color: red;}

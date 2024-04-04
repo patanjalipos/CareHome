@@ -19,6 +19,21 @@ import { PreAdmissionAssessmentFormsComponent } from '../pre-admission-assessmen
 import { NotfoundComponent } from '../../notfound/notfound.component';
 import { ActivatedRoute } from '@angular/router';
 import { DataService } from 'src/app/ui/service/data-service.service';
+import { AccidentIncidentNearMissRecordComponent } from '../accident-incident-near-miss-record/accident-incident-near-miss-record.component';
+import { AcuteCarePlanInfectionPreventionAndControlComponent } from '../acute-care-plan-infection-prevention-and-control/acute-care-plan-infection-prevention-and-control.component';
+import { BodyMappingRecordComponent } from '../body-mapping-record/body-mapping-record.component';
+import { CareBreathingAndCirculationAssessmentComponent } from '../care-breathing-and-circulation-assessment/care-breathing-and-circulation-assessment.component';
+import { CareContinencePromotionModule } from '../care-continence-promotion/care-continence-promotion.module';
+import { CareEatsAndTreatsComponent } from '../care-eats-and-treats/care-eats-and-treats.component';
+import { CareFeelingFreshAndCleanComponent } from '../care-feeling-fresh-and-clean/care-feeling-fresh-and-clean.component';
+import { CareContinencePromotionComponent } from '../care-continence-promotion/care-continence-promotion.component';
+import { CarePersonalEmergencyEvacuationPlanComponent } from '../care-personal-emergency-evacuation-plan/care-personal-emergency-evacuation-plan.component';
+import { ConnectingAndCommunicatingComponent } from '../connecting-and-communicating/connecting-and-communicating.component';
+import { FamilyCommunicationComponent } from '../family-communication/family-communication.component';
+import { GpDoctorVisitCommunicationRecordComponent } from '../gp-doctor-visit-communication-record/gp-doctor-visit-communication-record.component';
+import { ProfessionalVisitCommunicationRecordComponent } from '../professional-visit-communication-record/professional-visit-communication-record.component';
+import { RiskPhysicalDependencyAssessmentComponent } from '../risk-physical-dependency-assessment/risk-physical-dependency-assessment.component';
+import { RiskWaterlowPressureUlcerComponent } from '../risk-waterlow-pressure-ulcer/risk-waterlow-pressure-ulcer.component';
 
 @Component({
     selector: 'app-forms-dashboard',
@@ -27,10 +42,7 @@ import { DataService } from 'src/app/ui/service/data-service.service';
 })
 export class FormsDashboardComponent
     extends AppComponentBase
-    implements OnInit
-{
-    //@Output() dataEvent = new EventEmitter<any>();
-
+    implements OnInit {
     @ViewChild('formContainer', { read: ViewContainerRef })
     formContainer: ViewContainerRef;
     componentRef: ComponentRef<any>;
@@ -39,9 +51,12 @@ export class FormsDashboardComponent
     public lstMaster: any[] = [];
     public formDashboardList: any[] = [];
 
+    selectedFormMasterId : string;
+    selectedFormData : any;
+    selectedFormId: string;
+
     residentAdmissionInfoId: string;
     rangeDates: Date[] | undefined;
-    selectedFormType: string;
 
     constructor(
         private _ConstantServices: ConstantsService,
@@ -64,7 +79,7 @@ export class FormsDashboardComponent
             }
         });
     }
-
+x
     ngOnInit() {
         this.GetformMaster();
     }
@@ -92,7 +107,7 @@ export class FormsDashboardComponent
             });
     }
 
-    searchForm(selectedFormId: string, rangeDates: Date[]) {
+    SearchForm(selectedFormId: string, rangeDates: Date[]) {
         this._UtilityService.showSpinner();
         //console.log('date Ranges: ' + rangeDates);
         const residentAdmissionInfoId = this.residentAdmissionInfoId;
@@ -134,34 +149,73 @@ export class FormsDashboardComponent
     }
 
     //View/Edit Form
-    openForm(formMasterId: string, formId: string) {
+    OpenForm(selectedFormMasterId: string, selectedFormId: string =null, isEditable: boolean = true) {
+        this.selectedFormId = selectedFormId;
+        this.selectedFormMasterId = selectedFormMasterId;
 
-        //console.log('Form master id :' + formMasterId);
-        //console.log('Form id :' + formId);
-        //this.dataEvent.emit(formId);
+        this.selectedFormData = {
+            selectedFormID: this.selectedFormId,
+            isEditable: isEditable,
+          };
 
-        this._DataService.sendData(formId);
-        this.showForm(formMasterId)
+        this._DataService.sendData(this.selectedFormData);
+        this.ShowForm(this.selectedFormMasterId)
     }
 
     //Create new Form
-    showForm(selectedFormId: string) {
+    ShowForm(selectedFormMasterId: string) {
         // Clear existing component if any
         if (this.componentRef) {
             this.componentRef.destroy();
         }
-
         // Determine which component to load based on selectedForm
         let componentType: any;
-        switch (selectedFormId) {
-            case FormTypes.PreAdmsnForm:
+
+        switch (selectedFormMasterId) {
+            case FormTypes.PreAdmission:
                 componentType = PreAdmissionAssessmentFormsComponent;
                 break;
-            case FormTypes.MedicalForm:
-                componentType = NotfoundComponent;
+            case FormTypes.AccidentIncident:
+                componentType = AccidentIncidentNearMissRecordComponent;
                 break;
-            case FormTypes.Fitness:
-                componentType = NotfoundComponent;
+            case FormTypes.AcuteCarePlan:
+                componentType = AcuteCarePlanInfectionPreventionAndControlComponent;
+                break;
+            case FormTypes.BodyMappingRecord:
+                componentType = BodyMappingRecordComponent;
+                break;
+            case FormTypes.CareAssessmentBreathing:
+                componentType = CareBreathingAndCirculationAssessmentComponent;
+                break;
+            case FormTypes.CareAssessmentContinence:
+                componentType = CareContinencePromotionComponent;
+                break;
+            case FormTypes.CareAssessmentEats:
+                componentType = CareEatsAndTreatsComponent;
+                break;
+            case FormTypes.CareAssessmentFeeling:
+                componentType = CareFeelingFreshAndCleanComponent;
+                break;
+            case FormTypes.CareAssessmentPersonal:
+                componentType = CarePersonalEmergencyEvacuationPlanComponent;
+                break;
+            case FormTypes.ConnectingandCommunicating:
+                componentType = ConnectingAndCommunicatingComponent;
+                break;
+            case FormTypes.FamilyCommunication:
+                componentType = FamilyCommunicationComponent;
+                break;
+            case FormTypes.GPDoctorVisitCommunicationRecord:
+                componentType = GpDoctorVisitCommunicationRecordComponent;
+                break;
+            case FormTypes.ProfessionalVisitCommunicationRecord:
+                componentType = ProfessionalVisitCommunicationRecordComponent;
+                break;
+            case FormTypes.RiskAssessmentPhysical:
+                componentType = RiskPhysicalDependencyAssessmentComponent;
+                break;
+            case FormTypes.RiskAssessmentWaterlow:
+                componentType = RiskWaterlowPressureUlcerComponent;
                 break;
             default:
                 componentType = NotfoundComponent;
@@ -175,6 +229,9 @@ export class FormsDashboardComponent
     ResetModel() {
         this.formDashboardList = <any>{};
         this.rangeDates = undefined;
-        this.selectedFormType = null;
+        this.selectedFormMasterId = null;
+        this.selectedFormId = null;
+        this.selectedFormData = null;
+        this.componentRef.destroy();
     }
 }
