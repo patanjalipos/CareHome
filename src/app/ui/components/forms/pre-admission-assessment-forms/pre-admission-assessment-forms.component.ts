@@ -11,15 +11,14 @@ import { UtilityService } from 'src/app/utility/utility.service';
     templateUrl: './pre-admission-assessment-forms.component.html',
     styleUrls: ['./pre-admission-assessment-forms.component.scss'],
 })
-
 export class PreAdmissionAssessmentFormsComponent
     extends AppComponentBase
     implements OnInit
 {
     PreAdmissionAssessmentFormsData: any | undefined;
-    selectedFormId: string; //Form which is selected to edit or view
+    preSelectedFormData: any; //Form which is selected to edit or view
 
-    isEditable : boolean = false; //Need to be passed from form Dashboard
+    isEditable: boolean; //Need to be passed from form Dashboard
 
     //Patient Details
     userId: any;
@@ -37,8 +36,8 @@ export class PreAdmissionAssessmentFormsComponent
     ) {
         super();
         this._ConstantServices.ActiveMenuName = 'Pre Assessment Admission Form';
-        this.loginId = "6368fd74757dbcfdbbb1ce4c";
-        //localStorage.getItem('userId');
+
+        this.loginId = '6368fd74757dbcfdbbb1ce4c'; //localStorage.getItem('userId');
 
         this.unsubscribe.add = this.route.queryParams.subscribe((params) => {
             var ParamsArray = this._ConstantServices.GetParmasVal(params['q']);
@@ -56,10 +55,16 @@ export class PreAdmissionAssessmentFormsComponent
 
     ngOnInit(): void {
         this._DataService.data$.subscribe((data) => {
-            this.selectedFormId = data;
+            this.preSelectedFormData = data;
         });
-        if (this.selectedFormId != null) {
-            this.GetPreAdmissionFormDetails(this.selectedFormId);
+
+        alert(this.preSelectedFormData.isEditable);
+        this.isEditable = this.preSelectedFormData.isEditable;
+        
+        if (this.preSelectedFormData.selectedFormID != null) {
+            this.GetPreAdmissionFormDetails(
+                this.preSelectedFormData.selectedFormID
+            );
         }
     }
 

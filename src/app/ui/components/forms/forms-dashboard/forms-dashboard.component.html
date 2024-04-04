@@ -19,14 +19,14 @@
                 Select Assessment Form <span class="required">*</span></label
             >
             <p-dropdown
-                [(ngModel)]="selectedFormType"
+                [(ngModel)]="selectedFormMasterId"
                 [required]="true"
                 [options]="lstMaster"
                 optionLabel="FormName"
                 optionValue="FormMasterId"
                 placeholder="Select"
                 [style]="{ width: '100%' }"
-                (onChange)="searchForm(selectedFormType, rangeDates)"
+                (onChange)="SearchForm(selectedFormMasterId, rangeDates)"
             >
             </p-dropdown>
         </div>
@@ -37,7 +37,7 @@
                     pButton
                     title="New"
                     label="Create Form"
-                    (click)="ShowForm(selectedFormType)"
+                    (click)="OpenForm(selectedFormMasterId)"
                 ></button>
                 <span class="total-txt"> </span>
             </span>
