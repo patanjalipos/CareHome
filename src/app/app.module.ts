@@ -14,6 +14,8 @@ import { NodeService } from './ui/service/node.service';
 import { PhotoService } from './ui/service/photo.service';
 import { UtilityModule } from './utility/utility.module';
 import { ResidentLayoutModule } from './layout/resident.layout.module';
+import { MainInterceptorInterceptor } from './main-interceptor.interceptor';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
 
 
 @NgModule({
@@ -30,7 +32,12 @@ import { ResidentLayoutModule } from './layout/resident.layout.module';
         DatePipe,
         { provide: LocationStrategy, useClass: HashLocationStrategy },
         CountryService, CustomerService, EventService, IconService, NodeService,
-        PhotoService, ProductService,CareService
+        PhotoService, ProductService,CareService,
+        {
+            provide:HTTP_INTERCEPTORS,
+            useClass:MainInterceptorInterceptor,
+            multi:true
+        },
     ],
     bootstrap: [AppComponent]
 })
