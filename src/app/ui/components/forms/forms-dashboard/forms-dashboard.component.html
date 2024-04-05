@@ -83,7 +83,7 @@
                 <tr>
                     <td>{{ dt.FormName }}</td>
                     <td>{{ dt.ModifiedBy }}</td>
-                    <td>{{ dt.Designation }}</td>
+                    <td>{{ dt.ModifiedByDesignation }}</td>
                     <td>
                         {{ dt.IsCompleted == 1 ? "Completed" : "Incomplete" }}
                     </td>
@@ -97,8 +97,7 @@
                         <a
                             title="View"
                             (click)="
-                                OpenForm(dt.FormMasterId, dt.FormId, false)
-                            "
+                                OpenForm(dt.FormMasterId, dt, false)"
                         >
                             <i class="fa fa-eye" aria-hidden="true"></i>
                         </a>
@@ -106,7 +105,7 @@
                         <!-- Adjust the margin-left as needed -->
                         <a
                             title="Edit"
-                            (click)="OpenForm(dt.FormMasterId, dt.FormId, true)"
+                            (click)="OpenForm(dt.FormMasterId, dt , true)"
                         >
                             <i class="fa fa-pencil" aria-hidden="true"></i>
                         </a>
