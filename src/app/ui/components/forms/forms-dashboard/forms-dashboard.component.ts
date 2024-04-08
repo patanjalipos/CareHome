@@ -23,7 +23,6 @@ import { AccidentIncidentNearMissRecordComponent } from '../accident-incident-ne
 import { AcuteCarePlanInfectionPreventionAndControlComponent } from '../acute-care-plan-infection-prevention-and-control/acute-care-plan-infection-prevention-and-control.component';
 import { BodyMappingRecordComponent } from '../body-mapping-record/body-mapping-record.component';
 import { CareBreathingAndCirculationAssessmentComponent } from '../care-breathing-and-circulation-assessment/care-breathing-and-circulation-assessment.component';
-import { CareContinencePromotionModule } from '../care-continence-promotion/care-continence-promotion.module';
 import { CareEatsAndTreatsComponent } from '../care-eats-and-treats/care-eats-and-treats.component';
 import { CareFeelingFreshAndCleanComponent } from '../care-feeling-fresh-and-clean/care-feeling-fresh-and-clean.component';
 import { CareContinencePromotionComponent } from '../care-continence-promotion/care-continence-promotion.component';
@@ -34,7 +33,6 @@ import { GpDoctorVisitCommunicationRecordComponent } from '../gp-doctor-visit-co
 import { ProfessionalVisitCommunicationRecordComponent } from '../professional-visit-communication-record/professional-visit-communication-record.component';
 import { RiskPhysicalDependencyAssessmentComponent } from '../risk-physical-dependency-assessment/risk-physical-dependency-assessment.component';
 import { RiskWaterlowPressureUlcerComponent } from '../risk-waterlow-pressure-ulcer/risk-waterlow-pressure-ulcer.component';
-import { CareHearingAssessmentComponent } from '../care-hearing-assessment/care-hearing-assessment.component';
 import { CareMentalHealthComponent } from '../care-mental-health/care-mental-health.component';
 import { CareSleepAndRestingAssessmentComponent } from '../care-sleep-and-resting-assessment/care-sleep-and-resting-assessment.component';
 import { CareVitaminDSupplementationComponent } from '../care-vitamin-d-supplementation/care-vitamin-d-supplementation.component';
@@ -43,6 +41,7 @@ import { MustStep5NutritionalManagementComponent } from '../must-step5-nutrition
 import { OralHealthRiskAndOralPlanComponent } from '../oral-health-risk-and-oral-plan/oral-health-risk-and-oral-plan.component';
 import { RiskOnTheMoveComponent } from '../risk-on-the-move/risk-on-the-move.component';
 import { CareSpeechLanguageSsessmentComponent } from '../care-speech-language-ssessment/care-speech-language-ssessment.component';
+import { CareHearingAssessmentComponent } from '../care-hearing-assessment/care-hearing-assessment.component';
 
 @Component({
     selector: 'app-forms-dashboard',
@@ -227,7 +226,7 @@ export class FormsDashboardComponent
                 componentType = RiskWaterlowPressureUlcerComponent;
                 break;
             case FormTypes.CareAssessmentHearing:
-                componentType = CareHearingAssessmentComponent;
+                componentType =CareHearingAssessmentComponent;
                 break;
             case FormTypes.CareAssessmentMental:
                 componentType = CareMentalHealthComponent;

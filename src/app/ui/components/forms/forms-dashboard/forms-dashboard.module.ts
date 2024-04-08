@@ -28,6 +28,17 @@ import { RiskPhysicalDependencyAssessmentModule } from '../risk-physical-depende
 import { RiskWaterlowPressureUlcerModule } from '../risk-waterlow-pressure-ulcer/risk-waterlow-pressure-ulcer.module';
 import { CareFeelingFreshAndCleanComponent } from '../care-feeling-fresh-and-clean/care-feeling-fresh-and-clean.component';
 import { CareFeelingFreshAndCleanModule } from '../care-feeling-fresh-and-clean/care-feeling-fresh-and-clean.module';
+import { CareHearingAssessmentModule } from '../care-hearing-assessment/care-hearing-assessment.module';
+import { CareMentalHealthComponent } from '../care-mental-health/care-mental-health.component';
+import { CareMentalHealthModule } from '../care-mental-health/care-mental-health.module';
+import { CareSleepAndRestingAssessmentComponent } from '../care-sleep-and-resting-assessment/care-sleep-and-resting-assessment.component';
+import { CareSleepAndRestingAssessmentModule } from '../care-sleep-and-resting-assessment/care-sleep-and-resting-assessment.module';
+import { DeliriumRiskAndRiskReductionModule } from '../delirium-risk-and-risk-reduction/delirium-risk-and-risk-reduction.module';
+import { RiskOnTheMoveModule } from '../risk-on-the-move/risk-on-the-move.module';
+import { OralHealthRiskAndOralPlanModule } from '../oral-health-risk-and-oral-plan/oral-health-risk-and-oral-plan.module';
+import { CareVitaminDSupplementationModule } from '../care-vitamin-d-supplementation/care-vitamin-d-supplementation.module';
+import { MustStep5NutritionalManagementModule } from '../must-step5-nutritional-management/must-step5-nutritional-management.module';
+import { CareSpeechLanguageSsessmentModule } from '../care-speech-language-ssessment/care-speech-language-ssessment.module';
 
 
 
@@ -64,7 +75,16 @@ import { CareFeelingFreshAndCleanModule } from '../care-feeling-fresh-and-clean/
     ProfessionalVisitCommunicationRecordModule,
     RiskPhysicalDependencyAssessmentModule,
     RiskWaterlowPressureUlcerModule,
-    CareFeelingFreshAndCleanModule
+    CareFeelingFreshAndCleanModule,
+    CareHearingAssessmentModule,
+    CareMentalHealthModule,
+    CareSleepAndRestingAssessmentModule,
+    DeliriumRiskAndRiskReductionModule,
+    RiskOnTheMoveModule,
+    OralHealthRiskAndOralPlanModule,
+    CareVitaminDSupplementationModule,
+    MustStep5NutritionalManagementModule,
+    CareSpeechLanguageSsessmentModule
    
  
 

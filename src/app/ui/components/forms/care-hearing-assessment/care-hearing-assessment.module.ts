@@ -9,6 +9,7 @@ import { DropdownModule } from 'primeng/dropdown';
 import { FormsModule } from '@angular/forms';
 import { TriStateCheckboxModule } from 'primeng/tristatecheckbox';
 
+
 @NgModule({
   declarations: [
     CareHearingAssessmentComponent
@@ -21,9 +22,6 @@ import { TriStateCheckboxModule } from 'primeng/tristatecheckbox';
     DropdownModule,
     FormsModule,
     TriStateCheckboxModule,
-  
-    
-  
   ]
 })
 export class CareHearingAssessmentModule { }
