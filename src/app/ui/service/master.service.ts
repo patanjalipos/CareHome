@@ -1571,4 +1571,23 @@ export class MasterService {
             { headers: reqHeader, params: params }
         );
     }
+    GetMenuItemMasterByModuleId(
+        userTypeId: string, UserId: string
+    ): Observable<any> {
+        let reqHeader = new HttpHeaders({
+            'Content-Type': 'application/json',
+            'Access-Control-Allow-Origin': environment.BaseUriAdmin,
+        });
+        let params = new HttpParams();
+        let newreqobj:any=<any>{};
+        newreqobj.userTypeId=userTypeId;
+        newreqobj.UserId=UserId;
+        var data=JSON.stringify(newreqobj);
+        return this._httpclient.post<any>(
+            environment.BaseUriAdmin +
+                'api/Admin/GetMenuItemMasterByModuleId',data,
+            { headers: reqHeader, params: params }
+        );
+    }
+    
 }
