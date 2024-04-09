@@ -50,7 +50,8 @@ import { CareHearingAssessmentComponent } from '../care-hearing-assessment/care-
 })
 export class FormsDashboardComponent
     extends AppComponentBase
-    implements OnInit {
+    implements OnInit
+{
     @ViewChild('formContainer', { read: ViewContainerRef })
     formContainer: ViewContainerRef;
     componentRef: ComponentRef<any>;
@@ -87,7 +88,7 @@ export class FormsDashboardComponent
             }
         });
     }
-    x
+    x;
     ngOnInit() {
         this.GetformMaster();
     }
@@ -115,11 +116,11 @@ export class FormsDashboardComponent
             });
     }
 
-    SearchForm(selectedFormId: string, rangeDates: Date[]) {
+    SearchForm(selectedFormMasterId: string, rangeDates: Date[]) {
         this._UtilityService.showSpinner();
         //console.log('date Ranges: ' + rangeDates);
         const residentAdmissionInfoId = this.residentAdmissionInfoId;
-        const formMasterId = selectedFormId;
+        const formMasterId = selectedFormMasterId;
 
         let fromDate: Date | null = null;
         let toDate: Date | null = null;
@@ -157,17 +158,25 @@ export class FormsDashboardComponent
     }
 
     //View/Edit Form
-    OpenForm(selectedFormMasterId: string, selectedFormId: string = null, isEditable: boolean = true) {
-        this.selectedFormId = selectedFormId;
+    OpenForm(
+        selectedFormMasterId: string,
+        selectedFormdata: any = <any>{},
+        isEditable = true
+    ) {
         this.selectedFormMasterId = selectedFormMasterId;
-
         this.selectedFormData = {
-            selectedFormID: this.selectedFormId,
+            selectedFormID: selectedFormdata.FormId,
             isEditable: isEditable,
+            IsCompleted: selectedFormdata.IsCompleted,
+            StartedBy: selectedFormdata.StartedBy,
+            StartedByDesignation: selectedFormdata.StartedByDesignation,
+            StartedOn: selectedFormdata.StartedOn,
+            ModifiedBy: selectedFormdata.ModifiedBy,
+            ModifiedByDesignation: selectedFormdata.ModifiedByDesignation,
+            ModifiedOn: selectedFormdata.ModifiedOn,
         };
-
         this._DataService.sendData(this.selectedFormData);
-        this.ShowForm(this.selectedFormMasterId)
+        this.ShowForm(this.selectedFormMasterId);
     }
 
     //Create new Form
@@ -187,7 +196,8 @@ export class FormsDashboardComponent
                 componentType = AccidentIncidentNearMissRecordComponent;
                 break;
             case FormTypes.AcuteCarePlan:
-                componentType = AcuteCarePlanInfectionPreventionAndControlComponent;
+                componentType =
+                    AcuteCarePlanInfectionPreventionAndControlComponent;
                 break;
             case FormTypes.BodyMappingRecord:
                 componentType = BodyMappingRecordComponent;
@@ -262,7 +272,7 @@ export class FormsDashboardComponent
 
     //Clear Search
     ResetModel() {
-        this.formDashboardList = <any>{};
+        this.formDashboardList = null;
         this.rangeDates = undefined;
         this.selectedFormMasterId = null;
         this.selectedFormId = null;

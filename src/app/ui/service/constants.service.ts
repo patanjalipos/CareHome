@@ -114,6 +114,21 @@ export enum TaskPlannerStatus {
   Done = 3,
 }
 
+export enum ActionItem{
+  Read = 1,
+  ReadWrite = 2,
+  Delete = 3,
+  Download = 4,
+  Print = 5,
+  Cancel = 6
+}
+
+export enum OtherActionAccess {
+  IsDoctorLogs = 1,
+  IsOtherRoomCatChange = 2,
+  IsSuspended = 3,
+}
+
 export enum CustomDateFormat {
   DEF_DATE = "dd-MM-yyyy",
   DEF_DATE_TIME = "dd-MM-yyyy HH:mm",
