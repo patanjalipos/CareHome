@@ -41,7 +41,7 @@ export class PreAdmissionAssessmentFormsComponent
         super();
         this._ConstantServices.ActiveMenuName = 'Pre Assessment Admission Form';
 
-        this.loginId = "6368fd74757dbcfdbbb1ce4c"//localStorage.getItem('userId');
+        this.loginId = '6368fd74757dbcfdbbb1ce4c'; //localStorage.getItem('userId');
 
         this.unsubscribe.add = this.route.queryParams.subscribe((params) => {
             var ParamsArray = this._ConstantServices.GetParmasVal(params['q']);
@@ -63,13 +63,13 @@ export class PreAdmissionAssessmentFormsComponent
         });
 
         this.isEditable = this.preSelectedFormData.isEditable;
-        //alert(this.isEditable);
 
         if (this.preSelectedFormData.selectedFormID != null) {
             this.PreAdmissionAssessmentFormsData = <any>{};
             this.GetPreAdmissionFormDetails(
                 this.preSelectedFormData.selectedFormID
             );
+
             this.StatementType = 'Update';
         } else {
             this.ResetModel();
@@ -87,6 +87,7 @@ export class PreAdmissionAssessmentFormsComponent
                         var tdata = JSON.parse(data.actionResult.result);
                         tdata = tdata ? tdata : {};
                         this.PreAdmissionAssessmentFormsData = tdata;
+                        //console.log(this.PreAdmissionAssessmentFormsData);
                     } else {
                         this.PreAdmissionAssessmentFormsData = {};
                     }
@@ -118,9 +119,6 @@ export class PreAdmissionAssessmentFormsComponent
                 StatementType: this.StatementType,
                 preAdmissionForm: this.PreAdmissionAssessmentFormsData,
             };
-
-            console.log(objectBody);
-
             this._UtilityService.showSpinner();
             this.unsubscribe.add = this._MasterServices
                 .AddInsertUpdatePreAdmissionAssessmentForm(objectBody)
@@ -147,6 +145,9 @@ export class PreAdmissionAssessmentFormsComponent
             );
         }
     }
+    
+    SaveAsPDF(){}
+
 
     ResetModel() {
         this.isEditable = true;
@@ -308,11 +309,11 @@ export class PreAdmissionAssessmentFormsComponent
         'The resident experiences anxiety',
         'The resident experiences heightened levels of stress',
         'The resident has a diagnosis of a personality disorder',
-        'The resident\'s condition has been diagnosed by a GP',
+        "The resident's condition has been diagnosed by a GP",
         'Medication has been prescribed',
         'The resident is under the care of the local mental health team',
-        'The resident\'s mental health condition significantly impacts their sense of well-being',
-        'The resident\'s mental health condition has minimal impact on the resident\'s sense of well-being',
+        "The resident's mental health condition significantly impacts their sense of well-being",
+        "The resident's mental health condition has minimal impact on the resident's sense of well-being",
         'Other',
     ];
 
@@ -322,7 +323,7 @@ export class PreAdmissionAssessmentFormsComponent
         'The resident wears hearing aid(s)',
         'The resident can self manage hearing aid (put in / take out)',
         'The resident has regular hearing tests',
-        'The resident\'s eyesight is good (with / without glasses)',
+        "The resident's eyesight is good (with / without glasses)",
         'The resident wears a prosthesis (false eye)',
         'The resident has regular eye tests',
         'The resident has medical conditions that affect speech',
@@ -342,7 +343,7 @@ export class PreAdmissionAssessmentFormsComponent
         'The resident can use the call bell',
         'The resident has fallen in the last 12 months',
         'The resident has fallen in the last month',
-        'The resident\'s mobility will vary throughout a 24-hour period',
+        "The resident's mobility will vary throughout a 24-hour period",
         'The resident has medical conditions that affect mobility',
         'The resident has physical conditions that affect mobility',
         'The resident has pain that affects mobility',
@@ -365,13 +366,13 @@ export class PreAdmissionAssessmentFormsComponent
         'The resident takes prescribed pain relief via syringe driver',
         'The resident can ask for pain relief if required',
         'The resident is not able to ask for pain relief if required',
-        'Staff are to regularly monitor the resident\'s pain status and administer pain relief as prescribed',
+        "Staff are to regularly monitor the resident's pain status and administer pain relief as prescribed",
         'Other',
     ];
 
     skinAssessmentOptions: string[] = [
-        'The resident\'s skin is healthy',
-        'The resident\'s skin is not healthy',
+        "The resident's skin is healthy",
+        "The resident's skin is not healthy",
         'The resident can tell you about skin condition',
         'The resident cannot tell you about skin condition',
         'The resident has areas that are sore / red',
@@ -387,7 +388,7 @@ export class PreAdmissionAssessmentFormsComponent
         'The resident does not have a healthy diet and appetite and does not drink well',
         'The resident has recently lost weight',
         'The resident has recently gained weight',
-        'The resident\'s weight is stable',
+        "The resident's weight is stable",
         'The resident requires assistance cutting up food',
         'The resident requires help to eat meals',
         'The resident has diet-controlled diabetes',
@@ -444,9 +445,9 @@ export class PreAdmissionAssessmentFormsComponent
         'The resident wears dentures',
         'The resident can trim / cut / file own nails',
         'The resident needs assistance to trim / cut / file own nails',
-        'The resident\'s appearance is not important to them at all',
-        'The resident\'s appearance is extremely important to them',
-        'The resident\'s appearance is somewhat important to them',
+        "The resident's appearance is not important to them at all",
+        "The resident's appearance is extremely important to them",
+        "The resident's appearance is somewhat important to them",
         'Other',
     ];
 
@@ -488,8 +489,8 @@ export class PreAdmissionAssessmentFormsComponent
 
     EpilepsySeizureManagementOptions: string[] = [
         'The resident experiences absence seizures. The resident becomes unconscious for a short time. They may look blank and stare, or their eyelids might flutter. They will not respond to what is happening around them.',
-        'The resident experiences myoclonic seizures. Myoclonic means \'muscle jerk\'. Muscle jerks are not always due to epilepsy. Myoclonic seizures are brief but can happen in clusters and often happen shortly after waking.',
-        'The resident experiences tonic and atonic seizures. The resident\'s muscles suddenly relax and they become floppy. Atonic seizures tend to be brief and happen without warning. With both tonic seizures the resident usually recover quickly.',
+        "The resident experiences myoclonic seizures. Myoclonic means 'muscle jerk'. Muscle jerks are not always due to epilepsy. Myoclonic seizures are brief but can happen in clusters and often happen shortly after waking.",
+        "The resident experiences tonic and atonic seizures. The resident's muscles suddenly relax and they become floppy. Atonic seizures tend to be brief and happen without warning. With both tonic seizures the resident usually recover quickly.",
         'The resident experiences tonic clonic seizures. The resident becomes unconscious, their body goes stiff. They jerk and shake as their muscles relax and tighten rhythmically.',
         'Other',
     ];

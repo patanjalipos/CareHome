@@ -16,6 +16,7 @@ import { UtilityModule } from './utility/utility.module';
 import { ResidentLayoutModule } from './layout/resident.layout.module';
 import { MainInterceptorInterceptor } from './main-interceptor.interceptor';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AuthGuard } from './ui/components/auth/auth.guard';
 
 
 @NgModule({
@@ -38,6 +39,7 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
             useClass:MainInterceptorInterceptor,
             multi:true
         },
+        AuthGuard
     ],
     bootstrap: [AppComponent]
 })

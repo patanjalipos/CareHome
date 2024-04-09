@@ -4,9 +4,10 @@ import {
   HttpHandler,
   HttpEvent,
   HttpInterceptor,
-  HttpHeaders
+  HttpHeaders,
+  HttpErrorResponse
 } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, catchError } from 'rxjs';
 import { AuthServiceService } from './ui/service/auth-service.service';
 
 @Injectable()
@@ -18,18 +19,24 @@ export class MainInterceptorInterceptor implements HttpInterceptor {
 
     const authReq = request.clone({
       headers: new HttpHeaders({
+        'Cache-Control':'no-cache, no-store, must-revalidate, post-check=0, pre-check=0',
+        'Pragma':'no-cache',
+        'Expires':'0',
         'Content-Type':  'application/json',
         'Authorization': 'Bearer ' + localStorage.getItem('token')
       })
     });
-    // const modifiedReq = request.clone({ 
-    //   headers: request.headers
-    //   .set('Cache-Control', `no-cache, no-store, must-revalidate, post-check=0, pre-check=0`)
-    //   .set('Pragma',`no-cache`)
-    //   .set('Expires',`0`)
-    //   .set('Authorization','Bearer ' + localStorage.getItem('token'))
-    // });
 
-    return next.handle(authReq);
+    return next.handle(authReq).pipe(catchError((err: any) => {
+      //console.log('this log isn't');
+      if (err instanceof HttpErrorResponse) {
+          if (err.status === 401 || err.status === 403 || err.status === 0) {
+              localStorage.clear();
+              this._AuthServices.logout();
+          }
+      }
+
+    return new Observable<HttpEvent<any>>();
+  }));
   }
 }
