@@ -84,11 +84,7 @@ import { CareSpeechLanguageSsessmentModule } from '../care-speech-language-ssess
     OralHealthRiskAndOralPlanModule,
     CareVitaminDSupplementationModule,
     MustStep5NutritionalManagementModule,
-    CareSpeechLanguageSsessmentModule
-   
- 
-
-
+    CareSpeechLanguageSsessmentModule,
   ],
 
   exports:[
