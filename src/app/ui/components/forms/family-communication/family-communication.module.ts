@@ -21,7 +21,8 @@ import { TriStateCheckboxModule } from 'primeng/tristatecheckbox';
     DropdownModule,
     FormsModule,
     TriStateCheckboxModule
-  ]
+  ],
+  exports:[FamilyCommunicationComponent]
   
 })
 export class FamilyCommunicationModule { }

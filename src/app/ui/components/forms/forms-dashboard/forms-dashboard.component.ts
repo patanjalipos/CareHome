@@ -59,7 +59,8 @@ import { SepsisScreeningToolComponent } from '../sepsis-screening-tool/sepsis-sc
 })
 export class FormsDashboardComponent
     extends AppComponentBase
-    implements OnInit {
+    implements OnInit
+{
     @ViewChild('formContainer', { read: ViewContainerRef })
     formContainer: ViewContainerRef;
     componentRef: ComponentRef<any>;
@@ -74,6 +75,9 @@ export class FormsDashboardComponent
 
     residentAdmissionInfoId: string;
     rangeDates: Date[] | undefined;
+    FormTypes=FormTypes;
+    ShowChildComponent:boolean=false;
+
 
     constructor(
         private _ConstantServices: ConstantsService,
@@ -96,7 +100,7 @@ export class FormsDashboardComponent
             }
         });
     }
-    x
+    x;
     ngOnInit() {
         this.GetformMaster();
     }
@@ -124,18 +128,19 @@ export class FormsDashboardComponent
             });
     }
 
-    SearchForm(selectedFormId: string, rangeDates: Date[]) {
+    SearchForm() {
+        this.ShowChildComponent=false;
         this._UtilityService.showSpinner();
         //console.log('date Ranges: ' + rangeDates);
         const residentAdmissionInfoId = this.residentAdmissionInfoId;
-        const formMasterId = selectedFormId;
+        const formMasterId = this.selectedFormMasterId;
 
         let fromDate: Date | null = null;
         let toDate: Date | null = null;
 
-        if (rangeDates && rangeDates.length >= 2) {
-            fromDate = rangeDates[0];
-            toDate = rangeDates[1];
+        if (this.rangeDates && this.rangeDates.length >= 2) {
+            fromDate = this.rangeDates[0];
+            toDate = this.rangeDates[1];
         }
 
         // Call the API
@@ -166,143 +171,134 @@ export class FormsDashboardComponent
     }
 
     //View/Edit Form
-    OpenForm(selectedFormMasterId: string, selectedFormId: string = null, isEditable: boolean = true) {
-        this.selectedFormId = selectedFormId;
+    OpenForm(
+        selectedFormMasterId: string,
+        selectedFormdata: any = <any>{},
+        isEditable = true
+    ) {
         this.selectedFormMasterId = selectedFormMasterId;
-
         this.selectedFormData = {
-            selectedFormID: this.selectedFormId,
+            selectedFormID: selectedFormdata.FormId,
             isEditable: isEditable,
+            IsCompleted: selectedFormdata.IsCompleted,
+            StartedBy: selectedFormdata.StartedBy,
+            StartedByDesignation: selectedFormdata.StartedByDesignation,
+            StartedOn: selectedFormdata.StartedOn,
+            ModifiedBy: selectedFormdata.ModifiedBy,
+            ModifiedByDesignation: selectedFormdata.ModifiedByDesignation,
+            ModifiedOn: selectedFormdata.ModifiedOn,
         };
-
-        this._DataService.sendData(this.selectedFormData);
-        this.ShowForm(this.selectedFormMasterId)
+        this.ShowModel();
+        //this._DataService.sendData(this.selectedFormData);
+        //this.ShowForm(this.selectedFormMasterId);
+    }
+    ShowModel()
+    {
+        this.ShowChildComponent=true;
     }
 
     //Create new Form
-    ShowForm(selectedFormMasterId: string) {
-        // Clear existing component if any
-        if (this.componentRef) {
-            this.componentRef.destroy();
-        }
-        // Determine which component to load based on selectedForm
-        let componentType: any;
+    // ShowForm(selectedFormMasterId: string) {
+    //     // Clear existing component if any
+    //     if (this.componentRef) {
+    //         this.componentRef.destroy();
+    //     }
+    //     // Determine which component to load based on selectedForm
+    //     let componentType: any;
 
-        switch (selectedFormMasterId) {
-            case FormTypes.PreAdmission:
-                componentType = PreAdmissionAssessmentFormsComponent;
-                break;
-            case FormTypes.AccidentIncident:
-                componentType = AccidentIncidentNearMissRecordComponent;
-                break;
-            case FormTypes.AcuteCarePlan:
-                componentType = AcuteCarePlanInfectionPreventionAndControlComponent;
-                break;
-            case FormTypes.BodyMappingRecord:
-                componentType = BodyMappingRecordComponent;
-                break;
-            case FormTypes.CareAssessmentBreathing:
-                componentType = CareBreathingAndCirculationAssessmentComponent;
-                break;
-            case FormTypes.CareAssessmentContinence:
-                componentType = CareContinencePromotionComponent;
-                break;
-            case FormTypes.CareAssessmentEats:
-                componentType = CareEatsAndTreatsComponent;
-                break;
-            case FormTypes.CareAssessmentFeeling:
-                componentType = CareFeelingFreshAndCleanComponent;
-                break;
-            case FormTypes.CareAssessmentPersonal:
-                componentType = CarePersonalEmergencyEvacuationPlanComponent;
-                break;
-            case FormTypes.ConnectingandCommunicating:
-                componentType = ConnectingAndCommunicatingComponent;
-                break;
-            case FormTypes.FamilyCommunication:
-                componentType = FamilyCommunicationComponent;
-                break;
-            case FormTypes.GPDoctorVisitCommunicationRecord:
-                componentType = GpDoctorVisitCommunicationRecordComponent;
-                break;
-            case FormTypes.ProfessionalVisitCommunicationRecord:
-                componentType = ProfessionalVisitCommunicationRecordComponent;
-                break;
-            case FormTypes.RiskAssessmentPhysical:
-                componentType = RiskPhysicalDependencyAssessmentComponent;
-                break;
-            case FormTypes.RiskAssessmentWaterlow:
-                componentType = RiskWaterlowPressureUlcerComponent;
-                break;
-            case FormTypes.CareAssessmentHearing:
-                componentType = CareHearingAssessmentComponent;
-                break;
-            case FormTypes.CareAssessmentMental:
-                componentType = CareMentalHealthComponent;
-                break;
-            case FormTypes.CareAssessmentSleep:
-                componentType = CareSleepAndRestingAssessmentComponent;
-                break;
-            case FormTypes.CareAssessmentforVitaminD:
-                componentType = CareVitaminDSupplementationComponent;
-                break;
-            case FormTypes.Deliriumrisk:
-                componentType = DeliriumRiskAndRiskReductionComponent;
-                break;
-            case FormTypes.MUSTStep5NutritionalManagement:
-                componentType = MustStep5NutritionalManagementComponent;
-                break;
-            case FormTypes.OralHealthRiskAssessment:
-                componentType = OralHealthRiskAndOralPlanComponent;
-                break;
-            case FormTypes.RiskAssessmentOntheMove:
-                componentType = RiskOnTheMoveComponent;
-                break;
-            case FormTypes.CareAssessmentSpeech:
-                componentType = CareSpeechLanguageSsessmentComponent;
-                break;
-            case FormTypes.CovidAcuteCarePlan:
-                componentType = CovidAcuteCarePlanComponent;
-                break;
-            case FormTypes.DentistVisitCommunication:
-                componentType = DentistVisitCommunicationComponent;
-                break;
-            case FormTypes.DistrictNurseVisit:
-                componentType = DistrictNurseVisitCommunicationComponent;
-                break;
-            case FormTypes.FASTStrokeAssessment:
-                componentType = FASTStrokeAssessmentComponent;
-                break;
-            case FormTypes.HealthCareSupport:
-                componentType = HealthcareSupportToolComponent;
-                break;
-            case FormTypes.HomemangersSetting:
-                componentType = HomeManagersSettlingComponent;
-                break;
-            case FormTypes.PromotingWellbeing:
-                componentType = PromotingWellbeingAtHomeComponent;
-                break;
-            case FormTypes.RiskToolBedRails:
-                componentType = RiskToolBedRailsPackComponent;
-                break;
-            case FormTypes.SepsisScreening:
-                componentType = SepsisScreeningToolComponent;
-                break;
-            default:
-                componentType = NotfoundComponent;
-        }
+    //     switch (selectedFormMasterId) {
+    //         case FormTypes.PreAdmission:
+    //             componentType = PreAdmissionAssessmentFormsComponent;
+    //             break;
+    //         case FormTypes.AccidentIncident:
+    //             componentType = AccidentIncidentNearMissRecordComponent;
+    //             break;
+    //         case FormTypes.AcuteCarePlan:
+    //             componentType =
+    //                 AcuteCarePlanInfectionPreventionAndControlComponent;
+    //             break;
+    //         case FormTypes.BodyMappingRecord:
+    //             componentType = BodyMappingRecordComponent;
+    //             break;
+    //         case FormTypes.CareAssessmentBreathing:
+    //             componentType = CareBreathingAndCirculationAssessmentComponent;
+    //             break;
+    //         case FormTypes.CareAssessmentContinence:
+    //             componentType = CareContinencePromotionComponent;
+    //             break;
+    //         case FormTypes.CareAssessmentEats:
+    //             componentType = CareEatsAndTreatsComponent;
+    //             break;
+    //         case FormTypes.CareAssessmentFeeling:
+    //             componentType = CareFeelingFreshAndCleanComponent;
+    //             break;
+    //         case FormTypes.CareAssessmentPersonal:
+    //             componentType = CarePersonalEmergencyEvacuationPlanComponent;
+    //             break;
+    //         case FormTypes.ConnectingandCommunicating:
+    //             componentType = ConnectingAndCommunicatingComponent;
+    //             break;
+    //         case FormTypes.FamilyCommunication:
+    //             componentType = FamilyCommunicationComponent;
+    //             break;
+    //         case FormTypes.GPDoctorVisitCommunicationRecord:
+    //             componentType = GpDoctorVisitCommunicationRecordComponent;
+    //             break;
+    //         case FormTypes.ProfessionalVisitCommunicationRecord:
+    //             componentType = ProfessionalVisitCommunicationRecordComponent;
+    //             break;
+    //         case FormTypes.RiskAssessmentPhysical:
+    //             componentType = RiskPhysicalDependencyAssessmentComponent;
+    //             break;
+    //         case FormTypes.RiskAssessmentWaterlow:
+    //             componentType = RiskWaterlowPressureUlcerComponent;
+    //             break;
+    //         case FormTypes.CareAssessmentHearing:
+    //             componentType =CareHearingAssessmentComponent;
+    //             break;
+    //         case FormTypes.CareAssessmentMental:
+    //             componentType = CareMentalHealthComponent;
+    //             break;
+    //         case FormTypes.CareAssessmentSleep:
+    //             componentType = CareSleepAndRestingAssessmentComponent;
+    //             break;
+    //         case FormTypes.CareAssessmentforVitaminD:
+    //             componentType = CareVitaminDSupplementationComponent;
+    //             break;
+    //         case FormTypes.Deliriumrisk:
+    //             componentType = DeliriumRiskAndRiskReductionComponent;
+    //             break;
+    //         case FormTypes.MUSTStep5NutritionalManagement:
+    //             componentType = MustStep5NutritionalManagementComponent;
+    //             break;
+    //         case FormTypes.OralHealthRiskAssessment:
+    //             componentType = OralHealthRiskAndOralPlanComponent;
+    //             break;
+    //         case FormTypes.RiskAssessmentOntheMove:
+    //             componentType = RiskOnTheMoveComponent;
+    //             break;
+    //         case FormTypes.CareAssessmentSpeech:
+    //             componentType = CareSpeechLanguageSsessmentComponent;
+    //             break;
+    //         default:
+    //             componentType = NotfoundComponent;
+    //     }
 
-        // Load the component dynamically
-        this.componentRef = this.formContainer.createComponent(componentType);
-    }
+    //     // Load the component dynamically
+    //     this.componentRef = this.formContainer.createComponent(componentType);
+    // }
 
     //Clear Search
     ResetModel() {
-        this.formDashboardList = <any>{};
+        this.formDashboardList = null;
         this.rangeDates = undefined;
         this.selectedFormMasterId = null;
         this.selectedFormId = null;
         this.selectedFormData = null;
         this.componentRef.destroy();
+    }
+    EmitUpdateForm(event)
+    {
+        this.SearchForm();
     }
 }

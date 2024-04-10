@@ -92,7 +92,7 @@
                                 <label class="form-label">Parent Menu</label>
                                 <p-dropdown name="ddlParentMenuName" [options]="lstParentMenuItemMaster"
                                     [(ngModel)]="MenuItemMaster.ParentMenuId" [disabled]="MenuItemMaster.SubMenu=='Y'?false:true"
-                                    optionLabel="menuitemname" optionValue="menuitemmasterid" [filter]="true"
+                                    optionLabel="MenuItemName" optionValue="MenuItemId" [filter]="true"
                                     placeholder="Please Select Parent Menu" [style]="{width: '100%'}"
                                     >
                                 </p-dropdown>

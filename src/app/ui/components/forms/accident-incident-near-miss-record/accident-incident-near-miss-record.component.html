@@ -47,10 +47,8 @@
         </div>
         <div class="col-md-8  form-text ">
             <div class="d-flex align-items-center">
-                <input pInputText type="text" required name="chartheadname" class="form-control mr-4"
-                    [style]="{ width: '35%' }">
-                <p class=" mb-4">Use 24 hour clock</p>
-            </div>
+            <input pInputText type="time" [(ngModel)]="timeOfAccident" required name="timeOfAccident" class="form-control mr-4"  [style]="{ width: '35%' }">
+            <p>Use 24 hour clock</p>
         </div>
         <div class="col-md-4 ">
             <div class="labelcontent">
@@ -59,7 +57,7 @@
         </div>
         <div class="col-md-8 form-text">
             <div class="d-flex align-items-center">
-                <input pInputText type="text" required name="chartheadname" class="form-control mr-4"
+                <input pInputText type="text" [(ngModel)]="uniqueReferenceId" required name="uniqueReferenceId" class="form-control mr-4"
                     [style]="{ width: '35%' }">
                 <p>Allowed text entry format :"-0123456789"eg:-"75.2"</p>
             </div>
@@ -80,8 +78,8 @@
                 <p>Location of accident/Incident</p>
             </div>
         </div>
-        <div class="col-md-8 form-text ">
-            <p-dropdown placeholder="Select" [style]="{ width: '100%' }">
+        <div class="col-md-8 mb-4">
+            <p-dropdown [required]="true" [options]="lstlocationaccident"   optionLabel="name" [(ngModel)]="locationOfAccident" name="AccidentLocation" optionValue="name" placeholder="Select" [style]="{ width: '100%' }">
             </p-dropdown>
         </div>
         <div class="col-md-4">
@@ -90,8 +88,8 @@
                 </p>
             </div>
         </div>
-        <div class="col-md-8  form-text">
-            <p-dropdown placeholder="Select" [style]="{ width: '100%' }">
+        <div class="col-md-8 mb-4">
+            <p-dropdown [required]="true" [options]="lstAccidentPlace"   optionLabel="name" [(ngModel)]="AccidentFloorPlace" name="AccidentFloorPlace" optionValue="name" placeholder="Select" [style]="{ width: '100%' }">
             </p-dropdown>
         </div>
         <div class="col-md-4">
@@ -100,8 +98,8 @@
                 </p>
             </div>
         </div>
-        <div class="col-md-8  form-text">
-            <p-dropdown placeholder="Select" [style]="{ width: '100%' }">
+        <div class="col-md-8 mb-4">
+            <p-dropdown [required]="true" [options]="lstAccidentType"   optionLabel="name" [(ngModel)]="AccidentType" name="AccidentType" optionValue="name" placeholder="Select" [style]="{ width: '100%' }">
             </p-dropdown>
         </div>
         <div class="col-md-4">
@@ -110,9 +108,9 @@
                 </p>
             </div>
         </div>
-        <div class="col-md-8  form-text">
-            <input pInputText type="text" required name="chartheadname" class="form-control" />
-            <p class=" mb-4">Remain factual and include any contributory factors</p>
+        <div class="col-md-8 mb-4">
+            <input pInputText type="text" [(ngModel)]="accidentDesc" required name="accidentdesc" class="form-control" />
+            <p>Remain factual and include any contributory factors</p>
         </div>
         <div class="col-md-4">
             <div class="labelcontent">
@@ -120,9 +118,9 @@
                 </p>
             </div>
         </div>
-        <div class="col-md-8 form-text ">
-            <input pInputText type="text" required name="chartheadname" class="form-control" />
-            <p class=" mb-3">What happened immediately before. Location. Did the person complain of dizziness, light-headedness,
+        <div class="col-md-8 mb-4">
+            <input pInputText type="text" [(ngModel)]="situationDescBeforeAccident" required name="situationDescBeforeAccident" class="form-control" />
+            <p>What happened immediately before. Location. Did the person complain of dizziness, light-headedness,
                 altered vision. Do they usually have assistance to walk or transfer. How is this support given. Give as
                 much detail as possible in order to 'set the scene'.
             </p>
@@ -133,9 +131,9 @@
                 </p>
             </div>
         </div>
-        <div class="col-md-8 form-text ">
-            <input pInputText type="text" required name="chartheadname" class="form-control" />
-            <p class=" mb-4">Please detail the location of the injury with as much detail as possible
+        <div class="col-md-8 mb-4">
+            <input pInputText type="text" [(ngModel)]="directionOfPersonFallWithBodyPartHit" required name="directionOfPersonFallWithBodyPartHit" class="form-control" />
+            <p>Please detail the location of the injury with as much detail as possible
             </p>
         </div>
         <div class="col-md-4">
@@ -143,8 +141,10 @@
                 <p>Injuries or illness sustained</p>
             </div>
         </div>
-        <div class="col-md-8 form-text ">
-            <p-dropdown placeholder="Select" [style]="{ width: '100%' }">
+        <div class="col-md-8 mb-4">
+            <p-dropdown [required]="true" [options]="lstInjurySustained"   optionLabel="name" [(ngModel)]="injuriesSustained" name="injuriesSustained
+            
+            " optionValue="name" placeholder="Select" [style]="{ width: '100%' }">
             </p-dropdown>
         </div>
         <div class="col-md-4">
@@ -153,8 +153,8 @@
                 </p>
             </div>
         </div>
-        <div class="col-md-8 form-text ">
-            <input pInputText type="text" required name="chartheadname" class="form-control" />
+        <div class="col-md-8 mb-4">
+            <input pInputText type="text" [(ngModel)]="treatmentDescWithNameOfPerson" required name="treatmentDescWithNameOfPerson" class="form-control" />
         </div>
         <div class="col-md-4">
             <div class="labelcontent">
@@ -162,8 +162,8 @@
                 </p>
             </div>
         </div>
-        <div class="col-md-8 form-text">
-            <p-dropdown placeholder="Select" [style]="{ width: '100%' }">
+        <div class="col-md-8 mb-4">
+            <p-dropdown [required]="true" [options]="lstJobRole"   optionLabel="name" [(ngModel)]="JobRole" name="JobRole" optionValue="name" placeholder="Select" [style]="{ width: '100%' }">
             </p-dropdown>
         </div>
         <div class="col-md-4">
@@ -172,9 +172,9 @@
                 </p>
             </div>
         </div>
-        <div class="col-md-8 form-text ">
-            <input pInputText type="text" required name="chartheadname" class="form-control" />
-            <p class=" mb-4">Please detail any equipment involved in the accident/incident - where/what etc
+        <div class="col-md-8 mb-4">
+            <input pInputText type="text" [(ngModel)]="equipment" required name="equipment" class="form-control" />
+            <p>Please detail any equipment involved in the accident/incident - where/what etc
             </p>
         </div>
         <div class="col-md-4">
@@ -183,17 +183,17 @@
                 </p>
             </div>
         </div>
-        <div class="col-md-8 form-text ">
-            <input pInputText type="text" required name="chartheadname" class="form-control" />
-            <p class=" mb-4">State Name, time, date</p>
+        <div class="col-md-8 mb-4">
+            <input pInputText type="text" [(ngModel)]="assessedBy" required name="assessedBy" class="form-control" />
+            <p>State Name, time, date</p>
         </div>
         <div class="col-md-4">
             <div class="labelcontent">
                 <p>Emergency services contacted</p>
             </div>
         </div>
-        <div class="col-md-8 form-text ">
-            <p-dropdown placeholder="Select" [style]="{ width: '100%' }">
+        <div class="col-md-8 mb-4">
+            <p-dropdown [required]="true" [options]="lstEmergencyServices"   optionLabel="name" [(ngModel)]="EmergencyServices" name="EmergencyServices" optionValue="name" placeholder="Select" [style]="{ width: '100%' }">
             </p-dropdown>
         </div>
         <div class="col-md-4">
@@ -201,18 +201,18 @@
                 <p>Date and Time emergency services contacted</p>
             </div>
         </div>
-        <div class="col-md-8 form-text ">
-            <input pInputText type="text" required name="chartheadname" class="form-control" />
-            <p class=" mb-4">please detail who contacted the emergency services and when, note any crime number given</p>
+        <div class="col-md-8 mb-4">
+            <input pInputText type="text" [(ngModel)]="emergencyServicesContactedTime" required name="emergencyServicesContactedTime" class="form-control" />
+            <p>please detail who contacted the emergency services and when, note any crime number given</p>
         </div>
         <div class="col-md-4">
             <div class="labelcontent">
                 <p>Other professionals contacted</p>
             </div>
         </div>
-        <div class="col-md-8 form-text">
-            <input pInputText type="text" required name="chartheadname" class="form-control" />
-            <p class=" mb-4">Please include any referrals made to professionals such as District Nurse, GP, Advanced Nurse
+        <div class="col-md-8 mb-4">
+            <input pInputText type="text" [(ngModel)]="otherProfessionalsContacted" required name="otherProfessionalsContacted" class="form-control" />
+            <p>Please include any referrals made to professionals such as District Nurse, GP, Advanced Nurse
                 Practitioner
             </p>
         </div>
@@ -222,9 +222,9 @@
                 </p>
             </div>
         </div>
-        <div class="col-md-8 form-text ">
-            <input pInputText type="text" required name="chartheadname" class="form-control" />
-            <p class=" mb-4">nclude Date and times, e.g. was the person checked regularly throughout the night
+        <div class="col-md-8 mb-4">
+            <input pInputText type="text" [(ngModel)]="injuredPersonObservation" required name="injuredPersonObservation" class="form-control" />
+            <p>nclude Date and times, e.g. was the person checked regularly throughout the night
             </p>
         </div>
         <div class="col-md-4">
@@ -232,9 +232,9 @@
                 <p>Main witness name(s)</p>
             </div>
         </div>
-        <div class="col-md-8 form-text ">
-            <input pInputText type="text" required name="chartheadname" class="form-control" />
-            <p class=" mb-4">Personal / company address, telephone number</p>
+        <div class="col-md-8 mb-4">
+            <input pInputText type="text" [(ngModel)]="witnessName" required name="witnessName" class="form-control" />
+            <p>Personal / company address, telephone number</p>
         </div>
         <div class="col-md-4">
             <div class="labelcontent">
@@ -242,9 +242,9 @@
                 </p>
             </div>
         </div>
-        <div class="col-md-8 form-text ">
-            <input pInputText type="text" required name="chartheadname" class="form-control" />
-            <p class=" mb-4">Contact name, date & time
+        <div class="col-md-8 mb-4">
+            <input pInputText type="text" [(ngModel)]="serviceManagerDetails" required name="serviceManagerDetails" class="form-control" />
+            <p>Contact name, date & time
             </p>
         </div>
         <div class="col-md-4">
@@ -252,9 +252,9 @@
                 <p>Relative/NOK informed</p>
             </div>
         </div>
-        <div class="col-md-8 form-text">
-            <input pInputText type="text" required name="chartheadname" class="form-control" />
-            <p class=" mb-4">Contact name, date & time
+        <div class="col-md-8 mb-4">
+            <input pInputText type="text" [(ngModel)]="relativeInformed" required name="relativeInformed" class="form-control" />
+            <p>Contact name, date & time
             </p>
         </div>
         <div class="col-md-4">
@@ -263,9 +263,9 @@
                 </p>
             </div>
         </div>
-        <div class="col-md-8 form-text">
-            <input pInputText type="text" required name="chartheadname" class="form-control" />
-            <p class=" mb-4">include date & time</p>
+        <div class="col-md-8 mb-4">
+            <input pInputText type="text" [(ngModel)]="otherContacts" required name="otherContacts" class="form-control" />
+            <p>include date & time</p>
         </div>
         <div class="col-md-4">
             <div class="labelcontent">
@@ -278,13 +278,13 @@
         <div class="d-flex justify-content-end">
             <div>
                 <span class="p-ml-left mr-4">
-                    <button pButton title="New" label="Save as Unfinished"></button>
+                    <button pButton title="New" (click)="saveAsUnfinished()" label="Save as Unfinished"></button>
                     <span class="total-txt"></span>
                 </span>
             </div>
             <div>
                 <span class="p-ml-left mr-4">
-                    <button pButton title="New" label="Complete"></button>
+                    <button pButton title="New" label="Complete" (click)="completeForm()"></button>
                     <span class="total-txt"></span>
                 </span>
             </div>

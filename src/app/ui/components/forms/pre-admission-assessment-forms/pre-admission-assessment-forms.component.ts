@@ -1,7 +1,10 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, SimpleChanges } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { AppComponentBase } from 'src/app/app-component-base';
-import { ConstantsService } from 'src/app/ui/service/constants.service';
+import {
+    ConstantsService,
+    CustomDateFormat,
+} from 'src/app/ui/service/constants.service';
 import { DataService } from 'src/app/ui/service/data-service.service';
 import { MasterService } from 'src/app/ui/service/master.service';
 import { UtilityService } from 'src/app/utility/utility.service';
@@ -15,17 +18,19 @@ export class PreAdmissionAssessmentFormsComponent
     extends AppComponentBase
     implements OnInit
 {
-    PreAdmissionAssessmentFormsData: any | undefined;
-    preSelectedFormData: any; //Form which is selected to edit or view
+    customDateFormat = CustomDateFormat;
+    PreAdmissionAssessmentFormsData: any = <any>{};
 
     isEditable: boolean; //Need to be passed from form Dashboard
+    StatementType: string = null;
 
     //Patient Details
     userId: any;
     residentAdmissionInfoId: any;
-
     //CreatedBy or ModifiedBy
     loginId: any;
+    @Input() preSelectedFormData: any=<any>{};
+    @Output() EmitUpdateForm: EventEmitter<any> = new EventEmitter<any>();
 
     constructor(
         private _ConstantServices: ConstantsService,
@@ -54,19 +59,37 @@ export class PreAdmissionAssessmentFormsComponent
     }
 
     ngOnInit(): void {
-        this._DataService.data$.subscribe((data) => {
-            this.preSelectedFormData = data;
-        });
+        // this._DataService.data$.subscribe((data) => {
+        //     this.preSelectedFormData = data;
+        // });
 
-        alert(this.preSelectedFormData.isEditable);
         this.isEditable = this.preSelectedFormData.isEditable;
-        
+
         if (this.preSelectedFormData.selectedFormID != null) {
+            this.PreAdmissionAssessmentFormsData = <any>{};
             this.GetPreAdmissionFormDetails(
                 this.preSelectedFormData.selectedFormID
             );
+
+            this.StatementType = 'Update';
+        } else {
+            this.ResetModel();
         }
     }
+    ngOnChanges(changes: SimpleChanges): void {
+        this.isEditable = this.preSelectedFormData.isEditable;
+    
+      if (this.preSelectedFormData.selectedFormID != null) {
+          this.PreAdmissionAssessmentFormsData = <any>{};
+          this.GetPreAdmissionFormDetails(
+              this.preSelectedFormData.selectedFormID
+          );
+    
+          this.StatementType = 'Update';
+      } else {
+          this.ResetModel();
+      }
+      }
 
     GetPreAdmissionFormDetails(formId: string) {
         this._UtilityService.showSpinner();
@@ -79,6 +102,7 @@ export class PreAdmissionAssessmentFormsComponent
                         var tdata = JSON.parse(data.actionResult.result);
                         tdata = tdata ? tdata : {};
                         this.PreAdmissionAssessmentFormsData = tdata;
+                        //console.log(this.PreAdmissionAssessmentFormsData);
                     } else {
                         this.PreAdmissionAssessmentFormsData = {};
                     }
@@ -106,18 +130,23 @@ export class PreAdmissionAssessmentFormsComponent
             this.PreAdmissionAssessmentFormsData.residentAdmissionInfoId =
                 this.residentAdmissionInfoId;
 
+            const objectBody: any = {
+                StatementType: this.StatementType,
+                preAdmissionForm: this.PreAdmissionAssessmentFormsData,
+            };
             this._UtilityService.showSpinner();
             this.unsubscribe.add = this._MasterServices
-                .AddInsertUpdatePreAdmissionAssessmentForm(
-                    this.PreAdmissionAssessmentFormsData
-                )
+                .AddInsertUpdatePreAdmissionAssessmentForm(objectBody)
                 .subscribe({
                     next: (data) => {
                         this._UtilityService.hideSpinner();
                         if (data.actionResult.success == true)
+                        {
+                            this.EmitUpdateForm.emit(true);
                             this._UtilityService.showSuccessAlert(
                                 data.actionResult.errMsg
                             );
+                        }
                         else
                             this._UtilityService.showWarningAlert(
                                 data.actionResult.errMsg
@@ -133,6 +162,15 @@ export class PreAdmissionAssessmentFormsComponent
                 'Resident admission details are missing.'
             );
         }
+    }
+    
+    SaveAsPDF(){}
+
+
+    ResetModel() {
+        this.isEditable = true;
+        this.PreAdmissionAssessmentFormsData = <any>{};
+        this.StatementType = 'Insert';
     }
 
     personCapacityOptions: string[] = [
@@ -469,7 +507,7 @@ export class PreAdmissionAssessmentFormsComponent
 
     EpilepsySeizureManagementOptions: string[] = [
         'The resident experiences absence seizures. The resident becomes unconscious for a short time. They may look blank and stare, or their eyelids might flutter. They will not respond to what is happening around them.',
-        'The resident experiences myoclonic seizures. Myoclonic means ‘muscle jerk’. Muscle jerks are not always due to epilepsy. Myoclonic seizures are brief but can happen in clusters and often happen shortly after waking.',
+        "The resident experiences myoclonic seizures. Myoclonic means 'muscle jerk'. Muscle jerks are not always due to epilepsy. Myoclonic seizures are brief but can happen in clusters and often happen shortly after waking.",
         "The resident experiences tonic and atonic seizures. The resident's muscles suddenly relax and they become floppy. Atonic seizures tend to be brief and happen without warning. With both tonic seizures the resident usually recover quickly.",
         'The resident experiences tonic clonic seizures. The resident becomes unconscious, their body goes stiff. They jerk and shake as their muscles relax and tighten rhythmically.',
         'Other',

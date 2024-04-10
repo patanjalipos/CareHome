@@ -26,7 +26,7 @@
                 optionValue="FormMasterId"
                 placeholder="Select"
                 [style]="{ width: '100%' }"
-                (onChange)="SearchForm(selectedFormMasterId, rangeDates)"
+                (onChange)="SearchForm()"
             >
             </p-dropdown>
         </div>
@@ -83,7 +83,7 @@
                 <tr>
                     <td>{{ dt.FormName }}</td>
                     <td>{{ dt.ModifiedBy }}</td>
-                    <td>{{ dt.Designation }}</td>
+                    <td>{{ dt.ModifiedByDesignation }}</td>
                     <td>
                         {{ dt.IsCompleted == 1 ? "Completed" : "Incomplete" }}
                     </td>
@@ -97,8 +97,7 @@
                         <a
                             title="View"
                             (click)="
-                                OpenForm(dt.FormMasterId, dt.FormId, false)
-                            "
+                                OpenForm(dt.FormMasterId, dt, false)"
                         >
                             <i class="fa fa-eye" aria-hidden="true"></i>
                         </a>
@@ -106,7 +105,7 @@
                         <!-- Adjust the margin-left as needed -->
                         <a
                             title="Edit"
-                            (click)="OpenForm(dt.FormMasterId, dt.FormId, true)"
+                            (click)="OpenForm(dt.FormMasterId, dt , true)"
                         >
                             <i class="fa fa-pencil" aria-hidden="true"></i>
                         </a>
@@ -118,4 +117,32 @@
 </div>
 
 <!-- Dynamic Form Component -->
-<div #formContainer></div>
+
+<app-pre-admission-assessment-forms 
+[preSelectedFormData]="selectedFormData" 
+(EmitUpdateForm)="EmitUpdateForm($event)"
+ *ngIf="ShowChildComponent==true && selectedFormMasterId==FormTypes.PreAdmission"></app-pre-admission-assessment-forms>
+
+ <app-accident-incident-near-miss-record 
+[preSelectedFormData]="selectedFormData" 
+(EmitUpdateForm)="EmitUpdateForm($event)"
+ *ngIf="ShowChildComponent==true && selectedFormMasterId==FormTypes.AccidentIncident"></app-accident-incident-near-miss-record>
+
+<app-acute-care-plan-infection-prevention-and-control 
+[preSelectedFormData]="selectedFormData" 
+(EmitUpdateForm)="EmitUpdateForm($event)"
+ *ngIf="ShowChildComponent==true && selectedFormMasterId==FormTypes.AcuteCarePlan"></app-acute-care-plan-infection-prevention-and-control>
+
+ <app-family-communication 
+[preSelectedFormData]="selectedFormData" 
+(EmitUpdateForm)="EmitUpdateForm($event)"
+ *ngIf="ShowChildComponent==true && selectedFormMasterId==FormTypes.FamilyCommunication"></app-family-communication>
+
+ <app-body-mapping-record 
+[preSelectedFormData]="selectedFormData" 
+(EmitUpdateForm)="EmitUpdateForm($event)"
+ *ngIf="ShowChildComponent==true && selectedFormMasterId==FormTypes.BodyMappingRecord"></app-body-mapping-record>
+
+
+ 
+<!-- <div #formContainer></div> -->
