@@ -108,6 +108,11 @@ export class FormsDashboardComponent
             });
     }
 
+    RefreshDashboardList(){
+        alert(this.selectedFormData);
+        this.SearchForm(this.selectedFormData,this.rangeDates);
+    }
+
     SearchForm(selectedFormMasterId: string, rangeDates: Date[]) {
         this._UtilityService.showSpinner();
         //console.log('date Ranges: ' + rangeDates);
