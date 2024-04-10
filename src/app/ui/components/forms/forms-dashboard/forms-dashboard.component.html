@@ -26,7 +26,7 @@
                 optionValue="FormMasterId"
                 placeholder="Select"
                 [style]="{ width: '100%' }"
-                (onChange)="SearchForm(selectedFormMasterId, rangeDates)"
+                (onChange)="SearchForm()"
             >
             </p-dropdown>
         </div>
@@ -117,4 +117,30 @@
 </div>
 
 <!-- Dynamic Form Component -->
-<div #formContainer (submitEvent)="RefreshDashboardList()"></div>
+
+<app-pre-admission-assessment-forms 
+[preSelectedFormData]="selectedFormData" 
+(EmitUpdateForm)="EmitUpdateForm($event)"
+ *ngIf="ShowChildComponent==true && selectedFormMasterId==FormTypes.PreAdmission"></app-pre-admission-assessment-forms>
+
+ <app-accident-incident-near-miss-record 
+[preSelectedFormData]="selectedFormData" 
+(EmitUpdateForm)="EmitUpdateForm($event)"
+ *ngIf="ShowChildComponent==true && selectedFormMasterId==FormTypes.AccidentIncident"></app-accident-incident-near-miss-record>
+
+<app-acute-care-plan-infection-prevention-and-control 
+[preSelectedFormData]="selectedFormData" 
+(EmitUpdateForm)="EmitUpdateForm($event)"
+ *ngIf="ShowChildComponent==true && selectedFormMasterId==FormTypes.AcuteCarePlan"></app-acute-care-plan-infection-prevention-and-control>
+
+ <app-family-communication 
+[preSelectedFormData]="selectedFormData" 
+(EmitUpdateForm)="EmitUpdateForm($event)"
+ *ngIf="ShowChildComponent==true && selectedFormMasterId==FormTypes.FamilyCommunication"></app-family-communication>
+
+ <app-body-mapping-record 
+[preSelectedFormData]="selectedFormData" 
+(EmitUpdateForm)="EmitUpdateForm($event)"
+ *ngIf="ShowChildComponent==true && selectedFormMasterId==FormTypes.BodyMappingRecord"></app-body-mapping-record>
+
+

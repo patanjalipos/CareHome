@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, SimpleChanges } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { AppComponentBase } from 'src/app/app-component-base';
 import {
@@ -21,10 +21,8 @@ export class PreAdmissionAssessmentFormsComponent
     customDateFormat = CustomDateFormat;
 
     //Refresh the search list on the form dashboard
-    @Output() submitEvnet = new EventEmitter<any>();
     
     PreAdmissionAssessmentFormsData: any = <any>{};
-    preSelectedFormData: any; //Form which is selected to edit or view
 
     isEditable: boolean; //Need to be passed from form Dashboard
     StatementType: string = null;
@@ -34,6 +32,8 @@ export class PreAdmissionAssessmentFormsComponent
     residentAdmissionInfoId: any;
     //CreatedBy or ModifiedBy
     loginId: any;
+    @Input() preSelectedFormData: any=<any>{};
+    @Output() EmitUpdateForm: EventEmitter<any> = new EventEmitter<any>();
 
     constructor(
         private _ConstantServices: ConstantsService,
@@ -61,9 +61,9 @@ export class PreAdmissionAssessmentFormsComponent
     }
 
     ngOnInit(): void {
-        this._DataService.data$.subscribe((data) => {
-            this.preSelectedFormData = data;
-        });
+        // this._DataService.data$.subscribe((data) => {
+        //     this.preSelectedFormData = data;
+        // });
 
         this.isEditable = this.preSelectedFormData.isEditable;
 
@@ -78,6 +78,20 @@ export class PreAdmissionAssessmentFormsComponent
             this.ResetModel();
         }
     }
+    ngOnChanges(changes: SimpleChanges): void {
+        this.isEditable = this.preSelectedFormData.isEditable;
+    
+      if (this.preSelectedFormData.selectedFormID != null) {
+          this.PreAdmissionAssessmentFormsData = <any>{};
+          this.GetPreAdmissionFormDetails(
+              this.preSelectedFormData.selectedFormID
+          );
+    
+          this.StatementType = 'Update';
+      } else {
+          this.ResetModel();
+      }
+      }
 
     GetPreAdmissionFormDetails(formId: string) {
         this._UtilityService.showSpinner();
@@ -134,9 +148,12 @@ export class PreAdmissionAssessmentFormsComponent
                     next: (data) => {
                         this._UtilityService.hideSpinner();
                         if (data.actionResult.success == true)
+                        {
+                            this.EmitUpdateForm.emit(true);
                             this._UtilityService.showSuccessAlert(
                                 data.actionResult.errMsg
                             );
+                        }
                         else
                             this._UtilityService.showWarningAlert(
                                 data.actionResult.errMsg
@@ -147,7 +164,6 @@ export class PreAdmissionAssessmentFormsComponent
                         this._UtilityService.showErrorAlert(e.message);
                     },
                 });
-                this.submitEvnet.emit();
                 //this.ResetModel();
         } else {
             this._UtilityService.showWarningAlert(
