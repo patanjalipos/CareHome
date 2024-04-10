@@ -26,12 +26,12 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-4 mt-4">
+        <div class="col-md-4 mt-2">
             <div class="labelcontent">
                 <p>Date of Accident/Incident</p>
             </div>
         </div>
-        <div class="col-md-8 mt-4 mb-4 ">
+        <div class="col-md-8  mt-2">
             <div class="input-group date">
                 <p-calendar name="DateOfBirth" [showIcon]="true" inputId="icon" [dateFormat]="" class="iconcal"
                     [readonlyInput]="true" appendTo="body" [maxDate]="" #dobref=""></p-calendar>
@@ -45,24 +45,25 @@
                 </p>
             </div>
         </div>
-        <div class="col-md-8 mb-4 ">
+        <div class="col-md-8  form-text ">
             <div class="d-flex align-items-center">
-            <input pInputText type="text" required name="chartheadname" class="form-control mr-4"  [style]="{ width: '35%' }">
-            <p>Use 24 hour clock</p>
+                <input pInputText type="text" required name="chartheadname" class="form-control mr-4"
+                    [style]="{ width: '35%' }">
+                <p class=" mb-4">Use 24 hour clock</p>
+            </div>
         </div>
-    </div>
         <div class="col-md-4 ">
             <div class="labelcontent">
                 <p>Unique Referencing ID</p>
             </div>
         </div>
-        <div class="col-md-8  mb-4">
+        <div class="col-md-8 form-text">
             <div class="d-flex align-items-center">
                 <input pInputText type="text" required name="chartheadname" class="form-control mr-4"
                     [style]="{ width: '35%' }">
                 <p>Allowed text entry format :"-0123456789"eg:-"75.2"</p>
             </div>
-            <p>Add Reference number example: Incident Date 05/08/2022 at 09:30 Entry = 0508220930</p>
+            <p class=" mb-4"> Add Reference number example: Incident Date 05/08/2022 at 09:30 Entry = 0508220930</p>
         </div>
         <div class="col-md-4">
             <div class="labelcontent">
@@ -70,7 +71,7 @@
                 </p>
             </div>
         </div>
-        <div class="col-md-8 mb-4">
+        <div class="col-md-8 form-text ">
             <p-triStateCheckbox inputId="tricheckbox"></p-triStateCheckbox>
         </div>
 
@@ -79,7 +80,7 @@
                 <p>Location of accident/Incident</p>
             </div>
         </div>
-        <div class="col-md-8 mb-4">
+        <div class="col-md-8 form-text ">
             <p-dropdown placeholder="Select" [style]="{ width: '100%' }">
             </p-dropdown>
         </div>
@@ -89,7 +90,7 @@
                 </p>
             </div>
         </div>
-        <div class="col-md-8 mb-4">
+        <div class="col-md-8  form-text">
             <p-dropdown placeholder="Select" [style]="{ width: '100%' }">
             </p-dropdown>
         </div>
@@ -99,7 +100,7 @@
                 </p>
             </div>
         </div>
-        <div class="col-md-8 mb-4">
+        <div class="col-md-8  form-text">
             <p-dropdown placeholder="Select" [style]="{ width: '100%' }">
             </p-dropdown>
         </div>
@@ -109,9 +110,9 @@
                 </p>
             </div>
         </div>
-        <div class="col-md-8 mb-4">
+        <div class="col-md-8  form-text">
             <input pInputText type="text" required name="chartheadname" class="form-control" />
-            <p>Remain factual and include any contributory factors</p>
+            <p class=" mb-4">Remain factual and include any contributory factors</p>
         </div>
         <div class="col-md-4">
             <div class="labelcontent">
@@ -119,9 +120,9 @@
                 </p>
             </div>
         </div>
-        <div class="col-md-8 mb-4">
+        <div class="col-md-8 form-text ">
             <input pInputText type="text" required name="chartheadname" class="form-control" />
-            <p>What happened immediately before. Location. Did the person complain of dizziness, light-headedness,
+            <p class=" mb-3">What happened immediately before. Location. Did the person complain of dizziness, light-headedness,
                 altered vision. Do they usually have assistance to walk or transfer. How is this support given. Give as
                 much detail as possible in order to 'set the scene'.
             </p>
@@ -132,9 +133,9 @@
                 </p>
             </div>
         </div>
-        <div class="col-md-8 mb-4">
+        <div class="col-md-8 form-text ">
             <input pInputText type="text" required name="chartheadname" class="form-control" />
-            <p>Please detail the location of the injury with as much detail as possible
+            <p class=" mb-4">Please detail the location of the injury with as much detail as possible
             </p>
         </div>
         <div class="col-md-4">
@@ -142,7 +143,7 @@
                 <p>Injuries or illness sustained</p>
             </div>
         </div>
-        <div class="col-md-8 mb-4">
+        <div class="col-md-8 form-text ">
             <p-dropdown placeholder="Select" [style]="{ width: '100%' }">
             </p-dropdown>
         </div>
@@ -152,7 +153,7 @@
                 </p>
             </div>
         </div>
-        <div class="col-md-8 mb-4">
+        <div class="col-md-8 form-text ">
             <input pInputText type="text" required name="chartheadname" class="form-control" />
         </div>
         <div class="col-md-4">
@@ -161,7 +162,7 @@
                 </p>
             </div>
         </div>
-        <div class="col-md-8 mb-4">
+        <div class="col-md-8 form-text">
             <p-dropdown placeholder="Select" [style]="{ width: '100%' }">
             </p-dropdown>
         </div>
@@ -171,9 +172,9 @@
                 </p>
             </div>
         </div>
-        <div class="col-md-8 mb-4">
+        <div class="col-md-8 form-text ">
             <input pInputText type="text" required name="chartheadname" class="form-control" />
-            <p>Please detail any equipment involved in the accident/incident - where/what etc
+            <p class=" mb-4">Please detail any equipment involved in the accident/incident - where/what etc
             </p>
         </div>
         <div class="col-md-4">
@@ -182,16 +183,16 @@
                 </p>
             </div>
         </div>
-        <div class="col-md-8 mb-4">
+        <div class="col-md-8 form-text ">
             <input pInputText type="text" required name="chartheadname" class="form-control" />
-            <p>State Name, time, date</p>
+            <p class=" mb-4">State Name, time, date</p>
         </div>
         <div class="col-md-4">
             <div class="labelcontent">
                 <p>Emergency services contacted</p>
             </div>
         </div>
-        <div class="col-md-8 mb-4">
+        <div class="col-md-8 form-text ">
             <p-dropdown placeholder="Select" [style]="{ width: '100%' }">
             </p-dropdown>
         </div>
@@ -200,18 +201,18 @@
                 <p>Date and Time emergency services contacted</p>
             </div>
         </div>
-        <div class="col-md-8 mb-4">
+        <div class="col-md-8 form-text ">
             <input pInputText type="text" required name="chartheadname" class="form-control" />
-            <p>please detail who contacted the emergency services and when, note any crime number given</p>
+            <p class=" mb-4">please detail who contacted the emergency services and when, note any crime number given</p>
         </div>
         <div class="col-md-4">
             <div class="labelcontent">
                 <p>Other professionals contacted</p>
             </div>
         </div>
-        <div class="col-md-8 mb-4">
+        <div class="col-md-8 form-text">
             <input pInputText type="text" required name="chartheadname" class="form-control" />
-            <p>Please include any referrals made to professionals such as District Nurse, GP, Advanced Nurse
+            <p class=" mb-4">Please include any referrals made to professionals such as District Nurse, GP, Advanced Nurse
                 Practitioner
             </p>
         </div>
@@ -221,9 +222,9 @@
                 </p>
             </div>
         </div>
-        <div class="col-md-8 mb-4">
+        <div class="col-md-8 form-text ">
             <input pInputText type="text" required name="chartheadname" class="form-control" />
-            <p>nclude Date and times, e.g. was the person checked regularly throughout the night
+            <p class=" mb-4">nclude Date and times, e.g. was the person checked regularly throughout the night
             </p>
         </div>
         <div class="col-md-4">
@@ -231,9 +232,9 @@
                 <p>Main witness name(s)</p>
             </div>
         </div>
-        <div class="col-md-8 mb-4">
+        <div class="col-md-8 form-text ">
             <input pInputText type="text" required name="chartheadname" class="form-control" />
-            <p>Personal / company address, telephone number</p>
+            <p class=" mb-4">Personal / company address, telephone number</p>
         </div>
         <div class="col-md-4">
             <div class="labelcontent">
@@ -241,9 +242,9 @@
                 </p>
             </div>
         </div>
-        <div class="col-md-8 mb-4">
+        <div class="col-md-8 form-text ">
             <input pInputText type="text" required name="chartheadname" class="form-control" />
-            <p>Contact name, date & time
+            <p class=" mb-4">Contact name, date & time
             </p>
         </div>
         <div class="col-md-4">
@@ -251,9 +252,9 @@
                 <p>Relative/NOK informed</p>
             </div>
         </div>
-        <div class="col-md-8 mb-4">
+        <div class="col-md-8 form-text">
             <input pInputText type="text" required name="chartheadname" class="form-control" />
-            <p>Contact name, date & time
+            <p class=" mb-4">Contact name, date & time
             </p>
         </div>
         <div class="col-md-4">
@@ -262,16 +263,16 @@
                 </p>
             </div>
         </div>
-        <div class="col-md-8 mb-4">
+        <div class="col-md-8 form-text">
             <input pInputText type="text" required name="chartheadname" class="form-control" />
-            <p>include date & time</p>
+            <p class=" mb-4">include date & time</p>
         </div>
         <div class="col-md-4">
             <div class="labelcontent">
                 <p>Does the Falls Risk Assessment need updating</p>
             </div>
         </div>
-        <div class="col-md-8 mb-4">
+        <div class="col-md-8 form-text ">
             <p-triStateCheckbox inputId="tricheckbox"></p-triStateCheckbox>
         </div>
         <div class="d-flex justify-content-end">

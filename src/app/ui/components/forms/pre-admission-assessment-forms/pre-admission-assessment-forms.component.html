@@ -34,7 +34,7 @@
                 <p>Name all parties who have assisted with information</p>
             </div>
         </div>
-        <div class="col-md-7 mt-4 mb-4">
+        <div class="col-md-7 mt-4 form-text">
             <ng-container *ngIf="isEditable; else readOnlyField">
                 <input
                     type="text"
@@ -48,7 +48,7 @@
                     PreAdmissionAssessmentFormsData.ChartheadName
                 }}</label>
             </ng-template>
-            <p>include relationship to the resident & contact details</p>
+            <p class="mb-4">include relationship to the resident & contact details</p>
         </div>
         <div class="col-md-1 form-icon mt-4">
             <i class="fa-solid fa-info"></i>
@@ -61,7 +61,7 @@
                 </p>
             </div>
         </div>
-        <div class="col-md-7 mb-4">
+        <div class="col-md-7 form-text">
             <ng-container *ngIf="isEditable; else readOnlyField">
                 <p-dropdown
                     *ngIf="isEditable"
@@ -79,7 +79,7 @@
                     PreAdmissionAssessmentFormsData.PersonCapacity
                 }}</label>
             </ng-template>
-            <p>
+            <p class="mb-4">
                 If person lacks capacity what powers are they being moved under
                 Section 13ZA, POA, Guardianship
             </p>
@@ -96,7 +96,7 @@
                 </p>
             </div>
         </div>
-        <div class="col-md-7 mb-4">
+        <div class="col-md-7 form-text">
             <p-dropdown
                 *ngIf="isEditable"
                 name="PreAdmissionAssessmentFormsData.ProfessionalDocObtained"
@@ -109,7 +109,7 @@
                 [disabled]="!isEditable"
             >
             </p-dropdown>
-            <p>
+            <p class="form-text">
                 If not obtained or in place, AWI certificate and corresponding
                 treatment plan, copy of Power of Attorney or Guardianship order,
                 copy of Community Treatment Order.
@@ -123,7 +123,7 @@
                 <p>Where is the resident moving in from</p>
             </div>
         </div>
-        <div class="col-md-7 mb-4">
+        <div class="col-md-7 form-text">
             <p-dropdown
                 *ngIf="isEditable"
                 name="PreAdmissionAssessmentFormsData.ResidentMovingFrom"
@@ -143,7 +143,7 @@
                 <p>Payment / funding</p>
             </div>
         </div>
-        <div class="col-md-7 mb-4">
+        <div class="col-md-7 ">
             <p-dropdown
                 *ngIf="isEditable"
                 [disabled]="!isEditable"
@@ -154,7 +154,7 @@
                 [style]="{ width: '100%' }"
             >
             </p-dropdown>
-            <p>Update resident admission details</p>
+            <p class="mb-4">Update resident admission details</p>
         </div>
         <div class="col-md-1 form-icon mt-4">
             <i class="fa-solid fa-info"></i>
@@ -167,7 +167,7 @@
                 </p>
             </div>
         </div>
-        <div class="col-md-7 mb-4">
+        <div class="col-md-7 form-text">
             <p-dropdown
                 *ngIf="isEditable"
                 [disabled]="!isEditable"
@@ -180,7 +180,7 @@
                 [style]="{ width: '100%' }"
             >
             </p-dropdown>
-            <p>
+            <p class="mb-4">
                 Focus in this section on the persona abilities not their
                 disabilities - positively report that they can recognise the
                 need to attend the toilet however requires support to attend the
@@ -195,7 +195,7 @@
                 <p>Advanced care planning (ACP)</p>
             </div>
         </div>
-        <div class="col-md-7 mb-4">
+        <div class="col-md-7 form-text">
             <p-dropdown
                 *ngIf="isEditable"
                 [disabled]="!isEditable"
@@ -216,7 +216,7 @@
                 <p>Medical history and medical conditions</p>
             </div>
         </div>
-        <div class="col-md-7 mb-4">
+        <div class="col-md-7 form-text">
             <p-dropdown
                 *ngIf="isEditable"
                 [disabled]="!isEditable"
@@ -229,7 +229,7 @@
                 [style]="{ width: '100%' }"
             >
             </p-dropdown>
-            <p>
+            <p class="mb-4">
                 Include any pacemakers, please at the point of pre admission
                 please request a GP summary print out from their own GP which
                 will detail all Medical history.
@@ -243,7 +243,7 @@
                 <p>Social and spiritual, activities and interests</p>
             </div>
         </div>
-        <div class="col-md-7 mb-4">
+        <div class="col-md-7 form-text">
             <input
                 *ngIf="isEditable"
                 [disabled]="!isEditable"
@@ -256,7 +256,7 @@
                     PreAdmissionAssessmentFormsData.SocialActivitiesInterests
                 "
             />
-            <p>
+            <p class="mb-4">
                 Include hobbies previous and current, whos imoprtant in their
                 lives, any special days/occasions we need to be aware of, what
                 does a good day look and feel like for them
@@ -270,7 +270,7 @@
                 <p>Connecting and Communicating</p>
             </div>
         </div>
-        <div class="col-md-7 mb-4">
+        <div class="col-md-7 form-text">
             <p-dropdown
                 *ngIf="isEditable"
                 [disabled]="!isEditable"
@@ -283,7 +283,7 @@
                 [style]="{ width: '100%' }"
             >
             </p-dropdown>
-            <p>
+            <p class="mb-4">
                 Include all the applicable options below and expand if required
                 using the Other option
             </p>
@@ -300,7 +300,7 @@
             </div>
         </div>
 
-        <div class="col-md-7 mb-4">
+        <div class="col-md-7 form-text">
             <p-dropdown
                 *ngIf="isEditable"
                 [disabled]="!isEditable"
@@ -311,7 +311,7 @@
                 [style]="{ width: '100%' }"
             >
             </p-dropdown>
-            <p>
+            <p class="form-text">
                 Please review in a risk aware manner how can we safely consider
                 the resident enablement while considering safety is there any
                 electronic devises we can use to promote safety.
@@ -325,7 +325,7 @@
                 <p>Leaving the Home unescorted - Herbert protocol</p>
             </div>
         </div>
-        <div class="col-md-7 mb-4">
+        <div class="col-md-7 form-text">
             <input
                 *ngIf="isEditable"
                 [disabled]="!isEditable"
@@ -338,7 +338,7 @@
                     PreAdmissionAssessmentFormsData.LeavingHomeUnescorted
                 "
             />
-            <p>
+            <p class="mb-4">
                 Please complete fully the Herbert protocol and request
                 permission for Alzheimer's Scotland Purple alert profile to be
                 developed
@@ -352,7 +352,7 @@
                 <p>Does the resident experience any mental health conditions</p>
             </div>
         </div>
-        <div class="col-md-7 mb-4">
+        <div class="col-md-7 form-text">
             <p-dropdown
                 *ngIf="isEditable"
                 [disabled]="!isEditable"
@@ -365,7 +365,7 @@
                 [style]="{ width: '100%' }"
             >
             </p-dropdown>
-            <p>
+            <p class="mb-4">
                 If yes, has this been diagnosed by a GP (state condition) and is
                 medication prescribed
             </p>
@@ -378,7 +378,7 @@
                 <p>Speech, sight and hearing</p>
             </div>
         </div>
-        <div class="col-md-7 mb-4">
+        <div class="col-md-7 form-text">
             <p-dropdown
                 *ngIf="isEditable"
                 [disabled]="!isEditable"
@@ -398,7 +398,7 @@
                 <p>Speech, sight and hearing details</p>
             </div>
         </div>
-        <div class="col-md-7 mb-4">
+        <div class="col-md-7 form-text">
             <input
                 *ngIf="isEditable"
                 [disabled]="!isEditable"
@@ -411,7 +411,7 @@
                     PreAdmissionAssessmentFormsData.SpeechSightHearingDetails
                 "
             />
-            <p>
+            <p class="mb-4">
                 Include any diagnosed conditions, aids used and treatment /
                 therapy details
             </p>
@@ -424,7 +424,7 @@
                 <p>Breathing and circulation</p>
             </div>
         </div>
-        <div class="col-md-7 mb-4">
+        <div class="col-md-7 form-text">
             <input
                 *ngIf="isEditable"
                 [disabled]="!isEditable"
@@ -437,7 +437,7 @@
                     PreAdmissionAssessmentFormsData.BreathingCirculationDetails
                 "
             />
-            <p>
+            <p class="mb-4"> 
                 Include all health conditions affecting breathing (COPD, asthma,
                 other, aids used (oxygen etc.), smoking. If oxygen prescribed
                 include administration, day night variances and oxygen
@@ -452,7 +452,7 @@
                 <p>Falls and mobility</p>
             </div>
         </div>
-        <div class="col-md-7 mb-4">
+        <div class="col-md-7 form-text">
             <p-dropdown
                 *ngIf="isEditable"
                 [disabled]="!isEditable"
@@ -472,7 +472,7 @@
                 <p>Falls and mobility details</p>
             </div>
         </div>
-        <div class="col-md-7 mb-4">
+        <div class="col-md-7 form-text">
             <input
                 *ngIf="isEditable"
                 [disabled]="!isEditable"
@@ -485,7 +485,7 @@
                     PreAdmissionAssessmentFormsData.FallsAndMobilityDetails
                 "
             />
-            <p>
+            <p class="form-text">
                 Include mobility level, aids, recent falls (including causes)
                 day / night variance, medication and any referrals
             </p>
@@ -498,7 +498,7 @@
                 <p>Pain status</p>
             </div>
         </div>
-        <div class="col-md-7 mb-4">
+        <div class="col-md-7 form-text">
             <p-dropdown
                 *ngIf="isEditable"
                 [disabled]="!isEditable"
@@ -518,7 +518,7 @@
                 <p>Pain management details</p>
             </div>
         </div>
-        <div class="col-md-7 mb-4">
+        <div class="col-md-7 form-text">
             <input
                 *ngIf="isEditable"
                 [disabled]="!isEditable"
@@ -531,7 +531,7 @@
                     PreAdmissionAssessmentFormsData.PainManagementDetails
                 "
             />
-            <p>
+            <p class="mb-4">
                 How would we recognise the resident is experiencing pain how is
                 this assessed do we need to use abbey pain scale or a visual
                 pain assessment, Include all prescribed medications, when
@@ -547,7 +547,7 @@
                 <p>Skin assessment</p>
             </div>
         </div>
-        <div class="col-md-7 mb-4">
+        <div class="col-md-7 form-text">
             <p-dropdown
                 *ngIf="isEditable"
                 [disabled]="!isEditable"
@@ -558,7 +558,7 @@
                 [style]="{ width: '100%' }"
             >
             </p-dropdown>
-            <p>
+            <p class="mb-4">
                 Include any medical conditions that affect skin or could
                 increase risk of skin damage, and medication
             </p>
@@ -571,7 +571,7 @@
                 <p>Skin Details</p>
             </div>
         </div>
-        <div class="col-md-7 mb-4">
+        <div class="col-md-7 form-text">
             <input
                 *ngIf="isEditable"
                 [disabled]="!isEditable"
@@ -592,7 +592,7 @@
                 <p>Eating and drinking assessment</p>
             </div>
         </div>
-        <div class="col-md-7 mb-4">
+        <div class="col-md-7 form-text">
             <p-dropdown
                 *ngIf="isEditable"
                 [disabled]="!isEditable"
@@ -627,7 +627,7 @@
                     PreAdmissionAssessmentFormsData.EatingDrinkingDetails
                 "
             />
-            <p>
+            <p class="mb-4">
                 Include likes and dislikes, what makes a meal enjoyable, what
                 they like to eat for their meals, where they like to enjoy their
                 meals, do they need any cutlery or crockery, any allergies. Any
@@ -643,7 +643,7 @@
                 <p>Promotion of continence</p>
             </div>
         </div>
-        <div class="col-md-7 mb-4">
+        <div class="col-md-7 form-text">
             <p-dropdown
                 *ngIf="isEditable"
                 [disabled]="!isEditable"
@@ -656,7 +656,7 @@
                 [style]="{ width: '100%' }"
             >
             </p-dropdown>
-            <p></p>
+            
         </div>
         <div class="col-md-1 form-icon mt-4">
             <i class="fa-solid fa-info"></i>
@@ -666,7 +666,7 @@
                 <p>Promoting Continence details</p>
             </div>
         </div>
-        <div class="col-md-7 mb-4">
+        <div class="col-md-7 form-text">
             <input
                 *ngIf="isEditable"
                 [disabled]="!isEditable"
@@ -679,7 +679,7 @@
                     PreAdmissionAssessmentFormsData.PromotionOfContinenceDetails
                 "
             />
-            <p>
+            <p class="mb-4">
                 Include specific aids used, current continence regimes in place
                 to promote continence, medication prescribed, catheter type,
                 size frequency of change date of the last change reason for
@@ -694,7 +694,7 @@
                 <p>Feeling fresh and clean and promotion of self identity</p>
             </div>
         </div>
-        <div class="col-md-7 mb-4">
+        <div class="col-md-7 form-text">
             <p-dropdown
                 *ngIf="isEditable"
                 [disabled]="!isEditable"
@@ -717,7 +717,7 @@
                 <p>Feeling fresh and clean detail</p>
             </div>
         </div>
-        <div class="col-md-7 mb-4">
+        <div class="col-md-7 form-text">
             <input
                 *ngIf="isEditable"
                 [disabled]="!isEditable"
@@ -730,7 +730,7 @@
                     PreAdmissionAssessmentFormsData.FeelingFreshAndCleanDetails
                 "
             />
-            <p>
+            <p class="mb-4">
                 What they do prefer baths, showers and how often. What words do
                 they use for having a wash or a freshen up, tips or treats that
                 would help keeping clean and fresh to be extra enjoyable,
@@ -746,7 +746,7 @@
                 <p>Sleeping and resting</p>
             </div>
         </div>
-        <div class="col-md-7 mb-4">
+        <div class="col-md-7 form-text">
             <p-dropdown
                 *ngIf="isEditable"
                 [disabled]="!isEditable"
@@ -766,7 +766,7 @@
                 <p>Sleeping and resting details</p>
             </div>
         </div>
-        <div class="col-md-7 mb-4">
+        <div class="col-md-7 form-text">
             <input
                 *ngIf="isEditable"
                 [disabled]="!isEditable"
@@ -779,7 +779,7 @@
                     PreAdmissionAssessmentFormsData.SleepingAndRestingDetails
                 "
             />
-            <p>
+            <p class="mb-4">
                 what makes a good night for the resident. Describe sleeping and
                 waking routine, medication prescribed, number of carers required
                 to assist. If bed rails are used, ensure full multidisciplinary
@@ -816,7 +816,7 @@
                 <p>Expressing sexuality details</p>
             </div>
         </div>
-        <div class="col-md-7 mb-4">
+        <div class="col-md-7 form-text">
             <input
                 *ngIf="isEditable"
                 [disabled]="!isEditable"
@@ -829,7 +829,7 @@
                     PreAdmissionAssessmentFormsData.ExpressingSexualityDetails
                 "
             />
-            <p>
+            <p class="mb-4">
                 Additional information (how can you support the resident with
                 sensitivity and privacy needs. How does the resident express
                 sexuality / sexual needs.) Consider behaviours and communication
@@ -849,7 +849,7 @@
                 </p>
             </div>
         </div>
-        <div class="col-md-7 mb-4">
+        <div class="col-md-7 form-text">
             <input
                 *ngIf="isEditable"
                 [disabled]="!isEditable"
@@ -874,7 +874,7 @@
                 </p>
             </div>
         </div>
-        <div class="col-md-7 mb-4">
+        <div class="col-md-7 form-text">
             <p-dropdown
                 *ngIf="isEditable"
                 [disabled]="!isEditable"
@@ -887,7 +887,7 @@
                 [style]="{ width: '100%' }"
             >
             </p-dropdown>
-            <p></p>
+            
         </div>
         <div class="col-md-1 form-icon mt-4">
             <i class="fa-solid fa-info"></i>
@@ -900,7 +900,7 @@
                 </p>
             </div>
         </div>
-        <div class="col-md-7 mb-4">
+        <div class="col-md-7 form-text">
             <input
                 *ngIf="isEditable"
                 [disabled]="!isEditable"
@@ -911,7 +911,7 @@
                 class="form-control"
                 [(ngModel)]="PreAdmissionAssessmentFormsData.RescueMedications"
             />
-            <p>
+            <p class="mb-4">
                 Please detail these below alongside when they are to be
                 administered, frequency and time between doses
             </p>
@@ -924,7 +924,7 @@
                 <p>Infection status</p>
             </div>
         </div>
-        <div class="col-md-7 mb-4">
+        <div class="col-md-7 form-text">
             <p-dropdown
                 *ngIf="isEditable"
                 [disabled]="!isEditable"
@@ -935,7 +935,7 @@
                 [style]="{ width: '100%' }"
             >
             </p-dropdown>
-            <p></p>
+            
         </div>
         <div class="col-md-1 form-icon mt-4">
             <i class="fa-solid fa-info"></i>
@@ -945,7 +945,7 @@
                 <p>Infection details</p>
             </div>
         </div>
-        <div class="col-md-7 mb-4">
+        <div class="col-md-7 ">
             <input
                 *ngIf="isEditable"
                 [disabled]="!isEditable"
@@ -956,7 +956,7 @@
                 class="form-control"
                 [(ngModel)]="PreAdmissionAssessmentFormsData.InfectionDetails"
             />
-            <p>
+            <p class="mb-4">
                 Detail how the person presents when they have an infection, what
                 are the soft signs of infection if these are knownInclude type
                 of infection, location, treatment
@@ -970,7 +970,7 @@
                 <p>Medication</p>
             </div>
         </div>
-        <div class="col-md-7 mb-4">
+        <div class="col-md-7 form-text">
             <p-dropdown
                 *ngIf="isEditable"
                 [disabled]="!isEditable"
@@ -981,7 +981,7 @@
                 [style]="{ width: '100%' }"
             >
             </p-dropdown>
-            <p></p>
+            
         </div>
         <div class="col-md-1 form-icon mt-4">
             <i class="fa-solid fa-info"></i>
@@ -991,7 +991,7 @@
                 <p>Medication details</p>
             </div>
         </div>
-        <div class="col-md-7 mb-4">
+        <div class="col-md-7 form-text">
             <input
                 *ngIf="isEditable"
                 [disabled]="!isEditable"
@@ -1002,7 +1002,7 @@
                 class="form-control"
                 [(ngModel)]="PreAdmissionAssessmentFormsData.MedicationDetails"
             />
-            <p>
+            <p class="mb-4">
                 refer reader to the MARs sheets for the resident most up to date
                 medications, howveer please explore how they like to take their
                 medications, high risk medications, such as lithium,
@@ -1018,7 +1018,7 @@
                 <p>First aid for epileptic seizure</p>
             </div>
         </div>
-        <div class="col-md-7 mb-4">
+        <div class="col-md-7 form-text">
             <p-dropdown
                 *ngIf="isEditable"
                 [disabled]="!isEditable"
@@ -1031,7 +1031,7 @@
                 [style]="{ width: '100%' }"
             >
             </p-dropdown>
-            <p>Choose all statements below</p>
+            <p class="mb-4">Choose all statements below</p>
         </div>
         <div class="col-md-1 form-icon mt-4">
             <i class="fa-solid fa-info"></i>
@@ -1044,7 +1044,7 @@
                 </p>
             </div>
         </div>
-        <div class="col-md-7 mb-4">
+        <div class="col-md-7 form-text">
             <input
                 *ngIf="isEditable"
                 [disabled]="!isEditable"
@@ -1055,7 +1055,7 @@
                 class="form-control"
                 [(ngModel)]="PreAdmissionAssessmentFormsData.OverallGoal"
             />
-            <p>
+            <p class="mb-4">
                 For example to be safe, to minimise loneliness, to strive and
                 promote abilities, to manage their health needs better.
             </p>

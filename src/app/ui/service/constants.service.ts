@@ -95,6 +95,16 @@ export enum FormTypes {
 
   MUSTStep5NutritionalManagement = "660e719cf05fe3604a126e57",
   CareAssessmentSpeech = "660e80bdf05fe3604a126e58",
+  CovidAcuteCarePlan = "66151024f05fe3604a126e5d",
+  DentistVisitCommunication = "66151002f05fe3604a126e5c",
+  DistrictNurseVisit = "66150fa9f05fe3604a126e59" ,
+  FASTStrokeAssessment = "66151037f05fe3604a126e5e",
+  HealthCareSupport = "66151067f05fe3604a126e60",
+  HomemangersSetting = "66151097f05fe3604a126e61",
+  PromotingWellbeing = "66150febf05fe3604a126e5b",
+  RiskToolBedRails = "66150fc3f05fe3604a126e5a",
+  SepsisScreening = "66151055f05fe3604a126e5f",
+  
 
 }
 
