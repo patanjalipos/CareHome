@@ -39,6 +39,15 @@ import { OralHealthRiskAndOralPlanModule } from '../oral-health-risk-and-oral-pl
 import { CareVitaminDSupplementationModule } from '../care-vitamin-d-supplementation/care-vitamin-d-supplementation.module';
 import { MustStep5NutritionalManagementModule } from '../must-step5-nutritional-management/must-step5-nutritional-management.module';
 import { CareSpeechLanguageSsessmentModule } from '../care-speech-language-ssessment/care-speech-language-ssessment.module';
+import { CovidAcuteCarePlanModule } from '../covid-acute-care-plan/covid-acute-care-plan.module';
+import { DentistVisitCommunicationModule } from '../dentist-visit-communication/dentist-visit-communication.module';
+import { DistrictNurseVisitCommunicationModule } from '../district-nurse-visit-communication/district-nurse-visit-communication.module';
+import { FASTStrokeAssessmentModule } from '../f-a-s-t-stroke-assessment/f-a-s-t-stroke-assessment.module';
+import { HealthcareSupportToolModule } from '../healthcare-support-tool/healthcare-support-tool.module';
+import { HomeManagersSettlingModule } from '../home-managers-settling/home-managers-settling.module';
+import { PromotingWellbeingAtHomeModule } from '../promoting-wellbeing-at-home/promoting-wellbeing-at-home.module';
+import { RiskToolBedRailsPackModule } from '../risk-tool-bed-rails-pack/risk-tool-bed-rails-pack.module';
+import { SepsisScreeningToolModule } from '../sepsis-screening-tool/sepsis-screening-tool.module';
 
 
 
@@ -85,6 +94,20 @@ import { CareSpeechLanguageSsessmentModule } from '../care-speech-language-ssess
     CareVitaminDSupplementationModule,
     MustStep5NutritionalManagementModule,
     CareSpeechLanguageSsessmentModule,
+    CovidAcuteCarePlanModule,
+    DentistVisitCommunicationModule,
+    DistrictNurseVisitCommunicationModule,
+    FASTStrokeAssessmentModule,
+    HealthcareSupportToolModule,
+    HomeManagersSettlingModule,
+    PromotingWellbeingAtHomeModule,
+    RiskToolBedRailsPackModule,
+    SepsisScreeningToolModule
+
+   
+ 
+
+
   ],
 
   exports:[

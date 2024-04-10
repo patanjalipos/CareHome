@@ -1,1 +1,153 @@
-<p>must-step5-nutritional-management works!</p>
+<div class="card">
+    <div class="row">
+        <div class="formheader">
+            <div class="d-flex">
+                <div class="col-md-4">
+                    <label class="form-label"><b> Started by (Name) :</b>
+                    </label>
+                </div>
+                <div class="col-md-4 ">
+                    <label class="form-label"><b>Designation :</b> </label>
+                </div>
+                <div class="col-md-4">
+                    <label class="form-label"> <b>Date/Time : </b></label>
+                </div>
+            </div>
+            <div class="d-flex">
+                <div class="col-md-4">
+                    <label class="form-label">
+                        <b>Last entered by (Name) :</b></label>
+                </div>
+                <div class="col-md-4">
+                    <label class="form-label"> <b>Designation :</b></label>
+                </div>
+                <div class="col-md-4">
+                    <label class="form-label"> <b>Date/Time :</b> </label>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 mt-4">
+            <div class="labelcontent">
+                <p>What is the resident current weight</p>
+            </div>
+        </div>
+        <div class="col-md-7  mt-4 form-text">
+            <input pInputText type="text" required name="chartheadname" class="form-control" />
+            <p class="mb-4">Please include the statement Julie's current weight is.......</p>
+        </div>
+        <div class="col-md-1 mb-4 mt-4 form-icon">
+            <i class="fa-solid fa-info"></i>
+        </div>
+        <div class="col-md-4">
+            <div class="labelcontent">
+                <p>What is the persons current MUST score?</p>
+            </div>
+        </div>
+        <div class="col-md-7 form-text">
+            <input pInputText type="text" required name="chartheadname" class="form-control" />
+            <p class="mb-4">Please detail the following statement Julie's current MUST score is.... they are scoring for
+                BMI of ....
+                and/or weight loss of ......in the last 6mths</p>
+        </div>
+        <div class="col-md-1  form-icon">
+            <i class="fa-solid fa-info"></i>
+        </div>
+        <div class="col-md-4">
+            <div class="labelcontent">
+                <p>What is the persons highest weight in the last 6mths?</p>
+            </div>
+        </div>
+        <div class="col-md-7 form-text ">
+            <input pInputText type="text" required name="chartheadname" class="form-control" />
+            <p class="mb-4">Please include this question in your response, Julie highest weight in the last 6mths
+                is......</p>
+        </div>
+        <div class="col-md-1  form-icon">
+            <i class="fa-solid fa-info"></i>
+        </div>
+        <div class="col-md-4">
+            <div class="labelcontent">
+                <p>Problems affecting Nutritional status -</p>
+            </div>
+        </div>
+        <div class="col-md-7 form-text">
+            <p-dropdown placeholder="Select" [style]="{ width: '100%' }">
+            </p-dropdown>
+            <p>Indicate factors affecting the resident ability to east and drink or nutritional status. Choose all that
+                are applicable and detail further details in the next question</p>
+        </div>
+        <div class="col-md-1  form-icon">
+            <i class="fa-solid fa-info"></i>
+        </div>
+        <div class="col-md-4">
+            <div class="labelcontent">
+                <p>Further details of highlighted problems affecting persons nutritional status</p>
+            </div>
+        </div>
+        <div class="col-md-7 form-text">
+            <input pInputText type="text" required name="chartheadname" class="form-control" />
+            <p class="mb-4">If you have chosen any problem above please give further details on how we are managing that
+                problem, for
+                example referral to Speech and language, dentist etc</p>
+        </div>
+        <div class="col-md-1  form-icon">
+            <i class="fa-solid fa-info"></i>
+        </div>
+        <div class="col-md-4">
+            <div class="labelcontent">
+                <p>Establish nutritional aims</p>
+            </div>
+        </div>
+        <div class="col-md-7 form-text">
+            <p-dropdown placeholder="Select" [style]="{ width: '100%' }">
+            </p-dropdown>
+            <p class="mb-4">tick those appropriate to the person</p>
+        </div>
+        <div class="col-md-1  form-icon">
+            <i class="fa-solid fa-info"></i>
+        </div>
+        <div class="col-md-4">
+            <div class="labelcontent">
+                <p>Choose all interventions being implemented</p>
+            </div>
+        </div>
+        <div class="col-md-7 form-text">
+            <p-dropdown placeholder="Select" [style]="{ width: '100%' }">
+            </p-dropdown>
+            <p class="mb-4">Please always choose the first 4 options and then choose a minimum of 3-4 of the Dietary
+                interventions.
+            </p>
+        </div>
+        <div class="col-md-1  form-icon">
+            <i class="fa-solid fa-info"></i>
+        </div>
+        <div class="col-md-4">
+            <div class="labelcontent">
+                <p>Next review date</p>
+            </div>
+        </div>
+        <div class="col-md-7">
+            <div class="input-group date">
+                <p-calendar name="DateOfBirth" [showIcon]="true" inputId="icon" [dateFormat]="" class="iconcal"
+                    [readonlyInput]="true" appendTo="body" [maxDate]="" #dobref=""></p-calendar>
+                <div *ngIf="" class="alert alert-danger">
+                </div>
+            </div>
+
+        </div>
+        <div class="d-flex justify-content-end">
+            <div>
+                <span class="p-ml-left mr-4">
+                    <button pButton title="New" label="Save as Unfinished"></button>
+                    <span class="total-txt"></span>
+                </span>
+            </div>
+            <div>
+                <span class="p-ml-left mr-4">
+                    <button pButton title="New" label="Complete"></button>
+                    <span class="total-txt"></span>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>

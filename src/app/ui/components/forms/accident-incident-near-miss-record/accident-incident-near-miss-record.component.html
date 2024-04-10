@@ -26,12 +26,12 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-4 mt-4">
+        <div class="col-md-4 mt-2">
             <div class="labelcontent">
                 <p>Date of Accident/Incident</p>
             </div>
         </div>
-        <div class="col-md-8 mt-4 mb-4 ">
+        <div class="col-md-8  mt-2">
             <div class="input-group date">
                 <p-calendar name="DateOfBirth" [showIcon]="true" inputId="icon" [dateFormat]="" class="iconcal"
                     [readonlyInput]="true" appendTo="body" [maxDate]="" #dobref=""></p-calendar>
@@ -45,24 +45,23 @@
                 </p>
             </div>
         </div>
-        <div class="col-md-8 mb-4 ">
+        <div class="col-md-8  form-text ">
             <div class="d-flex align-items-center">
             <input pInputText type="time" [(ngModel)]="timeOfAccident" required name="timeOfAccident" class="form-control mr-4"  [style]="{ width: '35%' }">
             <p>Use 24 hour clock</p>
         </div>
-    </div>
         <div class="col-md-4 ">
             <div class="labelcontent">
                 <p>Unique Referencing ID</p>
             </div>
         </div>
-        <div class="col-md-8  mb-4">
+        <div class="col-md-8 form-text">
             <div class="d-flex align-items-center">
                 <input pInputText type="text" [(ngModel)]="uniqueReferenceId" required name="uniqueReferenceId" class="form-control mr-4"
                     [style]="{ width: '35%' }">
                 <p>Allowed text entry format :"-0123456789"eg:-"75.2"</p>
             </div>
-            <p>Add Reference number example: Incident Date 05/08/2022 at 09:30 Entry = 0508220930</p>
+            <p class=" mb-4"> Add Reference number example: Incident Date 05/08/2022 at 09:30 Entry = 0508220930</p>
         </div>
         <div class="col-md-4">
             <div class="labelcontent">
@@ -70,7 +69,7 @@
                 </p>
             </div>
         </div>
-        <div class="col-md-8 mb-4">
+        <div class="col-md-8 form-text ">
             <p-triStateCheckbox inputId="tricheckbox"></p-triStateCheckbox>
         </div>
 
@@ -273,7 +272,7 @@
                 <p>Does the Falls Risk Assessment need updating</p>
             </div>
         </div>
-        <div class="col-md-8 mb-4">
+        <div class="col-md-8 form-text ">
             <p-triStateCheckbox inputId="tricheckbox"></p-triStateCheckbox>
         </div>
         <div class="d-flex justify-content-end">
