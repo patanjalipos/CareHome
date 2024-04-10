@@ -19,6 +19,9 @@ export class PreAdmissionAssessmentFormsComponent
     implements OnInit
 {
     customDateFormat = CustomDateFormat;
+
+    //Refresh the search list on the form dashboard
+    
     PreAdmissionAssessmentFormsData: any = <any>{};
 
     isEditable: boolean; //Need to be passed from form Dashboard
@@ -41,8 +44,7 @@ export class PreAdmissionAssessmentFormsComponent
     ) {
         super();
         this._ConstantServices.ActiveMenuName = 'Pre Assessment Admission Form';
-
-        this.loginId = '6368fd74757dbcfdbbb1ce4c'; //localStorage.getItem('userId');
+        this.loginId = localStorage.getItem('userId'); //'6368fd74757dbcfdbbb1ce4c';
 
         this.unsubscribe.add = this.route.queryParams.subscribe((params) => {
             var ParamsArray = this._ConstantServices.GetParmasVal(params['q']);
@@ -125,10 +127,15 @@ export class PreAdmissionAssessmentFormsComponent
     }
 
     Save() {
-        if (this.userId != null && this.residentAdmissionInfoId != null) {
+        if (
+            this.userId != null &&
+            this.residentAdmissionInfoId != null &&
+            this.loginId != null
+        ) {
             this.PreAdmissionAssessmentFormsData.userId = this.userId;
-            this.PreAdmissionAssessmentFormsData.residentAdmissionInfoId =
-                this.residentAdmissionInfoId;
+            this.PreAdmissionAssessmentFormsData.residentAdmissionInfoId = this.residentAdmissionInfoId;
+            this.PreAdmissionAssessmentFormsData.StartedBy = this.loginId;
+            this.PreAdmissionAssessmentFormsData.LastEnteredBy = this.loginId;
 
             const objectBody: any = {
                 StatementType: this.StatementType,
@@ -157,15 +164,15 @@ export class PreAdmissionAssessmentFormsComponent
                         this._UtilityService.showErrorAlert(e.message);
                     },
                 });
+                //this.ResetModel();
         } else {
             this._UtilityService.showWarningAlert(
                 'Resident admission details are missing.'
             );
         }
     }
-    
-    SaveAsPDF(){}
 
+    SaveAsPDF() {}
 
     ResetModel() {
         this.isEditable = true;
