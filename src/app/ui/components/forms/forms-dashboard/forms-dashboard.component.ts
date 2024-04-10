@@ -23,7 +23,6 @@ import { AccidentIncidentNearMissRecordComponent } from '../accident-incident-ne
 import { AcuteCarePlanInfectionPreventionAndControlComponent } from '../acute-care-plan-infection-prevention-and-control/acute-care-plan-infection-prevention-and-control.component';
 import { BodyMappingRecordComponent } from '../body-mapping-record/body-mapping-record.component';
 import { CareBreathingAndCirculationAssessmentComponent } from '../care-breathing-and-circulation-assessment/care-breathing-and-circulation-assessment.component';
-import { CareContinencePromotionModule } from '../care-continence-promotion/care-continence-promotion.module';
 import { CareEatsAndTreatsComponent } from '../care-eats-and-treats/care-eats-and-treats.component';
 import { CareFeelingFreshAndCleanComponent } from '../care-feeling-fresh-and-clean/care-feeling-fresh-and-clean.component';
 import { CareContinencePromotionComponent } from '../care-continence-promotion/care-continence-promotion.component';
@@ -34,6 +33,15 @@ import { GpDoctorVisitCommunicationRecordComponent } from '../gp-doctor-visit-co
 import { ProfessionalVisitCommunicationRecordComponent } from '../professional-visit-communication-record/professional-visit-communication-record.component';
 import { RiskPhysicalDependencyAssessmentComponent } from '../risk-physical-dependency-assessment/risk-physical-dependency-assessment.component';
 import { RiskWaterlowPressureUlcerComponent } from '../risk-waterlow-pressure-ulcer/risk-waterlow-pressure-ulcer.component';
+import { CareMentalHealthComponent } from '../care-mental-health/care-mental-health.component';
+import { CareSleepAndRestingAssessmentComponent } from '../care-sleep-and-resting-assessment/care-sleep-and-resting-assessment.component';
+import { CareVitaminDSupplementationComponent } from '../care-vitamin-d-supplementation/care-vitamin-d-supplementation.component';
+import { DeliriumRiskAndRiskReductionComponent } from '../delirium-risk-and-risk-reduction/delirium-risk-and-risk-reduction.component';
+import { MustStep5NutritionalManagementComponent } from '../must-step5-nutritional-management/must-step5-nutritional-management.component';
+import { OralHealthRiskAndOralPlanComponent } from '../oral-health-risk-and-oral-plan/oral-health-risk-and-oral-plan.component';
+import { RiskOnTheMoveComponent } from '../risk-on-the-move/risk-on-the-move.component';
+import { CareSpeechLanguageSsessmentComponent } from '../care-speech-language-ssessment/care-speech-language-ssessment.component';
+import { CareHearingAssessmentComponent } from '../care-hearing-assessment/care-hearing-assessment.component';
 
 @Component({
     selector: 'app-forms-dashboard',
@@ -58,6 +66,9 @@ export class FormsDashboardComponent
 
     residentAdmissionInfoId: string;
     rangeDates: Date[] | undefined;
+    FormTypes=FormTypes;
+    ShowChildComponent:boolean=false;
+
 
     constructor(
         private _ConstantServices: ConstantsService,
@@ -108,18 +119,19 @@ export class FormsDashboardComponent
             });
     }
 
-    SearchForm(selectedFormMasterId: string, rangeDates: Date[]) {
+    SearchForm() {
+        this.ShowChildComponent=false;
         this._UtilityService.showSpinner();
         //console.log('date Ranges: ' + rangeDates);
         const residentAdmissionInfoId = this.residentAdmissionInfoId;
-        const formMasterId = selectedFormMasterId;
+        const formMasterId = this.selectedFormMasterId;
 
         let fromDate: Date | null = null;
         let toDate: Date | null = null;
 
-        if (rangeDates && rangeDates.length >= 2) {
-            fromDate = rangeDates[0];
-            toDate = rangeDates[1];
+        if (this.rangeDates && this.rangeDates.length >= 2) {
+            fromDate = this.rangeDates[0];
+            toDate = this.rangeDates[1];
         }
 
         // Call the API
@@ -167,73 +179,105 @@ export class FormsDashboardComponent
             ModifiedByDesignation: selectedFormdata.ModifiedByDesignation,
             ModifiedOn: selectedFormdata.ModifiedOn,
         };
-        this._DataService.sendData(this.selectedFormData);
-        this.ShowForm(this.selectedFormMasterId);
+        this.ShowModel();
+        //this._DataService.sendData(this.selectedFormData);
+        //this.ShowForm(this.selectedFormMasterId);
+    }
+    ShowModel()
+    {
+        this.ShowChildComponent=true;
     }
 
     //Create new Form
-    ShowForm(selectedFormMasterId: string) {
-        // Clear existing component if any
-        if (this.componentRef) {
-            this.componentRef.destroy();
-        }
-        // Determine which component to load based on selectedForm
-        let componentType: any;
+    // ShowForm(selectedFormMasterId: string) {
+    //     // Clear existing component if any
+    //     if (this.componentRef) {
+    //         this.componentRef.destroy();
+    //     }
+    //     // Determine which component to load based on selectedForm
+    //     let componentType: any;
 
-        switch (selectedFormMasterId) {
-            case FormTypes.PreAdmission:
-                componentType = PreAdmissionAssessmentFormsComponent;
-                break;
-            case FormTypes.AccidentIncident:
-                componentType = AccidentIncidentNearMissRecordComponent;
-                break;
-            case FormTypes.AcuteCarePlan:
-                componentType =
-                    AcuteCarePlanInfectionPreventionAndControlComponent;
-                break;
-            case FormTypes.BodyMappingRecord:
-                componentType = BodyMappingRecordComponent;
-                break;
-            case FormTypes.CareAssessmentBreathing:
-                componentType = CareBreathingAndCirculationAssessmentComponent;
-                break;
-            case FormTypes.CareAssessmentContinence:
-                componentType = CareContinencePromotionComponent;
-                break;
-            case FormTypes.CareAssessmentEats:
-                componentType = CareEatsAndTreatsComponent;
-                break;
-            case FormTypes.CareAssessmentFeeling:
-                componentType = CareFeelingFreshAndCleanComponent;
-                break;
-            case FormTypes.CareAssessmentPersonal:
-                componentType = CarePersonalEmergencyEvacuationPlanComponent;
-                break;
-            case FormTypes.ConnectingandCommunicating:
-                componentType = ConnectingAndCommunicatingComponent;
-                break;
-            case FormTypes.FamilyCommunication:
-                componentType = FamilyCommunicationComponent;
-                break;
-            case FormTypes.GPDoctorVisitCommunicationRecord:
-                componentType = GpDoctorVisitCommunicationRecordComponent;
-                break;
-            case FormTypes.ProfessionalVisitCommunicationRecord:
-                componentType = ProfessionalVisitCommunicationRecordComponent;
-                break;
-            case FormTypes.RiskAssessmentPhysical:
-                componentType = RiskPhysicalDependencyAssessmentComponent;
-                break;
-            case FormTypes.RiskAssessmentWaterlow:
-                componentType = RiskWaterlowPressureUlcerComponent;
-                break;
-            default:
-                componentType = NotfoundComponent;
-        }
+    //     switch (selectedFormMasterId) {
+    //         case FormTypes.PreAdmission:
+    //             componentType = PreAdmissionAssessmentFormsComponent;
+    //             break;
+    //         case FormTypes.AccidentIncident:
+    //             componentType = AccidentIncidentNearMissRecordComponent;
+    //             break;
+    //         case FormTypes.AcuteCarePlan:
+    //             componentType =
+    //                 AcuteCarePlanInfectionPreventionAndControlComponent;
+    //             break;
+    //         case FormTypes.BodyMappingRecord:
+    //             componentType = BodyMappingRecordComponent;
+    //             break;
+    //         case FormTypes.CareAssessmentBreathing:
+    //             componentType = CareBreathingAndCirculationAssessmentComponent;
+    //             break;
+    //         case FormTypes.CareAssessmentContinence:
+    //             componentType = CareContinencePromotionComponent;
+    //             break;
+    //         case FormTypes.CareAssessmentEats:
+    //             componentType = CareEatsAndTreatsComponent;
+    //             break;
+    //         case FormTypes.CareAssessmentFeeling:
+    //             componentType = CareFeelingFreshAndCleanComponent;
+    //             break;
+    //         case FormTypes.CareAssessmentPersonal:
+    //             componentType = CarePersonalEmergencyEvacuationPlanComponent;
+    //             break;
+    //         case FormTypes.ConnectingandCommunicating:
+    //             componentType = ConnectingAndCommunicatingComponent;
+    //             break;
+    //         case FormTypes.FamilyCommunication:
+    //             componentType = FamilyCommunicationComponent;
+    //             break;
+    //         case FormTypes.GPDoctorVisitCommunicationRecord:
+    //             componentType = GpDoctorVisitCommunicationRecordComponent;
+    //             break;
+    //         case FormTypes.ProfessionalVisitCommunicationRecord:
+    //             componentType = ProfessionalVisitCommunicationRecordComponent;
+    //             break;
+    //         case FormTypes.RiskAssessmentPhysical:
+    //             componentType = RiskPhysicalDependencyAssessmentComponent;
+    //             break;
+    //         case FormTypes.RiskAssessmentWaterlow:
+    //             componentType = RiskWaterlowPressureUlcerComponent;
+    //             break;
+    //         case FormTypes.CareAssessmentHearing:
+    //             componentType =CareHearingAssessmentComponent;
+    //             break;
+    //         case FormTypes.CareAssessmentMental:
+    //             componentType = CareMentalHealthComponent;
+    //             break;
+    //         case FormTypes.CareAssessmentSleep:
+    //             componentType = CareSleepAndRestingAssessmentComponent;
+    //             break;
+    //         case FormTypes.CareAssessmentforVitaminD:
+    //             componentType = CareVitaminDSupplementationComponent;
+    //             break;
+    //         case FormTypes.Deliriumrisk:
+    //             componentType = DeliriumRiskAndRiskReductionComponent;
+    //             break;
+    //         case FormTypes.MUSTStep5NutritionalManagement:
+    //             componentType = MustStep5NutritionalManagementComponent;
+    //             break;
+    //         case FormTypes.OralHealthRiskAssessment:
+    //             componentType = OralHealthRiskAndOralPlanComponent;
+    //             break;
+    //         case FormTypes.RiskAssessmentOntheMove:
+    //             componentType = RiskOnTheMoveComponent;
+    //             break;
+    //         case FormTypes.CareAssessmentSpeech:
+    //             componentType = CareSpeechLanguageSsessmentComponent;
+    //             break;
+    //         default:
+    //             componentType = NotfoundComponent;
+    //     }
 
-        // Load the component dynamically
-        this.componentRef = this.formContainer.createComponent(componentType);
-    }
+    //     // Load the component dynamically
+    //     this.componentRef = this.formContainer.createComponent(componentType);
+    // }
 
     //Clear Search
     ResetModel() {
@@ -243,5 +287,9 @@ export class FormsDashboardComponent
         this.selectedFormId = null;
         this.selectedFormData = null;
         this.componentRef.destroy();
+    }
+    EmitUpdateForm(event)
+    {
+        this.SearchForm();
     }
 }

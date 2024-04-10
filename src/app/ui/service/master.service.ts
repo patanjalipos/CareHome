@@ -1589,5 +1589,86 @@ export class MasterService {
             { headers: reqHeader, params: params }
         );
     }
+
+    ///////#region Acute Care Plan
+    GetActuteInfectionMaster(
+        Status: any
+    ): Observable<any> {
+        let reqHeader = new HttpHeaders({
+            'Content-Type': 'application/json',
+            'Access-Control-Allow-Origin': environment.BaseUriAdmin,
+        });
+        let params = new HttpParams();
+        params=params.append('Status',Status);
+        return this._httpclient.get<any>(
+            environment.BaseUriAdmin +
+                'api/Admin/GetActuteInfectionMaster',
+            { headers: reqHeader, params: params }
+        );
+    }
+    GetActuteStrategiesMaster(
+        Status: any
+    ): Observable<any> {
+        let reqHeader = new HttpHeaders({
+            'Content-Type': 'application/json',
+            'Access-Control-Allow-Origin': environment.BaseUriAdmin,
+        });
+        let params = new HttpParams();
+        params=params.append('Status',Status);
+        return this._httpclient.get<any>(
+            environment.BaseUriAdmin +
+                'api/Admin/GetActuteStrategiesMaster',
+            { headers: reqHeader, params: params }
+        );
+    }
+    GetActuteOutcomeTreatmentMaster(
+        Status: any
+    ): Observable<any> {
+        let reqHeader = new HttpHeaders({
+            'Content-Type': 'application/json',
+            'Access-Control-Allow-Origin': environment.BaseUriAdmin,
+        });
+        let params = new HttpParams();
+        params=params.append('Status',Status);
+        return this._httpclient.get<any>(
+            environment.BaseUriAdmin +
+                'api/Admin/GetActuteOutcomeTreatmentMaster',
+            { headers: reqHeader, params: params }
+        );
+    }
+    InsertUpdateAcuteCarePlanForm(
+        AcuteCarePlanFormsData: any
+    ): Observable<any> {
+        let reqHeader = new HttpHeaders({
+            'Content-Type': 'application/json',
+            'Access-Control-Allow-Origin': environment.BaseUriAdmin,
+            //'Authorization': 'Bearer ' + localStorage.getItem('token')
+        });
+        let params = new HttpParams();
+        var data = JSON.stringify(AcuteCarePlanFormsData).toString();
+        console.log(data);
+        return this._httpclient.post<any>(
+            environment.BaseUriAdmin +
+                'api/Admin/InsertUpdateAcuteCarePlanForm',
+            data,
+            { headers: reqHeader, params: params }
+        );
+    }
+
+    GetAcuteCarePlanFormByid(fromId: any) {
+        let reqHeader = new HttpHeaders({
+            'Content-Type': 'application/json',
+            'Access-Control-Allow-Origin': environment.BaseUriAdmin,
+            //'Authorization': 'Bearer ' + localStorage.getItem('token')
+        });
+        let params = new HttpParams();
+        params = params.append('fromId', fromId);
+        return this._httpclient.get<any>(
+            environment.BaseUriAdmin + 'api/Admin/GetAcuteCarePlanForm',
+            { headers: reqHeader, params: params }
+        );
+    }
+    
+    ///////#end Region
     
 }

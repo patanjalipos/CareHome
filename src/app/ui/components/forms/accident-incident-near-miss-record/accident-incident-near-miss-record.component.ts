@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'app-accident-incident-near-miss-record',
@@ -7,9 +7,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AccidentIncidentNearMissRecordComponent implements OnInit {
 
+  @Input() preSelectedFormData: any=<any>{};
+  @Output() EmitUpdateForm: EventEmitter<any> = new EventEmitter<any>();
+  
   constructor() { }
 
   ngOnInit(): void {
   }
-
+  
 }
