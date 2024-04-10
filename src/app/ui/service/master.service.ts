@@ -93,6 +93,46 @@ export class MasterService {
 
     //#endregion
 
+     //#region AccidentNearMissRecordForm
+
+     GetAccidentNearMissRecordDetails(fromId: any) {
+        let reqHeader = new HttpHeaders({
+            'Content-Type': 'application/json',
+            'Access-Control-Allow-Origin': environment.BaseUriAdmin,
+            //'Authorization': 'Bearer ' + localStorage.getItem('token')
+        });
+        let params = new HttpParams();
+        params = params.append('fromId', fromId);
+        return this._httpclient.get<any>(
+            environment.BaseUriAdmin + 'api/Admin/GetAccidentNearOrMissRecordForm',
+            { headers: reqHeader, params: params }
+        );
+    }
+
+    AddInsertUpdateAccidentNearMissRecordForm(
+        AccidentNearMissRecordFormsData: any
+    ): Observable<any> {
+        let reqHeader = new HttpHeaders({
+            'Content-Type': 'application/json',
+            'Access-Control-Allow-Origin': environment.BaseUriAdmin,
+            //'Authorization': 'Bearer ' + localStorage.getItem('token')
+        });
+        let params = new HttpParams();
+        var data = JSON.stringify(AccidentNearMissRecordFormsData).toString();
+        console.log(data);
+        return this._httpclient.post<any>(
+            environment.BaseUriAdmin +
+                'api/Admin/AddInsertUpdateAccidentNearOrMissRecordForm',
+            data,
+            { headers: reqHeader, params: params }
+        );
+    }
+
+    //#endregion
+
+
+
+
     //#region Form Master
 
     GetFormMaster(status: any = true): Observable<any> {

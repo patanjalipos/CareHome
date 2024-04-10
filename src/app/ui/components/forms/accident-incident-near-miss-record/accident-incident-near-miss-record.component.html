@@ -47,7 +47,7 @@
         </div>
         <div class="col-md-8 mb-4 ">
             <div class="d-flex align-items-center">
-            <input pInputText type="text" required name="chartheadname" class="form-control mr-4"  [style]="{ width: '35%' }">
+            <input pInputText type="time" [(ngModel)]="timeOfAccident" required name="timeOfAccident" class="form-control mr-4"  [style]="{ width: '35%' }">
             <p>Use 24 hour clock</p>
         </div>
     </div>
@@ -58,7 +58,7 @@
         </div>
         <div class="col-md-8  mb-4">
             <div class="d-flex align-items-center">
-                <input pInputText type="text" required name="chartheadname" class="form-control mr-4"
+                <input pInputText type="text" [(ngModel)]="uniqueReferenceId" required name="uniqueReferenceId" class="form-control mr-4"
                     [style]="{ width: '35%' }">
                 <p>Allowed text entry format :"-0123456789"eg:-"75.2"</p>
             </div>
@@ -80,7 +80,7 @@
             </div>
         </div>
         <div class="col-md-8 mb-4">
-            <p-dropdown placeholder="Select" [style]="{ width: '100%' }">
+            <p-dropdown [required]="true" [options]="lstlocationaccident"   optionLabel="name" [(ngModel)]="locationOfAccident" name="AccidentLocation" optionValue="name" placeholder="Select" [style]="{ width: '100%' }">
             </p-dropdown>
         </div>
         <div class="col-md-4">
@@ -90,7 +90,7 @@
             </div>
         </div>
         <div class="col-md-8 mb-4">
-            <p-dropdown placeholder="Select" [style]="{ width: '100%' }">
+            <p-dropdown [required]="true" [options]="lstAccidentPlace"   optionLabel="name" [(ngModel)]="AccidentFloorPlace" name="AccidentFloorPlace" optionValue="name" placeholder="Select" [style]="{ width: '100%' }">
             </p-dropdown>
         </div>
         <div class="col-md-4">
@@ -100,7 +100,7 @@
             </div>
         </div>
         <div class="col-md-8 mb-4">
-            <p-dropdown placeholder="Select" [style]="{ width: '100%' }">
+            <p-dropdown [required]="true" [options]="lstAccidentType"   optionLabel="name" [(ngModel)]="AccidentType" name="AccidentType" optionValue="name" placeholder="Select" [style]="{ width: '100%' }">
             </p-dropdown>
         </div>
         <div class="col-md-4">
@@ -110,7 +110,7 @@
             </div>
         </div>
         <div class="col-md-8 mb-4">
-            <input pInputText type="text" required name="chartheadname" class="form-control" />
+            <input pInputText type="text" [(ngModel)]="accidentDesc" required name="accidentdesc" class="form-control" />
             <p>Remain factual and include any contributory factors</p>
         </div>
         <div class="col-md-4">
@@ -120,7 +120,7 @@
             </div>
         </div>
         <div class="col-md-8 mb-4">
-            <input pInputText type="text" required name="chartheadname" class="form-control" />
+            <input pInputText type="text" [(ngModel)]="situationDescBeforeAccident" required name="situationDescBeforeAccident" class="form-control" />
             <p>What happened immediately before. Location. Did the person complain of dizziness, light-headedness,
                 altered vision. Do they usually have assistance to walk or transfer. How is this support given. Give as
                 much detail as possible in order to 'set the scene'.
@@ -133,7 +133,7 @@
             </div>
         </div>
         <div class="col-md-8 mb-4">
-            <input pInputText type="text" required name="chartheadname" class="form-control" />
+            <input pInputText type="text" [(ngModel)]="directionOfPersonFallWithBodyPartHit" required name="directionOfPersonFallWithBodyPartHit" class="form-control" />
             <p>Please detail the location of the injury with as much detail as possible
             </p>
         </div>
@@ -143,7 +143,9 @@
             </div>
         </div>
         <div class="col-md-8 mb-4">
-            <p-dropdown placeholder="Select" [style]="{ width: '100%' }">
+            <p-dropdown [required]="true" [options]="lstInjurySustained"   optionLabel="name" [(ngModel)]="injuriesSustained" name="injuriesSustained
+            
+            " optionValue="name" placeholder="Select" [style]="{ width: '100%' }">
             </p-dropdown>
         </div>
         <div class="col-md-4">
@@ -153,7 +155,7 @@
             </div>
         </div>
         <div class="col-md-8 mb-4">
-            <input pInputText type="text" required name="chartheadname" class="form-control" />
+            <input pInputText type="text" [(ngModel)]="treatmentDescWithNameOfPerson" required name="treatmentDescWithNameOfPerson" class="form-control" />
         </div>
         <div class="col-md-4">
             <div class="labelcontent">
@@ -162,7 +164,7 @@
             </div>
         </div>
         <div class="col-md-8 mb-4">
-            <p-dropdown placeholder="Select" [style]="{ width: '100%' }">
+            <p-dropdown [required]="true" [options]="lstJobRole"   optionLabel="name" [(ngModel)]="JobRole" name="JobRole" optionValue="name" placeholder="Select" [style]="{ width: '100%' }">
             </p-dropdown>
         </div>
         <div class="col-md-4">
@@ -172,7 +174,7 @@
             </div>
         </div>
         <div class="col-md-8 mb-4">
-            <input pInputText type="text" required name="chartheadname" class="form-control" />
+            <input pInputText type="text" [(ngModel)]="equipment" required name="equipment" class="form-control" />
             <p>Please detail any equipment involved in the accident/incident - where/what etc
             </p>
         </div>
@@ -183,7 +185,7 @@
             </div>
         </div>
         <div class="col-md-8 mb-4">
-            <input pInputText type="text" required name="chartheadname" class="form-control" />
+            <input pInputText type="text" [(ngModel)]="assessedBy" required name="assessedBy" class="form-control" />
             <p>State Name, time, date</p>
         </div>
         <div class="col-md-4">
@@ -192,7 +194,7 @@
             </div>
         </div>
         <div class="col-md-8 mb-4">
-            <p-dropdown placeholder="Select" [style]="{ width: '100%' }">
+            <p-dropdown [required]="true" [options]="lstEmergencyServices"   optionLabel="name" [(ngModel)]="EmergencyServices" name="EmergencyServices" optionValue="name" placeholder="Select" [style]="{ width: '100%' }">
             </p-dropdown>
         </div>
         <div class="col-md-4">
@@ -201,7 +203,7 @@
             </div>
         </div>
         <div class="col-md-8 mb-4">
-            <input pInputText type="text" required name="chartheadname" class="form-control" />
+            <input pInputText type="text" [(ngModel)]="emergencyServicesContactedTime" required name="emergencyServicesContactedTime" class="form-control" />
             <p>please detail who contacted the emergency services and when, note any crime number given</p>
         </div>
         <div class="col-md-4">
@@ -210,7 +212,7 @@
             </div>
         </div>
         <div class="col-md-8 mb-4">
-            <input pInputText type="text" required name="chartheadname" class="form-control" />
+            <input pInputText type="text" [(ngModel)]="otherProfessionalsContacted" required name="otherProfessionalsContacted" class="form-control" />
             <p>Please include any referrals made to professionals such as District Nurse, GP, Advanced Nurse
                 Practitioner
             </p>
@@ -222,7 +224,7 @@
             </div>
         </div>
         <div class="col-md-8 mb-4">
-            <input pInputText type="text" required name="chartheadname" class="form-control" />
+            <input pInputText type="text" [(ngModel)]="injuredPersonObservation" required name="injuredPersonObservation" class="form-control" />
             <p>nclude Date and times, e.g. was the person checked regularly throughout the night
             </p>
         </div>
@@ -232,7 +234,7 @@
             </div>
         </div>
         <div class="col-md-8 mb-4">
-            <input pInputText type="text" required name="chartheadname" class="form-control" />
+            <input pInputText type="text" [(ngModel)]="witnessName" required name="witnessName" class="form-control" />
             <p>Personal / company address, telephone number</p>
         </div>
         <div class="col-md-4">
@@ -242,7 +244,7 @@
             </div>
         </div>
         <div class="col-md-8 mb-4">
-            <input pInputText type="text" required name="chartheadname" class="form-control" />
+            <input pInputText type="text" [(ngModel)]="serviceManagerDetails" required name="serviceManagerDetails" class="form-control" />
             <p>Contact name, date & time
             </p>
         </div>
@@ -252,7 +254,7 @@
             </div>
         </div>
         <div class="col-md-8 mb-4">
-            <input pInputText type="text" required name="chartheadname" class="form-control" />
+            <input pInputText type="text" [(ngModel)]="relativeInformed" required name="relativeInformed" class="form-control" />
             <p>Contact name, date & time
             </p>
         </div>
@@ -263,7 +265,7 @@
             </div>
         </div>
         <div class="col-md-8 mb-4">
-            <input pInputText type="text" required name="chartheadname" class="form-control" />
+            <input pInputText type="text" [(ngModel)]="otherContacts" required name="otherContacts" class="form-control" />
             <p>include date & time</p>
         </div>
         <div class="col-md-4">
@@ -277,13 +279,13 @@
         <div class="d-flex justify-content-end">
             <div>
                 <span class="p-ml-left mr-4">
-                    <button pButton title="New" label="Save as Unfinished"></button>
+                    <button pButton title="New" (click)="saveAsUnfinished()" label="Save as Unfinished"></button>
                     <span class="total-txt"></span>
                 </span>
             </div>
             <div>
                 <span class="p-ml-left mr-4">
-                    <button pButton title="New" label="Complete"></button>
+                    <button pButton title="New" label="Complete" (click)="completeForm()"></button>
                     <span class="total-txt"></span>
                 </span>
             </div>
