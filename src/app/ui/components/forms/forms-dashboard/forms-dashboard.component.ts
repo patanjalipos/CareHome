@@ -42,6 +42,15 @@ import { OralHealthRiskAndOralPlanComponent } from '../oral-health-risk-and-oral
 import { RiskOnTheMoveComponent } from '../risk-on-the-move/risk-on-the-move.component';
 import { CareSpeechLanguageSsessmentComponent } from '../care-speech-language-ssessment/care-speech-language-ssessment.component';
 import { CareHearingAssessmentComponent } from '../care-hearing-assessment/care-hearing-assessment.component';
+import { CovidAcuteCarePlanComponent } from '../covid-acute-care-plan/covid-acute-care-plan.component';
+import { DentistVisitCommunicationComponent } from '../dentist-visit-communication/dentist-visit-communication.component';
+import { DistrictNurseVisitCommunicationComponent } from '../district-nurse-visit-communication/district-nurse-visit-communication.component';
+import { FASTStrokeAssessmentComponent } from '../f-a-s-t-stroke-assessment/f-a-s-t-stroke-assessment.component';
+import { HealthcareSupportToolComponent } from '../healthcare-support-tool/healthcare-support-tool.component';
+import { HomeManagersSettlingComponent } from '../home-managers-settling/home-managers-settling.component';
+import { PromotingWellbeingAtHomeComponent } from '../promoting-wellbeing-at-home/promoting-wellbeing-at-home.component';
+import { RiskToolBedRailsPackComponent } from '../risk-tool-bed-rails-pack/risk-tool-bed-rails-pack.component';
+import { SepsisScreeningToolComponent } from '../sepsis-screening-tool/sepsis-screening-tool.component';
 
 @Component({
     selector: 'app-forms-dashboard',

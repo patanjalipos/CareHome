@@ -1,6 +1,5 @@
 
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ConstantsService } from 'src/app/ui/service/constants.service';
 import { AppComponentBase } from 'src/app/app-component-base';
@@ -41,7 +40,6 @@ export class AccidentIncidentNearMissRecordComponent extends AppComponentBase  i
  
   isEditable: boolean;
   AccidentNearMissRecordFormsData:any = <any>{};
-  preSelectedFormData: any;
   accidentNearMissRecordInfoId:any;
   uniqueReferenceId:any;
 

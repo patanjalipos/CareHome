@@ -31,7 +31,7 @@
                 <p>Date of Observation</p>
             </div>
         </div>
-        <div class="col-md-8 mt-4 mb-4 ">
+        <div class="col-md-8 mt-4  ">
             <div class="input-group date">
                 <p-calendar name="DateOfBirth" [showIcon]="true" inputId="icon" [dateFormat]="" class="iconcal"
                     [readonlyInput]="true" appendTo="body" [maxDate]="" #dobref=""></p-calendar>
@@ -41,14 +41,14 @@
         </div>
         <div class="col-md-4">
             <div class="labelcontent">
-                <p>Time of Observation</p>
+                <p class=" mb-4">Time of Observation</p>
             </div>
         </div>
-        <div class="col-md-8 mb-4 ">
+        <div class="col-md-8  form-text ">
             <div class="d-flex align-items-center">
                 <input pInputText type="text" required name="chartheadname" class="form-control mr-4"
                     [style]="{ width: '35%' }">
-                <p>Use 24 hour clock</p>
+                <p class=" mb-4" >Use 24 hour clock</p>
             </div>
         </div>
 
@@ -58,9 +58,9 @@
 
             </div>
         </div>
-        <div class="col-md-8 mb-4">
+        <div class="col-md-8 form-text">
             <input pInputText type="text" required name="chartheadname" class="form-control" />
-            <p>Please state location and type of wound - Consider whether a Wound chart needs to be completed
+            <p class=" mb-4">Please state location and type of wound - Consider whether a Wound chart needs to be completed
             </p>
         </div>
         <div class="col-md-4">
@@ -69,7 +69,7 @@
                 </p>
             </div>
         </div>
-        <div class="col-md-8 mb-4">
+        <div class="col-md-8 form-text">
             <p-dropdown placeholder="Select" [style]="{ width: '100%' }">
             </p-dropdown>
 
@@ -77,11 +77,9 @@
         <div class="col-md-4">
             <div class="labelcontent">
                 <p>Next review date </p>
-
             </div>
-
         </div>
-        <div class="col-md-8 mb-4">
+        <div class="col-md-8 form-text">
             <div class="input-group date">
                 <p-calendar name="DateOfBirth" [showIcon]="true" inputId="icon" [dateFormat]="" class="iconcal"
                     [readonlyInput]="true" appendTo="body" [maxDate]="" #dobref=""></p-calendar>
