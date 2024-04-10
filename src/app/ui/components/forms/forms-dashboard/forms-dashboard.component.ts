@@ -66,6 +66,9 @@ export class FormsDashboardComponent
 
     residentAdmissionInfoId: string;
     rangeDates: Date[] | undefined;
+    FormTypes=FormTypes;
+    ShowChildComponent:boolean=false;
+
 
     constructor(
         private _ConstantServices: ConstantsService,
@@ -116,18 +119,19 @@ export class FormsDashboardComponent
             });
     }
 
-    SearchForm(selectedFormMasterId: string, rangeDates: Date[]) {
+    SearchForm() {
+        this.ShowChildComponent=false;
         this._UtilityService.showSpinner();
         //console.log('date Ranges: ' + rangeDates);
         const residentAdmissionInfoId = this.residentAdmissionInfoId;
-        const formMasterId = selectedFormMasterId;
+        const formMasterId = this.selectedFormMasterId;
 
         let fromDate: Date | null = null;
         let toDate: Date | null = null;
 
-        if (rangeDates && rangeDates.length >= 2) {
-            fromDate = rangeDates[0];
-            toDate = rangeDates[1];
+        if (this.rangeDates && this.rangeDates.length >= 2) {
+            fromDate = this.rangeDates[0];
+            toDate = this.rangeDates[1];
         }
 
         // Call the API
@@ -175,100 +179,105 @@ export class FormsDashboardComponent
             ModifiedByDesignation: selectedFormdata.ModifiedByDesignation,
             ModifiedOn: selectedFormdata.ModifiedOn,
         };
-        this._DataService.sendData(this.selectedFormData);
-        this.ShowForm(this.selectedFormMasterId);
+        this.ShowModel();
+        //this._DataService.sendData(this.selectedFormData);
+        //this.ShowForm(this.selectedFormMasterId);
+    }
+    ShowModel()
+    {
+        this.ShowChildComponent=true;
     }
 
     //Create new Form
-    ShowForm(selectedFormMasterId: string) {
-        // Clear existing component if any
-        if (this.componentRef) {
-            this.componentRef.destroy();
-        }
-        // Determine which component to load based on selectedForm
-        let componentType: any;
+    // ShowForm(selectedFormMasterId: string) {
+    //     // Clear existing component if any
+    //     if (this.componentRef) {
+    //         this.componentRef.destroy();
+    //     }
+    //     // Determine which component to load based on selectedForm
+    //     let componentType: any;
 
-        switch (selectedFormMasterId) {
-            case FormTypes.PreAdmission:
-                componentType = PreAdmissionAssessmentFormsComponent;
-                break;
-            case FormTypes.AccidentIncident:
-                componentType = AccidentIncidentNearMissRecordComponent;
-                break;
-            case FormTypes.AcuteCarePlan:
-                componentType =
-                    AcuteCarePlanInfectionPreventionAndControlComponent;
-                break;
-            case FormTypes.BodyMappingRecord:
-                componentType = BodyMappingRecordComponent;
-                break;
-            case FormTypes.CareAssessmentBreathing:
-                componentType = CareBreathingAndCirculationAssessmentComponent;
-                break;
-            case FormTypes.CareAssessmentContinence:
-                componentType = CareContinencePromotionComponent;
-                break;
-            case FormTypes.CareAssessmentEats:
-                componentType = CareEatsAndTreatsComponent;
-                break;
-            case FormTypes.CareAssessmentFeeling:
-                componentType = CareFeelingFreshAndCleanComponent;
-                break;
-            case FormTypes.CareAssessmentPersonal:
-                componentType = CarePersonalEmergencyEvacuationPlanComponent;
-                break;
-            case FormTypes.ConnectingandCommunicating:
-                componentType = ConnectingAndCommunicatingComponent;
-                break;
-            case FormTypes.FamilyCommunication:
-                componentType = FamilyCommunicationComponent;
-                break;
-            case FormTypes.GPDoctorVisitCommunicationRecord:
-                componentType = GpDoctorVisitCommunicationRecordComponent;
-                break;
-            case FormTypes.ProfessionalVisitCommunicationRecord:
-                componentType = ProfessionalVisitCommunicationRecordComponent;
-                break;
-            case FormTypes.RiskAssessmentPhysical:
-                componentType = RiskPhysicalDependencyAssessmentComponent;
-                break;
-            case FormTypes.RiskAssessmentWaterlow:
-                componentType = RiskWaterlowPressureUlcerComponent;
-                break;
-            case FormTypes.CareAssessmentHearing:
-                componentType =CareHearingAssessmentComponent;
-                break;
-            case FormTypes.CareAssessmentMental:
-                componentType = CareMentalHealthComponent;
-                break;
-            case FormTypes.CareAssessmentSleep:
-                componentType = CareSleepAndRestingAssessmentComponent;
-                break;
-            case FormTypes.CareAssessmentforVitaminD:
-                componentType = CareVitaminDSupplementationComponent;
-                break;
-            case FormTypes.Deliriumrisk:
-                componentType = DeliriumRiskAndRiskReductionComponent;
-                break;
-            case FormTypes.MUSTStep5NutritionalManagement:
-                componentType = MustStep5NutritionalManagementComponent;
-                break;
-            case FormTypes.OralHealthRiskAssessment:
-                componentType = OralHealthRiskAndOralPlanComponent;
-                break;
-            case FormTypes.RiskAssessmentOntheMove:
-                componentType = RiskOnTheMoveComponent;
-                break;
-            case FormTypes.CareAssessmentSpeech:
-                componentType = CareSpeechLanguageSsessmentComponent;
-                break;
-            default:
-                componentType = NotfoundComponent;
-        }
+    //     switch (selectedFormMasterId) {
+    //         case FormTypes.PreAdmission:
+    //             componentType = PreAdmissionAssessmentFormsComponent;
+    //             break;
+    //         case FormTypes.AccidentIncident:
+    //             componentType = AccidentIncidentNearMissRecordComponent;
+    //             break;
+    //         case FormTypes.AcuteCarePlan:
+    //             componentType =
+    //                 AcuteCarePlanInfectionPreventionAndControlComponent;
+    //             break;
+    //         case FormTypes.BodyMappingRecord:
+    //             componentType = BodyMappingRecordComponent;
+    //             break;
+    //         case FormTypes.CareAssessmentBreathing:
+    //             componentType = CareBreathingAndCirculationAssessmentComponent;
+    //             break;
+    //         case FormTypes.CareAssessmentContinence:
+    //             componentType = CareContinencePromotionComponent;
+    //             break;
+    //         case FormTypes.CareAssessmentEats:
+    //             componentType = CareEatsAndTreatsComponent;
+    //             break;
+    //         case FormTypes.CareAssessmentFeeling:
+    //             componentType = CareFeelingFreshAndCleanComponent;
+    //             break;
+    //         case FormTypes.CareAssessmentPersonal:
+    //             componentType = CarePersonalEmergencyEvacuationPlanComponent;
+    //             break;
+    //         case FormTypes.ConnectingandCommunicating:
+    //             componentType = ConnectingAndCommunicatingComponent;
+    //             break;
+    //         case FormTypes.FamilyCommunication:
+    //             componentType = FamilyCommunicationComponent;
+    //             break;
+    //         case FormTypes.GPDoctorVisitCommunicationRecord:
+    //             componentType = GpDoctorVisitCommunicationRecordComponent;
+    //             break;
+    //         case FormTypes.ProfessionalVisitCommunicationRecord:
+    //             componentType = ProfessionalVisitCommunicationRecordComponent;
+    //             break;
+    //         case FormTypes.RiskAssessmentPhysical:
+    //             componentType = RiskPhysicalDependencyAssessmentComponent;
+    //             break;
+    //         case FormTypes.RiskAssessmentWaterlow:
+    //             componentType = RiskWaterlowPressureUlcerComponent;
+    //             break;
+    //         case FormTypes.CareAssessmentHearing:
+    //             componentType =CareHearingAssessmentComponent;
+    //             break;
+    //         case FormTypes.CareAssessmentMental:
+    //             componentType = CareMentalHealthComponent;
+    //             break;
+    //         case FormTypes.CareAssessmentSleep:
+    //             componentType = CareSleepAndRestingAssessmentComponent;
+    //             break;
+    //         case FormTypes.CareAssessmentforVitaminD:
+    //             componentType = CareVitaminDSupplementationComponent;
+    //             break;
+    //         case FormTypes.Deliriumrisk:
+    //             componentType = DeliriumRiskAndRiskReductionComponent;
+    //             break;
+    //         case FormTypes.MUSTStep5NutritionalManagement:
+    //             componentType = MustStep5NutritionalManagementComponent;
+    //             break;
+    //         case FormTypes.OralHealthRiskAssessment:
+    //             componentType = OralHealthRiskAndOralPlanComponent;
+    //             break;
+    //         case FormTypes.RiskAssessmentOntheMove:
+    //             componentType = RiskOnTheMoveComponent;
+    //             break;
+    //         case FormTypes.CareAssessmentSpeech:
+    //             componentType = CareSpeechLanguageSsessmentComponent;
+    //             break;
+    //         default:
+    //             componentType = NotfoundComponent;
+    //     }
 
-        // Load the component dynamically
-        this.componentRef = this.formContainer.createComponent(componentType);
-    }
+    //     // Load the component dynamically
+    //     this.componentRef = this.formContainer.createComponent(componentType);
+    // }
 
     //Clear Search
     ResetModel() {
@@ -278,5 +287,9 @@ export class FormsDashboardComponent
         this.selectedFormId = null;
         this.selectedFormData = null;
         this.componentRef.destroy();
+    }
+    EmitUpdateForm(event)
+    {
+        this.SearchForm();
     }
 }
