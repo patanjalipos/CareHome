@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-district-nurse-visit-communication',
@@ -6,6 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./district-nurse-visit-communication.component.scss']
 })
 export class DistrictNurseVisitCommunicationComponent implements OnInit {
+  @Input() preSelectedFormData: any=<any>{};
 
   constructor() { }
 
