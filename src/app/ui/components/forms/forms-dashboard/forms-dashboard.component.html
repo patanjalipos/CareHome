@@ -143,4 +143,9 @@
 (EmitUpdateForm)="EmitUpdateForm($event)"
  *ngIf="ShowChildComponent==true && selectedFormMasterId==FormTypes.BodyMappingRecord"></app-body-mapping-record>
 
+ <app-care-breathing-and-circulation-assessment 
+[preSelectedFormData]="selectedFormData" 
+(EmitUpdateForm)="EmitUpdateForm($event)"
+ *ngIf="ShowChildComponent==true && selectedFormMasterId==FormTypes.CareAssessmentBreathing"></app-care-breathing-and-circulation-assessment>
+
 
