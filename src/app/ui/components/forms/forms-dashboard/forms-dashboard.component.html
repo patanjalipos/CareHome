@@ -4,66 +4,35 @@
         <div class="col-md-3">
             <div class="form-group">
                 <label class="form-label">
-                    From Date / To Date <span class="required">*</span></label
-                >
-                <p-calendar
-                    [(ngModel)]="rangeDates"
-                    selectionMode="range"
-                    [readonlyInput]="true"
-                    placeholder="Date Range"
-                ></p-calendar>
+                    From Date / To Date <span class="required">*</span></label>
+                <p-calendar [(ngModel)]="rangeDates" selectionMode="range" [readonlyInput]="true"
+                    placeholder="Date Range"></p-calendar>
             </div>
         </div>
         <div class="col-md-3">
             <label class="form-label">
-                Select Assessment Form <span class="required">*</span></label
-            >
-            <p-dropdown
-                [(ngModel)]="selectedFormMasterId"
-                [required]="true"
-                [options]="lstMaster"
-                optionLabel="FormName"
-                optionValue="FormMasterId"
-                placeholder="Select"
-                [style]="{ width: '100%' }"
-                (onChange)="SearchForm()"
-            >
+                Select Assessment Form <span class="required">*</span></label>
+            <p-dropdown [(ngModel)]="selectedFormMasterId" [required]="true" [options]="lstMaster"
+                optionLabel="FormName" optionValue="FormMasterId" placeholder="Select" [style]="{ width: '100%' }"
+                (onChange)="SearchForm()">
             </p-dropdown>
         </div>
 
         <div class="col-md-6 d-flex mt-3">
             <span class="p-ml-left mr-4">
-                <button
-                    pButton
-                    title="New"
-                    label="Create Form"
-                    (click)="OpenForm(selectedFormMasterId)"
-                ></button>
+                <button pButton title="New" label="Create Form" (click)="OpenForm(selectedFormMasterId)"></button>
                 <span class="total-txt"> </span>
             </span>
             <div>
                 <span class="p-ml-left">
-                    <button
-                        pButton
-                        title="New"
-                        label="Clear Search"
-                        (click)="ResetModel()"
-                    ></button>
+                    <button pButton title="New" label="Clear Search" (click)="ResetModel()"></button>
                     <span class="total-txt"> </span>
                 </span>
             </div>
         </div>
-        <p-table
-            #dt
-            [value]="formDashboardList"
-            responsiveLayout="scroll"
-            class="mt-4"
-            styleClass="p-datatable-striped"
-            [rowHover]="true"
-            [globalFilterFields]="['FormName', 'ModifiedOn']"
-            [scrollable]="true"
-            scrollHeight="calc(100vh - 155px)"
-        >
+        <p-table #dt [value]="formDashboardList" responsiveLayout="scroll" class="mt-4" styleClass="p-datatable-striped"
+            [rowHover]="true" [globalFilterFields]="['FormName', 'ModifiedOn']" [scrollable]="true"
+            scrollHeight="calc(100vh - 155px)">
             <ng-template pTemplate="emptymessage" let-columns>
                 <tr>
                     <td [attr.colspan]="columns?.length">No records found</td>
@@ -89,24 +58,18 @@
                     </td>
                     <td>
                         {{
-                            dt.ModifiedOn
-                                | date : customDateFormat.DEF_DATE_TIME
+                        dt.ModifiedOn
+                        | date : customDateFormat.DEF_DATE_TIME
                         }}
                     </td>
                     <td>
-                        <a
-                            title="View"
-                            (click)="
-                                OpenForm(dt.FormMasterId, dt, false)"
-                        >
+                        <a title="View" (click)="
+                                OpenForm(dt.FormMasterId, dt, false)">
                             <i class="fa fa-eye" aria-hidden="true"></i>
                         </a>
                         <span style="margin-left: 10px"></span>
                         <!-- Adjust the margin-left as needed -->
-                        <a
-                            title="Edit"
-                            (click)="OpenForm(dt.FormMasterId, dt , true)"
-                        >
+                        <a title="Edit" (click)="OpenForm(dt.FormMasterId, dt , true)">
                             <i class="fa fa-pencil" aria-hidden="true"></i>
                         </a>
                     </td>
@@ -118,31 +81,30 @@
 
 <!-- Dynamic Form Component -->
 
-<app-pre-admission-assessment-forms 
-[preSelectedFormData]="selectedFormData" 
-(EmitUpdateForm)="EmitUpdateForm($event)"
- *ngIf="ShowChildComponent==true && selectedFormMasterId==FormTypes.PreAdmission"></app-pre-admission-assessment-forms>
+<app-pre-admission-assessment-forms [preSelectedFormData]="selectedFormData" (EmitUpdateForm)="EmitUpdateForm($event)"
+    *ngIf="ShowChildComponent==true && selectedFormMasterId==FormTypes.PreAdmission"></app-pre-admission-assessment-forms>
 
- <app-accident-incident-near-miss-record 
-[preSelectedFormData]="selectedFormData" 
-(EmitUpdateForm)="EmitUpdateForm($event)"
- *ngIf="ShowChildComponent==true && selectedFormMasterId==FormTypes.AccidentIncident"></app-accident-incident-near-miss-record>
+<app-accident-incident-near-miss-record [preSelectedFormData]="selectedFormData"
+    (EmitUpdateForm)="EmitUpdateForm($event)"
+    *ngIf="ShowChildComponent==true && selectedFormMasterId==FormTypes.AccidentIncident"></app-accident-incident-near-miss-record>
 
-<app-acute-care-plan-infection-prevention-and-control 
-[preSelectedFormData]="selectedFormData" 
-(EmitUpdateForm)="EmitUpdateForm($event)"
- *ngIf="ShowChildComponent==true && selectedFormMasterId==FormTypes.AcuteCarePlan"></app-acute-care-plan-infection-prevention-and-control>
+<app-acute-care-plan-infection-prevention-and-control [preSelectedFormData]="selectedFormData"
+    (EmitUpdateForm)="EmitUpdateForm($event)"
+    *ngIf="ShowChildComponent==true && selectedFormMasterId==FormTypes.AcuteCarePlan"></app-acute-care-plan-infection-prevention-and-control>
 
- <app-family-communication 
-[preSelectedFormData]="selectedFormData" 
-(EmitUpdateForm)="EmitUpdateForm($event)"
- *ngIf="ShowChildComponent==true && selectedFormMasterId==FormTypes.FamilyCommunication"></app-family-communication>
+<app-family-communication [preSelectedFormData]="selectedFormData" (EmitUpdateForm)="EmitUpdateForm($event)"
+    *ngIf="ShowChildComponent==true && selectedFormMasterId==FormTypes.FamilyCommunication"></app-family-communication>
 
- <app-body-mapping-record 
-[preSelectedFormData]="selectedFormData" 
-(EmitUpdateForm)="EmitUpdateForm($event)"
- *ngIf="ShowChildComponent==true && selectedFormMasterId==FormTypes.BodyMappingRecord"></app-body-mapping-record>
+<app-body-mapping-record [preSelectedFormData]="selectedFormData" (EmitUpdateForm)="EmitUpdateForm($event)"
+    *ngIf="ShowChildComponent==true && selectedFormMasterId==FormTypes.BodyMappingRecord"></app-body-mapping-record>
 
 
- 
+<app-district-nurse-visit-communication [preSelectedFormData]="selectedFormData"
+    (EmitUpdateForm)="EmitUpdateForm($event)"
+    *ngIf="ShowChildComponent==true && selectedFormMasterId==FormTypes.DistrictNurseVisit">
+
+</app-district-nurse-visit-communication>
+
+
 <!-- <div #formContainer></div> -->
+
