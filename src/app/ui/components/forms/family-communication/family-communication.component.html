@@ -1,45 +1,61 @@
-<div class="card">
-    <div class="row">
-        <div class="formheader">
-            <div class="d-flex">
-                <div class="col-md-4">
-                    <label class="form-label"><b> Started by (Name) :</b>
-                    </label>
+<form #myForm="ngForm">
+    <div class="card">
+        <div class="row">
+            <div class="formheader">
+                <div class="d-flex">
+                    <div class="col-md-4">
+                        <label class="form-label"><b> Started by (Name) :</b>
+                            {{ preSelectedFormData.StartedBy }}
+                        </label>
+                    </div>
+                    <div class="col-md-4">
+                        <label class="form-label"><b>Designation :</b> </label>
+                        {{ preSelectedFormData.StartedByDesignation }}
+                    </div>
+                    <div class="col-md-4">
+                        <label class="form-label"> <b>Date/Time : </b></label>
+                        {{
+                        preSelectedFormData.StartedOn
+                        | date : customDateFormat.DEF_DATE_TIME
+                        }}
+                    </div>
                 </div>
-                <div class="col-md-4">
-                    <label class="form-label"><b>Designation :</b> </label>
-                </div>
-                <div class="col-md-4">
-                    <label class="form-label"> <b>Date/Time : </b></label>
+                <div class="d-flex">
+                    <div class="col-md-4">
+                        <label class="form-label">
+                            <b>Last entered by (Name) :</b></label>
+                        {{ preSelectedFormData.ModifiedBy }}
+                    </div>
+                    <div class="col-md-4">
+                        <label class="form-label"> <b>Designation :</b></label>
+                        {{ preSelectedFormData.ModifiedByDesignation }}
+                    </div>
+                    <div class="col-md-4">
+                        <label class="form-label"> <b>Date/Time :</b> </label>
+                        {{
+                        preSelectedFormData.ModifiedOn
+                        | date : customDateFormat.DEF_DATE_TIME
+                        }}
+                    </div>
                 </div>
             </div>
-            <div class="d-flex">
-                <div class="col-md-4">
-                    <label class="form-label">
-                        <b>Last entered by (Name) :</b></label>
-                </div>
-                <div class="col-md-4">
-                    <label class="form-label"> <b>Designation :</b></label>
-                </div>
-                <div class="col-md-4">
-                    <label class="form-label"> <b>Date/Time :</b> </label>
+            <div class="col-md-4 mt-4">
+                <div class="labelcontent">
+                    <p>Date of Observation<span class="required">*</span></p>
                 </div>
             </div>
-        </div>
-        <div class="col-md-4 mt-4">
-            <div class="labelcontent">
-                <p>Date of Observation</p>
-            </div>
-        </div>
-        <div class="col-md-8 mt-4 mb-4 ">
-            <div class="input-group date">
-                <p-calendar name="DateOfBirth" [showIcon]="true" inputId="icon" [dateFormat]="" class="iconcal"
-                    [readonlyInput]="true" appendTo="body" [maxDate]="" #dobref=""></p-calendar>
-                <div *ngIf="" class="alert alert-danger">
+            <div class="col-md-8 mt-4 mb-4 ">
+                <div class="input-group date" *ngIf="isEditable==true">
+                    <p-calendar [required]="true" [showTime]="true" name="txtDateTimeOfObservation"
+                        [(ngModel)]="FamilyCommFormsData.DateTimeObservation" [showIcon]="true" inputId="icon"
+                        [dateFormat]="" class="iconcal" [readonlyInput]="true" appendTo="body" [maxDate]=""
+                        #dobref=""></p-calendar>
+                    <div *ngIf="" class="alert alert-danger">
+                    </div>
                 </div>
+                <p *ngIf="isEditable!=true">{{FamilyCommFormsData.DateTimeObservation | date :customDateFormat.DEF_DATE_TIME}}</p>
             </div>
-        </div>
-        <div class="col-md-4">
+            <!-- <div class="col-md-4">
             <div class="labelcontent">
                 <p>Time of Observation</p>
             </div>
@@ -50,78 +66,100 @@
                     [style]="{ width: '35%' }">
                 <p>Use 24 hour clock</p>
             </div>
-        </div>
+        </div> -->
 
 
-        <div class="col-md-4">
-            <div class="labelcontent">
-                <p>How was the communication relayed</p>
+            <div class="col-md-4">
+                <div class="labelcontent">
+                    <p>How was the communication relayed</p>
 
+                </div>
             </div>
-        </div>
-        <div class="col-md-8 mb-4">
-            <p-dropdown placeholder="Select" [style]="{ width: '100%' }">
-            </p-dropdown>
-        </div>
+            <div class="col-md-8 mb-4">
+                <ng-container *ngIf="isEditable==true">
+                    <p-dropdown placeholder="Select" [(ngModel)]="FamilyCommFormsData.CommRelay" name="ddlCommRelay"
+                        [style]="{ width: '100%' }" [options]="lstFamilyComRelayMaster" optionLabel="RelayName"
+                        optionValue="FamilyComRelayMasterId">
+                    </p-dropdown>
+                </ng-container>
+                <ng-container *ngIf="isEditable!=true">
+                    <p>{{FamilyCommFormsData.RelayName}}</p>
+                </ng-container>
+            </div>
 
-        <div class="col-md-4">
-            <div class="labelcontent">
-                <p>Who was the communication with</p>
+            <div class="col-md-4">
+                <div class="labelcontent">
+                    <p>Who was the communication with</p>
+                </div>
+            </div>
+            <div class="col-md-8 mb-4">
+                <input *ngIf="isEditable==true" pInputText type="text" required name="txtCommWith"
+                    [(ngModel)]="FamilyCommFormsData.CoomWith" class="form-control" />
+                <p *ngIf="isEditable!=true">{{FamilyCommFormsData.CoomWith}}</p>
+                <p>Please include full name(s) and designation(s)</p>
+            </div>
+            <div class="col-md-4">
+                <div class="labelcontent">
+                    <p>Reason for communication</p>
+                </div>
+            </div>
+            <div class="col-md-8 mb-4">
+                <ng-container *ngIf="isEditable==true">
+                    <p-dropdown placeholder="Select" [(ngModel)]="FamilyCommFormsData.CommReason" name="ddlReasonName"
+                        [style]="{ width: '100%' }" [options]="lstFamilyComReasonMaster" optionLabel="ReasonName"
+                        optionValue="FamilyCommReasonId">
+                    </p-dropdown>
+                </ng-container>
+                <ng-container *ngIf="isEditable!=true">
+                    <p>{{FamilyCommFormsData.ReasonName}}</p>
+                </ng-container>
+            </div>
+            <div class="col-md-4">
+                <div class="labelcontent">
+                    <p>Details of communication</p>
 
+                </div>
             </div>
-        </div>
-        <div class="col-md-8 mb-4">
-            <input pInputText type="text" required name="chartheadname" class="form-control mr-4">
-            <p>Please include full name(s) and designation(s)</p>
-        </div>
-        <div class="col-md-4">
-            <div class="labelcontent">
-                <p>Reason for communication</p>
+            <div class="col-md-8 mb-4">
+                <input *ngIf="isEditable==true" pInputText type="text" required name="txtDetailsComm"
+                    [(ngModel)]="FamilyCommFormsData.Details" class="form-control" />
+                <p *ngIf="isEditable!=true">{{FamilyCommFormsData.Details}}</p>
+                <p>Give full details of what was discussed</p>
             </div>
-        </div>
-        <div class="col-md-8 mb-4">
-            <p-dropdown placeholder="Select" [style]="{ width: '100%' }">
-            </p-dropdown>
-        </div>
-        <div class="col-md-4">
-            <div class="labelcontent">
-                <p>Details of communication</p>
-
+            <div class="col-md-4">
+                <div class="labelcontent">
+                    <p>Outcome of communication</p>
+                </div>
             </div>
-        </div>
-        <div class="col-md-8 mb-4">
-            <input pInputText type="text" required name="chartheadname" class="form-control mr-4">
-            <p>Give full details of what was discussed</p>
-        </div>
-        <div class="col-md-4">
-            <div class="labelcontent">
-                <p>Outcome of communication</p>
+            <div class="col-md-8 mb-4">
+                <input *ngIf="isEditable==true" pInputText type="text" required name="txtOutComeComm"
+                    [(ngModel)]="FamilyCommFormsData.OutComeComm" class="form-control" />
+                <p *ngIf="isEditable!=true">{{FamilyCommFormsData.OutComeComm}}</p>
             </div>
-        </div>
-        <div class="col-md-8 mb-4">
-            <input pInputText type="text" required name="chartheadname" class="form-control mr-4">
-        </div>
-        <div class="col-md-4">
-            <div class="labelcontent">
-                <p>Follow-up actions</p>
+            <div class="col-md-4">
+                <div class="labelcontent">
+                    <p>Follow-up actions</p>
+                </div>
             </div>
-        </div>
-        <div class="col-md-8 mb-4">
-            <input pInputText type="text" required name="chartheadname" class="form-control mr-4">
-        </div>
-        <div class="d-flex justify-content-end">
-            <div>
-                <span class="p-ml-left mr-4">
-                    <button pButton title="New" label="Save as Unfinished"></button>
-                    <span class="total-txt"></span>
-                </span>
+            <div class="col-md-8 mb-4">
+                <input *ngIf="isEditable==true" pInputText type="text" required name="txtFollowupComm"
+                    [(ngModel)]="FamilyCommFormsData.FollowupComm" class="form-control" />
+                <p *ngIf="isEditable!=true">{{FamilyCommFormsData.FollowupComm}}</p>
             </div>
-            <div>
-                <span class="p-ml-left mr-4">
-                    <button pButton title="New" label="Complete"></button>
-                    <span class="total-txt"></span>
-                </span>
+            <div class="d-flex justify-content-end">
+                <div>
+                    <span class="p-ml-left mr-4">
+                        <button pButton title="New" (click)="saveAsUnfinished()" [disabled]="!myForm.form.valid" label="Save as Unfinished"></button>
+                        <span class="total-txt"></span>
+                    </span>
+                </div>
+                <div>
+                    <span class="p-ml-left mr-4">
+                        <button [disabled]="!myForm.form.valid" pButton title="New" (click)="completeForm()" label="Complete"></button>
+                        <span class="total-txt"></span>
+                    </span>
+                </div>
             </div>
         </div>
     </div>
-</div>
+</form>

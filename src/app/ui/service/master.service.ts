@@ -1710,5 +1710,69 @@ export class MasterService {
     }
     
     ///////#end Region
+
+    ///////#region Acute Care Plan
+    GetFamilyRelayMaster(
+        Status: any
+    ): Observable<any> {
+        let reqHeader = new HttpHeaders({
+            'Content-Type': 'application/json',
+            'Access-Control-Allow-Origin': environment.BaseUriAdmin,
+        });
+        let params = new HttpParams();
+        params=params.append('Status',Status);
+        return this._httpclient.get<any>(
+            environment.BaseUriAdmin +
+                'api/Admin/GetFamilyRelayMaster',
+            { headers: reqHeader, params: params }
+        );
+    }
+    GetFamilyCommReasonMaster(
+        Status: any
+    ): Observable<any> {
+        let reqHeader = new HttpHeaders({
+            'Content-Type': 'application/json',
+            'Access-Control-Allow-Origin': environment.BaseUriAdmin,
+        });
+        let params = new HttpParams();
+        params=params.append('Status',Status);
+        return this._httpclient.get<any>(
+            environment.BaseUriAdmin +
+                'api/Admin/GetFamilyCommReasonMaster',
+            { headers: reqHeader, params: params }
+        );
+    }
+    InsertUpdateFamilyCommForm(
+        AcuteCarePlanFormsData: any
+    ): Observable<any> {
+        let reqHeader = new HttpHeaders({
+            'Content-Type': 'application/json',
+            'Access-Control-Allow-Origin': environment.BaseUriAdmin,
+            //'Authorization': 'Bearer ' + localStorage.getItem('token')
+        });
+        let params = new HttpParams();
+        var data = JSON.stringify(AcuteCarePlanFormsData).toString();
+        console.log(data);
+        return this._httpclient.post<any>(
+            environment.BaseUriAdmin +
+                'api/Admin/InsertUpdateFamilyCommForm',
+            data,
+            { headers: reqHeader, params: params }
+        );
+    }
+    GetFamilyCommFormById(fromId: any) {
+        let reqHeader = new HttpHeaders({
+            'Content-Type': 'application/json',
+            'Access-Control-Allow-Origin': environment.BaseUriAdmin,
+            //'Authorization': 'Bearer ' + localStorage.getItem('token')
+        });
+        let params = new HttpParams();
+        params = params.append('fromId', fromId);
+        return this._httpclient.get<any>(
+            environment.BaseUriAdmin + 'api/Admin/GetFamilyCommFormById',
+            { headers: reqHeader, params: params }
+        );
+    }
+    /////#region 
     
 }
