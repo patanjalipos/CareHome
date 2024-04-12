@@ -10,6 +10,7 @@ import { InputTextModule } from "primeng/inputtext";
 import { InputNumberModule } from "primeng/inputnumber";
 import { CalendarModule } from "primeng/calendar";
 import { ToolbarModule } from 'primeng/toolbar';
+import { CheckboxModule } from 'primeng/checkbox';
 import { FormsModule } from '@angular/forms';
 import { DropdownModule } from 'primeng/dropdown';
 import { PreAdmissionAssessmentFormsModule } from '../pre-admission-assessment-forms/pre-admission-assessment-forms.module';
@@ -63,6 +64,7 @@ import { SepsisScreeningToolModule } from '../sepsis-screening-tool/sepsis-scree
     CalendarModule,
     FormsModule,
     DropdownModule,
+    CheckboxModule,
     TableModule,
     ButtonModule,
     RippleModule,

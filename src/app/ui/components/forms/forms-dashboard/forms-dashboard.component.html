@@ -102,8 +102,40 @@
 <app-district-nurse-visit-communication [preSelectedFormData]="selectedFormData"
     (EmitUpdateForm)="EmitUpdateForm($event)"
     *ngIf="ShowChildComponent==true && selectedFormMasterId==FormTypes.DistrictNurseVisit">
-
 </app-district-nurse-visit-communication>
+
+<app-risk-tool-bed-rails-pack [preSelectedFormData]="selectedFormData" (EmitUpdateForm)="EmitUpdateForm($event)"
+    *ngIf="ShowChildComponent==true && selectedFormMasterId==FormTypes.RiskToolBedRails">
+</app-risk-tool-bed-rails-pack>
+
+<app-promoting-wellbeing-at-home [preSelectedFormData]="selectedFormData" (EmitUpdateForm)="EmitUpdateForm($event)"
+*ngIf="ShowChildComponent==true && selectedFormMasterId==FormTypes.PromotingWellbeing">
+</app-promoting-wellbeing-at-home>
+
+<app-dentist-visit-communication [preSelectedFormData]="selectedFormData" (EmitUpdateForm)="EmitUpdateForm($event)"
+*ngIf="ShowChildComponent==true && selectedFormMasterId==FormTypes.DentistVisitCommunication"></app-dentist-visit-communication>
+
+
+<app-covid-acute-care-plan [preSelectedFormData]="selectedFormData" (EmitUpdateForm)="EmitUpdateForm($event)"
+*ngIf="ShowChildComponent==true && selectedFormMasterId==FormTypes.CovidAcuteCarePlan"></app-covid-acute-care-plan>
+
+
+<app-f-a-s-t-stroke-assessment [preSelectedFormData]="selectedFormData" (EmitUpdateForm)="EmitUpdateForm($event)"
+*ngIf="ShowChildComponent==true && selectedFormMasterId==FormTypes.FASTStrokeAssessment"></app-f-a-s-t-stroke-assessment>
+
+
+<app-sepsis-screening-tool [preSelectedFormData]="selectedFormData" (EmitUpdateForm)="EmitUpdateForm($event)"
+*ngIf="ShowChildComponent==true && selectedFormMasterId==FormTypes.SepsisScreening"></app-sepsis-screening-tool>
+
+<app-healthcare-support-tool [preSelectedFormData]="selectedFormData" (EmitUpdateForm)="EmitUpdateForm($event)"
+*ngIf="ShowChildComponent==true && selectedFormMasterId==FormTypes.HealthCareSupport"></app-healthcare-support-tool>
+
+<app-home-managers-settling [preSelectedFormData]="selectedFormData" (EmitUpdateForm)="EmitUpdateForm($event)"
+*ngIf="ShowChildComponent==true && selectedFormMasterId==FormTypes.HomemangersSetting"></app-home-managers-settling>
+
+
+
+
 
 
 <!-- <div #formContainer></div> -->

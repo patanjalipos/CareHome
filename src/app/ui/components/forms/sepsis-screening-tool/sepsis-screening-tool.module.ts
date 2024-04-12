@@ -22,6 +22,7 @@ import { TriStateCheckboxModule } from 'primeng/tristatecheckbox';
     FormsModule,
     TriStateCheckboxModule
 
-  ]
+  ],
+  exports:[SepsisScreeningToolComponent]
 })
 export class SepsisScreeningToolModule { }
