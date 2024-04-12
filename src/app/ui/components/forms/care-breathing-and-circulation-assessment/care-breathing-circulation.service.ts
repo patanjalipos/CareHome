@@ -174,7 +174,7 @@ GetCareAssBreathStrategiesMaster(
       { headers: reqHeader, params: params }
   );
 }
-InsertUpdateBodyMappingForm(
+InsertUpdateCareAssBreathCirculationForm(
     AcuteCarePlanFormsData: any
 ): Observable<any> {
     let reqHeader = new HttpHeaders({
@@ -187,12 +187,12 @@ InsertUpdateBodyMappingForm(
     console.log(data);
     return this._httpclient.post<any>(
         environment.BaseUriAdmin +
-            'api/Admin/InsertUpdateBodyMappingForm',
+            'api/Admin/InsertUpdateCareAssBreathCirculationForm',
         data,
         { headers: reqHeader, params: params }
     );
 }
-GetBodyMappingFormById(fromId: any) {
+GetCareBreathingCirculationFormById(fromId: any) {
     let reqHeader = new HttpHeaders({
         'Content-Type': 'application/json',
         'Access-Control-Allow-Origin': environment.BaseUriAdmin,
@@ -201,7 +201,7 @@ GetBodyMappingFormById(fromId: any) {
     let params = new HttpParams();
     params = params.append('fromId', fromId);
     return this._httpclient.get<any>(
-        environment.BaseUriAdmin + 'api/Admin/GetBodyMappingFormById',
+        environment.BaseUriAdmin + 'api/Admin/GetCareBreathingCirculationFormById',
         { headers: reqHeader, params: params }
     );
 }
