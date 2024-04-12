@@ -63,6 +63,7 @@
                     class="form-control"
                     [(ngModel)]="PreAdmissionAssessmentFormsData.ChartheadName"
                 />
+                <p>include relationship to the resident & contact details</p>
             </ng-container>
             <ng-template #ChartheadName>
                 <label>{{
@@ -92,6 +93,10 @@
                     [style]="{ width: '100%' }"
                 >
                 </p-dropdown>
+                <p>
+                    If person lacks capacity what powers are they being moved
+                    under Section 13ZA, POA, Guardianship
+                </p>
             </ng-container>
             <ng-template #PersonCapacity>
                 <label>{{
@@ -127,17 +132,17 @@
                     [style]="{ width: '100%' }"
                 >
                 </p-dropdown>
+                <p>
+                    If not obtained or in place, AWI certificate and
+                    corresponding treatment plan, copy of Power of Attorney or
+                    Guardianship order, copy of Community Treatment Order.
+                </p>
             </ng-container>
             <ng-template #ProfessionalDocObtained>
                 <label>{{
                     PreAdmissionAssessmentFormsData.ProfessionalDocObtained
                 }}</label>
             </ng-template>
-            <p>
-                If not obtained or in place, AWI certificate and corresponding
-                treatment plan, copy of Power of Attorney or Guardianship order,
-                copy of Community Treatment Order.
-            </p>
         </div>
         <div class="col-md-1 form-icon mt-4">
             <i class="fa-solid fa-info"></i>
@@ -272,17 +277,17 @@
                     [style]="{ width: '100%' }"
                 >
                 </p-dropdown>
+                <p>
+                    Include any pacemakers, please at the point of pre admission
+                    please request a GP summary print out from their own GP
+                    which will detail all Medical history.
+                </p>
             </ng-container>
             <ng-template #MedicalHistoryCondition>
                 <label>{{
                     PreAdmissionAssessmentFormsData.MedicalHistoryCondition
                 }}</label>
             </ng-template>
-            <p>
-                Include any pacemakers, please at the point of pre admission
-                please request a GP summary print out from their own GP which
-                will detail all Medical history.
-            </p>
         </div>
         <div class="col-md-1 form-icon mt-4">
             <i class="fa-solid fa-info"></i>
@@ -333,16 +338,16 @@
                     [style]="{ width: '100%' }"
                 >
                 </p-dropdown>
+                <p>
+                    Include all the applicable options below and expand if
+                    required using the Other option
+                </p>
             </ng-container>
             <ng-template #ConnectingAndCommunicatingLabel>
                 <label>{{
                     PreAdmissionAssessmentFormsData.ConnectingAndCommunicating
                 }}</label>
             </ng-template>
-            <p>
-                Include all the applicable options below and expand if required
-                using the Other option
-            </p>
         </div>
         <div class="col-md-1 form-icon mt-4">
             <i class="fa-solid fa-info"></i>
@@ -366,18 +371,17 @@
                     [style]="{ width: '100%' }"
                 >
                 </p-dropdown>
+                <p>
+                    Please review in a risk aware manner how can we safely
+                    consider the resident enablement while considering safety is
+                    there any electronic devises we can use to promote safety.
+                </p>
             </ng-container>
             <ng-template #PersonalSafetyLabel>
                 <label>{{
                     PreAdmissionAssessmentFormsData.PersonalSafety
                 }}</label>
             </ng-template>
-
-            <p>
-                Please review in a risk aware manner how can we safely consider
-                the resident enablement while considering safety is there any
-                electronic devises we can use to promote safety.
-            </p>
         </div>
         <div class="col-md-1 form-icon mt-4">
             <i class="fa-solid fa-info"></i>
@@ -399,17 +403,17 @@
                         PreAdmissionAssessmentFormsData.LeavingHomeUnescorted
                     "
                 />
+                <p>
+                    Please complete fully the Herbert protocol and request
+                    permission for Alzheimer's Scotland Purple alert profile to
+                    be developed
+                </p>
             </ng-container>
             <ng-template #LeavingHomeUnescortedLabel>
                 <label>{{
                     PreAdmissionAssessmentFormsData.LeavingHomeUnescorted
                 }}</label>
             </ng-template>
-            <p>
-                Please complete fully the Herbert protocol and request
-                permission for Alzheimer's Scotland Purple alert profile to be
-                developed
-            </p>
         </div>
         <div class="col-md-1 form-icon mt-4">
             <i class="fa-solid fa-info"></i>
@@ -433,17 +437,16 @@
                     [style]="{ width: '100%' }"
                 >
                 </p-dropdown>
+                <p>
+                    If yes, has this been diagnosed by a GP (state condition)
+                    and is medication prescribed
+                </p>
             </ng-container>
             <ng-template #ResidentExpAnyMHConditionsLabel>
                 <label>{{
                     PreAdmissionAssessmentFormsData.ResidentExpAnyMHConditions
                 }}</label>
             </ng-template>
-
-            <p>
-                If yes, has this been diagnosed by a GP (state condition) and is
-                medication prescribed
-            </p>
         </div>
         <div class="col-md-1 form-icon mt-4">
             <i class="fa-solid fa-info"></i>
@@ -494,16 +497,16 @@
                         PreAdmissionAssessmentFormsData.SpeechSightHearingDetails
                     "
                 />
+                <p>
+                    Include any diagnosed conditions, aids used and treatment /
+                    therapy details
+                </p>
             </ng-container>
             <ng-template #SpeechSightHearingDetailsLabel>
                 <label>{{
                     PreAdmissionAssessmentFormsData.SpeechSightHearingDetails
                 }}</label>
             </ng-template>
-            <p>
-                Include any diagnosed conditions, aids used and treatment /
-                therapy details
-            </p>
         </div>
         <div class="col-md-1 form-icon mt-4">
             <i class="fa-solid fa-info"></i>
@@ -525,18 +528,18 @@
                         PreAdmissionAssessmentFormsData.BreathingCirculation
                     "
                 />
+                <p>
+                    Include all health conditions affecting breathing (COPD,
+                    asthma, other, aids used (oxygen etc.), smoking. If oxygen
+                    prescribed include administration, day night variances and
+                    oxygen saturations)
+                </p>
             </ng-container>
             <ng-template #BreathingCirculationLabel>
                 <label>{{
                     PreAdmissionAssessmentFormsData.BreathingCirculation
                 }}</label>
             </ng-template>
-            <p>
-                Include all health conditions affecting breathing (COPD, asthma,
-                other, aids used (oxygen etc.), smoking. If oxygen prescribed
-                include administration, day night variances and oxygen
-                saturations)
-            </p>
         </div>
         <div class="col-md-1 form-icon mt-4">
             <i class="fa-solid fa-info"></i>
@@ -585,16 +588,16 @@
                         PreAdmissionAssessmentFormsData.FallsAndMobilityDetails
                     "
                 />
+                <p>
+                    Include mobility level, aids, recent falls (including
+                    causes) day / night variance, medication and any referrals
+                </p>
             </ng-container>
             <ng-template #FallsAndMobilityDetailsLabel>
                 <label>{{
                     PreAdmissionAssessmentFormsData.FallsAndMobilityDetails
                 }}</label>
             </ng-template>
-            <p>
-                Include mobility level, aids, recent falls (including causes)
-                day / night variance, medication and any referrals
-            </p>
         </div>
         <div class="col-md-1 form-icon mt-4">
             <i class="fa-solid fa-info"></i>
@@ -639,19 +642,19 @@
                         PreAdmissionAssessmentFormsData.PainManagementDetails
                     "
                 />
+                <p>
+                    How would we recognise the resident is experiencing pain how
+                    is this assessed do we need to use abbey pain scale or a
+                    visual pain assessment, Include all prescribed medications,
+                    when needed, if the resident can ask for medications and if
+                    not, how the home will manage this.
+                </p>
             </ng-container>
             <ng-template #PainManagementDetailsLabel>
                 <label>{{
                     PreAdmissionAssessmentFormsData.PainManagementDetails
                 }}</label>
             </ng-template>
-            <p>
-                How would we recognise the resident is experiencing pain how is
-                this assessed do we need to use abbey pain scale or a visual
-                pain assessment, Include all prescribed medications, when
-                needed, if the resident can ask for medications and if not, how
-                the home will manage this.
-            </p>
         </div>
         <div class="col-md-1 form-icon mt-4">
             <i class="fa-solid fa-info"></i>
@@ -671,16 +674,16 @@
                     [style]="{ width: '100%' }"
                 >
                 </p-dropdown>
+                <p>
+                    Include any medical conditions that affect skin or could
+                    increase risk of skin damage, and medication
+                </p>
             </ng-container>
             <ng-template #SkinAssessmentLabel>
                 <label>{{
                     PreAdmissionAssessmentFormsData.SkinAssessment
                 }}</label>
             </ng-template>
-            <p>
-                Include any medical conditions that affect skin or could
-                increase risk of skin damage, and medication
-            </p>
         </div>
         <div class="col-md-1 form-icon mt-4">
             <i class="fa-solid fa-info"></i>
@@ -755,19 +758,19 @@
                         PreAdmissionAssessmentFormsData.EatingDrinkingDetails
                     "
                 />
+                <p>
+                    Include likes and dislikes, what makes a meal enjoyable,
+                    what they like to eat for their meals, where they like to
+                    enjoy their meals, do they need any cutlery or crockery, any
+                    allergies. Any PEG regime if that is appropriate,
+                    professional input
+                </p>
             </ng-container>
             <ng-template #EatingDrinkingDetailsLabel>
                 <label>{{
                     PreAdmissionAssessmentFormsData.EatingDrinkingDetails
                 }}</label>
             </ng-template>
-
-            <p>
-                Include likes and dislikes, what makes a meal enjoyable, what
-                they like to eat for their meals, where they like to enjoy their
-                meals, do they need any cutlery or crockery, any allergies. Any
-                PEG regime if that is appropriate, professional input
-            </p>
         </div>
         <div class="col-md-1 form-icon mt-4">
             <i class="fa-solid fa-info"></i>
@@ -796,8 +799,6 @@
                     PreAdmissionAssessmentFormsData.PromotionOfContinence
                 }}</label>
             </ng-template>
-
-            <p></p>
         </div>
         <div class="col-md-1 form-icon mt-4">
             <i class="fa-solid fa-info"></i>
@@ -821,19 +822,18 @@
                         PreAdmissionAssessmentFormsData.PromotionOfContinenceDetails
                     "
                 />
+                <p>
+                    Include specific aids used, current continence regimes in
+                    place to promote continence, medication prescribed, catheter
+                    type, size frequency of change date of the last change
+                    reason for insertion, please complete catheter passport
+                </p>
             </ng-container>
             <ng-template #PromotionOfContinenceDetailsLabel>
                 <label>{{
                     PreAdmissionAssessmentFormsData.PromotionOfContinenceDetails
                 }}</label>
             </ng-template>
-
-            <p>
-                Include specific aids used, current continence regimes in place
-                to promote continence, medication prescribed, catheter type,
-                size frequency of change date of the last change reason for
-                insertion, please complete catheter passport
-            </p>
         </div>
         <div class="col-md-1 form-icon mt-4">
             <i class="fa-solid fa-info"></i>
@@ -885,19 +885,19 @@
                         PreAdmissionAssessmentFormsData.FeelingFreshAndCleanDetails
                     "
                 />
+
+                <p>
+                    What they do prefer baths, showers and how often. What words
+                    do they use for having a wash or a freshen up, tips or
+                    treats that would help keeping clean and fresh to be extra
+                    enjoyable, favourite lotions, potions, smells
+                </p>
             </ng-container>
             <ng-template #FeelingFreshAndCleanDetailsLabel>
                 <label>{{
                     PreAdmissionAssessmentFormsData.FeelingFreshAndCleanDetails
                 }}</label>
             </ng-template>
-
-            <p>
-                What they do prefer baths, showers and how often. What words do
-                they use for having a wash or a freshen up, tips or treats that
-                would help keeping clean and fresh to be extra enjoyable,
-                favourite lotions, potions, smells
-            </p>
         </div>
         <div class="col-md-1 form-icon mt-4">
             <i class="fa-solid fa-info"></i>
@@ -949,19 +949,18 @@
                         PreAdmissionAssessmentFormsData.SleepingAndRestingDetails
                     "
                 />
+                <p>
+                    what makes a good night for the resident. Describe sleeping and
+                    waking routine, medication prescribed, number of carers required
+                    to assist. If bed rails are used, ensure full multidisciplinary
+                    and any associated assessments are completed
+                </p>
             </ng-container>
             <ng-template #SleepingAndRestingDetailsLabel>
                 <label>{{
                     PreAdmissionAssessmentFormsData.SleepingAndRestingDetails
                 }}</label>
             </ng-template>
-
-            <p>
-                what makes a good night for the resident. Describe sleeping and
-                waking routine, medication prescribed, number of carers required
-                to assist. If bed rails are used, ensure full multidisciplinary
-                and any associated assessments are completed
-            </p>
         </div>
         <div class="col-md-1 form-icon mt-4">
             <i class="fa-solid fa-info"></i>
@@ -1012,20 +1011,19 @@
                         PreAdmissionAssessmentFormsData.ExpressingSexualityDetails
                     "
                 />
+                <p>
+                    Additional information (how can you support the resident with
+                    sensitivity and privacy needs. How does the resident express
+                    sexuality / sexual needs.) Consider behaviours and communication
+                    e.g. unpredictable / inappropriate behaviours. Consider capacity
+                    and best interest assessments.
+                </p>
             </ng-container>
             <ng-template #ExpressingSexualityDetailsLabel>
                 <label>{{
                     PreAdmissionAssessmentFormsData.ExpressingSexualityDetails
                 }}</label>
             </ng-template>
-
-            <p>
-                Additional information (how can you support the resident with
-                sensitivity and privacy needs. How does the resident express
-                sexuality / sexual needs.) Consider behaviours and communication
-                e.g. unpredictable / inappropriate behaviours. Consider capacity
-                and best interest assessments.
-            </p>
         </div>
         <div class="col-md-1 form-icon mt-4">
             <i class="fa-solid fa-info"></i>
@@ -1114,17 +1112,17 @@
                         PreAdmissionAssessmentFormsData.RescueMedications
                     "
                 />
+                <p>
+                    Please detail these below alongside when they are to be
+                    administered, frequency and time between doses
+                </p>
             </ng-container>
             <ng-template #RescueMedicationsLabel>
                 <label>{{
                     PreAdmissionAssessmentFormsData.RescueMedications
                 }}</label>
             </ng-template>
-
-            <p>
-                Please detail these below alongside when they are to be
-                administered, frequency and time between doses
-            </p>
+           
         </div>
         <div class="col-md-1 form-icon mt-4">
             <i class="fa-solid fa-info"></i>
@@ -1174,17 +1172,17 @@
                         PreAdmissionAssessmentFormsData.InfectionDetails
                     "
                 />
+                <p>
+                    Detail how the person presents when they have an infection, what
+                    are the soft signs of infection if these are knownInclude type
+                    of infection, location, treatment
+                </p>
             </ng-container>
             <ng-template #InfectionDetailsLabel>
                 <label>{{
                     PreAdmissionAssessmentFormsData.InfectionDetails
                 }}</label>
             </ng-template>
-            <p>
-                Detail how the person presents when they have an infection, what
-                are the soft signs of infection if these are knownInclude type
-                of infection, location, treatment
-            </p>
         </div>
         <div class="col-md-1 form-icon mt-4">
             <i class="fa-solid fa-info"></i>
@@ -1230,19 +1228,20 @@
                         PreAdmissionAssessmentFormsData.MedicationDetails
                     "
                 />
+                <p>
+                    refer reader to the MARs sheets for the resident most up to date
+                    medications, howveer please explore how they like to take their
+                    medications, high risk medications, such as lithium,
+                    antipsychotics, benzodiazepines, anti coagulants, insulin,
+                    epilepsy or Parkinson's meds
+                </p>
             </ng-container>
             <ng-template #MedicationDetailsLabel>
                 <label>{{
                     PreAdmissionAssessmentFormsData.MedicationDetails
                 }}</label>
             </ng-template>
-            <p>
-                refer reader to the MARs sheets for the resident most up to date
-                medications, howveer please explore how they like to take their
-                medications, high risk medications, such as lithium,
-                antipsychotics, benzodiazepines, anti coagulants, insulin,
-                epilepsy or Parkinson's meds
-            </p>
+            
         </div>
         <div class="col-md-1 form-icon mt-4">
             <i class="fa-solid fa-info"></i>
@@ -1263,6 +1262,7 @@
                     placeholder="Select"
                     [style]="{ width: '100%' }"
                 >
+                <p>Choose all statements below</p>
                 </p-dropdown>
             </ng-container>
             <ng-template #FirstAidDropdownLabel>
@@ -1270,7 +1270,7 @@
                     PreAdmissionAssessmentFormsData.FirstAidEpilepticSeizure
                 }}</label>
             </ng-template>
-            <p>Choose all statements below</p>
+            
         </div>
         <div class="col-md-1 form-icon mt-4">
             <i class="fa-solid fa-info"></i>
@@ -1293,20 +1293,20 @@
                     class="form-control"
                     [(ngModel)]="PreAdmissionAssessmentFormsData.OverallGoal"
                 />
+                <p>
+                    For example to be safe, to minimise loneliness, to strive and
+                    promote abilities, to manage their health needs better.
+                </p>
             </ng-container>
             <ng-template #OverallGoalLabel>
                 <label>{{ PreAdmissionAssessmentFormsData.OverallGoal }}</label>
             </ng-template>
-            <p>
-                For example to be safe, to minimise loneliness, to strive and
-                promote abilities, to manage their health needs better.
-            </p>
         </div>
         <div class="col-md-1 form-icon mt-4 form-icon">
             <i class="fa-solid fa-info"></i>
         </div>
         <div class="d-flex justify-content-end">
-            <ng-container *ngIf="isEditable ; else savePdf ">
+            <ng-container *ngIf="isEditable; else savePdf">
                 <div>
                     <span class="p-ml-left mr-4">
                         <button
@@ -1335,7 +1335,7 @@
             </ng-container>
             <ng-template #savePdf>
                 <button
-                pButton
+                    pButton
                     title="Save as PDF"
                     label="Save as PDF"
                     (click)="SaveAsPDF()"
