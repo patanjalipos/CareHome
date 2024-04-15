@@ -56,43 +56,6 @@ export class MasterService {
 
     //#endregion
 
-    //#region PreAdmissionAssessmentForm
-
-    GetPreAdmissionFormDetails(fromId: any) {
-        let reqHeader = new HttpHeaders({
-            'Content-Type': 'application/json',
-            'Access-Control-Allow-Origin': environment.BaseUriAdmin,
-            //'Authorization': 'Bearer ' + localStorage.getItem('token')
-        });
-        let params = new HttpParams();
-        params = params.append('fromId', fromId);
-        return this._httpclient.get<any>(
-            environment.BaseUriAdmin + 'api/Admin/GetPreAdmissionForm',
-            { headers: reqHeader, params: params }
-        );
-    }
-
-    AddInsertUpdatePreAdmissionAssessmentForm(
-        PreAdmissionAssessmentFormsData: any
-    ): Observable<any> {
-        let reqHeader = new HttpHeaders({
-            'Content-Type': 'application/json',
-            'Access-Control-Allow-Origin': environment.BaseUriAdmin,
-            //'Authorization': 'Bearer ' + localStorage.getItem('token')
-        });
-        let params = new HttpParams();
-        var data = JSON.stringify(PreAdmissionAssessmentFormsData).toString();
-        console.log(data);
-        return this._httpclient.post<any>(
-            environment.BaseUriAdmin +
-                'api/Admin/AddInsertUpdatePreAdmissionForm',
-            data,
-            { headers: reqHeader, params: params }
-        );
-    }
-
-    //#endregion
-
      //#region AccidentNearMissRecordForm
 
      GetAccidentNearMissRecordDetails(fromId: any) {
@@ -129,9 +92,6 @@ export class MasterService {
     }
 
     //#endregion
-
-
-
 
     //#region Form Master
 
