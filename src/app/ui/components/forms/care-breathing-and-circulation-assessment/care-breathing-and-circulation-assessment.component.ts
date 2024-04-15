@@ -85,7 +85,7 @@ export class CareBreathingAndCirculationAssessmentComponent extends AppComponent
 
   if (this.preSelectedFormData.selectedFormID != null) {
       this.CareBreathAssFormsData = <any>{};
-      this.GetFamilyCommFormByid(
+      this.GetCareBreathCirculationByid(
           this.preSelectedFormData.selectedFormID
       );
 
@@ -99,7 +99,7 @@ export class CareBreathingAndCirculationAssessmentComponent extends AppComponent
 
   if (this.preSelectedFormData.selectedFormID != null) {
       this.CareBreathAssFormsData = <any>{};
-      this.GetFamilyCommFormByid(
+      this.GetCareBreathCirculationByid(
           this.preSelectedFormData.selectedFormID
       );
 
@@ -108,10 +108,10 @@ export class CareBreathingAndCirculationAssessmentComponent extends AppComponent
       this.ResetModel();
   }
   }
-  GetFamilyCommFormByid(formId: string) {
+  GetCareBreathCirculationByid(formId: string) {
     this._UtilityService.showSpinner();
     this.unsubscribe.add = this._care_breath
-        .GetBreathDecisionMaster(formId)
+        .GetCareBreathingCirculationFormById(formId)
         .subscribe({
             next: (data) => {
                 this._UtilityService.hideSpinner();
@@ -119,7 +119,7 @@ export class CareBreathingAndCirculationAssessmentComponent extends AppComponent
                     var tdata = JSON.parse(data.actionResult.result);
                     tdata = tdata ? tdata : {};
                     this.CareBreathAssFormsData = tdata;
-                    this.CareBreathAssFormsData.DateTimeObservation=new Date(this.CareBreathAssFormsData.DateTimeObservation);
+                    this.CareBreathAssFormsData.NextReviewDate=new Date(this.CareBreathAssFormsData.NextReviewDate);
                     //console.log(this.PreAdmissionAssessmentFormsData);
                 } else {
                     this.CareBreathAssFormsData = {};
@@ -368,6 +368,56 @@ GetCareAssBreathStrategiesMaster() {
               this._UtilityService.showErrorAlert(e.message);
           },
       });
+}
+saveAsUnfinished()
+{
+  this.CareBreathAssFormsData.isFormCompleted = false;
+  this.Save();
+}
+Save() {
+  if (this.userId != null && this.residentAdmissionInfoId != null) {
+      this.CareBreathAssFormsData.userId = this.userId;
+      this.CareBreathAssFormsData.StartedBy=localStorage.getItem('userId');
+      this.CareBreathAssFormsData.LastEnteredBy=localStorage.getItem('userId');
+      this.CareBreathAssFormsData.residentAdmissionInfoId = this.residentAdmissionInfoId;
+      this.CareBreathAssFormsData.NextReviewDate=new Date(this.datepipe.transform(this.CareBreathAssFormsData.NextReviewDate,'yyyy-MM-dd'));
+      const objectBody: any = {
+          StatementType: this.StatementType,
+          CareAssBrthCirc: this.CareBreathAssFormsData,
+      };
+      this._UtilityService.showSpinner();
+      this.unsubscribe.add = this._care_breath
+          .InsertUpdateCareAssBreathCirculationForm(objectBody)
+          .subscribe({
+              next: (data) => {
+                  this._UtilityService.hideSpinner();
+                  if (data.actionResult.success == true)
+                    {
+                      this.EmitUpdateForm.emit(true);
+                      this.ResetModel();
+                      this._UtilityService.showSuccessAlert(
+                          data.actionResult.errMsg
+                      );
+                    }
+                  else
+                      this._UtilityService.showWarningAlert(
+                          data.actionResult.errMsg
+                      );
+              },
+              error: (e) => {
+                  this._UtilityService.hideSpinner();
+                  this._UtilityService.showErrorAlert(e.message);
+              },
+          });
+  } else {
+      this._UtilityService.showWarningAlert(
+          'Resident admission details are missing.'
+      );
+  }
+}
+completeForm() {
+    this.CareBreathAssFormsData.isFormCompleted = true;
+    this.Save();
 }
 
 }
