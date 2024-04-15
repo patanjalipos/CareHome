@@ -56,6 +56,95 @@ export class MasterService {
 
     //#endregion
 
+    //#region AccidentNearMissRecordDropDownValues
+
+    GetLocationOfAccident(id: any) {
+        let reqHeader = new HttpHeaders({
+            'Content-Type': 'application/json',
+            'Access-Control-Allow-Origin': environment.BaseUriAdmin,
+            //'Authorization': 'Bearer ' + localStorage.getItem('token')
+        });
+        let params = new HttpParams();
+        params = params.append('fromId', id);
+        return this._httpclient.get<any>(
+            environment.BaseUriAdmin + 'api/Admin/GetLocationOfAccident',
+            { headers: reqHeader, params: params }
+        );
+    }
+
+    GetAccidentFloorPlace(id: any) {
+        let reqHeader = new HttpHeaders({
+            'Content-Type': 'application/json',
+            'Access-Control-Allow-Origin': environment.BaseUriAdmin,
+            //'Authorization': 'Bearer ' + localStorage.getItem('token')
+        });
+        let params = new HttpParams();
+        params = params.append('fromId', id);
+        return this._httpclient.get<any>(
+            environment.BaseUriAdmin + 'api/Admin/GetAccidentFloorPlace',
+            { headers: reqHeader, params: params }
+        );
+    }
+
+    GetAccidentType(id: any) {
+        let reqHeader = new HttpHeaders({
+            'Content-Type': 'application/json',
+            'Access-Control-Allow-Origin': environment.BaseUriAdmin,
+            //'Authorization': 'Bearer ' + localStorage.getItem('token')
+        });
+        let params = new HttpParams();
+        params = params.append('fromId', id);
+        return this._httpclient.get<any>(
+            environment.BaseUriAdmin + 'api/Admin/GetAccidentType',
+            { headers: reqHeader, params: params }
+        );
+    }
+
+    GetInjuriesSustained(id: any) {
+        let reqHeader = new HttpHeaders({
+            'Content-Type': 'application/json',
+            'Access-Control-Allow-Origin': environment.BaseUriAdmin,
+            //'Authorization': 'Bearer ' + localStorage.getItem('token')
+        });
+        let params = new HttpParams();
+        params = params.append('fromId', id);
+        return this._httpclient.get<any>(
+            environment.BaseUriAdmin + 'api/Admin/GetInjuriesSustained',
+            { headers: reqHeader, params: params }
+        );
+    }
+
+    GetJobRole(id: any) {
+        let reqHeader = new HttpHeaders({
+            'Content-Type': 'application/json',
+            'Access-Control-Allow-Origin': environment.BaseUriAdmin,
+            //'Authorization': 'Bearer ' + localStorage.getItem('token')
+        });
+        let params = new HttpParams();
+        params = params.append('fromId', id);
+        return this._httpclient.get<any>(
+            environment.BaseUriAdmin + 'api/Admin/GetJobRole',
+            { headers: reqHeader, params: params }
+        );
+    }
+
+    GetEmergencyServices(id: any) {
+        let reqHeader = new HttpHeaders({
+            'Content-Type': 'application/json',
+            'Access-Control-Allow-Origin': environment.BaseUriAdmin,
+            //'Authorization': 'Bearer ' + localStorage.getItem('token')
+        });
+        let params = new HttpParams();
+        params = params.append('fromId', id);
+        return this._httpclient.get<any>(
+            environment.BaseUriAdmin + 'api/Admin/GetEmergencyServices',
+            { headers: reqHeader, params: params }
+        );
+    }
+
+
+    //#endregion
+
      //#region AccidentNearMissRecordForm
 
      GetAccidentNearMissRecordDetails(fromId: any) {
