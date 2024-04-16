@@ -1,26 +1,27 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { FASTStrokeAssessmentRoutingModule } from './f-a-s-t-stroke-assessment-routing.module';
-import { FASTStrokeAssessmentComponent } from './f-a-s-t-stroke-assessment.component';
+import { RecordOfPropertyRoutingModule } from './record-of-property-routing.module';
+import { RecordOfPropertyComponent } from './record-of-property.component';
 import { ButtonModule } from 'primeng/button';
 import { CalendarModule } from "primeng/calendar";
 import { DropdownModule } from 'primeng/dropdown';
 import { FormsModule } from '@angular/forms';
-
+import { CheckboxModule } from 'primeng/checkbox';
 
 @NgModule({
   declarations: [
-    FASTStrokeAssessmentComponent
+    RecordOfPropertyComponent
   ],
   imports: [
     CommonModule,
-    FASTStrokeAssessmentRoutingModule,
+    RecordOfPropertyRoutingModule,
     ButtonModule,
     CalendarModule,
     DropdownModule,
     FormsModule,
+    CheckboxModule
   ],
-  exports:[FASTStrokeAssessmentComponent]
+  exports:[RecordOfPropertyComponent]
 })
-export class FASTStrokeAssessmentModule { }
+export class RecordOfPropertyModule { }

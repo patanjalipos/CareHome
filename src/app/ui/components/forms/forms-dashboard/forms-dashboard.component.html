@@ -109,34 +109,60 @@
 </app-risk-tool-bed-rails-pack>
 
 <app-promoting-wellbeing-at-home [preSelectedFormData]="selectedFormData" (EmitUpdateForm)="EmitUpdateForm($event)"
-*ngIf="ShowChildComponent==true && selectedFormMasterId==FormTypes.PromotingWellbeing">
+    *ngIf="ShowChildComponent==true && selectedFormMasterId==FormTypes.PromotingWellbeing">
 </app-promoting-wellbeing-at-home>
 
 <app-dentist-visit-communication [preSelectedFormData]="selectedFormData" (EmitUpdateForm)="EmitUpdateForm($event)"
-*ngIf="ShowChildComponent==true && selectedFormMasterId==FormTypes.DentistVisitCommunication"></app-dentist-visit-communication>
+    *ngIf="ShowChildComponent==true && selectedFormMasterId==FormTypes.DentistVisitCommunication"></app-dentist-visit-communication>
 
 
 <app-covid-acute-care-plan [preSelectedFormData]="selectedFormData" (EmitUpdateForm)="EmitUpdateForm($event)"
-*ngIf="ShowChildComponent==true && selectedFormMasterId==FormTypes.CovidAcuteCarePlan"></app-covid-acute-care-plan>
+    *ngIf="ShowChildComponent==true && selectedFormMasterId==FormTypes.CovidAcuteCarePlan"></app-covid-acute-care-plan>
 
 
 <app-f-a-s-t-stroke-assessment [preSelectedFormData]="selectedFormData" (EmitUpdateForm)="EmitUpdateForm($event)"
-*ngIf="ShowChildComponent==true && selectedFormMasterId==FormTypes.FASTStrokeAssessment"></app-f-a-s-t-stroke-assessment>
+    *ngIf="ShowChildComponent==true && selectedFormMasterId==FormTypes.FASTStrokeAssessment"></app-f-a-s-t-stroke-assessment>
 
 
 <app-sepsis-screening-tool [preSelectedFormData]="selectedFormData" (EmitUpdateForm)="EmitUpdateForm($event)"
-*ngIf="ShowChildComponent==true && selectedFormMasterId==FormTypes.SepsisScreening"></app-sepsis-screening-tool>
+    *ngIf="ShowChildComponent==true && selectedFormMasterId==FormTypes.SepsisScreening"></app-sepsis-screening-tool>
 
 <app-healthcare-support-tool [preSelectedFormData]="selectedFormData" (EmitUpdateForm)="EmitUpdateForm($event)"
-*ngIf="ShowChildComponent==true && selectedFormMasterId==FormTypes.HealthCareSupport"></app-healthcare-support-tool>
+    *ngIf="ShowChildComponent==true && selectedFormMasterId==FormTypes.HealthCareSupport"></app-healthcare-support-tool>
 
 <app-home-managers-settling [preSelectedFormData]="selectedFormData" (EmitUpdateForm)="EmitUpdateForm($event)"
-*ngIf="ShowChildComponent==true && selectedFormMasterId==FormTypes.HomemangersSetting"></app-home-managers-settling>
+    *ngIf="ShowChildComponent==true && selectedFormMasterId==FormTypes.HomemangersSetting"></app-home-managers-settling>
+
+<app-record-of-property [preSelectedFormData]="selectedFormData" (EmitUpdateForm)="EmitUpdateForm($event)"
+    *ngIf="ShowChildComponent==true && selectedFormMasterId==FormTypes.RecordOfProperty"></app-record-of-property>
 
 
+<app-care-assessment-dietary-notification [preSelectedFormData]="selectedFormData"
+    (EmitUpdateForm)="EmitUpdateForm($event)"
+    *ngIf="ShowChildComponent==true && selectedFormMasterId==FormTypes.CareAssessmentDietaryNotification"></app-care-assessment-dietary-notification>
 
 
+<app-care-assessment-life-history [preSelectedFormData]="selectedFormData" (EmitUpdateForm)="EmitUpdateForm($event)"
+    *ngIf="ShowChildComponent==true && selectedFormMasterId==FormTypes.CareAssessmentLifeHistory"></app-care-assessment-life-history>
+
+<app-respiratory-screening-questions [preSelectedFormData]="selectedFormData" (EmitUpdateForm)="EmitUpdateForm($event)"
+    *ngIf="ShowChildComponent==true && selectedFormMasterId==FormTypes.RespiratoryScreening"></app-respiratory-screening-questions>
+
+
+<app-care-assessment-my-epilepsy [preSelectedFormData]="selectedFormData" (EmitUpdateForm)="EmitUpdateForm($event)"
+    *ngIf="ShowChildComponent==true && selectedFormMasterId==FormTypes.CareAssessmentMyEpilepsySupport"></app-care-assessment-my-epilepsy>
+
+<app-care-assessment-respect [preSelectedFormData]="selectedFormData" (EmitUpdateForm)="EmitUpdateForm($event)"
+    *ngIf="ShowChildComponent==true && selectedFormMasterId==FormTypes.CareAssessmentRESPECT"></app-care-assessment-respect>
+
+<app-positive-behaviour-support [preSelectedFormData]="selectedFormData" (EmitUpdateForm)="EmitUpdateForm($event)"
+    *ngIf="ShowChildComponent==true && selectedFormMasterId==FormTypes.PositiveBehaviour"></app-positive-behaviour-support>
+
+<app-the-pool-activity-level [preSelectedFormData]="selectedFormData" (EmitUpdateForm)="EmitUpdateForm($event)"
+    *ngIf="ShowChildComponent==true && selectedFormMasterId==FormTypes.ThePoolActivityLevel"></app-the-pool-activity-level>
+
+<app-care-assessment-trial-with-out-cathete [preSelectedFormData]="selectedFormData" (EmitUpdateForm)="EmitUpdateForm($event)"
+*ngIf="ShowChildComponent==true && selectedFormMasterId==FormTypes.CareAssessmentTrialWith"></app-care-assessment-trial-with-out-cathete>
 
 
 <!-- <div #formContainer></div> -->
-

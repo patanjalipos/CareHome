@@ -1,26 +1,28 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { FASTStrokeAssessmentRoutingModule } from './f-a-s-t-stroke-assessment-routing.module';
-import { FASTStrokeAssessmentComponent } from './f-a-s-t-stroke-assessment.component';
+import { ThePoolActivityLevelRoutingModule } from './the-pool-activity-level-routing.module';
+import { ThePoolActivityLevelComponent } from './the-pool-activity-level.component';
 import { ButtonModule } from 'primeng/button';
 import { CalendarModule } from "primeng/calendar";
 import { DropdownModule } from 'primeng/dropdown';
 import { FormsModule } from '@angular/forms';
-
+import { CheckboxModule } from 'primeng/checkbox';
 
 @NgModule({
   declarations: [
-    FASTStrokeAssessmentComponent
+    ThePoolActivityLevelComponent
   ],
   imports: [
     CommonModule,
-    FASTStrokeAssessmentRoutingModule,
+    ThePoolActivityLevelRoutingModule,
     ButtonModule,
     CalendarModule,
     DropdownModule,
     FormsModule,
+    CheckboxModule
+
   ],
-  exports:[FASTStrokeAssessmentComponent]
+  exports:[ThePoolActivityLevelComponent]
 })
-export class FASTStrokeAssessmentModule { }
+export class ThePoolActivityLevelModule { }

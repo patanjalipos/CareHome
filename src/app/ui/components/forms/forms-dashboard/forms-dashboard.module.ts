@@ -49,6 +49,16 @@ import { HomeManagersSettlingModule } from '../home-managers-settling/home-manag
 import { PromotingWellbeingAtHomeModule } from '../promoting-wellbeing-at-home/promoting-wellbeing-at-home.module';
 import { RiskToolBedRailsPackModule } from '../risk-tool-bed-rails-pack/risk-tool-bed-rails-pack.module';
 import { SepsisScreeningToolModule } from '../sepsis-screening-tool/sepsis-screening-tool.module';
+import { RecordOfPropertyModule } from '../record-of-property/record-of-property.module';
+import { RespiratoryScreeningQuestionsModule } from '../respiratory-screening-questions/respiratory-screening-questions.module';
+import { PositiveBehaviourSupportModule } from '../positive-behaviour-support/positive-behaviour-support.module';
+import { CareAssessmentDietaryNotificationModule } from '../care-assessment-dietary-notification/care-assessment-dietary-notification.module';
+import { CareAssessmentLifeHistoryModule } from '../care-assessment-life-history/care-assessment-life-history.module';
+import { CareAssessmentMyEpilepsyModule } from '../care-assessment-my-epilepsy/care-assessment-my-epilepsy.module';
+import { CareAssessmentRespectModule } from '../care-assessment-respect/care-assessment-respect.module';
+import { ThePoolActivityLevelModule } from '../the-pool-activity-level/the-pool-activity-level.module';
+import { CareAssessmentTrialWithOutCatheteComponent } from '../care-assessment-trial-with-out-cathete/care-assessment-trial-with-out-cathete.component';
+import { CareAssessmentTrialWithOutCatheteModule } from '../care-assessment-trial-with-out-cathete/care-assessment-trial-with-out-cathete.module';
 
 
 
@@ -104,7 +114,20 @@ import { SepsisScreeningToolModule } from '../sepsis-screening-tool/sepsis-scree
     HomeManagersSettlingModule,
     PromotingWellbeingAtHomeModule,
     RiskToolBedRailsPackModule,
-    SepsisScreeningToolModule
+    SepsisScreeningToolModule,
+    RecordOfPropertyModule,
+    RespiratoryScreeningQuestionsModule,
+    PositiveBehaviourSupportModule,
+    CareAssessmentDietaryNotificationModule,
+    CareAssessmentLifeHistoryModule,
+    CareAssessmentMyEpilepsyModule,
+    CareAssessmentRespectModule,
+    PositiveBehaviourSupportModule,
+    RespiratoryScreeningQuestionsModule,
+    ThePoolActivityLevelModule,
+    CareAssessmentTrialWithOutCatheteModule 
+
+
 
    
  

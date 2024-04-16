@@ -97,14 +97,25 @@ export enum FormTypes {
   CareAssessmentSpeech = "660e80bdf05fe3604a126e58",
   CovidAcuteCarePlan = "66151024f05fe3604a126e5d",
   DentistVisitCommunication = "66151002f05fe3604a126e5c",
-  DistrictNurseVisit = "66150fa9f05fe3604a126e59" ,
+  DistrictNurseVisit = "66150fa9f05fe3604a126e59",
   FASTStrokeAssessment = "66151037f05fe3604a126e5e",
   HealthCareSupport = "66151067f05fe3604a126e60",
   HomemangersSetting = "66151097f05fe3604a126e61",
   PromotingWellbeing = "66150febf05fe3604a126e5b",
   RiskToolBedRails = "66150fc3f05fe3604a126e5a",
   SepsisScreening = "66151055f05fe3604a126e5f",
-  
+  RecordOfProperty = "661cb2e0eb74cdce58be9a9f",
+  RespiratoryScreening = "661cb2f4eb74cdce58be9aa0",
+  CareAssessmentMyEpilepsySupport = "661cb309eb74cdce58be9aa1",
+  CareAssessmentRESPECT = "661cb31beb74cdce58be9aa2",
+  CareAssessmentDietaryNotification = "661cb33eeb74cdce58be9aa3",
+  CareAssessmentLifeHistory = "661cb361eb74cdce58be9aa4",
+  CareAssessmentTrialWith = "661cb388eb74cdce58be9aa5",
+  PositiveBehaviour = "661cb39ceb74cdce58be9aa6",
+  ThePoolActivityLevel = "661cb3aeeb74cdce58be9aa7"
+
+
+
 
 }
 
@@ -124,7 +135,7 @@ export enum TaskPlannerStatus {
   Done = 3,
 }
 
-export enum ActionItem{
+export enum ActionItem {
   Read = 1,
   ReadWrite = 2,
   Delete = 3,
