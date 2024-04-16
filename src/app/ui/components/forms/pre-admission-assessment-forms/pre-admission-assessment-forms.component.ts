@@ -113,6 +113,17 @@ export class PreAdmissionAssessmentFormsComponent
         this.getPreAdmPeronsCurrentAbilitiesOptionsMaster();
         this.getPreAdmPersonalSafetyOptionsMaster();
         this.getPreAdmAdvancedCarePlanningOptionsMaster();
+
+        if (this.preSelectedFormData.selectedFormID != null) {
+            this.PreAdmissionAssessmentFormsData = <any>{};
+            this.GetPreAdmissionFormDetails(
+                this.preSelectedFormData.selectedFormID
+            );
+
+            this.StatementType = 'Update';
+        } else {
+            this.ResetModel();
+        }
     }
     ngOnChanges(changes: SimpleChanges): void {
         this.isEditable = this.preSelectedFormData.isEditable;
@@ -203,7 +214,6 @@ export class PreAdmissionAssessmentFormsComponent
                         var tdata = JSON.parse(data.actionResult.result);
                         tdata = tdata ? tdata : {};
                         this.PreAdmissionAssessmentFormsData = tdata;
-                        console.log(this.PreAdmissionAssessmentFormsData);
                     } else {
                         this.PreAdmissionAssessmentFormsData = {};
                     }
