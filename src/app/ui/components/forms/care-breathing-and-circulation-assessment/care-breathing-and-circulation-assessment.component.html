@@ -1,0 +1,567 @@
+<form #myForm="ngForm">
+    <div class="card">
+        <div class="row">
+            <div class="formheader">
+                <div class="d-flex">
+                    <div class="col-md-4">
+                        <label class="form-label"><b> Started by (Name) :</b>
+                            {{ preSelectedFormData.StartedBy }}
+                        </label>
+                    </div>
+                    <div class="col-md-4">
+                        <label class="form-label"><b>Designation :</b> </label>
+                        {{ preSelectedFormData.StartedByDesignation }}
+                    </div>
+                    <div class="col-md-4">
+                        <label class="form-label"> <b>Date/Time : </b></label>
+                        {{
+                        preSelectedFormData.StartedOn
+                        | date : customDateFormat.DEF_DATE_TIME
+                        }}
+                    </div>
+                </div>
+                <div class="d-flex">
+                    <div class="col-md-4">
+                        <label class="form-label">
+                            <b>Last entered by (Name) :</b></label>
+                        {{ preSelectedFormData.ModifiedBy }}
+                    </div>
+                    <div class="col-md-4">
+                        <label class="form-label"> <b>Designation :</b></label>
+                        {{ preSelectedFormData.ModifiedByDesignation }}
+                    </div>
+                    <div class="col-md-4">
+                        <label class="form-label"> <b>Date/Time :</b> </label>
+                        {{
+                        preSelectedFormData.ModifiedOn
+                        | date : customDateFormat.DEF_DATE_TIME
+                        }}
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mt-4">
+                <div class="labelcontent">
+                    <p>Has the resident been assessed or assumed as having capacity to make decisions relating to
+                        breathing
+                        and circulation </p>
+                </div>
+            </div>
+            <div class="col-md-7 mt-4 ">
+                <ng-container *ngIf="isEditable==true">
+                    <p-dropdown placeholder="Select" [(ngModel)]="CareBreathAssFormsData.CareBreathDecision"
+                        name="ddlCareBreathDecision" [style]="{ width: '100%' }" [options]="lstBreathDecisionMaster"
+                        optionLabel="DecisionName" optionValue="CareAssBreathDecisionMasterId">
+                    </p-dropdown>
+                </ng-container>
+                <ng-container *ngIf="isEditable!=true">
+                    <p>{{CareBreathAssFormsData.DecisionName}}</p>
+                </ng-container>
+            </div>
+            <div class="col-md-1 form-icon mt-4">
+                <i class="fa-solid fa-info"></i>
+            </div>
+            <div class="col-md-4">
+                <div class="labelcontent">
+                    <p>Detail specific decision relating to the resident's breathing and circulation</p>
+                </div>
+            </div>
+            <div class="col-md-7 form-text ">
+                <input *ngIf="isEditable==true" pInputText type="text" name="txtDetailsSpecificDecision"
+                    [(ngModel)]="CareBreathAssFormsData.DetailsSpecificDecision" class="form-control" />
+                <p *ngIf="isEditable!=true">{{CareBreathAssFormsData.DetailsSpecificDecision}}</p>
+                <p class=" mb-4">Only answer if the resident lacks capacity</p>
+            </div>
+            <div class="col-md-1 form-icon">
+                <i class="fa-solid fa-info"></i>
+            </div>
+
+            <div class="col-md-4">
+                <div class="labelcontent">
+                    <P>History of breathing difficulties and Chest infections</P>
+                </div>
+            </div>
+            <div class="col-md-7 form-text">
+                <input *ngIf="isEditable==true" pInputText type="text" name="txtHistoryBreathingDificulty"
+                    [(ngModel)]="CareBreathAssFormsData.HistoryBreathingDificulty" class="form-control" />
+                <p *ngIf="isEditable!=true">{{CareBreathAssFormsData.HistoryBreathingDificulty}}</p>
+            </div>
+            <div class="col-md-1 form-icon">
+                <i class="fa-solid fa-info"></i>
+            </div>
+
+            <div class="col-md-4">
+                <div class="labelcontent">
+                    <p>Breathing difficulties</p>
+                </div>
+            </div>
+            <div class="col-md-7 form-text">
+                <ng-container *ngIf="isEditable==true">
+                    <p-dropdown placeholder="Select" [(ngModel)]="CareBreathAssFormsData.BreathDifficulties"
+                        name="ddlBreathDifficulties" [style]="{ width: '100%' }"
+                        [options]="lstCareAssBreathDificultMaster" optionLabel="DificultyName"
+                        optionValue="CareAssBreathDificultMasterId">
+                    </p-dropdown>
+                </ng-container>
+                <ng-container *ngIf="isEditable!=true">
+                    <p>{{CareBreathAssFormsData.DificultyName}}</p>
+                </ng-container>
+            </div>
+            <div class="col-md-1 form-icon">
+                <i class="fa-solid fa-info"></i>
+            </div>
+
+            <div class="col-md-4">
+                <div class="labelcontent">
+                    <p>Details of breathing difficulties and support required what is their baseline/normal presentation
+                        look like</p>
+                </div>
+            </div>
+            <div class="col-md-7 form-text">
+                <input *ngIf="isEditable==true" pInputText type="text" name="txtDetailsBreathingDificulty"
+                    [(ngModel)]="CareBreathAssFormsData.DetailsBreathingDificulty" class="form-control" />
+                <p *ngIf="isEditable!=true">{{CareBreathAssFormsData.DetailsBreathingDificulty}}</p>
+            </div>
+            <div class="col-md-1 form-icon">
+                <i class="fa-solid fa-info"></i>
+            </div>
+
+            <div class="col-md-4">
+                <div class="labelcontent">
+                    <p>Smoking history</p>
+
+                </div>
+            </div>
+            <div class="col-md-7 form-text">
+                <ng-container *ngIf="isEditable==true">
+                    <p-dropdown placeholder="Select" [(ngModel)]="CareBreathAssFormsData.SmokingHistory"
+                        name="ddlSmokingHistory" [style]="{ width: '100%' }"
+                        [options]="lstCareAssBreathSmokingHabitMaster" optionLabel="HabitName"
+                        optionValue="CareAssBreathSmokingHabitMasterId">
+                    </p-dropdown>
+                </ng-container>
+                <ng-container *ngIf="isEditable!=true">
+                    <p>{{CareBreathAssFormsData.HabitName}}</p>
+                </ng-container>
+            </div>
+            <div class="col-md-1 form-icon">
+                <i class="fa-solid fa-info"></i>
+            </div>
+            <div class="col-md-4">
+                <div class="labelcontent">
+                    <p>Smoking details</p>
+                </div>
+            </div>
+            <div class="col-md-7 form-text">
+                <input *ngIf="isEditable==true" pInputText type="text" name="txtSmokingDetails"
+                    [(ngModel)]="CareBreathAssFormsData.SmokingDetails" class="form-control" />
+                <p *ngIf="isEditable!=true">{{CareBreathAssFormsData.SmokingDetails}}</p>
+                <p class=" mb-4">Specify number of cigarettes smoked per day, consider dexterity of the resident and
+                    ability
+                    to hold
+                    safely, smoking leaflets, lighters, chargers for e-cigarettes, ability to raise alarm, where and
+                    when
+                    they smoke</p>
+            </div>
+            <div class="col-md-1 form-icon">
+                <i class="fa-solid fa-info"></i>
+            </div>
+            <div class="col-md-4">
+                <div class="labelcontent">
+                    <p>Hazards relating to the resident smoking</p>
+                </div>
+            </div>
+            <div class="col-md-7 form-text">
+                <input *ngIf="isEditable==true" pInputText type="text" name="txtHazardSmokingDetails"
+                    [(ngModel)]="CareBreathAssFormsData.HazardSmokingDetails" class="form-control" />
+                <p *ngIf="isEditable!=true">{{CareBreathAssFormsData.HazardSmokingDetails}}</p>
+                <p class=" mb-4">Who is at risk of harm if a fire were to start. What factors further increase the risk
+                    of
+                    fire. What
+                    specific equipment is required e.g. fire retardant tabard, combustibles use of flammable topical
+                    applications</p>
+            </div>
+            <div class="col-md-1 form-icon">
+                <i class="fa-solid fa-info"></i>
+            </div>
+            <div class="col-md-4">
+                <div class="labelcontent">
+                    <p>If the resident does smoke detail action plan</p>
+                </div>
+            </div>
+            <div class="col-md-7 form-text">
+                <ng-container *ngIf="isEditable==true">
+                    <p-dropdown placeholder="Select" [(ngModel)]="CareBreathAssFormsData.SmokeActionPlan"
+                        name="ddlSmokeActionPlan" [style]="{ width: '100%' }"
+                        [options]="lstCareAssBreathSmokingActionPlan" optionLabel="SmokingActionPlan"
+                        optionValue="CareAssBreathSmokingActionPlanId">
+                    </p-dropdown>
+                </ng-container>
+                <ng-container *ngIf="isEditable!=true">
+                    <p>{{CareBreathAssFormsData.SmokingActionPlan}}</p>
+                </ng-container>
+                <p class=" mb-4">Include where the nearest firefighting equipment is, are staff trained to use it, do
+                    there
+                    need to be
+                    further emergency procedures in place</p>
+            </div>
+            <div class="col-md-1 form-icon">
+                <i class="fa-solid fa-info"></i>
+            </div>
+            <div class="col-md-4">
+                <div class="labelcontent">
+                    <p>Cough / sputum</p>
+                </div>
+            </div>
+            <div class="col-md-7 form-text">
+                <ng-container *ngIf="isEditable==true">
+                    <p-dropdown placeholder="Select" [(ngModel)]="CareBreathAssFormsData.CoughType" name="ddlCoughType"
+                        [style]="{ width: '100%' }" [options]="lstCareAssBreathCoughTypeMaster"
+                        optionLabel="CoughTypeName" optionValue="CareAssBreathCoughTypeMasterId">
+                    </p-dropdown>
+                </ng-container>
+                <ng-container *ngIf="isEditable!=true">
+                    <p>{{CareBreathAssFormsData.CoughTypeName}}</p>
+                </ng-container>
+            </div>
+            <div class="col-md-1 form-icon">
+                <i class="fa-solid fa-info"></i>
+            </div>
+            <div class="col-md-4">
+                <div class="labelcontent">
+                    <p>Cough / sputum details and support required</p>
+                </div>
+            </div>
+            <div class="col-md-7 form-text">
+                <input *ngIf="isEditable==true" pInputText type="text" name="txtCoughDetails"
+                    [(ngModel)]="CareBreathAssFormsData.CoughDetails" class="form-control" />
+                <p *ngIf="isEditable!=true">{{CareBreathAssFormsData.CoughDetails}}</p>
+            </div>
+            <div class="col-md-1 form-icon">
+                <i class="fa-solid fa-info"></i>
+            </div>
+            <div class="col-md-4">
+                <div class="labelcontent">
+                    <p>Tracheostomy</p>
+                </div>
+            </div>
+            <div class="col-md-7 form-text">
+                <ng-container *ngIf="isEditable==true">
+                    <p-dropdown placeholder="Select" [(ngModel)]="CareBreathAssFormsData.Tracheostomy"
+                        name="ddlTracheostomy" [style]="{ width: '100%' }"
+                        [options]="lstCareAssBreathTracheostomyMaster" optionLabel="TracheostomyName"
+                        optionValue="CareAssBreathTracheostomyMasterId">
+                    </p-dropdown>
+                </ng-container>
+                <ng-container *ngIf="isEditable!=true">
+                    <p>{{CareBreathAssFormsData.TracheostomyName}}</p>
+                </ng-container>
+            </div>
+            <div class="col-md-1 form-icon">
+                <i class="fa-solid fa-info"></i>
+            </div>
+            <div class="col-md-4">
+                <div class="labelcontent">
+                    <p>Details of Tracheostomy and support required</p>
+                </div>
+            </div>
+            <div class="col-md-7 form-text">
+                <input *ngIf="isEditable==true" pInputText type="text" name="txtTracheostomyDetails"
+                    [(ngModel)]="CareBreathAssFormsData.TracheostomyDetails" class="form-control" />
+                <p *ngIf="isEditable!=true">{{CareBreathAssFormsData.TracheostomyDetails}}</p>
+                <p class=" mb-4">Size of tube, frequency of change, suction, any other support for care and management
+                    of
+                    tracheostomy</p>
+            </div>
+            <div class="col-md-1 form-icon">
+                <i class="fa-solid fa-info"></i>
+            </div>
+            <div class="col-md-4">
+                <div class="labelcontent">
+                    <p>Oxygen / suctioning / sleep pap machine</p>
+
+                </div>
+            </div>
+            <div class="col-md-7 form-text">
+                <ng-container *ngIf="isEditable==true">
+                    <p-dropdown placeholder="Select" [(ngModel)]="CareBreathAssFormsData.MachineType"
+                        name="ddlMachineType" [style]="{ width: '100%' }" [options]="lstCareAssBreathMachineTypeUsed"
+                        optionLabel="MachineName" optionValue="CareAssBreathMachineTypeUsedId">
+                    </p-dropdown>
+                </ng-container>
+                <ng-container *ngIf="isEditable!=true">
+                    <p>{{CareBreathAssFormsData.MachineName}}</p>
+                </ng-container>
+            </div>
+            <div class="col-md-1 form-icon">
+                <i class="fa-solid fa-info"></i>
+            </div>
+            <div class="col-md-4">
+                <div class="labelcontent">
+                    <p>Oxygen details</p>
+                </div>
+            </div>
+            <div class="col-md-7 form-text">
+                <input *ngIf="isEditable==true" pInputText type="text" name="txtOxygenDetails"
+                    [(ngModel)]="CareBreathAssFormsData.OxygenDetails" class="form-control" />
+                <p *ngIf="isEditable!=true">{{CareBreathAssFormsData.OxygenDetails}}</p>
+                <p class=" mb-4">Oxygen prescribed (refer to MAR, resident general saturation % given via face mask /
+                    other,
+                    continuous,
+                    night, PRN, assistance required, reason for oxygen)</p>
+            </div>
+            <div class="col-md-1 form-icon">
+                <i class="fa-solid fa-info"></i>
+            </div>
+            <div class="col-md-4">
+                <div class="labelcontent">
+                    <p>Inhaler use</p>
+                </div>
+            </div>
+            <div class="col-md-7 form-text">
+                <ng-container *ngIf="isEditable==true">
+                    <p-dropdown placeholder="Select" [(ngModel)]="CareBreathAssFormsData.InhealerType"
+                        name="ddlInhealerType" [style]="{ width: '100%' }"
+                        [options]="lstCareAssBreathInHealerTypeMaster" optionLabel="InhealerName"
+                        optionValue="CareAssBreathInHealerTypeMasterId">
+                    </p-dropdown>
+                </ng-container>
+                <ng-container *ngIf="isEditable!=true">
+                    <p>{{CareBreathAssFormsData.InhealerName}}</p>
+                </ng-container>
+            </div>
+            <div class="col-md-1 form-icon">
+                <i class="fa-solid fa-info"></i>
+            </div>
+            <div class="col-md-4">
+                <div class="labelcontent">
+                    <p>Details of Inhaler use, and support required</p>
+                </div>
+            </div>
+            <div class="col-md-7 form-text">
+                <input *ngIf="isEditable==true" pInputText type="text" name="txtInhealerDetails"
+                    [(ngModel)]="CareBreathAssFormsData.InhealerDetails" class="form-control" />
+                <p *ngIf="isEditable!=true">{{CareBreathAssFormsData.InhealerDetails}}</p>
+            </div>
+            <div class="col-md-1 form-icon">
+                <i class="fa-solid fa-info"></i>
+            </div>
+            <div class="col-md-4">
+                <div class="labelcontent">
+                    <p>Cardiac history</p>
+                </div>
+            </div>
+            <div class="col-md-7 form-text">
+                <input *ngIf="isEditable==true" pInputText type="text" name="txtCardiacHistory"
+                    [(ngModel)]="CareBreathAssFormsData.CardiacHistory" class="form-control" />
+                <p *ngIf="isEditable!=true">{{CareBreathAssFormsData.CardiacHistory}}</p>
+            </div>
+            <div class="col-md-1 form-icon">
+                <i class="fa-solid fa-info"></i>
+            </div>
+            <div class="col-md-4">
+                <div class="labelcontent">
+                    <p>Chest pain, Angina, Pacemaker</p>
+                </div>
+            </div>
+            <div class="col-md-7 form-text">
+                <ng-container *ngIf="isEditable==true">
+                    <p-dropdown placeholder="Select" [(ngModel)]="CareBreathAssFormsData.CreticalTreatment"
+                        name="ddlCreticalTreatment" [style]="{ width: '100%' }"
+                        [options]="lstCareAssBreathCreticalTreatmentMaster" optionLabel="CrtTreatName"
+                        optionValue="CareAssBreathCreticalTreatmentMasterId">
+                    </p-dropdown>
+                </ng-container>
+                <ng-container *ngIf="isEditable!=true">
+                    <p>{{CareBreathAssFormsData.CrtTreatName}}</p>
+                </ng-container>
+            </div>
+            <div class="col-md-1 form-icon">
+                <i class="fa-solid fa-info"></i>
+            </div>
+            <div class="col-md-4">
+                <div class="labelcontent">
+                    <p>Chest pain, Angina, Pacemaker support required</p>
+                </div>
+            </div>
+            <div class="col-md-7 form-text">
+                <input *ngIf="isEditable==true" pInputText type="text" name="txtCreticalTreatmentDetails"
+                    [(ngModel)]="CareBreathAssFormsData.CreticalTreatmentDetails" class="form-control" />
+                <p *ngIf="isEditable!=true">{{CareBreathAssFormsData.CreticalTreatmentDetails}}</p>
+                <p class=" mb-4">Include all details</p>
+            </div>
+            <div class="col-md-1 form-icon">
+                <i class="fa-solid fa-info"></i>
+            </div>
+            <div class="col-md-4">
+                <div class="labelcontent">
+                    <p>Blood pressure and Circulatory problems</p>
+                </div>
+            </div>
+            <div class="col-md-7 form-text">
+                <input *ngIf="isEditable==true" pInputText type="text" name="txtBloodPressureCircDetails"
+                    [(ngModel)]="CareBreathAssFormsData.BloodPressureCircDetails" class="form-control" />
+                <p *ngIf="isEditable!=true">{{CareBreathAssFormsData.BloodPressureCircDetails}}</p>
+                <p class=" mb-4">High / low frequency, detail in full including support and assistance required</p>
+            </div>
+            <div class="col-md-1 form-icon">
+                <i class="fa-solid fa-info"></i>
+            </div>
+            <div class="col-md-4">
+                <div class="labelcontent">
+                    <p>Is the resident prescribed anticoagulant therapy</p>
+                </div>
+            </div>
+            <div class="col-md-7 form-text">
+                <input *ngIf="isEditable==true" pInputText type="text" name="txtAnticoagulantTherapyDetails"
+                    [(ngModel)]="CareBreathAssFormsData.AnticoagulantTherapyDetails" class="form-control" />
+                <p *ngIf="isEditable!=true">{{CareBreathAssFormsData.AnticoagulantTherapyDetails}}</p>
+                <p class=" mb-4">Enter the details of their therapy</p>
+            </div>
+            <div class="col-md-1 form-icon">
+                <i class="fa-solid fa-info"></i>
+            </div>
+            <div class="col-md-4">
+                <div class="labelcontent">
+                    <p>Goals the resident wishes to achieve</p>
+                </div>
+            </div>
+            <div class="col-md-7 form-text">
+                <ng-container *ngIf="isEditable==true">
+                    <p-dropdown placeholder="Select" [(ngModel)]="CareBreathAssFormsData.GoalsWishesDetails"
+                        name="ddlGoalsWishesDetails" [style]="{ width: '100%' }"
+                        [options]="lstCareAssBreathGoalsWishesMaster" optionLabel="GoalWishesName"
+                        optionValue="CareAssBreathGoalsWishesMasterId">
+                    </p-dropdown>
+                </ng-container>
+                <ng-container *ngIf="isEditable!=true">
+                    <p>{{CareBreathAssFormsData.GoalWishesName}}</p>
+                </ng-container>
+            </div>
+            <div class="col-md-1 form-icon">
+                <i class="fa-solid fa-info"></i>
+            </div>
+            <div class="col-md-4">
+                <div class="labelcontent">
+                    <p>Does the resident have a specific goal personal to them</p>
+                </div>
+            </div>
+            <div class="col-md-7 form-text">
+                <input *ngIf="isEditable==true" pInputText type="text" name="txtSpecificGoalDetails"
+                    [(ngModel)]="CareBreathAssFormsData.SpecificGoalDetails" class="form-control" />
+                <p *ngIf="isEditable!=true">{{CareBreathAssFormsData.SpecificGoalDetails}}</p>
+            </div>
+            <div class="col-md-1 form-icon">
+                <i class="fa-solid fa-info"></i>
+            </div>
+            <div class="col-md-4">
+                <div class="labelcontent">
+                    <p>Strategies to manage the resident's breathing and circulation</p>
+                </div>
+            </div>
+            <div class="col-md-7 form-text">
+                <ng-container *ngIf="isEditable==true">
+                    <p-dropdown placeholder="Select" [(ngModel)]="CareBreathAssFormsData.StrategiesManage"
+                        name="ddlStrategiesManage" [style]="{ width: '100%' }"
+                        [options]="lstCareAssBreathStrategiesMaster" optionLabel="StrategiesName"
+                        optionValue="CareAssBreathStrategiesMasterId">
+                    </p-dropdown>
+                </ng-container>
+                <ng-container *ngIf="isEditable!=true">
+                    <p>{{CareBreathAssFormsData.StrategiesName}}</p>
+                </ng-container>
+            </div>
+            <div class="col-md-1 form-icon ">
+                <i class="fa-solid fa-info"></i>
+            </div>
+            <div class="col-md-4">
+                <div class="labelcontent">
+                    <p>Additional information</p>
+                </div>
+            </div>
+            <div class="col-md-7 form-text">
+                <input *ngIf="isEditable==true" pInputText type="text" name="txtAdditionalInfo"
+                    [(ngModel)]="CareBreathAssFormsData.AdditionalInfo" class="form-control" />
+                <p *ngIf="isEditable!=true">{{CareBreathAssFormsData.AdditionalInfo}}</p>
+            </div>
+            <div class="col-md-1 form-icon">
+                <i class="fa-solid fa-info"></i>
+            </div>
+            <div class="col-md-4">
+                <div class="labelcontent">
+                    <p>Are there any other identified risks relating to breathing & circulation</p>
+                </div>
+            </div>
+            <div class="col-md-7 form-text">
+                <input *ngIf="isEditable==true" pInputText type="text" name="txtOtherIdentificationDetails"
+                    [(ngModel)]="CareBreathAssFormsData.OtherIdentificationDetails" class="form-control" />
+                <p *ngIf="isEditable!=true">{{CareBreathAssFormsData.OtherIdentificationDetails}}</p>
+                <p class=" mb-4">Specify any other risks that have not been identified above</p>
+            </div>
+            <div class="col-md-1 form-icon ">
+                <i class="fa-solid fa-info"></i>
+            </div>
+            <div class="col-md-4">
+                <div class="labelcontent">
+                    <p>Action to manage additional identified risks</p>
+                </div>
+            </div>
+            <div class="col-md-7 form-text">
+                <input *ngIf="isEditable==true" pInputText type="text" name="txtActAddIdentificationDetails"
+                    [(ngModel)]="CareBreathAssFormsData.ActAddIdentificationDetails" class="form-control" />
+                <p *ngIf="isEditable!=true">{{CareBreathAssFormsData.ActAddIdentificationDetails}}</p>
+            </div>
+            <div class="col-md-1 form-icon">
+                <i class="fa-solid fa-info"></i>
+            </div>
+            <div class="col-md-4">
+                <div class="labelcontent implabel">
+                    <p>MONTHLY REVIEW (or before)</p>
+                </div>
+            </div>
+            <div class="col-md-7 form-text">
+                <p-checkbox *ngIf="isEditable==true" name="ChkMonthlyReview"
+                    [(ngModel)]="CareBreathAssFormsData.IsMonthlyReview" [binary]="true" inputId="binary"></p-checkbox>
+                <p *ngIf="isEditable!=true">{{(CareBreathAssFormsData.IsMonthlyReview==true?'Yes':'No')}}</p>
+                <p class=" mb-4">This form should be reviewed MONTHLY or before if there are significant changes. Enter
+                    review date below.
+                </p>
+            </div>
+            <div class="col-md-4">
+                <div class="labelcontent">
+                    <p>Next review date</p>
+                </div>
+            </div>
+            <div class="col-md-7">
+                <div class="input-group date" *ngIf="isEditable==true">
+                    <p-calendar [required]="true" name="txtNextReviewDate"
+                        [(ngModel)]="CareBreathAssFormsData.NextReviewDate" [showIcon]="true" inputId="icon"
+                        [dateFormat]="" class="iconcal" [readonlyInput]="true" appendTo="body" [maxDate]=""
+                        #dobref=""></p-calendar>
+                    <div *ngIf="" class="alert alert-danger">
+                    </div>
+                </div>
+                <p *ngIf="isEditable!=true">{{CareBreathAssFormsData.NextReviewDate | date
+                    :customDateFormat.DEF_DATE_TIME}}</p>
+
+            </div>
+
+            <div class="d-flex justify-content-end">
+                <div>
+                    <span class="p-ml-left mr-4">
+                        <button pButton title="New" (click)="saveAsUnfinished()" [disabled]="!myForm.form.valid"
+                            label="Save as Unfinished"></button>
+                        <span class="total-txt"></span>
+                    </span>
+                </div>
+                <div>
+                    <span class="p-ml-left mr-4">
+                        <button [disabled]="!myForm.form.valid" pButton title="New" (click)="completeForm()"
+                            label="Complete"></button>
+                        <span class="total-txt"></span>
+                    </span>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</form>

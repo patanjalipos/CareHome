@@ -95,10 +95,7 @@ export class FormMasterComponent extends AppComponentBase implements OnInit {
       this.master.statementtype = "Update";
     
     this.master.ModifiedBy = localStorage.getItem('userId');
-    this.master.ContactNumber = this.master.ContactNumber?.toString() || null;
-    this.master.OtherContactNumber = this.master.OtherContactNumber?.toString() || null;
-    this.master.FaxNumber = this.master.FaxNumber?.toString() || null;
-   
+    
     this._UtilityService.showSpinner();
     this.unsubscribe.add = this._MasterServices.AddInsertUpdateFormMaster(this.master)
       .subscribe({
@@ -118,7 +115,7 @@ export class FormMasterComponent extends AppComponentBase implements OnInit {
           this._UtilityService.showErrorAlert(e.message);
         },
       });
-  }
+  }npnp
 
   AddNewItem() {
     this.ResetModel();
@@ -143,6 +140,10 @@ export class FormMasterComponent extends AppComponentBase implements OnInit {
   //Filter
   onGlobalFilter(table: Table, event: Event) {
     table.filterGlobal((event.target as HTMLInputElement).value, 'contains');
+  }
+
+  onFilter(event, dt) {
+    this.filteredValuesLength = event.filteredValue.length; // count of displayed rows     
   }
 
   

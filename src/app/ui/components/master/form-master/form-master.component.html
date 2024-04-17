@@ -1,7 +1,7 @@
 <div *ngIf="mode==null">
     <div class="card">
         <p-table #dt [value]="lstMaster" responsiveLayout="scroll" styleClass="p-datatable-striped" [rowHover]="true"
-            [globalFilterFields]="['FormName']" [scrollable]="true" scrollHeight="calc(100vh - 155px)">
+            [globalFilterFields]="['FormName']" [scrollable]="true" scrollHeight="calc(100vh - 155px)" (onFilter)="onFilter($event, dt)">
             <ng-template pTemplate="caption">
                 <div class="flex justify-content-between flex-column sm:flex-row">
                     <span class="p-ml-left">
@@ -17,7 +17,8 @@
                         <span class="p-input-icon-left">
                             <i class="pi pi-search"></i>
                             <input #filtr pInputText type="text" (input)="onGlobalFilter(dt, $event)"
-                                placeholder="Search..." /></span>
+                                placeholder="Search..." />
+                            </span>
                     </span>
                 </div>
             </ng-template>
@@ -30,18 +31,16 @@
             </ng-template>
             <ng-template pTemplate="header">
                 <tr>
-                    <!-- <th>Form Code</th> -->
-                    <th>Sequence</th>
                     <th>Form Name</th>
+                    <th>Sequence</th>
                     <th>Status</th>
                     <th>Action</th>
                 </tr>
             </ng-template>
             <ng-template pTemplate="body" let-dt let-i="rowIndex">
                 <tr>
-                    <!-- <td>{{dt.formId}}</td> -->
-                    <td>{{dt.Sequence}}</td>
                     <td>{{dt.FormName}}</td>
+                    <td>{{dt.Sequence}}</td>
                     <td>{{dt.Status==1?'Active':'Inactive'}}</td>
                     <td>
                         <a title="View/Edit" (click)="GetformMasterById(dt.FormMasterId)">

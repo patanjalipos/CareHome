@@ -1,0 +1,418 @@
+<div class="card">
+    <div class="row">
+        <div class="formheader">
+            <div class="d-flex">
+                <div class="col-md-4">
+                    <label class="form-label"><b> Started by (Name) :</b>{{preSelectedFormData.StartedBy}}
+                    </label>
+                </div>
+                <div class="col-md-4">
+                    <label class="form-label"><b>Designation :</b>{{preSelectedFormData.StartedByDesignation}} </label>
+                </div>
+                <div class="col-md-4">
+                    <label class="form-label"> <b>Date/Time : </b>{{preSelectedFormData.StartedOn | date : customDateFormat.DEF_DATE_TIME}}</label>
+                </div>
+            </div>
+            <div class="d-flex">
+                <div class="col-md-4">
+                    <label class="form-label">
+                        <b>Last entered by (Name) :</b>{{preSelectedFormData.ModifiedBy}}</label>
+                </div>
+                <div class="col-md-4">
+                    <label class="form-label"> <b>Designation :</b>{{preSelectedFormData.ModifiedByDesignation}}</label>
+                </div>
+                <div class="col-md-4">
+                    <label class="form-label"> <b>Date/Time :</b> {{preSelectedFormData.ModifiedOn | date: customDateFormat.DEF_DATE_TIME}}</label>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 mt-2">
+            <div class="labelcontent">
+                <p>Date of Accident/Incident</p>
+            </div>
+        </div>
+        <div class="col-md-8  mt-2 mb-4">
+            <div class="input-group date">
+                <ng-container *ngIf="this.isEditable; else DateOfAccident">
+                    <p-calendar name="AccidentNearMissRecordFormsData.DateOfAccident" [showIcon]="true" inputId="icon" class="iconcal" [(ngModel)]="AccidentNearMissRecordFormsData.DateOfAccident"
+                        [readonlyInput]="true" appendTo="body" [maxDate]="" #dobref=""></p-calendar>
+                    <div *ngIf="" class="alert alert-danger">
+                    </div>
+                </ng-container>
+                <ng-template #DateOfAccident>
+                    <label>{{AccidentNearMissRecordFormsData.DateOfAccident | date}}</label>
+                </ng-template>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="labelcontent">
+                <p>Time of Accident/Incident
+                </p>
+            </div>
+        </div>
+        <div class="col-md-8 mb-4">
+            <ng-container *ngIf="this.isEditable; else TimeOfAccident">
+                <input pInputText type="time" [(ngModel)]="AccidentNearMissRecordFormsData.TimeOfAccident" required name="AccidentNearMissRecordFormsData.TimeOfAccident" class="form-control mr-4"  [style]="{ width: '35%' }">
+                <p>Use 24 hour clock</p>
+            </ng-container>
+            <ng-template #TimeOfAccident>
+                <label>{{AccidentNearMissRecordFormsData.TimeOfAccident}}</label>
+            </ng-template>
+        </div>
+        <div class="col-md-4 ">
+            <div class="labelcontent">
+                <p>Unique Referencing ID</p>
+            </div>
+        </div>
+        <div class="col-md-8 mb-4">
+            <ng-container *ngIf="this.isEditable; else UniqueReferenceId">
+                <input pInputText type="text" [(ngModel)]="AccidentNearMissRecordFormsData.UniqueReferenceId" required name="AccidentNearMissRecordFormsData.UniqueReferenceId" class="form-control mr-4"
+                    [style]="{ width: '35%' }">
+                <p>Allowed text entry format :"-0123456789"eg:-"75.2"</p>
+                <p class=" mb-4"> Add Reference number example: Incident Date 05/08/2022 at 09:30 Entry = 0508220930</p>
+            </ng-container>
+            <ng-template #UniqueReferenceId>
+                <label>{{AccidentNearMissRecordFormsData.UniqueReferenceId}}</label>
+            </ng-template>
+        </div>
+        <div class="col-md-4">
+            <div class="labelcontent">
+                <p>The Accident / Incident
+                </p>
+            </div>
+        </div>
+        <div class="col-md-8 mb-4">
+            <ng-container *ngIf="this.isEditable; else AccidentStatus">
+                <p-checkbox [(ngModel)]="AccidentNearMissRecordFormsData.AccidentStatus" [binary]="true" inputId="binary"></p-checkbox>
+            </ng-container>
+            <ng-template #AccidentStatus>
+                <label>{{AccidentNearMissRecordFormsData.AccidentStatus==true?'yes':'no'}}</label>
+            </ng-template>
+        </div>
+
+            <div class="col-md-4">
+                <div class="labelcontent">
+                    <p>Location of accident/Incident</p>
+                </div>
+            </div>
+        
+        <div class="col-md-8 mb-4">
+            <ng-container *ngIf="this.isEditable; else LocationOfAccident">
+                <p-dropdown [required]="true" [options]="lstlocationaccident"   optionLabel="Name" [(ngModel)]="AccidentNearMissRecordFormsData.LocationOfAccident" name="AccidentNearMissRecordFormsData.LocationOfAccident" optionValue="Name" placeholder="Select" [style]="{ width: '100%' }">
+                </p-dropdown>
+            </ng-container>
+            <ng-template #LocationOfAccident>
+                <label>{{AccidentNearMissRecordFormsData.LocationOfAccident}}</label>
+            </ng-template>
+        </div>
+        <div class="col-md-4">
+            <div class="labelcontent">
+                <p>On which floor of the building did the accident/incident take place
+                </p>
+            </div>
+        </div>
+        <div class="col-md-8 mb-4">
+            <ng-container *ngIf="this.isEditable; else AccidentFloorPlace">
+                <p-dropdown [required]="true" [options]="lstAccidentPlace"   optionLabel="Name" [(ngModel)]="AccidentNearMissRecordFormsData.AccidentFloorPlace" name="AccidentNearMissRecordFormsData.AccidentFloorPlace" optionValue="Name" placeholder="Select" [style]="{ width: '100%' }">
+                </p-dropdown>
+            </ng-container>
+            <ng-template #AccidentFloorPlace>
+                {{AccidentNearMissRecordFormsData.AccidentFloorPlace}}
+            </ng-template>
+        </div>
+        <div class="col-md-4">
+            <div class="labelcontent">
+                <p>Type of accident/incident
+                </p>
+            </div>
+        </div>
+        <div class="col-md-8 mb-4">
+            <ng-container *ngIf="this.isEditable; else AccidentType">
+                <p-dropdown [required]="true" [options]="lstAccidentType"   optionLabel="Name" [(ngModel)]="AccidentNearMissRecordFormsData.AccidentType" name="AccidentNearMissRecordFormsData.AccidentType" optionValue="Name" placeholder="Select" [style]="{ width: '100%' }">
+                </p-dropdown>
+            </ng-container>
+            <ng-template #AccidentType>
+                <label>{{AccidentNearMissRecordFormsData.AccidentType}}</label>
+            </ng-template>
+        </div>
+        <div class="col-md-4">
+            <div class="labelcontent">
+                <p>Describe the accident/incident
+                </p>
+            </div>
+        </div>
+        <div class="col-md-8 mb-4">
+            <ng-container *ngIf="this.isEditable; else AccidentDesc">
+                <input pInputText type="text" [(ngModel)]="AccidentNearMissRecordFormsData.AccidentDesc" required name="AccidentNearMissRecordFormsData.AccidentDesc" class="form-control" />
+                <p>Remain factual and include any contributory factors</p>
+            </ng-container>
+            <ng-template #AccidentDesc>
+                <label>{{AccidentNearMissRecordFormsData.AccidentDesc}}</label>
+            </ng-template>
+        </div>
+        <div class="col-md-4">
+            <div class="labelcontent">
+                <p>Please describe the situation before the accident or incident
+                </p>
+            </div>
+        </div>
+        <div class="col-md-8 mb-4">
+            <ng-container *ngIf="this.isEditable; else SituationDescBeforeAccident">
+                <input pInputText type="text" [(ngModel)]="AccidentNearMissRecordFormsData.SituationDescBeforeAccident" required name="AccidentNearMissRecordFormsData.SituationDescBeforeAccident" class="form-control" />
+                <p>What happened immediately before. Location. Did the person complain of dizziness, light-headedness,
+                    altered vision. Do they usually have assistance to walk or transfer. How is this support given. Give as
+                    much detail as possible in order to 'set the scene'.
+                </p>
+            </ng-container>
+            <ng-template  #SituationDescBeforeAccident>
+                <label>{{AccidentNearMissRecordFormsData.SituationDescBeforeAccident}}</label>
+            </ng-template>
+        </div>
+        <div class="col-md-4">
+            <div class="labelcontent">
+                <p>In what direction did the person fall. What part of the body hit the floor first
+                </p>
+            </div>
+        </div>
+        <div class="col-md-8 mb-4">
+            <ng-container *ngIf="this.isEditable; else DirectionOfPersonFallWithBodyPartHit">
+                <input pInputText type="text" [(ngModel)]="AccidentNearMissRecordFormsData.DirectionOfPersonFallWithBodyPartHit" required name="AccidentNearMissRecordFormsData.DirectionOfPersonFallWithBodyPartHit" class="form-control" />
+                <p>Please detail the location of the injury with as much detail as possible
+                </p>
+            </ng-container>
+            <ng-template #DirectionOfPersonFallWithBodyPartHit>
+                <label>{{AccidentNearMissRecordFormsData.DirectionOfPersonFallWithBodyPartHit}}</label>
+            </ng-template>
+        </div>
+        <div class="col-md-4">
+            <div class="labelcontent">
+                <p>Injuries or illness sustained</p>
+            </div>
+        </div>
+        <div class="col-md-8 mb-4">
+            <ng-container *ngIf="this.isEditable; else InjuriesSustained">
+                <p-dropdown [required]="true" [options]="lstInjurySustained"   optionLabel="Name" [(ngModel)]="AccidentNearMissRecordFormsData.InjuriesSustained" name="AccidentNearMissRecordFormsData.InjuriesSustained" optionValue="Name" placeholder="Select" [style]="{ width: '100%' }">
+                </p-dropdown>
+            </ng-container>
+            <ng-template #InjuriesSustained>
+                <label>{{AccidentNearMissRecordFormsData.InjuriesSustained}}</label>
+            </ng-template>
+        </div>
+        <div class="col-md-4">
+            <div class="labelcontent">
+                <p>Description of any treatment/first aid given. Name of person who administered first aid
+                </p>
+            </div>
+        </div>
+        <div class="col-md-8 mb-4">
+            <ng-container *ngIf="this.isEditable; else TreatmentDescWithNameOfPerson">
+                <input pInputText type="text" [(ngModel)]="AccidentNearMissRecordFormsData.TreatmentDescWithNameOfPerson" required name="AccidentNearMissRecordFormsData.TreatmentDescWithNameOfPerson" class="form-control" />
+            </ng-container>
+            <ng-template #TreatmentDescWithNameOfPerson>
+                <label>{{AccidentNearMissRecordFormsData.TreatmentDescWithNameOfPerson}}</label>
+            </ng-template>
+        </div>
+        <div class="col-md-4">
+            <div class="labelcontent">
+                <p>Job role of person who administered first aid
+                </p>
+            </div>
+        </div>
+        <div class="col-md-8 mb-4">
+            <ng-container *ngIf="this.isEditable; else JobRole">
+                <p-dropdown [required]="true" [options]="lstJobRole"   optionLabel="Name" [(ngModel)]="AccidentNearMissRecordFormsData.JobRole" name="AccidentNearMissRecordFormsData.JobRole" optionValue="Name" placeholder="Select" [style]="{ width: '100%' }">
+                </p-dropdown>
+            </ng-container>
+            <ng-template #JobRole>
+                <label>{{AccidentNearMissRecordFormsData.JobRole}}</label>
+            </ng-template>
+        </div>
+        <div class="col-md-4">
+            <div class="labelcontent">
+                <p>Equipment involved in the accident/incident
+                </p>
+            </div>
+        </div>
+        <div class="col-md-8 mb-4">
+            <ng-container *ngIf="this.isEditable; else Equipment">
+                <input pInputText type="text" [(ngModel)]="AccidentNearMissRecordFormsData.Equipment" required name="AccidentNearMissRecordFormsData.Equipment" class="form-control" />
+                <p>Please detail any equipment involved in the accident/incident - where/what etc
+                </p>
+            </ng-container>
+            <ng-template #Equipment>
+                <label>{{AccidentNearMissRecordFormsData.Equipment}}</label>
+            </ng-template>
+        </div>
+        <div class="col-md-4">
+            <div class="labelcontent">
+                <p>Was the person assessed by a nurse, doctor or paramedic before being moved
+                </p>
+            </div>
+        </div>
+        <div class="col-md-8 mb-4">
+            <ng-container *ngIf="this.isEditable; else AssessedBy">
+                <input pInputText type="text" [(ngModel)]="AccidentNearMissRecordFormsData.AssessedBy" required name="AccidentNearMissRecordFormsData.AssessedBy" class="form-control" />
+                <p>State Name, time, date</p>
+            </ng-container>
+            <ng-template #AssessedBy>
+                <label>{{AccidentNearMissRecordFormsData.AssessedBy}}</label>
+            </ng-template>
+        </div>
+        <div class="col-md-4">
+            <div class="labelcontent">
+                <p>Emergency services contacted</p>
+            </div>
+        </div>
+        <div class="col-md-8 mb-4">
+            <ng-container *ngIf="this.isEditable; else EmergencyServices">
+                <p-dropdown [required]="true" [options]="lstEmergencyServices"   optionLabel="Name" [(ngModel)]="AccidentNearMissRecordFormsData.EmergencyServices" name="AccidentNearMissRecordFormsData.EmergencyServices" optionValue="Name" placeholder="Select" [style]="{ width: '100%' }">
+                </p-dropdown>
+            </ng-container>
+            <ng-template #EmergencyServices>
+                <label>
+                    {{AccidentNearMissRecordFormsData.EmergencyServices}}
+                </label>
+            </ng-template>
+        </div>
+        <div class="col-md-4">
+            <div class="labelcontent">
+                <p>Date and Time emergency services contacted</p>
+            </div>
+        </div>
+        <div class="col-md-8 mb-4">
+            <div class="input-group date">
+                <ng-container *ngIf="this.isEditable; else EmergencyServicesContactedTime">
+                <!-- <input pInputText type="text" [(ngModel)]="AccidentNearMissRecordFormsData.EmergencyServicesContactedTime" required name="AccidentNearMissRecordFormsData.EmergencyServicesContactedTime" class="form-control" /> -->
+                <p-calendar name="AccidentNearMissRecordFormsData.EmergencyServicesContacted" [showIcon]="true" inputId="icon" class="iconcal" [(ngModel)]="AccidentNearMissRecordFormsData.EmergencyServicesContacted"
+                        [readonlyInput]="true" appendTo="body" [maxDate]="" #dobref=""></p-calendar>
+                    </ng-container>
+                    <ng-template #EmergencyServicesContactedTime>
+                        <label>
+                            {{AccidentNearMissRecordFormsData.EmergencyServicesContacted | date:customDateFormat.DEF_DATE_TIME}}
+                        </label>
+                    </ng-template>
+            </div>
+                <p *ngIf="isEditable==true">please detail who contacted the emergency services and when, note any crime number given</p>
+        </div>
+        <div class="col-md-4">
+            <div class="labelcontent">
+                <p>Other professionals contacted</p>
+            </div>
+        </div>
+        <div class="col-md-8 mb-4">
+            <ng-container *ngIf="this.isEditable; else OtherProfessionalsContacted">
+                <input pInputText type="text" [(ngModel)]="AccidentNearMissRecordFormsData.OtherProfessionalsContacted" required name="AccidentNearMissRecordFormsData.OtherProfessionalsContacted" class="form-control" />
+                <p>Please include any referrals made to professionals such as District Nurse, GP, Advanced Nurse
+                    Practitioner
+                </p>
+            </ng-container>
+            <ng-template #OtherProfessionalsContacted>
+                <label>{{AccidentNearMissRecordFormsData.OtherProfessionalsContacted}}</label>
+            </ng-template>
+        </div>
+        <div class="col-md-4">
+            <div class="labelcontent">
+                <p>Further checks and observations of injured person
+                </p>
+            </div>
+        </div>
+        <div class="col-md-8 mb-4">
+            <ng-container *ngIf="this.isEditable; else InjuredPersonObservation">
+                <input pInputText type="text" [(ngModel)]="AccidentNearMissRecordFormsData.InjuredPersonObservation" required name="AccidentNearMissRecordFormsData.InjuredPersonObservation" class="form-control" />
+                <p>nclude Date and times, e.g. was the person checked regularly throughout the night
+                </p>
+            </ng-container>
+            <ng-template #InjuredPersonObservation>
+                <label>{{AccidentNearMissRecordFormsData.InjuredPersonObservation}}</label>
+            </ng-template>
+        </div>
+        <div class="col-md-4">
+            <div class="labelcontent">
+                <p>Main witness name(s)</p>
+            </div>
+        </div>
+        <div class="col-md-8 mb-4">
+            <ng-container *ngIf="this.isEditable; else WitnessName">
+                <input pInputText type="text" [(ngModel)]="AccidentNearMissRecordFormsData.WitnessName" required name="AccidentNearMissRecordFormsData.WitnessName" class="form-control" />
+                <p>Personal / company address, telephone number</p>
+            </ng-container>
+            <ng-template #WitnessName>
+                <label>{{AccidentNearMissRecordFormsData.WitnessName}}</label>
+            </ng-template>
+        </div>
+        <div class="col-md-4">
+            <div class="labelcontent">
+                <p>Service Manager informed
+                </p>
+            </div>
+        </div>
+        <div class="col-md-8 mb-4">
+            <ng-container *ngIf="this.isEditable; else ServiceManagerDetails">
+                <input pInputText type="text" [(ngModel)]="AccidentNearMissRecordFormsData.ServiceManagerDetails" required name="AccidentNearMissRecordFormsData.ServiceManagerDetails" class="form-control" />
+                <p>Contact name, date & time
+                </p>
+            </ng-container>
+            <ng-template #ServiceManagerDetails>
+                <label>{{AccidentNearMissRecordFormsData.ServiceManagerDetails}}</label>
+            </ng-template>
+        </div>
+        <div class="col-md-4">
+            <div class="labelcontent">
+                <p>Relative/NOK informed</p>
+            </div>
+        </div>
+        <div class="col-md-8 mb-4">
+            <ng-container *ngIf="this.isEditable; else RelativeInformed">
+                <input pInputText type="text" [(ngModel)]="AccidentNearMissRecordFormsData.RelativeInformed" required name="AccidentNearMissRecordFormsData.RelativeInformed" class="form-control" />
+                <p>Contact name, date & time
+                </p>
+            </ng-container>
+            <ng-template #RelativeInformed>
+                <label>{{AccidentNearMissRecordFormsData.RelativeInformed}}</label>
+            </ng-template>
+        </div>
+        <div class="col-md-4">
+            <div class="labelcontent">
+                <p>Please name any other contacts made
+                </p>
+            </div>
+        </div>
+        <div class="col-md-8 mb-4">
+            <ng-container *ngIf="this.isEditable; else OtherContacts">
+                <input pInputText type="text" [(ngModel)]="AccidentNearMissRecordFormsData.OtherContacts" required name="AccidentNearMissRecordFormsData.OtherContacts" class="form-control" />
+                <p>include date & time</p>
+            </ng-container>
+            <ng-template #OtherContacts>
+                <label>{{AccidentNearMissRecordFormsData.OtherContacts}}</label>
+            </ng-template>
+        </div>
+        <div class="col-md-4">
+            <div class="labelcontent">
+                <p>Does the Falls Risk Assessment need updating</p>
+            </div>
+        </div>
+        <div class="col-md-8 mb-4">
+            <ng-container *ngIf="this.isEditable; else FallsRiskAssessmentStatus">
+                <p-checkbox [(ngModel)]="AccidentNearMissRecordFormsData.FallsRiskAssessmentStatus" [binary]="true" inputId="binary"></p-checkbox>
+            </ng-container>
+            <ng-template #FallsRiskAssessmentStatus>
+                <label>{{AccidentNearMissRecordFormsData.FallsRiskAssessmentStatus==true?'yes':'no'}}</label>
+            </ng-template>
+        </div>
+        <div class="d-flex justify-content-end">
+            <div>
+                <span class="p-ml-left mr-4">
+                    <button pButton title="New" (click)="saveAsUnfinished()" label="Save as Unfinished"></button>
+                    <span class="total-txt"></span>
+                </span>
+            </div>
+            <div>
+                <span class="p-ml-left mr-4">
+                    <button pButton title="New" label="Complete" (click)="completeForm()"></button>
+                    <span class="total-txt"></span>
+                </span>
+            </div>
+        </div>
+</div>
+<!-- </div> -->
+
