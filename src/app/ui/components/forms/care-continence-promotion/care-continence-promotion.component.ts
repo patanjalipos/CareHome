@@ -28,6 +28,18 @@ export class CareContinencePromotionComponent
     customDateFormat = CustomDateFormat;
     CareContinencePromotionFormsData: any = <any>{};
 
+    LstContPromCatheterCareOptions: any[] = [];
+    LstContPromClinicalObservationsOptions: any[] = [];
+    LstContPromContinenceAidBestPracticeGuidanceOptions: any[] = [];
+    LstContPromIdentifiedRisksOptions: any[] = [];
+    LstContPromInsightIntoContinenceNeedsOptions: any[] = [];
+    LstContPromLegDrainageBagChangeOptions: any[] = [];
+    LstContPromNightDrainageBagRemovalOptions: any[] = [];
+    LstContPromResidentColostomyIleostomyOptions: any[] = [];
+    LstContPromRiskManagementOptions: any[] = [];
+    LstContPromSupportRequiredForColostomyOptions: any[] = [];
+    LstContPromoteHealthyBladderAndBowelOptions: any[] = [];
+
     //Form which is selected to edit or view
     isEditable: boolean;
     //Need to be passed from form Dashboard
@@ -85,38 +97,40 @@ export class CareContinencePromotionComponent
     ngOnInit(): void {
         //Fetch Dropdown values
 
-        interface DropdownLists {
-            [key: string]: any[];
-        }
+        // interface DropdownLists {
+        //     [key: string]: any[];
+        // }
 
-        const dropdownLists: DropdownLists = {};
+        // const dropdownLists: DropdownLists = {};
 
-        const options = [
-            'ContPromCatheterCareOptions',
-            'ContPromClinicalObservationsOptions',
-            'ContPromContinenceAidBestPracticeGuidanceOptions',
-            'ContPromIdentifiedRisksOptions',
-            'ContPromInsightIntoContinenceNeedsOptions',
-            'ContPromLegDrainageBagChangeOptions',
-            'ContPromNightDrainageBagRemovalOptions',
-            'ContPromResidentColostomyIleostomyOptions',
-            'ContPromRiskManagementOptions',
-            'ContPromSupportRequiredForColostomyOptions',
-            'ContPromoteHealthyBladderAndBowelOptions',
-        ];
+        // const options = [
+        //     'ContPromCatheterCareOptions',
+        //     'ContPromClinicalObservationsOptions',
+        //     'ContPromContinenceAidBestPracticeGuidanceOptions',
+        //     'ContPromIdentifiedRisksOptions',
+        //     'ContPromInsightIntoContinenceNeedsOptions',
+        //     'ContPromLegDrainageBagChangeOptions',
+        //     'ContPromNightDrainageBagRemovalOptions',
+        //     'ContPromResidentColostomyIleostomyOptions',
+        //     'ContPromRiskManagementOptions',
+        //     'ContPromSupportRequiredForColostomyOptions',
+        //     'ContPromoteHealthyBladderAndBowelOptions',
+        // ];
 
-        //function to initialize the dropdown lists
-        function initializeDropdownLists(options: string[]): void {
-            // Iterate through the options array
-            options.forEach((option) => {
-                // Initialize each dropdown list and assign it to the corresponding key
-                dropdownLists[`Lst${option}`] =
-                    this.getDropdownMasterLists(option);
-            });
-        }
+        // //function to initialize the dropdown lists
 
-        initializeDropdownLists(options);
-        //this.getDropdownMasterLists("ContPromCatheterCareOptions");
+        // function initializeDropdownLists(options: string[]): void {
+        //     // Iterate through the options array
+        //     options.forEach((option) => {
+        //         // Initialize each dropdown list and assign it to the corresponding key
+        //         dropdownLists[`Lst${option}`] =
+        //             this.getDropdownMasterLists(option);
+        //     });
+        // }
+
+        // initializeDropdownLists(options);
+
+        this.getDropdownMasterLists('ContPromCatheterCareOptions');
 
         this.isEditable = this.preSelectedFormData.isEditable;
 
@@ -140,6 +154,7 @@ export class CareContinencePromotionComponent
                     this._UtilityService.hideSpinner();
                     if (data.actionResult.success == true) {
                         var tdata = JSON.parse(data.actionResult.result);
+                        console.log(tdata);
                         return tdata ? tdata : {};
                     } else {
                         return [];
