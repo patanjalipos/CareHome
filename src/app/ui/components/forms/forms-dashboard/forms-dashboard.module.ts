@@ -59,6 +59,17 @@ import { CareAssessmentRespectModule } from '../care-assessment-respect/care-ass
 import { ThePoolActivityLevelModule } from '../the-pool-activity-level/the-pool-activity-level.module';
 import { CareAssessmentTrialWithOutCatheteComponent } from '../care-assessment-trial-with-out-cathete/care-assessment-trial-with-out-cathete.component';
 import { CareAssessmentTrialWithOutCatheteModule } from '../care-assessment-trial-with-out-cathete/care-assessment-trial-with-out-cathete.module';
+import { CarePlanReviewModule } from '../care-plan-review/care-plan-review.module';
+import { CareSignsOfIllBeingComponent } from '../care-signs-of-ill-being/care-signs-of-ill-being.component';
+import { CareSignsOfIllBeingModule } from '../care-signs-of-ill-being/care-signs-of-ill-being.module';
+import { HazardsRisksModule } from '../hazards-risks/hazards-risks.module';
+import { HerbertProtocolMissingPersonModule } from '../herbert-protocol-missing-person/herbert-protocol-missing-person.module';
+import { IncidentNearMissRecordModule } from '../incident-near-miss-record/incident-near-miss-record.module';
+import { MedicationIncidentModule } from '../medication-incident/medication-incident.module';
+import { OutingsRiskAssessmentModule } from '../outings-risk-assessment/outings-risk-assessment.module';
+import { RecordOfDecisionModule } from '../record-of-decision/record-of-decision.module';
+import { RiskToolSafeWorkingModule } from '../risk-tool-safe-working/risk-tool-safe-working.module';
+import { SmokingRiskAssessmentModule } from '../smoking-risk-assessment/smoking-risk-assessment.module';
 
 
 
@@ -125,7 +136,18 @@ import { CareAssessmentTrialWithOutCatheteModule } from '../care-assessment-tria
     PositiveBehaviourSupportModule,
     RespiratoryScreeningQuestionsModule,
     ThePoolActivityLevelModule,
-    CareAssessmentTrialWithOutCatheteModule 
+    CareAssessmentTrialWithOutCatheteModule,
+    CarePlanReviewModule,
+    CareSignsOfIllBeingModule,
+    HazardsRisksModule,
+    HerbertProtocolMissingPersonModule,
+    IncidentNearMissRecordModule,
+    MedicationIncidentModule,
+    OutingsRiskAssessmentModule,
+    RecordOfDecisionModule,
+    RiskToolSafeWorkingModule,
+    SmokingRiskAssessmentModule
+
 
 
 

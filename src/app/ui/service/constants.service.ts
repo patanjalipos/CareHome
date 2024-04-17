@@ -112,7 +112,19 @@ export enum FormTypes {
   CareAssessmentLifeHistory = "661cb361eb74cdce58be9aa4",
   CareAssessmentTrialWith = "661cb388eb74cdce58be9aa5",
   PositiveBehaviour = "661cb39ceb74cdce58be9aa6",
-  ThePoolActivityLevel = "661cb3aeeb74cdce58be9aa7"
+  ThePoolActivityLevel = "661cb3aeeb74cdce58be9aa7",
+  caresignsofill = "661e4abfeb74cdce58be9aa8",
+  recordofdecision = "661e4acdeb74cdce58be9aa9",
+  risktoolsafe = "661e4adfeb74cdce58be9aaa",
+  incidentnearmiss = "661e4af0eb74cdce58be9aab",
+  medicationincident = "661e4b63eb74cdce58be9aac",
+  hazardsrisks = "661e4b74eb74cdce58be9aad",
+  HerbertprotocolMissing = "661e4b93eb74cdce58be9aae",
+  OutingsRiskAssessment = "661e4ba5eb74cdce58be9aaf",
+  SmokingRiskAssessment = "661e4bbeeb74cdce58be9ab0",
+  CarePlanReview = "661e4c02eb74cdce58be9ab1",
+  
+
 
 
 
