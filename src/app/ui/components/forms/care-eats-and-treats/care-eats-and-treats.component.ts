@@ -39,7 +39,7 @@ export class CareEatsAndTreatsComponent extends AppComponentBase implements OnIn
   constructor(private _ConstantServices: ConstantsService,private route: ActivatedRoute,private _DataService: DataService,private _CareEatsAndDrinks: CareEatsAndTreatsService,private _UtilityService: UtilityService) {
 
     super();
-    this._ConstantServices.ActiveMenuName = "Accident Near Miss Record Form";
+    this._ConstantServices.ActiveMenuName = "Care Assessment Eats And Treats Form";
     this.loginId = localStorage.getItem('userId');
 
     this.unsubscribe.add = this.route.queryParams.subscribe((params) => {
@@ -392,7 +392,7 @@ if (this.userId != null && this.residentAdmissionInfoId != null && this.loginId!
         });
 } else {
     this._UtilityService.showWarningAlert(
-        'Accident Near or Miss record details are missing.'
+        'Care Assessment Eats And Drinks details are missing.'
     );
 }
 }

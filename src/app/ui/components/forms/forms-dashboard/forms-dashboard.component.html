@@ -107,6 +107,10 @@
 (EmitUpdateForm)="EmitUpdateForm($event)"
 *ngIf="ShowChildComponent==true && selectedFormMasterId==FormTypes.CareAssessmentEats"></app-care-eats-and-treats>
 
+<app-care-feeling-fresh-and-clean [preSelectedFormData]="selectedFormData"
+(EmitUpdateForm)="EmitUpdateForm($event)"
+*ngIf="ShowChildComponent==true && selectedFormMasterId==FormTypes.CareAssessmentFeeling"></app-care-feeling-fresh-and-clean>
+
 <app-district-nurse-visit-communication [preSelectedFormData]="selectedFormData"
     (EmitUpdateForm)="EmitUpdateForm($event)"
     *ngIf="ShowChildComponent==true && selectedFormMasterId==FormTypes.DistrictNurseVisit">
