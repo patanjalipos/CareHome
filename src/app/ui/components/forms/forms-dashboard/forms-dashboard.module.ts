@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsDashboardRoutingModule } from './forms-dashboard-routing.module';
 import { FormsDashboardComponent } from './forms-dashboard.component';
@@ -109,7 +109,7 @@ import { SepsisScreeningToolModule } from '../sepsis-screening-tool/sepsis-scree
 
 
   ],
-
+  // schemas: [CUSTOM_ELEMENTS_SCHEMA],
   exports:[
     FormsDashboardComponent,
   ]

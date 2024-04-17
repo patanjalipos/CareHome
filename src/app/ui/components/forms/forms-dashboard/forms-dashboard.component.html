@@ -153,6 +153,15 @@
     "
 ></app-family-communication>
 
+<app-care-eats-and-treats [preSelectedFormData]="selectedFormData"
+(EmitUpdateForm)="EmitUpdateForm($event)"
+*ngIf="ShowChildComponent==true && selectedFormMasterId==FormTypes.CareAssessmentEats"></app-care-eats-and-treats>
+
+<app-care-feeling-fresh-and-clean [preSelectedFormData]="selectedFormData"
+(EmitUpdateForm)="EmitUpdateForm($event)"
+*ngIf="ShowChildComponent==true && selectedFormMasterId==FormTypes.CareAssessmentFeeling">
+</app-care-feeling-fresh-and-clean>
+
 <app-body-mapping-record
     [preSelectedFormData]="selectedFormData"
     (EmitUpdateForm)="EmitUpdateForm($event)"
