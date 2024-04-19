@@ -5,7 +5,7 @@ import { FormsDashboardComponent } from './forms-dashboard.component';
 import { TableModule } from 'primeng/table';
 import { ButtonModule } from 'primeng/button';
 import { RippleModule } from 'primeng/ripple';
-import {MultiSelectModule} from 'primeng/multiselect';
+import { MultiSelectModule } from 'primeng/multiselect';
 import { InputTextModule } from "primeng/inputtext";
 import { InputNumberModule } from "primeng/inputnumber";
 import { CalendarModule } from "primeng/calendar";
@@ -70,6 +70,18 @@ import { OutingsRiskAssessmentModule } from '../outings-risk-assessment/outings-
 import { RecordOfDecisionModule } from '../record-of-decision/record-of-decision.module';
 import { RiskToolSafeWorkingModule } from '../risk-tool-safe-working/risk-tool-safe-working.module';
 import { SmokingRiskAssessmentModule } from '../smoking-risk-assessment/smoking-risk-assessment.module';
+import { CareBehaviourAssessmentComponent } from '../care-behaviour-assessment/care-behaviour-assessment.component';
+import { CareBehaviourAssessmentModule } from '../care-behaviour-assessment/care-behaviour-assessment.module';
+import { CareOralAndDentalModule } from '../care-oral-and-dental/care-oral-and-dental.module';
+import { CareResidentContactsListModule } from '../care-resident-contacts-list/care-resident-contacts-list.module';
+import { CareSkinAssessmentModule } from '../care-skin-assessment/care-skin-assessment.module';
+import { CareVisionAssessmentModule } from '../care-vision-assessment/care-vision-assessment.module';
+import { CareWishesForFutureModule } from '../care-wishes-for-future/care-wishes-for-future.module';
+import { ConsentFormModule } from '../consent-form/consent-form.module';
+import { CovidVaccinationRecordModule } from '../covid-vaccination-record/covid-vaccination-record.module';
+import { RespiteCareSupportPlanModule } from '../respite-care-support-plan/respite-care-support-plan.module';
+import { RiskMultifactorialFallsRiskModule } from '../risk-multifactorial-falls-risk/risk-multifactorial-falls-risk.module';
+import { RiskToolForUseOfWheelchairModule } from '../risk-tool-for-use-of-wheelchair/risk-tool-for-use-of-wheelchair.module';
 
 
 
@@ -146,18 +158,29 @@ import { SmokingRiskAssessmentModule } from '../smoking-risk-assessment/smoking-
     OutingsRiskAssessmentModule,
     RecordOfDecisionModule,
     RiskToolSafeWorkingModule,
-    SmokingRiskAssessmentModule
+    SmokingRiskAssessmentModule,
+    CareBehaviourAssessmentModule,
+    CareOralAndDentalModule,
+    CareResidentContactsListModule,
+    CareSkinAssessmentModule,
+    CareVisionAssessmentModule,
+    CareWishesForFutureModule,
+    ConsentFormModule,
+    CovidVaccinationRecordModule,RespiteCareSupportPlanModule,
+    RiskMultifactorialFallsRiskModule,
+    RiskToolForUseOfWheelchairModule,
 
 
 
 
-   
- 
+
+
+
 
 
   ],
 
-  exports:[
+  exports: [
     FormsDashboardComponent,
   ]
 })

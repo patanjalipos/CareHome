@@ -30,7 +30,7 @@
                 </span>
             </div>
         </div>
-        <p-table #dt [value]="formDashboardList" responsiveLayout="scroll" class="mt-4" styleClass="p-datatable-striped"
+        <p-table #dt [value]="formDashboardList" responsiveLayout="scroll" class="mt-2" styleClass="p-datatable-striped"
             [rowHover]="true" [globalFilterFields]="['FormName', 'ModifiedOn']" [scrollable]="true"
             scrollHeight="calc(100vh - 155px)">
             <ng-template pTemplate="emptymessage" let-columns>
@@ -141,7 +141,6 @@
     (EmitUpdateForm)="EmitUpdateForm($event)"
     *ngIf="ShowChildComponent==true && selectedFormMasterId==FormTypes.CareAssessmentDietaryNotification"></app-care-assessment-dietary-notification>
 
-
 <app-care-assessment-life-history [preSelectedFormData]="selectedFormData" (EmitUpdateForm)="EmitUpdateForm($event)"
     *ngIf="ShowChildComponent==true && selectedFormMasterId==FormTypes.CareAssessmentLifeHistory"></app-care-assessment-life-history>
 
@@ -161,48 +160,75 @@
 <app-the-pool-activity-level [preSelectedFormData]="selectedFormData" (EmitUpdateForm)="EmitUpdateForm($event)"
     *ngIf="ShowChildComponent==true && selectedFormMasterId==FormTypes.ThePoolActivityLevel"></app-the-pool-activity-level>
 
-<app-care-assessment-trial-with-out-cathete [preSelectedFormData]="selectedFormData" (EmitUpdateForm)="EmitUpdateForm($event)"
-*ngIf="ShowChildComponent==true && selectedFormMasterId==FormTypes.CareAssessmentTrialWith"></app-care-assessment-trial-with-out-cathete>
+<app-care-assessment-trial-with-out-cathete [preSelectedFormData]="selectedFormData"
+    (EmitUpdateForm)="EmitUpdateForm($event)"
+    *ngIf="ShowChildComponent==true && selectedFormMasterId==FormTypes.CareAssessmentTrialWith"></app-care-assessment-trial-with-out-cathete>
 
-<app-care-plan-review  [preSelectedFormData]="selectedFormData" (EmitUpdateForm)="EmitUpdateForm($event)"
-*ngIf="ShowChildComponent==true && selectedFormMasterId==FormTypes.CarePlanReview"></app-care-plan-review>
+<app-care-plan-review [preSelectedFormData]="selectedFormData" (EmitUpdateForm)="EmitUpdateForm($event)"
+    *ngIf="ShowChildComponent==true && selectedFormMasterId==FormTypes.CarePlanReview"></app-care-plan-review>
 
 <app-care-signs-of-ill-being [preSelectedFormData]="selectedFormData" (EmitUpdateForm)="EmitUpdateForm($event)"
-*ngIf="ShowChildComponent==true && selectedFormMasterId==FormTypes.caresignsofill" ></app-care-signs-of-ill-being>
+    *ngIf="ShowChildComponent==true && selectedFormMasterId==FormTypes.caresignsofill"></app-care-signs-of-ill-being>
 
 <app-hazards-risks [preSelectedFormData]="selectedFormData" (EmitUpdateForm)="EmitUpdateForm($event)"
-*ngIf="ShowChildComponent==true && selectedFormMasterId==FormTypes.hazardsrisks" ></app-hazards-risks>
+    *ngIf="ShowChildComponent==true && selectedFormMasterId==FormTypes.hazardsrisks"></app-hazards-risks>
 
 
 <app-herbert-protocol-missing-person [preSelectedFormData]="selectedFormData" (EmitUpdateForm)="EmitUpdateForm($event)"
-*ngIf="ShowChildComponent==true && selectedFormMasterId==FormTypes.HerbertprotocolMissing" ></app-herbert-protocol-missing-person>
+    *ngIf="ShowChildComponent==true && selectedFormMasterId==FormTypes.HerbertprotocolMissing"></app-herbert-protocol-missing-person>
 
-<app-incident-near-miss-record  [preSelectedFormData]="selectedFormData" (EmitUpdateForm)="EmitUpdateForm($event)"
-*ngIf="ShowChildComponent==true && selectedFormMasterId==FormTypes.incidentnearmiss"></app-incident-near-miss-record>
+<app-incident-near-miss-record [preSelectedFormData]="selectedFormData" (EmitUpdateForm)="EmitUpdateForm($event)"
+    *ngIf="ShowChildComponent==true && selectedFormMasterId==FormTypes.incidentnearmiss"></app-incident-near-miss-record>
 
 
 <app-medication-incident [preSelectedFormData]="selectedFormData" (EmitUpdateForm)="EmitUpdateForm($event)"
-*ngIf="ShowChildComponent==true && selectedFormMasterId==FormTypes.medicationincident"></app-medication-incident>
+    *ngIf="ShowChildComponent==true && selectedFormMasterId==FormTypes.medicationincident"></app-medication-incident>
 
-<app-outings-risk-assessment  [preSelectedFormData]="selectedFormData" (EmitUpdateForm)="EmitUpdateForm($event)"
-*ngIf="ShowChildComponent==true && selectedFormMasterId==FormTypes.OutingsRiskAssessment"></app-outings-risk-assessment>
+<app-outings-risk-assessment [preSelectedFormData]="selectedFormData" (EmitUpdateForm)="EmitUpdateForm($event)"
+    *ngIf="ShowChildComponent==true && selectedFormMasterId==FormTypes.OutingsRiskAssessment"></app-outings-risk-assessment>
 
 <app-record-of-decision [preSelectedFormData]="selectedFormData" (EmitUpdateForm)="EmitUpdateForm($event)"
-*ngIf="ShowChildComponent==true && selectedFormMasterId==FormTypes.recordofdecision"></app-record-of-decision>
+    *ngIf="ShowChildComponent==true && selectedFormMasterId==FormTypes.recordofdecision"></app-record-of-decision>
 
 <app-risk-tool-safe-working [preSelectedFormData]="selectedFormData" (EmitUpdateForm)="EmitUpdateForm($event)"
-*ngIf="ShowChildComponent==true && selectedFormMasterId==FormTypes.risktoolsafe"></app-risk-tool-safe-working>
+    *ngIf="ShowChildComponent==true && selectedFormMasterId==FormTypes.risktoolsafe"></app-risk-tool-safe-working>
 
 <app-smoking-risk-assessment [preSelectedFormData]="selectedFormData" (EmitUpdateForm)="EmitUpdateForm($event)"
-*ngIf="ShowChildComponent==true && selectedFormMasterId==FormTypes.SmokingRiskAssessment"></app-smoking-risk-assessment>
+    *ngIf="ShowChildComponent==true && selectedFormMasterId==FormTypes.SmokingRiskAssessment"></app-smoking-risk-assessment>
+
+<app-care-behaviour-assessment [preSelectedFormData]="selectedFormData" (EmitUpdateForm)="EmitUpdateForm($event)"
+    *ngIf="ShowChildComponent==true && selectedFormMasterId==FormTypes.carebehaviourassesment"></app-care-behaviour-assessment>
+
+<app-care-oral-and-dental [preSelectedFormData]="selectedFormData" (EmitUpdateForm)="EmitUpdateForm($event)"
+    *ngIf="ShowChildComponent==true && selectedFormMasterId==FormTypes.careoralanddental"></app-care-oral-and-dental>
 
 
+<app-care-resident-contacts-list [preSelectedFormData]="selectedFormData" (EmitUpdateForm)="EmitUpdateForm($event)"
+    *ngIf="ShowChildComponent==true && selectedFormMasterId==FormTypes.careresidentcontact"></app-care-resident-contacts-list>
 
+<app-care-skin-assessment [preSelectedFormData]="selectedFormData" (EmitUpdateForm)="EmitUpdateForm($event)"
+    *ngIf="ShowChildComponent==true && selectedFormMasterId==FormTypes.careskinassessment"></app-care-skin-assessment>
 
+<app-care-vision-assessment [preSelectedFormData]="selectedFormData" (EmitUpdateForm)="EmitUpdateForm($event)"
+    *ngIf="ShowChildComponent==true && selectedFormMasterId==FormTypes.carevision"></app-care-vision-assessment>
 
+<app-care-wishes-for-future [preSelectedFormData]="selectedFormData" (EmitUpdateForm)="EmitUpdateForm($event)"
+    *ngIf="ShowChildComponent==true && selectedFormMasterId==FormTypes.carewisheshforfuture"></app-care-wishes-for-future>
 
+<app-consent-form [preSelectedFormData]="selectedFormData" (EmitUpdateForm)="EmitUpdateForm($event)"
+*ngIf="ShowChildComponent==true && selectedFormMasterId==FormTypes.consentform"></app-consent-form>
 
+<app-covid-vaccination-record [preSelectedFormData]="selectedFormData" (EmitUpdateForm)="EmitUpdateForm($event)"
+*ngIf="ShowChildComponent==true && selectedFormMasterId==FormTypes.covidvaccination"></app-covid-vaccination-record>
 
+<app-respite-care-support-plan [preSelectedFormData]="selectedFormData" (EmitUpdateForm)="EmitUpdateForm($event)"
+*ngIf="ShowChildComponent==true && selectedFormMasterId==FormTypes.respitecaresupport"></app-respite-care-support-plan>
+
+<app-risk-multifactorial-falls-risk [preSelectedFormData]="selectedFormData" (EmitUpdateForm)="EmitUpdateForm($event)"
+*ngIf="ShowChildComponent==true && selectedFormMasterId==FormTypes.riskmultifatorialfalls"></app-risk-multifactorial-falls-risk>
+
+<app-risk-tool-for-use-of-wheelchair [preSelectedFormData]="selectedFormData" (EmitUpdateForm)="EmitUpdateForm($event)"
+*ngIf="ShowChildComponent==true && selectedFormMasterId==FormTypes.risktoolforuseof" ></app-risk-tool-for-use-of-wheelchair>
 
 
 

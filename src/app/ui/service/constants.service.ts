@@ -123,7 +123,18 @@ export enum FormTypes {
   OutingsRiskAssessment = "661e4ba5eb74cdce58be9aaf",
   SmokingRiskAssessment = "661e4bbeeb74cdce58be9ab0",
   CarePlanReview = "661e4c02eb74cdce58be9ab1",
-  
+  consentform = "6620a35aeb74cdce58be9ab2",
+  covidvaccination = "6620a366eb74cdce58be9ab3",
+  respitecaresupport = "6620a373eb74cdce58be9ab4",
+  careresidentcontact = "6620a380eb74cdce58be9ab5",
+  carevision = "6620a38eeb74cdce58be9ab6",
+  riskmultifatorialfalls = "6620a39feb74cdce58be9ab7",
+  careskinassessment = "6620a3adeb74cdce58be9ab8",
+  careoralanddental = "6620a3b9eb74cdce58be9ab9",
+  carewisheshforfuture = "6620a3c6eb74cdce58be9aba",
+  carebehaviourassesment = "6620a3d3eb74cdce58be9abb",
+  risktoolforuseof = "6620a3f4eb74cdce58be9abc"
+
 
 
 
