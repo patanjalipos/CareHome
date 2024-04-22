@@ -3,36 +3,71 @@
         <div class="formheader">
             <div class="d-flex">
                 <div class="col-md-4">
-                    <label class="form-label"><b> Started by (Name) :</b>
+                    <label class="form-label"
+                        ><b> Started by (Name) :</b
+                        >{{ preSelectedFormData.StartedBy }}
                     </label>
                 </div>
                 <div class="col-md-4">
-                    <label class="form-label"><b>Designation :</b> </label>
+                    <label class="form-label"
+                        ><b>Designation :</b
+                        >{{ preSelectedFormData.StartedByDesignation }}
+                    </label>
                 </div>
                 <div class="col-md-4">
-                    <label class="form-label"> <b>Date/Time : </b></label>
+                    <label class="form-label">
+                        <b>Date/Time : </b
+                        >{{
+                            preSelectedFormData.StartedOn
+                                | date : customDateFormat.DEF_DATE_TIME
+                        }}</label
+                    >
                 </div>
             </div>
             <div class="d-flex">
                 <div class="col-md-4">
                     <label class="form-label">
-                        <b>Last entered by (Name) :</b></label>
+                        <b>Last entered by (Name) :</b
+                        >{{ preSelectedFormData.ModifiedBy }}</label
+                    >
                 </div>
                 <div class="col-md-4">
-                    <label class="form-label"> <b>Designation :</b></label>
+                    <label class="form-label">
+                        <b>Designation :</b
+                        >{{ preSelectedFormData.ModifiedByDesignation }}</label
+                    >
                 </div>
                 <div class="col-md-4">
-                    <label class="form-label"> <b>Date/Time :</b> </label>
+                    <label class="form-label">
+                        <b>Date/Time :</b>
+                        {{
+                            preSelectedFormData.ModifiedOn
+                                | date : customDateFormat.DEF_DATE_TIME
+                        }}</label
+                    >
                 </div>
             </div>
         </div>
         <div class="col-md-4 mt-4">
             <div class="labelcontent">
-                <P>Does the resident have insight into their continence needs</P>
+                <P
+                    >Does the resident have insight into their continence
+                    needs</P
+                >
             </div>
         </div>
         <div class="col-md-7 mt-4 form-text">
-            <p-dropdown placeholder="Select" [style]="{ width: '100%' }">
+            <p-dropdown
+                name="InsightIntoContinenceNeeds"
+                [(ngModel)]="
+                    CareContinencePromotionFormsData.InsightIntoContinenceNeeds
+                "
+                [options]="LstContPromInsightIntoContinenceNeedsOptions"
+                optionLabel="optionName"
+                optionValue="optionId"
+                placeholder="Select"
+                [style]="{ width: '100%' }"
+            >
             </p-dropdown>
         </div>
         <div class="col-md-1 form-icon mt-4">
@@ -40,13 +75,34 @@
         </div>
         <div class="col-md-4">
             <div class="labelcontent">
-                <P>Detail the specific decision made relating to the resident's bowel and bladder management</P>
+                <P
+                    >Detail the specific decision made relating to the
+                    resident's bowel and bladder management</P
+                >
             </div>
         </div>
         <div class="col-md-7 form-text">
-            <input pInputText type="text" required name="chartheadname" class="form-control" />
-            <P class=" mb-4">Specific catheter care, treatment / bladder wash, professional intervention Only answer if the resident
-                lacks capacity</P>
+            <div class="col-md-7 form-text">
+                <input
+                    pInputText
+                    type="text"
+                    required
+                    name="bowelBladderDecision"
+                    class="form-control"
+                    [(ngModel)]="
+                        CareContinencePromotionFormsData.bowelBladderDecision
+                    "
+                />
+                <p class="mb-4">
+                    Specific catheter care, treatment / bladder wash,
+                    professional intervention Only answer if the resident lacks
+                    capacity
+                </p>
+            </div>
+            <P class="mb-4"
+                >Specific catheter care, treatment / bladder wash, professional
+                intervention Only answer if the resident lacks capacity</P
+            >
         </div>
         <div class="col-md-1 form-icon">
             <i class="fa-solid fa-info"></i>
@@ -54,28 +110,57 @@
 
         <div class="col-md-4">
             <div class="labelcontent">
-                <P>Bowel and bladder history</P>
+                <p>Bowel and bladder history</p>
             </div>
         </div>
         <div class="col-md-7 form-text">
-            <input pInputText type="text" required name="chartheadname" class="form-control" />
-            <P class=" mb-4">Include, any history of diseases affecting their bowel / bladder prescribed diuretics and management
-                plan. Including being close to the toilet</P>
+            <input
+                pInputText
+                type="text"
+                required
+                name="bowelBladderHistory"
+                class="form-control"
+                [(ngModel)]="
+                    CareContinencePromotionFormsData.bowelBladderHistory
+                "
+            />
+            <p class="mb-4">
+                Include any history of diseases affecting their bowel / bladder,
+                prescribed diuretics, and management plan. Include information
+                about proximity to the toilet.
+            </p>
         </div>
+
         <div class="col-md-1 form-icon">
             <i class="fa-solid fa-info"></i>
         </div>
+        
         <div class="col-md-4">
             <div class="labelcontent">
-                <P>Support required to assist the resident with their bowel & bladder needs</P>
+                <p>
+                    Support required to assist the resident with their bowel &
+                    bladder needs
+                </p>
             </div>
         </div>
         <div class="col-md-7 form-text">
-            <input pInputText type="text" required name="chartheadname" class="form-control" />
-            <P class=" mb-4">Assistance needed to aid the resident to remain as independent as possible, orientation day/night
-                variances, regime for laxatives, suppositories and enemas, possible causes for incontinence diet needed
-                or fluid intake required to maintain bowels and bladder, aids used, day/night variances.</P>
+            <input
+                pInputText
+                type="text"
+                required
+                name="supportRequired"
+                class="form-control"
+                [(ngModel)]="CareContinencePromotionFormsData.supportRequired"
+            />
+            <p class="mb-4">
+                Assistance needed to aid the resident to remain as independent
+                as possible, orientation day/night variances, regime for
+                laxatives, suppositories and enemas, possible causes for
+                incontinence diet needed or fluid intake required to maintain
+                bowels and bladder, aids used, day/night variances.
+            </p>
         </div>
+
         <div class="col-md-1 form-icon">
             <i class="fa-solid fa-info"></i>
         </div>
@@ -85,7 +170,17 @@
             </div>
         </div>
         <div class="col-md-7 form-text">
-            <p-dropdown placeholder="Select" [style]="{ width: '100%' }">
+            <p-dropdown
+                name="ResidentColostomyIleostomy"
+                [(ngModel)]="
+                    CareContinencePromotionFormsData.ResidentColostomyIleostomy
+                "
+                [options]="LstContPromResidentColostomyIleostomyOptions"
+                optionLabel="optionName"
+                optionValue="optionId"
+                placeholder="Select"
+                [style]="{ width: '100%' }"
+            >
             </p-dropdown>
         </div>
         <div class="col-md-1 form-icon">
@@ -93,14 +188,30 @@
         </div>
         <div class="col-md-4">
             <div class="labelcontent">
-                <P>Support required to assist the resident with their colostomy / ileostomy</P>
+                <P
+                    >Support required to assist the resident with their
+                    colostomy / ileostomy</P
+                >
             </div>
         </div>
         <div class="col-md-7 form-text">
-            <p-dropdown placeholder="Select" [style]="{ width: '100%' }">
+            <p-dropdown
+                name="SupportRequiredForColostomy"
+                [(ngModel)]="
+                    CareContinencePromotionFormsData.SupportRequiredForColostomy
+                "
+                [options]="LstContPromSupportRequiredForColostomyOptions"
+                optionLabel="optionName"
+                optionValue="optionId"
+                placeholder="Select"
+                [style]="{ width: '100%' }"
+            >
             </p-dropdown>
-            <P class=" mb-4">SELECT ALL THAT APPLY FOR THE CARING OF A STOMA E.g. specific colostomy / ileostomy care, flange size,
-                professional intervention</P>
+            <P class="mb-4"
+                >SELECT ALL THAT APPLY FOR THE CARING OF A STOMA E.g. specific
+                colostomy / ileostomy care, flange size, professional
+                intervention</P
+            >
         </div>
         <div class="col-md-1 form-icon">
             <i class="fa-solid fa-info"></i>
@@ -111,7 +222,15 @@
             </div>
         </div>
         <div class="col-md-7 form-text">
-            <p-dropdown placeholder="Select" [style]="{ width: '100%' }">
+            <p-dropdown
+                name="CatheterCare"
+                [(ngModel)]="CareContinencePromotionFormsData.CatheterCare"
+                [options]="LstContPromCatheterCareOptions"
+                optionLabel="optionName"
+                optionValue="optionId"
+                placeholder="Select"
+                [style]="{ width: '100%' }"
+            >
             </p-dropdown>
         </div>
         <div class="col-md-1 form-icon">
@@ -119,22 +238,43 @@
         </div>
         <div class="col-md-4">
             <div class="labelcontent">
-                <P>Does the resident have a specific goal personal to them</P>
+                <p>Does the resident have a specific goal personal to them</p>
             </div>
         </div>
         <div class="col-md-7 form-text">
-            <input pInputText type="text" required name="chartheadname" class="form-control" />
+            <input
+                pInputText
+                type="text"
+                required
+                name="residentGoal"
+                class="form-control"
+                [(ngModel)]="CareContinencePromotionFormsData.residentGoal"
+            />
         </div>
         <div class="col-md-1 form-icon">
             <i class="fa-solid fa-info"></i>
         </div>
+
         <div class="col-md-4">
             <div class="labelcontent">
-                <P>Clinical observations implemented to promote monitoring and promotion of continence needs</P>
+                <P
+                    >Clinical observations implemented to promote monitoring and
+                    promotion of continence needs</P
+                >
             </div>
         </div>
-        <div class="col-md-7 ">
-            <p-dropdown placeholder="Select" [style]="{ width: '100%' }">
+        <div class="col-md-7">
+            <p-dropdown
+                name="ClinicalObservations"
+                [(ngModel)]="
+                    CareContinencePromotionFormsData.ClinicalObservations
+                "
+                [options]="LstContPromClinicalObservationsOptions"
+                optionLabel="optionName"
+                optionValue="optionId"
+                placeholder="Select"
+                [style]="{ width: '100%' }"
+            >
             </p-dropdown>
         </div>
         <div class="col-md-1 form-icon">
@@ -142,25 +282,49 @@
         </div>
         <div class="col-md-4">
             <div class="labelcontent">
-                <P>Professional input / referral</P>
+                <p>Professional input / referral</p>
             </div>
         </div>
         <div class="col-md-7 form-text">
-            <input pInputText type="text" required name="chartheadname" class="form-control" />
-            <P class=" mb-4">Continence advisor, stoma nurse, district nurse, other (input / referral)</P>
+            <input
+                pInputText
+                type="text"
+                required
+                name="professionalInput"
+                class="form-control"
+                [(ngModel)]="CareContinencePromotionFormsData.professionalInput"
+            />
+            <p class="mb-4">
+                Continence advisor, stoma nurse, district nurse, other (input /
+                referral)
+            </p>
         </div>
+
         <div class="col-md-1 form-icon">
             <i class="fa-solid fa-info"></i>
         </div>
         <div class="col-md-4">
             <div class="labelcontent">
-                <P>Are there any other identified risks relating to bowel and bladder</P>
+                <P
+                    >Are there any other identified risks relating to bowel and
+                    bladder</P
+                >
             </div>
         </div>
         <div class="col-md-7 form-text">
-            <p-dropdown placeholder="Select" [style]="{ width: '100%' }">
+            <p-dropdown
+                name="IdentifiedRisks"
+                [(ngModel)]="CareContinencePromotionFormsData.IdentifiedRisks"
+                [options]="LstContPromIdentifiedRisksOptions"
+                optionLabel="optionName"
+                optionValue="optionId"
+                placeholder="Select"
+                [style]="{ width: '100%' }"
+            >
             </p-dropdown>
-            <P class=" mb-4">Specify any other risks that have not been identified above</P>
+            <P class="mb-4"
+                >Specify any other risks that have not been identified above</P
+            >
         </div>
         <div class="col-md-1 form-icon">
             <i class="fa-solid fa-info"></i>
@@ -172,7 +336,15 @@
             </div>
         </div>
         <div class="col-md-7 form-text">
-            <p-dropdown placeholder="Select" [style]="{ width: '100%' }">
+            <p-dropdown
+                name="RiskManagement"
+                [(ngModel)]="CareContinencePromotionFormsData.RiskManagement"
+                [options]="LstContPromRiskManagementOptions"
+                optionLabel="optionName"
+                optionValue="optionId"
+                placeholder="Select"
+                [style]="{ width: '100%' }"
+            >
             </p-dropdown>
         </div>
         <div class="col-md-1 form-icon">
@@ -184,7 +356,17 @@
             </div>
         </div>
         <div class="col-md-7 form-text">
-            <p-dropdown placeholder="Select" [style]="{ width: '100%' }">
+            <p-dropdown
+                name="PromoteHealthyBladderAndBowel"
+                [(ngModel)]="
+                    CareContinencePromotionFormsData.PromoteHealthyBladderAndBowel
+                "
+                [options]="LstContPromoteHealthyBladderAndBowelOptions"
+                optionLabel="optionName"
+                optionValue="optionId"
+                placeholder="Select"
+                [style]="{ width: '100%' }"
+            >
             </p-dropdown>
         </div>
         <div class="col-md-1 form-icon">
@@ -196,9 +378,19 @@
             </div>
         </div>
         <div class="col-md-7 form-text">
-            <p-dropdown placeholder="Select" [style]="{ width: '100%' }">
+            <p-dropdown
+                name="LegDrainageBagChange"
+                [(ngModel)]="
+                    CareContinencePromotionFormsData.LegDrainageBagChange
+                "
+                [options]="LstContPromLegDrainageBagChangeOptions"
+                optionLabel="optionName"
+                optionValue="optionId"
+                placeholder="Select"
+                [style]="{ width: '100%' }"
+            >
             </p-dropdown>
-            <P class=" mb-4">Choose all areas below</P>
+            <P class="mb-4">Choose all areas below</P>
         </div>
         <div class="col-md-1 form-icon">
             <i class="fa-solid fa-info"></i>
@@ -209,36 +401,66 @@
             </div>
         </div>
         <div class="col-md-7 form-text">
-            <p-dropdown placeholder="Select" [style]="{ width: '100%' }">
+            <p-dropdown
+                name="NightDrainageBagRemoval"
+                [(ngModel)]="
+                    CareContinencePromotionFormsData.NightDrainageBagRemoval
+                "
+                [options]="LstContPromNightDrainageBagRemovalOptions"
+                optionLabel="optionName"
+                optionValue="optionId"
+                placeholder="Select"
+                [style]="{ width: '100%' }"
+            >
             </p-dropdown>
-            <p class=" mb-4">Select all below if using single use drainage bags</p>
+            <p class="mb-4">
+                Select all below if using single use drainage bags
+            </p>
         </div>
         <div class="col-md-1 form-icon">
             <i class="fa-solid fa-info"></i>
         </div>
         <div class="col-md-4">
             <div class="labelcontent">
-                <p>If a Continence aid is used please select all of the below best practice guidance</p>
+                <p>
+                    If a Continence aid is used please select all of the below
+                    best practice guidance
+                </p>
             </div>
         </div>
         <div class="col-md-7 form-text">
-            <p-dropdown placeholder="Select" [style]="{ width: '100%' }">
+            <p-dropdown
+                name="ContinenceAidBestPracticeGuidance"
+                [(ngModel)]="
+                    CareContinencePromotionFormsData.ContinenceAidBestPracticeGuidance
+                "
+                [options]="LstContPromContinenceAidBestPracticeGuidanceOptions"
+                optionLabel="optionName"
+                optionValue="optionId"
+                placeholder="Select"
+                [style]="{ width: '100%' }"
+            >
             </p-dropdown>
         </div>
         <div class="col-md-1 form-icon">
             <i class="fa-solid fa-info"></i>
         </div>
         <div class="col-md-4">
-            <div class="labelcontent  implabel">
+            <div class="labelcontent implabel">
                 <p>MONTHLY REVIEW (or before)</p>
             </div>
         </div>
         <div class="col-md-7 form-text">
-            <p-triStateCheckbox inputId="tricheckbox"></p-triStateCheckbox>
-            <p class=" mb-4">This form should be reviewed EVERY MONTH or before if there are significant changes. Enter review date
-                below.
+            <p-triStateCheckbox
+                inputId="tricheckbox"
+                [(ngModel)]="CareContinencePromotionFormsData.FormReviewState"
+            ></p-triStateCheckbox>
+            <p class="mb-4">
+                This form should be reviewed EVERY MONTH or before if there are
+                significant changes. Enter review date below.
             </p>
         </div>
+
         <div class="col-md-4">
             <div class="labelcontent">
                 <p>Next review date</p>
@@ -246,28 +468,62 @@
         </div>
         <div class="col-md-7">
             <div class="input-group date">
-                <p-calendar name="DateOfBirth" [showIcon]="true" inputId="icon" [dateFormat]="" class="iconcal"
-                    [readonlyInput]="true" appendTo="body" [maxDate]="" #dobref=""></p-calendar>
-                <div *ngIf="" class="alert alert-danger">
+                <p-calendar
+                    name="nextReviewDate"
+                    [showIcon]="true"
+                    inputId="icon"
+                    [dateFormat]="'yy-mm-dd'"
+                    class="iconcal"
+                    [(ngModel)]="
+                        CareContinencePromotionFormsData.NextReviewDate
+                    "
+                    [maxDate]=""
+                ></p-calendar>
+                <div
+                    *ngIf="!CareContinencePromotionFormsData.NextReviewDate"
+                    class="alert alert-danger"
+                >
+                    Next review date is required.
                 </div>
             </div>
-
         </div>
 
         <div class="d-flex justify-content-end">
-            <div>
-                <span class="p-ml-left mr-4">
-                    <button pButton title="New" label="Save as Unfinished"></button>
-                    <span class="total-txt"></span>
-                </span>
-            </div>
-            <div>
-                <span class="p-ml-left mr-4">
-                    <button pButton title="New" label="Complete"></button>
-                    <span class="total-txt"></span>
-                </span>
-            </div>
+            <ng-container *ngIf="isEditable; else savePdf">
+                <div>
+                    <span class="p-ml-left mr-4">
+                        <button
+                            pButton
+                            title="New"
+                            label="Save as Unfinished"
+                            (click)="saveAsUnfinished()"
+                        ></button>
+                        <span class="total-txt"></span>
+                    </span>
+                </div>
+                <div>
+                    <span class="p-ml-left mr-4">
+                        <button
+                            pButton
+                            title="New"
+                            label="Complete"
+                            (click)="completeForm()"
+                            [disabled]="
+                                CareContinencePromotionFormsData.IsFormCompleted
+                            "
+                        ></button>
+                        <span class="total-txt"></span>
+                    </span>
+                </div>
+            </ng-container>
+            <ng-template #savePdf>
+                <button
+                    pButton
+                    title="Save as PDF"
+                    label="Save as PDF"
+                    (click)="SaveAsPDF()"
+                ></button>
+            </ng-template>
         </div>
-
     </div>
 </div>
