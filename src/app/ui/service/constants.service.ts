@@ -97,14 +97,48 @@ export enum FormTypes {
   CareAssessmentSpeech = "660e80bdf05fe3604a126e58",
   CovidAcuteCarePlan = "66151024f05fe3604a126e5d",
   DentistVisitCommunication = "66151002f05fe3604a126e5c",
-  DistrictNurseVisit = "66150fa9f05fe3604a126e59" ,
+  DistrictNurseVisit = "66150fa9f05fe3604a126e59",
   FASTStrokeAssessment = "66151037f05fe3604a126e5e",
   HealthCareSupport = "66151067f05fe3604a126e60",
   HomemangersSetting = "66151097f05fe3604a126e61",
   PromotingWellbeing = "66150febf05fe3604a126e5b",
   RiskToolBedRails = "66150fc3f05fe3604a126e5a",
   SepsisScreening = "66151055f05fe3604a126e5f",
-  
+  RecordOfProperty = "661cb2e0eb74cdce58be9a9f",
+  RespiratoryScreening = "661cb2f4eb74cdce58be9aa0",
+  CareAssessmentMyEpilepsySupport = "661cb309eb74cdce58be9aa1",
+  CareAssessmentRESPECT = "661cb31beb74cdce58be9aa2",
+  CareAssessmentDietaryNotification = "661cb33eeb74cdce58be9aa3",
+  CareAssessmentLifeHistory = "661cb361eb74cdce58be9aa4",
+  CareAssessmentTrialWith = "661cb388eb74cdce58be9aa5",
+  PositiveBehaviour = "661cb39ceb74cdce58be9aa6",
+  ThePoolActivityLevel = "661cb3aeeb74cdce58be9aa7",
+  caresignsofill = "661e4abfeb74cdce58be9aa8",
+  recordofdecision = "661e4acdeb74cdce58be9aa9",
+  risktoolsafe = "661e4adfeb74cdce58be9aaa",
+  incidentnearmiss = "661e4af0eb74cdce58be9aab",
+  medicationincident = "661e4b63eb74cdce58be9aac",
+  hazardsrisks = "661e4b74eb74cdce58be9aad",
+  HerbertprotocolMissing = "661e4b93eb74cdce58be9aae",
+  OutingsRiskAssessment = "661e4ba5eb74cdce58be9aaf",
+  SmokingRiskAssessment = "661e4bbeeb74cdce58be9ab0",
+  CarePlanReview = "661e4c02eb74cdce58be9ab1",
+  consentform = "6620a35aeb74cdce58be9ab2",
+  covidvaccination = "6620a366eb74cdce58be9ab3",
+  respitecaresupport = "6620a373eb74cdce58be9ab4",
+  careresidentcontact = "6620a380eb74cdce58be9ab5",
+  carevision = "6620a38eeb74cdce58be9ab6",
+  riskmultifatorialfalls = "6620a39feb74cdce58be9ab7",
+  careskinassessment = "6620a3adeb74cdce58be9ab8",
+  careoralanddental = "6620a3b9eb74cdce58be9ab9",
+  carewisheshforfuture = "6620a3c6eb74cdce58be9aba",
+  carebehaviourassesment = "6620a3d3eb74cdce58be9abb",
+  risktoolforuseof = "6620a3f4eb74cdce58be9abc"
+
+
+
+
+
 
 }
 
@@ -124,7 +158,7 @@ export enum TaskPlannerStatus {
   Done = 3,
 }
 
-export enum ActionItem{
+export enum ActionItem {
   Read = 1,
   ReadWrite = 2,
   Delete = 3,

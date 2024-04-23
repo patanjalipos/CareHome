@@ -59,8 +59,7 @@ import { SepsisScreeningToolComponent } from '../sepsis-screening-tool/sepsis-sc
 })
 export class FormsDashboardComponent
     extends AppComponentBase
-    implements OnInit
-{
+    implements OnInit {
     @ViewChild('formContainer', { read: ViewContainerRef })
     formContainer: ViewContainerRef;
     componentRef: ComponentRef<any>;
@@ -75,8 +74,8 @@ export class FormsDashboardComponent
 
     residentAdmissionInfoId: string;
     rangeDates: Date[] | undefined;
-    FormTypes=FormTypes;
-    ShowChildComponent:boolean=false;
+    FormTypes = FormTypes;
+    ShowChildComponent: boolean = false;
 
 
     constructor(
@@ -129,7 +128,7 @@ export class FormsDashboardComponent
     }
 
     SearchForm() {
-        this.ShowChildComponent=false;
+        this.ShowChildComponent = false;
         this._UtilityService.showSpinner();
         //console.log('date Ranges: ' + rangeDates);
         const residentAdmissionInfoId = this.residentAdmissionInfoId;
@@ -176,6 +175,7 @@ export class FormsDashboardComponent
         selectedFormdata: any = <any>{},
         isEditable = true
     ) {
+        alert(selectedFormMasterId);
         this.selectedFormMasterId = selectedFormMasterId;
         this.selectedFormData = {
             selectedFormID: selectedFormdata.FormId,
@@ -192,9 +192,8 @@ export class FormsDashboardComponent
         //this._DataService.sendData(this.selectedFormData);
         //this.ShowForm(this.selectedFormMasterId);
     }
-    ShowModel()
-    {
-        this.ShowChildComponent=true;
+    ShowModel() {
+        this.ShowChildComponent = true;
     }
 
     //Create new Form
@@ -297,8 +296,7 @@ export class FormsDashboardComponent
         this.selectedFormData = null;
         this.componentRef.destroy();
     }
-    EmitUpdateForm(event)
-    {
+    EmitUpdateForm(event) {
         this.SearchForm();
     }
 }

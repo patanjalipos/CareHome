@@ -1,1 +1,253 @@
-<p>risk-tool-bed-rails-pack works!</p>
+<div class="card">
+    <div class="row">
+        <div class="formheader">
+            <div class="d-flex">
+                <div class="col-md-4">
+                    <label class="form-label"><b> Started by (Name) :</b>
+                    </label>
+                </div>
+                <div class="col-md-4">
+                    <label class="form-label"><b>Designation :</b> </label>
+                </div>
+                <div class="col-md-4">
+                    <label class="form-label"> <b>Date/Time : </b></label>
+                </div>
+            </div>
+            <div class="d-flex">
+                <div class="col-md-4">
+                    <label class="form-label">
+                        <b>Last entered by (Name) :</b></label>
+                </div>
+                <div class="col-md-4">
+                    <label class="form-label"> <b>Designation :</b></label>
+                </div>
+                <div class="col-md-4">
+                    <label class="form-label"> <b>Date/Time :</b> </label>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 mt-4">
+            <div class="labelcontent">
+                <p>What are the alternatives to bed rails that have been considered and or tried</p>
+            </div>
+        </div>
+        <div class="col-md-7 mt-4 form-text">
+            <input pInputText type="text" required name="chartheadname" class="form-control" />
+            <p class="mb-4">Such as low bed, safety matts and bed sensors (DEMCOM)</p>
+        </div>
+        <div class="col-md-4">
+            <div class="labelcontent">
+                <p>The risk of not using bed rails</p>
+            </div>
+        </div>
+        <div class="col-md-7 form-text">
+            <p-dropdown placeholder="Select" [style]="{ width: '100%' }">
+            </p-dropdown>
+            <p class="mb-4">Please select all appropriate options</p>
+        </div>
+        <div class="col-md-4">
+            <div class="labelcontent">
+                <p>Total number of identified risks from NOT using bedrails</p>
+            </div>
+        </div>
+        <div class="col-md-7  form-text ">
+            <div class="d-flex align-items-center">
+                <input required name="timeOfAccident" class="form-control mr-4" [style]="{ width: '35%' }">
+                <p class="mb-4">Allowed text entry format: "-.0123456789" eg:"-75.2"</p>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="labelcontent">
+                <p>The risk of using bed rails</p>
+            </div>
+        </div>
+        <div class="col-md-7 form-text">
+            <p-dropdown placeholder="Select" [style]="{ width: '100%' }">
+            </p-dropdown>
+            <p class="mb-4">Please select all appropriate options</p>
+        </div>
+        <div class="col-md-4">
+            <div class="labelcontent">
+                <p>Total number of options relating to USING bed rails</p>
+            </div>
+        </div>
+        <div class="col-md-7  form-text ">
+            <div class="d-flex align-items-center">
+                <input required name="timeOfAccident" class="form-control mr-4" [style]="{ width: '35%' }">
+                <p class="mb-4">Allowed text entry format: "-.0123456789" eg:"-75.2"</p>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="labelcontent implabel">
+                <p>BED RAIL USE NOT RECOMMENDED IF: number of risks from USING exceeds number of risks from NOT USING
+                </p>
+            </div>
+        </div>
+        <div class="col-md-7 form-text">
+            <p-dropdown placeholder="Select" [style]="{ width: '100%' }">
+            </p-dropdown>
+            <p class="mb-4">Based on the risk assessment is the resident safe for the use of bed rails</p>
+        </div>
+        <div class="col-md-1 form-icon ">
+            <i class="fa-solid fa-info"></i>
+        </div>
+        <div class="col-md-4">
+            <div class="labelcontent">
+                <p>On what ground do you suspect there might be a reason to question the residents capacity</p>
+            </div>
+        </div>
+        <div class="col-md-7 form-text">
+            <p-dropdown placeholder="Select" [style]="{ width: '100%' }">
+            </p-dropdown>
+        </div>
+        <div class="col-md-4">
+            <div class="labelcontent">
+                <p>Does the resident have an impairment of, or a disturbance in the functioning of the mind or the brain
+                </p>
+            </div>
+        </div>
+        <div class="col-md-7 form-text">
+            <p-dropdown placeholder="Select" [style]="{ width: '100%' }">
+            </p-dropdown>
+        </div>
+        <div class="col-md-4">
+            <div class="labelcontent">
+                <p>Describe type of impairment or disturbance in the functioning of the brain or the mind</p>
+            </div>
+        </div>
+        <div class="col-md-7 form-text">
+            <input pInputText type="text" required name="chartheadname" class="form-control" />
+            <p class="mb-4">Neurological disorders, learning disabilities, Mental disorder, Dementia, Stroke, Head
+                Injury, Delirium, Unconsciousness, Substance misuse, or other</p>
+        </div>
+        <div class="col-md-4">
+            <div class="labelcontent">
+                <p>Is the impairment/disturbance sufficient that the resident lacks capacity to make a particular
+                    decision</p>
+            </div>
+        </div>
+        <div class="col-md-7 form-text">
+            <p-dropdown placeholder="Select" [style]="{ width: '100%' }">
+            </p-dropdown>
+        </div>
+        <div class="col-md-4">
+            <div class="labelcontent">
+                <p>Describe the setting in which you have assessed the resident's capacity</p>
+            </div>
+        </div>
+        <div class="col-md-7 form-text">
+            <input pInputText type="text" required name="chartheadname" class="form-control" />
+            <p class="mb-4">Communication (signing, verbal, gesturing), who was present, environment, questions asked,
+                resident body language, how did the resident demonstrate they understood and appreciated consequences of
+                the decision</p>
+        </div>
+        <div class="col-md-4">
+            <div class="labelcontent">
+                <p>Has a second opinion been sought</p>
+            </div>
+        </div>
+        <div class="col-md-7 ">
+            <input pInputText type="text" required name="chartheadname" class="form-control" />
+            <p class="mb-4">If so, record who and when</p>
+        </div>
+        <div class="col-md-4">
+            <div class="labelcontent">
+                <p>Does the resident have capacity to make an informed decision in relation to the use of bed rails</p>
+            </div>
+        </div>
+        <div class="col-md-7 ">
+            <p-dropdown placeholder="Select" [style]="{ width: '100%' }">
+            </p-dropdown>
+        </div>
+        <div class="col-md-1 form-icon ">
+            <i class="fa-solid fa-info"></i>
+        </div>
+        <div class="col-md-4">
+            <div class="labelcontent">
+                <p>Other consideration</p>
+            </div>
+        </div>
+        <div class="col-md-7 ">
+            <p-dropdown placeholder="Select" [style]="{ width: '100%' }">
+            </p-dropdown>
+        </div>
+        <div class="col-md-4">
+            <div class="labelcontent">
+                <p>Describe the actions to be taken if any of the above considerations have NOT been taken into account
+                </p>
+            </div>
+        </div>
+        <div class="col-md-7 ">
+            <input pInputText type="text" required name="chartheadname" class="form-control" />
+        </div>
+        <div class="col-md-4">
+            <div class="labelcontent">
+                <p>Have you consulted with and considered the views of the following people</p>
+            </div>
+        </div>
+        <div class="col-md-7">
+            <p-dropdown placeholder="Select" [style]="{ width: '100%' }">
+            </p-dropdown>
+        </div>
+        <div class="col-md-4">
+            <div class="labelcontent">
+                <p>Describe who has been contacted, when and their views</p>
+            </div>
+        </div>
+        <div class="col-md-7">
+            <input pInputText type="text" required name="chartheadname" class="form-control" />
+        </div>
+        <div class="col-md-4">
+            <div class="labelcontent">
+                <p>Bed rails fitting risk assessment</p>
+            </div>
+        </div>
+        <div class="col-md-7">
+            <p-dropdown placeholder="Select" [style]="{ width: '100%' }">
+            </p-dropdown>
+        </div>
+        <div class="col-md-4">
+            <div class="labelcontent">
+                <p>If any of the above are deemed, ''not acceptable'' what actions are being taken</p>
+            </div>
+        </div>
+        <div class="col-md-7 form-text">
+            <input pInputText type="text" required name="chartheadname" class="form-control" />
+            <p class="mb-4">By what date and whom</p>
+        </div>
+        <div class="col-md-4">
+            <div class="labelcontent implabel">
+                <p>THIS FORM SHOULD BE REVIEWED MONTHLY OR BEFORE IF NECESSARY</p>
+            </div>
+        </div>
+        <div class="col-md-7">
+        <p-checkbox name="ChkMonthlyReview" [binary]="true" inputId="binary"></p-checkbox></div>
+        <div class="col-md-4">
+            <div class="labelcontent">
+                <p>Next review date</p>
+            </div>
+        </div>
+        <div class="col-md-7">
+            <div class="input-group date">
+                <p-calendar name="DateOfBirth" [showIcon]="true" inputId="icon" [dateFormat]="" class="iconcal"
+                    [readonlyInput]="true" appendTo="body" [maxDate]="" #dobref=""></p-calendar>
+                <div *ngIf="" class="alert alert-danger">
+                </div>
+            </div>
+        </div>
+        <div class="d-flex justify-content-end">
+            <div>
+                <span class="p-ml-left mr-4">
+                    <button pButton title="New" label="Save as Unfinished"></button>
+                    <span class="total-txt"></span>
+                </span>
+            </div>
+            <div>
+                <span class="p-ml-left mr-4">
+                    <button pButton title="New" label="Complete"></button>
+                    <span class="total-txt"></span>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
