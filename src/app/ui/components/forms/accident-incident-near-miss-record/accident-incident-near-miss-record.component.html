@@ -98,11 +98,11 @@
         
         <div class="col-md-8 mb-4">
             <ng-container *ngIf="this.isEditable; else LocationOfAccident">
-                <p-dropdown [required]="true" [options]="lstlocationaccident"   optionLabel="Name" [(ngModel)]="AccidentNearMissRecordFormsData.LocationOfAccident" name="AccidentNearMissRecordFormsData.LocationOfAccident" optionValue="Name" placeholder="Select" [style]="{ width: '100%' }">
+                <p-dropdown [required]="true" [options]="lstlocationaccident"   optionLabel="Name" [(ngModel)]="AccidentNearMissRecordFormsData.LocationOfAccident" name="AccidentNearMissRecordFormsData.LocationOfAccident" optionValue="Id" placeholder="Select" [style]="{ width: '100%' }">
                 </p-dropdown>
             </ng-container>
             <ng-template #LocationOfAccident>
-                <label>{{AccidentNearMissRecordFormsData.LocationOfAccident}}</label>
+                <label>{{AccidentNearMissRecordFormsData.LocationOfAccidentName}}</label>
             </ng-template>
         </div>
         <div class="col-md-4">
@@ -113,11 +113,11 @@
         </div>
         <div class="col-md-8 mb-4">
             <ng-container *ngIf="this.isEditable; else AccidentFloorPlace">
-                <p-dropdown [required]="true" [options]="lstAccidentPlace"   optionLabel="Name" [(ngModel)]="AccidentNearMissRecordFormsData.AccidentFloorPlace" name="AccidentNearMissRecordFormsData.AccidentFloorPlace" optionValue="Name" placeholder="Select" [style]="{ width: '100%' }">
+                <p-dropdown [required]="true" [options]="lstAccidentPlace"   optionLabel="Name" [(ngModel)]="AccidentNearMissRecordFormsData.AccidentFloorPlace" name="AccidentNearMissRecordFormsData.AccidentFloorPlace" optionValue="Id" placeholder="Select" [style]="{ width: '100%' }">
                 </p-dropdown>
             </ng-container>
             <ng-template #AccidentFloorPlace>
-                {{AccidentNearMissRecordFormsData.AccidentFloorPlace}}
+                {{AccidentNearMissRecordFormsData.AccidentFloorPlaceName}}
             </ng-template>
         </div>
         <div class="col-md-4">
@@ -128,11 +128,11 @@
         </div>
         <div class="col-md-8 mb-4">
             <ng-container *ngIf="this.isEditable; else AccidentType">
-                <p-dropdown [required]="true" [options]="lstAccidentType"   optionLabel="Name" [(ngModel)]="AccidentNearMissRecordFormsData.AccidentType" name="AccidentNearMissRecordFormsData.AccidentType" optionValue="Name" placeholder="Select" [style]="{ width: '100%' }">
+                <p-dropdown [required]="true" [options]="lstAccidentType"   optionLabel="Name" [(ngModel)]="AccidentNearMissRecordFormsData.AccidentType" name="AccidentNearMissRecordFormsData.AccidentType" optionValue="Id" placeholder="Select" [style]="{ width: '100%' }">
                 </p-dropdown>
             </ng-container>
             <ng-template #AccidentType>
-                <label>{{AccidentNearMissRecordFormsData.AccidentType}}</label>
+                <label>{{AccidentNearMissRecordFormsData.AccidentTypeName}}</label>
             </ng-template>
         </div>
         <div class="col-md-4">
@@ -191,11 +191,11 @@
         </div>
         <div class="col-md-8 mb-4">
             <ng-container *ngIf="this.isEditable; else InjuriesSustained">
-                <p-dropdown [required]="true" [options]="lstInjurySustained"   optionLabel="Name" [(ngModel)]="AccidentNearMissRecordFormsData.InjuriesSustained" name="AccidentNearMissRecordFormsData.InjuriesSustained" optionValue="Name" placeholder="Select" [style]="{ width: '100%' }">
+                <p-dropdown [required]="true" [options]="lstInjurySustained"   optionLabel="Name" [(ngModel)]="AccidentNearMissRecordFormsData.InjuriesSustained" name="AccidentNearMissRecordFormsData.InjuriesSustained" optionValue="Id" placeholder="Select" [style]="{ width: '100%' }">
                 </p-dropdown>
             </ng-container>
             <ng-template #InjuriesSustained>
-                <label>{{AccidentNearMissRecordFormsData.InjuriesSustained}}</label>
+                <label>{{AccidentNearMissRecordFormsData.InjuriesSustainedName}}</label>
             </ng-template>
         </div>
         <div class="col-md-4">
@@ -220,11 +220,11 @@
         </div>
         <div class="col-md-8 mb-4">
             <ng-container *ngIf="this.isEditable; else JobRole">
-                <p-dropdown [required]="true" [options]="lstJobRole"   optionLabel="Name" [(ngModel)]="AccidentNearMissRecordFormsData.JobRole" name="AccidentNearMissRecordFormsData.JobRole" optionValue="Name" placeholder="Select" [style]="{ width: '100%' }">
+                <p-dropdown [required]="true" [options]="lstJobRole"   optionLabel="Name" [(ngModel)]="AccidentNearMissRecordFormsData.JobRole" name="AccidentNearMissRecordFormsData.JobRole" optionValue="Id" placeholder="Select" [style]="{ width: '100%' }">
                 </p-dropdown>
             </ng-container>
             <ng-template #JobRole>
-                <label>{{AccidentNearMissRecordFormsData.JobRole}}</label>
+                <label>{{AccidentNearMissRecordFormsData.JobRoleName}}</label>
             </ng-template>
         </div>
         <div class="col-md-4">
@@ -265,12 +265,12 @@
         </div>
         <div class="col-md-8 mb-4">
             <ng-container *ngIf="this.isEditable; else EmergencyServices">
-                <p-dropdown [required]="true" [options]="lstEmergencyServices"   optionLabel="Name" [(ngModel)]="AccidentNearMissRecordFormsData.EmergencyServices" name="AccidentNearMissRecordFormsData.EmergencyServices" optionValue="Name" placeholder="Select" [style]="{ width: '100%' }">
+                <p-dropdown [required]="true" [options]="lstEmergencyServices"   optionLabel="Name" [(ngModel)]="AccidentNearMissRecordFormsData.EmergencyServices" name="AccidentNearMissRecordFormsData.EmergencyServices" optionValue="Id" placeholder="Select" [style]="{ width: '100%' }">
                 </p-dropdown>
             </ng-container>
             <ng-template #EmergencyServices>
                 <label>
-                    {{AccidentNearMissRecordFormsData.EmergencyServices}}
+                    {{AccidentNearMissRecordFormsData.EmergencyServicesName}}
                 </label>
             </ng-template>
         </div>

@@ -12,126 +12,126 @@ export class CareEatsAndTreatsService {
 
 
   //#region CareAssessmentEatsAndDrinksDropDownValues
-  GetResidentStatusOfCapacity(id:any) {
+  GetResidentStatusOfCapacity(status:any) {
     let reqHeader = new HttpHeaders({
       'Content-Type': 'application/json',
       'Access-Control-Allow-Origin': environment.BaseUriAdmin,
       //'Authorization': 'Bearer ' + localStorage.getItem('token')
   });
   let params = new HttpParams();
-  params = params.append('fromId', id);
+  params = params.append('Status', status);
   return this._httpclient.get<any>(
       environment.BaseUriAdmin + 'api/Admin/GetResidentStatusOfCapacity',
       { headers: reqHeader, params: params }
   );
   }
 
-  GetChoking(id:any) {
+  GetChoking(status:any) {
     let reqHeader = new HttpHeaders({
       'Content-Type': 'application/json',
       'Access-Control-Allow-Origin': environment.BaseUriAdmin,
       //'Authorization': 'Bearer ' + localStorage.getItem('token')
   });
   let params = new HttpParams();
-  params = params.append('fromId', id);
+  params = params.append('Status', status);
   return this._httpclient.get<any>(
       environment.BaseUriAdmin + 'api/Admin/GetChoking',
       { headers: reqHeader, params: params }
   );
   }
 
-  GetFood(id:any) {
+  GetFood(status:any) {
     let reqHeader = new HttpHeaders({
       'Content-Type': 'application/json',
       'Access-Control-Allow-Origin': environment.BaseUriAdmin,
       //'Authorization': 'Bearer ' + localStorage.getItem('token')
   });
   let params = new HttpParams();
-  params = params.append('fromId', id);
+  params = params.append('Status', status);
   return this._httpclient.get<any>(
       environment.BaseUriAdmin + 'api/Admin/GetFood',
       { headers: reqHeader, params: params }
   );
   }
 
-  GetFluids(id:any) {
+  GetFluids(status:any) {
     let reqHeader = new HttpHeaders({
       'Content-Type': 'application/json',
       'Access-Control-Allow-Origin': environment.BaseUriAdmin,
       //'Authorization': 'Bearer ' + localStorage.getItem('token')
   });
   let params = new HttpParams();
-  params = params.append('fromId', id);
+  params = params.append('Status', status);
   return this._httpclient.get<any>(
       environment.BaseUriAdmin + 'api/Admin/GetFluids',
       { headers: reqHeader, params: params }
   );
   }
 
-  GetActionNeededToReduceChoking(id:any) {
+  GetActionNeededToReduceChoking(status:any) {
     let reqHeader = new HttpHeaders({
       'Content-Type': 'application/json',
       'Access-Control-Allow-Origin': environment.BaseUriAdmin,
       //'Authorization': 'Bearer ' + localStorage.getItem('token')
   });
   let params = new HttpParams();
-  params = params.append('fromId', id);
+  params = params.append('Status', status);
   return this._httpclient.get<any>(
       environment.BaseUriAdmin + 'api/Admin/GetActionNeededToReduceChoking',
       { headers: reqHeader, params: params }
   );
   }
 
-  GetGoalsToAchieve(id:any) {
+  GetGoalsToAchieve(status:any) {
     let reqHeader = new HttpHeaders({
       'Content-Type': 'application/json',
       'Access-Control-Allow-Origin': environment.BaseUriAdmin,
       //'Authorization': 'Bearer ' + localStorage.getItem('token')
   });
   let params = new HttpParams();
-  params = params.append('fromId', id);
+  params = params.append('Status', status);
   return this._httpclient.get<any>(
       environment.BaseUriAdmin + 'api/Admin/GetGoalsToAchieve',
       { headers: reqHeader, params: params }
   );
   }
 
-  GetProfessionalInput(id:any) {
+  GetProfessionalInput(status:any) {
     let reqHeader = new HttpHeaders({
       'Content-Type': 'application/json',
       'Access-Control-Allow-Origin': environment.BaseUriAdmin,
       //'Authorization': 'Bearer ' + localStorage.getItem('token')
   });
   let params = new HttpParams();
-  params = params.append('fromId', id);
+  params = params.append('Status', status);
   return this._httpclient.get<any>(
       environment.BaseUriAdmin + 'api/Admin/GetProfessionalInput',
       { headers: reqHeader, params: params }
   );
   }
 
-  GetRiskOfMalnutrition(id:any) {
+  GetRiskOfMalnutrition(status:any) {
     let reqHeader = new HttpHeaders({
       'Content-Type': 'application/json',
       'Access-Control-Allow-Origin': environment.BaseUriAdmin,
       //'Authorization': 'Bearer ' + localStorage.getItem('token')
   });
   let params = new HttpParams();
-  params = params.append('fromId', id);
+  params = params.append('Status', status);
   return this._httpclient.get<any>(
       environment.BaseUriAdmin + 'api/Admin/GetRiskOfMalnutrition',
       { headers: reqHeader, params: params }
   );
   }
 
-  GetStrategyToManageNutrition(id:any) {
+  GetStrategyToManageNutrition(status:any) {
     let reqHeader = new HttpHeaders({
       'Content-Type': 'application/json',
       'Access-Control-Allow-Origin': environment.BaseUriAdmin,
       //'Authorization': 'Bearer ' + localStorage.getItem('token')
   });
   let params = new HttpParams();
-  params = params.append('fromId', id);
+  params = params.append('Status', status);
   return this._httpclient.get<any>(
       environment.BaseUriAdmin + 'api/Admin/GetStrategyToManageNutrition',
       { headers: reqHeader, params: params }

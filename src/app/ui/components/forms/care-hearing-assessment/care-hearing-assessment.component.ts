@@ -98,8 +98,11 @@ export class CareHearingAssessmentComponent extends AppComponentBase implements 
                 if (data.actionResult.success == true) {
                     var tdata = JSON.parse(data.actionResult.result);
                     tdata = tdata ? tdata : {};
+                    console.log(tdata)
                     this.CareAssessmentHearingFormsData = tdata;
-                    // console.log(this.CareAssessmentEatsAndDrinksFormsData)
+                    console.log(this.CareAssessmentHearingFormsData.CareAssessmentHearingFormId)
+                    // console.log(this.CareAssessmentHearingFormsData.HearingDiagnosisCheck);
+                    
                 } else {
                     this.CareAssessmentHearingFormsData = {};
                 }
@@ -114,7 +117,7 @@ export class CareHearingAssessmentComponent extends AppComponentBase implements 
 GetHearingDiagnosisCheck() {
   this._UtilityService.showSpinner();
   this.unsubscribe.add = this._CareHearing
-      .GetHearingDiagnosisCheck(true)
+      .GetHearingDiagnosisCheck(1)
       .subscribe({
           next: (data) => {
             // console.log(data)
@@ -139,7 +142,7 @@ GetHearingDiagnosisCheck() {
 GetCurrentHearingDiagnosis() {
   this._UtilityService.showSpinner();
   this.unsubscribe.add = this._CareHearing
-      .GetCurrentHearingDiagnosis(true)
+      .GetCurrentHearingDiagnosis(1)
       .subscribe({
           next: (data) => {
             // console.log(data)
@@ -164,7 +167,7 @@ GetCurrentHearingDiagnosis() {
 GetHearingInterventions() {
   this._UtilityService.showSpinner();
   this.unsubscribe.add = this._CareHearing
-      .GetHearingInterventions(true)
+      .GetHearingInterventions(1)
       .subscribe({
           next: (data) => {
             // console.log(data)
@@ -189,7 +192,7 @@ GetHearingInterventions() {
 GetHearingAids() {
   this._UtilityService.showSpinner();
   this.unsubscribe.add = this._CareHearing
-      .GetHearingAids(true)
+      .GetHearingAids(1)
       .subscribe({
           next: (data) => {
             // console.log(data)
@@ -214,7 +217,7 @@ GetHearingAids() {
 GetAidsAssistance() {
   this._UtilityService.showSpinner();
   this.unsubscribe.add = this._CareHearing
-      .GetAidsAssistance(true)
+      .GetAidsAssistance(1)
       .subscribe({
           next: (data) => {
             // console.log(data)
@@ -239,7 +242,7 @@ GetAidsAssistance() {
 GetGoalsToHearing() {
   this._UtilityService.showSpinner();
   this.unsubscribe.add = this._CareHearing
-      .GetGoalsToHearing(true)
+      .GetGoalsToHearing(1)
       .subscribe({
           next: (data) => {
             // console.log(data)
@@ -300,7 +303,7 @@ if (this.userId != null && this.residentAdmissionInfoId != null && this.loginId!
                 this._UtilityService.hideSpinner();
                 if (data.actionResult.success == true){
                     this.EmitUpdateForm.emit(true);
-                  this.ResetModel();
+                //   this.ResetModel();
                     this._UtilityService.showSuccessAlert(
                         data.actionResult.errMsg
                     );
@@ -326,7 +329,6 @@ if (this.userId != null && this.residentAdmissionInfoId != null && this.loginId!
 ResetModel() {
   this.isEditable = true;
   this.CareAssessmentHearingFormsData = <any>{};
-  this.preSelectedFormData = <any>{};
   this.StatementType = 'Insert';
 }
 
