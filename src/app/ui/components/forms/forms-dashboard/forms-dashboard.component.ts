@@ -175,7 +175,6 @@ export class FormsDashboardComponent
         selectedFormdata: any = <any>{},
         isEditable = true
     ) {
-        alert(selectedFormMasterId);
         this.selectedFormMasterId = selectedFormMasterId;
         this.selectedFormData = {
             selectedFormID: selectedFormdata.FormId,
