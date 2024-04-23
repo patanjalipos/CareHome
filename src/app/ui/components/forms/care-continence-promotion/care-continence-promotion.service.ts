@@ -26,6 +26,22 @@ export class CareContinencePromotionService {
         );
     }
 
+    GetContinencePromotionFormById(
+        selectedFormID : string
+    ): Observable<any> {
+        const reqHeader = new HttpHeaders({
+            'Content-Type': 'application/json',
+            'Access-Control-Allow-Origin': environment.BaseUriAdmin,
+        });
+        let params = new HttpParams();
+        params = params.append('fromId', selectedFormID);
+        return this._httpclient.get<any>(
+            environment.BaseUriAdmin + 'api/Admin/GetContinencePromotionFormById',
+            { headers: reqHeader, params: params }
+        );
+    }
+
+
     AddInsertUpdateFormData(formdata: any): Observable<any> {
         let reqHeader = new HttpHeaders({
             'Content-Type': 'application/json',

@@ -87,9 +87,9 @@ export class CareContinencePromotionComponent
 
         if (this.preSelectedFormData.selectedFormID != null) {
             this.CareContinencePromotionFormsData = <any>{};
-
-            // get preselected form data
-
+            this.GetSelectedFormDetails(
+                this.preSelectedFormData.selectedFormID
+            );
             this.StatementType = 'Update';
         } else {
             this.ResetModel();
@@ -97,8 +97,6 @@ export class CareContinencePromotionComponent
     }
 
     ngOnInit(): void {
-        //Fetch Dropdown values
-
         const collectionNames = [
             'ContPromCatheterCareOptions',
             'ContPromClinicalObservationsOptions',
@@ -138,13 +136,36 @@ export class CareContinencePromotionComponent
 
         if (this.preSelectedFormData.selectedFormID != null) {
             this.CareContinencePromotionFormsData = <any>{};
-
-            // get preselected form data
+            this.GetSelectedFormDetails(
+                this.preSelectedFormData.selectedFormID
+            );
 
             this.StatementType = 'Update';
         } else {
             this.ResetModel();
         }
+    }
+
+    GetSelectedFormDetails(formId: string) {
+        this._UtilityService.showSpinner();
+        this.unsubscribe.add = this._FormService
+            .GetContinencePromotionFormById(formId)
+            .subscribe({
+                next: (data) => {
+                    this._UtilityService.hideSpinner();
+                    if (data.actionResult.success == true) {
+                        var tdata = JSON.parse(data.actionResult.result);
+                        tdata = tdata ? tdata : {};
+                        this.CareContinencePromotionFormsData = tdata;
+                    } else {
+                        this.CareContinencePromotionFormsData = {};
+                    }
+                },
+                error: (e) => {
+                    this._UtilityService.hideSpinner();
+                    this._UtilityService.showErrorAlert(e.message);
+                },
+            });
     }
 
     getDropdownMasterLists(CollectionName: string): Observable<any> {
@@ -193,7 +214,8 @@ export class CareContinencePromotionComponent
 
             const objectBody: any = {
                 StatementType: this.StatementType,
-                CareContinencePromotionForm: this.CareContinencePromotionFormsData,
+                CareContinencePromotionForm:
+                    this.CareContinencePromotionFormsData,
             };
             this._UtilityService.showSpinner();
             this.unsubscribe.add = this._FormService
