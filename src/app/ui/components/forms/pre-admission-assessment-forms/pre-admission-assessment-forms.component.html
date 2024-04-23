@@ -70,7 +70,6 @@
                     PreAdmissionAssessmentFormsData.ChartheadName
                 }}</label>
             </ng-template>
-            <p class="mb-4">include relationship to the resident & contact details</p>
         </div>
         <div class="col-md-1 form-icon mt-4">
             <i class="fa-solid fa-info"></i>
@@ -88,7 +87,9 @@
                 <p-dropdown
                     name="PreAdmissionAssessmentFormsData.PersonCapacity"
                     [(ngModel)]="PreAdmissionAssessmentFormsData.PersonCapacity"
-                    [options]="personCapacityOptions"
+                    [options]="LstPreAdmPersonCapacityOptionsMaster"
+                    optionLabel="PreAdmPersonCapacityOptionName"
+                    optionValue="PersonCapacityOptionId"
                     placeholder="Select"
                     [style]="{ width: '100%' }"
                 >
@@ -100,13 +101,9 @@
             </ng-container>
             <ng-template #PersonCapacity>
                 <label>{{
-                    PreAdmissionAssessmentFormsData.PersonCapacity
+                    PreAdmissionAssessmentFormsData.PersonCapacityName
                 }}</label>
             </ng-template>
-            <p class="mb-4">
-                If person lacks capacity what powers are they being moved under
-                Section 13ZA, POA, Guardianship
-            </p>
         </div>
         <div class="col-md-1 form-icon mt-4">
             <i class="fa-solid fa-info"></i>
@@ -127,7 +124,9 @@
                     [(ngModel)]="
                         PreAdmissionAssessmentFormsData.ProfessionalDocObtained
                     "
-                    [options]="professionalDocObtainedOptions"
+                    [options]="LstPreAdmProfessionalDocObtainedOptionsMaster"
+                    optionLabel="professionalDocObtainedOptionName"
+                    optionValue="ProfessionalDocObtainedOptionId"
                     placeholder="Select"
                     [style]="{ width: '100%' }"
                 >
@@ -140,7 +139,7 @@
             </ng-container>
             <ng-template #ProfessionalDocObtained>
                 <label>{{
-                    PreAdmissionAssessmentFormsData.ProfessionalDocObtained
+                    PreAdmissionAssessmentFormsData.ProfessionalDocObtainedName
                 }}</label>
             </ng-template>
         </div>
@@ -159,7 +158,9 @@
                     [(ngModel)]="
                         PreAdmissionAssessmentFormsData.ResidentMovingFrom
                     "
-                    [options]="residentMovingOptions"
+                    [options]="LstPreAdmResidentMovingOptionsMaster"
+                    optionLabel="residentMovingOptionName"
+                    optionValue="ResidentMovingOptionId"
                     placeholder="Select"
                     [style]="{ width: '100%' }"
                 >
@@ -167,7 +168,7 @@
             </ng-container>
             <ng-template #ResidentMovingFrom>
                 <label>{{
-                    PreAdmissionAssessmentFormsData.ResidentMovingFrom
+                    PreAdmissionAssessmentFormsData.ResidentMovingFromName
                 }}</label>
             </ng-template>
         </div>
@@ -184,16 +185,18 @@
                 <p-dropdown
                     name="PreAdmissionAssessmentFormsData.Payment"
                     [(ngModel)]="PreAdmissionAssessmentFormsData.Payment"
-                    [options]="paymentOptionsn"
+                    [options]="LstPreAdmPaymentOptionsMaster"
+                    optionLabel="paymentOptionsName"
+                    optionValue="PaymentOptionId"
                     placeholder="Select"
                     [style]="{ width: '100%' }"
                 >
                 </p-dropdown>
+                <p>Update resident admission details</p>
             </ng-container>
             <ng-template #Payment>
-                <label>{{ PreAdmissionAssessmentFormsData.Payment }}</label>
+                <label>{{ PreAdmissionAssessmentFormsData.PaymentName }}</label>
             </ng-template>
-            <p>Update resident admission details</p>
         </div>
         <div class="col-md-1 form-icon mt-4">
             <i class="fa-solid fa-info"></i>
@@ -213,23 +216,25 @@
                     [(ngModel)]="
                         PreAdmissionAssessmentFormsData.PeronsCurrentAbilities
                     "
-                    [options]="peronsCurrentAbilitiesOptions"
+                    [options]="LstPreAdmPeronsCurrentAbilitiesOptionsMaster"
+                    optionLabel="peronsCurrentAbilitiesOptionsName"
+                    optionValue="PeronsCurrentAbilitiesOptionId"
                     placeholder="Select"
                     [style]="{ width: '100%' }"
                 >
                 </p-dropdown>
+                <p>
+                    Focus in this section on the persona abilities not their
+                    disabilities - positively report that they can recognise the
+                    need to attend the toilet however requires support to attend
+                    the toilet
+                </p>
             </ng-container>
             <ng-template #PeronsCurrentAbilities>
                 <label>{{
-                    PreAdmissionAssessmentFormsData.PeronsCurrentAbilities
+                    PreAdmissionAssessmentFormsData.PeronsCurrentAbilitiesName
                 }}</label>
             </ng-template>
-            <p>
-                Focus in this section on the persona abilities not their
-                disabilities - positively report that they can recognise the
-                need to attend the toilet however requires support to attend the
-                toilet
-            </p>
         </div>
         <div class="col-md-1 form-icon mt-4">
             <i class="fa-solid fa-info"></i>
@@ -245,7 +250,9 @@
                     [(ngModel)]="
                         PreAdmissionAssessmentFormsData.AdvancedCarePlanning
                     "
-                    [options]="advancedCarePlanningOptions"
+                    [options]="LstPreAdmAdvancedCarePlanningOptionsMaster"
+                    optionLabel="advancedCarePlanningOptionsName"
+                    optionValue="AdvancedCarePlanningOptionId"
                     placeholder="Select"
                     [style]="{ width: '100%' }"
                 >
@@ -253,7 +260,7 @@
             </ng-container>
             <ng-template #AdvancedCarePlanning>
                 <label>{{
-                    PreAdmissionAssessmentFormsData.AdvancedCarePlanning
+                    PreAdmissionAssessmentFormsData.AdvancedCarePlanningName
                 }}</label>
             </ng-template>
         </div>
@@ -272,8 +279,10 @@
                         PreAdmissionAssessmentFormsData.MedicalHistoryCondition
                     "
                     name="PreAdmissionAssessmentFormsData.MedicalHistoryCondition"
-                    [options]="medicalHistoryConditionOptions"
+                    [options]="LstPreAdmMedicalHistoryConditionOptionsMaster"
+                    optionLabel="medicalHistoryConditionOptionsName"
                     placeholder="Select"
+                    optionValue="MedicalHistoryConditionOptionId"
                     [style]="{ width: '100%' }"
                 >
                 </p-dropdown>
@@ -285,7 +294,7 @@
             </ng-container>
             <ng-template #MedicalHistoryCondition>
                 <label>{{
-                    PreAdmissionAssessmentFormsData.MedicalHistoryCondition
+                    PreAdmissionAssessmentFormsData.MedicalHistoryConditionName
                 }}</label>
             </ng-template>
         </div>
@@ -298,23 +307,28 @@
             </div>
         </div>
         <div class="col-md-7 form-text">
-            <input
-                *ngIf="isEditable"
-                [disabled]="!isEditable"
-                pInputText
-                type="text"
-                required
-                name="PreAdmissionAssessmentFormsData.SocialActivitiesInterests"
-                class="form-control"
-                [(ngModel)]="
+            <ng-container *ngIf="this.isEditable; else SocialAndSpiritual">
+                <input
+                    pInputText
+                    type="text"
+                    required
+                    name="PreAdmissionAssessmentFormsData.SocialActivitiesInterests"
+                    class="form-control"
+                    [(ngModel)]="
+                        PreAdmissionAssessmentFormsData.SocialActivitiesInterests
+                    "
+                />
+                <p class="mb-4">
+                    Include hobbies previous and current, whos imoprtant in
+                    their lives, any special days/occasions we need to be aware
+                    of, what does a good day look and feel like for them
+                </p>
+            </ng-container>
+            <ng-template #SocialAndSpiritual>
+                <label>{{
                     PreAdmissionAssessmentFormsData.SocialActivitiesInterests
-                "
-            />
-            <p class="mb-4">
-                Include hobbies previous and current, whos imoprtant in their
-                lives, any special days/occasions we need to be aware of, what
-                does a good day look and feel like for them
-            </p>
+                }}</label>
+            </ng-template>
         </div>
         <div class="col-md-1 form-icon mt-4">
             <i class="fa-solid fa-info"></i>
@@ -333,7 +347,9 @@
                     [(ngModel)]="
                         PreAdmissionAssessmentFormsData.ConnectingAndCommunicating
                     "
-                    [options]="connectingAndCommunicatingOptions"
+                    [options]="LstPreAdmConnectingAndCommunicatingOptionsMaster"
+                    optionLabel="connectingAndCommunicatingOptionsName"
+                    optionValue="ConnectingAndCommunicatingOptionId"
                     placeholder="Select"
                     [style]="{ width: '100%' }"
                 >
@@ -345,7 +361,7 @@
             </ng-container>
             <ng-template #ConnectingAndCommunicatingLabel>
                 <label>{{
-                    PreAdmissionAssessmentFormsData.ConnectingAndCommunicating
+                    PreAdmissionAssessmentFormsData.ConnectingAndCommunicatingName
                 }}</label>
             </ng-template>
         </div>
@@ -366,7 +382,9 @@
                 <p-dropdown
                     [(ngModel)]="PreAdmissionAssessmentFormsData.PersonalSafety"
                     name="PreAdmissionAssessmentFormsData.PersonalSafety"
-                    [options]="personalSafetyOptions"
+                    [options]="LstPreAdmPersonalSafetyOptionsMaster"
+                    optionLabel="personalSafetyOptionsName"
+                    optionValue="PersonalSafetyOptionId"
                     placeholder="Select"
                     [style]="{ width: '100%' }"
                 >
@@ -379,7 +397,7 @@
             </ng-container>
             <ng-template #PersonalSafetyLabel>
                 <label>{{
-                    PreAdmissionAssessmentFormsData.PersonalSafety
+                    PreAdmissionAssessmentFormsData.PersonalSafetyName
                 }}</label>
             </ng-template>
         </div>
@@ -432,7 +450,9 @@
                         PreAdmissionAssessmentFormsData.ResidentExpAnyMHConditions
                     "
                     name="PreAdmissionAssessmentFormsData.ResidentExpAnyMHConditions"
-                    [options]="residentExpAnyMHConditionsOptions"
+                    [options]="LstPreAdmResidentExpAnyMHConditionsOptionsMaster"
+                    optionLabel="residentExpAnyMHConditionsOptionsName"
+                    optionValue="ResidentExpAnyMHConditionsOptionId"
                     placeholder="Select"
                     [style]="{ width: '100%' }"
                 >
@@ -444,7 +464,7 @@
             </ng-container>
             <ng-template #ResidentExpAnyMHConditionsLabel>
                 <label>{{
-                    PreAdmissionAssessmentFormsData.ResidentExpAnyMHConditions
+                    PreAdmissionAssessmentFormsData.ResidentExpAnyMHConditionsName
                 }}</label>
             </ng-template>
         </div>
@@ -463,7 +483,9 @@
                         PreAdmissionAssessmentFormsData.SpeechSightHearing
                     "
                     name="PreAdmissionAssessmentFormsData.SpeechSightHearing"
-                    [options]="speechSightHearingOptions"
+                    [options]="LstPreAdmSpeechSightHearingOptionsMaster"
+                    optionLabel="speechSightHearingOptionsName"
+                    optionValue="SpeechSightHearingOptionId"
                     placeholder="Select"
                     [style]="{ width: '100%' }"
                 >
@@ -471,7 +493,7 @@
             </ng-container>
             <ng-template #SpeechSightHearingLabel>
                 <label>{{
-                    PreAdmissionAssessmentFormsData.SpeechSightHearing
+                    PreAdmissionAssessmentFormsData.SpeechSightHearingName
                 }}</label>
             </ng-template>
         </div>
@@ -556,7 +578,9 @@
                         PreAdmissionAssessmentFormsData.FallsAndMobility
                     "
                     name="PreAdmissionAssessmentFormsData.FallsAndMobility"
-                    [options]="fallsAndMobilityOptions"
+                    [options]="LstPreAdmFallsAndMobilityOptionsMaster"
+                    optionLabel="fallsAndMobilityOptionsName"
+                    optionValue="FallsAndMobilityOptionId"
                     placeholder="Select"
                     [style]="{ width: '100%' }"
                 >
@@ -564,7 +588,7 @@
             </ng-container>
             <ng-template #FallsAndMobilityLabel>
                 <label>{{
-                    PreAdmissionAssessmentFormsData.FallsAndMobility
+                    PreAdmissionAssessmentFormsData.FallsAndMobilityName
                 }}</label>
             </ng-template>
         </div>
@@ -612,14 +636,16 @@
                 <p-dropdown
                     [(ngModel)]="PreAdmissionAssessmentFormsData.PainStatus"
                     name="PreAdmissionAssessmentFormsData.PainStatus"
-                    [options]="painStatusOptions"
+                    [options]="LstPreAdmPainStatusOptionMaster"
+                    optionLabel="painStatusOptionsName"
+                    optionValue="PainStatusOptionId"
                     placeholder="Select"
                     [style]="{ width: '100%' }"
                 >
                 </p-dropdown>
             </ng-container>
             <ng-template #PainStatusLabel>
-                <label>{{ PreAdmissionAssessmentFormsData.PainStatus }}</label>
+                <label>{{ PreAdmissionAssessmentFormsData.PainStatusName }}</label>
             </ng-template>
         </div>
         <div class="col-md-1 form-icon mt-4">
@@ -669,7 +695,9 @@
                 <p-dropdown
                     [(ngModel)]="PreAdmissionAssessmentFormsData.SkinAssessment"
                     name="PreAdmissionAssessmentFormsData.SkinAssessment"
-                    [options]="skinAssessmentOptions"
+                    [options]="LstPreAdmSkinAssessmentOptionsMaster"
+                    optionLabel="skinAssessmentOptionsName"
+                    optionValue="SkinAssessmentOptionId"
                     placeholder="Select"
                     [style]="{ width: '100%' }"
                 >
@@ -681,7 +709,7 @@
             </ng-container>
             <ng-template #SkinAssessmentLabel>
                 <label>{{
-                    PreAdmissionAssessmentFormsData.SkinAssessment
+                    PreAdmissionAssessmentFormsData.SkinAssessmentName
                 }}</label>
             </ng-template>
         </div>
@@ -726,7 +754,9 @@
                         PreAdmissionAssessmentFormsData.EatingDrinkingAssessment
                     "
                     name="PreAdmissionAssessmentFormsData.EatingDrinkingAssessment"
-                    [options]="eatingDrinkingAssessmentOptions"
+                    [options]="LstPreAdmEatingDrinkingAssessmentOptionsMaster"
+                    optionLabel="eatingDrinkingAssessmentOptionsName"
+                    optionValue="EatingDrinkingAssessmentOptionId"
                     placeholder="Select"
                     [style]="{ width: '100%' }"
                 >
@@ -734,7 +764,7 @@
             </ng-container>
             <ng-template #EatingDrinkingAssessmentLabel>
                 <label>{{
-                    PreAdmissionAssessmentFormsData.EatingDrinkingAssessment
+                    PreAdmissionAssessmentFormsData.EatingDrinkingAssessmentName
                 }}</label>
             </ng-template>
         </div>
@@ -788,7 +818,9 @@
                     [(ngModel)]="
                         PreAdmissionAssessmentFormsData.PromotionOfContinence
                     "
-                    [options]="promotionOfContinenceOptions"
+                    [options]="LstPreAdmPromotionOfContinenceOptionsMaster"
+                    optionLabel="promotionOfContinenceOptionsName"
+                    optionValue="PromotionOfContinenceOptionId"
                     placeholder="Select"
                     [style]="{ width: '100%' }"
                 >
@@ -796,7 +828,7 @@
             </ng-container>
             <ng-template #PromotionOfContinenceLabel>
                 <label>{{
-                    PreAdmissionAssessmentFormsData.PromotionOfContinence
+                    PreAdmissionAssessmentFormsData.PromotionOfContinenceName
                 }}</label>
             </ng-template>
         </div>
@@ -831,7 +863,7 @@
             </ng-container>
             <ng-template #PromotionOfContinenceDetailsLabel>
                 <label>{{
-                    PreAdmissionAssessmentFormsData.PromotionOfContinenceDetails
+                    PreAdmissionAssessmentFormsData.PromotionOfContinenceDetailsName
                 }}</label>
             </ng-template>
         </div>
@@ -849,7 +881,9 @@
                     [(ngModel)]="
                         PreAdmissionAssessmentFormsData.FeelingFreshAndClean
                     "
-                    [options]="feelingFreshAndCleanOptions"
+                    [options]="LstPreAdmFeelingFreshAndCleanOptionsMaster"
+                    optionLabel="feelingFreshAndCleanOptionsName"
+                    optionValue="FeelingFreshAndCleanOptionId"
                     name="PreAdmissionAssessmentFormsData.FeelingFreshAndClean"
                     placeholder="Select"
                     [style]="{ width: '100%' }"
@@ -858,7 +892,7 @@
             </ng-container>
             <ng-template #FeelingFreshAndCleanLabel>
                 <label>{{
-                    PreAdmissionAssessmentFormsData.FeelingFreshAndClean
+                    PreAdmissionAssessmentFormsData.FeelingFreshAndCleanName
                 }}</label>
             </ng-template>
         </div>
@@ -915,7 +949,9 @@
                     [(ngModel)]="
                         PreAdmissionAssessmentFormsData.SleepingAndResting
                     "
-                    [options]="sleepingAndRestiingOptions"
+                    [options]="LstPreAdmSleepingAndRestingOptionsMaster"
+                    optionLabel="sleepingAndRestiingOptionsName"
+                    optionValue="SleepingAndRestingOptionId"
                     placeholder="Select"
                     [style]="{ width: '100%' }"
                 >
@@ -923,7 +959,7 @@
             </ng-container>
             <ng-template #SleepingAndRestingLabel>
                 <label>{{
-                    PreAdmissionAssessmentFormsData.SleepingAndResting
+                    PreAdmissionAssessmentFormsData.SleepingAndRestingName
                 }}</label>
             </ng-template>
         </div>
@@ -950,10 +986,11 @@
                     "
                 />
                 <p>
-                    what makes a good night for the resident. Describe sleeping and
-                    waking routine, medication prescribed, number of carers required
-                    to assist. If bed rails are used, ensure full multidisciplinary
-                    and any associated assessments are completed
+                    what makes a good night for the resident. Describe sleeping
+                    and waking routine, medication prescribed, number of carers
+                    required to assist. If bed rails are used, ensure full
+                    multidisciplinary and any associated assessments are
+                    completed
                 </p>
             </ng-container>
             <ng-template #SleepingAndRestingDetailsLabel>
@@ -977,7 +1014,9 @@
                     [(ngModel)]="
                         PreAdmissionAssessmentFormsData.ExpressingSexuality
                     "
-                    [options]="expressingSexualityOptions"
+                    [options]="LstPreAdmExpressingSexualityOptionsMaster"
+                    optionLabel="expressingSexualityOptionsName"
+                    optionValue="ExpressingSexualityOptionId"
                     placeholder="Select"
                     [style]="{ width: '100%' }"
                 >
@@ -985,7 +1024,7 @@
             </ng-container>
             <ng-template #ExpressingSexualityLabel>
                 <label>{{
-                    PreAdmissionAssessmentFormsData.ExpressingSexuality
+                    PreAdmissionAssessmentFormsData.ExpressingSexualityName
                 }}</label>
             </ng-template>
         </div>
@@ -1012,11 +1051,11 @@
                     "
                 />
                 <p>
-                    Additional information (how can you support the resident with
-                    sensitivity and privacy needs. How does the resident express
-                    sexuality / sexual needs.) Consider behaviours and communication
-                    e.g. unpredictable / inappropriate behaviours. Consider capacity
-                    and best interest assessments.
+                    Additional information (how can you support the resident
+                    with sensitivity and privacy needs. How does the resident
+                    express sexuality / sexual needs.) Consider behaviours and
+                    communication e.g. unpredictable / inappropriate behaviours.
+                    Consider capacity and best interest assessments.
                 </p>
             </ng-container>
             <ng-template #ExpressingSexualityDetailsLabel>
@@ -1076,7 +1115,9 @@
                     [(ngModel)]="
                         PreAdmissionAssessmentFormsData.EpilepsySeizureManagement
                     "
-                    [options]="EpilepsySeizureManagementOptions"
+                    [options]="LstPreAdmEpilepsySeizureManagementOptionsMaster"
+                    optionValue="EpilepsySeizureManagementOptionId"
+                    optionLabel="EpilepsySeizureManagementOptionsName"
                     placeholder="Select"
                     [style]="{ width: '100%' }"
                 >
@@ -1084,7 +1125,7 @@
             </ng-container>
             <ng-template #EpilepsySeizureManagementLabel>
                 <label>{{
-                    PreAdmissionAssessmentFormsData.EpilepsySeizureManagement
+                    PreAdmissionAssessmentFormsData.EpilepsySeizureManagementName
                 }}</label>
             </ng-template>
             <p></p>
@@ -1122,7 +1163,6 @@
                     PreAdmissionAssessmentFormsData.RescueMedications
                 }}</label>
             </ng-template>
-           
         </div>
         <div class="col-md-1 form-icon mt-4">
             <i class="fa-solid fa-info"></i>
@@ -1139,7 +1179,9 @@
                     [(ngModel)]="
                         PreAdmissionAssessmentFormsData.InfectionStatus
                     "
-                    [options]="infectionStatusOptions"
+                    [options]="LstPreAdmInfectionStatusOptionsMaster"
+                    optionLabel="infectionStatusOptionsName"
+                    optionValue="InfectionStatusOptionId"
                     placeholder="Select"
                     [style]="{ width: '100%' }"
                 >
@@ -1147,7 +1189,7 @@
             </ng-container>
             <ng-template #InfectionStatusLabel>
                 <label>{{
-                    PreAdmissionAssessmentFormsData.InfectionStatus
+                    PreAdmissionAssessmentFormsData.InfectionStatusName
                 }}</label>
             </ng-template>
             <p></p>
@@ -1173,9 +1215,9 @@
                     "
                 />
                 <p>
-                    Detail how the person presents when they have an infection, what
-                    are the soft signs of infection if these are knownInclude type
-                    of infection, location, treatment
+                    Detail how the person presents when they have an infection,
+                    what are the soft signs of infection if these are
+                    knownInclude type of infection, location, treatment
                 </p>
             </ng-container>
             <ng-template #InfectionDetailsLabel>
@@ -1197,14 +1239,16 @@
                 <p-dropdown
                     [(ngModel)]="PreAdmissionAssessmentFormsData.Medication"
                     name="PreAdmissionAssessmentFormsData.Medication"
-                    [options]="medicationOption"
+                    [options]="LstPreAdmMedicationOptionMaster"
+                    optionLabel="medicationOptionName"
+                    optionValue="MedicationOptionId"
                     placeholder="Select"
                     [style]="{ width: '100%' }"
                 >
                 </p-dropdown>
             </ng-container>
             <ng-template #MedicationDropdownLabel>
-                <label>{{ PreAdmissionAssessmentFormsData.Medication }}</label>
+                <label>{{ PreAdmissionAssessmentFormsData.MedicationName }}</label>
             </ng-template>
             <p></p>
         </div>
@@ -1229,11 +1273,11 @@
                     "
                 />
                 <p>
-                    refer reader to the MARs sheets for the resident most up to date
-                    medications, howveer please explore how they like to take their
-                    medications, high risk medications, such as lithium,
-                    antipsychotics, benzodiazepines, anti coagulants, insulin,
-                    epilepsy or Parkinson's meds
+                    refer reader to the MARs sheets for the resident most up to
+                    date medications, howveer please explore how they like to
+                    take their medications, high risk medications, such as
+                    lithium, antipsychotics, benzodiazepines, anti coagulants,
+                    insulin, epilepsy or Parkinson's meds
                 </p>
             </ng-container>
             <ng-template #MedicationDetailsLabel>
@@ -1241,7 +1285,6 @@
                     PreAdmissionAssessmentFormsData.MedicationDetails
                 }}</label>
             </ng-template>
-            
         </div>
         <div class="col-md-1 form-icon mt-4">
             <i class="fa-solid fa-info"></i>
@@ -1258,19 +1301,20 @@
                         PreAdmissionAssessmentFormsData.FirstAidEpilepticSeizure
                     "
                     name="PreAdmissionAssessmentFormsData.FirstAidEpilepticSeizure"
-                    [options]="firstAidEpilepticSeizureOptions"
+                    [options]="LstPreAdmFirstAidEpilepticSeizureOptionsMaster"
+                    optionLabel="firstAidEpilepticSeizureOptionsName"
+                    optionValue="FirstAidEpilepticSeizureOptionId"
                     placeholder="Select"
                     [style]="{ width: '100%' }"
                 >
-                <p>Choose all statements below</p>
+                    <p>Choose all statements below</p>
                 </p-dropdown>
             </ng-container>
             <ng-template #FirstAidDropdownLabel>
                 <label>{{
-                    PreAdmissionAssessmentFormsData.FirstAidEpilepticSeizure
+                    PreAdmissionAssessmentFormsData.FirstAidEpilepticSeizureName
                 }}</label>
             </ng-template>
-            
         </div>
         <div class="col-md-1 form-icon mt-4">
             <i class="fa-solid fa-info"></i>
@@ -1294,8 +1338,8 @@
                     [(ngModel)]="PreAdmissionAssessmentFormsData.OverallGoal"
                 />
                 <p>
-                    For example to be safe, to minimise loneliness, to strive and
-                    promote abilities, to manage their health needs better.
+                    For example to be safe, to minimise loneliness, to strive
+                    and promote abilities, to manage their health needs better.
                 </p>
             </ng-container>
             <ng-template #OverallGoalLabel>

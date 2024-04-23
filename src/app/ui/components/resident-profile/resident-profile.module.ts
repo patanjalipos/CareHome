@@ -15,7 +15,7 @@ import { FormsDashboardModule } from '../forms/forms-dashboard/forms-dashboard.m
     CommonModule,
     ResidentProfileRoutingModule,
     ProfileModule,
-    FormsDashboardModule,
+    FormsDashboardModule
   ],
   exports:[ResidentProfileComponent]
 })

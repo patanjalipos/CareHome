@@ -56,46 +56,121 @@ export class MasterService {
 
     //#endregion
 
-    //#region PreAdmissionAssessmentForm
+    //#region Form DropDowns
 
-    GetPreAdmissionFormDetails(fromId: any) {
+    GetDropDownMasterList(
+        formMasterId: string,
+        dropdownName: string,
+        status: number
+    ) {
         let reqHeader = new HttpHeaders({
             'Content-Type': 'application/json',
             'Access-Control-Allow-Origin': environment.BaseUriAdmin,
             //'Authorization': 'Bearer ' + localStorage.getItem('token')
         });
         let params = new HttpParams();
-        params = params.append('fromId', fromId);
+        params = params.append('fromMasterId', formMasterId);
+        params = params.append('dropDownName', dropdownName);
+        params = params.append('Status', status);
         return this._httpclient.get<any>(
-            environment.BaseUriAdmin + 'api/Admin/GetPreAdmissionForm',
-            { headers: reqHeader, params: params }
-        );
-    }
-
-    AddInsertUpdatePreAdmissionAssessmentForm(
-        PreAdmissionAssessmentFormsData: any
-    ): Observable<any> {
-        let reqHeader = new HttpHeaders({
-            'Content-Type': 'application/json',
-            'Access-Control-Allow-Origin': environment.BaseUriAdmin,
-            //'Authorization': 'Bearer ' + localStorage.getItem('token')
-        });
-        let params = new HttpParams();
-        var data = JSON.stringify(PreAdmissionAssessmentFormsData).toString();
-        console.log(data);
-        return this._httpclient.post<any>(
-            environment.BaseUriAdmin +
-                'api/Admin/AddInsertUpdatePreAdmissionForm',
-            data,
+            environment.BaseUriAdmin + 'api/Admin/GetDropDownMasterListV2',
             { headers: reqHeader, params: params }
         );
     }
 
     //#endregion
 
-     //#region AccidentNearMissRecordForm
+    //#region AccidentNearMissRecordDropDownValues
 
-     GetAccidentNearMissRecordDetails(fromId: any) {
+    GetLocationOfAccident(id: any) {
+        let reqHeader = new HttpHeaders({
+            'Content-Type': 'application/json',
+            'Access-Control-Allow-Origin': environment.BaseUriAdmin,
+            //'Authorization': 'Bearer ' + localStorage.getItem('token')
+        });
+        let params = new HttpParams();
+        params = params.append('fromId', id);
+        return this._httpclient.get<any>(
+            environment.BaseUriAdmin + 'api/Admin/GetLocationOfAccident',
+            { headers: reqHeader, params: params }
+        );
+    }
+
+    GetAccidentFloorPlace(id: any) {
+        let reqHeader = new HttpHeaders({
+            'Content-Type': 'application/json',
+            'Access-Control-Allow-Origin': environment.BaseUriAdmin,
+            //'Authorization': 'Bearer ' + localStorage.getItem('token')
+        });
+        let params = new HttpParams();
+        params = params.append('fromId', id);
+        return this._httpclient.get<any>(
+            environment.BaseUriAdmin + 'api/Admin/GetAccidentFloorPlace',
+            { headers: reqHeader, params: params }
+        );
+    }
+
+    GetAccidentType(id: any) {
+        let reqHeader = new HttpHeaders({
+            'Content-Type': 'application/json',
+            'Access-Control-Allow-Origin': environment.BaseUriAdmin,
+            //'Authorization': 'Bearer ' + localStorage.getItem('token')
+        });
+        let params = new HttpParams();
+        params = params.append('fromId', id);
+        return this._httpclient.get<any>(
+            environment.BaseUriAdmin + 'api/Admin/GetAccidentType',
+            { headers: reqHeader, params: params }
+        );
+    }
+
+    GetInjuriesSustained(id: any) {
+        let reqHeader = new HttpHeaders({
+            'Content-Type': 'application/json',
+            'Access-Control-Allow-Origin': environment.BaseUriAdmin,
+            //'Authorization': 'Bearer ' + localStorage.getItem('token')
+        });
+        let params = new HttpParams();
+        params = params.append('fromId', id);
+        return this._httpclient.get<any>(
+            environment.BaseUriAdmin + 'api/Admin/GetInjuriesSustained',
+            { headers: reqHeader, params: params }
+        );
+    }
+
+    GetJobRole(id: any) {
+        let reqHeader = new HttpHeaders({
+            'Content-Type': 'application/json',
+            'Access-Control-Allow-Origin': environment.BaseUriAdmin,
+            //'Authorization': 'Bearer ' + localStorage.getItem('token')
+        });
+        let params = new HttpParams();
+        params = params.append('fromId', id);
+        return this._httpclient.get<any>(
+            environment.BaseUriAdmin + 'api/Admin/GetJobRole',
+            { headers: reqHeader, params: params }
+        );
+    }
+
+    GetEmergencyServices(id: any) {
+        let reqHeader = new HttpHeaders({
+            'Content-Type': 'application/json',
+            'Access-Control-Allow-Origin': environment.BaseUriAdmin,
+            //'Authorization': 'Bearer ' + localStorage.getItem('token')
+        });
+        let params = new HttpParams();
+        params = params.append('fromId', id);
+        return this._httpclient.get<any>(
+            environment.BaseUriAdmin + 'api/Admin/GetEmergencyServices',
+            { headers: reqHeader, params: params }
+        );
+    }
+
+    //#endregion
+
+    //#region AccidentNearMissRecordForm
+
+    GetAccidentNearMissRecordDetails(fromId: any) {
         let reqHeader = new HttpHeaders({
             'Content-Type': 'application/json',
             'Access-Control-Allow-Origin': environment.BaseUriAdmin,
@@ -104,7 +179,8 @@ export class MasterService {
         let params = new HttpParams();
         params = params.append('fromId', fromId);
         return this._httpclient.get<any>(
-            environment.BaseUriAdmin + 'api/Admin/GetAccidentNearOrMissRecordForm',
+            environment.BaseUriAdmin +
+                'api/Admin/GetAccidentNearOrMissRecordForm',
             { headers: reqHeader, params: params }
         );
     }
@@ -129,9 +205,6 @@ export class MasterService {
     }
 
     //#endregion
-
-
-
 
     //#region Form Master
 
@@ -1612,64 +1685,57 @@ export class MasterService {
         );
     }
     GetMenuItemMasterByModuleId(
-        userTypeId: string, UserId: string
+        userTypeId: string,
+        UserId: string
     ): Observable<any> {
         let reqHeader = new HttpHeaders({
             'Content-Type': 'application/json',
             'Access-Control-Allow-Origin': environment.BaseUriAdmin,
         });
         let params = new HttpParams();
-        let newreqobj:any=<any>{};
-        newreqobj.userTypeId=userTypeId;
-        newreqobj.UserId=UserId;
-        var data=JSON.stringify(newreqobj);
+        let newreqobj: any = <any>{};
+        newreqobj.userTypeId = userTypeId;
+        newreqobj.UserId = UserId;
+        var data = JSON.stringify(newreqobj);
         return this._httpclient.post<any>(
-            environment.BaseUriAdmin +
-                'api/Admin/GetMenuItemMasterByModuleId',data,
+            environment.BaseUriAdmin + 'api/Admin/GetMenuItemMasterByModuleId',
+            data,
             { headers: reqHeader, params: params }
         );
     }
 
     ///////#region Acute Care Plan
-    GetActuteInfectionMaster(
-        Status: any
-    ): Observable<any> {
+    GetActuteInfectionMaster(Status: any): Observable<any> {
         let reqHeader = new HttpHeaders({
             'Content-Type': 'application/json',
             'Access-Control-Allow-Origin': environment.BaseUriAdmin,
         });
         let params = new HttpParams();
-        params=params.append('Status',Status);
+        params = params.append('Status', Status);
         return this._httpclient.get<any>(
-            environment.BaseUriAdmin +
-                'api/Admin/GetActuteInfectionMaster',
+            environment.BaseUriAdmin + 'api/Admin/GetActuteInfectionMaster',
             { headers: reqHeader, params: params }
         );
     }
-    GetActuteStrategiesMaster(
-        Status: any
-    ): Observable<any> {
+    GetActuteStrategiesMaster(Status: any): Observable<any> {
         let reqHeader = new HttpHeaders({
             'Content-Type': 'application/json',
             'Access-Control-Allow-Origin': environment.BaseUriAdmin,
         });
         let params = new HttpParams();
-        params=params.append('Status',Status);
+        params = params.append('Status', Status);
         return this._httpclient.get<any>(
-            environment.BaseUriAdmin +
-                'api/Admin/GetActuteStrategiesMaster',
+            environment.BaseUriAdmin + 'api/Admin/GetActuteStrategiesMaster',
             { headers: reqHeader, params: params }
         );
     }
-    GetActuteOutcomeTreatmentMaster(
-        Status: any
-    ): Observable<any> {
+    GetActuteOutcomeTreatmentMaster(Status: any): Observable<any> {
         let reqHeader = new HttpHeaders({
             'Content-Type': 'application/json',
             'Access-Control-Allow-Origin': environment.BaseUriAdmin,
         });
         let params = new HttpParams();
-        params=params.append('Status',Status);
+        params = params.append('Status', Status);
         return this._httpclient.get<any>(
             environment.BaseUriAdmin +
                 'api/Admin/GetActuteOutcomeTreatmentMaster',
@@ -1708,43 +1774,35 @@ export class MasterService {
             { headers: reqHeader, params: params }
         );
     }
-    
+
     ///////#end Region
 
     ///////#region Acute Care Plan
-    GetFamilyRelayMaster(
-        Status: any
-    ): Observable<any> {
+    GetFamilyRelayMaster(Status: any): Observable<any> {
         let reqHeader = new HttpHeaders({
             'Content-Type': 'application/json',
             'Access-Control-Allow-Origin': environment.BaseUriAdmin,
         });
         let params = new HttpParams();
-        params=params.append('Status',Status);
+        params = params.append('Status', Status);
         return this._httpclient.get<any>(
-            environment.BaseUriAdmin +
-                'api/Admin/GetFamilyRelayMaster',
+            environment.BaseUriAdmin + 'api/Admin/GetFamilyRelayMaster',
             { headers: reqHeader, params: params }
         );
     }
-    GetFamilyCommReasonMaster(
-        Status: any
-    ): Observable<any> {
+    GetFamilyCommReasonMaster(Status: any): Observable<any> {
         let reqHeader = new HttpHeaders({
             'Content-Type': 'application/json',
             'Access-Control-Allow-Origin': environment.BaseUriAdmin,
         });
         let params = new HttpParams();
-        params=params.append('Status',Status);
+        params = params.append('Status', Status);
         return this._httpclient.get<any>(
-            environment.BaseUriAdmin +
-                'api/Admin/GetFamilyCommReasonMaster',
+            environment.BaseUriAdmin + 'api/Admin/GetFamilyCommReasonMaster',
             { headers: reqHeader, params: params }
         );
     }
-    InsertUpdateFamilyCommForm(
-        AcuteCarePlanFormsData: any
-    ): Observable<any> {
+    InsertUpdateFamilyCommForm(AcuteCarePlanFormsData: any): Observable<any> {
         let reqHeader = new HttpHeaders({
             'Content-Type': 'application/json',
             'Access-Control-Allow-Origin': environment.BaseUriAdmin,
@@ -1754,8 +1812,7 @@ export class MasterService {
         var data = JSON.stringify(AcuteCarePlanFormsData).toString();
         console.log(data);
         return this._httpclient.post<any>(
-            environment.BaseUriAdmin +
-                'api/Admin/InsertUpdateFamilyCommForm',
+            environment.BaseUriAdmin + 'api/Admin/InsertUpdateFamilyCommForm',
             data,
             { headers: reqHeader, params: params }
         );
@@ -1773,6 +1830,5 @@ export class MasterService {
             { headers: reqHeader, params: params }
         );
     }
-    /////#region 
-    
+    /////#region
 }
