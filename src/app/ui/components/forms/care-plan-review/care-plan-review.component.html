@@ -1,0 +1,307 @@
+<div class="card">
+    <div class="row">
+        <div class="formheader">
+            <div class="d-flex">
+                <div class="col-md-4">
+                    <label class="form-label"><b> Started by (Name) :</b>
+                    </label>
+                </div>
+                <div class="col-md-4">
+                    <label class="form-label"><b>Designation :</b> </label>
+                </div>
+                <div class="col-md-4">
+                    <label class="form-label"> <b>Date/Time : </b></label>
+                </div>
+            </div>
+            <div class="d-flex">
+                <div class="col-md-4">
+                    <label class="form-label">
+                        <b>Last entered by (Name) :</b></label>
+                </div>
+                <div class="col-md-4">
+                    <label class="form-label"> <b>Designation :</b></label>
+                </div>
+                <div class="col-md-4">
+                    <label class="form-label"> <b>Date/Time :</b> </label>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 mt-4">
+            <div class="labelcontent">
+                <p>Date of Review</p>
+            </div>
+        </div>
+        <div class="col-md-8 mt-4  ">
+            <div class="input-group date">
+                <p-calendar name="DateOfBirth" [showIcon]="true" inputId="icon" [dateFormat]="" class="iconcal"
+                    [readonlyInput]="true" appendTo="body" [maxDate]="" #dobref=""></p-calendar>
+                <div *ngIf="" class="alert alert-danger">
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="labelcontent">
+                <p class=" mb-4">Time of Review</p>
+            </div>
+        </div>
+        <div class="col-md-8  form-text ">
+            <div class="d-flex align-items-center">
+                <input pInputText type="text" required name="chartheadname" class="form-control mr-4"
+                    [style]="{ width: '35%' }">
+                <p class=" mb-4">Use 24 hour clock</p>
+            </div>
+        </div>
+        <div class="col-md-4 mt-4">
+            <div class="labelcontent">
+                <p>Date of Last Review</p>
+            </div>
+        </div>
+        <div class="col-md-8 mt-4  ">
+            <div class="input-group date">
+                <p-calendar name="DateOfBirth" [showIcon]="true" inputId="icon" [dateFormat]="" class="iconcal"
+                    [readonlyInput]="true" appendTo="body" [maxDate]="" #dobref=""></p-calendar>
+                <div *ngIf="" class="alert alert-danger">
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="labelcontent">
+                <p>Person Chairing Review</p>
+
+            </div>
+        </div>
+        <div class="col-md-8 form-text">
+            <input pInputText type="text" required name="chartheadname" class="form-control" />
+            <p class=" mb-4">Please include full name(s) and designation(s)</p>
+        </div>
+        <div class="col-md-4">
+            <div class="labelcontent">
+                <p>Relatives / Representatives Present at Review</p>
+            </div>
+        </div>
+        <div class="col-md-8 form-text">
+            <input pInputText type="text" required name="chartheadname" class="form-control" />
+            <p class=" mb-4">Please include full name(s) and designation(s)</p>
+        </div>
+        <div class="col-md-4">
+            <div class="labelcontent">
+                <p>Reason for Review</p>
+
+            </div>
+        </div>
+        <div class="col-md-8 form-text">
+            <input pInputText type="text" required name="chartheadname" class="form-control" />
+            <p class=" mb-4">Example: In house/ Social Worker</p>
+        </div>
+        <div class="col-md-4">
+            <div class="labelcontent">
+                <p>Have Action Points from Last Review Been Met</p>
+
+            </div>
+        </div>
+        <div class="col-md-8 form-text">
+            <input pInputText type="text" required name="chartheadname" class="form-control" />
+
+        </div>
+        <div class="col-md-4">
+            <div class="labelcontent">
+                <p> <b>Key Discussion Points</b></p>
+            </div>
+        </div>
+        <div class="col-md-8 form-text">
+            <input pInputText type="text" required name="chartheadname" class="form-control" />
+
+        </div>
+        <div class="col-md-4">
+            <div class="labelcontent">
+                <p>Physical Health</p>
+            </div>
+        </div>
+        <div class="col-md-8 form-text">
+            <input pInputText type="text" required name="chartheadname" class="form-control" />
+            <p class=" mb-4">Any significant changes, GP visits, External Professionals- dietitian, podiatry, physio
+                etc.</p>
+        </div>
+        <div class="col-md-4">
+            <div class="labelcontent">
+                <p>DNACPR</p>
+
+            </div>
+        </div>
+        <div class="col-md-8 form-text">
+            <input pInputText type="text" required name="chartheadname" class="form-control" />
+            <p class=" mb-4">Has this been discussed with family and the outcome</p>
+        </div>
+        <div class="col-md-4">
+            <div class="labelcontent">
+                <p>Mental Health</p>
+            </div>
+        </div>
+        <div class="col-md-8 form-text">
+            <input pInputText type="text" required name="chartheadname" class="form-control" />
+            <p class=" mb-4">AWI/Treatment Plan / DoLs in place / POA</p>
+        </div>
+        <div class="col-md-4">
+            <div class="labelcontent">
+                <p>Issues with Mood, Changes in Memory, Behavioral Issues</p>
+            </div>
+        </div>
+        <div class="col-md-8 form-text">
+            <input pInputText type="text" required name="chartheadname" class="form-control" />
+        </div>
+        <div class="col-md-4">
+            <div class="labelcontent">
+                <p>Accidents / Incidents</p>
+
+            </div>
+        </div>
+        <div class="col-md-8 form-text">
+            <input pInputText type="text" required name="chartheadname" class="form-control" />
+            <p class=" mb-4">Type, Time, Place – What are we doing to reduce risk? Example – Falls Team, chair/bed
+                sensors, ultra-low bed, crash mat)</p>
+        </div>
+        <div class="col-md-4">
+            <div class="labelcontent">
+                <p>Medication</p>
+            </div>
+        </div>
+        <div class="col-md-8 form-text">
+            <input pInputText type="text" required name="chartheadname" class="form-control" />
+            <p class=" mb-4">Date of change: Who changed it: Reason why changed: NOTE – NOK should already have been
+                notified of any medicine change</p>
+        </div>
+        <div class="col-md-4">
+            <div class="labelcontent">
+                <p>Activities</p>
+            </div>
+        </div>
+        <div class="col-md-8 form-text">
+            <input pInputText type="text" required name="chartheadname" class="form-control" />
+            <p class=" mb-4">Participation. Enjoyed. Support required</p>
+        </div>
+        <div class="col-md-4">
+            <div class="labelcontent">
+                <p>Finances</p>
+            </div>
+        </div>
+        <div class="col-md-8 form-text">
+            <input pInputText type="text" required name="chartheadname" class="form-control" />
+            <p class=" mb-4">Any issues/concerns with finances, Does Resident require any toiletries/ clothing</p>
+        </div>
+        <div class="col-md-4">
+            <div class="labelcontent">
+                <p><b>Comments on Care Home / Care Provided</b></p>
+            </div>
+        </div>
+        <div class="col-md-8 mb-4 form-text">
+            <p-checkbox name="ChkMonthlyReview" [binary]="true" inputId="binary"></p-checkbox>
+
+        </div>
+        <div class="col-md-4">
+            <div class="labelcontent">
+                <p>Is the Resident Happy in the Home</p>
+            </div>
+        </div>
+        <div class="col-md-8 form-text">
+            <input pInputText type="text" required name="chartheadname" class="form-control" />
+        </div>
+        <div class="col-md-4">
+            <div class="labelcontent">
+                <p>Are the Relatives / Representatives Happy with the Care/Support that the Resident is receiving</p>
+            </div>
+        </div>
+        <div class="col-md-8 form-text">
+            <input pInputText type="text" required name="chartheadname" class="form-control" />
+        </div>
+
+        <div class="col-md-4">
+            <div class="labelcontent">
+                <p>Can the Home Meet the Resident’s Needs</p>
+            </div>
+        </div>
+        <div class="col-md-8 form-text">
+            <input pInputText type="text" required name="chartheadname" class="form-control" />
+        </div>
+        <div class="col-md-4">
+            <div class="labelcontent">
+                <p>What are We Doing Well</p>
+            </div>
+        </div>
+        <div class="col-md-8 form-text">
+            <input pInputText type="text" required name="chartheadname" class="form-control" />
+        </div>
+        <div class="col-md-4">
+            <div class="labelcontent">
+                <p>What Could We Do Better</p>
+            </div>
+        </div>
+        <div class="col-md-8 form-text">
+            <input pInputText type="text" required name="chartheadname" class="form-control" />
+        </div>
+        <div class="col-md-4">
+            <div class="labelcontent">
+                <p>Are there any Staff Members that have been helpful that you would like us to recognise</p>
+            </div>
+        </div>
+        <div class="col-md-8 form-text">
+            <input pInputText type="text" required name="chartheadname" class="form-control" />
+        </div>
+        <div class="col-md-4">
+            <div class="labelcontent">
+                <p><b>Care Plans</b></p>
+            </div>
+        </div>
+        <div class="col-md-8 mb-4 form-text">
+            <p-checkbox name="ChkMonthlyReview" [binary]="true" inputId="binary"></p-checkbox>
+        </div>
+        <div class="col-md-4">
+            <div class="labelcontent">
+                <p>Are there any Care Plan areas that require changing/updating following review</p>
+            </div>
+        </div>
+        <div class="col-md-8 form-text">
+            <input pInputText type="text" required name="chartheadname" class="form-control" />
+        </div>
+        <div class="col-md-4">
+            <div class="labelcontent">
+                <p>Actions Required</p>
+            </div>
+        </div>
+        <div class="col-md-8 form-text">
+            <input pInputText type="text" required name="chartheadname" class="form-control" />
+        </div>
+        <div class="col-md-4">
+            <div class="labelcontent">
+                <p>Care Plans / Risk Assessments Viewed</p>
+            </div>
+        </div>
+        <div class="col-md-8 form-text">
+            <input pInputText type="text" required name="chartheadname" class="form-control" />
+            <p class="mb-4">Please include full names) and designation(s) of reviewer(s)</p>
+        </div>
+        <div class="col-md-4">
+            <div class="labelcontent">
+                <p>Review Copy Given to the Resident / Relative / Representative</p>
+            </div>
+        </div>
+        <div class="col-md-8 form-text">
+            <input pInputText type="text" required name="chartheadname" class="form-control" />
+            <p class="mb-4">NOTE – Copy of completed review form should be given to Resident / Relative / Representative
+            </p>
+        </div>
+        <div class="d-flex justify-content-end">
+            <div>
+                <span class="p-ml-left mr-4">
+                    <button pButton title="New" label="Save as Unfinished"></button>
+                    <span class="total-txt"></span>
+                </span>
+            </div>
+            <div>
+                <span class="p-ml-left mr-4">
+                    <button pButton title="New" label="Complete"></button>
+                    <span class="total-txt"></span>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>

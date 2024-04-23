@@ -89,13 +89,13 @@
                 <label>{{AccidentNearMissRecordFormsData.AccidentStatus==true?'yes':'no'}}</label>
             </ng-template>
         </div>
-
+ 
             <div class="col-md-4">
                 <div class="labelcontent">
                     <p>Location of accident/Incident</p>
                 </div>
             </div>
-        
+       
         <div class="col-md-8 mb-4">
             <ng-container *ngIf="this.isEditable; else LocationOfAccident">
                 <p-dropdown [required]="true" [options]="lstlocationaccident"   optionLabel="Name" [(ngModel)]="AccidentNearMissRecordFormsData.LocationOfAccident" name="AccidentNearMissRecordFormsData.LocationOfAccident" optionValue="Id" placeholder="Select" [style]="{ width: '100%' }">
@@ -415,4 +415,3 @@
         </div>
 </div>
 <!-- </div> -->
-

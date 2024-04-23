@@ -1,0 +1,492 @@
+<div class="card">
+    <div class="row">
+        <div class="formheader">
+            <div class="d-flex">
+                <div class="col-md-4">
+                    <label class="form-label"><b> Started by (Name) :</b>
+                    </label>
+                </div>
+                <div class="col-md-4">
+                    <label class="form-label"><b>Designation :</b> </label>
+                </div>
+                <div class="col-md-4">
+                    <label class="form-label"> <b>Date/Time : </b></label>
+                </div>
+            </div>
+            <div class="d-flex">
+                <div class="col-md-4">
+                    <label class="form-label">
+                        <b>Last entered by (Name) :</b></label>
+                </div>
+                <div class="col-md-4">
+                    <label class="form-label"> <b>Designation :</b></label>
+                </div>
+                <div class="col-md-4">
+                    <label class="form-label"> <b>Date/Time :</b> </label>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 mt-4 labelcontent">
+            <p>Has the resident been assessed or assumed to have the capacity in relation to their wishes for the future
+            </p>
+        </div>
+        <div class="col-md-7 mt-4 form-text">
+            <p-dropdown placeholder="Select" [style]="{ width: '100%' }">
+            </p-dropdown>
+        </div>
+        <div class="col-md-1 mt-4 form-icon ">
+            <i class="fa-solid fa-info"></i>
+        </div>
+        <div class="col-md-4 labelcontent">
+            <p>Is the resident happy to discuss their wishes for the future</p>
+        </div>
+        <div class="col-md-7 form-text">
+            <p-dropdown placeholder="Select" [style]="{ width: '100%' }">
+            </p-dropdown>
+        </div>
+        <div class="col-md-1 form-icon ">
+            <i class="fa-solid fa-info"></i>
+        </div>
+        <div class="col-md-4 labelcontent">
+            <p>Is there somebody who the resident would like us to talk to about this (e.g. a relative)</p>
+        </div>
+        <div class="col-md-7 form-text">
+            <input pInputText type="text" required name="chartheadname" class="form-control" />
+            <p class="mb-4">If so, please provide name and contact details</p>
+        </div>
+        <div class="col-md-1 form-icon ">
+            <i class="fa-solid fa-info"></i>
+        </div>
+        <div class="col-md-4 labelcontent">
+            <p>Is the resident aware of their illnesses / diagnosis and prognosis</p>
+        </div>
+        <div class="col-md-7 form-text">
+            <input pInputText type="text" required name="chartheadname" class="form-control" />
+            <p class="mb-4">Please provide relevant details e.g. illnesses / prognosis</p>
+        </div>
+        <div class="col-md-1 form-icon ">
+            <i class="fa-solid fa-info"></i>
+        </div>
+        <div class="col-md-4 labelcontent">
+            <p>Are the family / close friends aware of the resident's illness / diagnosis and prognosis</p>
+        </div>
+        <div class="col-md-7 form-text">
+            <input pInputText type="text" required name="chartheadname" class="form-control" />
+            <p class="mb-4">Please provide any relevant details, such as who is aware, names and relationships</p>
+        </div>
+        <div class="col-md-1 form-icon ">
+            <i class="fa-solid fa-info"></i>
+        </div>
+        <div class="col-md-4 labelcontent">
+            <p>Does the resident have any wishes / desires (e.g. things they might like to do / people they may like to
+                see (including pets) before they die)</p>
+        </div>
+        <div class="col-md-7 form-text">
+            <input pInputText type="text" required name="chartheadname" class="form-control" />
+            <p class="mb-4">Please include any relevant details, such as how you can help to fulfil this, e.g.
+                contacting relatives or others</p>
+        </div>
+        <div class="col-md-1 form-icon ">
+            <i class="fa-solid fa-info"></i>
+        </div>
+        <div class="col-md-4 labelcontent">
+            <p>Is there anyone the resident does not wish to see</p>
+        </div>
+        <div class="col-md-7 form-text">
+            <input pInputText type="text" required name="chartheadname" class="form-control" />
+            <p class="mb-4">Please provide relevant details, e.g. names and relationships</p>
+        </div>
+        <div class="col-md-1 form-icon ">
+            <i class="fa-solid fa-info"></i>
+        </div>
+        <div class="col-md-4 labelcontent">
+            <p>Is the resident happy for certain members of their family to make decisions for them if they are unable
+                to</p>
+        </div>
+        <div class="col-md-7 form-text">
+            <input pInputText type="text" required name="chartheadname" class="form-control" />
+            <p class="mb-4">Please provide relevant details, e.g. names and relationships</p>
+        </div>
+        <div class="col-md-1 form-icon ">
+            <i class="fa-solid fa-info"></i>
+        </div>
+        <div class="col-md-4 labelcontent">
+            <p>Is there anything that the resident would like to be remembered for</p>
+        </div>
+        <div class="col-md-7 form-text">
+            <input pInputText type="text" required name="chartheadname" class="form-control" />
+            <p class="mb-4">Please provide relevant details, sense of humour, kindness, a particular trait.</p>
+        </div>
+        <div class="col-md-1 form-icon ">
+            <i class="fa-solid fa-info"></i>
+        </div>
+        <div class="col-md-4 labelcontent">
+            <p>Does the resident have a funeral plan in place</p>
+        </div>
+        <div class="col-md-7 form-text">
+            <input pInputText type="text" required name="chartheadname" class="form-control" />
+            <p class="mb-4">Please provide a copy of the funeral plan (if applicable), or state where this is held (name
+                and contact details)</p>
+        </div>
+        <div class="col-md-1 form-icon ">
+            <i class="fa-solid fa-info"></i>
+        </div>
+        <div class="col-md-4 labelcontent">
+            <p>Does the resident have a preferred undertaker that they would like to care for them following their death
+            </p>
+        </div>
+        <div class="col-md-7 form-text">
+            <input pInputText type="text" required name="chartheadname" class="form-control" />
+            <p class="mb-4">If the resident does not have a preferred undertaker, please detail any preferences,</p>
+        </div>
+        <div class="col-md-1 form-icon ">
+            <i class="fa-solid fa-info"></i>
+        </div>
+        <div class="col-md-4 labelcontent">
+            <p>Would the resident prefer to be buried / cremated</p>
+        </div>
+        <div class="col-md-7 form-text">
+            <p-dropdown placeholder="Select" [style]="{ width: '100%' }">
+            </p-dropdown>
+        </div>
+        <div class="col-md-1 form-icon ">
+            <i class="fa-solid fa-info"></i>
+        </div>
+        <div class="col-md-4 labelcontent">
+            <p>Are there any other arrangements that have been made (e.g. organ donation / medical research)</p>
+        </div>
+        <div class="col-md-7 form-text">
+            <input pInputText type="text" required name="chartheadname" class="form-control" />
+            <p class="mb-4">Please provide details and attach relevant information</p>
+        </div>
+        <div class="col-md-1 form-icon ">
+            <i class="fa-solid fa-info"></i>
+        </div>
+        <div class="col-md-4 labelcontent">
+            <p>Does the resident have a solicitor / are their affairs in order</p>
+        </div>
+        <div class="col-md-7 form-text">
+            <input pInputText type="text" required name="chartheadname" class="form-control" />
+            <p class="mb-4">Please provide relevant details e.g. if consent provided, record details of solicitor's
+                name, practice and contact number</p>
+        </div>
+        <div class="col-md-1 form-icon ">
+            <i class="fa-solid fa-info"></i>
+        </div>
+        <div class="col-md-4 labelcontent">
+            <p>If the resident becomes unwell, do they wish to go to hospital</p>
+        </div>
+        <div class="col-md-7 form-text">
+            <input pInputText type="text" required name="chartheadname" class="form-control" />
+            <p class="mb-4">Please provide relevant details e.g. appropriateness of going to hospital for acute
+                illnesses / Treatment Escalation Plan may be in place, review ReSPECT/ACP</p>
+        </div>
+        <div class="col-md-1 form-icon ">
+            <i class="fa-solid fa-info"></i>
+        </div>
+        <div class="col-md-4 labelcontent">
+            <p>Does the resident have a preference about where they wish to die</p>
+        </div>
+        <div class="col-md-7 form-text">
+            <input pInputText type="text" required name="chartheadname" class="form-control" />
+            <p class="mb-4">Please provide relevant details e.g. where and how we can support this</p>
+        </div>
+        <div class="col-md-1 form-icon ">
+            <i class="fa-solid fa-info"></i>
+        </div>
+        <div class="col-md-4 labelcontent">
+            <p>Does the resident wish for any of their friends to be involved in their care</p>
+        </div>
+        <div class="col-md-7 form-text">
+            <input pInputText type="text" required name="chartheadname" class="form-control" />
+            <p class="mb-4">Please provide relevant details e.g. names and contact details</p>
+        </div>
+        <div class="col-md-1 form-icon ">
+            <i class="fa-solid fa-info"></i>
+        </div>
+        <div class="col-md-4 labelcontent">
+            <p>Are there any religious / cultural / spiritual needs that need to be considered</p>
+        </div>
+        <div class="col-md-7 form-text">
+            <input pInputText type="text" required name="chartheadname" class="form-control" />
+            <p class="mb-4">Please provide details e.g. to see a priest / last rights. How you can support the resident,
+                has a priest been contacted etc. Please also provide names and contact details where appropriate</p>
+        </div>
+        <div class="col-md-1 form-icon ">
+            <i class="fa-solid fa-info"></i>
+        </div>
+        <div class="col-md-4 labelcontent">
+            <p>Is there anything that the resident is worried or concerned about</p>
+        </div>
+        <div class="col-md-7 form-text">
+            <input pInputText type="text" required name="chartheadname" class="form-control" />
+            <p class="mb-4">Please provide details of what this is e.g. frightened of dying, may be in pain. How can you
+                support and help to try and alleviate fears - would / could a counsellor / other professional help</p>
+        </div>
+        <div class="col-md-1 form-icon ">
+            <i class="fa-solid fa-info"></i>
+        </div>
+        <div class="col-md-4 labelcontent">
+            <p>Is there anyone the resident would like present at the end of their life e.g. family, friends or both</p>
+        </div>
+        <div class="col-md-7 form-text">
+            <input pInputText type="text" required name="chartheadname" class="form-control" />
+            <p class="mb-4">Please provide names and contact details</p>
+        </div>
+        <div class="col-md-1 form-icon ">
+            <i class="fa-solid fa-info"></i>
+        </div>
+        <div class="col-md-4 labelcontent">
+            <p>Do the family / friends live locally</p>
+        </div>
+        <div class="col-md-7 form-text">
+            <input pInputText type="text" required name="chartheadname" class="form-control" />
+            <p class="mb-4">Please provide relevant details and supply information about local hotels and B&Bs to
+                friends / relatives if necessary</p>
+        </div>
+        <div class="col-md-1 form-icon ">
+            <i class="fa-solid fa-info"></i>
+        </div>
+        <div class="col-md-4 labelcontent">
+            <p>Is there anything specific the resident would like in their room or immediate surroundings</p>
+        </div>
+        <div class="col-md-7 form-text">
+            <input pInputText type="text" required name="chartheadname" class="form-control" />
+            <p class="mb-4">Please provide relevant details e.g. fresh flowers, music, lighting, photographs, aroma,
+                other (please state)</p>
+        </div>
+        <div class="col-md-1 form-icon ">
+            <i class="fa-solid fa-info"></i>
+        </div>
+        <div class="col-md-4 labelcontent">
+            <p>Please provide details of how the resident wishes to live the last stages of their life and the main
+                comforts they desire</p>
+        </div>
+        <div class="col-md-7 form-text">
+            <input pInputText type="text" required name="chartheadname" class="form-control" />
+            <p class="mb-4">Please provide details of the actions which will be carried out by staff when the time is
+                reached that the resident is actively dying.</p>
+        </div>
+        <div class="col-md-1 form-icon ">
+            <i class="fa-solid fa-info"></i>
+        </div>
+        <div class="col-md-4 labelcontent">
+            <p>Is there someone specific the resident would like to be contacted immediately after they die</p>
+        </div>
+        <div class="col-md-7 form-text">
+            <input pInputText type="text" required name="chartheadname" class="form-control" />
+            <p class="mb-4">Please provide relevant details e.g. names and contact details</p>
+        </div>
+        <div class="col-md-1 form-icon ">
+            <i class="fa-solid fa-info"></i>
+        </div>
+        <div class="col-md-4 labelcontent">
+            <p>Do the resident's family or friends have any concerns or fears</p>
+        </div>
+        <div class="col-md-7 form-text">
+            <input pInputText type="text" required name="chartheadname" class="form-control" />
+            <p class="mb-4">Please provide relevant details e.g. what fears exist and how you could offer support</p>
+        </div>
+        <div class="col-md-1 form-icon ">
+            <i class="fa-solid fa-info"></i>
+        </div>
+
+        <div class="col-md-4 labelcontent">
+            <p>Do the family or friends have any special wishes or needs</p>
+        </div>
+        <div class="col-md-7 form-text">
+            <input pInputText type="text" required name="chartheadname" class="form-control" />
+            <p class="mb-4">Please provide details e.g. what these are and how you could offer support</p>
+        </div>
+        <div class="col-md-1 form-icon ">
+            <i class="fa-solid fa-info"></i>
+        </div>
+        <div class="col-md-4 labelcontent">
+            <p>Goals the resident wishes to achieve</p>
+        </div>
+        <div class="col-md-7 form-text">
+            <p-dropdown placeholder="Select" [style]="{ width: '100%' }">
+            </p-dropdown>
+        </div>
+        <div class="col-md-1 form-icon ">
+            <i class="fa-solid fa-info"></i>
+        </div>
+        <div class="col-md-4 labelcontent">
+            <p>Does the resident have a specific goal personal to them</p>
+        </div>
+        <div class="col-md-7 form-text">
+            <input pInputText type="text" required name="chartheadname" class="form-control" />
+
+        </div>
+        <div class="col-md-1 form-icon ">
+            <i class="fa-solid fa-info"></i>
+        </div>
+        <div class="col-md-4 labelcontent implabel">
+            <p>Section 2 TO BE COMPLETED IF THE RESIDENT REQUIRES PALLIATIVE CARE</p>
+        </div>
+        <div class="col-md-7 form-text">
+            <p-checkbox name="ChkMonthlyReview" [binary]="true" inputId="binary"></p-checkbox>
+        </div>
+        <div class="col-md-4 labelcontent">
+            <p>Palliative end of life</p>
+        </div>
+        <div class="col-md-7 form-text">
+            <p-dropdown placeholder="Select" [style]="{ width: '100%' }">
+            </p-dropdown>
+        </div>
+        <div class="col-md-1 form-icon ">
+            <i class="fa-solid fa-info"></i>
+        </div>
+        <div class="col-md-4 labelcontent">
+            <p>Medical support from GP</p>
+        </div>
+        <div class="col-md-7 form-text">
+            <input pInputText type="text" required name="chartheadname" class="form-control" />
+            <p class="mb-4">Consider who will be involved and how they will assist e.g. DN intervention and support, GP
+                intervention and support, Specialist Palliative Team</p>
+        </div>
+        <div class="col-md-1 form-icon ">
+            <i class="fa-solid fa-info"></i>
+        </div>
+        <div class="col-md-4 labelcontent">
+            <p>Pain relief and symptom control from GP</p>
+        </div>
+        <div class="col-md-7 form-text">
+            <input pInputText type="text" required name="chartheadname" class="form-control" />
+            <p class="mb-4">Consider how, e.g. just in case medication, symptom control - pain scales / observations.
+                When people have advanced illness, they sometimes experience a range of symptoms.</p>
+        </div>
+        <div class="col-md-1 form-icon ">
+            <i class="fa-solid fa-info"></i>
+        </div>
+        <div class="col-md-4 labelcontent">
+            <p>Oral care</p>
+        </div>
+        <div class="col-md-7 form-text">
+            <input pInputText type="text" required name="chartheadname" class="form-control" />
+            <p class="mb-4">Consider how, e.g. nutrition and hydration - mouth swab, moisture. Food fluid monitoring (if
+                appropriate - liaise with GP)</p>
+        </div>
+        <div class="col-md-1 form-icon ">
+            <i class="fa-solid fa-info"></i>
+        </div>
+        <div class="col-md-4 labelcontent">
+            <p>Eating and drinking (nutrition and hydration)</p>
+        </div>
+        <div class="col-md-7 form-text">
+            <input pInputText type="text" required name="chartheadname" class="form-control" />
+            <p class="mb-4">How will you support nutrition and hydration. Food fluid monitoring (if appropriate - liaise
+                with GP)</p>
+        </div>
+        <div class="col-md-1 form-icon ">
+            <i class="fa-solid fa-info"></i>
+        </div>
+        <div class="col-md-4 labelcontent">
+            <p>Skin care</p>
+        </div>
+        <div class="col-md-7 form-text">
+            <input pInputText type="text" required name="chartheadname" class="form-control" />
+            <p class="mb-4">Consider how, e.g. creaming regime</p>
+        </div>
+        <div class="col-md-1 form-icon ">
+            <i class="fa-solid fa-info"></i>
+        </div>
+        <div class="col-md-4 labelcontent">
+            <p>Re-positioning / pressure relief</p>
+        </div>
+        <div class="col-md-7 form-text">
+            <input pInputText type="text" required name="chartheadname" class="form-control" />
+            <p class="mb-4">Consider how, e.g. pressure relieving equipment / re-positioning</p>
+        </div>
+        <div class="col-md-1 form-icon ">
+            <i class="fa-solid fa-info"></i>
+        </div>
+        <div class="col-md-4 labelcontent">
+            <p>Personal hygiene</p>
+        </div>
+        <div class="col-md-7 form-text">
+            <input pInputText type="text" required name="chartheadname" class="form-control" />
+        </div>
+        <div class="col-md-1 form-icon ">
+            <i class="fa-solid fa-info"></i>
+        </div>
+        <div class="col-md-4 labelcontent">
+            <p>Emotional support</p>
+        </div>
+        <div class="col-md-7 form-text">
+            <input pInputText type="text" required name="chartheadname" class="form-control" />
+            <p class="mb-4">Consider how, e.g. being present, talking, appropriate touch with comforts</p>
+        </div>
+        <div class="col-md-1 form-icon ">
+            <i class="fa-solid fa-info"></i>
+        </div>
+        <div class="col-md-4 labelcontent">
+            <p>Close observations</p>
+        </div>
+        <div class="col-md-7 form-text">
+            <input pInputText type="text" required name="chartheadname" class="form-control" />
+            <p class="mb-4">Consider how, e.g. record 30 minute observations (DoLs). Consider if there are any
+                restrictions in place / increase in risks such as falls, what measures have been put in place. MAC and
+                Best Interest Assessment may be required</p>
+        </div>
+        <div class="col-md-1 form-icon ">
+            <i class="fa-solid fa-info"></i>
+        </div>
+        <div class="col-md-4 labelcontent">
+            <p>Additional information</p>
+        </div>
+        <div class="col-md-7 form-text">
+            <input pInputText type="text" required name="chartheadname" class="form-control" />
+
+        </div>
+        <div class="col-md-1 form-icon ">
+            <i class="fa-solid fa-info"></i>
+        </div>
+        <div class="col-md-4 labelcontent">
+            <p>Have any restrictive measures been put in to place</p>
+        </div>
+        <div class="col-md-7 form-text">
+            <p-dropdown placeholder="Select" [style]="{ width: '100%' }">
+            </p-dropdown>
+            <p class="mb-4">E.g. crash mat (increase in falls)</p>
+        </div>
+        <div class="col-md-4 labelcontent">
+            <p>If yes, please provide date completed</p>
+        </div>
+        <div class="col-md-7 form-text">
+            <div class="input-group date">
+                <p-calendar name="DateOfBirth" [showIcon]="true" inputId="icon" [dateFormat]="" class="iconcal"
+                    [readonlyInput]="true" appendTo="body" [maxDate]="" #dobref=""></p-calendar>
+                <div *ngIf="" class="alert alert-danger">
+                </div>
+            </div>
+            <p class="mb-4">Ensure copy held with care plan</p>
+        </div>
+        <div class="col-md-4 labelcontent">
+            <p>Clinical Frailty Scale</p>
+        </div>
+        <div class="col-md-7 form-text">
+            <p-dropdown placeholder="Select" [style]="{ width: '100%' }">
+            </p-dropdown>
+            <p class="mb-4">Please chose which profile best describe the person we are assessing -</p>
+        </div>
+        <div class="col-md-1 form-icon ">
+            <i class="fa-solid fa-info"></i>
+        </div>
+
+        <div class="d-flex justify-content-end">
+            <div>
+                <span class="p-ml-left mr-4">
+                    <button pButton title="New" label="Save as Unfinished"></button>
+                    <span class="total-txt"></span>
+                </span>
+            </div>
+            <div>
+                <span class="p-ml-left mr-4">
+                    <button pButton title="New" label="Complete"></button>
+                    <span class="total-txt"></span>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
