@@ -123,7 +123,7 @@ export class CareEatsAndTreatsComponent extends AppComponentBase implements OnIn
 GetResidentStatusOfCapacity() {
   this._UtilityService.showSpinner();
     this.unsubscribe.add = this._CareEatsAndDrinks
-        .GetResidentStatusOfCapacity(true)
+        .GetResidentStatusOfCapacity(1)
         .subscribe({
             next: (data) => {
             //   console.log(data)
@@ -147,7 +147,7 @@ GetResidentStatusOfCapacity() {
 GetChoking() {
   this._UtilityService.showSpinner();
     this.unsubscribe.add = this._CareEatsAndDrinks
-        .GetChoking(true)
+        .GetChoking(1)
         .subscribe({
             next: (data) => {
             //   console.log(data)
@@ -171,7 +171,7 @@ GetChoking() {
 GetActionNeededToReduceChoking() {
   this._UtilityService.showSpinner();
     this.unsubscribe.add = this._CareEatsAndDrinks
-        .GetActionNeededToReduceChoking(true)
+        .GetActionNeededToReduceChoking(1)
         .subscribe({
             next: (data) => {
             //   console.log(data)
@@ -195,7 +195,7 @@ GetActionNeededToReduceChoking() {
 GetFood() {
   this._UtilityService.showSpinner();
     this.unsubscribe.add = this._CareEatsAndDrinks
-        .GetFood(true)
+        .GetFood(1)
         .subscribe({
             next: (data) => {
             //   console.log(data)
@@ -219,7 +219,7 @@ GetFood() {
 GetFluids() {
   this._UtilityService.showSpinner();
     this.unsubscribe.add = this._CareEatsAndDrinks
-        .GetFluids(true)
+        .GetFluids(1)
         .subscribe({
             next: (data) => {
             //   console.log(data)
@@ -243,7 +243,7 @@ GetFluids() {
 GetProfessionalInput() {
   this._UtilityService.showSpinner();
     this.unsubscribe.add = this._CareEatsAndDrinks
-        .GetProfessionalInput(true)
+        .GetProfessionalInput(1)
         .subscribe({
             next: (data) => {
             //   console.log(data)
@@ -267,7 +267,7 @@ GetProfessionalInput() {
 GetGoalsToAchieve() {
   this._UtilityService.showSpinner();
     this.unsubscribe.add = this._CareEatsAndDrinks
-        .GetGoalsToAchieve(true)
+        .GetGoalsToAchieve(1)
         .subscribe({
             next: (data) => {
             //   console.log(data)
@@ -291,7 +291,7 @@ GetGoalsToAchieve() {
 GetStrategyToManageNutrition() {
   this._UtilityService.showSpinner();
     this.unsubscribe.add = this._CareEatsAndDrinks
-        .GetStrategyToManageNutrition(true)
+        .GetStrategyToManageNutrition(1)
         .subscribe({
             next: (data) => {
             //   console.log(data)
@@ -315,7 +315,7 @@ GetStrategyToManageNutrition() {
 GetRiskOfMalnutrition() {
   this._UtilityService.showSpinner();
     this.unsubscribe.add = this._CareEatsAndDrinks
-        .GetRiskOfMalnutrition(true)
+        .GetRiskOfMalnutrition(1)
         .subscribe({
             next: (data) => {
             //   console.log(data)
@@ -375,7 +375,7 @@ if (this.userId != null && this.residentAdmissionInfoId != null && this.loginId!
                 this._UtilityService.hideSpinner();
                 if (data.actionResult.success == true){
                     this.EmitUpdateForm.emit(true);
-                  this.ResetModel();
+                //   this.ResetModel();
                     this._UtilityService.showSuccessAlert(
                         data.actionResult.errMsg
                     );
@@ -400,7 +400,7 @@ if (this.userId != null && this.residentAdmissionInfoId != null && this.loginId!
 ResetModel() {
   this.isEditable = true;
   this.CareAssessmentEatsAndDrinksFormsData = <any>{};
-  this.preSelectedFormData = <any>{};
+//   this.preSelectedFormData = <any>{};
   this.StatementType = 'Insert';
 }
 

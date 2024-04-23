@@ -133,7 +133,8 @@ export class PreAdmissionAssessmentFormsComponent
             this.GetPreAdmissionFormDetails(
                 this.preSelectedFormData.selectedFormID
             );
-
+            
+            
             this.StatementType = 'Update';
         } else {
             this.ResetModel();
@@ -213,7 +214,9 @@ export class PreAdmissionAssessmentFormsComponent
                     if (data.actionResult.success == true) {
                         var tdata = JSON.parse(data.actionResult.result);
                         tdata = tdata ? tdata : {};
+                        console.log(tdata)
                         this.PreAdmissionAssessmentFormsData = tdata;
+                        // console.log(this.PreAdmissionAssessmentFormsData)
                     } else {
                         this.PreAdmissionAssessmentFormsData = {};
                     }
