@@ -12,240 +12,212 @@ export class CareFeelingFreshAndCleanService {
 
   //#region CareAssessmentFeelingFreshAndClean DropdownValues
 
-  GetAppearance(id:any) {
+  GetAppearance(status:any) {
     let reqHeader = new HttpHeaders({
       'Content-Type': 'application/json',
       'Access-Control-Allow-Origin': environment.BaseUriAdmin,
       //'Authorization': 'Bearer ' + localStorage.getItem('token')
   });
   let params = new HttpParams();
-  params = params.append('fromId', id);
+  params = params.append('Status', status);
   return this._httpclient.get<any>(
       environment.BaseUriAdmin + 'api/Admin/GetAppearance',
       { headers: reqHeader, params: params }
   );
   }
 
-  GetCapacity(id:any) {
+  GetCapacity(status:any) {
     let reqHeader = new HttpHeaders({
       'Content-Type': 'application/json',
       'Access-Control-Allow-Origin': environment.BaseUriAdmin,
       //'Authorization': 'Bearer ' + localStorage.getItem('token')
   });
   let params = new HttpParams();
-  params = params.append('fromId', id);
+  params = params.append('Status', status);
   return this._httpclient.get<any>(
       environment.BaseUriAdmin + 'api/Admin/GetCapacity',
       { headers: reqHeader, params: params }
   );
   }
 
-  GetHygienePreference(id:any) {
+  GetHygienePreference(status:any) {
     let reqHeader = new HttpHeaders({
       'Content-Type': 'application/json',
       'Access-Control-Allow-Origin': environment.BaseUriAdmin,
       //'Authorization': 'Bearer ' + localStorage.getItem('token')
   });
   let params = new HttpParams();
-  params = params.append('fromId', id);
+  params = params.append('Status', status);
   return this._httpclient.get<any>(
       environment.BaseUriAdmin + 'api/Admin/GetHygienePreference',
       { headers: reqHeader, params: params }
   );
   }
 
-  GetDressingPreference(id:any) {
+  GetDressingPreference(status:any) {
     let reqHeader = new HttpHeaders({
       'Content-Type': 'application/json',
       'Access-Control-Allow-Origin': environment.BaseUriAdmin,
       //'Authorization': 'Bearer ' + localStorage.getItem('token')
   });
   let params = new HttpParams();
-  params = params.append('fromId', id);
+  params = params.append('Status', status);
   return this._httpclient.get<any>(
       environment.BaseUriAdmin + 'api/Admin/GetDressingPreference',
       { headers: reqHeader, params: params }
   );
   }
 
-  GetDressingAndUndressing(id:any) {
+  GetDressingAndUndressing(status:any) {
     let reqHeader = new HttpHeaders({
       'Content-Type': 'application/json',
       'Access-Control-Allow-Origin': environment.BaseUriAdmin,
       //'Authorization': 'Bearer ' + localStorage.getItem('token')
   });
   let params = new HttpParams();
-  params = params.append('fromId', id);
+  params = params.append('Status', status);
   return this._httpclient.get<any>(
       environment.BaseUriAdmin + 'api/Admin/GetDressingAndUndressing',
       { headers: reqHeader, params: params }
   );
   }
 
-  GetGrooming(id:any) {
+  GetGrooming(status:any) {
     let reqHeader = new HttpHeaders({
       'Content-Type': 'application/json',
       'Access-Control-Allow-Origin': environment.BaseUriAdmin,
       //'Authorization': 'Bearer ' + localStorage.getItem('token')
   });
   let params = new HttpParams();
-  params = params.append('fromId', id);
+  params = params.append('Status', status);
   return this._httpclient.get<any>(
       environment.BaseUriAdmin + 'api/Admin/GetGrooming',
       { headers: reqHeader, params: params }
   );
   }
 
-  GetGroomingAssistance(id:any) {
+  GetHairRoutine(status:any) {
     let reqHeader = new HttpHeaders({
       'Content-Type': 'application/json',
       'Access-Control-Allow-Origin': environment.BaseUriAdmin,
       //'Authorization': 'Bearer ' + localStorage.getItem('token')
   });
   let params = new HttpParams();
-  params = params.append('fromId', id);
-  return this._httpclient.get<any>(
-      environment.BaseUriAdmin + 'api/Admin/GetGroomingAssistance',
-      { headers: reqHeader, params: params }
-  );
-  }
-
-  GetHairRoutine(id:any) {
-    let reqHeader = new HttpHeaders({
-      'Content-Type': 'application/json',
-      'Access-Control-Allow-Origin': environment.BaseUriAdmin,
-      //'Authorization': 'Bearer ' + localStorage.getItem('token')
-  });
-  let params = new HttpParams();
-  params = params.append('fromId', id);
+  params = params.append('Status', status);
   return this._httpclient.get<any>(
       environment.BaseUriAdmin + 'api/Admin/GetHairRoutine',
       { headers: reqHeader, params: params }
   );
   }
 
-  GetEyeCare(id:any) {
+  GetEyeCare(status:any) {
     let reqHeader = new HttpHeaders({
       'Content-Type': 'application/json',
       'Access-Control-Allow-Origin': environment.BaseUriAdmin,
       //'Authorization': 'Bearer ' + localStorage.getItem('token')
   });
   let params = new HttpParams();
-  params = params.append('fromId', id);
+  params = params.append('Status', status);
   return this._httpclient.get<any>(
       environment.BaseUriAdmin + 'api/Admin/GetEyeCare',
       { headers: reqHeader, params: params }
   );
   }
 
-  GetNailCare(id:any) {
+  GetNailCare(status:any) {
     let reqHeader = new HttpHeaders({
       'Content-Type': 'application/json',
       'Access-Control-Allow-Origin': environment.BaseUriAdmin,
       //'Authorization': 'Bearer ' + localStorage.getItem('token')
   });
   let params = new HttpParams();
-  params = params.append('fromId', id);
+  params = params.append('Status', status);
   return this._httpclient.get<any>(
       environment.BaseUriAdmin + 'api/Admin/GetNailCare',
       { headers: reqHeader, params: params }
   );
   }
 
-  GetMakeup(id:any) {
+  GetMakeup(status:any) {
     let reqHeader = new HttpHeaders({
       'Content-Type': 'application/json',
       'Access-Control-Allow-Origin': environment.BaseUriAdmin,
       //'Authorization': 'Bearer ' + localStorage.getItem('token')
   });
   let params = new HttpParams();
-  params = params.append('fromId', id);
+  params = params.append('Status', status);
   return this._httpclient.get<any>(
       environment.BaseUriAdmin + 'api/Admin/GetMakeup',
       { headers: reqHeader, params: params }
   );
   }
 
-  GetJewellery(id:any) {
+  GetJewellery(status:any) {
     let reqHeader = new HttpHeaders({
       'Content-Type': 'application/json',
       'Access-Control-Allow-Origin': environment.BaseUriAdmin,
       //'Authorization': 'Bearer ' + localStorage.getItem('token')
   });
   let params = new HttpParams();
-  params = params.append('fromId', id);
+  params = params.append('Status', status);
   return this._httpclient.get<any>(
       environment.BaseUriAdmin + 'api/Admin/GetJewellery',
       { headers: reqHeader, params: params }
   );
   }
 
-  GetFragrance(id:any) {
+  GetFragrance(status:any) {
     let reqHeader = new HttpHeaders({
       'Content-Type': 'application/json',
       'Access-Control-Allow-Origin': environment.BaseUriAdmin,
       //'Authorization': 'Bearer ' + localStorage.getItem('token')
   });
   let params = new HttpParams();
-  params = params.append('fromId', id);
+  params = params.append('Status', status);
   return this._httpclient.get<any>(
       environment.BaseUriAdmin + 'api/Admin/GetFragrance',
       { headers: reqHeader, params: params }
   );
   }
 
-  GetFaceAndBodyCreams(id:any) {
+  GetFaceAndBodyCreams(status:any) {
     let reqHeader = new HttpHeaders({
       'Content-Type': 'application/json',
       'Access-Control-Allow-Origin': environment.BaseUriAdmin,
       //'Authorization': 'Bearer ' + localStorage.getItem('token')
   });
   let params = new HttpParams();
-  params = params.append('fromId', id);
+  params = params.append('Status', status);
   return this._httpclient.get<any>(
       environment.BaseUriAdmin + 'api/Admin/GetFaceAndBodyCreams',
       { headers: reqHeader, params: params }
   );
   }
 
-  GetGoalsToAchieveFreshAndClean(id:any) {
+  GetGoalsToAchieveFreshAndClean(status:any) {
     let reqHeader = new HttpHeaders({
       'Content-Type': 'application/json',
       'Access-Control-Allow-Origin': environment.BaseUriAdmin,
       //'Authorization': 'Bearer ' + localStorage.getItem('token')
   });
   let params = new HttpParams();
-  params = params.append('fromId', id);
+  params = params.append('Status', status);
   return this._httpclient.get<any>(
       environment.BaseUriAdmin + 'api/Admin/GetGoalsToAchieveFreshAndClean',
       { headers: reqHeader, params: params }
   );
   }
 
-  GetStrategyToManageHygiene(id:any) {
+  GetStrategyToManageHygiene(status:any) {
     let reqHeader = new HttpHeaders({
       'Content-Type': 'application/json',
       'Access-Control-Allow-Origin': environment.BaseUriAdmin,
       //'Authorization': 'Bearer ' + localStorage.getItem('token')
   });
   let params = new HttpParams();
-  params = params.append('fromId', id);
+  params = params.append('Status', status);
   return this._httpclient.get<any>(
       environment.BaseUriAdmin + 'api/Admin/GetStrategyToManageHygiene',
-      { headers: reqHeader, params: params }
-  );
-  }
-
-  GetActionToManageAdditionalRisk(id:any) {
-    let reqHeader = new HttpHeaders({
-      'Content-Type': 'application/json',
-      'Access-Control-Allow-Origin': environment.BaseUriAdmin,
-      //'Authorization': 'Bearer ' + localStorage.getItem('token')
-  });
-  let params = new HttpParams();
-  params = params.append('fromId', id);
-  return this._httpclient.get<any>(
-      environment.BaseUriAdmin + 'api/Admin/GetActionToManageAdditionalRisk',
       { headers: reqHeader, params: params }
   );
   }

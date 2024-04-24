@@ -6,13 +6,13 @@ import { environment } from 'src/environments/environment';
 @Injectable({
   providedIn: 'root'
 })
-export class CareEatsAndTreatsService {
+export class CareHearingAssessmentService {
 
   constructor(private _httpclient: HttpClient) { }
 
+  //#region CareAssessmentHearing DropDownValues
 
-  //#region CareAssessmentEatsAndDrinksDropDownValues
-  GetResidentStatusOfCapacity(status:any) {
+  GetHearingDiagnosisCheck(status:any) {
     let reqHeader = new HttpHeaders({
       'Content-Type': 'application/json',
       'Access-Control-Allow-Origin': environment.BaseUriAdmin,
@@ -21,12 +21,12 @@ export class CareEatsAndTreatsService {
   let params = new HttpParams();
   params = params.append('Status', status);
   return this._httpclient.get<any>(
-      environment.BaseUriAdmin + 'api/Admin/GetResidentStatusOfCapacity',
+      environment.BaseUriAdmin + 'api/Admin/GetHearingDiagnosisCheck',
       { headers: reqHeader, params: params }
   );
   }
 
-  GetChoking(status:any) {
+  GetCurrentHearingDiagnosis(status:any) {
     let reqHeader = new HttpHeaders({
       'Content-Type': 'application/json',
       'Access-Control-Allow-Origin': environment.BaseUriAdmin,
@@ -35,12 +35,12 @@ export class CareEatsAndTreatsService {
   let params = new HttpParams();
   params = params.append('Status', status);
   return this._httpclient.get<any>(
-      environment.BaseUriAdmin + 'api/Admin/GetChoking',
+      environment.BaseUriAdmin + 'api/Admin/GetCurrentHearingDiagnosis',
       { headers: reqHeader, params: params }
   );
   }
 
-  GetFood(status:any) {
+  GetHearingInterventions(status:any) {
     let reqHeader = new HttpHeaders({
       'Content-Type': 'application/json',
       'Access-Control-Allow-Origin': environment.BaseUriAdmin,
@@ -49,12 +49,12 @@ export class CareEatsAndTreatsService {
   let params = new HttpParams();
   params = params.append('Status', status);
   return this._httpclient.get<any>(
-      environment.BaseUriAdmin + 'api/Admin/GetFood',
+      environment.BaseUriAdmin + 'api/Admin/GetHearingInterventions',
       { headers: reqHeader, params: params }
   );
   }
 
-  GetFluids(status:any) {
+  GetHearingAids(status:any) {
     let reqHeader = new HttpHeaders({
       'Content-Type': 'application/json',
       'Access-Control-Allow-Origin': environment.BaseUriAdmin,
@@ -63,12 +63,12 @@ export class CareEatsAndTreatsService {
   let params = new HttpParams();
   params = params.append('Status', status);
   return this._httpclient.get<any>(
-      environment.BaseUriAdmin + 'api/Admin/GetFluids',
+      environment.BaseUriAdmin + 'api/Admin/GetHearingAids',
       { headers: reqHeader, params: params }
   );
   }
 
-  GetActionNeededToReduceChoking(status:any) {
+  GetAidsAssistance(status:any) {
     let reqHeader = new HttpHeaders({
       'Content-Type': 'application/json',
       'Access-Control-Allow-Origin': environment.BaseUriAdmin,
@@ -77,12 +77,12 @@ export class CareEatsAndTreatsService {
   let params = new HttpParams();
   params = params.append('Status', status);
   return this._httpclient.get<any>(
-      environment.BaseUriAdmin + 'api/Admin/GetActionNeededToReduceChoking',
+      environment.BaseUriAdmin + 'api/Admin/GetAidsAssistance',
       { headers: reqHeader, params: params }
   );
   }
 
-  GetGoalsToAchieve(status:any) {
+  GetGoalsToHearing(status:any) {
     let reqHeader = new HttpHeaders({
       'Content-Type': 'application/json',
       'Access-Control-Allow-Origin': environment.BaseUriAdmin,
@@ -91,58 +91,16 @@ export class CareEatsAndTreatsService {
   let params = new HttpParams();
   params = params.append('Status', status);
   return this._httpclient.get<any>(
-      environment.BaseUriAdmin + 'api/Admin/GetGoalsToAchieve',
-      { headers: reqHeader, params: params }
-  );
-  }
-
-  GetProfessionalInput(status:any) {
-    let reqHeader = new HttpHeaders({
-      'Content-Type': 'application/json',
-      'Access-Control-Allow-Origin': environment.BaseUriAdmin,
-      //'Authorization': 'Bearer ' + localStorage.getItem('token')
-  });
-  let params = new HttpParams();
-  params = params.append('Status', status);
-  return this._httpclient.get<any>(
-      environment.BaseUriAdmin + 'api/Admin/GetProfessionalInput',
-      { headers: reqHeader, params: params }
-  );
-  }
-
-  GetRiskOfMalnutrition(status:any) {
-    let reqHeader = new HttpHeaders({
-      'Content-Type': 'application/json',
-      'Access-Control-Allow-Origin': environment.BaseUriAdmin,
-      //'Authorization': 'Bearer ' + localStorage.getItem('token')
-  });
-  let params = new HttpParams();
-  params = params.append('Status', status);
-  return this._httpclient.get<any>(
-      environment.BaseUriAdmin + 'api/Admin/GetRiskOfMalnutrition',
-      { headers: reqHeader, params: params }
-  );
-  }
-
-  GetStrategyToManageNutrition(status:any) {
-    let reqHeader = new HttpHeaders({
-      'Content-Type': 'application/json',
-      'Access-Control-Allow-Origin': environment.BaseUriAdmin,
-      //'Authorization': 'Bearer ' + localStorage.getItem('token')
-  });
-  let params = new HttpParams();
-  params = params.append('Status', status);
-  return this._httpclient.get<any>(
-      environment.BaseUriAdmin + 'api/Admin/GetStrategyToManageNutrition',
+      environment.BaseUriAdmin + 'api/Admin/GetGoalsToHearing',
       { headers: reqHeader, params: params }
   );
   }
 
   //#endregion
 
-  //#region CareAssessmentEatsAndDrinks Form
+  //#region CareAssessmentHearing Form
 
-  GetCareAssessmentEatsAndDrinksDetails(fromId: any) {
+  GetCareAssessmentHearingDetails(fromId: any) {
     let reqHeader = new HttpHeaders({
         'Content-Type': 'application/json',
         'Access-Control-Allow-Origin': environment.BaseUriAdmin,
@@ -151,13 +109,13 @@ export class CareEatsAndTreatsService {
     let params = new HttpParams();
     params = params.append('fromId', fromId);
     return this._httpclient.get<any>(
-        environment.BaseUriAdmin + 'api/Admin/GetCareAssessmentEatsAndDrinksForm',
+        environment.BaseUriAdmin + 'api/Admin/GetCareAssessmentHearingForm',
         { headers: reqHeader, params: params }
     );
 }
 
-AddInsertUpdateCareAssessmentEatsAndDrinksForm(
-    CareAssessmentEatsAndDrinksFormsData: any
+AddInsertUpdateCareAssessmentHearingForm(
+  CareAssessmentHearingFormsData: any
 ): Observable<any> {
     let reqHeader = new HttpHeaders({
         'Content-Type': 'application/json',
@@ -165,11 +123,11 @@ AddInsertUpdateCareAssessmentEatsAndDrinksForm(
         //'Authorization': 'Bearer ' + localStorage.getItem('token')
     });
     let params = new HttpParams();
-    var data = JSON.stringify(CareAssessmentEatsAndDrinksFormsData).toString();
+    var data = JSON.stringify(CareAssessmentHearingFormsData).toString();
     console.log(data);
     return this._httpclient.post<any>(
         environment.BaseUriAdmin +
-            'api/Admin/AddInsertUpdateCareAssessmentEatsAndDrinksForm',
+            'api/Admin/AddInsertUpdateCareAssessmentHearingForm',
         data,
         { headers: reqHeader, params: params }
     );

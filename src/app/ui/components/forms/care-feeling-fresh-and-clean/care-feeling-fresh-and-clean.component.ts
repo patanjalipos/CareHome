@@ -134,7 +134,7 @@ export class CareFeelingFreshAndCleanComponent extends AppComponentBase implemen
 GetAppearance() {
   this._UtilityService.showSpinner();
   this.unsubscribe.add = this._CareFreshAndClean
-      .GetAppearance(true)
+      .GetAppearance(1)
       .subscribe({
           next: (data) => {
             // console.log(data)
@@ -159,7 +159,7 @@ GetAppearance() {
 GetCapacity() {
   this._UtilityService.showSpinner();
   this.unsubscribe.add = this._CareFreshAndClean
-      .GetCapacity(true)
+      .GetCapacity(1)
       .subscribe({
           next: (data) => {
           //   console.log(data)
@@ -183,7 +183,7 @@ GetCapacity() {
 GetHygienePreference() {
   this._UtilityService.showSpinner();
   this.unsubscribe.add = this._CareFreshAndClean
-      .GetHygienePreference(true)
+      .GetHygienePreference(1)
       .subscribe({
           next: (data) => {
           //   console.log(data)
@@ -207,7 +207,7 @@ GetHygienePreference() {
 GetDressingPreference() {
   this._UtilityService.showSpinner();
   this.unsubscribe.add = this._CareFreshAndClean
-      .GetDressingPreference(true)
+      .GetDressingPreference(1)
       .subscribe({
           next: (data) => {
           //   console.log(data)
@@ -231,7 +231,7 @@ GetDressingPreference() {
 GetDressingAndUndressing() {
   this._UtilityService.showSpinner();
   this.unsubscribe.add = this._CareFreshAndClean
-      .GetDressingAndUndressing(true)
+      .GetDressingAndUndressing(1)
       .subscribe({
           next: (data) => {
           //   console.log(data)
@@ -255,7 +255,7 @@ GetDressingAndUndressing() {
 GetGrooming() {
   this._UtilityService.showSpinner();
   this.unsubscribe.add = this._CareFreshAndClean
-      .GetGrooming(true)
+      .GetGrooming(1)
       .subscribe({
           next: (data) => {
           //   console.log(data)
@@ -280,7 +280,7 @@ GetGrooming() {
 GetHairRoutine() {
   this._UtilityService.showSpinner();
   this.unsubscribe.add = this._CareFreshAndClean
-      .GetHairRoutine(true)
+      .GetHairRoutine(1)
       .subscribe({
           next: (data) => {
           //   console.log(data)
@@ -304,7 +304,7 @@ GetHairRoutine() {
 GetEyeCare() {
   this._UtilityService.showSpinner();
   this.unsubscribe.add = this._CareFreshAndClean
-      .GetEyeCare(true)
+      .GetEyeCare(1)
       .subscribe({
           next: (data) => {
           //   console.log(data)
@@ -328,7 +328,7 @@ GetEyeCare() {
 GetNailCare() {
   this._UtilityService.showSpinner();
   this.unsubscribe.add = this._CareFreshAndClean
-      .GetNailCare(true)
+      .GetNailCare(1)
       .subscribe({
           next: (data) => {
           //   console.log(data)
@@ -352,7 +352,7 @@ GetNailCare() {
 GetMakeup() {
   this._UtilityService.showSpinner();
   this.unsubscribe.add = this._CareFreshAndClean
-      .GetMakeup(true)
+      .GetMakeup(1)
       .subscribe({
           next: (data) => {
           //   console.log(data)
@@ -376,7 +376,7 @@ GetMakeup() {
 GetJewellery() {
   this._UtilityService.showSpinner();
   this.unsubscribe.add = this._CareFreshAndClean
-      .GetJewellery(true)
+      .GetJewellery(1)
       .subscribe({
           next: (data) => {
           //   console.log(data)
@@ -400,7 +400,7 @@ GetJewellery() {
 GetFragrance() {
   this._UtilityService.showSpinner();
   this.unsubscribe.add = this._CareFreshAndClean
-      .GetFragrance(true)
+      .GetFragrance(1)
       .subscribe({
           next: (data) => {
           //   console.log(data)
@@ -424,7 +424,7 @@ GetFragrance() {
 GetFaceAndBodyCreams() {
   this._UtilityService.showSpinner();
   this.unsubscribe.add = this._CareFreshAndClean
-      .GetFaceAndBodyCreams(true)
+      .GetFaceAndBodyCreams(1)
       .subscribe({
           next: (data) => {
           //   console.log(data)
@@ -448,7 +448,7 @@ GetFaceAndBodyCreams() {
 GetGoalsToAchieveFreshAndClean() {
   this._UtilityService.showSpinner();
   this.unsubscribe.add = this._CareFreshAndClean
-      .GetGoalsToAchieveFreshAndClean(true)
+      .GetGoalsToAchieveFreshAndClean(1)
       .subscribe({
           next: (data) => {
           //   console.log(data)
@@ -472,7 +472,7 @@ GetGoalsToAchieveFreshAndClean() {
 GetStrategyToManageHygiene() {
   this._UtilityService.showSpinner();
   this.unsubscribe.add = this._CareFreshAndClean
-      .GetStrategyToManageHygiene(true)
+      .GetStrategyToManageHygiene(1)
       .subscribe({
           next: (data) => {
           //   console.log(data)
@@ -532,7 +532,7 @@ if (this.userId != null && this.residentAdmissionInfoId != null && this.loginId!
                 this._UtilityService.hideSpinner();
                 if (data.actionResult.success == true){
                     this.EmitUpdateForm.emit(true);
-                  this.ResetModel();
+                //   this.ResetModel();
                     this._UtilityService.showSuccessAlert(
                         data.actionResult.errMsg
                     );
@@ -558,7 +558,7 @@ if (this.userId != null && this.residentAdmissionInfoId != null && this.loginId!
 ResetModel() {
   this.isEditable = true;
   this.CareAssessmentFreshAndCleanFormsData = <any>{};
-  this.preSelectedFormData = <any>{};
+//   this.preSelectedFormData = <any>{};
   this.StatementType = 'Insert';
 }
 
