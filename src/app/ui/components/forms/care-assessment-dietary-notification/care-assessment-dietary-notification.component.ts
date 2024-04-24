@@ -81,6 +81,8 @@ export class CareAssessmentDietaryNotificationComponent
     ngOnChanges(changes: SimpleChanges): void {
         this.isEditable = this.preSelectedFormData.isEditable;
 
+        console.log(this.preSelectedFormData);
+
         if (this.preSelectedFormData.selectedFormID != null) {
             this.DietaryNotificationFormsData = <any>{};
             this.GetSelectedFormDetails(
@@ -100,8 +102,6 @@ export class CareAssessmentDietaryNotificationComponent
             'meetChefPreferenceOptions',
             'mealSizeOptions',
         ];
-
-        alert(FormTypes.CareAssessmentDietaryNotification);
 
         //Make requests in parallel
         forkJoin(
@@ -207,8 +207,11 @@ export class CareAssessmentDietaryNotificationComponent
 
             const objectBody: any = {
                 StatementType: this.StatementType,
-                CareContinencePromotionForm: this.DietaryNotificationFormsData,
+                DietaryNotificationForm: this.DietaryNotificationFormsData,
             };
+
+            console.log(objectBody);
+
             this._UtilityService.showSpinner();
             this.unsubscribe.add = this._FormService
                 .AddInsertUpdateFormData(objectBody)
