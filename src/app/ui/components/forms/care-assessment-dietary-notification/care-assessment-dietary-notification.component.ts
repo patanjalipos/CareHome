@@ -209,9 +209,6 @@ export class CareAssessmentDietaryNotificationComponent
                 StatementType: this.StatementType,
                 DietaryNotificationForm: this.DietaryNotificationFormsData,
             };
-
-            console.log(objectBody);
-
             this._UtilityService.showSpinner();
             this.unsubscribe.add = this._FormService
                 .AddInsertUpdateFormData(objectBody)
