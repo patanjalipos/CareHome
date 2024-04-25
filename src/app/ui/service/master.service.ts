@@ -69,7 +69,7 @@ export class MasterService {
             //'Authorization': 'Bearer ' + localStorage.getItem('token')
         });
         let params = new HttpParams();
-        params = params.append('fromMasterId', formMasterId);
+        params = params.append('formMasterId', formMasterId);
         params = params.append('dropDownName', dropdownName);
         params = params.append('Status', status);
         return this._httpclient.get<any>(
