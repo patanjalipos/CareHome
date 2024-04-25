@@ -1,1 +1,143 @@
-<p>home-master works!</p>
+<div *ngIf="mode==null">
+    <div class="card">
+        <p-table #dt [value]="lstMaster" responsiveLayout="scroll" styleClass="p-datatable-striped" [rowHover]="true"
+            [globalFilterFields]="['HomeCode','HomeName']" [scrollable]="true" scrollHeight="calc(100vh - 155px)">
+            <ng-template pTemplate="caption">
+                <div class="flex justify-content-between flex-column sm:flex-row">
+                    <span class="p-ml-left">
+                        <button pButton title="New" label="Add New" class="p-button-outlined mr-2" icon="pi pi-plus"
+                            (click)="AddNewItem()"></button>
+                        <span class="total-txt">
+                            {{lstMaster?.length>0?'Total Records:
+                            '+filteredValuesLength:''}} </span>
+                    </span>
+                    <span class="p-ml-auto">
+                        <button pButton title="Export Data" label=" " class="p-button-outlined mr-2"
+                            icon="pi pi-download" (click)="exportToItemExcel();"></button>
+                        <span class="p-input-icon-left">
+                            <i class="pi pi-search"></i>
+                            <input #filtr pInputText type="text" (input)="onGlobalFilter(dt, $event)"
+                                placeholder="Search..." /></span>
+                    </span>
+                </div>
+            </ng-template>
+            <ng-template pTemplate="emptymessage" let-columns>
+                <tr>
+                    <td [attr.colspan]="columns?.length">
+                        No records found
+                    </td>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="header">
+                <tr>
+                    <th>Home Code</th>
+                    <th>Home Name</th>
+                    <th>Order No.</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-dt let-i="rowIndex">
+                <tr>
+                    <td>{{dt.HomeCode}}</td>
+                    <td>{{dt.HomeName}}</td>
+                    <td>{{dt.OrderNo}}</td>
+                    <td>{{dt.Status==1?'Active':'Inactive'}}</td>
+                    <td>
+                        <a title="View/Edit" (click)="GetHomeMasterById(dt.HomeMasterId)">
+                            <i class="fa fa-eye" aria-hidden="true"></i>
+                        </a>
+                    </td>
+                </tr>
+            </ng-template>
+        </p-table>
+    </div>
+
+</div>
+<div *ngIf="mode!=null">
+    <form #myForm="ngForm">
+        <div class="card">
+            <div class="row">                
+                <div class="col-md-3">
+                    <label class="form-label">Home Code <span class="required">*</span></label>
+                    <input pInputText type="text" required name="homecode" [(ngModel)]="master.HomeCode"
+                        class="form-control" #homecode="ngModel" />
+
+                </div>
+                <div class="col-md-3">
+                    <label class="form-label">Home Name <span class="required">*</span></label>
+                    <input pInputText type="text" required name="homename" [(ngModel)]="master.HomeName"
+                        class="form-control" #homename="ngModel" />
+
+                </div>
+                <div class="col-md-3">
+                    <label class="form-label">Contact No</label>
+                         <p-inputNumber name="contactnumber" [(ngModel)]="master.ContactNumber"
+                        mode="decimal" [useGrouping]="false" [maxlength]="20"></p-inputNumber>  
+                </div>
+                <div class="col-md-3">
+                    <label class="form-label">Other Contact No</label>                  
+                        <p-inputNumber name="othercontactnumber" [(ngModel)]="master.OtherContactNumber"
+                        mode="decimal" [useGrouping]="false" [maxlength]="20"></p-inputNumber>
+                </div>
+                <div class="col-md-3">
+                    <label class="form-label">Email Address</label>                    
+                        <input type="text" name="email" pInputText [(ngModel)]="master.EmailId"
+                            [style]="{width: '100%'}" pattern="[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,3}$"
+                            #emailref="ngModel" />
+                           <div class="errorMessage pt-2" *ngIf="emailref.errors &&(emailref.touched || emailref.dirty)">
+                               <div>Please enter valid email id.</div>
+                           </div>
+                </div>
+                <div class="col-md-3">
+                    <label class="form-label">Fax</label>                   
+                        <p-inputNumber name="faxnumber" [(ngModel)]="master.FaxNumber"
+                        mode="decimal" [useGrouping]="false" [maxlength]="20"></p-inputNumber>                    
+                </div>
+                <div class="col-md-3">
+                    <label class="form-label">Country <span class="required">*</span></label>
+                    <p-dropdown [required]="true" name="ddlHeadName" [options]="lstCountryMaster" [(ngModel)]="master.CountryId"
+                        optionLabel="name" optionValue="code"
+                        [filter]="true" placeholder="Choose country" [style]="{width: '100%'}">
+                    </p-dropdown>
+                </div>
+                <div class="col-md-3">
+                    <label class="form-label">State</label>
+                    <input pInputText type="text" name="state" [(ngModel)]="master.State"
+                        class="form-control" #statename="ngModel" />
+
+                </div>
+                <div class="col-md-3">
+                    <label class="form-label">Address</label>
+                    <input pInputText type="text" name="address" [(ngModel)]="master.Address"
+                        class="form-control" #address="ngModel" />
+
+                </div>
+                
+                <div class="col-md-3">
+                    <label class="form-label">Order No. <span class="required">*</span></label>
+                    <p-inputNumber [required]="true" name="txtOrder" [(ngModel)]="master.OrderNo"
+                        mode="decimal"></p-inputNumber>
+
+                </div>
+                <div class="col-md-3">
+                    <label class="form-label">Status<span class="required">*</span></label>
+                    <p-dropdown [required]="true" [options]="stlststatus" [(ngModel)]="master.Status"
+                        [ngModelOptions]="{standalone: true}" optionLabel="name" optionValue="code" placeholder="Select"
+                        [style]="{width: '100%'}">
+                    </p-dropdown>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <div class="flex flex-wrap gap-2">
+                        <button pButton type="button" label="Submit" (click)="Save()" class="btn-primary"
+                            [disabled]="!myForm.form.valid"></button>
+                        <button pButton type="button" label="Close" class="btn-secondary"
+                            (click)="Close()"></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

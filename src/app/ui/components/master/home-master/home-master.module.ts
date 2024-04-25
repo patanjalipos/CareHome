@@ -7,7 +7,8 @@ import { FormsModule } from '@angular/forms';
 import { TableModule } from 'primeng/table';
 import { DropdownModule } from 'primeng/dropdown';
 import { InputTextModule } from 'primeng/inputtext';
-
+import { InputNumberModule } from "primeng/inputnumber";
+import { ButtonModule } from 'primeng/button';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,8 @@ import { InputTextModule } from 'primeng/inputtext';
     TableModule,
     DropdownModule,
     InputTextModule,
+    InputNumberModule,
+    ButtonModule,
   ]
 })
 export class HomeMasterModule { }

@@ -1,103 +1,58 @@
+
+<div class="card">
 <div class="row">
-    <div class="col-md-4">
-        <div class="card">
-            <div class="profile-box">
-                <div class="profile-img">
-                    <img src="../../../../../assets/Images/profile.png">
-                </div>
-                <h1>Dianne Russell</h1>
-                <div class="detail-table">
-                <table class="table">
-                    <tr>
-                        <td>Dob</td>
-                        <td>:</td>
-                        <td>01-01-1966</td>
-                    </tr>
-                    <tr>
-                        <td>Contact No.</td>
-                        <td>:</td>
-                        <td>9876543210</td>
-                    </tr>
-                    <tr>
-                        <td>Date of Add.</td>
-                        <td>:</td>
-                        <td>16-11-2022</td>
-                    </tr>
-                    <tr>
-                        <td>Blood Group</td>
-                        <td>:</td>
-                        <td>A+ve</td>
-                    </tr>
-                    <tr>
-                        <td>Address</td>
-                        <td>:</td>
-                        <td>41-43, United Kingdom</td>
-                    </tr>
-                    <tr>
-                        <td>Likes:</td>
-                        <td>:</td>
-                        <td> Fry ups, Toast</td>
-                    </tr>
-                    <tr>
-                        <td>Dislikes</td>
-                        <td>:</td>
-                        <td>None</td>
-                    </tr>
-                    <tr>
-                        <td>Drug Allergies</td>
-                        <td>:</td>
-                        <td>Paracetamol</td>
-                    </tr>
-                </table>
+    <div class="col-md-3">
+        <div class="care-cont">
+            <div class="short-cont" (click)="onClick('PC')">
+                <h2>Primary contact</h2>
             </div>
+            <div class="short-cont" (click)="onClick('SC')">
+                <h2>Secondary contact</h2>
+            </div>
+            <div class="short-cont" (click)="onClick('RPC')">
+                <h2>Responsible person contact</h2>
+            </div>
+            <div class="short-cont" (click)="onClick('FPA')">
+                <h2>First power of attorney</h2>
+            </div>
+            <div class="short-cont" (click)="onClick('SPA')">
+                <h2>Second power of attorney</h2>
+            </div>
+            <div class="short-cont" (click)="onClick('DR')">
+                <h2>Doctor</h2>
             </div>
         </div>
     </div>
-    <div class="col-md-8">
-        <div class="card pb-0 profile-tab">
-            <ul class="nav nav-tabs" id="myTab" role="tablist">
-                <li class="nav-item" role="presentation">
-                  <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true">Primary contact</button>
-                </li>
-                <li class="nav-item" role="presentation">
-                  <button class="nav-link" id="secondary-contact-tab" data-bs-toggle="tab" data-bs-target="#secondary-contact" type="button" role="tab" aria-controls="secondary-contact" aria-selected="false">Secondary contact</button>
-                </li>
-                <li class="nav-item" role="presentation">
-                  <button class="nav-link" id="responsible-person-contact-tab" data-bs-toggle="tab" data-bs-target="#responsible-person-contact" type="button" role="tab" aria-controls="responsible-person-contact" aria-selected="false">Responsible person contact</button>
-                </li>
-                <li class="nav-item" role="presentation">
-                  <button class="nav-link" id="first-power-of-attorney-tab" data-bs-toggle="tab" data-bs-target="#first-power-of-attorney" type="button" role="tab" aria-controls="first-power-of-attorney" aria-selected="false">First power of attorney</button>
-                </li>
-                <li class="nav-item" role="presentation">
-                  <button class="nav-link" id="second-power-of-attorney-tab" data-bs-toggle="tab" data-bs-target="#second-power-of-attorney" type="button" role="tab" aria-controls="second-power-of-attorney" aria-selected="false">Second power of attorney</button>
-                </li>
-                <li class="nav-item" role="presentation">
-                    <button class="nav-link" id="doctor-tab" data-bs-toggle="tab" data-bs-target="#doctor" type="button" role="tab" aria-controls="doctor" aria-selected="false">Doctor</button>
-                  </li>
-              </ul>
-        </div>
-        <div class="card">
-            
-            <div class="tab-content" id="myTabContent">
-                <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-                    <app-primary-contact></app-primary-contact>
+    <div class="col-md-9">
+        <form #myForm="ngForm">
+            <p-accordion>
+                <div id="PC" *ngIf="healthcareMode!=''">
+                    <app-primary-contact [mode]="healthcareMode" [userid]="selecteduserid"
+                    [admissionid]="selectedadmissionid"></app-primary-contact>
                 </div>
-                <div class="tab-pane fade" id="secondary-contact" role="tabpanel" aria-labelledby="secondary-contact-tab">
-                    <app-secondary-contact></app-secondary-contact>
+                <div id="SC" *ngIf="healthcareMode!=''">
+                    <app-secondary-contact [mode]="healthcareMode" [userid]="selecteduserid"
+                    [admissionid]="selectedadmissionid"></app-secondary-contact>
                 </div>
-                <div class="tab-pane fade" id="responsible-person-contact" role="tabpanel" aria-labelledby="responsible-person-contact-tab">
-                    <app-responsible-person-contact></app-responsible-person-contact>
+                <div id="RPC" *ngIf="healthcareMode!=''">
+                    <app-responsible-person-contact [mode]="healthcareMode" [userid]="selecteduserid"
+                    [admissionid]="selectedadmissionid"></app-responsible-person-contact>
                 </div>
-                <div class="tab-pane fade" id="first-power-of-attorney" role="tabpanel" aria-labelledby="first-power-of-attorney-tab">
-                    <app-first-power-of-attorney></app-first-power-of-attorney>
+                <div id="FPA" *ngIf="healthcareMode!=''">
+                    <app-first-power-of-attorney [mode]="healthcareMode" [userid]="selecteduserid"
+                    [admissionid]="selectedadmissionid"></app-first-power-of-attorney>
                 </div>
-                <div class="tab-pane fade" id="second-power-of-attorney" role="tabpanel" aria-labelledby="second-power-of-attorney-tab">
-                    <app-second-power-of-attorney></app-second-power-of-attorney>
+                <div id="SPA" *ngIf="healthcareMode!=''">
+                    <app-second-power-of-attorney [mode]="healthcareMode" [userid]="selecteduserid"
+                    [admissionid]="selectedadmissionid"></app-second-power-of-attorney>
                 </div>
-                <div class="tab-pane fade" id="doctor" role="tabpanel" aria-labelledby="doctor-tab">
-                    <app-doctor></app-doctor>
+                <div id="DR" *ngIf="healthcareMode!=''">
+                    <app-doctor [mode]="healthcareMode" [userid]="selecteduserid"
+                    [admissionid]="selectedadmissionid"></app-doctor>
                 </div>
-              </div>
-        </div>
+            </p-accordion>
+        </form>
+
     </div>
+</div>
 </div>

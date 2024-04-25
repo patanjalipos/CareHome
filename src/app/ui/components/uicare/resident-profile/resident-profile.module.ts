@@ -1,4 +1,3 @@
-import { BodyMapModule } from './../body-map/body-map.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
@@ -18,9 +17,7 @@ import { FormsModule } from '@angular/forms';
 import { FluidAssessmentModule } from '../fluid-assessment/fluid-assessment.module';
 import { PersonalDetailsModule } from '../personal-details/personal-details.module';
 import { TodoListModule } from '../todo-list/todo-list.module';
-import { PainAssessmentModule } from '../pain-assessment/pain-assessment.module';
 import { DietPlannerModule } from '../diet-planner/diet-planner.module';
-import { FallRiskAssessmentModule } from '../fall-risk-assessment/fall-risk-assessment.module';
 
 @NgModule({
   declarations: [
@@ -32,8 +29,6 @@ import { FallRiskAssessmentModule } from '../fall-risk-assessment/fall-risk-asse
     PersonalDetailsModule,
     FluidAssessmentModule,
     DietPlannerModule,
-    FallRiskAssessmentModule,
-    BodyMapModule,
     FormsModule,
     AutoCompleteModule,
 		CalendarModule,
@@ -46,7 +41,6 @@ import { FallRiskAssessmentModule } from '../fall-risk-assessment/fall-risk-asse
 		InputTextareaModule,
 		InputTextModule,
     TodoListModule,
-    PainAssessmentModule
   ]
 })
 export class ResidentProfileModule { }

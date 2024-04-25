@@ -3,9 +3,14 @@ import { CommonModule } from '@angular/common';
 
 import { FirstPowerOfAttorneyRoutingModule } from './first-power-of-attorney-routing.module';
 import { FirstPowerOfAttorneyComponent } from './first-power-of-attorney.component';
+
+import {FormsModule} from '@angular/forms';
+import { AccordionModule } from 'primeng/accordion';
 import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from "primeng/inputtext";
-import {FormsModule} from '@angular/forms';
+import { DropdownModule } from 'primeng/dropdown';
+import { InputNumberModule } from 'primeng/inputnumber';
+
 @NgModule({
   declarations: [
     FirstPowerOfAttorneyComponent
@@ -13,9 +18,12 @@ import {FormsModule} from '@angular/forms';
   imports: [
     CommonModule,
     FirstPowerOfAttorneyRoutingModule,
+    FormsModule,
+    AccordionModule,
     ButtonModule,
     InputTextModule,
-    FormsModule
+    DropdownModule,
+    InputNumberModule
   ],
   exports:[FirstPowerOfAttorneyComponent]
 })

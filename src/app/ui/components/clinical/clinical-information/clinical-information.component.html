@@ -1,47 +1,55 @@
-<div class="row mt-2">
-    <div class="col-md-12">
-        <div class="flex flex-wrap gap-2">
+<p-accordionTab>
+    <p-header class="w-100">
+        <div class="acc-tab">
+            <span>Clinical information</span>
+            <div>
             <button *ngIf="mode=='view'" pButton type="button" label="Edit" class="btn btn-primary"
-                (click)="edit()"></button>
+                (click)="$event.stopPropagation();edit()" [disabled]="isEditable"></button>
             <button *ngIf="mode=='edit'" pButton type="button" label="Save" class="btn btn-primary"
-                (click)="save()"></button>
-            <button *ngIf="mode=='edit'" pButton type="button" label="Close" class="btn btn-secondary"
-                (click)="close()"></button>
+                (click)="$event.stopPropagation();save()"></button>
+            <button *ngIf="mode=='edit'" pButton type="button" label="Cancel" class="btn btn-secondary ml-2"
+                (click)="$event.stopPropagation();close()"></button>
+            </div>
         </div>
-    </div>
-</div>
-
+</p-header>
 <div *ngIf="mode=='view'">
     <span style="color: #808080;">Coronavirus:</span><br>
-    <div>{{clinicalinformation.CoronaVirus}}</div><br>
+    <h5 class="m-0 mb-2">{{Clinical.IsCovid?'Is suspected of having or has been diagnosed with COVID-19. Please keep isolated.':''}}</h5>
     <span style="color: #808080;">Diet:</span><br>
-    <div>{{clinicalinformation.Diet}}</div><br>
+    <h5 class="m-0 mb-2">{{Clinical.Diet}}</h5>
     <span style="color: #808080;">Special Needs / Diagnosis:</span><br>
-    <div>{{clinicalinformation.Diagnosis}}</div><br>
+    <h5 class="m-0 mb-2">{{Clinical.Diagnosis}}</h5>
     <span style="color: #808080;">Other information</span><br>
-    <div>{{clinicalinformation.OtherInfo}}</div>
+    <h5 class="m-0 mb-2">{{Clinical.OtherInfo}}</h5>
 </div>
 <div *ngIf="mode=='edit'">
     <div class="row">
-        <div class="col-md-12">
+        <div class="col-md-6">
             <label>CoronaVirus:</label>
-            <textarea class="form-control" rows="4" name="diet" [(ngModel)]="clinicalinformation.CoronaVirus"
-                style="width: 100%;"></textarea>
+            <div class="field-checkbox">
+                <p-checkbox [(ngModel)]="Clinical.IsCovid" [binary]="true" name="DNAR" inputId="binary"></p-checkbox>
+                <label for="binary"><b>Has Coronavirus (COVID-19).</b></label>
+            </div>
         </div>
-        <div class="col-md-12">
+    </div>
+        <div class="row">
+        <div class="col-md-6">
             <label>Diet:</label>
-            <textarea class="form-control" rows="4" name="diet" [(ngModel)]="clinicalinformation.Diet"
+            <textarea class="form-control" rows="4" name="diet" [(ngModel)]="Clinical.Diet"
                 style="width: 100%;"></textarea>
-        </div>
-        <div class="col-md-12">
+        </div></div>
+        <div class="row">
+        <div class="col-md-6">
             <label>Special needs / diagnosis:</label>
-            <textarea class="form-control" rows="4" name="diet" [(ngModel)]="clinicalinformation.Diagnosis"
+            <textarea class="form-control" rows="4" name="diet" [(ngModel)]="Clinical.Diagnosis"
                 style="width: 100%;"></textarea>
-        </div>
-        <div class="col-md-12">
+        </div></div>
+        <div class="row">
+        <div class="col-md-6">
             <label>Other information:</label>
-            <textarea class="form-control" rows="4" name="diet" [(ngModel)]="clinicalinformation.OtherInfo"
+            <textarea class="form-control" rows="4" name="diet" [(ngModel)]="Clinical.OtherInfo"
                 style="width: 100%;"></textarea>
         </div>
     </div>
 </div>
+</p-accordionTab>

@@ -41,6 +41,6 @@ import { AppLayoutComponent } from "./app.layout.component";
         RouterModule,
         AppConfigModule
     ],
-    exports: [AppLayoutComponent]
+    exports: [AppLayoutComponent, AppSidebarComponent,]
 })
 export class AppLayoutModule { }

@@ -1,86 +1,84 @@
-<div class="row mt-2">
-    <div class="col-md-12">
-        <div class="flex flex-wrap gap-2">
-            <button *ngIf="mode=='view'" pButton type="button" label="Edit" class="btn btn-primary"
-                (click)="edit()"></button>
-            <button *ngIf="mode=='edit'" pButton type="button" label="Save" class="btn btn-primary"
-                (click)="save()"></button>
-            <button *ngIf="mode=='edit'" pButton type="button" label="Close" class="btn btn-secondary"
-                (click)="close()"></button>
-        </div>
-    </div>
-</div>
+<form #myForm="ngForm">
+    <p-accordionTab [selected]="true">
+        <p-header class="w-100">
+            <div class="acc-tab">
+                <span>First power of attorney</span>
+                <div>
+                    <button *ngIf="mode=='view'" pButton type="button" label="Edit" class="btn btn-primary"
+                        (click)="$event.stopPropagation();edit()" [disabled]="isEditable"></button>
+                    <button *ngIf="mode=='edit'" pButton type="button" label="Save" class="btn btn-primary"
+                        (click)="$event.stopPropagation();save()" [disabled]="!myForm.form.valid"></button>
+                    <button *ngIf="mode=='edit'" pButton type="button" label="Cancel" class="btn btn-secondary ml-2"
+                        (click)="$event.stopPropagation();close()"></button>
+                </div>
+            </div>
+        </p-header>
+        <div class="row mt25">            
+                <h5 class="m-0">Contact note</h5>
+                <div class="col-md-12">
+                    <div *ngIf="mode=='edit'">
+                        <input type="text" name="contactnote" pInputText [(ngModel)]="Contact.ContactNote"
+                            [style]="{width: '100%'}" class="mb-2" />
+                    </div>
+                    <div class="my-2" *ngIf="mode=='view'">{{Contact.ContactNote}}</div>
+                </div>
+                <h5 class="m-0">First power of attorney </h5>
+                <div class="col-md-6">
+                    <label class="form-label"><span class="required">*</span> Power of attorney type</label>
+                    <div *ngIf="mode=='edit'">
+                        <p-dropdown [required]="true" name="ddlAttorneyType" [options]="lstAttorneyTypeMaster"
+                            [(ngModel)]="Contact.AttorneyTypeMasterId" optionLabel="TypeName"
+                            optionValue="AttorneyTypeMasterId" [filter]="true" placeholder="Select POA Type"
+                            [style]="{width: '100%'}" #poaref="ngModel">
+                        </p-dropdown>
+                        <div class="errorMessage pt-2" *ngIf="poaref.errors &&(poaref.touched || poaref.dirty)">
+                            <div>POA type is required.</div>
+                        </div>
+                    </div>
+                    <div class="my-2" *ngIf="mode=='view'">{{Contact.TypeName}}</div>
+                </div>
 
-<div class="row mt25" *ngIf="mode=='view'">
-    <div class="col">
-        <div class="row">
-            <span><b>Contact note</b></span>
-            <div class="col-md-12">
-               {{firstPowerOfAttorneyContact.ContactNote}} 
-            </div>
-            <span class="mt-5"><b>First power of attorney</b></span>
-            <div class="col-md-6">
-                <span style="color: #808080;">Power of attorney type</span><br>
-                {{firstPowerOfAttorneyContact.Attorneytype}}
-            </div>
-            <div class="col-md-6">
-                <span style="color: #808080;">Other type</span><br>
-                {{firstPowerOfAttorneyContact.Othertype}} 
-            </div>
-            <span class="mt-5"><b>Contact name</b></span>
-            <div class="col-md-6">
-                <span style="color: #808080;">First name/Organization name</span><br>
-                {{firstPowerOfAttorneyContact.FirstName}} 
-            </div>
-            <div class="col-md-6">
-                <span style="color: #808080;">Last name</span><br>
-                {{firstPowerOfAttorneyContact.LastName}}
-            </div>
-            <span class="mt-5"><b>Contact Details</b></span>
-            <div class="col-md-4">
-                <span style="color: #808080;">Telephone</span><br>
-                {{firstPowerOfAttorneyContact.Telephone}}
-            </div>
-        </div>
-    </div>
-</div>
+                <div class="col-md-6">
+                    <label class="form-label">Other type</label>
+                    <div *ngIf="mode=='edit'">
+                        <input type="text" name="othertype" pInputText [(ngModel)]="Contact.OtherType"
+                            [style]="{width: '100%'}" />
+                    </div>
+                    <div class="my-2" *ngIf="mode=='view'">{{Contact.OtherType}}</div>
+                </div>
+                <h5 class="m-0">Contact name </h5>
+                <div class="col-md-6">
+                    <label class="form-label"><span class="required">*</span> First name / Organisation name</label>
+                    <div *ngIf="mode=='edit'">
+                        <input required type="text" name="firstname" pInputText [(ngModel)]="Contact.FirstName"
+                            [style]="{width: '100%'}" #fNameref="ngModel" class="mb-2" />
+                        <div class="errorMessage pt-2" *ngIf="fNameref.errors &&(fNameref.touched || fNameref.dirty)">
+                            <div>First name is required.</div>
+                        </div>
+                    </div>
+                    <div class="my-2" *ngIf="mode=='view'">{{Contact.FirstName}}</div>
+                </div>
 
-<div class="row mt25" *ngIf="mode=='edit'">
-    <div class="col">
-        <div class="row">
-            <span><b>Contact note</b></span>
-            <div class="col-md-12">
-                <input type="text" name="txtResidentIndicators" pInputText
-                [(ngModel)]="firstPowerOfAttorneyContact.ContactNote" [style]="{width: '100%'}" />  
-            </div>
-            <span class="mt-5"><b>First power of attorney</b></span>
-            <div class="col-md-6">
-                <span style="color: #808080;">Power of attorney type</span><br>
-                <input type="text" name="txtResidentIndicators" pInputText
-                [(ngModel)]="firstPowerOfAttorneyContact.Attorneytype" [style]="{width: '100%'}" />  
-            </div>
-            <div class="col-md-6">
-                <span style="color: #808080;">Other type</span><br>
-                <input type="text" name="txtResidentIndicators" pInputText
-                [(ngModel)]="firstPowerOfAttorneyContact.Othertype" [style]="{width: '100%'}" />  
-            </div>
-            <span class="mt-5"><b>Contact name</b></span>
-            <div class="col-md-6">
-                <span style="color: #808080;">First name/Organization name</span><br>
-                <input type="text" name="txtResidentIndicators" pInputText
-                [(ngModel)]="firstPowerOfAttorneyContact.FirstName" [style]="{width: '100%'}" />  
-            </div>
-            <div class="col-md-6">
-                <span style="color: #808080;">Last name</span><br>
-                <input type="text" name="txtResidentIndicators" pInputText
-                [(ngModel)]="firstPowerOfAttorneyContact.LastName" [style]="{width: '100%'}" />  
-            </div>
-            <span class="mt-5"><b>Contact Details</b></span>
-            <div class="col-md-4">
-                <span style="color: #808080;">Telephone</span><br>
-                <input type="text" name="txtResidentIndicators" pInputText
-                [(ngModel)]="firstPowerOfAttorneyContact.Telephone" [style]="{width: '100%'}" /> 
-            </div>
-        </div>
-    </div>
-</div>
+                <div class="col-md-6">
+                    <label class="form-label"><span class="required">*</span> Last name</label>
+                    <div *ngIf="mode=='edit'">
+                        <input required type="text" name="lastname" pInputText [(ngModel)]="Contact.LastName"
+                            [style]="{width: '100%'}" #lNameref="ngModel" />
+                        <div class="errorMessage pt-2" *ngIf="lNameref.errors &&(lNameref.touched || lNameref.dirty)">
+                            <div>Last name is required.</div>
+                        </div>
+                    </div>
+                    <div class="my-2" *ngIf="mode=='view'">{{Contact.LastName}}</div>
+                </div>
+                <h5 class="m-0">Contact details</h5>
+                <div class="col-md-6">
+                    <label class="form-label">Telephone</label>
+                    <div *ngIf="mode=='edit'">
+                        <p-inputNumber name="telephone" [(ngModel)]="Contact.Telephone"
+                        mode="decimal" [useGrouping]="false" [maxlength]="20"></p-inputNumber>                        
+                    </div>
+                    <div class="my-2" *ngIf="mode=='view'">{{Contact.Telephone}}</div>
+                </div>
+            </div>        
+    </p-accordionTab>
+</form>

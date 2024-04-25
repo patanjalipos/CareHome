@@ -2,9 +2,9 @@
         <div class="card">
                 <p-table #dt [value]="lstMenuItemMaster" responsiveLayout="scroll" styleClass="p-datatable-striped"
                     [rowHover]="true" [globalFilterFields]="['MenuItemName','MenuItemURL','ParentMenuName','ModuleName']"
-                    [scrollable]="true" scrollHeight="calc(100vh - 215px)">
+                     scrollHeight="calc(100vh - 155px)">
                     <ng-template pTemplate="caption">
-                        <div class="flex justify-content-between flex-column sm:flex-row">
+                        <div class="flex justify-content-between flex-column sm:flex-row search-res">
                             <span class="p-ml-left">
                                 <button pButton title="New" label="Add New" class="p-button-outlined mr-2" icon="pi pi-plus"
                                 (click)="AddNewMenuItemType()"></button>
@@ -31,7 +31,7 @@
                     </ng-template>
                     <ng-template pTemplate="header">
                         <tr>
-                            <th>Module Name</th>
+                            <th>User Type</th>
                             <th>Menu Name</th>
                             <th>Menu URL</th>
                             <th>Parent Menu</th>
@@ -42,14 +42,14 @@
                     </ng-template>
                     <ng-template pTemplate="body" let-dt let-i="rowIndex">
                         <tr>
-                            <td>{{dt.modulename}}</td>
-                            <td>{{dt.menuitemname}}</td>
-                            <td>{{dt.menuitemurl}}</td>
-                            <td>{{dt.parentmenuname}}</td>
-                            <td>{{dt.orderno}}</td>
-                            <td>{{dt.status==true?'Active':'Inactive'}}</td>
+                            <td>{{dt.ModuleName}}</td>
+                            <td>{{dt.MenuItemName}}</td>
+                            <td>{{dt.MenuItemURL}}</td>
+                            <td>{{dt.ParentMenuName}}</td>
+                            <td>{{dt.OrderNo}}</td>
+                            <td>{{dt.Status==1?'Active':'Inactive'}}</td>
                              <td>
-                                <a matTooltip="View/Edit" (click)="LoadMenuItemMasterById(dt.menuitemmasterid)">
+                                <a title="View/Edit" (click)="LoadMenuItemMasterById(dt.MenuItemId)">
                                     <i class="fa fa-eye" aria-hidden="true"></i>
                                 </a>
                             </td> 
@@ -64,7 +64,7 @@
                 <div class="card">
                     <div class="row">
                         <div class="col-md-3"> 
-                                <label class="form-label">Module Name <span class="required">*</span></label>
+                                <label class="form-label">User Type <span class="required">*</span></label>
                                 <p-multiSelect [required]="true" name="ddlUserType" display="chip" 
                                     [options]="lstUserTypeMaster" [(ngModel)]="selectedUserType" optionLabel="UserTypeName" optionValue="UserTypeId" 
                                     placeholder="Please Select User Type" [style]="{width: '100%'}" #usertyperef="ngModel">                                    
@@ -73,17 +73,17 @@
                         <div class="col-md-3"> 
                                <label class="form-label">Menu Name <span class="required">*</span></label>
                                 <input pInputText type="text" required name="MenuItemName"
-                                    [(ngModel)]="MenuItemMaster.menuitemname" class="form-control" #menuname="ngModel"/>
+                                    [(ngModel)]="MenuItemMaster.MenuItemName" class="form-control" #menuname="ngModel"/>
                                     
                         </div>
                         <div class="col-md-3"> 
                                 <label class="form-label">Menu URL</label>
                                 <input pInputText type="text" name="MenuItemURL"
-                                    [(ngModel)]="MenuItemMaster.menuitemurl" class="form-control" />                           
+                                    [(ngModel)]="MenuItemMaster.MenuItemURL" class="form-control" />                           
                         </div>
                         <div class="col-md-3"> 
                                 <label class="form-label">SubMenu <span class="required">*</span></label>
-                                <p-dropdown [required]="true" [options]="stlstsubmenu" [(ngModel)]="MenuItemMaster.submenu"
+                                <p-dropdown [required]="true" [options]="stlstsubmenu" [(ngModel)]="MenuItemMaster.SubMenu"
                                 [ngModelOptions]="{standalone: true}" optionLabel="name" optionValue="code"
                                 placeholder="Select" [style]="{width: '100%'}">
                             </p-dropdown>                             
@@ -91,8 +91,8 @@
                         <div class="col-md-3"> 
                                 <label class="form-label">Parent Menu</label>
                                 <p-dropdown name="ddlParentMenuName" [options]="lstParentMenuItemMaster"
-                                    [(ngModel)]="MenuItemMaster.parentmenuid" [disabled]="MenuItemMaster.submenu==true?false:true"
-                                    optionLabel="menuitemname" optionValue="menuitemmasterid" [filter]="true"
+                                    [(ngModel)]="MenuItemMaster.ParentMenuId" [disabled]="MenuItemMaster.SubMenu=='Y'?false:true"
+                                    optionLabel="MenuItemName" optionValue="MenuItemId" [filter]="true"
                                     placeholder="Please Select Parent Menu" [style]="{width: '100%'}"
                                     >
                                 </p-dropdown>
@@ -100,16 +100,16 @@
                         <div class="col-md-3"> 
                                 <label class="form-label">Icon</label>
                                 <input pInputText type="text"  name="IconName"
-                                    [(ngModel)]="MenuItemMaster.iconname" class="form-control" />                           
+                                    [(ngModel)]="MenuItemMaster.IconName" class="form-control" />                           
                         </div>                        
                         <div class="col-md-3"> 
                                 <label class="form-label">Order No. <span class="required">*</span></label>
-                                <p-inputNumber [required]="true" name="txtOrder" [(ngModel)]="MenuItemMaster.orderno" mode="decimal"></p-inputNumber>
+                                <p-inputNumber [required]="true" name="txtOrder" [(ngModel)]="MenuItemMaster.OrderNo" mode="decimal" [useGrouping]="false" [maxlength]="3"></p-inputNumber>
                                                        
                         </div>
                         <div class="col-md-3">
                             <label class="form-label">Status<span class="required">*</span></label>
-                            <p-dropdown [required]="true" [options]="stlststatus" [(ngModel)]="MenuItemMaster.status"
+                            <p-dropdown [required]="true" [options]="stlststatus" [(ngModel)]="MenuItemMaster.Status"
                                 [ngModelOptions]="{standalone: true}" optionLabel="name" optionValue="code"
                                 placeholder="Select" [style]="{width: '100%'}">
                             </p-dropdown>
@@ -118,9 +118,9 @@
                     <div class="row">
                     <div class="col-12">
                         <div class="flex flex-wrap gap-2">
-                            <button pButton pRipple type="button" label="Submit" (click)="Save()"
+                            <button pButton pRipple type="button" label="Submit" class="btn-primary" (click)="Save()"
                                 [disabled]="!myForm.form.valid"></button>
-                            <button pButton pRipple type="button" label="Close" class="p-button-secondary"
+                            <button pButton pRipple type="button" label="Close" class="btn-secondary"
                                 (click)="CloseModal()"></button>
                             </div>
                         </div>

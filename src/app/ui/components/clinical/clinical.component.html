@@ -1,105 +1,78 @@
-<div class="row">
-    <div class="col-md-12">
-        <div class="card">
-            <div class="profile-box">
-                <div class="row">
-                <div class="col-md-3">
-                <div class="profile-img">
-                    <img src="../../../../../assets/Images/profile.png">
+<div class="card">
+    <div class="row">
+        <div class="col-md-3">
+            <div class="care-cont">
+                <div class="short-cont" (click)="onClick('AL')">
+                    <h2>Allergies</h2>
                 </div>
-                <h1>Dianne Russell</h1>
+                <div class="short-cont" (click)="onClick('RI')">
+                    <h2>Resident indicators</h2>
                 </div>
-                
-                <div class="col-md-9">
-                <div class="detail-table">
-                <table class="table">
-                    <tr>
-                        <td>Dob</td>
-                        <td>:</td>
-                        <td>01-01-1966</td>
-                    
-                        <td>Contact No.</td>
-                        <td>:</td>
-                        <td>9876543210</td>
-                    </tr>
-                    <tr>
-                        <td>Date of Add.</td>
-                        <td>:</td>
-                        <td>16-11-2022</td>
-                  
-                        <td>Blood Group</td>
-                        <td>:</td>
-                        <td>A+ve</td>
-                    </tr>
-                    <tr>
-                        <td>Address</td>
-                        <td>:</td>
-                        <td>41-43, United Kingdom</td>
-               
-                        <td>Likes:</td>
-                        <td>:</td>
-                        <td> Fry ups, Toast</td>
-                    </tr>
-                    <tr>
-                        <td>Dislikes</td>
-                        <td>:</td>
-                        <td>None</td>
-                        <td>Drug Allergies</td>
-                        <td>:</td>
-                        <td>Paracetamol</td>
-                    </tr>
-                </table>
+                <div class="short-cont" (click)="onClick('CI')">
+                    <h2>Clinical information</h2>
+                </div>
+                <div class="short-cont" (click)="onClick('BHI')">
+                    <h2>Baseline health information</h2>
+                </div>
+                <div class="short-cont" (click)="onClick('AP')">
+                    <h2>Alert preferences</h2>
+                </div>
+                <div class="short-cont" (click)="onClick('CP')">
+                    <h2>Chart preferences</h2>
+                </div>
+                <div class="short-cont" (click)="onClick('DV')">
+                    <h2>Daily Vital</h2>
+                </div>
+                <div class="short-cont" (click)="onClick('PA')">
+                    <h2>Pain Assesment</h2>
+                </div>
+                <div class="short-cont" (click)="onClick('FRA')">
+                    <h2>Fall Risk Assesment</h2>
+                </div>
             </div>
         </div>
-            </div>
-            </div>
-        </div>
-    </div>
-    <div class="col-md-12 mt-4">
-        <div class="card pb-0 profile-tab mb-4">
-            <ul class="nav nav-tabs" id="myTab" role="tablist">
-                <li class="nav-item" role="presentation">
-                  <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true">Allergies</button>
-                </li>
-                <li class="nav-item" role="presentation">
-                  <button class="nav-link" id="resident-indicators-tab" data-bs-toggle="tab" data-bs-target="#resident-indicators" type="button" role="tab" aria-controls="resident-indicators" aria-selected="false">Resident indicators</button>
-                </li>
-                <li class="nav-item" role="presentation">
-                  <button class="nav-link" id="clinical-information-tab" data-bs-toggle="tab" data-bs-target="#clinical-information" type="button" role="tab" aria-controls="clinical-information" aria-selected="false">Clinical information</button>
-                </li>
-                <li class="nav-item" role="presentation">
-                  <button class="nav-link" id="baseline-health-information-tab" data-bs-toggle="tab" data-bs-target="#baseline-health-information" type="button" role="tab" aria-controls="baseline-health-information" aria-selected="false">Baseline health information</button>
-                </li>
-                <li class="nav-item" role="presentation">
-                  <button class="nav-link" id="alert-preferences-tab" data-bs-toggle="tab" data-bs-target="#alert-preferences" type="button" role="tab" aria-controls="alert-preferences" aria-selected="false">Alert preferences</button>
-                </li>
-                <li class="nav-item" role="presentation">
-                    <button class="nav-link" id="chart-preferences-tab" data-bs-toggle="tab" data-bs-target="#chart-preferences" type="button" role="tab" aria-controls="chart-preferences" aria-selected="false">Chart preferences</button>
-                  </li>
-              </ul>
-        </div>
-        <div class="card">
-            
-            <div class="tab-content" id="myTabContent">
-                <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-                    <app-allergies></app-allergies>
-                </div>
-                <div class="tab-pane fade" id="resident-indicators" role="tabpanel" aria-labelledby="resident-indicators-tab">
-                    <app-resident-indicators></app-resident-indicators>
-                </div>
-                <div class="tab-pane fade" id="clinical-information" role="tabpanel" aria-labelledby="clinical-information-tab">
-                    <app-clinical-information></app-clinical-information>
-                </div>
-                <div class="tab-pane fade" id="baseline-health-information" role="tabpanel" aria-labelledby="baseline-health-information-tab">
-                    <app-baseline-health-information></app-baseline-health-information>
-                </div>
-                <div class="tab-pane fade" id="alert-preferences" role="tabpanel" aria-labelledby="alert-preferences-tab">
-                    <app-alert-preferences></app-alert-preferences>
-                </div>
-                <div class="tab-pane fade" id="chart-preferences" role="tabpanel" aria-labelledby="chart-preferences-tab">
-                    <app-chart-preferences></app-chart-preferences>
-                </div>
-              </div>
+        <div class="col-md-9">
+            <form #myForm="ngForm">
+                <p-accordion [multiple]="true" activeIndex="0,1,2,3,4,5">
+                    <div id="AL" *ngIf="healthcareMode!=''">
+                        <app-allergies [mode]="healthcareMode" [userid]="selecteduserid"
+                            [admissionid]="selectedadmissionid"></app-allergies>
+                    </div>
+                    <div id="RI" *ngIf="healthcareMode!=''">
+                        <app-resident-indicators [mode]="healthcareMode" [userid]="selecteduserid"
+                            [admissionid]="selectedadmissionid"></app-resident-indicators>
+                    </div>
+                    <div id="CI" *ngIf="healthcareMode!=''">
+                        <app-clinical-information [mode]="healthcareMode" [userid]="selecteduserid"
+                            [admissionid]="selectedadmissionid"></app-clinical-information>
+                    </div>
+                    <div id="BHI" *ngIf="healthcareMode!=''">
+                        <app-baseline-health-information [mode]="healthcareMode" [userid]="selecteduserid"
+                            [admissionid]="selectedadmissionid"></app-baseline-health-information>
+                    </div>
+                    <div id="AP" *ngIf="healthcareMode!=''">
+                        <app-alert-preferences [mode]="healthcareMode" [userid]="selecteduserid"
+                            [admissionid]="selectedadmissionid"></app-alert-preferences>
+                    </div>
+                    <div id="CP" *ngIf="healthcareMode!=''">
+                        <app-chart-preferences [mode]="healthcareMode" [userid]="selecteduserid"
+                            [admissionid]="selectedadmissionid"></app-chart-preferences>
+                    </div>
+                    <div id="DV" *ngIf="healthcareMode!=''">
+                        <app-daily-vital [mode]="healthcareMode" [userid]="selecteduserid"
+                            [admissionid]="selectedadmissionid"></app-daily-vital>
+                    </div>
+                    <div id="PA" *ngIf="healthcareMode!=''">
+                        <app-pain-assessment [mode]="healthcareMode" [userid]="selecteduserid"
+                            [admissionid]="selectedadmissionid"></app-pain-assessment>
+                    </div>
+                    <div id="FRA" *ngIf="healthcareMode!=''">
+                        <app-fall-risk-assessment [mode]="healthcareMode" [userid]="selecteduserid"
+                            [admissionid]="selectedadmissionid"></app-fall-risk-assessment>
+                    </div>
+                </p-accordion>
+            </form>
+
         </div>
     </div>
 </div>

@@ -1,5 +1,5 @@
 import { Component, Output, EventEmitter, OnInit } from '@angular/core';
-import { MessageService, PrimeNGConfig } from 'primeng/api';
+import { MessageService, ConfirmationService, PrimeNGConfig } from 'primeng/api';
 import { UtilityService } from '../utility.service';
 
 @Component({

@@ -1,0 +1,84 @@
+.doc-dash {
+     background: #fff;
+     box-shadow: 0 2px 4px 0 rgb(33 33 33 / 18%);
+     border-radius: 10px;
+     overflow: hidden;
+     position: relative;
+     padding: 10px;
+}
+ .im-box {
+     height: 60px;
+     width: 60px;
+     background: #f3f3f3;
+     border-radius: 20%;
+     display: flex;
+     align-items: center;
+     justify-content: center;
+}
+ .im-box i{
+     color: #32b066;
+     font-size: 30px;
+}
+ .im-box img {
+     height: 80px;
+     width: 80px;
+}
+ .dash-head {
+     font-size: 16px;
+     color: #333333;
+     background: #fff;
+     padding: 18px 18px 20px;
+     border-radius: 8px;
+     margin: 0;
+}
+
+.dash-head h3 {
+     font-size: 13px;
+     line-height: 16px;
+}
+.dash-head h2 {
+     font-size: 28px;
+     display: block;
+     color: #848484;
+}
+
+ .dchart {
+     text-align: center;
+     padding-bottom: 15px;
+}
+ .dchart span {
+     width: 10px;
+     height: 10px;
+     margin-right: 10px;
+     display: inline-block;
+}
+ .dchart li {
+     float: left;
+     margin-right: 10px;
+    font-size: 12px;
+}
+ h2.dash-card {
+     font-size: 16px;
+     color: #333333;
+     background: #fff;
+     padding: 14px;
+     margin: 0;
+}
+ .box-head h3 small a {
+     color: #32b066;
+}
+ h2.dash-card.b-r {
+     border-top-left-radius: 10px;
+     border-top-right-radius: 10px;
+     border-bottom: 1px solid #e7e7e7;
+}
+//  .doc-dash.mb10::before {
+//      content: "";
+//      height: 150px;
+//      width: 150px;
+//      background: #e5e5ff;
+//      position: absolute;
+//      transform: rotate(45deg);
+//      right: -80px;
+//      top: -80px;
+// }

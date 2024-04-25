@@ -1,0 +1,138 @@
+<p-accordionTab>
+    <p-header class="w-100">
+        <div class="acc-tab">
+            <span>Daily Vital</span>
+            <div>
+                <button *ngIf="mode=='view'" pButton type="button" label="Edit" class="btn btn-primary"
+                    (click)="$event.stopPropagation();edit()" [disabled]="isEditable"></button>
+                <button *ngIf="mode=='edit'" pButton type="button" label="Save" class="btn btn-primary"
+                    (click)="$event.stopPropagation();save()"></button>
+                <button *ngIf="mode=='edit'" pButton type="button" label="Cancel" class="btn btn-secondary ml-2"
+                    (click)="$event.stopPropagation();close()"></button>
+            </div>
+        </div>
+    </p-header>
+    <div class="row mb-4" *ngIf="mode=='edit'">
+        <div class="col-md-12">
+            <p-table class="ColumnFilterTable" #dt2 [value]="[{}]" styleClass="p-datatable-striped" [rowHover]="true" [scrollable]="true"
+                scrollHeight="250px" responsiveLayout="scroll">
+                <ng-template pTemplate="header">
+                    <tr>
+                        <th style="width:140px">Blood Pressure (BP)</th>
+                        <th style="width:100px">Pulse Rate</th>
+                        <th style="width:140px">Respiration</th>
+                        <th style="width:120px">Temperature</th>
+                        <th style="width:100px">Weight</th>
+                        <th style="width:100px">FBS</th>
+                        <th style="width:100px">PPBS</th>
+                        <th style="width:100px">RBS</th>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-rowData>
+                    <td style="width:140px">
+                        <input type="text" name="txt_bp" autocomplete="off" onpaste="return false" maxlength="7"
+                            [(ngModel)]="Clinical.BP" placeholder="--/---" [value]="" class="form-control"
+                            (keypress)="validateBP($event)">
+                    </td>
+                    <td style="width:100px">
+                        <input type="text" name="txt_pr" autocomplete="off" onpaste="return false" maxlength="3"
+                            [(ngModel)]="Clinical.PR" placeholder="Pulse Rate" [value]="" class="form-control"
+                            (keypress)="validateNumber($event)">
+                    </td>
+                    <td style="width:140px">
+                        <input type="text" name="txt_respiration" autocomplete="off" onpaste="return false"
+                            maxlength="2" [(ngModel)]="Clinical.Respiration" placeholder="Respiration (BPM)" [value]=""
+                            class="form-control" (keypress)="validateNumber($event)">
+                    </td>
+                    <td style="width:120px">
+                        <input type="text" name="txt_temp" autocomplete="off" onpaste="return false" maxlength="6"
+                            [(ngModel)]="Clinical.Temprature" placeholder="°F" [value]="" class="form-control"
+                            (keypress)="validateFloat($event)">
+                    </td>
+                    <td style="width:100px">
+                        <input type="text" name="txt_weight" autocomplete="off" onpaste="return false" maxlength="3"
+                            [(ngModel)]="Clinical.Weight" placeholder="Weight (kg.)" [value]="" class="form-control"
+                            (keypress)="validateFloat($event)">
+                    </td>
+                    <td style="width:100px">
+                        <input type="text" name="txt_FBS" autocomplete="off" onpaste="return false" maxlength="6"
+                            [(ngModel)]="Clinical.FBS" placeholder="FBS (mg/dl)" [value]="" class="form-control"
+                            (keypress)="validateFloat($event)">
+                    </td>
+                    <td style="width:100px">
+                        <input type="text" name="txt_PBPS" autocomplete="off" onpaste="return false" maxlength="6"
+                            [(ngModel)]="Clinical.PPBS" placeholder="PPBS (mg/dl)" [value]="" class="form-control"
+                            (keypress)="validateFloat($event)">
+                    </td>
+                    <td style="width:100px">
+                        <input type="text" name="txt_RBS" autocomplete="off" onpaste="return false" maxlength="6"
+                            [(ngModel)]="Clinical.RBS" placeholder="RBS (mg/dl)" [value]="" class="form-control"
+                            (keypress)="validateFloat($event)">
+                    </td>
+
+                </ng-template>
+            </p-table>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-auto pr-1">
+            <p-calendar (onSelect)="dateRangeChange()" [maxDate]="currentDate" [(ngModel)]="selecteddate"
+                [ngModelOptions]="{standalone: true}" [showIcon]="true" inputId="icon"
+                [dateFormat]="customDateFormat.CalendarFormat" class="iconcal"></p-calendar>
+        </div>
+        <div class="col-md-auto pl-0" *ngIf="selecteddate!=null && selecteddate!=undefined">
+            <button pButton type="button" title="Clear" label=" " class="btn btn-secondary"
+                (click)="resetDate()">
+                <i  class="fa fa-close"></i>
+            </button>
+        </div>
+        <div class="col-md-12">
+            <p-table class="ColumnFilterTable" #dt3 [value]="lstClinicalVital" styleClass="p-datatable-striped" [rowHover]="true"
+                [globalFilterFields]="['BP','PR','Respiration','Temprature','FBS','PPBS','RBS']" [scrollable]="true"
+                scrollHeight="250px" responsiveLayout="scroll">
+
+                <ng-template pTemplate="emptymessage" let-columns>
+                    <tr>
+                        <td [attr.colspan]="9">
+                            No records found
+                        </td>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="header">
+                    <tr style="border-top: 1px solid #e3e3e3;">
+                        <th style="width:130px">Date</th>
+                        <th style="width:70px">BP</th>
+                        <th style="width:80px">Pulse Rate</th>
+                        <th style="width:100px">Respiration</th>
+                        <th style="width:100px">Temperature</th>
+                        <th style="width:70px">Weight</th>
+                        <th style="width:70px">FBS</th>
+                        <th style="width:70px">PPBS</th>
+                        <th style="width:70px">RBS</th>
+                        <th style="width:60px" *ngIf="mode=='edit'">Action</th>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-dt let-i="rowIndex">
+                    <tr>
+                        <td style="width:130px">{{dt.CreatedOn|date:customDateFormat.DEF_DATE_TIME}}
+                        </td>
+                        <td style="width:70px">{{dt.BP}}</td>
+                        <td style="width:80px">{{dt.PR}}</td>
+                        <td style="width:100px">{{dt.Respiration}}</td>
+                        <td style="width:100px">{{dt.Temprature}}</td>
+                        <td style="width:70px">{{dt.Weight}}</td>
+                        <td style="width:70px">{{dt.FBS}}</td>
+                        <td style="width:70px">{{dt.PPBS}}</td>
+                        <td style="width:70px">{{dt.RBS}}</td>
+                        <td style="width:60px" *ngIf="mode=='edit'">
+                            <i (click)="deleteVitalData(dt.ClinicalDailyVitalId)" matTooltip="Delete"
+                                class="fa fa-trash-alt mr-2"
+                                *ngIf="((currentDate | date:'yyyy-MM-dd') == (dt.CreatedOn| date:'yyyy-MM-dd'))"></i>
+
+                        </td>
+                    </tr>
+                </ng-template>
+            </p-table>
+        </div>
+    </div>
+</p-accordionTab>

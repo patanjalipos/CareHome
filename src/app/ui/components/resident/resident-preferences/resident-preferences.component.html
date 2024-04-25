@@ -1,0 +1,75 @@
+<form #myForm="ngForm">
+    <p-accordionTab [selected]="true">
+        <p-header class="w-100">
+            <div class="acc-tab">
+                <span>Resident preferences</span>
+                <div>
+                    <button *ngIf="mode=='view'" pButton type="button" label="Edit" class="btn-primary"
+                        (click)="$event.stopPropagation();edit()"
+                        [disabled]="(admissionid==null || admissionid==undefined)"></button>
+                    <button *ngIf="mode=='edit'" pButton type="button" label="Save" class="btn-primary"
+                        (click)="$event.stopPropagation();save()"></button>
+                    <button *ngIf="mode=='edit'" pButton type="button" label="Cancel" class="btn-secondary ml-2"
+                        (click)="$event.stopPropagation();close()"></button>
+                </div>
+            </div>
+        </p-header>
+        <div class="mt25">
+            <h5 class="">DNAR/DNACPR</h5>
+            <div class="row">
+                <div class="col-md-12">
+                    <label class="form-label" *ngIf="mode=='view'">DNAR/DNACPR is in place?</label>
+                    <div *ngIf="mode=='edit'">
+                        <div class="field-checkbox col-md-6">
+                            <p-checkbox [(ngModel)]="ResidentMaster.isdnar" [binary]="true" name="DNAR"
+                                inputId="binary"></p-checkbox>
+                            <label for="binary" class=""><b>DNAR/DNACPR is in place?</b></label>
+                        </div>
+                    </div>
+                    <div class="my-2 bold" *ngIf="mode=='view'">{{ResidentMaster.isdnar==true?'Yes':'No'}}</div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <label class="form-label">Comments notes</label>
+                    <div *ngIf="mode=='edit'">
+                        <input pInputText type="text" class="form-control" name="txtNationalInsuranceNumber"
+                            [(ngModel)]="ResidentMaster.commentnotes" placeholder="" />
+                    </div>
+                    <div class="my-2" *ngIf="mode=='view'">{{ResidentMaster.commentnotes}}</div>
+                </div>
+            </div>
+            <h5 class="m-0 mb-2">Funeral preferences</h5>
+            <div class="row">
+                <div class="col-md-12">
+                    <label class="form-label">Funeral arrangement</label>
+                    <div *ngIf="mode=='edit'">
+                        <div class="fordesk">
+                        <p-selectButton [options]="stlstfuneralarrangement"
+                            [(ngModel)]="ResidentMaster.funeralarrangement" optionLabel="name" optionValue="code"
+                            name="FuneralArrangement"></p-selectButton>
+                            </div>
+                            
+                            <div class="formobile">
+                                <p-dropdown [options]="stlstfuneralarrangement"
+                                    [(ngModel)]="ResidentMaster.funeralarrangement" optionLabel="name" optionValue="code"
+                                    name="FuneralArrangement"></p-dropdown>
+
+                            </div>
+                    </div>
+                    <div class="my-2" *ngIf="mode=='view'">{{ResidentMaster.funeralarrangement}}</div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <label class="form-label">Funeral director</label>
+                    <div *ngIf="mode=='edit'">
+                        <input pInputText type="text" class="form-control" name="FuneralDirector"
+                            [(ngModel)]="ResidentMaster.funeraldirector" placeholder="" />
+                    </div>
+                    <div class="my-2" *ngIf="mode=='view'">{{ResidentMaster.funeraldirector}}</div>
+                </div>
+            </div>
+        </div>
+    </p-accordionTab>
+</form>

@@ -1,0 +1,62 @@
+<div class="card">
+    <p-table #dt [value]="lstResidentMaster" responsiveLayout="scroll" styleClass="p-datatable-striped"
+        [rowHover]="true" [globalFilterFields]="['AdmissionNumber','FullName','RoomNumber']"
+        [scrollable]="true" scrollHeight="calc(100vh - 155px)">
+        <ng-template pTemplate="caption">
+            <div class="flex justify-content-between flex-column sm:flex-row">
+                <span class="p-ml-left">
+                    <button pButton title="New" label="Add New" class="p-button-outlined mr-2" icon="pi pi-plus"
+                        (click)="AddResident()"></button>
+                    <span class="total-txt">
+                        {{lstResidentMaster?.length>0?'Total Records:
+                        '+filteredValuesLength:''}} </span>
+                </span>
+                <span class="p-ml-auto">
+                    <button pButton title="Export Data" label=" " class="p-button-outlined mr-2"
+                        icon="pi pi-download" (click)="exportToItemExcel();"></button>
+                    <span class="p-input-icon-left">
+                        <i class="pi pi-search"></i>
+                        <input #filtr pInputText type="text" (input)="onGlobalFilter(dt, $event)"
+                            placeholder="Search..." /></span>
+                </span>
+            </div>
+        </ng-template>
+        <ng-template pTemplate="emptymessage" let-columns>
+            <tr>
+                <td [attr.colspan]="columns?.length">
+                    No records found
+                </td>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="header">
+            <tr>
+                <th>Unique Id</th>
+                <th pSortableColumn="FullName">Resident <p-sortIcon field="FullName"></p-sortIcon></th>
+                <th pSortableColumn="RoomNumber">Room <p-sortIcon field="RoomNumber"></p-sortIcon></th>
+                <th>Status</th>
+                <!-- <th>Status</th> -->
+                <th>Actions</th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-dt let-i="rowIndex">
+            <tr>
+                <td>{{dt.AdmissionNumber}}</td>
+                <td><img [src]="profileUrl+ (dt.ProfileImage==''? 'no-picture.png': dt.ProfileImage)"
+                        class="table-image mr-2"> {{dt.FullName}} {{dt.PreferredName==''? '': '('+
+                    dt.PreferredName+')'}}
+                    <!-- <br />{{dt.DateOfBirth|date:customDateFormat.DEF_DATE}} (Age {{calculateAge(dt.DateOfBirth)}}) -->
+                    <br /> {{dt.IsDNAR==true?'DNAR/DNACPR':''}}
+                </td>
+                <td>{{dt.RoomNumber}}</td>
+                <td>{{admissionStatus[dt.AdmissionStatus]}}</td>
+                <!-- <td>{{dt.Status==1?'Active':'Inactive'}}</td> -->
+                <td>
+                    <a title="Action" (click)="toggleTieredMenu(menu, $event, dt.UserId, dt.ResidentAdmissionInfoId)">
+                        <i class="fas fa-ellipsis-h"></i> </a>                   
+                    <p-tieredMenu #menu appendTo="body" [model]="items" [popup]="true"></p-tieredMenu>
+                    
+                </td>
+            </tr>
+        </ng-template>
+    </p-table>
+</div>

@@ -1,0 +1,92 @@
+<div *ngIf="mode==null">   
+    <div class="card">
+            <p-table #dt [value]="lstMaster" responsiveLayout="scroll" styleClass="p-datatable-striped"
+                [rowHover]="true" [globalFilterFields]="['TypeName']"
+                [scrollable]="true" scrollHeight="calc(100vh - 155px)">
+                <ng-template pTemplate="caption">
+                    <div class="flex justify-content-between flex-column sm:flex-row">
+                        <span class="p-ml-left">
+                            <button pButton title="New" label="Add New" class="p-button-outlined mr-2" icon="pi pi-plus"
+                            (click)="AddNewItem()"></button>
+                            <span class="total-txt">
+                            {{lstMaster?.length>0?'Total Records:
+                            '+filteredValuesLength:''}} </span> 
+                        </span>    
+                        <span class="p-ml-auto">
+                            <button pButton title="Export Data" label=" " class="p-button-outlined mr-2"
+                                icon="pi pi-download" (click)="exportToItemExcel();"></button>
+                            <span class="p-input-icon-left">
+                                <i class="pi pi-search"></i>
+                                <input #filtr pInputText type="text" (input)="onGlobalFilter(dt, $event)"
+                            placeholder="Search..." /></span>
+                        </span>
+                    </div>
+                </ng-template>
+                <ng-template pTemplate="emptymessage" let-columns>
+                    <tr>
+                        <td [attr.colspan]="columns?.length">
+                            No records found
+                        </td>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="header">
+                    <tr>
+                        <th>Type Name</th>
+                        <th>Order No.</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-dt let-i="rowIndex">
+                    <tr>
+                        <td>{{dt.TypeName}}</td>
+                        <td>{{dt.OrderNo}}</td>
+                        <td>{{dt.Status==1?'Active':'Inactive'}}</td>
+                         <td>
+                            <a title="View/Edit" (click)="GetAttorneyTypeMasterById(dt.AttorneyTypeMasterId)">
+                                <i class="fa fa-eye" aria-hidden="true"></i>
+                            </a>
+                        </td> 
+                    </tr>
+                </ng-template>
+            </p-table>
+        </div>
+    
+</div>
+<div *ngIf="mode!=null">       
+        <form #myForm="ngForm">
+            <div class="card">
+                <div class="row">                    
+                    <div class="col-md-3"> 
+                           <label class="form-label">Type Name <span class="required">*</span></label>
+                            <input pInputText type="text" required name="typename"
+                                [(ngModel)]="master.TypeName" class="form-control" #typename="ngModel"/>
+                                
+                    </div>                                         
+                    <div class="col-md-3"> 
+                            <label class="form-label">Order No. <span class="required">*</span></label>
+                            <p-inputNumber [required]="true" name="txtOrder" [(ngModel)]="master.OrderNo" mode="decimal" [useGrouping]="false" [maxlength]="2"></p-inputNumber>
+                                                   
+                    </div>
+                    <div class="col-md-3">
+                        <label class="form-label">Status<span class="required">*</span></label>
+                        <p-dropdown [required]="true" [options]="stlststatus" [(ngModel)]="master.Status"
+                            [ngModelOptions]="{standalone: true}" optionLabel="name" optionValue="code"
+                            placeholder="Select" [style]="{width: '100%'}">
+                        </p-dropdown>
+                    </div>
+                </div>
+                <div class="row">
+                <div class="col-12">
+                    <div class="flex flex-wrap gap-2">
+                        <button pButton type="button" label="Submit" (click)="Save()" class="btn-primary"
+                            [disabled]="!myForm.form.valid"></button>
+                        <button pButton type="button" label="Close" class="btn-secondary"
+                            (click)="Close()"></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </form>         
+</div>
+

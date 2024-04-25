@@ -1,0 +1,59 @@
+<form #myForm="ngForm">
+    <p-accordionTab [selected]="true">
+        <p-header class="w-100">
+            <div class="acc-tab">
+                <span>Healthcare details</span>
+                <div>
+                    <button *ngIf="mode=='view'" pButton type="button" label="Edit" class="btn-primary"
+                        (click)="$event.stopPropagation();edit()"
+                        [disabled]="(admissionid==null || admissionid==undefined)"></button>
+                    <button *ngIf="mode=='edit'" pButton type="button" label="Save" class="btn-primary"
+                        (click)="$event.stopPropagation();save()"></button>
+                    <button *ngIf="mode=='edit'" pButton type="button" label="Cancel" class="btn-secondary ml-2"
+                        (click)="$event.stopPropagation();close()"></button>
+                </div>
+            </div>
+        </p-header>
+        <div class="mt25">
+            <div class="row">
+                <div class="col-md-6">
+                    <label class="form-label">NHS/CHI Number</label>
+                    <div *ngIf="mode=='edit'">
+                        <input pInputText type="text" class="form-control" name="txtNHS"
+                            [(ngModel)]="ResidentMaster.NHSNumber" placeholder="" />
+                    </div>
+                    <div class="my-2" *ngIf="mode=='view'">{{ResidentMaster.NHSNumber}}</div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <label class="form-label">National Insurance Number</label>
+                    <div *ngIf="mode=='edit'">
+                        <input pInputText type="text" class="form-control" name="txtInsuranceNumber"
+                            [(ngModel)]="ResidentMaster.InsuranceNumber" placeholder="" />
+                    </div>
+                    <div class="my-2" *ngIf="mode=='view'">{{ResidentMaster.InsuranceNumber}}</div>
+                </div>
+            </div>
+            <h5 class="mt-1">Memebership Details</h5>
+            <div class="row">
+                <div class="col-md-6">
+                    <label class="form-label">Private health insurance provider</label>
+                    <div *ngIf="mode=='edit'">
+                        <input pInputText type="text" class="form-control" name="txtPrivatehealth"
+                            [(ngModel)]="ResidentMaster.InsuranceProvider" placeholder="" />
+                    </div>
+                    <div class="my-2" *ngIf="mode=='view'">{{ResidentMaster.InsuranceProvider}}</div>
+                </div>
+                <div class="col-md-6">
+                    <label class="form-label">Memebers number</label>
+                    <div *ngIf="mode=='edit'">
+                        <input pInputText type="text" class="form-control" name="Memebersnumber"
+                            [(ngModel)]="ResidentMaster.MembershipNumber" placeholder="" />
+                    </div>
+                    <div class="my-2" *ngIf="mode=='view'">{{ResidentMaster.MembershipNumber}}</div>
+                </div>
+            </div>
+        </div>
+    </p-accordionTab>
+</form>

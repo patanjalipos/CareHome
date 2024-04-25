@@ -1,211 +1,226 @@
-<div class="row mt-2">
-    <div class="col-md-12">
-        <div class="flex flex-wrap gap-2">
+<p-accordionTab>
+    <p-header class="w-100">
+        <div class="acc-tab">
+            <span>Baseline health information</span>
+            <div>
             <button *ngIf="mode=='view'" pButton type="button" label="Edit" class="btn btn-primary"
-                (click)="edit()"></button>
+                (click)="$event.stopPropagation();edit()" [disabled]="isEditable"></button>
             <button *ngIf="mode=='edit'" pButton type="button" label="Save" class="btn btn-primary"
-                (click)="save()"></button>
-            <button *ngIf="mode=='edit'" pButton type="button" label="Close" class="btn btn-secondary"
-                (click)="close()"></button>
+                (click)="$event.stopPropagation();save()"></button>
+            <button *ngIf="mode=='edit'" pButton type="button" label="Cancel" class="btn btn-secondary ml-2"
+                (click)="$event.stopPropagation();close()"></button>
+            </div>
         </div>
-    </div>
-</div>
-<!-- <div *ngIf="mode=='view'" class="mt-5">
-    <h5>Usual Bowel Pattern:</h5><br>
-    <div>{{healthinformation.BowelPattern}}</div><br>
-    <h5>Height:</h5>
-    <span style="color: #808080;">Resident Height in cm</span><br>
-    <div>{{healthinformation.Height}}</div><br>
-    <h5>Weight Upon Admission:</h5>
-    <div>{{healthinformation.WeightUponAdm}}</div><br>
-    <span style="color: #808080;">Resident Weight Upon Admission (Kg)</span>
-    <h5>Wight Range</h5><br>
-    <div class="col-md-3">
-        {{healthinformation.WightRangeMin}}
-    </div>
-    <div>{{healthinformation.WightRangeMax}}</div>
-</div> -->
-
-<div class="row mt25" *ngIf="mode=='view'">
-    <div class="col">
+</p-header>
+<div *ngIf="mode=='view'">
         <div class="row">
             <span><b>Usual Bowel Pattern</b></span>
             <div class="col-md-12">
-                {{healthinformation.BowelPattern}}
+                {{Clinical.BowelPattern}}
             </div>
-            <span class="mt-5"><b>Height</b></span>
+            <span class="mt-2"><b>Height</b></span>
             <div class="col-md-12">
                 <span style="color: #808080;">Resident Height in cm</span><br>
-                {{healthinformation.Height}}
+                {{Clinical.Height}}
             </div>
-            <span class="mt-5"><b>Weight Upon Admission</b></span>
+            <span class="mt-2"><b>Weight Upon Admission</b></span>
             <div class="col-md-12">                
                 <span style="color: #808080;">Resident Weight Upon Admission (Kg)</span><br>
-                {{healthinformation.WeightUponAdm}}
+                {{Clinical.WeightAtAdmission}}
             </div>
-            <span class="mt-5"><b>Weight Range</b></span>
+            <span class="mt-2"><b>Weight Range</b></span>
             <div class="col-md-6">
                 <span style="color: #808080;">Minimum (Kg)</span><br>
-                {{healthinformation.WeightRangeMin}}
+                {{Clinical.MinWeight}}
             </div>
             <div class="col-md-6">
                 <span style="color: #808080;">Maximum (Kg)</span><br>
-                {{healthinformation.WeightRangeMax}}
+                {{Clinical.MaxWeight}}
             </div>
-            <span class="mt-5"><b>Pulse range</b></span>
+            <span class="mt-2"><b>Pulse range</b></span>
             <div class="col-md-6">
                 <span style="color: #808080;">Minimum (beat per minute)</span><br>
-                {{healthinformation.PulseRangeMin}}
+                {{Clinical.MinPulse}}
             </div>
             <div class="col-md-6">
                 <span style="color: #808080;">Maximum (beat per minute)</span><br>
-                {{healthinformation.PulseRangeMax}}
+                {{Clinical.MaxPulse}}
             </div>
-            <span class="mt-5"><b>Blood glucose level range</b></span>
+            <span class="mt-2"><b>Blood glucose level range</b></span>
             <div class="col-md-6">
                 <span style="color: #808080;">Minimum (mmol/L)</span><br>
-                {{healthinformation.BloodglucoseMin}}
+                {{Clinical.MinGlucose}}
             </div>
             <div class="col-md-6">
                 <span style="color: #808080;">Maximum (mmol/L)</span><br>
-                {{healthinformation.BloodglucoseMax}}
+                {{Clinical.MaxGlucose}}
             </div>
-            <span class="mt-5"><b>Systolic blood pressure range</b></span>
+            <span class="mt-2"><b>Systolic blood pressure range</b></span>
             <div class="col-md-6">
                 <span style="color: #808080;">Minimum (mmHg)</span><br>
-                {{healthinformation.SystolicBpMin}}
+                {{Clinical.MinSBP}}
             </div>
             <div class="col-md-6">
                 <span style="color: #808080;">Maximum (mmHg)</span><br>
-                {{healthinformation.SystolicBpMax}}
+                {{Clinical.MaxSBP}}
             </div>
-            <span class="mt-5"><b>Diastolic blood pressure range</b></span>
+            <span class="mt-2"><b>Diastolic blood pressure range</b></span>
             <div class="col-md-6">
                 <span style="color: #808080;">Minimum (mmHg)</span><br>
-                {{healthinformation.DiastolicBpMin}}
+                {{Clinical.MinDBP}}
             </div>
             <div class="col-md-6">
                 <span style="color: #808080;">Maximum (mmHg)</span><br>
-                {{healthinformation.DiastolicBpMax}}
+                {{Clinical.MaxDBP}}
             </div>
-            <span class="mt-5"><b>Fluid recommended level range</b></span>
+            <span class="mt-2"><b>Fluid recommended level range</b></span>
             <div class="col-md-6">
                 <span style="color: #808080;">Minimum (mls)</span><br>
-                {{healthinformation.DiastolicBpMin}}
+                {{Clinical.MinFluid}}
             </div>
             <div class="col-md-6">
                 <span style="color: #808080;">Maximum (mls)</span><br>
-                {{healthinformation.DiastolicBpMax}}
+                {{Clinical.MaxFluid}}
             </div>
-            <span class="mt-5"><b>Oxygen Saturation range</b></span>
+            <span class="mt-2"><b>Oxygen Saturation range</b></span>
             <div class="col-md-6">
                 <span style="color: #808080;">Minimum (%)</span><br>
-                {{healthinformation.DiastolicBpMin}}
+                {{Clinical.MinOxygen}}
             </div>
             <div class="col-md-6">
                 <span style="color: #808080;">Maximum (%)</span><br>
-                {{healthinformation.DiastolicBpMax}}
+                {{Clinical.MaxOxygen}}
             </div>
         </div>
-    </div>
 </div>
-
-
 <div *ngIf="mode=='edit'">
     <div class="row">
         <span><b>Usual Bowel Pattern</b></span>
         <div class="col-md-12">
-            <input type="text" name="txtResidentIndicators" pInputText
-            [(ngModel)]="healthinformation.BowelPattern" [style]="{width: '100%'}" />
+            <input type="text" name="bowelpattern" pInputText
+            [(ngModel)]="Clinical.BowelPattern" [style]="{width: '100%'}" />
         </div>
-        <span class="mt-5"><b>Height</b></span>
+        <span class="mt-2"><b>Height</b></span>
         <div class="col-md-12">
             <span style="color: #808080;">Resident Height in cm</span><br>
-            <input type="text" name="txtResidentIndicators" pInputText
-            [(ngModel)]="healthinformation.Height" [style]="{width: '100%'}" />
+            <p-inputNumber name="height"
+            [(ngModel)]="Clinical.Height" [useGrouping]="false" mode="decimal" [minFractionDigits]="0" [maxFractionDigits]="2"  [maxlength]="5"
+                            [style]="{width: '100%'}">
+            </p-inputNumber>
         </div>
-        <span class="mt-5"><b>Weight Upon Admission</b></span>
+        <span class=""><b>Weight Upon Admission</b></span>
         <div class="col-md-12">                
             <span style="color: #808080;">Resident Weight Upon Admission (Kg)</span><br>
-            <input type="text" name="txtResidentIndicators" pInputText
-            [(ngModel)]="healthinformation.WeightUponAdm" [style]="{width: '100%'}" />
+            <p-inputNumber name="weightatadmission"
+            [(ngModel)]="Clinical.WeightAtAdmission" [useGrouping]="false" mode="decimal" [minFractionDigits]="0" [maxFractionDigits]="2"  [maxlength]="5"
+                            [style]="{width: '100%'}">
+            </p-inputNumber>
         </div>
-        <span class="mt-5"><b>Weight Range</b></span>
+        <span class=""><b>Weight Range</b></span>
         <div class="col-md-6">
             <span style="color: #808080;">Minimum (Kg)</span><br>
-            <input type="text" name="txtResidentIndicators" pInputText
-            [(ngModel)]="healthinformation.WeightRangeMin" [style]="{width: '100%'}" />
+            <p-inputNumber name="minweight"
+            [(ngModel)]="Clinical.MinWeight" [useGrouping]="false" mode="decimal" [minFractionDigits]="0" [maxFractionDigits]="2"  [maxlength]="5"
+                            [style]="{width: '100%'}">
+            </p-inputNumber>
         </div>
         <div class="col-md-6">
             <span style="color: #808080;">Maximum (Kg)</span><br>
-            <input type="text" name="txtResidentIndicators" pInputText
-            [(ngModel)]="healthinformation.WeightRangeMax" [style]="{width: '100%'}" />
+            <p-inputNumber name="maxweight"
+            [(ngModel)]="Clinical.MaxWeight" [useGrouping]="false" mode="decimal" [minFractionDigits]="0" [maxFractionDigits]="2"  [maxlength]="5"
+                            [style]="{width: '100%'}">
+            </p-inputNumber>
         </div>
-        <span class="mt-5"><b>Pulse range</b></span>
+        <span class=""><b>Pulse range</b></span>
         <div class="col-md-6">
             <span style="color: #808080;">Minimum (beat per minute)</span><br>
-            <input type="text" name="txtResidentIndicators" pInputText
-            [(ngModel)]="healthinformation.PulseRangeMin" [style]="{width: '100%'}" />
+            <p-inputNumber name="minpulse"
+            [(ngModel)]="Clinical.MinPulse" [useGrouping]="false" mode="decimal" [minFractionDigits]="0" [maxFractionDigits]="2"  [maxlength]="5"
+                            [style]="{width: '100%'}">
+            </p-inputNumber>
         </div>
         <div class="col-md-6">
             <span style="color: #808080;">Maximum (beat per minute)</span><br>
-            <input type="text" name="txtResidentIndicators" pInputText
-            [(ngModel)]="healthinformation.PulseRangeMax" [style]="{width: '100%'}" />
+            <p-inputNumber name="maxpulse"
+            [(ngModel)]="Clinical.MaxPulse" [useGrouping]="false" mode="decimal" [minFractionDigits]="0" [maxFractionDigits]="2"  [maxlength]="5"
+                            [style]="{width: '100%'}">
+            </p-inputNumber>
         </div>
-        <span class="mt-5"><b>Blood glucose level range</b></span>
+        <span class=""><b>Blood glucose level range</b></span>
         <div class="col-md-6">
             <span style="color: #808080;">Minimum (mmol/L)</span><br>
-            <input type="text" name="txtResidentIndicators" pInputText
-            [(ngModel)]="healthinformation.BloodglucoseMin" [style]="{width: '100%'}" />
+            <p-inputNumber name="minglucose"
+            [(ngModel)]="Clinical.MinGlucose" [useGrouping]="false" mode="decimal" [minFractionDigits]="0" [maxFractionDigits]="2"  [maxlength]="5"
+                            [style]="{width: '100%'}">
+            </p-inputNumber>
         </div>
         <div class="col-md-6">
             <span style="color: #808080;">Maximum (mmol/L)</span><br>
-            <input type="text" name="txtResidentIndicators" pInputText
-            [(ngModel)]="healthinformation.BloodglucoseMax" [style]="{width: '100%'}" />            
+            <p-inputNumber name="maxglucose"
+            [(ngModel)]="Clinical.MaxGlucose" [useGrouping]="false" mode="decimal" [minFractionDigits]="0" [maxFractionDigits]="2"  [maxlength]="5"
+                            [style]="{width: '100%'}">
+            </p-inputNumber>        
         </div>
-        <span class="mt-5"><b>Systolic blood pressure range</b></span>
+        <span class=""><b>Systolic blood pressure range</b></span>
         <div class="col-md-6">
             <span style="color: #808080;">Minimum (mmHg)</span><br>
-            <input type="text" name="txtResidentIndicators" pInputText
-            [(ngModel)]="healthinformation.SystolicBpMin" [style]="{width: '100%'}" />  
+            <p-inputNumber name="minsbp"
+            [(ngModel)]="Clinical.MinSBP" [useGrouping]="false" mode="decimal" [minFractionDigits]="0" [maxFractionDigits]="2"  [maxlength]="5"
+                            [style]="{width: '100%'}">
+            </p-inputNumber> 
         </div>
         <div class="col-md-6">
             <span style="color: #808080;">Maximum (mmHg)</span><br>
-            <input type="text" name="txtResidentIndicators" pInputText
-            [(ngModel)]="healthinformation.SystolicBpMax" [style]="{width: '100%'}" />  
+            <p-inputNumber name="maxsbp"
+            [(ngModel)]="Clinical.MaxSBP" [useGrouping]="false" mode="decimal" [minFractionDigits]="0" [maxFractionDigits]="2"  [maxlength]="5"
+                            [style]="{width: '100%'}">
+            </p-inputNumber>
         </div>
-        <span class="mt-5"><b>Diastolic blood pressure range</b></span>
+        <span class=""><b>Diastolic blood pressure range</b></span>
         <div class="col-md-6">
             <span style="color: #808080;">Minimum (mmHg)</span><br>
-            <input type="text" name="txtResidentIndicators" pInputText
-            [(ngModel)]="healthinformation.DiastolicBpMin" [style]="{width: '100%'}" />  
+            <p-inputNumber name="mindbp"
+            [(ngModel)]="Clinical.MinDBP" [useGrouping]="false" mode="decimal" [minFractionDigits]="0" [maxFractionDigits]="2"  [maxlength]="5"
+                            [style]="{width: '100%'}">
+            </p-inputNumber> 
         </div>
         <div class="col-md-6">
             <span style="color: #808080;">Maximum (mmHg)</span><br>
-            <input type="text" name="txtResidentIndicators" pInputText
-            [(ngModel)]="healthinformation.DiastolicBpMax" [style]="{width: '100%'}" />  
+            <p-inputNumber name="maxdbp"
+            [(ngModel)]="Clinical.MaxDBP" [useGrouping]="false" mode="decimal" [minFractionDigits]="0" [maxFractionDigits]="2"  [maxlength]="5"
+                            [style]="{width: '100%'}">
+            </p-inputNumber>
         </div>
-        <span class="mt-5"><b>Fluid recommended level range</b></span>
+        <span class=""><b>Fluid recommended level range</b></span>
         <div class="col-md-6">
             <span style="color: #808080;">Minimum (mls)</span><br>
-            <input type="text" name="txtResidentIndicators" pInputText
-            [(ngModel)]="healthinformation.FuildlevelMin" [style]="{width: '100%'}" />  
+            <p-inputNumber name="minfluid"
+            [(ngModel)]="Clinical.MinFluid" [useGrouping]="false" mode="decimal" [minFractionDigits]="0" [maxFractionDigits]="2"  [maxlength]="5"
+                            [style]="{width: '100%'}">
+            </p-inputNumber> 
         </div>
         <div class="col-md-6">
             <span style="color: #808080;">Maximum (mls)</span><br>
-            <input type="text" name="txtResidentIndicators" pInputText
-            [(ngModel)]="healthinformation.FuildlevelMax" [style]="{width: '100%'}" />  
+            <p-inputNumber name="maxfluid"
+            [(ngModel)]="Clinical.MaxFluid" [useGrouping]="false" mode="decimal" [minFractionDigits]="0" [maxFractionDigits]="2"  [maxlength]="5"
+                            [style]="{width: '100%'}">
+            </p-inputNumber>  
         </div>
-        <span class="mt-5"><b>Oxygen Saturation range</b></span>
+        <span class=""><b>Oxygen Saturation range</b></span>
         <div class="col-md-6">
             <span style="color: #808080;">Minimum (%)</span><br>
-            <input type="text" name="txtResidentIndicators" pInputText
-            [(ngModel)]="healthinformation.OxygenSaturationMin" [style]="{width: '100%'}" />  
+            <p-inputNumber name="minoxygen"
+            [(ngModel)]="Clinical.MinOxygen" [useGrouping]="false" mode="decimal" [minFractionDigits]="0" [maxFractionDigits]="2"  [maxlength]="5"
+                            [style]="{width: '100%'}">
+            </p-inputNumber> 
         </div>
         <div class="col-md-6">
             <span style="color: #808080;">Maximum (%)</span><br>
-            <input type="text" name="txtResidentIndicators" pInputText
-            [(ngModel)]="healthinformation.OxygenSaturationMax" [style]="{width: '100%'}" />  
+            <p-inputNumber name="maxoxygen"
+            [(ngModel)]="Clinical.MaxOxygen" [useGrouping]="false" mode="decimal" [minFractionDigits]="0" [maxFractionDigits]="2"  [maxlength]="5"
+                            [style]="{width: '100%'}">
+            </p-inputNumber>  
         </div>
     </div>
 </div>
+</p-accordionTab>

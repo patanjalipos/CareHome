@@ -1,5 +1,29 @@
-<div class="progress-spinner" *ngIf="isSpinnerShow">
+<!-- <div class="progress-spinner" *ngIf="isSpinnerShow">
     <p-progressSpinner></p-progressSpinner>
     <div *ngIf="isSpinnerText != ''">{{ isSpinnerText }}</div>
-</div>
+</div> -->
+<ngx-ui-loader
+[fgsColor]="utiltity.config.fgsColor"
+  [fgsPosition]="utiltity.config.fgsPosition"
+  [fgsSize]="utiltity.config.fgsSize"
+  [fgsType]="utiltity.config.fgsType"
+  [bgsColor]="utiltity.config.bgsColor"
+  [bgsOpacity]="utiltity.config.bgsOpacity"
+  [bgsPosition]="utiltity.config.bgsPosition"
+  [bgsSize]="utiltity.config.bgsSize"
+  [bgsType]="utiltity.config.bgsType"
+  [gap]="utiltity.config.gap"
+  [logoPosition]="utiltity.config.logoPosition"
+  [logoSize]="utiltity.config.logoSize"
+  [logoUrl]="utiltity.config.logoUrl"
+  [overlayColor]="utiltity.config.overlayColor"
+  [pbColor]="utiltity.config.pbColor"
+  [pbDirection]="utiltity.config.pbDirection"
+  [pbThickness]="utiltity.config.pbThickness"
+  [hasProgressBar]="utiltity.config.hasProgressBar"
+  [text]="utiltity.config.text"
+  [textColor]="utiltity.config.textColor"
+  [textPosition]="utiltity.config.textPosition"
+
+></ngx-ui-loader>
 <app-toast></app-toast>

@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
+import { FormsModule } from '@angular/forms';
 import { ContactsComponent } from './contacts.component';
 import { ContactsRoutingModule } from './contacts-routing.module';
 import { PrimaryContactModule } from './primary-contact/primary-contact.module';
@@ -9,6 +10,7 @@ import { ResponsiblePersonContactModule } from './responsible-person-contact/res
 import { FirstPowerOfAttorneyModule } from './first-power-of-attorney/first-power-of-attorney.module';
 import { SecondPowerOfAttorneyModule } from './second-power-of-attorney/second-power-of-attorney.module';
 import { DoctorModule } from './doctor/doctor.module';
+import { AccordionModule } from 'primeng/accordion';
 
 
 @NgModule({
@@ -17,13 +19,15 @@ import { DoctorModule } from './doctor/doctor.module';
   ],
   imports: [
     CommonModule,
+    FormsModule,
     ContactsRoutingModule,
     PrimaryContactModule,
     SecondaryContactModule,
     ResponsiblePersonContactModule,
     FirstPowerOfAttorneyModule,
     SecondPowerOfAttorneyModule,
-    DoctorModule
+    DoctorModule,
+    AccordionModule
 
   ]
 })

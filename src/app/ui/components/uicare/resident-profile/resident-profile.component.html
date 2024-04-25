@@ -2,7 +2,7 @@
     <div class="col-md-4">
 <div class="card">
     <div class="backbutton-cvr">
-        <h5>Resident Profile <span class="backbutton"><button type="button" (click)="BacktoResidentList()" class="btn">Back</button></span> </h5>
+        <h5>Resident Profile <span class="backbutton"><button type="button" (click)="BacktoResidentList()" class="btn btn-primary mb-2">Back</button></span> </h5>
     </div>
     <!-- <div class="Profile-cvr">
         <div class="Profile-left">
@@ -57,7 +57,7 @@
         <div class="detail-table">
         <table class="table">
             <tr>
-                <td>Dob</td>
+                <td>DOB</td>
                 <td>:</td>
                 <td>{{objPatient.DOB}}</td>
             </tr>
@@ -67,7 +67,7 @@
                 <td> {{objPatient.ContactNo}}</td>
             </tr>
             <tr>
-                <td>Date of Add.</td>
+                <td>Date of Admission</td>
                 <td>:</td>
                 <td>{{objPatient.admDate}}</td>
             </tr>
@@ -106,12 +106,9 @@
 <div class="card">
     <h5>{{title}}</h5>
     <app-personal-details [tabid]="tabid" *ngIf="seq=='1'"></app-personal-details>
-    <app-body-map *ngIf="seq=='2'"></app-body-map>
     <app-fluid-assessment *ngIf="seq=='3'"></app-fluid-assessment>
-    <app-todo-list *ngIf="seq=='4'"> </app-todo-list>
-    <app-pain-assessment *ngIf="seq=='5'"></app-pain-assessment>
-    <app-diet-planner *ngIf="seq=='6'"></app-diet-planner>
-    <app-fall-risk-assessment *ngIf="seq=='7'"></app-fall-risk-assessment>
+    <app-todo-list *ngIf="seq=='4'"> </app-todo-list>    
+    <app-diet-planner *ngIf="seq=='6'"></app-diet-planner>    
 </div>
 </div>
 </div>

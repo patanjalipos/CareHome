@@ -60,19 +60,6 @@ export class ResidentlistComponent implements OnInit {
         }
       },
     ];
-
-    this.items = [
-      ...this.items,
-      {
-        label: 'Body Map',
-        icon: 'pi pi-calendar-plus',
-        command: () => {
-           this.residentId=ResidentId;
-           this.LoadResidentInfo('Body Map','2');
-        }
-      },
-    ];
-
     this.items = [
       ...this.items,
       {

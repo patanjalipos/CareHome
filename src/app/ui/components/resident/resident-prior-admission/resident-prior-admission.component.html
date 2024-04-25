@@ -1,0 +1,125 @@
+<form #myForm="ngForm">
+    <p-accordionTab [selected]="true">
+        <p-header class="w-100">
+            <div class="acc-tab">
+                <span>Details prior to admission</span>
+                <div>
+                    <button *ngIf="mode=='view'" pButton type="button" label="Edit" class="btn-primary"
+                        (click)="$event.stopPropagation();edit()"
+                        [disabled]="(admissionid==null || admissionid==undefined)"></button>
+                    <button *ngIf="mode=='edit'" pButton type="button" label="Save" class="btn-primary"
+                        (click)="$event.stopPropagation();save()"></button>
+                    <button *ngIf="mode=='edit'" pButton type="button" label="Cancel" class="btn-secondary ml-2"
+                        (click)="$event.stopPropagation();close()"></button>
+                </div>
+            </div>
+        </p-header>
+        <div class="mt25">
+            <h5 class="">Previous Care</h5>
+            <div class="row">
+                <div class="col-md-9">
+                    <label class="form-label">Admitted From</label>
+                    <div *ngIf="mode=='edit'">
+                        
+                        <div class="fordesk">
+                        <p-selectButton [options]="stlstadmitted" [(ngModel)]="ResidentMaster.admittedform"
+                            optionLabel="name" optionValue="code" name="admittedform"
+                            (onChange)="setSelectedAdmittedForm($event)"></p-selectButton>
+                            </div>
+                        <div class="formobile">
+                            <p-dropdown [options]="stlstadmitted" [(ngModel)]="ResidentMaster.admittedform"
+                                optionLabel="name" optionValue="code" name="admittedform"
+                                (onChange)="setSelectedAdmittedForm($event)"></p-dropdown>
+                                </div>
+                    </div>
+                    <div class="my-2" *ngIf="mode=='view'">{{ResidentMaster.admittedform}}</div>
+                </div>            
+                <div class="col-md-3" *ngIf="ResidentMaster.admittedform=='Other'">
+                    <label class="form-label">Admitted From Other</label>
+                    <div *ngIf="mode=='edit'">
+                        <input pInputText type="text" class="form-control" name="AdmittedFormOther"
+                            [(ngModel)]="ResidentMaster.admittedformother" placeholder="" />
+                    </div>
+                    <div class="my-2" *ngIf="mode=='view'">{{ResidentMaster.admittedformother}}</div>
+                </div>
+            </div>
+            <h5 class="mt-2">Contact Details</h5>
+            <div class="row">
+                <div class="col-md-6">
+                    <label class="form-label">Phone number</label>
+                    <div *ngIf="mode=='edit'">
+                        <input pInputText type="text" class="form-control" name="Phone"
+                            [(ngModel)]="ResidentMaster.phone" placeholder="" />
+                    </div>
+                    <div class="my-2" *ngIf="mode=='view'">{{ResidentMaster.phone}}</div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <label class="form-label">Email address</label>
+                    <div *ngIf="mode=='edit'">
+                        <input pInputText type="text" class="form-control" name="Email"
+                            [(ngModel)]="ResidentMaster.email"
+                            pattern="[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,3}$" #emailref="ngModel" />
+                        <div class="col-md-auto errorMessage pt-2"
+                            *ngIf="emailref.errors &&(emailref.touched || emailref.dirty)">
+                            <div>Please enter valid email id.</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="my-2" *ngIf="mode=='view'">{{ResidentMaster.email}}</div>
+            </div>
+            <h5 class="mt-2">Address</h5>
+            <div class="row">
+                <div class="col-md-6">
+                    <label class="form-label">Country</label>
+                    <div *ngIf="mode=='edit'">
+                        <p-dropdown name="ddlCountry" [options]="lstCountryMaster"
+                            [(ngModel)]="ResidentMaster.countryid" optionLabel="name" optionValue="id" [filter]="true"
+                            placeholder="Choose country" [style]="{width: '100%'}">
+                        </p-dropdown>
+                    </div>
+                    <div class="my-2" *ngIf="mode=='view'">{{ResidentMaster.countryname}}</div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <label class="form-label">Street</label>
+                    <div *ngIf="mode=='edit'">
+                        <input pInputText type="text" class="form-control" name="Street"
+                            [(ngModel)]="ResidentMaster.street" />
+                    </div>
+                    <div class="my-2" *ngIf="mode=='view'">{{ResidentMaster.street}}</div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <label class="form-label">Town</label>
+                    <div *ngIf="mode=='edit'">
+                        <input pInputText type="text" class="form-control" name="Town"
+                            [(ngModel)]="ResidentMaster.town" />
+                    </div>
+                    <div class="my-2" *ngIf="mode=='view'">{{ResidentMaster.town}}</div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <label class="form-label">County</label>
+                    <div *ngIf="mode=='edit'">
+                        <input pInputText type="text" class="form-control" name="County"
+                            [(ngModel)]="ResidentMaster.county" />
+                    </div>
+                    <div class="my-2" *ngIf="mode=='view'">{{ResidentMaster.county}}</div>
+                </div>
+                <div class="col-md-6">
+                    <label class="form-label">Postcode</label>
+                    <div *ngIf="mode=='edit'">
+                        <input pInputText type="text" class="form-control" name="Postcode"
+                            [(ngModel)]="ResidentMaster.postcode" />
+                    </div>
+                    <div class="my-2" *ngIf="mode=='view'">{{ResidentMaster.postcode}}</div>
+                </div>
+            </div>
+        </div>
+    </p-accordionTab>
+</form>

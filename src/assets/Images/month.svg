@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 225.41 249.12">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #617c7e;
+        font-family: Montserrat-SemiBold, Montserrat;
+        font-size: 65px;
+        font-weight: 600;
+      }
+
+      .cls-1, .cls-2 {
+        isolation: isolate;
+      }
+
+      .cls-3 {
+        fill: none;
+        stroke: #617c7e;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        stroke-width: 12px;
+      }
+    </style>
+  </defs>
+  <g id="Group_99" data-name="Group 99">
+    <g id="Icon_feather-calendar" data-name="Icon feather-calendar">
+      <path id="Path_116" data-name="Path 116" class="cls-3" d="m29.71,29.71h165.99c13.09,0,23.71,10.62,23.71,23.71h0v165.99c0,13.09-10.62,23.71-23.71,23.71H29.71c-13.09,0-23.71-10.62-23.71-23.71h0V53.42c0-13.09,10.62-23.71,23.71-23.71Z"/>
+      <path id="Path_117" data-name="Path 117" class="cls-3" d="m160.13,6v47.43"/>
+      <path id="Path_118" data-name="Path 118" class="cls-3" d="m65.28,6v47.43"/>
+      <path id="Path_119" data-name="Path 119" class="cls-3" d="m6,100.85h213.41"/>
+    </g>
+    <g id="JUN" class="cls-2">
+      <text class="cls-1" transform="translate(46.05 196.89)"><tspan x="0" y="0">SEP</tspan></text>
+    </g>
+  </g>
+</svg>

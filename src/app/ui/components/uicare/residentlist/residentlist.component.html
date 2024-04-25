@@ -81,7 +81,7 @@
 						<td style="width: 35%; min-width: 8rem;">{{resident.admDate}}</td>
 						<td style="width: 35%; min-width: 8rem;">{{resident.status}}</td>
 						<td>
-							<a style="cursor:pointer;" matTooltip="Action" (click)="toggleMenu(menu, $event, resident.ResidentId)">
+							<a style="cursor:pointer;" title="Action" (click)="toggleMenu(menu, $event, resident.ResidentId)">
 								<label class="bold" style="cursor:pointer;text-align: center;">....</label>
 							</a>
 							<p-menu #menu [popup]="true" appendTo="body" [model]="items"
@@ -93,7 +93,6 @@
 
 			<div *ngIf="residentId!='' && viewMode" class="flex flex-wrap gap-2 mt-5">
 				<button pButton pRipple type="button" label="Personal Details" (click)="LoadResidentInfo('Personal Details','1')"></button>
-				<button pButton pRipple type="button" label="Body Map" (click)="LoadResidentInfo('Body Map','2')"></button>
 				<button pButton pRipple type="button" label="Fluid Assessment" (click)="LoadResidentInfo('Fluid Assessment','3')"></button>
 				<button pButton pRipple type="button" label="Task Planner" (click)="LoadResidentInfo('Task Planner','4')"></button>
 				<button pButton pRipple type="button" label="Pain Assessment" (click)="LoadResidentInfo('Pain Assessment','5')"></button>
