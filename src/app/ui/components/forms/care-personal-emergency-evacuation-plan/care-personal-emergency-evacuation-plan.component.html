@@ -55,8 +55,21 @@
             </div>
         </div>
         <div class="col-md-7 form-text mt-4">
-            <p-dropdown placeholder="Select" [style]="{ width: '100%' }">
-            </p-dropdown>
+            <ng-container *ngIf="isEditable; else FloorLabel">
+                <p-dropdown
+                    name="ResidentFloor"
+                    placeholder="Select"
+                    [style]="{ width: '100%' }"
+                    [(ngModel)]="PersonalEmergencyFormData.ResidentFloor"
+                    optionLabel="optionName"
+                    optionValue="optionId"
+                    [options]="residentFloorOptions"
+                >
+                </p-dropdown>
+            </ng-container>
+            <ng-template #FloorLabel>
+                <label>{{ PersonalEmergencyFormData.ResidentFloorName }}</label>
+            </ng-template>
         </div>
 
         <div class="col-md-1 form-icon mt-4">
@@ -69,13 +82,21 @@
             </div>
         </div>
         <div class="col-md-7 form-text">
-            <input
-                pInputText
-                type="text"
-                required
-                name="chartheadname"
-                class="form-control"
-            />
+            <ng-container *ngIf="isEditable; else RoomNumberLabel">
+                <input
+                    pInputText
+                    type="text"
+                    required
+                    name="SuiteAndRoomNumber"
+                    class="form-control"
+                    [(ngModel)]="PersonalEmergencyFormData.SuiteAndRoomNumber"
+                />
+            </ng-container>
+            <ng-template #RoomNumberLabel>
+                <label>{{
+                    PersonalEmergencyFormData.SuiteAndRoomNumber
+                }}</label>
+            </ng-template>
         </div>
 
         <div class="col-md-1 form-icon">
@@ -88,12 +109,30 @@
             </div>
         </div>
         <div class="col-md-7 form-text">
-            <p-dropdown placeholder="Select" [style]="{ width: '100%' }">
-            </p-dropdown>
+            <ng-container *ngIf="isEditable; else MobilityLabel">
+                <p-dropdown
+                    name="ResidentMobilityLevel"
+                    placeholder="Select"
+                    [style]="{ width: '100%' }"
+                    [(ngModel)]="
+                        PersonalEmergencyFormData.ResidentMobilityLevel
+                    "
+                    optionLabel="optionName"
+                    optionValue="optionId"
+                    [options]="residentMobilityLevelOptions"
+                ></p-dropdown>
+            </ng-container>
+            <ng-template #MobilityLabel>
+                <label>{{
+                    PersonalEmergencyFormData.ResidentMobilityLevelName
+                }}</label>
+            </ng-template>
         </div>
+
         <div class="col-md-1 form-icon">
             <i class="fa-solid fa-info"></i>
         </div>
+
         <div class="col-md-4">
             <div class="labelcontent">
                 <p>
@@ -102,98 +141,186 @@
             </div>
         </div>
         <div class="col-md-7 form-text">
-            <p-dropdown placeholder="Select" [style]="{ width: '100%' }">
-            </p-dropdown>
+            <ng-container *ngIf="isEditable; else RiskFactorsLabel">
+                <p-dropdown
+                    name="AdditionalRiskFactors"
+                    placeholder="Select"
+                    [style]="{ width: '100%' }"
+                    [(ngModel)]="
+                        PersonalEmergencyFormData.AdditionalRiskFactors
+                    "
+                    optionLabel="optionName"
+                    optionValue="optionId"
+                    [options]="additionalRiskFactorsOptions"
+                ></p-dropdown>
+            </ng-container>
+            <ng-template #RiskFactorsLabel>
+                <label>{{
+                    PersonalEmergencyFormData.AdditionalRiskFactorsName
+                }}</label>
+            </ng-template>
         </div>
+
         <div class="col-md-1 form-icon">
             <i class="fa-solid fa-info"></i>
         </div>
+
         <div class="col-md-4">
             <div class="labelcontent">
                 <p>Cognition / comprehension</p>
             </div>
         </div>
         <div class="col-md-7 form-text">
-            <p-dropdown placeholder="Select" [style]="{ width: '100%' }">
-            </p-dropdown>
+            <ng-container *ngIf="isEditable; else CognitionLabel">
+                <p-dropdown
+                    name="CognitionComprehension"
+                    placeholder="Select"
+                    [style]="{ width: '100%' }"
+                    [(ngModel)]="
+                        PersonalEmergencyFormData.CognitionComprehension
+                    "
+                    optionLabel="optionName"
+                    optionValue="optionId"
+                    [options]="cognitionOptions"
+                ></p-dropdown>
+            </ng-container>
+            <ng-template #CognitionLabel>
+                <label>{{
+                    PersonalEmergencyFormData.CognitionComprehensionName
+                }}</label>
+            </ng-template>
         </div>
+
         <div class="col-md-1 form-icon">
             <i class="fa-solid fa-info"></i>
         </div>
+
         <div class="col-md-4">
             <div class="labelcontent">
                 <p>Total score</p>
             </div>
         </div>
         <div class="col-md-7 form-text">
-            <p-dropdown placeholder="Select" [style]="{ width: '100%' }">
-            </p-dropdown>
-            <p class="mb-4">
-                This response will update the mobility status column in the
-                resident evacuation list
-            </p>
+            <ng-container *ngIf="isEditable; else TotalScoreLabel">
+                <p-dropdown
+                    name="TotalScore"
+                    placeholder="Select"
+                    [style]="{ width: '100%' }"
+                    [(ngModel)]="PersonalEmergencyFormData.TotalScore"
+                    optionLabel="optionName"
+                    optionValue="optionId"
+                    [options]="totalScoreOptions"
+                ></p-dropdown>
+                <p class="mb-4">
+                    This response will update the mobility status column in the
+                    resident evacuation list
+                </p>
+            </ng-container>
+            <ng-template #TotalScoreLabel>
+                <label>{{ PersonalEmergencyFormData.TotalScoreName }}</label>
+            </ng-template>
         </div>
+
         <div class="col-md-1 form-icon">
             <i class="fa-solid fa-info"></i>
         </div>
+
         <div class="col-md-4">
             <div class="labelcontent">
                 <p>How many staff will be needed to evacuate the resident</p>
             </div>
         </div>
         <div class="col-md-7 form-text">
-            <p-dropdown placeholder="Select" [style]="{ width: '100%' }">
-            </p-dropdown>
-            <p class="mb-4">
-                This response will update the mobility status column in the
-                resident evacuation list
-            </p>
+            <ng-container *ngIf="isEditable; else StaffNeededLabel">
+                <p-dropdown
+                    name="StaffNeeded"
+                    placeholder="Select"
+                    [style]="{ width: '100%' }"
+                    [(ngModel)]="PersonalEmergencyFormData.StaffNeeded"
+                    optionLabel="optionName"
+                    optionValue="optionId"
+                    [options]="staffNeededOptions"
+                ></p-dropdown>
+                <p class="mb-4">
+                    This response will update the mobility status column in the
+                    resident evacuation list
+                </p>
+            </ng-container>
+            <ng-template #StaffNeededLabel>
+                <label>{{ PersonalEmergencyFormData.StaffNeededName }}</label>
+            </ng-template>
         </div>
+
         <div class="col-md-1 form-icon">
             <i class="fa-solid fa-info"></i>
         </div>
+
         <div class="col-md-4">
             <div class="labelcontent">
                 <p>Horizontal evacuation method</p>
             </div>
         </div>
         <div class="col-md-7 form-text">
-            <input
-                pInputText
-                type="text"
-                required
-                name="chartheadname"
-                class="form-control"
-            />
-            <p class="mb-4">
-                State how the resident is to be moved e.g. evacuation chair, how
-                close to residents room are evacuation aids
-            </p>
+            <ng-container *ngIf="isEditable; else HorizontalEvacuationLabel">
+                <input
+                    pInputText
+                    type="text"
+                    required
+                    name="HorizontalEvacuationMethod"
+                    class="form-control"
+                    [(ngModel)]="
+                        PersonalEmergencyFormData.HorizontalEvacuationMethod
+                    "
+                />
+                <p class="mb-4">
+                    State how the resident is to be moved e.g. evacuation chair,
+                    how close to residents room are evacuation aids
+                </p>
+            </ng-container>
+            <ng-template #HorizontalEvacuationLabel>
+                <label>{{
+                    PersonalEmergencyFormData.HorizontalEvacuationMethod
+                }}</label>
+            </ng-template>
         </div>
+
         <div class="col-md-1 form-icon">
             <i class="fa-solid fa-info"></i>
         </div>
+
         <div class="col-md-4">
             <div class="labelcontent">
                 <p>Vertical evacuation method</p>
             </div>
         </div>
         <div class="col-md-7 form-text">
-            <input
-                pInputText
-                type="text"
-                required
-                name="chartheadname"
-                class="form-control"
-            />
-            <p class="mb-4">
-                Specify equipment to use, e.g. Albac Mat; nearest stairwell, how
-                close to residents room are evacuation aids
-            </p>
+            <ng-container *ngIf="isEditable; else VerticalEvacuationLabel">
+                <input
+                    pInputText
+                    type="text"
+                    required
+                    name="VerticalEvacuationMethod"
+                    class="form-control"
+                    [(ngModel)]="
+                        PersonalEmergencyFormData.VerticalEvacuationMethod
+                    "
+                />
+                <p class="mb-4">
+                    Specify equipment to use, e.g. Albac Mat; nearest stairwell,
+                    how close to residents room are evacuation aids
+                </p>
+            </ng-container>
+            <ng-template #VerticalEvacuationLabel>
+                <label>{{
+                    PersonalEmergencyFormData.VerticalEvacuationMethod
+                }}</label>
+            </ng-template>
         </div>
+
         <div class="col-md-1 form-icon">
             <i class="fa-solid fa-info"></i>
         </div>
+
         <div class="col-md-4">
             <div class="labelcontent">
                 <p>
@@ -202,51 +329,73 @@
             </div>
         </div>
         <div class="col-md-7 form-text">
-            <input
-                pInputText
-                type="text"
-                required
-                name="chartheadname"
-                class="form-control"
-            />
+            <ng-container *ngIf="isEditable; else HazardRiskLabel">
+                <input
+                    pInputText
+                    type="text"
+                    required
+                    name="HazardRisk"
+                    class="form-control"
+                    [(ngModel)]="PersonalEmergencyFormData.HazardRisk"
+                />
+            </ng-container>
+            <ng-template #HazardRiskLabel>
+                <label>{{ PersonalEmergencyFormData.HazardRisk }}</label>
+            </ng-template>
         </div>
+
         <div class="col-md-1 form-icon">
             <i class="fa-solid fa-info"></i>
         </div>
+
         <div class="col-md-4">
             <div class="labelcontent">
                 <p>What are the hazards in relation to the risk to others</p>
             </div>
         </div>
         <div class="col-md-7 form-text">
-            <input
-                pInputText
-                type="text"
-                required
-                name="chartheadname"
-                class="form-control"
-            />
+            <ng-container *ngIf="isEditable; else HazardRiskOthersLabel">
+                <input
+                    pInputText
+                    type="text"
+                    required
+                    name="HazardRiskOthers"
+                    class="form-control"
+                    [(ngModel)]="PersonalEmergencyFormData.HazardRiskOthers"
+                />
+            </ng-container>
+            <ng-template #HazardRiskOthersLabel>
+                <label>{{ PersonalEmergencyFormData.HazardRiskOthers }}</label>
+            </ng-template>
         </div>
         <div class="col-md-1 form-icon">
             <i class="fa-solid fa-info"></i>
         </div>
+
         <div class="col-md-4">
             <div class="labelcontent">
                 <p>Control measures</p>
             </div>
         </div>
         <div class="col-md-7 form-text">
-            <input
-                pInputText
-                type="text"
-                required
-                name="chartheadname"
-                class="form-control"
-            />
+            <ng-container *ngIf="isEditable; else ControlMeasuresLabel">
+                <input
+                    pInputText
+                    type="text"
+                    required
+                    name="ControlMeasures"
+                    class="form-control"
+                    [(ngModel)]="PersonalEmergencyFormData.ControlMeasures"
+                />
+            </ng-container>
+            <ng-template #ControlMeasuresLabel>
+                <label>{{ PersonalEmergencyFormData.ControlMeasures }}</label>
+            </ng-template>
         </div>
         <div class="col-md-1 form-icon">
             <i class="fa-solid fa-info"></i>
         </div>
+
         <div class="col-md-4">
             <div class="labelcontent">
                 <p>Next review date</p>
@@ -254,17 +403,25 @@
         </div>
         <div class="col-md-7 form-text">
             <div class="input-group date">
-                <p-calendar
-                    name="DateOfBirth"
-                    [showIcon]="true"
-                    inputId="icon"
-                    [dateFormat]=""
-                    class="iconcal"
-                    [readonlyInput]="true"
-                    appendTo="body"
-                    [maxDate]=""
-                    #dobref=""
-                ></p-calendar>
+                <ng-container *ngIf="isEditable; else NextReviewDateLabel">
+                    <p-calendar
+                        name="NextReviewDate"
+                        [showIcon]="true"
+                        inputId="icon"
+                        [dateFormat]=""
+                        class="iconcal"
+                        [readonlyInput]="true"
+                        appendTo="body"
+                        [maxDate]=""
+                        [(ngModel)]="PersonalEmergencyFormData.NextReviewDate"
+                        #dobref=""
+                    ></p-calendar>
+                </ng-container>
+                <ng-template #NextReviewDateLabel>
+                    <label>{{
+                        PersonalEmergencyFormData.NextReviewDate
+                    }}</label>
+                </ng-template>
                 <div *ngIf="" class="alert alert-danger"></div>
             </div>
         </div>

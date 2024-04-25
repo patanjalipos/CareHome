@@ -46,6 +46,12 @@ export class CarePersonalEmergencyEvacuationPlanComponent
     loginId: any;
 
     //Dropdowns
+    residentFloorOptions: any[];
+    residentMobilityLevelOptions: any[];
+    additionalRiskFactorsOptions: any[];
+    cognitionOptions: any[];
+    totalScoreOptions: any[];
+    staffNeededOptions: any[];
 
     constructor(
         private _ConstantServices: ConstantsService,
@@ -56,7 +62,7 @@ export class CarePersonalEmergencyEvacuationPlanComponent
     ) {
         super();
         this._ConstantServices.ActiveMenuName =
-            'Care Assessment - Oral and Dental Form';
+            'Care Assessment - Personal Emergency Evacuation Plan Form';
         this.loginId = localStorage.getItem('userId');
 
         this.unsubscribe.add = this.route.queryParams.subscribe((params) => {
@@ -87,20 +93,31 @@ export class CarePersonalEmergencyEvacuationPlanComponent
     }
 
     ngOnInit(): void {
-        const dropDownNames = [''];
+        const dropDownNames = [
+            'residentFloorOptions',
+            'residentMobilityLevelOptions',
+            'additionalRiskFactorsOptions',
+            'cognitionOptions',
+            'totalScoreOptions',
+            'staffNeededOptions',
+        ];
 
         //Make requests in parallel
         forkJoin(
             dropDownNames.map((collectionName) =>
                 this.GetDropDownMasterList(
-                    FormTypes.careoralanddental,
+                    FormTypes.CareAssessmentPersonal,
                     collectionName
                 )
             )
         ).subscribe((responses: any[]) => {
             // responses is an array containing the responses for each request
-            // this.oralCareAssessmentOptions = responses[0];
-           
+            this.residentFloorOptions = responses[0];
+            this.residentMobilityLevelOptions = responses[1];
+            this.additionalRiskFactorsOptions = responses[2];
+            this.cognitionOptions = responses[3];
+            this.totalScoreOptions = responses[4];
+            this.staffNeededOptions = responses[5];
         });
 
         this.isEditable = this.preSelectedFormData.isEditable;
