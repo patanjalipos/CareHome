@@ -59,7 +59,8 @@ import { SepsisScreeningToolComponent } from '../sepsis-screening-tool/sepsis-sc
 })
 export class FormsDashboardComponent
     extends AppComponentBase
-    implements OnInit {
+    implements OnInit
+{
     @ViewChild('formContainer', { read: ViewContainerRef })
     formContainer: ViewContainerRef;
     componentRef: ComponentRef<any>;
@@ -76,7 +77,6 @@ export class FormsDashboardComponent
     rangeDates: Date[] | undefined;
     FormTypes = FormTypes;
     ShowChildComponent: boolean = false;
-
 
     constructor(
         private _ConstantServices: ConstantsService,
@@ -177,6 +177,7 @@ export class FormsDashboardComponent
     ) {
         this.selectedFormMasterId = selectedFormMasterId;
         this.selectedFormData = {
+            formMasterId: selectedFormMasterId,
             selectedFormID: selectedFormdata.FormId,
             isEditable: isEditable,
             IsCompleted: selectedFormdata.IsCompleted,

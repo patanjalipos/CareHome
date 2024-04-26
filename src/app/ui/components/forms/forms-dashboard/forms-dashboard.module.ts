@@ -168,7 +168,7 @@ import { RiskToolForUseOfWheelchairModule } from '../risk-tool-for-use-of-wheelc
     ConsentFormModule,
     CovidVaccinationRecordModule,RespiteCareSupportPlanModule,
     RiskMultifactorialFallsRiskModule,
-    RiskToolForUseOfWheelchairModule,
+    RiskToolForUseOfWheelchairModule
   ],
   exports:[
     FormsDashboardComponent,

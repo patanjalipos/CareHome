@@ -181,6 +181,7 @@
     "
 ></app-care-hearing-assessment>
 
+
 <app-care-mental-health [preSelectedFormData]="selectedFormData" (EmitUpdateForm)="EmitUpdateForm($event)"
 *ngIf="ShowChildComponent==true && selectedFormMasterId==FormTypes.CareAssessmentMental"></app-care-mental-health>
 
@@ -189,6 +190,24 @@
     && selectedFormMasterId == FormTypes.BodyMappingRecord "
     ></app-body-mapping-record
 >
+
+<app-care-personal-emergency-evacuation-plan
+    [preSelectedFormData]="selectedFormData"
+    (EmitUpdateForm)="EmitUpdateForm($event)"
+    *ngIf="
+        ShowChildComponent == true &&
+        selectedFormMasterId == FormTypes.CareAssessmentPersonal
+    "
+></app-care-personal-emergency-evacuation-plan>
+
+<app-body-mapping-record
+    [preSelectedFormData]="selectedFormData"
+    (EmitUpdateForm)="EmitUpdateForm($event)"
+    *ngIf="
+        ShowChildComponent == true &&
+        selectedFormMasterId == FormTypes.BodyMappingRecord
+    "
+></app-body-mapping-record>
 
 <app-care-breathing-and-circulation-assessment
     [preSelectedFormData]="selectedFormData"
