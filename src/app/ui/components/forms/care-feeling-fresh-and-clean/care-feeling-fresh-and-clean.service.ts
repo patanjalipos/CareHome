@@ -16,7 +16,7 @@ export class CareFeelingFreshAndCleanService {
     let reqHeader = new HttpHeaders({
       'Content-Type': 'application/json',
       'Access-Control-Allow-Origin': environment.BaseUriAdmin,
-      //'Authorization': 'Bearer ' + localStorage.getItem('token')
+      'Authorization': 'Bearer ' + localStorage.getItem('token')
   });
   let params = new HttpParams();
   params = params.append('Status', status);
@@ -30,7 +30,7 @@ export class CareFeelingFreshAndCleanService {
     let reqHeader = new HttpHeaders({
       'Content-Type': 'application/json',
       'Access-Control-Allow-Origin': environment.BaseUriAdmin,
-      //'Authorization': 'Bearer ' + localStorage.getItem('token')
+      'Authorization': 'Bearer ' + localStorage.getItem('token')
   });
   let params = new HttpParams();
   params = params.append('Status', status);
@@ -44,7 +44,7 @@ export class CareFeelingFreshAndCleanService {
     let reqHeader = new HttpHeaders({
       'Content-Type': 'application/json',
       'Access-Control-Allow-Origin': environment.BaseUriAdmin,
-      //'Authorization': 'Bearer ' + localStorage.getItem('token')
+      'Authorization': 'Bearer ' + localStorage.getItem('token')
   });
   let params = new HttpParams();
   params = params.append('Status', status);
@@ -58,7 +58,7 @@ export class CareFeelingFreshAndCleanService {
     let reqHeader = new HttpHeaders({
       'Content-Type': 'application/json',
       'Access-Control-Allow-Origin': environment.BaseUriAdmin,
-      //'Authorization': 'Bearer ' + localStorage.getItem('token')
+      'Authorization': 'Bearer ' + localStorage.getItem('token')
   });
   let params = new HttpParams();
   params = params.append('Status', status);
@@ -72,7 +72,7 @@ export class CareFeelingFreshAndCleanService {
     let reqHeader = new HttpHeaders({
       'Content-Type': 'application/json',
       'Access-Control-Allow-Origin': environment.BaseUriAdmin,
-      //'Authorization': 'Bearer ' + localStorage.getItem('token')
+      'Authorization': 'Bearer ' + localStorage.getItem('token')
   });
   let params = new HttpParams();
   params = params.append('Status', status);
@@ -86,7 +86,7 @@ export class CareFeelingFreshAndCleanService {
     let reqHeader = new HttpHeaders({
       'Content-Type': 'application/json',
       'Access-Control-Allow-Origin': environment.BaseUriAdmin,
-      //'Authorization': 'Bearer ' + localStorage.getItem('token')
+      'Authorization': 'Bearer ' + localStorage.getItem('token')
   });
   let params = new HttpParams();
   params = params.append('Status', status);
@@ -100,7 +100,7 @@ export class CareFeelingFreshAndCleanService {
     let reqHeader = new HttpHeaders({
       'Content-Type': 'application/json',
       'Access-Control-Allow-Origin': environment.BaseUriAdmin,
-      //'Authorization': 'Bearer ' + localStorage.getItem('token')
+      'Authorization': 'Bearer ' + localStorage.getItem('token')
   });
   let params = new HttpParams();
   params = params.append('Status', status);
@@ -114,7 +114,7 @@ export class CareFeelingFreshAndCleanService {
     let reqHeader = new HttpHeaders({
       'Content-Type': 'application/json',
       'Access-Control-Allow-Origin': environment.BaseUriAdmin,
-      //'Authorization': 'Bearer ' + localStorage.getItem('token')
+      'Authorization': 'Bearer ' + localStorage.getItem('token')
   });
   let params = new HttpParams();
   params = params.append('Status', status);
@@ -128,7 +128,7 @@ export class CareFeelingFreshAndCleanService {
     let reqHeader = new HttpHeaders({
       'Content-Type': 'application/json',
       'Access-Control-Allow-Origin': environment.BaseUriAdmin,
-      //'Authorization': 'Bearer ' + localStorage.getItem('token')
+      'Authorization': 'Bearer ' + localStorage.getItem('token')
   });
   let params = new HttpParams();
   params = params.append('Status', status);
@@ -142,7 +142,7 @@ export class CareFeelingFreshAndCleanService {
     let reqHeader = new HttpHeaders({
       'Content-Type': 'application/json',
       'Access-Control-Allow-Origin': environment.BaseUriAdmin,
-      //'Authorization': 'Bearer ' + localStorage.getItem('token')
+      'Authorization': 'Bearer ' + localStorage.getItem('token')
   });
   let params = new HttpParams();
   params = params.append('Status', status);
@@ -156,7 +156,7 @@ export class CareFeelingFreshAndCleanService {
     let reqHeader = new HttpHeaders({
       'Content-Type': 'application/json',
       'Access-Control-Allow-Origin': environment.BaseUriAdmin,
-      //'Authorization': 'Bearer ' + localStorage.getItem('token')
+      'Authorization': 'Bearer ' + localStorage.getItem('token')
   });
   let params = new HttpParams();
   params = params.append('Status', status);
@@ -170,7 +170,7 @@ export class CareFeelingFreshAndCleanService {
     let reqHeader = new HttpHeaders({
       'Content-Type': 'application/json',
       'Access-Control-Allow-Origin': environment.BaseUriAdmin,
-      //'Authorization': 'Bearer ' + localStorage.getItem('token')
+      'Authorization': 'Bearer ' + localStorage.getItem('token')
   });
   let params = new HttpParams();
   params = params.append('Status', status);
@@ -184,7 +184,7 @@ export class CareFeelingFreshAndCleanService {
     let reqHeader = new HttpHeaders({
       'Content-Type': 'application/json',
       'Access-Control-Allow-Origin': environment.BaseUriAdmin,
-      //'Authorization': 'Bearer ' + localStorage.getItem('token')
+      'Authorization': 'Bearer ' + localStorage.getItem('token')
   });
   let params = new HttpParams();
   params = params.append('Status', status);
@@ -198,7 +198,7 @@ export class CareFeelingFreshAndCleanService {
     let reqHeader = new HttpHeaders({
       'Content-Type': 'application/json',
       'Access-Control-Allow-Origin': environment.BaseUriAdmin,
-      //'Authorization': 'Bearer ' + localStorage.getItem('token')
+      'Authorization': 'Bearer ' + localStorage.getItem('token')
   });
   let params = new HttpParams();
   params = params.append('Status', status);
@@ -212,7 +212,7 @@ export class CareFeelingFreshAndCleanService {
     let reqHeader = new HttpHeaders({
       'Content-Type': 'application/json',
       'Access-Control-Allow-Origin': environment.BaseUriAdmin,
-      //'Authorization': 'Bearer ' + localStorage.getItem('token')
+      'Authorization': 'Bearer ' + localStorage.getItem('token')
   });
   let params = new HttpParams();
   params = params.append('Status', status);
@@ -230,7 +230,7 @@ export class CareFeelingFreshAndCleanService {
     let reqHeader = new HttpHeaders({
         'Content-Type': 'application/json',
         'Access-Control-Allow-Origin': environment.BaseUriAdmin,
-        //'Authorization': 'Bearer ' + localStorage.getItem('token')
+        'Authorization': 'Bearer ' + localStorage.getItem('token')
     });
     let params = new HttpParams();
     params = params.append('fromId', fromId);
@@ -246,7 +246,7 @@ AddInsertUpdateCareAssessmentFreshAndCleanForm(
     let reqHeader = new HttpHeaders({
         'Content-Type': 'application/json',
         'Access-Control-Allow-Origin': environment.BaseUriAdmin,
-        //'Authorization': 'Bearer ' + localStorage.getItem('token')
+        'Authorization': 'Bearer ' + localStorage.getItem('token')
     });
     let params = new HttpParams();
     var data = JSON.stringify(CareAssessmentFreshAndCleanFormsData).toString();

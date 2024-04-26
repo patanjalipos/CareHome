@@ -14,7 +14,7 @@ export class ReportService {
     let reqHeader = new HttpHeaders({
         'Content-Type': 'application/json',
         'Access-Control-Allow-Origin': environment.BaseUriAdmin,
-        //'Authorization': 'Bearer ' + localStorage.getItem('token')
+        'Authorization': 'Bearer ' + localStorage.getItem('token')
     });
     let params = new HttpParams();
     params = params.append('homemasterid', homemasterid);   

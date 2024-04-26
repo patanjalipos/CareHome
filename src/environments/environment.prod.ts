@@ -5,5 +5,10 @@ export const environment = {
   BaseURIFileServer:"https://hmstest.patanjaliwellness.com:31003/",
   BaseUriUser:'https://hmstest.patanjaliwellness.com:31008/user/',
   BaseUriAdmin:'https://hmstest.patanjaliwellness.com:31009/admin/',
-  BaseUriHome:'https://hmstest.patanjaliwellness.com:31001/home/'
+  BaseUriHome: 'https://hmstest.patanjaliwellness.com:31001/home/'
+  
+  // BaseURIFileServer:"https://hmsstaging.patanjaliwellness.com:31003/",
+  // BaseUriUser:'https://hmsstaging.patanjaliwellness.com:31008/user/',
+  // BaseUriAdmin:'https://hmsstaging.patanjaliwellness.com:31009/admin/',
+  // BaseUriHome:'https://hmsstaging.patanjaliwellness.com:31001/home/'
 };
