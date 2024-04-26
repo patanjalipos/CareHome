@@ -4,25 +4,25 @@
             <div class="d-flex">
                 <div class="col-md-4">
                     <label class="form-label"><b> Started by (Name) :</b>
-                    </label>
+                        {{preSelectedFormData.StartedBy}}</label>
                 </div>
                 <div class="col-md-4">
-                    <label class="form-label"><b>Designation :</b> </label>
+                    <label class="form-label"><b>Designation :</b> {{preSelectedFormData.StartedByDesignation}}</label>
                 </div>
                 <div class="col-md-4">
-                    <label class="form-label"> <b>Date/Time : </b></label>
+                    <label class="form-label"> <b>Date/Time : </b>{{preSelectedFormData.StartedOn | date : customDateFormat.DEF_DATE_TIME}}</label>
                 </div>
             </div>
             <div class="d-flex">
                 <div class="col-md-4">
                     <label class="form-label">
-                        <b>Last entered by (Name) :</b></label>
+                        <b>Last entered by (Name) :</b>{{preSelectedFormData.ModifiedBy}}</label>
                 </div>
                 <div class="col-md-4">
-                    <label class="form-label"> <b>Designation :</b></label>
+                    <label class="form-label"> <b>Designation :</b>{{preSelectedFormData.ModifiedByDesignation}}</label>
                 </div>
                 <div class="col-md-4">
-                    <label class="form-label"> <b>Date/Time :</b> </label>
+                    <label class="form-label"> <b>Date/Time :</b>{{preSelectedFormData.ModifiedOn | date: customDateFormat.DEF_DATE_TIME}} </label>
                 </div>
             </div>
         </div>
@@ -31,13 +31,20 @@
                 <p>How important is your appearance to you?</p>
             </div>
         </div>
-        <div class="col-md-7 mb-4 mt-4">
-            <p-dropdown placeholder="Select" [style]="{ width: '100%' }">
-            </p-dropdown>
-            <p>Please choose one of the below options if you us ethe other please ensure we put as much detail as
+        <div class="col-md-7 mt-4">
+            
+            <ng-container *ngIf="this.isEditable; else Appearance">
+                <p-dropdown [required]="true" [options]="lstAppearance"   optionLabel="Name" [(ngModel)]="CareAssessmentFreshAndCleanFormsData.Appearance" name="CareAssessmentFreshAndCleanFormsData.Appearance" optionValue="Id" placeholder="Select" [style]="{ width: '100%' }">
+                </p-dropdown>
+            </ng-container>
+            <ng-template #Appearance>
+                <label>{{CareAssessmentFreshAndCleanFormsData.AppearanceName}}</label>
+            </ng-template>
+            <p class="mb-4" *ngIf="isEditable==true">Please choose one of the below options if you us ethe other please ensure we put as much
+                detail as
                 possible</p>
         </div>
-        <div class="col-md-1 mt-4">
+        <div class="col-md-1 form-icon mt-4">
             <i class="fa-solid fa-info"></i>
         </div>
         <div class="col-md-4">
@@ -45,12 +52,17 @@
                 <p>Capacity </p>
             </div>
         </div>
-        <div class="col-md-7 mb-4">
-            <p-dropdown placeholder="Select" [style]="{ width: '100%' }">
-            </p-dropdown>
-            <p>Please choose one of the options below</p>
+        <div class="col-md-7">
+            <ng-container *ngIf="this.isEditable; else Capacity">
+                <p-dropdown [required]="true" [options]="lstCapacity"   optionLabel="Name" [(ngModel)]="CareAssessmentFreshAndCleanFormsData.Capacity" name="CareAssessmentFreshAndCleanFormsData.Capacity" optionValue="Id" placeholder="Select" [style]="{ width: '100%' }">
+                </p-dropdown>
+            </ng-container>
+            <ng-template #Capacity>
+                <label>{{CareAssessmentFreshAndCleanFormsData.CapacityName}}</label>
+            </ng-template>
+            <p class=" mb-4" *ngIf="isEditable==true">Please choose one of the options below</p>
         </div>
-        <div class="col-md-1">
+        <div class="col-md-1 form-icon">
             <i class="fa-solid fa-info"></i>
         </div>
 
@@ -59,12 +71,20 @@
                 <p>Detail specific decision relating to the residents personal hygiene and projection of self</p>
             </div>
         </div>
-        <div class="col-md-7 mb-4">
-            <input pInputText type="text" required name="chartheadname" class="form-control" />
-            <p>Include in this section how we empwer and enable the person regardless of mental capacity to be included
-                in the cleansing and projection of self every day and throughout the day</p>
+        <div class="col-md-7">
+            <ng-container *ngIf="this.isEditable; else SpecificDecisionDetailOfPersonalHygiene">
+                <input pInputText type="text" [(ngModel)]="CareAssessmentFreshAndCleanFormsData.SpecificDecisionDetailOfPersonalHygiene" required name="CareAssessmentFreshAndCleanFormsData.SpecificDecisionDetailOfPersonalHygiene" class="form-control mr-4"
+                    [style]="{ width: '35%' }">
+                    <p class=" mb-4">Include in this section how we empwer and enable the person regardless of mental capacity
+                        to be included
+                        in the cleansing and projection of self every day and throughout the day</p>
+            </ng-container>
+            <ng-template #SpecificDecisionDetailOfPersonalHygiene>
+                <label>{{CareAssessmentFreshAndCleanFormsData.SpecificDecisionDetailOfPersonalHygiene}}</label>
+            </ng-template>
+            
         </div>
-        <div class="col-md-1">
+        <div class="col-md-1 form-icon">
             <i class="fa-solid fa-info"></i>
         </div>
 
@@ -73,11 +93,16 @@
                 <p>Hygiene preference</p>
             </div>
         </div>
-        <div class="col-md-7 mb-4">
-            <p-dropdown placeholder="Select" [style]="{ width: '100%' }">
-            </p-dropdown>
+        <div class="col-md-7">
+            <ng-container *ngIf="this.isEditable; else HygienePreference">
+                <p-dropdown [required]="true" [options]="lstHygienePreference"   optionLabel="Name" [(ngModel)]="CareAssessmentFreshAndCleanFormsData.HygienePreference" name="CareAssessmentFreshAndCleanFormsData.HygienePreference" optionValue="Id" placeholder="Select" [style]="{ width: '100%' }">
+                </p-dropdown>
+            </ng-container>
+            <ng-template #HygienePreference>
+                <label>{{CareAssessmentFreshAndCleanFormsData.HygienePreferenceName}}</label>
+            </ng-template>
         </div>
-        <div class="col-md-1">
+        <div class="col-md-1 form-icon">
             <i class="fa-solid fa-info"></i>
         </div>
 
@@ -86,13 +111,21 @@
                 <p>Assistance for Hygiene</p>
             </div>
         </div>
-        <div class="col-md-7 mb-4">
-            <input pInputText type="text" required name="chartheadname" class="form-control" />
-            <p>Include specialist bath, shower chairs, perching stool etc. preferred day for weekly bath / shower (am /
-                pm), toiletry preferences (including prescribed treatments applied by staff / resident) and any
-                sensitivities</p>
+        <div class="col-md-7">
+            <ng-container *ngIf="this.isEditable; else HygieneAssistance">
+                <input pInputText type="text" [(ngModel)]="CareAssessmentFreshAndCleanFormsData.HygieneAssistance" required name="CareAssessmentFreshAndCleanFormsData.HygieneAssistance" class="form-control mr-4"
+                    [style]="{ width: '35%' }">
+                    <p class=" mb-4">Include specialist bath, shower chairs, perching stool etc. preferred day for weekly bath /
+                        shower (am /
+                        pm), toiletry preferences (including prescribed treatments applied by staff / resident) and any
+                        sensitivities</p>
+            </ng-container>
+            <ng-template #HygieneAssistance>
+                <label>{{CareAssessmentFreshAndCleanFormsData.HygieneAssistance}}</label>
+            </ng-template>
+            
         </div>
-        <div class="col-md-1">
+        <div class="col-md-1 form-icon">
             <i class="fa-solid fa-info"></i>
         </div>
 
@@ -101,11 +134,16 @@
                 <p>Dressing preferences</p>
             </div>
         </div>
-        <div class="col-md-7 mb-4">
-            <p-dropdown placeholder="Select" [style]="{ width: '100%' }">
-            </p-dropdown>
+        <div class="col-md-7">
+            <ng-container *ngIf="this.isEditable; else DressingPreference">
+                <p-dropdown [required]="true" [options]="lstDressingPreference"   optionLabel="Name" [(ngModel)]="CareAssessmentFreshAndCleanFormsData.DressingPreference" name="CareAssessmentFreshAndCleanFormsData.DressingPreference" optionValue="Id" placeholder="Select" [style]="{ width: '100%' }">
+                </p-dropdown>
+            </ng-container>
+            <ng-template #DressingPreference>
+                <label>{{CareAssessmentFreshAndCleanFormsData.DressingPreferenceName}}</label>
+            </ng-template>
         </div>
-        <div class="col-md-1">
+        <div class="col-md-1 form-icon">
             <i class="fa-solid fa-info"></i>
         </div>
 
@@ -114,11 +152,16 @@
                 <p>Dressing and undressing</p>
             </div>
         </div>
-        <div class="col-md-7 mb-4">
-            <p-dropdown placeholder="Select" [style]="{ width: '100%' }">
-            </p-dropdown>
+        <div class="col-md-7">
+            <ng-container *ngIf="this.isEditable; else DressingAndUndressing">
+                <p-dropdown [required]="true" [options]="lstDressingAndUndressing"   optionLabel="Name" [(ngModel)]="CareAssessmentFreshAndCleanFormsData.DressingAndUndressing" name="CareAssessmentFreshAndCleanFormsData.DressingAndUndressing" optionValue="Id" placeholder="Select" [style]="{ width: '100%' }">
+                </p-dropdown>
+            </ng-container>
+            <ng-template #DressingAndUndressing>
+                <label>{{CareAssessmentFreshAndCleanFormsData.DressingAndUndressingName}}</label>
+            </ng-template>
         </div>
-        <div class="col-md-1">
+        <div class="col-md-1 form-icon">
             <i class="fa-solid fa-info"></i>
         </div>
 
@@ -127,12 +170,20 @@
                 <p>Assistance required for Dressing/Undressing</p>
             </div>
         </div>
-        <div class="col-md-7 mb-4">
-            <input pInputText type="text" required name="chartheadname" class="form-control" />
-            <P>Detail dressing requirements, what can the resident still do for themselves, specific clothing choices,
-                day/night variances</P>
+        <div class="col-md-7">
+            <ng-container *ngIf="this.isEditable; else DressingAndUndressingAssistance">
+                <input pInputText type="text" [(ngModel)]="CareAssessmentFreshAndCleanFormsData.DressingAndUndressingAssistance" required name="CareAssessmentFreshAndCleanFormsData.DressingAndUndressingAssistance" class="form-control mr-4"
+                    [style]="{ width: '35%' }">
+                    <P class=" mb-4">Detail dressing requirements, what can the resident still do for themselves, specific
+                        clothing choices,
+                        day/night variances</P>
+            </ng-container>
+            <ng-template #DressingAndUndressingAssistance>
+                <label>{{CareAssessmentFreshAndCleanFormsData.DressingAndUndressingAssistance}}</label>
+            </ng-template>
+           
         </div>
-        <div class="col-md-1">
+        <div class="col-md-1 form-icon">
             <i class="fa-solid fa-info"></i>
         </div>
 
@@ -142,12 +193,20 @@
                     clothing choices and presentation?</p>
             </div>
         </div>
-        <div class="col-md-7 mb-4">
-            <input pInputText type="text" required name="chartheadname" class="form-control" />
-            <P>Please detail a little bit of history about the person, and what is important to them about their
-                personality, wishes and abilities to empower and enable them to feel like themselves.</P>
+        <div class="col-md-7">
+            <ng-container *ngIf="this.isEditable; else SupportThroughPresentation">
+                <input pInputText type="text" [(ngModel)]="CareAssessmentFreshAndCleanFormsData.SupportThroughPresentation" required name="CareAssessmentFreshAndCleanFormsData.SupportThroughPresentation" class="form-control mr-4"
+                    [style]="{ width: '35%' }">
+                    <P class=" mb-4">Please detail a little bit of history about the person, and what is important to them about
+                        their
+                        personality, wishes and abilities to empower and enable them to feel like themselves.</P>
+            </ng-container>
+            <ng-template #SupportThroughPresentation>
+                <label>{{CareAssessmentFreshAndCleanFormsData.SupportThroughPresentation}}</label>
+            </ng-template>
+            
         </div>
-        <div class="col-md-1">
+        <div class="col-md-1 form-icon">
             <i class="fa-solid fa-info"></i>
         </div>
         <div class="col-md-4">
@@ -155,27 +214,38 @@
                 <p>Grooming</p>
             </div>
         </div>
-        <div class="col-md-7 mb-4">
-            <p-dropdown placeholder="Select" [style]="{ width: '100%' }">
-            </p-dropdown>
+        <div class="col-md-7">
+            <ng-container *ngIf="this.isEditable; else Grooming">
+                <p-dropdown [required]="true" [options]="lstGrooming"   optionLabel="Name" [(ngModel)]="CareAssessmentFreshAndCleanFormsData.Grooming" name="CareAssessmentFreshAndCleanFormsData.Grooming" optionValue="Id" placeholder="Select" [style]="{ width: '100%' }">
+                </p-dropdown>
+            </ng-container>
+            <ng-template #Grooming>
+                <label>{{CareAssessmentFreshAndCleanFormsData.GroomingName}}</label>
+            </ng-template>
         </div>
-        <div class="col-md-1">
+        <div class="col-md-1 form-icon">
             <i class="fa-solid fa-info"></i>
         </div>
-
         <div class="col-md-4">
             <div class="labelcontent">
                 <p>Assistance required for grooming</p>
             </div>
         </div>
-        <div class="col-md-7 mb-4">
-            <p-dropdown placeholder="Select" [style]="{ width: '100%' }">
-            </p-dropdown>
-            <P>Are there particular products that work best on your skin, if you remove hair on your face do you prefer
-                a razor or electric shaver or tweezers/Waxing, for those who shave, what helps it o feel like you've has
-                a proper shave?</P>
+        <div class="col-md-7">
+            <ng-container *ngIf="this.isEditable; else GroomingAssistance">
+                <input pInputText type="text" [(ngModel)]="CareAssessmentFreshAndCleanFormsData.GroomingAssistance" required name="CareAssessmentFreshAndCleanFormsData.GroomingAssistance" class="form-control mr-4"
+                    [style]="{ width: '35%' }">
+                    <P class=" mb-4">Are there particular products that work best on your skin, if you remove hair on your face
+                        do you prefer
+                        a razor or electric shaver or tweezers/Waxing, for those who shave, what helps it o feel like you've has
+                        a proper shave?</P>
+            </ng-container>
+            <ng-template #GroomingAssistance>
+                <label>{{CareAssessmentFreshAndCleanFormsData.GroomingAssistance}}</label>
+            </ng-template>
+           
         </div>
-        <div class="col-md-1">
+        <div class="col-md-1 form-icon">
             <i class="fa-solid fa-info"></i>
         </div>
 
@@ -185,12 +255,18 @@
                     looking after your hair between hair appoitnments</p>
             </div>
         </div>
-        <div class="col-md-7 mb-4">
-            <p-dropdown placeholder="Select" [style]="{ width: '100%' }">
-            </p-dropdown>
-            <P>Include hairdressing appointments, include as much personalised information within the other section</P>
+        <div class="col-md-7">
+            <ng-container *ngIf="this.isEditable; else HairRoutine">
+                <p-dropdown [required]="true" [options]="lstHairRoutine"   optionLabel="Name" [(ngModel)]="CareAssessmentFreshAndCleanFormsData.HairRoutine" name="CareAssessmentFreshAndCleanFormsData.HairRoutine" optionValue="Id" placeholder="Select" [style]="{ width: '100%' }">
+                </p-dropdown>
+            </ng-container>
+            <ng-template #HairRoutine>
+                <label>{{CareAssessmentFreshAndCleanFormsData.HairRoutineName}}</label>
+            </ng-template>
+            <P class=" mb-4" *ngIf="isEditable==true">Include hairdressing appointments, include as much personalised information within the
+                other section</P>
         </div>
-        <div class="col-md-1">
+        <div class="col-md-1 form-icon">
             <i class="fa-solid fa-info"></i>
         </div>
 
@@ -199,10 +275,17 @@
                 <p>Assistance required for hair care</p>
             </div>
         </div>
-        <div class="col-md-7 mb-4">
-            <input pInputText type="text" required name="chartheadname" class="form-control" />
+        <div class="col-md-7">
+            <ng-container *ngIf="this.isEditable; else HairCareAssistance">
+                <input pInputText type="text" [(ngModel)]="CareAssessmentFreshAndCleanFormsData.HairCareAssistance" required name="CareAssessmentFreshAndCleanFormsData.HairCareAssistance" class="form-control mr-4"
+                    [style]="{ width: '35%' }">
+                    
+            </ng-container>
+            <ng-template #HairCareAssistance>
+                <label>{{CareAssessmentFreshAndCleanFormsData.HairCareAssistance}}</label>
+            </ng-template>
         </div>
-        <div class="col-md-1">
+        <div class="col-md-1 form-icon">
             <i class="fa-solid fa-info"></i>
         </div>
 
@@ -211,11 +294,16 @@
                 <p>Eye care</p>
             </div>
         </div>
-        <div class="col-md-7 mb-4">
-            <p-dropdown placeholder="Select" [style]="{ width: '100%' }">
-            </p-dropdown>
+        <div class="col-md-7">
+            <ng-container *ngIf="this.isEditable; else EyeCare">
+                <p-dropdown [required]="true" [options]="lstEyeCare"   optionLabel="Name" [(ngModel)]="CareAssessmentFreshAndCleanFormsData.EyeCare" name="CareAssessmentFreshAndCleanFormsData.EyeCare" optionValue="Id" placeholder="Select" [style]="{ width: '100%' }">
+                </p-dropdown>
+            </ng-container>
+            <ng-template #EyeCare>
+                <label>{{CareAssessmentFreshAndCleanFormsData.EyeCareName}}</label>
+            </ng-template>
         </div>
-        <div class="col-md-1">
+        <div class="col-md-1 form-icon">
             <i class="fa-solid fa-info"></i>
         </div>
 
@@ -224,10 +312,17 @@
                 <p>Assistance required for eye care</p>
             </div>
         </div>
-        <div class="col-md-7 mb-4">
-            <input pInputText type="text" required name="chartheadname" class="form-control" />
+        <div class="col-md-7">
+            <ng-container *ngIf="this.isEditable; else EyeCareAssistance">
+                <input pInputText type="text" [(ngModel)]="CareAssessmentFreshAndCleanFormsData.EyeCareAssistance" required name="CareAssessmentFreshAndCleanFormsData.EyeCareAssistance" class="form-control mr-4"
+                    [style]="{ width: '35%' }">
+                    
+            </ng-container>
+            <ng-template #EyeCareAssistance>
+                <label>{{CareAssessmentFreshAndCleanFormsData.EyeCareAssistance}}</label>
+            </ng-template>
         </div>
-        <div class="col-md-1">
+        <div class="col-md-1 form-icon">
             <i class="fa-solid fa-info"></i>
         </div>
 
@@ -236,12 +331,17 @@
                 <p>Nail care</p>
             </div>
         </div>
-        <div class="col-md-7 mb-4">
-            <p-dropdown placeholder="Select" [style]="{ width: '100%' }">
-            </p-dropdown>
-            <P>Is there anything the person would like us to know about their finger and toe nail care</P>
+        <div class="col-md-7">
+            <ng-container *ngIf="this.isEditable; else NailCare">
+                <p-dropdown [required]="true" [options]="lstNailCare"   optionLabel="Name" [(ngModel)]="CareAssessmentFreshAndCleanFormsData.NailCare" name="CareAssessmentFreshAndCleanFormsData.NailCare" optionValue="Id" placeholder="Select" [style]="{ width: '100%' }">
+                </p-dropdown>
+            </ng-container>
+            <ng-template #NailCare>
+                <label>{{CareAssessmentFreshAndCleanFormsData.NailCareName}}</label>
+            </ng-template>
+            <P class=" mb-4" *ngIf="isEditable==true">Is there anything the person would like us to know about their finger and toe nail care</P>
         </div>
-        <div class="col-md-1">
+        <div class="col-md-1 form-icon">
             <i class="fa-solid fa-info"></i>
         </div>
 
@@ -250,12 +350,20 @@
                 <p>Assistance required for nail care</p>
             </div>
         </div>
-        <div class="col-md-7 mb-4">
-            <input pInputText type="text" required name="chartheadname" class="form-control" />
-            <P>include if nail varnish is worn what colours the resident likes, do they like their toenails and
-                fingernails to be done at the same time and be the same colour</P>
+        <div class="col-md-7">
+            <ng-container *ngIf="this.isEditable; else NailCareAssistance">
+                <input pInputText type="text" [(ngModel)]="CareAssessmentFreshAndCleanFormsData.NailCareAssistance" required name="CareAssessmentFreshAndCleanFormsData.NailCareAssistance" class="form-control mr-4"
+                    [style]="{ width: '35%' }">
+                    <P class=" mb-4">include if nail varnish is worn what colours the resident likes, do they like their
+                        toenails and
+                        fingernails to be done at the same time and be the same colour</P>
+            </ng-container>
+            <ng-template #NailCareAssistance>
+                <label>{{CareAssessmentFreshAndCleanFormsData.NailCareAssistance}}</label>
+            </ng-template>
+            
         </div>
-        <div class="col-md-1">
+        <div class="col-md-1 form-icon">
             <i class="fa-solid fa-info"></i>
         </div>
 
@@ -264,12 +372,20 @@
                 <p>Hands and feet</p>
             </div>
         </div>
-        <div class="col-md-7 mb-4">
-            <input pInputText type="text" required name="chartheadname" class="form-control" />
-            <P>E.g. skin integrity / circulation / diabetes complete foot care / diabetic check, bunions calluses,
-                corns, hammer toes, chilblains gout</P>
+        <div class="col-md-7">
+            <ng-container *ngIf="this.isEditable; else HandsAndFeet">
+                <input pInputText type="text" [(ngModel)]="CareAssessmentFreshAndCleanFormsData.HandsAndFeet" required name="CareAssessmentFreshAndCleanFormsData.HandsAndFeet" class="form-control mr-4"
+                    [style]="{ width: '35%' }">
+                    <P class=" mb-4">E.g. skin integrity / circulation / diabetes complete foot care / diabetic check, bunions
+                        calluses,
+                        corns, hammer toes, chilblains gout</P>
+            </ng-container>
+            <ng-template #HandsAndFeet>
+                <label>{{CareAssessmentFreshAndCleanFormsData.HandsAndFeet}}</label>
+            </ng-template>
+            
         </div>
-        <div class="col-md-1">
+        <div class="col-md-1 form-icon">
             <i class="fa-solid fa-info"></i>
         </div>
         <div class="col-md-4">
@@ -277,11 +393,18 @@
                 <p>Assistance required for hands and feet</p>
             </div>
         </div>
-        <div class="col-md-7 mb-4">
-            <input pInputText type="text" required name="chartheadname" class="form-control" />
-            <P>E.g. cleaning fingernails daily / filing, professional input</P>
+        <div class="col-md-7">
+            <ng-container *ngIf="this.isEditable; else HandsAndFeetAssistance">
+                <input pInputText type="text" [(ngModel)]="CareAssessmentFreshAndCleanFormsData.HandsAndFeetAssistance" required name="CareAssessmentFreshAndCleanFormsData.HandsAndFeetAssistance" class="form-control mr-4"
+                    [style]="{ width: '35%' }">
+                    <P class=" mb-4">E.g. cleaning fingernails daily / filing, professional input</P>
+            </ng-container>
+            <ng-template #HandsAndFeetAssistance>
+                <label>{{CareAssessmentFreshAndCleanFormsData.HandsAndFeetAssistance}}</label>
+            </ng-template>
+            
         </div>
-        <div class="col-md-1">
+        <div class="col-md-1 form-icon">
             <i class="fa-solid fa-info"></i>
         </div>
 
@@ -290,11 +413,16 @@
                 <p>Make up</p>
             </div>
         </div>
-        <div class="col-md-7 mb-4">
-            <p-dropdown placeholder="Select" [style]="{ width: '100%' }">
-            </p-dropdown>
+        <div class="col-md-7">
+            <ng-container *ngIf="this.isEditable; else Makeup">
+                <p-dropdown [required]="true" [options]="lstMakeup"   optionLabel="Name" [(ngModel)]="CareAssessmentFreshAndCleanFormsData.Makeup" name="CareAssessmentFreshAndCleanFormsData.Makeup" optionValue="Id" placeholder="Select" [style]="{ width: '100%' }">
+                </p-dropdown>
+            </ng-container>
+            <ng-template #Makeup>
+                <label>{{CareAssessmentFreshAndCleanFormsData.MakeupName}}</label>
+            </ng-template>
         </div>
-        <div class="col-md-1">
+        <div class="col-md-1 form-icon">
             <i class="fa-solid fa-info"></i>
         </div>
 
@@ -303,63 +431,92 @@
                 <p>Assistance required for make up</p>
             </div>
         </div>
-        <div class="col-md-7 mb-4">
-            <input pInputText type="text" required name="chartheadname" class="form-control" />
-            <P>Include when they like to wear make up, what type of make up they like to wear, what parts of putting on
-                make up do they like to do themselves? Any parts we can support them with?</P>
+        <div class="col-md-7">
+            <ng-container *ngIf="this.isEditable; else MakeupAssistance">
+                <input pInputText type="text" [(ngModel)]="CareAssessmentFreshAndCleanFormsData.MakeupAssistance" required name="CareAssessmentFreshAndCleanFormsData.MakeupAssistance" class="form-control mr-4"
+                    [style]="{ width: '35%' }">
+                    <P class=" mb-4">Include when they like to wear make up, what type of make up they like to wear, what parts
+                        of putting on
+                        make up do they like to do themselves? Any parts we can support them with?</P>
+            </ng-container>
+            <ng-template #MakeupAssistance>
+                <label>{{CareAssessmentFreshAndCleanFormsData.MakeupAssistance}}</label>
+            </ng-template>
+            
         </div>
-        <div class="col-md-1">
+        <div class="col-md-1 form-icon">
             <i class="fa-solid fa-info"></i>
         </div>
-
         <div class="col-md-4">
             <div class="labelcontent">
                 <p>Jewellery</p>
             </div>
         </div>
-        <div class="col-md-7 mb-4">
-            <p-dropdown placeholder="Select" [style]="{ width: '100%' }">
-            </p-dropdown>
+        <div class="col-md-7">
+            <ng-container *ngIf="this.isEditable; else Jewellery">
+                <p-dropdown [required]="true" [options]="lstJewellery"   optionLabel="Name" [(ngModel)]="CareAssessmentFreshAndCleanFormsData.Jewellery" name="CareAssessmentFreshAndCleanFormsData.Jewellery" optionValue="Id" placeholder="Select" [style]="{ width: '100%' }">
+                </p-dropdown>
+            </ng-container>
+            <ng-template #Jewellery>
+                <label>{{CareAssessmentFreshAndCleanFormsData.JewelleryName}}</label>
+            </ng-template>
         </div>
-        <div class="col-md-1">
+        <div class="col-md-1 form-icon">
             <i class="fa-solid fa-info"></i>
         </div>
-
         <div class="col-md-4">
             <div class="labelcontent">
                 <p>Assistance required for jewellery</p>
             </div>
         </div>
-        <div class="col-md-7 mb-4">
-            <input pInputText type="text" required name="chartheadname" class="form-control" />
-            <P>Where stored day or night, which wristwatch face in or out, difference when in home to outside home</P>
+        <div class="col-md-7">
+            <ng-container *ngIf="this.isEditable; else JewelleryAssistance">
+                <input pInputText type="text" [(ngModel)]="CareAssessmentFreshAndCleanFormsData.JewelleryAssistance" required name="CareAssessmentFreshAndCleanFormsData.JewelleryAssistance" class="form-control mr-4"
+                    [style]="{ width: '35%' }">
+                    <P class=" mb-4">Where stored day or night, which wristwatch face in or out, difference when in home to
+                        outside home</P>
+            </ng-container>
+            <ng-template #JewelleryAssistance>
+                <label>{{CareAssessmentFreshAndCleanFormsData.JewelleryAssistance}}</label>
+            </ng-template>
+            
         </div>
-        <div class="col-md-1">
+        <div class="col-md-1 form-icon">
             <i class="fa-solid fa-info"></i>
         </div>
-
         <div class="col-md-4">
             <div class="labelcontent">
                 <p>Fragrance and / or deodorant</p>
             </div>
         </div>
-        <div class="col-md-7 mb-4">
-            <p-dropdown placeholder="Select" [style]="{ width: '100%' }">
-            </p-dropdown>
+        <div class="col-md-7">
+            <ng-container *ngIf="this.isEditable; else Fragrance">
+                <p-dropdown [required]="true" [options]="lstFragrance"   optionLabel="Name" [(ngModel)]="CareAssessmentFreshAndCleanFormsData.Fragrance" name="CareAssessmentFreshAndCleanFormsData.Fragrance" optionValue="Id" placeholder="Select" [style]="{ width: '100%' }">
+                </p-dropdown>
+            </ng-container>
+            <ng-template #Fragrance>
+                <label>{{CareAssessmentFreshAndCleanFormsData.FragranceName}}</label>
+            </ng-template>
         </div>
-        <div class="col-md-1">
+        <div class="col-md-1 form-icon">
             <i class="fa-solid fa-info"></i>
         </div>
-
         <div class="col-md-4">
             <div class="labelcontent">
                 <p>Assistance required for fragrance and or deodorant</p>
             </div>
         </div>
-        <div class="col-md-7 mb-4">
-            <input pInputText type="text" required name="chartheadname" class="form-control" />
+        <div class="col-md-7">
+            <ng-container *ngIf="this.isEditable; else FragranceAssistance">
+                <input pInputText type="text" [(ngModel)]="CareAssessmentFreshAndCleanFormsData.FragranceAssistance" required name="CareAssessmentFreshAndCleanFormsData.FragranceAssistance" class="form-control mr-4"
+                    [style]="{ width: '35%' }">
+                    
+            </ng-container>
+            <ng-template #FragranceAssistance>
+                <label>{{CareAssessmentFreshAndCleanFormsData.FragranceAssistance}}</label>
+            </ng-template>
         </div>
-        <div class="col-md-1">
+        <div class="col-md-1 form-icon">
             <i class="fa-solid fa-info"></i>
         </div>
 
@@ -368,11 +525,16 @@
                 <p>Hand, face and / or body creams</p>
             </div>
         </div>
-        <div class="col-md-7 mb-4">
-            <p-dropdown placeholder="Select" [style]="{ width: '100%' }">
-            </p-dropdown>
+        <div class="col-md-7">
+            <ng-container *ngIf="this.isEditable; else FaceAndBodyCreams">
+                <p-dropdown [required]="true" [options]="lstFaceAndBodyCreams"   optionLabel="Name" [(ngModel)]="CareAssessmentFreshAndCleanFormsData.FaceAndBodyCreams" name="CareAssessmentFreshAndCleanFormsData.FaceAndBodyCreams" optionValue="Id" placeholder="Select" [style]="{ width: '100%' }">
+                </p-dropdown>
+            </ng-container>
+            <ng-template #FaceAndBodyCreams>
+                <label>{{CareAssessmentFreshAndCleanFormsData.FaceAndBodyCreamsName}}</label>
+            </ng-template>
         </div>
-        <div class="col-md-1">
+        <div class="col-md-1 form-icon">
             <i class="fa-solid fa-info"></i>
         </div>
 
@@ -381,10 +543,17 @@
                 <p>Assistance required for hand, face and / or body creams</p>
             </div>
         </div>
-        <div class="col-md-7 mb-4">
-            <input pInputText type="text" required name="chartheadname" class="form-control" />
+        <div class="col-md-7">
+            <ng-container *ngIf="this.isEditable; else FaceAndBodyCreamsAssistance">
+                <input pInputText type="text" [(ngModel)]="CareAssessmentFreshAndCleanFormsData.FaceAndBodyCreamsAssistance" required name="CareAssessmentFreshAndCleanFormsData.FaceAndBodyCreamsAssistance" class="form-control mr-4"
+                    [style]="{ width: '35%' }">
+                    
+            </ng-container>
+            <ng-template #FaceAndBodyCreamsAssistance>
+                <label>{{CareAssessmentFreshAndCleanFormsData.FaceAndBodyCreamsAssistance}}</label>
+            </ng-template>
         </div>
-        <div class="col-md-1">
+        <div class="col-md-1 form-icon">
             <i class="fa-solid fa-info"></i>
         </div>
 
@@ -393,11 +562,16 @@
                 <p>Goals the resident wishes to achieve</p>
             </div>
         </div>
-        <div class="col-md-7 mb-4">
-            <p-dropdown placeholder="Select" [style]="{ width: '100%' }">
-            </p-dropdown>
+        <div class="col-md-7">
+            <ng-container *ngIf="this.isEditable; else GoalsToAchieveFreshAndClean">
+                <p-dropdown [required]="true" [options]="lstGoalsToAchieveFreshAndClean"   optionLabel="Name" [(ngModel)]="CareAssessmentFreshAndCleanFormsData.GoalsToAchieveFreshAndClean" name="CareAssessmentFreshAndCleanFormsData.GoalsToAchieveFreshAndClean" optionValue="Id" placeholder="Select" [style]="{ width: '100%' }">
+                </p-dropdown>
+            </ng-container>
+            <ng-template #GoalsToAchieveFreshAndClean>
+                <label>{{CareAssessmentFreshAndCleanFormsData.GoalsToAchieveFreshAndCleanName}}</label>
+            </ng-template>
         </div>
-        <div class="col-md-1">
+        <div class="col-md-1 form-icon">
             <i class="fa-solid fa-info"></i>
         </div>
 
@@ -406,11 +580,16 @@
                 <p>Strategies to manage the residents personal hygiene</p>
             </div>
         </div>
-        <div class="col-md-7 mb-4">
-            <p-dropdown placeholder="Select" [style]="{ width: '100%' }">
-            </p-dropdown>
+        <div class="col-md-7">
+            <ng-container *ngIf="this.isEditable; else StrategyToManageHygiene">
+                <p-dropdown [required]="true" [options]="lstStrategyToManageHygiene"   optionLabel="Name" [(ngModel)]="CareAssessmentFreshAndCleanFormsData.StrategyToManageHygiene" name="CareAssessmentFreshAndCleanFormsData.StrategyToManageHygiene" optionValue="Id" placeholder="Select" [style]="{ width: '100%' }">
+                </p-dropdown>
+            </ng-container>
+            <ng-template #StrategyToManageHygiene>
+                <label>{{CareAssessmentFreshAndCleanFormsData.StrategyToManageHygieneName}}</label>
+            </ng-template>
         </div>
-        <div class="col-md-1">
+        <div class="col-md-1 form-icon">
             <i class="fa-solid fa-info"></i>
         </div>
 
@@ -419,11 +598,18 @@
                 <p>Are there any other identified risks relating to personal hygiene</p>
             </div>
         </div>
-        <div class="col-md-7 mb-4">
-            <input pInputText type="text" required name="chartheadname" class="form-control" />
-            <P>Specify any other risks that have not been identified above</P>
+        <div class="col-md-7">
+            <ng-container *ngIf="this.isEditable; else IdentifiedRisksToHygiene">
+                <input pInputText type="text" [(ngModel)]="CareAssessmentFreshAndCleanFormsData.IdentifiedRisksToHygiene" required name="CareAssessmentFreshAndCleanFormsData.IdentifiedRisksToHygiene" class="form-control mr-4"
+                    [style]="{ width: '35%' }">
+                    <P class=" mb-4">Specify any other risks that have not been identified above</P>
+            </ng-container>
+            <ng-template #IdentifiedRisksToHygiene>
+                <label>{{CareAssessmentFreshAndCleanFormsData.IdentifiedRisksToHygiene}}</label>
+            </ng-template>
+            
         </div>
-        <div class="col-md-1">
+        <div class="col-md-1 form-icon">
             <i class="fa-solid fa-info"></i>
         </div>
 
@@ -432,11 +618,17 @@
                 <p>Action to manage additional risk identified</p>
             </div>
         </div>
-        <div class="col-md-7 mb-4">
-            <p-dropdown placeholder="Select" [style]="{ width: '100%' }">
-            </p-dropdown>
+        <div class="col-md-7">
+            <ng-container *ngIf="this.isEditable; else ActionToManageAdditionalRisk">
+                <input pInputText type="text" [(ngModel)]="CareAssessmentFreshAndCleanFormsData.ActionToManageAdditionalRisk" required name="CareAssessmentFreshAndCleanFormsData.ActionToManageAdditionalRisk" class="form-control mr-4"
+                    [style]="{ width: '35%' }">
+                    <P class=" mb-4">Specify any other risks that have not been identified above</P>
+            </ng-container>
+            <ng-template #ActionToManageAdditionalRisk>
+                <label>{{CareAssessmentFreshAndCleanFormsData.ActionToManageAdditionalRisk}}</label>
+            </ng-template>
         </div>
-        <div class="col-md-1">
+        <div class="col-md-1 form-icon">
             <i class="fa-solid fa-info"></i>
         </div>
         <div class="col-md-4">
@@ -444,9 +636,15 @@
                 <p>MONTHLY REVIEW (or before)</p>
             </div>
         </div>
-        <div class="col-md-7 mb-4">
-            <p-triStateCheckbox inputId="tricheckbox"></p-triStateCheckbox>
-            <P>This form should be reviewed EVERY MONTH or before if there are significant changes. Enter review date
+        <div class="col-md-7">
+            <ng-container *ngIf="this.isEditable; else MonthlyReview">
+                <p-checkbox [(ngModel)]="CareAssessmentFreshAndCleanFormsData.MonthlyReview" [binary]="true" inputId="binary"></p-checkbox>
+            </ng-container>
+            <ng-template #MonthlyReview>
+                <label>{{CareAssessmentFreshAndCleanFormsData.MonthlyReview==true?'yes':'no'}}</label>
+            </ng-template>
+            <P class=" mb-4" *ngIf="isEditable==true">This form should be reviewed EVERY MONTH or before if there are significant changes. Enter
+                review date
                 below.</P>
         </div>
 
@@ -455,25 +653,33 @@
                 <p>Special Occasions</p>
             </div>
         </div>
-        <div class="col-md-7 mb-4">
-            <input pInputText type="text" required name="chartheadname" class="form-control" />
-            <P>How do you like to get ready and dress on special occasions, do you like seeing pictures in magazines or
-                photos of other peoples special occasions?</P>
+        <div class="col-md-7">
+            <ng-container *ngIf="this.isEditable; else SpecialOccasion">
+                <input pInputText type="text" [(ngModel)]="CareAssessmentFreshAndCleanFormsData.SpecialOccasion" required name="CareAssessmentFreshAndCleanFormsData.SpecialOccasion" class="form-control mr-4"
+                    [style]="{ width: '35%' }">
+                    <P class=" mb-4">How do you like to get ready and dress on special occasions, do you like seeing pictures in
+                        magazines or
+                        photos of other peoples special occasions?</P>
+            </ng-container>
+            <ng-template #SpecialOccasion>
+                <label>{{CareAssessmentFreshAndCleanFormsData.SpecialOccasion}}</label>
+            </ng-template>
+            
         </div>
-        <div class="col-md-1">
+        <div class="col-md-1 form-icon">
             <i class="fa-solid fa-info"></i>
         </div>
 
         <div class="d-flex justify-content-end">
             <div>
                 <span class="p-ml-left mr-4">
-                    <button pButton title="New" label="Save as Unfinished"></button>
+                    <button pButton title="New" (click)="saveAsUnfinished()" label="Save as Unfinished"></button>
                     <span class="total-txt"></span>
                 </span>
             </div>
             <div>
                 <span class="p-ml-left mr-4">
-                    <button pButton title="New" label="Complete"></button>
+                    <button pButton title="New" (click)="completeForm()" label="Complete"></button>
                     <span class="total-txt"></span>
                 </span>
             </div>

@@ -7,6 +7,7 @@ import { ButtonModule } from 'primeng/button';
 import { CalendarModule } from "primeng/calendar";
 import { DropdownModule } from 'primeng/dropdown';
 import { FormsModule } from '@angular/forms';
+import { CheckboxModule } from 'primeng/checkbox';
 import { TriStateCheckboxModule } from 'primeng/tristatecheckbox';
 
 @NgModule({
@@ -20,7 +21,9 @@ import { TriStateCheckboxModule } from 'primeng/tristatecheckbox';
     CalendarModule,
     DropdownModule,
     FormsModule,
+    CheckboxModule,
     TriStateCheckboxModule
-  ]
+  ],
+  exports:[AccidentIncidentNearMissRecordComponent]
 })
 export class AccidentIncidentNearMissRecordModule { }

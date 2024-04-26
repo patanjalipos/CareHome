@@ -1,0 +1,539 @@
+<div class="card">
+    <div class="row">
+        <div class="formheader">
+            <div class="d-flex">
+                <div class="col-md-4">
+                    <label class="form-label"
+                        ><b> Started by (Name) :</b
+                        >{{ preSelectedFormData.StartedBy }}
+                    </label>
+                </div>
+                <div class="col-md-4">
+                    <label class="form-label"
+                        ><b>Designation :</b
+                        >{{ preSelectedFormData.StartedByDesignation }}
+                    </label>
+                </div>
+                <div class="col-md-4">
+                    <label class="form-label">
+                        <b>Date/Time : </b
+                        >{{
+                            preSelectedFormData.StartedOn
+                                | date : customDateFormat.DEF_DATE_TIME
+                        }}</label
+                    >
+                </div>
+            </div>
+            <div class="d-flex">
+                <div class="col-md-4">
+                    <label class="form-label">
+                        <b>Last entered by (Name) :</b
+                        >{{ preSelectedFormData.ModifiedBy }}</label
+                    >
+                </div>
+                <div class="col-md-4">
+                    <label class="form-label">
+                        <b>Designation :</b
+                        >{{ preSelectedFormData.ModifiedByDesignation }}</label
+                    >
+                </div>
+                <div class="col-md-4">
+                    <label class="form-label">
+                        <b>Date/Time :</b>
+                        {{
+                            preSelectedFormData.ModifiedOn
+                                | date : customDateFormat.DEF_DATE_TIME
+                        }}</label
+                    >
+                </div>
+            </div>
+        </div>
+
+        <!-- Has the resident been assessed or assumed as having capacity to make decisions relating to oral care -->
+        <div class="col-md-4 mt-4 labelcontent">
+            <p>
+                Has the resident been assessed or assumed as having capacity to
+                make decisions relating to oral care
+            </p>
+        </div>
+        <div class="col-md-7 mt-4 form-text">
+            <ng-container *ngIf="isEditable; else OralCareAssessmentLabel">
+                <p-dropdown
+                    placeholder="Select"
+                    [style]="{ width: '100%' }"
+                    [(ngModel)]="CareOralAndDentalFormData.OralCareAssessment"
+                    [options]="oralCareAssessmentOptions"
+                    optionLabel="optionName"
+                    optionValue="optionId"
+                ></p-dropdown>
+            </ng-container>
+            <ng-template #OralCareAssessmentLabel>
+                <label>{{
+                    CareOralAndDentalFormData.OralCareAssessmentName
+                }}</label>
+            </ng-template>
+        </div>
+
+        <div class="col-md-1 mt-4 form-icon">
+            <i class="fa-solid fa-info"></i>
+        </div>
+
+        <!-- Detail specific decision relating to the resident's oral care -->
+        <div class="col-md-4 mt-4 labelcontent">
+            <p>Detail specific decision relating to the resident's oral care</p>
+        </div>
+        <div class="col-md-7 mt-4 form-text">
+            <ng-container *ngIf="isEditable; else OralCareDecisionLabel">
+                <input
+                    pInputText
+                    type="text"
+                    required
+                    name="oralCareDecision"
+                    class="form-control"
+                    [(ngModel)]="CareOralAndDentalFormData.OralCareDecision"
+                />
+            </ng-container>
+            <ng-template #OralCareDecisionLabel>
+                <label>{{ CareOralAndDentalFormData.OralCareDecision }}</label>
+            </ng-template>
+        </div>
+
+        <div class="col-md-1 form-icon">
+            <i class="fa-solid fa-info"></i>
+        </div>
+
+        <!-- Condition of teeth / dentures -->
+        <div class="col-md-4 mt-4 labelcontent">
+            <p>Condition of teeth / dentures</p>
+        </div>
+        <div class="col-md-7 mt-4 form-text">
+            <ng-container *ngIf="isEditable; else TeethDenturesConditionLabel">
+                <p-dropdown
+                    placeholder="Select"
+                    [style]="{ width: '100%' }"
+                    [(ngModel)]="
+                        CareOralAndDentalFormData.TeethDenturesCondition
+                    "
+                    [options]="teethDenturesConditionOptions"
+                    optionLabel="optionName"
+                    optionValue="optionId"
+                ></p-dropdown>
+            </ng-container>
+            <ng-template #TeethDenturesConditionLabel>
+                <label>{{
+                    CareOralAndDentalFormData.TeethDenturesConditionName
+                }}</label>
+            </ng-template>
+        </div>
+
+        <div class="col-md-1 form-icon">
+            <i class="fa-solid fa-info"></i>
+        </div>
+
+        <!-- Gum condition -->
+        <div class="col-md-4 mt-4 labelcontent">
+            <p>Gum condition</p>
+        </div>
+        <div class="col-md-7 mt-4 form-text">
+            <ng-container *ngIf="isEditable; else GumConditionLabel">
+                <p-dropdown
+                    placeholder="Select"
+                    [style]="{ width: '100%' }"
+                    [(ngModel)]="CareOralAndDentalFormData.GumCondition"
+                    [options]="gumConditionOptions"
+                    optionLabel="optionName"
+                    optionValue="optionId"
+                ></p-dropdown>
+            </ng-container>
+            <ng-template #GumConditionLabel>
+                <label>{{ CareOralAndDentalFormData.GumConditionName }}</label>
+            </ng-template>
+        </div>
+
+        <div class="col-md-1 form-icon">
+            <i class="fa-solid fa-info"></i>
+        </div>
+
+        <!-- Tongue condition -->
+        <div class="col-md-4 mt-4 labelcontent">
+            <p>Tongue condition</p>
+        </div>
+        <div class="col-md-7 mt-4 form-text">
+            <ng-container *ngIf="isEditable; else TongueConditionLabel">
+                <p-dropdown
+                    placeholder="Select"
+                    [style]="{ width: '100%' }"
+                    [(ngModel)]="CareOralAndDentalFormData.TongueCondition"
+                    [options]="tongueConditionOptions"
+                    optionLabel="optionName"
+                    optionValue="optionId"
+                ></p-dropdown>
+            </ng-container>
+            <ng-template #TongueConditionLabel>
+                <label>{{ CareOralAndDentalFormData.TongueConditionName }}</label>
+            </ng-template>
+        </div>
+
+        <div class="col-md-1 form-icon">
+            <i class="fa-solid fa-info"></i>
+        </div>
+
+        <!-- Engraving -->
+        <div class="col-md-4 mt-4 labelcontent">
+            <p>Engraving</p>
+        </div>
+        <div class="col-md-7 mt-4 form-text">
+            <ng-container *ngIf="isEditable; else EngravingLabel">
+                <p-dropdown
+                    placeholder="Select"
+                    [style]="{ width: '100%' }"
+                    [(ngModel)]="CareOralAndDentalFormData.Engraving"
+                    [options]="engravingOptions"
+                    optionLabel="optionName"
+                    optionValue="optionId"
+                ></p-dropdown>
+            </ng-container>
+            <ng-template #EngravingLabel>
+                <label>{{ CareOralAndDentalFormData.EngravingName }}</label>
+            </ng-template>
+        </div>
+
+        <div class="col-md-1 form-icon">
+            <i class="fa-solid fa-info"></i>
+        </div>
+
+        <!-- Assistance required -->
+        <div class="col-md-4 mt-4 labelcontent">
+            <p>Assistance required</p>
+        </div>
+        <div class="col-md-7 mt-4 form-text">
+            <ng-container *ngIf="isEditable; else AssistanceRequiredLabel">
+                <input
+                    pInputText
+                    type="text"
+                    required
+                    name="assistanceRequired"
+                    class="form-control"
+                    [(ngModel)]="CareOralAndDentalFormData.AssistanceRequired"
+                />
+                <p class="mb-4">
+                    Detail assistance and if they have their own teeth, dentures
+                    or a mixture of both, think about what the resident can
+                    still do, cues needed type of assistance, if the resident
+                    will let you help them, if the teeth, gums or tongue are not
+                    in good condition how can you help them to improve this.
+                </p>
+            </ng-container>
+            <ng-template #AssistanceRequiredLabel>
+                <label>{{
+                    CareOralAndDentalFormData.AssistanceRequired
+                }}</label>
+            </ng-template>
+        </div>
+
+        <div class="col-md-1 form-icon">
+            <i class="fa-solid fa-info"></i>
+        </div>
+
+        <!-- Is the resident registered with dentist -->
+        <div class="col-md-4 mt-4 labelcontent">
+            <p>Is the resident registered with dentist</p>
+        </div>
+        <div class="col-md-7 mt-4 form-text">
+            <ng-container *ngIf="isEditable; else DentistRegistrationLabel">
+                <p-dropdown
+                    placeholder="Select"
+                    [style]="{ width: '100%' }"
+                    [(ngModel)]="
+                        CareOralAndDentalFormData.ResidentRegisteredWithDentist
+                    "
+                    [options]="dentistRegistrationOptions"
+                    optionLabel="optionName"
+                    optionValue="optionId"
+                ></p-dropdown>
+            </ng-container>
+            <ng-template #DentistRegistrationLabel>
+                <label>{{
+                    CareOralAndDentalFormData.ResidentRegisteredWithDentistName
+                }}</label>
+            </ng-template>
+        </div>
+
+        <div class="col-md-1 form-icon">
+            <i class="fa-solid fa-info"></i>
+        </div>
+
+        <div class="col-md-4 mt-4 labelcontent">
+            <p>Date of last dental appointment</p>
+        </div>
+        <div class="col-md-7 mt-4 form-text">
+            <p class="mb-4">
+                Please include date in the following format: DD/MM/YYYY. Does
+                the resident need a dentist appointment arranging if so, how
+                will you support them to arrange this
+            </p>
+        </div>
+
+        <div class="col-md-1 form-icon">
+            <i class="fa-solid fa-info"></i>
+        </div>
+
+        <!-- Diet required for oral condition -->
+        <div class="col-md-4 mt-4 labelcontent">
+            <p>Diet required for oral condition</p>
+        </div>
+        <div class="col-md-7 mt-4 form-text">
+            <ng-container *ngIf="isEditable; else DietForOralConditionLabel">
+                <p-dropdown
+                    placeholder="Select"
+                    [style]="{ width: '100%' }"
+                    [(ngModel)]="CareOralAndDentalFormData.DietForOralCondition"
+                    [options]="dietForOralConditionOptions"
+                    optionLabel="optionName"
+                    optionValue="optionId"
+                ></p-dropdown>
+            </ng-container>
+            <ng-template #DietForOralConditionLabel>
+                <label>{{
+                    CareOralAndDentalFormData.DietForOralConditionName
+                }}</label>
+            </ng-template>
+        </div>
+
+        <div class="col-md-1 form-icon">
+            <i class="fa-solid fa-info"></i>
+        </div>
+
+        <!-- Oral care strategies / management -->
+        <div class="col-md-4 mt-4 labelcontent">
+            <p>Oral care strategies / management</p>
+        </div>
+        <div class="col-md-7 mt-4 form-text">
+            <ng-container *ngIf="isEditable; else OralCareManagementLabel">
+                <input
+                    pInputText
+                    type="text"
+                    required
+                    name="oralCareManagement"
+                    class="form-control"
+                    [(ngModel)]="CareOralAndDentalFormData.OralCareManagement"
+                />
+            </ng-container>
+            <ng-template #OralCareManagementLabel>
+                <label>{{
+                    CareOralAndDentalFormData.OralCareManagement
+                }}</label>
+            </ng-template>
+        </div>
+
+        <div class="col-md-1 form-icon">
+            <i class="fa-solid fa-info"></i>
+        </div>
+
+        <!-- Goals the resident wishes to achieve -->
+        <div class="col-md-4 mt-4 labelcontent">
+            <p>Goals the resident wishes to achieve</p>
+        </div>
+        <div class="col-md-7 mt-4 form-text">
+            <ng-container *ngIf="isEditable; else ResidentGoalsLabel">
+                <p-dropdown
+                    placeholder="Select"
+                    [style]="{ width: '100%' }"
+                    [(ngModel)]="CareOralAndDentalFormData.ResidentGoals"
+                    [options]="residentGoalsOptions"
+                    optionLabel="optionName"
+                    optionValue="optionId"
+                ></p-dropdown>
+            </ng-container>
+            <ng-template #ResidentGoalsLabel>
+                <label>{{ CareOralAndDentalFormData.ResidentGoalsName }}</label>
+            </ng-template>
+        </div>
+
+        <div class="col-md-1 form-icon">
+            <i class="fa-solid fa-info"></i>
+        </div>
+
+        <!-- Does the resident have a specific goal personal to them -->
+        <div class="col-md-4 mt-4 labelcontent">
+            <p>Does the resident have a specific goal personal to them</p>
+        </div>
+        <div class="col-md-7 mt-4 form-text">
+            <ng-container *ngIf="isEditable; else ResidentSpecificGoalLabel">
+                <input
+                    pInputText
+                    type="text"
+                    required
+                    name="residentSpecificGoal"
+                    class="form-control"
+                    [(ngModel)]="CareOralAndDentalFormData.ResidentSpecificGoal"
+                />
+            </ng-container>
+            <ng-template #ResidentSpecificGoalLabel>
+                <label>{{
+                    CareOralAndDentalFormData.ResidentSpecificGoal
+                }}</label>
+            </ng-template>
+        </div>
+
+        <div class="col-md-1 form-icon">
+            <i class="fa-solid fa-info"></i>
+        </div>
+
+        <!-- Additional information -->
+        <div class="col-md-4 mt-4 labelcontent">
+            <p>Additional information</p>
+        </div>
+        <div class="col-md-7 mt-4 form-text">
+            <ng-container *ngIf="isEditable; else AdditionalInformationLabel">
+                <input
+                    pInputText
+                    type="text"
+                    required
+                    name="additionalInformation"
+                    class="form-control"
+                    [(ngModel)]="
+                        CareOralAndDentalFormData.AdditionalInformation
+                    "
+                />
+                <p class="mb-4">
+                    Consider medication that may have oral side effects, consult
+                    with pharmacist. Does the resident smoke or complain of dry
+                    mouth
+                </p>
+            </ng-container>
+            <ng-template #AdditionalInformationLabel>
+                <label>{{
+                    CareOralAndDentalFormData.AdditionalInformation
+                }}</label>
+            </ng-template>
+        </div>
+
+        <div class="col-md-1 form-icon">
+            <i class="fa-solid fa-info"></i>
+        </div>
+
+        <!-- Are there any other identified risks relating to oral hygiene -->
+        <div class="col-md-4 mt-4 labelcontent">
+            <p>Are there any other identified risks relating to oral hygiene</p>
+        </div>
+        <div class="col-md-7 mt-4 form-text">
+            <ng-container *ngIf="isEditable; else OtherOralHygieneRisksLabel">
+                <input
+                    pInputText
+                    type="text"
+                    required
+                    name="otherOralHygieneRisks"
+                    class="form-control"
+                    [(ngModel)]="
+                        CareOralAndDentalFormData.OtherOralHygieneRisks
+                    "
+                />
+                <p class="mb-4">
+                    Specify any other risks that have not been identified above
+                </p>
+            </ng-container>
+            <ng-template #OtherOralHygieneRisksLabel>
+                <label>{{
+                    CareOralAndDentalFormData.OtherOralHygieneRisks
+                }}</label>
+            </ng-template>
+        </div>
+
+        <div class="col-md-1 form-icon">
+            <i class="fa-solid fa-info"></i>
+        </div>
+
+        <!-- Action to manage additional risk identified -->
+        <div class="col-md-4 mt-4 labelcontent">
+            <p>Action to manage additional risk identified</p>
+        </div>
+        <div class="col-md-7 mt-4 form-text">
+            <ng-container
+                *ngIf="isEditable; else AdditionalRiskManagementActionLabel"
+            >
+                <input
+                    pInputText
+                    type="text"
+                    required
+                    name="additionalRiskManagementAction"
+                    class="form-control"
+                    [(ngModel)]="
+                        CareOralAndDentalFormData.AdditionalRiskManagementAction
+                    "
+                />
+            </ng-container>
+            <ng-template #AdditionalRiskManagementActionLabel>
+                <label>{{
+                    CareOralAndDentalFormData.AdditionalRiskManagementAction
+                }}</label>
+            </ng-template>
+        </div>
+
+        <div class="col-md-1 form-icon">
+            <i class="fa-solid fa-info"></i>
+        </div>
+
+        <!-- MONTHLY REVIEW (or before) -->
+        <div class="col-md-4 mt-4 labelcontent implabel">
+            <p>MONTHLY REVIEW (or before)</p>
+        </div>
+        <div class="col-md-7 mt-4 form-text">
+            <ng-container *ngIf="isEditable; else ReviewInfo">
+                <p-checkbox
+                    name="ChkMonthlyReview"
+                    [binary]="true"
+                    inputId="binary"
+                    [(ngModel)]="CareOralAndDentalFormData.MonthlyReviewChecked"
+                ></p-checkbox>
+                <p class="mb-4">
+                    This form should be reviewed EVERY MONTH or before if there
+                    are significant changes.
+                </p>
+            </ng-container>
+            <ng-template #ReviewInfo>
+                <div class="alert alert-info">
+                    Review information will be displayed here.
+                </div>
+            </ng-template>
+        </div>
+
+        <div class="d-flex justify-content-end">
+            <ng-container *ngIf="isEditable; else savePdf">
+                <div>
+                    <span class="p-ml-left mr-4">
+                        <button
+                            pButton
+                            title="New"
+                            label="Save as Unfinished"
+                            (click)="saveAsUnfinished()"
+                        ></button>
+                        <span class="total-txt"></span>
+                    </span>
+                </div>
+                <div>
+                    <span class="p-ml-left mr-4">
+                        <button
+                            pButton
+                            title="New"
+                            label="Complete"
+                            (click)="completeForm()"
+                            [disabled]="
+                                CareOralAndDentalFormData.IsFormCompleted
+                            "
+                        ></button>
+                        <span class="total-txt"></span>
+                    </span>
+                </div>
+            </ng-container>
+            <ng-template #savePdf>
+                <button
+                    pButton
+                    title="Save as PDF"
+                    label="Save as PDF"
+                    (click)="SaveAsPDF()"
+                ></button>
+            </ng-template>
+        </div>
+    </div>
+</div>

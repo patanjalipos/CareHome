@@ -8,6 +8,7 @@ import { CalendarModule } from "primeng/calendar";
 import { DropdownModule } from 'primeng/dropdown';
 import { FormsModule } from '@angular/forms';
 import { TriStateCheckboxModule } from 'primeng/tristatecheckbox';
+import { CheckboxModule } from 'primeng/checkbox';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,9 @@ import { TriStateCheckboxModule } from 'primeng/tristatecheckbox';
     DropdownModule,
     FormsModule,
     TriStateCheckboxModule,
+    CheckboxModule
 
-  ]
+  ],
+  exports:[CareBreathingAndCirculationAssessmentComponent]
 })
 export class CareBreathingAndCirculationAssessmentModule { }

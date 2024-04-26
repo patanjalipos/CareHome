@@ -1,0 +1,166 @@
+<div class="card">
+    <div class="row">
+        <div class="formheader">
+            <div class="d-flex">
+                <div class="col-md-4">
+                    <label class="form-label"><b> Started by (Name) :</b>
+                    </label>
+                </div>
+                <div class="col-md-4">
+                    <label class="form-label"><b>Designation :</b> </label>
+                </div>
+                <div class="col-md-4">
+                    <label class="form-label"> <b>Date/Time : </b></label>
+                </div>
+            </div>
+            <div class="d-flex">
+                <div class="col-md-4">
+                    <label class="form-label">
+                        <b>Last entered by (Name) :</b></label>
+                </div>
+                <div class="col-md-4">
+                    <label class="form-label"> <b>Designation :</b></label>
+                </div>
+                <div class="col-md-4">
+                    <label class="form-label"> <b>Date/Time :</b> </label>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 mt-4 ">
+            <div class="labelcontent">
+                <p>Speech and comprehension impairment</p>
+            </div>
+        </div>
+        <div class="col-md-7 mt-4 ">
+            <p-dropdown placeholder="Select" [style]="{ width: '100%' }">
+            </p-dropdown>
+        </div>
+        <div class="col-md-1 mt-4 form-icon">
+            <i class="fa-solid fa-info"></i>
+        </div>
+        <div class="col-md-4">
+            <div class="labelcontent">
+                <p>Non-verbal communication</p>
+            </div>
+        </div>
+        <div class="col-md-7">
+            <p-dropdown placeholder="Select" [style]="{ width: '100%' }">
+            </p-dropdown>
+        </div>
+        <div class="col-md-1 form-icon">
+            <i class="fa-solid fa-info"></i>
+        </div>
+        <div class="col-md-4">
+            <div class="labelcontent">
+                <p>Effect of speech / language impairment</p>
+            </div>
+        </div>
+        <div class="col-md-7">
+            <p-dropdown placeholder="Select" [style]="{ width: '100%' }">
+            </p-dropdown>
+        </div>
+        <div class="col-md-1 form-icon">
+            <i class="fa-solid fa-info"></i>
+        </div>
+        <div class="col-md-4">
+            <div class="labelcontent">
+                <p>Interventions</p>
+            </div>
+        </div>
+        <div class="col-md-7 form-text ">
+            <input pInputText type="tevxt" required name="chartheadname" class="form-control" />
+            <p class="mb-4">interpret body language gestures used good day/bad day day/night variances assistive aids used support
+                required</p>
+        </div>
+        <div class="col-md-1 form-icon">
+            <i class="fa-solid fa-info"></i>
+        </div>
+        <div class="col-md-4">
+            <div class="labelcontent">
+                <p>Does the resident have goals for speech and language</p>
+            </div>
+        </div>
+        <div class="col-md-7 ">
+            <p-dropdown placeholder="Select" [style]="{ width: '100%' }">
+            </p-dropdown>
+        </div>
+        <div class="col-md-1 form-icon">
+            <i class="fa-solid fa-info"></i>
+        </div>
+        <div class="col-md-4">
+            <div class="labelcontent">
+                <p>Professional Input / referral</p>
+            </div>
+        </div>
+        <div class="col-md-7 form-text">
+            <input pInputText type="text" required name="chartheadname" class="form-control" />
+            <p class="mb-4">Include SALT / Speech/ Language therapy or other professional input </p>
+        </div>
+        <div class="col-md-1 form-icon">
+            <i class="fa-solid fa-info"></i>
+        </div>
+        <div class="col-md-4">
+            <div class="labelcontent">
+                <p>Are there any other identified risks relating to the residents speech and language</p>
+            </div>
+        </div>
+        <div class="col-md-7 form-text">
+            <input pInputText type="text" required name="chartheadname" class="form-control" />
+            <p class="mb-4">Specify any other risks that have not been identified above</p>
+
+        </div>
+        <div class="col-md-1 form-icon">
+            <i class="fa-solid fa-info"></i>
+        </div>
+        <div class="col-md-4">
+            <div class="labelcontent">
+                <p>Action to manage additional risk identified</p>
+            </div>
+        </div>
+        <div class="col-md-7">
+            <input pInputText type="text" required name="chartheadname" class="form-control" />
+        </div>
+        <div class="col-md-1 form-icon">
+            <i class="fa-solid fa-info"></i>
+        </div>
+        <div class="col-md-4 ">
+            <div class="labelcontent implabel">
+                <p>MONTHLY REVIEW (or before)</p>
+            </div>
+        </div>
+        <div class="col-md-7 form-text">
+            <p-triStateCheckbox inputId="tricheckbox"></p-triStateCheckbox>
+            <p class="mb-4">This form should be reviewed EVERY MONTH or before if there are significant changes. Enter review date
+                below.</p>
+        </div>
+        <div class="col-md-4">
+            <div class="labelcontent">
+                <p>Next review date</p>
+            </div>
+        </div>
+        <div class="col-md-7">
+            <div class="input-group date">
+                <p-calendar name="DateOfBirth" [showIcon]="true" inputId="icon" [dateFormat]="" class="iconcal"
+                    [readonlyInput]="true" appendTo="body" [maxDate]="" #dobref=""></p-calendar>
+                <div *ngIf="" class="alert alert-danger">
+                </div>
+            </div>
+        </div>
+        <div class="d-flex justify-content-end">
+            <div>
+                <span class="p-ml-left mr-4">
+                    <button pButton title="New" label="Save as Unfinished"></button>
+                    <span class="total-txt"></span>
+                </span>
+            </div>
+            <div>
+                <span class="p-ml-left mr-4">
+                    <button pButton title="New" label="Complete"></button>
+                    <span class="total-txt"></span>
+                </span>
+            </div>
+        </div>
+
+    </div>
+
+</div>

@@ -184,7 +184,7 @@
                 <div class="row">
                     <div class="col-md-3">
                         <label class="form-label">User Type<span class="required">*</span></label>
-                        <p-dropdown [required]="true"
+                        <p-dropdown (onChange)="onChangeUserType()" [required]="true"
                             name="ddlUserType" [options]="lstUserType"
                             [(ngModel)]="RegistrationMainModel.UserTypeId" optionLabel="UserTypeName"
                             optionValue="UserTypeId" [filter]="true" placeholder="--select--"
@@ -346,11 +346,54 @@
                                         name="txtEmergencyContactMobile" mode="decimal" [useGrouping]="false" [maxlength]="20"></p-inputNumber>                        
                     </div>
                 </div>
-            </p-accordionTab>           
+            </p-accordionTab>  
+            <p-accordionTab header="Access Details">
+                <div class="row">
+                    <div class="col-md-3">
+                            <p-button  class="ov-button" appendTo="body" id="btn_op_UerAuthorization" [label]="'Set User Authorization'"
+                                icon="pi pi-list" (click)="op.toggle($event)" ></p-button>
+                        
+                            <p-overlayPanel appendTo="body" id="opUerAuthorization" #op [showCloseIcon]="false">
+                                <ng-template pTemplate>
+                                    <p-tree id="treeUerAuthorization" [value]="MenuitemMaster" [filter]="true"
+                                        selectionMode="checkbox" [(selection)]="selectedNodes2" (onNodeSelect)="onNodeSelectMenuAccess($event)" (onNodeUnselect)="onNodeUnselectMenuAccess($event)"></p-tree>
+                                    <br />
+                                </ng-template>
+                            </p-overlayPanel>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <p-treeTable [value]="lstActionItemAccess" [columns]="colsActionITable" [scrollable]="true"
+                            [resizableColumns]="true">
+                            <ng-template pTemplate="header" class="tbalign" let-columns>
+                                <!-- [ttRow]="rowNode" -->
+                                <tr>
+                                    <th *ngFor="let col of columns">
+                                        {{col.header}}
+                                    </th>
+                                </tr>
+                            </ng-template>
+                            <ng-template pTemplate="body" let-rowNode let-rowData="rowData" let-columns="columns">
+                                <tr>
+                                    <td *ngFor="let col of columns; let i = index">
+                                        <p-treeTableToggler [rowNode]="rowNode" *ngIf="i == 0"></p-treeTableToggler>
+                                        <label *ngIf="i == 0">{{rowData[col.field]}}</label>
+                                        <p-checkbox *ngIf="i != 0" [disabled]="col.field=='Read'?true:false"
+                                            [ngModelOptions]="{standalone: true}" [binary]="true" [(ngModel)]="rowData[col.field]"
+                                            (onChange)="CheckUnCheck($event,col.field,rowData['MenuItemId']);"></p-checkbox>
+                                    </td>
+                                </tr>
+                            </ng-template>
+                        </p-treeTable>
+                    </div>
+                </div>
+            </p-accordionTab>      
         </p-accordion>                
             <div class="flex flex-wrap gap-2">
+                <!-- [disabled]="!myForm.form.valid" -->
                 <button pButton type="button" label="Submit" (click)="Submit()" class="btn-primary"
-                    [disabled]="!myForm.form.valid"></button>
+                    ></button>
                 <button pButton type="button" label="Close" class="btn-secondary"
                     (click)="CloseModal()"></button>
             </div>                
