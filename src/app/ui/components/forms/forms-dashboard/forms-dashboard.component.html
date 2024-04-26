@@ -581,3 +581,9 @@
         selectedFormMasterId == FormTypes.risktoolforuseof
     "
 ></app-risk-tool-for-use-of-wheelchair>
+
+
+<app-gp-doctor-visit-communication-record [preSelectedFormData]="selectedFormData"
+    (EmitUpdateForm)="EmitUpdateForm($event)"
+    *ngIf="ShowChildComponent == true && selectedFormMasterId == FormTypes.GPDoctorVisitCommunicationRecord">
+</app-gp-doctor-visit-communication-record>
