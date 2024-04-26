@@ -146,4 +146,5 @@ export enum CustomDateFormat {
     DEF_DATE_TIME = 'dd-MM-yyyy HH:mm',
     DEF_DATE_TIME_AMPM = 'dd-MM-yyyy HH:mm a',
     CalendarFormat = 'dd-mm-yy',
+    TIME = 'HH:mm',
 }
