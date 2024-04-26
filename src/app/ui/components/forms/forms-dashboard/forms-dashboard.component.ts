@@ -75,9 +75,8 @@ export class FormsDashboardComponent
 
     residentAdmissionInfoId: string;
     rangeDates: Date[] | undefined;
-    FormTypes=FormTypes;
-    ShowChildComponent:boolean=false;
-
+    FormTypes = FormTypes;
+    ShowChildComponent: boolean = false;
 
     constructor(
         private _ConstantServices: ConstantsService,
@@ -129,7 +128,7 @@ export class FormsDashboardComponent
     }
 
     SearchForm() {
-        this.ShowChildComponent=false;
+        this.ShowChildComponent = false;
         this._UtilityService.showSpinner();
         //console.log('date Ranges: ' + rangeDates);
         const residentAdmissionInfoId = this.residentAdmissionInfoId;
@@ -178,6 +177,7 @@ export class FormsDashboardComponent
     ) {
         this.selectedFormMasterId = selectedFormMasterId;
         this.selectedFormData = {
+            formMasterId: selectedFormMasterId,
             selectedFormID: selectedFormdata.FormId,
             isEditable: isEditable,
             IsCompleted: selectedFormdata.IsCompleted,
@@ -192,9 +192,8 @@ export class FormsDashboardComponent
         //this._DataService.sendData(this.selectedFormData);
         //this.ShowForm(this.selectedFormMasterId);
     }
-    ShowModel()
-    {
-        this.ShowChildComponent=true;
+    ShowModel() {
+        this.ShowChildComponent = true;
     }
 
     //Create new Form
@@ -297,8 +296,7 @@ export class FormsDashboardComponent
         this.selectedFormData = null;
         this.componentRef.destroy();
     }
-    EmitUpdateForm(event)
-    {
+    EmitUpdateForm(event) {
         this.SearchForm();
     }
 }

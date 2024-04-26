@@ -216,7 +216,7 @@ ngOnInit(): void {
     
     this._UtilityService.showSpinner();
     this.unsubscribe.add = this._MasterServices
-        .GetLocationOfAccident(true)
+        .GetLocationOfAccident(1)
         .subscribe({
             next: (data) => {
             //   console.log(data)
@@ -241,7 +241,7 @@ GetAccidentFloorPlace() {
   
   this._UtilityService.showSpinner();
   this.unsubscribe.add = this._MasterServices
-      .GetAccidentFloorPlace(true)
+      .GetAccidentFloorPlace(1)
       .subscribe({
           next: (data) => {
             // console.log(data)
@@ -266,7 +266,7 @@ GetAccidentType() {
  
   this._UtilityService.showSpinner();
   this.unsubscribe.add = this._MasterServices
-      .GetAccidentType(true)
+      .GetAccidentType(1)
       .subscribe({
           next: (data) => {
             // console.log(data)
@@ -291,7 +291,7 @@ GetInjuriesSustained() {
 
   this._UtilityService.showSpinner();
   this.unsubscribe.add = this._MasterServices
-      .GetInjuriesSustained(true)
+      .GetInjuriesSustained(1)
       .subscribe({
           next: (data) => {
             // console.log(data)
@@ -316,7 +316,7 @@ GetJobRole() {
  
   this._UtilityService.showSpinner();
   this.unsubscribe.add = this._MasterServices
-      .GetJobRole(true)
+      .GetJobRole(1)
       .subscribe({
           next: (data) => {
             // console.log(data)
@@ -341,7 +341,7 @@ GetEmergencyServices() {
   
   this._UtilityService.showSpinner();
   this.unsubscribe.add = this._MasterServices
-      .GetEmergencyServices(true)
+      .GetEmergencyServices(1)
       .subscribe({
           next: (data) => {
             // console.log(data)
@@ -474,7 +474,6 @@ Save() {
 ResetModel() {
   this.isEditable = true;
   this.AccidentNearMissRecordFormsData = <any>{};
-  this.preSelectedFormData = <any>{};
   this.StatementType = 'Insert';
 }
 

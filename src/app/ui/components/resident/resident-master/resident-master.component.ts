@@ -202,10 +202,10 @@ export class ResidentMasterComponent extends AppComponentBase implements OnInit 
     this.selectedadmissionid = null;
     this.SelectedFile = [];
     this.ResidentMaster = <any>{};    
-    this.ResidentMaster.admissionstatus = this.admissionStatus.Unallocated;   
+    this.ResidentMaster.Admissionstatus = this.admissionStatus.Unallocated;   
     this.ResidentMaster.Status = 1;  
     if (UserTypes.SuperAdmin !== this.s_userTypeId) {
-      this.ResidentMaster.homemasterid = localStorage.getItem('HomeMasterId');
+      this.ResidentMaster.Homemasterid = localStorage.getItem('HomeMasterId');
     } 
   }
   LoadResidentDetails(id)
@@ -270,7 +270,7 @@ RemoveProfileImage(){
     this.ResidentMaster.ModifiedBy = localStorage.getItem('userId');  
     this.ResidentMaster.PayerTelephone = this.ResidentMaster.PayerTelephone?.toString() || null;
     
-    //console.log('ResidentMaster',this.ResidentMaster);
+    console.log('ResidentMaster',this.ResidentMaster);
     const formData = new FormData();
     formData.append('data', JSON.stringify(this.ResidentMaster));
     if(this.SelectedFile?.length > 0){

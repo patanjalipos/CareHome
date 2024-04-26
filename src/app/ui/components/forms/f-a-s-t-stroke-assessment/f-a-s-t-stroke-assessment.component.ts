@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'app-f-a-s-t-stroke-assessment',
@@ -6,7 +6,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./f-a-s-t-stroke-assessment.component.scss']
 })
 export class FASTStrokeAssessmentComponent implements OnInit {
-
+  @Input() preSelectedFormData: any=<any>{};
+  @Output() EmitUpdateForm: EventEmitter<any> = new EventEmitter<any>();
   constructor() { }
 
   ngOnInit(): void {
