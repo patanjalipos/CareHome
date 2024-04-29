@@ -320,7 +320,7 @@ if (this.userId != null && this.residentAdmissionInfoId != null && this.loginId!
         });
 } else {
     this._UtilityService.showWarningAlert(
-        'Care Assessment Fresh and Clean details are missing.'
+        'Care Assessment Hearing details are missing.'
     );
 }
 }

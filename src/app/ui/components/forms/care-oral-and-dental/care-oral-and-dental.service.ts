@@ -2,14 +2,13 @@ import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
-
 @Injectable({
     providedIn: 'root',
 })
-export class CareAssessmentDietaryNotificationService {
+export class CareOralAndDentalService {
     constructor(private _httpclient: HttpClient) {}
 
-    GetDietaryNotificationFormById(selectedFormID: string): Observable<any> {
+    GetCareOralAndDentalFormById(selectedFormID: string): Observable<any> {
         const reqHeader = new HttpHeaders({
             'Content-Type': 'application/json',
             'Access-Control-Allow-Origin': environment.BaseUriAdmin,
@@ -18,7 +17,7 @@ export class CareAssessmentDietaryNotificationService {
         params = params.append('fromId', selectedFormID);
         return this._httpclient.get<any>(
             environment.BaseUriAdmin +
-                'api/Admin/GetDietaryNotificationFormById',
+                'api/Admin/GetCareOralAndDentalFormById',
             { headers: reqHeader, params: params }
         );
     }
@@ -33,7 +32,7 @@ export class CareAssessmentDietaryNotificationService {
         var data = JSON.stringify(formdata).toString();
         return this._httpclient.post<any>(
             environment.BaseUriAdmin +
-                'api/Admin/InsertUpdateDietaryNotificationForm',
+                'api/Admin/InsertUpdateGetCareOralAndDentalForm',
             data,
             { headers: reqHeader, params: params }
         );
