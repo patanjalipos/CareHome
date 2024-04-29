@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'app-delirium-risk-and-risk-reduction',
@@ -6,7 +6,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./delirium-risk-and-risk-reduction.component.scss']
 })
 export class DeliriumRiskAndRiskReductionComponent implements OnInit {
-
+  @Input() preSelectedFormData: any=<any>{};
+  @Output() EmitUpdateForm: EventEmitter<any> = new EventEmitter<any>();
   constructor() { }
 
   ngOnInit(): void {

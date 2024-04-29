@@ -4,66 +4,35 @@
         <div class="col-md-3">
             <div class="form-group">
                 <label class="form-label">
-                    From Date / To Date <span class="required">*</span></label
-                >
-                <p-calendar
-                    [(ngModel)]="rangeDates"
-                    selectionMode="range"
-                    [readonlyInput]="true"
-                    placeholder="Date Range"
-                ></p-calendar>
+                    From Date / To Date <span class="required">*</span></label>
+                <p-calendar [(ngModel)]="rangeDates" selectionMode="range" [readonlyInput]="true"
+                    placeholder="Date Range"></p-calendar>
             </div>
         </div>
         <div class="col-md-3">
             <label class="form-label">
-                Select Assessment Form <span class="required">*</span></label
-            >
-            <p-dropdown
-                [(ngModel)]="selectedFormMasterId"
-                [required]="true"
-                [options]="lstMaster"
-                optionLabel="FormName"
-                optionValue="FormMasterId"
-                placeholder="Select"
-                [style]="{ width: '100%' }"
-                (onChange)="SearchForm()"
-            >
+                Select Assessment Form <span class="required">*</span></label>
+            <p-dropdown [(ngModel)]="selectedFormMasterId" [required]="true" [options]="lstMaster"
+                optionLabel="FormName" optionValue="FormMasterId" placeholder="Select" [style]="{ width: '100%' }"
+                (onChange)="SearchForm()">
             </p-dropdown>
         </div>
 
         <div class="col-md-6 d-flex mt-3">
             <span class="p-ml-left mr-4">
-                <button
-                    pButton
-                    title="New"
-                    label="Create Form"
-                    (click)="OpenForm(selectedFormMasterId)"
-                ></button>
+                <button pButton title="New" label="Create Form" (click)="OpenForm(selectedFormMasterId)"></button>
                 <span class="total-txt"> </span>
             </span>
             <div>
                 <span class="p-ml-left">
-                    <button
-                        pButton
-                        title="New"
-                        label="Clear Search"
-                        (click)="ResetModel()"
-                    ></button>
+                    <button pButton title="New" label="Clear Search" (click)="ResetModel()"></button>
                     <span class="total-txt"> </span>
                 </span>
             </div>
         </div>
-        <p-table
-            #dt
-            [value]="formDashboardList"
-            responsiveLayout="scroll"
-            class="mt-4"
-            styleClass="p-datatable-striped"
-            [rowHover]="true"
-            [globalFilterFields]="['FormName', 'ModifiedOn']"
-            [scrollable]="true"
-            scrollHeight="calc(100vh - 155px)"
-        >
+        <p-table #dt [value]="formDashboardList" responsiveLayout="scroll" class="mt-4" styleClass="p-datatable-striped"
+            [rowHover]="true" [globalFilterFields]="['FormName', 'ModifiedOn']" [scrollable]="true"
+            scrollHeight="calc(100vh - 155px)">
             <ng-template pTemplate="emptymessage" let-columns>
                 <tr>
                     <td [attr.colspan]="columns?.length">No records found</td>
@@ -89,23 +58,17 @@
                     </td>
                     <td>
                         {{
-                            dt.ModifiedOn
-                                | date : customDateFormat.DEF_DATE_TIME
+                        dt.ModifiedOn
+                        | date : customDateFormat.DEF_DATE_TIME
                         }}
                     </td>
                     <td>
-                        <a
-                            title="View"
-                            (click)="OpenForm(dt.FormMasterId, dt, false)"
-                        >
+                        <a title="View" (click)="OpenForm(dt.FormMasterId, dt, false)">
                             <i class="fa fa-eye" aria-hidden="true"></i>
                         </a>
                         <span style="margin-left: 10px"></span>
                         <!-- Adjust the margin-left as needed -->
-                        <a
-                            title="Edit"
-                            (click)="OpenForm(dt.FormMasterId, dt, true)"
-                        >
+                        <a title="Edit" (click)="OpenForm(dt.FormMasterId, dt, true)">
                             <i class="fa fa-pencil" aria-hidden="true"></i>
                         </a>
                     </td>
@@ -117,473 +80,309 @@
 
 <!-- Dynamic Form Component -->
 
-<app-pre-admission-assessment-forms
-    [preSelectedFormData]="selectedFormData"
-    (EmitUpdateForm)="EmitUpdateForm($event)"
+<app-pre-admission-assessment-forms [preSelectedFormData]="selectedFormData" (EmitUpdateForm)="EmitUpdateForm($event)"
     *ngIf="
         ShowChildComponent == true &&
         selectedFormMasterId == FormTypes.PreAdmission
-    "
-></app-pre-admission-assessment-forms>
+    "></app-pre-admission-assessment-forms>
 
-<app-accident-incident-near-miss-record
-    [preSelectedFormData]="selectedFormData"
-    (EmitUpdateForm)="EmitUpdateForm($event)"
-    *ngIf="
+<app-accident-incident-near-miss-record [preSelectedFormData]="selectedFormData"
+    (EmitUpdateForm)="EmitUpdateForm($event)" *ngIf="
         ShowChildComponent == true &&
         selectedFormMasterId == FormTypes.AccidentIncident
-    "
-></app-accident-incident-near-miss-record>
+    "></app-accident-incident-near-miss-record>
 
-<app-acute-care-plan-infection-prevention-and-control
-    [preSelectedFormData]="selectedFormData"
-    (EmitUpdateForm)="EmitUpdateForm($event)"
-    *ngIf="
+<app-acute-care-plan-infection-prevention-and-control [preSelectedFormData]="selectedFormData"
+    (EmitUpdateForm)="EmitUpdateForm($event)" *ngIf="
         ShowChildComponent == true &&
         selectedFormMasterId == FormTypes.AcuteCarePlan
-    "
-></app-acute-care-plan-infection-prevention-and-control>
+    "></app-acute-care-plan-infection-prevention-and-control>
 
-<app-family-communication
-    [preSelectedFormData]="selectedFormData"
-    (EmitUpdateForm)="EmitUpdateForm($event)"
-    *ngIf="
+<app-family-communication [preSelectedFormData]="selectedFormData" (EmitUpdateForm)="EmitUpdateForm($event)" *ngIf="
         ShowChildComponent == true &&
         selectedFormMasterId == FormTypes.FamilyCommunication
-    "
-></app-family-communication>
+    "></app-family-communication>
 
-<app-care-eats-and-treats
-    [preSelectedFormData]="selectedFormData"
-    (EmitUpdateForm)="EmitUpdateForm($event)"
-    *ngIf="
+<app-care-eats-and-treats [preSelectedFormData]="selectedFormData" (EmitUpdateForm)="EmitUpdateForm($event)" *ngIf="
         ShowChildComponent == true &&
         selectedFormMasterId == FormTypes.CareAssessmentEats
-    "
-></app-care-eats-and-treats>
+    "></app-care-eats-and-treats>
 
-<app-care-feeling-fresh-and-clean
-    [preSelectedFormData]="selectedFormData"
-    (EmitUpdateForm)="EmitUpdateForm($event)"
+<app-care-feeling-fresh-and-clean [preSelectedFormData]="selectedFormData" (EmitUpdateForm)="EmitUpdateForm($event)"
     *ngIf="
         ShowChildComponent == true &&
         selectedFormMasterId == FormTypes.CareAssessmentFeeling
-    "
->
+    ">
 </app-care-feeling-fresh-and-clean>
 
-<app-care-hearing-assessment
-    [preSelectedFormData]="selectedFormData"
-    (EmitUpdateForm)="EmitUpdateForm($event)"
-    *ngIf="
+<app-care-hearing-assessment [preSelectedFormData]="selectedFormData" (EmitUpdateForm)="EmitUpdateForm($event)" *ngIf="
         ShowChildComponent == true &&
         selectedFormMasterId == FormTypes.CareAssessmentHearing
-    "
-></app-care-hearing-assessment>
+    "></app-care-hearing-assessment>
 
 
 <app-care-mental-health [preSelectedFormData]="selectedFormData" (EmitUpdateForm)="EmitUpdateForm($event)"
-*ngIf="ShowChildComponent==true && selectedFormMasterId==FormTypes.CareAssessmentMental"></app-care-mental-health>
+    *ngIf="ShowChildComponent==true && selectedFormMasterId==FormTypes.CareAssessmentMental"></app-care-mental-health>
 
-<app-body-mapping-record [preSelectedFormData]="selectedFormData"
-    (EmitUpdateForm)="EmitUpdateForm($event)" *ngIf=" ShowChildComponent == true
-    && selectedFormMasterId == FormTypes.BodyMappingRecord "
-    ></app-body-mapping-record
->
+<app-body-mapping-record [preSelectedFormData]="selectedFormData" (EmitUpdateForm)="EmitUpdateForm($event)" *ngIf=" ShowChildComponent == true
+    && selectedFormMasterId == FormTypes.BodyMappingRecord "></app-body-mapping-record>
 
-<app-care-personal-emergency-evacuation-plan
-    [preSelectedFormData]="selectedFormData"
-    (EmitUpdateForm)="EmitUpdateForm($event)"
-    *ngIf="
+<app-care-personal-emergency-evacuation-plan [preSelectedFormData]="selectedFormData"
+    (EmitUpdateForm)="EmitUpdateForm($event)" *ngIf="
         ShowChildComponent == true &&
         selectedFormMasterId == FormTypes.CareAssessmentPersonal
-    "
-></app-care-personal-emergency-evacuation-plan>
+    "></app-care-personal-emergency-evacuation-plan>
 
-<app-body-mapping-record
-    [preSelectedFormData]="selectedFormData"
-    (EmitUpdateForm)="EmitUpdateForm($event)"
-    *ngIf="
+<app-body-mapping-record [preSelectedFormData]="selectedFormData" (EmitUpdateForm)="EmitUpdateForm($event)" *ngIf="
         ShowChildComponent == true &&
         selectedFormMasterId == FormTypes.BodyMappingRecord
-    "
-></app-body-mapping-record>
+    "></app-body-mapping-record>
 
-<app-care-breathing-and-circulation-assessment
-    [preSelectedFormData]="selectedFormData"
-    (EmitUpdateForm)="EmitUpdateForm($event)"
-    *ngIf="
+<app-care-breathing-and-circulation-assessment [preSelectedFormData]="selectedFormData"
+    (EmitUpdateForm)="EmitUpdateForm($event)" *ngIf="
         ShowChildComponent == true &&
         selectedFormMasterId == FormTypes.CareAssessmentBreathing
-    "
-></app-care-breathing-and-circulation-assessment>
+    "></app-care-breathing-and-circulation-assessment>
 
-<app-district-nurse-visit-communication
-    [preSelectedFormData]="selectedFormData"
-    (EmitUpdateForm)="EmitUpdateForm($event)"
-    *ngIf="
+<app-district-nurse-visit-communication [preSelectedFormData]="selectedFormData"
+    (EmitUpdateForm)="EmitUpdateForm($event)" *ngIf="
         ShowChildComponent == true &&
         selectedFormMasterId == FormTypes.DistrictNurseVisit
-    "
->
+    ">
 </app-district-nurse-visit-communication>
 
-<app-care-continence-promotion
-    [preSelectedFormData]="selectedFormData"
-    (EmitUpdateForm)="EmitUpdateForm($event)"
-    *ngIf="
+<app-care-continence-promotion [preSelectedFormData]="selectedFormData" (EmitUpdateForm)="EmitUpdateForm($event)" *ngIf="
         ShowChildComponent == true &&
         selectedFormMasterId == FormTypes.CareAssessmentContinence
-    "
->
+    ">
 </app-care-continence-promotion>
 
-<app-risk-tool-bed-rails-pack
-    [preSelectedFormData]="selectedFormData"
-    (EmitUpdateForm)="EmitUpdateForm($event)"
-    *ngIf="
+<app-risk-tool-bed-rails-pack [preSelectedFormData]="selectedFormData" (EmitUpdateForm)="EmitUpdateForm($event)" *ngIf="
         ShowChildComponent == true &&
         selectedFormMasterId == FormTypes.RiskToolBedRails
-    "
->
+    ">
 </app-risk-tool-bed-rails-pack>
 
-<app-promoting-wellbeing-at-home
-    [preSelectedFormData]="selectedFormData"
-    (EmitUpdateForm)="EmitUpdateForm($event)"
+<app-promoting-wellbeing-at-home [preSelectedFormData]="selectedFormData" (EmitUpdateForm)="EmitUpdateForm($event)"
     *ngIf="
         ShowChildComponent == true &&
         selectedFormMasterId == FormTypes.PromotingWellbeing
-    "
->
+    ">
 </app-promoting-wellbeing-at-home>
 
-<app-dentist-visit-communication
-    [preSelectedFormData]="selectedFormData"
-    (EmitUpdateForm)="EmitUpdateForm($event)"
+<app-dentist-visit-communication [preSelectedFormData]="selectedFormData" (EmitUpdateForm)="EmitUpdateForm($event)"
     *ngIf="
         ShowChildComponent == true &&
         selectedFormMasterId == FormTypes.DentistVisitCommunication
-    "
-></app-dentist-visit-communication>
+    "></app-dentist-visit-communication>
 
-<app-covid-acute-care-plan
-    [preSelectedFormData]="selectedFormData"
-    (EmitUpdateForm)="EmitUpdateForm($event)"
-    *ngIf="
+<app-covid-acute-care-plan [preSelectedFormData]="selectedFormData" (EmitUpdateForm)="EmitUpdateForm($event)" *ngIf="
         ShowChildComponent == true &&
         selectedFormMasterId == FormTypes.CovidAcuteCarePlan
-    "
-></app-covid-acute-care-plan>
+    "></app-covid-acute-care-plan>
 
-<app-f-a-s-t-stroke-assessment
-    [preSelectedFormData]="selectedFormData"
-    (EmitUpdateForm)="EmitUpdateForm($event)"
-    *ngIf="
+<app-f-a-s-t-stroke-assessment [preSelectedFormData]="selectedFormData" (EmitUpdateForm)="EmitUpdateForm($event)" *ngIf="
         ShowChildComponent == true &&
         selectedFormMasterId == FormTypes.FASTStrokeAssessment
-    "
-></app-f-a-s-t-stroke-assessment>
+    "></app-f-a-s-t-stroke-assessment>
 
-<app-sepsis-screening-tool
-    [preSelectedFormData]="selectedFormData"
-    (EmitUpdateForm)="EmitUpdateForm($event)"
-    *ngIf="
+<app-sepsis-screening-tool [preSelectedFormData]="selectedFormData" (EmitUpdateForm)="EmitUpdateForm($event)" *ngIf="
         ShowChildComponent == true &&
         selectedFormMasterId == FormTypes.SepsisScreening
-    "
-></app-sepsis-screening-tool>
+    "></app-sepsis-screening-tool>
 
-<app-healthcare-support-tool
-    [preSelectedFormData]="selectedFormData"
-    (EmitUpdateForm)="EmitUpdateForm($event)"
-    *ngIf="
+<app-healthcare-support-tool [preSelectedFormData]="selectedFormData" (EmitUpdateForm)="EmitUpdateForm($event)" *ngIf="
         ShowChildComponent == true &&
         selectedFormMasterId == FormTypes.HealthCareSupport
-    "
-></app-healthcare-support-tool>
+    "></app-healthcare-support-tool>
 
-<app-home-managers-settling
-    [preSelectedFormData]="selectedFormData"
-    (EmitUpdateForm)="EmitUpdateForm($event)"
-    *ngIf="
+<app-home-managers-settling [preSelectedFormData]="selectedFormData" (EmitUpdateForm)="EmitUpdateForm($event)" *ngIf="
         ShowChildComponent == true &&
         selectedFormMasterId == FormTypes.HomemangersSetting
-    "
-></app-home-managers-settling>
+    "></app-home-managers-settling>
 
-<app-record-of-property
-    [preSelectedFormData]="selectedFormData"
-    (EmitUpdateForm)="EmitUpdateForm($event)"
-    *ngIf="
+<app-record-of-property [preSelectedFormData]="selectedFormData" (EmitUpdateForm)="EmitUpdateForm($event)" *ngIf="
         ShowChildComponent == true &&
         selectedFormMasterId == FormTypes.RecordOfProperty
-    "
-></app-record-of-property>
+    "></app-record-of-property>
 
-<app-care-assessment-dietary-notification
-    [preSelectedFormData]="selectedFormData"
-    (EmitUpdateForm)="EmitUpdateForm($event)"
-    *ngIf="
+<app-care-assessment-dietary-notification [preSelectedFormData]="selectedFormData"
+    (EmitUpdateForm)="EmitUpdateForm($event)" *ngIf="
         ShowChildComponent == true &&
         selectedFormMasterId == FormTypes.CareAssessmentDietaryNotification
-    "
-></app-care-assessment-dietary-notification>
+    "></app-care-assessment-dietary-notification>
 
-<app-care-assessment-life-history
-    [preSelectedFormData]="selectedFormData"
-    (EmitUpdateForm)="EmitUpdateForm($event)"
+<app-care-assessment-life-history [preSelectedFormData]="selectedFormData" (EmitUpdateForm)="EmitUpdateForm($event)"
     *ngIf="
         ShowChildComponent == true &&
         selectedFormMasterId == FormTypes.CareAssessmentLifeHistory
-    "
-></app-care-assessment-life-history>
+    "></app-care-assessment-life-history>
 
-<app-respiratory-screening-questions
-    [preSelectedFormData]="selectedFormData"
-    (EmitUpdateForm)="EmitUpdateForm($event)"
+<app-respiratory-screening-questions [preSelectedFormData]="selectedFormData" (EmitUpdateForm)="EmitUpdateForm($event)"
     *ngIf="
         ShowChildComponent == true &&
         selectedFormMasterId == FormTypes.RespiratoryScreening
-    "
-></app-respiratory-screening-questions>
+    "></app-respiratory-screening-questions>
 
-<app-care-assessment-my-epilepsy
-    [preSelectedFormData]="selectedFormData"
-    (EmitUpdateForm)="EmitUpdateForm($event)"
+<app-care-assessment-my-epilepsy [preSelectedFormData]="selectedFormData" (EmitUpdateForm)="EmitUpdateForm($event)"
     *ngIf="
         ShowChildComponent == true &&
         selectedFormMasterId == FormTypes.CareAssessmentMyEpilepsySupport
-    "
-></app-care-assessment-my-epilepsy>
+    "></app-care-assessment-my-epilepsy>
 
-<app-care-assessment-respect
-    [preSelectedFormData]="selectedFormData"
-    (EmitUpdateForm)="EmitUpdateForm($event)"
-    *ngIf="
+<app-care-assessment-respect [preSelectedFormData]="selectedFormData" (EmitUpdateForm)="EmitUpdateForm($event)" *ngIf="
         ShowChildComponent == true &&
         selectedFormMasterId == FormTypes.CareAssessmentRESPECT
-    "
-></app-care-assessment-respect>
+    "></app-care-assessment-respect>
 
-<app-positive-behaviour-support
-    [preSelectedFormData]="selectedFormData"
-    (EmitUpdateForm)="EmitUpdateForm($event)"
+<app-positive-behaviour-support [preSelectedFormData]="selectedFormData" (EmitUpdateForm)="EmitUpdateForm($event)"
     *ngIf="
         ShowChildComponent == true &&
         selectedFormMasterId == FormTypes.PositiveBehaviour
-    "
-></app-positive-behaviour-support>
+    "></app-positive-behaviour-support>
 
-<app-the-pool-activity-level
-    [preSelectedFormData]="selectedFormData"
-    (EmitUpdateForm)="EmitUpdateForm($event)"
-    *ngIf="
+<app-the-pool-activity-level [preSelectedFormData]="selectedFormData" (EmitUpdateForm)="EmitUpdateForm($event)" *ngIf="
         ShowChildComponent == true &&
         selectedFormMasterId == FormTypes.ThePoolActivityLevel
-    "
-></app-the-pool-activity-level>
+    "></app-the-pool-activity-level>
 
-<app-care-assessment-trial-with-out-cathete
-    [preSelectedFormData]="selectedFormData"
-    (EmitUpdateForm)="EmitUpdateForm($event)"
-    *ngIf="
+<app-care-assessment-trial-with-out-cathete [preSelectedFormData]="selectedFormData"
+    (EmitUpdateForm)="EmitUpdateForm($event)" *ngIf="
         ShowChildComponent == true &&
         selectedFormMasterId == FormTypes.CareAssessmentTrialWith
-    "
-></app-care-assessment-trial-with-out-cathete>
+    "></app-care-assessment-trial-with-out-cathete>
 
-<app-care-plan-review
-    [preSelectedFormData]="selectedFormData"
-    (EmitUpdateForm)="EmitUpdateForm($event)"
-    *ngIf="
+<app-care-plan-review [preSelectedFormData]="selectedFormData" (EmitUpdateForm)="EmitUpdateForm($event)" *ngIf="
         ShowChildComponent == true &&
         selectedFormMasterId == FormTypes.CarePlanReview
-    "
-></app-care-plan-review>
+    "></app-care-plan-review>
 
-<app-care-signs-of-ill-being
-    [preSelectedFormData]="selectedFormData"
-    (EmitUpdateForm)="EmitUpdateForm($event)"
-    *ngIf="
+<app-care-signs-of-ill-being [preSelectedFormData]="selectedFormData" (EmitUpdateForm)="EmitUpdateForm($event)" *ngIf="
         ShowChildComponent == true &&
         selectedFormMasterId == FormTypes.caresignsofill
-    "
-></app-care-signs-of-ill-being>
+    "></app-care-signs-of-ill-being>
 
-<app-hazards-risks
-    [preSelectedFormData]="selectedFormData"
-    (EmitUpdateForm)="EmitUpdateForm($event)"
-    *ngIf="
+<app-hazards-risks [preSelectedFormData]="selectedFormData" (EmitUpdateForm)="EmitUpdateForm($event)" *ngIf="
         ShowChildComponent == true &&
         selectedFormMasterId == FormTypes.hazardsrisks
-    "
-></app-hazards-risks>
+    "></app-hazards-risks>
 
-<app-herbert-protocol-missing-person
-    [preSelectedFormData]="selectedFormData"
-    (EmitUpdateForm)="EmitUpdateForm($event)"
+<app-herbert-protocol-missing-person [preSelectedFormData]="selectedFormData" (EmitUpdateForm)="EmitUpdateForm($event)"
     *ngIf="
         ShowChildComponent == true &&
         selectedFormMasterId == FormTypes.HerbertprotocolMissing
-    "
-></app-herbert-protocol-missing-person>
+    "></app-herbert-protocol-missing-person>
 
-<app-incident-near-miss-record
-    [preSelectedFormData]="selectedFormData"
-    (EmitUpdateForm)="EmitUpdateForm($event)"
-    *ngIf="
+<app-incident-near-miss-record [preSelectedFormData]="selectedFormData" (EmitUpdateForm)="EmitUpdateForm($event)" *ngIf="
         ShowChildComponent == true &&
         selectedFormMasterId == FormTypes.incidentnearmiss
-    "
-></app-incident-near-miss-record>
+    "></app-incident-near-miss-record>
 
-<app-medication-incident
-    [preSelectedFormData]="selectedFormData"
-    (EmitUpdateForm)="EmitUpdateForm($event)"
-    *ngIf="
+<app-medication-incident [preSelectedFormData]="selectedFormData" (EmitUpdateForm)="EmitUpdateForm($event)" *ngIf="
         ShowChildComponent == true &&
         selectedFormMasterId == FormTypes.medicationincident
-    "
-></app-medication-incident>
+    "></app-medication-incident>
 
-<app-outings-risk-assessment
-    [preSelectedFormData]="selectedFormData"
-    (EmitUpdateForm)="EmitUpdateForm($event)"
-    *ngIf="
+<app-outings-risk-assessment [preSelectedFormData]="selectedFormData" (EmitUpdateForm)="EmitUpdateForm($event)" *ngIf="
         ShowChildComponent == true &&
         selectedFormMasterId == FormTypes.OutingsRiskAssessment
-    "
-></app-outings-risk-assessment>
+    "></app-outings-risk-assessment>
 
-<app-record-of-decision
-    [preSelectedFormData]="selectedFormData"
-    (EmitUpdateForm)="EmitUpdateForm($event)"
-    *ngIf="
+<app-record-of-decision [preSelectedFormData]="selectedFormData" (EmitUpdateForm)="EmitUpdateForm($event)" *ngIf="
         ShowChildComponent == true &&
         selectedFormMasterId == FormTypes.recordofdecision
-    "
-></app-record-of-decision>
+    "></app-record-of-decision>
 
-<app-risk-tool-safe-working
-    [preSelectedFormData]="selectedFormData"
-    (EmitUpdateForm)="EmitUpdateForm($event)"
-    *ngIf="
+<app-risk-tool-safe-working [preSelectedFormData]="selectedFormData" (EmitUpdateForm)="EmitUpdateForm($event)" *ngIf="
         ShowChildComponent == true &&
         selectedFormMasterId == FormTypes.risktoolsafe
-    "
-></app-risk-tool-safe-working>
+    "></app-risk-tool-safe-working>
 
-<app-smoking-risk-assessment
-    [preSelectedFormData]="selectedFormData"
-    (EmitUpdateForm)="EmitUpdateForm($event)"
-    *ngIf="
+<app-smoking-risk-assessment [preSelectedFormData]="selectedFormData" (EmitUpdateForm)="EmitUpdateForm($event)" *ngIf="
         ShowChildComponent == true &&
         selectedFormMasterId == FormTypes.SmokingRiskAssessment
-    "
-></app-smoking-risk-assessment>
+    "></app-smoking-risk-assessment>
 
-<app-care-behaviour-assessment
-    [preSelectedFormData]="selectedFormData"
-    (EmitUpdateForm)="EmitUpdateForm($event)"
-    *ngIf="
+<app-care-behaviour-assessment [preSelectedFormData]="selectedFormData" (EmitUpdateForm)="EmitUpdateForm($event)" *ngIf="
         ShowChildComponent == true &&
         selectedFormMasterId == FormTypes.carebehaviourassesment
-    "
-></app-care-behaviour-assessment>
+    "></app-care-behaviour-assessment>
 
-<app-care-oral-and-dental
-    [preSelectedFormData]="selectedFormData"
-    (EmitUpdateForm)="EmitUpdateForm($event)"
-    *ngIf="
+<app-care-oral-and-dental [preSelectedFormData]="selectedFormData" (EmitUpdateForm)="EmitUpdateForm($event)" *ngIf="
         ShowChildComponent == true &&
         selectedFormMasterId == FormTypes.careoralanddental
-    "
-></app-care-oral-and-dental>
+    "></app-care-oral-and-dental>
 
-<app-care-resident-contacts-list
-    [preSelectedFormData]="selectedFormData"
-    (EmitUpdateForm)="EmitUpdateForm($event)"
+<app-care-resident-contacts-list [preSelectedFormData]="selectedFormData" (EmitUpdateForm)="EmitUpdateForm($event)"
     *ngIf="
         ShowChildComponent == true &&
         selectedFormMasterId == FormTypes.careresidentcontact
-    "
-></app-care-resident-contacts-list>
+    "></app-care-resident-contacts-list>
 
-<app-care-skin-assessment
-    [preSelectedFormData]="selectedFormData"
-    (EmitUpdateForm)="EmitUpdateForm($event)"
-    *ngIf="
+<app-care-skin-assessment [preSelectedFormData]="selectedFormData" (EmitUpdateForm)="EmitUpdateForm($event)" *ngIf="
         ShowChildComponent == true &&
         selectedFormMasterId == FormTypes.careskinassessment
-    "
-></app-care-skin-assessment>
+    "></app-care-skin-assessment>
 
-<app-care-vision-assessment
-    [preSelectedFormData]="selectedFormData"
-    (EmitUpdateForm)="EmitUpdateForm($event)"
-    *ngIf="
+<app-care-vision-assessment [preSelectedFormData]="selectedFormData" (EmitUpdateForm)="EmitUpdateForm($event)" *ngIf="
         ShowChildComponent == true &&
         selectedFormMasterId == FormTypes.carevision
-    "
-></app-care-vision-assessment>
+    "></app-care-vision-assessment>
 
-<app-care-wishes-for-future
-    [preSelectedFormData]="selectedFormData"
-    (EmitUpdateForm)="EmitUpdateForm($event)"
-    *ngIf="
+<app-care-wishes-for-future [preSelectedFormData]="selectedFormData" (EmitUpdateForm)="EmitUpdateForm($event)" *ngIf="
         ShowChildComponent == true &&
         selectedFormMasterId == FormTypes.carewisheshforfuture
-    "
-></app-care-wishes-for-future>
+    "></app-care-wishes-for-future>
 
-<app-consent-form
-    [preSelectedFormData]="selectedFormData"
-    (EmitUpdateForm)="EmitUpdateForm($event)"
-    *ngIf="
+<app-consent-form [preSelectedFormData]="selectedFormData" (EmitUpdateForm)="EmitUpdateForm($event)" *ngIf="
         ShowChildComponent == true &&
         selectedFormMasterId == FormTypes.consentform
-    "
-></app-consent-form>
+    "></app-consent-form>
 
-<app-covid-vaccination-record
-    [preSelectedFormData]="selectedFormData"
-    (EmitUpdateForm)="EmitUpdateForm($event)"
-    *ngIf="
+<app-covid-vaccination-record [preSelectedFormData]="selectedFormData" (EmitUpdateForm)="EmitUpdateForm($event)" *ngIf="
         ShowChildComponent == true &&
         selectedFormMasterId == FormTypes.covidvaccination
-    "
-></app-covid-vaccination-record>
+    "></app-covid-vaccination-record>
 
-<app-respite-care-support-plan
-    [preSelectedFormData]="selectedFormData"
-    (EmitUpdateForm)="EmitUpdateForm($event)"
-    *ngIf="
+<app-respite-care-support-plan [preSelectedFormData]="selectedFormData" (EmitUpdateForm)="EmitUpdateForm($event)" *ngIf="
         ShowChildComponent == true &&
         selectedFormMasterId == FormTypes.respitecaresupport
-    "
-></app-respite-care-support-plan>
+    "></app-respite-care-support-plan>
 
-<app-risk-multifactorial-falls-risk
-    [preSelectedFormData]="selectedFormData"
-    (EmitUpdateForm)="EmitUpdateForm($event)"
+<app-risk-multifactorial-falls-risk [preSelectedFormData]="selectedFormData" (EmitUpdateForm)="EmitUpdateForm($event)"
     *ngIf="
         ShowChildComponent == true &&
         selectedFormMasterId == FormTypes.riskmultifatorialfalls
-    "
-></app-risk-multifactorial-falls-risk>
+    "></app-risk-multifactorial-falls-risk>
 
-<app-risk-tool-for-use-of-wheelchair
-    [preSelectedFormData]="selectedFormData"
-    (EmitUpdateForm)="EmitUpdateForm($event)"
+<app-risk-tool-for-use-of-wheelchair [preSelectedFormData]="selectedFormData" (EmitUpdateForm)="EmitUpdateForm($event)"
     *ngIf="
         ShowChildComponent == true &&
         selectedFormMasterId == FormTypes.risktoolforuseof
-    "
-></app-risk-tool-for-use-of-wheelchair>
+    "></app-risk-tool-for-use-of-wheelchair>
 
 
 <app-gp-doctor-visit-communication-record [preSelectedFormData]="selectedFormData"
     (EmitUpdateForm)="EmitUpdateForm($event)"
     *ngIf="ShowChildComponent == true && selectedFormMasterId == FormTypes.GPDoctorVisitCommunicationRecord">
 </app-gp-doctor-visit-communication-record>
+
+<app-care-speech-language-ssessment [preSelectedFormData]="selectedFormData" (EmitUpdateForm)="EmitUpdateForm($event)"
+    *ngIf="ShowChildComponent == true && selectedFormMasterId == FormTypes.CareAssessmentSpeech"></app-care-speech-language-ssessment>
+
+<app-must-step5-nutritional-management [preSelectedFormData]="selectedFormData"
+    (EmitUpdateForm)="EmitUpdateForm($event)"
+    *ngIf="ShowChildComponent == true && selectedFormMasterId == FormTypes.MUSTStep5NutritionalManagement"></app-must-step5-nutritional-management>
+
+<app-oral-health-risk-and-oral-plan [preSelectedFormData]="selectedFormData" (EmitUpdateForm)="EmitUpdateForm($event)"
+    *ngIf="ShowChildComponent == true && selectedFormMasterId == FormTypes.OralHealthRiskAssessment"></app-oral-health-risk-and-oral-plan>
+<app-risk-on-the-move [preSelectedFormData]="selectedFormData" (EmitUpdateForm)="EmitUpdateForm($event)" *ngIf="ShowChildComponent == true && selectedFormMasterId == FormTypes.
+    RiskAssessmentOntheMove">
+
+</app-risk-on-the-move>
+<app-delirium-risk-and-risk-reduction [preSelectedFormData]="selectedFormData" (EmitUpdateForm)="EmitUpdateForm($event)"
+    *ngIf="ShowChildComponent == true && selectedFormMasterId == FormTypes.Deliriumrisk">
+</app-delirium-risk-and-risk-reduction>
+
+<app-care-sleep-and-resting-assessment [preSelectedFormData]="selectedFormData" (EmitUpdateForm)="EmitUpdateForm($event)"
+*ngIf="ShowChildComponent == true && selectedFormMasterId == FormTypes.CareAssessmentSleep" ></app-care-sleep-and-resting-assessment>
