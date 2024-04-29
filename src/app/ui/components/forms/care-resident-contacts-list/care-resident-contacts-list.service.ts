@@ -5,11 +5,12 @@ import { environment } from 'src/environments/environment';
 @Injectable({
     providedIn: 'root',
 })
-export class CarePersonalEmergencyEvacuationPlanService {
+
+export class CareResidentContactsListService {
 
   constructor(private _httpclient: HttpClient) {}
 
-    GetPersonalEmergencyFormById(selectedFormID: string): Observable<any> {
+    GetCareResidentContactsListFormById(selectedFormID: string): Observable<any> {
         const reqHeader = new HttpHeaders({
             'Content-Type': 'application/json',
             'Access-Control-Allow-Origin': environment.BaseUriAdmin,
@@ -19,7 +20,7 @@ export class CarePersonalEmergencyEvacuationPlanService {
         params = params.append('fromId', selectedFormID);
         return this._httpclient.get<any>(
             environment.BaseUriAdmin +
-                'api/Admin/GetPersonalEmergencyFormById',
+                'api/Admin/GetCareResidentContactsListFormById',
             { headers: reqHeader, params: params }
         );
     }
@@ -29,12 +30,15 @@ export class CarePersonalEmergencyEvacuationPlanService {
             'Content-Type': 'application/json',
             'Access-Control-Allow-Origin': environment.BaseUriAdmin,
             'Authorization': 'Bearer ' + localStorage.getItem('token')
-        });        
+        });   
+        
+        console.log(formdata);
+
         let params = new HttpParams();
         var data = JSON.stringify(formdata).toString();
         return this._httpclient.post<any>(
             environment.BaseUriAdmin +
-                'api/Admin/InsertUpdatePersonalEmergencyForm',
+                'api/Admin/InsertUpdateCareResidentContactsListForm',
             data,
             { headers: reqHeader, params: params }
         );
