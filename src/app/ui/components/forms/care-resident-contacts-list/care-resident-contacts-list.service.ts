@@ -14,6 +14,7 @@ export class CareResidentContactsListService {
         const reqHeader = new HttpHeaders({
             'Content-Type': 'application/json',
             'Access-Control-Allow-Origin': environment.BaseUriAdmin,
+            'Authorization': 'Bearer ' + localStorage.getItem('token')
         });
         let params = new HttpParams();
         params = params.append('fromId', selectedFormID);
@@ -28,7 +29,7 @@ export class CareResidentContactsListService {
         let reqHeader = new HttpHeaders({
             'Content-Type': 'application/json',
             'Access-Control-Allow-Origin': environment.BaseUriAdmin,
-            //'Authorization': 'Bearer ' + localStorage.getItem('token')
+            'Authorization': 'Bearer ' + localStorage.getItem('token')
         });   
         
         console.log(formdata);
