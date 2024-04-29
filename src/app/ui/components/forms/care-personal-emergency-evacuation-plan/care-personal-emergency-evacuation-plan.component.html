@@ -419,7 +419,7 @@
                 </ng-container>
                 <ng-template #NextReviewDateLabel>
                     <label>{{
-                        PersonalEmergencyFormData.NextReviewDate
+                        PersonalEmergencyFormData.NextReviewDate | date : customDateFormat.DEF_DATE
                     }}</label>
                 </ng-template>
                 <div *ngIf="" class="alert alert-danger"></div>
