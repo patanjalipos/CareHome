@@ -12,89 +12,89 @@ export class CareHearingAssessmentService {
 
   //#region CareAssessmentHearing DropDownValues
 
-  GetHearingDiagnosisCheck(status:any) {
-    let reqHeader = new HttpHeaders({
-      'Content-Type': 'application/json',
-      'Access-Control-Allow-Origin': environment.BaseUriAdmin,
-      //'Authorization': 'Bearer ' + localStorage.getItem('token')
-  });
-  let params = new HttpParams();
-  params = params.append('Status', status);
-  return this._httpclient.get<any>(
-      environment.BaseUriAdmin + 'api/Admin/GetHearingDiagnosisCheck',
-      { headers: reqHeader, params: params }
-  );
-  }
+  // GetHearingDiagnosisCheck(status:any) {
+  //   let reqHeader = new HttpHeaders({
+  //     'Content-Type': 'application/json',
+  //     'Access-Control-Allow-Origin': environment.BaseUriAdmin,
+  //     //'Authorization': 'Bearer ' + localStorage.getItem('token')
+  // });
+  // let params = new HttpParams();
+  // params = params.append('Status', status);
+  // return this._httpclient.get<any>(
+  //     environment.BaseUriAdmin + 'api/Admin/GetHearingDiagnosisCheck',
+  //     { headers: reqHeader, params: params }
+  // );
+  // }
 
-  GetCurrentHearingDiagnosis(status:any) {
-    let reqHeader = new HttpHeaders({
-      'Content-Type': 'application/json',
-      'Access-Control-Allow-Origin': environment.BaseUriAdmin,
-      //'Authorization': 'Bearer ' + localStorage.getItem('token')
-  });
-  let params = new HttpParams();
-  params = params.append('Status', status);
-  return this._httpclient.get<any>(
-      environment.BaseUriAdmin + 'api/Admin/GetCurrentHearingDiagnosis',
-      { headers: reqHeader, params: params }
-  );
-  }
+  // GetCurrentHearingDiagnosis(status:any) {
+  //   let reqHeader = new HttpHeaders({
+  //     'Content-Type': 'application/json',
+  //     'Access-Control-Allow-Origin': environment.BaseUriAdmin,
+  //     //'Authorization': 'Bearer ' + localStorage.getItem('token')
+  // });
+  // let params = new HttpParams();
+  // params = params.append('Status', status);
+  // return this._httpclient.get<any>(
+  //     environment.BaseUriAdmin + 'api/Admin/GetCurrentHearingDiagnosis',
+  //     { headers: reqHeader, params: params }
+  // );
+  // }
 
-  GetHearingInterventions(status:any) {
-    let reqHeader = new HttpHeaders({
-      'Content-Type': 'application/json',
-      'Access-Control-Allow-Origin': environment.BaseUriAdmin,
-      //'Authorization': 'Bearer ' + localStorage.getItem('token')
-  });
-  let params = new HttpParams();
-  params = params.append('Status', status);
-  return this._httpclient.get<any>(
-      environment.BaseUriAdmin + 'api/Admin/GetHearingInterventions',
-      { headers: reqHeader, params: params }
-  );
-  }
+  // GetHearingInterventions(status:any) {
+  //   let reqHeader = new HttpHeaders({
+  //     'Content-Type': 'application/json',
+  //     'Access-Control-Allow-Origin': environment.BaseUriAdmin,
+  //     //'Authorization': 'Bearer ' + localStorage.getItem('token')
+  // });
+  // let params = new HttpParams();
+  // params = params.append('Status', status);
+  // return this._httpclient.get<any>(
+  //     environment.BaseUriAdmin + 'api/Admin/GetHearingInterventions',
+  //     { headers: reqHeader, params: params }
+  // );
+  // }
 
-  GetHearingAids(status:any) {
-    let reqHeader = new HttpHeaders({
-      'Content-Type': 'application/json',
-      'Access-Control-Allow-Origin': environment.BaseUriAdmin,
-      //'Authorization': 'Bearer ' + localStorage.getItem('token')
-  });
-  let params = new HttpParams();
-  params = params.append('Status', status);
-  return this._httpclient.get<any>(
-      environment.BaseUriAdmin + 'api/Admin/GetHearingAids',
-      { headers: reqHeader, params: params }
-  );
-  }
+  // GetHearingAids(status:any) {
+  //   let reqHeader = new HttpHeaders({
+  //     'Content-Type': 'application/json',
+  //     'Access-Control-Allow-Origin': environment.BaseUriAdmin,
+  //     //'Authorization': 'Bearer ' + localStorage.getItem('token')
+  // });
+  // let params = new HttpParams();
+  // params = params.append('Status', status);
+  // return this._httpclient.get<any>(
+  //     environment.BaseUriAdmin + 'api/Admin/GetHearingAids',
+  //     { headers: reqHeader, params: params }
+  // );
+  // }
 
-  GetAidsAssistance(status:any) {
-    let reqHeader = new HttpHeaders({
-      'Content-Type': 'application/json',
-      'Access-Control-Allow-Origin': environment.BaseUriAdmin,
-      //'Authorization': 'Bearer ' + localStorage.getItem('token')
-  });
-  let params = new HttpParams();
-  params = params.append('Status', status);
-  return this._httpclient.get<any>(
-      environment.BaseUriAdmin + 'api/Admin/GetAidsAssistance',
-      { headers: reqHeader, params: params }
-  );
-  }
+  // GetAidsAssistance(status:any) {
+  //   let reqHeader = new HttpHeaders({
+  //     'Content-Type': 'application/json',
+  //     'Access-Control-Allow-Origin': environment.BaseUriAdmin,
+  //     //'Authorization': 'Bearer ' + localStorage.getItem('token')
+  // });
+  // let params = new HttpParams();
+  // params = params.append('Status', status);
+  // return this._httpclient.get<any>(
+  //     environment.BaseUriAdmin + 'api/Admin/GetAidsAssistance',
+  //     { headers: reqHeader, params: params }
+  // );
+  // }
 
-  GetGoalsToHearing(status:any) {
-    let reqHeader = new HttpHeaders({
-      'Content-Type': 'application/json',
-      'Access-Control-Allow-Origin': environment.BaseUriAdmin,
-      //'Authorization': 'Bearer ' + localStorage.getItem('token')
-  });
-  let params = new HttpParams();
-  params = params.append('Status', status);
-  return this._httpclient.get<any>(
-      environment.BaseUriAdmin + 'api/Admin/GetGoalsToHearing',
-      { headers: reqHeader, params: params }
-  );
-  }
+  // GetGoalsToHearing(status:any) {
+  //   let reqHeader = new HttpHeaders({
+  //     'Content-Type': 'application/json',
+  //     'Access-Control-Allow-Origin': environment.BaseUriAdmin,
+  //     //'Authorization': 'Bearer ' + localStorage.getItem('token')
+  // });
+  // let params = new HttpParams();
+  // params = params.append('Status', status);
+  // return this._httpclient.get<any>(
+  //     environment.BaseUriAdmin + 'api/Admin/GetGoalsToHearing',
+  //     { headers: reqHeader, params: params }
+  // );
+  // }
 
   //#endregion
 
