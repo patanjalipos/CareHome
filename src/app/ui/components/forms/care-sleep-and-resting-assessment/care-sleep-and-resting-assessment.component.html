@@ -216,8 +216,7 @@
             </div>
         </div>
         <div class="col-md-7   form-text">
-            <p-dropdown placeholder="Select" [style]="{ width: '100%' }">
-            </p-dropdown>
+            <input pInputText type="text" required name="chartheadname" class="form-control" />
         </div>
         <div class="col-md-1 form-icon">
             <i class="fa-solid fa-info"></i>
@@ -228,8 +227,10 @@
             </div>
         </div>
         <div class="col-md-7 form-text">
-            <p-triStateCheckbox inputId="tricheckbox"></p-triStateCheckbox>
-            <p class="mb-4">This form should be reviewed EVERY MONTH or before if there are significant changes. Enter review date
+            <p-checkbox  name="ChkMonthlyReview"  [binary]="true"
+            inputId="binary"></p-checkbox>
+            <p class="mb-4">This form should be reviewed EVERY MONTH or before if there are significant changes. Enter
+                review date
                 below.</p>
         </div>
         <div class="col-md-4">

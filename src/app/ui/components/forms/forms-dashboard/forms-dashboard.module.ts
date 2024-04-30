@@ -82,6 +82,7 @@ import { CovidVaccinationRecordModule } from '../covid-vaccination-record/covid-
 import { RespiteCareSupportPlanModule } from '../respite-care-support-plan/respite-care-support-plan.module';
 import { RiskMultifactorialFallsRiskModule } from '../risk-multifactorial-falls-risk/risk-multifactorial-falls-risk.module';
 import { RiskToolForUseOfWheelchairModule } from '../risk-tool-for-use-of-wheelchair/risk-tool-for-use-of-wheelchair.module';
+import { BloodTestRecordModule } from '../blood-test-record/blood-test-record.module';
 
 
 
@@ -109,6 +110,7 @@ import { RiskToolForUseOfWheelchairModule } from '../risk-tool-for-use-of-wheelc
     AccidentIncidentNearMissRecordModule,
     AcuteCarePlanInfectionPreventionAndControlModule,
     BodyMappingRecordModule,
+    BloodTestRecordModule,
     CareBreathingAndCirculationAssessmentModule,
     CareContinencePromotionModule,
     CareEatsAndTreatsModule,

@@ -81,7 +81,8 @@
             <p>Is the resident able to fit and adjust postural belt / foot straps</p>
         </div>
         <div class="col-md-7 form-text">
-            <input pInputText type="text" required name="chartheadname" class="form-control" />
+            <p-dropdown placeholder="Select" [style]="{ width: '100%' }">
+            </p-dropdown>
         </div>
         <div class="col-md-1 form-icon ">
             <i class="fa-solid fa-info"></i>
@@ -90,8 +91,7 @@
             <p>If yes, how often will the assessment be reviewed</p>
         </div>
         <div class="col-md-7 form-text">
-            <p-dropdown placeholder="Select" [style]="{ width: '100%' }">
-            </p-dropdown>
+            <input pInputText type="text" required name="chartheadname" class="form-control" />
         </div>
         <div class="col-md-1 form-icon ">
             <i class="fa-solid fa-info"></i>

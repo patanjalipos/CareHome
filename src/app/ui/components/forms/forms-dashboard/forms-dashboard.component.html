@@ -386,3 +386,7 @@
 
 <app-care-sleep-and-resting-assessment [preSelectedFormData]="selectedFormData" (EmitUpdateForm)="EmitUpdateForm($event)"
 *ngIf="ShowChildComponent == true && selectedFormMasterId == FormTypes.CareAssessmentSleep" ></app-care-sleep-and-resting-assessment>
+
+
+<app-blood-test-record [preSelectedFormData]="selectedFormData" (EmitUpdateForm)="EmitUpdateForm($event)"
+*ngIf="ShowChildComponent == true && selectedFormMasterId == FormTypes.BloodTestRecord" ></app-blood-test-record>
