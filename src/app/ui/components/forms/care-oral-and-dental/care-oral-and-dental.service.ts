@@ -2,33 +2,13 @@ import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
-
 @Injectable({
     providedIn: 'root',
 })
-export class CareContinencePromotionService {
+export class CareOralAndDentalService {
     constructor(private _httpclient: HttpClient) {}
 
-    getDropdownMasterList(
-        collectionName: string,
-        status: any
-    ): Observable<any> {
-        const reqHeader = new HttpHeaders({
-            'Content-Type': 'application/json',
-            'Access-Control-Allow-Origin': environment.BaseUriAdmin,
-        });
-        let params = new HttpParams();
-        params = params.append('CollectionName', collectionName);
-        params = params.append('Status', status);
-        return this._httpclient.get<any>(
-            environment.BaseUriAdmin + 'api/Admin/GetDropDownMasterList',
-            { headers: reqHeader, params: params }
-        );
-    }
-
-    GetContinencePromotionFormById(
-        selectedFormID : string
-    ): Observable<any> {
+    GetCareOralAndDentalFormById(selectedFormID: string): Observable<any> {
         const reqHeader = new HttpHeaders({
             'Content-Type': 'application/json',
             'Access-Control-Allow-Origin': environment.BaseUriAdmin,
@@ -36,11 +16,11 @@ export class CareContinencePromotionService {
         let params = new HttpParams();
         params = params.append('fromId', selectedFormID);
         return this._httpclient.get<any>(
-            environment.BaseUriAdmin + 'api/Admin/GetContinencePromotionFormById',
+            environment.BaseUriAdmin +
+                'api/Admin/GetCareOralAndDentalFormById',
             { headers: reqHeader, params: params }
         );
     }
-
 
     AddInsertUpdateFormData(formdata: any): Observable<any> {
         let reqHeader = new HttpHeaders({
@@ -50,11 +30,9 @@ export class CareContinencePromotionService {
         });
         let params = new HttpParams();
         var data = JSON.stringify(formdata).toString();
-        console.log(data);
-        debugger
         return this._httpclient.post<any>(
             environment.BaseUriAdmin +
-                'api/Admin/InsertUpdateContinencePromotionForm',
+                'api/Admin/InsertUpdateGetCareOralAndDentalForm',
             data,
             { headers: reqHeader, params: params }
         );

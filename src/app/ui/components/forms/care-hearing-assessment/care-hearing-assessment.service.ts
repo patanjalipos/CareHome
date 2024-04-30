@@ -104,7 +104,7 @@ export class CareHearingAssessmentService {
     let reqHeader = new HttpHeaders({
         'Content-Type': 'application/json',
         'Access-Control-Allow-Origin': environment.BaseUriAdmin,
-        //'Authorization': 'Bearer ' + localStorage.getItem('token')
+        'Authorization': 'Bearer ' + localStorage.getItem('token')
     });
     let params = new HttpParams();
     params = params.append('fromId', fromId);
@@ -120,7 +120,7 @@ AddInsertUpdateCareAssessmentHearingForm(
     let reqHeader = new HttpHeaders({
         'Content-Type': 'application/json',
         'Access-Control-Allow-Origin': environment.BaseUriAdmin,
-        //'Authorization': 'Bearer ' + localStorage.getItem('token')
+        'Authorization': 'Bearer ' + localStorage.getItem('token')
     });
     let params = new HttpParams();
     var data = JSON.stringify(CareAssessmentHearingFormsData).toString();

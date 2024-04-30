@@ -19,7 +19,7 @@ export class AuthServiceService {
     ) { }
   Login(LoginId:string, Password:string): Observable<any> 
     {
-        let reqHeader = new HttpHeaders({
+        let reqHeader = new HttpHeaders({ 
             'Content-Type': 'application/json',
             'Access-Control-Allow-Origin': environment.BaseUriUser
         });

@@ -10,7 +10,6 @@ export class CareEatsAndTreatsService {
 
   constructor(private _httpclient: HttpClient) { }
 
-
   // //#region CareAssessmentEatsAndDrinksDropDownValues
   // GetResidentStatusOfCapacity(status:any) {
   //   let reqHeader = new HttpHeaders({
@@ -137,7 +136,6 @@ export class CareEatsAndTreatsService {
   //     { headers: reqHeader, params: params }
   // );
   // }
-
   // //#endregion
 
   //#region CareAssessmentEatsAndDrinks Form
@@ -146,7 +144,7 @@ export class CareEatsAndTreatsService {
     let reqHeader = new HttpHeaders({
         'Content-Type': 'application/json',
         'Access-Control-Allow-Origin': environment.BaseUriAdmin,
-        //'Authorization': 'Bearer ' + localStorage.getItem('token')
+        'Authorization': 'Bearer ' + localStorage.getItem('token')
     });
     let params = new HttpParams();
     params = params.append('fromId', fromId);
@@ -162,7 +160,7 @@ AddInsertUpdateCareAssessmentEatsAndDrinksForm(
     let reqHeader = new HttpHeaders({
         'Content-Type': 'application/json',
         'Access-Control-Allow-Origin': environment.BaseUriAdmin,
-        //'Authorization': 'Bearer ' + localStorage.getItem('token')
+        'Authorization': 'Bearer ' + localStorage.getItem('token')
     });
     let params = new HttpParams();
     var data = JSON.stringify(CareAssessmentEatsAndDrinksFormsData).toString();
