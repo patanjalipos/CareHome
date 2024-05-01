@@ -57,7 +57,7 @@ export class GpDoctorVisitCommunicationRecordComponent extends AppComponentBase 
     else {
       this.ResetModel();
     }
-    this.GetFamilyRelayMaster();
+    // this.GetFamilyRelayMaster();
   }
   ngOnChanges(changes: SimpleChanges): void {
     this.isEditable = this.preSelectedFormData.isEditable;
@@ -71,28 +71,28 @@ export class GpDoctorVisitCommunicationRecordComponent extends AppComponentBase 
       this.ResetModel();
     }
   }
-  GetFamilyRelayMaster() {
-    this._UtilityService.showSpinner();
-    this.unsubscribe.add = this._MasterServices
-        .GetFamilyRelayMaster(0)
-        .subscribe({
-            next: (data) => {
-                this._UtilityService.hideSpinner();
-                if (data.actionResult.success == true) {
-                    var tdata = JSON.parse(data.actionResult.result);
-                    tdata = tdata ? tdata : {};
-                    this.lstComRelayMaster = tdata;
-                    //console.log(this.PreAdmissionAssessmentFormsData);
-                } else {
-                    this.lstComRelayMaster = [];
-                }
-            },
-            error: (e) => {
-                this._UtilityService.hideSpinner();
-                this._UtilityService.showErrorAlert(e.message);
-            },
-        });
-  }
+  // GetFamilyRelayMaster() {
+  //   this._UtilityService.showSpinner();
+  //   this.unsubscribe.add = this._MasterServices
+  //       .GetFamilyRelayMaster(0)
+  //       .subscribe({
+  //           next: (data) => {
+  //               this._UtilityService.hideSpinner();
+  //               if (data.actionResult.success == true) {
+  //                   var tdata = JSON.parse(data.actionResult.result);
+  //                   tdata = tdata ? tdata : {};
+  //                   this.lstComRelayMaster = tdata;
+  //                   //console.log(this.PreAdmissionAssessmentFormsData);
+  //               } else {
+  //                   this.lstComRelayMaster = [];
+  //               }
+  //           },
+  //           error: (e) => {
+  //               this._UtilityService.hideSpinner();
+  //               this._UtilityService.showErrorAlert(e.message);
+  //           },
+  //       });
+  // }
   GPDoctorVisitCommDetailsByid(formId: string) {
     this._UtilityService.showSpinner();
     this.unsubscribe.add = this._MasterServices

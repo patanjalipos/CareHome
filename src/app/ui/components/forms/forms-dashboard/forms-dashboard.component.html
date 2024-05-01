@@ -200,14 +200,7 @@
     "
 ></app-care-personal-emergency-evacuation-plan>
 
-<app-body-mapping-record
-    [preSelectedFormData]="selectedFormData"
-    (EmitUpdateForm)="EmitUpdateForm($event)"
-    *ngIf="
-        ShowChildComponent == true &&
-        selectedFormMasterId == FormTypes.BodyMappingRecord
-    "
-></app-body-mapping-record>
+
 
 <app-care-breathing-and-circulation-assessment
     [preSelectedFormData]="selectedFormData"
@@ -582,6 +575,10 @@
     "
 ></app-risk-tool-for-use-of-wheelchair>
 
+
+<app-risk-waterlow-pressure-ulcer [preSelectedFormData]="selectedFormData"
+(EmitUpdateForm)="EmitUpdateForm($event)"
+*ngIf="ShowChildComponent == true && selectedFormMasterId == FormTypes.RiskAssessmentWaterlow"></app-risk-waterlow-pressure-ulcer>
 
 <app-gp-doctor-visit-communication-record [preSelectedFormData]="selectedFormData"
     (EmitUpdateForm)="EmitUpdateForm($event)"
