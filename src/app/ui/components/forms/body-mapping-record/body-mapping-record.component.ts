@@ -2,10 +2,12 @@ import { DatePipe } from '@angular/common';
 import { Component, EventEmitter, Input, OnInit, Output, SimpleChanges } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { AppComponentBase } from 'src/app/app-component-base';
-import { ConstantsService, CustomDateFormat } from 'src/app/ui/service/constants.service';
+import { ConstantsService, CustomDateFormat, FormTypes } from 'src/app/ui/service/constants.service';
 import { DataService } from 'src/app/ui/service/data-service.service';
 import { UtilityService } from 'src/app/utility/utility.service';
 import { BodyMappingRecordService } from './body-mapping-record.service';
+import { Observable, catchError, forkJoin, map, of } from 'rxjs';
+import { MasterService } from 'src/app/ui/service/master.service';
 
 @Component({
   selector: 'app-body-mapping-record',
@@ -36,7 +38,8 @@ export class BodyMappingRecordComponent extends AppComponentBase implements OnIn
     private route: ActivatedRoute,
     private _UtilityService: UtilityService,
     private _DataService: DataService,
-    private _BodyMappingService:BodyMappingRecordService
+    private _BodyMappingService:BodyMappingRecordService,
+    private _MasterServices: MasterService
   ) {
       super();
         this._ConstantServices.ActiveMenuName = 'Body Mapping Record Form';
@@ -58,32 +61,60 @@ export class BodyMappingRecordComponent extends AppComponentBase implements OnIn
      }
 
   ngOnInit(): void {
-    this.GetBodyMappingReasonMaster();
+    const collectionNames = [
+        'ReasonObservation'
+    ];
+
+    forkJoin(collectionNames.map((collectionName) => this.getDropdownMasterLists(FormTypes.BodyMappingRecord,collectionName,1))).subscribe((responses: any[]) => {
+        this.lstBodyMappingMaster = responses[0];
+    });
+    // this.GetBodyMappingReasonMaster();
   }
 
-  GetBodyMappingReasonMaster()
-  {
+  getDropdownMasterLists(formMasterId: string, dropdownName: string,status:number): Observable<any> {
     this._UtilityService.showSpinner();
-    this.unsubscribe.add = this._BodyMappingService
-        .GetBodyMappingReasonMaster(1)
-        .subscribe({
-            next: (data) => {
-                this._UtilityService.hideSpinner();
-                if (data.actionResult.success == true) {
-                    var tdata = JSON.parse(data.actionResult.result);
-                    tdata = tdata ? tdata : {};
-                    this.lstBodyMappingMaster = tdata;
-                    //console.log(this.PreAdmissionAssessmentFormsData);
-                } else {
-                    this.lstBodyMappingMaster = [];
-                }
-            },
-            error: (e) => {
-                this._UtilityService.hideSpinner();
-                this._UtilityService.showErrorAlert(e.message);
-            },
-        });
-  }
+    return this._MasterServices.GetDropDownMasterList(formMasterId,dropdownName, status).pipe(
+        map((response) => {
+            this._UtilityService.hideSpinner();
+            if (response.actionResult.success) {
+                return JSON.parse(response.actionResult.result);
+            } else {
+                return [];
+            }
+        }),
+        catchError((error) => {
+            this._UtilityService.hideSpinner();
+            this._UtilityService.showErrorAlert(error.message);
+            alert(error.message);
+            return of([]); // Returning empty array in case of error
+        })
+    );
+}
+
+//   GetBodyMappingReasonMaster()
+//   {
+//     this._UtilityService.showSpinner();
+//     this.unsubscribe.add = this._BodyMappingService
+//         .GetBodyMappingReasonMaster(1)
+//         .subscribe({
+//             next: (data) => {
+//                 this._UtilityService.hideSpinner();
+//                 if (data.actionResult.success == true) {
+//                     var tdata = JSON.parse(data.actionResult.result);
+//                     tdata = tdata ? tdata : {};
+//                     this.lstBodyMappingMaster = tdata;
+//                     //console.log(this.PreAdmissionAssessmentFormsData);
+//                 } else {
+//                     this.lstBodyMappingMaster = [];
+//                 }
+//             },
+//             error: (e) => {
+//                 this._UtilityService.hideSpinner();
+//                 this._UtilityService.showErrorAlert(e.message);
+//             },
+//         });
+//   }
+
   ngOnChanges(changes: SimpleChanges): void {
     this.isEditable = this.preSelectedFormData.isEditable;
 
