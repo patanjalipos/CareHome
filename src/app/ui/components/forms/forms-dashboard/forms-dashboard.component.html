@@ -181,15 +181,23 @@
     "
 ></app-care-hearing-assessment>
 
+<app-care-mental-health
+    [preSelectedFormData]="selectedFormData"
+    (EmitUpdateForm)="EmitUpdateForm($event)"
+    *ngIf="
+        ShowChildComponent == true &&
+        selectedFormMasterId == FormTypes.CareAssessmentMental
+    "
+></app-care-mental-health>
 
-<app-care-mental-health [preSelectedFormData]="selectedFormData" (EmitUpdateForm)="EmitUpdateForm($event)"
-*ngIf="ShowChildComponent==true && selectedFormMasterId==FormTypes.CareAssessmentMental"></app-care-mental-health>
-
-<app-body-mapping-record [preSelectedFormData]="selectedFormData"
-    (EmitUpdateForm)="EmitUpdateForm($event)" *ngIf=" ShowChildComponent == true
-    && selectedFormMasterId == FormTypes.BodyMappingRecord "
-    ></app-body-mapping-record
->
+<app-body-mapping-record
+    [preSelectedFormData]="selectedFormData"
+    (EmitUpdateForm)="EmitUpdateForm($event)"
+    *ngIf="
+        ShowChildComponent == true &&
+        selectedFormMasterId == FormTypes.BodyMappingRecord
+    "
+></app-body-mapping-record>
 
 <app-care-personal-emergency-evacuation-plan
     [preSelectedFormData]="selectedFormData"
@@ -582,8 +590,22 @@
     "
 ></app-risk-tool-for-use-of-wheelchair>
 
-
-<app-gp-doctor-visit-communication-record [preSelectedFormData]="selectedFormData"
+<app-gp-doctor-visit-communication-record
+    [preSelectedFormData]="selectedFormData"
     (EmitUpdateForm)="EmitUpdateForm($event)"
-    *ngIf="ShowChildComponent == true && selectedFormMasterId == FormTypes.GPDoctorVisitCommunicationRecord">
+    *ngIf="
+        ShowChildComponent == true &&
+        selectedFormMasterId == FormTypes.GPDoctorVisitCommunicationRecord
+    "
+>
 </app-gp-doctor-visit-communication-record>
+
+<app-risk-physical-dependency-assessment
+    [preSelectedFormData]="selectedFormData"
+    (EmitUpdateForm)="EmitUpdateForm($event)"
+    *ngIf="
+        ShowChildComponent == true &&
+        selectedFormMasterId == FormTypes.RiskAssessmentPhysical
+    "
+>
+</app-risk-physical-dependency-assessment>
