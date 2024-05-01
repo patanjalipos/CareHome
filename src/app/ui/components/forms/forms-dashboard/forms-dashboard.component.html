@@ -530,6 +530,13 @@
     "
 ></app-care-wishes-for-future>
 
+<app-care-sleep-and-resting-assessment [preSelectedFormData]="selectedFormData"
+(EmitUpdateForm)="EmitUpdateForm($event)"
+*ngIf="
+    ShowChildComponent == true &&
+    selectedFormMasterId == FormTypes.CareAssessmentSleep
+"></app-care-sleep-and-resting-assessment>
+
 <app-consent-form
     [preSelectedFormData]="selectedFormData"
     (EmitUpdateForm)="EmitUpdateForm($event)"
