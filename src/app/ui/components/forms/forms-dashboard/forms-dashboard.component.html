@@ -591,3 +591,7 @@
     (EmitUpdateForm)="EmitUpdateForm($event)"
     *ngIf="ShowChildComponent == true && selectedFormMasterId == FormTypes.GPDoctorVisitCommunicationRecord">
 </app-gp-doctor-visit-communication-record>
+
+<app-delirium-risk-and-risk-reduction [preSelectedFormData]="selectedFormData"
+(EmitUpdateForm)="EmitUpdateForm($event)"
+*ngIf="ShowChildComponent == true && selectedFormMasterId == FormTypes.Deliriumrisk"></app-delirium-risk-and-risk-reduction>
