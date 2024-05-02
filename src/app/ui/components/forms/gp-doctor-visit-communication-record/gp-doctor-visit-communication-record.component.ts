@@ -2,10 +2,10 @@ import { Component, EventEmitter, Input, OnInit, Output, SimpleChanges, ViewChil
 import { NgForm } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { AppComponentBase } from 'src/app/app-component-base';
-import { ConstantsService, CustomDateFormat } from 'src/app/ui/service/constants.service';
+import { ConstantsService, CustomDateFormat, FormTypes } from 'src/app/ui/service/constants.service';
 import { MasterService } from 'src/app/ui/service/master.service';
 import { UtilityService } from 'src/app/utility/utility.service';
-
+import { Observable, catchError, forkJoin, map, of } from 'rxjs';
 @Component({
   selector: 'app-gp-doctor-visit-communication-record',
   templateUrl: './gp-doctor-visit-communication-record.component.html',
@@ -26,6 +26,8 @@ export class GpDoctorVisitCommunicationRecordComponent extends AppComponentBase 
   //CreatedBy or ModifiedBy
   loginId: any;
   lstComRelayMaster: any[] = [];
+  lstFamilyComRelayMaster:any[]=[];
+  lstFamilyComReasonMaster:any[]=[];
   constructor(
     private _UtilityService: UtilityService,
     private _ConstantServices: ConstantsService,
@@ -57,7 +59,13 @@ export class GpDoctorVisitCommunicationRecordComponent extends AppComponentBase 
     else {
       this.ResetModel();
     }
-    this.GetFamilyRelayMaster();
+    const collectionNames = [
+      'CommRelay',
+    ];
+    forkJoin(collectionNames.map((collectionName) => this.getDropdownMasterLists(FormTypes.FamilyCommunication, collectionName, 1))).subscribe((responses: any[]) => {
+      this.lstFamilyComRelayMaster = responses[0];
+    });
+    //this.GetFamilyRelayMaster();
   }
   ngOnChanges(changes: SimpleChanges): void {
     this.isEditable = this.preSelectedFormData.isEditable;
@@ -71,28 +79,47 @@ export class GpDoctorVisitCommunicationRecordComponent extends AppComponentBase 
       this.ResetModel();
     }
   }
-  GetFamilyRelayMaster() {
+  getDropdownMasterLists(formMasterId: string, dropdownName: string,status:number): Observable<any> {
     this._UtilityService.showSpinner();
-    this.unsubscribe.add = this._MasterServices
-        .GetFamilyRelayMaster(0)
-        .subscribe({
-            next: (data) => {
-                this._UtilityService.hideSpinner();
-                if (data.actionResult.success == true) {
-                    var tdata = JSON.parse(data.actionResult.result);
-                    tdata = tdata ? tdata : {};
-                    this.lstComRelayMaster = tdata;
-                    //console.log(this.PreAdmissionAssessmentFormsData);
-                } else {
-                    this.lstComRelayMaster = [];
-                }
-            },
-            error: (e) => {
-                this._UtilityService.hideSpinner();
-                this._UtilityService.showErrorAlert(e.message);
-            },
-        });
-  }
+    return this._MasterServices.GetDropDownMasterList(formMasterId,dropdownName, status).pipe(
+        map((response) => {
+            this._UtilityService.hideSpinner();
+            if (response.actionResult.success) {
+                return JSON.parse(response.actionResult.result);
+            } else {
+                return [];
+            }
+        }),
+        catchError((error) => {
+            this._UtilityService.hideSpinner();
+            this._UtilityService.showErrorAlert(error.message);
+            alert(error.message);
+            return of([]); // Returning empty array in case of error
+        })
+    );
+}
+  // GetFamilyRelayMaster() {
+  //   this._UtilityService.showSpinner();
+  //   this.unsubscribe.add = this._MasterServices
+  //       .GetFamilyRelayMaster(0)
+  //       .subscribe({
+  //           next: (data) => {
+  //               this._UtilityService.hideSpinner();
+  //               if (data.actionResult.success == true) {
+  //                   var tdata = JSON.parse(data.actionResult.result);
+  //                   tdata = tdata ? tdata : {};
+  //                   this.lstComRelayMaster = tdata;
+  //                   //console.log(this.PreAdmissionAssessmentFormsData);
+  //               } else {
+  //                   this.lstComRelayMaster = [];
+  //               }
+  //           },
+  //           error: (e) => {
+  //               this._UtilityService.hideSpinner();
+  //               this._UtilityService.showErrorAlert(e.message);
+  //           },
+  //       });
+  // }
   GPDoctorVisitCommDetailsByid(formId: string) {
     this._UtilityService.showSpinner();
     this.unsubscribe.add = this._MasterServices
