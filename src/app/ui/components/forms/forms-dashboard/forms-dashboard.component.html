@@ -595,3 +595,7 @@
 <app-delirium-risk-and-risk-reduction [preSelectedFormData]="selectedFormData"
 (EmitUpdateForm)="EmitUpdateForm($event)"
 *ngIf="ShowChildComponent == true && selectedFormMasterId == FormTypes.Deliriumrisk"></app-delirium-risk-and-risk-reduction>
+
+<app-risk-on-the-move [preSelectedFormData]="selectedFormData"
+(EmitUpdateForm)="EmitUpdateForm($event)"
+*ngIf="ShowChildComponent == true && selectedFormMasterId == FormTypes.RiskAssessmentOntheMove"></app-risk-on-the-move>
