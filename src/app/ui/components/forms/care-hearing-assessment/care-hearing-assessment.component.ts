@@ -1,9 +1,11 @@
 import { Component, EventEmitter, Input, OnInit, Output, SimpleChanges } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { AppComponentBase } from 'src/app/app-component-base';
-import { ConstantsService, CustomDateFormat } from 'src/app/ui/service/constants.service';
+import { ConstantsService, CustomDateFormat, FormTypes } from 'src/app/ui/service/constants.service';
 import { UtilityService } from 'src/app/utility/utility.service';
 import { CareHearingAssessmentService } from './care-hearing-assessment.service';
+import { Observable, catchError, forkJoin, map, of } from 'rxjs';
+import { MasterService } from 'src/app/ui/service/master.service';
 
 @Component({
   selector: 'app-care-hearing-assessment',
@@ -29,7 +31,7 @@ export class CareHearingAssessmentComponent extends AppComponentBase implements 
   lstAidsAssistance:any[] = []
   lstGoalsToHearing:any[] = []
 
-  constructor(private _ConstantServices: ConstantsService,private route: ActivatedRoute,private _UtilityService: UtilityService,private _CareHearing:CareHearingAssessmentService) {
+  constructor(private _ConstantServices: ConstantsService,private route: ActivatedRoute,private _UtilityService: UtilityService,private _CareHearing:CareHearingAssessmentService,private _MasterServices: MasterService) {
 
     super(); 
 
@@ -67,6 +69,23 @@ export class CareHearingAssessmentComponent extends AppComponentBase implements 
 
 
   ngOnInit(): void {
+    const collectionNames = [
+        'HearingDiagnosisCheck',
+        'CurrentHearingDiagnosis',
+        'HearingInterventions',
+        'HearingAids',
+        'AidsAssistance',
+        'GoalsToHearing'
+    ];
+
+    forkJoin(collectionNames.map((collectionName) => this.getDropdownMasterLists(FormTypes.CareAssessmentHearing,collectionName,1))).subscribe((responses: any[]) => {
+        this.lstHearingDiagnosisCheck = responses[0];
+        this.lstCurrentHearingDiagnosis = responses[1];
+        this.lstHearingInterventions = responses[2];
+        this.lstHearingAids = responses[3];
+        this.lstAidsAssistance = responses[4];
+        this.lstGoalsToHearing = responses[5];
+    });
 
     this.isEditable = this.preSelectedFormData.isEditable;
   
@@ -80,12 +99,12 @@ export class CareHearingAssessmentComponent extends AppComponentBase implements 
     else {
       this.ResetModel();
   }
-  this.GetAidsAssistance()
-  this.GetCurrentHearingDiagnosis()
-  this.GetGoalsToHearing()
-  this.GetHearingAids()
-  this.GetHearingDiagnosisCheck()
-  this.GetHearingInterventions()
+//   this.GetAidsAssistance()
+//   this.GetCurrentHearingDiagnosis()
+//   this.GetGoalsToHearing()
+//   this.GetHearingAids()
+//   this.GetHearingDiagnosisCheck()
+//   this.GetHearingInterventions()
   }
 
   GetCareAssessmentHearingDetails(formId: string) {
@@ -114,155 +133,176 @@ export class CareHearingAssessmentComponent extends AppComponentBase implements 
         });
 }
 
-GetHearingDiagnosisCheck() {
-  this._UtilityService.showSpinner();
-  this.unsubscribe.add = this._CareHearing
-      .GetHearingDiagnosisCheck(1)
-      .subscribe({
-          next: (data) => {
-            // console.log(data)
-              this._UtilityService.hideSpinner();
-              if (data.actionResult.success == true) {
-                  var tdata = JSON.parse(data.actionResult.result);
-                  // console.log(tdata);
-                  tdata = tdata ? tdata : [];
-                  this.lstHearingDiagnosisCheck = tdata;
-                  // console.log(this.lstHearingDiagnosisCheck)
-              } else {
-                  this.lstHearingDiagnosisCheck = [];
-              }
-          },
-          error: (e) => {
-              this._UtilityService.hideSpinner();
-              this._UtilityService.showErrorAlert(e.message);
-          },
-      });
+getDropdownMasterLists(formMasterId: string, dropdownName: string,status:number): Observable<any> {
+    this._UtilityService.showSpinner();
+    return this._MasterServices.GetDropDownMasterList(formMasterId,dropdownName, status).pipe(
+        map((response) => {
+            this._UtilityService.hideSpinner();
+            if (response.actionResult.success) {
+                return JSON.parse(response.actionResult.result);
+            } else {
+                return [];
+            }
+        }),
+        catchError((error) => {
+            this._UtilityService.hideSpinner();
+            this._UtilityService.showErrorAlert(error.message);
+            alert(error.message);
+            return of([]); // Returning empty array in case of error
+        })
+    );
 }
 
-GetCurrentHearingDiagnosis() {
-  this._UtilityService.showSpinner();
-  this.unsubscribe.add = this._CareHearing
-      .GetCurrentHearingDiagnosis(1)
-      .subscribe({
-          next: (data) => {
-            // console.log(data)
-              this._UtilityService.hideSpinner();
-              if (data.actionResult.success == true) {
-                  var tdata = JSON.parse(data.actionResult.result);
-                  // console.log(tdata);
-                  tdata = tdata ? tdata : [];
-                  this.lstCurrentHearingDiagnosis = tdata;
-                  // console.log(this.lstHearingDiagnosisCheck)
-              } else {
-                  this.lstCurrentHearingDiagnosis = [];
-              }
-          },
-          error: (e) => {
-              this._UtilityService.hideSpinner();
-              this._UtilityService.showErrorAlert(e.message);
-          },
-      });
-}
 
-GetHearingInterventions() {
-  this._UtilityService.showSpinner();
-  this.unsubscribe.add = this._CareHearing
-      .GetHearingInterventions(1)
-      .subscribe({
-          next: (data) => {
-            // console.log(data)
-              this._UtilityService.hideSpinner();
-              if (data.actionResult.success == true) {
-                  var tdata = JSON.parse(data.actionResult.result);
-                  // console.log(tdata);
-                  tdata = tdata ? tdata : [];
-                  this.lstHearingInterventions = tdata;
-                  // console.log(this.lstHearingDiagnosisCheck)
-              } else {
-                  this.lstHearingInterventions = [];
-              }
-          },
-          error: (e) => {
-              this._UtilityService.hideSpinner();
-              this._UtilityService.showErrorAlert(e.message);
-          },
-      });
-}
+// GetHearingDiagnosisCheck() {
+//   this._UtilityService.showSpinner();
+//   this.unsubscribe.add = this._CareHearing
+//       .GetHearingDiagnosisCheck(1)
+//       .subscribe({
+//           next: (data) => {
+//             // console.log(data)
+//               this._UtilityService.hideSpinner();
+//               if (data.actionResult.success == true) {
+//                   var tdata = JSON.parse(data.actionResult.result);
+//                   // console.log(tdata);
+//                   tdata = tdata ? tdata : [];
+//                   this.lstHearingDiagnosisCheck = tdata;
+//                   // console.log(this.lstHearingDiagnosisCheck)
+//               } else {
+//                   this.lstHearingDiagnosisCheck = [];
+//               }
+//           },
+//           error: (e) => {
+//               this._UtilityService.hideSpinner();
+//               this._UtilityService.showErrorAlert(e.message);
+//           },
+//       });
+// }
 
-GetHearingAids() {
-  this._UtilityService.showSpinner();
-  this.unsubscribe.add = this._CareHearing
-      .GetHearingAids(1)
-      .subscribe({
-          next: (data) => {
-            // console.log(data)
-              this._UtilityService.hideSpinner();
-              if (data.actionResult.success == true) {
-                  var tdata = JSON.parse(data.actionResult.result);
-                  // console.log(tdata);
-                  tdata = tdata ? tdata : [];
-                  this.lstHearingAids = tdata;
-                  // console.log(this.lstHearingDiagnosisCheck)
-              } else {
-                  this.lstHearingAids = [];
-              }
-          },
-          error: (e) => {
-              this._UtilityService.hideSpinner();
-              this._UtilityService.showErrorAlert(e.message);
-          },
-      });
-}
+// GetCurrentHearingDiagnosis() {
+//   this._UtilityService.showSpinner();
+//   this.unsubscribe.add = this._CareHearing
+//       .GetCurrentHearingDiagnosis(1)
+//       .subscribe({
+//           next: (data) => {
+//             // console.log(data)
+//               this._UtilityService.hideSpinner();
+//               if (data.actionResult.success == true) {
+//                   var tdata = JSON.parse(data.actionResult.result);
+//                   // console.log(tdata);
+//                   tdata = tdata ? tdata : [];
+//                   this.lstCurrentHearingDiagnosis = tdata;
+//                   // console.log(this.lstHearingDiagnosisCheck)
+//               } else {
+//                   this.lstCurrentHearingDiagnosis = [];
+//               }
+//           },
+//           error: (e) => {
+//               this._UtilityService.hideSpinner();
+//               this._UtilityService.showErrorAlert(e.message);
+//           },
+//       });
+// }
 
-GetAidsAssistance() {
-  this._UtilityService.showSpinner();
-  this.unsubscribe.add = this._CareHearing
-      .GetAidsAssistance(1)
-      .subscribe({
-          next: (data) => {
-            // console.log(data)
-              this._UtilityService.hideSpinner();
-              if (data.actionResult.success == true) {
-                  var tdata = JSON.parse(data.actionResult.result);
-                  // console.log(tdata);
-                  tdata = tdata ? tdata : [];
-                  this.lstAidsAssistance = tdata;
-                  // console.log(this.lstHearingDiagnosisCheck)
-              } else {
-                  this.lstAidsAssistance = [];
-              }
-          },
-          error: (e) => {
-              this._UtilityService.hideSpinner();
-              this._UtilityService.showErrorAlert(e.message);
-          },
-      });
-}
+// GetHearingInterventions() {
+//   this._UtilityService.showSpinner();
+//   this.unsubscribe.add = this._CareHearing
+//       .GetHearingInterventions(1)
+//       .subscribe({
+//           next: (data) => {
+//             // console.log(data)
+//               this._UtilityService.hideSpinner();
+//               if (data.actionResult.success == true) {
+//                   var tdata = JSON.parse(data.actionResult.result);
+//                   // console.log(tdata);
+//                   tdata = tdata ? tdata : [];
+//                   this.lstHearingInterventions = tdata;
+//                   // console.log(this.lstHearingDiagnosisCheck)
+//               } else {
+//                   this.lstHearingInterventions = [];
+//               }
+//           },
+//           error: (e) => {
+//               this._UtilityService.hideSpinner();
+//               this._UtilityService.showErrorAlert(e.message);
+//           },
+//       });
+// }
 
-GetGoalsToHearing() {
-  this._UtilityService.showSpinner();
-  this.unsubscribe.add = this._CareHearing
-      .GetGoalsToHearing(1)
-      .subscribe({
-          next: (data) => {
-            // console.log(data)
-              this._UtilityService.hideSpinner();
-              if (data.actionResult.success == true) {
-                  var tdata = JSON.parse(data.actionResult.result);
-                  // console.log(tdata);
-                  tdata = tdata ? tdata : [];
-                  this.lstGoalsToHearing = tdata;
-                  // console.log(this.lstHearingDiagnosisCheck)
-              } else {
-                  this.lstGoalsToHearing = [];
-              }
-          },
-          error: (e) => {
-              this._UtilityService.hideSpinner();
-              this._UtilityService.showErrorAlert(e.message);
-          },
-      });
-}
+// GetHearingAids() {
+//   this._UtilityService.showSpinner();
+//   this.unsubscribe.add = this._CareHearing
+//       .GetHearingAids(1)
+//       .subscribe({
+//           next: (data) => {
+//             // console.log(data)
+//               this._UtilityService.hideSpinner();
+//               if (data.actionResult.success == true) {
+//                   var tdata = JSON.parse(data.actionResult.result);
+//                   // console.log(tdata);
+//                   tdata = tdata ? tdata : [];
+//                   this.lstHearingAids = tdata;
+//                   // console.log(this.lstHearingDiagnosisCheck)
+//               } else {
+//                   this.lstHearingAids = [];
+//               }
+//           },
+//           error: (e) => {
+//               this._UtilityService.hideSpinner();
+//               this._UtilityService.showErrorAlert(e.message);
+//           },
+//       });
+// }
+
+// GetAidsAssistance() {
+//   this._UtilityService.showSpinner();
+//   this.unsubscribe.add = this._CareHearing
+//       .GetAidsAssistance(1)
+//       .subscribe({
+//           next: (data) => {
+//             // console.log(data)
+//               this._UtilityService.hideSpinner();
+//               if (data.actionResult.success == true) {
+//                   var tdata = JSON.parse(data.actionResult.result);
+//                   // console.log(tdata);
+//                   tdata = tdata ? tdata : [];
+//                   this.lstAidsAssistance = tdata;
+//                   // console.log(this.lstHearingDiagnosisCheck)
+//               } else {
+//                   this.lstAidsAssistance = [];
+//               }
+//           },
+//           error: (e) => {
+//               this._UtilityService.hideSpinner();
+//               this._UtilityService.showErrorAlert(e.message);
+//           },
+//       });
+// }
+
+// GetGoalsToHearing() {
+//   this._UtilityService.showSpinner();
+//   this.unsubscribe.add = this._CareHearing
+//       .GetGoalsToHearing(1)
+//       .subscribe({
+//           next: (data) => {
+//             // console.log(data)
+//               this._UtilityService.hideSpinner();
+//               if (data.actionResult.success == true) {
+//                   var tdata = JSON.parse(data.actionResult.result);
+//                   // console.log(tdata);
+//                   tdata = tdata ? tdata : [];
+//                   this.lstGoalsToHearing = tdata;
+//                   // console.log(this.lstHearingDiagnosisCheck)
+//               } else {
+//                   this.lstGoalsToHearing = [];
+//               }
+//           },
+//           error: (e) => {
+//               this._UtilityService.hideSpinner();
+//               this._UtilityService.showErrorAlert(e.message);
+//           },
+//       });
+// }
 
 saveAsUnfinished() {
 

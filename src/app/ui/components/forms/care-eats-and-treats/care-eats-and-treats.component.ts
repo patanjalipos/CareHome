@@ -1,10 +1,12 @@
 import { Component, EventEmitter, Input, OnInit, Output, SimpleChanges } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { AppComponentBase } from 'src/app/app-component-base';
-import { ConstantsService, CustomDateFormat } from 'src/app/ui/service/constants.service';
+import { ConstantsService, CustomDateFormat, FormTypes } from 'src/app/ui/service/constants.service';
 import { DataService } from 'src/app/ui/service/data-service.service';
 import { UtilityService } from 'src/app/utility/utility.service';
 import { CareEatsAndTreatsService } from './care-eats-and-treats.service';
+import { MasterService } from 'src/app/ui/service/master.service';
+import { Observable, catchError, forkJoin, map, of } from 'rxjs';
 
 @Component({
   selector: 'app-care-eats-and-treats',
@@ -36,7 +38,7 @@ export class CareEatsAndTreatsComponent extends AppComponentBase implements OnIn
   lstRiskOfMalnutrition:any[] = []
 
 
-  constructor(private _ConstantServices: ConstantsService,private route: ActivatedRoute,private _DataService: DataService,private _CareEatsAndDrinks: CareEatsAndTreatsService,private _UtilityService: UtilityService) {
+  constructor(private _ConstantServices: ConstantsService,private route: ActivatedRoute,private _DataService: DataService,private _CareEatsAndDrinks: CareEatsAndTreatsService,private _UtilityService: UtilityService,private _MasterServices: MasterService) {
 
     super();
     this._ConstantServices.ActiveMenuName = "Care Assessment Eats And Treats Form";
@@ -72,6 +74,30 @@ export class CareEatsAndTreatsComponent extends AppComponentBase implements OnIn
   }
 
   ngOnInit(): void {
+    const collectionNames = [
+        'ResidentStatusOfCapacity',
+        'Choking',
+        'ActionNeededToReduceChoking',
+        'Food',
+        'Fluids',
+        'ProfessionalInput',
+        'GoalsToAchieve',
+        'StrategyToManageNutrition',
+        'RiskOfMalnutrition'
+    ];
+
+    forkJoin(collectionNames.map((collectionName) => this.getDropdownMasterLists(FormTypes.CareAssessmentEats,collectionName,1))).subscribe((responses: any[]) => {
+        this.lstResidentStatusOfCapacity = responses[0];
+        this.lstChoking = responses[1];
+        this.lstActionNeededToReduceChoking = responses[2];
+        this.lstFood = responses[3];
+        this.lstFluids = responses[4];
+        this.lstProfessionalInput = responses[5];
+        this.lstGoalsToAchieve = responses[6];
+        this.lstStrategyToManageNutrition = responses[7];
+        this.lstRiskOfMalnutrition = responses[8];
+    });
+
 
     this.isEditable = this.preSelectedFormData.isEditable;
   
@@ -86,15 +112,15 @@ export class CareEatsAndTreatsComponent extends AppComponentBase implements OnIn
       this.ResetModel();
     }
 
-    this.GetResidentStatusOfCapacity();
-    this.GetChoking();
-    this.GetFood();
-    this.GetFluids();
-    this.GetActionNeededToReduceChoking();
-    this.GetGoalsToAchieve();
-    this.GetProfessionalInput();
-    this.GetRiskOfMalnutrition();
-    this.GetStrategyToManageNutrition();
+    // this.GetResidentStatusOfCapacity();
+    // this.GetChoking();
+    // this.GetFood();
+    // this.GetFluids();
+    // this.GetActionNeededToReduceChoking();
+    // this.GetGoalsToAchieve();
+    // this.GetProfessionalInput();
+    // this.GetRiskOfMalnutrition();
+    // this.GetStrategyToManageNutrition();
   }
 
   GetCareAssessmentEatsAndDrinksDetails(formId: string) {
@@ -120,221 +146,241 @@ export class CareEatsAndTreatsComponent extends AppComponentBase implements OnIn
         });
 }
 
-GetResidentStatusOfCapacity() {
-  this._UtilityService.showSpinner();
-    this.unsubscribe.add = this._CareEatsAndDrinks
-        .GetResidentStatusOfCapacity(1)
-        .subscribe({
-            next: (data) => {
-            //   console.log(data)
-                this._UtilityService.hideSpinner();
-                if (data.actionResult.success == true) {
-                    var tdata = JSON.parse(data.actionResult.result);
-                    // console.log(tdata);
-                    tdata = tdata ? tdata : [];
-                    this.lstResidentStatusOfCapacity = tdata;
-                } else {
-                    this.lstResidentStatusOfCapacity = [];
-                }
-            },
-            error: (e) => {
-                this._UtilityService.hideSpinner();
-                this._UtilityService.showErrorAlert(e.message);
-            },
-        });
+getDropdownMasterLists(formMasterId: string, dropdownName: string,status:number): Observable<any> {
+    this._UtilityService.showSpinner();
+    return this._MasterServices.GetDropDownMasterList(formMasterId,dropdownName, status).pipe(
+        map((response) => {
+            this._UtilityService.hideSpinner();
+            if (response.actionResult.success) {
+                return JSON.parse(response.actionResult.result);
+            } else {
+                return [];
+            }
+        }),
+        catchError((error) => {
+            this._UtilityService.hideSpinner();
+            this._UtilityService.showErrorAlert(error.message);
+            alert(error.message);
+            return of([]); // Returning empty array in case of error
+        })
+    );
 }
 
-GetChoking() {
-  this._UtilityService.showSpinner();
-    this.unsubscribe.add = this._CareEatsAndDrinks
-        .GetChoking(1)
-        .subscribe({
-            next: (data) => {
-            //   console.log(data)
-                this._UtilityService.hideSpinner();
-                if (data.actionResult.success == true) {
-                    var tdata = JSON.parse(data.actionResult.result);
-                    // console.log(tdata);
-                    tdata = tdata ? tdata : [];
-                    this.lstChoking = tdata;
-                } else {
-                    this.lstChoking = [];
-                }
-            },
-            error: (e) => {
-                this._UtilityService.hideSpinner();
-                this._UtilityService.showErrorAlert(e.message);
-            },
-        });
-}
+// GetResidentStatusOfCapacity() {
+//   this._UtilityService.showSpinner();
+//     this.unsubscribe.add = this._CareEatsAndDrinks
+//         .GetResidentStatusOfCapacity(1)
+//         .subscribe({
+//             next: (data) => {
+//             //   console.log(data)
+//                 this._UtilityService.hideSpinner();
+//                 if (data.actionResult.success == true) {
+//                     var tdata = JSON.parse(data.actionResult.result);
+//                     // console.log(tdata);
+//                     tdata = tdata ? tdata : [];
+//                     this.lstResidentStatusOfCapacity = tdata;
+//                 } else {
+//                     this.lstResidentStatusOfCapacity = [];
+//                 }
+//             },
+//             error: (e) => {
+//                 this._UtilityService.hideSpinner();
+//                 this._UtilityService.showErrorAlert(e.message);
+//             },
+//         });
+// }
 
-GetActionNeededToReduceChoking() {
-  this._UtilityService.showSpinner();
-    this.unsubscribe.add = this._CareEatsAndDrinks
-        .GetActionNeededToReduceChoking(1)
-        .subscribe({
-            next: (data) => {
-            //   console.log(data)
-                this._UtilityService.hideSpinner();
-                if (data.actionResult.success == true) {
-                    var tdata = JSON.parse(data.actionResult.result);
-                    // console.log(tdata);
-                    tdata = tdata ? tdata : [];
-                    this.lstActionNeededToReduceChoking = tdata;
-                } else {
-                    this.lstActionNeededToReduceChoking = [];
-                }
-            },
-            error: (e) => {
-                this._UtilityService.hideSpinner();
-                this._UtilityService.showErrorAlert(e.message);
-            },
-        });
-}
+// GetChoking() {
+//   this._UtilityService.showSpinner();
+//     this.unsubscribe.add = this._CareEatsAndDrinks
+//         .GetChoking(1)
+//         .subscribe({
+//             next: (data) => {
+//             //   console.log(data)
+//                 this._UtilityService.hideSpinner();
+//                 if (data.actionResult.success == true) {
+//                     var tdata = JSON.parse(data.actionResult.result);
+//                     // console.log(tdata);
+//                     tdata = tdata ? tdata : [];
+//                     this.lstChoking = tdata;
+//                 } else {
+//                     this.lstChoking = [];
+//                 }
+//             },
+//             error: (e) => {
+//                 this._UtilityService.hideSpinner();
+//                 this._UtilityService.showErrorAlert(e.message);
+//             },
+//         });
+// }
 
-GetFood() {
-  this._UtilityService.showSpinner();
-    this.unsubscribe.add = this._CareEatsAndDrinks
-        .GetFood(1)
-        .subscribe({
-            next: (data) => {
-            //   console.log(data)
-                this._UtilityService.hideSpinner();
-                if (data.actionResult.success == true) {
-                    var tdata = JSON.parse(data.actionResult.result);
-                    // console.log(tdata);
-                    tdata = tdata ? tdata : [];
-                    this.lstFood = tdata;
-                } else {
-                    this.lstFood = [];
-                }
-            },
-            error: (e) => {
-                this._UtilityService.hideSpinner();
-                this._UtilityService.showErrorAlert(e.message);
-            },
-        });
-}
+// GetActionNeededToReduceChoking() {
+//   this._UtilityService.showSpinner();
+//     this.unsubscribe.add = this._CareEatsAndDrinks
+//         .GetActionNeededToReduceChoking(1)
+//         .subscribe({
+//             next: (data) => {
+//             //   console.log(data)
+//                 this._UtilityService.hideSpinner();
+//                 if (data.actionResult.success == true) {
+//                     var tdata = JSON.parse(data.actionResult.result);
+//                     // console.log(tdata);
+//                     tdata = tdata ? tdata : [];
+//                     this.lstActionNeededToReduceChoking = tdata;
+//                 } else {
+//                     this.lstActionNeededToReduceChoking = [];
+//                 }
+//             },
+//             error: (e) => {
+//                 this._UtilityService.hideSpinner();
+//                 this._UtilityService.showErrorAlert(e.message);
+//             },
+//         });
+// }
 
-GetFluids() {
-  this._UtilityService.showSpinner();
-    this.unsubscribe.add = this._CareEatsAndDrinks
-        .GetFluids(1)
-        .subscribe({
-            next: (data) => {
-            //   console.log(data)
-                this._UtilityService.hideSpinner();
-                if (data.actionResult.success == true) {
-                    var tdata = JSON.parse(data.actionResult.result);
-                    // console.log(tdata);
-                    tdata = tdata ? tdata : [];
-                    this.lstFluids = tdata;
-                } else {
-                    this.lstFluids = [];
-                }
-            },
-            error: (e) => {
-                this._UtilityService.hideSpinner();
-                this._UtilityService.showErrorAlert(e.message);
-            },
-        });
-}
+// GetFood() {
+//   this._UtilityService.showSpinner();
+//     this.unsubscribe.add = this._CareEatsAndDrinks
+//         .GetFood(1)
+//         .subscribe({
+//             next: (data) => {
+//             //   console.log(data)
+//                 this._UtilityService.hideSpinner();
+//                 if (data.actionResult.success == true) {
+//                     var tdata = JSON.parse(data.actionResult.result);
+//                     // console.log(tdata);
+//                     tdata = tdata ? tdata : [];
+//                     this.lstFood = tdata;
+//                 } else {
+//                     this.lstFood = [];
+//                 }
+//             },
+//             error: (e) => {
+//                 this._UtilityService.hideSpinner();
+//                 this._UtilityService.showErrorAlert(e.message);
+//             },
+//         });
+// }
 
-GetProfessionalInput() {
-  this._UtilityService.showSpinner();
-    this.unsubscribe.add = this._CareEatsAndDrinks
-        .GetProfessionalInput(1)
-        .subscribe({
-            next: (data) => {
-            //   console.log(data)
-                this._UtilityService.hideSpinner();
-                if (data.actionResult.success == true) {
-                    var tdata = JSON.parse(data.actionResult.result);
-                    // console.log(tdata);
-                    tdata = tdata ? tdata : [];
-                    this.lstProfessionalInput = tdata;
-                } else {
-                    this.lstProfessionalInput = [];
-                }
-            },
-            error: (e) => {
-                this._UtilityService.hideSpinner();
-                this._UtilityService.showErrorAlert(e.message);
-            },
-        });
-}
+// GetFluids() {
+//   this._UtilityService.showSpinner();
+//     this.unsubscribe.add = this._CareEatsAndDrinks
+//         .GetFluids(1)
+//         .subscribe({
+//             next: (data) => {
+//             //   console.log(data)
+//                 this._UtilityService.hideSpinner();
+//                 if (data.actionResult.success == true) {
+//                     var tdata = JSON.parse(data.actionResult.result);
+//                     // console.log(tdata);
+//                     tdata = tdata ? tdata : [];
+//                     this.lstFluids = tdata;
+//                 } else {
+//                     this.lstFluids = [];
+//                 }
+//             },
+//             error: (e) => {
+//                 this._UtilityService.hideSpinner();
+//                 this._UtilityService.showErrorAlert(e.message);
+//             },
+//         });
+// }
 
-GetGoalsToAchieve() {
-  this._UtilityService.showSpinner();
-    this.unsubscribe.add = this._CareEatsAndDrinks
-        .GetGoalsToAchieve(1)
-        .subscribe({
-            next: (data) => {
-            //   console.log(data)
-                this._UtilityService.hideSpinner();
-                if (data.actionResult.success == true) {
-                    var tdata = JSON.parse(data.actionResult.result);
-                    // console.log(tdata);
-                    tdata = tdata ? tdata : [];
-                    this.lstGoalsToAchieve = tdata;
-                } else {
-                    this.lstGoalsToAchieve = [];
-                }
-            },
-            error: (e) => {
-                this._UtilityService.hideSpinner();
-                this._UtilityService.showErrorAlert(e.message);
-            },
-        });
-}
+// GetProfessionalInput() {
+//   this._UtilityService.showSpinner();
+//     this.unsubscribe.add = this._CareEatsAndDrinks
+//         .GetProfessionalInput(1)
+//         .subscribe({
+//             next: (data) => {
+//             //   console.log(data)
+//                 this._UtilityService.hideSpinner();
+//                 if (data.actionResult.success == true) {
+//                     var tdata = JSON.parse(data.actionResult.result);
+//                     // console.log(tdata);
+//                     tdata = tdata ? tdata : [];
+//                     this.lstProfessionalInput = tdata;
+//                 } else {
+//                     this.lstProfessionalInput = [];
+//                 }
+//             },
+//             error: (e) => {
+//                 this._UtilityService.hideSpinner();
+//                 this._UtilityService.showErrorAlert(e.message);
+//             },
+//         });
+// }
 
-GetStrategyToManageNutrition() {
-  this._UtilityService.showSpinner();
-    this.unsubscribe.add = this._CareEatsAndDrinks
-        .GetStrategyToManageNutrition(1)
-        .subscribe({
-            next: (data) => {
-            //   console.log(data)
-                this._UtilityService.hideSpinner();
-                if (data.actionResult.success == true) {
-                    var tdata = JSON.parse(data.actionResult.result);
-                    // console.log(tdata);
-                    tdata = tdata ? tdata : [];
-                    this.lstStrategyToManageNutrition = tdata;
-                } else {
-                    this.lstStrategyToManageNutrition = [];
-                }
-            },
-            error: (e) => {
-                this._UtilityService.hideSpinner();
-                this._UtilityService.showErrorAlert(e.message);
-            },
-        });
-}
+// GetGoalsToAchieve() {
+//   this._UtilityService.showSpinner();
+//     this.unsubscribe.add = this._CareEatsAndDrinks
+//         .GetGoalsToAchieve(1)
+//         .subscribe({
+//             next: (data) => {
+//             //   console.log(data)
+//                 this._UtilityService.hideSpinner();
+//                 if (data.actionResult.success == true) {
+//                     var tdata = JSON.parse(data.actionResult.result);
+//                     // console.log(tdata);
+//                     tdata = tdata ? tdata : [];
+//                     this.lstGoalsToAchieve = tdata;
+//                 } else {
+//                     this.lstGoalsToAchieve = [];
+//                 }
+//             },
+//             error: (e) => {
+//                 this._UtilityService.hideSpinner();
+//                 this._UtilityService.showErrorAlert(e.message);
+//             },
+//         });
+// }
 
-GetRiskOfMalnutrition() {
-  this._UtilityService.showSpinner();
-    this.unsubscribe.add = this._CareEatsAndDrinks
-        .GetRiskOfMalnutrition(1)
-        .subscribe({
-            next: (data) => {
-            //   console.log(data)
-                this._UtilityService.hideSpinner();
-                if (data.actionResult.success == true) {
-                    var tdata = JSON.parse(data.actionResult.result);
-                    // console.log(tdata);
-                    tdata = tdata ? tdata : [];
-                    this.lstRiskOfMalnutrition = tdata;
-                } else {
-                    this.lstRiskOfMalnutrition = [];
-                }
-            },
-            error: (e) => {
-                this._UtilityService.hideSpinner();
-                this._UtilityService.showErrorAlert(e.message);
-            },
-        });
-}
+// GetStrategyToManageNutrition() {
+//   this._UtilityService.showSpinner();
+//     this.unsubscribe.add = this._CareEatsAndDrinks
+//         .GetStrategyToManageNutrition(1)
+//         .subscribe({
+//             next: (data) => {
+//             //   console.log(data)
+//                 this._UtilityService.hideSpinner();
+//                 if (data.actionResult.success == true) {
+//                     var tdata = JSON.parse(data.actionResult.result);
+//                     // console.log(tdata);
+//                     tdata = tdata ? tdata : [];
+//                     this.lstStrategyToManageNutrition = tdata;
+//                 } else {
+//                     this.lstStrategyToManageNutrition = [];
+//                 }
+//             },
+//             error: (e) => {
+//                 this._UtilityService.hideSpinner();
+//                 this._UtilityService.showErrorAlert(e.message);
+//             },
+//         });
+// }
+
+// GetRiskOfMalnutrition() {
+//   this._UtilityService.showSpinner();
+//     this.unsubscribe.add = this._CareEatsAndDrinks
+//         .GetRiskOfMalnutrition(1)
+//         .subscribe({
+//             next: (data) => {
+//             //   console.log(data)
+//                 this._UtilityService.hideSpinner();
+//                 if (data.actionResult.success == true) {
+//                     var tdata = JSON.parse(data.actionResult.result);
+//                     // console.log(tdata);
+//                     tdata = tdata ? tdata : [];
+//                     this.lstRiskOfMalnutrition = tdata;
+//                 } else {
+//                     this.lstRiskOfMalnutrition = [];
+//                 }
+//             },
+//             error: (e) => {
+//                 this._UtilityService.hideSpinner();
+//                 this._UtilityService.showErrorAlert(e.message);
+//             },
+//         });
+// }
 
 saveAsUnfinished() {
 
@@ -392,7 +438,7 @@ if (this.userId != null && this.residentAdmissionInfoId != null && this.loginId!
         });
 } else {
     this._UtilityService.showWarningAlert(
-        'Care Assessment Eats And Drinks details are missing.'
+        'Care Assessment Eats And Treats details are missing.'
     );
 }
 }

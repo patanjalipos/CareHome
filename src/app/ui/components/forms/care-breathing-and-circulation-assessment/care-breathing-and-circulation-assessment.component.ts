@@ -1,11 +1,13 @@
 import { Component, EventEmitter, Input, OnInit, Output, SimpleChanges } from '@angular/core';
 import { CareBreathingCirculationService } from './care-breathing-circulation.service';
-import { ConstantsService, CustomDateFormat } from 'src/app/ui/service/constants.service';
+import { ConstantsService, CustomDateFormat, FormTypes } from 'src/app/ui/service/constants.service';
 import { DatePipe } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
 import { UtilityService } from 'src/app/utility/utility.service';
 import { DataService } from 'src/app/ui/service/data-service.service';
 import { AppComponentBase } from 'src/app/app-component-base';
+import { Observable, catchError, forkJoin, map, of } from 'rxjs';
+import { MasterService } from 'src/app/ui/service/master.service';
 
 @Component({
   selector: 'app-care-breathing-and-circulation-assessment',
@@ -46,7 +48,8 @@ export class CareBreathingAndCirculationAssessmentComponent extends AppComponent
     private _ConstantServices: ConstantsService,
     private route: ActivatedRoute,
     private _UtilityService: UtilityService,
-    private _DataService: DataService
+    private _DataService: DataService,
+    private _MasterServices: MasterService
 
   ) { 
     super();
@@ -70,16 +73,44 @@ export class CareBreathingAndCirculationAssessmentComponent extends AppComponent
 
   
   ngOnInit(): void {
-    this.GetBreathDecisionMaster();
-    this.GetCareAssBreathDificultMaster();
-    this.GetCareAssBreathSmokingHabitMaster();
-    this.GetCareAssBreathSmokingActionPlan();
-    this.GetCareAssBreathCoughTypeMaster();
-    this.GetCareAssBreathMachineTypeUsed();
-    this.GetCareAssBreathInHealerTypeMaster();
-    this.GetCareAssBreathCreticalTreatmentMaster();
-    this.GetCareAssBreathGoalsWishesMaster();
-    this.GetCareAssBreathStrategiesMaster();
+
+    const collectionNames = [
+        'CareBreathDecision',
+        'BreathDifficulties',
+        'SmokingHistory',
+        'SmokeActionPlan',
+        'CoughType',
+        'Tracheostomy',
+        'MachineType',
+        'InhealerType',
+        'CreticalTreatment',
+        'GoalsWishesDetails',
+        'StrategiesManage'
+    ];
+
+    forkJoin(collectionNames.map((collectionName) => this.getDropdownMasterLists(FormTypes.CareAssessmentBreathing,collectionName,1))).subscribe((responses: any[]) => {
+        this.lstBreathDecisionMaster = responses[0];
+        this.lstCareAssBreathDificultMaster = responses[1];
+        this.lstCareAssBreathSmokingHabitMaster = responses[2];
+        this.lstCareAssBreathSmokingActionPlan = responses[3];
+        this.lstCareAssBreathCoughTypeMaster = responses[4];
+        this.lstCareAssBreathTracheostomyMaster = responses[5];
+        this.lstCareAssBreathMachineTypeUsed = responses[6];
+        this.lstCareAssBreathInHealerTypeMaster = responses[7];
+        this.lstCareAssBreathCreticalTreatmentMaster = responses[8];
+        this.lstCareAssBreathGoalsWishesMaster = responses[9];
+        this.lstCareAssBreathStrategiesMaster = responses[10];
+    });
+    // this.GetBreathDecisionMaster();
+    // this.GetCareAssBreathDificultMaster();
+    // this.GetCareAssBreathSmokingHabitMaster();
+    // this.GetCareAssBreathSmokingActionPlan();
+    // this.GetCareAssBreathCoughTypeMaster();
+    // this.GetCareAssBreathMachineTypeUsed();
+    // this.GetCareAssBreathInHealerTypeMaster();
+    // this.GetCareAssBreathCreticalTreatmentMaster();
+    // this.GetCareAssBreathGoalsWishesMaster();
+    // this.GetCareAssBreathStrategiesMaster();
    
     this.isEditable = this.preSelectedFormData.isEditable;
 
@@ -108,6 +139,26 @@ export class CareBreathingAndCirculationAssessmentComponent extends AppComponent
       this.ResetModel();
   }
   }
+
+  getDropdownMasterLists(formMasterId: string, dropdownName: string,status:number): Observable<any> {
+    this._UtilityService.showSpinner();
+    return this._MasterServices.GetDropDownMasterList(formMasterId,dropdownName, status).pipe(
+        map((response) => {
+            this._UtilityService.hideSpinner();
+            if (response.actionResult.success) {
+                return JSON.parse(response.actionResult.result);
+            } else {
+                return [];
+            }
+        }),
+        catchError((error) => {
+            this._UtilityService.hideSpinner();
+            this._UtilityService.showErrorAlert(error.message);
+            alert(error.message);
+            return of([]); // Returning empty array in case of error
+        })
+    );
+}
   GetCareBreathCirculationByid(formId: string) {
     this._UtilityService.showSpinner();
     this.unsubscribe.add = this._care_breath
@@ -137,238 +188,238 @@ export class CareBreathingAndCirculationAssessmentComponent extends AppComponent
     this.CareBreathAssFormsData = <any>{};
     this.StatementType = 'Insert';
 }
-GetBreathDecisionMaster() {
-  this._UtilityService.showSpinner();
-  this.unsubscribe.add = this._care_breath
-      .GetBreathDecisionMaster(0)
-      .subscribe({
-          next: (data) => {
-              this._UtilityService.hideSpinner();
-              if (data.actionResult.success == true) {
-                  var tdata = JSON.parse(data.actionResult.result);
-                  tdata = tdata ? tdata : {};
-                  this.lstBreathDecisionMaster = tdata;
-                  //console.log(this.PreAdmissionAssessmentFormsData);
-              } else {
-                  this.lstBreathDecisionMaster = [];
-              }
-          },
-          error: (e) => {
-              this._UtilityService.hideSpinner();
-              this._UtilityService.showErrorAlert(e.message);
-          },
-      });
-}
-GetCareAssBreathDificultMaster() {
-  this._UtilityService.showSpinner();
-  this.unsubscribe.add = this._care_breath
-      .GetCareAssBreathDificultMaster(0)
-      .subscribe({
-          next: (data) => {
-              this._UtilityService.hideSpinner();
-              if (data.actionResult.success == true) {
-                  var tdata = JSON.parse(data.actionResult.result);
-                  tdata = tdata ? tdata : {};
-                  this.lstCareAssBreathDificultMaster = tdata;
-              } else {
-                  this.lstCareAssBreathDificultMaster = [];
-              }
-          },
-          error: (e) => {
-              this._UtilityService.hideSpinner();
-              this._UtilityService.showErrorAlert(e.message);
-          },
-      });
-}
-GetCareAssBreathSmokingHabitMaster() {
-  this._UtilityService.showSpinner();
-  this.unsubscribe.add = this._care_breath
-      .GetCareAssBreathSmokingHabitMaster(0)
-      .subscribe({
-          next: (data) => {
-              this._UtilityService.hideSpinner();
-              if (data.actionResult.success == true) {
-                  var tdata = JSON.parse(data.actionResult.result);
-                  tdata = tdata ? tdata : {};
-                  this.lstCareAssBreathSmokingHabitMaster = tdata;
-              } else {
-                  this.lstCareAssBreathSmokingHabitMaster = [];
-              }
-          },
-          error: (e) => {
-              this._UtilityService.hideSpinner();
-              this._UtilityService.showErrorAlert(e.message);
-          },
-      });
-}
-GetCareAssBreathSmokingActionPlan() {
-  this._UtilityService.showSpinner();
-  this.unsubscribe.add = this._care_breath
-      .GetCareAssBreathSmokingActionPlan(0)
-      .subscribe({
-          next: (data) => {
-              this._UtilityService.hideSpinner();
-              if (data.actionResult.success == true) {
-                  var tdata = JSON.parse(data.actionResult.result);
-                  tdata = tdata ? tdata : {};
-                  this.lstCareAssBreathSmokingActionPlan = tdata;
-              } else {
-                  this.lstCareAssBreathSmokingActionPlan = [];
-              }
-          },
-          error: (e) => {
-              this._UtilityService.hideSpinner();
-              this._UtilityService.showErrorAlert(e.message);
-          },
-      });
-}
-GetCareAssBreathCoughTypeMaster() {
-  this._UtilityService.showSpinner();
-  this.unsubscribe.add = this._care_breath
-      .GetCareAssBreathCoughTypeMaster(0)
-      .subscribe({
-          next: (data) => {
-              this._UtilityService.hideSpinner();
-              if (data.actionResult.success == true) {
-                  var tdata = JSON.parse(data.actionResult.result);
-                  tdata = tdata ? tdata : {};
-                  this.lstCareAssBreathCoughTypeMaster = tdata;
-              } else {
-                  this.lstCareAssBreathCoughTypeMaster = [];
-              }
-          },
-          error: (e) => {
-              this._UtilityService.hideSpinner();
-              this._UtilityService.showErrorAlert(e.message);
-          },
-      });
-}
-GetCareAssBreathTracheostomyMaster() {
-  this._UtilityService.showSpinner();
-  this.unsubscribe.add = this._care_breath
-      .GetCareAssBreathTracheostomyMaster(0)
-      .subscribe({
-          next: (data) => {
-              this._UtilityService.hideSpinner();
-              if (data.actionResult.success == true) {
-                  var tdata = JSON.parse(data.actionResult.result);
-                  tdata = tdata ? tdata : {};
-                  this.lstCareAssBreathTracheostomyMaster = tdata;
-              } else {
-                  this.lstCareAssBreathTracheostomyMaster = [];
-              }
-          },
-          error: (e) => {
-              this._UtilityService.hideSpinner();
-              this._UtilityService.showErrorAlert(e.message);
-          },
-      });
-}
-GetCareAssBreathMachineTypeUsed() {
-  this._UtilityService.showSpinner();
-  this.unsubscribe.add = this._care_breath
-      .GetCareAssBreathMachineTypeUsed(0)
-      .subscribe({
-          next: (data) => {
-              this._UtilityService.hideSpinner();
-              if (data.actionResult.success == true) {
-                  var tdata = JSON.parse(data.actionResult.result);
-                  tdata = tdata ? tdata : {};
-                  this.lstCareAssBreathMachineTypeUsed = tdata;
-              } else {
-                  this.lstCareAssBreathMachineTypeUsed = [];
-              }
-          },
-          error: (e) => {
-              this._UtilityService.hideSpinner();
-              this._UtilityService.showErrorAlert(e.message);
-          },
-      });
-}
-GetCareAssBreathInHealerTypeMaster() {
-  this._UtilityService.showSpinner();
-  this.unsubscribe.add = this._care_breath
-      .GetCareAssBreathInHealerTypeMaster(0)
-      .subscribe({
-          next: (data) => {
-              this._UtilityService.hideSpinner();
-              if (data.actionResult.success == true) {
-                  var tdata = JSON.parse(data.actionResult.result);
-                  tdata = tdata ? tdata : {};
-                  this.lstCareAssBreathInHealerTypeMaster = tdata;
-              } else {
-                  this.lstCareAssBreathInHealerTypeMaster = [];
-              }
-          },
-          error: (e) => {
-              this._UtilityService.hideSpinner();
-              this._UtilityService.showErrorAlert(e.message);
-          },
-      });
-}
-GetCareAssBreathCreticalTreatmentMaster() {
-  this._UtilityService.showSpinner();
-  this.unsubscribe.add = this._care_breath
-      .GetCareAssBreathCreticalTreatmentMaster(0)
-      .subscribe({
-          next: (data) => {
-              this._UtilityService.hideSpinner();
-              if (data.actionResult.success == true) {
-                  var tdata = JSON.parse(data.actionResult.result);
-                  tdata = tdata ? tdata : {};
-                  this.lstCareAssBreathCreticalTreatmentMaster = tdata;
-              } else {
-                  this.lstCareAssBreathCreticalTreatmentMaster = [];
-              }
-          },
-          error: (e) => {
-              this._UtilityService.hideSpinner();
-              this._UtilityService.showErrorAlert(e.message);
-          },
-      });
-}
-GetCareAssBreathGoalsWishesMaster() {
-  this._UtilityService.showSpinner();
-  this.unsubscribe.add = this._care_breath
-      .GetCareAssBreathGoalsWishesMaster(0)
-      .subscribe({
-          next: (data) => {
-              this._UtilityService.hideSpinner();
-              if (data.actionResult.success == true) {
-                  var tdata = JSON.parse(data.actionResult.result);
-                  tdata = tdata ? tdata : {};
-                  this.lstCareAssBreathGoalsWishesMaster = tdata;
-              } else {
-                  this.lstCareAssBreathGoalsWishesMaster = [];
-              }
-          },
-          error: (e) => {
-              this._UtilityService.hideSpinner();
-              this._UtilityService.showErrorAlert(e.message);
-          },
-      });
-}
-GetCareAssBreathStrategiesMaster() {
-  this._UtilityService.showSpinner();
-  this.unsubscribe.add = this._care_breath
-      .GetCareAssBreathStrategiesMaster(0)
-      .subscribe({
-          next: (data) => {
-              this._UtilityService.hideSpinner();
-              if (data.actionResult.success == true) {
-                  var tdata = JSON.parse(data.actionResult.result);
-                  tdata = tdata ? tdata : {};
-                  this.lstCareAssBreathStrategiesMaster = tdata;
-              } else {
-                  this.lstCareAssBreathStrategiesMaster = [];
-              }
-          },
-          error: (e) => {
-              this._UtilityService.hideSpinner();
-              this._UtilityService.showErrorAlert(e.message);
-          },
-      });
-}
+// GetBreathDecisionMaster() {
+//   this._UtilityService.showSpinner();
+//   this.unsubscribe.add = this._care_breath
+//       .GetBreathDecisionMaster(0)
+//       .subscribe({
+//           next: (data) => {
+//               this._UtilityService.hideSpinner();
+//               if (data.actionResult.success == true) {
+//                   var tdata = JSON.parse(data.actionResult.result);
+//                   tdata = tdata ? tdata : {};
+//                   this.lstBreathDecisionMaster = tdata;
+//                   //console.log(this.PreAdmissionAssessmentFormsData);
+//               } else {
+//                   this.lstBreathDecisionMaster = [];
+//               }
+//           },
+//           error: (e) => {
+//               this._UtilityService.hideSpinner();
+//               this._UtilityService.showErrorAlert(e.message);
+//           },
+//       });
+// }
+// GetCareAssBreathDificultMaster() {
+//   this._UtilityService.showSpinner();
+//   this.unsubscribe.add = this._care_breath
+//       .GetCareAssBreathDificultMaster(0)
+//       .subscribe({
+//           next: (data) => {
+//               this._UtilityService.hideSpinner();
+//               if (data.actionResult.success == true) {
+//                   var tdata = JSON.parse(data.actionResult.result);
+//                   tdata = tdata ? tdata : {};
+//                   this.lstCareAssBreathDificultMaster = tdata;
+//               } else {
+//                   this.lstCareAssBreathDificultMaster = [];
+//               }
+//           },
+//           error: (e) => {
+//               this._UtilityService.hideSpinner();
+//               this._UtilityService.showErrorAlert(e.message);
+//           },
+//       });
+// }
+// GetCareAssBreathSmokingHabitMaster() {
+//   this._UtilityService.showSpinner();
+//   this.unsubscribe.add = this._care_breath
+//       .GetCareAssBreathSmokingHabitMaster(0)
+//       .subscribe({
+//           next: (data) => {
+//               this._UtilityService.hideSpinner();
+//               if (data.actionResult.success == true) {
+//                   var tdata = JSON.parse(data.actionResult.result);
+//                   tdata = tdata ? tdata : {};
+//                   this.lstCareAssBreathSmokingHabitMaster = tdata;
+//               } else {
+//                   this.lstCareAssBreathSmokingHabitMaster = [];
+//               }
+//           },
+//           error: (e) => {
+//               this._UtilityService.hideSpinner();
+//               this._UtilityService.showErrorAlert(e.message);
+//           },
+//       });
+// }
+// GetCareAssBreathSmokingActionPlan() {
+//   this._UtilityService.showSpinner();
+//   this.unsubscribe.add = this._care_breath
+//       .GetCareAssBreathSmokingActionPlan(0)
+//       .subscribe({
+//           next: (data) => {
+//               this._UtilityService.hideSpinner();
+//               if (data.actionResult.success == true) {
+//                   var tdata = JSON.parse(data.actionResult.result);
+//                   tdata = tdata ? tdata : {};
+//                   this.lstCareAssBreathSmokingActionPlan = tdata;
+//               } else {
+//                   this.lstCareAssBreathSmokingActionPlan = [];
+//               }
+//           },
+//           error: (e) => {
+//               this._UtilityService.hideSpinner();
+//               this._UtilityService.showErrorAlert(e.message);
+//           },
+//       });
+// }
+// GetCareAssBreathCoughTypeMaster() {
+//   this._UtilityService.showSpinner();
+//   this.unsubscribe.add = this._care_breath
+//       .GetCareAssBreathCoughTypeMaster(0)
+//       .subscribe({
+//           next: (data) => {
+//               this._UtilityService.hideSpinner();
+//               if (data.actionResult.success == true) {
+//                   var tdata = JSON.parse(data.actionResult.result);
+//                   tdata = tdata ? tdata : {};
+//                   this.lstCareAssBreathCoughTypeMaster = tdata;
+//               } else {
+//                   this.lstCareAssBreathCoughTypeMaster = [];
+//               }
+//           },
+//           error: (e) => {
+//               this._UtilityService.hideSpinner();
+//               this._UtilityService.showErrorAlert(e.message);
+//           },
+//       });
+// }
+// GetCareAssBreathTracheostomyMaster() {
+//   this._UtilityService.showSpinner();
+//   this.unsubscribe.add = this._care_breath
+//       .GetCareAssBreathTracheostomyMaster(0)
+//       .subscribe({
+//           next: (data) => {
+//               this._UtilityService.hideSpinner();
+//               if (data.actionResult.success == true) {
+//                   var tdata = JSON.parse(data.actionResult.result);
+//                   tdata = tdata ? tdata : {};
+//                   this.lstCareAssBreathTracheostomyMaster = tdata;
+//               } else {
+//                   this.lstCareAssBreathTracheostomyMaster = [];
+//               }
+//           },
+//           error: (e) => {
+//               this._UtilityService.hideSpinner();
+//               this._UtilityService.showErrorAlert(e.message);
+//           },
+//       });
+// }
+// GetCareAssBreathMachineTypeUsed() {
+//   this._UtilityService.showSpinner();
+//   this.unsubscribe.add = this._care_breath
+//       .GetCareAssBreathMachineTypeUsed(0)
+//       .subscribe({
+//           next: (data) => {
+//               this._UtilityService.hideSpinner();
+//               if (data.actionResult.success == true) {
+//                   var tdata = JSON.parse(data.actionResult.result);
+//                   tdata = tdata ? tdata : {};
+//                   this.lstCareAssBreathMachineTypeUsed = tdata;
+//               } else {
+//                   this.lstCareAssBreathMachineTypeUsed = [];
+//               }
+//           },
+//           error: (e) => {
+//               this._UtilityService.hideSpinner();
+//               this._UtilityService.showErrorAlert(e.message);
+//           },
+//       });
+// }
+// GetCareAssBreathInHealerTypeMaster() {
+//   this._UtilityService.showSpinner();
+//   this.unsubscribe.add = this._care_breath
+//       .GetCareAssBreathInHealerTypeMaster(0)
+//       .subscribe({
+//           next: (data) => {
+//               this._UtilityService.hideSpinner();
+//               if (data.actionResult.success == true) {
+//                   var tdata = JSON.parse(data.actionResult.result);
+//                   tdata = tdata ? tdata : {};
+//                   this.lstCareAssBreathInHealerTypeMaster = tdata;
+//               } else {
+//                   this.lstCareAssBreathInHealerTypeMaster = [];
+//               }
+//           },
+//           error: (e) => {
+//               this._UtilityService.hideSpinner();
+//               this._UtilityService.showErrorAlert(e.message);
+//           },
+//       });
+// }
+// GetCareAssBreathCreticalTreatmentMaster() {
+//   this._UtilityService.showSpinner();
+//   this.unsubscribe.add = this._care_breath
+//       .GetCareAssBreathCreticalTreatmentMaster(0)
+//       .subscribe({
+//           next: (data) => {
+//               this._UtilityService.hideSpinner();
+//               if (data.actionResult.success == true) {
+//                   var tdata = JSON.parse(data.actionResult.result);
+//                   tdata = tdata ? tdata : {};
+//                   this.lstCareAssBreathCreticalTreatmentMaster = tdata;
+//               } else {
+//                   this.lstCareAssBreathCreticalTreatmentMaster = [];
+//               }
+//           },
+//           error: (e) => {
+//               this._UtilityService.hideSpinner();
+//               this._UtilityService.showErrorAlert(e.message);
+//           },
+//       });
+// }
+// GetCareAssBreathGoalsWishesMaster() {
+//   this._UtilityService.showSpinner();
+//   this.unsubscribe.add = this._care_breath
+//       .GetCareAssBreathGoalsWishesMaster(0)
+//       .subscribe({
+//           next: (data) => {
+//               this._UtilityService.hideSpinner();
+//               if (data.actionResult.success == true) {
+//                   var tdata = JSON.parse(data.actionResult.result);
+//                   tdata = tdata ? tdata : {};
+//                   this.lstCareAssBreathGoalsWishesMaster = tdata;
+//               } else {
+//                   this.lstCareAssBreathGoalsWishesMaster = [];
+//               }
+//           },
+//           error: (e) => {
+//               this._UtilityService.hideSpinner();
+//               this._UtilityService.showErrorAlert(e.message);
+//           },
+//       });
+// }
+// GetCareAssBreathStrategiesMaster() {
+//   this._UtilityService.showSpinner();
+//   this.unsubscribe.add = this._care_breath
+//       .GetCareAssBreathStrategiesMaster(0)
+//       .subscribe({
+//           next: (data) => {
+//               this._UtilityService.hideSpinner();
+//               if (data.actionResult.success == true) {
+//                   var tdata = JSON.parse(data.actionResult.result);
+//                   tdata = tdata ? tdata : {};
+//                   this.lstCareAssBreathStrategiesMaster = tdata;
+//               } else {
+//                   this.lstCareAssBreathStrategiesMaster = [];
+//               }
+//           },
+//           error: (e) => {
+//               this._UtilityService.hideSpinner();
+//               this._UtilityService.showErrorAlert(e.message);
+//           },
+//       });
+// }
 saveAsUnfinished()
 {
   this.CareBreathAssFormsData.isFormCompleted = false;

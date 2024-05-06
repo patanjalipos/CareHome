@@ -4,25 +4,25 @@
             <div class="d-flex">
                 <div class="col-md-4">
                     <label class="form-label"><b> Started by (Name) :</b>
-                    </label>
+                        {{preSelectedFormData.StartedBy}}</label>
                 </div>
                 <div class="col-md-4">
-                    <label class="form-label"><b>Designation :</b> </label>
+                    <label class="form-label"><b>Designation :</b> {{preSelectedFormData.StartedByDesignation}}</label>
                 </div>
                 <div class="col-md-4">
-                    <label class="form-label"> <b>Date/Time : </b></label>
+                    <label class="form-label"> <b>Date/Time : </b>{{preSelectedFormData.StartedOn | date : customDateFormat.DEF_DATE_TIME}}</label>
                 </div>
             </div>
             <div class="d-flex">
                 <div class="col-md-4">
                     <label class="form-label">
-                        <b>Last entered by (Name) :</b></label>
+                        <b>Last entered by (Name) :</b>{{preSelectedFormData.ModifiedBy}}</label>
                 </div>
                 <div class="col-md-4">
-                    <label class="form-label"> <b>Designation :</b></label>
+                    <label class="form-label"> <b>Designation :</b>{{preSelectedFormData.ModifiedByDesignation}}</label>
                 </div>
                 <div class="col-md-4">
-                    <label class="form-label"> <b>Date/Time :</b> </label>
+                    <label class="form-label"> <b>Date/Time :</b>{{preSelectedFormData.ModifiedOn | date: customDateFormat.DEF_DATE_TIME}} </label>
                 </div>
             </div>
         </div>
@@ -33,8 +33,13 @@
             </div>
         </div>
         <div class="col-md-7 mt-4">
-            <p-dropdown placeholder="Select" [style]="{ width: '100%' }">
-            </p-dropdown>
+            <ng-container *ngIf="this.isEditable; else WeightLoss">
+                <p-dropdown [required]="true" [options]="lstWeightLoss"   optionLabel="optionName" [(ngModel)]="RiskAssessmentWaterFlowPressureFormsData.WeightLoss" name="RiskAssessmentWaterFlowPressureFormsData.WeightLoss" optionValue="optionId" placeholder="Select" [style]="{ width: '100%' }">
+                </p-dropdown>
+            </ng-container>
+            <ng-template #WeightLoss>
+                <label>{{RiskAssessmentWaterFlowPressureFormsData.WeightLossName}}</label>
+            </ng-template>
         </div>
         <div class="col-md-4">
             <div class="labelcontent">
@@ -42,8 +47,13 @@
             </div>
         </div>
         <div class="col-md-7 ">
-            <p-dropdown placeholder="Select" [style]="{ width: '100%' }">
-            </p-dropdown>
+            <ng-container *ngIf="this.isEditable; else Appetite">
+                <p-dropdown [required]="true" [options]="lstAppetite"   optionLabel="optionName" [(ngModel)]="RiskAssessmentWaterFlowPressureFormsData.Appetite" name="RiskAssessmentWaterFlowPressureFormsData.Appetite" optionValue="optionId" placeholder="Select" [style]="{ width: '100%' }">
+                </p-dropdown>
+            </ng-container>
+            <ng-template #Appetite>
+                <label>{{RiskAssessmentWaterFlowPressureFormsData.AppetiteName}}</label>
+            </ng-template>
         </div>
 
         <div class="col-md-4">
@@ -52,11 +62,16 @@
 
             </div>
         </div>
-        <div class="col-md-7 form-text">
+        <div class="col-md-7">
 
-            <p-dropdown placeholder="Select" [style]="{ width: '100%' }">
-            </p-dropdown>
-            <p class="mb-4">Select the resident's BMI</p>
+            <ng-container *ngIf="this.isEditable; else BMI">
+                <p-dropdown [required]="true" [options]="lstBMI"   optionLabel="optionName" [(ngModel)]="RiskAssessmentWaterFlowPressureFormsData.BMI" name="RiskAssessmentWaterFlowPressureFormsData.BMI" optionValue="optionId" placeholder="Select" [style]="{ width: '100%' }">
+                </p-dropdown>
+                <p class="mb-4">Select the resident's BMI</p>
+            </ng-container>
+            <ng-template #BMI>
+                <label>{{RiskAssessmentWaterFlowPressureFormsData.BMIName}}</label>
+            </ng-template>
         </div>
         <div class="col-md-4">
             <div class="labelcontent">
@@ -65,8 +80,13 @@
             </div>
         </div>
         <div class="col-md-7 ">
-            <p-dropdown placeholder="Select" [style]="{ width: '100%' }">
-            </p-dropdown>
+            <ng-container *ngIf="this.isEditable; else SkinRiskAreas">
+                <p-dropdown [required]="true" [options]="lstSkinRiskAreas"   optionLabel="optionName" [(ngModel)]="RiskAssessmentWaterFlowPressureFormsData.SkinRiskAreas" name="RiskAssessmentWaterFlowPressureFormsData.SkinRiskAreas" optionValue="optionId" placeholder="Select" [style]="{ width: '100%' }">
+                </p-dropdown>
+            </ng-container>
+            <ng-template #SkinRiskAreas>
+                <label>{{RiskAssessmentWaterFlowPressureFormsData.SkinRiskAreasName}}</label>
+            </ng-template>
         </div>
 
         <div class="col-md-4">
@@ -76,8 +96,13 @@
             </div>
         </div>
         <div class="col-md-7 ">
-            <p-dropdown placeholder="Select" [style]="{ width: '100%' }">
-            </p-dropdown>
+            <ng-container *ngIf="this.isEditable; else SexOrAge">
+                <p-dropdown [required]="true" [options]="lstSexOrAge"   optionLabel="optionName" [(ngModel)]="RiskAssessmentWaterFlowPressureFormsData.SexOrAge" name="RiskAssessmentWaterFlowPressureFormsData.SexOrAge" optionValue="optionId" placeholder="Select" [style]="{ width: '100%' }">
+                </p-dropdown>
+            </ng-container>
+            <ng-template #SexOrAge>
+                <label>{{RiskAssessmentWaterFlowPressureFormsData.SexOrAgeName}}</label>
+            </ng-template>
         </div>
         <div class="col-md-4">
             <div class="labelcontent">
@@ -86,8 +111,13 @@
             </div>
         </div>
         <div class="col-md-7 ">
-            <p-dropdown placeholder="Select" [style]="{ width: '100%' }">
-            </p-dropdown>
+            <ng-container *ngIf="this.isEditable; else SpecialRisks">
+                <p-dropdown [required]="true" [options]="lstSpecialRisks"   optionLabel="optionName" [(ngModel)]="RiskAssessmentWaterFlowPressureFormsData.SpecialRisks" name="RiskAssessmentWaterFlowPressureFormsData.SpecialRisks" optionValue="optionId" placeholder="Select" [style]="{ width: '100%' }">
+                </p-dropdown>
+            </ng-container>
+            <ng-template #SpecialRisks>
+                <label>{{RiskAssessmentWaterFlowPressureFormsData.SpecialRisksName}}</label>
+            </ng-template>
         </div>
         <div class="col-md-4">
             <div class="labelcontent">
@@ -96,8 +126,13 @@
             </div>
         </div>
         <div class="col-md-7 ">
-            <p-dropdown placeholder="Select" [style]="{ width: '100%' }">
-            </p-dropdown>
+            <ng-container *ngIf="this.isEditable; else Continence">
+                <p-dropdown [required]="true" [options]="lstContinence"   optionLabel="optionName" [(ngModel)]="RiskAssessmentWaterFlowPressureFormsData.Continence" name="RiskAssessmentWaterFlowPressureFormsData.Continence" optionValue="optionId" placeholder="Select" [style]="{ width: '100%' }">
+                </p-dropdown>
+            </ng-container>
+            <ng-template #Continence>
+                <label>{{RiskAssessmentWaterFlowPressureFormsData.ContinenceName}}</label>
+            </ng-template>
         </div>
         <div class="col-md-4">
             <div class="labelcontent">
@@ -106,8 +141,13 @@
             </div>
         </div>
         <div class="col-md-7 ">
-            <p-dropdown placeholder="Select" [style]="{ width: '100%' }">
-            </p-dropdown>
+            <ng-container *ngIf="this.isEditable; else Mobility">
+                <p-dropdown [required]="true" [options]="lstMobility"   optionLabel="optionName" [(ngModel)]="RiskAssessmentWaterFlowPressureFormsData.Mobility" name="RiskAssessmentWaterFlowPressureFormsData.Mobility" optionValue="optionId" placeholder="Select" [style]="{ width: '100%' }">
+                </p-dropdown>
+            </ng-container>
+            <ng-template #Mobility>
+                <label>{{RiskAssessmentWaterFlowPressureFormsData.MobilityName}}</label>
+            </ng-template>
         </div>
         <div class="col-md-4">
             <div class="labelcontent">
@@ -115,29 +155,30 @@
 
             </div>
         </div>
-        <div class="col-md-7 form-text">
-            <p-dropdown placeholder="Select" [style]="{ width: '100%' }">
-            </p-dropdown>
-            <p class="mb-4">E.g. diabetes, MS, C.V.A, motor sensory paraplegia, dementia</p>
+        <div class="col-md-7">
+            <ng-container *ngIf="this.isEditable; else NeurologicalDeficit">
+                <p-dropdown [required]="true" [options]="lstNeurologicalDeficit"   optionLabel="optionName" [(ngModel)]="RiskAssessmentWaterFlowPressureFormsData.NeurologicalDeficit" name="RiskAssessmentWaterFlowPressureFormsData.NeurologicalDeficit" optionValue="optionId" placeholder="Select" [style]="{ width: '100%' }">
+                </p-dropdown>
+                <p class="mb-4">E.g. diabetes, MS, C.V.A, motor sensory paraplegia, dementia</p>
+            </ng-container>
+            <ng-template #NeurologicalDeficit>
+                <label>{{RiskAssessmentWaterFlowPressureFormsData.NeurologicalDeficitName}}</label>
+            </ng-template>
         </div>
         <div class="col-md-4">
             <div class="labelcontent">
                 <p>Major surgery / trauma / medication</p>
             </div>
         </div>
-        <div class="col-md-7 form-text">
-            <p-dropdown placeholder="Select" [style]="{ width: '100%' }">
-            </p-dropdown>
-            <p class="mb-4"> Only viable within 48 hours of being on operating table</p>
-        </div>
-        <div class="col-md-4">
-            <div class="labelcontent">
-                <p>Major surgery / trauma / medication</p>
-            </div>
-        </div>
-        <div class="col-md-7 ">
-            <p-dropdown placeholder="Select" [style]="{ width: '100%' }">
-            </p-dropdown>
+        <div class="col-md-7">
+            <ng-container *ngIf="this.isEditable; else MajorMedication">
+                <p-dropdown [required]="true" [options]="lstMajorMedication"   optionLabel="optionName" [(ngModel)]="RiskAssessmentWaterFlowPressureFormsData.MajorMedication" name="RiskAssessmentWaterFlowPressureFormsData.MajorMedication" optionValue="optionId" placeholder="Select" [style]="{ width: '100%' }">
+                </p-dropdown>
+                <p class="mb-4"> Only viable within 48 hours of being on operating table</p>
+            </ng-container>
+            <ng-template #MajorMedication>
+                <label>{{RiskAssessmentWaterFlowPressureFormsData.MajorMedicationName}}</label>
+            </ng-template>
         </div>
         <div class="col-md-4">
             <div class="labelcontent">
@@ -146,8 +187,13 @@
             </div>
         </div>
         <div class="col-md-7 ">
-            <p-dropdown placeholder="Select" [style]="{ width: '100%' }">
-            </p-dropdown>
+            <ng-container *ngIf="this.isEditable; else UlcerRiskRating">
+                <p-dropdown [required]="true" [options]="lstUlcerRiskRating"   optionLabel="optionName" [(ngModel)]="RiskAssessmentWaterFlowPressureFormsData.UlcerRiskRating" name="RiskAssessmentWaterFlowPressureFormsData.UlcerRiskRating" optionValue="optionId" placeholder="Select" [style]="{ width: '100%' }">
+                </p-dropdown>
+            </ng-container>
+            <ng-template #UlcerRiskRating>
+                <label>{{RiskAssessmentWaterFlowPressureFormsData.UlcerRiskRatingName}}</label>
+            </ng-template>
         </div>
         <div class="col-md-1 form-icon">
             <i class="fa-solid fa-info"></i>
@@ -158,9 +204,15 @@
             </div>
         </div>
 
-        <div class="col-md-7 form-text ">
-            <input pInputText type="text" required name="chartheadname" class="form-control" />
-            <p class="mb-4">Include wheelchair pressure cushions, gel pads, heel protectors</p>
+        <div class="col-md-7">
+            <ng-container *ngIf="this.isEditable; else PressureMattressDetails">
+                <input pInputText type="text" [(ngModel)]="RiskAssessmentWaterFlowPressureFormsData.PressureMattressDetails" required name="CareAssessmentFreshAndCleanFormsData.PressureMattressDetails" class="form-control mr-4"
+                    [style]="{ width: '35%' }">
+                    <p class="mb-4">Include wheelchair pressure cushions, gel pads, heel protectors</p>
+            </ng-container>
+            <ng-template #PressureMattressDetails>
+                <label>{{RiskAssessmentWaterFlowPressureFormsData.PressureMattressDetails}}</label>
+            </ng-template>
         </div>
         <div class="col-md-1 form-icon">
             <i class="fa-solid fa-info"></i>
@@ -172,11 +224,18 @@
 
             </div>
         </div>
-        <div class="col-md-7 form-text">
-            <input pInputText type="text" required name="chartheadname" class="form-control" />
-            <p class="mb-4">Describe in full frequency of positional changes, equipment to be used, staff required to
-                support
-                resident, any restrictions in relation to time being sat up etc</p>
+        <div class="col-md-7">
+            <ng-container *ngIf="this.isEditable; else PositionalChangesDetails">
+                <input pInputText type="text" [(ngModel)]="RiskAssessmentWaterFlowPressureFormsData.PositionalChangesDetails" required name="CareAssessmentFreshAndCleanFormsData.PositionalChangesDetails" class="form-control mr-4"
+                    [style]="{ width: '35%' }">
+                    <p class="mb-4">Describe in full frequency of positional changes, equipment to be used, staff required to
+                        support
+                        resident, any restrictions in relation to time being sat up etc</p>
+            </ng-container>
+            <ng-template #PositionalChangesDetails>
+                <label>{{RiskAssessmentWaterFlowPressureFormsData.PositionalChangesDetails}}</label>
+            </ng-template>
+            
         </div>
         <div class="col-md-1 form-icon">
             <i class="fa-solid fa-info"></i>
@@ -186,12 +245,19 @@
                 <p>Provide appropriate pain control relevant to skin</p>
             </div>
         </div>
-        <div class="col-md-7 form-text">
-            <input pInputText type="text" required name="chartheadname" class="form-control" />
-            <p class="mb-4">Include details of pain control plan in place frequency of administration, think about
-                medication used to
-                control pain in relation to wound dressing changes and how we assess someone's pain - Abbey pain
-                scale/1-10/Facial expressions.</p>
+        <div class="col-md-7">
+            <ng-container *ngIf="this.isEditable; else PainControl">
+                <input pInputText type="text" [(ngModel)]="RiskAssessmentWaterFlowPressureFormsData.PainControl" required name="CareAssessmentFreshAndCleanFormsData.PainControl" class="form-control mr-4"
+                    [style]="{ width: '35%' }">
+                    <p class="mb-4">Include details of pain control plan in place frequency of administration, think about
+                        medication used to
+                        control pain in relation to wound dressing changes and how we assess someone's pain - Abbey pain
+                        scale/1-10/Facial expressions.</p>
+            </ng-container>
+            <ng-template #PainControl>
+                <label>{{RiskAssessmentWaterFlowPressureFormsData.PainControl}}</label>
+            </ng-template>
+            
         </div>
         <div class="col-md-1 form-icon">
             <i class="fa-solid fa-info"></i>
@@ -202,11 +268,18 @@
 
             </div>
         </div>
-        <div class="col-md-7 form-text">
-            <input pInputText type="text" required name="chartheadname" class="form-control" />
-            <p class="mb-4">Include dietary details in place such as fortified items likes smoothies/milkshakes, who has
-                been
-                informed of changes</p>
+        <div class="col-md-7">
+            <ng-container *ngIf="this.isEditable; else DietaryRequirements">
+                <input pInputText type="text" [(ngModel)]="RiskAssessmentWaterFlowPressureFormsData.DietaryRequirements" required name="CareAssessmentFreshAndCleanFormsData.DietaryRequirements" class="form-control mr-4"
+                    [style]="{ width: '35%' }">
+                    <p class="mb-4">Include dietary details in place such as fortified items likes smoothies/milkshakes, who has
+                        been
+                        informed of changes</p>
+            </ng-container>
+            <ng-template #DietaryRequirements>
+                <label>{{RiskAssessmentWaterFlowPressureFormsData.DietaryRequirements}}</label>
+            </ng-template>
+            
         </div>
         <div class="col-md-1 form-icon">
             <i class="fa-solid fa-info"></i>
@@ -217,11 +290,18 @@
 
             </div>
         </div>
-        <div class="col-md-7 form-text">
-            <input pInputText type="text" required name="chartheadname" class="form-control" />
-            <p class="mb-4">Include all items used to safely move and handle a resident to minimise risk of shearing,
-                friction and
-                comfort such as slide sheet, hoist sling, hoists, pull bars or handrails</p>
+        <div class="col-md-7">
+            <ng-container *ngIf="this.isEditable; else SkinCareEquipment">
+                <input pInputText type="text" [(ngModel)]="RiskAssessmentWaterFlowPressureFormsData.SkinCareEquipment" required name="CareAssessmentFreshAndCleanFormsData.SkinCareEquipment" class="form-control mr-4"
+                    [style]="{ width: '35%' }">
+                    <p class="mb-4">Include all items used to safely move and handle a resident to minimise risk of shearing,
+                        friction and
+                        comfort such as slide sheet, hoist sling, hoists, pull bars or handrails</p>
+            </ng-container>
+            <ng-template #SkinCareEquipment>
+                <label>{{RiskAssessmentWaterFlowPressureFormsData.SkinCareEquipment}}</label>
+            </ng-template>
+            
         </div>
         <div class="col-md-1 form-icon">
             <i class="fa-solid fa-info"></i>
@@ -229,13 +309,13 @@
         <div class="d-flex justify-content-end">
             <div>
                 <span class="p-ml-left mr-4">
-                    <button pButton title="New" label="Save as Unfinished"></button>
+                    <button pButton title="New" (click)="saveAsUnfinished()" label="Save as Unfinished"></button>
                     <span class="total-txt"></span>
                 </span>
             </div>
             <div>
                 <span class="p-ml-left mr-4">
-                    <button pButton title="New" label="Complete"></button>
+                    <button pButton title="New" (click)="Save()" label="Complete"></button>
                     <span class="total-txt"></span>
                 </span>
             </div>

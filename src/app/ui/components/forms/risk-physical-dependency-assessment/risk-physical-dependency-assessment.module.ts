@@ -21,7 +21,7 @@ import { TriStateCheckboxModule } from 'primeng/tristatecheckbox';
     DropdownModule,
     FormsModule,
     TriStateCheckboxModule
-    
-  ]
+  ],
+  exports:[RiskPhysicalDependencyAssessmentComponent]
 })
 export class RiskPhysicalDependencyAssessmentModule { }
