@@ -79,6 +79,7 @@ export class GpDoctorVisitCommunicationRecordComponent extends AppComponentBase 
       this.ResetModel();
     }
   }
+
   getDropdownMasterLists(formMasterId: string, dropdownName: string,status:number): Observable<any> {
     this._UtilityService.showSpinner();
     return this._MasterServices.GetDropDownMasterList(formMasterId,dropdownName, status).pipe(
@@ -98,6 +99,7 @@ export class GpDoctorVisitCommunicationRecordComponent extends AppComponentBase 
         })
     );
 }
+
   // GetFamilyRelayMaster() {
   //   this._UtilityService.showSpinner();
   //   this.unsubscribe.add = this._MasterServices

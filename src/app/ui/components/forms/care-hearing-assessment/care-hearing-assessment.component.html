@@ -73,7 +73,7 @@
         <div class="col-md-7">
             <ng-container *ngIf="this.isEditable; else HearingImpairments">
                 <input pInputText type="text" [(ngModel)]="CareAssessmentHearingFormsData.HearingImpairments" required name="CareAssessmentFreshAndCleanFormsData.HearingImpairments" class="form-control mr-4"
-                    [style]="{ width: '35%' }">
+                    [style]="{ width: '100%' }">
                     <p class=" mb-4">Describe specific diagnosed hearing impairments, Include lip reading needs, how the
                         impairment makes the
                         resident feel</p>
@@ -146,7 +146,7 @@
         <div class="col-md-7">
             <ng-container *ngIf="this.isEditable; else HearingAidsCare">
                 <input pInputText type="text" [(ngModel)]="CareAssessmentHearingFormsData.HearingAidsCare" required name="CareAssessmentFreshAndCleanFormsData.HearingAidsCare" class="form-control mr-4"
-                    [style]="{ width: '35%' }">
+                    [style]="{ width: '100%' }">
                     <p class=" mb-4">Where hearing aids are kept when not worn. Battery details, including where stored, where
                         to get more
                         from</p>
@@ -184,7 +184,7 @@
         <div class="col-md-7">
             <ng-container *ngIf="this.isEditable; else GoalsToAchieveHearing">
                 <input pInputText type="text" [(ngModel)]="CareAssessmentHearingFormsData.GoalsToAchieveHearing" required name="CareAssessmentHearingFormsData.GoalsToAchieveHearing" class="form-control mr-4"
-                    [style]="{ width: '35%' }">
+                    [style]="{ width: '100%' }">
                    
             </ng-container>
             <ng-template #GoalsToAchieveHearing>
@@ -202,7 +202,7 @@
         <div class="col-md-7">
             <ng-container *ngIf="this.isEditable; else LastHearingAppointment">
                 <input pInputText type="text" [(ngModel)]="CareAssessmentHearingFormsData.LastHearingAppointment" required name="CareAssessmentHearingFormsData.LastHearingAppointment" class="form-control mr-4"
-                    [style]="{ width: '35%' }">
+                    [style]="{ width: '100%' }">
                     <p class=" mb-4">Please complete the question in full, Including date in the following format: DD/MM/YYYY.
                         Include a
                         referral for hearing test if required</p>
@@ -223,7 +223,7 @@
         <div class="col-md-7">
             <ng-container *ngIf="this.isEditable; else IdentifiedRisksToHearing">
                 <input pInputText type="text" [(ngModel)]="CareAssessmentHearingFormsData.IdentifiedRisksToHearing" required name="CareAssessmentHearingFormsData.IdentifiedRisksToHearing" class="form-control mr-4"
-                    [style]="{ width: '35%' }">
+                    [style]="{ width: '100%' }">
                     <p class=" mb-4">Specify any other risks that have not been identified above</p>
             </ng-container>
             <ng-template #IdentifiedRisksToHearing>
@@ -242,7 +242,7 @@
         <div class="col-md-7">
             <ng-container *ngIf="this.isEditable; else ManageAdditionalRisk">
                 <input pInputText type="text" [(ngModel)]="CareAssessmentHearingFormsData.ManageAdditionalRisk" required name="CareAssessmentHearingFormsData.ManageAdditionalRisk" class="form-control mr-4"
-                    [style]="{ width: '35%' }">
+                    [style]="{ width: '100%' }">
                     
             </ng-container>
             <ng-template #ManageAdditionalRisk>
