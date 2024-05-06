@@ -11,6 +11,7 @@ import { AppComponentBase } from 'src/app/app-component-base';
 import {
     ConstantsService,
     CustomDateFormat,
+    FormTypes,
 } from 'src/app/ui/service/constants.service';
 import { MasterService } from 'src/app/ui/service/master.service';
 import { UtilityService } from 'src/app/utility/utility.service';
@@ -29,17 +30,17 @@ export class CareContinencePromotionComponent
     customDateFormat = CustomDateFormat;
     CareContinencePromotionFormsData: any = <any>{};
 
+    LstContPromInsightIntoContinenceNeedsOptions: any[] = [];
+    LstContPromResidentColostomyIleostomyOptions: any[] = [];
+    LstContPromSupportRequiredForColostomyOptions: any[] = [];
     LstContPromCatheterCareOptions: any[] = [];
     LstContPromClinicalObservationsOptions: any[] = [];
-    LstContPromContinenceAidBestPracticeGuidanceOptions: any[] = [];
     LstContPromIdentifiedRisksOptions: any[] = [];
-    LstContPromInsightIntoContinenceNeedsOptions: any[] = [];
+    LstContPromRiskManagementOptions: any[] = [];
+    LstContPromoteHealthyBladderAndBowelOptions: any[] = [];
     LstContPromLegDrainageBagChangeOptions: any[] = [];
     LstContPromNightDrainageBagRemovalOptions: any[] = [];
-    LstContPromResidentColostomyIleostomyOptions: any[] = [];
-    LstContPromRiskManagementOptions: any[] = [];
-    LstContPromSupportRequiredForColostomyOptions: any[] = [];
-    LstContPromoteHealthyBladderAndBowelOptions: any[] = [];
+    LstContPromContinenceAidBestPracticeGuidanceOptions: any[] = [];
 
     //Form which is selected to edit or view
     isEditable: boolean;
@@ -60,8 +61,8 @@ export class CareContinencePromotionComponent
         private _ConstantServices: ConstantsService,
         private route: ActivatedRoute,
         private _UtilityService: UtilityService,
-        private _MasterService: MasterService,
-        private _FormService: CareContinencePromotionService
+        private _MasterServices: MasterService,
+        private _FormService: CareContinencePromotionService,
     ) {
         super();
         this._ConstantServices.ActiveMenuName =
@@ -98,38 +99,38 @@ export class CareContinencePromotionComponent
 
     ngOnInit(): void {
         const collectionNames = [
+            'ContPromInsightIntoContinenceNeedsOptions',
+            'ContPromResidentColostomyIleostomyOptions',
+            'ContPromSupportRequiredForColostomyOptions',
             'ContPromCatheterCareOptions',
             'ContPromClinicalObservationsOptions',
-            'ContPromContinenceAidBestPracticeGuidanceOptions',
             'ContPromIdentifiedRisksOptions',
-            'ContPromInsightIntoContinenceNeedsOptions',
+            'ContPromRiskManagementOptions',
+            'ContPromoteHealthyBladderAndBowelOptions',
             'ContPromLegDrainageBagChangeOptions',
             'ContPromNightDrainageBagRemovalOptions',
-            'ContPromResidentColostomyIleostomyOptions',
-            'ContPromRiskManagementOptions',
-            'ContPromSupportRequiredForColostomyOptions',
-            'ContPromoteHealthyBladderAndBowelOptions',
+            'ContPromContinenceAidBestPracticeGuidanceOptions',
         ];
 
         //Make requests in parallel
         forkJoin(
             collectionNames.map((collectionName) =>
-                this.getDropdownMasterLists(collectionName)
+                this.getDropdownMasterLists(FormTypes.CareAssessmentContinence,collectionName,1)
             )
         ).subscribe((responses: any[]) => {
             // responses is an array containing the responses for each request
-            this.LstContPromCatheterCareOptions = responses[0];
-            this.LstContPromClinicalObservationsOptions = responses[1];
-            this.LstContPromContinenceAidBestPracticeGuidanceOptions =
+            this.LstContPromInsightIntoContinenceNeedsOptions = responses[0];
+            this.LstContPromResidentColostomyIleostomyOptions = responses[1];
+            this.LstContPromSupportRequiredForColostomyOptions =
                 responses[2];
-            this.LstContPromIdentifiedRisksOptions = responses[3];
-            this.LstContPromInsightIntoContinenceNeedsOptions = responses[4];
-            this.LstContPromLegDrainageBagChangeOptions = responses[5];
-            this.LstContPromNightDrainageBagRemovalOptions = responses[6];
-            this.LstContPromResidentColostomyIleostomyOptions = responses[7];
-            this.LstContPromRiskManagementOptions = responses[8];
-            this.LstContPromSupportRequiredForColostomyOptions = responses[9];
-            this.LstContPromoteHealthyBladderAndBowelOptions = responses[10];
+            this.LstContPromCatheterCareOptions = responses[3];
+            this.LstContPromClinicalObservationsOptions = responses[4];
+            this.LstContPromIdentifiedRisksOptions = responses[5];
+            this.LstContPromRiskManagementOptions = responses[6];
+            this.LstContPromoteHealthyBladderAndBowelOptions = responses[7];
+            this.LstContPromLegDrainageBagChangeOptions = responses[8];
+            this.LstContPromNightDrainageBagRemovalOptions = responses[9];
+            this.LstContPromContinenceAidBestPracticeGuidanceOptions = responses[10];
         });
 
         this.isEditable = this.preSelectedFormData.isEditable;
@@ -168,9 +169,9 @@ export class CareContinencePromotionComponent
             });
     }
 
-    getDropdownMasterLists(CollectionName: string): Observable<any> {
+    getDropdownMasterLists(formMasterId: string, dropdownName: string,status:number): Observable<any> {
         this._UtilityService.showSpinner();
-        return this._FormService.getDropdownMasterList(CollectionName, 1).pipe(
+        return this._MasterServices.GetDropDownMasterList(formMasterId,dropdownName, status).pipe(
             map((response) => {
                 this._UtilityService.hideSpinner();
                 if (response.actionResult.success) {

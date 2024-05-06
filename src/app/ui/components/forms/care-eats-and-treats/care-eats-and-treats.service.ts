@@ -10,135 +10,133 @@ export class CareEatsAndTreatsService {
 
   constructor(private _httpclient: HttpClient) { }
 
+  // //#region CareAssessmentEatsAndDrinksDropDownValues
+  // GetResidentStatusOfCapacity(status:any) {
+  //   let reqHeader = new HttpHeaders({
+  //     'Content-Type': 'application/json',
+  //     'Access-Control-Allow-Origin': environment.BaseUriAdmin,
+  //     //'Authorization': 'Bearer ' + localStorage.getItem('token')
+  // });
+  // let params = new HttpParams();
+  // params = params.append('Status', status);
+  // return this._httpclient.get<any>(
+  //     environment.BaseUriAdmin + 'api/Admin/GetResidentStatusOfCapacity',
+  //     { headers: reqHeader, params: params }
+  // );
+  // }
 
-  //#region CareAssessmentEatsAndDrinksDropDownValues
-  GetResidentStatusOfCapacity(status:any) {
-    let reqHeader = new HttpHeaders({
-      'Content-Type': 'application/json',
-      'Access-Control-Allow-Origin': environment.BaseUriAdmin,
-      'Authorization': 'Bearer ' + localStorage.getItem('token')
-  });
-  let params = new HttpParams();
-  params = params.append('Status', status);
-  return this._httpclient.get<any>(
-      environment.BaseUriAdmin + 'api/Admin/GetResidentStatusOfCapacity',
-      { headers: reqHeader, params: params }
-  );
-  }
+  // GetChoking(status:any) {
+  //   let reqHeader = new HttpHeaders({
+  //     'Content-Type': 'application/json',
+  //     'Access-Control-Allow-Origin': environment.BaseUriAdmin,
+  //     //'Authorization': 'Bearer ' + localStorage.getItem('token')
+  // });
+  // let params = new HttpParams();
+  // params = params.append('Status', status);
+  // return this._httpclient.get<any>(
+  //     environment.BaseUriAdmin + 'api/Admin/GetChoking',
+  //     { headers: reqHeader, params: params }
+  // );
+  // }
 
-  GetChoking(status:any) {
-    let reqHeader = new HttpHeaders({
-      'Content-Type': 'application/json',
-      'Access-Control-Allow-Origin': environment.BaseUriAdmin,
-      'Authorization': 'Bearer ' + localStorage.getItem('token')
-  });
-  let params = new HttpParams();
-  params = params.append('Status', status);
-  return this._httpclient.get<any>(
-      environment.BaseUriAdmin + 'api/Admin/GetChoking',
-      { headers: reqHeader, params: params }
-  );
-  }
+  // GetFood(status:any) {
+  //   let reqHeader = new HttpHeaders({
+  //     'Content-Type': 'application/json',
+  //     'Access-Control-Allow-Origin': environment.BaseUriAdmin,
+  //     //'Authorization': 'Bearer ' + localStorage.getItem('token')
+  // });
+  // let params = new HttpParams();
+  // params = params.append('Status', status);
+  // return this._httpclient.get<any>(
+  //     environment.BaseUriAdmin + 'api/Admin/GetFood',
+  //     { headers: reqHeader, params: params }
+  // );
+  // }
 
-  GetFood(status:any) {
-    let reqHeader = new HttpHeaders({
-      'Content-Type': 'application/json',
-      'Access-Control-Allow-Origin': environment.BaseUriAdmin,
-      'Authorization': 'Bearer ' + localStorage.getItem('token')
-  });
-  let params = new HttpParams();
-  params = params.append('Status', status);
-  return this._httpclient.get<any>(
-      environment.BaseUriAdmin + 'api/Admin/GetFood',
-      { headers: reqHeader, params: params }
-  );
-  }
+  // GetFluids(status:any) {
+  //   let reqHeader = new HttpHeaders({
+  //     'Content-Type': 'application/json',
+  //     'Access-Control-Allow-Origin': environment.BaseUriAdmin,
+  //     //'Authorization': 'Bearer ' + localStorage.getItem('token')
+  // });
+  // let params = new HttpParams();
+  // params = params.append('Status', status);
+  // return this._httpclient.get<any>(
+  //     environment.BaseUriAdmin + 'api/Admin/GetFluids',
+  //     { headers: reqHeader, params: params }
+  // );
+  // }
 
-  GetFluids(status:any) {
-    let reqHeader = new HttpHeaders({
-      'Content-Type': 'application/json',
-      'Access-Control-Allow-Origin': environment.BaseUriAdmin,
-      'Authorization': 'Bearer ' + localStorage.getItem('token')
-  });
-  let params = new HttpParams();
-  params = params.append('Status', status);
-  return this._httpclient.get<any>(
-      environment.BaseUriAdmin + 'api/Admin/GetFluids',
-      { headers: reqHeader, params: params }
-  );
-  }
+  // GetActionNeededToReduceChoking(status:any) {
+  //   let reqHeader = new HttpHeaders({
+  //     'Content-Type': 'application/json',
+  //     'Access-Control-Allow-Origin': environment.BaseUriAdmin,
+  //     //'Authorization': 'Bearer ' + localStorage.getItem('token')
+  // });
+  // let params = new HttpParams();
+  // params = params.append('Status', status);
+  // return this._httpclient.get<any>(
+  //     environment.BaseUriAdmin + 'api/Admin/GetActionNeededToReduceChoking',
+  //     { headers: reqHeader, params: params }
+  // );
+  // }
 
-  GetActionNeededToReduceChoking(status:any) {
-    let reqHeader = new HttpHeaders({
-      'Content-Type': 'application/json',
-      'Access-Control-Allow-Origin': environment.BaseUriAdmin,
-      'Authorization': 'Bearer ' + localStorage.getItem('token')
-  });
-  let params = new HttpParams();
-  params = params.append('Status', status);
-  return this._httpclient.get<any>(
-      environment.BaseUriAdmin + 'api/Admin/GetActionNeededToReduceChoking',
-      { headers: reqHeader, params: params }
-  );
-  }
+  // GetGoalsToAchieve(status:any) {
+  //   let reqHeader = new HttpHeaders({
+  //     'Content-Type': 'application/json',
+  //     'Access-Control-Allow-Origin': environment.BaseUriAdmin,
+  //     //'Authorization': 'Bearer ' + localStorage.getItem('token')
+  // });
+  // let params = new HttpParams();
+  // params = params.append('Status', status);
+  // return this._httpclient.get<any>(
+  //     environment.BaseUriAdmin + 'api/Admin/GetGoalsToAchieve',
+  //     { headers: reqHeader, params: params }
+  // );
+  // }
 
-  GetGoalsToAchieve(status:any) {
-    let reqHeader = new HttpHeaders({
-      'Content-Type': 'application/json',
-      'Access-Control-Allow-Origin': environment.BaseUriAdmin,
-      'Authorization': 'Bearer ' + localStorage.getItem('token')
-  });
-  let params = new HttpParams();
-  params = params.append('Status', status);
-  return this._httpclient.get<any>(
-      environment.BaseUriAdmin + 'api/Admin/GetGoalsToAchieve',
-      { headers: reqHeader, params: params }
-  );
-  }
+  // GetProfessionalInput(status:any) {
+  //   let reqHeader = new HttpHeaders({
+  //     'Content-Type': 'application/json',
+  //     'Access-Control-Allow-Origin': environment.BaseUriAdmin,
+  //     //'Authorization': 'Bearer ' + localStorage.getItem('token')
+  // });
+  // let params = new HttpParams();
+  // params = params.append('Status', status);
+  // return this._httpclient.get<any>(
+  //     environment.BaseUriAdmin + 'api/Admin/GetProfessionalInput',
+  //     { headers: reqHeader, params: params }
+  // );
+  // }
 
-  GetProfessionalInput(status:any) {
-    let reqHeader = new HttpHeaders({
-      'Content-Type': 'application/json',
-      'Access-Control-Allow-Origin': environment.BaseUriAdmin,
-      'Authorization': 'Bearer ' + localStorage.getItem('token')
-  });
-  let params = new HttpParams();
-  params = params.append('Status', status);
-  return this._httpclient.get<any>(
-      environment.BaseUriAdmin + 'api/Admin/GetProfessionalInput',
-      { headers: reqHeader, params: params }
-  );
-  }
+  // GetRiskOfMalnutrition(status:any) {
+  //   let reqHeader = new HttpHeaders({
+  //     'Content-Type': 'application/json',
+  //     'Access-Control-Allow-Origin': environment.BaseUriAdmin,
+  //     //'Authorization': 'Bearer ' + localStorage.getItem('token')
+  // });
+  // let params = new HttpParams();
+  // params = params.append('Status', status);
+  // return this._httpclient.get<any>(
+  //     environment.BaseUriAdmin + 'api/Admin/GetRiskOfMalnutrition',
+  //     { headers: reqHeader, params: params }
+  // );
+  // }
 
-  GetRiskOfMalnutrition(status:any) {
-    let reqHeader = new HttpHeaders({
-      'Content-Type': 'application/json',
-      'Access-Control-Allow-Origin': environment.BaseUriAdmin,
-      'Authorization': 'Bearer ' + localStorage.getItem('token')
-  });
-  let params = new HttpParams();
-  params = params.append('Status', status);
-  return this._httpclient.get<any>(
-      environment.BaseUriAdmin + 'api/Admin/GetRiskOfMalnutrition',
-      { headers: reqHeader, params: params }
-  );
-  }
-
-  GetStrategyToManageNutrition(status:any) {
-    let reqHeader = new HttpHeaders({
-      'Content-Type': 'application/json',
-      'Access-Control-Allow-Origin': environment.BaseUriAdmin,
-      'Authorization': 'Bearer ' + localStorage.getItem('token')
-  });
-  let params = new HttpParams();
-  params = params.append('Status', status);
-  return this._httpclient.get<any>(
-      environment.BaseUriAdmin + 'api/Admin/GetStrategyToManageNutrition',
-      { headers: reqHeader, params: params }
-  );
-  }
-
-  //#endregion
+  // GetStrategyToManageNutrition(status:any) {
+  //   let reqHeader = new HttpHeaders({
+  //     'Content-Type': 'application/json',
+  //     'Access-Control-Allow-Origin': environment.BaseUriAdmin,
+  //     //'Authorization': 'Bearer ' + localStorage.getItem('token')
+  // });
+  // let params = new HttpParams();
+  // params = params.append('Status', status);
+  // return this._httpclient.get<any>(
+  //     environment.BaseUriAdmin + 'api/Admin/GetStrategyToManageNutrition',
+  //     { headers: reqHeader, params: params }
+  // );
+  // }
+  // //#endregion
 
   //#region CareAssessmentEatsAndDrinks Form
 

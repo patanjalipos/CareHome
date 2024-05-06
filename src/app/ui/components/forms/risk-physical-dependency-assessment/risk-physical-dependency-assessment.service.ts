@@ -32,8 +32,6 @@ export class RiskPhysicalDependencyAssessmentService {
           'Authorization': 'Bearer ' + localStorage.getItem('token')
       });   
       
-      console.log(formdata);
-
       let params = new HttpParams();
       var data = JSON.stringify(formdata).toString();
       return this._httpclient.post<any>(

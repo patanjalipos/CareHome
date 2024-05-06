@@ -65,8 +65,7 @@
             </div>
         </div>
         <div class="col-md-8 form-text">
-            <p-dropdown placeholder="Select" [style]="{ width: '100%' }">
-            </p-dropdown>
+            <input pInputText type="text" required name="chartheadname" class="form-control" />
             <p class="mb-4">Please include full name(s) and designation(s)</p>
         </div>
         <div class="col-md-4">
@@ -75,8 +74,9 @@
             </div>
         </div>
         <div class="col-md-8 form-text">
-            <input pInputText type="text" required name="chartheadname" class="form-control" />
-        </div>
+            <p-dropdown placeholder="Select" [style]="{ width: '100%' }">
+            </p-dropdown>
+             </div>
         <div class="col-md-4">
             <div class="labelcontent">
                 <p>Reason for Visit / Communication</p>
