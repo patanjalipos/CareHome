@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
 import { CareSpeechLanguageSsessmentRoutingModule } from './care-speech-language-ssessment-routing.module';
 import { CareSpeechLanguageSsessmentComponent } from './care-speech-language-ssessment.component';
 import { ButtonModule } from 'primeng/button';
@@ -21,6 +20,7 @@ import { CheckboxModule } from 'primeng/checkbox';
     CalendarModule,
     DropdownModule,
     FormsModule,
+    TriStateCheckboxModule,
     CheckboxModule
   ],
   exports:[CareSpeechLanguageSsessmentComponent]

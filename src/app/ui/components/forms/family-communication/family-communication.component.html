@@ -41,7 +41,7 @@
             </div>
             <div class="col-md-4 mt-4">
                 <div class="labelcontent">
-                    <p>Date of Observation<span class="required">*</span></p>
+                    <p>Date of Observation</p>
                 </div>
             </div>
             <div class="col-md-8 mt-4 mb-4 ">
@@ -55,7 +55,7 @@
                 </div>
                 <p *ngIf="isEditable!=true">{{FamilyCommFormsData.DateTimeObservation | date :customDateFormat.DEF_DATE_TIME}}</p>
             </div>
-            <!-- <div class="col-md-4">
+            <div class="col-md-4">
             <div class="labelcontent">
                 <p>Time of Observation</p>
             </div>
@@ -66,7 +66,7 @@
                     [style]="{ width: '35%' }">
                 <p>Use 24 hour clock</p>
             </div>
-        </div> -->
+        </div>
 
 
             <div class="col-md-4">

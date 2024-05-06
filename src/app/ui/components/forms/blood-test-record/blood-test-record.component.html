@@ -26,38 +26,38 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-4 mt-4">
-            <div class="labelcontent">
-                <p>The resident or legal appointee has consented to the following
-                </p>
-            </div>
+        <div class="col-md-4  mt-4 labelcontent">
+            <p>Reason for Blood Test</p>
         </div>
         <div class="col-md-8 mt-4 form-text">
-            <p-dropdown placeholder="Select" [style]="{ width: '100%' }">
-            </p-dropdown>
-            <p class="mb-4">Use Other to add detail to consent criteria</p>
+            <input pInputText type="text" required name="chartheadname" class="form-control" />
         </div>
-        <div class="col-md-4 mt-4">
+        <div class="col-md-4">
             <div class="labelcontent">
-                <p>Please choose the statements below for all support plans</p>
+                <p>Date Taken</p>
             </div>
         </div>
-        <div class="col-md-8 mt-4 form-text">
-            <p-dropdown placeholder="Select" [style]="{ width: '100%' }">
-            </p-dropdown>
-        </div>
-        <div class="col-md-4 mt-4">
-            <div class="labelcontent">
-                <p>Next review date </p>
-            </div>
-        </div>
-        <div class="col-md-8 mt-4  ">
+        <div class="col-md-8">
             <div class="input-group date">
                 <p-calendar name="DateOfBirth" [showIcon]="true" inputId="icon" [dateFormat]="" class="iconcal"
                     [readonlyInput]="true" appendTo="body" [maxDate]="" #dobref=""></p-calendar>
                 <div *ngIf="" class="alert alert-danger">
                 </div>
             </div>
+        </div>
+
+        <div class="col-md-4 labelcontent">
+            <p>Result</p>
+        </div>
+        <div class="col-md-8 form-text">
+            <input pInputText type="text" required name="chartheadname" class="form-control" />
+        </div>
+        <div class="col-md-4 labelcontent">
+            <p>Actions</p>
+        </div>
+        <div class="col-md-8 form-text">
+            <input pInputText type="text" required name="chartheadname" class="form-control" />
+            <p class="mb-4">Follow up actions required</p>
         </div>
 
         <div class="d-flex justify-content-end">

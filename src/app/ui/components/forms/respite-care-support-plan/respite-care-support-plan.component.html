@@ -431,7 +431,7 @@
         <div class="col-md-7 mb-4 form-text">
             <p-checkbox name="ChkMonthlyReview" [binary]="true" inputId="binary"></p-checkbox>
         </div>
-      
+
         <div class="col-md-4 labelcontent">
             <p>Epilepsy and Seizures</p>
         </div>
@@ -481,6 +481,19 @@
 
             <p class="mb-4">This form should be reviewed EVERY MONTH or before if there are significant changes. Enter
                 review date below.</p>
+        </div>
+        <div class="col-md-4 mt-4">
+            <div class="labelcontent">
+                <p>Next review date </p>
+            </div>
+        </div>
+        <div class="col-md-8 mt-4  ">
+            <div class="input-group date">
+                <p-calendar name="DateOfBirth" [showIcon]="true" inputId="icon" [dateFormat]="" class="iconcal"
+                    [readonlyInput]="true" appendTo="body" [maxDate]="" #dobref=""></p-calendar>
+                <div *ngIf="" class="alert alert-danger">
+                </div>
+            </div>
         </div>
         <div class="d-flex justify-content-end">
             <div>

@@ -12,6 +12,7 @@ import { DeliriumRiskAndRiskReductionService } from './delirium-risk-and-risk-re
   templateUrl: './delirium-risk-and-risk-reduction.component.html',
   styleUrls: ['./delirium-risk-and-risk-reduction.component.scss']
 })
+
 export class DeliriumRiskAndRiskReductionComponent extends AppComponentBase implements OnInit {
 
   @Input() preSelectedFormData: any=<any>{};

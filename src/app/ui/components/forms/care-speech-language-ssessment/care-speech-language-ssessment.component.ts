@@ -23,6 +23,7 @@ import { CareSpeechLanguageSsessmentService } from './care-speech-language-ssess
     templateUrl: './care-speech-language-ssessment.component.html',
     styleUrls: ['./care-speech-language-ssessment.component.scss'],
 })
+
 export class CareSpeechLanguageSsessmentComponent
     extends AppComponentBase
     implements OnInit

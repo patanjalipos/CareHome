@@ -172,9 +172,8 @@
                 <p>Vaccination Details</p>
             </div>
         </div>
-        <div class="col-md-7">
-            <p-checkbox  name="ChkMonthlyReview"  [binary]="true"
-                inputId="binary"></p-checkbox>
+        <div class="col-md-7 mb-4">
+            <p-checkbox name="ChkMonthlyReview" [binary]="true" inputId="binary"></p-checkbox>
         </div>
         <div class="col-md-4">
             <div class="labelcontent">
@@ -182,6 +181,7 @@
             </div>
         </div>
         <div class="col-md-7 form-text">
+            <input pInputText type="text" required name="chartheadname" class="form-control" />
             <p class="mb-4">Example: Keeping in contact with family, Personal choices, Decisions</p>
         </div>
         <div class="col-md-1 form-icon">
