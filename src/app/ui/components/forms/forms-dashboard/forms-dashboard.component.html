@@ -208,14 +208,7 @@
     "
 ></app-care-personal-emergency-evacuation-plan>
 
-<app-body-mapping-record
-    [preSelectedFormData]="selectedFormData"
-    (EmitUpdateForm)="EmitUpdateForm($event)"
-    *ngIf="
-        ShowChildComponent == true &&
-        selectedFormMasterId == FormTypes.BodyMappingRecord
-    "
-></app-body-mapping-record>
+
 
 <app-care-breathing-and-circulation-assessment
     [preSelectedFormData]="selectedFormData"
@@ -545,6 +538,13 @@
     "
 ></app-care-wishes-for-future>
 
+<app-care-sleep-and-resting-assessment [preSelectedFormData]="selectedFormData"
+(EmitUpdateForm)="EmitUpdateForm($event)"
+*ngIf="
+    ShowChildComponent == true &&
+    selectedFormMasterId == FormTypes.CareAssessmentSleep
+"></app-care-sleep-and-resting-assessment>
+
 <app-consent-form
     [preSelectedFormData]="selectedFormData"
     (EmitUpdateForm)="EmitUpdateForm($event)"
@@ -609,6 +609,21 @@
     "
 >
 </app-risk-physical-dependency-assessment>
+
+<app-risk-waterlow-pressure-ulcer [preSelectedFormData]="selectedFormData"
+(EmitUpdateForm)="EmitUpdateForm($event)"
+*ngIf="ShowChildComponent == true && selectedFormMasterId == FormTypes.RiskAssessmentWaterlow">
+</app-risk-waterlow-pressure-ulcer>
+
+<app-delirium-risk-and-risk-reduction [preSelectedFormData]="selectedFormData"
+(EmitUpdateForm)="EmitUpdateForm($event)"
+*ngIf="ShowChildComponent == true && selectedFormMasterId == FormTypes.Deliriumrisk">
+</app-delirium-risk-and-risk-reduction>
+
+<app-risk-on-the-move [preSelectedFormData]="selectedFormData"
+(EmitUpdateForm)="EmitUpdateForm($event)"
+*ngIf="ShowChildComponent == true && selectedFormMasterId == FormTypes.RiskAssessmentOntheMove">
+</app-risk-on-the-move>
 
 <app-care-speech-language-ssessment
     [preSelectedFormData]="selectedFormData"
