@@ -34,7 +34,7 @@
         </div>
         <div class="col-md-7 mt-4">
             <ng-container *ngIf="this.isEditable; else HearingDiagnosisCheck">
-                <p-dropdown [required]="true" [options]="lstHearingDiagnosisCheck"   optionLabel="Name" [(ngModel)]="CareAssessmentHearingFormsData.HearingDiagnosisCheck" name="CareAssessmentFreshAndCleanFormsData.HearingDiagnosisCheck" optionValue="Id" placeholder="Select" [style]="{ width: '100%' }">
+                <p-dropdown [required]="true" [options]="lstHearingDiagnosisCheck"   optionLabel="optionName" [(ngModel)]="CareAssessmentHearingFormsData.HearingDiagnosisCheck" name="CareAssessmentFreshAndCleanFormsData.HearingDiagnosisCheck" optionValue="optionId" placeholder="Select" [style]="{ width: '100%' }">
                 </p-dropdown>
             </ng-container>
             <ng-template #HearingDiagnosisCheck>
@@ -55,7 +55,7 @@
         </div>
         <div class="col-md-7">
             <ng-container *ngIf="this.isEditable; else CurrentHearingDiagnosis">
-                <p-dropdown [required]="true" [options]="lstCurrentHearingDiagnosis"   optionLabel="Name" [(ngModel)]="CareAssessmentHearingFormsData.CurrentHearingDiagnosis" name="CareAssessmentFreshAndCleanFormsData.CurrentHearingDiagnosis" optionValue="Id" placeholder="Select" [style]="{ width: '100%' }">
+                <p-dropdown [required]="true" [options]="lstCurrentHearingDiagnosis"   optionLabel="optionName" [(ngModel)]="CareAssessmentHearingFormsData.CurrentHearingDiagnosis" name="CareAssessmentFreshAndCleanFormsData.CurrentHearingDiagnosis" optionValue="optionId" placeholder="Select" [style]="{ width: '100%' }">
                 </p-dropdown>
             </ng-container>
             <ng-template #CurrentHearingDiagnosis>
@@ -73,7 +73,7 @@
         <div class="col-md-7">
             <ng-container *ngIf="this.isEditable; else HearingImpairments">
                 <input pInputText type="text" [(ngModel)]="CareAssessmentHearingFormsData.HearingImpairments" required name="CareAssessmentFreshAndCleanFormsData.HearingImpairments" class="form-control mr-4"
-                    [style]="{ width: '35%' }">
+                    [style]="{ width: '100%' }">
                     <p class=" mb-4">Describe specific diagnosed hearing impairments, Include lip reading needs, how the
                         impairment makes the
                         resident feel</p>
@@ -94,7 +94,7 @@
         </div>
         <div class="col-md-7">
             <ng-container *ngIf="this.isEditable; else HearingInterventions">
-                <p-dropdown [required]="true" [options]="lstHearingInterventions"   optionLabel="Name" [(ngModel)]="CareAssessmentHearingFormsData.HearingInterventions" name="CareAssessmentHearingFormsData.HearingInterventions" optionValue="Id" placeholder="Select" [style]="{ width: '100%' }">
+                <p-dropdown [required]="true" [options]="lstHearingInterventions"   optionLabel="optionName" [(ngModel)]="CareAssessmentHearingFormsData.HearingInterventions" name="CareAssessmentHearingFormsData.HearingInterventions" optionValue="optionId" placeholder="Select" [style]="{ width: '100%' }">
                 </p-dropdown>
             </ng-container>
             <ng-template #HearingInterventions>
@@ -111,7 +111,7 @@
         </div>
         <div class="col-md-7">
             <ng-container *ngIf="this.isEditable; else HearingAids">
-                <p-dropdown [required]="true" [options]="lstHearingAids"   optionLabel="Name" [(ngModel)]="CareAssessmentHearingFormsData.HearingAids" name="CareAssessmentHearingFormsData.HearingAids" optionValue="Id" placeholder="Select" [style]="{ width: '100%' }">
+                <p-dropdown [required]="true" [options]="lstHearingAids"   optionLabel="optionName" [(ngModel)]="CareAssessmentHearingFormsData.HearingAids" name="CareAssessmentHearingFormsData.HearingAids" optionValue="optionId" placeholder="Select" [style]="{ width: '100%' }">
                 </p-dropdown>
             </ng-container>
             <ng-template #HearingAids>
@@ -128,7 +128,7 @@
         </div>
         <div class="col-md-7">
             <ng-container *ngIf="this.isEditable; else AidsAssistance">
-                <p-dropdown [required]="true" [options]="lstAidsAssistance"   optionLabel="Name" [(ngModel)]="CareAssessmentHearingFormsData.AidsAssistance" name="CareAssessmentFreshAndCleanFormsData.AidsAssistance" optionValue="Id" placeholder="Select" [style]="{ width: '100%' }">
+                <p-dropdown [required]="true" [options]="lstAidsAssistance"   optionLabel="optionName" [(ngModel)]="CareAssessmentHearingFormsData.AidsAssistance" name="CareAssessmentFreshAndCleanFormsData.AidsAssistance" optionValue="optionId" placeholder="Select" [style]="{ width: '100%' }">
                 </p-dropdown>
             </ng-container>
             <ng-template #AidsAssistance>
@@ -146,7 +146,7 @@
         <div class="col-md-7">
             <ng-container *ngIf="this.isEditable; else HearingAidsCare">
                 <input pInputText type="text" [(ngModel)]="CareAssessmentHearingFormsData.HearingAidsCare" required name="CareAssessmentFreshAndCleanFormsData.HearingAidsCare" class="form-control mr-4"
-                    [style]="{ width: '35%' }">
+                    [style]="{ width: '100%' }">
                     <p class=" mb-4">Where hearing aids are kept when not worn. Battery details, including where stored, where
                         to get more
                         from</p>
@@ -166,7 +166,7 @@
         </div>
         <div class="col-md-7">
             <ng-container *ngIf="this.isEditable; else GoalsToHearing">
-                <p-dropdown [required]="true" [options]="lstGoalsToHearing"   optionLabel="Name" [(ngModel)]="CareAssessmentHearingFormsData.GoalsToHearing" name="CareAssessmentHearingFormsData.GoalsToHearing" optionValue="Id" placeholder="Select" [style]="{ width: '100%' }">
+                <p-dropdown [required]="true" [options]="lstGoalsToHearing"   optionLabel="optionName" [(ngModel)]="CareAssessmentHearingFormsData.GoalsToHearing" name="CareAssessmentHearingFormsData.GoalsToHearing" optionValue="optionId" placeholder="Select" [style]="{ width: '100%' }">
                 </p-dropdown>
             </ng-container>
             <ng-template #GoalsToHearing>
@@ -184,7 +184,7 @@
         <div class="col-md-7">
             <ng-container *ngIf="this.isEditable; else GoalsToAchieveHearing">
                 <input pInputText type="text" [(ngModel)]="CareAssessmentHearingFormsData.GoalsToAchieveHearing" required name="CareAssessmentHearingFormsData.GoalsToAchieveHearing" class="form-control mr-4"
-                    [style]="{ width: '35%' }">
+                    [style]="{ width: '100%' }">
                    
             </ng-container>
             <ng-template #GoalsToAchieveHearing>
@@ -202,7 +202,7 @@
         <div class="col-md-7">
             <ng-container *ngIf="this.isEditable; else LastHearingAppointment">
                 <input pInputText type="text" [(ngModel)]="CareAssessmentHearingFormsData.LastHearingAppointment" required name="CareAssessmentHearingFormsData.LastHearingAppointment" class="form-control mr-4"
-                    [style]="{ width: '35%' }">
+                    [style]="{ width: '100%' }">
                     <p class=" mb-4">Please complete the question in full, Including date in the following format: DD/MM/YYYY.
                         Include a
                         referral for hearing test if required</p>
@@ -223,7 +223,7 @@
         <div class="col-md-7">
             <ng-container *ngIf="this.isEditable; else IdentifiedRisksToHearing">
                 <input pInputText type="text" [(ngModel)]="CareAssessmentHearingFormsData.IdentifiedRisksToHearing" required name="CareAssessmentHearingFormsData.IdentifiedRisksToHearing" class="form-control mr-4"
-                    [style]="{ width: '35%' }">
+                    [style]="{ width: '100%' }">
                     <p class=" mb-4">Specify any other risks that have not been identified above</p>
             </ng-container>
             <ng-template #IdentifiedRisksToHearing>
@@ -242,7 +242,7 @@
         <div class="col-md-7">
             <ng-container *ngIf="this.isEditable; else ManageAdditionalRisk">
                 <input pInputText type="text" [(ngModel)]="CareAssessmentHearingFormsData.ManageAdditionalRisk" required name="CareAssessmentHearingFormsData.ManageAdditionalRisk" class="form-control mr-4"
-                    [style]="{ width: '35%' }">
+                    [style]="{ width: '100%' }">
                     
             </ng-container>
             <ng-template #ManageAdditionalRisk>

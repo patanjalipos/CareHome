@@ -3,47 +3,93 @@
         <div class="formheader">
             <div class="d-flex">
                 <div class="col-md-4">
-                    <label class="form-label"><b> Started by (Name) :</b>
+                    <label class="form-label"
+                        ><b> Started by (Name) :</b
+                        >{{ preSelectedFormData.StartedBy }}
                     </label>
                 </div>
                 <div class="col-md-4">
-                    <label class="form-label"><b>Designation :</b> </label>
+                    <label class="form-label"
+                        ><b>Designation :</b
+                        >{{ preSelectedFormData.StartedByDesignation }}
+                    </label>
                 </div>
                 <div class="col-md-4">
-                    <label class="form-label"> <b>Date/Time : </b></label>
+                    <label class="form-label">
+                        <b>Date/Time : </b
+                        >{{
+                            preSelectedFormData.StartedOn
+                                | date : customDateFormat.DEF_DATE_TIME
+                        }}</label
+                    >
                 </div>
             </div>
             <div class="d-flex">
                 <div class="col-md-4">
                     <label class="form-label">
-                        <b>Last entered by (Name) :</b></label>
+                        <b>Last entered by (Name) :</b
+                        >{{ preSelectedFormData.ModifiedBy }}</label
+                    >
                 </div>
                 <div class="col-md-4">
-                    <label class="form-label"> <b>Designation :</b></label>
+                    <label class="form-label">
+                        <b>Designation :</b
+                        >{{ preSelectedFormData.ModifiedByDesignation }}</label
+                    >
                 </div>
                 <div class="col-md-4">
-                    <label class="form-label"> <b>Date/Time :</b> </label>
+                    <label class="form-label">
+                        <b>Date/Time :</b>
+                        {{
+                            preSelectedFormData.ModifiedOn
+                                | date : customDateFormat.DEF_DATE_TIME
+                        }}</label
+                    >
                 </div>
             </div>
         </div>
+
         <div class="col-md-4 mt-4">
             <div class="labelcontent">
                 <p>Communication</p>
-
             </div>
         </div>
-        <div class="col-md-7 mt-4 ">
-            <p-dropdown placeholder="Select" [style]="{ width: '100%' }">
-            </p-dropdown>
+        <div class="col-md-7 mt-4">
+            <ng-container *ngIf="isEditable; else CommunicationLabel">
+                <p-dropdown
+                    placeholder="Select"
+                    [style]="{ width: '100%' }"
+                    [(ngModel)]="RiskPhysicalDependencyAssessmentFormData.Communication"
+                    optionLabel="optionName"
+                    optionValue="optionId"
+                    [options]="communicationOptions"
+                ></p-dropdown>
+            </ng-container>
+            <ng-template #CommunicationLabel>
+                <label>{{ RiskPhysicalDependencyAssessmentFormData.CommunicationName }}</label>
+            </ng-template>
         </div>
+        
+        
         <div class="col-md-4">
             <div class="labelcontent">
                 <p>Breathing</p>
             </div>
         </div>
-        <div class="col-md-7 ">
-            <p-dropdown placeholder="Select" [style]="{ width: '100%' }">
-            </p-dropdown>
+        <div class="col-md-7">
+            <ng-container *ngIf="isEditable; else BreathingLabel">
+                <p-dropdown
+                    placeholder="Select"
+                    [style]="{ width: '100%' }"
+                    [(ngModel)]="RiskPhysicalDependencyAssessmentFormData.Breathing"
+                    optionLabel="optionName"
+                    optionValue="optionId"
+                    [options]="breathingOptions"
+                ></p-dropdown>
+            </ng-container>
+            <ng-template #BreathingLabel>
+                <label>{{ RiskPhysicalDependencyAssessmentFormData.BreathingName }}</label>
+            </ng-template>
         </div>
         
         <div class="col-md-4">
@@ -51,175 +97,419 @@
                 <p>Circulation (heart and vascular)</p>
             </div>
         </div>
-        <div class="col-md-7 ">
-            <p-dropdown placeholder="Select" [style]="{ width: '100%' }">
-            </p-dropdown>
+        <div class="col-md-7">
+            <ng-container *ngIf="isEditable; else CirculationLabel">
+                <p-dropdown
+                    placeholder="Select"
+                    [style]="{ width: '100%' }"
+                    [(ngModel)]="RiskPhysicalDependencyAssessmentFormData.Circulation"
+                    optionLabel="optionName"
+                    optionValue="optionId"
+                    [options]="circulationOptions"
+                ></p-dropdown>
+            </ng-container>
+            <ng-template #CirculationLabel>
+                <label>{{ RiskPhysicalDependencyAssessmentFormData.CirculationName }}</label>
+            </ng-template>
         </div>
+        
+
         <div class="col-md-4">
             <div class="labelcontent">
                 <p>Assistance to eat</p>
             </div>
         </div>
-        <div class="col-md-7 ">
-            <p-dropdown placeholder="Select" [style]="{ width: '100%' }">
-            </p-dropdown>
+        <div class="col-md-7">
+            <ng-container *ngIf="isEditable; else EatAssistanceLabel">
+                <p-dropdown
+                    placeholder="Select"
+                    [style]="{ width: '100%' }"
+                    [(ngModel)]="RiskPhysicalDependencyAssessmentFormData.AssistanceToEat"
+                    optionLabel="optionName"
+                    optionValue="optionId"
+                    [options]="eatAssistanceOptions"
+                ></p-dropdown>
+            </ng-container>
+            <ng-template #EatAssistanceLabel>
+                <label>{{ RiskPhysicalDependencyAssessmentFormData.AssistanceToEatName }}</label>
+            </ng-template>
         </div>
+        
+
         <div class="col-md-4">
             <div class="labelcontent">
                 <p>Elimination</p>
             </div>
         </div>
-        <div class="col-md-7 ">
-            <p-dropdown placeholder="Select" [style]="{ width: '100%' }">
-            </p-dropdown>
+        <div class="col-md-7">
+            <ng-container *ngIf="isEditable; else EliminationLabel">
+                <p-dropdown
+                    placeholder="Select"
+                    [style]="{ width: '100%' }"
+                    [(ngModel)]="RiskPhysicalDependencyAssessmentFormData.Elimination"
+                    optionLabel="optionName"
+                    optionValue="optionId"
+                    [options]="eliminationOptions"
+                ></p-dropdown>
+            </ng-container>
+            <ng-template #EliminationLabel>
+                <label>{{ RiskPhysicalDependencyAssessmentFormData.EliminationName }}</label>
+            </ng-template>
         </div>
+        
+
         <div class="col-md-1 form-icon">
             <i class="fa-solid fa-info"></i>
         </div>
+
         <div class="col-md-4">
             <div class="labelcontent">
                 <p>Mobility</p>
             </div>
         </div>
-        <div class="col-md-7 ">
-            <p-dropdown placeholder="Select" [style]="{ width: '100%' }">
-            </p-dropdown>
+        <div class="col-md-7">
+            <ng-container *ngIf="isEditable; else MobilityLabel">
+                <p-dropdown
+                    placeholder="Select"
+                    [style]="{ width: '100%' }"
+                    [(ngModel)]="RiskPhysicalDependencyAssessmentFormData.Mobility"
+                    optionLabel="optionName"
+                    optionValue="optionId"
+                    [options]="mobilityOptions"
+                ></p-dropdown>
+            </ng-container>
+            <ng-template #MobilityLabel>
+                <label>{{ RiskPhysicalDependencyAssessmentFormData.MobilityName }}</label>
+            </ng-template>
         </div>
-        <div class="col-md-4">
+        
+
+        <div class="col-md-4 mt-4">
             <div class="labelcontent">
                 <p>Washing and dressing (hygiene)</p>
             </div>
         </div>
-        <div class="col-md-7 ">
-            <p-dropdown placeholder="Select" [style]="{ width: '100%' }">
-            </p-dropdown>
+        <div class="col-md-7 mt-4">
+            <ng-container *ngIf="isEditable; else WashingDressingLabel">
+                <p-dropdown
+                    name="WashingAndDressing"
+                    placeholder="Select"
+                    [style]="{ width: '100%' }"
+                    [(ngModel)]="RiskPhysicalDependencyAssessmentFormData.WashingAndDressing"
+                    optionLabel="optionName"
+                    optionValue="optionId"
+                    [options]="washingAndDressingOptions"
+                >
+                </p-dropdown>
+            </ng-container>
+            <ng-template #WashingDressingLabel>
+                <label>{{ RiskPhysicalDependencyAssessmentFormData.WashingAndDressingName }}</label>
+            </ng-template>
         </div>
+        
+
         <div class="col-md-4">
             <div class="labelcontent">
                 <p>Oral care</p>
             </div>
         </div>
-        <div class="col-md-7 ">
-            <p-dropdown placeholder="Select" [style]="{ width: '100%' }">
-            </p-dropdown>
+        <div class="col-md-7">
+            <ng-container *ngIf="isEditable; else OralCareLabel">
+                <p-dropdown
+                    placeholder="Select"
+                    [style]="{ width: '100%' }"
+                    [(ngModel)]="RiskPhysicalDependencyAssessmentFormData.OralCare"
+                    optionLabel="optionName"
+                    optionValue="optionId"
+                    [options]="oralCareOptions"
+                >
+                </p-dropdown>
+            </ng-container>
+            <ng-template #OralCareLabel>
+                <label>{{ RiskPhysicalDependencyAssessmentFormData.OralCareName }}</label>
+            </ng-template>
         </div>
+        
+
         <div class="col-md-4">
             <div class="labelcontent">
                 <p>Skin (tissue viability)</p>
             </div>
         </div>
-        <div class="col-md-7 ">
-            <p-dropdown placeholder="Select" [style]="{ width: '100%' }">
-            </p-dropdown>
+        <div class="col-md-7">
+            <ng-container *ngIf="isEditable; else SkinLabel">
+                <p-dropdown
+                    placeholder="Select"
+                    [style]="{ width: '100%' }"
+                    [(ngModel)]="RiskPhysicalDependencyAssessmentFormData.SkinViability"
+                    optionLabel="optionName"
+                    optionValue="optionId"
+                    [options]="skinViabilityOptions">
+                </p-dropdown>
+            </ng-container>
+            <ng-template #SkinLabel>
+                <label>{{ RiskPhysicalDependencyAssessmentFormData.SkinViabilityName }}</label>
+            </ng-template>
         </div>
+        
+
         <div class="col-md-4">
             <div class="labelcontent">
                 <p>Pain and discomfort</p>
             </div>
         </div>
-        <div class="col-md-7 ">
-            <p-dropdown placeholder="Select" [style]="{ width: '100%' }">
-            </p-dropdown>
+        <div class="col-md-7">
+            <ng-container *ngIf="isEditable; else PainLabel">
+                <p-dropdown
+                    placeholder="Select"
+                    [style]="{ width: '100%' }"
+                    [(ngModel)]="RiskPhysicalDependencyAssessmentFormData.PainDiscomfort"
+                    optionLabel="optionName"
+                    optionValue="optionId"
+                    [options]="painDiscomfortOptions">
+                </p-dropdown>
+            </ng-container>
+            <ng-template #PainLabel>
+                <label>{{ RiskPhysicalDependencyAssessmentFormData.PainDiscomfortName }}</label>
+            </ng-template>
         </div>
-
+        
+        
         <div class="col-md-4">
             <div class="labelcontent">
                 <p>Hearing</p>
             </div>
         </div>
-        <div class="col-md-7 ">
-            <p-dropdown placeholder="Select" [style]="{ width: '100%' }">
-            </p-dropdown>
+        <div class="col-md-7">
+            <ng-container *ngIf="isEditable; else HearingLabel">
+                <p-dropdown
+                    placeholder="Select"
+                    [style]="{ width: '100%' }"
+                    [(ngModel)]="RiskPhysicalDependencyAssessmentFormData.Hearing"
+                    optionLabel="optionName"
+                    optionValue="optionId"
+                    [options]="hearingOptions">
+                </p-dropdown>
+            </ng-container>
+            <ng-template #HearingLabel>
+                <label>{{ RiskPhysicalDependencyAssessmentFormData.HearingName }}</label>
+            </ng-template>
         </div>
+        
+
         <div class="col-md-4">
             <div class="labelcontent">
                 <p>Sight</p>
             </div>
         </div>
-        <div class="col-md-7 ">
-            <p-dropdown placeholder="Select" [style]="{ width: '100%' }">
-            </p-dropdown>
+        <div class="col-md-7">
+            <ng-container *ngIf="isEditable; else SightLabel">
+                <p-dropdown
+                    placeholder="Select"
+                    [style]="{ width: '100%' }"
+                    [(ngModel)]="RiskPhysicalDependencyAssessmentFormData.Sight"
+                    optionLabel="optionName"
+                    optionValue="optionId"
+                    [options]="sightOptions">
+                </p-dropdown>
+            </ng-container>
+            <ng-template #SightLabel>
+                <label>{{ RiskPhysicalDependencyAssessmentFormData.SightName }}</label>
+            </ng-template>
         </div>
+        
         <div class="col-md-4">
             <div class="labelcontent">
                 <p>Sleeping and rest</p>
             </div>
         </div>
-        <div class="col-md-7 ">
-            <p-dropdown placeholder="Select" [style]="{ width: '100%' }">
-            </p-dropdown>
+        <div class="col-md-7">
+            <ng-container *ngIf="isEditable; else SleepRestLabel">
+                <p-dropdown
+                    placeholder="Select"
+                    [style]="{ width: '100%' }"
+                    [(ngModel)]="RiskPhysicalDependencyAssessmentFormData.SleepingRest"
+                    optionLabel="optionName"
+                    optionValue="optionId"
+                    [options]="sleepingRestOptions">
+                </p-dropdown>
+            </ng-container>
+            <ng-template #SleepRestLabel>
+                <label>{{ RiskPhysicalDependencyAssessmentFormData.SleepingRestName }}</label>
+            </ng-template>
         </div>
+        
+
         <div class="col-md-4">
             <div class="labelcontent">
                 <p>Palliative care</p>
             </div>
         </div>
         <div class="col-md-7">
-            <p-dropdown placeholder="Select" [style]="{ width: '100%' }">
-            </p-dropdown>
+            <ng-container *ngIf="isEditable; else PalliativeCareLabel">
+                <p-dropdown
+                    placeholder="Select"
+                    [style]="{ width: '100%' }"
+                    [(ngModel)]="RiskPhysicalDependencyAssessmentFormData.PalliativeCare"
+                    optionLabel="optionName"
+                    optionValue="optionId"
+                    [options]="palliativeCareOptions">
+                </p-dropdown>
+            </ng-container>
+            <ng-template #PalliativeCareLabel>
+                <label>{{ RiskPhysicalDependencyAssessmentFormData.PalliativeCareName }}</label>
+            </ng-template>
         </div>
+        
+
         <div class="col-md-4">
             <div class="labelcontent">
                 <p>Behaviours</p>
             </div>
         </div>
-        <div class="col-md-7 ">
-            <p-dropdown placeholder="Select" [style]="{ width: '100%' }">
-            </p-dropdown>
+        <div class="col-md-7">
+            <ng-container *ngIf="isEditable; else BehavioursLabel">
+                <p-dropdown 
+                    placeholder="Select" 
+                    [style]="{ width: '100%' }"
+                    [(ngModel)]="RiskPhysicalDependencyAssessmentFormData.Behaviours"
+                    optionLabel="optionName"
+                    optionValue="optionId"
+                    [options]="behavioursOptions">
+                </p-dropdown>
+            </ng-container>
+            <ng-template #BehavioursLabel>
+                <label>{{ RiskPhysicalDependencyAssessmentFormData.BehavioursName }}</label>
+            </ng-template>
         </div>
+        
 
         <div class="col-md-4">
             <div class="labelcontent">
-                <p>Awareness, understanding and memory (cognition)</p>
-            </div>
-        </div>
-        <div class="col-md-7 ">
-            <p-dropdown placeholder="Select" [style]="{ width: '100%' }">
-            </p-dropdown>
-        </div>
-        <div class="col-md-4">
-            <div class="labelcontent">
-                <p>Management - indirect care</p>
-            </div>
-        </div>
-        <div class="col-md-7 ">
-            <p-dropdown placeholder="Select" [style]="{ width: '100%' }">
-            </p-dropdown>
-        </div>
-        <div class="col-md-4">
-            <div class="labelcontent">
-                <p>Activities and engagement</p>
-            </div>
-        </div>
-        <div class="col-md-7 ">
-            <p-dropdown placeholder="Select" [style]="{ width: '100%' }">
-            </p-dropdown>
-        </div>
-        <div class="col-md-4">
-            <div class="labelcontent">
-                <p>Dependency score and level</p>
+                <p>Awareness, understanding and memory (Cognition)</p>
             </div>
         </div>
         <div class="col-md-7">
-            <p-dropdown placeholder="Select" [style]="{ width: '100%' }">
-            </p-dropdown>
+            <ng-container *ngIf="isEditable; else CognitionLabel">
+                <p-dropdown
+                    placeholder="Select"
+                    [style]="{ width: '100%' }"
+                    [(ngModel)]="RiskPhysicalDependencyAssessmentFormData.Cognition"
+                    optionLabel="optionName"
+                    optionValue="optionId"
+                    [options]="cognitionOptions">
+                </p-dropdown>
+            </ng-container>
+            <ng-template #CognitionLabel>
+                <label>{{ RiskPhysicalDependencyAssessmentFormData.CognitionName }}</label>
+            </ng-template>
         </div>
+        
+
+        <div class="col-md-4">
+            <div class="labelcontent">
+                <p>Management - Indirect Care</p>
+            </div>
+        </div>
+        <div class="col-md-7">
+            <ng-container *ngIf="isEditable; else IndirectCareLabel">
+                <p-dropdown
+                    placeholder="Select"
+                    [style]="{ width: '100%' }"
+                    [(ngModel)]="RiskPhysicalDependencyAssessmentFormData.IndirectCare"
+                    optionLabel="optionName"
+                    optionValue="optionId"
+                    [options]="indirectCareOptions">
+                </p-dropdown>
+            </ng-container>
+            <ng-template #IndirectCareLabel>
+                <label>{{ RiskPhysicalDependencyAssessmentFormData.IndirectCareName }}</label>
+            </ng-template>
+        </div>
+        
+        <div class="col-md-4">
+            <div class="labelcontent">
+                <p>Activities and Engagement</p>
+            </div>
+        </div>
+        <div class="col-md-7">
+            <ng-container *ngIf="isEditable; else EngagementLabel">
+                <p-dropdown
+                    placeholder="Select"
+                    [style]="{ width: '100%' }"
+                    [(ngModel)]="RiskPhysicalDependencyAssessmentFormData.ActivitiesEngagement"
+                    optionLabel="optionName"
+                    optionValue="optionId"
+                    [options]="activitiesEngagementOptions">
+                </p-dropdown>
+            </ng-container>
+            <ng-template #EngagementLabel>
+                <label>{{ RiskPhysicalDependencyAssessmentFormData.ActivitiesEngagementName }}</label>
+            </ng-template>
+        </div>
+        
+        <div class="col-md-4">
+            <div class="labelcontent">
+                <p>Dependency Score and Level</p>
+            </div>
+        </div>
+        <div class="col-md-7">
+            <ng-container *ngIf="isEditable; else DependencyLabel">
+                <p-dropdown
+                    placeholder="Select"
+                    [style]="{ width: '100%' }"
+                    [(ngModel)]="RiskPhysicalDependencyAssessmentFormData.DependencyScoreLevel"
+                    optionLabel="optionName"
+                    optionValue="optionId"
+                    [options]="dependencyScoreLevelOptions">
+                </p-dropdown>
+            </ng-container>
+            <ng-template #DependencyLabel>
+                <label>{{ RiskPhysicalDependencyAssessmentFormData.DependencyScoreLevelName }}</label>
+            </ng-template>
+        </div>
+        
+
         <div class="col-md-1 form-icon">
             <i class="fa-solid fa-info"></i>
         </div>
+
         <div class="d-flex justify-content-end">
-            <div>
-                <span class="p-ml-left mr-4">
-                    <button pButton title="New" label="Save as Unfinished"></button>
-                    <span class="total-txt"></span>
-                </span>
-            </div>
-            <div>
-                <span class="p-ml-left mr-4">
-                    <button pButton title="New" label="Complete"></button>
-                    <span class="total-txt"></span>
-                </span>
-            </div>
+            <ng-container *ngIf="isEditable; else savePdf">
+                <div>
+                    <span class="p-ml-left mr-4">
+                        <button
+                            pButton
+                            title="New"
+                            label="Save as Unfinished"
+                            (click)="saveAsUnfinished()"
+                        ></button>
+                        <span class="total-txt"></span>
+                    </span>
+                </div>
+                <div>
+                    <span class="p-ml-left mr-4">
+                        <button
+                            pButton
+                            title="New"
+                            label="Complete"
+                            (click)="completeForm()"
+                            [disabled]="
+                                RiskPhysicalDependencyAssessmentFormData.IsFormCompleted
+                            "
+                        ></button>
+                        <span class="total-txt"></span>
+                    </span>
+                </div>
+            </ng-container>
+            <ng-template #savePdf>
+                <button
+                    pButton
+                    title="Save as PDF"
+                    label="Save as PDF"
+                    (click)="SaveAsPDF()"
+                ></button>
+            </ng-template>
         </div>
     </div>
 </div>

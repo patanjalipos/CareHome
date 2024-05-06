@@ -1,12 +1,13 @@
 
 import { Component, EventEmitter, Input, OnInit, Output, SimpleChanges } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { ConstantsService, CustomDateFormat } from 'src/app/ui/service/constants.service';
+import { ConstantsService, CustomDateFormat, FormTypes } from 'src/app/ui/service/constants.service';
 import { AppComponentBase } from 'src/app/app-component-base';
 import { DataService } from 'src/app/ui/service/data-service.service';
 import { MasterService } from 'src/app/ui/service/master.service';
 import { UtilityService } from 'src/app/utility/utility.service';
 import { DatePipe } from '@angular/common';
+import { Observable, catchError, forkJoin, map, of } from 'rxjs';
 
 @Component({
   selector: 'app-accident-incident-near-miss-record',
@@ -181,13 +182,30 @@ ngOnInit(): void {
     //     this._DataService.data$.subscribe((data) => {
     //       this.preSelectedFormData = data;
     //   });
+    const collectionNames = [
+      'LocationOfAccident',
+      'AccidentFloorPlace',
+      'AccidentType',
+      'InjuriesSustained',
+      'JobRole',
+      'EmergencyServices'
+  ];
+
+  forkJoin(collectionNames.map((collectionName) => this.getDropdownMasterLists(FormTypes.AccidentIncident,collectionName,1))).subscribe((responses: any[]) => {
+    this.lstlocationaccident = responses[0];
+    this.lstAccidentPlace = responses[1];
+    this.lstAccidentType = responses[2];
+    this.lstInjurySustained = responses[3];
+    this.lstJobRole = responses[4];
+    this.lstEmergencyServices = responses[5];
+});
     
-      this.GetLocationOfAccident();
-      this.GetAccidentFloorPlace();
-      this.GetAccidentType();
-      this.GetInjuriesSustained();
-      this.GetEmergencyServices();
-      this.GetJobRole();
+      // this.GetLocationOfAccident();
+      // this.GetAccidentFloorPlace();
+      // this.GetAccidentType();
+      // this.GetInjuriesSustained();
+      // this.GetEmergencyServices();
+      // this.GetJobRole();
 
       this.isEditable = this.preSelectedFormData.isEditable;
   
@@ -212,155 +230,175 @@ ngOnInit(): void {
     return `${hours}:${minutes}`;
   }
 
-  GetLocationOfAccident() {
-    
+  getDropdownMasterLists(formMasterId: string, dropdownName: string,status:number): Observable<any> {
     this._UtilityService.showSpinner();
-    this.unsubscribe.add = this._MasterServices
-        .GetLocationOfAccident(1)
-        .subscribe({
-            next: (data) => {
-            //   console.log(data)
-                this._UtilityService.hideSpinner();
-                if (data.actionResult.success == true) {
-                    var tdata = JSON.parse(data.actionResult.result);
-                    // console.log(tdata);
-                    tdata = tdata ? tdata : [];
-                    this.lstlocationaccident = tdata;
-                } else {
-                    this.lstlocationaccident = [];
-                }
-            },
-            error: (e) => {
-                this._UtilityService.hideSpinner();
-                this._UtilityService.showErrorAlert(e.message);
-            },
-        });
+    return this._MasterServices.GetDropDownMasterList(formMasterId,dropdownName, status).pipe(
+        map((response) => {
+            this._UtilityService.hideSpinner();
+            if (response.actionResult.success) {
+                return JSON.parse(response.actionResult.result);
+            } else {
+                return [];
+            }
+        }),
+        catchError((error) => {
+            this._UtilityService.hideSpinner();
+            this._UtilityService.showErrorAlert(error.message);
+            alert(error.message);
+            return of([]); // Returning empty array in case of error
+        })
+    );
 }
 
-GetAccidentFloorPlace() {
+//   GetLocationOfAccident() {
+    
+//     this._UtilityService.showSpinner();
+//     this.unsubscribe.add = this._MasterServices
+//         .GetLocationOfAccident(1)
+//         .subscribe({
+//             next: (data) => {
+//             //   console.log(data)
+//                 this._UtilityService.hideSpinner();
+//                 if (data.actionResult.success == true) {
+//                     var tdata = JSON.parse(data.actionResult.result);
+//                     // console.log(tdata);
+//                     tdata = tdata ? tdata : [];
+//                     this.lstlocationaccident = tdata;
+//                 } else {
+//                     this.lstlocationaccident = [];
+//                 }
+//             },
+//             error: (e) => {
+//                 this._UtilityService.hideSpinner();
+//                 this._UtilityService.showErrorAlert(e.message);
+//             },
+//         });
+// }
+
+// GetAccidentFloorPlace() {
   
-  this._UtilityService.showSpinner();
-  this.unsubscribe.add = this._MasterServices
-      .GetAccidentFloorPlace(1)
-      .subscribe({
-          next: (data) => {
-            // console.log(data)
-              this._UtilityService.hideSpinner();
-              if (data.actionResult.success == true) {
-                  var tdata = JSON.parse(data.actionResult.result);
-                //   console.log(tdata);
-                  tdata = tdata ? tdata : [];
-                  this.lstAccidentPlace = tdata;
-              } else {
-                  this.lstAccidentPlace = [];
-              }
-          },
-          error: (e) => {
-              this._UtilityService.hideSpinner();
-              this._UtilityService.showErrorAlert(e.message);
-          },
-      });
-}
+//   this._UtilityService.showSpinner();
+//   this.unsubscribe.add = this._MasterServices
+//       .GetAccidentFloorPlace(1)
+//       .subscribe({
+//           next: (data) => {
+//             // console.log(data)
+//               this._UtilityService.hideSpinner();
+//               if (data.actionResult.success == true) {
+//                   var tdata = JSON.parse(data.actionResult.result);
+//                 //   console.log(tdata);
+//                   tdata = tdata ? tdata : [];
+//                   this.lstAccidentPlace = tdata;
+//               } else {
+//                   this.lstAccidentPlace = [];
+//               }
+//           },
+//           error: (e) => {
+//               this._UtilityService.hideSpinner();
+//               this._UtilityService.showErrorAlert(e.message);
+//           },
+//       });
+// }
 
-GetAccidentType() {
+// GetAccidentType() {
  
-  this._UtilityService.showSpinner();
-  this.unsubscribe.add = this._MasterServices
-      .GetAccidentType(1)
-      .subscribe({
-          next: (data) => {
-            // console.log(data)
-              this._UtilityService.hideSpinner();
-              if (data.actionResult.success == true) {
-                  var tdata = JSON.parse(data.actionResult.result);
-                //   console.log(tdata);
-                  tdata = tdata ? tdata : [];
-                  this.lstAccidentType = tdata;
-              } else {
-                  this.lstAccidentType = [];
-              }
-          },
-          error: (e) => {
-              this._UtilityService.hideSpinner();
-              this._UtilityService.showErrorAlert(e.message);
-          },
-      });
-}
+//   this._UtilityService.showSpinner();
+//   this.unsubscribe.add = this._MasterServices
+//       .GetAccidentType(1)
+//       .subscribe({
+//           next: (data) => {
+//             // console.log(data)
+//               this._UtilityService.hideSpinner();
+//               if (data.actionResult.success == true) {
+//                   var tdata = JSON.parse(data.actionResult.result);
+//                 //   console.log(tdata);
+//                   tdata = tdata ? tdata : [];
+//                   this.lstAccidentType = tdata;
+//               } else {
+//                   this.lstAccidentType = [];
+//               }
+//           },
+//           error: (e) => {
+//               this._UtilityService.hideSpinner();
+//               this._UtilityService.showErrorAlert(e.message);
+//           },
+//       });
+// }
 
-GetInjuriesSustained() {
+// GetInjuriesSustained() {
 
-  this._UtilityService.showSpinner();
-  this.unsubscribe.add = this._MasterServices
-      .GetInjuriesSustained(1)
-      .subscribe({
-          next: (data) => {
-            // console.log(data)
-              this._UtilityService.hideSpinner();
-              if (data.actionResult.success == true) {
-                  var tdata = JSON.parse(data.actionResult.result);
-                //   console.log(tdata);
-                  tdata = tdata ? tdata : [];
-                  this.lstInjurySustained = tdata;
-              } else {
-                  this.lstInjurySustained = [];
-              }
-          },
-          error: (e) => {
-              this._UtilityService.hideSpinner();
-              this._UtilityService.showErrorAlert(e.message);
-          },
-      });
-}
+//   this._UtilityService.showSpinner();
+//   this.unsubscribe.add = this._MasterServices
+//       .GetInjuriesSustained(1)
+//       .subscribe({
+//           next: (data) => {
+//             // console.log(data)
+//               this._UtilityService.hideSpinner();
+//               if (data.actionResult.success == true) {
+//                   var tdata = JSON.parse(data.actionResult.result);
+//                 //   console.log(tdata);
+//                   tdata = tdata ? tdata : [];
+//                   this.lstInjurySustained = tdata;
+//               } else {
+//                   this.lstInjurySustained = [];
+//               }
+//           },
+//           error: (e) => {
+//               this._UtilityService.hideSpinner();
+//               this._UtilityService.showErrorAlert(e.message);
+//           },
+//       });
+// }
 
-GetJobRole() {
+// GetJobRole() {
  
-  this._UtilityService.showSpinner();
-  this.unsubscribe.add = this._MasterServices
-      .GetJobRole(1)
-      .subscribe({
-          next: (data) => {
-            // console.log(data)
-              this._UtilityService.hideSpinner();
-              if (data.actionResult.success == true) {
-                  var tdata = JSON.parse(data.actionResult.result);
-                //   console.log(tdata);
-                  tdata = tdata ? tdata : [];
-                  this.lstJobRole = tdata;
-              } else {
-                  this.lstJobRole = [];
-              }
-          },
-          error: (e) => {
-              this._UtilityService.hideSpinner();
-              this._UtilityService.showErrorAlert(e.message);
-          },
-      });
-}
+//   this._UtilityService.showSpinner();
+//   this.unsubscribe.add = this._MasterServices
+//       .GetJobRole(1)
+//       .subscribe({
+//           next: (data) => {
+//             // console.log(data)
+//               this._UtilityService.hideSpinner();
+//               if (data.actionResult.success == true) {
+//                   var tdata = JSON.parse(data.actionResult.result);
+//                 //   console.log(tdata);
+//                   tdata = tdata ? tdata : [];
+//                   this.lstJobRole = tdata;
+//               } else {
+//                   this.lstJobRole = [];
+//               }
+//           },
+//           error: (e) => {
+//               this._UtilityService.hideSpinner();
+//               this._UtilityService.showErrorAlert(e.message);
+//           },
+//       });
+// }
 
-GetEmergencyServices() {
+// GetEmergencyServices() {
   
-  this._UtilityService.showSpinner();
-  this.unsubscribe.add = this._MasterServices
-      .GetEmergencyServices(1)
-      .subscribe({
-          next: (data) => {
-            // console.log(data)
-              this._UtilityService.hideSpinner();
-              if (data.actionResult.success == true) {
-                  var tdata = JSON.parse(data.actionResult.result);
-                //   console.log(tdata);
-                  tdata = tdata ? tdata : [];
-                  this.lstEmergencyServices = tdata;
-              } else {
-                  this.lstEmergencyServices = [];
-              }
-          },
-          error: (e) => {
-              this._UtilityService.hideSpinner();
-              this._UtilityService.showErrorAlert(e.message);
-          },
-      });
-}
+//   this._UtilityService.showSpinner();
+//   this.unsubscribe.add = this._MasterServices
+//       .GetEmergencyServices(1)
+//       .subscribe({
+//           next: (data) => {
+//             // console.log(data)
+//               this._UtilityService.hideSpinner();
+//               if (data.actionResult.success == true) {
+//                   var tdata = JSON.parse(data.actionResult.result);
+//                 //   console.log(tdata);
+//                   tdata = tdata ? tdata : [];
+//                   this.lstEmergencyServices = tdata;
+//               } else {
+//                   this.lstEmergencyServices = [];
+//               }
+//           },
+//           error: (e) => {
+//               this._UtilityService.hideSpinner();
+//               this._UtilityService.showErrorAlert(e.message);
+//           },
+//       });
+// }
 
   GetAccidentNearMissRecordDetails(formId: string) {
     this._UtilityService.showSpinner();

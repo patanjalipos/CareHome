@@ -34,7 +34,7 @@
         <div class="col-md-7 mt-4">
             
             <ng-container *ngIf="this.isEditable; else Appearance">
-                <p-dropdown [required]="true" [options]="lstAppearance"   optionLabel="Name" [(ngModel)]="CareAssessmentFreshAndCleanFormsData.Appearance" name="CareAssessmentFreshAndCleanFormsData.Appearance" optionValue="Id" placeholder="Select" [style]="{ width: '100%' }">
+                <p-dropdown [required]="true" [options]="lstAppearance"   optionLabel="optionName" [(ngModel)]="CareAssessmentFreshAndCleanFormsData.Appearance" name="CareAssessmentFreshAndCleanFormsData.Appearance" optionValue="optionId" placeholder="Select" [style]="{ width: '100%' }">
                 </p-dropdown>
             </ng-container>
             <ng-template #Appearance>
@@ -54,7 +54,7 @@
         </div>
         <div class="col-md-7">
             <ng-container *ngIf="this.isEditable; else Capacity">
-                <p-dropdown [required]="true" [options]="lstCapacity"   optionLabel="Name" [(ngModel)]="CareAssessmentFreshAndCleanFormsData.Capacity" name="CareAssessmentFreshAndCleanFormsData.Capacity" optionValue="Id" placeholder="Select" [style]="{ width: '100%' }">
+                <p-dropdown [required]="true" [options]="lstCapacity"   optionLabel="optionName" [(ngModel)]="CareAssessmentFreshAndCleanFormsData.Capacity" name="CareAssessmentFreshAndCleanFormsData.Capacity" optionValue="optionId" placeholder="Select" [style]="{ width: '100%' }">
                 </p-dropdown>
             </ng-container>
             <ng-template #Capacity>
@@ -95,7 +95,7 @@
         </div>
         <div class="col-md-7">
             <ng-container *ngIf="this.isEditable; else HygienePreference">
-                <p-dropdown [required]="true" [options]="lstHygienePreference"   optionLabel="Name" [(ngModel)]="CareAssessmentFreshAndCleanFormsData.HygienePreference" name="CareAssessmentFreshAndCleanFormsData.HygienePreference" optionValue="Id" placeholder="Select" [style]="{ width: '100%' }">
+                <p-dropdown [required]="true" [options]="lstHygienePreference"   optionLabel="optionName" [(ngModel)]="CareAssessmentFreshAndCleanFormsData.HygienePreference" name="CareAssessmentFreshAndCleanFormsData.HygienePreference" optionValue="optionId" placeholder="Select" [style]="{ width: '100%' }">
                 </p-dropdown>
             </ng-container>
             <ng-template #HygienePreference>
@@ -136,7 +136,7 @@
         </div>
         <div class="col-md-7">
             <ng-container *ngIf="this.isEditable; else DressingPreference">
-                <p-dropdown [required]="true" [options]="lstDressingPreference"   optionLabel="Name" [(ngModel)]="CareAssessmentFreshAndCleanFormsData.DressingPreference" name="CareAssessmentFreshAndCleanFormsData.DressingPreference" optionValue="Id" placeholder="Select" [style]="{ width: '100%' }">
+                <p-dropdown [required]="true" [options]="lstDressingPreference"   optionLabel="optionName" [(ngModel)]="CareAssessmentFreshAndCleanFormsData.DressingPreference" name="CareAssessmentFreshAndCleanFormsData.DressingPreference" optionValue="optionId" placeholder="Select" [style]="{ width: '100%' }">
                 </p-dropdown>
             </ng-container>
             <ng-template #DressingPreference>
@@ -154,7 +154,7 @@
         </div>
         <div class="col-md-7">
             <ng-container *ngIf="this.isEditable; else DressingAndUndressing">
-                <p-dropdown [required]="true" [options]="lstDressingAndUndressing"   optionLabel="Name" [(ngModel)]="CareAssessmentFreshAndCleanFormsData.DressingAndUndressing" name="CareAssessmentFreshAndCleanFormsData.DressingAndUndressing" optionValue="Id" placeholder="Select" [style]="{ width: '100%' }">
+                <p-dropdown [required]="true" [options]="lstDressingAndUndressing"   optionLabel="optionName" [(ngModel)]="CareAssessmentFreshAndCleanFormsData.DressingAndUndressing" name="CareAssessmentFreshAndCleanFormsData.DressingAndUndressing" optionValue="optionId" placeholder="Select" [style]="{ width: '100%' }">
                 </p-dropdown>
             </ng-container>
             <ng-template #DressingAndUndressing>
@@ -216,7 +216,7 @@
         </div>
         <div class="col-md-7">
             <ng-container *ngIf="this.isEditable; else Grooming">
-                <p-dropdown [required]="true" [options]="lstGrooming"   optionLabel="Name" [(ngModel)]="CareAssessmentFreshAndCleanFormsData.Grooming" name="CareAssessmentFreshAndCleanFormsData.Grooming" optionValue="Id" placeholder="Select" [style]="{ width: '100%' }">
+                <p-dropdown [required]="true" [options]="lstGrooming"   optionLabel="optionName" [(ngModel)]="CareAssessmentFreshAndCleanFormsData.Grooming" name="CareAssessmentFreshAndCleanFormsData.Grooming" optionValue="optionId" placeholder="Select" [style]="{ width: '100%' }">
                 </p-dropdown>
             </ng-container>
             <ng-template #Grooming>
@@ -257,7 +257,7 @@
         </div>
         <div class="col-md-7">
             <ng-container *ngIf="this.isEditable; else HairRoutine">
-                <p-dropdown [required]="true" [options]="lstHairRoutine"   optionLabel="Name" [(ngModel)]="CareAssessmentFreshAndCleanFormsData.HairRoutine" name="CareAssessmentFreshAndCleanFormsData.HairRoutine" optionValue="Id" placeholder="Select" [style]="{ width: '100%' }">
+                <p-dropdown [required]="true" [options]="lstHairRoutine"   optionLabel="optionName" [(ngModel)]="CareAssessmentFreshAndCleanFormsData.HairRoutine" name="CareAssessmentFreshAndCleanFormsData.HairRoutine" optionValue="optionId" placeholder="Select" [style]="{ width: '100%' }">
                 </p-dropdown>
             </ng-container>
             <ng-template #HairRoutine>
@@ -296,7 +296,7 @@
         </div>
         <div class="col-md-7">
             <ng-container *ngIf="this.isEditable; else EyeCare">
-                <p-dropdown [required]="true" [options]="lstEyeCare"   optionLabel="Name" [(ngModel)]="CareAssessmentFreshAndCleanFormsData.EyeCare" name="CareAssessmentFreshAndCleanFormsData.EyeCare" optionValue="Id" placeholder="Select" [style]="{ width: '100%' }">
+                <p-dropdown [required]="true" [options]="lstEyeCare"   optionLabel="optionName" [(ngModel)]="CareAssessmentFreshAndCleanFormsData.EyeCare" name="CareAssessmentFreshAndCleanFormsData.EyeCare" optionValue="optionId" placeholder="Select" [style]="{ width: '100%' }">
                 </p-dropdown>
             </ng-container>
             <ng-template #EyeCare>
@@ -333,7 +333,7 @@
         </div>
         <div class="col-md-7">
             <ng-container *ngIf="this.isEditable; else NailCare">
-                <p-dropdown [required]="true" [options]="lstNailCare"   optionLabel="Name" [(ngModel)]="CareAssessmentFreshAndCleanFormsData.NailCare" name="CareAssessmentFreshAndCleanFormsData.NailCare" optionValue="Id" placeholder="Select" [style]="{ width: '100%' }">
+                <p-dropdown [required]="true" [options]="lstNailCare"   optionLabel="optionName" [(ngModel)]="CareAssessmentFreshAndCleanFormsData.NailCare" name="CareAssessmentFreshAndCleanFormsData.NailCare" optionValue="optionId" placeholder="Select" [style]="{ width: '100%' }">
                 </p-dropdown>
             </ng-container>
             <ng-template #NailCare>
@@ -415,7 +415,7 @@
         </div>
         <div class="col-md-7">
             <ng-container *ngIf="this.isEditable; else Makeup">
-                <p-dropdown [required]="true" [options]="lstMakeup"   optionLabel="Name" [(ngModel)]="CareAssessmentFreshAndCleanFormsData.Makeup" name="CareAssessmentFreshAndCleanFormsData.Makeup" optionValue="Id" placeholder="Select" [style]="{ width: '100%' }">
+                <p-dropdown [required]="true" [options]="lstMakeup"   optionLabel="optionName" [(ngModel)]="CareAssessmentFreshAndCleanFormsData.Makeup" name="CareAssessmentFreshAndCleanFormsData.Makeup" optionValue="optionId" placeholder="Select" [style]="{ width: '100%' }">
                 </p-dropdown>
             </ng-container>
             <ng-template #Makeup>
@@ -454,7 +454,7 @@
         </div>
         <div class="col-md-7">
             <ng-container *ngIf="this.isEditable; else Jewellery">
-                <p-dropdown [required]="true" [options]="lstJewellery"   optionLabel="Name" [(ngModel)]="CareAssessmentFreshAndCleanFormsData.Jewellery" name="CareAssessmentFreshAndCleanFormsData.Jewellery" optionValue="Id" placeholder="Select" [style]="{ width: '100%' }">
+                <p-dropdown [required]="true" [options]="lstJewellery"   optionLabel="optionName" [(ngModel)]="CareAssessmentFreshAndCleanFormsData.Jewellery" name="CareAssessmentFreshAndCleanFormsData.Jewellery" optionValue="optionId" placeholder="Select" [style]="{ width: '100%' }">
                 </p-dropdown>
             </ng-container>
             <ng-template #Jewellery>
@@ -491,7 +491,7 @@
         </div>
         <div class="col-md-7">
             <ng-container *ngIf="this.isEditable; else Fragrance">
-                <p-dropdown [required]="true" [options]="lstFragrance"   optionLabel="Name" [(ngModel)]="CareAssessmentFreshAndCleanFormsData.Fragrance" name="CareAssessmentFreshAndCleanFormsData.Fragrance" optionValue="Id" placeholder="Select" [style]="{ width: '100%' }">
+                <p-dropdown [required]="true" [options]="lstFragrance"   optionLabel="optionName" [(ngModel)]="CareAssessmentFreshAndCleanFormsData.Fragrance" name="CareAssessmentFreshAndCleanFormsData.Fragrance" optionValue="optionId" placeholder="Select" [style]="{ width: '100%' }">
                 </p-dropdown>
             </ng-container>
             <ng-template #Fragrance>
@@ -527,7 +527,7 @@
         </div>
         <div class="col-md-7">
             <ng-container *ngIf="this.isEditable; else FaceAndBodyCreams">
-                <p-dropdown [required]="true" [options]="lstFaceAndBodyCreams"   optionLabel="Name" [(ngModel)]="CareAssessmentFreshAndCleanFormsData.FaceAndBodyCreams" name="CareAssessmentFreshAndCleanFormsData.FaceAndBodyCreams" optionValue="Id" placeholder="Select" [style]="{ width: '100%' }">
+                <p-dropdown [required]="true" [options]="lstFaceAndBodyCreams"   optionLabel="optionName" [(ngModel)]="CareAssessmentFreshAndCleanFormsData.FaceAndBodyCreams" name="CareAssessmentFreshAndCleanFormsData.FaceAndBodyCreams" optionValue="optionId" placeholder="Select" [style]="{ width: '100%' }">
                 </p-dropdown>
             </ng-container>
             <ng-template #FaceAndBodyCreams>
@@ -564,7 +564,7 @@
         </div>
         <div class="col-md-7">
             <ng-container *ngIf="this.isEditable; else GoalsToAchieveFreshAndClean">
-                <p-dropdown [required]="true" [options]="lstGoalsToAchieveFreshAndClean"   optionLabel="Name" [(ngModel)]="CareAssessmentFreshAndCleanFormsData.GoalsToAchieveFreshAndClean" name="CareAssessmentFreshAndCleanFormsData.GoalsToAchieveFreshAndClean" optionValue="Id" placeholder="Select" [style]="{ width: '100%' }">
+                <p-dropdown [required]="true" [options]="lstGoalsToAchieveFreshAndClean"   optionLabel="optionName" [(ngModel)]="CareAssessmentFreshAndCleanFormsData.GoalsToAchieveFreshAndClean" name="CareAssessmentFreshAndCleanFormsData.GoalsToAchieveFreshAndClean" optionValue="optionId" placeholder="Select" [style]="{ width: '100%' }">
                 </p-dropdown>
             </ng-container>
             <ng-template #GoalsToAchieveFreshAndClean>
@@ -582,7 +582,7 @@
         </div>
         <div class="col-md-7">
             <ng-container *ngIf="this.isEditable; else StrategyToManageHygiene">
-                <p-dropdown [required]="true" [options]="lstStrategyToManageHygiene"   optionLabel="Name" [(ngModel)]="CareAssessmentFreshAndCleanFormsData.StrategyToManageHygiene" name="CareAssessmentFreshAndCleanFormsData.StrategyToManageHygiene" optionValue="Id" placeholder="Select" [style]="{ width: '100%' }">
+                <p-dropdown [required]="true" [options]="lstStrategyToManageHygiene"   optionLabel="optionName" [(ngModel)]="CareAssessmentFreshAndCleanFormsData.StrategyToManageHygiene" name="CareAssessmentFreshAndCleanFormsData.StrategyToManageHygiene" optionValue="optionId" placeholder="Select" [style]="{ width: '100%' }">
                 </p-dropdown>
             </ng-container>
             <ng-template #StrategyToManageHygiene>

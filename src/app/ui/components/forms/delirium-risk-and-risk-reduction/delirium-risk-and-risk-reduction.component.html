@@ -4,25 +4,25 @@
             <div class="d-flex">
                 <div class="col-md-4">
                     <label class="form-label"><b> Started by (Name) :</b>
-                    </label>
+                        {{preSelectedFormData.StartedBy}}</label>
                 </div>
                 <div class="col-md-4 ">
-                    <label class="form-label"><b>Designation :</b> </label>
+                    <label class="form-label"><b>Designation :</b> {{preSelectedFormData.StartedByDesignation}}</label>
                 </div>
                 <div class="col-md-4">
-                    <label class="form-label"> <b>Date/Time : </b></label>
+                    <label class="form-label"> <b>Date/Time : </b>{{preSelectedFormData.StartedOn | date : customDateFormat.DEF_DATE_TIME}}</label>
                 </div>
             </div>
             <div class="d-flex">
                 <div class="col-md-4">
                     <label class="form-label">
-                        <b>Last entered by (Name) :</b></label>
+                        <b>Last entered by (Name) :</b>{{preSelectedFormData.ModifiedBy}}</label>
                 </div>
                 <div class="col-md-4">
-                    <label class="form-label"> <b>Designation :</b></label>
+                    <label class="form-label"> <b>Designation :</b>{{preSelectedFormData.ModifiedByDesignation}}</label>
                 </div>
                 <div class="col-md-4">
-                    <label class="form-label"> <b>Date/Time :</b> </label>
+                    <label class="form-label"> <b>Date/Time :</b> {{preSelectedFormData.ModifiedOn | date: customDateFormat.DEF_DATE_TIME}}</label>
                 </div>
             </div>
         </div>
@@ -31,10 +31,15 @@
                 <p>Is the person at risk of Delirium</p>
             </div>
         </div>
-        <div class="col-md-7 form-text mt-4">
-            <p-dropdown placeholder="Select" [style]="{ width: '100%' }">
-            </p-dropdown>
-            <p class="mb-4">Chose all that are applicable to the person</p>
+        <div class="col-md-7 mt-4">
+            <ng-container *ngIf="this.isEditable; else DeliriumRiskCheck">
+                <p-dropdown [required]="true" [options]="lstDeliriumRiskCheck"   optionLabel="optionName" [(ngModel)]="DeliriumRiskFormsData.DeliriumRiskCheck" name="DeliriumRiskFormsData.DeliriumRiskCheck" optionValue="optionId" placeholder="Select" [style]="{ width: '100%' }">
+                </p-dropdown>
+                <p class="mb-4">Chose all that are applicable to the person</p>
+            </ng-container>
+            <ng-template #DeliriumRiskCheck>
+                <label>{{DeliriumRiskFormsData.DeliriumRiskCheckName}}</label>
+            </ng-template>
         </div>
         <div class="col-md-1 form-icon mt-4 mb-4">
             <i class="fa-solid fa-info"></i>
@@ -47,8 +52,13 @@
             </div>
         </div>
         <div class="col-md-7 ">
-            <p-dropdown placeholder="Select" [style]="{ width: '100%' }">
-            </p-dropdown>
+            <ng-container *ngIf="this.isEditable; else DisorientationPrevention">
+                <p-dropdown [required]="true" [options]="lstDisorientationPrevention"   optionLabel="optionName" [(ngModel)]="DeliriumRiskFormsData.DisorientationPrevention" name="DeliriumRiskFormsData.DisorientationPrevention" optionValue="optionId" placeholder="Select" [style]="{ width: '100%' }">
+                </p-dropdown>
+            </ng-container>
+            <ng-template #DisorientationPrevention>
+                <label>{{DeliriumRiskFormsData.DisorientationPreventionName}}</label>
+            </ng-template>
         </div>
         <div class="col-md-1 form-icon mb-4">
             <i class="fa-solid fa-info"></i>
@@ -60,9 +70,14 @@
                     the below statements</p>
             </div>
         </div>
-        <div class="col-md-7 form-text">
-            <p-dropdown placeholder="Select" [style]="{ width: '100%' }">
-            </p-dropdown>
+        <div class="col-md-7">
+            <ng-container *ngIf="this.isEditable; else DeliriumDueToHydrationPrevention">
+                <p-dropdown [required]="true" [options]="lstDeliriumDueToHydrationPrevention"   optionLabel="optionName" [(ngModel)]="DeliriumRiskFormsData.DeliriumDueToHydrationPrevention" name="DeliriumRiskFormsData.DeliriumDueToHydrationPrevention" optionValue="optionId" placeholder="Select" [style]="{ width: '100%' }">
+                </p-dropdown>
+            </ng-container>
+            <ng-template #DeliriumDueToHydrationPrevention>
+                <label>{{DeliriumRiskFormsData.DeliriumDueToHydrationPreventionName}}</label>
+            </ng-template>
         </div>
         <div class="col-md-1 form-icon mb-4">
             <i class="fa-solid fa-info"></i>
@@ -73,9 +88,14 @@
                     mobility select all the applicable statement's below</p>
             </div>
         </div>
-        <div class="col-md-7 form-text">
-            <p-dropdown placeholder="Select" [style]="{ width: '100%' }">
-            </p-dropdown>
+        <div class="col-md-7">
+            <ng-container *ngIf="this.isEditable; else DeliriumDueToSurgeryPrevention">
+                <p-dropdown [required]="true" [options]="lstDeliriumDueToSurgeryPrevention"   optionLabel="optionName" [(ngModel)]="DeliriumRiskFormsData.DeliriumDueToSurgeryPrevention" name="DeliriumRiskFormsData.DeliriumDueToSurgeryPrevention" optionValue="optionId" placeholder="Select" [style]="{ width: '100%' }">
+                </p-dropdown>
+            </ng-container>
+            <ng-template #DeliriumDueToSurgeryPrevention>
+                <label>{{DeliriumRiskFormsData.DeliriumDueToSurgeryPreventionName}}</label>
+            </ng-template>
         </div>
         <div class="col-md-1 mb-4 form-icon">
             <i class="fa-solid fa-info"></i>
@@ -86,9 +106,14 @@
                     below to reduce that risk</p>
             </div>
         </div>
-        <div class="col-md-7 form-text">
-            <p-dropdown placeholder="Select" [style]="{ width: '100%' }">
-            </p-dropdown>
+        <div class="col-md-7">
+            <ng-container *ngIf="this.isEditable; else DeliriumDueToInfectionPrevention">
+                <p-dropdown [required]="true" [options]="lstDeliriumDueToInfectionPrevention"   optionLabel="optionName" [(ngModel)]="DeliriumRiskFormsData.DeliriumDueToInfectionPrevention" name="DeliriumRiskFormsData.DeliriumDueToInfectionPrevention" optionValue="optionId" placeholder="Select" [style]="{ width: '100%' }">
+                </p-dropdown>
+            </ng-container>
+            <ng-template #DeliriumDueToInfectionPrevention>
+                <label>{{DeliriumRiskFormsData.DeliriumDueToInfectionPreventionName}}</label>
+            </ng-template>
         </div>
         <div class="col-md-1 mb-4 form-icon">
             <i class="fa-solid fa-info"></i>
@@ -99,9 +124,14 @@
                     their delirium prevention plan</p>
             </div>
         </div>
-        <div class="col-md-7 form-text">
-            <p-dropdown placeholder="Select" [style]="{ width: '100%' }">
-            </p-dropdown>
+        <div class="col-md-7">
+            <ng-container *ngIf="this.isEditable; else DeliriumPreventionPlan">
+                <p-dropdown [required]="true" [options]="lstDeliriumPreventionPlan"   optionLabel="optionName" [(ngModel)]="DeliriumRiskFormsData.DeliriumPreventionPlan" name="DeliriumRiskFormsData.DeliriumPreventionPlan" optionValue="optionId" placeholder="Select" [style]="{ width: '100%' }">
+                </p-dropdown>
+            </ng-container>
+            <ng-template #DeliriumPreventionPlan>
+                <label>{{DeliriumRiskFormsData.DeliriumPreventionPlanName}}</label>
+            </ng-template>
         </div>
         <div class="col-md-1 mb-4 form-icon">
             <i class="fa-solid fa-info"></i>
@@ -112,9 +142,14 @@
                     delirium</p>
             </div>
         </div>
-        <div class="col-md-7 form-text">
-            <p-dropdown placeholder="Select" [style]="{ width: '100%' }">
-            </p-dropdown>
+        <div class="col-md-7">
+            <ng-container *ngIf="this.isEditable; else DeliriumDueToSensoryImpairmentPrevention">
+                <p-dropdown [required]="true" [options]="lstDeliriumDueToSensoryImpairmentPrevention"   optionLabel="optionName" [(ngModel)]="DeliriumRiskFormsData.DeliriumDueToSensoryImpairmentPrevention" name="DeliriumRiskFormsData.DeliriumDueToSensoryImpairmentPrevention" optionValue="optionId" placeholder="Select" [style]="{ width: '100%' }">
+                </p-dropdown>
+            </ng-container>
+            <ng-template #DeliriumDueToSensoryImpairmentPrevention>
+                <label>{{DeliriumRiskFormsData.DeliriumDueToSensoryImpairmentPreventionName}}</label>
+            </ng-template>
         </div>
         <div class="col-md-1 mb-4 form-icon">
             <i class="fa-solid fa-info"></i>
@@ -125,9 +160,14 @@
                     interventions to reduce risk</p>
             </div>
         </div>
-        <div class="col-md-7 form-text">
-            <p-dropdown placeholder="Select" [style]="{ width: '100%' }">
-            </p-dropdown>
+        <div class="col-md-7">
+            <ng-container *ngIf="this.isEditable; else DeliriumDueToSleepDisturbancePrevention">
+                <p-dropdown [required]="true" [options]="lstDeliriumDueToSleepDisturbancePrevention"   optionLabel="optionName" [(ngModel)]="DeliriumRiskFormsData.DeliriumDueToSleepDisturbancePrevention" name="DeliriumRiskFormsData.DeliriumDueToSleepDisturbancePrevention" optionValue="optionId" placeholder="Select" [style]="{ width: '100%' }">
+                </p-dropdown>
+            </ng-container>
+            <ng-template #DeliriumDueToSleepDisturbancePrevention>
+                <label>{{DeliriumRiskFormsData.DeliriumDueToSleepDisturbancePreventionName}}</label>
+            </ng-template>
         </div>
         <div class="col-md-1 mb-4 form-icon">
             <i class="fa-solid fa-info"></i>
@@ -135,13 +175,13 @@
         <div class="d-flex justify-content-end">
             <div>
                 <span class="p-ml-left mr-4">
-                    <button pButton title="New" label="Save as Unfinished"></button>
+                    <button pButton title="New" (click)="saveAsUnfinished()" label="Save as Unfinished"></button>
                     <span class="total-txt"></span>
                 </span>
             </div>
             <div>
                 <span class="p-ml-left mr-4">
-                    <button pButton title="New" label="Complete"></button>
+                    <button pButton title="New" (click)="Save()" label="Complete"></button>
                     <span class="total-txt"></span>
                 </span>
             </div>

@@ -181,24 +181,14 @@
     "
 ></app-care-hearing-assessment>
 
-
-<app-care-mental-health [preSelectedFormData]="selectedFormData" (EmitUpdateForm)="EmitUpdateForm($event)"
-*ngIf="ShowChildComponent==true && selectedFormMasterId==FormTypes.CareAssessmentMental"></app-care-mental-health>
-
-<app-body-mapping-record [preSelectedFormData]="selectedFormData"
-    (EmitUpdateForm)="EmitUpdateForm($event)" *ngIf=" ShowChildComponent == true
-    && selectedFormMasterId == FormTypes.BodyMappingRecord "
-    ></app-body-mapping-record
->
-
-<app-care-personal-emergency-evacuation-plan
+<app-care-mental-health
     [preSelectedFormData]="selectedFormData"
     (EmitUpdateForm)="EmitUpdateForm($event)"
     *ngIf="
         ShowChildComponent == true &&
-        selectedFormMasterId == FormTypes.CareAssessmentPersonal
+        selectedFormMasterId == FormTypes.CareAssessmentMental
     "
-></app-care-personal-emergency-evacuation-plan>
+></app-care-mental-health>
 
 <app-body-mapping-record
     [preSelectedFormData]="selectedFormData"
@@ -208,6 +198,15 @@
         selectedFormMasterId == FormTypes.BodyMappingRecord
     "
 ></app-body-mapping-record>
+
+<app-care-personal-emergency-evacuation-plan
+    [preSelectedFormData]="selectedFormData"
+    (EmitUpdateForm)="EmitUpdateForm($event)"
+    *ngIf="
+        ShowChildComponent == true &&
+        selectedFormMasterId == FormTypes.CareAssessmentPersonal
+    "
+></app-care-personal-emergency-evacuation-plan>
 
 <app-care-breathing-and-circulation-assessment
     [preSelectedFormData]="selectedFormData"
@@ -537,6 +536,15 @@
     "
 ></app-care-wishes-for-future>
 
+<app-care-sleep-and-resting-assessment
+    [preSelectedFormData]="selectedFormData"
+    (EmitUpdateForm)="EmitUpdateForm($event)"
+    *ngIf="
+        ShowChildComponent == true &&
+        selectedFormMasterId == FormTypes.CareAssessmentSleep
+    "
+></app-care-sleep-and-resting-assessment>
+
 <app-consent-form
     [preSelectedFormData]="selectedFormData"
     (EmitUpdateForm)="EmitUpdateForm($event)"
@@ -582,8 +590,62 @@
     "
 ></app-risk-tool-for-use-of-wheelchair>
 
-
-<app-gp-doctor-visit-communication-record [preSelectedFormData]="selectedFormData"
+<app-gp-doctor-visit-communication-record
+    [preSelectedFormData]="selectedFormData"
     (EmitUpdateForm)="EmitUpdateForm($event)"
-    *ngIf="ShowChildComponent == true && selectedFormMasterId == FormTypes.GPDoctorVisitCommunicationRecord">
+    *ngIf="
+        ShowChildComponent == true &&
+        selectedFormMasterId == FormTypes.GPDoctorVisitCommunicationRecord
+    "
+>
 </app-gp-doctor-visit-communication-record>
+
+<app-risk-physical-dependency-assessment
+    [preSelectedFormData]="selectedFormData"
+    (EmitUpdateForm)="EmitUpdateForm($event)"
+    *ngIf="
+        ShowChildComponent == true &&
+        selectedFormMasterId == FormTypes.RiskAssessmentPhysical
+    "
+>
+</app-risk-physical-dependency-assessment>
+
+<app-risk-waterlow-pressure-ulcer
+    [preSelectedFormData]="selectedFormData"
+    (EmitUpdateForm)="EmitUpdateForm($event)"
+    *ngIf="
+        ShowChildComponent == true &&
+        selectedFormMasterId == FormTypes.RiskAssessmentWaterlow
+    "
+>
+</app-risk-waterlow-pressure-ulcer>
+
+<app-delirium-risk-and-risk-reduction
+    [preSelectedFormData]="selectedFormData"
+    (EmitUpdateForm)="EmitUpdateForm($event)"
+    *ngIf="
+        ShowChildComponent == true &&
+        selectedFormMasterId == FormTypes.Deliriumrisk
+    "
+>
+</app-delirium-risk-and-risk-reduction>
+
+<app-risk-on-the-move
+    [preSelectedFormData]="selectedFormData"
+    (EmitUpdateForm)="EmitUpdateForm($event)"
+    *ngIf="
+        ShowChildComponent == true &&
+        selectedFormMasterId == FormTypes.RiskAssessmentOntheMove
+    "
+>
+</app-risk-on-the-move>
+
+<app-care-speech-language-ssessment
+    [preSelectedFormData]="selectedFormData"
+    (EmitUpdateForm)="EmitUpdateForm($event)"
+    *ngIf="
+        ShowChildComponent == true &&
+        selectedFormMasterId == FormTypes.CareAssessmentSpeech
+    "
+>
+</app-care-speech-language-ssessment>
