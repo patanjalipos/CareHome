@@ -20,7 +20,7 @@ import { CheckboxModule } from 'primeng/checkbox';
     CalendarModule,
     DropdownModule,
     FormsModule,
-    CheckboxModule
+    CheckboxModule,
     TriStateCheckboxModule,
   ],
   exports:[CareSleepAndRestingAssessmentComponent]
