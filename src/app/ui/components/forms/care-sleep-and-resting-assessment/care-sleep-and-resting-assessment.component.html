@@ -302,9 +302,10 @@
                 <p>Action to manage additional identified risk/s</p>
             </div>
         </div>
-        <div class="col-md-7">
+
+        <div class="col-md-7 form-text">
             <ng-container *ngIf="this.isEditable; else ActionToManageAdditionalRisk">
-                <input pInputText type="text" [(ngModel)]="CareAssessmentSleepAndRestFormsData.ActionToManageAdditionalRisk" required name="CareAssessmentSleepAndRestFormsData.ActionToManageAdditionalRisk" class="form-control mr-4"
+                <input pInputText type="text" [(ngModel)]="CareAssessmentSleepAndRestFormsData.ActionToManageAdditionalRisk" required name="CareAssessmentSleepAndRestFormsData.ActionToManageAdditionalRisk" class="form-control "
                     [style]="{ width: '35%' }">
                 </ng-container>
                 <ng-template #ActionToManageAdditionalRisk>
@@ -319,7 +320,8 @@
                 <p>MONTHLY REVIEW (or before)</p>
             </div>
         </div>
-        <div class="col-md-7">
+
+        <div class="col-md-7 form-text">
             <ng-container *ngIf="this.isEditable; else MonthlyReview">
                 <p-checkbox [(ngModel)]="CareAssessmentSleepAndRestFormsData.MonthlyReview" [binary]="true" inputId="binary"></p-checkbox>
                 <p class="mb-4">This form should be reviewed EVERY MONTH or before if there are significant changes. Enter review date
@@ -328,7 +330,7 @@
             <ng-template #MonthlyReview>
                 <label>{{CareAssessmentSleepAndRestFormsData.MonthlyReview==true?'yes':'no'}}</label>
             </ng-template>
-            
+
         </div>
         <div class="col-md-4">
             <div class="labelcontent">

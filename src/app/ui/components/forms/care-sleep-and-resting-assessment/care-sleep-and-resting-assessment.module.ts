@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
 import { CareSleepAndRestingAssessmentRoutingModule } from './care-sleep-and-resting-assessment-routing.module';
 import { CareSleepAndRestingAssessmentComponent } from './care-sleep-and-resting-assessment.component';
 import { ButtonModule } from 'primeng/button';
@@ -21,8 +20,8 @@ import { CheckboxModule } from 'primeng/checkbox';
     CalendarModule,
     DropdownModule,
     FormsModule,
-    TriStateCheckboxModule,
     CheckboxModule
+    TriStateCheckboxModule,
   ],
   exports:[CareSleepAndRestingAssessmentComponent]
 })

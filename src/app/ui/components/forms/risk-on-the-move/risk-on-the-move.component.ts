@@ -13,6 +13,7 @@ import { DatePipe } from '@angular/common';
   templateUrl: './risk-on-the-move.component.html',
   styleUrls: ['./risk-on-the-move.component.scss']
 })
+
 export class RiskOnTheMoveComponent extends AppComponentBase implements OnInit {
 
   @Input() preSelectedFormData: any=<any>{};
