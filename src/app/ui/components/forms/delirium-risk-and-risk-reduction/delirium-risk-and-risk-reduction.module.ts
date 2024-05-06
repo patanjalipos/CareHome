@@ -21,6 +21,7 @@ import { TriStateCheckboxModule } from 'primeng/tristatecheckbox';
     DropdownModule,
     FormsModule,
     TriStateCheckboxModule
-  ]
+  ],
+  exports:[DeliriumRiskAndRiskReductionComponent]
 })
 export class DeliriumRiskAndRiskReductionModule { }

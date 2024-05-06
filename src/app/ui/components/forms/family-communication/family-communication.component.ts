@@ -1,8 +1,9 @@
 import { DatePipe } from '@angular/common';
 import { Component, EventEmitter, Input, OnInit, Output, SimpleChanges } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { Observable, catchError, forkJoin, map, of } from 'rxjs';
 import { AppComponentBase } from 'src/app/app-component-base';
-import { ConstantsService, CustomDateFormat } from 'src/app/ui/service/constants.service';
+import { ConstantsService, CustomDateFormat, FormTypes } from 'src/app/ui/service/constants.service';
 import { DataService } from 'src/app/ui/service/data-service.service';
 import { MasterService } from 'src/app/ui/service/master.service';
 import { UtilityService } from 'src/app/utility/utility.service';
@@ -59,8 +60,19 @@ export class FamilyCommunicationComponent extends AppComponentBase implements On
      }
 
   ngOnInit(): void {
-    this.GetFamilyRelayMaster();
-    this.GetFamilyCommReasonMaster();
+
+    const collectionNames = [
+        'CommRelay',
+        'CommReason'
+    ];
+
+    forkJoin(collectionNames.map((collectionName) => this.getDropdownMasterLists(FormTypes.FamilyCommunication,collectionName,1))).subscribe((responses: any[]) => {
+        this.lstFamilyComRelayMaster = responses[0];
+        this.lstFamilyComReasonMaster = responses[1];
+        
+    });
+    // this.GetFamilyRelayMaster();
+    // this.GetFamilyCommReasonMaster();
 
     this.isEditable = this.preSelectedFormData.isEditable;
 
@@ -89,56 +101,76 @@ export class FamilyCommunicationComponent extends AppComponentBase implements On
       this.ResetModel();
   }
   }
+
+  getDropdownMasterLists(formMasterId: string, dropdownName: string,status:number): Observable<any> {
+    this._UtilityService.showSpinner();
+    return this._MasterServices.GetDropDownMasterList(formMasterId,dropdownName, status).pipe(
+        map((response) => {
+            this._UtilityService.hideSpinner();
+            if (response.actionResult.success) {
+                return JSON.parse(response.actionResult.result);
+            } else {
+                return [];
+            }
+        }),
+        catchError((error) => {
+            this._UtilityService.hideSpinner();
+            this._UtilityService.showErrorAlert(error.message);
+            alert(error.message);
+            return of([]); // Returning empty array in case of error
+        })
+    );
+}
   ResetModel() {
     this.preSelectedFormData=<any>{};
     this.isEditable = true;
     this.FamilyCommFormsData = <any>{};
     this.StatementType = 'Insert';
 }
-  GetFamilyRelayMaster() {
-    this._UtilityService.showSpinner();
-    this.unsubscribe.add = this._MasterServices
-        .GetFamilyRelayMaster(0)
-        .subscribe({
-            next: (data) => {
-                this._UtilityService.hideSpinner();
-                if (data.actionResult.success == true) {
-                    var tdata = JSON.parse(data.actionResult.result);
-                    tdata = tdata ? tdata : {};
-                    this.lstFamilyComRelayMaster = tdata;
-                    //console.log(this.PreAdmissionAssessmentFormsData);
-                } else {
-                    this.lstFamilyComRelayMaster = [];
-                }
-            },
-            error: (e) => {
-                this._UtilityService.hideSpinner();
-                this._UtilityService.showErrorAlert(e.message);
-            },
-        });
-  }
-  GetFamilyCommReasonMaster() {
-    this._UtilityService.showSpinner();
-    this.unsubscribe.add = this._MasterServices
-        .GetFamilyCommReasonMaster(0)
-        .subscribe({
-            next: (data) => {
-                this._UtilityService.hideSpinner();
-                if (data.actionResult.success == true) {
-                    var tdata = JSON.parse(data.actionResult.result);
-                    tdata = tdata ? tdata : {};
-                    this.lstFamilyComReasonMaster = tdata;
-                    //console.log(this.PreAdmissionAssessmentFormsData);
-                } else {
-                    this.lstFamilyComReasonMaster = [];
-                }
-            },
-            error: (e) => {
-                this._UtilityService.hideSpinner();
-                this._UtilityService.showErrorAlert(e.message);
-            },
-        });
-  }
+//   GetFamilyRelayMaster() {
+//     this._UtilityService.showSpinner();
+//     this.unsubscribe.add = this._MasterServices
+//         .GetFamilyRelayMaster(0)
+//         .subscribe({
+//             next: (data) => {
+//                 this._UtilityService.hideSpinner();
+//                 if (data.actionResult.success == true) {
+//                     var tdata = JSON.parse(data.actionResult.result);
+//                     tdata = tdata ? tdata : {};
+//                     this.lstFamilyComRelayMaster = tdata;
+//                     //console.log(this.PreAdmissionAssessmentFormsData);
+//                 } else {
+//                     this.lstFamilyComRelayMaster = [];
+//                 }
+//             },
+//             error: (e) => {
+//                 this._UtilityService.hideSpinner();
+//                 this._UtilityService.showErrorAlert(e.message);
+//             },
+//         });
+//   }
+//   GetFamilyCommReasonMaster() {
+//     this._UtilityService.showSpinner();
+//     this.unsubscribe.add = this._MasterServices
+//         .GetFamilyCommReasonMaster(0)
+//         .subscribe({
+//             next: (data) => {
+//                 this._UtilityService.hideSpinner();
+//                 if (data.actionResult.success == true) {
+//                     var tdata = JSON.parse(data.actionResult.result);
+//                     tdata = tdata ? tdata : {};
+//                     this.lstFamilyComReasonMaster = tdata;
+//                     //console.log(this.PreAdmissionAssessmentFormsData);
+//                 } else {
+//                     this.lstFamilyComReasonMaster = [];
+//                 }
+//             },
+//             error: (e) => {
+//                 this._UtilityService.hideSpinner();
+//                 this._UtilityService.showErrorAlert(e.message);
+//             },
+//         });
+//   }
   GetFamilyCommFormByid(formId: string) {
     this._UtilityService.showSpinner();
     this.unsubscribe.add = this._MasterServices
