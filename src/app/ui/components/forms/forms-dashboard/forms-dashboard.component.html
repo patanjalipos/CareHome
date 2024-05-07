@@ -649,3 +649,10 @@
     "
 >
 </app-care-speech-language-ssessment>
+
+<app-oral-health-risk-and-oral-plan [preSelectedFormData]="selectedFormData"
+(EmitUpdateForm)="EmitUpdateForm($event)"
+*ngIf="
+    ShowChildComponent == true &&
+    selectedFormMasterId == FormTypes.OralHealthRiskAssessment
+"></app-oral-health-risk-and-oral-plan>
