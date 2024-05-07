@@ -649,3 +649,12 @@
     "
 >
 </app-care-speech-language-ssessment>
+
+<app-care-vitamin-d-supplementation
+    [preSelectedFormData]="selectedFormData"
+    (EmitUpdateForm)="EmitUpdateForm($event)"
+    *ngIf="
+        ShowChildComponent == true &&
+        selectedFormMasterId == FormTypes.CareAssessmentforVitaminD
+    "
+></app-care-vitamin-d-supplementation>
