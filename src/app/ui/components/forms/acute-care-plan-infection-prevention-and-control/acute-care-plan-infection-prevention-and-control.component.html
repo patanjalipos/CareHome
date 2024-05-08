@@ -49,7 +49,7 @@
                 <p>Acute care plan or nature of infection</p>
             </div>
         </div>
-        <div class="col-md-7 mt-4 mb-4">
+        <div class="col-md-7 mt-4">
             <ng-container *ngIf="isEditable==true">
                 <p-dropdown [required]="true" placeholder="Select" [(ngModel)]="AcuteCarePlanInfectionFormsData.NatureInfc" name="ddlNatureInfc"
                     [style]="{ width: '100%' }" [options]="lstAcuteInfection" optionLabel="NatureName"
@@ -69,10 +69,10 @@
                 </p>
             </div>
         </div>
-        <div class="col-md-7 mb-4">
+        <div class="col-md-7 form-text">
             <input *ngIf="isEditable==true" pInputText type="text" required name="txtSpecimensObtained" [(ngModel)]="AcuteCarePlanInfectionFormsData.SpecimensObtained" class="form-control" />
             <p *ngIf="isEditable!=true">{{AcuteCarePlanInfectionFormsData.SpecimensObtained}}</p>
-            <p>Include date dd/mm/yyyy
+            <p class="mb-4">Include date dd/mm/yyyy
             </p>
         </div>
         <div class="col-md-1 form-icon">
@@ -84,7 +84,7 @@
                 </p>
             </div>
         </div>
-        <div class="col-md-7 mb-4">
+        <div class="col-md-7 form-text">
             <input *ngIf="isEditable==true" pInputText type="text" required name="txtPrescribedTreatment" [(ngModel)]="AcuteCarePlanInfectionFormsData.PrescribedTreatment" class="form-control" />
             <p *ngIf="isEditable!=true">{{AcuteCarePlanInfectionFormsData.PrescribedTreatment}}</p>
         </div>
@@ -97,7 +97,7 @@
                 </p>
             </div>
         </div>
-        <div class="col-md-7 mb-4">
+        <div class="col-md-7 form-text">
             <ng-container *ngIf="isEditable==true">
                 <p-dropdown placeholder="Select" [(ngModel)]="AcuteCarePlanInfectionFormsData.Strategies" name="ddlStrategies"
                     [style]="{ width: '100%' }" [options]="lstActuteStratagy" optionLabel="StrategiesName"
@@ -117,10 +117,10 @@
                 </p>
             </div>
         </div>
-        <div class="col-md-7 mb-4">
+        <div class="col-md-7 form-text">
             <input *ngIf="isEditable==true" pInputText type="text" required name="txtOtherRisk" [(ngModel)]="AcuteCarePlanInfectionFormsData.OtherRisk" class="form-control" />
             <p *ngIf="isEditable!=true">{{AcuteCarePlanInfectionFormsData.OtherRisk}}</p>
-            <p>Specify any other risks that have not been identified above
+            <p class="mb-4">Specify any other risks that have not been identified above
             </p>
         </div>
         <div class="col-md-1 form-icon">
@@ -132,7 +132,7 @@
                 </p>
             </div>
         </div>
-        <div class="col-md-7 mb-4">
+        <div class="col-md-7 form-text">
             <input *ngIf="isEditable==true" pInputText type="text" required name="txtAddRisk" [(ngModel)]="AcuteCarePlanInfectionFormsData.AddRisk" class="form-control" />
             <p *ngIf="isEditable!=true">{{AcuteCarePlanInfectionFormsData.AddRisk}}</p>
         </div>
@@ -145,7 +145,7 @@
                 </p>
             </div>
         </div>
-        <div class="col-md-7 mb-4">
+        <div class="col-md-7 form-text">
             <ng-container *ngIf="isEditable==true">
                 <p-dropdown placeholder="Select" [(ngModel)]="AcuteCarePlanInfectionFormsData.OutCome" name="ddlOutCome"
                     [style]="{ width: '100%' }" [options]="lstActuteOutCome" optionLabel="OutComeName"
@@ -155,7 +155,7 @@
             <ng-container *ngIf="isEditable!=true">
                 <p>{{AcuteCarePlanInfectionFormsData.OutComeName}}</p>
             </ng-container>
-            <p>What signs are we looking for, to identify that treatment has been successful?
+            <p class="mb-4">What signs are we looking for, to identify that treatment has been successful?
             </p>
         </div>
         <div class="col-md-1 form-icon">
