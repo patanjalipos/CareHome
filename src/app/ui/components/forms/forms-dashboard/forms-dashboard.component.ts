@@ -59,8 +59,7 @@ import { SepsisScreeningToolComponent } from '../sepsis-screening-tool/sepsis-sc
 })
 export class FormsDashboardComponent
     extends AppComponentBase
-    implements OnInit
-{
+    implements OnInit {
     @ViewChild('formContainer', { read: ViewContainerRef })
     formContainer: ViewContainerRef;
     componentRef: ComponentRef<any>;
