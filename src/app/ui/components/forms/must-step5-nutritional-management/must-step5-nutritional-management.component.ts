@@ -93,6 +93,8 @@ export class MustStep5NutritionalManagementComponent extends AppComponentBase im
   }
   }
 
+  SaveAsPDF() {}
+
   GetNutritionalManagementDetails(formId: string) {
     this._UtilityService.showSpinner();
     this.unsubscribe.add = this._Nutritional
