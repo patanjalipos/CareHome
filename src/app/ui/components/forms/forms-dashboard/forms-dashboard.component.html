@@ -652,6 +652,23 @@
 >
 </app-care-speech-language-ssessment>
 
+
+<app-oral-health-risk-and-oral-plan [preSelectedFormData]="selectedFormData"
+(EmitUpdateForm)="EmitUpdateForm($event)"
+*ngIf="
+    ShowChildComponent == true &&
+    selectedFormMasterId == FormTypes.OralHealthRiskAssessment
+"></app-oral-health-risk-and-oral-plan>
+
+<app-must-step5-nutritional-management 
+    [preSelectedFormData]="selectedFormData"
+    (EmitUpdateForm)="EmitUpdateForm($event)"
+    *ngIf="
+        ShowChildComponent == true &&
+        selectedFormMasterId == FormTypes.MUSTStep5NutritionalManagement
+    "
+></app-must-step5-nutritional-management>
+
 <app-care-vitamin-d-supplementation
     [preSelectedFormData]="selectedFormData"
     (EmitUpdateForm)="EmitUpdateForm($event)"
