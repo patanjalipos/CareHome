@@ -686,3 +686,10 @@
         selectedFormMasterId == FormTypes.ConnectingandCommunicating
     "
 ></app-connecting-and-communicating>
+
+<app-professional-visit-communication-record [preSelectedFormData]="selectedFormData"
+(EmitUpdateForm)="EmitUpdateForm($event)"
+*ngIf="
+    ShowChildComponent == true &&
+    selectedFormMasterId == FormTypes.ProfessionalVisitCommunicationRecord
+"></app-professional-visit-communication-record>
