@@ -4,25 +4,25 @@
             <div class="d-flex">
                 <div class="col-md-4">
                     <label class="form-label"><b> Started by (Name) :</b>
-                    </label>
+                        {{preSelectedFormData.StartedBy}}</label>
                 </div>
                 <div class="col-md-4">
-                    <label class="form-label"><b>Designation :</b> </label>
+                    <label class="form-label"><b>Designation :</b>{{preSelectedFormData.StartedByDesignation}} </label>
                 </div>
                 <div class="col-md-4">
-                    <label class="form-label"> <b>Date/Time : </b></label>
+                    <label class="form-label"> <b>Date/Time : </b>{{preSelectedFormData.StartedOn | date : customDateFormat.DEF_DATE_TIME}}</label>
                 </div>
             </div>
             <div class="d-flex">
                 <div class="col-md-4">
                     <label class="form-label">
-                        <b>Last entered by (Name) :</b></label>
+                        <b>Last entered by (Name) :</b>{{preSelectedFormData.ModifiedBy}}</label>
                 </div>
                 <div class="col-md-4">
-                    <label class="form-label"> <b>Designation :</b></label>
+                    <label class="form-label"> <b>Designation :</b>{{preSelectedFormData.ModifiedByDesignation}}</label>
                 </div>
                 <div class="col-md-4">
-                    <label class="form-label"> <b>Date/Time :</b> </label>
+                    <label class="form-label"> <b>Date/Time :</b> {{preSelectedFormData.ModifiedOn | date: customDateFormat.DEF_DATE_TIME}}</label>
                 </div>
             </div>
         </div>
@@ -31,9 +31,14 @@
                 <p>What support does the person need to attend to their oral care</p>
             </div>
         </div>
-        <div class="col-md-7 mt-4 form-text">
-            <p-dropdown placeholder="Select" [style]="{ width: '100%' }">
-            </p-dropdown>
+        <div class="col-md-7 mt-4">
+            <ng-container *ngIf="this.isEditable; else OralCareSupport">
+                <p-dropdown [required]="true" [options]="lstOralCareSupport"   optionLabel="optionName" [(ngModel)]="OralHealthRiskFormsData.OralCareSupport" name="OralHealthRiskFormsData.OralCareSupport" optionValue="optionId" placeholder="Select" [style]="{ width: '100%' }">
+                </p-dropdown>
+            </ng-container>
+            <ng-template #OralCareSupport>
+                <label>{{OralHealthRiskFormsData.OralCareSupportName}}</label>
+            </ng-template>
         </div>
         <div class="col-md-1 mt-4 form-icon ">
             <i class="fa-solid fa-info"></i>
@@ -43,9 +48,14 @@
                 <p>Does the resident have any of their own natural teeth?</p>
             </div>
         </div>
-        <div class="col-md-7 form-text">
-            <p-dropdown placeholder="Select" [style]="{ width: '100%' }">
-            </p-dropdown>
+        <div class="col-md-7">
+            <ng-container *ngIf="this.isEditable; else TeethCheck">
+                <p-dropdown [required]="true" [options]="lstTeethCheck"   optionLabel="optionName" [(ngModel)]="OralHealthRiskFormsData.TeethCheck" name="OralHealthRiskFormsData.TeethCheck" optionValue="optionId" placeholder="Select" [style]="{ width: '100%' }">
+                </p-dropdown>
+            </ng-container>
+            <ng-template #TeethCheck>
+                <label>{{OralHealthRiskFormsData.TeethCheckName}}</label>
+            </ng-template>
         </div>
         <div class="col-md-1 form-icon ">
             <i class="fa-solid fa-info"></i>
@@ -56,9 +66,14 @@
                 <p>Does the person wear dentures?</p>
             </div>
         </div>
-        <div class="col-md-7 form-text">
-            <p-dropdown placeholder="Select" [style]="{ width: '100%' }">
-            </p-dropdown>
+        <div class="col-md-7">
+            <ng-container *ngIf="this.isEditable; else DenturesCheck">
+                <p-dropdown [required]="true" [options]="lstDenturesCheck"   optionLabel="optionName" [(ngModel)]="OralHealthRiskFormsData.DenturesCheck" name="OralHealthRiskFormsData.DenturesCheck" optionValue="optionId" placeholder="Select" [style]="{ width: '100%' }">
+                </p-dropdown>
+            </ng-container>
+            <ng-template #DenturesCheck>
+                <label>{{OralHealthRiskFormsData.DenturesCheckName}}</label>
+            </ng-template>
         </div>
         <div class="col-md-1 form-icon ">
             <i class="fa-solid fa-info"></i>
@@ -68,9 +83,14 @@
                 <p>Are the dentures labelled</p>
             </div>
         </div>
-        <div class="col-md-7 form-text">
-            <p-dropdown placeholder="Select" [style]="{ width: '100%' }">
-            </p-dropdown>
+        <div class="col-md-7">
+            <ng-container *ngIf="this.isEditable; else DenturesLabelCheck">
+                <p-dropdown [required]="true" [options]="lstDenturesLabelCheck"   optionLabel="optionName" [(ngModel)]="OralHealthRiskFormsData.DenturesLabelCheck" name="OralHealthRiskFormsData.DenturesLabelCheck" optionValue="optionId" placeholder="Select" [style]="{ width: '100%' }">
+                </p-dropdown>
+            </ng-container>
+            <ng-template #DenturesLabelCheck>
+                <label>{{OralHealthRiskFormsData.DenturesLabelCheckName}}</label>
+            </ng-template>
         </div>
         <div class="col-md-1 form-icon ">
             <i class="fa-solid fa-info"></i>
@@ -80,9 +100,14 @@
                 <p>Does the person needs help to clean their oral care teeth/dentures</p>
             </div>
         </div>
-        <div class="col-md-7 form-text">
-            <p-dropdown placeholder="Select" [style]="{ width: '100%' }">
-            </p-dropdown>
+        <div class="col-md-7">
+            <ng-container *ngIf="this.isEditable; else TeethHelp">
+                <p-dropdown [required]="true" [options]="lstTeethHelp"   optionLabel="optionName" [(ngModel)]="OralHealthRiskFormsData.TeethHelp" name="OralHealthRiskFormsData.TeethHelp" optionValue="optionId" placeholder="Select" [style]="{ width: '100%' }">
+                </p-dropdown>
+            </ng-container>
+            <ng-template #TeethHelp>
+                <label>{{OralHealthRiskFormsData.TeethHelpName}}</label>
+            </ng-template>
         </div>
         <div class="col-md-1 form-icon ">
             <i class="fa-solid fa-info"></i>
@@ -92,9 +117,14 @@
                 <p>Does the resident experience any of the following?</p>
             </div>
         </div>
-        <div class="col-md-7 form-text">
-            <p-dropdown placeholder="Select" [style]="{ width: '100%' }">
-            </p-dropdown>
+        <div class="col-md-7">
+            <ng-container *ngIf="this.isEditable; else HealthCheck">
+                <p-dropdown [required]="true" [options]="lstHealthCheck"   optionLabel="optionName" [(ngModel)]="OralHealthRiskFormsData.HealthCheck" name="OralHealthRiskFormsData.HealthCheck" optionValue="optionId" placeholder="Select" [style]="{ width: '100%' }">
+                </p-dropdown>
+            </ng-container>
+            <ng-template #HealthCheck>
+                <label>{{OralHealthRiskFormsData.HealthCheckName}}</label>
+            </ng-template>
         </div>
         <div class="col-md-1 form-icon ">
             <i class="fa-solid fa-info"></i>
@@ -104,9 +134,14 @@
                 <p>what is the date of the last known dental treatment?</p>
             </div>
         </div>
-        <div class="col-md-7 form-text">
-            <p-dropdown placeholder="Select" [style]="{ width: '100%' }">
-            </p-dropdown>
+        <div class="col-md-7">
+            <ng-container *ngIf="this.isEditable; else DentalTreatment">
+                <p-dropdown [required]="true" [options]="lstDentalTreatment"   optionLabel="optionName" [(ngModel)]="OralHealthRiskFormsData.DentalTreatment" name="OralHealthRiskFormsData.DentalTreatment" optionValue="optionId" placeholder="Select" [style]="{ width: '100%' }">
+                </p-dropdown>
+            </ng-container>
+            <ng-template #DentalTreatment>
+                <label>{{OralHealthRiskFormsData.DentalTreatmentName}}</label>
+            </ng-template>
         </div>
         <div class="col-md-1 form-icon ">
             <i class="fa-solid fa-info"></i>
@@ -116,9 +151,14 @@
                 <p>Is the resident taking medication?</p>
             </div>
         </div>
-        <div class="col-md-7 form-text">
-            <p-dropdown placeholder="Select" [style]="{ width: '100%' }">
-            </p-dropdown>
+        <div class="col-md-7">
+            <ng-container *ngIf="this.isEditable; else MedicationCheck">
+                <p-dropdown [required]="true" [options]="lstMedicationCheck"   optionLabel="optionName" [(ngModel)]="OralHealthRiskFormsData.MedicationCheck" name="OralHealthRiskFormsData.MedicationCheck" optionValue="optionId" placeholder="Select" [style]="{ width: '100%' }">
+                </p-dropdown>
+            </ng-container>
+            <ng-template #MedicationCheck>
+                <label>{{OralHealthRiskFormsData.MedicationCheckName}}</label>
+            </ng-template>
         </div>
         <div class="col-md-1 form-icon ">
             <i class="fa-solid fa-info"></i>
@@ -128,9 +168,14 @@
                 <p>Does the resident experience a dry mouth</p>
             </div>
         </div>
-        <div class="col-md-7 form-text">
-            <p-dropdown placeholder="Select" [style]="{ width: '100%' }">
-            </p-dropdown>
+        <div class="col-md-7">
+            <ng-container *ngIf="this.isEditable; else DryMouthCheck">
+                <p-dropdown [required]="true" [options]="lstDryMouthCheck"   optionLabel="optionName" [(ngModel)]="OralHealthRiskFormsData.DryMouthCheck" name="OralHealthRiskFormsData.DryMouthCheck" optionValue="optionId" placeholder="Select" [style]="{ width: '100%' }">
+                </p-dropdown>
+            </ng-container>
+            <ng-template #DryMouthCheck>
+                <label>{{OralHealthRiskFormsData.DryMouthCheckName}}</label>
+            </ng-template>
         </div>
         <div class="col-md-1 form-icon ">
             <i class="fa-solid fa-info"></i>
@@ -140,9 +185,14 @@
                 <p>Actions to take if Resident does experience dry mouth</p>
             </div>
         </div>
-        <div class="col-md-7 form-text">
-            <p-dropdown placeholder="Select" [style]="{ width: '100%' }">
-            </p-dropdown>
+        <div class="col-md-7">
+            <ng-container *ngIf="this.isEditable; else DryMouthAction">
+                <p-dropdown [required]="true" [options]="lstDryMouthAction"   optionLabel="optionName" [(ngModel)]="OralHealthRiskFormsData.DryMouthAction" name="OralHealthRiskFormsData.DryMouthAction" optionValue="optionId" placeholder="Select" [style]="{ width: '100%' }">
+                </p-dropdown>
+            </ng-container>
+            <ng-template #DryMouthAction>
+                <label>{{OralHealthRiskFormsData.DryMouthActionName}}</label>
+            </ng-template>
         </div>
         <div class="col-md-1 form-icon ">
             <i class="fa-solid fa-info"></i>
@@ -152,10 +202,15 @@
                 <p>Does the resident smoke</p>
             </div>
         </div>
-        <div class="col-md-7 form-text">
-            <p-dropdown placeholder="Select" [style]="{ width: '100%' }">
-            </p-dropdown>
-            <p class="mb-4">Please note in the other box The resident smokes ....... a day.</p>
+        <div class="col-md-7">
+            <ng-container *ngIf="this.isEditable; else SmokeCheck">
+                <p-dropdown [required]="true" [options]="lstSmokeCheck"   optionLabel="optionName" [(ngModel)]="OralHealthRiskFormsData.SmokeCheck" name="OralHealthRiskFormsData.SmokeCheck" optionValue="optionId" placeholder="Select" [style]="{ width: '100%' }">
+                </p-dropdown>
+                <p class="mb-4">Please note in the other box The resident smokes ....... a day.</p>
+            </ng-container>
+            <ng-template #SmokeCheck>
+                <label>{{OralHealthRiskFormsData.SmokeCheckName}}</label>
+            </ng-template>
         </div>
         <div class="col-md-1 form-icon ">
             <i class="fa-solid fa-info"></i>
@@ -165,12 +220,18 @@
                 <p>If further investigation required, please refer to dentist.</p>
             </div>
         </div>
-        <div class="col-md-7 form-text">
-            <p-dropdown placeholder="Select" [style]="{ width: '100%' }">
-            </p-dropdown>
-            <p class="mb-4">Please note using the other box the date of referral to dentist, what the dentist advise was
-                and if
-                resident refused dental assessment/Treatment</p>
+        <div class="col-md-7">
+            <ng-container *ngIf="this.isEditable; else DentistReferCheck">
+                <p-dropdown [required]="true" [options]="lstDentistReferCheck"   optionLabel="optionName" [(ngModel)]="OralHealthRiskFormsData.DentistReferCheck" name="OralHealthRiskFormsData.DentistReferCheck" optionValue="optionId" placeholder="Select" [style]="{ width: '100%' }">
+                </p-dropdown>
+                <p class="mb-4">Please note using the other box the date of referral to dentist, what the dentist advise was
+                    and if
+                    resident refused dental assessment/Treatment</p>
+            </ng-container>
+            <ng-template #DentistReferCheck>
+                <label>{{OralHealthRiskFormsData.DentistReferCheckName}}</label>
+            </ng-template>
+            
         </div>
         <div class="col-md-1 form-icon ">
             <i class="fa-solid fa-info"></i>
@@ -182,8 +243,13 @@
             </div>
         </div>
         <div class="col-md-7 mb-4">
-            <p-dropdown placeholder="Select" [style]="{ width: '100%' }">
-            </p-dropdown>
+            <ng-container *ngIf="this.isEditable; else OralHygieneMeasures">
+                <p-dropdown [required]="true" [options]="lstOralHygieneMeasures"   optionLabel="optionName" [(ngModel)]="OralHealthRiskFormsData.OralHygieneMeasures" name="OralHealthRiskFormsData.OralHygieneMeasures" optionValue="optionId" placeholder="Select" [style]="{ width: '100%' }">
+                </p-dropdown>
+            </ng-container>
+            <ng-template #OralHygieneMeasures>
+                <label>{{OralHealthRiskFormsData.OralHygieneMeasuresName}}</label>
+            </ng-template>
         </div>
         <div class="col-md-1 form-icon ">
             <i class="fa-solid fa-info"></i>
@@ -194,8 +260,13 @@
             </div>
         </div>
         <div class="col-md-7 ">
-            <p-dropdown placeholder="Select" [style]="{ width: '100%' }">
-            </p-dropdown>
+            <ng-container *ngIf="this.isEditable; else OralCareOutcomes">
+                <p-dropdown [required]="true" [options]="lstOralCareOutcomes"   optionLabel="optionName" [(ngModel)]="OralHealthRiskFormsData.OralCareOutcomes" name="OralHealthRiskFormsData.OralCareOutcomes" optionValue="optionId" placeholder="Select" [style]="{ width: '100%' }">
+                </p-dropdown>
+            </ng-container>
+            <ng-template #OralCareOutcomes>
+                <label>{{OralHealthRiskFormsData.OralCareOutcomesName}}</label>
+            </ng-template>
         </div>
         <div class="col-md-1 form-icon ">
             <i class="fa-solid fa-info"></i>
@@ -203,13 +274,13 @@
         <div class="d-flex justify-content-end">
             <div>
                 <span class="p-ml-left mr-4">
-                    <button pButton title="New" label="Save as Unfinished"></button>
+                    <button pButton title="New" (click)="saveAsUnfinished()" label="Save as Unfinished"></button>
                     <span class="total-txt"></span>
                 </span>
             </div>
             <div>
                 <span class="p-ml-left mr-4">
-                    <button pButton title="New" label="Complete"></button>
+                    <button pButton title="New" (click)="Save()" label="Complete"></button>
                     <span class="total-txt"></span>
                 </span>
             </div>
