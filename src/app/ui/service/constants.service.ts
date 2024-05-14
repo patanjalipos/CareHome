@@ -108,7 +108,8 @@ export enum FormTypes {
     carewisheshforfuture = '6620a3c6eb74cdce58be9aba',
     carebehaviourassesment = '6620a3d3eb74cdce58be9abb',
     risktoolforuseof = '6620a3f4eb74cdce58be9abc',
-    positiveBehaviourSupport='661cb39ceb74cdce58be9aa6'
+    positiveBehaviourSupport='661cb39ceb74cdce58be9aa6',
+    smokingRiskAssessment="661e4bbeeb74cdce58be9ab0"
 
 }
 

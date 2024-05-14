@@ -37,9 +37,6 @@ export class CareWishesForFutureService {
     });
     let params = new HttpParams();
     var data = JSON.stringify(CareWishesForFutureFormData).toString();
-    console.log("last data");
-    console.log(data);
-
     return this._httpclient.post<any>(environment.BaseUriAdmin + 'api/Admin/InsertUpdateCareWishesForFuture', data, { headers: reqHeader, params: params }
     );
   }
