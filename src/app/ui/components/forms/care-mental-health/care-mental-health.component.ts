@@ -125,6 +125,8 @@ export class CareMentalHealthComponent extends AppComponentBase implements OnIni
   }
   }
 
+  SaveAsPDF() {}
+
   GetCareAssessmentMentalHealthDetails(formId: string) {
     this._UtilityService.showSpinner();
     this.unsubscribe.add = this._CareMentalHealth

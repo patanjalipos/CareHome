@@ -694,3 +694,13 @@
         selectedFormMasterId == FormTypes.BloodTestRecord
     "
 ></app-blood-test-record>
+
+<app-professional-visit-communication-record
+  [preSelectedFormData]="selectedFormData"
+  (EmitUpdateForm)="EmitUpdateForm($event)"
+  *ngIf="
+    ShowChildComponent == true &&
+    selectedFormMasterId == FormTypes.ProfessionalVisitCommunicationRecord
+"
+></app-professional-visit-communication-record>
+

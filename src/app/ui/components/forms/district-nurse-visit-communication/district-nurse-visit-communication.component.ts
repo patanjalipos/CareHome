@@ -88,6 +88,8 @@ this.isEditable = this.preSelectedFormData.isEditable;
       }
   }
 
+  SaveAsPDF() {}
+
   getFormattedTime(time: Date) {
     const hours = time.getHours().toString().padStart(2, '0');
     const minutes = time.getMinutes().toString().padStart(2, '0');

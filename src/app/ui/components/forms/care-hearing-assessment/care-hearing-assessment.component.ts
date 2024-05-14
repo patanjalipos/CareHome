@@ -133,6 +133,8 @@ export class CareHearingAssessmentComponent extends AppComponentBase implements 
         });
 }
 
+SaveAsPDF() {}
+
 getDropdownMasterLists(formMasterId: string, dropdownName: string,status:number): Observable<any> {
     this._UtilityService.showSpinner();
     return this._MasterServices.GetDropDownMasterList(formMasterId,dropdownName, status).pipe(
