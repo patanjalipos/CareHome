@@ -1,7 +1,8 @@
 import { Component, EventEmitter, Input, OnInit, Output, SimpleChanges } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { Observable, catchError, forkJoin, map, of } from 'rxjs';
 import { AppComponentBase } from 'src/app/app-component-base';
-import { ConstantsService, CustomDateFormat } from 'src/app/ui/service/constants.service';
+import { ConstantsService, CustomDateFormat, FormTypes } from 'src/app/ui/service/constants.service';
 import { DataService } from 'src/app/ui/service/data-service.service';
 import { MasterService } from 'src/app/ui/service/master.service';
 import { UtilityService } from 'src/app/utility/utility.service';
@@ -25,8 +26,8 @@ export class AcuteCarePlanInfectionPreventionAndControlComponent extends AppComp
   //CreatedBy or ModifiedBy
   loginId: any;
   lstAcuteInfection:any[]=[];
-  lstActuteStratagy:any[]=[];
-  lstActuteOutCome:any[]=[];
+  lstAcuteStratagy:any[]=[];
+  lstAcuteOutCome:any[]=[];
   @Input() preSelectedFormData: any=<any>{};
   @Output() EmitUpdateForm: EventEmitter<any> = new EventEmitter<any>();
 
@@ -70,9 +71,21 @@ export class AcuteCarePlanInfectionPreventionAndControlComponent extends AppComp
   }
   }
   ngOnInit(): void {
-    this.GetActuteInfectionMaster();
-    this.GetActuteStrategiesMaster();
-    this.GetActuteOutcomeTreatmentMaster();
+
+    const collectionNames = [
+        'AcuteInfection',
+        'AcuteStratagy',
+        'AcuteOutCome'
+    ];
+  
+    forkJoin(collectionNames.map((collectionName) => this.getDropdownMasterLists(FormTypes.AcuteCarePlan,collectionName,1))).subscribe((responses: any[]) => {
+      this.lstAcuteInfection = responses[0];
+      this.lstAcuteStratagy = responses[1];
+      this.lstAcuteOutCome = responses[2];
+  });
+    // this.GetActuteInfectionMaster();
+    // this.GetActuteStrategiesMaster();
+    // this.GetActuteOutcomeTreatmentMaster();
 
 //     this._DataService.data$.subscribe((data) => {
 //       this.preSelectedFormData = data;
@@ -97,6 +110,29 @@ export class AcuteCarePlanInfectionPreventionAndControlComponent extends AppComp
     this.AcuteCarePlanInfectionFormsData = <any>{};
     this.StatementType = 'Insert';
 }
+
+SaveAsPDF() {}
+
+getDropdownMasterLists(formMasterId: string, dropdownName: string,status:number): Observable<any> {
+    this._UtilityService.showSpinner();
+    return this._MasterServices.GetDropDownMasterList(formMasterId,dropdownName, status).pipe(
+        map((response) => {
+            this._UtilityService.hideSpinner();
+            if (response.actionResult.success) {
+                return JSON.parse(response.actionResult.result);
+            } else {
+                return [];
+            }
+        }),
+        catchError((error) => {
+            this._UtilityService.hideSpinner();
+            this._UtilityService.showErrorAlert(error.message);
+            alert(error.message);
+            return of([]); // Returning empty array in case of error
+        })
+    );
+  }
+
 GetAcuteCarePlanFormByid(formId: string) {
   this._UtilityService.showSpinner();
   this.unsubscribe.add = this._MasterServices
@@ -119,72 +155,72 @@ GetAcuteCarePlanFormByid(formId: string) {
           },
       });
 }
-GetActuteStrategiesMaster() {
-  this._UtilityService.showSpinner();
-  this.unsubscribe.add = this._MasterServices
-      .GetActuteStrategiesMaster(0)
-      .subscribe({
-          next: (data) => {
-              this._UtilityService.hideSpinner();
-              if (data.actionResult.success == true) {
-                  var tdata = JSON.parse(data.actionResult.result);
-                  tdata = tdata ? tdata : {};
-                  this.lstActuteStratagy = tdata;
-                  //console.log(this.PreAdmissionAssessmentFormsData);
-              } else {
-                  this.lstActuteStratagy = [];
-              }
-          },
-          error: (e) => {
-              this._UtilityService.hideSpinner();
-              this._UtilityService.showErrorAlert(e.message);
-          },
-      });
-}
-GetActuteOutcomeTreatmentMaster() {
-  this._UtilityService.showSpinner();
-  this.unsubscribe.add = this._MasterServices
-      .GetActuteOutcomeTreatmentMaster(0)
-      .subscribe({
-          next: (data) => {
-              this._UtilityService.hideSpinner();
-              if (data.actionResult.success == true) {
-                  var tdata = JSON.parse(data.actionResult.result);
-                  tdata = tdata ? tdata : {};
-                  this.lstActuteOutCome = tdata;
-                  //console.log(this.PreAdmissionAssessmentFormsData);
-              } else {
-                  this.lstActuteOutCome = [];
-              }
-          },
-          error: (e) => {
-              this._UtilityService.hideSpinner();
-              this._UtilityService.showErrorAlert(e.message);
-          },
-      });
-}
-GetActuteInfectionMaster() {
-  this._UtilityService.showSpinner();
-  this.unsubscribe.add = this._MasterServices
-      .GetActuteInfectionMaster(0)
-      .subscribe({
-          next: (data) => {
-              this._UtilityService.hideSpinner();
-              if (data.actionResult.success == true) {
-                  var tdata = JSON.parse(data.actionResult.result);
-                  tdata = tdata ? tdata : {};
-                  this.lstAcuteInfection = tdata;
-                  //console.log(this.PreAdmissionAssessmentFormsData);
-              } else {
-                  this.lstAcuteInfection = [];
-              }
-          },
-          error: (e) => {
-              this._UtilityService.hideSpinner();
-              this._UtilityService.showErrorAlert(e.message);
-          },
-      });
-}
+// GetActuteStrategiesMaster() {
+//   this._UtilityService.showSpinner();
+//   this.unsubscribe.add = this._MasterServices
+//       .GetActuteStrategiesMaster(0)
+//       .subscribe({
+//           next: (data) => {
+//               this._UtilityService.hideSpinner();
+//               if (data.actionResult.success == true) {
+//                   var tdata = JSON.parse(data.actionResult.result);
+//                   tdata = tdata ? tdata : {};
+//                   this.lstActuteStratagy = tdata;
+//                   //console.log(this.PreAdmissionAssessmentFormsData);
+//               } else {
+//                   this.lstActuteStratagy = [];
+//               }
+//           },
+//           error: (e) => {
+//               this._UtilityService.hideSpinner();
+//               this._UtilityService.showErrorAlert(e.message);
+//           },
+//       });
+// }
+// GetActuteOutcomeTreatmentMaster() {
+//   this._UtilityService.showSpinner();
+//   this.unsubscribe.add = this._MasterServices
+//       .GetActuteOutcomeTreatmentMaster(0)
+//       .subscribe({
+//           next: (data) => {
+//               this._UtilityService.hideSpinner();
+//               if (data.actionResult.success == true) {
+//                   var tdata = JSON.parse(data.actionResult.result);
+//                   tdata = tdata ? tdata : {};
+//                   this.lstActuteOutCome = tdata;
+//                   //console.log(this.PreAdmissionAssessmentFormsData);
+//               } else {
+//                   this.lstActuteOutCome = [];
+//               }
+//           },
+//           error: (e) => {
+//               this._UtilityService.hideSpinner();
+//               this._UtilityService.showErrorAlert(e.message);
+//           },
+//       });
+// }
+// GetActuteInfectionMaster() {
+//   this._UtilityService.showSpinner();
+//   this.unsubscribe.add = this._MasterServices
+//       .GetActuteInfectionMaster(0)
+//       .subscribe({
+//           next: (data) => {
+//               this._UtilityService.hideSpinner();
+//               if (data.actionResult.success == true) {
+//                   var tdata = JSON.parse(data.actionResult.result);
+//                   tdata = tdata ? tdata : {};
+//                   this.lstAcuteInfection = tdata;
+//                   //console.log(this.PreAdmissionAssessmentFormsData);
+//               } else {
+//                   this.lstAcuteInfection = [];
+//               }
+//           },
+//           error: (e) => {
+//               this._UtilityService.hideSpinner();
+//               this._UtilityService.showErrorAlert(e.message);
+//           },
+//       });
+// }
 saveAsUnfinished()
 {
   this.AcuteCarePlanInfectionFormsData.isFormCompleted = false;
@@ -227,7 +263,7 @@ Save() {
           });
   } else {
       this._UtilityService.showWarningAlert(
-          'Resident admission details are missing.'
+          'Acute Care Plan Infection Prevention and Control details are missing.'
       );
   }
 }
