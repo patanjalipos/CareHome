@@ -116,6 +116,8 @@ else {
 }
   }
 
+  SaveAsPDF() {}
+
   GetRiskAssessmentWaterFlowPressureDetails(formId: string) {
     this._UtilityService.showSpinner();
     this.unsubscribe.add = this._RiskAssWaterlow
