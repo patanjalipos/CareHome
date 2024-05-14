@@ -144,6 +144,8 @@ export class CareSkinAssessmentComponent extends AppComponentBase implements OnI
   }
   }
 
+  SaveAsPDF() {}
+
   GetCareSkinAssessmentDetails(formId: string) {
     this._UtilityService.showSpinner();
     this.unsubscribe.add = this._CareSkin

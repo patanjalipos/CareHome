@@ -4,34 +4,39 @@
             <div class="d-flex">
                 <div class="col-md-4">
                     <label class="form-label"><b> Started by (Name) :</b>
-                    </label>
+                        {{preSelectedFormData.StartedBy}}</label>
                 </div>
                 <div class="col-md-4">
-                    <label class="form-label"><b>Designation :</b> </label>
+                    <label class="form-label"><b>Designation :</b> {{preSelectedFormData.StartedByDesignation}}</label>
                 </div>
                 <div class="col-md-4">
-                    <label class="form-label"> <b>Date/Time : </b></label>
+                    <label class="form-label"> <b>Date/Time : </b>{{preSelectedFormData.StartedOn | date : customDateFormat.DEF_DATE_TIME}}</label>
                 </div>
             </div>
             <div class="d-flex">
                 <div class="col-md-4">
                     <label class="form-label">
-                        <b>Last entered by (Name) :</b></label>
+                        <b>Last entered by (Name) :</b>{{preSelectedFormData.ModifiedBy}}</label>
                 </div>
                 <div class="col-md-4">
-                    <label class="form-label"> <b>Designation :</b></label>
+                    <label class="form-label"> <b>Designation :</b>{{preSelectedFormData.ModifiedByDesignation}}</label>
                 </div>
                 <div class="col-md-4">
-                    <label class="form-label"> <b>Date/Time :</b> </label>
+                    <label class="form-label"> <b>Date/Time :</b> {{preSelectedFormData.ModifiedOn | date: customDateFormat.DEF_DATE_TIME}}</label>
                 </div>
             </div>
         </div>
         <div class="col-md-4 mt-4 labelcontent">
             <p>Bathing and Washing</p>
         </div>
-        <div class="col-md-7 mt-4 form-text">
-            <p-dropdown placeholder="Select" [style]="{ width: '100%' }">
-            </p-dropdown>
+        <div class="col-md-7 mt-4">
+            <ng-container *ngIf="this.isEditable; else BathingAndWashing">
+                <p-dropdown [required]="true" [options]="lstBathingAndWashing"   optionLabel="optionName" [(ngModel)]="PoolActivityFormsData.BathingAndWashing" name="BathingAndWashing" optionValue="optionId" placeholder="Select" [style]="{ width: '100%' }">
+                </p-dropdown>
+            </ng-container>
+            <ng-template #BathingAndWashing>
+                <label>{{PoolActivityFormsData.BathingAndWashingName}}</label>
+            </ng-template>
         </div>
         <div class="col-md-1 mt-4 form-icon">
             <i class="fa-solid fa-info"></i>
@@ -39,9 +44,14 @@
         <div class="col-md-4 labelcontent">
             <p>Getting Dressed</p>
         </div>
-        <div class="col-md-7 form-text">
-            <p-dropdown placeholder="Select" [style]="{ width: '100%' }">
-            </p-dropdown>
+        <div class="col-md-7">
+            <ng-container *ngIf="this.isEditable; else Dressed">
+                <p-dropdown [required]="true" [options]="lstDressed"   optionLabel="optionName" [(ngModel)]="PoolActivityFormsData.Dressed" name="Dressed" optionValue="optionId" placeholder="Select" [style]="{ width: '100%' }">
+                </p-dropdown>
+            </ng-container>
+            <ng-template #Dressed>
+                <label>{{PoolActivityFormsData.DressedName}}</label>
+            </ng-template>
         </div>
         <div class="col-md-1 form-icon">
             <i class="fa-solid fa-info"></i>
@@ -49,9 +59,14 @@
         <div class="col-md-4 labelcontent">
             <p>Eating</p>
         </div>
-        <div class="col-md-7 form-text">
-            <p-dropdown placeholder="Select" [style]="{ width: '100%' }">
-            </p-dropdown>
+        <div class="col-md-7">
+            <ng-container *ngIf="this.isEditable; else Eating">
+                <p-dropdown [required]="true" [options]="lstEating"   optionLabel="optionName" [(ngModel)]="PoolActivityFormsData.Eating" name="Eating" optionValue="optionId" placeholder="Select" [style]="{ width: '100%' }">
+                </p-dropdown>
+            </ng-container>
+            <ng-template #Eating>
+                <label>{{PoolActivityFormsData.EatingName}}</label>
+            </ng-template>
         </div>
         <div class="col-md-1 form-icon">
             <i class="fa-solid fa-info"></i>
@@ -59,9 +74,14 @@
         <div class="col-md-4 labelcontent">
             <p>Contact with others?</p>
         </div>
-        <div class="col-md-7 form-text">
-            <p-dropdown placeholder="Select" [style]="{ width: '100%' }">
-            </p-dropdown>
+        <div class="col-md-7">
+            <ng-container *ngIf="this.isEditable; else Contact">
+                <p-dropdown [required]="true" [options]="lstContact"   optionLabel="optionName" [(ngModel)]="PoolActivityFormsData.Contact" name="Contact" optionValue="optionId" placeholder="Select" [style]="{ width: '100%' }">
+                </p-dropdown>
+            </ng-container>
+            <ng-template #Contact>
+                <label>{{PoolActivityFormsData.ContactName}}</label>
+            </ng-template>
         </div>
         <div class="col-md-1 form-icon">
             <i class="fa-solid fa-info"></i>
@@ -69,9 +89,14 @@
         <div class="col-md-4 labelcontent">
             <p>Groupwork skills?</p>
         </div>
-        <div class="col-md-7 form-text">
-            <p-dropdown placeholder="Select" [style]="{ width: '100%' }">
-            </p-dropdown>
+        <div class="col-md-7">
+            <ng-container *ngIf="this.isEditable; else GroupworkSkills">
+                <p-dropdown [required]="true" [options]="lstGroupworkSkills"   optionLabel="optionName" [(ngModel)]="PoolActivityFormsData.GroupworkSkills" name="GroupworkSkills" optionValue="optionId" placeholder="Select" [style]="{ width: '100%' }">
+                </p-dropdown>
+            </ng-container>
+            <ng-template #GroupworkSkills>
+                <label>{{PoolActivityFormsData.GroupworkSkillsName}}</label>
+            </ng-template>
         </div>
         <div class="col-md-1 form-icon">
             <i class="fa-solid fa-info"></i>
@@ -79,9 +104,14 @@
         <div class="col-md-4 labelcontent">
             <p>Communication skills?</p>
         </div>
-        <div class="col-md-7 form-text">
-            <p-dropdown placeholder="Select" [style]="{ width: '100%' }">
-            </p-dropdown>
+        <div class="col-md-7">
+            <ng-container *ngIf="this.isEditable; else CommSkills">
+                <p-dropdown [required]="true" [options]="lstCommSkills"   optionLabel="optionName" [(ngModel)]="PoolActivityFormsData.CommSkills" name="CommSkills" optionValue="optionId" placeholder="Select" [style]="{ width: '100%' }">
+                </p-dropdown>
+            </ng-container>
+            <ng-template #CommSkills>
+                <label>{{PoolActivityFormsData.CommSkillsName}}</label>
+            </ng-template>
         </div>
         <div class="col-md-1 form-icon">
             <i class="fa-solid fa-info"></i>
@@ -89,9 +119,14 @@
         <div class="col-md-4 labelcontent">
             <p>Practical activities (craft, domestic chores, gardening)</p>
         </div>
-        <div class="col-md-7 form-text">
-            <p-dropdown placeholder="Select" [style]="{ width: '100%' }">
-            </p-dropdown>
+        <div class="col-md-7">
+            <ng-container *ngIf="this.isEditable; else PracticalActivities">
+                <p-dropdown [required]="true" [options]="lstPracticalActivities"   optionLabel="optionName" [(ngModel)]="PoolActivityFormsData.PracticalActivities" name="PracticalActivities" optionValue="optionId" placeholder="Select" [style]="{ width: '100%' }">
+                </p-dropdown>
+            </ng-container>
+            <ng-template #PracticalActivities>
+                <label>{{PoolActivityFormsData.PracticalActivitiesName}}</label>
+            </ng-template>
         </div>
         <div class="col-md-1 form-icon">
             <i class="fa-solid fa-info"></i>
@@ -99,9 +134,14 @@
         <div class="col-md-4 labelcontent">
             <p>Use of Objects</p>
         </div>
-        <div class="col-md-7 form-text">
-            <p-dropdown placeholder="Select" [style]="{ width: '100%' }">
-            </p-dropdown>
+        <div class="col-md-7">
+            <ng-container *ngIf="this.isEditable; else ObjectUse">
+                <p-dropdown [required]="true" [options]="lstObjectUse"   optionLabel="optionName" [(ngModel)]="PoolActivityFormsData.ObjectUse" name="ObjectUse" optionValue="optionId" placeholder="Select" [style]="{ width: '100%' }">
+                </p-dropdown>
+            </ng-container>
+            <ng-template #ObjectUse>
+                <label>{{PoolActivityFormsData.ObjectUseName}}</label>
+            </ng-template>
         </div>
         <div class="col-md-1 form-icon">
             <i class="fa-solid fa-info"></i>
@@ -109,9 +149,14 @@
         <div class="col-md-4 labelcontent">
             <p>Looking at the newspaper/magazine?</p>
         </div>
-        <div class="col-md-7 form-text">
-            <p-dropdown placeholder="Select" [style]="{ width: '100%' }">
-            </p-dropdown>
+        <div class="col-md-7">
+            <ng-container *ngIf="this.isEditable; else NewspaperCheck">
+                <p-dropdown [required]="true" [options]="lstNewspaperCheck"   optionLabel="optionName" [(ngModel)]="PoolActivityFormsData.NewspaperCheck" name="NewspaperCheck" optionValue="optionId" placeholder="Select" [style]="{ width: '100%' }">
+                </p-dropdown>
+            </ng-container>
+            <ng-template #NewspaperCheck>
+                <label>{{PoolActivityFormsData.NewspaperCheckName}}</label>
+            </ng-template>
         </div>
         <div class="col-md-1 form-icon">
             <i class="fa-solid fa-info"></i>
@@ -119,9 +164,14 @@
         <div class="col-md-4 labelcontent">
             <p>Following assessment the resident has been identified as having the following activity level?</p>
         </div>
-        <div class="col-md-7 form-text">
-            <p-dropdown placeholder="Select" [style]="{ width: '100%' }">
-            </p-dropdown>
+        <div class="col-md-7">
+            <ng-container *ngIf="this.isEditable; else ActivityLevel">
+                <p-dropdown [required]="true" [options]="lstActivityLevel"   optionLabel="optionName" [(ngModel)]="PoolActivityFormsData.ActivityLevel" name="ActivityLevel" optionValue="optionId" placeholder="Select" [style]="{ width: '100%' }">
+                </p-dropdown>
+            </ng-container>
+            <ng-template #ActivityLevel>
+                <label>{{PoolActivityFormsData.ActivityLevelName}}</label>
+            </ng-template>
         </div>
         <div class="col-md-1 form-icon">
             <i class="fa-solid fa-info"></i>
@@ -129,9 +179,14 @@
         <div class="col-md-4 labelcontent">
             <p>The following options should be chosen if resident is assessed as a Planned Activity level.</p>
         </div>
-        <div class="col-md-7 form-text">
-            <p-dropdown placeholder="Select" [style]="{ width: '100%' }">
-            </p-dropdown>
+        <div class="col-md-7">
+            <ng-container *ngIf="this.isEditable; else PlannedActivityLevel">
+                <p-dropdown [required]="true" [options]="lstPlannedActivityLevel"   optionLabel="optionName" [(ngModel)]="PoolActivityFormsData.PlannedActivityLevel" name="PlannedActivityLevel" optionValue="optionId" placeholder="Select" [style]="{ width: '100%' }">
+                </p-dropdown>
+            </ng-container>
+            <ng-template #PlannedActivityLevel>
+                <label>{{PoolActivityFormsData.PlannedActivityLevelName}}</label>
+            </ng-template>
         </div>
         <div class="col-md-1 form-icon">
             <i class="fa-solid fa-info"></i>
@@ -139,9 +194,14 @@
         <div class="col-md-4 labelcontent">
             <p>The following options should be chosen if resident is assessed as a Exploratory Activity level</p>
         </div>
-        <div class="col-md-7 form-text">
-            <p-dropdown placeholder="Select" [style]="{ width: '100%' }">
-            </p-dropdown>
+        <div class="col-md-7">
+            <ng-container *ngIf="this.isEditable; else ExploratoryActivityLevel">
+                <p-dropdown [required]="true" [options]="lstExploratoryActivityLevel"   optionLabel="optionName" [(ngModel)]="PoolActivityFormsData.ExploratoryActivityLevel" name="ExploratoryActivityLevel" optionValue="optionId" placeholder="Select" [style]="{ width: '100%' }">
+                </p-dropdown>
+            </ng-container>
+            <ng-template #ExploratoryActivityLevel>
+                <label>{{PoolActivityFormsData.ExploratoryActivityLevelName}}</label>
+            </ng-template>
         </div>
         <div class="col-md-1 form-icon">
             <i class="fa-solid fa-info"></i>
@@ -149,9 +209,14 @@
         <div class="col-md-4 labelcontent">
             <p>The following options should be chosen if resident is assessed as a Sensory Activity level</p>
         </div>
-        <div class="col-md-7 form-text">
-            <p-dropdown placeholder="Select" [style]="{ width: '100%' }">
-            </p-dropdown>
+        <div class="col-md-7">
+            <ng-container *ngIf="this.isEditable; else SensoryActivityLevel">
+                <p-dropdown [required]="true" [options]="lstSensoryActivityLevel"   optionLabel="optionName" [(ngModel)]="PoolActivityFormsData.SensoryActivityLevel" name="SensoryActivityLevel" optionValue="optionId" placeholder="Select" [style]="{ width: '100%' }">
+                </p-dropdown>
+            </ng-container>
+            <ng-template #SensoryActivityLevel>
+                <label>{{PoolActivityFormsData.SensoryActivityLevelName}}</label>
+            </ng-template>
         </div>
         <div class="col-md-1 form-icon">
             <i class="fa-solid fa-info"></i>
@@ -159,26 +224,54 @@
         <div class="col-md-4 labelcontent">
             <p>The following options should be chosen if resident is assessed as a Reflex Activity level</p>
         </div>
-        <div class="col-md-7 form-text">
-            <p-dropdown placeholder="Select" [style]="{ width: '100%' }">
-            </p-dropdown>
+        <div class="col-md-7">
+            <ng-container *ngIf="this.isEditable; else ReflexActivityLevel">
+                <p-dropdown [required]="true" [options]="lstReflexActivityLevel"   optionLabel="optionName" [(ngModel)]="PoolActivityFormsData.ReflexActivityLevel" name="ReflexActivityLevel" optionValue="optionId" placeholder="Select" [style]="{ width: '100%' }">
+                </p-dropdown>
+            </ng-container>
+            <ng-template #ReflexActivityLevel>
+                <label>{{PoolActivityFormsData.ReflexActivityLevelName}}</label>
+            </ng-template>
         </div>
         <div class="col-md-1 form-icon">
             <i class="fa-solid fa-info"></i>
         </div>
         <div class="d-flex justify-content-end">
-            <div>
-                <span class="p-ml-left mr-4">
-                    <button pButton title="New" label="Save as Unfinished"></button>
-                    <span class="total-txt"></span>
-                </span>
-            </div>
-            <div>
-                <span class="p-ml-left mr-4">
-                    <button pButton title="New" label="Complete"></button>
-                    <span class="total-txt"></span>
-                </span>
-            </div>
+            <ng-container *ngIf="isEditable; else savePdf">
+                <div>
+                    <span class="p-ml-left mr-4">
+                        <button
+                            pButton
+                            title="New"
+                            label="Save as Unfinished"
+                            (click)="saveAsUnfinished()"
+                        ></button>
+                        <span class="total-txt"></span>
+                    </span>
+                </div>
+                <div>
+                    <span class="p-ml-left mr-4">
+                        <button
+                            pButton
+                            title="New"
+                            label="Complete"
+                            (click)="completeForm()"
+                            [disabled]="
+                                PoolActivityFormsData.IsFormCompleted
+                            "
+                        ></button>
+                        <span class="total-txt"></span>
+                    </span>
+                </div>
+            </ng-container>
+            <ng-template #savePdf>
+                <button
+                    pButton
+                    title="Save as PDF"
+                    label="Save as PDF"
+                    (click)="SaveAsPDF()"
+                ></button>
+            </ng-template>
         </div>
     </div>
 </div>>

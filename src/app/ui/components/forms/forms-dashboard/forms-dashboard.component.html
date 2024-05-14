@@ -652,7 +652,6 @@
 >
 </app-care-speech-language-ssessment>
 
-
 <app-oral-health-risk-and-oral-plan [preSelectedFormData]="selectedFormData"
 (EmitUpdateForm)="EmitUpdateForm($event)"
 *ngIf="
@@ -686,3 +685,22 @@
         selectedFormMasterId == FormTypes.ConnectingandCommunicating
     "
 ></app-connecting-and-communicating>
+
+<app-blood-test-record
+    [preSelectedFormData]="selectedFormData"
+    (EmitUpdateForm)="EmitUpdateForm($event)"
+    *ngIf="
+        ShowChildComponent == true &&
+        selectedFormMasterId == FormTypes.BloodTestRecord
+    "
+></app-blood-test-record>
+
+<app-professional-visit-communication-record
+  [preSelectedFormData]="selectedFormData"
+  (EmitUpdateForm)="EmitUpdateForm($event)"
+  *ngIf="
+    ShowChildComponent == true &&
+    selectedFormMasterId == FormTypes.ProfessionalVisitCommunicationRecord
+"
+></app-professional-visit-communication-record>
+

@@ -125,6 +125,8 @@ export class OralHealthRiskAndOralPlanComponent extends AppComponentBase impleme
   }
   }
 
+  SaveAsPDF() {}
+
   GetOralHealthRiskDetails(formId: string) {
     this._UtilityService.showSpinner();
     this.unsubscribe.add = this._OralHealth
