@@ -123,9 +123,6 @@ export class BloodTestRecordComponent
                     if (data.actionResult.success == true) {
                         var tdata = JSON.parse(data.actionResult.result);
                         tdata = tdata ? tdata : {};
-                        
-                        console.log(tdata);
-
                         this.BloodTestFormData = tdata;
                     } else {
                         this.BloodTestFormData = {};
