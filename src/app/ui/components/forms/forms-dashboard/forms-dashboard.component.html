@@ -686,3 +686,12 @@
         selectedFormMasterId == FormTypes.ConnectingandCommunicating
     "
 ></app-connecting-and-communicating>
+
+<app-blood-test-record
+    [preSelectedFormData]="selectedFormData"
+    (EmitUpdateForm)="EmitUpdateForm($event)"
+    *ngIf="
+        ShowChildComponent == true &&
+        selectedFormMasterId == FormTypes.BloodTestRecord
+    "
+></app-blood-test-record>
