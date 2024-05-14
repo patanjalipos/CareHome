@@ -6,10 +6,12 @@ import { environment } from 'src/environments/environment';
 @Injectable({
     providedIn: 'root',
 })
-export class CareAssessmentDietaryNotificationService {
+
+export class BloodTestRecordService {
+
     constructor(private _httpclient: HttpClient) {}
 
-    GetDietaryNotificationFormById(selectedFormID: string): Observable<any> {
+    GetBloodTestRecordFormById(selectedFormID: string): Observable<any> {
         const reqHeader = new HttpHeaders({
             'Content-Type': 'application/json',
             'Access-Control-Allow-Origin': environment.BaseUriAdmin,
@@ -19,7 +21,7 @@ export class CareAssessmentDietaryNotificationService {
         params = params.append('fromId', selectedFormID);
         return this._httpclient.get<any>(
             environment.BaseUriAdmin +
-                'api/Admin/GetDietaryNotificationFormById',
+                'api/Admin/GetBloodTestRecordFormById',
             { headers: reqHeader, params: params }
         );
     }
@@ -28,13 +30,14 @@ export class CareAssessmentDietaryNotificationService {
         let reqHeader = new HttpHeaders({
             'Content-Type': 'application/json',
             'Access-Control-Allow-Origin': environment.BaseUriAdmin,
-            'Authorization': 'Bearer ' + localStorage.getItem('token')
+            Authorization: 'Bearer ' + localStorage.getItem('token'),
         });
         let params = new HttpParams();
         var data = JSON.stringify(formdata).toString();
+        
         return this._httpclient.post<any>(
             environment.BaseUriAdmin +
-                'api/Admin/InsertUpdateDietaryNotificationForm',
+                'api/Admin/InsertUpdateBloodTestRecordForm',
             data,
             { headers: reqHeader, params: params }
         );
