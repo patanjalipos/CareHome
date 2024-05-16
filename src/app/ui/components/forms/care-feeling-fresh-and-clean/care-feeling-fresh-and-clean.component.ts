@@ -188,6 +188,8 @@ getDropdownMasterLists(formMasterId: string, dropdownName: string,status:number)
     );
 }
 
+SaveAsPDF() {}
+
 // GetAppearance() {
 //   this._UtilityService.showSpinner();
 //   this.unsubscribe.add = this._CareFreshAndClean

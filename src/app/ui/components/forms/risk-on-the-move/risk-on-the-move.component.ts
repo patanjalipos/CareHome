@@ -151,6 +151,8 @@ this.isEditable = this.preSelectedFormData.isEditable;
   }
   }
 
+  SaveAsPDF() {}
+
   GetRiskAssOnTheMoveDetails(formId: string) {
     this._UtilityService.showSpinner();
     this.unsubscribe.add = this._RiskAssOnMove

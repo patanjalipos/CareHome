@@ -1713,46 +1713,46 @@ export class MasterService {
     }
 
     ///////#region Acute Care Plan
-    GetActuteInfectionMaster(Status: any): Observable<any> {
-        let reqHeader = new HttpHeaders({
-            'Content-Type': 'application/json',
-            'Access-Control-Allow-Origin': environment.BaseUriAdmin,
-            'Authorization': 'Bearer ' + localStorage.getItem('token')
-        });
-        let params = new HttpParams();
-        params = params.append('Status', Status);
-        return this._httpclient.get<any>(
-            environment.BaseUriAdmin + 'api/Admin/GetActuteInfectionMaster',
-            { headers: reqHeader, params: params }
-        );
-    }
-    GetActuteStrategiesMaster(Status: any): Observable<any> {
-        let reqHeader = new HttpHeaders({
-            'Content-Type': 'application/json',
-            'Access-Control-Allow-Origin': environment.BaseUriAdmin,
-            'Authorization': 'Bearer ' + localStorage.getItem('token')
-        });
-        let params = new HttpParams();
-        params = params.append('Status', Status);
-        return this._httpclient.get<any>(
-            environment.BaseUriAdmin + 'api/Admin/GetActuteStrategiesMaster',
-            { headers: reqHeader, params: params }
-        );
-    }
-    GetActuteOutcomeTreatmentMaster(Status: any): Observable<any> {
-        let reqHeader = new HttpHeaders({
-            'Content-Type': 'application/json',
-            'Access-Control-Allow-Origin': environment.BaseUriAdmin,
-            'Authorization': 'Bearer ' + localStorage.getItem('token')
-        });
-        let params = new HttpParams();
-        params = params.append('Status', Status);
-        return this._httpclient.get<any>(
-            environment.BaseUriAdmin +
-                'api/Admin/GetActuteOutcomeTreatmentMaster',
-            { headers: reqHeader, params: params }
-        );
-    }
+    // GetActuteInfectionMaster(Status: any): Observable<any> {
+    //     let reqHeader = new HttpHeaders({
+    //         'Content-Type': 'application/json',
+    //         'Access-Control-Allow-Origin': environment.BaseUriAdmin,
+    //         'Authorization': 'Bearer ' + localStorage.getItem('token')
+    //     });
+    //     let params = new HttpParams();
+    //     params = params.append('Status', Status);
+    //     return this._httpclient.get<any>(
+    //         environment.BaseUriAdmin + 'api/Admin/GetActuteInfectionMaster',
+    //         { headers: reqHeader, params: params }
+    //     );
+    // }
+    // GetActuteStrategiesMaster(Status: any): Observable<any> {
+    //     let reqHeader = new HttpHeaders({
+    //         'Content-Type': 'application/json',
+    //         'Access-Control-Allow-Origin': environment.BaseUriAdmin,
+    //         'Authorization': 'Bearer ' + localStorage.getItem('token')
+    //     });
+    //     let params = new HttpParams();
+    //     params = params.append('Status', Status);
+    //     return this._httpclient.get<any>(
+    //         environment.BaseUriAdmin + 'api/Admin/GetActuteStrategiesMaster',
+    //         { headers: reqHeader, params: params }
+    //     );
+    // }
+    // GetActuteOutcomeTreatmentMaster(Status: any): Observable<any> {
+    //     let reqHeader = new HttpHeaders({
+    //         'Content-Type': 'application/json',
+    //         'Access-Control-Allow-Origin': environment.BaseUriAdmin,
+    //         'Authorization': 'Bearer ' + localStorage.getItem('token')
+    //     });
+    //     let params = new HttpParams();
+    //     params = params.append('Status', Status);
+    //     return this._httpclient.get<any>(
+    //         environment.BaseUriAdmin +
+    //             'api/Admin/GetActuteOutcomeTreatmentMaster',
+    //         { headers: reqHeader, params: params }
+    //     );
+    // }
     InsertUpdateAcuteCarePlanForm(
         AcuteCarePlanFormsData: any
     ): Observable<any> {
@@ -1788,7 +1788,7 @@ export class MasterService {
 
     ///////#end Region
 
-    ///////#region Acute Care Plan
+    ///////#region Family Communication
     // GetFamilyRelayMaster(Status: any): Observable<any> {
     //     let reqHeader = new HttpHeaders({
     //         'Content-Type': 'application/json',

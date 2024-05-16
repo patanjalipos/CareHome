@@ -55,8 +55,8 @@
         </div>
         <div class="col-md-7">
             <ng-container *ngIf="this.isEditable; else CurrentHearingDiagnosis">
-                <p-dropdown [required]="true" [options]="lstCurrentHearingDiagnosis"   optionLabel="optionName" [(ngModel)]="CareAssessmentHearingFormsData.CurrentHearingDiagnosis" name="CareAssessmentFreshAndCleanFormsData.CurrentHearingDiagnosis" optionValue="optionId" placeholder="Select" [style]="{ width: '100%' }">
-                </p-dropdown>
+                <p-dropdown [required]="true" [options]="lstCurrentHearingDiagnosis"   op
+tionLabel="optionName" [(ngModel)]="CareAssessmentHearingFormsData.CurrentHearingDiagnosis" name="CareAssessmentFreshAndCleanFormsData.CurrentHearingDiagnosis" optionValue="optionId" placeholder="Select" [style]="{ width: '100%' }">                </p-dropdown>
             </ng-container>
             <ng-template #CurrentHearingDiagnosis>
                 <label>{{CareAssessmentHearingFormsData.CurrentHearingDiagnosisName}}</label>
@@ -270,18 +270,41 @@
         </div>
 
         <div class="d-flex justify-content-end">
-            <div>
-                <span class="p-ml-left mr-4">
-                    <button pButton title="New" (click)="saveAsUnfinished()" label="Save as Unfinished"></button>
-                    <span class="total-txt"></span>
-                </span>
-            </div>
-            <div>
-                <span class="p-ml-left mr-4">
-                    <button pButton title="New" (click)="completeForm()" label="Complete"></button>
-                    <span class="total-txt"></span>
-                </span>
-            </div>
+            <ng-container *ngIf="isEditable; else savePdf">
+                <div>
+                    <span class="p-ml-left mr-4">
+                        <button
+                            pButton
+                            title="New"
+                            label="Save as Unfinished"
+                            (click)="saveAsUnfinished()"
+                        ></button>
+                        <span class="total-txt"></span>
+                    </span>
+                </div>
+                <div>
+                    <span class="p-ml-left mr-4">
+                        <button
+                            pButton
+                            title="New"
+                            label="Complete"
+                            (click)="completeForm()"
+                            [disabled]="
+                                CareAssessmentHearingFormsData.IsFormCompleted
+                            "
+                        ></button>
+                        <span class="total-txt"></span>
+                    </span>
+                </div>
+            </ng-container>
+            <ng-template #savePdf>
+                <button
+                    pButton
+                    title="Save as PDF"
+                    label="Save as PDF"
+                    (click)="SaveAsPDF()"
+                ></button>
+            </ng-template>
         </div>
     </div>
 </div>

@@ -106,6 +106,8 @@ this.isEditable = this.preSelectedFormData.isEditable;
   }
   }
 
+  SaveAsPDF() {}
+
   GetCareAssessmentSleepAndRestDetails(formId: string) {
     this._UtilityService.showSpinner();
     this.unsubscribe.add = this._CareSleepAndRest
