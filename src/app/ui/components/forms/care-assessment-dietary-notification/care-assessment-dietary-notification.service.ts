@@ -13,6 +13,7 @@ export class CareAssessmentDietaryNotificationService {
         const reqHeader = new HttpHeaders({
             'Content-Type': 'application/json',
             'Access-Control-Allow-Origin': environment.BaseUriAdmin,
+            Authorization: 'Bearer ' + localStorage.getItem('token'),
         });
         let params = new HttpParams();
         params = params.append('fromId', selectedFormID);

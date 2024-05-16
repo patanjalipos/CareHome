@@ -26,6 +26,8 @@
                 optionValue="FormMasterId"
                 placeholder="Select"
                 [style]="{ width: '100%' }"
+                [filter]="true"
+                filterPlaceholder="Search Form Name"
                 (onChange)="SearchForm()"
             >
             </p-dropdown>
@@ -649,3 +651,56 @@
     "
 >
 </app-care-speech-language-ssessment>
+
+<app-oral-health-risk-and-oral-plan [preSelectedFormData]="selectedFormData"
+(EmitUpdateForm)="EmitUpdateForm($event)"
+*ngIf="
+    ShowChildComponent == true &&
+    selectedFormMasterId == FormTypes.OralHealthRiskAssessment
+"></app-oral-health-risk-and-oral-plan>
+
+<app-must-step5-nutritional-management 
+    [preSelectedFormData]="selectedFormData"
+    (EmitUpdateForm)="EmitUpdateForm($event)"
+    *ngIf="
+        ShowChildComponent == true &&
+        selectedFormMasterId == FormTypes.MUSTStep5NutritionalManagement
+    "
+></app-must-step5-nutritional-management>
+
+<app-care-vitamin-d-supplementation
+    [preSelectedFormData]="selectedFormData"
+    (EmitUpdateForm)="EmitUpdateForm($event)"
+    *ngIf="
+        ShowChildComponent == true &&
+        selectedFormMasterId == FormTypes.CareAssessmentforVitaminD
+    "
+></app-care-vitamin-d-supplementation>
+
+<app-connecting-and-communicating
+    [preSelectedFormData]="selectedFormData"
+    (EmitUpdateForm)="EmitUpdateForm($event)"
+    *ngIf="
+        ShowChildComponent == true &&
+        selectedFormMasterId == FormTypes.ConnectingandCommunicating
+    "
+></app-connecting-and-communicating>
+
+<app-blood-test-record
+    [preSelectedFormData]="selectedFormData"
+    (EmitUpdateForm)="EmitUpdateForm($event)"
+    *ngIf="
+        ShowChildComponent == true &&
+        selectedFormMasterId == FormTypes.BloodTestRecord
+    "
+></app-blood-test-record>
+
+<app-professional-visit-communication-record
+  [preSelectedFormData]="selectedFormData"
+  (EmitUpdateForm)="EmitUpdateForm($event)"
+  *ngIf="
+    ShowChildComponent == true &&
+    selectedFormMasterId == FormTypes.ProfessionalVisitCommunicationRecord
+"
+></app-professional-visit-communication-record>
+

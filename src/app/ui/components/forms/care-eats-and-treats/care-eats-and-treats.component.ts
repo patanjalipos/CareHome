@@ -166,6 +166,8 @@ getDropdownMasterLists(formMasterId: string, dropdownName: string,status:number)
     );
 }
 
+SaveAsPDF() {}
+
 // GetResidentStatusOfCapacity() {
 //   this._UtilityService.showSpinner();
 //     this.unsubscribe.add = this._CareEatsAndDrinks

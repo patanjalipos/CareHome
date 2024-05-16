@@ -4,25 +4,27 @@
             <div class="d-flex">
                 <div class="col-md-4">
                     <label class="form-label"><b> Started by (Name) :</b>
-                    </label>
+                        {{preSelectedFormData.StartedBy}}</label>
                 </div>
                 <div class="col-md-4">
-                    <label class="form-label"><b>Designation :</b> </label>
+                    <label class="form-label"><b>Designation :</b> {{preSelectedFormData.StartedByDesignation}}</label>
                 </div>
                 <div class="col-md-4">
-                    <label class="form-label"> <b>Date/Time : </b></label>
+                    <label class="form-label"> <b>Date/Time : </b>{{preSelectedFormData.StartedOn | date :
+                        customDateFormat.DEF_DATE_TIME}}</label>
                 </div>
             </div>
             <div class="d-flex">
                 <div class="col-md-4">
                     <label class="form-label">
-                        <b>Last entered by (Name) :</b></label>
+                        <b>Last entered by (Name) :</b>{{preSelectedFormData.ModifiedBy}}</label>
                 </div>
                 <div class="col-md-4">
-                    <label class="form-label"> <b>Designation :</b></label>
+                    <label class="form-label"> <b>Designation :</b>{{preSelectedFormData.ModifiedByDesignation}}</label>
                 </div>
                 <div class="col-md-4">
-                    <label class="form-label"> <b>Date/Time :</b> </label>
+                    <label class="form-label"> <b>Date/Time :</b>{{preSelectedFormData.ModifiedOn | date:
+                        customDateFormat.DEF_DATE_TIME}} </label>
                 </div>
             </div>
         </div>
@@ -32,10 +34,18 @@
             </div>
         </div>
         <div class="col-md-7 mt-4 form-text">
-            <input pInputText type="text" required name="chartheadname" class="form-control" />
-            <p class="mb-4">Please capture information from the person, their significant others, professionals, your
-                direct experience with the person, their previous assessments. Include as much information as possible
-                in what makes a good day good</p>
+            <ng-container *ngIf="this.isEditable; else FeelingWellData">
+                <input pInputText type="text" required name="PromotingWellbeingAtHomeFormData.FeelingWell"
+                    [(ngModel)]="PromotingWellbeingAtHomeFormData.FeelingWell" class="form-control" />
+                <p class="mb-4">Please capture information from the person, their significant others, professionals,
+                    your
+                    direct experience with the person, their previous assessments. Include as much information as
+                    possible
+                    in what makes a good day good</p>
+            </ng-container>
+            <ng-template #FeelingWellData>
+                <label>{{PromotingWellbeingAtHomeFormData.FeelingWell}}</label>
+            </ng-template>
         </div>
         <div class="col-md-1 mt-4 form-icon">
             <i class="fa-solid fa-info"></i>
@@ -47,7 +57,13 @@
             </div>
         </div>
         <div class="col-md-7 form-text">
-            <input pInputText type="text" required name="chartheadname" class="form-control" />
+            <ng-container *ngIf="this.isEditable; else SenseofWellBeingData">
+                <input pInputText type="text" required name="PromotingWellbeingAtHomeFormData.SenseofWellBeing"
+                    class="form-control" [(ngModel)]="PromotingWellbeingAtHomeFormData.SenseofWellBeing" />
+            </ng-container>
+            <ng-template #SenseofWellBeingData>
+                <label>{{PromotingWellbeingAtHomeFormData.SenseofWellBeing}}</label>
+            </ng-template>
         </div>
         <div class="col-md-1 form-icon">
             <i class="fa-solid fa-info"></i>
@@ -58,8 +74,14 @@
             </div>
         </div>
         <div class="col-md-7 form-text">
-            <input pInputText type="text" required name="chartheadname" class="form-control" />
-            <p class="mb-4">Please detail in here information from the person or the significant other</p>
+            <ng-container *ngIf="this.isEditable; else FeelingData">
+                <input pInputText type="text" required name="PromotingWellbeingAtHomeFormData.Feeling"
+                    [(ngModel)]="PromotingWellbeingAtHomeFormData.Feeling" class="form-control" />
+                <p class="mb-4">Please detail in here information from the person or the significant other</p>
+            </ng-container>
+            <ng-template #FeelingData>
+                <label>{{PromotingWellbeingAtHomeFormData.Feeling}}</label>
+            </ng-template>
         </div>
         <div class="col-md-1 form-icon">
             <i class="fa-solid fa-info"></i>
@@ -70,9 +92,15 @@
             </div>
         </div>
         <div class="col-md-7 form-text">
-            <input pInputText type="text" required name="chartheadname" class="form-control" />
-            <p class="mb-4">Consider in here there instant delights - what will instantly make the person smile.
-                consider social interactions, people, animals, routines, outings</p>
+            <ng-container *ngIf="this.isEditable; else EmotionsData">
+                <input pInputText type="text" required name="PromotingWellbeingAtHomeFormData.Emotions"
+                    [(ngModel)]="PromotingWellbeingAtHomeFormData.Emotions" class="form-control" />
+                <p class="mb-4">Consider in here there instant delights - what will instantly make the person smile.
+                    consider social interactions, people, animals, routines, outings</p>
+            </ng-container>
+            <ng-template #EmotionsData>
+                <label>{{PromotingWellbeingAtHomeFormData.Emotions}}</label>
+            </ng-template>
         </div>
         <div class="col-md-1 form-icon">
             <i class="fa-solid fa-info"></i>
@@ -83,10 +111,17 @@
             </div>
         </div>
         <div class="col-md-7 form-text">
-            <input pInputText type="text" required name="chartheadname" class="form-control" />
-            <p class="mb-4">Please enter into the text box information gathered from the person, their significant
-                others or previous assessments or experience with the person. Ensure you detail where the information
-                has been collected from as a means of evidencing participation and collaboration.</p>
+            <ng-container *ngIf="this.isEditable; else BadFeelingData">
+                <input pInputText type="text" required name="PromotingWellbeingAtHomeFormData.BadFeeling"
+                    [(ngModel)]="PromotingWellbeingAtHomeFormData.BadFeeling" class="form-control" />
+                <p class="mb-4">Please enter into the text box information gathered from the person, their significant
+                    others or previous assessments or experience with the person. Ensure you detail where the
+                    information
+                    has been collected from as a means of evidencing participation and collaboration.</p>
+            </ng-container>
+            <ng-template #BadFeelingData>
+                <label>{{PromotingWellbeingAtHomeFormData.BadFeeling}}</label>
+            </ng-template>
         </div>
         <div class="col-md-1 form-icon">
             <i class="fa-solid fa-info"></i>
@@ -97,10 +132,17 @@
             </div>
         </div>
         <div class="col-md-7 form-text">
-            <input pInputText type="text" required name="chartheadname" class="form-control" />
-            <p class="mb-4">Please capture information form the person, their significant others, other professionals,
-                previous
-                experience or assessements</p>
+            <ng-container *ngIf="this.isEditable; else NegativeEmotionsData">
+                <input pInputText type="text" required name="PromotingWellbeingAtHomeFormData.NegativeEmotions"
+                    [(ngModel)]="PromotingWellbeingAtHomeFormData.NegativeEmotions" class="form-control" />
+                <p class="mb-4">Please capture information form the person, their significant others, other
+                    professionals,
+                    previous
+                    experience or assessements</p>
+            </ng-container>
+            <ng-template #NegativeEmotionsData>
+                <label>{{PromotingWellbeingAtHomeFormData.NegativeEmotions}}</label>
+            </ng-template>
         </div>
         <div class="col-md-1 form-icon">
             <i class="fa-solid fa-info"></i>
@@ -111,9 +153,16 @@
             </div>
         </div>
         <div class="col-md-7 form-text">
-            <input pInputText type="text" required name="chartheadname" class="form-control" />
-            <p class="mb-4">Please gain information direct from the person, or their significant others, professionals,
-                previous assessments or direct experience.</p>
+            <ng-container *ngIf="this.isEditable; else FeelingUnwellData">
+                <input pInputText type="text" required name="PromotingWellbeingAtHomeFormData.FeelingUnwell"
+                    [(ngModel)]="PromotingWellbeingAtHomeFormData.FeelingUnwell" class="form-control" />
+                <p class="mb-4">Please gain information direct from the person, or their significant others,
+                    professionals,
+                    previous assessments or direct experience.</p>
+            </ng-container>
+            <ng-template #FeelingUnwellData>
+                <label>{{PromotingWellbeingAtHomeFormData.FeelingWell}}</label>
+            </ng-template>
         </div>
         <div class="col-md-1 form-icon">
             <i class="fa-solid fa-info"></i>
@@ -124,10 +173,17 @@
             </div>
         </div>
         <div class="col-md-7 form-text">
-            <input pInputText type="text" required name="chartheadname" class="form-control" />
-            <p class="mb-4">Please obtain as much information in relation from the person, life history, significant
-                others, professionals, your experience and/or previous assessments, please make sure you detail where
-                the information has been taken from</p>
+            <ng-container *ngIf="this.isEditable; else AffectYourEmotionsData">
+                <input pInputText type="text" required name="PromotingWellbeingAtHomeFormData.AffectYourEmotions"
+                    [(ngModel)]="PromotingWellbeingAtHomeFormData.AffectYourEmotions" class="form-control" />
+                <p class="mb-4">Please obtain as much information in relation from the person, life history, significant
+                    others, professionals, your experience and/or previous assessments, please make sure you detail
+                    where
+                    the information has been taken from</p>
+            </ng-container>
+            <ng-template #AffectYourEmotionsData>
+                <label>{{PromotingWellbeingAtHomeFormData.AffectYourEmotions}}</label>
+            </ng-template>
         </div>
         <div class="col-md-1 form-icon">
             <i class="fa-solid fa-info"></i>
@@ -138,8 +194,14 @@
             </div>
         </div>
         <div class="col-md-7 form-text">
-            <input pInputText type="text" required name="chartheadname" class="form-control" />
-            <p class="mb-4">Please make sure you include the question in your answer.</p>
+            <ng-container *ngIf="this.isEditable; else DayToDayLifeData">
+                <input pInputText type="text" required name="PromotingWellbeingAtHomeFormData.DayToDayLife"
+                    [(ngModel)]="PromotingWellbeingAtHomeFormData.DayToDayLife" class="form-control" />
+                <p class="mb-4">Please make sure you include the question in your answer.</p>
+            </ng-container>
+            <ng-template #DayToDayLifeData>
+                <label>{{PromotingWellbeingAtHomeFormData.DayToDayLife}}</label>
+            </ng-template>
         </div>
         <div class="col-md-1 form-icon">
             <i class="fa-solid fa-info"></i>
@@ -150,7 +212,13 @@
             </div>
         </div>
         <div class="col-md-7 form-text">
-            <input pInputText type="text" required name="chartheadname" class="form-control" />
+            <ng-container *ngIf="this.isEditable; else FeelAtHomeData">
+                <input pInputText type="text" required name="PromotingWellbeingAtHomeFormData.FeelAtHome"
+                    [(ngModel)]="PromotingWellbeingAtHomeFormData.FeelAtHome" class="form-control" />
+            </ng-container>
+            <ng-template #FeelAtHomeData>
+                <label>{{PromotingWellbeingAtHomeFormData.FeelAtHome}}</label>
+            </ng-template>
 
         </div>
         <div class="col-md-1 form-icon">
@@ -158,80 +226,125 @@
         </div>
         <div class="col-md-4 mt-4">
             <div class="labelcontent">
-                <p> <span class="required">*</span>Is there anything you would like us to know about any of your belongings that you have with you?</p>
+                <p> <span class="required">*</span>Is there anything you would like us to know about any of your
+                    belongings that you have with you?</p>
             </div>
         </div>
         <div class="col-md-7 form-text">
-            <input pInputText type="text" required name="chartheadname" class="form-control" />
-            <p class="mb-4">Do any of your belongings mean anything special to you.</p>
+            <ng-container *ngIf="this.isEditable; else AboutAnyOfYourBelongingsData">
+                <input pInputText type="text" required name="PromotingWellbeingAtHomeFormData.AboutAnyOfYourBelongings"
+                    [(ngModel)]="PromotingWellbeingAtHomeFormData.AboutAnyOfYourBelongings" class="form-control" />
+                <p class="mb-4">Do any of your belongings mean anything special to you.</p>
+            </ng-container>
+            <ng-template #AboutAnyOfYourBelongingsData>
+                <label>{{PromotingWellbeingAtHomeFormData.AboutAnyOfYourBelongings}}</label>
+            </ng-template>
         </div>
         <div class="col-md-1 form-icon">
             <i class="fa-solid fa-info"></i>
         </div>
         <div class="col-md-4 mt-4">
             <div class="labelcontent">
-                <p> <span class="required">*</span>Is there anything we can do to help you get to know other residents, or for others to get to know
+                <p> <span class="required">*</span>Is there anything we can do to help you get to know other residents,
+                    or for others to get to know
                     you?</p>
             </div>
         </div>
         <div class="col-md-7 form-text">
-            <input pInputText type="text" required name="chartheadname" class="form-control" />
-            <p class="mb-4">Would you like support with social inclusion?</p>
+            <ng-container *ngIf="this.isEditable; else SocialInclusionData">
+                <input pInputText type="text" required name="PromotingWellbeingAtHomeFormData.SocialInclusion"
+                    [(ngModel)]="PromotingWellbeingAtHomeFormData.SocialInclusion" class="form-control" />
+                <p class="mb-4">Would you like support with social inclusion?</p>
+            </ng-container>
+            <ng-template #SocialInclusionData>
+                <label>{{PromotingWellbeingAtHomeFormData.SocialInclusion}}</label>
+            </ng-template>
         </div>
         <div class="col-md-1 form-icon">
             <i class="fa-solid fa-info"></i>
         </div>
         <div class="col-md-4 mt-4">
             <div class="labelcontent">
-                <p> <span class="required">*</span>During the day there may be people you don't know coming and going throughout the home -how do you
+                <p> <span class="required">*</span>During the day there may be people you don't know coming and going
+                    throughout the home -how do you
                     feel about this?</p>
             </div>
         </div>
         <div class="col-md-7 form-text">
-            <input pInputText type="text" required name="chartheadname" class="form-control" />
-            <p class="mb-4">Does seeing new people everyday excite you or does this make you feel uneasy?</p>
+            <ng-container *ngIf="this.isEditable; else FeelUneasyData">
+                <input pInputText type="text" required name="PromotingWellbeingAtHomeFormData.FeelUneasy"
+                    [(ngModel)]="PromotingWellbeingAtHomeFormData.FeelUneasy" class="form-control" />
+                <p class="mb-4">Does seeing new people everyday excite you or does this make you feel uneasy?</p>
+            </ng-container>
+            <ng-template #FeelUneasyData>
+                <label>{{PromotingWellbeingAtHomeFormData.FeelUneasy}}</label>
+            </ng-template>
         </div>
         <div class="col-md-1 form-icon">
             <i class="fa-solid fa-info"></i>
         </div>
         <div class="col-md-4 mt-4">
             <div class="labelcontent">
-                <p> <span class="required">*</span>What is important to you in terms of your room, how would you like it to look and feel?</p>
+                <p> <span class="required">*</span>What is important to you in terms of your room, how would you like it
+                    to look and feel?</p>
             </div>
         </div>
         <div class="col-md-7 form-text">
-            <input pInputText type="text" required name="chartheadname" class="form-control" />
-            <p>How would you like to personalise your room? Would you like it decorated in a certain way? Would you like
-                photographs on the walls?</p>
+            <ng-container *ngIf="this.isEditable; else PersonaliseYourRoomData">
+                <input pInputText type="text" required name="PromotingWellbeingAtHomeFormData.PersonaliseYourRoom"
+                    [(ngModel)]="PromotingWellbeingAtHomeFormData.PersonaliseYourRoom" class="form-control" />
+                <p>How would you like to personalise your room? Would you like it decorated in a certain way? Would you
+                    like
+                    photographs on the walls?</p>
+            </ng-container>
+            <ng-template #PersonaliseYourRoomData>
+                <label>{{PromotingWellbeingAtHomeFormData.PersonaliseYourRoom}}</label>
+            </ng-template>
         </div>
         <div class="col-md-1 form-icon">
             <i class="fa-solid fa-info"></i>
         </div>
         <div class="col-md-4">
             <div class="labelcontent">
-                <p> <span class="required">*</span>What can the staff do to show our respect, when we come to see you in your bedroom?</p>
+                <p> <span class="required">*</span>What can the staff do to show our respect, when we come to see you in
+                    your bedroom?</p>
             </div>
         </div>
         <div class="col-md-7 form-text">
-            <input pInputText type="text" required name="chartheadname" class="form-control" />
-            <p class="mb-4">Would you like us to chap the door to gain your consent to enter? Would you like us to call you by you first name or title and surname?</p>
+            <ng-container *ngIf="this.isEditable; else ShowOurRespectData">
+                <input pInputText type="text" required name="PromotingWellbeingAtHomeFormData.ShowOurRespect"
+                    [(ngModel)]="PromotingWellbeingAtHomeFormData.ShowOurRespect" class="form-control" />
+                <p class="mb-4">Would you like us to chap the door to gain your consent to enter? Would you like us to
+                    call
+                    you by you first name or title and surname?</p>
+            </ng-container>
+            <ng-template #ShowOurRespectData>
+                <label>{{PromotingWellbeingAtHomeFormData.ShowOurRespect}}</label>
+            </ng-template>
         </div>
         <div class="col-md-1 form-icon">
             <i class="fa-solid fa-info"></i>
         </div>
         <div class="d-flex justify-content-end">
-            <div>
-                <span class="p-ml-left mr-4">
-                    <button pButton title="New" label="Save as Unfinished"></button>
-                    <span class="total-txt"></span>
-                </span>
-            </div>
-            <div>
-                <span class="p-ml-left mr-4">
-                    <button pButton title="New" label="Complete"></button>
-                    <span class="total-txt"></span>
-                </span>
-            </div>
+            <ng-container *ngIf="isEditable; else savePdf">
+                <div>
+                    <span class="p-ml-left mr-4">
+                        <button pButton title="New" label="Save as Unfinished" (click)="saveAsUnfinished()"></button>
+                        <span class="total-txt"></span>
+                    </span>
+                </div>
+                <div>
+                    <span class="p-ml-left mr-4">
+                        <button pButton title="New" label="Complete" (click)="completeForm()" [disabled]="
+                                PromotingWellbeingAtHomeFormData.IsFormCompleted
+                            "></button>
+                        <span class="total-txt"></span>
+                    </span>
+                </div>
+            </ng-container>
+            <ng-template #savePdf>
+                <button pButton title="Save as PDF" label="Save as PDF" (click)="SaveAsPDF()"></button>
+            </ng-template>
         </div>
     </div>
 </div>

@@ -110,6 +110,8 @@ this.isEditable = this.preSelectedFormData.isEditable;
   }
   }
 
+  SaveAsPDF() {}
+
   GetDeliriumRiskDetails(formId: string) {
     this._UtilityService.showSpinner();
     this.unsubscribe.add = this._DeliriumRisk

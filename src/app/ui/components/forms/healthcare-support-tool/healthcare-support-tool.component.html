@@ -4,25 +4,31 @@
             <div class="d-flex">
                 <div class="col-md-4">
                     <label class="form-label"><b> Started by (Name) :</b>
-                    </label>
+                        {{ preSelectedFormData.StartedBy }}</label>
                 </div>
                 <div class="col-md-4">
-                    <label class="form-label"><b>Designation :</b> </label>
+                    <label class="form-label"><b>Designation :</b> {{ preSelectedFormData.StartedByDesignation }}</label>
                 </div>
                 <div class="col-md-4">
-                    <label class="form-label"> <b>Date/Time : </b></label>
+                    <label class="form-label"> <b>Date/Time : </b>{{
+                        preSelectedFormData.StartedOn
+                            | date : customDateFormat.DEF_DATE_TIME
+                    }}</label>
                 </div>
             </div>
             <div class="d-flex">
                 <div class="col-md-4">
                     <label class="form-label">
-                        <b>Last entered by (Name) :</b></label>
+                        <b>Last entered by (Name) :</b>{{ preSelectedFormData.ModifiedBy }}</label>
                 </div>
                 <div class="col-md-4">
-                    <label class="form-label"> <b>Designation :</b></label>
+                    <label class="form-label"> <b>Designation :</b>{{ preSelectedFormData.ModifiedByDesignation }}</label>
                 </div>
                 <div class="col-md-4">
-                    <label class="form-label"> <b>Date/Time :</b> </label>
+                    <label class="form-label"> <b>Date/Time :</b> {{
+                        preSelectedFormData.ModifiedOn
+                            | date : customDateFormat.DEF_DATE_TIME
+                    }}</label>
                 </div>
             </div>
         </div>
@@ -31,9 +37,26 @@
                 <p>Situation - Reason for contacting the GP/CHLN/OOH services - NON EMERGENCY</p>
             </div>
         </div>
-        <div class="col-md-7 mt-4 form-text">
-            <p-dropdown placeholder="Select" [style]="{ width: '100%' }">
-            </p-dropdown>
+        <div class="col-md-7 mt-4">
+            <ng-container *ngIf="isEditable; else ContactReason">
+                <p-dropdown
+                    name="ContactReason"
+                    [(ngModel)]="
+                        HealthcareSupportFormsData.ContactReason
+                    "
+                    [options]="lstContactReason"
+                    optionLabel="optionName"
+                    optionValue="optionId"
+                    placeholder="Select"
+                    [style]="{ width: '100%' }"
+                >
+                </p-dropdown>
+            </ng-container>
+            <ng-template #ContactReason>
+                <label>{{
+                    HealthcareSupportFormsData.ContactReasonName
+                }}</label>
+            </ng-template>
         </div>
         <div class="col-md-1 mt-4 form-icon ">
             <i class="fa-solid fa-info"></i>
@@ -45,11 +68,28 @@
                     possible about your concerns)</p>
             </div>
         </div>
-        <div class="col-md-7 form-text">
-            <input pInputText type="text" required name="chartheadname" class="form-control" />
-            <p class="mb-4">Begin your statement below with....I am contacting OOH service as I am concerned
-                about.....(state what your observations are or what the person has told you, for example: fallen/very
-                distressed/breathing not right/catheter has come out etc)</p>
+        <div class="col-md-7">
+            <ng-container *ngIf="isEditable; else ConcernDetails">
+                <input
+                    pInputText
+                    type="text"
+                    required
+                    name="ConcernDetails"
+                    class="form-control"
+                    [(ngModel)]="
+                        HealthcareSupportFormsData.ConcernDetails
+                    "
+                />
+                <p class="mb-4">Begin your statement below with....I am contacting OOH service as I am concerned
+                    about.....(state what your observations are or what the person has told you, for example: fallen/very
+                    distressed/breathing not right/catheter has come out etc)</p>
+            </ng-container>
+            <ng-template #ConcernDetails>
+                <label>{{
+                    HealthcareSupportFormsData.ConcernDetails
+                }}</label>
+            </ng-template>
+            
         </div>
         <div class="col-md-1 form-icon ">
             <i class="fa-solid fa-info"></i>
@@ -59,10 +99,27 @@
                 <p>Background - What is the background knowledge of the person?</p>
             </div>
         </div>
-        <div class="col-md-7 form-text">
-            <input pInputText type="text" required name="chartheadname" class="form-control" />
-            <p class="mb-4">How long have you known them, how long have they been in the care home, what is their ACP -
-                preferred place of care is?</p>
+        <div class="col-md-7">
+            <ng-container *ngIf="isEditable; else PersonBackground">
+                <input
+                    pInputText
+                    type="text"
+                    required
+                    name="PersonBackground"
+                    class="form-control"
+                    [(ngModel)]="
+                        HealthcareSupportFormsData.PersonBackground
+                    "
+                />
+                <p class="mb-4">How long have you known them, how long have they been in the care home, what is their ACP -
+                    preferred place of care is?</p>
+            </ng-container>
+            <ng-template #PersonBackground>
+                <label>{{
+                    HealthcareSupportFormsData.PersonBackground
+                }}</label>
+            </ng-template>
+            
         </div>
         <div class="col-md-1 form-icon ">
             <i class="fa-solid fa-info"></i>
@@ -72,11 +129,29 @@
                 <p>RESTORE 2 - SOFT SIGNS OF DETERIORATION IN HEALTH</p>
             </div>
         </div>
-        <div class="col-md-7 form-text">
-            <p-dropdown placeholder="Select" [style]="{ width: '100%' }">
-            </p-dropdown>
-            <p class="mb-4">What are the soft signs that the resident displays when they are brewing an infection or
-                becoming unwell</p>
+        <div class="col-md-7">
+            <ng-container *ngIf="isEditable; else HealthSign">
+                <p-dropdown
+                    name="HealthSign"
+                    [(ngModel)]="
+                        HealthcareSupportFormsData.HealthSign
+                    "
+                    [options]="lstHealthSign"
+                    optionLabel="optionName"
+                    optionValue="optionId"
+                    placeholder="Select"
+                    [style]="{ width: '100%' }"
+                >
+                </p-dropdown>
+                <p class="mb-4">What are the soft signs that the resident displays when they are brewing an infection or
+                    becoming unwell</p>
+            </ng-container>
+            <ng-template #HealthSign>
+                <label>{{
+                    HealthcareSupportFormsData.HealthSignName
+                }}</label>
+            </ng-template>
+            
         </div>
         <div class="col-md-1 form-icon ">
             <i class="fa-solid fa-info"></i>
@@ -86,10 +161,27 @@
                 <p>RESTORE 2 - NORMAL BASELINE OBSERVATIONS</p>
             </div>
         </div>
-        <div class="col-md-7 form-text">
-            <input pInputText type="text" required name="chartheadname" class="form-control" />
-            <p class="mb-4">If the resident has COPD for exmaple what is their normal oxygen saturation or presentation
-                - what is the residents baseline.</p>
+        <div class="col-md-7">
+            <ng-container *ngIf="isEditable; else BaselineObservations">
+                <input
+                    pInputText
+                    type="text"
+                    required
+                    name="BaselineObservations"
+                    class="form-control"
+                    [(ngModel)]="
+                        HealthcareSupportFormsData.BaselineObservations
+                    "
+                />
+                <p class="mb-4">If the resident has COPD for exmaple what is their normal oxygen saturation or presentation
+                    - what is the residents baseline.</p>
+            </ng-container>
+            <ng-template #BaselineObservations>
+                <label>{{
+                    HealthcareSupportFormsData.BaselineObservations
+                }}</label>
+            </ng-template>
+            
         </div>
         <div class="col-md-1 form-icon ">
             <i class="fa-solid fa-info"></i>
@@ -99,10 +191,27 @@
                 <p>Assessment - What are the symptoms and change you see in front of you?</p>
             </div>
         </div>
-        <div class="col-md-7 form-text">
-            <input pInputText type="text" required name="chartheadname" class="form-control" />
-            <p class="mb-4">Include the question in your response and consider the following: what has changed for them
-                in the last 24hours? include behaviour, mobility, pain, food and fluid intake and output,</p>
+        <div class="col-md-7">
+            <ng-container *ngIf="isEditable; else Symptoms">
+                <input
+                    pInputText
+                    type="text"
+                    required
+                    name="Symptoms"
+                    class="form-control"
+                    [(ngModel)]="
+                        HealthcareSupportFormsData.Symptoms
+                    "
+                />
+                <p class="mb-4">Include the question in your response and consider the following: what has changed for them
+                    in the last 24hours? include behaviour, mobility, pain, food and fluid intake and output,</p>
+            </ng-container>
+            <ng-template #Symptoms>
+                <label>{{
+                    HealthcareSupportFormsData.Symptoms
+                }}</label>
+            </ng-template>
+            
         </div>
         <div class="col-md-1 form-icon ">
             <i class="fa-solid fa-info"></i>
@@ -112,10 +221,27 @@
                 <p>Assessment - What are their current clinical observations?</p>
             </div>
         </div>
-        <div class="col-md-7 form-text">
-            <input pInputText type="text" required name="chartheadname" class="form-control" />
-            <p class="mb-4">Include: Date and time of ob's being taken, TEMP, BP, PULSE, OXYGEN SATURATION,
-                RESPIRATIONS, BLOOD GLUCOSE and overall NEWS score</p>
+        <div class="col-md-7">
+            <ng-container *ngIf="isEditable; else ClinicalObservations">
+                <input
+                    pInputText
+                    type="text"
+                    required
+                    name="ClinicalObservations"
+                    class="form-control"
+                    [(ngModel)]="
+                        HealthcareSupportFormsData.ClinicalObservations
+                    "
+                />
+                <p class="mb-4">Include: Date and time of ob's being taken, TEMP, BP, PULSE, OXYGEN SATURATION,
+                    RESPIRATIONS, BLOOD GLUCOSE and overall NEWS score</p>
+            </ng-container>
+            <ng-template #ClinicalObservations>
+                <label>{{
+                    HealthcareSupportFormsData.ClinicalObservations
+                }}</label>
+            </ng-template>
+            
         </div>
         <div class="col-md-1 form-icon ">
             <i class="fa-solid fa-info"></i>
@@ -126,10 +252,27 @@
                     does it state anything relevant to this situation in the special notes?</p>
             </div>
         </div>
-        <div class="col-md-7 form-text">
-            <input pInputText type="text" required name="chartheadname" class="form-control" />
-            <p class="mb-4">Detail any ACP or ReSPECT documentation which is currently in place with regards to
-                escalation to hospital, interventions etc</p>
+        <div class="col-md-7">
+            <ng-container *ngIf="isEditable; else InformationSummary">
+                <input
+                    pInputText
+                    type="text"
+                    required
+                    name="InformationSummary"
+                    class="form-control"
+                    [(ngModel)]="
+                        HealthcareSupportFormsData.InformationSummary
+                    "
+                />
+                <p class="mb-4">Detail any ACP or ReSPECT documentation which is currently in place with regards to
+                    escalation to hospital, interventions etc</p>
+            </ng-container>
+            <ng-template #InformationSummary>
+                <label>{{
+                    HealthcareSupportFormsData.InformationSummary
+                }}</label>
+            </ng-template>
+            
         </div>
         <div class="col-md-1 form-icon ">
             <i class="fa-solid fa-info"></i>
@@ -139,10 +282,27 @@
                 <p>Background - When was the person last reviewed by a medical practitioner and why?</p>
             </div>
         </div>
-        <div class="col-md-7 form-text">
-            <input pInputText type="text" required name="chartheadname" class="form-control" />
-            <p class="mb-4">Please put as much detail as possible into this part about GP involvement or previous OOH
-                input in relation to the recent care of this person</p>
+        <div class="col-md-7">
+            <ng-container *ngIf="isEditable; else PersonReviewCheck">
+                <input
+                    pInputText
+                    type="text"
+                    required
+                    name="PersonReviewCheck"
+                    class="form-control"
+                    [(ngModel)]="
+                        HealthcareSupportFormsData.PersonReviewCheck
+                    "
+                />
+                <p class="mb-4">Please put as much detail as possible into this part about GP involvement or previous OOH
+                    input in relation to the recent care of this person</p>
+            </ng-container>
+            <ng-template #PersonReviewCheck>
+                <label>{{
+                    HealthcareSupportFormsData.PersonReviewCheck
+                }}</label>
+            </ng-template>
+            
         </div>
         <div class="col-md-1 form-icon ">
             <i class="fa-solid fa-info"></i>
@@ -153,10 +313,27 @@
                     communication needs/cognitive impairment/allergies)</p>
             </div>
         </div>
-        <div class="col-md-7 form-text">
-            <input pInputText type="text" required name="chartheadname" class="form-control" />
-            <p class="mb-4">Please include the question in the response - include any stress and distress in new
-                surroundings or people.</p>
+        <div class="col-md-7">
+            <ng-container *ngIf="isEditable; else MedicalHistory">
+                <input
+                    pInputText
+                    type="text"
+                    required
+                    name="MedicalHistory"
+                    class="form-control"
+                    [(ngModel)]="
+                        HealthcareSupportFormsData.MedicalHistory
+                    "
+                />
+                <p class="mb-4">Please include the question in the response - include any stress and distress in new
+                    surroundings or people.</p>
+            </ng-container>
+            <ng-template #MedicalHistory>
+                <label>{{
+                    HealthcareSupportFormsData.MedicalHistory
+                }}</label>
+            </ng-template>
+            
         </div>
         <div class="col-md-1 form-icon ">
             <i class="fa-solid fa-info"></i>
@@ -166,11 +343,28 @@
                 <p>Background - Current medications for the person are?</p>
             </div>
         </div>
-        <div class="col-md-7 form-text">
-            <input pInputText type="text" required name="chartheadname" class="form-control" />
-            <p class="mb-4">Include statement the resident currently takes the following medications..... name of
-                medication, dose, frequency, any covert pathways/how the medication is administered in place or any
-                recent omissions/errors etc</p>
+        <div class="col-md-7">
+            <ng-container *ngIf="isEditable; else Medications">
+                <input
+                    pInputText
+                    type="text"
+                    required
+                    name="Medications"
+                    class="form-control"
+                    [(ngModel)]="
+                        HealthcareSupportFormsData.Medications
+                    "
+                />
+                <p class="mb-4">Include statement the resident currently takes the following medications..... name of
+                    medication, dose, frequency, any covert pathways/how the medication is administered in place or any
+                    recent omissions/errors etc</p>
+            </ng-container>
+            <ng-template #Medications>
+                <label>{{
+                    HealthcareSupportFormsData.Medications
+                }}</label>
+            </ng-template>
+            
         </div>
         <div class="col-md-1 form-icon ">
             <i class="fa-solid fa-info"></i>
@@ -180,11 +374,29 @@
                 <p>Background - Does the person have any of the following in place?</p>
             </div>
         </div>
-        <div class="col-md-7 form-text">
-            <p-dropdown placeholder="Select" [style]="{ width: '100%' }">
-            </p-dropdown>
-            <p class="mb-4">Please include name and contact details of POA/Guardian in the other box and any details
-                that are relevant within treatment plan and their awareness of the situation</p>
+        <div class="col-md-7">
+            <ng-container *ngIf="isEditable; else PersonCheck">
+                <p-dropdown
+                    name="PersonCheck"
+                    [(ngModel)]="
+                        HealthcareSupportFormsData.PersonCheck
+                    "
+                    [options]="lstPersonCheck"
+                    optionLabel="optionName"
+                    optionValue="optionId"
+                    placeholder="Select"
+                    [style]="{ width: '100%' }"
+                >
+                </p-dropdown>
+                <p class="mb-4">Please include name and contact details of POA/Guardian in the other box and any details
+                    that are relevant within treatment plan and their awareness of the situation</p>
+            </ng-container>
+            <ng-template #PersonCheck>
+                <label>{{
+                    HealthcareSupportFormsData.PersonCheckName
+                }}</label>
+            </ng-template>
+            
         </div>
         <div class="col-md-1 form-icon ">
             <i class="fa-solid fa-info"></i>
@@ -194,11 +406,28 @@
                 <p>Recommendation - Who might provide support to the current situation and when?</p>
             </div>
         </div>
-        <div class="col-md-7 form-text">
-            <input pInputText type="text" required name="chartheadname" class="form-control" />
-            <p class="mb-4">Please include the question in your response, what do you, or the person needing support,
-                think is needed? Is advice needed now or can this wait for GP/CHLN input tomorrow/monitoring required
-            </p>
+        <div class="col-md-7">
+            <ng-container *ngIf="isEditable; else Support">
+                <input
+                    pInputText
+                    type="text"
+                    required
+                    name="Support"
+                    class="form-control"
+                    [(ngModel)]="
+                        HealthcareSupportFormsData.Support
+                    "
+                />
+                <p class="mb-4">Please include the question in your response, what do you, or the person needing support,
+                    think is needed? Is advice needed now or can this wait for GP/CHLN input tomorrow/monitoring required
+                </p>
+            </ng-container>
+            <ng-template #Support>
+                <label>{{
+                    HealthcareSupportFormsData.Support
+                }}</label>
+            </ng-template>
+            
         </div>
         <div class="col-md-1 form-icon ">
             <i class="fa-solid fa-info"></i>
@@ -208,28 +437,68 @@
                 <p>For use of all calls? If a practitioner is recommended what was the outcome of their visit</p>
             </div>
         </div>
-        <div class="col-md-7 form-text">
-            <input pInputText type="text" required name="chartheadname" class="form-control" />
-            <p class="mb-4">Include in your answer the name/role/date and time of the person attending and advice or
-                action taken.
-            </p>
+        <div class="col-md-7">
+            <ng-container *ngIf="isEditable; else VisitOutcome">
+                <input
+                    pInputText
+                    type="text"
+                    required
+                    name="VisitOutcome"
+                    class="form-control"
+                    [(ngModel)]="
+                        HealthcareSupportFormsData.VisitOutcome
+                    "
+                />
+                <p class="mb-4">Include in your answer the name/role/date and time of the person attending and advice or
+                    action taken.
+                </p>
+            </ng-container>
+            <ng-template #VisitOutcome>
+                <label>{{
+                    HealthcareSupportFormsData.VisitOutcome
+                }}</label>
+            </ng-template>
+            
         </div>
         <div class="col-md-1 form-icon ">
             <i class="fa-solid fa-info"></i>
         </div>
         <div class="d-flex justify-content-end">
-            <div>
-                <span class="p-ml-left mr-4">
-                    <button pButton title="New" label="Save as Unfinished"></button>
-                    <span class="total-txt"></span>
-                </span>
-            </div>
-            <div>
-                <span class="p-ml-left mr-4">
-                    <button pButton title="New" label="Complete"></button>
-                    <span class="total-txt"></span>
-                </span>
-            </div>
+            <ng-container *ngIf="isEditable; else savePdf">
+                <div>
+                    <span class="p-ml-left mr-4">
+                        <button
+                            pButton
+                            title="New"
+                            label="Save as Unfinished"
+                            (click)="saveAsUnfinished()"
+                        ></button>
+                        <span class="total-txt"></span>
+                    </span>
+                </div>
+                <div>
+                    <span class="p-ml-left mr-4">
+                        <button
+                            pButton
+                            title="New"
+                            label="Complete"
+                            (click)="completeForm()"
+                            [disabled]="
+                                HealthcareSupportFormsData.IsFormCompleted
+                            "
+                        ></button>
+                        <span class="total-txt"></span>
+                    </span>
+                </div>
+            </ng-container>
+            <ng-template #savePdf>
+                <button
+                    pButton
+                    title="Save as PDF"
+                    label="Save as PDF"
+                    (click)="SaveAsPDF()"
+                ></button>
+            </ng-template>
         </div>
     </div>
 </div>
