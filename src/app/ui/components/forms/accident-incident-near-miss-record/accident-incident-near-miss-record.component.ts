@@ -250,6 +250,8 @@ ngOnInit(): void {
     );
 }
 
+SaveAsPDF() {}
+
 //   GetLocationOfAccident() {
     
 //     this._UtilityService.showSpinner();

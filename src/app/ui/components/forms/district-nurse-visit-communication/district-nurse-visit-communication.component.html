@@ -4,25 +4,25 @@
             <div class="d-flex">
                 <div class="col-md-4">
                     <label class="form-label"><b> Started by (Name) :</b>
-                    </label>
+                        {{preSelectedFormData.StartedBy}}</label>
                 </div>
                 <div class="col-md-4 ">
-                    <label class="form-label"><b>Designation :</b> </label>
+                    <label class="form-label"><b>Designation :</b>{{preSelectedFormData.StartedByDesignation}} </label>
                 </div>
                 <div class="col-md-4">
-                    <label class="form-label"> <b>Date/Time : </b></label>
+                    <label class="form-label"> <b>Date/Time : </b>{{preSelectedFormData.StartedOn | date : customDateFormat.DEF_DATE_TIME}}</label>
                 </div>
             </div>
             <div class="d-flex">
                 <div class="col-md-4">
                     <label class="form-label">
-                        <b>Last entered by (Name) :</b></label>
+                        <b>Last entered by (Name) :</b>{{preSelectedFormData.ModifiedBy}}</label>
                 </div>
                 <div class="col-md-4">
-                    <label class="form-label"> <b>Designation :</b></label>
+                    <label class="form-label"> <b>Designation :</b>{{preSelectedFormData.ModifiedByDesignation}}</label>
                 </div>
                 <div class="col-md-4">
-                    <label class="form-label"> <b>Date/Time :</b> </label>
+                    <label class="form-label"> <b>Date/Time :</b> {{preSelectedFormData.ModifiedOn | date: customDateFormat.DEF_DATE_TIME}}</label>
                 </div>
             </div>
 
@@ -34,27 +34,35 @@
             </div>
         </div>
         <div class="col-md-8 mt-4">
-            <div class="input-group date">
-                <p-calendar name="DateOfBirth" [showIcon]="true" inputId="icon" [dateFormat]="" class="iconcal"
+          <div class="input-group date">
+            <ng-container *ngIf="this.isEditable; else NurseVisitDate">
+                <p-calendar name="DistrictNurseFormsData.NurseVisitDate" [showIcon]="true" inputId="icon" class="iconcal" [(ngModel)]="DistrictNurseFormsData.NurseVisitDate"
                     [readonlyInput]="true" appendTo="body" [maxDate]="" #dobref=""></p-calendar>
                 <div *ngIf="" class="alert alert-danger">
                 </div>
-            </div>
+            </ng-container>
+            <ng-template #NurseVisitDate>
+                <label>{{DistrictNurseFormsData.NurseVisitDate | date}}</label>
+            </ng-template>
+          </div>
+            
         </div>
         <div class="col-md-4">
             <div class="labelcontent">
-                <p>Time of Accident/Incident
+                <p>Time of District Nurse Visit / Communication
                 </p>
             </div>
         </div>
-        <div class="col-md-8  form-text ">
-            <div class="d-flex align-items-center">
-                <input pInputText type="time" required name="timeOfAccident" class="form-control mr-4"
-                    [style]="{ width: '35%' }">
-                <p class="mb-4">Use 24 hour clock</p>
-            </div>
-
-
+        <div class="col-md-8">
+           
+                <ng-container *ngIf="this.isEditable; else NurseVisitTime">
+                    <input pInputText type="time" [(ngModel)]="DistrictNurseFormsData.NurseVisitTime" required name="DistrictNurseFormsData.NurseVisitTime" class="form-control mr-4"  [style]="{ width: '35%' }">
+                    <p class="labelcontent">Use 24 hour clock</p>
+                </ng-container>
+                <ng-template #NurseVisitTime>
+                    <label>{{DistrictNurseFormsData.NurseVisitTime}}</label>
+                </ng-template>
+            
 
         </div>
         <div class="col-md-4">
@@ -62,72 +70,136 @@
                 <p>Duration of District Nurse Visit / Communication</p>
             </div>
         </div>
-        <div class="col-md-8 form-text">
-            <input pInputText type="text" required name="chartheadname" class="form-control" />
+        <div class="col-md-8">
+            <ng-container *ngIf="this.isEditable; else NurseVisitDuration">
+                <input pInputText type="text" [(ngModel)]="DistrictNurseFormsData.NurseVisitDuration" required name="DistrictNurseFormsData.NurseVisitDuration" class="form-control mr-4"
+                    [style]="{ width: '35%' }">
+            </ng-container>
+            <ng-template #NurseVisitDuration>
+                <label>{{DistrictNurseFormsData.NurseVisitDuration}}</label>
+            </ng-template>
         </div>
         <div class="col-md-4">
             <div class="labelcontent">
                 <p>Name(s) of District Nurse</p>
             </div>
         </div>
-        <div class="col-md-8 form-text">
-            <input pInputText type="text" required name="chartheadname" class="form-control" />
-            <p class="mb-4">Please include full name(s) and designation(s)</p>
+        <div class="col-md-8">
+            <ng-container *ngIf="this.isEditable; else NurseName">
+                <input pInputText type="text" [(ngModel)]="DistrictNurseFormsData.NurseName" required name="DistrictNurseFormsData.NurseName" class="form-control mr-4"
+                    [style]="{ width: '35%' }">
+                    <p class="mb-4">Please include full name(s) and designation(s)</p>
+            </ng-container>
+            <ng-template #NurseName>
+                <label>{{DistrictNurseFormsData.NurseName}}</label>
+            </ng-template>
         </div>
         <div class="col-md-4">
             <div class="labelcontent">
                 <p>How was the communication relayed</p>
             </div>
         </div>
-        <div class="col-md-8 form-text">
-            <p-dropdown placeholder="Select" [style]="{ width: '100%' }">
-            </p-dropdown>
+        <div class="col-md-8">
+            <ng-container *ngIf="this.isEditable; else CommStatus">
+                <p-dropdown [required]="true" [options]="lstCommStatus"   optionLabel="optionName" [(ngModel)]="DistrictNurseFormsData.CommStatus" name="DistrictNurseFormsData.CommStatus" optionValue="optionId" placeholder="Select" [style]="{ width: '100%' }">
+                </p-dropdown>
+            </ng-container>
+            <ng-template #CommStatus>
+                <label>{{DistrictNurseFormsData.CommStatusName}}</label>
+            </ng-template>
         </div>
         <div class="col-md-4">
             <div class="labelcontent">
                 <p>Reason for Visit / Communication</p>
             </div>
         </div>
-        <div class="col-md-8 form-text">
-            <input pInputText type="text" required name="chartheadname" class="form-control" />
+        <div class="col-md-8">
+            <ng-container *ngIf="this.isEditable; else VisitReason">
+                <input pInputText type="text" [(ngModel)]="DistrictNurseFormsData.VisitReason" required name="DistrictNurseFormsData.VisitReason" class="form-control mr-4"
+                    [style]="{ width: '35%' }">
+            </ng-container>
+            <ng-template #VisitReason>
+                <label>{{DistrictNurseFormsData.VisitReason}}</label>
+            </ng-template>
         </div>
         <div class="col-md-4">
             <div class="labelcontent">
                 <p>Outcome of Visit / Communication</p>
             </div>
         </div>
-        <div class="col-md-8 form-text">
-            <input pInputText type="text" required name="chartheadname" class="form-control" />
+        <div class="col-md-8">
+            <ng-container *ngIf="this.isEditable; else VisitOutcome">
+                <input pInputText type="text" [(ngModel)]="DistrictNurseFormsData.VisitOutcome" required name="DistrictNurseFormsData.VisitOutcome" class="form-control mr-4"
+                    [style]="{ width: '35%' }">
+            </ng-container>
+            <ng-template #VisitOutcome>
+                <label>{{DistrictNurseFormsData.VisitOutcome}}</label>
+            </ng-template>
         </div>
         <div class="col-md-4">
             <div class="labelcontent">
                 <p>Further action(s) / follow up(s) by District Nurse</p>
             </div>
         </div>
-        <div class="col-md-8 form-text">
-            <input pInputText type="text" required name="chartheadname" class="form-control" />
+        <div class="col-md-8">
+            <ng-container *ngIf="this.isEditable; else NurseAction">
+                <input pInputText type="text" [(ngModel)]="DistrictNurseFormsData.NurseAction" required name="DistrictNurseFormsData.NurseAction" class="form-control mr-4"
+                    [style]="{ width: '35%' }">
+            </ng-container>
+            <ng-template #NurseAction>
+                <label>{{DistrictNurseFormsData.NurseAction}}</label>
+            </ng-template>
         </div>
         <div class="col-md-4">
             <div class="labelcontent">
                 <p>Further action(s) / follow up(s) by Care home</p>
             </div>
         </div>
-        <div class="col-md-8 form-text">
-            <input pInputText type="text" required name="chartheadname" class="form-control" />
+        <div class="col-md-8">
+            <ng-container *ngIf="this.isEditable; else CareHomeAction">
+                <input pInputText type="text" [(ngModel)]="DistrictNurseFormsData.CareHomeAction" required name="DistrictNurseFormsData.CareHomeAction" class="form-control mr-4"
+                    [style]="{ width: '35%' }">
+            </ng-container>
+            <ng-template #CareHomeAction>
+                <label>{{DistrictNurseFormsData.CareHomeAction}}</label>
+            </ng-template>
         </div>
         <div class="d-flex justify-content-end">
-            <div>
-                <span class="p-ml-left mr-4">
-                    <button pButton title="New" label="Save as Unfinished"></button>
-                    <span class="total-txt"></span>
-                </span>
-            </div>
-            <div>
-                <span class="p-ml-left mr-4">
-                    <button pButton title="New" label="Complete"></button>
-                    <span class="total-txt"></span>
-                </span>
-            </div>
+            <ng-container *ngIf="isEditable; else savePdf">
+                <div>
+                    <span class="p-ml-left mr-4">
+                        <button
+                            pButton
+                            title="New"
+                            label="Save as Unfinished"
+                            (click)="saveAsUnfinished()"
+                        ></button>
+                        <span class="total-txt"></span>
+                    </span>
+                </div>
+                <div>
+                    <span class="p-ml-left mr-4">
+                        <button
+                            pButton
+                            title="New"
+                            label="Complete"
+                            (click)="completeForm()"
+                            [disabled]="
+                                DistrictNurseFormsData.IsFormCompleted
+                            "
+                        ></button>
+                        <span class="total-txt"></span>
+                    </span>
+                </div>
+            </ng-container>
+            <ng-template #savePdf>
+                <button
+                    pButton
+                    title="Save as PDF"
+                    label="Save as PDF"
+                    (click)="SaveAsPDF()"
+                ></button>
+            </ng-template>
         </div>
     </div>
 </div>

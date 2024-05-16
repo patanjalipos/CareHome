@@ -52,8 +52,8 @@
         <div class="col-md-7 mt-4">
             <ng-container *ngIf="isEditable==true">
                 <p-dropdown [required]="true" placeholder="Select" [(ngModel)]="AcuteCarePlanInfectionFormsData.NatureInfc" name="ddlNatureInfc"
-                    [style]="{ width: '100%' }" [options]="lstAcuteInfection" optionLabel="NatureName"
-                    optionValue="AcuteCareNatureInfectionMasterId">
+                    [style]="{ width: '100%' }" [options]="lstAcuteInfection" optionLabel="optionName"
+                    optionValue="optionId">
                 </p-dropdown>
             </ng-container>
             <ng-container *ngIf="isEditable!=true">
@@ -72,7 +72,7 @@
         <div class="col-md-7 form-text">
             <input *ngIf="isEditable==true" pInputText type="text" required name="txtSpecimensObtained" [(ngModel)]="AcuteCarePlanInfectionFormsData.SpecimensObtained" class="form-control" />
             <p *ngIf="isEditable!=true">{{AcuteCarePlanInfectionFormsData.SpecimensObtained}}</p>
-            <p class="mb-4">Include date dd/mm/yyyy
+            <p class="mb-4" *ngIf="isEditable==true">Include date dd/mm/yyyy>
             </p>
         </div>
         <div class="col-md-1 form-icon">
@@ -100,8 +100,8 @@
         <div class="col-md-7 form-text">
             <ng-container *ngIf="isEditable==true">
                 <p-dropdown placeholder="Select" [(ngModel)]="AcuteCarePlanInfectionFormsData.Strategies" name="ddlStrategies"
-                    [style]="{ width: '100%' }" [options]="lstActuteStratagy" optionLabel="StrategiesName"
-                    optionValue="AcuteCareStrategiesMasterId">
+                    [style]="{ width: '100%' }" [options]="lstAcuteStratagy" optionLabel="optionName"
+                    optionValue="optionId">
                 </p-dropdown>
             </ng-container>
             <ng-container *ngIf="isEditable!=true">
@@ -120,7 +120,7 @@
         <div class="col-md-7 form-text">
             <input *ngIf="isEditable==true" pInputText type="text" required name="txtOtherRisk" [(ngModel)]="AcuteCarePlanInfectionFormsData.OtherRisk" class="form-control" />
             <p *ngIf="isEditable!=true">{{AcuteCarePlanInfectionFormsData.OtherRisk}}</p>
-            <p class="mb-4">Specify any other risks that have not been identified above
+            <p class="mb-4" *ngIf="isEditable==true">Specify any other risks that have not been identified above>
             </p>
         </div>
         <div class="col-md-1 form-icon">
@@ -148,32 +148,55 @@
         <div class="col-md-7 form-text">
             <ng-container *ngIf="isEditable==true">
                 <p-dropdown placeholder="Select" [(ngModel)]="AcuteCarePlanInfectionFormsData.OutCome" name="ddlOutCome"
-                    [style]="{ width: '100%' }" [options]="lstActuteOutCome" optionLabel="OutComeName"
-                    optionValue="AcuteOutComeTreatmentId">
+                    [style]="{ width: '100%' }" [options]="lstAcuteOutCome" optionLabel="optionName"
+                    optionValue="optionId">
                 </p-dropdown>
             </ng-container>
             <ng-container *ngIf="isEditable!=true">
                 <p>{{AcuteCarePlanInfectionFormsData.OutComeName}}</p>
             </ng-container>
-            <p class="mb-4">What signs are we looking for, to identify that treatment has been successful?
+            <p class="mb-4"*ngIf="isEditable==true">What signs are we looking for, to identify that treatment has been successful?>
             </p>
         </div>
         <div class="col-md-1 form-icon">
             <i class="fa-solid fa-info"></i>
         </div>
         <div class="d-flex justify-content-end">
-            <div>
-                <span class="p-ml-left mr-4">
-                    <button pButton title="New" (click)="saveAsUnfinished()" label="Save as Unfinished"></button>
-                    <span class="total-txt"></span>
-                </span>
-            </div>
-            <div>
-                <span class="p-ml-left mr-4">
-                    <button pButton title="New" label="Complete" (click)="completeForm()"></button>
-                    <span class="total-txt"></span>
-                </span>
-            </div>
+            <ng-container *ngIf="isEditable; else savePdf">
+                <div>
+                    <span class="p-ml-left mr-4">
+                        <button
+                            pButton
+                            title="New"
+                            label="Save as Unfinished"
+                            (click)="saveAsUnfinished()"
+                        ></button>
+                        <span class="total-txt"></span>
+                    </span>
+                </div>
+                <div>
+                    <span class="p-ml-left mr-4">
+                        <button
+                            pButton
+                            title="New"
+                            label="Complete"
+                            (click)="completeForm()"
+                            [disabled]="
+                                AcuteCarePlanInfectionFormsData.IsFormCompleted
+                            "
+                        ></button>
+                        <span class="total-txt"></span>
+                    </span>
+                </div>
+            </ng-container>
+            <ng-template #savePdf>
+                <button
+                    pButton
+                    title="Save as PDF"
+                    label="Save as PDF"
+                    (click)="SaveAsPDF()"
+                ></button>
+            </ng-template>
         </div>
     </div>
 </div>
