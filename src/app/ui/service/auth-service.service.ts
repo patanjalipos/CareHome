@@ -17,7 +17,8 @@ export class AuthServiceService {
     //,
     //private _AuthService: AuthService
     ) { }
-  Login(LoginId:string, Password:string): Observable<any> 
+  
+    Login(LoginId:string, Password:string): Observable<any> 
     {
         let reqHeader = new HttpHeaders({ 
             'Content-Type': 'application/json',
