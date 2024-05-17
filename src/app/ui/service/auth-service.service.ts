@@ -43,4 +43,23 @@ export class AuthServiceService {
         queryParams: {},
       });
     }
+
+    GetForgotPassword(LoginId): Observable<any> {
+      var data = "LoginId=" + LoginId;
+      return this.httpClient.get(environment.BaseUriUser + "api/User/GetForgotPassword?" + data);
+    }
+
+    ChangePassword(oldPassword, newPassword) {
+      let reqHeader = new HttpHeaders({
+          'Content-Type': 'application/json',
+          'Access-Control-Allow-Origin': environment.BaseUriUser,
+          'Authorization': 'Bearer ' + localStorage.getItem('token')
+      });
+      let params = new HttpParams();
+      params = params.append('userId', localStorage.getItem('userId'));
+      params = params.append('oldPassword', oldPassword);
+      params = params.append('newPassword', newPassword);
+      var data = "";
+      return this.httpClient.post<any>(environment.BaseUriUser + "api/User/ChangePassword", data, { "headers": reqHeader, "params": params });
+    }
 }
