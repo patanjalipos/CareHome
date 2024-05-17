@@ -9,7 +9,8 @@ import { DropdownModule } from 'primeng/dropdown';
 import { InputTextModule } from 'primeng/inputtext';
 import { InputNumberModule } from "primeng/inputnumber";
 import { ButtonModule } from 'primeng/button';
-
+import {CheckboxModule} from 'primeng/checkbox';
+import { AccordionModule } from 'primeng/accordion';
 @NgModule({
   declarations: [
     HomeMasterComponent
@@ -23,6 +24,8 @@ import { ButtonModule } from 'primeng/button';
     InputTextModule,
     InputNumberModule,
     ButtonModule,
+    AccordionModule,
+    CheckboxModule
   ]
 })
 export class HomeMasterModule { }

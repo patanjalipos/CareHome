@@ -21,7 +21,12 @@
                     <button label="Sign In" class="btn w-full mt-3" (click)="ValidateLogin()">Log In</button>
 
                     <div class="flex align-items-center justify-content-center mt-5">
-                        <a class="no-underline ml-2 text-right cursor-pointer text-white">Forgot password?</a>
+                        <a routerLink="/auth/forgot-password"
+                            class="font-medium no-underline ml-2 text-right cursor-pointer"
+                            style="color: var(--primary-color)" id="kt_login_forgot">
+                            Forgot Password ?
+                        </a>
+                        <!-- <a class="no-underline ml-2 text-right cursor-pointer text-white">Forgot password?</a> -->
                     </div>
                 </div>
             </div>

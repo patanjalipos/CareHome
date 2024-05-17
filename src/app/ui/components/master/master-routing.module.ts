@@ -4,6 +4,7 @@ import { AuthGuard } from '../auth/auth.guard';
 
 const routes: Routes = [
   { path: 'menu-master',canActivate: [AuthGuard], loadChildren: () => import('./menu-item-master/menu-item-master.module').then(m => m.MenuItemMasterModule) },
+  { path: 'email-template',canActivate: [AuthGuard], loadChildren: () => import('./email-template/email-template.module').then(m => m.EmailTemplateModule) },
   { path: 'alert-head-master',canActivate: [AuthGuard], loadChildren: () => import('./alert-head-master/alert-head-master.module').then(m => m.AlertHeadMasterModule) },
   { path: 'alert-master',canActivate: [AuthGuard], loadChildren: () => import('./alert-master/alert-master.module').then(m => m.AlertMasterModule) },
   { path: 'chart-head-master',canActivate: [AuthGuard], loadChildren: () => import('./chart-head-master/chart-head-master.module').then(m => m.ChartHeadMasterModule) },
