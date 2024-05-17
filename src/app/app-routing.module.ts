@@ -20,6 +20,7 @@ import { ResidentLayoutComponent } from './layout/resident.layout.component';
                     { path: 'resident-list', loadChildren: () => import('./ui/components/resident-list/resident-list.module').then(m => m.ResidentListModule) }, 
                     { path: 'task-planner', loadChildren: () => import('./ui/components/task-planner/task-planner.module').then(m => m.TaskPlannerModule) }, 
                     { path: 'activity', loadChildren: () => import('./ui/components/activity/activity.module').then(m => m.ActivityModule) }, 
+                    { path: 'documentation', loadChildren: () => import('./ui/components/documentation/documentation.module').then(m => m.DocumentationModule) },
                     { path: 'report', loadChildren: () => import('./ui/components/report/report.module').then(m => m.ReportModule) },
                     { path: 'change-password', loadChildren: () => import('./ui/components/change-password/change-password.module').then(m => m.ChangePasswordModule) },                   
                     // { path: 'resident', loadChildren: () => import('./ui/components/resident/resident.module').then(m => m.ResidentModule) },
