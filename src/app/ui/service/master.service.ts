@@ -22,6 +22,48 @@ export class MasterService {
         );
     }
 
+    // Common Email Drafting 
+
+    GetAllEmailDrafting(): Observable<any> {
+        let reqHeader = new HttpHeaders({
+            'Content-Type': 'application/json',
+            'Access-Control-Allow-Origin': environment.BaseUriAdmin,
+            'Authorization': 'Bearer ' + localStorage.getItem('token')
+        });
+        let params = new HttpParams();
+        var data = "";
+        return this._httpclient.get(environment.BaseUriAdmin + "api/Admin/GetAllEmailDrafting", { "headers": reqHeader, "params": params });
+    }
+    GetEmailTemplateByType(DId): Observable<any> {
+        let reqHeader = new HttpHeaders({
+            'Content-Type': 'application/json',
+            'Access-Control-Allow-Origin': environment.BaseUriAdmin,
+            'Authorization': 'Bearer ' + localStorage.getItem('token')
+        });
+        let params = new HttpParams();
+        params = params.append('DId', DId);
+        return this._httpclient.get(environment.BaseUriAdmin + "api/Admin/GetEmailTemplateByType", { "headers": reqHeader, "params": params });
+    }
+    SaveUpdateEmailDrafting(commonEmailDraftingMaster: any): Observable<any> {
+
+        let reqHeader = new HttpHeaders({
+            'Content-Type': 'application/json',
+            'Access-Control-Allow-Origin': environment.BaseUriAdmin,
+            'Authorization': 'Bearer ' + localStorage.getItem('token')
+        });
+        let params = new HttpParams();
+        var data = JSON.stringify(commonEmailDraftingMaster).toString();
+
+        if (commonEmailDraftingMaster.DId != null && commonEmailDraftingMaster.DId != "") {
+            return this._httpclient.post<any>(environment.BaseUriAdmin + "api/Admin/UpdateEmailDrafting", data, { "headers": reqHeader, "params": params });
+        }
+        else {
+            return this._httpclient.post<any>(environment.BaseUriAdmin + "api/Admin/AddEmailDrafting", data, { "headers": reqHeader, "params": params });
+        }
+    }
+
+    
+
     //#region Form Dashboard
 
     GetFormDasboardList(
