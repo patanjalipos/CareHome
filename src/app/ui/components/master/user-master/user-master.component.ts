@@ -47,6 +47,10 @@ export class UserMasterComponent extends AppComponentBase implements OnInit {
   lstAction:string[]=[];
   public MenuitemMaster: TreeNode[] = [];
   colsActionITable: any[]=[];
+  button:boolean=false;
+  dropdownValue=true;
+
+  selectedResident:any[]=[]
 
   constructor(
     private _ConstantServices: ConstantsService,
@@ -112,6 +116,16 @@ export class UserMasterComponent extends AppComponentBase implements OnInit {
     this.yesterday.setFullYear(this.yesterday.getFullYear() - 130);
     this.todayDate.setDate(this.todayDate.getDate() - 7);
   }
+  disablesButton(event){
+    if (event.checked) {
+      this.dropdownValue=false;
+      this.button=true;
+    } else {
+      this.dropdownValue=true;
+      this.button=false;
+    }
+  }
+  
   LoadHomeMaster() {
     this._UtilityService.showSpinner();
     this.unsubscribe.add = this._MasterServices.GetHomeMaster(true)
@@ -122,7 +136,11 @@ export class UserMasterComponent extends AppComponentBase implements OnInit {
           if (data.actionResult.success == true) {
             var tdata = JSON.parse(data.actionResult.result);
             tdata = tdata ? tdata : [];
-            this.lstHomeMaster = tdata;            
+            this.lstHomeMaster = tdata;  
+            console.log("home master");
+            
+            console.log(this.lstHomeMaster);
+                      
           }
           else {
             this.lstHomeMaster = [];            
@@ -545,6 +563,10 @@ export class UserMasterComponent extends AppComponentBase implements OnInit {
             var tdata = JSON.parse(data.actionResult.result);
             tdata = tdata ? tdata : [];
             this.lstResidentfacility = tdata;
+            console.log("resident data==>");
+            
+            console.log(this.lstResidentfacility);
+            
 
             if(this.lstFacilityResident.filter(f=>f.HomeMasterId==this.slectedHomeMasterId)[0]?.ResidentList?.length>0)
             {
@@ -556,7 +578,7 @@ export class UserMasterComponent extends AppComponentBase implements OnInit {
                 }
               }
             }
-            this.ShowResidentFacilityModel=true;
+            // this.ShowResidentFacilityModel=true;
           }
           else
           {
