@@ -808,6 +808,20 @@ export class MasterService {
 
     //#end region
 
+    GetGroupResidentTagDetailsList(Status=0): Observable<any> {
+        let reqHeader = new HttpHeaders({
+            'Content-Type': 'application/json',
+            'Access-Control-Allow-Origin': environment.BaseUriAdmin,
+            'Authorization': 'Bearer ' + localStorage.getItem('token')
+        });
+        let params = new HttpParams();
+        params = params.append('Status', (Status==null || Status==undefined)?0:Status);
+        return this._httpclient.get<any>(
+            environment.BaseUriAdmin + 'api/Admin/GetGroupResidentTagDetailsList',
+            { headers: reqHeader, params: params }
+        );
+    }
+
     // #region UserTypeMaster
 
     GetUserTypeMaster(moduleId: string = ''): Observable<any> {
