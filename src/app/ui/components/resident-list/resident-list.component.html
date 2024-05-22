@@ -41,9 +41,12 @@
         <ng-template pTemplate="body" let-dt let-i="rowIndex">
             <tr>
                 <td>{{dt.AdmissionNumber}}</td>
-                <td><img [src]="profileUrl+ (dt.ProfileImage==''? 'no-picture.png': dt.ProfileImage)"
-                        class="table-image mr-2"> {{dt.FullName}} {{dt.PreferredName==''? '': '('+
-                    dt.PreferredName+')'}}
+                <td>
+                   <!-- <img [src]="profileUrl+ (dt.ProfileImage==''? 'no-picture.png': dt.ProfileImage)"
+                        class="table-image mr-2">--><img [src]="dt.imageSrc" class="w-6 shadow-2 my-1 mx-0"
+                        *ngIf="dt.imageSrc!=null && dt.imageSrc!=undefined && dt.imageSrc!=''"> {{dt.FullName}} 
+                        <span *ngIf="dt.PreferredName !== null">{{ '('+dt.PreferredName+')'}}</span>
+                        <!-- {{dt.PreferredName==''? '': '('+dt.PreferredName+')'}} -->
                     <!-- <br />{{dt.DateOfBirth|date:customDateFormat.DEF_DATE}} (Age {{calculateAge(dt.DateOfBirth)}}) -->
                     <br /> {{dt.IsDNAR==true?'DNAR/DNACPR':''}}
                 </td>
