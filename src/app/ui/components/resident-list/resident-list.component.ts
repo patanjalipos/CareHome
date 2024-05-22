@@ -25,6 +25,7 @@ export class ResidentListComponent extends AppComponentBase implements OnInit {
   lstResidentMaster: any[]=[];
   filteredValuesLength:number=0;
   profileUrl:string= environment.BaseURIFileServer + 'ProfileImage/';
+  imageSrc:any;
   constructor( 
     private _ConstantServices: ConstantsService,
     private _MasterServices:MasterService,
@@ -92,7 +93,16 @@ export class ResidentListComponent extends AppComponentBase implements OnInit {
         if (data.actionResult.success == true) {
           var tdata = JSON.parse(data.actionResult.result);
           tdata = tdata ? tdata : [];
-          this.lstResidentMaster = tdata;
+        //  this.lstResidentMaster = tdata;          
+              this.lstResidentMaster = tdata.map(resident => {
+                if (resident.ProfileImage) {
+                  const imageFormat = resident.ProfileImage.endsWith(".jpg") || resident.ProfileImage.endsWith(".jpeg") ? "jpeg" : "png";
+                  resident.imageSrc = "data:image/" + imageFormat + ";base64," + resident.ProfileImage;
+                } else {
+                  resident.imageSrc = '';
+                }
+                return resident;
+              });
           if (this.filtr !== undefined) {
             this.filtr.nativeElement.value = "";
             this.dataTable.reset();

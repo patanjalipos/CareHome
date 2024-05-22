@@ -3,7 +3,13 @@
         <div class="card">
             <div class="profile-box">
                 <div class="profile-img">
-                    <img [src]="profileUrl+ (ResidentMaster.ProfileImage==''? 'no-picture.png': ResidentMaster.ProfileImage)" class="w-6 shadow-2 my-1 mx-0">
+                    <!-- <img [src]="profileUrl+ (ResidentMaster.ProfileImage==''? 'no-picture.png': ResidentMaster.ProfileImage)"
+                       class="w-6 shadow-2 my-1 mx-0"> -->
+                       <img [src]="imageSrc" class="w-6 shadow-2 my-1 mx-0"
+                       *ngIf="imageSrc!=null && imageSrc!=undefined && imageSrc!=''">
+                   <!-- <div class="js-image-preview" *ngIf="imageSrc==null || imageSrc==undefined || imageSrc==''">
+                      <i class="fa-solid fa-circle-user"></i> 
+                   </div> -->
                 </div>
                 <h1>{{ResidentMaster.FullName}}</h1>
                 <div class="detail-table">

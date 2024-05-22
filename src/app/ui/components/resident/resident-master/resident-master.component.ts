@@ -222,12 +222,17 @@ export class ResidentMasterComponent extends AppComponentBase implements OnInit 
           {
             var tdata = JSON.parse(data.actionResult.result);
             tdata = tdata ? tdata : [];
-            this.ResidentMaster = tdata;
+           this.ResidentMaster = tdata;
             //console.log('this.ResidentMaster', this.ResidentMaster)
             if(this.ResidentMaster?.DateOfBirth!=null && this.ResidentMaster?.DateOfBirth!=undefined)
             {
               this.ResidentMaster.DateOfBirth = new Date(this.ResidentMaster.DateOfBirth);
             }
+            if(this.ResidentMaster?.ProfileImage!=null && this.ResidentMaster?.ProfileImage!=undefined)
+              {
+                const imageFormat = this.ResidentMaster.ProfileImage.endsWith(".jpg") || this.ResidentMaster.ProfileImage.endsWith(".jpeg") ? "jpeg" : "png";
+                this.ResidentMaster.ProfileImage = "data:image/" + imageFormat + ";base64," + this.ResidentMaster.ProfileImage;               
+              }
             this.mode = "edit";   
             this.healthcareMode="view";         
           }
@@ -239,10 +244,22 @@ export class ResidentMasterComponent extends AppComponentBase implements OnInit 
         },
       });
   }
+
   fileUploader(event) {
     this.SelectedFile = [];
     for (let file of event.files) {
-      this.SelectedFile.push(file);
+      //this.SelectedFile.push(file);
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = () => {
+          this.SelectedFile.push(reader.result as string);
+          console.log(this.SelectedFile);
+        };
+        reader.onerror = (error) => {
+          console.error('Error reading file:', error);
+        };
+        reader.readAsDataURL(file);
+      }
     }
 }
 fileUploaderReset()
@@ -250,7 +267,7 @@ fileUploaderReset()
   this.SelectedFile = [];
 }
 RemoveProfileImage(){
-  this.ResidentMaster.profileimage=null;
+  this.ResidentMaster.ProfileImage=null;
   this.SelectedFile = [];
 }
 
@@ -269,15 +286,15 @@ RemoveProfileImage(){
     this.ResidentMaster.UserTypeId=this.UserTypes.Resident;
     this.ResidentMaster.ModifiedBy = localStorage.getItem('userId');  
     this.ResidentMaster.PayerTelephone = this.ResidentMaster.PayerTelephone?.toString() || null;
-    
+    this.ResidentMaster.ProfileImage=this.SelectedFile[0];
     console.log('ResidentMaster',this.ResidentMaster);
     const formData = new FormData();
     formData.append('data', JSON.stringify(this.ResidentMaster));
-    if(this.SelectedFile?.length > 0){
-      for (let file of this.SelectedFile) {
-        formData.append('files[]', file);
-      }
-    }
+    // if(this.SelectedFile?.length > 0){
+      // for (let file of this.SelectedFile) {
+        // formData.append('files[]', file);
+      // }
+    // }
     this._UtilityService.showSpinner();
     this.unsubscribe.add = this._MasterServices.AddInsertUpdateResidentMaster(formData)
         .subscribe
