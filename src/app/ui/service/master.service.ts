@@ -1339,7 +1339,7 @@ export class MasterService {
             { headers: reqHeader, params: params }
         );
     }
-    AddInsertUpdateDailyVital(obj: any): Observable<any> {
+    AddInsertUpdateDailyVital(obj: any,loginId:any): Observable<any> {
         let reqHeader = new HttpHeaders({
             'Content-Type': 'application/json',
             'Access-Control-Allow-Origin': environment.BaseUriAdmin,
@@ -1347,6 +1347,7 @@ export class MasterService {
         });
         let params = new HttpParams();
         var data = JSON.stringify(obj).toString();
+        params = params.append('loginid',loginId);
         return this._httpclient.post<any>(
             environment.BaseUriAdmin + 'api/Admin/AddInsertUpdateDailyVital',
             data,
