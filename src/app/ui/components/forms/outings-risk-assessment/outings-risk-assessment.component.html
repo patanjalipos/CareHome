@@ -4,10 +4,10 @@
             <div class="d-flex">
                 <div class="col-md-4">
                     <label class="form-label"><b> Started by (Name) :</b>
-                    </label>
+                        {{preSelectedFormData.StartedBy}}</label>
                 </div>
                 <div class="col-md-4">
-                    <label class="form-label"><b>Designation :</b> </label>
+                    <label class="form-label"><b>Designation :</b>{{preSelectedFormData.StartedByDesignation}} </label>
                 </div>
                 <div class="col-md-4">
                     <label class="form-label"> <b>Date/Time : </b></label>
@@ -16,13 +16,14 @@
             <div class="d-flex">
                 <div class="col-md-4">
                     <label class="form-label">
-                        <b>Last entered by (Name) :</b></label>
+                        <b>Last entered by (Name) :</b>{{preSelectedFormData.ModifiedBy}}</label>
                 </div>
                 <div class="col-md-4">
-                    <label class="form-label"> <b>Designation :</b></label>
+                    <label class="form-label"> <b>Designation :</b>{{preSelectedFormData.ModifiedByDesignation}}
+                    </label>
                 </div>
                 <div class="col-md-4">
-                    <label class="form-label"> <b>Date/Time :</b> </label>
+                    <label class="form-label"> <b>Date/Time :</b></label>
                 </div>
             </div>
         </div>
