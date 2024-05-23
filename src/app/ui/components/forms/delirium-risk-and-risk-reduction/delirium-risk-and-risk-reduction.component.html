@@ -10,7 +10,8 @@
                     <label class="form-label"><b>Designation :</b> {{preSelectedFormData.StartedByDesignation}}</label>
                 </div>
                 <div class="col-md-4">
-                    <label class="form-label"> <b>Date/Time : </b>{{preSelectedFormData.StartedOn | date : customDateFormat.DEF_DATE_TIME}}</label>
+                    <label class="form-label"> <b>Date/Time : </b>{{preSelectedFormData.StartedOn | date :
+                        customDateFormat.DEF_DATE_TIME}}</label>
                 </div>
             </div>
             <div class="d-flex">
@@ -22,7 +23,8 @@
                     <label class="form-label"> <b>Designation :</b>{{preSelectedFormData.ModifiedByDesignation}}</label>
                 </div>
                 <div class="col-md-4">
-                    <label class="form-label"> <b>Date/Time :</b> {{preSelectedFormData.ModifiedOn | date: customDateFormat.DEF_DATE_TIME}}</label>
+                    <label class="form-label"> <b>Date/Time :</b> {{preSelectedFormData.ModifiedOn | date:
+                        customDateFormat.DEF_DATE_TIME}}</label>
                 </div>
             </div>
         </div>
@@ -31,9 +33,11 @@
                 <p>Is the person at risk of Delirium</p>
             </div>
         </div>
-        <div class="col-md-7 mt-4">
+        <div class="col-md-7 form-text mt-4">
             <ng-container *ngIf="this.isEditable; else DeliriumRiskCheck">
-                <p-dropdown [required]="true" [options]="lstDeliriumRiskCheck"   optionLabel="optionName" [(ngModel)]="DeliriumRiskFormsData.DeliriumRiskCheck" name="DeliriumRiskFormsData.DeliriumRiskCheck" optionValue="optionId" placeholder="Select" [style]="{ width: '100%' }">
+                <p-dropdown [required]="true" [options]="lstDeliriumRiskCheck" optionLabel="optionName"
+                    [(ngModel)]="DeliriumRiskFormsData.DeliriumRiskCheck" name="DeliriumRiskFormsData.DeliriumRiskCheck"
+                    optionValue="optionId" placeholder="Select" [style]="{ width: '100%' }">
                 </p-dropdown>
                 <p class="mb-4">Chose all that are applicable to the person</p>
             </ng-container>
@@ -44,7 +48,6 @@
         <div class="col-md-1 form-icon mt-4 mb-4">
             <i class="fa-solid fa-info"></i>
         </div>
-
         <div class="col-md-4 mb-4">
             <div class="labelcontent">
                 <p>If cognitive impairment or disorientation is a highlighted risk choose the below statement for
@@ -53,7 +56,10 @@
         </div>
         <div class="col-md-7 ">
             <ng-container *ngIf="this.isEditable; else DisorientationPrevention">
-                <p-dropdown [required]="true" [options]="lstDisorientationPrevention"   optionLabel="optionName" [(ngModel)]="DeliriumRiskFormsData.DisorientationPrevention" name="DeliriumRiskFormsData.DisorientationPrevention" optionValue="optionId" placeholder="Select" [style]="{ width: '100%' }">
+                <p-dropdown [required]="true" [options]="lstDisorientationPrevention" optionLabel="optionName"
+                    [(ngModel)]="DeliriumRiskFormsData.DisorientationPrevention"
+                    name="DeliriumRiskFormsData.DisorientationPrevention" optionValue="optionId" placeholder="Select"
+                    [style]="{ width: '100%' }">
                 </p-dropdown>
             </ng-container>
             <ng-template #DisorientationPrevention>
@@ -63,7 +69,6 @@
         <div class="col-md-1 form-icon mb-4">
             <i class="fa-solid fa-info"></i>
         </div>
-
         <div class="col-md-4 mb-4">
             <div class="labelcontent">
                 <p>If the resident is at risk of delirium due to hydration levels or constipation please select all of
@@ -72,7 +77,10 @@
         </div>
         <div class="col-md-7">
             <ng-container *ngIf="this.isEditable; else DeliriumDueToHydrationPrevention">
-                <p-dropdown [required]="true" [options]="lstDeliriumDueToHydrationPrevention"   optionLabel="optionName" [(ngModel)]="DeliriumRiskFormsData.DeliriumDueToHydrationPrevention" name="DeliriumRiskFormsData.DeliriumDueToHydrationPrevention" optionValue="optionId" placeholder="Select" [style]="{ width: '100%' }">
+                <p-dropdown [required]="true" [options]="lstDeliriumDueToHydrationPrevention" optionLabel="optionName"
+                    [(ngModel)]="DeliriumRiskFormsData.DeliriumDueToHydrationPrevention"
+                    name="DeliriumRiskFormsData.DeliriumDueToHydrationPrevention" optionValue="optionId"
+                    placeholder="Select" [style]="{ width: '100%' }">
                 </p-dropdown>
             </ng-container>
             <ng-template #DeliriumDueToHydrationPrevention>
@@ -90,7 +98,10 @@
         </div>
         <div class="col-md-7">
             <ng-container *ngIf="this.isEditable; else DeliriumDueToSurgeryPrevention">
-                <p-dropdown [required]="true" [options]="lstDeliriumDueToSurgeryPrevention"   optionLabel="optionName" [(ngModel)]="DeliriumRiskFormsData.DeliriumDueToSurgeryPrevention" name="DeliriumRiskFormsData.DeliriumDueToSurgeryPrevention" optionValue="optionId" placeholder="Select" [style]="{ width: '100%' }">
+                <p-dropdown [required]="true" [options]="lstDeliriumDueToSurgeryPrevention" optionLabel="optionName"
+                    [(ngModel)]="DeliriumRiskFormsData.DeliriumDueToSurgeryPrevention"
+                    name="DeliriumRiskFormsData.DeliriumDueToSurgeryPrevention" optionValue="optionId"
+                    placeholder="Select" [style]="{ width: '100%' }">
                 </p-dropdown>
             </ng-container>
             <ng-template #DeliriumDueToSurgeryPrevention>
@@ -108,7 +119,10 @@
         </div>
         <div class="col-md-7">
             <ng-container *ngIf="this.isEditable; else DeliriumDueToInfectionPrevention">
-                <p-dropdown [required]="true" [options]="lstDeliriumDueToInfectionPrevention"   optionLabel="optionName" [(ngModel)]="DeliriumRiskFormsData.DeliriumDueToInfectionPrevention" name="DeliriumRiskFormsData.DeliriumDueToInfectionPrevention" optionValue="optionId" placeholder="Select" [style]="{ width: '100%' }">
+                <p-dropdown [required]="true" [options]="lstDeliriumDueToInfectionPrevention" optionLabel="optionName"
+                    [(ngModel)]="DeliriumRiskFormsData.DeliriumDueToInfectionPrevention"
+                    name="DeliriumRiskFormsData.DeliriumDueToInfectionPrevention" optionValue="optionId"
+                    placeholder="Select" [style]="{ width: '100%' }">
                 </p-dropdown>
             </ng-container>
             <ng-template #DeliriumDueToInfectionPrevention>
@@ -126,7 +140,10 @@
         </div>
         <div class="col-md-7">
             <ng-container *ngIf="this.isEditable; else DeliriumPreventionPlan">
-                <p-dropdown [required]="true" [options]="lstDeliriumPreventionPlan"   optionLabel="optionName" [(ngModel)]="DeliriumRiskFormsData.DeliriumPreventionPlan" name="DeliriumRiskFormsData.DeliriumPreventionPlan" optionValue="optionId" placeholder="Select" [style]="{ width: '100%' }">
+                <p-dropdown [required]="true" [options]="lstDeliriumPreventionPlan" optionLabel="optionName"
+                    [(ngModel)]="DeliriumRiskFormsData.DeliriumPreventionPlan"
+                    name="DeliriumRiskFormsData.DeliriumPreventionPlan" optionValue="optionId" placeholder="Select"
+                    [style]="{ width: '100%' }">
                 </p-dropdown>
             </ng-container>
             <ng-template #DeliriumPreventionPlan>
@@ -144,7 +161,11 @@
         </div>
         <div class="col-md-7">
             <ng-container *ngIf="this.isEditable; else DeliriumDueToSensoryImpairmentPrevention">
-                <p-dropdown [required]="true" [options]="lstDeliriumDueToSensoryImpairmentPrevention"   optionLabel="optionName" [(ngModel)]="DeliriumRiskFormsData.DeliriumDueToSensoryImpairmentPrevention" name="DeliriumRiskFormsData.DeliriumDueToSensoryImpairmentPrevention" optionValue="optionId" placeholder="Select" [style]="{ width: '100%' }">
+                <p-dropdown [required]="true" [options]="lstDeliriumDueToSensoryImpairmentPrevention"
+                    optionLabel="optionName"
+                    [(ngModel)]="DeliriumRiskFormsData.DeliriumDueToSensoryImpairmentPrevention"
+                    name="DeliriumRiskFormsData.DeliriumDueToSensoryImpairmentPrevention" optionValue="optionId"
+                    placeholder="Select" [style]="{ width: '100%' }">
                 </p-dropdown>
             </ng-container>
             <ng-template #DeliriumDueToSensoryImpairmentPrevention>
@@ -162,7 +183,10 @@
         </div>
         <div class="col-md-7">
             <ng-container *ngIf="this.isEditable; else DeliriumDueToSleepDisturbancePrevention">
-                <p-dropdown [required]="true" [options]="lstDeliriumDueToSleepDisturbancePrevention"   optionLabel="optionName" [(ngModel)]="DeliriumRiskFormsData.DeliriumDueToSleepDisturbancePrevention" name="DeliriumRiskFormsData.DeliriumDueToSleepDisturbancePrevention" optionValue="optionId" placeholder="Select" [style]="{ width: '100%' }">
+                <p-dropdown [required]="true" [options]="lstDeliriumDueToSleepDisturbancePrevention"
+                    optionLabel="optionName" [(ngModel)]="DeliriumRiskFormsData.DeliriumDueToSleepDisturbancePrevention"
+                    name="DeliriumRiskFormsData.DeliriumDueToSleepDisturbancePrevention" optionValue="optionId"
+                    placeholder="Select" [style]="{ width: '100%' }">
                 </p-dropdown>
             </ng-container>
             <ng-template #DeliriumDueToSleepDisturbancePrevention>

@@ -9,6 +9,7 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root'
 })
 export class AuthServiceService {
+  private logoutTimer: any;
 
   constructor(
     private router: Router,
@@ -17,7 +18,24 @@ export class AuthServiceService {
     //,
     //private _AuthService: AuthService
     ) { }
-  Login(LoginId:string, Password:string): Observable<any> 
+  
+    startUserActivityTracking() {
+      window.addEventListener('mousemove', () => this.resetLogoutTimer());
+      window.addEventListener('click', () => this.resetLogoutTimer());
+      window.addEventListener('keydown', () => this.resetLogoutTimer());
+      this.startLogoutTimer();
+  }
+  resetLogoutTimer() {
+      clearTimeout(this.logoutTimer);
+      this.startLogoutTimer();
+  }
+
+  startLogoutTimer() {
+    this.logoutTimer = setTimeout(() => {
+        this.logout();
+    }, 300000); // 10 minutes in ms
+}
+    Login(LoginId:string, Password:string): Observable<any> 
     {
         let reqHeader = new HttpHeaders({ 
             'Content-Type': 'application/json',

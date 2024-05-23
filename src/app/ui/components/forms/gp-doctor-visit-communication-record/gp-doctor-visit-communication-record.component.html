@@ -40,7 +40,7 @@
                     <p>Date of GP / Doctor Visit / Communication</p>
                 </div>
             </div>
-            <div class="col-md-8 mt-4 mb-4">
+            <div class="col-md-8 mt-4">
                 <div class="input-group date" *ngIf="this.isEditable;">
                     <p-calendar name="DateOfGP" [showIcon]="true" inputId="icon" [dateFormat]="" class="iconcal"
                         [readonlyInput]="true" appendTo="body"
@@ -58,7 +58,7 @@
                     <p>Time of GP / Doctor Visit / Communication</p>
                 </div>
             </div>
-            <div class="col-md-8 mb-4 ">
+            <div class="col-md-8">
                 <div class="d-flex align-items-center" *ngIf="this.isEditable;">
                     <p-calendar name="TimeofGP" [showIcon]="true" [dateFormat]="" class="iconcal" [timeOnly]="true"
                         inputId="timeonly" [readonlyInput]="true" appendTo="body"
@@ -74,7 +74,7 @@
                     <p>Duration of GP / Doctor Visit / Communication</p>
                 </div>
             </div>
-            <div class="col-md-8 mb-4 ">
+            <div class="col-md-8">
                 <input *ngIf="this.isEditable;" pInputText type="text" name="DurationOfGP" class="form-control"
                     [(ngModel)]="GPDoctorVisitCommDetails.DurationOfGPCommunication" />
                 <p *ngIf="!this.isEditable;">{{GPDoctorVisitCommDetails.DurationOfGPCommunication}}</p>
@@ -85,10 +85,10 @@
 
                 </div>
             </div>
-            <div class="col-md-8 mb-4 ">
+            <div class="col-md-8 form-text">
                 <input *ngIf="this.isEditable;" pInputText type="text" name="NameOfGP" class="form-control"
                     [(ngModel)]="GPDoctorVisitCommDetails.NameOfGP" />
-                <p *ngIf="this.isEditable;">Please include full name(s) and designation(s)</p>
+                <p class="mb-4" *ngIf="this.isEditable;">Please include full name(s) and designation(s)</p>
                 <p *ngIf="!this.isEditable;">{{GPDoctorVisitCommDetails.NameOfGP}}</p>
             </div>
             <div class="col-md-4">
@@ -104,11 +104,11 @@
                 </p-dropdown>
                 <p *ngIf="!this.isEditable;">{{GPDoctorVisitCommDetails.RelayName}}</p>
             </div> -->
-            <div class="col-md-8 mb-4">
+            <div class="col-md-8">
                 <ng-container *ngIf="isEditable==true">
-                    <p-dropdown placeholder="Select" [(ngModel)]="GPDoctorVisitCommDetails.CommunicationRelayed" name="ddlCommRelay"
-                        [style]="{ width: '100%' }" [options]="lstFamilyComRelayMaster" optionLabel="optionName"
-                        optionValue="optionId">
+                    <p-dropdown placeholder="Select" [(ngModel)]="GPDoctorVisitCommDetails.CommunicationRelayed"
+                        name="ddlCommRelay" [style]="{ width: '100%' }" [options]="lstFamilyComRelayMaster"
+                        optionLabel="optionName" optionValue="optionId">
                     </p-dropdown>
                 </ng-container>
                 <ng-container *ngIf="isEditable!=true">
@@ -120,7 +120,7 @@
                     <p>Reason for Visit / Communication</p>
                 </div>
             </div>
-            <div class="col-md-8 mb-4 ">
+            <div class="col-md-8">
                 <input *ngIf="this.isEditable;" pInputText type="text" name="ReasonforVisit" class="form-control"
                     [(ngModel)]="GPDoctorVisitCommDetails.ReasonforVisit" />
                 <p *ngIf="!this.isEditable;">{{GPDoctorVisitCommDetails.ReasonforVisit}}</p>
@@ -130,7 +130,7 @@
                     <p>Outcome of Visit / Communication</p>
                 </div>
             </div>
-            <div class="col-md-8 mb-4 ">
+            <div class="col-md-8">
                 <input *ngIf="this.isEditable;" pInputText type="text" name="OutcomeOfVisit" class="form-control"
                     [(ngModel)]="GPDoctorVisitCommDetails.OutcomeOfVisit" />
                 <p *ngIf="!this.isEditable;">{{GPDoctorVisitCommDetails.OutcomeOfVisit}}</p>
@@ -140,7 +140,7 @@
                     <p>Further action(s) / follow up(s) by GP / Doctor</p>
                 </div>
             </div>
-            <div class="col-md-8 mb-4 ">
+            <div class="col-md-8">
                 <input *ngIf="this.isEditable;" pInputText type="text" name="FurtherActionByGP" class="form-control"
                     [(ngModel)]="GPDoctorVisitCommDetails.FurtherActionByGP" />
                 <span *ngIf="!this.isEditable;">{{GPDoctorVisitCommDetails.FurtherActionByGP}}</span>
@@ -150,7 +150,7 @@
                     <p>Further action(s) / follow up(s) by Care home</p>
                 </div>
             </div>
-            <div class="col-md-8 mb-4 ">
+            <div class="col-md-8">
                 <input *ngIf="this.isEditable;" pInputText type="text" name="chartheadname" class="form-control"
                     [(ngModel)]="GPDoctorVisitCommDetails.FurtherActionByCareHome" />
                 <span *ngIf="!this.isEditable;">{{GPDoctorVisitCommDetails.FurtherActionByCareHome}}</span>

@@ -1,15 +1,15 @@
 <div *ngIf="mode==null">
     <div class="card">
         <p-table #dt [value]="lstUserMaster" styleClass="p-datatable-striped" [rowHover]="true"
-            [globalFilterFields]="['HomeCode','HomeName','UserTypeName','LoginId','FullName']"
-            [scrollable]="true" scrollHeight="calc(100vh - 155px)" (onFilter)="onFilter($event, dt)">
+            [globalFilterFields]="['HomeCode','HomeName','UserTypeName','LoginId','FullName']" [scrollable]="true"
+            scrollHeight="calc(100vh - 155px)" (onFilter)="onFilter($event, dt)">
             <ng-template pTemplate="caption">
                 <div class="flex justify-content-between flex-column sm:flex-row">
                     <span class="p-ml-left">
                         <button pButton title="Add New User" label="Add New" class="p-button-outlined mr-2"
                             icon="pi pi-plus" (click)="AddUserDetails()"></button>
                         <span class="total-txt">{{lstUserMaster?.length>0?'Total Records:
-                        '+filteredValuesLength:''}} </span>
+                            '+filteredValuesLength:''}} </span>
                     </span>
                     <span class="p-ml-auto">
                         <span>
@@ -50,10 +50,9 @@
                     <td>{{col.UserTypeName}}</td>
                     <td>{{col.LoginId}}</td>
                     <td>{{col.FullName}}</td>
-                    <td>{{col.Status==1?'Active':'Inactive'}}</td>                  
+                    <td>{{col.Status==1?'Active':'Inactive'}}</td>
                     <td>
-                        <a title="View/Edit" style="cursor: pointer;"
-                            (click)="LoadUserDetails(col.UserId)">
+                        <a title="View/Edit" style="cursor: pointer;" (click)="LoadUserDetails(col.UserId)">
                             <i class="fa fa-eye" aria-hidden="true"></i>
                         </a>
                     </td>
@@ -67,127 +66,149 @@
         <p-accordion [multiple]="true" activeIndex="0,1">
             <p-accordionTab header="Personal Details">
                 <div class="row">
-                    <div class="col-md-3">
-                        <label class="form-label">Home<span class="required">*</span></label>
-                        <!-- <p-multiSelect name="ddlHome" [style]="{width: '100%'}" [options]="lstHomeMaster" 
-                            [(ngModel)]="RegistrationMainModel.Homes" optionLabel="HomeName" optionValue="HomeMasterId"
-                            placeholder="Please select Home" #homeref="ngModel" (onChange)="SetFacility()">
-                        </p-multiSelect> -->
-                        <p-dropdown [required]="true" name="ddlHome" [options]="lstHomeMaster"
-                            [(ngModel)]="RegistrationMainModel.HomeMasterId" optionLabel="HomeName"
-                            optionValue="HomeMasterId" [filter]="true" placeholder="--select--"
-                            [style]="{width: '100%'}" #homeref="ngModel">
-                        </p-dropdown>
-                        <div *ngIf="homeref.errors &&(homeref.touched || homeref.dirty)"
-                            class="errorMessage">
-                            <div *ngIf="homeref.errors?.['required']">Home is required.</div>
+                    <div class="col-md-10">
+                        <div class="row row-cols-4 mt-4">
+                            <div class="form-group pos-rel col">
+                                    <label class="form-label">Home<span class="required">*</span></label>
+                                    <!-- <p-multiSelect name="ddlHome" [style]="{width: '100%'}" [options]="lstHomeMaster" 
+                                        [(ngModel)]="RegistrationMainModel.Homes" optionLabel="HomeName" optionValue="HomeMasterId"
+                                        placeholder="Please select Home" #homeref="ngModel" (onChange)="SetFacility()">
+                                    </p-multiSelect> -->
+                                    <p-dropdown [required]="true" name="ddlHome" [options]="lstHomeMaster"
+                                        [(ngModel)]="RegistrationMainModel.HomeMasterId" optionLabel="HomeName"
+                                        optionValue="HomeMasterId" [filter]="true" placeholder="--select--"
+                                        [style]="{width: '100%'}" #homeref="ngModel">
+                                    </p-dropdown>
+                                    <div *ngIf="homeref.errors &&(homeref.touched || homeref.dirty)" class="errorMessage">
+                                        <div *ngIf="homeref.errors?.['required']">Home is required.</div>
+                                    </div>
+                            </div>
+                            <div class="form-group pos-rel col">
+                                <label class="form-label">First Name<span class="required">*</span></label>
+                                <input pInputText type="text" required class="form-control" name="txtFName"
+                                    [(ngModel)]="RegistrationMainModel.FirstName" placeholder=""
+                                    (keypress)="validateText($event)">
+                            </div>
+                            <div class="form-group pos-rel col">
+                                <label class="form-label">Middle Name</label>
+                                <input type="text" pInputText class="form-control" name="txtMiddleName"
+                                    [(ngModel)]="RegistrationMainModel.MiddleName" placeholder=""
+                                    (keypress)="validateText($event)">
+                            </div>
+                            <div class="form-group pos-rel col">
+                                <label class="form-label">Last Name</label>
+                                <input type="text" pInputText class="form-control" name="txtLname"
+                                    [(ngModel)]="RegistrationMainModel.LastName" placeholder=""
+                                    (keypress)="validateText($event)">
+                            </div>
+                            <div class="form-group pos-rel col">
+                                <label class="form-label">Preferred Name</label>
+                                <input pInputText type="text" class="form-control" name="txtFHName"
+                                    [(ngModel)]="RegistrationMainModel.PreferredName" placeholder="">
+                            </div>
+                            <!-- <div class="col-md-3">
+                                <label class="form-label">Blood Group</label>
+                                <p-dropdown name="ddlBloodGrp" [options]="stlstbloodgrp"
+                                    [(ngModel)]="RegistrationMainModel.BloodGroup" optionLabel="name" optionValue="code"
+                                    [filter]="true" placeholder="--select--" [style]="{width: '100%'}">
+                                </p-dropdown>
+                            </div>
+                            <div class="col-md-3">
+                                <label class="form-label">Gender<span class="required">*</span> </label>
+                                <p-dropdown [required]="true" name="ddlGender" [options]="stlstgender"
+                                    [(ngModel)]="RegistrationMainModel.Gender" optionLabel="name" optionValue="code"
+                                    [filter]="true" placeholder="--select--" [style]="{width: '100%'}"
+                                    #genderref="ngModel">
+                                </p-dropdown>
+                                <div *ngIf="genderref.errors &&(genderref.touched || genderref.dirty)"
+                                    class="alert alert-danger">
+                                    <div *ngIf="genderref.errors?.['required']">Gender is required.</div>
+                                </div>
+                            </div>                                     -->
+                            <div class="form-group pos-rel col">
+                                <label class="form-label">Login Id</label>
+                                <input type="text" pInputText disabled="disabled" class="form-control" placeholder="Login Id"
+                                    name="txtLoginId" [(ngModel)]="RegistrationMainModel.LoginId">
+                            </div>
+                            <div class="form-group pos-rel col">
+                                <label class="form-label">Password</label>
+                                <input type="text" pInputText disabled="disabled" class="form-control" placeholder="Password"
+                                    name="txtPassword" [(ngModel)]="RegistrationMainModel.Password">
+                            </div>
+                            <div class="form-group pos-rel col">
+                                <label class="form-label">Status <span class="required">*</span></label>
+                                <p-dropdown [required]="true" name="ddlStatus" [options]="stlststatus"
+                                    [(ngModel)]="RegistrationMainModel.Status" optionLabel="name" optionValue="code"
+                                    [filter]="true" placeholder="Please Select Status" [style]="{width: '100%'}">
+                                </p-dropdown>
+                            </div>
                         </div>
+                        </div>
+                    
+
+
+                    
+                    <div class="col-md-2 mt-0 pt-0">
+                        <div class="form-group Profile-regis Profile-regis-new">
+                            <h6>Profile Picture</h6>
+                            <div class="img-prview-box">
+                                <img [src]="imageSrc" height="100%"
+                                    *ngIf="imageSrc!=null && imageSrc!=undefined && imageSrc!=''">
+                                <div class="js-image-preview" *ngIf="imageSrc==null || imageSrc==undefined || imageSrc==''">
+                                    <i class="fa-solid fa-circle-user"></i>
+                                </div>
+                            </div>
+                            <input type="file" class="custom-file-upload w-100 " id="customFileAWB" name="myfileAWB"
+                                (change)="onFileSelectAWB($event)" #UploadFileInputAWB accept=".JPEG,.JPG,.PNG"
+                                *ngIf="imageSrc==null || imageSrc==undefined || imageSrc==''">
+                            <a matTooltip="Clear" *ngIf="imageSrc!=null && imageSrc!=undefined && imageSrc!=''">
+                                <i class="fa fa-window-close" aria-hidden="true" [ngStyle]="{'font-size': '20px' }"
+                                    (click)="ClearProfile()"></i>
+                            </a>
+                        </div>
+        
                     </div>
                     
-                    
-                    <div class="col-md-3">
-                        <label class="form-label">First Name<span class="required">*</span></label>
-                        <input pInputText type="text" required class="form-control" name="txtFName"
-                        [(ngModel)]="RegistrationMainModel.FirstName" placeholder=""
-                        (keypress)="validateText($event)">                                
-                    </div>
-                    <div class="col-md-3">
-                        <label class="form-label">Middle Name</label>
-                        <input type="text" pInputText class="form-control" name="txtMiddleName"
-                            [(ngModel)]="RegistrationMainModel.MiddleName" placeholder=""
-                            (keypress)="validateText($event)">
-                    </div>
-                    <div class="col-md-3">
-                        <label class="form-label">Last Name</label>
-                        <input type="text" pInputText class="form-control" name="txtLname"
-                            [(ngModel)]="RegistrationMainModel.LastName" placeholder=""
-                            (keypress)="validateText($event)">
-                    </div>
-                    <div class="col-md-3">
-                        <label class="form-label">Preferred Name</label>
-                        <input pInputText type="text" class="form-control" name="txtFHName"
-                            [(ngModel)]="RegistrationMainModel.PreferredName"
-                            placeholder="">
-                    </div>
-                    <!-- <div class="col-md-3">
-                        <label class="form-label">Blood Group</label>
-                        <p-dropdown name="ddlBloodGrp" [options]="stlstbloodgrp"
-                            [(ngModel)]="RegistrationMainModel.BloodGroup" optionLabel="name" optionValue="code"
-                            [filter]="true" placeholder="--select--" [style]="{width: '100%'}">
-                        </p-dropdown>
-                    </div>
-                    <div class="col-md-3">
-                        <label class="form-label">Gender<span class="required">*</span> </label>
-                        <p-dropdown [required]="true" name="ddlGender" [options]="stlstgender"
-                            [(ngModel)]="RegistrationMainModel.Gender" optionLabel="name" optionValue="code"
-                            [filter]="true" placeholder="--select--" [style]="{width: '100%'}"
-                            #genderref="ngModel">
-                        </p-dropdown>
-                        <div *ngIf="genderref.errors &&(genderref.touched || genderref.dirty)"
-                            class="alert alert-danger">
-                            <div *ngIf="genderref.errors?.['required']">Gender is required.</div>
-                        </div>
-                    </div>                                     -->
-                    <div class="col-md-3">
-                        <label class="form-label">Login Id</label>
-                        <input type="text" pInputText disabled="disabled" class="form-control"
-                            placeholder="Login Id" name="txtLoginId"
-                            [(ngModel)]="RegistrationMainModel.LoginId">
-                    </div>
-                    <div class="col-md-3">
-                        <label class="form-label">Password</label>
-                        <input type="text" pInputText disabled="disabled" class="form-control"
-                            placeholder="Password" name="txtPassword"
-                            [(ngModel)]="RegistrationMainModel.Password">
-                    </div>                    
-                    <div class="col-md-3">
-                        <label class="form-label">Status <span class="required">*</span></label>
-                        <p-dropdown [required]="true" name="ddlStatus" [options]="stlststatus"
-                            [(ngModel)]="RegistrationMainModel.Status" optionLabel="name" optionValue="code"
-                            [filter]="true" placeholder="Please Select Status" [style]="{width: '100%'}">
-                        </p-dropdown>
-                    </div>
+                 
                 </div>
             </p-accordionTab>
             <p-accordionTab header="User details">
                 <div class="row">
                     <div class="col-md-3">
                         <label class="form-label">Date Of Birth</label>
-                        <p-calendar [maxDate]="todayDate"
-                            [(ngModel)]="RegistrationMainModel.DateOfBirth"
+                        <p-calendar [maxDate]="todayDate" [(ngModel)]="RegistrationMainModel.DateOfBirth"
                             [ngModelOptions]="{standalone: true}" [showIcon]="true" inputId="icon"
-                            [dateFormat]="customDateFormat.CalendarFormat" #dobref="ngModel" class="iconcal"></p-calendar> 
-                    </div>    
+                            [dateFormat]="customDateFormat.CalendarFormat" #dobref="ngModel"
+                            class="iconcal"></p-calendar>
+                    </div>
                     <div class="col-md-3">
                         <label class="form-label">Title</label>
                         <p-dropdown [required]="true" name="ddlTitle" [options]="stlsttitle"
                             [(ngModel)]="RegistrationMainModel.Title" optionLabel="name" optionValue="code"
-                            [filter]="true" placeholder="--select--" [style]="{width: '100%'}"
-                           >
-                        </p-dropdown>                        
+                            [filter]="true" placeholder="--select--" [style]="{width: '100%'}">
+                        </p-dropdown>
                     </div>
                     <div class="col-md-3">
                         <label class="form-label">Designation</label>
                         <input type="text" pInputText name="txtDesignation" class="form-control"
-                            [(ngModel)]="RegistrationMainModel.Designation" (keypress)="validateText($event)" />              
+                            [(ngModel)]="RegistrationMainModel.Designation" (keypress)="validateText($event)" />
                     </div>
                     <div class="col-md-3">
                         <label class="form-label">Date employment commenced</label>
-                        <p-calendar [maxDate]="todayDate"
-                            [(ngModel)]="RegistrationMainModel.EmploymentDate"
+                        <p-calendar [maxDate]="todayDate" [(ngModel)]="RegistrationMainModel.EmploymentDate"
                             [ngModelOptions]="{standalone: true}" [showIcon]="true" inputId="icon"
-                            [dateFormat]="customDateFormat.CalendarFormat" #empdateref="ngModel" class="iconcal"></p-calendar>
-                    </div> 
+                            [dateFormat]="customDateFormat.CalendarFormat" #empdateref="ngModel"
+                            class="iconcal"></p-calendar>
+                    </div>
                 </div>
-            </p-accordionTab> 
+            </p-accordionTab>
             <p-accordionTab header="Role">
                 <div class="row">
                     <div class="col-md-3">
                         <label class="form-label">User Type<span class="required">*</span></label>
-                        <p-dropdown (onChange)="onChangeUserType()" [required]="true"
-                            name="ddlUserType" [options]="lstUserType"
-                            [(ngModel)]="RegistrationMainModel.UserTypeId" optionLabel="UserTypeName"
-                            optionValue="UserTypeId" [filter]="true" placeholder="--select--"
+                        <p-dropdown (onChange)="onChangeUserType()" [required]="true" name="ddlUserType"
+                            [options]="lstUserType" [(ngModel)]="RegistrationMainModel.UserTypeId"
+                            optionLabel="UserTypeName" optionValue="UserTypeId" [filter]="true" placeholder="--select--"
                             [style]="{width: '100%'}" #usertyperef="ngModel">
                         </p-dropdown>
                         <div *ngIf="usertyperef.errors &&(usertyperef.touched || usertyperef.dirty)"
@@ -197,17 +218,16 @@
                     </div>
                     <div class="col-md-3">
                         <label class="form-label">Region</label>
-                        <input type="text" pInputText class="form-control"
-                        placeholder="Region" name="txtRegion"
-                        [(ngModel)]="RegistrationMainModel.Region">
+                        <input type="text" pInputText class="form-control" placeholder="Region" name="txtRegion"
+                            [(ngModel)]="RegistrationMainModel.Region">
                     </div>
                 </div>
-            </p-accordionTab> 
+            </p-accordionTab>
             <p-accordionTab header="Facility and resident assignments">
                 <div class="row">
                     <div class="col-md-12">
-                        <p-table #dt67 [value]="lstFacilityResident" responsiveLayout="scroll" styleClass="p-datatable-striped"
-                            [rowHover]="true" [scrollable]="true" scrollHeight="250px">
+                        <p-table #dt67 [value]="lstHomeMaster" responsiveLayout="scroll"
+                            styleClass="p-datatable-striped" [rowHover]="true" [scrollable]="true" scrollHeight="250px">
                             <ng-template pTemplate="emptymessage" let-columns>
                                 <tr>
                                     <td [attr.colspan]="4">
@@ -225,32 +245,39 @@
                             </ng-template>
                             <ng-template pTemplate="body" let-col let-i="rowIndex">
                                 <tr>
-                                    <td>{{col.FacilityName}}</td>
+                                    <td>{{col.HomeName}}</td>
                                     <td>
-                                        <p-checkbox                                                    
-                                        name="ChkItemCheckEnableFacility_{{i}}"
-                                        [(ngModel)]="col.EnableFacility" [binary]="true"
-                                        inputId="binary"></p-checkbox>
+                                        <p-checkbox name="ChkItemCheckEnableFacility_{{i}}"
+                                            [(ngModel)]="col.EnableFacility" [binary]="true"
+                                            inputId="binary"></p-checkbox>
                                     </td>
                                     <td>
-                                        <p-checkbox                                                    
-                                        name="ChkItemCheckEnableAutoAssignResident_{{i}}"
-                                        [(ngModel)]="col.AutoAssignResident" [binary]="true"
-                                        inputId="binary"></p-checkbox>
+                                        <p-checkbox name="ChkItemCheckEnableAutoAssignResident_{{i}}"
+                                            [(ngModel)]="col.AutoAssignResident" [binary]="true" inputId="binary"
+                                            (onChange)="disablesButton($event)"></p-checkbox>
                                     </td>
                                     <td>
-                                        <p-button *ngIf="col.EnableFacility==true" class="print-prew" (click)="ShowResidentDetails(col.HomeMasterId)">
-                                            Assign Residents</p-button>
+                                        <div *ngIf="button">
+                                            <p-button class="print-prew" [disabled]="button">
+                                                Assign Residents</p-button>
+                                        </div>
+
+                                        <div class="" *ngIf="dropdownValue">
+                                            <p-multiSelect [options]="lstResidentfacility" optionLabel="FullName"
+                                                placeholder="--Select Resident--" [(ngModel)]="selectedResident"
+                                                (onPanelShow)="ShowResidentDetails(col.HomeMasterId)"
+                                                optionValue="UserId" appendTo="body"></p-multiSelect>
+                                        </div>
                                     </td>
                                 </tr>
                             </ng-template>
                         </p-table>
                     </div>
-                
+
                 </div>
             </p-accordionTab>
             <p-accordionTab header="Contact details">
-                <div class="row">                    
+                <div class="row">
                     <div class="col-md-3">
                         <label class="form-label">Contact address</label>
                         <input type="text" pInputText id='txtAddress' class="form-control" name="txtAddress"
@@ -258,108 +285,111 @@
                     </div>
                     <div class="col-md-3">
                         <label class="form-label">Location</label>
-                        <input type="text" pInputText class="form-control" placeholder=""
-                            name="Location" [(ngModel)]="RegistrationMainModel.Location">
+                        <input type="text" pInputText class="form-control" placeholder="" name="Location"
+                            [(ngModel)]="RegistrationMainModel.Location">
                     </div>
                     <div class="col-md-3">
                         <label class="form-label">Phone (area - local)</label>
-                        <input type="text" pInputText class="form-control" placeholder=""
-                            name="Phone" [(ngModel)]="RegistrationMainModel.Phone">
+                        <input type="text" pInputText class="form-control" placeholder="" name="Phone"
+                            [(ngModel)]="RegistrationMainModel.Phone">
                     </div>
                     <div class="col-md-3">
                         <label class="form-label">Fax (area - local)</label>
-                        <p-inputNumber name="fax" [(ngModel)]="RegistrationMainModel.Fax"
-                        mode="decimal" [useGrouping]="false" [maxlength]="20"></p-inputNumber>                        
+                        <p-inputNumber name="fax" [(ngModel)]="RegistrationMainModel.Fax" mode="decimal"
+                            [useGrouping]="false" [maxlength]="20"></p-inputNumber>
                     </div>
                     <div class="col-md-3">
                         <label class="form-label">Pager (area - local)</label>
                         <input type="text" pInputText class="form-control" placeholder="" name="Pager"
-                            [(ngModel)]="RegistrationMainModel.Pager" (keypress)="validateNumber($event)">                        
+                            [(ngModel)]="RegistrationMainModel.Pager" (keypress)="validateNumber($event)">
                     </div>
                     <div class="col-md-3">
                         <label class="form-label">Mobile phone </label>
                         <input type="text" pInputText class="form-control" name="txtContactNumber"
                             [(ngModel)]="RegistrationMainModel.ContactNumber" (keypress)="validateNumber($event)"
-                            placeholder="" pattern="[0-9]{10}$" minlength="10" maxlength="10"
-                            #mobileref="ngModel">
+                            placeholder="" pattern="[0-9]{10}$" minlength="10" maxlength="10" #mobileref="ngModel">
                         <div *ngIf="mobileref.errors &&(mobileref.touched || mobileref.dirty)"
                             class="alert alert-danger">
                             <div *ngIf="mobileref.errors?.['pattern']">Please, Enter 10 digit Mobile
                                 Number.
                             </div>
                         </div>
-                    </div>                    
+                    </div>
                     <div class="col-md-3">
                         <label class="form-label">Email address 1</label>
                         <input type="email" pInputText class="form-control" placeholder="" name="txtEmail"
-                            [(ngModel)]="RegistrationMainModel.Email1"
-                            pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" #emailref1="ngModel">
+                            [(ngModel)]="RegistrationMainModel.Email1" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$"
+                            #emailref1="ngModel">
                         <div *ngIf="emailref1.errors &&(emailref1.touched || emailref1.dirty)"
                             class="alert alert-danger">
                             <div [hidden]="!emailref1.errors?.['pattern']">
                                 Invalid pattern
                             </div>
                         </div>
-                    </div> 
+                    </div>
                     <div class="col-md-3">
                         <label class="form-label">Email address 2</label>
                         <input type="email" pInputText class="form-control" placeholder="" name="txtEmail"
-                            [(ngModel)]="RegistrationMainModel.Email2"
-                            pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" #emailref2="ngModel">
+                            [(ngModel)]="RegistrationMainModel.Email2" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$"
+                            #emailref2="ngModel">
                         <div *ngIf="emailref2.errors &&(emailref2.touched || emailref2.dirty)"
                             class="alert alert-danger">
                             <div [hidden]="!emailref2.errors?.['pattern']">
                                 Invalid pattern
                             </div>
                         </div>
-                    </div> 
+                    </div>
                     <div class="col-md-3">
                         <label class="form-label">Comments</label>
-                        <textarea rows="3" cols="30"  name="comments" [(ngModel)]="RegistrationMainModel.Comments"  placeholder="" pInputTextarea></textarea>
-                        
+                        <textarea rows="3" cols="30" name="comments" [(ngModel)]="RegistrationMainModel.Comments"
+                            placeholder="" pInputTextarea></textarea>
+
                     </div>
-                </div>                
-            </p-accordionTab>            
-            
+                </div>
+            </p-accordionTab>
+
             <p-accordionTab header="Emergency contact">
                 <div class="row">
                     <div class="col-md-3">
                         <label class="form-label">Name</label>
-                        <input type="text" pInputText class="form-control"
-                            placeholder="" name="txtEmergencyContactName"
+                        <input type="text" pInputText class="form-control" placeholder="" name="txtEmergencyContactName"
                             [(ngModel)]="RegistrationMainModel.EmergencyContactName">
                     </div>
                     <div class="col-md-3">
                         <label class="form-label">Address</label>
-                        <input type="text" pInputText class="form-control"
-                            placeholder="" name="txtEmergencyContactAddress"
+                        <input type="text" pInputText class="form-control" placeholder=""
+                            name="txtEmergencyContactAddress"
                             [(ngModel)]="RegistrationMainModel.EmergencyContactAddress">
                     </div>
                     <div class="col-md-3">
                         <label class="form-label">Telephone</label>
                         <p-inputNumber [(ngModel)]="RegistrationMainModel.EmergencyContactTelephone"
-                                        name="txtEmergencyContactTelephone" mode="decimal" [useGrouping]="false" [maxlength]="20"></p-inputNumber>                        
+                            name="txtEmergencyContactTelephone" mode="decimal" [useGrouping]="false"
+                            [maxlength]="20"></p-inputNumber>
                     </div>
                     <div class="col-md-3">
                         <label class="form-label">Mobile</label>
                         <p-inputNumber [(ngModel)]="RegistrationMainModel.EmergencyContactMobile"
-                                        name="txtEmergencyContactMobile" mode="decimal" [useGrouping]="false" [maxlength]="20"></p-inputNumber>                        
+                            name="txtEmergencyContactMobile" mode="decimal" [useGrouping]="false"
+                            [maxlength]="20"></p-inputNumber>
                     </div>
                 </div>
-            </p-accordionTab>  
+            </p-accordionTab>
             <p-accordionTab header="Access Details">
                 <div class="row">
                     <div class="col-md-3">
-                            <p-button  class="ov-button" appendTo="body" id="btn_op_UerAuthorization" [label]="'Set User Authorization'"
-                                icon="pi pi-list" (click)="op.toggle($event)" ></p-button>
-                        
-                            <p-overlayPanel appendTo="body" id="opUerAuthorization" #op [showCloseIcon]="false">
-                                <ng-template pTemplate>
-                                    <p-tree id="treeUerAuthorization" [value]="MenuitemMaster" [filter]="true"
-                                        selectionMode="checkbox" [(selection)]="selectedNodes2" (onNodeSelect)="onNodeSelectMenuAccess($event)" (onNodeUnselect)="onNodeUnselectMenuAccess($event)"></p-tree>
-                                    <br />
-                                </ng-template>
-                            </p-overlayPanel>
+                        <p-button class="ov-button" appendTo="body" id="btn_op_UerAuthorization"
+                            [label]="'Set User Authorization'" icon="pi pi-list" (click)="op.toggle($event)"></p-button>
+
+                        <p-overlayPanel appendTo="body" id="opUerAuthorization" #op [showCloseIcon]="false">
+                            <ng-template pTemplate>
+                                <p-tree id="treeUerAuthorization" [value]="MenuitemMaster" [filter]="true"
+                                    selectionMode="checkbox" [(selection)]="selectedNodes2"
+                                    (onNodeSelect)="onNodeSelectMenuAccess($event)"
+                                    (onNodeUnselect)="onNodeUnselectMenuAccess($event)"></p-tree>
+                                <br />
+                            </ng-template>
+                        </p-overlayPanel>
                     </div>
                 </div>
                 <div class="row">
@@ -380,7 +410,8 @@
                                         <p-treeTableToggler [rowNode]="rowNode" *ngIf="i == 0"></p-treeTableToggler>
                                         <label *ngIf="i == 0">{{rowData[col.field]}}</label>
                                         <p-checkbox *ngIf="i != 0" [disabled]="col.field=='Read'?true:false"
-                                            [ngModelOptions]="{standalone: true}" [binary]="true" [(ngModel)]="rowData[col.field]"
+                                            [ngModelOptions]="{standalone: true}" [binary]="true"
+                                            [(ngModel)]="rowData[col.field]"
                                             (onChange)="CheckUnCheck($event,col.field,rowData['MenuItemId']);"></p-checkbox>
                                     </td>
                                 </tr>
@@ -388,18 +419,16 @@
                         </p-treeTable>
                     </div>
                 </div>
-            </p-accordionTab>      
-        </p-accordion>                
-            <div class="flex flex-wrap gap-2">
-                <!-- [disabled]="!myForm.form.valid" -->
-                <button pButton type="button" label="Submit" (click)="Submit()" class="btn-primary"
-                    ></button>
-                <button pButton type="button" label="Close" class="btn-secondary"
-                    (click)="CloseModal()"></button>
-            </div>                
+            </p-accordionTab>
+        </p-accordion>
+        <div class="flex flex-wrap gap-2">
+            <!-- [disabled]="!myForm.form.valid" -->
+            <button pButton type="button" label="Submit" (click)="Submit()" class="btn-primary"></button>
+            <button pButton type="button" label="Close" class="btn-secondary" (click)="CloseModal()"></button>
+        </div>
     </form>
-</div>   
-<p-dialog id="ShowResidentFacilityModel"  [(visible)]="ShowResidentFacilityModel" [modal]="true"
+</div>
+<p-dialog id="ShowResidentFacilityModel" [(visible)]="ShowResidentFacilityModel" [modal]="true"
     [style]="{width: '70vw'}" [maximizable]="true" [closeOnEscape]="true" [closable]="true" [draggable]="false"
     [resizable]="true">
     <ng-template pTemplate="header">
@@ -427,16 +456,15 @@
                     <ng-template pTemplate="body" let-col let-i="rowIndex">
                         <tr>
                             <td>
-                                <p-checkbox                                                    
-                                [ngModelOptions]="{standalone: true}"
-                                [(ngModel)]="col.Checked" [binary]="true"
-                                inputId="binary" (onChange)="CheckUncheckResidentFacility($event,col.UserId)"></p-checkbox>
+                                <p-checkbox [ngModelOptions]="{standalone: true}" [(ngModel)]="col.Checked"
+                                    [binary]="true" inputId="binary"
+                                    (onChange)="CheckUncheckResidentFacility($event,col.UserId)"></p-checkbox>
                             </td>
                             <td>
-                               {{col.FullName}}
+                                {{col.FullName}}
                             </td>
                             <td>
-                               {{col.HomeName}}
+                                {{col.HomeName}}
                             </td>
                         </tr>
                     </ng-template>
