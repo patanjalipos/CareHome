@@ -1,46 +1,50 @@
 <div class="row">
-  <div class="col-md-3">
-    <div class="card">
-      <div class="profile-box">
-        <div class="profile-img">
-          <img [src]="profileUrl+ (ResidentMaster.ProfileImage==''? 'no-picture.png': ResidentMaster.ProfileImage)"
-            class="w-6 shadow-2 my-1 mx-0">
+    <div class="col-md-3">
+        <div class="card">
+            <div class="profile-box">
+                <div class="profile-img">
+                    <!-- <img [src]="profileUrl+ (ResidentMaster.ProfileImage==''? 'no-picture.png': ResidentMaster.ProfileImage)"
+                       class="w-6 shadow-2 my-1 mx-0"> -->
+                       <img [src]="imageSrc" class="w-6 shadow-2 my-1 mx-0"
+                       *ngIf="imageSrc!=null && imageSrc!=undefined && imageSrc!=''">
+                   <!-- <div class="js-image-preview" *ngIf="imageSrc==null || imageSrc==undefined || imageSrc==''">
+                      <i class="fa-solid fa-circle-user"></i> 
+                   </div> -->
+                </div>
+                <h1>{{ResidentMaster.FullName}}</h1>
+                <div class="detail-table">
+                <table class="table">
+                    <tr>
+                        <td>Age</td>
+                        <td>:</td>
+                        <td>{{calculateAge(ResidentMaster.DateOfBirth)}}y ({{ResidentMaster.DateOfBirth|date:customDateFormat.DEF_DATE}})</td>
+                    </tr>
+                    <tr>
+                      <td>Gender</td>
+                      <td>:</td>
+                      <td>{{ResidentMaster.Gender}}</td>
+                   </tr>
+                    <tr>
+                        <td>Room</td>
+                        <td>:</td>
+                        <td>{{ResidentMaster.RoomNumber}}</td>
+                    </tr>
+                    <tr>
+                      <td>Status</td>
+                      <td>:</td>
+                      <td>{{admissionStatus[ResidentMaster.AdmissionStatus]}}</td>
+                  </tr>
+                    
+                    
+                </table>
+            </div>
+            </div>
         </div>
-        <h1>{{ResidentMaster.FullName}}</h1>
-        <div class="detail-table">
-          <table class="table">
-            <tr>
-              <td>Age</td>
-              <td>:</td>
-              <td>{{calculateAge(ResidentMaster.DateOfBirth)}}y
-                ({{ResidentMaster.DateOfBirth|date:customDateFormat.DEF_DATE}})</td>
-            </tr>
-            <tr>
-              <td>Gender</td>
-              <td>:</td>
-              <td>{{ResidentMaster.Gender}}</td>
-            </tr>
-            <tr>
-              <td>Room</td>
-              <td>:</td>
-              <td>{{ResidentMaster.RoomNumber}}</td>
-            </tr>
-            <tr>
-              <td>Status</td>
-              <td>:</td>
-              <td>{{admissionStatus[ResidentMaster.AdmissionStatus]}}</td>
-            </tr>
-
-
-          </table>
+        <div class="card">
+          <h5>Allergies</h5>
+          {{allergies}}
         </div>
-      </div>
     </div>
-    <div class="card">
-      <h5>Allergies</h5>
-      {{allergies}}
-    </div>
-  </div>
   <div class="col-md-9">
     <div class="card pb-0 profile-tab">
       <ul class="nav nav-tabs" id="myTab" role="tablist">
