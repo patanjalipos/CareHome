@@ -19,6 +19,7 @@ export class ResidentProfileComponent extends AppComponentBase implements OnInit
   public ResidentMaster: any = <any>{};
   allergies:string="";
   profileUrl:string=environment.BaseURIFileServer + 'ProfileImage/';
+  imageSrc:any;
   constructor(
     private route: ActivatedRoute,
     private _ConstantServices: ConstantsService,
@@ -57,6 +58,14 @@ export class ResidentProfileComponent extends AppComponentBase implements OnInit
             var tdata = JSON.parse(data.actionResult.result);
             tdata = tdata ? tdata : [];
             this.ResidentMaster = tdata;
+            if (this.ResidentMaster.ProfileImage != undefined && this.ResidentMaster.ProfileImage != null && this.ResidentMaster.ProfileImage!= '')
+             {
+             var imageFormat = this.ResidentMaster.ProfileImage.endsWith(".jpg") ||this.ResidentMaster.ProfileImage.endsWith(".jpeg") ? "jpeg" : "png";
+              this.imageSrc = "data:image/" + imageFormat + ";base64," + this.ResidentMaster.ProfileImage;
+             }
+              else{
+              this.imageSrc ="";
+              }
             if(data.actionResult.result2!=null && data.actionResult.result2!=undefined && data.actionResult.result2?.length>0)
             {
               var tdata2 = JSON.parse(data.actionResult.result2);

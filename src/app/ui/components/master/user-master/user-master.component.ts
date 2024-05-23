@@ -7,7 +7,9 @@ import { UtilityService } from 'src/app/utility/utility.service';
 import { EncryptDecryptService } from 'src/app/ui/service/encrypt-decrypt.service';
 import { TreeNode } from 'primeng/api';
 import * as cloneDeep from 'lodash/cloneDeep';
-
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FileUpload } from 'primeng/fileupload';
+declare var $: any;
 @Component({
   selector: 'app-user-master',
   templateUrl: './user-master.component.html',
@@ -16,6 +18,7 @@ import * as cloneDeep from 'lodash/cloneDeep';
 export class UserMasterComponent extends AppComponentBase implements OnInit {  
   @ViewChild('dt') public dataTable: Table;
   @ViewChild('filtr') filtr: ElementRef;
+  @ViewChild('fileInput') fileInput: FileUpload; 
   UserTypes = UserTypes;
   customDateFormat = CustomDateFormat;
   s_HomeMasterId: string = localStorage.getItem('HomeMasterId');
@@ -47,9 +50,23 @@ export class UserMasterComponent extends AppComponentBase implements OnInit {
   lstAction:string[]=[];
   public MenuitemMaster: TreeNode[] = [];
   colsActionITable: any[]=[];
+  button:boolean=false;
+  dropdownValue=true;
+  
+  fileUploadFormAWB: FormGroup;
+  fileInputLabelAWB: string;
+  myForm = new FormGroup({
+    name: new FormControl('', [Validators.required, Validators.minLength(3)]),
+    file: new FormControl('', [Validators.required]),
+    fileSource: new FormControl('', [Validators.required])
+  }); 
+  imageSrc: any;
+
+  selectedResident:any[]=[]
 
   constructor(
     private _ConstantServices: ConstantsService,
+    private formBuilder: FormBuilder,
     private _MasterServices:MasterService,
     private _UtilityService: UtilityService,
     private _EncryptDecryptService: EncryptDecryptService,
@@ -106,12 +123,25 @@ export class UserMasterComponent extends AppComponentBase implements OnInit {
     }
 
   ngOnInit(): void {
+    this.fileUploadFormAWB = this.formBuilder.group({
+      myfileAWB: ['']
+    });
     this.LoadHomeMaster();
     this.LoadUserList();
     this.LoadUserTypeList();
     this.yesterday.setFullYear(this.yesterday.getFullYear() - 130);
     this.todayDate.setDate(this.todayDate.getDate() - 7);
   }
+  disablesButton(event){
+    if (event.checked) {
+      this.dropdownValue=false;
+      this.button=true;
+    } else {
+      this.dropdownValue=true;
+      this.button=false;
+    }
+  }
+  
   LoadHomeMaster() {
     this._UtilityService.showSpinner();
     this.unsubscribe.add = this._MasterServices.GetHomeMaster(true)
@@ -122,7 +152,11 @@ export class UserMasterComponent extends AppComponentBase implements OnInit {
           if (data.actionResult.success == true) {
             var tdata = JSON.parse(data.actionResult.result);
             tdata = tdata ? tdata : [];
-            this.lstHomeMaster = tdata;            
+            this.lstHomeMaster = tdata;  
+            console.log("home master");
+            
+            console.log(this.lstHomeMaster);
+                      
           }
           else {
             this.lstHomeMaster = [];            
@@ -217,7 +251,13 @@ export class UserMasterComponent extends AppComponentBase implements OnInit {
               var newDate=new Date(this.RegistrationMainModel.DateOfBirth);           
               this.RegistrationMainModel.DateOfBirth=newDate;
             }
-            this.RegistrationMainModel.DateOfBirth = new Date(this.RegistrationMainModel.DateOfBirth);           
+            this.RegistrationMainModel.DateOfBirth = new Date(this.RegistrationMainModel.DateOfBirth); 
+            if(this.RegistrationMainModel?.ProfileImage!=null && this.RegistrationMainModel?.ProfileImage!=undefined)
+              {
+                const imageFormat = this.RegistrationMainModel.ProfileImage.endsWith(".jpg") || this.RegistrationMainModel.ProfileImage.endsWith(".jpeg") ? "jpeg" : "png";
+                this.imageSrc = "data:image/" + imageFormat + ";base64," + this.RegistrationMainModel.ProfileImage;               
+              console.log(this.imageSrc);
+              }          
             this.mode = "update"; 
             this.onChangeUserType();
             this.LoadMenuItemAccessforActionItem(); 
@@ -246,6 +286,50 @@ export class UserMasterComponent extends AppComponentBase implements OnInit {
       },
     });      
   }
+
+//Profile Image
+
+  onFileSelectAWB(event) {
+    let af = ['.jpg', '.png', '.jpeg']
+    if (event.target.files?.length > 0) {
+      const file = event.target.files[0];
+      console.log(file.size);
+      if (!af.includes('.' + file.type.split('/')[1])) {
+        $('#customFileAWB').val("");
+        this._UtilityService.showWarningAlert("Only jpg and png Allowed!");
+      }
+      else if (file.size > 204800) {
+        $('#customFileAWB').val("");
+        this._UtilityService.showWarningAlert("Maximum upload size is 200KB. Please compress and upload it again.");
+      }
+      else {
+        this.fileInputLabelAWB = file.name;
+        this.fileUploadFormAWB.get('myfileAWB').setValue(file);
+      }
+      const reader = new FileReader();
+      if (event.target.files && event.target.files?.length) {
+        const [file] = event.target.files;
+        reader.readAsDataURL(file);
+        reader.onload = () => {
+          this.imageSrc = reader.result as string;
+          this.myForm.patchValue({
+            fileSource: reader.result as string
+          });
+        };
+        var selectedFile = [];
+        for (let file of event.target.files) {
+          selectedFile.push(file);
+        }
+      }
+    }
+  }
+
+  ClearProfile()
+  {
+   this.imageSrc=null;
+   this.RegistrationMainModel.ProfileImage=null;
+  }
+  
   Submit()
   {
     //////Preapre User Authorization Action Item////////
@@ -445,8 +529,10 @@ export class UserMasterComponent extends AppComponentBase implements OnInit {
     this.RegistrationMainModel.UserAuthorization=[];
     this.RegistrationMainModel.UserAuthorization=UserAuthorizationss;
     }
-
+    this.RegistrationMainModel.CreatedBy = localStorage.getItem('userId');  
+    this.RegistrationMainModel.ModifiedBy = localStorage.getItem('userId');  
     this.RegistrationMainModel.lstFacilityMapping=this.lstFacilityResident;
+    this.RegistrationMainModel.ProfileImage=this.imageSrc;
     if(this.RegistrationMainModel.Password!=null && this.RegistrationMainModel.Password!=undefined && this.RegistrationMainModel.Password!="")
     this.RegistrationMainModel.Password = this._EncryptDecryptService.encryptUsingAES256(this.RegistrationMainModel.Password);
     this.RegistrationMainModel.Fax = this.RegistrationMainModel.Fax?.toString() || null;
@@ -545,6 +631,10 @@ export class UserMasterComponent extends AppComponentBase implements OnInit {
             var tdata = JSON.parse(data.actionResult.result);
             tdata = tdata ? tdata : [];
             this.lstResidentfacility = tdata;
+            console.log("resident data==>");
+            
+            console.log(this.lstResidentfacility);
+            
 
             if(this.lstFacilityResident.filter(f=>f.HomeMasterId==this.slectedHomeMasterId)[0]?.ResidentList?.length>0)
             {
@@ -556,7 +646,7 @@ export class UserMasterComponent extends AppComponentBase implements OnInit {
                 }
               }
             }
-            this.ShowResidentFacilityModel=true;
+            // this.ShowResidentFacilityModel=true;
           }
           else
           {
