@@ -19,6 +19,12 @@ export class MainInterceptorInterceptor implements HttpInterceptor {
         .set('Cache-Control', `no-cache, no-store, must-revalidate, post-check=0, pre-check=0`)
         .set('Pragma', `no-cache`)
         .set('Expires', `0`)
+        //vulnerable Clickjacking
+      .set('X-Frame-Options', 'SAMEORIGIN')
+      //Missing Security Headers
+      .set('X-XSS-Protection', '1; mode=block')
+      .set('Strict-Transport-Security', 'max-age=60000; includeSubDomains')
+      .set('Content-Security-Policy', "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'")
       // .set('referer',this.router.routerState.snapshot.toString())
     });
     return next.handle(modifiedReq).pipe(catchError((err: any) => {

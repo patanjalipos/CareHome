@@ -156,7 +156,9 @@
                                 <div class="col-md-12 border p-2 bdr6"
                                     *ngIf="(ResidentMaster.ProfileImage!=null && ResidentMaster.ProfileImage!=undefined && ResidentMaster.ProfileImage!='')">
                                     <div align="left" class="wd-30">
-                                        <img style="height: 99px;" src="{{profileSrc}}{{ResidentMaster.ProfileImage}}">
+                                        <!-- <img style="height: 99px;" src="{{profileSrc}}{{ResidentMaster.ProfileImage}}"> -->
+                                        <img [src]="ResidentMaster.ProfileImage" class="w-6 shadow-2 my-1 mx-0"
+                                        *ngIf="ResidentMaster.ProfileImage!=null && ResidentMaster.ProfileImage!=undefined && ResidentMaster.ProfileImage!=''">
                                     </div>
                                     <div class="wd-50">
                                         <label class="form-label">Resident Photo</label>
