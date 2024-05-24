@@ -510,7 +510,7 @@
 
    <div class="col-md-3">
       <div class="card recent mb-3">
-         <h2>Recent Activity<a class="acti-add" href=""><i class="fas fa-plus"></i></a></h2>
+         <h2>Recent Activity<a class="acti-add" (click)="AddActivity();"><i class="fas fa-plus"></i></a></h2>
          <hr class="m-0 my-2" >
          <div class="box-hgt">
          <div *ngFor="let item of lstActivity">
@@ -583,3 +583,8 @@
    </div>
 </div> 
 </div>
+<p-dialog header="Activity" [(visible)]="showActivityModel" [modal]="true" [style]="{width: '70vw'}" [maximizable]="true">
+   <div *ngIf="showActivityModel">
+      <app-activity ></app-activity>
+   </div>
+</p-dialog>

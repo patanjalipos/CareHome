@@ -25,6 +25,7 @@ import { CalendarModule } from 'primeng/calendar';
     InputTextModule,
     CalendarModule,
    
-  ]
+  ],
+  exports:[ActivityComponent]
 })
 export class ActivityModule { }

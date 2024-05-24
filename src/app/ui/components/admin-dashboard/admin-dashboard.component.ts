@@ -29,6 +29,7 @@ export class AdminDashboardComponent extends AppComponentBase implements OnInit 
     currentDate = new Date();
     public lstTaskPlanner: any[]=[];  
     public lstActivity: any[]=[];   
+    showActivityModel:boolean=false;
     constructor(
         private datepipe: DatePipe,
         private productService: ProductService,
@@ -279,4 +280,9 @@ export class AdminDashboardComponent extends AppComponentBase implements OnInit 
             },
           });
       }  
+
+      AddActivity()
+      {
+        this.showActivityModel=true;
+      }
 }
