@@ -60,6 +60,7 @@ export class LoginComponent extends AppComponentBase {
                         localStorage.setItem('userTypeId', data.actionResult.userTypeId);
                         localStorage.setItem('userId', data.actionResult.userId);
                         localStorage.setItem('HomeMasterId', tdata.HomeMasterId);
+                        localStorage.setItem('FullName', tdata.FullName == null ? '' : tdata.FullName);
                         localStorage.setItem('FirstName', tdata.FirstName == null ? '' : tdata.FirstName);
                         localStorage.setItem('LastName', tdata.LastName == null ? '' : tdata.LastName);
                         localStorage.setItem('Gender', tdata.Gender);
