@@ -210,39 +210,37 @@
                             <ng-template pTemplate="header">
                                 <tr>
                                     <th>Facility Name</th>
-                                    <th>Enable Facility</th>
-                                    <th>Resident Auto-Assign</th>
                                     <th>Assign to individual residents</th>
                                 </tr>
                             </ng-template>
                             <ng-template pTemplate="body" let-col let-i="rowIndex">
                                 <tr>
-                                    <td>{{col.HomeName}}</td>
+                                    <td> <p-checkbox name="ChkItemCheckEnableFacility_{{i}}"
+                                            [(ngModel)]="col.IsEnableFacility"
+                                            (onChange)="checkUncheckEnableFacility($event,i)" [binary]="true"
+                                            inputId="binary" class="mr-2"></p-checkbox>{{col.HomeName}}</td>
+
                                     <td>
-                                        <p-checkbox name="ChkItemCheckEnableFacility_{{i}}"
-                                            [(ngModel)]="col.EnableFacility" [binary]="true"
-                                            inputId="binary"></p-checkbox>
-                                    </td>
-                                    <td>
-                                        <p-checkbox name="ChkItemCheckEnableAutoAssignResident_{{i}}"
-                                            [(ngModel)]="col.AutoAssignResident" [binary]="true" inputId="binary"
-                                            (onChange)="disablesButton($event)"></p-checkbox>
-                                    </td>
-                                    <td>
-                                        <div *ngIf="button">
-                                            <p-button class="print-prew" [disabled]="button">
+                                        <div *ngIf="rowStates[i]?.button">
+                                            <p-button class="print-prew" [disabled]="rowStates[i]?.button">
                                                 Assign Residents</p-button>
                                         </div>
 
-                                        <div class="" *ngIf="dropdownValue">
+                                        <div class="card flex justify-content-center"
+                                            *ngIf="!rowStates[i]?.dropdownValue">
                                             <p-multiSelect [options]="lstResidentfacility" optionLabel="FullName"
-                                                placeholder="--Select Resident--" [(ngModel)]="selectedResident"
-                                                (onPanelShow)="ShowResidentDetails(col.HomeMasterId)"
-                                                optionValue="UserId" appendTo="body"></p-multiSelect>
+                                                placeholder="--Select Resident--" [(ngModel)]="col.ResidentList"
+                                                autoResize="false" (onPanelShow)="ShowResidentDetails(col.HomeMasterId)"
+                                                filterPlaceHolder="Selecte All" optionValue="UserId" appendTo="body"
+                                                display="chip" [showClear]="true"
+                                                (onChange)="selectResidentAddmissioninfoId(i,lstResidentfacility[i].ResidentAdmissioninfoId,$event.value)"></p-multiSelect>
                                         </div>
+
+
                                     </td>
                                 </tr>
                             </ng-template>
+
                         </p-table>
                     </div>
 

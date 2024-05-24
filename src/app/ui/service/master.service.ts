@@ -7,7 +7,7 @@ import { environment } from 'src/environments/environment';
     providedIn: 'root',
 })
 export class MasterService {
-    constructor(private _httpclient: HttpClient) {}
+    constructor(private _httpclient: HttpClient) { }
 
     GetCountryMaster(): Observable<any> {
         let reqHeader = new HttpHeaders({
@@ -62,7 +62,7 @@ export class MasterService {
         }
     }
 
-    
+
 
     //#region Form Dashboard
 
@@ -223,7 +223,7 @@ export class MasterService {
         params = params.append('fromId', fromId);
         return this._httpclient.get<any>(
             environment.BaseUriAdmin +
-                'api/Admin/GetAccidentNearOrMissRecordForm',
+            'api/Admin/GetAccidentNearOrMissRecordForm',
             { headers: reqHeader, params: params }
         );
     }
@@ -241,7 +241,7 @@ export class MasterService {
         console.log(data);
         return this._httpclient.post<any>(
             environment.BaseUriAdmin +
-                'api/Admin/AddInsertUpdateAccidentNearOrMissRecordForm',
+            'api/Admin/AddInsertUpdateAccidentNearOrMissRecordForm',
             data,
             { headers: reqHeader, params: params }
         );
@@ -451,7 +451,7 @@ export class MasterService {
         var data = JSON.stringify(LocationMaster).toString();
         return this._httpclient.post<any>(
             environment.BaseUriAdmin +
-                'api/Admin/AddInsertUpdateLocationMaster',
+            'api/Admin/AddInsertUpdateLocationMaster',
             data,
             { headers: reqHeader, params: params }
         );
@@ -669,7 +669,7 @@ export class MasterService {
         var data = JSON.stringify(obj).toString();
         return this._httpclient.post<any>(
             environment.BaseUriAdmin +
-                'api/Admin/AddInsertUpdateIndicatorGroup',
+            'api/Admin/AddInsertUpdateIndicatorGroup',
             data,
             { headers: reqHeader, params: params }
         );
@@ -869,7 +869,7 @@ export class MasterService {
         params = params.append('UserId', UserId);
         return this._httpclient.get<any>(
             environment.BaseUriAdmin +
-                'api/Admin/GetUserMenuItemAccessByModuleId',
+            'api/Admin/GetUserMenuItemAccessByModuleId',
             { headers: reqHeader, params: params }
         );
     }
@@ -905,7 +905,7 @@ export class MasterService {
         var data = '';
         return this._httpclient.get<any>(
             environment.BaseUriAdmin +
-                'api/Admin/GetUserMenuItemAccessByModuleId',
+            'api/Admin/GetUserMenuItemAccessByModuleId',
             { headers: reqHeader, params: params }
         );
     }
@@ -949,7 +949,7 @@ export class MasterService {
             'Authorization': 'Bearer ' + localStorage.getItem('token')
         });
         let params = new HttpParams();
-        params = params.append('id', id);           
+        params = params.append('id', id);
         return this._httpclient.get<any>(
             environment.BaseUriAdmin + 'api/Admin/GetResidentMasterById',
             { headers: reqHeader, params: params }
@@ -965,7 +965,7 @@ export class MasterService {
         var data = obj; //JSON.stringify(obj).toString();
         return this._httpclient.post<any>(
             environment.BaseUriAdmin +
-                'api/Admin/AddInsertUpdateResidentMaster',
+            'api/Admin/AddInsertUpdateResidentMaster',
             data,
             { headers: reqHeader, params: params }
         );
@@ -995,7 +995,7 @@ export class MasterService {
         var data = JSON.stringify(obj).toString();
         return this._httpclient.post<any>(
             environment.BaseUriAdmin +
-                'api/Admin/AddUpdateResidentOccupancyData',
+            'api/Admin/AddUpdateResidentOccupancyData',
             data,
             { headers: reqHeader, params: params }
         );
@@ -1025,7 +1025,7 @@ export class MasterService {
         var data = JSON.stringify(obj).toString();
         return this._httpclient.post<any>(
             environment.BaseUriAdmin +
-                'api/Admin/AddInsertUpdateResidentHealthCare',
+            'api/Admin/AddInsertUpdateResidentHealthCare',
             data,
             { headers: reqHeader, params: params }
         );
@@ -1053,7 +1053,7 @@ export class MasterService {
         var data = JSON.stringify(obj).toString();
         return this._httpclient.post<any>(
             environment.BaseUriAdmin +
-                'api/Admin/AddInsertUpdateResidentPreferences',
+            'api/Admin/AddInsertUpdateResidentPreferences',
             data,
             { headers: reqHeader, params: params }
         );
@@ -1068,7 +1068,7 @@ export class MasterService {
         params = params.append('admissionid', admissionid);
         return this._httpclient.get<any>(
             environment.BaseUriAdmin +
-                'api/Admin/GetResidentPriorAdmissionById',
+            'api/Admin/GetResidentPriorAdmissionById',
             { headers: reqHeader, params: params }
         );
     }
@@ -1082,7 +1082,7 @@ export class MasterService {
         var data = JSON.stringify(obj).toString();
         return this._httpclient.post<any>(
             environment.BaseUriAdmin +
-                'api/Admin/AddInsertUpdateResidentPriorAdmission',
+            'api/Admin/AddInsertUpdateResidentPriorAdmission',
             data,
             { headers: reqHeader, params: params }
         );
@@ -1118,7 +1118,7 @@ export class MasterService {
         var data = JSON.stringify(obj).toString();
         return this._httpclient.post<any>(
             environment.BaseUriAdmin +
-                'api/Admin/UpdateResidentAdmissionProfile',
+            'api/Admin/UpdateResidentAdmissionProfile',
             data,
             { headers: reqHeader, params: params }
         );
@@ -1150,7 +1150,7 @@ export class MasterService {
         var data = JSON.stringify(obj).toString();
         return this._httpclient.post<any>(
             environment.BaseUriAdmin +
-                'api/Admin/AddInsertUpdateClinicalAllergies',
+            'api/Admin/AddInsertUpdateClinicalAllergies',
             data,
             { headers: reqHeader, params: params }
         );
@@ -1183,7 +1183,7 @@ export class MasterService {
         var data = JSON.stringify(obj).toString();
         return this._httpclient.post<any>(
             environment.BaseUriAdmin +
-                'api/Admin/AddInsertUpdateClinicalIndicator',
+            'api/Admin/AddInsertUpdateClinicalIndicator',
             data,
             { headers: reqHeader, params: params }
         );
@@ -1212,7 +1212,7 @@ export class MasterService {
         var data = JSON.stringify(obj).toString();
         return this._httpclient.post<any>(
             environment.BaseUriAdmin +
-                'api/Admin/AddInsertUpdateClinicalInformation',
+            'api/Admin/AddInsertUpdateClinicalInformation',
             data,
             { headers: reqHeader, params: params }
         );
@@ -1228,7 +1228,7 @@ export class MasterService {
         params = params.append('admissionid', admissionid);
         return this._httpclient.get<any>(
             environment.BaseUriAdmin +
-                'api/Admin/GetClinicalBaselineHealthInfoById',
+            'api/Admin/GetClinicalBaselineHealthInfoById',
             { headers: reqHeader, params: params }
         );
     }
@@ -1242,7 +1242,7 @@ export class MasterService {
         var data = JSON.stringify(obj).toString();
         return this._httpclient.post<any>(
             environment.BaseUriAdmin +
-                'api/Admin/AddInsertUpdateClinicalBaselineHealthInfo',
+            'api/Admin/AddInsertUpdateClinicalBaselineHealthInfo',
             data,
             { headers: reqHeader, params: params }
         );
@@ -1258,7 +1258,7 @@ export class MasterService {
         params = params.append('admissionid', admissionid);
         return this._httpclient.get<any>(
             environment.BaseUriAdmin +
-                'api/Admin/GetClinicalAlertPreferencesById',
+            'api/Admin/GetClinicalAlertPreferencesById',
             { headers: reqHeader, params: params }
         );
     }
@@ -1272,7 +1272,7 @@ export class MasterService {
         var data = JSON.stringify(obj).toString();
         return this._httpclient.post<any>(
             environment.BaseUriAdmin +
-                'api/Admin/AddInsertUpdateAlertPreferences',
+            'api/Admin/AddInsertUpdateAlertPreferences',
             data,
             { headers: reqHeader, params: params }
         );
@@ -1288,7 +1288,7 @@ export class MasterService {
         params = params.append('admissionid', admissionid);
         return this._httpclient.get<any>(
             environment.BaseUriAdmin +
-                'api/Admin/GetClinicalChartPreferencesById',
+            'api/Admin/GetClinicalChartPreferencesById',
             { headers: reqHeader, params: params }
         );
     }
@@ -1302,7 +1302,7 @@ export class MasterService {
         var data = JSON.stringify(obj).toString();
         return this._httpclient.post<any>(
             environment.BaseUriAdmin +
-                'api/Admin/AddInsertUpdateChartPreferences',
+            'api/Admin/AddInsertUpdateChartPreferences',
             data,
             { headers: reqHeader, params: params }
         );
@@ -1382,7 +1382,7 @@ export class MasterService {
         params = params.append('admissionid', admissionid);
         return this._httpclient.get<any>(
             environment.BaseUriAdmin +
-                'api/Admin/GetClinicalFallRiskAssessmentById',
+            'api/Admin/GetClinicalFallRiskAssessmentById',
             { headers: reqHeader, params: params }
         );
     }
@@ -1396,7 +1396,7 @@ export class MasterService {
         var data = JSON.stringify(obj).toString();
         return this._httpclient.post<any>(
             environment.BaseUriAdmin +
-                'api/Admin/AddInsertUpdateFallRiskAssessment',
+            'api/Admin/AddInsertUpdateFallRiskAssessment',
             data,
             { headers: reqHeader, params: params }
         );
@@ -1429,7 +1429,7 @@ export class MasterService {
         var data = JSON.stringify(obj).toString();
         return this._httpclient.post<any>(
             environment.BaseUriAdmin +
-                'api/Admin/AddInsertUpdateContactPrimary',
+            'api/Admin/AddInsertUpdateContactPrimary',
             data,
             { headers: reqHeader, params: params }
         );
@@ -1458,7 +1458,7 @@ export class MasterService {
         var data = JSON.stringify(obj).toString();
         return this._httpclient.post<any>(
             environment.BaseUriAdmin +
-                'api/Admin/AddInsertUpdateContactSecondary',
+            'api/Admin/AddInsertUpdateContactSecondary',
             data,
             { headers: reqHeader, params: params }
         );
@@ -1474,7 +1474,7 @@ export class MasterService {
         params = params.append('admissionid', admissionid);
         return this._httpclient.get<any>(
             environment.BaseUriAdmin +
-                'api/Admin/GetContactResponsiblePersonById',
+            'api/Admin/GetContactResponsiblePersonById',
             { headers: reqHeader, params: params }
         );
     }
@@ -1488,7 +1488,7 @@ export class MasterService {
         var data = JSON.stringify(obj).toString();
         return this._httpclient.post<any>(
             environment.BaseUriAdmin +
-                'api/Admin/AddInsertUpdateContactResponsiblePerson',
+            'api/Admin/AddInsertUpdateContactResponsiblePerson',
             data,
             { headers: reqHeader, params: params }
         );
@@ -1517,7 +1517,7 @@ export class MasterService {
         var data = JSON.stringify(obj).toString();
         return this._httpclient.post<any>(
             environment.BaseUriAdmin +
-                'api/Admin/AddInsertUpdateContactFirstAttorney',
+            'api/Admin/AddInsertUpdateContactFirstAttorney',
             data,
             { headers: reqHeader, params: params }
         );
@@ -1546,7 +1546,7 @@ export class MasterService {
         var data = JSON.stringify(obj).toString();
         return this._httpclient.post<any>(
             environment.BaseUriAdmin +
-                'api/Admin/AddInsertUpdateContactSecondAttorney',
+            'api/Admin/AddInsertUpdateContactSecondAttorney',
             data,
             { headers: reqHeader, params: params }
         );
@@ -1729,7 +1729,7 @@ export class MasterService {
         params = params.append('UserId', UserId);
         return this._httpclient.get<any>(
             environment.BaseUriAdmin +
-                'api/Admin/GetUserMenuItemAccessByModuleIdTreeTable',
+            'api/Admin/GetUserMenuItemAccessByModuleIdTreeTable',
             { headers: reqHeader, params: params }
         );
     }
@@ -1808,7 +1808,7 @@ export class MasterService {
         console.log(data);
         return this._httpclient.post<any>(
             environment.BaseUriAdmin +
-                'api/Admin/InsertUpdateAcuteCarePlanForm',
+            'api/Admin/InsertUpdateAcuteCarePlanForm',
             data,
             { headers: reqHeader, params: params }
         );
@@ -1884,7 +1884,7 @@ export class MasterService {
         );
     }
     /////#region
-    
+
     // #region
     AddUpdateGPDoctorVisitCommDetails(GPDoctorVisitCommDetails: any): Observable<any> {
         let reqHeader = new HttpHeaders({
@@ -1904,7 +1904,39 @@ export class MasterService {
         });
         let params = new HttpParams();
         params = params.append('fromId', fromId);
-        return this._httpclient.get<any>(environment.BaseUriAdmin + 'api/Admin/GPDoctorVisitCommDetailsByid',{ headers: reqHeader, params: params });
+        return this._httpclient.get<any>(environment.BaseUriAdmin + 'api/Admin/GPDoctorVisitCommDetailsByid', { headers: reqHeader, params: params });
     }
     //#endregion 
+
+    //#region UserFacilityAssignmentMaster
+
+    AddInsertUpdateFacilityAndResidentAssignment(obj: any): Observable<any> {
+        let reqHeader = new HttpHeaders({
+            'Content-Type': 'application/json',
+            'Access-Control-Allow-Origin': environment.BaseUriAdmin,
+            'Authorization': 'Bearer ' + localStorage.getItem('token')
+        });
+        let params = new HttpParams();
+        params = params.append('loginId', localStorage.getItem('userId'));
+        var data = JSON.stringify(obj).toString();
+        console.log(data);
+        
+        return this._httpclient.post<any>(
+            environment.BaseUriAdmin + 'api/Admin/AddInsertUpdateFacilityAndResidentAssignmentMaster',
+            data,
+            { headers: reqHeader, params: params }
+        );
+    }
+
+    GetUserFacilityAssignmentMasterById(id: any): Observable<any> {
+        let reqHeader = new HttpHeaders({
+            'Content-Type': 'application/json',
+            'Access-Control-Allow-Origin': environment.BaseUriAdmin,
+            'Authorization': 'Bearer ' + localStorage.getItem('token')
+        });
+        let params = new HttpParams();
+        params = params.append('id', id);
+        return this._httpclient.get<any>(environment.BaseUriAdmin + 'api/Admin/GetUserFacilityAssignmentMasterById', { headers: reqHeader, params: params });
+    }
+    //#endregion
 }
