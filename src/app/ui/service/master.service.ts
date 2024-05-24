@@ -1355,6 +1355,26 @@ export class MasterService {
         );
     }
 
+    GetDailyVitalAlertLogDetails(userid,firstdate,enddate,name,status) {
+        let reqHeader = new HttpHeaders({
+            'Content-Type': 'application/json',
+            'Access-Control-Allow-Origin': environment.BaseUriAdmin,
+            'Authorization': 'Bearer ' + localStorage.getItem('token')
+        });
+        let params = new HttpParams();
+        params = params.append('userid', userid);
+        params = params.append('firstdate', firstdate);
+        params = params.append('enddate', enddate);
+        params = params.append('name', name);
+        params = params.append('status', status);
+        console.log(firstdate,enddate);
+        
+        return this._httpclient.get<any>(
+            environment.BaseUriAdmin + 'api/Admin/GetDailyVitalAlertLog',
+            { headers: reqHeader, params: params }
+        );
+    }
+
     GetClinicalPainAssesmentById(
         admissionid: any,
         date: any = null
