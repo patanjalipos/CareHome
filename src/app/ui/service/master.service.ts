@@ -1902,36 +1902,4 @@ export class MasterService {
         return this._httpclient.get<any>(environment.BaseUriAdmin + 'api/Admin/GPDoctorVisitCommDetailsByid', { headers: reqHeader, params: params });
     }
     //#endregion 
-
-    //#region UserFacilityAssignmentMaster
-
-    AddInsertUpdateFacilityAndResidentAssignment(obj: any): Observable<any> {
-        let reqHeader = new HttpHeaders({
-            'Content-Type': 'application/json',
-            'Access-Control-Allow-Origin': environment.BaseUriAdmin,
-            'Authorization': 'Bearer ' + localStorage.getItem('token')
-        });
-        let params = new HttpParams();
-        params = params.append('loginId', localStorage.getItem('userId'));
-        var data = JSON.stringify(obj).toString();
-        console.log(data);
-        
-        return this._httpclient.post<any>(
-            environment.BaseUriAdmin + 'api/Admin/AddInsertUpdateFacilityAndResidentAssignmentMaster',
-            data,
-            { headers: reqHeader, params: params }
-        );
-    }
-
-    GetUserFacilityAssignmentMasterById(id: any): Observable<any> {
-        let reqHeader = new HttpHeaders({
-            'Content-Type': 'application/json',
-            'Access-Control-Allow-Origin': environment.BaseUriAdmin,
-            'Authorization': 'Bearer ' + localStorage.getItem('token')
-        });
-        let params = new HttpParams();
-        params = params.append('id', id);
-        return this._httpclient.get<any>(environment.BaseUriAdmin + 'api/Admin/GetUserFacilityAssignmentMasterById', { headers: reqHeader, params: params });
-    }
-    //#endregion
 }
