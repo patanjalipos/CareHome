@@ -6,19 +6,21 @@ import { ResidentProfileComponent } from './resident-profile.component';
 import { ProfileModule } from './profile/profile.module';
 import { FormsDashboardModule } from '../forms/forms-dashboard/forms-dashboard.module';
 import { AlertModule } from './alert/alert.module';
+import { ResidentProgressnotesModule } from "./resident-progressnotes/resident-progressnotes.module";
 
 
 @NgModule({
-  declarations: [
-    ResidentProfileComponent
-  ],
-  imports: [
-    CommonModule,
-    ResidentProfileRoutingModule,
-    ProfileModule,
-    AlertModule,
-    FormsDashboardModule
-  ],
-  exports:[ResidentProfileComponent]
+    declarations: [
+        ResidentProfileComponent
+    ],
+    exports: [ResidentProfileComponent],
+    imports: [
+        CommonModule,
+        ResidentProfileRoutingModule,
+        ProfileModule,
+        AlertModule,
+        FormsDashboardModule,
+        ResidentProgressnotesModule
+    ]
 })
 export class ResidentProfileModule { }
