@@ -1,13 +1,12 @@
 <div class="card">
     <div class="row d-flex align-items-center">
         <div class="col-md-3">
-            <div class="form-group">
                 <label class="form-label">
                     From Date / To Date </label>
                 <p-calendar #calendar selectionMode="range" [(ngModel)]="rangeDates" placeholder="Date Range" [ngModelOptions]="{standalone: true}" [showIcon]="true" inputId="icon" [readonlyInput]="true" [dateFormat]=""></p-calendar>
                 
             </div>
-        </div>
+
         <div class="col-md-3">
             <label class="form-label">
                 Alert Type </label>
