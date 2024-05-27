@@ -44,16 +44,15 @@
         <div class="col-md-1 form-icon mt-4">
             <i class="fa-solid fa-info"></i>
         </div>
-
         <div class="col-md-4 ">
             <div class="labelcontent">
                 <p>Detail specific decision relating to the resident's sleep and rest</p>
             </div>
         </div>
-        <div class="col-md-7">
+        <div class="col-md-7 form-text">
             <ng-container *ngIf="this.isEditable; else SpecificDecisionDetails">
                 <input pInputText type="text" [(ngModel)]="CareAssessmentSleepAndRestFormsData.SpecificDecisionDetails" required name="CareAssessmentSleepAndRestFormsData.SpecificDecisionDetails" class="form-control mr-4"
-                    [style]="{ width: '35%' }">
+                    [style]="{ width: '100%' }">
                     <p class="mb-4">Only answer if the resident lacks capacity, If the resident is using equipment to aid sleep
                         consider
                         consent form, R/A / MCA / BID / DOLs Include sleeping system (position, equipment)</p>
@@ -105,7 +104,7 @@
                 <p>Assistance to settle back to sleep</p>
             </div>
         </div>
-        <div class="col-md-7">
+        <div class="col-md-7 form-text">
             <ng-container *ngIf="this.isEditable; else SleepBackAssistance">
                 <p-dropdown [required]="true" [options]="lstSleepBackAssistance"   optionLabel="optionName" [(ngModel)]="CareAssessmentSleepAndRestFormsData.SleepBackAssistance" name="CareAssessmentSleepAndRestFormsData.SleepBackAssistance" optionValue="optionId" placeholder="Select" [style]="{ width: '100%' }">
                 </p-dropdown>
@@ -140,10 +139,10 @@
                 <p>Repositioning pattern and frequency</p>
             </div>
         </div>
-        <div class="col-md-7">
+        <div class="col-md-7 form-text">
             <ng-container *ngIf="this.isEditable; else PatternRepositioning">
                 <input pInputText type="text" [(ngModel)]="CareAssessmentSleepAndRestFormsData.PatternRepositioning" required name="CareAssessmentSleepAndRestFormsData.PatternRepositioning" class="form-control mr-4"
-                    [style]="{ width: '35%' }">
+                    [style]="{ width: '100%' }">
             </ng-container>
             <ng-template #PatternRepositioning>
                 <label>{{CareAssessmentSleepAndRestFormsData.PatternRepositioning}}</label>
@@ -157,10 +156,10 @@
                 <p>What is the residents pre bedtime routine</p>
             </div>
         </div>
-        <div class="col-md-7">
+        <div class="col-md-7 form-text">
             <ng-container *ngIf="this.isEditable; else PreBedtimeRoutine">
                 <input pInputText type="text" [(ngModel)]="CareAssessmentSleepAndRestFormsData.PreBedtimeRoutine" required name="CareAssessmentSleepAndRestFormsData.PreBedtimeRoutine" class="form-control mr-4"
-                    [style]="{ width: '35%' }">
+                    [style]="{ width: '100%' }">
                     <p class="mb-4">Preferred bedtime, TV, chat, read etc.</p>
                 </ng-container>
                 <ng-template #PreBedtimeRoutine>
@@ -171,15 +170,15 @@
         <div class="col-md-1 form-icon">
             <i class="fa-solid fa-info"></i>
         </div>
-        <div class="col-md-4 ">
+        <div class="col-md-4">
             <div class="labelcontent">
                 <p>Naps / rest during day</p>
             </div>
         </div>
-        <div class="col-md-7">
+        <div class="col-md-7 form-text">
             <ng-container *ngIf="this.isEditable; else Naps">
                 <input pInputText type="text" [(ngModel)]="CareAssessmentSleepAndRestFormsData.Naps" required name="CareAssessmentSleepAndRestFormsData.Naps" class="form-control mr-4"
-                    [style]="{ width: '35%' }">
+                    [style]="{ width: '100%' }">
                     <p class="mb-4">Describe afternoon routine / pattern. Include professional advice e.g. lies on bed in
                         afternoon to
                         relieve pressure</p>
@@ -197,11 +196,11 @@
                 <p>Preferred morning / waking routine</p>
             </div>
         </div>
-        <div class="col-md-7">
+        <div class="col-md-7 form-text">
             <ng-container *ngIf="this.isEditable; else MorningRoutine">
                 <input pInputText type="text" [(ngModel)]="CareAssessmentSleepAndRestFormsData.MorningRoutine" required name="CareAssessmentSleepAndRestFormsData.MorningRoutine" class="form-control mr-4"
-                    [style]="{ width: '35%' }">
-                    <p class=" form-text">Preferred time to get up, tea in bed, chat, watch TV, read</p>
+                    [style]="{ width: '100%' }">
+                    <p class="mb-4">Preferred time to get up, tea in bed, chat, watch TV, read</p>
                 </ng-container>
                 <ng-template #MorningRoutine>
                     <label>{{CareAssessmentSleepAndRestFormsData.MorningRoutine}}</label>
@@ -236,7 +235,7 @@
         <div class="col-md-7">
             <ng-container *ngIf="this.isEditable; else PersonalSpecificGoal">
                 <input pInputText type="text" [(ngModel)]="CareAssessmentSleepAndRestFormsData.PersonalSpecificGoal" required name="CareAssessmentSleepAndRestFormsData.PersonalSpecificGoal" class="form-control mr-4"
-                    [style]="{ width: '35%' }">
+                    [style]="{ width: '100%' }">
                 </ng-container>
                 <ng-template #PersonalSpecificGoal>
                     <label>{{CareAssessmentSleepAndRestFormsData.PersonalSpecificGoal}}</label>
@@ -270,7 +269,7 @@
         <div class="col-md-7">
             <ng-container *ngIf="this.isEditable; else AdditionalInfo">
                 <input pInputText type="text" [(ngModel)]="CareAssessmentSleepAndRestFormsData.AdditionalInfo" required name="CareAssessmentSleepAndRestFormsData.AdditionalInfo" class="form-control mr-4"
-                    [style]="{ width: '35%' }">
+                    [style]="{ width: '100%' }">
                 </ng-container>
                 <ng-template #AdditionalInfo>
                     <label>{{CareAssessmentSleepAndRestFormsData.AdditionalInfo}}</label>
@@ -284,10 +283,10 @@
                 <p>Are there any other identified risks relating to sleep & res</p>
             </div>
         </div>
-        <div class="col-md-7">
+        <div class="col-md-7 form-text">
             <ng-container *ngIf="this.isEditable; else OtherIdentifiedRisks">
                 <input pInputText type="text" [(ngModel)]="CareAssessmentSleepAndRestFormsData.OtherIdentifiedRisks" required name="CareAssessmentSleepAndRestFormsData.OtherIdentifiedRisks" class="form-control mr-4"
-                    [style]="{ width: '35%' }">
+                    [style]="{ width: '100%' }">
                     <p class="mb-4">Specify any other risks that have not been identified above</p>
                 </ng-container>
                 <ng-template #OtherIdentifiedRisks>
@@ -306,7 +305,7 @@
         <div class="col-md-7 form-text">
             <ng-container *ngIf="this.isEditable; else ActionToManageAdditionalRisk">
                 <input pInputText type="text" [(ngModel)]="CareAssessmentSleepAndRestFormsData.ActionToManageAdditionalRisk" required name="CareAssessmentSleepAndRestFormsData.ActionToManageAdditionalRisk" class="form-control "
-                    [style]="{ width: '35%' }">
+                    [style]="{ width: '100%' }">
                 </ng-container>
                 <ng-template #ActionToManageAdditionalRisk>
                     <label>{{CareAssessmentSleepAndRestFormsData.ActionToManageAdditionalRisk}}</label>
@@ -323,7 +322,7 @@
 
         <div class="col-md-7 form-text">
             <ng-container *ngIf="this.isEditable; else MonthlyReview">
-                <p-checkbox [(ngModel)]="CareAssessmentSleepAndRestFormsData.MonthlyReview" [binary]="true" inputId="binary"></p-checkbox>
+                <p-checkbox class="mb-4" [(ngModel)]="CareAssessmentSleepAndRestFormsData.MonthlyReview" [binary]="true" inputId="binary"></p-checkbox>
                 <p class="mb-4">This form should be reviewed EVERY MONTH or before if there are significant changes. Enter review date
                     below.</p>
             </ng-container>

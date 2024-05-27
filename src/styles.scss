@@ -222,10 +222,24 @@ h5.label-name {
     border: 1px solid #ca9701;
 }
 
+.form-group {
+    margin-bottom: 16px;
+  }
+
+  .pos-rel {
+    position: relative;
+  }
+  .col {
+    flex-basis: auto !important;
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+  
 .danger,
 .required {
     color: red;
 }
+
 
 /*Theme*/
 body {
@@ -1076,6 +1090,33 @@ i.iconset:hover {
     background: #fbdfc3;
 }
 
+
+// Print Documents End
+
+.img-prview-box {
+    margin: 0 auto;
+    text-align: center;
+    width: 130px;
+    height: 170px;
+    border-radius: 100%;
+  }
+  
+  .img-prview-box img {
+    margin: 20px 0;
+    border-radius: 100%;
+    margin: 20px 0;
+    height: 130px;
+    width: 130px;
+    object-fit: cover;
+  
+  }
+  
+  .img-prview-box i {
+    font-size: 130px !important;
+    margin: 20px 0;
+    text-align: center;
+    color: #c1c1c1;
+  }
 
 .revenu {
     display: block !important;

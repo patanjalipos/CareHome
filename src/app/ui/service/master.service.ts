@@ -808,6 +808,20 @@ export class MasterService {
 
     //#end region
 
+    GetGroupResidentTagDetailsList(Status=0): Observable<any> {
+        let reqHeader = new HttpHeaders({
+            'Content-Type': 'application/json',
+            'Access-Control-Allow-Origin': environment.BaseUriAdmin,
+            'Authorization': 'Bearer ' + localStorage.getItem('token')
+        });
+        let params = new HttpParams();
+        params = params.append('Status', (Status==null || Status==undefined)?0:Status);
+        return this._httpclient.get<any>(
+            environment.BaseUriAdmin + 'api/Admin/GetGroupResidentTagDetailsList',
+            { headers: reqHeader, params: params }
+        );
+    }
+
     // #region UserTypeMaster
 
     GetUserTypeMaster(moduleId: string = ''): Observable<any> {
@@ -1325,7 +1339,7 @@ export class MasterService {
             { headers: reqHeader, params: params }
         );
     }
-    AddInsertUpdateDailyVital(obj: any): Observable<any> {
+    AddInsertUpdateDailyVital(obj: any,loginId:any): Observable<any> {
         let reqHeader = new HttpHeaders({
             'Content-Type': 'application/json',
             'Access-Control-Allow-Origin': environment.BaseUriAdmin,
@@ -1333,9 +1347,30 @@ export class MasterService {
         });
         let params = new HttpParams();
         var data = JSON.stringify(obj).toString();
+        params = params.append('loginid',loginId);
         return this._httpclient.post<any>(
             environment.BaseUriAdmin + 'api/Admin/AddInsertUpdateDailyVital',
             data,
+            { headers: reqHeader, params: params }
+        );
+    }
+
+    GetDailyVitalAlertLogDetails(userid,firstdate,enddate,name,status) {
+        let reqHeader = new HttpHeaders({
+            'Content-Type': 'application/json',
+            'Access-Control-Allow-Origin': environment.BaseUriAdmin,
+            'Authorization': 'Bearer ' + localStorage.getItem('token')
+        });
+        let params = new HttpParams();
+        params = params.append('userid', userid);
+        params = params.append('firstdate', firstdate);
+        params = params.append('enddate', enddate);
+        params = params.append('name', name);
+        params = params.append('status', status);
+        console.log(firstdate,enddate);
+        
+        return this._httpclient.get<any>(
+            environment.BaseUriAdmin + 'api/Admin/GetDailyVitalAlertLog',
             { headers: reqHeader, params: params }
         );
     }
@@ -1686,6 +1721,7 @@ export class MasterService {
     //#end region
 
     //#region  ExportToExcel
+    
     downloadReport(obj: any): void {
         let reqHeader = new HttpHeaders({
             'Content-Type': 'application/json',
@@ -1733,6 +1769,7 @@ export class MasterService {
             { headers: reqHeader, params: params }
         );
     }
+
     GetMenuItemMasterByModuleId(
         userTypeId: string,
         UserId: string
@@ -1754,47 +1791,28 @@ export class MasterService {
         );
     }
 
-    ///////#region Acute Care Plan
-    // GetActuteInfectionMaster(Status: any): Observable<any> {
-    //     let reqHeader = new HttpHeaders({
-    //         'Content-Type': 'application/json',
-    //         'Access-Control-Allow-Origin': environment.BaseUriAdmin,
-    //         'Authorization': 'Bearer ' + localStorage.getItem('token')
-    //     });
-    //     let params = new HttpParams();
-    //     params = params.append('Status', Status);
-    //     return this._httpclient.get<any>(
-    //         environment.BaseUriAdmin + 'api/Admin/GetActuteInfectionMaster',
-    //         { headers: reqHeader, params: params }
-    //     );
-    // }
-    // GetActuteStrategiesMaster(Status: any): Observable<any> {
-    //     let reqHeader = new HttpHeaders({
-    //         'Content-Type': 'application/json',
-    //         'Access-Control-Allow-Origin': environment.BaseUriAdmin,
-    //         'Authorization': 'Bearer ' + localStorage.getItem('token')
-    //     });
-    //     let params = new HttpParams();
-    //     params = params.append('Status', Status);
-    //     return this._httpclient.get<any>(
-    //         environment.BaseUriAdmin + 'api/Admin/GetActuteStrategiesMaster',
-    //         { headers: reqHeader, params: params }
-    //     );
-    // }
-    // GetActuteOutcomeTreatmentMaster(Status: any): Observable<any> {
-    //     let reqHeader = new HttpHeaders({
-    //         'Content-Type': 'application/json',
-    //         'Access-Control-Allow-Origin': environment.BaseUriAdmin,
-    //         'Authorization': 'Bearer ' + localStorage.getItem('token')
-    //     });
-    //     let params = new HttpParams();
-    //     params = params.append('Status', Status);
-    //     return this._httpclient.get<any>(
-    //         environment.BaseUriAdmin +
-    //             'api/Admin/GetActuteOutcomeTreatmentMaster',
-    //         { headers: reqHeader, params: params }
-    //     );
-    // }
+    
+    //#region Alert
+
+    GetVitalAlertsByStatus(status: boolean = null): Observable<any> {
+        let reqHeader = new HttpHeaders({
+            'Content-Type': 'application/json',
+            'Access-Control-Allow-Origin': environment.BaseUriAdmin,
+            Authorization: 'Bearer ' + localStorage.getItem('token'),
+        });
+        let params = new HttpParams();
+        params = params.append('status', status);
+        return this._httpclient.get<any>(
+            environment.BaseUriAdmin +
+                'api/Admin/GetVitalAlertsByStatus',
+            { headers: reqHeader, params: params }
+        );
+    }
+
+    //#endregion Alert
+
+    //#region Acute Care Plan
+
     InsertUpdateAcuteCarePlanForm(
         AcuteCarePlanFormsData: any
     ): Observable<any> {
@@ -1828,33 +1846,10 @@ export class MasterService {
         );
     }
 
-    ///////#end Region
+    //#end Region
 
-    ///////#region Family Communication
-    // GetFamilyRelayMaster(Status: any): Observable<any> {
-    //     let reqHeader = new HttpHeaders({
-    //         'Content-Type': 'application/json',
-    //         'Access-Control-Allow-Origin': environment.BaseUriAdmin,
-    //     });
-    //     let params = new HttpParams();
-    //     params = params.append('Status', Status);
-    //     return this._httpclient.get<any>(
-    //         environment.BaseUriAdmin + 'api/Admin/GetFamilyRelayMaster',
-    //         { headers: reqHeader, params: params }
-    //     );
-    // }
-    // GetFamilyCommReasonMaster(Status: any): Observable<any> {
-    //     let reqHeader = new HttpHeaders({
-    //         'Content-Type': 'application/json',
-    //         'Access-Control-Allow-Origin': environment.BaseUriAdmin,
-    //     });
-    //     let params = new HttpParams();
-    //     params = params.append('Status', Status);
-    //     return this._httpclient.get<any>(
-    //         environment.BaseUriAdmin + 'api/Admin/GetFamilyCommReasonMaster',
-    //         { headers: reqHeader, params: params }
-    //     );
-    // }
+    //#region Family Communication
+   
     InsertUpdateFamilyCommForm(AcuteCarePlanFormsData: any): Observable<any> {
         let reqHeader = new HttpHeaders({
             'Content-Type': 'application/json',
@@ -1883,9 +1878,9 @@ export class MasterService {
             { headers: reqHeader, params: params }
         );
     }
-    /////#region
+  
+    // #region GP Doctor Visit
 
-    // #region
     AddUpdateGPDoctorVisitCommDetails(GPDoctorVisitCommDetails: any): Observable<any> {
         let reqHeader = new HttpHeaders({
             'Content-Type': 'application/json',

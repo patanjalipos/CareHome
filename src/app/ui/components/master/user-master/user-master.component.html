@@ -66,82 +66,110 @@
         <p-accordion [multiple]="true" activeIndex="0,1">
             <p-accordionTab header="Personal Details">
                 <div class="row">
-                    <div class="col-md-3">
-                        <label class="form-label">Home<span class="required">*</span></label>
-                        <!-- <p-multiSelect name="ddlHome" [style]="{width: '100%'}" [options]="lstHomeMaster" 
-                            [(ngModel)]="RegistrationMainModel.Homes" optionLabel="HomeName" optionValue="HomeMasterId"
-                            placeholder="Please select Home" #homeref="ngModel" (onChange)="SetFacility()">
-                        </p-multiSelect> -->
-                        <p-dropdown [required]="true" name="ddlHome" [options]="lstHomeMaster"
-                            [(ngModel)]="RegistrationMainModel.HomeMasterId" optionLabel="HomeName"
-                            optionValue="HomeMasterId" [filter]="true" placeholder="--select--"
-                            [style]="{width: '100%'}" #homeref="ngModel">
-                        </p-dropdown>
-                        <div *ngIf="homeref.errors &&(homeref.touched || homeref.dirty)" class="errorMessage">
-                            <div *ngIf="homeref.errors?.['required']">Home is required.</div>
+                    <div class="col-md-10">
+                        <div class="row row-cols-4 mt-4">
+                            <div class="form-group pos-rel col">
+                                    <label class="form-label">Home<span class="required">*</span></label>
+                                    <!-- <p-multiSelect name="ddlHome" [style]="{width: '100%'}" [options]="lstHomeMaster" 
+                                        [(ngModel)]="RegistrationMainModel.Homes" optionLabel="HomeName" optionValue="HomeMasterId"
+                                        placeholder="Please select Home" #homeref="ngModel" (onChange)="SetFacility()">
+                                    </p-multiSelect> -->
+                                    <p-dropdown [required]="true" name="ddlHome" [options]="lstHomeMaster"
+                                        [(ngModel)]="RegistrationMainModel.HomeMasterId" optionLabel="HomeName"
+                                        optionValue="HomeMasterId" [filter]="true" placeholder="--select--"
+                                        [style]="{width: '100%'}" #homeref="ngModel">
+                                    </p-dropdown>
+                                    <div *ngIf="homeref.errors &&(homeref.touched || homeref.dirty)" class="errorMessage">
+                                        <div *ngIf="homeref.errors?.['required']">Home is required.</div>
+                                    </div>
+                            </div>
+                            <div class="form-group pos-rel col">
+                                <label class="form-label">First Name<span class="required">*</span></label>
+                                <input pInputText type="text" required class="form-control" name="txtFName"
+                                    [(ngModel)]="RegistrationMainModel.FirstName" placeholder=""
+                                    (keypress)="validateText($event)">
+                            </div>
+                            <div class="form-group pos-rel col">
+                                <label class="form-label">Middle Name</label>
+                                <input type="text" pInputText class="form-control" name="txtMiddleName"
+                                    [(ngModel)]="RegistrationMainModel.MiddleName" placeholder=""
+                                    (keypress)="validateText($event)">
+                            </div>
+                            <div class="form-group pos-rel col">
+                                <label class="form-label">Last Name</label>
+                                <input type="text" pInputText class="form-control" name="txtLname"
+                                    [(ngModel)]="RegistrationMainModel.LastName" placeholder=""
+                                    (keypress)="validateText($event)">
+                            </div>
+                            <div class="form-group pos-rel col">
+                                <label class="form-label">Preferred Name</label>
+                                <input pInputText type="text" class="form-control" name="txtFHName"
+                                    [(ngModel)]="RegistrationMainModel.PreferredName" placeholder="">
+                            </div>
+                            <!-- <div class="col-md-3">
+                                <label class="form-label">Blood Group</label>
+                                <p-dropdown name="ddlBloodGrp" [options]="stlstbloodgrp"
+                                    [(ngModel)]="RegistrationMainModel.BloodGroup" optionLabel="name" optionValue="code"
+                                    [filter]="true" placeholder="--select--" [style]="{width: '100%'}">
+                                </p-dropdown>
+                            </div>
+                            <div class="col-md-3">
+                                <label class="form-label">Gender<span class="required">*</span> </label>
+                                <p-dropdown [required]="true" name="ddlGender" [options]="stlstgender"
+                                    [(ngModel)]="RegistrationMainModel.Gender" optionLabel="name" optionValue="code"
+                                    [filter]="true" placeholder="--select--" [style]="{width: '100%'}"
+                                    #genderref="ngModel">
+                                </p-dropdown>
+                                <div *ngIf="genderref.errors &&(genderref.touched || genderref.dirty)"
+                                    class="alert alert-danger">
+                                    <div *ngIf="genderref.errors?.['required']">Gender is required.</div>
+                                </div>
+                            </div>                                     -->
+                            <div class="form-group pos-rel col">
+                                <label class="form-label">Login Id</label>
+                                <input type="text" pInputText disabled="disabled" class="form-control" placeholder="Login Id"
+                                    name="txtLoginId" [(ngModel)]="RegistrationMainModel.LoginId">
+                            </div>
+                            <div class="form-group pos-rel col">
+                                <label class="form-label">Password</label>
+                                <input type="text" pInputText disabled="disabled" class="form-control" placeholder="Password"
+                                    name="txtPassword" [(ngModel)]="RegistrationMainModel.Password">
+                            </div>
+                            <div class="form-group pos-rel col">
+                                <label class="form-label">Status <span class="required">*</span></label>
+                                <p-dropdown [required]="true" name="ddlStatus" [options]="stlststatus"
+                                    [(ngModel)]="RegistrationMainModel.Status" optionLabel="name" optionValue="code"
+                                    [filter]="true" placeholder="Please Select Status" [style]="{width: '100%'}">
+                                </p-dropdown>
+                            </div>
                         </div>
-                    </div>
+                        </div>
+                    
 
 
-                    <div class="col-md-3">
-                        <label class="form-label">First Name<span class="required">*</span></label>
-                        <input pInputText type="text" required class="form-control" name="txtFName"
-                            [(ngModel)]="RegistrationMainModel.FirstName" placeholder=""
-                            (keypress)="validateText($event)">
-                    </div>
-                    <div class="col-md-3">
-                        <label class="form-label">Middle Name</label>
-                        <input type="text" pInputText class="form-control" name="txtMiddleName"
-                            [(ngModel)]="RegistrationMainModel.MiddleName" placeholder=""
-                            (keypress)="validateText($event)">
-                    </div>
-                    <div class="col-md-3">
-                        <label class="form-label">Last Name</label>
-                        <input type="text" pInputText class="form-control" name="txtLname"
-                            [(ngModel)]="RegistrationMainModel.LastName" placeholder=""
-                            (keypress)="validateText($event)">
-                    </div>
-                    <div class="col-md-3">
-                        <label class="form-label">Preferred Name</label>
-                        <input pInputText type="text" class="form-control" name="txtFHName"
-                            [(ngModel)]="RegistrationMainModel.PreferredName" placeholder="">
-                    </div>
-                    <!-- <div class="col-md-3">
-                        <label class="form-label">Blood Group</label>
-                        <p-dropdown name="ddlBloodGrp" [options]="stlstbloodgrp"
-                            [(ngModel)]="RegistrationMainModel.BloodGroup" optionLabel="name" optionValue="code"
-                            [filter]="true" placeholder="--select--" [style]="{width: '100%'}">
-                        </p-dropdown>
-                    </div>
-                    <div class="col-md-3">
-                        <label class="form-label">Gender<span class="required">*</span> </label>
-                        <p-dropdown [required]="true" name="ddlGender" [options]="stlstgender"
-                            [(ngModel)]="RegistrationMainModel.Gender" optionLabel="name" optionValue="code"
-                            [filter]="true" placeholder="--select--" [style]="{width: '100%'}"
-                            #genderref="ngModel">
-                        </p-dropdown>
-                        <div *ngIf="genderref.errors &&(genderref.touched || genderref.dirty)"
-                            class="alert alert-danger">
-                            <div *ngIf="genderref.errors?.['required']">Gender is required.</div>
+                    
+                    <div class="col-md-2 mt-0 pt-0">
+                        <div class="form-group Profile-regis Profile-regis-new">
+                            <h6>Profile Picture</h6>
+                            <div class="img-prview-box">
+                                <img [src]="imageSrc" height="100%"
+                                    *ngIf="imageSrc!=null && imageSrc!=undefined && imageSrc!=''">
+                                <div class="js-image-preview" *ngIf="imageSrc==null || imageSrc==undefined || imageSrc==''">
+                                    <i class="fa-solid fa-circle-user"></i>
+                                </div>
+                            </div>
+                            <input type="file" class="custom-file-upload w-100 " id="customFileAWB" name="myfileAWB"
+                                (change)="onFileSelectAWB($event)" #UploadFileInputAWB accept=".JPEG,.JPG,.PNG"
+                                *ngIf="imageSrc==null || imageSrc==undefined || imageSrc==''">
+                            <a matTooltip="Clear" *ngIf="imageSrc!=null && imageSrc!=undefined && imageSrc!=''">
+                                <i class="fa fa-window-close" aria-hidden="true" [ngStyle]="{'font-size': '20px' }"
+                                    (click)="ClearProfile()"></i>
+                            </a>
                         </div>
-                    </div>                                     -->
-                    <div class="col-md-3">
-                        <label class="form-label">Login Id</label>
-                        <input type="text" pInputText disabled="disabled" class="form-control" placeholder="Login Id"
-                            name="txtLoginId" [(ngModel)]="RegistrationMainModel.LoginId">
+        
                     </div>
-                    <div class="col-md-3">
-                        <label class="form-label">Password</label>
-                        <input type="text" pInputText disabled="disabled" class="form-control" placeholder="Password"
-                            name="txtPassword" [(ngModel)]="RegistrationMainModel.Password">
-                    </div>
-                    <div class="col-md-3">
-                        <label class="form-label">Status <span class="required">*</span></label>
-                        <p-dropdown [required]="true" name="ddlStatus" [options]="stlststatus"
-                            [(ngModel)]="RegistrationMainModel.Status" optionLabel="name" optionValue="code"
-                            [filter]="true" placeholder="Please Select Status" [style]="{width: '100%'}">
-                        </p-dropdown>
-                    </div>
+                    
+                 
                 </div>
             </p-accordionTab>
             <p-accordionTab header="User details">
