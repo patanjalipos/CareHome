@@ -101,7 +101,7 @@ export class DailyVitalComponent extends AppComponentBase implements OnInit {
       this.Clinical.ModifiedBy = this.loginId;
       //console.log('Clinical', this.Clinical);
       this._UtilityService.showSpinner();
-      this.unsubscribe.add = this._MasterServices.AddInsertUpdateDailyVital(this.Clinical)
+      this.unsubscribe.add = this._MasterServices.AddInsertUpdateDailyVital(this.Clinical,this.loginId)
         .subscribe
         ({
           next: (data) => {
@@ -129,7 +129,7 @@ export class DailyVitalComponent extends AppComponentBase implements OnInit {
     this.Clinical.ClinicalDailyVitalId = id;
     this.Clinical.ModifiedBy = this.loginId;    
     this._UtilityService.showSpinner();
-      this.unsubscribe.add = this._MasterServices.AddInsertUpdateDailyVital(this.Clinical)
+      this.unsubscribe.add = this._MasterServices.AddInsertUpdateDailyVital(this.Clinical,this.loginId)
         .subscribe
         ({
           next: (data) => {
