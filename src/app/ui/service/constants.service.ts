@@ -43,6 +43,10 @@ export enum UserTypes {
     // Billing="6396f00addc59e9aac93b137"
 }
 
+export enum ChartTypes{
+    ActivitiesChart = '65b8e9b70d77d0a4c616b8e2',
+}
+
 export enum FormTypes {
     PreAdmission = '65e6db2de37632e29ad778ba',
     AccidentIncident = '65e6db54e37632e29ad778bb',
