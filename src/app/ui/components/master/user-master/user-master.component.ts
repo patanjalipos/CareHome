@@ -61,7 +61,6 @@ export class UserMasterComponent extends AppComponentBase implements OnInit {
       selectedResident?: any[]
     }
   } = {};
-  colsActionITable: any[]=[];
   button:boolean=false;
   dropdownValue=true;
   
