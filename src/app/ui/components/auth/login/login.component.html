@@ -1,37 +1,38 @@
 <div class="login-bg">
     <div class="row m-0">
         <div class="col-md-6 p-0">
-         <div class="logo-top"><img src="assets/Images/logo-color-png.png" width="130"></div>
+            <div class="logo-top"><img src="assets/Images/logo-color-png.png" width="130"></div>
         </div>
         <div class="col-md-6 p-0">
-        <div class="form-box">
-            <div class="form-box-inner">
-                <!-- <div class="welcome">Welcome, Isabel</div> -->
-                <div class="mb-5">
-                    <span class="text-600">Sign in to continue</span>
-                </div>
+            <div class="form-box">
+                <div class="form-box-inner">
+                    <!-- <div class="welcome">Welcome, Isabel</div> -->
+                    <div class="mb-5">
+                        <span class="text-600">Sign in to continue</span>
+                    </div>
 
-                <div>
-                    <label for="email1" class="block text-xl mb-2">Login Id</label>
-                    <input id="email1" type="text" placeholder="Login Id" [(ngModel)]="UserName" pInputText class="w-full mb-5">
+                    <div>
+                        <label for="email1" class="block text-xl mb-2">Login Id</label>
+                        <input id="email1" type="text" placeholder="Login Id" [(ngModel)]="UserName" pInputText
+                            class="w-full mb-5">
 
-                    <label for="password1" class="block text-xl mb-2">Password</label>
-                    <p-password id="password1" [(ngModel)]="Password" placeholder="Password" [toggleMask]="true"  styleClass="w-full mb-5" inputStyleClass="w-full p-3">
-                    </p-password>
-                    <button label="Sign In" class="btn w-full mt-3" (click)="ValidateLogin()">Log In</button>
+                        <label for="password1" class="block text-xl mb-2">Password</label>
+                        <p-password id="password1" [(ngModel)]="Password" placeholder="Password" [toggleMask]="true"
+                            styleClass="w-full mb-5" inputStyleClass="w-full p-3">
+                        </p-password>
+                        <button label="Sign In" class="btn w-full mt-3" (click)="ValidateLogin()">Log In</button>
 
-                    <div class="flex align-items-center justify-content-center mt-5">
-                        <a routerLink="/auth/forgot-password"
-                            class="font-medium no-underline ml-2 text-right cursor-pointer"
-                            style="color: var(--primary-color)" id="kt_login_forgot">
-                            Forgot Password ?
-                        </a>
-                        <!-- <a class="no-underline ml-2 text-right cursor-pointer text-white">Forgot password?</a> -->
+                        <div class="flex align-items-center justify-content-center mt-5">
+                            <a routerLink="/auth/forgot-password"
+                                class="font-medium no-underline ml-2 text-right cursor-pointer"
+                                style="color: var(--primary-color-text)" id="kt_login_forgot">
+                                Forgot Password ?
+                            </a>
+                            <!-- <a class="no-underline ml-2 text-right cursor-pointer text-white">Forgot password?</a> -->
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-        </div>
     </div>
 </div>
-
