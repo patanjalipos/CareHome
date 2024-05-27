@@ -6,6 +6,8 @@ import { ResidentProfileComponent } from './resident-profile.component';
 import { ProfileModule } from './profile/profile.module';
 import { FormsDashboardModule } from '../forms/forms-dashboard/forms-dashboard.module';
 import { AlertModule } from './alert/alert.module';
+import { ChartModule } from './chart/chart.module';
+
 
 
 @NgModule({
@@ -17,8 +19,9 @@ import { AlertModule } from './alert/alert.module';
     ResidentProfileRoutingModule,
     ProfileModule,
     AlertModule,
+    ChartModule,
     FormsDashboardModule
   ],
-  exports:[ResidentProfileComponent]
+  exports: [ResidentProfileComponent]
 })
 export class ResidentProfileModule { }
