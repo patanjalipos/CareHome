@@ -2,30 +2,81 @@
     <div class="row d-flex align-items-center">
         <div class="col-md-3">
                 <label class="form-label">
-                    From Date / To Date <span class="required">*</span></label>
-                <p-calendar selectionMode="range" placeholder="Date Range"></p-calendar>
-        </div>
+                    From Date / To Date </label>
+                <p-calendar #calendar selectionMode="range" [(ngModel)]="rangeDates" placeholder="Date Range" [ngModelOptions]="{standalone: true}" [showIcon]="true" inputId="icon" [readonlyInput]="true" [dateFormat]=""></p-calendar>
+                
+            </div>
+
         <div class="col-md-3">
             <label class="form-label">
-                Alert Type <span class="required">*</span></label>
-            <p-dropdown [required]="true" optionLabel="FormName" optionValue="FormMasterId" placeholder="Select"
+                Alert Type </label>
+            <p-dropdown [required]="true" [(ngModel)]="selectedAlertMasterId" [options]="lstAlertMaster" optionLabel="AlertName" optionValue="AlertMasterId" placeholder="Select"
                 [style]="{ width: '100%' }" [filter]="true" filterPlaceholder="Search Form Name">
             </p-dropdown>
         </div>
         <div class="col-md-3">
             <label class="form-label">
-                Alert Status <span class="required">*</span></label>
-            <p-dropdown [required]="true" optionLabel="FormName" optionValue="FormMasterId" placeholder="Select"
+                Alert Status </label>
+            <p-dropdown [required]="true" [(ngModel)]="selectedStatusId" [options]="lstStatus" optionLabel="name" optionValue="code" placeholder="Select"
                 [style]="{ width: '100%' }" [filter]="true" filterPlaceholder="Search Form Name">
             </p-dropdown>
         </div>
         <div class="col-md-3 d-flex mt-3">
             <div>
                 <span class="p-ml-left">
-                    <button pButton title="New" label="Search"></button>
+                    <button pButton title="New" (click)="SearchList()" label="Search"></button>
                     <span class="total-txt"> </span>
                 </span>
             </div>
         </div>
+        <p-table
+            #dt
+            [value]="AlertList"
+            responsiveLayout="scroll"
+            class="mt-4"
+            styleClass="p-datatable-striped"
+            [rowHover]="true"
+            [globalFilterFields]="['AlertName', 'name']"
+            [scrollable]="true"
+            scrollHeight="calc(100vh - 155px)"
+        >
+            <ng-template pTemplate="emptymessage" let-columns>
+                <tr>
+                    <td [attr.colspan]="columns?.length">No records found</td>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="header">
+                <tr>
+                    <th pSortableColumn="">Alert Name</th>
+                    <th>Alert Status</th>
+                    <th>Recorded Time</th>
+                    <th>Recorded By</th>
+                    <th>Actions</th>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-dt>
+                <tr>
+                    <td>{{dt.AlertName}}</td>
+                    <td>{{dt.Status==1?"Active":"Inactive"}}</td>
+                    <td>{{dt.CreatedOn | date:customDateFormat.DEF_DATE_TIME}}</td>
+                    <td>
+                        {{dt.FullName}}
+                    </td>
+                    <td>
+                        <a
+                            title="View"
+                        >
+                            <i class="fa fa-eye" aria-hidden="true"></i>
+                        </a>
+                        <span style="margin-left: 10px"></span>
+                        <a
+                            title="Edit"
+                        >
+                            <i class="fa fa-pencil" aria-hidden="true"></i>
+                        </a>
+                    </td>
+                </tr>
+            </ng-template>
+        </p-table>
     </div>
 </div>

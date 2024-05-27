@@ -6,6 +6,8 @@ import { AdminDashboardComponent } from './admin-dashboard.component';
 
 import { ChartModule } from 'primeng/chart'
 import { FormsModule } from '@angular/forms';
+import { DialogModule } from 'primeng/dialog';
+import { ActivityModule } from '../activity/activity.module';
 
 @NgModule({
   declarations: [AdminDashboardComponent],
@@ -14,6 +16,8 @@ import { FormsModule } from '@angular/forms';
     AdminDashboardRoutingModule,
     FormsModule,
     ChartModule,
+    DialogModule,
+    ActivityModule,
   ]
 })
 export class AdminDashboardModule { }
