@@ -227,6 +227,18 @@
             >
                 ...
             </div>
+            <div
+                class="tab-pane fade"
+                id="alerts"
+                role="tabpanel"
+                aria-labelledby="alerts-tab"
+            >
+                <app-alert
+                    [userid]="selecteduserid"
+                    [admissionid]="selectedadmissionid"
+                    [residentadmissiondetails]="ResidentMaster"
+                ></app-alert>
+            </div>
         </div>
     </div>
 </div>
