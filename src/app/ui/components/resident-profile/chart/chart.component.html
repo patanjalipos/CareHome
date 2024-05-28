@@ -2,28 +2,61 @@
     <div class="row d-flex align-items-center">
         <div class="col-md-3">
             <label class="form-label">
-                From Date / To Date <span class="required">*</span></label>
+                From Date / To Date <span class="required">*</span></label
+            >
             <p-calendar placeholder="Date Range"></p-calendar>
         </div>
         <div class="col-md-3">
             <label class="form-label">
-                Select Chart <span class="required">*</span></label>
-            <p-dropdown [required]="true" optionLabel="FormName" optionValue="FormMasterId" placeholder="Select"
-                [style]="{ width: '100%' }" [filter]="true" filterPlaceholder="Search Form Name">
+                Select Chart <span class="required">*</span></label
+            >
+            <p-dropdown
+                [(ngModel)]="selectedChartMasterId"
+                [required]="true"
+                [options]="lstMaster"
+                optionLabel="ChartName"
+                optionValue="ChartMasterId"
+                placeholder="Select"
+                [style]="{ width: '100%' }"
+                [filter]="true"
+                filterPlaceholder="Search Chart Name"
+                (onChange)="SearchChart()"
+            >
             </p-dropdown>
         </div>
 
         <div class="col-md-6 d-flex mt-3">
             <span class="p-ml-left mr-4">
-                <button pButton title="New" label="Create Chart"></button>
+                <button
+                    pButton
+                    title="New"
+                    label="Create Form"
+                    (click)="OpenChart(selectedChartMasterId)"
+                ></button>
                 <span class="total-txt"> </span>
             </span>
             <div>
                 <span class="p-ml-left">
-                    <button pButton title="New" label="Clear Search"></button>
+                    <button
+                        pButton
+                        title="New"
+                        label="Clear Search"
+                        (click)="ResetModel()"
+                    ></button>
                     <span class="total-txt"> </span>
                 </span>
             </div>
         </div>
     </div>
 </div>
+
+<!-- Dynamic Form Component -->
+
+<app-activities-chart
+    [preSelectedChartData]="selectedChartData"
+    (EmitUpdateForm)="EmitUpdateForm($event)"
+    *ngIf="
+        ShowChildComponent == true &&
+        selectedChartMasterId == ChartTypes.ActivitiesChart
+    "
+></app-activities-chart>
