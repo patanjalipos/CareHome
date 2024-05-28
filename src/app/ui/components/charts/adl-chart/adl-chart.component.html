@@ -1,0 +1,237 @@
+<div class="card">
+    <div class="row">
+        <div class="formheader">
+            <h4>New observation</h4>
+        </div>
+        <div class="col-md-4 mt-4">
+            <label class="form-label">
+                Date<span class="required">*</span></label
+            >
+            <p-calendar
+                name=""
+                [showIcon]="true"
+                inputId="icon"
+                class="iconcal"
+                [readonlyInput]="true"
+                appendTo="body"
+                [maxDate]=""
+                #dobref=""
+            ></p-calendar>
+        </div>
+        <div class="col-md-4 mt-4">
+            <label class="form-label"
+                >Time<span class="required">*</span></label
+            >
+            <input
+                pInputText
+                type="time"
+                required
+                name="ActivitiesChartFormData"
+                class="form-control mr-4"
+            />
+        </div>
+        <div class="col-md-4 mt-4">
+            <label class="form-label"
+                >Care Given <span class="required">*</span></label
+            >
+            <p-dropdown
+                [required]="true"
+                name="ActivitiesChartFormData"
+                placeholder="Select"
+                [style]="{ width: '100%' }"
+            >
+            </p-dropdown>
+        </div>
+        <h5 class="formheader">Mobility</h5>
+        <div class="col-md-4">
+            <label class="form-label"
+                >What was the transfer method?
+                <span class="required">*</span></label
+            >
+            <p-dropdown
+                [required]="true"
+                name="ActivitiesChartFormData"
+                placeholder="Select"
+                [style]="{ width: '100%' }"
+            >
+            </p-dropdown>
+        </div>
+        <div class="col-md-4">
+            <label class="form-label"
+                >Assistance level <span class="required">*</span></label
+            >
+            <p-dropdown
+                [required]="true"
+                name="ActivitiesChartFormData"
+                placeholder="Select"
+                [style]="{ width: '100%' }"
+            >
+            </p-dropdown>
+        </div>
+        <div class="col-md-4">
+            <label class="form-label"
+                >How many people assisted?<span class="required">*</span></label
+            >
+            <input
+                type="text"
+                pInputText
+                name="ActivitiesChartFormData"
+                [required]="true"
+                [style]="{ width: '100%' }"
+            />
+        </div>
+        <h5 class="formheader">Hygiene</h5>
+        <div class="col-md-4">
+            <label class="form-label"
+                >What assistance was required?<span class="required"
+                    >*</span
+                ></label
+            >
+            <p-dropdown
+                [required]="true"
+                name="ActivitiesChartFormData"
+                placeholder="Select"
+                [style]="{ width: '100%' }"
+            >
+            </p-dropdown>
+        </div>
+        <div class="col-md-4">
+            <label class="form-label"
+                >How many people assisted?<span class="required">*</span></label
+            >
+            <input
+                type="text"
+                pInputText
+                name="ActivitiesChartFormData"
+                [required]="true"
+                [style]="{ width: '100%' }"
+            />
+        </div>
+        <div class="col-md-4">
+            <label class="form-label"
+                >Assistance level<span class="required">*</span></label
+            >
+            <p-dropdown
+                [required]="true"
+                name="ActivitiesChartFormData"
+                placeholder="Select"
+                [style]="{ width: '100%' }"
+            >
+            </p-dropdown>
+        </div>
+        <h5 class="formheader">Skin Integrity</h5>
+        <div class="col-md-4">
+            <label class="form-label"
+                >Status of skin - skin inspection comments<span class="required"
+                    >*</span
+                ></label
+            >
+            <input
+                type="text"
+                pInputText
+                name="ActivitiesChartFormData"
+                [required]="true"
+                [style]="{ width: '100%' }"
+            />
+        </div>
+        <div class="col-md-4">
+            <label class="form-label"
+                >Repositional changes<span class="required">*</span></label
+            >
+            <p-dropdown
+                [required]="true"
+                name="ActivitiesChartFormData"
+                placeholder="Select"
+                [style]="{ width: '100%' }"
+            >
+            </p-dropdown>
+        </div>
+        <h5 class="formheader">Dressing and Grooming</h5>
+        <div class="col-md-4">
+            <label class="form-label"
+                >What assistance was required?<span class="required"
+                    >*</span
+                ></label
+            >
+            <p-dropdown
+                [required]="true"
+                name="ActivitiesChartFormData"
+                placeholder="Select"
+                [style]="{ width: '100%' }"
+            >
+            </p-dropdown>
+        </div>
+        <div class="col-md-4">
+            <label class="form-label"
+                >Assistance level<span class="required">*</span></label
+            >
+            <p-dropdown
+                [required]="true"
+                name="ActivitiesChartFormData"
+                placeholder="Select"
+                [style]="{ width: '100%' }"
+            >
+            </p-dropdown>
+        </div>
+        <h5 class="formheader">Toileting</h5>
+        <div class="col-md-4">
+            <label class="form-label"
+                >What assistance was required?<span class="required"
+                    >*</span
+                ></label
+            >
+            <p-dropdown
+                [required]="true"
+                name="ActivitiesChartFormData"
+                placeholder="Select"
+                [style]="{ width: '100%' }"
+            >
+            </p-dropdown>
+        </div>
+        <div class="col-md-4">
+            <label class="form-label"
+                >Assistance level<span class="required">*</span></label
+            >
+            <p-dropdown
+                [required]="true"
+                name="ActivitiesChartFormData"
+                placeholder="Select"
+                [style]="{ width: '100%' }"
+            >
+            </p-dropdown>
+        </div>
+        <h5 class="formheader">Additional information</h5>
+        <div class="col-md-4">
+            <label class="form-label"
+                >Status of skin - skin inspection comments<span class="required"
+                    >*</span
+                ></label
+            >
+            <input
+                type="text"
+                pInputText
+                name="ActivitiesChartFormData"
+                [required]="true"
+                [style]="{ width: '100%' }"
+            />
+        </div>
+        <div class="d-flex justify-content-end mt-4">
+            <div>
+                <span class="p-ml-left mr-4">
+                    <button
+                        pButton
+                        title="New"
+                        label="Clear all feild"
+                    ></button>
+                    <span class="total-txt"></span>
+                </span>
+            </div>
+            <div>
+                <span class="p-ml-left mr-4">
+                    <button pButton title="New" label="Save"></button>
+                    <span class="total-txt"></span>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
