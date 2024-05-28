@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { AppComponentBase } from 'src/app/app-component-base';
+import { OptionService } from 'src/app/ui/service/option.service';
 
 @Component({
   selector: 'app-activities-chart',
@@ -11,11 +12,25 @@ export class ActivitiesChartComponent extends AppComponentBase implements OnInit
   @Input() preSelectedChartData: any = <any>{};
   @Output() EmitUpdateForm: EventEmitter<any> = new EventEmitter<any>();
 
-  constructor() {
+  //Static Options
+  stLstYesNoOptions: any[] = [];
+  stLstAttendanceOptions: any[] = [];
+
+  constructor(private optionService: OptionService ) {
     super();
   }
 
-  ngOnInit(): void { }
+  ngOnInit(): void { 
+
+    this.optionService.getstLstYesNoOptions().subscribe(data => {
+      this.stLstYesNoOptions = data;
+    });
+
+    this.optionService.getstLstAttendaceOptions().subscribe(data => {
+      this.stLstAttendanceOptions = data;
+    });
+
+  }
 
   saveAsUnfinished() { }
 
