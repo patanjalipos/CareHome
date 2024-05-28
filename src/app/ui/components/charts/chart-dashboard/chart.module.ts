@@ -6,13 +6,13 @@ import { CalendarModule } from "primeng/calendar";
 import { CheckboxModule } from 'primeng/checkbox';
 import { FormsModule } from '@angular/forms';
 import { DropdownModule } from 'primeng/dropdown';
-import { ActivitiesChartModule } from '../../charts/activities-chart/activities-chart.module';
-import { FluidCombinedChartModule } from "../../charts/fluid-combined-chart/fluid-combined-chart.module";
-import { InfectionChartModule } from '../../charts/infection-chart/infection-chart.module';
-import { BloodPressureChartModule } from '../../charts/blood-pressure-chart/blood-pressure-chart.module';
-import { BehaviourChartModule } from '../../charts/behaviour-chart/behaviour-chart.module';
-import { BowelChartModule } from '../../charts/bowel-chart/bowel-chart.module';
-import { EnteralFeedingChartModule } from '../../charts/enteral-feeding-chart/enteral-feeding-chart.module';
+import { ActivitiesChartModule } from '../activities-chart/activities-chart.module';
+import { FluidCombinedChartModule } from "../fluid-combined-chart/fluid-combined-chart.module";
+import { InfectionChartModule } from '../infection-chart/infection-chart.module';
+import { BloodPressureChartModule } from '../blood-pressure-chart/blood-pressure-chart.module';
+import { BehaviourChartModule } from '../behaviour-chart/behaviour-chart.module';
+import { BowelChartModule } from '../bowel-chart/bowel-chart.module';
+import { EnteralFeedingChartModule } from '../enteral-feeding-chart/enteral-feeding-chart.module';
 
 @NgModule({
     declarations: [
