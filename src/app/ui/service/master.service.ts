@@ -1355,7 +1355,7 @@ export class MasterService {
         );
     }
 
-    GetDailyVitalAlertLogDetails(userid,firstdate,enddate,name,status) {
+    GetDailyVitalAlertLog(userid,firstdate,enddate,name,status) {
         let reqHeader = new HttpHeaders({
             'Content-Type': 'application/json',
             'Access-Control-Allow-Origin': environment.BaseUriAdmin,
