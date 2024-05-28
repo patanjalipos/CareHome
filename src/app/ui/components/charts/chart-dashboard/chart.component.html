@@ -114,3 +114,13 @@
         selectedChartMasterId == ChartTypes.EnteralFeedingChart
     "
 ></app-enteral-feeding-chart>
+
+<app-adl-chart
+    [preSelectedChartData]="selectedChartData"
+    (EmitUpdateForm)="EmitUpdateForm($event)"
+    *ngIf="
+        ShowChildComponent == true &&
+        selectedChartMasterId == ChartTypes.ADLChart
+    "
+>
+</app-adl-chart>

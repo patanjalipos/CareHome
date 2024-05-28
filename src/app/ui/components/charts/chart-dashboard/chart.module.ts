@@ -13,12 +13,12 @@ import { BloodPressureChartModule } from '../blood-pressure-chart/blood-pressure
 import { BehaviourChartModule } from '../behaviour-chart/behaviour-chart.module';
 import { BowelChartModule } from '../bowel-chart/bowel-chart.module';
 import { EnteralFeedingChartModule } from '../enteral-feeding-chart/enteral-feeding-chart.module';
+import { AdlChartModule } from '../adl-chart/adl-chart.module';
 
 @NgModule({
     declarations: [
         ChartComponent
     ],
-    exports: [ChartComponent],
     imports: [
         CommonModule,
         ChartRoutingModule,
@@ -32,7 +32,9 @@ import { EnteralFeedingChartModule } from '../enteral-feeding-chart/enteral-feed
         BehaviourChartModule,
         BloodPressureChartModule,
         BowelChartModule,
-        EnteralFeedingChartModule
+        EnteralFeedingChartModule,
+        AdlChartModule
     ],
+    exports: [ChartComponent]
 })
 export class ChartModule { }
