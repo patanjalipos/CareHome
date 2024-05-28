@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { AppComponentBase } from 'src/app/app-component-base';
 
 @Component({
@@ -7,6 +7,9 @@ import { AppComponentBase } from 'src/app/app-component-base';
   styleUrls: ['./infection-chart.component.scss']
 })
 export class InfectionChartComponent extends AppComponentBase implements OnInit {
+
+  @Input() preSelectedChartData: any = <any>{};
+  @Output() EmitUpdateForm: EventEmitter<any> = new EventEmitter<any>();
 
   constructor() { 
     super();

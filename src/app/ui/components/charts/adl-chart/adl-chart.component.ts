@@ -1,11 +1,11 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 @Component({
-  selector: 'app-bowel-chart',
-  templateUrl: './bowel-chart.component.html',
-  styleUrls: ['./bowel-chart.component.scss']
+  selector: 'app-adl-chart',
+  templateUrl: './adl-chart.component.html',
+  styleUrls: ['./adl-chart.component.scss']
 })
-export class BowelChartComponent implements OnInit {
+export class AdlChartComponent implements OnInit {
 
   @Input() preSelectedChartData: any = <any>{};
   @Output() EmitUpdateForm: EventEmitter<any> = new EventEmitter<any>();
