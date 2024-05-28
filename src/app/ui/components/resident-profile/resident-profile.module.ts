@@ -7,21 +7,22 @@ import { ProfileModule } from './profile/profile.module';
 import { FormsDashboardModule } from '../forms/forms-dashboard/forms-dashboard.module';
 import { AlertModule } from './alert/alert.module';
 import { ChartModule } from './chart/chart.module';
-
+import { ResidentProgressnotesModule } from "./resident-progressnotes/resident-progressnotes.module";
 
 
 @NgModule({
-  declarations: [
-    ResidentProfileComponent
+    declarations: [
+        ResidentProfileComponent
+    ],
+    exports: [ResidentProfileComponent],
+    imports: [
+        CommonModule,
+        ResidentProfileRoutingModule,
+        ProfileModule,
+        AlertModule,
+        FormsDashboardModule,
+        ChartModule,
+        ResidentProgressnotesModule,
   ],
-  imports: [
-    CommonModule,
-    ResidentProfileRoutingModule,
-    ProfileModule,
-    AlertModule,
-    ChartModule,
-    FormsDashboardModule
-  ],
-  exports: [ResidentProfileComponent]
 })
 export class ResidentProfileModule { }

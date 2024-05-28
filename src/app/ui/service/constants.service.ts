@@ -179,3 +179,31 @@ export enum CustomDateFormat {
     CalendarFormat = 'dd-mm-yy',
     TIME = 'HH:mm',
 }
+
+export enum UserEnteredNote
+{
+    UserEnteredNotes = 1,
+}
+export enum progressNoteFilters {
+    Allnotes = 'All notes',
+    MedicationException = 'Medication Exception',
+    CareplanEvaluations = 'Care plan Evaluations',
+    FormsObservationcharts = 'Forms & Observation Charts',
+    Alerts = 'Alerts',
+    ResidentDocumentLoaded = 'Resident Document Loaded',
+    CareplanCharges = 'Care plan Charges',
+    ResidentTransfer = 'Resident Transfer',
+    ResidentIndicators = 'Resident Indicators',
+    Occupancynotes = 'Occupancy Notes',
+    UserEnteredNotes = 'User Entered Notes',
+    ResidentDeparture = 'ResidentDeparture'
+}
+export enum EnteredNotes {
+    OnlyDoctorenterednotes= 'Only Doctor-entered notes',
+    OnlySpecifiedUser = 'Only a specified user',
+}
+export enum TimeFrameNotes {
+    SinceFirstAdmission= 'Since First Admission',
+    InthePrevious = 'In the Previous',
+    Specifyatimeframe = 'Specify a time frame',
+}
