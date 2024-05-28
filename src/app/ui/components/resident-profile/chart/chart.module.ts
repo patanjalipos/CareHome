@@ -7,20 +7,24 @@ import { CheckboxModule } from 'primeng/checkbox';
 import { FormsModule } from '@angular/forms';
 import { DropdownModule } from 'primeng/dropdown';
 import { ActivitiesChartModule } from '../../charts/activities-chart/activities-chart.module';
+import { FluidCombinedChartModule } from "../../charts/fluid-combined-chart/fluid-combined-chart.module";
+import { InfectionChartModule } from '../../charts/infection-chart/infection-chart.module';
 
 @NgModule({
-  declarations: [
-    ChartComponent
-  ],
-  imports: [
-    CommonModule,
-    ChartRoutingModule,
-    CalendarModule,
-    CheckboxModule,
-    FormsModule,
-    DropdownModule,
-    ActivitiesChartModule
-  ],
-  exports:[ChartComponent]
+    declarations: [
+        ChartComponent
+    ],
+    exports: [ChartComponent],
+    imports: [
+        CommonModule,
+        ChartRoutingModule,
+        CalendarModule,
+        CheckboxModule,
+        FormsModule,
+        DropdownModule,
+        ActivitiesChartModule,
+        FluidCombinedChartModule,
+        InfectionChartModule
+    ]
 })
 export class ChartModule { }
