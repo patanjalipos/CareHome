@@ -147,7 +147,7 @@
                                     *ngIf="(ResidentMaster.ProfileImage==null || ResidentMaster.ProfileImage==undefined || ResidentMaster.ProfileImage=='')">
                                     <label class="form-label">Resident Photo</label>
                                     <p-fileUpload name="file[]" [showUploadButton]="false" accept="image/*"
-                                        [multiple]="true" [maxFileSize]="1000000" (onSelect)="fileUploader($event)"
+                                        [multiple]="false" [maxFileSize]="1000000" (onSelect)="fileUploader($event)"
                                         (onClear)="fileUploaderReset();"
                                         (onRemove)="fileUploaderReset();"></p-fileUpload>
                                 </div>
