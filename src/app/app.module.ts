@@ -17,7 +17,6 @@ import { ResidentLayoutModule } from './layout/resident.layout.module';
 import { MainInterceptorInterceptor } from './main-interceptor.interceptor';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthGuard } from './ui/components/auth/auth.guard';
-import { ActivitiesChartComponent } from './ui/components/charts/activities-chart/activities-chart.component';
 
 
 @NgModule({
