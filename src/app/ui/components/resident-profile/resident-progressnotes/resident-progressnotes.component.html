@@ -1,0 +1,156 @@
+
+<div class="card">
+    <div class="flex flex-wrap gap-2 justify-content-end">
+        <button pButton type="button" >Print</button>
+        <!--    <button pButton type="button">Add a Progress note</button> -->
+        
+    </div>
+    <div class="row mt-1">
+       <p-accordion>
+            <p-accordionTab header="Add a Progress note" [selected]="isExpanded" >
+            <div class="row">               
+               <!-- <div class="col-md-6 mt-2">            
+                     <div class="field-radiobutton">                                
+                        <p-radioButton name="rbProgressNote" value="Progress Note" [(ngModel)]="AddNote.Notes" >
+                        </p-radioButton>
+                        <label class="pl-1 mr-2 radiolabel rbtext">Progress note</label>
+                        <p-radioButton name="rbHandoverNote" value="Handover Summary" [(ngModel)]="AddNote.Notes">
+                        </p-radioButton>
+                        <label class="pl-1 radiolabel rbtext">Handover Summary note</label>
+                    </div>
+                </div>-->
+                <div class="col-md-4 form-group pos-rel" mt-1>
+                    <label class="form-label label-line">Date Of event</label>
+                        <p-calendar [required]="true" name="txtDateofEvent"
+                        [(ngModel)]="AddNote.DateOfEvent" [ngModelOptions]="{standalone: true}" [showIcon]="true" inputId="icon" 
+                        class="iconcal" [maxDate]="todayDate" [dateFormat]="customDateFormat.CalendarFormat" [showTime]="true"
+                        hourFormat="12"></p-calendar>
+                </div>
+                <h5>Progress Note</h5>
+                <textarea rows="5"  cols="30" [(ngModel)]="AddNote.NoteDescription"  pInputTextarea >
+            </textarea>
+           
+            <!-- <div class="col-md-3 mt-5 form-group pos-rel">
+              <input class="form-check-input" type="checkbox" [(ngModel)]="AddNote.IsHandover" [disabled]="AddNote.Notes === 'Handover Summary'"
+              [checked]="AddNote.Notes === 'Handover Summary'">
+              <label for="singleCheckbox"> Include in Handover?</label>
+            </div>             -->
+            <!-- <div >
+                <button pButton type="button" (click)="Clear()">Cancel</button>  
+                <button pButton type="button" style="float: right;" (click)="submit()">Add this Note</button>
+            </div> -->
+            <div class="flex flex-wrap mt-1 gap-2 justify-content-end btn-background">
+                <button pButton type="button" (click)="submit()">Save</button>
+                <button pButton type="button" class="btn btn-secondary" (click)="Close()">Close</button>
+            </div> 
+            </div>
+        </p-accordionTab>
+    </p-accordion> 
+      <p-accordion [activeIndex]="0">
+        <p-accordionTab header="All Progress notes since first admission">
+            <div class="row">
+                <!-- <div class="col-md-10">                    
+                    <div class="row row-cols-4 mt-4">
+                        <div class="form-group pos-rel col">
+                            <h5>Keywords:</h5>                                
+                                <input pInputText type="text" name="status" class="form-control"/>                               
+                        </div>
+                    </div>                   
+                <hr>
+                </div>
+            <h5>Types of Progress notes:</h5>
+            <div class="col-4" *ngFor="let status of statusOptions">
+                <input
+                    type="checkbox"
+                    [id]="status.key"
+                    [checked]="selectedStatuses[status.key]"
+                    (change)="onProgressNotesChange($event)"
+                />
+                <label [for]="status.key">{{ status.value }}</label>                
+                </div>
+                <hr>
+                <h5>Entered by:</h5>
+                <div class="col-12" *ngFor="let status of EnteredOptions">
+                    <input
+                        type="checkbox"
+                        [id]="status.key"
+                        [checked]="EnteredStatuses[status.key]"
+                        (change)="onEnteredByChange($event)"
+                    />
+                    <label [for]="status.key">{{ status.value }}</label>                
+                    </div>
+                <hr>
+                <h5>Time frame:</h5>
+                <div class="col-12" *ngFor="let status of TimeFrameOptions">
+                    <input
+                      type="radio"
+                      [id]="status.key"
+                      [value]="status.key"
+                      name="TimeFrameNotes"
+                      (change)="onStatusChange($event)"
+                    />
+                    <label [for]="status.key">{{ status.value }}</label>
+                  </div>
+                  <hr>
+                  <h5>Sort Order</h5>
+                  <p-dropdown class="col-md-4" [required]="true" [showClear]="true" appendTo="body" [options]="lstSortOrder"
+                   optionLabel="name"
+                  optionValue="code" placeholder="-Select-" [style]="{width: '100%'}" >
+                 </p-dropdown>
+                  <div class="flex flex-wrap gap-2 justify-content-end">
+                  <button pButton type="button">Search</button>
+                  </div> -->
+                  <div *ngFor="let dt of lstResidentProgressNote" class="card">
+                    <div class="card-header">
+                      {{ dt.FullName }}
+                    </div>
+                    <div class="card-body">
+                      <p class="card-text">
+                        <!-- Date of Event : {{(dt.DateofEvent | date:'yyyy')=='0001'?'':
+                        dt.DateofEvent |
+                        date:customDateFormat.DEF_DATE_TIME}}
+                      </p> -->
+                      <div>
+                           <p class="card-text" style="float: left;">
+                               Date of Event : {{(dt.DateofEvent | date:'yyyy')=='0001'?'':
+                               dt.DateofEvent |
+                               date:customDateFormat.DEF_DATE_TIME}}
+                             </p>
+                        </div>
+                        <div>
+                            <button pButton type="button" style="float: right;" (click)="ShowAddNote(dt.ResidentProgressNotesId)">Add Note</button>
+                        </div>   
+                     <div>                            
+                         <p class="card-text" >
+                            <br>                           
+                           {{ dt.NoteDescription }}
+                         </p>
+                    </div>
+                    </div>
+                  </div>
+                  
+            </div>
+        </p-accordionTab>
+    </p-accordion>  
+ </div>
+ 
+
+</div>  
+
+<!-- show  Additional Note-->
+<p-dialog [modal]="true" header="Additional Note" [(visible)]="showAdditionalNote" [style]="{width: '60vw'}">
+    <h5>Additional Note</h5>
+    <textarea rows="5"  cols="30" [style]="{width: '50vw'}" pInputTextarea [(ngModel)]="AdditionalProgressNote.AdditionalNote">
+   </textarea>
+<div class="col-md-4 form-group pos-rel" mt-1>
+    <label class="form-label label-line">Date Of event</label>
+        <p-calendar [required]="true" name="txtDateofEvent"
+        [(ngModel)]="AdditionalProgressNote.DateOfEvent" [ngModelOptions]="{standalone: true}" [showIcon]="true" inputId="icon" 
+        class="iconcal" [maxDate]="todayDate" [dateFormat]="customDateFormat.CalendarFormat" [showTime]="true"
+        hourFormat="12"></p-calendar>
+</div>
+<div >
+    <button pButton type="button" (click)="ClearAddionalNote()">Cancel</button>  
+    <button pButton type="button" style="float: right;" (click)="SaveAdditionalProgressNote()">Add this Note</button>
+</div>
+    </p-dialog>

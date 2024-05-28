@@ -1355,7 +1355,7 @@ export class MasterService {
         );
     }
 
-    GetDailyVitalAlertLogDetails(userid,firstdate,enddate,name,status) {
+    GetDailyVitalAlertLog(userid,firstdate,enddate,name,status) {
         let reqHeader = new HttpHeaders({
             'Content-Type': 'application/json',
             'Access-Control-Allow-Origin': environment.BaseUriAdmin,
@@ -1902,10 +1902,8 @@ export class MasterService {
         return this._httpclient.get<any>(environment.BaseUriAdmin + 'api/Admin/GPDoctorVisitCommDetailsByid', { headers: reqHeader, params: params });
     }
     //#endregion 
-
-    //#region UserFacilityAssignmentMaster
-
-    AddInsertUpdateFacilityAndResidentAssignment(obj: any): Observable<any> {
+    //region progress Note
+    AddInsertResidentProgressNote(obj: any): Observable<any> {
         let reqHeader = new HttpHeaders({
             'Content-Type': 'application/json',
             'Access-Control-Allow-Origin': environment.BaseUriAdmin,
@@ -1914,24 +1912,41 @@ export class MasterService {
         let params = new HttpParams();
         params = params.append('loginId', localStorage.getItem('userId'));
         var data = JSON.stringify(obj).toString();
-        console.log(data);
-        
         return this._httpclient.post<any>(
-            environment.BaseUriAdmin + 'api/Admin/AddInsertUpdateFacilityAndResidentAssignmentMaster',
+            environment.BaseUriAdmin + 'api/Admin/AddInsertResidentProgressNote',
             data,
             { headers: reqHeader, params: params }
         );
     }
 
-    GetUserFacilityAssignmentMasterById(id: any): Observable<any> {
+    GetResidentProgressNoteById(admissionid,userid): Observable<any> {
         let reqHeader = new HttpHeaders({
             'Content-Type': 'application/json',
             'Access-Control-Allow-Origin': environment.BaseUriAdmin,
             'Authorization': 'Bearer ' + localStorage.getItem('token')
         });
         let params = new HttpParams();
-        params = params.append('id', id);
-        return this._httpclient.get<any>(environment.BaseUriAdmin + 'api/Admin/GetUserFacilityAssignmentMasterById', { headers: reqHeader, params: params });
+        params = params.append('admissionid', admissionid);
+        params = params.append('userid', userid);
+        return this._httpclient.get<any>(
+            environment.BaseUriAdmin + 'api/Admin/GetResidentProgressNoteById',
+            { headers: reqHeader, params: params }
+        );
     }
-    //#endregion
+
+    AddInsertResidentAdditionalProgressNote(obj: any): Observable<any> {
+        let reqHeader = new HttpHeaders({
+            'Content-Type': 'application/json',
+            'Access-Control-Allow-Origin': environment.BaseUriAdmin,
+            'Authorization': 'Bearer ' + localStorage.getItem('token')
+        });
+        let params = new HttpParams();
+        params = params.append('loginId', localStorage.getItem('userId'));
+        var data = JSON.stringify(obj).toString();
+        return this._httpclient.post<any>(
+            environment.BaseUriAdmin + 'api/Admin/AddInsertResidentAdditionalProgressNote',
+            data,
+            { headers: reqHeader, params: params }
+        );
+    }
 }

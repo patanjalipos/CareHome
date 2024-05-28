@@ -1,24 +1,27 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
 import { ResidentProfileRoutingModule } from './resident-profile-routing.module';
 import { ResidentProfileComponent } from './resident-profile.component';
 import { ProfileModule } from './profile/profile.module';
 import { FormsDashboardModule } from '../forms/forms-dashboard/forms-dashboard.module';
 import { AlertModule } from './alert/alert.module';
+import { ChartModule } from '../charts/chart-dashboard/chart.module';
+import { ResidentProgressnotesModule } from "./resident-progressnotes/resident-progressnotes.module";
 
 
 @NgModule({
-  declarations: [
-    ResidentProfileComponent
+    declarations: [
+        ResidentProfileComponent
+    ],
+    exports: [ResidentProfileComponent],
+    imports: [
+        CommonModule,
+        ResidentProfileRoutingModule,
+        ProfileModule,
+        AlertModule,
+        FormsDashboardModule,
+        ChartModule,
+        ResidentProgressnotesModule,
   ],
-  imports: [
-    CommonModule,
-    ResidentProfileRoutingModule,
-    ProfileModule,
-    AlertModule,
-    FormsDashboardModule
-  ],
-  exports:[ResidentProfileComponent]
 })
 export class ResidentProfileModule { }

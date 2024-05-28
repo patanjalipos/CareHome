@@ -226,8 +226,8 @@
             <p-accordionTab header="Facility and resident assignments">
                 <div class="row">
                     <div class="col-md-12">
-                        <p-table #dt67 [value]="lstHomeMaster" responsiveLayout="scroll"
-                            styleClass="p-datatable-striped" [rowHover]="true" [scrollable]="true" scrollHeight="250px">
+                        <p-table #dt67 [value]="lstHomeMaster" 
+                            styleClass="p-datatable-striped" [rowHover]="true" scrollHeight="250px">
                             <ng-template pTemplate="emptymessage" let-columns>
                                 <tr>
                                     <td [attr.colspan]="4">
@@ -237,34 +237,31 @@
                             </ng-template>
                             <ng-template pTemplate="header">
                                 <tr>
-                                    <th>Facility Name</th>
-                                    <th>Assign to individual residents</th>
+                                    <th style="width: 50%;">Facility Name</th>
+                                    <th style="width: 40%;">Assign to individual residents</th>
+                                    <th style="width: 10%;"></th>
                                 </tr>
                             </ng-template>
                             <ng-template pTemplate="body" let-col let-i="rowIndex">
                                 <tr>
-                                    <td> <p-checkbox name="ChkItemCheckEnableFacility_{{i}}"
+                                    <td style="width: 50%;"> <p-checkbox name="ChkItemCheckEnableFacility_{{i}}"
                                             [(ngModel)]="col.IsEnableFacility"
                                             (onChange)="checkUncheckEnableFacility($event,i)" [binary]="true"
                                             inputId="binary" class="mr-2"></p-checkbox>{{col.HomeName}}</td>
 
-                                    <td>
-                                        <div *ngIf="rowStates[i]?.button">
-                                            <p-button class="print-prew" [disabled]="rowStates[i]?.button">
-                                                Assign Residents</p-button>
-                                        </div>
-
-                                        <div class="card flex justify-content-center"
-                                            *ngIf="!rowStates[i]?.dropdownValue">
-                                            <p-multiSelect [options]="lstResidentfacility" optionLabel="FullName"
-                                                placeholder="--Select Resident--" [(ngModel)]="col.ResidentList"
-                                                autoResize="false" (onPanelShow)="ShowResidentDetails(col.HomeMasterId)"
+                                    <td style="width: 40%;">
+                                       
+                                            <p-multiSelect *ngIf="col.IsEnableFacility && !col.IsResidentAutoAssignment" [options]="col.ResidentList" optionLabel="FullName"
+                                                placeholder="--Select Resident--" [(ngModel)]="col.SelectedResidentList"
                                                 filterPlaceHolder="Selecte All" optionValue="UserId" appendTo="body"
-                                                display="chip" [showClear]="true"
-                                                (onChange)="selectResidentAddmissioninfoId(i,lstResidentfacility[i].ResidentAdmissioninfoId,$event.value)"></p-multiSelect>
-                                        </div>
-
-
+                                                display="chip" [showClear]="true" [style]="{width: '400px'}" >
+                                            </p-multiSelect>
+                                    </td>
+                                    <td style="width: 10%;" >
+                                        <p-checkbox *ngIf="col.IsEnableFacility" name="ChkItemAutoAssignment_{{i}}"
+                                            [(ngModel)]="col.IsResidentAutoAssignment"
+                                            (onChange)="checkUncheckAutoAssignment($event,i)" [binary]="true"
+                                            inputId="binary" class="mr-2"></p-checkbox>
                                     </td>
                                 </tr>
                             </ng-template>
@@ -426,48 +423,3 @@
         </div>
     </form>
 </div>
-<p-dialog id="ShowResidentFacilityModel" [(visible)]="ShowResidentFacilityModel" [modal]="true"
-    [style]="{width: '70vw'}" [maximizable]="true" [closeOnEscape]="true" [closable]="true" [draggable]="false"
-    [resizable]="true">
-    <ng-template pTemplate="header">
-        <h3>Resident List Facility</h3>
-    </ng-template>
-    <ng-template pTemplate="body">
-        <div class="row">
-            <div class="col-md-12">
-                <p-table #dt67 [value]="lstResidentfacility" responsiveLayout="scroll" styleClass="p-datatable-striped"
-                    [rowHover]="true" [scrollable]="true" scrollHeight="250px">
-                    <ng-template pTemplate="emptymessage" let-columns>
-                        <tr>
-                            <td [attr.colspan]="4">
-                                No records found
-                            </td>
-                        </tr>
-                    </ng-template>
-                    <ng-template pTemplate="header">
-                        <tr>
-                            <th>Check</th>
-                            <th>Resident Name</th>
-                            <th>Facility Name</th>
-                        </tr>
-                    </ng-template>
-                    <ng-template pTemplate="body" let-col let-i="rowIndex">
-                        <tr>
-                            <td>
-                                <p-checkbox [ngModelOptions]="{standalone: true}" [(ngModel)]="col.Checked"
-                                    [binary]="true" inputId="binary"
-                                    (onChange)="CheckUncheckResidentFacility($event,col.UserId)"></p-checkbox>
-                            </td>
-                            <td>
-                                {{col.FullName}}
-                            </td>
-                            <td>
-                                {{col.HomeName}}
-                            </td>
-                        </tr>
-                    </ng-template>
-                </p-table>
-            </div>
-        </div>
-    </ng-template>
-</p-dialog>

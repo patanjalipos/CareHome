@@ -43,6 +43,35 @@ export enum UserTypes {
     // Billing="6396f00addc59e9aac93b137"
 }
 
+export enum ChartTypes {
+    ActivitiesChart = '65b8e9b70d77d0a4c616b8e2',
+    ADLChart = '6642f13bb33c8394db706069',
+    BehaviourChart = '6642f15db33c8394db70606a',
+    BloodGlucoseChart = '6642f174b33c8394db70606b',
+    BloodPressureChart = '6642f195b33c8394db70606c',
+    BowelChart = '6642f1adb33c8394db70606d',
+    EnteralFeedingChart = '6642f1cbb33c8394db70606e',
+    FluidCombinedChart = '6642f1deb33c8394db70606f',
+    FluidIntakeChart = '6642f1f2b33c8394db706070',
+    FluidOutputChart = '6642f229b33c8394db706071',
+    FoodIntakeChart = '6642f241b33c8394db706072',
+    GlasgowComaScaleChart = '6642f258b33c8394db706073',
+    InfectionChart = '6642f26cb33c8394db706074',
+    MUSTChart = '6642f27eb33c8394db706075',
+    NEWS2Chart = '6642f29cb33c8394db706076',
+    PainChart = '6642f2dfb33c8394db706077',
+    PainChekChart = '6642f2fbb33c8394db706078',
+    RepositioningChart = '6642f32cb33c8394db706079',
+    RestraintChart = '6642f346b33c8394db70607a',
+    SeizureChart = '6642f367b33c8394db70607b',
+    SightingChart = '6642f385b33c8394db70607d',
+    UrinaryChart = '6642f3a7b33c8394db70607e',
+    VitalSignsChart = '6642f3d7b33c8394db70607f',
+    WaterlowChart = '6642f3ebb33c8394db706080',
+    WeightChart = '6642f401b33c8394db706081',
+    WoundChart = '6642f414b33c8394db706082',
+}
+
 export enum FormTypes {
     PreAdmission = '65e6db2de37632e29ad778ba',
     AccidentIncident = '65e6db54e37632e29ad778bb',
@@ -108,9 +137,8 @@ export enum FormTypes {
     carewisheshforfuture = '6620a3c6eb74cdce58be9aba',
     carebehaviourassesment = '6620a3d3eb74cdce58be9abb',
     risktoolforuseof = '6620a3f4eb74cdce58be9abc',
-    positiveBehaviourSupport='661cb39ceb74cdce58be9aa6',
-    smokingRiskAssessment="661e4bbeeb74cdce58be9ab0"
-
+    positiveBehaviourSupport = '661cb39ceb74cdce58be9aa6',
+    smokingRiskAssessment = '661e4bbeeb74cdce58be9ab0',
 }
 
 export enum AdmissionStatus {
@@ -150,4 +178,32 @@ export enum CustomDateFormat {
     DEF_DATE_TIME_AMPM = 'dd-MM-yyyy HH:mm a',
     CalendarFormat = 'dd-mm-yy',
     TIME = 'HH:mm',
+}
+
+export enum UserEnteredNote
+{
+    UserEnteredNotes = 1,
+}
+export enum progressNoteFilters {
+    Allnotes = 'All notes',
+    MedicationException = 'Medication Exception',
+    CareplanEvaluations = 'Care plan Evaluations',
+    FormsObservationcharts = 'Forms & Observation Charts',
+    Alerts = 'Alerts',
+    ResidentDocumentLoaded = 'Resident Document Loaded',
+    CareplanCharges = 'Care plan Charges',
+    ResidentTransfer = 'Resident Transfer',
+    ResidentIndicators = 'Resident Indicators',
+    Occupancynotes = 'Occupancy Notes',
+    UserEnteredNotes = 'User Entered Notes',
+    ResidentDeparture = 'ResidentDeparture'
+}
+export enum EnteredNotes {
+    OnlyDoctorenterednotes= 'Only Doctor-entered notes',
+    OnlySpecifiedUser = 'Only a specified user',
+}
+export enum TimeFrameNotes {
+    SinceFirstAdmission= 'Since First Admission',
+    InthePrevious = 'In the Previous',
+    Specifyatimeframe = 'Specify a time frame',
 }
