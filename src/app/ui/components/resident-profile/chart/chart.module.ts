@@ -34,6 +34,5 @@ import { EnteralFeedingChartModule } from '../../charts/enteral-feeding-chart/en
         BowelChartModule,
         EnteralFeedingChartModule
     ],
-    exports:[ChartComponent]
 })
 export class ChartModule { }

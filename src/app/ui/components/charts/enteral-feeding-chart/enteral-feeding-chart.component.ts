@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'app-enteral-feeding-chart',
@@ -6,6 +6,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./enteral-feeding-chart.component.scss']
 })
 export class EnteralFeedingChartComponent implements OnInit {
+
+  @Input() preSelectedChartData: any = <any>{};
+  @Output() EmitUpdateForm: EventEmitter<any> = new EventEmitter<any>();
 
   constructor() { }
 
