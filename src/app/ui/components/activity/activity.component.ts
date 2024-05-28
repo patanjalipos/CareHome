@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Table } from 'primeng/table';
 import { ConstantsService, CustomDateFormat, UserTypes } from 'src/app/ui/service/constants.service';
@@ -18,7 +18,7 @@ export class ActivityComponent extends AppComponentBase implements OnInit {
   customDateFormat = CustomDateFormat;
   s_userTypeId: any = localStorage.getItem('userTypeId');
   today:Date=new Date();
-  mode: string = null;
+  @Input() mode: string = null;
   lstHomeMaster: any[]=[];
   public lstMaster: any[]=[];
   public master: any = <any>{};
@@ -79,6 +79,7 @@ export class ActivityComponent extends AppComponentBase implements OnInit {
             var tdata = JSON.parse(data.actionResult.result);
             tdata = tdata ? tdata : [];
             this.lstMaster = tdata;
+            console.log(this.filtr);
             if (this.filtr !== undefined) {
               this.filtr.nativeElement.value = "";
               this.dataTable.reset();

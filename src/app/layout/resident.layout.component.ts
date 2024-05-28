@@ -25,8 +25,9 @@ export class ResidentLayoutComponent implements OnDestroy {
     selectedadmissionid:any= null; //"a24a3830-1b5e-4ce7-a8cd-df6de925ffa9";
     healthcareMode:string="view";
     newparams:any;
-
+    FullName: string = null;
     constructor(public layoutService: LayoutService, public renderer: Renderer2, public router: Router, private route: ActivatedRoute, public _ConstantServices: ConstantsService) {
+        this.FullName = localStorage.getItem('FullName');
         this.route.queryParams.subscribe(params => {
             var ParamsArray = this._ConstantServices.GetParmasVal(params['q']);
             if (ParamsArray?.length > 0) {
