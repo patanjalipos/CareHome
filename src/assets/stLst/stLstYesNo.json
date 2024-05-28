@@ -1,10 +1,10 @@
 [
     {
-        "optionId": 0,
+        "optionId": "Yes",
         "optionValue": "Yes"
     },
     {
-        "optionId": 1,
+        "optionId": "No",
         "optionValue": "No"
     }
 ]
