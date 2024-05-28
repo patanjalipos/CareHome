@@ -7,8 +7,6 @@ import { UtilityService } from 'src/app/utility/utility.service';
 import { EncryptDecryptService } from 'src/app/ui/service/encrypt-decrypt.service';
 import { TreeNode } from 'primeng/api';
 import * as cloneDeep from 'lodash/cloneDeep';
-import { log } from 'console';
-import { bootstrapApplication } from '@angular/platform-browser';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { FileUpload } from 'primeng/fileupload';
 declare var $: any;
@@ -43,7 +41,6 @@ export class UserMasterComponent extends AppComponentBase implements OnInit {
   selectedHome: any[] = [];
   lstFacilityResident: any[] = [];
   lstResidentfacility: any[] = [];
-  ShowResidentFacilityModel: Boolean = false;
   slectedHomeMasterId: string = null;
   selectedNodes2: TreeNode[] = [];
   public lstActionItemAccess: TreeNode[] = [];
@@ -54,16 +51,6 @@ export class UserMasterComponent extends AppComponentBase implements OnInit {
   lstAction: string[] = [];
   public MenuitemMaster: TreeNode[] = [];
   colsActionITable: any[] = [];
-  rowStates: {
-    [key: number]: {
-      dropdownValue: boolean;
-      button: boolean;
-      selectedResident?: any[]
-    }
-  } = {};
-  colsActionITable: any[]=[];
-  button:boolean=false;
-  dropdownValue=true;
   
   fileUploadFormAWB: FormGroup;
   fileInputLabelAWB: string;
@@ -141,67 +128,6 @@ export class UserMasterComponent extends AppComponentBase implements OnInit {
     this.yesterday.setFullYear(this.yesterday.getFullYear() - 130);
     this.todayDate.setDate(this.todayDate.getDate() - 7);
   }
-  selectResidentAddmissioninfoId(rowIndex: number, residentAddmissionInfoId: string, userId: string) {
-    this.FacilityAndResidentAssignmentModel.ResidentList = userId
-  }
-
-
-  disableButton(event, rowIndex) {
-
-    if (event.checked == true) {
-      this.FacilityAndResidentAssignmentModel.IsResidentAutoAssignment = true;
-      this.FacilityAndResidentAssignmentModel.ResidentList = null;
-      this.rowStates[rowIndex] = {
-        dropdownValue: true,
-        button: true,
-        selectedResident: []
-      };
-    }
-    else {
-      this.rowStates[rowIndex] = {
-        dropdownValue: false,
-        button: false,
-        selectedResident: []
-      };
-      this.FacilityAndResidentAssignmentModel.IsResidentAutoAssignment = false;
-    }
-    // if (event.checked) {
-
-    //   this.rowStates[rowIndex].dropdownValue = false;
-    //   this.rowStates[rowIndex].button = true;
-    //   this.FacilityAndResidentAssignmentModel[rowIndex].ResidentList = null;
-    // } else {
-    //   this.rowStates[rowIndex].dropdownValue = true;
-    //   this.rowStates[rowIndex].button = false;
-    //   this.FacilityAndResidentAssignmentModel.ResidentList.userId=[];
-    //   this.FacilityAndResidentAssignmentModel.ResidentList.residentAdmissionInfoId = [];
-    // }
-  }
-
-  LoadHomeMaster() {
-    this._UtilityService.showSpinner();
-    this.unsubscribe.add = this._MasterServices.GetHomeMaster(true)
-      .subscribe
-      ({
-        next: (data) => {
-          this._UtilityService.hideSpinner();
-          if (data.actionResult.success == true) {
-            var tdata = JSON.parse(data.actionResult.result);
-            tdata = tdata ? tdata : [];
-            this.lstHomeMaster = tdata;
-
-          }
-          else {
-            this.lstHomeMaster = [];
-          }
-        },
-        error: (e) => {
-          this._UtilityService.hideSpinner();
-          this._UtilityService.showErrorAlert(e.message);
-        },
-      });
-  }
-
 
   LoadUserTypeList() {
     this._UtilityService.showSpinner();
@@ -280,8 +206,7 @@ export class UserMasterComponent extends AppComponentBase implements OnInit {
             var tdata = JSON.parse(data.actionResult.result);
             tdata = tdata ? tdata : [];
             this.RegistrationMainModel = tdata;
-            console.log("ragistration data");
-            console.log(this.RegistrationMainModel);
+            //console.log("ragistration data", this.RegistrationMainModel);
 
             if (this.RegistrationMainModel?.DateOfBirth != null && this.RegistrationMainModel?.DateOfBirth != undefined) {
               var newDate = new Date(this.RegistrationMainModel.DateOfBirth);
@@ -292,7 +217,7 @@ export class UserMasterComponent extends AppComponentBase implements OnInit {
               {
                 const imageFormat = this.RegistrationMainModel.ProfileImage.endsWith(".jpg") || this.RegistrationMainModel.ProfileImage.endsWith(".jpeg") ? "jpeg" : "png";
                 this.imageSrc = "data:image/" + imageFormat + ";base64," + this.RegistrationMainModel.ProfileImage;               
-              console.log(this.imageSrc);
+                //console.log(this.imageSrc);
               }          
             this.mode = "update"; 
             this.onChangeUserType();
@@ -303,6 +228,23 @@ export class UserMasterComponent extends AppComponentBase implements OnInit {
             // var decrypt=this._EncryptDecryptService.decryptUsingAES256(encrypt);
             // console.log('decrypt', decrypt);
             //console.log(this.RegistrationMainModel.password);
+            if (this.RegistrationMainModel?.UserFacilityResident != null && this.RegistrationMainModel?.UserFacilityResident != undefined) {
+              if (this.RegistrationMainModel?.UserFacilityResident?.length > 0) {
+                var UserFacilityResident = this.RegistrationMainModel?.UserFacilityResident;
+                //console.log('UserFacilityResident',UserFacilityResident);
+                UserFacilityResident.forEach(x => {
+                  var index= this.lstHomeMaster.findIndex(f=>f.HomeMasterId==x.HomeMasterId);
+                  this.lstHomeMaster[index].IsEnableFacility=x.IsEnableFacility;
+                  this.lstHomeMaster[index].IsResidentAutoAssignment = x.IsResidentAutoAssignment;
+                  if (x.IsResidentAutoAssignment == false) {
+                    this.ShowResidentDetails(x.HomeMasterId, index, x.lstResident);
+                  }
+                  // this.lstHomeMaster[]
+                  // if(x.HomeMasterId)
+
+                })
+              }
+            }
             this.RegistrationMainModel.statementtype = "Update";
 
             if (data.actionResult.result2?.length > 0) {
@@ -319,32 +261,7 @@ export class UserMasterComponent extends AppComponentBase implements OnInit {
           this._UtilityService.hideSpinner();
           this._UtilityService.showErrorAlert(e.message);
         },
-      });
-
-
-    //here call facility assignment master API
-    this.unsubscribe.add = this._MasterServices.GetUserFacilityAssignmentMasterById(userId)
-      .subscribe({
-        next: (data) => {
-          this._UtilityService.hideSpinner();
-          if (data.actionResult.success == true) {
-            var tdata = JSON.parse(data.actionResult.result);
-            tdata = tdata ? tdata : [];
-           
-            this.lstHomeMaster = tdata;
-
-            this.updateMode = true;
-            console.log("==>"+this.lstHomeMaster);
-          }
-          console.log("Asfasfdsfsafsd");
-          console.log(this.lstHomeMaster);
-        },
-        error: (e) => {
-          this._UtilityService.hideSpinner();
-          this._UtilityService.showErrorAlert(e.message);
-        },
-      });
-
+      });      
   }
 
 //Profile Image
@@ -353,7 +270,7 @@ export class UserMasterComponent extends AppComponentBase implements OnInit {
     let af = ['.jpg', '.png', '.jpeg']
     if (event.target.files?.length > 0) {
       const file = event.target.files[0];
-      console.log(file.size);
+      //console.log(file.size);
       if (!af.includes('.' + file.type.split('/')[1])) {
         $('#customFileAWB').val("");
         this._UtilityService.showWarningAlert("Only jpg and png Allowed!");
@@ -542,6 +459,22 @@ export class UserMasterComponent extends AppComponentBase implements OnInit {
       this.RegistrationMainModel.UserAuthorization = UserAuthorizationss;
     }
 
+    //////Preapre User Facility Resident////////
+    var UserFacilityResident: any[] = [];   
+    var lstSelectedFacilty=this.lstHomeMaster.filter(f=>f.IsEnableFacility==true);
+    //console.log('lstSelectedFacilty',lstSelectedFacilty);
+    if (lstSelectedFacilty?.length > 0) {
+      lstSelectedFacilty.forEach(x => {
+        var jsonObject = {
+          "HomeMasterId": x.HomeMasterId,
+          "IsEnableFacility": x.IsEnableFacility,
+          "IsResidentAutoAssignment": x.IsResidentAutoAssignment,
+          "lstResident": x.SelectedResidentList
+        }
+        UserFacilityResident.push(jsonObject);      
+    });
+    }
+    this.RegistrationMainModel.UserFacilityResident = UserFacilityResident;
     this.RegistrationMainModel.CreatedBy = localStorage.getItem('userId');  
     this.RegistrationMainModel.ModifiedBy = localStorage.getItem('userId');  
     this.RegistrationMainModel.lstFacilityMapping=this.lstFacilityResident;
@@ -551,6 +484,7 @@ export class UserMasterComponent extends AppComponentBase implements OnInit {
     this.RegistrationMainModel.Fax = this.RegistrationMainModel.Fax?.toString() || null;
     this.RegistrationMainModel.EmergencyContactTelephone = this.RegistrationMainModel.EmergencyContactTelephone?.toString() || null;
     this.RegistrationMainModel.EmergencyContactMobile = this.RegistrationMainModel.EmergencyContactMobile?.toString() || null;
+    //console.log('this.RegistrationMainModel',this.RegistrationMainModel);
     this._UtilityService.showSpinner();
     this.unsubscribe.add = this._MasterServices.AddInsertUpdateUserMaster(this.RegistrationMainModel)
       .subscribe
@@ -573,46 +507,41 @@ export class UserMasterComponent extends AppComponentBase implements OnInit {
         },
       }
       );
-    if (this.FacilityAndResidentAssignmentModel != null) {
-      this.mode = "Insert";
-    }
-    if (this.updateMode == true) {
-      this.mode = "Update";
-    }
-    if (this.FacilityAndResidentAssignmentModel != null) {
-      this.FacilityAndResidentAssignmentModel.UserId = this.RegistrationMainModel.UserId;
+    
+    // if (this.FacilityAndResidentAssignmentModel != null) {
+    //   this.FacilityAndResidentAssignmentModel.UserId = this.RegistrationMainModel.UserId;
 
-      this.FacilityAndResidentAssignmentModel.HomeMasterId = this.RegistrationMainModel.HomeMasterId;
-      this.FacilityAndResidentAssignmentModel.createdBy=localStorage.getItem('userId');
-      this.FacilityAndResidentAssignmentModel.modifiedBy=localStorage.getItem('userId');
+    //   this.FacilityAndResidentAssignmentModel.HomeMasterId = this.RegistrationMainModel.HomeMasterId;
+    //   this.FacilityAndResidentAssignmentModel.createdBy=localStorage.getItem('userId');
+    //   this.FacilityAndResidentAssignmentModel.modifiedBy=localStorage.getItem('userId');
 
 
-      const objectBody: any = {
-        StatementType: this.mode,
-        FacilityAndResidentAssignment: [this.FacilityAndResidentAssignmentModel],
-      };
-      console.log(objectBody);
+    //   const objectBody: any = {
+    //     StatementType: this.mode,
+    //     FacilityAndResidentAssignment: [this.FacilityAndResidentAssignmentModel],
+    //   };
+    //   console.log(objectBody);
 
-      this.unsubscribe.add = this._MasterServices.AddInsertUpdateFacilityAndResidentAssignment(objectBody)
-        .subscribe
-        ({
-          next: (data) => {
-            this._UtilityService.hideSpinner();
-            if (data.actionResult.success == true) {
-              this.LoadUserList();
-              this._UtilityService.showSuccessAlert(data.actionResult.errMsg);
-            }
-            else {
-              this._UtilityService.showWarningAlert(data.actionResult.errMsg);
-            }
+    //   this.unsubscribe.add = this._MasterServices.AddInsertUpdateFacilityAndResidentAssignment(objectBody)
+    //     .subscribe
+    //     ({
+    //       next: (data) => {
+    //         this._UtilityService.hideSpinner();
+    //         if (data.actionResult.success == true) {
+    //           this.LoadUserList();
+    //           this._UtilityService.showSuccessAlert(data.actionResult.errMsg);
+    //         }
+    //         else {
+    //           this._UtilityService.showWarningAlert(data.actionResult.errMsg);
+    //         }
 
-          },
-          error: (e) => {
-            this._UtilityService.hideSpinner();
-            this._UtilityService.showErrorAlert(e.message);
-          },
-        });
-    }
+    //       },
+    //       error: (e) => {
+    //         this._UtilityService.hideSpinner();
+    //         this._UtilityService.showErrorAlert(e.message);
+    //       },
+    //     });
+    // }
   }
 
   CloseModal() {
@@ -639,6 +568,8 @@ export class UserMasterComponent extends AppComponentBase implements OnInit {
     this._MasterServices.downloadReport(importData);
   }
   // Functions   
+
+  // Facility
   SetFacility() {
     if (this.RegistrationMainModel.Homes?.length > 0) {
       this.RegistrationMainModel.Homes.map(e => {
@@ -660,9 +591,41 @@ export class UserMasterComponent extends AppComponentBase implements OnInit {
       this.lstFacilityResident = [];
     }
   }
-  ShowResidentDetails(HomeMasterId) {
-    this.slectedHomeMasterId = HomeMasterId;
-    this.lstResidentfacility = [];
+
+  LoadHomeMaster() {
+    this._UtilityService.showSpinner();
+    this.unsubscribe.add = this._MasterServices.GetHomeMaster(true)
+      .subscribe
+      ({
+        next: (data) => {
+          this._UtilityService.hideSpinner();
+          if (data.actionResult.success == true) {
+            var tdata = JSON.parse(data.actionResult.result);
+            tdata = tdata ? tdata : [];
+            this.lstHomeMaster = tdata;
+            this.lstHomeMaster.map(m => {
+              m.IsEnableFacility = false;
+              m.IsResidentAutoAssignment= false;
+              m.ResidentList = [];
+              m.SelectedResidentList = [];
+            });
+            //console.log('this.lstHomeMaster', this.lstHomeMaster);
+
+          }
+          else {
+            this.lstHomeMaster = [];
+          }
+        },
+        error: (e) => {
+          this._UtilityService.hideSpinner();
+          this._UtilityService.showErrorAlert(e.message);
+        },
+      });
+  }
+  ShowResidentDetails(HomeMasterId, i, selectedResident=null) {
+    console.log('selectedResident',selectedResident, i);
+    this.lstHomeMaster[i].ResidentList=[];
+    this.lstHomeMaster[i].SelectedResidentList=[];
     this._UtilityService.showSpinner();
     this.unsubscribe.add = this._MasterServices.GetResidentMaster(HomeMasterId, true)
       .subscribe
@@ -672,23 +635,10 @@ export class UserMasterComponent extends AppComponentBase implements OnInit {
           if (data.actionResult.success == true) {
             var tdata = JSON.parse(data.actionResult.result);
             tdata = tdata ? tdata : [];
-            this.lstResidentfacility = tdata;
-            console.log("resident data==>");
-
-            console.log(this.lstResidentfacility);
-
-
-            if (this.lstFacilityResident.filter(f => f.HomeMasterId == this.slectedHomeMasterId)[0]?.ResidentList?.length > 0) {
-              for (let a = 0; a < this.lstResidentfacility?.length; a++) {
-                if (this.lstFacilityResident.filter(f => f.HomeMasterId == this.slectedHomeMasterId)[0]?.ResidentList.filter(f => f.ResidentId == this.lstResidentfacility[a].UserId)?.length > 0) {
-                  this.lstResidentfacility[a].Checked = true;
-                }
-              }
-            }
-            // this.ShowResidentFacilityModel=true;
-          }
-          else {
-            this.ShowResidentFacilityModel = false;
+            this.lstHomeMaster[i].ResidentList = tdata; 
+            if (selectedResident != null && selectedResident != undefined) {
+              this.lstHomeMaster[i].SelectedResidentList = selectedResident;
+            } 
           }
 
         },
@@ -699,26 +649,24 @@ export class UserMasterComponent extends AppComponentBase implements OnInit {
       });
 
   }
-  CheckUncheckResidentFacility(event, UserId) {
+  
+  checkUncheckEnableFacility(event, i) {
+    this.lstHomeMaster[i].ResidentList=[];
+    this.lstHomeMaster[i].SelectedResidentList=[];
     if (event.checked == true) {
-      this.lstFacilityResident.filter(f => f.HomeMasterId == this.slectedHomeMasterId)[0].ResidentList.push({ "ResidentId": UserId });
-    }
-    else {
-      this.lstFacilityResident.filter(f => f.HomeMasterId == this.slectedHomeMasterId)[0].ResidentList = this.lstFacilityResident?.filter(f => f.HomeMasterId == this.slectedHomeMasterId)[0]?.ResidentList?.filter(w => w.ResidentId != UserId);
-    }
+      this.ShowResidentDetails(this.lstHomeMaster[i].HomeMasterId,i);
+    }    
   }
-
-  checkUncheckEnableFacility(event, rowIndex) {
+  checkUncheckAutoAssignment(event, i) {
     if (event.checked == true) {
-      this.FacilityAndResidentAssignmentModel.IsEnableFacility = true;
-    }
-    else {
-      this.FacilityAndResidentAssignmentModel.IsEnableFacility = false;
-    }
+      this.lstHomeMaster[i].SelectedResidentList=[];
+    }    
   }
+  
+  //
 
   onNodeSelectMenuAccess(event) {
-    console.log("NodeSelect Menu Access I Access", this.lstActionItemAccess);
+    //console.log("NodeSelect Menu Access I Access", this.lstActionItemAccess);
     // var OldData=JSON.parse(JSON.stringify(this.lstActionItemAccess));
     var OldData = JSON.parse(JSON.stringify(this.lstActionItemAccess));
 

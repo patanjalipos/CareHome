@@ -6,6 +6,7 @@ import { ResidentProfileComponent } from './resident-profile.component';
 import { ProfileModule } from './profile/profile.module';
 import { FormsDashboardModule } from '../forms/forms-dashboard/forms-dashboard.module';
 import { AlertModule } from './alert/alert.module';
+
 import { ResidentProgressnotesModule } from "./resident-progressnotes/resident-progressnotes.module";
 
 
@@ -22,5 +23,22 @@ import { ResidentProgressnotesModule } from "./resident-progressnotes/resident-p
         FormsDashboardModule,
         ResidentProgressnotesModule
     ]
+import { ChartModule } from './chart/chart.module';
+
+
+
+@NgModule({
+  declarations: [
+    ResidentProfileComponent
+  ],
+  imports: [
+    CommonModule,
+    ResidentProfileRoutingModule,
+    ProfileModule,
+    AlertModule,
+    ChartModule,
+    FormsDashboardModule
+  ],
+  exports: [ResidentProfileComponent]
 })
 export class ResidentProfileModule { }
