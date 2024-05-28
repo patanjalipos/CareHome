@@ -7,6 +7,8 @@ import { CheckboxModule } from 'primeng/checkbox';
 import { FormsModule } from '@angular/forms';
 import { DropdownModule } from 'primeng/dropdown';
 import { ActivitiesChartModule } from '../../charts/activities-chart/activities-chart.module';
+import { BloodPressureChartModule } from '../../charts/blood-pressure-chart/blood-pressure-chart.module';
+import { BehaviourChartModule } from '../../charts/behaviour-chart/behaviour-chart.module';
 
 @NgModule({
   declarations: [
@@ -19,7 +21,9 @@ import { ActivitiesChartModule } from '../../charts/activities-chart/activities-
     CheckboxModule,
     FormsModule,
     DropdownModule,
-    ActivitiesChartModule
+    ActivitiesChartModule,
+    BehaviourChartModule,
+    BloodPressureChartModule,
   ],
   exports:[ChartComponent]
 })
