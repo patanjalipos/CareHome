@@ -1,157 +1,262 @@
 <div class="card">
     <div class="row">
-        <div class="col-md-3 mt-4">
-            <div class="labelcontent">
-                <p>Date</p>
-            </div>
-        </div>
-        <div class="col-md-8 mt-4 form-text">
-            <div class="input-group date">
-                <ng-container>
-                    <p-calendar name="" [showIcon]="true" inputId="icon" class="iconcal" [readonlyInput]="true"
-                        appendTo="body" [maxDate]="" #dobref=""></p-calendar>
-                </ng-container>
-                <ng-template>
-                    <label></label>
-                </ng-template>
-            </div>
-        </div>
-
-
-        <div class="col-md-3">
-            <div class="labelcontent">
-                <p>Time(24 hrs clock)</p>
-            </div>
-        </div>
-        <div class="col-md-8 form-text">
-            <ng-container>
-                <input pInputText type="time" required name="ActivitiesChartFormData" class="form-control mr-4"
-                    [style]="{ width: '35%' }">
-            </ng-container>
-            <ng-template>
-                <label></label>
-            </ng-template>
-        </div>
-
-
-        <div class="col-md-3">
-            <div class="labelcontent">
-                <p>Care Given?</p>
-            </div>
-        </div>
-        <div class="col-md-8 form-text ">
-            <ng-container>
-                <p-dropdown [required]="true" name="ActivitiesChartFormData" placeholder="Select"
-                    [style]="{ width: '100%' }">
-                </p-dropdown>
-            </ng-container>
-            <ng-template>
-                <label></label>
-            </ng-template>
-        </div>
-
-
-        <div class="col-md-3">
-            <div class="labelcontent">
-                <p>Activity</p>
-            </div>
-        </div>
-
-        <div class="col-md-8 form-text ">
-            <ng-container>
-                <p-dropdown [required]="true" name="ActivitiesChartFormData" placeholder="Select"
-                    [style]="{ width: '100%' }">
-                </p-dropdown>
-            </ng-container>
-            <ng-template>
-                <label></label>
-            </ng-template>
-        </div>
-
-
-        <div class="col-md-3">
-            <div class="labelcontent">
-                <p>Attendance</p>
-            </div>
-        </div>
-        <div class="col-md-8 form-text ">
-            <ng-container>
-                <p-dropdown [required]="true" name="ActivitiesChartFormData" placeholder="Select"
-                    [style]="{ width: '100%' }">
-                </p-dropdown>
-            </ng-container>
-            <ng-template #LocationOfAccident>
-                <label></label>
-            </ng-template>
-        </div>
-
-
-        <div class="col-md-3">
-            <div class="labelcontent">
-                <p>Purpose Of Activity</p>
-            </div>
-        </div>
-        <div class="col-md-8 form-text ">
-            <ng-container>
-                <p-dropdown [required]="true" name="ActivitiesChartFormData" placeholder="Select"
-                    [style]="{ width: '100%' }">
-                </p-dropdown>
-            </ng-container>
-            <ng-template>
-                <label></label>
-            </ng-template>
-        </div>
-
-
-        <div class="col-md-3">
-            <div class="labelcontent">
-                <p>Duration(minutes)</p>
-            </div>
-        </div>
-        <div class="col-md-8 form-text mb-2">
-            <ng-container>
-                <input type="text" pInputText name="ActivitiesChartFormData" [required]="true" />
-            </ng-container>
-            <ng-template>
-                <label></label>
-            </ng-template>
-        </div>
-
-
-        <div class="col-md-3">
-            <div class="labelcontent">
-                <p>Additional Information</p>
-            </div>
-        </div>
-        <div class="col-md-8 form-text">
-            <ng-container>
-                <input pInputText type="text" required name="ActivitiesChartFormData" class="form-control" />
-            </ng-container>
-            <ng-template>
-                <label></label>
-            </ng-template>
-        </div>
-
-
-        <div class="d-flex justify-content-end mt-4">
-            <ng-container>
-                <div>
-                    <span class="p-ml-left mr-4">
-                        <button pButton title="New" label="Save as Unfinished" (click)="saveAsUnfinished()"></button>
-                        <span class="total-txt"></span>
-                    </span>
-                </div>
-                <div>
-                    <span class="p-ml-left mr-4">
-                        <button pButton title="New" label="Complete" (click)="completeForm()"></button>
-                        <span class="total-txt"></span>
-                    </span>
-                </div>
-            </ng-container>
-            <ng-template #savePdf>
-                <button pButton title="Save as PDF" label="Save as PDF" (click)="SaveAsPDF()"></button>
-            </ng-template>
-        </div>
-
+        <div class="formheader">
+      <h4>New observation</h4>
     </div>
+    <div class="col-md-4 mt-4">
+      <label class="form-label"> Date<span class="required">*</span></label>
+      <p-calendar
+        name=""
+        [showIcon]="true"
+        inputId="icon"
+        class="iconcal"
+        [readonlyInput]="true"
+        appendTo="body"
+        [maxDate]=""
+        #dobref=""
+      ></p-calendar>
+    </div>
+    <div class="col-md-4 mt-4">
+      <label class="form-label">Time<span class="required">*</span></label>
+      <input
+        pInputText
+        type="time"
+        required
+        name="ActivitiesChartFormData"
+        class="form-control mr-4"
+      />
+    </div>
+    <div class="col-md-4 mt-4">
+      <label class="form-label"
+        >Care Given <span class="required">*</span></label
+      >
+      <p-dropdown
+        [required]="true"
+        name="ActivitiesChartFormData"
+        placeholder="Select"
+        [style]="{ width: '100%' }"
+      >
+      </p-dropdown>
+    </div>
+    <div class="col-md-4">
+      <label class="form-label">Activity <span class="required">*</span></label>
+      <p-dropdown
+        [required]="true"
+        name="ActivitiesChartFormData"
+        placeholder="Select"
+        [style]="{ width: '100%' }"
+      >
+      </p-dropdown>
+    </div>
+    <div class="col-md-4">
+      <label class="form-label"
+        >Assistance level <span class="required">*</span></label
+      >
+      <p-dropdown
+        [required]="true"
+        name="ActivitiesChartFormData"
+        placeholder="Select"
+        [style]="{ width: '100%' }"
+      >
+      </p-dropdown>
+    </div>
+    <div class="col-md-4">
+      <label class="form-label"
+        >Attendance<span class="required">*</span></label
+      >
+      <p-dropdown
+        [required]="true"
+        name="ActivitiesChartFormData"
+        placeholder="Select"
+        [style]="{ width: '100%' }"
+      >
+      </p-dropdown>
+    </div>
+    <div class="col-md-4">
+      <label class="form-label"
+        >Participation<span class="required">*</span></label
+      >
+      <p-dropdown
+        [required]="true"
+        name="ActivitiesChartFormData"
+        placeholder="Select"
+        [style]="{ width: '100%' }"
+      >
+      </p-dropdown>
+    </div>
+    <div class="col-md-4">
+      <label class="form-label"
+        >Purpose of activity<span class="required">*</span></label
+      >
+      <p-dropdown
+        [required]="true"
+        name="ActivitiesChartFormData"
+        placeholder="Select"
+        [style]="{ width: '100%' }"
+      >
+      </p-dropdown>
+    </div>
+    <div class="col-md-4">
+      <label class="form-label"
+        >Duration (minutes)<span class="required">*</span></label
+      >
+      <input
+        pInputText
+        type="time"
+        required
+        name="ActivitiesChartFormData"
+        class="form-control mr-4"
+      />
+    </div>
+    <h5 class="formheader">Additional information</h5>
+    <div class="col-md-4">
+      <label class="form-label"
+        >Status of skin - skin inspection comments<span class="required"
+          >*</span
+        ></label
+      >
+      <input
+        type="text"
+        pInputText
+        name="ActivitiesChartFormData"
+        [required]="true"
+        [style]="{ width: '100%' }"
+      />
+    </div>
+
+    <div class="d-flex justify-content-end mt-4">
+      <div>
+        <span class="p-ml-left mr-4">
+          <button pButton title="New" label="Clear all feild"></button>
+          <span class="total-txt"></span>
+        </span>
+      </div>
+      <div>
+        <span class="p-ml-left mr-4">
+          <button pButton title="New" label="Save "></button>
+          <span class="total-txt"></span>
+        </span>
+      </div>
+    </div>
+  </div>
 </div>
+
+
+<!-- AdL chart 
+<div class="card">
+    <div class="row">
+        <div class="formheader">
+            <h4>New observation</h4>
+        </div>
+        <div class="col-md-4 mt-4">
+            <label class="form-label">
+                Date<span class="required">*</span></label>
+                <p-calendar name="" [showIcon]="true" inputId="icon" class="iconcal" [readonlyInput]="true"
+                    appendTo="body" [maxDate]="" #dobref=""></p-calendar>
+        </div>
+        <div class="col-md-4 mt-4">
+            <label class="form-label">Time<span class="required">*</span></label>
+            <input pInputText type="time" required name="ActivitiesChartFormData" class="form-control mr-4">
+        </div>
+        <div class="col-md-4 mt-4">
+            <label class="form-label">Care Given <span class="required">*</span></label>
+            <p-dropdown [required]="true" name="ActivitiesChartFormData" placeholder="Select"
+                [style]="{ width: '100%' }">
+            </p-dropdown>
+        </div>
+        <h5 class="formheader">Mobility</h5>
+        <div class="col-md-4">
+            <label class="form-label">What was the transfer method? <span class="required">*</span></label>
+            <p-dropdown [required]="true" name="ActivitiesChartFormData" placeholder="Select"
+                [style]="{ width: '100%' }">
+            </p-dropdown>
+        </div>
+        <div class="col-md-4">
+            <label class="form-label">Assistance level <span class="required">*</span></label>
+            <p-dropdown [required]="true" name="ActivitiesChartFormData" placeholder="Select"
+                [style]="{ width: '100%' }">
+            </p-dropdown>
+        </div>
+        <div class="col-md-4">
+            <label class="form-label">How many people assisted?<span class="required">*</span></label>
+            <input type="text" pInputText name="ActivitiesChartFormData" [required]="true"
+                [style]="{ width: '100%' }" />
+        </div>
+        <h5 class="formheader">Hygiene</h5>
+        <div class="col-md-4">
+            <label class="form-label">What assistance was required?<span class="required">*</span></label>
+            <p-dropdown [required]="true" name="ActivitiesChartFormData" placeholder="Select"
+                [style]="{ width: '100%' }">
+            </p-dropdown>
+        </div>
+        <div class="col-md-4">
+            <label class="form-label">How many people assisted?<span class="required">*</span></label>
+            <input type="text" pInputText name="ActivitiesChartFormData" [required]="true"
+                [style]="{ width: '100%' }" />
+        </div>
+        <div class="col-md-4">
+            <label class="form-label">Assistance level<span class="required">*</span></label>
+            <p-dropdown [required]="true" name="ActivitiesChartFormData" placeholder="Select"
+                [style]="{ width: '100%' }">
+            </p-dropdown>
+        </div>
+        <h5 class="formheader">Skin Integrity</h5>
+        <div class="col-md-4">
+            <label class="form-label">Status of skin - skin inspection comments<span class="required">*</span></label>
+            <input type="text" pInputText name="ActivitiesChartFormData" [required]="true"
+                [style]="{ width: '100%' }" />
+        </div>
+        <div class="col-md-4">
+            <label class="form-label">Repositional changes<span class="required">*</span></label>
+            <p-dropdown [required]="true" name="ActivitiesChartFormData" placeholder="Select"
+                [style]="{ width: '100%' }">
+            </p-dropdown>
+        </div>
+        <h5 class="formheader">Dressing and Grooming</h5>
+        <div class="col-md-4">
+            <label class="form-label">What assistance was required?<span class="required">*</span></label>
+            <p-dropdown [required]="true" name="ActivitiesChartFormData" placeholder="Select"
+                [style]="{ width: '100%' }">
+            </p-dropdown>
+        </div>
+        <div class="col-md-4">
+            <label class="form-label">Assistance level<span class="required">*</span></label>
+            <p-dropdown [required]="true" name="ActivitiesChartFormData" placeholder="Select"
+                [style]="{ width: '100%' }">
+            </p-dropdown>
+        </div>
+        <h5 class="formheader">Toileting</h5>
+        <div class="col-md-4">
+            <label class="form-label">What assistance was required?<span class="required">*</span></label>
+            <p-dropdown [required]="true" name="ActivitiesChartFormData" placeholder="Select"
+                [style]="{ width: '100%' }">
+            </p-dropdown>
+        </div>
+        <div class="col-md-4">
+            <label class="form-label">Assistance level<span class="required">*</span></label>
+            <p-dropdown [required]="true" name="ActivitiesChartFormData" placeholder="Select"
+                [style]="{ width: '100%' }">
+            </p-dropdown>
+        </div>
+        <h5 class="formheader">Additional information</h5>
+        <div class="col-md-4">
+            <label class="form-label">Status of skin - skin inspection comments<span class="required">*</span></label>
+            <input type="text" pInputText name="ActivitiesChartFormData" [required]="true"
+                [style]="{ width: '100%' }" />
+        </div>
+        <div class="d-flex justify-content-end mt-4">
+            <div>
+                <span class="p-ml-left mr-4">
+                    <button pButton title="New" label="Clear all feild"></button>
+                    <span class="total-txt"></span>
+                </span>
+            </div>
+            <div>
+                <span class="p-ml-left mr-4">
+                    <button pButton title="New" label="Save"></button>
+                    <span class="total-txt"></span>
+                </span>
+            </div>
+        </div>
+    </div>
+</div> -->
