@@ -60,3 +60,67 @@
         selectedChartMasterId == ChartTypes.ActivitiesChart
     "
 ></app-activities-chart>
+
+<app-behaviour-chart
+    [preSelectedChartData]="selectedChartData"
+    (EmitUpdateForm)="EmitUpdateForm($event)"
+    *ngIf="
+        ShowChildComponent == true &&
+        selectedChartMasterId == ChartTypes.BehaviourChart
+    "
+></app-behaviour-chart>
+
+<app-blood-pressure-chart
+    [preSelectedChartData]="selectedChartData"
+    (EmitUpdateForm)="EmitUpdateForm($event)"
+    *ngIf="
+        ShowChildComponent == true &&
+        selectedChartMasterId == ChartTypes.BloodPressureChart
+    "
+></app-blood-pressure-chart>
+
+<app-fluid-combined-chart
+    [preSelectedChartData]="selectedChartData"
+    (EmitUpdateForm)="EmitUpdateForm($event)"
+    *ngIf="
+        ShowChildComponent == true &&
+        selectedChartMasterId == ChartTypes.FluidCombinedChart
+    "
+></app-fluid-combined-chart>
+
+<app-infection-chart
+    [preSelectedChartData]="selectedChartData"
+    (EmitUpdateForm)="EmitUpdateForm($event)"
+    *ngIf="
+        ShowChildComponent == true &&
+        selectedChartMasterId == ChartTypes.InfectionChart
+    "
+></app-infection-chart>
+
+<app-bowel-chart
+    [preSelectedChartData]="selectedChartData"
+    (EmitUpdateForm)="EmitUpdateForm($event)"
+    *ngIf="
+        ShowChildComponent == true &&
+        selectedChartMasterId == ChartTypes.BowelChart
+    "
+></app-bowel-chart>
+
+<app-enteral-feeding-chart
+    [preSelectedChartData]="selectedChartData"
+    (EmitUpdateForm)="EmitUpdateForm($event)"
+    *ngIf="
+        ShowChildComponent == true &&
+        selectedChartMasterId == ChartTypes.EnteralFeedingChart
+    "
+></app-enteral-feeding-chart>
+
+<app-adl-chart
+    [preSelectedChartData]="selectedChartData"
+    (EmitUpdateForm)="EmitUpdateForm($event)"
+    *ngIf="
+        ShowChildComponent == true &&
+        selectedChartMasterId == ChartTypes.ADLChart
+    "
+>
+</app-adl-chart>
