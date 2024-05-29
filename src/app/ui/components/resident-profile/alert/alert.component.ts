@@ -92,11 +92,8 @@ export class AlertComponent extends AppComponentBase implements OnInit {
                     this._UtilityService.hideSpinner();
                     if (data.actionResult.success == true) {
                         var tdata = JSON.parse(data.actionResult.result);
-                        //console.log(tdata);
                         tdata = tdata ? tdata : [];
                         this.AlertList = tdata;
-                        //console.log(this.AlertList);
-
                     } 
                     else {
                         this.AlertList = [];
