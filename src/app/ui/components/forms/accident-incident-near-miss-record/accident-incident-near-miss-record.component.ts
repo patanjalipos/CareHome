@@ -14,7 +14,7 @@ import { Observable, catchError, forkJoin, map, of } from 'rxjs';
   templateUrl: './accident-incident-near-miss-record.component.html',
   styleUrls: ['./accident-incident-near-miss-record.component.scss']
 })
-export class AccidentIncidentNearMissRecordComponent extends AppComponentBase  implements OnInit {
+export class AccidentIncidentNearMissRecordComponent extends AppComponentBase implements OnInit {
   // locationOfAccident:string
   // AccidentFloorPlace:string
   // AccidentType:string
@@ -36,26 +36,26 @@ export class AccidentIncidentNearMissRecordComponent extends AppComponentBase  i
   // relativeInformed:string = ''
   // otherContacts:string = ''
 
-  @Input() preSelectedFormData: any=<any>{};
+  @Input() preSelectedFormData: any = <any>{};
   @Output() EmitUpdateForm: EventEmitter<any> = new EventEmitter<any>();
-  
+
   customDateFormat = CustomDateFormat;
   isEditable: boolean;
-  AccidentNearMissRecordFormsData:any = <any>{};
-  residentAdmissionInfoId:any;
-  uniqueReferenceId:any;
+  AccidentNearMissRecordFormsData: any = <any>{};
+  residentAdmissionInfoId: any;
+  uniqueReferenceId: any;
   loginId: any;
   userId: any;
   StatementType: string = null;
-  checked:boolean = false;
+  checked: boolean = false;
 
   lstlocationaccident: any[] = [];
-  lstAccidentPlace:any[] = [];
-  lstAccidentType:any[] = [];
-  lstInjurySustained:any[] = [];
+  lstAccidentPlace: any[] = [];
+  lstAccidentType: any[] = [];
+  lstInjurySustained: any[] = [];
   lstJobRole: any[] = [];
-  lstEmergencyServices : any[] = [];
-  constructor(private _ConstantServices: ConstantsService,private route: ActivatedRoute,private _DataService: DataService,private _MasterServices: MasterService,private _UtilityService: UtilityService, private datePipte: DatePipe) {
+  lstEmergencyServices: any[] = [];
+  constructor(private _ConstantServices: ConstantsService, private route: ActivatedRoute, private _DataService: DataService, private _MasterServices: MasterService, private _UtilityService: UtilityService, private datePipte: DatePipe) {
     super();
     this._ConstantServices.ActiveMenuName = "Accident Near Miss Record Form";
     this.loginId = localStorage.getItem('userId');
@@ -108,7 +108,7 @@ export class AccidentIncidentNearMissRecordComponent extends AppComponentBase  i
     //   {name:'Severe scalding'},
     //   {name:'Wounds, ulcers or other skin damage'},
     //   {name:'Other'}
-     
+
     // ]
     // this.lstInjurySustained = [
     //   {name:'No Injury'},
@@ -151,34 +151,34 @@ export class AccidentIncidentNearMissRecordComponent extends AppComponentBase  i
 
       if (ParamsArray?.length > 0) {
         this.userId =
-        ParamsArray.find((e) => e.FieldStr == 'id')?.FieldVal ||
-        null;
+          ParamsArray.find((e) => e.FieldStr == 'id')?.FieldVal ||
+          null;
         this.residentAdmissionInfoId =
-        ParamsArray.find((e) => e.FieldStr == 'admissionid')
+          ParamsArray.find((e) => e.FieldStr == 'admissionid')
             ?.FieldVal || null;
       }
     });
-   }
-  
-  
-  
+  }
+
+
+
 
   ngOnChanges(changes: SimpleChanges): void {
-  this.isEditable = this.preSelectedFormData.isEditable;
-  
-  if (this.preSelectedFormData.selectedFormID != null) {
-    this.AccidentNearMissRecordFormsData = <any>{};
+    this.isEditable = this.preSelectedFormData.isEditable;
+
+    if (this.preSelectedFormData.selectedFormID != null) {
+      this.AccidentNearMissRecordFormsData = <any>{};
       this.GetAccidentNearMissRecordDetails(
-          this.preSelectedFormData.selectedFormID
+        this.preSelectedFormData.selectedFormID
       );
       this.StatementType = 'Update';
+    }
+    else {
+      this.ResetModel();
+    }
   }
-  else {
-    this.ResetModel();
-  }
-}
 
-ngOnInit(): void {
+  ngOnInit(): void {
     //     this._DataService.data$.subscribe((data) => {
     //       this.preSelectedFormData = data;
     //   });
@@ -189,40 +189,40 @@ ngOnInit(): void {
       'InjuriesSustained',
       'JobRole',
       'EmergencyServices'
-  ];
+    ];
 
-  forkJoin(collectionNames.map((collectionName) => this.getDropdownMasterLists(FormTypes.AccidentIncident,collectionName,1))).subscribe((responses: any[]) => {
-    this.lstlocationaccident = responses[0];
-    this.lstAccidentPlace = responses[1];
-    this.lstAccidentType = responses[2];
-    this.lstInjurySustained = responses[3];
-    this.lstJobRole = responses[4];
-    this.lstEmergencyServices = responses[5];
-});
-    
-      // this.GetLocationOfAccident();
-      // this.GetAccidentFloorPlace();
-      // this.GetAccidentType();
-      // this.GetInjuriesSustained();
-      // this.GetEmergencyServices();
-      // this.GetJobRole();
+    forkJoin(collectionNames.map((collectionName) => this.getDropdownMasterLists(FormTypes.AccidentIncident, collectionName, 1))).subscribe((responses: any[]) => {
+      this.lstlocationaccident = responses[0];
+      this.lstAccidentPlace = responses[1];
+      this.lstAccidentType = responses[2];
+      this.lstInjurySustained = responses[3];
+      this.lstJobRole = responses[4];
+      this.lstEmergencyServices = responses[5];
+    });
 
-      this.isEditable = this.preSelectedFormData.isEditable;
-  
-      if (this.preSelectedFormData.selectedFormID != null) {
-        this.AccidentNearMissRecordFormsData = <any>{};
-          this.GetAccidentNearMissRecordDetails(
-              this.preSelectedFormData.selectedFormID
-          );
-          this.StatementType = 'Update';
-      }
-      else {
-        this.ResetModel();
-      }
+    // this.GetLocationOfAccident();
+    // this.GetAccidentFloorPlace();
+    // this.GetAccidentType();
+    // this.GetInjuriesSustained();
+    // this.GetEmergencyServices();
+    // this.GetJobRole();
 
-      }
+    this.isEditable = this.preSelectedFormData.isEditable;
 
-      
+    if (this.preSelectedFormData.selectedFormID != null) {
+      this.AccidentNearMissRecordFormsData = <any>{};
+      this.GetAccidentNearMissRecordDetails(
+        this.preSelectedFormData.selectedFormID
+      );
+      this.StatementType = 'Update';
+    }
+    else {
+      this.ResetModel();
+    }
+
+  }
+
+
 
   getFormattedTime(time: Date) {
     const hours = time.getHours().toString().padStart(2, '0');
@@ -230,217 +230,217 @@ ngOnInit(): void {
     return `${hours}:${minutes}`;
   }
 
-  getDropdownMasterLists(formMasterId: string, dropdownName: string,status:number): Observable<any> {
+  getDropdownMasterLists(formMasterId: string, dropdownName: string, status: number): Observable<any> {
     this._UtilityService.showSpinner();
-    return this._MasterServices.GetDropDownMasterList(formMasterId,dropdownName, status).pipe(
-        map((response) => {
-            this._UtilityService.hideSpinner();
-            if (response.actionResult.success) {
-                return JSON.parse(response.actionResult.result);
-            } else {
-                return [];
-            }
-        }),
-        catchError((error) => {
-            this._UtilityService.hideSpinner();
-            this._UtilityService.showErrorAlert(error.message);
-            alert(error.message);
-            return of([]); // Returning empty array in case of error
-        })
+    return this._MasterServices.GetDropDownMasterList(formMasterId, dropdownName, status).pipe(
+      map((response) => {
+        this._UtilityService.hideSpinner();
+        if (response.actionResult.success) {
+          return JSON.parse(response.actionResult.result);
+        } else {
+          return [];
+        }
+      }),
+      catchError((error) => {
+        this._UtilityService.hideSpinner();
+        this._UtilityService.showErrorAlert(error.message);
+        alert(error.message);
+        return of([]); // Returning empty array in case of error
+      })
     );
-}
+  }
 
-SaveAsPDF() {}
+  SaveAsPDF() { }
 
-//   GetLocationOfAccident() {
-    
-//     this._UtilityService.showSpinner();
-//     this.unsubscribe.add = this._MasterServices
-//         .GetLocationOfAccident(1)
-//         .subscribe({
-//             next: (data) => {
-//             //   console.log(data)
-//                 this._UtilityService.hideSpinner();
-//                 if (data.actionResult.success == true) {
-//                     var tdata = JSON.parse(data.actionResult.result);
-//                     // console.log(tdata);
-//                     tdata = tdata ? tdata : [];
-//                     this.lstlocationaccident = tdata;
-//                 } else {
-//                     this.lstlocationaccident = [];
-//                 }
-//             },
-//             error: (e) => {
-//                 this._UtilityService.hideSpinner();
-//                 this._UtilityService.showErrorAlert(e.message);
-//             },
-//         });
-// }
+  //   GetLocationOfAccident() {
 
-// GetAccidentFloorPlace() {
-  
-//   this._UtilityService.showSpinner();
-//   this.unsubscribe.add = this._MasterServices
-//       .GetAccidentFloorPlace(1)
-//       .subscribe({
-//           next: (data) => {
-//             // console.log(data)
-//               this._UtilityService.hideSpinner();
-//               if (data.actionResult.success == true) {
-//                   var tdata = JSON.parse(data.actionResult.result);
-//                 //   console.log(tdata);
-//                   tdata = tdata ? tdata : [];
-//                   this.lstAccidentPlace = tdata;
-//               } else {
-//                   this.lstAccidentPlace = [];
-//               }
-//           },
-//           error: (e) => {
-//               this._UtilityService.hideSpinner();
-//               this._UtilityService.showErrorAlert(e.message);
-//           },
-//       });
-// }
+  //     this._UtilityService.showSpinner();
+  //     this.unsubscribe.add = this._MasterServices
+  //         .GetLocationOfAccident(1)
+  //         .subscribe({
+  //             next: (data) => {
+  //             //   console.log(data)
+  //                 this._UtilityService.hideSpinner();
+  //                 if (data.actionResult.success == true) {
+  //                     var tdata = JSON.parse(data.actionResult.result);
+  //                     // console.log(tdata);
+  //                     tdata = tdata ? tdata : [];
+  //                     this.lstlocationaccident = tdata;
+  //                 } else {
+  //                     this.lstlocationaccident = [];
+  //                 }
+  //             },
+  //             error: (e) => {
+  //                 this._UtilityService.hideSpinner();
+  //                 this._UtilityService.showErrorAlert(e.message);
+  //             },
+  //         });
+  // }
 
-// GetAccidentType() {
- 
-//   this._UtilityService.showSpinner();
-//   this.unsubscribe.add = this._MasterServices
-//       .GetAccidentType(1)
-//       .subscribe({
-//           next: (data) => {
-//             // console.log(data)
-//               this._UtilityService.hideSpinner();
-//               if (data.actionResult.success == true) {
-//                   var tdata = JSON.parse(data.actionResult.result);
-//                 //   console.log(tdata);
-//                   tdata = tdata ? tdata : [];
-//                   this.lstAccidentType = tdata;
-//               } else {
-//                   this.lstAccidentType = [];
-//               }
-//           },
-//           error: (e) => {
-//               this._UtilityService.hideSpinner();
-//               this._UtilityService.showErrorAlert(e.message);
-//           },
-//       });
-// }
+  // GetAccidentFloorPlace() {
 
-// GetInjuriesSustained() {
+  //   this._UtilityService.showSpinner();
+  //   this.unsubscribe.add = this._MasterServices
+  //       .GetAccidentFloorPlace(1)
+  //       .subscribe({
+  //           next: (data) => {
+  //             // console.log(data)
+  //               this._UtilityService.hideSpinner();
+  //               if (data.actionResult.success == true) {
+  //                   var tdata = JSON.parse(data.actionResult.result);
+  //                 //   console.log(tdata);
+  //                   tdata = tdata ? tdata : [];
+  //                   this.lstAccidentPlace = tdata;
+  //               } else {
+  //                   this.lstAccidentPlace = [];
+  //               }
+  //           },
+  //           error: (e) => {
+  //               this._UtilityService.hideSpinner();
+  //               this._UtilityService.showErrorAlert(e.message);
+  //           },
+  //       });
+  // }
 
-//   this._UtilityService.showSpinner();
-//   this.unsubscribe.add = this._MasterServices
-//       .GetInjuriesSustained(1)
-//       .subscribe({
-//           next: (data) => {
-//             // console.log(data)
-//               this._UtilityService.hideSpinner();
-//               if (data.actionResult.success == true) {
-//                   var tdata = JSON.parse(data.actionResult.result);
-//                 //   console.log(tdata);
-//                   tdata = tdata ? tdata : [];
-//                   this.lstInjurySustained = tdata;
-//               } else {
-//                   this.lstInjurySustained = [];
-//               }
-//           },
-//           error: (e) => {
-//               this._UtilityService.hideSpinner();
-//               this._UtilityService.showErrorAlert(e.message);
-//           },
-//       });
-// }
+  // GetAccidentType() {
 
-// GetJobRole() {
- 
-//   this._UtilityService.showSpinner();
-//   this.unsubscribe.add = this._MasterServices
-//       .GetJobRole(1)
-//       .subscribe({
-//           next: (data) => {
-//             // console.log(data)
-//               this._UtilityService.hideSpinner();
-//               if (data.actionResult.success == true) {
-//                   var tdata = JSON.parse(data.actionResult.result);
-//                 //   console.log(tdata);
-//                   tdata = tdata ? tdata : [];
-//                   this.lstJobRole = tdata;
-//               } else {
-//                   this.lstJobRole = [];
-//               }
-//           },
-//           error: (e) => {
-//               this._UtilityService.hideSpinner();
-//               this._UtilityService.showErrorAlert(e.message);
-//           },
-//       });
-// }
+  //   this._UtilityService.showSpinner();
+  //   this.unsubscribe.add = this._MasterServices
+  //       .GetAccidentType(1)
+  //       .subscribe({
+  //           next: (data) => {
+  //             // console.log(data)
+  //               this._UtilityService.hideSpinner();
+  //               if (data.actionResult.success == true) {
+  //                   var tdata = JSON.parse(data.actionResult.result);
+  //                 //   console.log(tdata);
+  //                   tdata = tdata ? tdata : [];
+  //                   this.lstAccidentType = tdata;
+  //               } else {
+  //                   this.lstAccidentType = [];
+  //               }
+  //           },
+  //           error: (e) => {
+  //               this._UtilityService.hideSpinner();
+  //               this._UtilityService.showErrorAlert(e.message);
+  //           },
+  //       });
+  // }
 
-// GetEmergencyServices() {
-  
-//   this._UtilityService.showSpinner();
-//   this.unsubscribe.add = this._MasterServices
-//       .GetEmergencyServices(1)
-//       .subscribe({
-//           next: (data) => {
-//             // console.log(data)
-//               this._UtilityService.hideSpinner();
-//               if (data.actionResult.success == true) {
-//                   var tdata = JSON.parse(data.actionResult.result);
-//                 //   console.log(tdata);
-//                   tdata = tdata ? tdata : [];
-//                   this.lstEmergencyServices = tdata;
-//               } else {
-//                   this.lstEmergencyServices = [];
-//               }
-//           },
-//           error: (e) => {
-//               this._UtilityService.hideSpinner();
-//               this._UtilityService.showErrorAlert(e.message);
-//           },
-//       });
-// }
+  // GetInjuriesSustained() {
+
+  //   this._UtilityService.showSpinner();
+  //   this.unsubscribe.add = this._MasterServices
+  //       .GetInjuriesSustained(1)
+  //       .subscribe({
+  //           next: (data) => {
+  //             // console.log(data)
+  //               this._UtilityService.hideSpinner();
+  //               if (data.actionResult.success == true) {
+  //                   var tdata = JSON.parse(data.actionResult.result);
+  //                 //   console.log(tdata);
+  //                   tdata = tdata ? tdata : [];
+  //                   this.lstInjurySustained = tdata;
+  //               } else {
+  //                   this.lstInjurySustained = [];
+  //               }
+  //           },
+  //           error: (e) => {
+  //               this._UtilityService.hideSpinner();
+  //               this._UtilityService.showErrorAlert(e.message);
+  //           },
+  //       });
+  // }
+
+  // GetJobRole() {
+
+  //   this._UtilityService.showSpinner();
+  //   this.unsubscribe.add = this._MasterServices
+  //       .GetJobRole(1)
+  //       .subscribe({
+  //           next: (data) => {
+  //             // console.log(data)
+  //               this._UtilityService.hideSpinner();
+  //               if (data.actionResult.success == true) {
+  //                   var tdata = JSON.parse(data.actionResult.result);
+  //                 //   console.log(tdata);
+  //                   tdata = tdata ? tdata : [];
+  //                   this.lstJobRole = tdata;
+  //               } else {
+  //                   this.lstJobRole = [];
+  //               }
+  //           },
+  //           error: (e) => {
+  //               this._UtilityService.hideSpinner();
+  //               this._UtilityService.showErrorAlert(e.message);
+  //           },
+  //       });
+  // }
+
+  // GetEmergencyServices() {
+
+  //   this._UtilityService.showSpinner();
+  //   this.unsubscribe.add = this._MasterServices
+  //       .GetEmergencyServices(1)
+  //       .subscribe({
+  //           next: (data) => {
+  //             // console.log(data)
+  //               this._UtilityService.hideSpinner();
+  //               if (data.actionResult.success == true) {
+  //                   var tdata = JSON.parse(data.actionResult.result);
+  //                 //   console.log(tdata);
+  //                   tdata = tdata ? tdata : [];
+  //                   this.lstEmergencyServices = tdata;
+  //               } else {
+  //                   this.lstEmergencyServices = [];
+  //               }
+  //           },
+  //           error: (e) => {
+  //               this._UtilityService.hideSpinner();
+  //               this._UtilityService.showErrorAlert(e.message);
+  //           },
+  //       });
+  // }
 
   GetAccidentNearMissRecordDetails(formId: string) {
     this._UtilityService.showSpinner();
     this.unsubscribe.add = this._MasterServices
-        .GetAccidentNearMissRecordDetails(formId)
-        .subscribe({
-            next: (data) => {
-                this._UtilityService.hideSpinner();
-                if (data.actionResult.success == true) {
-                    var tdata = JSON.parse(data.actionResult.result);
-                    tdata = tdata ? tdata : {};
-                    console.log(tdata.DateOfAccident)
-                    this.AccidentNearMissRecordFormsData = tdata;
-                    this.AccidentNearMissRecordFormsData.DateOfAccident = this.datePipte.transform(this.AccidentNearMissRecordFormsData.DateOfAccident,'MM/dd/yyyy')
-                    this.AccidentNearMissRecordFormsData.EmergencyServicesContacted = this.datePipte.transform(this.AccidentNearMissRecordFormsData.EmergencyServicesContacted,'MM/dd/yyyy')
-                    // console.log(this.AccidentNearMissRecordFormsData)
-                } else {
-                    this.AccidentNearMissRecordFormsData = {};
-                }
-            },
-            error: (e) => {
-                this._UtilityService.hideSpinner();
-                this._UtilityService.showErrorAlert(e.message);
-            },
-        });
-}
-saveAsUnfinished() {
+      .GetAccidentNearMissRecordDetails(formId)
+      .subscribe({
+        next: (data) => {
+          this._UtilityService.hideSpinner();
+          if (data.actionResult.success == true) {
+            var tdata = JSON.parse(data.actionResult.result);
+            tdata = tdata ? tdata : {};
+            console.log(tdata.DateOfAccident)
+            this.AccidentNearMissRecordFormsData = tdata;
+            this.AccidentNearMissRecordFormsData.DateOfAccident = this.datePipte.transform(this.AccidentNearMissRecordFormsData.DateOfAccident, 'MM/dd/yyyy')
+            this.AccidentNearMissRecordFormsData.EmergencyServicesContacted = this.datePipte.transform(this.AccidentNearMissRecordFormsData.EmergencyServicesContacted, 'MM/dd/yyyy')
+            // console.log(this.AccidentNearMissRecordFormsData)
+          } else {
+            this.AccidentNearMissRecordFormsData = {};
+          }
+        },
+        error: (e) => {
+          this._UtilityService.hideSpinner();
+          this._UtilityService.showErrorAlert(e.message);
+        },
+      });
+  }
+  saveAsUnfinished() {
 
-  this.AccidentNearMissRecordFormsData.isFormCompleted = false;
-  this.Save();
-}
+    this.AccidentNearMissRecordFormsData.isFormCompleted = false;
+    this.Save();
+  }
 
-completeForm() {
-  this.AccidentNearMissRecordFormsData.isFormCompleted = true;
-  this.Save();
-}
+  completeForm() {
+    this.AccidentNearMissRecordFormsData.isFormCompleted = true;
+    this.Save();
+  }
 
-Save() {
+  Save() {
     debugger
-  if (this.userId != null && this.residentAdmissionInfoId != null && this.loginId!=null) {
+    if (this.userId != null && this.residentAdmissionInfoId != null && this.loginId != null) {
       // this.AccidentNearMissRecordFormsData.uniqueReferenceId = this.uniqueReferenceId;
       // this.AccidentNearMissRecordFormsData.locationOfAccident = this.locationOfAccident;
       // this.AccidentNearMissRecordFormsData.timeOfAccident = this.timeOfAccident;
@@ -466,55 +466,55 @@ Save() {
       //     this.accidentNearMissRecordInfoId;
       this.AccidentNearMissRecordFormsData.userId = this.userId;
       this.AccidentNearMissRecordFormsData.residentAdmissionInfoId =
-          this.residentAdmissionInfoId;
+        this.residentAdmissionInfoId;
       this.AccidentNearMissRecordFormsData.StartedBy = this.loginId;
       this.AccidentNearMissRecordFormsData.LastEnteredBy = this.loginId;
-      this.AccidentNearMissRecordFormsData.DateOfAccident = this.datePipte.transform(this.AccidentNearMissRecordFormsData.DateOfAccident,'yyyy-MM-dd');
-      this.AccidentNearMissRecordFormsData.EmergencyServicesContacted = this.datePipte.transform(this.AccidentNearMissRecordFormsData.EmergencyServicesContacted,'yyyy-MM-dd');
-          const objectBody: any = {
-            StatementType: this.StatementType,
-            accidentNearMissRecordForm: this.AccidentNearMissRecordFormsData,
-        };
-        
+      this.AccidentNearMissRecordFormsData.DateOfAccident = this.datePipte.transform(this.AccidentNearMissRecordFormsData.DateOfAccident, 'yyyy-MM-dd');
+      this.AccidentNearMissRecordFormsData.EmergencyServicesContacted = this.datePipte.transform(this.AccidentNearMissRecordFormsData.EmergencyServicesContacted, 'yyyy-MM-dd');
+      const objectBody: any = {
+        StatementType: this.StatementType,
+        accidentNearMissRecordForm: this.AccidentNearMissRecordFormsData,
+      };
 
-        console.log(objectBody);
+
+      console.log(objectBody);
 
       this._UtilityService.showSpinner();
       this.unsubscribe.add = this._MasterServices
-          .AddInsertUpdateAccidentNearMissRecordForm(
-              objectBody
-          )
-          .subscribe({
-              next: (data) => {
-                  this._UtilityService.hideSpinner();
-                  if (data.actionResult.success == true){
-                      this.EmitUpdateForm.emit(true);
-                    this.ResetModel();
-                      this._UtilityService.showSuccessAlert(
-                          data.actionResult.errMsg
-                      );
-                    }
-                  else
-                      this._UtilityService.showWarningAlert(
-                          data.actionResult.errMsg
-                      );
-              },
-              error: (e) => {
-                  this._UtilityService.hideSpinner();
-                  this._UtilityService.showErrorAlert(e.message);
-              },
-          });
-  } else {
+        .AddInsertUpdateAccidentNearMissRecordForm(
+          objectBody
+        )
+        .subscribe({
+          next: (data) => {
+            this._UtilityService.hideSpinner();
+            if (data.actionResult.success == true) {
+              this.EmitUpdateForm.emit(true);
+              this.ResetModel();
+              this._UtilityService.showSuccessAlert(
+                data.actionResult.errMsg
+              );
+            }
+            else
+              this._UtilityService.showWarningAlert(
+                data.actionResult.errMsg
+              );
+          },
+          error: (e) => {
+            this._UtilityService.hideSpinner();
+            this._UtilityService.showErrorAlert(e.message);
+          },
+        });
+    } else {
       this._UtilityService.showWarningAlert(
-          'Accident Near or Miss record details are missing.'
+        'Accident Near or Miss record details are missing.'
       );
+    }
   }
-}
 
-ResetModel() {
-  this.isEditable = true;
-  this.AccidentNearMissRecordFormsData = <any>{};
-  this.StatementType = 'Insert';
-}
+  ResetModel() {
+    this.isEditable = true;
+    this.AccidentNearMissRecordFormsData = <any>{};
+    this.StatementType = 'Insert';
+  }
 
 }
