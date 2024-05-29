@@ -1,5 +1,7 @@
+import { DatePipe } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { Calendar } from 'primeng/calendar';
 import { AppComponentBase } from 'src/app/app-component-base';
 import { AppComponent } from 'src/app/app.component';
 import {
@@ -38,7 +40,8 @@ export class ChartComponent extends AppComponentBase implements OnInit {
         private _ConstantServices: ConstantsService,
         private _MasterServices: MasterService,
         private _UtilityService: UtilityService,
-        private route: ActivatedRoute
+        private route: ActivatedRoute,
+        private datepipe: DatePipe
     ) {
         super();
         this._ConstantServices.ActiveMenuName = 'Chart';
@@ -59,7 +62,35 @@ export class ChartComponent extends AppComponentBase implements OnInit {
         this.GetChartMaster();
     }
 
-    SearchChart() {}
+    SearchChart() {
+        this.ShowChildComponent = false;
+        this._UtilityService.showSpinner();
+        const residentAdmissionInfoId = this.residentAdmissionInfoId;
+        const formMasterId = this.selectedChartMasterId;
+
+        //Date conversions
+        var dFrom = null;
+        var dTo = null;
+        if (this.rangeDates != null) {
+            if (this.rangeDates[0] != null) {
+                dFrom = this.datepipe.transform(
+                    this.rangeDates[0],
+                    'yyyy-MM-dd'
+                );
+            }
+            if (this.rangeDates[1] != null) {
+                dTo = this.datepipe.transform(this.rangeDates[1], 'yyyy-MM-dd');
+            }
+        }
+
+    }
+
+    dateRangeChange(calendar: Calendar) {
+        if (this.rangeDates[0] !== null && this.rangeDates[1] !== null) {
+            calendar.overlayVisible = false;
+            //this.GetDailyVitalAlertLog();
+        }
+    }
 
     OpenChart(
         selectedChartMasterId: string,

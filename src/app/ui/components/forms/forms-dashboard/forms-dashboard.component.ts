@@ -14,6 +14,8 @@ import { MasterService } from 'src/app/ui/service/master.service';
 import { UtilityService } from 'src/app/utility/utility.service';
 import { AppComponentBase } from 'src/app/app-component-base';
 import { ActivatedRoute } from '@angular/router';
+import { Calendar } from 'primeng/calendar';
+import { DatePipe } from '@angular/common';
 
 @Component({
     selector: 'app-forms-dashboard',
@@ -45,7 +47,8 @@ export class FormsDashboardComponent
         private _ConstantServices: ConstantsService,
         private _MasterServices: MasterService,
         private _UtilityService: UtilityService,
-        private route: ActivatedRoute
+        private route: ActivatedRoute,
+        private datepipe: DatePipe
     ) {
         super();
         this._ConstantServices.ActiveMenuName = 'Form Dashboard';
@@ -64,6 +67,13 @@ export class FormsDashboardComponent
     x;
     ngOnInit() {
         this.GetformMaster();
+    }
+
+    dateRangeChange(calendar: Calendar) {
+        if (this.rangeDates[0] !== null && this.rangeDates[1] !== null) {
+            calendar.overlayVisible = false;
+            //this.GetDailyVitalAlertLog();
+        }
     }
 
     GetformMaster() {
@@ -91,16 +101,22 @@ export class FormsDashboardComponent
     SearchForm() {
         this.ShowChildComponent = false;
         this._UtilityService.showSpinner();
-        //console.log('date Ranges: ' + rangeDates);
         const residentAdmissionInfoId = this.residentAdmissionInfoId;
         const formMasterId = this.selectedFormMasterId;
 
-        let fromDate: Date | null = null;
-        let toDate: Date | null = null;
-
-        if (this.rangeDates && this.rangeDates.length >= 2) {
-            fromDate = this.rangeDates[0];
-            toDate = this.rangeDates[1];
+        //Date conversions
+        var dFrom = null;
+        var dTo = null;
+        if (this.rangeDates != null) {
+            if (this.rangeDates[0] != null) {
+                dFrom = this.datepipe.transform(
+                    this.rangeDates[0],
+                    'yyyy-MM-dd'
+                );
+            }
+            if (this.rangeDates[1] != null) {
+                dTo = this.datepipe.transform(this.rangeDates[1], 'yyyy-MM-dd');
+            }
         }
 
         // Call the API
@@ -108,8 +124,8 @@ export class FormsDashboardComponent
             .GetFormDasboardList(
                 residentAdmissionInfoId,
                 formMasterId,
-                fromDate,
-                toDate
+                dFrom,
+                dTo
             )
             .subscribe({
                 next: (data) => {
