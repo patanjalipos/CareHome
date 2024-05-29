@@ -1,10 +1,8 @@
 
 <div class="card">
-    <div class="flex flex-wrap gap-2 justify-content-end">
-        <button pButton type="button" >Print</button>
-        <!--    <button pButton type="button">Add a Progress note</button> -->
-        
-    </div>
+    <!-- <div class="flex flex-wrap gap-2 justify-content-end">
+        <button pButton type="button" >Print</button>      
+    </div> -->
     <div class="row mt-1">
        <p-accordion>
             <p-accordionTab header="Add a Progress note" [selected]="isExpanded" >
@@ -40,16 +38,24 @@
                 <button pButton type="button" style="float: right;" (click)="submit()">Add this Note</button>
             </div> -->
             <div class="flex flex-wrap mt-1 gap-2 justify-content-end btn-background">
-                <button pButton type="button" (click)="submit()">Save</button>
-                <button pButton type="button" class="btn btn-secondary" (click)="Close()">Close</button>
+                <button pButton type="button" [disabled]="(AddNote.NoteDescription!=null)?false:true" (click)="submit()">Save</button>
+                <button pButton type="button"  (click)="Close()">Close</button>
             </div> 
             </div>
         </p-accordionTab>
     </p-accordion> 
       <p-accordion [activeIndex]="0">
         <p-accordionTab header="All Progress notes since first admission">
+            <div class="form-group pos-rel col-md-5">
+                <label for="" class="form-label label-line">From / Upto <span class="required">*</span></label>
+                            <p-calendar #calendar [maxDate]="today" selectionMode="range" [(ngModel)]="SearchDate"
+                            [ngModelOptions]="{standalone: true}" [showIcon]="true" inputId="icon"
+                            [dateFormat]="customDateFormat.CalendarFormat" class="iconcal" [readonlyInput]="true" [showButtonBar]="true"
+                            (onSelect)="onSelect()" (onClearClick)="LoadResidentProgressDetails(admissionid,createdBy,null,null)"></p-calendar>
+
+            </div>
             <div class="row">
-                <!-- <div class="col-md-10">                    
+                <!-- <div class="col-md-10">               
                     <div class="row row-cols-4 mt-4">
                         <div class="form-group pos-rel col">
                             <h5>Keywords:</h5>                                
@@ -100,34 +106,47 @@
                   <div class="flex flex-wrap gap-2 justify-content-end">
                   <button pButton type="button">Search</button>
                   </div> -->
-                  <div *ngFor="let dt of lstResidentProgressNote" class="card">
-                    <div class="card-header">
-                      {{ dt.FullName }}
-                    </div>
-                    <div class="card-body">
-                      <p class="card-text">
-                        <!-- Date of Event : {{(dt.DateofEvent | date:'yyyy')=='0001'?'':
-                        dt.DateofEvent |
-                        date:customDateFormat.DEF_DATE_TIME}}
-                      </p> -->
-                      <div>
-                           <p class="card-text" style="float: left;">
-                               Date of Event : {{(dt.DateofEvent | date:'yyyy')=='0001'?'':
-                               dt.DateofEvent |
-                               date:customDateFormat.DEF_DATE_TIME}}
-                             </p>
-                        </div>
-                        <div>
-                            <button pButton type="button" style="float: right;" (click)="ShowAddNote(dt.ResidentProgressNotesId)">Add Note</button>
-                        </div>   
-                     <div>                            
-                         <p class="card-text" >
-                            <br>                           
-                           {{ dt.NoteDescription }} <br>
-                            Plan: Continue current medication regimen.
+                  <div *ngIf="lstResidentProgressNote.length === 0" class="no-records-found">
+                    No Records Found.
+                </div>
+                  <div *ngFor="let dt of lstResidentProgressNote" class="card">                    
+                    <div class="card-body">                   
+                    <div style="position: relative; width: 100%;top:0;">
+                        <p class="card-text">
+                            <b style="font-size: 20px;">{{ dt.FullName }}</b> wrote on  
+                            {{ (dt.DateofEvent | date:'yyyy') == '0001' ? '' : (dt.DateofEvent | date:'dd MMM yyyy HH:mm') }}
+                            </p>  
+                    </div>                      
+                    <!-- <div>
+                        <p class="card-text" style="float: left;">
+                            Date of Event : {{(dt.DateofEvent | date:'yyyy')=='0001'?'':
+                            dt.DateofEvent |
+                            date:customDateFormat.DEF_DATE_TIME}}
+                            </p>
+                    </div> -->
+                    <div>
+                        <button pButton class="mt-5" type="button" style="float:right;position:absolute; top: 0; right: 0; margin: 10px;"
+                            (click)="ShowAddNote(dt.ResidentProgressNotesId)">Add Note</button>
+                    </div>   
+                    <div >                            
+                        <p class="card-text">
+                           <br>                           
+                          {{ dt.NoteDescription}} 
+                        </p>
+                   </div>
+                   <u><h6 class="mt-2" style="color:#023c40;font-weight: bold;">Additional Note</h6></u> 
+                     <div class="mt-2" *ngFor="let additionalNote of dt.AdditionalNotes; let j = index">
+                         <p class="card-text" >                             
+                            {{ j + 1 }}.  {{ additionalNote.AdditionalNote }} 
+                         <br>
+                         <b>Date of Event : </b>{{(additionalNote.AdditionalDateofEvent | date:'yyyy')=='0001'?'':
+                         additionalNote.AdditionalDateofEvent |
+                           date:customDateFormat.DEF_DATE_TIME}} 
                          </p>
+                     </div>
+                    
                     </div>
-                    </div>
+                   
                   </div>
                   
             </div>
@@ -145,13 +164,14 @@
    </textarea>
 <div class="col-md-4 form-group pos-rel" mt-1>
     <label class="form-label label-line">Date Of event</label>
-        <p-calendar [required]="true" name="txtDateofEvent"
-        [(ngModel)]="AdditionalProgressNote.DateOfEvent" [ngModelOptions]="{standalone: true}" [showIcon]="true" inputId="icon" 
+        <p-calendar [required]="true" name="txtAdditionalDateofEvent"
+        [(ngModel)]="AdditionalProgressNote.AdditionalDateofEvent" [ngModelOptions]="{standalone: true}" [showIcon]="true" inputId="icon" 
         class="iconcal" [maxDate]="todayDate" [dateFormat]="customDateFormat.CalendarFormat" [showTime]="true"
         hourFormat="12"></p-calendar>
+        
 </div>
 <div >
     <button pButton type="button" (click)="ClearAddionalNote()">Cancel</button>  
-    <button pButton type="button" style="float: right;" (click)="SaveAdditionalProgressNote()">Add this Note</button>
+    <button pButton type="button" style="float: right;" [disabled]="(AdditionalProgressNote.AdditionalNote!=null)?false:true" (click)="SaveAdditionalProgressNote()">Add this Note</button>
 </div>
     </p-dialog>
