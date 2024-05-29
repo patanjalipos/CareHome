@@ -38,7 +38,7 @@
                 <button pButton type="button" style="float: right;" (click)="submit()">Add this Note</button>
             </div> -->
             <div class="flex flex-wrap mt-1 gap-2 justify-content-end btn-background">
-                <button pButton type="button" [disabled]="(AddNote.NoteDescription!=null)?false:true" (click)="submit()">Save</button>
+                <button pButton type="button" [disabled]="((AddNote.NoteDescription!=null)&&(AddNote.DateOfEvent!=null))?false:true" (click)="submit()">Save</button>
                 <button pButton type="button"  (click)="Close()">Close</button>
             </div> 
             </div>
@@ -51,7 +51,7 @@
                             <p-calendar #calendar [maxDate]="today" selectionMode="range" [(ngModel)]="SearchDate"
                             [ngModelOptions]="{standalone: true}" [showIcon]="true" inputId="icon"
                             [dateFormat]="customDateFormat.CalendarFormat" class="iconcal" [readonlyInput]="true" [showButtonBar]="true"
-                            (onSelect)="onSelect()" (onClearClick)="LoadResidentProgressDetails(admissionid,createdBy,null,null)"></p-calendar>
+                            (onSelect)="onSelect()" (onClearClick)="LoadResidentProgressDetails(admissionid,null,null)"></p-calendar>
 
             </div>
             <div class="row">
@@ -126,20 +126,22 @@
                     </div> -->
                     <div>
                         <button pButton class="mt-5" type="button" style="float:right;position:absolute; top: 0; right: 0; margin: 10px;"
-                            (click)="ShowAddNote(dt.ResidentProgressNotesId)">Add Note</button>
+                            (click)="ShowAddNote(dt.ResidentProgressNotesId)">Addtional Note</button>
                     </div>   
-                    <div >                            
+                    <div>                            
                         <p class="card-text">
                            <br>                           
                           {{ dt.NoteDescription}} 
                         </p>
                    </div>
-                   <u><h6 class="mt-2" style="color:#023c40;font-weight: bold;">Additional Note</h6></u> 
-                     <div class="mt-2" *ngFor="let additionalNote of dt.AdditionalNotes; let j = index">
+                   <u><h6 class="mt-2" style="color:#023c40;font-weight: bold;padding-left: 20px;">Additional Note : </h6></u> 
+                     <div class="mt-2" *ngFor="let additionalNote of dt.AdditionalNotes; let j = index" style="padding-left: 20px;">
                          <p class="card-text" >                             
-                            {{ j + 1 }}.  {{ additionalNote.AdditionalNote }} 
-                         <br>
-                         <b>Date of Event : </b>{{(additionalNote.AdditionalDateofEvent | date:'yyyy')=='0001'?'':
+                            {{ j + 1 }}. <b>{{additionalNote.FullName}}</b>
+                            <br>
+                             {{ additionalNote.AdditionalNote }}    
+                             <br>                      
+                         Date of Event : {{(additionalNote.AdditionalDateofEvent | date:'yyyy')=='0001'?'':
                          additionalNote.AdditionalDateofEvent |
                            date:customDateFormat.DEF_DATE_TIME}} 
                          </p>
@@ -172,6 +174,6 @@
 </div>
 <div >
     <button pButton type="button" (click)="ClearAddionalNote()">Cancel</button>  
-    <button pButton type="button" style="float: right;" [disabled]="(AdditionalProgressNote.AdditionalNote!=null)?false:true" (click)="SaveAdditionalProgressNote()">Add this Note</button>
+    <button pButton type="button" style="float: right;" [disabled]="((AdditionalProgressNote.AdditionalNote!=null)&&(AdditionalProgressNote.AdditionalDateofEvent!=null))?false:true" (click)="SaveAdditionalProgressNote()">Save</button>
 </div>
     </p-dialog>
