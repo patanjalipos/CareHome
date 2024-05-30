@@ -9,6 +9,7 @@ export class OptionService {
 
   private yesNoJsonUrl = 'assets/stLst/stLstYesNo.json';
   private attendanceJsonUrl = 'assets/stLst/stLstAttendance.json';
+  private methodJsonUrl='assets/stLst/stLstMethod.json';
 
   constructor(private http: HttpClient) { }
 
@@ -18,6 +19,10 @@ export class OptionService {
 
   getstLstAttendaceOptions(): Observable<any> {
     return this.http.get<any>(this.attendanceJsonUrl);
+  }
+
+  getstLstMethod():Observable<any>{
+    return this.http.get<any>(this.methodJsonUrl);
   }
 
 }
