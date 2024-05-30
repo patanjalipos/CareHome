@@ -77,10 +77,10 @@
             </ng-template>
             <ng-template pTemplate="header">
                 <tr>
-                    <th pSortableColumn="ChartName">Assessment Form</th>
+                    <th pSortableColumn="ChartName">Chart Name</th>
                     <th>Updated By</th>
                     <th>Designation</th>
-                    <th>Status</th>
+                    <!-- <th>Status</th> -->
                     <th>Last Update</th>
                     <th>Actions</th>
                 </tr>
@@ -90,9 +90,9 @@
                     <td>{{ dt.ChartName }}</td>
                     <td>{{ dt.ModifiedBy }}</td>
                     <td>{{ dt.ModifiedByDesignation }}</td>
-                    <td>
+                    <!-- <td>
                         {{ dt.IsCompleted == 1 ? "Completed" : "Incomplete" }}
-                    </td>
+                    </td> -->
                     <td>
                         {{
                             dt.ModifiedOn
