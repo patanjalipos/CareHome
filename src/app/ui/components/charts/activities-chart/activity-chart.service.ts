@@ -13,18 +13,18 @@ export class ActivityChartService {
 
   //#region ActivityChart
 
-  AddInsertUpdateActivityChartForm(ActivityChartFormData: any): Observable<any> {
+  AddInsertUpdateActivityChartForm(ActivitiesChartFormData: any): Observable<any> {
     let reqHeader = new HttpHeaders({
       'Content-Type': 'application/json',
-      'Access-Control-Allow-Origin': environment.BaseUriAdmin,
+      'Access-Control-Allow-Origin': environment.BaseUriUser,
       'Authorization': 'Bearer ' + localStorage.getItem('token')
     });
     let params = new HttpParams();
-    var data = JSON.stringify(ActivityChartFormData).toString();
+    var data = JSON.stringify(ActivitiesChartFormData).toString();
     console.log(data);
     return this._httpclient.post<any>(
       environment.BaseUriUser +
-      'api/User/AddInsertUpdateActivityChart',
+      'api/User/AddInsertUpdateActivitiesChart',
       data,
       { headers: reqHeader, params: params }
     );
@@ -43,6 +43,10 @@ export class ActivityChartService {
       environment.BaseUriUser + 'api/User/GetActivityChartById',
       { headers: reqHeader, params: params }
     );
+  }
+
+  GetActivitiesChartDetails(){
+    
   }
 
   //#endregion

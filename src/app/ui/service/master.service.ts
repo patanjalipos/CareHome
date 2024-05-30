@@ -1913,13 +1913,13 @@ export class MasterService {
         params = params.append('loginId', localStorage.getItem('userId'));
         var data = JSON.stringify(obj).toString();
         return this._httpclient.post<any>(
-            environment.BaseUriAdmin + 'api/Admin/AddInsertResidentProgressNote',
+            environment.BaseUriUser + 'api/User/AddInsertResidentProgressNote',
             data,
             { headers: reqHeader, params: params }
         );
     }
 
-    GetResidentProgressNoteById(admissionid,userid): Observable<any> {
+    GetResidentProgressNoteById(admissionid,dFrom = null, dTo = null): Observable<any> {
         let reqHeader = new HttpHeaders({
             'Content-Type': 'application/json',
             'Access-Control-Allow-Origin': environment.BaseUriAdmin,
@@ -1927,9 +1927,11 @@ export class MasterService {
         });
         let params = new HttpParams();
         params = params.append('admissionid', admissionid);
-        params = params.append('userid', userid);
+       // params = params.append('userid', userid);
+        params = params.append('dFrom', dFrom);
+        params = params.append('dTo', dTo);
         return this._httpclient.get<any>(
-            environment.BaseUriAdmin + 'api/Admin/GetResidentProgressNoteById',
+            environment.BaseUriUser + 'api/User/GetResidentProgressNoteById',
             { headers: reqHeader, params: params }
         );
     }
@@ -1944,7 +1946,7 @@ export class MasterService {
         params = params.append('loginId', localStorage.getItem('userId'));
         var data = JSON.stringify(obj).toString();
         return this._httpclient.post<any>(
-            environment.BaseUriAdmin + 'api/Admin/AddInsertResidentAdditionalProgressNote',
+            environment.BaseUriUser + 'api/User/AddInsertResidentAdditionalProgressNote',
             data,
             { headers: reqHeader, params: params }
         );
