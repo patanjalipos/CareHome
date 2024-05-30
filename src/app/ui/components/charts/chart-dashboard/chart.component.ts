@@ -10,6 +10,7 @@ import {
     CustomDateFormat,
 } from 'src/app/ui/service/constants.service';
 import { MasterService } from 'src/app/ui/service/master.service';
+import { UserService } from 'src/app/ui/service/user.service';
 import { UtilityService } from 'src/app/utility/utility.service';
 
 @Component({
@@ -41,7 +42,8 @@ export class ChartComponent extends AppComponentBase implements OnInit {
         private _MasterServices: MasterService,
         private _UtilityService: UtilityService,
         private route: ActivatedRoute,
-        private datepipe: DatePipe
+        private datepipe: DatePipe,
+        private _UserServices:UserService
     ) {
         super();
         this._ConstantServices.ActiveMenuName = 'Chart';
@@ -66,7 +68,7 @@ export class ChartComponent extends AppComponentBase implements OnInit {
         this.ShowChildComponent = false;
         this._UtilityService.showSpinner();
         const residentAdmissionInfoId = this.residentAdmissionInfoId;
-        const formMasterId = this.selectedChartMasterId;
+        const chartMasterId = this.selectedChartMasterId;
 
         //Date conversions
         var dFrom = null;
@@ -82,8 +84,31 @@ export class ChartComponent extends AppComponentBase implements OnInit {
                 dTo = this.datepipe.transform(this.rangeDates[1], 'yyyy-MM-dd');
             }
         }
-        this._UtilityService.hideSpinner();
+        // this._UtilityService.hideSpinner();
 
+        //Call the API
+        this._UserServices.GetChartDashboardList(
+            residentAdmissionInfoId,
+            chartMasterId,
+            dFrom,
+            dTo
+        )
+        .subscribe({
+            next: (data) => {
+                this._UtilityService.hideSpinner();
+                if (data.actionResult.success == true) {
+                    var tdata = JSON.parse(data.actionResult.result);
+                    tdata = tdata ? tdata : [];
+                    this.chartDashboardList = tdata;
+                } else {
+                    this.chartDashboardList = [];
+                }
+            },
+            error: (e) => {
+                this._UtilityService.hideSpinner();
+                this._UtilityService.showErrorAlert(e.message);
+            },
+        });
     }
 
     dateRangeChange(calendar: Calendar) {
@@ -100,10 +125,9 @@ export class ChartComponent extends AppComponentBase implements OnInit {
     ) {
         this.selectedChartMasterId = selectedChartMasterId;
         this.selectedChartData = {
-            formMasterId: selectedChartMasterId,
-            selectedFormID: selectedChartdata.FormId,
+            chartMasterId: selectedChartMasterId,
+            selectedChartID: selectedChartdata.ChartId,
             isEditable: isEditable,
-            IsCompleted: selectedChartdata.IsCompleted,
             StartedBy: selectedChartdata.StartedBy,
             StartedByDesignation: selectedChartdata.StartedByDesignation,
             StartedOn: selectedChartdata.StartedOn,
