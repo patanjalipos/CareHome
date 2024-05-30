@@ -46,7 +46,7 @@ export class ChartComponent extends AppComponentBase implements OnInit {
         private _UserServices:UserService
     ) {
         super();
-        this._ConstantServices.ActiveMenuName = 'Chart';
+        this._ConstantServices.ActiveMenuName = 'Chart Dashboard';
 
         this.unsubscribe.add = this.route.queryParams.subscribe((params) => {
             var ParamsArray = this._ConstantServices.GetParmasVal(params['q']);
@@ -123,19 +123,24 @@ export class ChartComponent extends AppComponentBase implements OnInit {
         selectedChartdata: any = <any>{},
         isEditable = true
     ) {
-        this.selectedChartMasterId = selectedChartMasterId;
-        this.selectedChartData = {
-            chartMasterId: selectedChartMasterId,
-            selectedChartID: selectedChartdata.ChartId,
-            isEditable: isEditable,
-            StartedBy: selectedChartdata.StartedBy,
-            StartedByDesignation: selectedChartdata.StartedByDesignation,
-            StartedOn: selectedChartdata.StartedOn,
-            ModifiedBy: selectedChartdata.ModifiedBy,
-            ModifiedByDesignation: selectedChartdata.ModifiedByDesignation,
-            ModifiedOn: selectedChartdata.ModifiedOn,
-        };
-        this.ShowModel();
+        if(selectedChartMasterId!=null)
+            {
+                this.selectedChartMasterId = selectedChartMasterId;
+                this.selectedChartData = {
+                    chartMasterId: selectedChartMasterId,
+                    selectedChartID: selectedChartdata.ChartId,
+                    isEditable: isEditable,
+                    StartedBy: selectedChartdata.StartedBy,
+                    StartedByDesignation: selectedChartdata.StartedByDesignation,
+                    StartedOn: selectedChartdata.StartedOn,
+                    ModifiedBy: selectedChartdata.ModifiedBy,
+                    ModifiedByDesignation: selectedChartdata.ModifiedByDesignation,
+                    ModifiedOn: selectedChartdata.ModifiedOn,
+                };
+                this.ShowModel();
+            }
+            else
+                alert('Kindly select Chart Type');
     }
 
     ShowModel() {
