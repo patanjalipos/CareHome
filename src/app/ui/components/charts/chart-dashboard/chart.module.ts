@@ -14,6 +14,7 @@ import { BehaviourChartModule } from '../behaviour-chart/behaviour-chart.module'
 import { BowelChartModule } from '../bowel-chart/bowel-chart.module';
 import { EnteralFeedingChartModule } from '../enteral-feeding-chart/enteral-feeding-chart.module';
 import { AdlChartModule } from '../adl-chart/adl-chart.module';
+import { TableModule } from 'primeng/table';
 
 @NgModule({
     declarations: [
@@ -25,6 +26,7 @@ import { AdlChartModule } from '../adl-chart/adl-chart.module';
         CalendarModule,
         CheckboxModule,
         FormsModule,
+        TableModule,
         DropdownModule,
         ActivitiesChartModule,
         FluidCombinedChartModule,
