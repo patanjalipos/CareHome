@@ -30,23 +30,18 @@ export class ActivityChartService {
     );
   }
 
-  GetActivityChartById(admissionid, userid): Observable<any> {
+  GetActivitiesChartById(selectedChartID: any): Observable<any> {
     let reqHeader = new HttpHeaders({
       'Content-Type': 'application/json',
       'Access-Control-Allow-Origin': environment.BaseUriAdmin,
       'Authorization': 'Bearer ' + localStorage.getItem('token')
     });
     let params = new HttpParams();
-    params = params.append('admissionid', admissionid);
-    params = params.append('userid', userid);
+    params = params.append('chartId', selectedChartID);
     return this._httpclient.get<any>(
-      environment.BaseUriUser + 'api/User/GetActivityChartById',
-      { headers: reqHeader, params: params }
+        environment.BaseUriUser + 'api/User/GetActivitiesChartById',
+        { headers: reqHeader, params: params }
     );
-  }
-
-  GetActivitiesChartDetails(){
-    
   }
 
   //#endregion
