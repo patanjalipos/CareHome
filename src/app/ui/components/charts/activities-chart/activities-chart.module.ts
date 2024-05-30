@@ -6,6 +6,7 @@ import { CalendarModule } from 'primeng/calendar';
 import { DropdownModule } from 'primeng/dropdown';
 import { InputTextModule } from 'primeng/inputtext';
 import { InputTextareaModule } from 'primeng/inputtextarea';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
     declarations: [ActivitiesChartComponent],
@@ -15,7 +16,8 @@ import { InputTextareaModule } from 'primeng/inputtextarea';
         CalendarModule,
         DropdownModule,
         InputTextModule,
-        InputTextareaModule
+        InputTextareaModule,
+        FormsModule
     ],
     exports: [ActivitiesChartComponent],
 })

@@ -52,6 +52,28 @@ export class UserService {
         
     } 
 
+    //#region chartdropdownvalues
+    GetChartDropDownMasterList(
+        chartMasterId: string,
+        dropdownName: string,
+        status: number
+    ) {
+        let reqHeader = new HttpHeaders({
+            'Content-Type': 'application/json',
+            'Access-Control-Allow-Origin': environment.BaseUriUser,
+            'Authorization': 'Bearer ' + localStorage.getItem('token')
+        });
+        let params = new HttpParams();
+        params = params.append('chartMasterId', chartMasterId);
+        params = params.append('dropDownName', dropdownName);
+        params = params.append('Status', status);
+        return this._httpclient.get<any>(
+            environment.BaseUriUser + 'api/User/GetChartDropDownMasterList',
+            { headers: reqHeader, params: params }
+        );
+    }
+    //#endregion
+
     
 
 }

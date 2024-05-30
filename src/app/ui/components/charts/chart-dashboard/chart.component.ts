@@ -82,6 +82,7 @@ export class ChartComponent extends AppComponentBase implements OnInit {
                 dTo = this.datepipe.transform(this.rangeDates[1], 'yyyy-MM-dd');
             }
         }
+        this._UtilityService.hideSpinner();
 
     }
 
