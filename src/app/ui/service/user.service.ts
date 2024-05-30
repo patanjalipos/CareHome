@@ -74,6 +74,39 @@ export class UserService {
     }
     //#endregion
 
-    
+    //#region Chart Dashboard
+
+    GetChartDashboardList(
+        residentAdmissionInfoId: string,
+        chartMasterId: string,
+        fromDate: any = null,
+        toDate: any = null
+    ): Observable<any> {
+        let reqHeader = new HttpHeaders({
+            'Content-Type': 'application/json',
+            'Access-Control-Allow-Origin': environment.BaseUriUser,
+            'Authorization': 'Bearer ' + localStorage.getItem('token')
+        });
+        let params = new HttpParams();
+        params = params.append(
+            'residentAdmissionInfoId',
+            residentAdmissionInfoId
+        );
+        params = params.append('chartMasterId', chartMasterId);
+        // Convert fromDate and toDate to strings before appending them
+        if (fromDate !== null) {
+            params = params.append('fromDate', fromDate.toString());
+        }
+        if (toDate !== null) {
+            params = params.append('toDate', toDate.toString());
+        }
+
+        return this._httpclient.get<any>(
+            environment.BaseUriUser + 'api/User/GetChartDashboardList',
+            { headers: reqHeader, params: params }
+        );
+    }
+
+    //#endregion
 
 }

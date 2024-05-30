@@ -6,6 +6,7 @@ import { DropdownModule } from 'primeng/dropdown';
 import { InputTextModule } from 'primeng/inputtext';
 import { InputTextareaModule } from 'primeng/inputtextarea';
 import { AdlChartComponent } from './adl-chart.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
     declarations: [AdlChartComponent],
@@ -16,6 +17,7 @@ import { AdlChartComponent } from './adl-chart.component';
         DropdownModule,
         InputTextModule,
         InputTextareaModule,
+        FormsModule
     ],
     exports:[AdlChartComponent]
 })
