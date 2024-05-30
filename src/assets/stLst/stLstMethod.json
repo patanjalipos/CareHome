@@ -1,0 +1,14 @@
+[
+    {
+        "optionId": "Standing",
+        "optionValue": "Standing"
+    },
+    {
+        "optionId": "Sitting",
+        "optionValue": "Sitting"
+    },
+    {
+        "optionId": "Lying",
+        "optionValue": "Lying"
+    }
+]
