@@ -10,7 +10,7 @@
     </div>
     <div class="col-md-4 mt-4">
       <label class="form-label">Care Given <span class="required">*</span></label>
-      <p-dropdown [required]="true" name="ActivitiesChartFormData.CareGiven" placeholder="--Select--"
+      <p-dropdown [required]="true" name="ActivitiesChartFormData.CareGiven" placeholder="----select----"
         [style]="{ width: '100%' }" [options]="stLstYesNoOptions" optionValue="optionId" optionLabel="optionValue"
         [(ngModel)]="ActivitiesChartFormData.CareGiven" (onChange)="openAndClose()">
       </p-dropdown>
@@ -18,7 +18,7 @@
     <div *ngIf="inputFields" class="row">
       <div class="col-md-4">
         <label class="form-label">Activity <span class="required">*</span></label>
-        <p-dropdown [required]="true" name="ActivitiesChartFormData.Activity" placeholder="Select"
+        <p-dropdown [required]="true" name="ActivitiesChartFormData.Activity" placeholder="--select--"
           [style]="{ width: '100%' }" [(ngModel)]="ActivitiesChartFormData.Activity" [options]="lstActivity"
           optionLabel="optionName" optionValue="optionId">
         </p-dropdown>
@@ -26,7 +26,7 @@
 
       <div class="col-md-4">
         <label class="form-label">Attendance<span class="required">*</span></label>
-        <p-dropdown [required]="true" name="ActivitiesChartFormData.Attendance" placeholder="Select"
+        <p-dropdown [required]="true" name="ActivitiesChartFormData.Attendance" placeholder="--select--"
           [style]="{ width: '100%' }" [options]="stLstAttendanceOptions" optionValue="optionId"
           optionLabel="optionValue" [(ngModel)]="ActivitiesChartFormData.Attendance">
         </p-dropdown>
@@ -34,7 +34,7 @@
 
       <div class="col-md-4">
         <label class="form-label">Purpose of activity<span class="required">*</span></label>
-        <p-dropdown [required]="true" name="ActivitiesChartFormData.PurposeOfActivity" placeholder="Select"
+        <p-dropdown [required]="true" name="ActivitiesChartFormData.PurposeOfActivity" placeholder="--select--"
           [style]="{ width: '100%' }" [(ngModel)]="ActivitiesChartFormData.PurposeOfActivity"
           [options]="lstPurposeOfActivity" optionLabel="optionName" optionValue="optionId">
         </p-dropdown>

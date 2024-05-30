@@ -121,6 +121,7 @@ export class ActivitiesChartComponent
                         var tdata = JSON.parse(data.actionResult.result);
                         tdata = tdata ? tdata : {};
                         this.ActivitiesChartFormData = tdata;
+                        this.openAndClose();
                     } else {
                         this.ActivitiesChartFormData = {};
                     }
