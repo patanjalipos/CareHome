@@ -172,8 +172,8 @@ export class AdlChartComponent extends AppComponentBase implements OnInit {
                     if (data.actionResult.success == true) {
                         var tdata = JSON.parse(data.actionResult.result);
                         tdata = tdata ? tdata : {};
-                        console.log(tdata);
                         this.ADLChartData = tdata;
+                        this.openAndClose();
                     } else {
                         this.ADLChartData = {};
                     }
@@ -185,7 +185,7 @@ export class AdlChartComponent extends AppComponentBase implements OnInit {
             });
     }
 
-    completeForm() {
+    Save() {
         if (
             this.userId != null &&
             this.residentAdmissionInfoId != null &&
@@ -201,9 +201,6 @@ export class AdlChartComponent extends AppComponentBase implements OnInit {
                 StatementType: this.StatementType,
                 ADLChartDetail: this.ADLChartData,
             };
-
-            console.log(objectBody);
-
             this._UtilityService.showSpinner();
             this.unsubscribe.add = this._ADLChart
                 .InsertUpdateADLChart(objectBody)
