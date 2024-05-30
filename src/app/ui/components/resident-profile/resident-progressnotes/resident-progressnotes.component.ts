@@ -121,7 +121,7 @@ export class ResidentProgressnotesComponent extends AppComponentBase implements 
   ngOnInit(): void {
     // this.AddNote.Notes = 'Progressnote';    
     this.createdBy=localStorage.getItem('userId');
-   this.LoadResidentProgressDetails(this.admissionid,this.createdBy,this.dFrom, this.dTo);
+   this.LoadResidentProgressDetails(this.admissionid,this.dFrom, this.dTo);
   }
 
   
@@ -147,7 +147,7 @@ export class ResidentProgressnotesComponent extends AppComponentBase implements 
         {
           this._UtilityService.showSuccessAlert(data.actionResult.errMsg);  
           this.Close();
-          this.LoadResidentProgressDetails(this.admissionid,this.createdBy,this.dFrom, this.dTo);
+          this.LoadResidentProgressDetails(this.admissionid,this.dFrom, this.dTo);
         }
         else
         {
@@ -213,16 +213,16 @@ ShowAvailableDetails() {
   }
   else
   {
-    this.LoadResidentProgressDetails(this.admissionid,this.createdBy,this.dFrom, this.dTo);
+    this.LoadResidentProgressDetails(this.admissionid,this.dFrom, this.dTo);
   }
    // this.GetPatientRegistrationDetails(this.dFrom, this.dTo);
 }
 
-LoadResidentProgressDetails(admissionid,userid,dFrom: string, dTo: string)
+LoadResidentProgressDetails(admissionid,dFrom: string, dTo: string)
 {
       
   this._UtilityService.showSpinner();
-  this.unsubscribe.add = this._MasterServices.GetResidentProgressNoteById(admissionid,userid,
+  this.unsubscribe.add = this._MasterServices.GetResidentProgressNoteById(admissionid,
      this.datePipe.transform(dFrom, "MM-dd-yyyy"),
      this.datePipe.transform(dTo, "MM-dd-yyyy"),)
     .subscribe
@@ -234,7 +234,7 @@ LoadResidentProgressDetails(admissionid,userid,dFrom: string, dTo: string)
           var tdata = JSON.parse(data.actionResult.result);
           tdata = tdata ? tdata : [];
          this.lstResidentProgressNote = tdata;
-        //  console.log(this.lstResidentProgressNote);
+         console.log(this.lstResidentProgressNote);
         //  this.TotalRecords = tdata.length;
         }
         else {
@@ -278,7 +278,7 @@ this.unsubscribe.add = this._MasterServices.AddInsertResidentAdditionalProgressN
       {
         this._UtilityService.showSuccessAlert(data.actionResult.errMsg);  
         this.ClearAddionalNote();
-        this.LoadResidentProgressDetails(this.admissionid,this.createdBy,this.dFrom, this.dTo);
+        this.LoadResidentProgressDetails(this.admissionid,this.dFrom, this.dTo);
       }
       else
       {

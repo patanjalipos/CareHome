@@ -1919,7 +1919,7 @@ export class MasterService {
         );
     }
 
-    GetResidentProgressNoteById(admissionid,userid,dFrom = null, dTo = null): Observable<any> {
+    GetResidentProgressNoteById(admissionid,dFrom = null, dTo = null): Observable<any> {
         let reqHeader = new HttpHeaders({
             'Content-Type': 'application/json',
             'Access-Control-Allow-Origin': environment.BaseUriAdmin,
@@ -1927,7 +1927,7 @@ export class MasterService {
         });
         let params = new HttpParams();
         params = params.append('admissionid', admissionid);
-        params = params.append('userid', userid);
+       // params = params.append('userid', userid);
         params = params.append('dFrom', dFrom);
         params = params.append('dTo', dTo);
         return this._httpclient.get<any>(
