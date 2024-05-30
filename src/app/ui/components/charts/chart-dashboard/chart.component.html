@@ -87,7 +87,7 @@
             </ng-template>
             <ng-template pTemplate="body" let-dt let-i="rowIndex">
                 <tr>
-                    <td>{{ dt.FormName }}</td>
+                    <td>{{ dt.ChartName }}</td>
                     <td>{{ dt.ModifiedBy }}</td>
                     <td>{{ dt.ModifiedByDesignation }}</td>
                     <td>
@@ -102,7 +102,7 @@
                     <td>
                         <a
                             title="View"
-                            (click)="OpenChart(dt.FormMasterId, dt, false)"
+                            (click)="OpenChart(dt.ChartMasterId, dt, false)"
                         >
                             <i class="fa fa-eye" aria-hidden="true"></i>
                         </a>
@@ -110,7 +110,7 @@
                         <!-- Adjust the margin-left as needed -->
                         <a
                             title="Edit"
-                            (click)="OpenChart(dt.FormMasterId, dt, true)"
+                            (click)="OpenChart(dt.ChartMasterId, dt, true)"
                         >
                             <i class="fa fa-pencil" aria-hidden="true"></i>
                         </a>
