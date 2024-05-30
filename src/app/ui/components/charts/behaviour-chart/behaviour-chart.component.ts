@@ -7,6 +7,7 @@ import { OptionService } from 'src/app/ui/service/option.service';
 import { UserService } from 'src/app/ui/service/user.service';
 import { UtilityService } from 'src/app/utility/utility.service';
 import { BehaviourChartService } from './behaviour-chart.service';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-behaviour-chart',
@@ -31,7 +32,7 @@ export class BehaviourChartComponent extends AppComponentBase implements OnInit 
   //Static Options
   stLstYesNoOptions: any[] = [];
 
-  constructor(private optionService: OptionService,private _ConstantServices: ConstantsService,private route: ActivatedRoute,private _UtilityService: UtilityService,private _UserService:UserService,private _Behaviour:BehaviourChartService) {
+  constructor(private optionService: OptionService,private _ConstantServices: ConstantsService,private route: ActivatedRoute,private _UtilityService: UtilityService,private _UserService:UserService,private _Behaviour:BehaviourChartService,private datePipe: DatePipe) {
     super();
 
     this._ConstantServices.ActiveMenuName = "Behaviour Chart";
@@ -135,7 +136,8 @@ else {
                     tdata = tdata ? tdata : {};
                     // console.log(tdata)
                     this.BehaviourChartData = tdata;
-                    
+                    this.openAndClose();
+                    this.BehaviourChartData.DateAndTime = this.datePipe.transform(this.BehaviourChartData.DateAndTime,'dd-MM-yyyy HH:mm');
                 } else {
                     this.BehaviourChartData = {};
                 }
@@ -156,6 +158,7 @@ completeForm() {
         this.residentAdmissionInfoId;
     this.BehaviourChartData.StartedBy = this.loginId;
     this.BehaviourChartData.LastEnteredBy = this.loginId;
+    this.BehaviourChartData.DateAndTime = this.datePipe.transform(this.BehaviourChartData.DateAndTime,'yyyy-MM-ddTHH:mm');
     
         const objectBody: any = {
           StatementType: this.StatementType,
