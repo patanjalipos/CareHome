@@ -52,6 +52,31 @@ export class UserService {
         
     } 
 
+    //My Profile
+    GerUserDetailsById(UserId: string): Observable<any> {
+        let reqHeader = new HttpHeaders({
+            'Content-Type': 'application/json',
+            'Access-Control-Allow-Origin': environment.BaseUriUser,
+            'Authorization': 'Bearer ' + localStorage.getItem('token')
+        });
+        let params = new HttpParams();
+        params = params.append('UserId', UserId);
+        return this._httpclient.get<any>(environment.BaseUriUser + "api/User/GerUserDetailsById", { "headers": reqHeader, "params": params });
+    }
+
+    UpdateUserDetailsById(obj: any): Observable<any> {
+    let reqHeader = new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': environment.BaseUriUser,
+        'Authorization': 'Bearer ' + localStorage.getItem('token')
+    });
+    let params = new HttpParams();
+   // params = params.append('UserId', localStorage.getItem('userId'));
+    var data = JSON.stringify(obj).toString();  
+    return this._httpclient.post<any>(environment.BaseUriUser + "api/User/UpdateUserDetailsById", data, { "headers": reqHeader, "params": params });
+  }
+  
+  
     
 
 }
