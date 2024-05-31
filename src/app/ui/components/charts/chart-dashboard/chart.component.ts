@@ -5,7 +5,7 @@ import { Calendar } from 'primeng/calendar';
 import { AppComponentBase } from 'src/app/app-component-base';
 import { AppComponent } from 'src/app/app.component';
 import {
-  ChartTypes,
+    ChartTypes,
     ConstantsService,
     CustomDateFormat,
 } from 'src/app/ui/service/constants.service';
@@ -43,7 +43,7 @@ export class ChartComponent extends AppComponentBase implements OnInit {
         private _UtilityService: UtilityService,
         private route: ActivatedRoute,
         private datepipe: DatePipe,
-        private _UserServices:UserService
+        private _UserServices: UserService
     ) {
         super();
         this._ConstantServices.ActiveMenuName = 'Chart Dashboard';
@@ -87,28 +87,29 @@ export class ChartComponent extends AppComponentBase implements OnInit {
         // this._UtilityService.hideSpinner();
 
         //Call the API
-        this._UserServices.GetChartDashboardList(
-            residentAdmissionInfoId,
-            chartMasterId,
-            dFrom,
-            dTo
-        )
-        .subscribe({
-            next: (data) => {
-                this._UtilityService.hideSpinner();
-                if (data.actionResult.success == true) {
-                    var tdata = JSON.parse(data.actionResult.result);
-                    tdata = tdata ? tdata : [];
-                    this.chartDashboardList = tdata;
-                } else {
-                    this.chartDashboardList = [];
-                }
-            },
-            error: (e) => {
-                this._UtilityService.hideSpinner();
-                this._UtilityService.showErrorAlert(e.message);
-            },
-        });
+        this._UserServices
+            .GetChartDashboardList(
+                residentAdmissionInfoId,
+                chartMasterId,
+                dFrom,
+                dTo
+            )
+            .subscribe({
+                next: (data) => {
+                    this._UtilityService.hideSpinner();
+                    if (data.actionResult.success == true) {
+                        var tdata = JSON.parse(data.actionResult.result);
+                        tdata = tdata ? tdata : [];
+                        this.chartDashboardList = tdata;
+                    } else {
+                        this.chartDashboardList = [];
+                    }
+                },
+                error: (e) => {
+                    this._UtilityService.hideSpinner();
+                    this._UtilityService.showErrorAlert(e.message);
+                },
+            });
     }
 
     dateRangeChange(calendar: Calendar) {
@@ -123,29 +124,26 @@ export class ChartComponent extends AppComponentBase implements OnInit {
         selectedChartdata: any = <any>{},
         isEditable = true
     ) {
-        if(selectedChartMasterId!=null)
-            {
-                this.selectedChartMasterId = selectedChartMasterId;
-                this.selectedChartData = {
-                    chartMasterId: selectedChartMasterId,
-                    selectedChartID: selectedChartdata.ChartId,
-                    isEditable: isEditable,
-                    StartedBy: selectedChartdata.StartedBy,
-                    StartedByDesignation: selectedChartdata.StartedByDesignation,
-                    StartedOn: selectedChartdata.StartedOn,
-                    ModifiedBy: selectedChartdata.ModifiedBy,
-                    ModifiedByDesignation: selectedChartdata.ModifiedByDesignation,
-                    ModifiedOn: selectedChartdata.ModifiedOn,
-                };
-                this.ShowModel();
-            }
-            else
-                alert('Kindly select Chart Type');
+        if (selectedChartMasterId != null) {
+            this.selectedChartMasterId = selectedChartMasterId;
+            this.selectedChartData = {
+                chartMasterId: selectedChartMasterId,
+                selectedChartID: selectedChartdata.ChartId,
+                isEditable: isEditable,
+                StartedBy: selectedChartdata.StartedBy,
+                StartedByDesignation: selectedChartdata.StartedByDesignation,
+                StartedOn: selectedChartdata.StartedOn,
+                ModifiedBy: selectedChartdata.ModifiedBy,
+                ModifiedByDesignation: selectedChartdata.ModifiedByDesignation,
+                ModifiedOn: selectedChartdata.ModifiedOn,
+            };
+            this.ShowModel();
+        } else alert('Kindly select Chart Type');
     }
 
     ShowModel() {
-      this.ShowChildComponent = true;
-  }
+        this.ShowChildComponent = true;
+    }
 
     GetChartMaster() {
         this._UtilityService.showSpinner();
@@ -170,13 +168,13 @@ export class ChartComponent extends AppComponentBase implements OnInit {
     }
 
     ResetModel() {
-      this.chartDashboardList = null;
-      this.rangeDates = undefined;
-      this.selectedChartMasterId = null;
-      this.selectedChartId = null;
-      this.selectedChartData = null;
-  }
-  EmitUpdateForm(event) {
-      this.SearchChart();
-  }
+        this.chartDashboardList = null;
+        this.rangeDates = undefined;
+        this.selectedChartMasterId = null;
+        this.selectedChartId = null;
+        this.selectedChartData = null;
+    }
+    EmitUpdateForm(event) {
+        this.SearchChart();
+    }
 }

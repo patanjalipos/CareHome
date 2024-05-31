@@ -38,7 +38,7 @@
                 <p-dropdown [required]="true" [options]="lstWeightLoss" optionLabel="optionName"
                     [(ngModel)]="RiskAssessmentWaterFlowPressureFormsData.WeightLoss"
                     name="RiskAssessmentWaterFlowPressureFormsData.WeightLoss" optionValue="optionId"
-                    placeholder="Select" [style]="{ width: '100%' }">
+                    placeholder="--select--" [style]="{ width: '100%' }">
                 </p-dropdown>
             </ng-container>
             <ng-template #WeightLoss>
@@ -54,7 +54,7 @@
             <ng-container *ngIf="this.isEditable; else Appetite">
                 <p-dropdown [required]="true" [options]="lstAppetite" optionLabel="optionName"
                     [(ngModel)]="RiskAssessmentWaterFlowPressureFormsData.Appetite"
-                    name="RiskAssessmentWaterFlowPressureFormsData.Appetite" optionValue="optionId" placeholder="Select"
+                    name="RiskAssessmentWaterFlowPressureFormsData.Appetite" optionValue="optionId" placeholder="--select--"
                     [style]="{ width: '100%' }">
                 </p-dropdown>
             </ng-container>
@@ -73,7 +73,7 @@
             <ng-container *ngIf="this.isEditable; else BMI">
                 <p-dropdown [required]="true" [options]="lstBMI" optionLabel="optionName"
                     [(ngModel)]="RiskAssessmentWaterFlowPressureFormsData.BMI"
-                    name="RiskAssessmentWaterFlowPressureFormsData.BMI" optionValue="optionId" placeholder="Select"
+                    name="RiskAssessmentWaterFlowPressureFormsData.BMI" optionValue="optionId" placeholder="--select--"
                     [style]="{ width: '100%' }">
                 </p-dropdown>
                 <p class="mb-4">Select the resident's BMI</p>
@@ -92,7 +92,7 @@
                 <p-dropdown [required]="true" [options]="lstSkinRiskAreas" optionLabel="optionName"
                     [(ngModel)]="RiskAssessmentWaterFlowPressureFormsData.SkinRiskAreas"
                     name="RiskAssessmentWaterFlowPressureFormsData.SkinRiskAreas" optionValue="optionId"
-                    placeholder="Select" [style]="{ width: '100%' }">
+                    placeholder="--select--" [style]="{ width: '100%' }">
                 </p-dropdown>
             </ng-container>
             <ng-template #SkinRiskAreas>
@@ -110,7 +110,7 @@
             <ng-container *ngIf="this.isEditable; else SexOrAge">
                 <p-dropdown [required]="true" [options]="lstSexOrAge" optionLabel="optionName"
                     [(ngModel)]="RiskAssessmentWaterFlowPressureFormsData.SexOrAge"
-                    name="RiskAssessmentWaterFlowPressureFormsData.SexOrAge" optionValue="optionId" placeholder="Select"
+                    name="RiskAssessmentWaterFlowPressureFormsData.SexOrAge" optionValue="optionId" placeholder="--select--"
                     [style]="{ width: '100%' }">
                 </p-dropdown>
             </ng-container>
@@ -129,7 +129,7 @@
                 <p-dropdown [required]="true" [options]="lstSpecialRisks" optionLabel="optionName"
                     [(ngModel)]="RiskAssessmentWaterFlowPressureFormsData.SpecialRisks"
                     name="RiskAssessmentWaterFlowPressureFormsData.SpecialRisks" optionValue="optionId"
-                    placeholder="Select" [style]="{ width: '100%' }">
+                    placeholder="--select--" [style]="{ width: '100%' }">
                 </p-dropdown>
             </ng-container>
             <ng-template #SpecialRisks>
@@ -146,7 +146,7 @@
                 <p-dropdown [required]="true" [options]="lstContinence" optionLabel="optionName"
                     [(ngModel)]="RiskAssessmentWaterFlowPressureFormsData.Continence"
                     name="RiskAssessmentWaterFlowPressureFormsData.Continence" optionValue="optionId"
-                    placeholder="Select" [style]="{ width: '100%' }">
+                    placeholder="--select--" [style]="{ width: '100%' }">
                 </p-dropdown>
             </ng-container>
             <ng-template #Continence>
@@ -162,7 +162,7 @@
             <ng-container *ngIf="this.isEditable; else Mobility">
                 <p-dropdown [required]="true" [options]="lstMobility" optionLabel="optionName"
                     [(ngModel)]="RiskAssessmentWaterFlowPressureFormsData.Mobility"
-                    name="RiskAssessmentWaterFlowPressureFormsData.Mobility" optionValue="optionId" placeholder="Select"
+                    name="RiskAssessmentWaterFlowPressureFormsData.Mobility" optionValue="optionId" placeholder="--select--"
                     [style]="{ width: '100%' }">
                 </p-dropdown>
             </ng-container>
@@ -180,7 +180,7 @@
                 <p-dropdown [required]="true" [options]="lstNeurologicalDeficit" optionLabel="optionName"
                     [(ngModel)]="RiskAssessmentWaterFlowPressureFormsData.NeurologicalDeficit"
                     name="RiskAssessmentWaterFlowPressureFormsData.NeurologicalDeficit" optionValue="optionId"
-                    placeholder="Select" [style]="{ width: '100%' }">
+                    placeholder="--select--" [style]="{ width: '100%' }">
                 </p-dropdown>
                 <p class="mb-4">E.g. diabetes, MS, C.V.A, motor sensory paraplegia, dementia</p>
             </ng-container>
@@ -198,7 +198,7 @@
                 <p-dropdown [required]="true" [options]="lstMajorMedication" optionLabel="optionName"
                     [(ngModel)]="RiskAssessmentWaterFlowPressureFormsData.MajorMedication"
                     name="RiskAssessmentWaterFlowPressureFormsData.MajorMedication" optionValue="optionId"
-                    placeholder="Select" [style]="{ width: '100%' }">
+                    placeholder="--select--" [style]="{ width: '100%' }">
                 </p-dropdown>
                 <p class="mb-4"> Only viable within 48 hours of being on operating table</p>
             </ng-container>
@@ -216,7 +216,7 @@
                 <p-dropdown [required]="true" [options]="lstUlcerRiskRating" optionLabel="optionName"
                     [(ngModel)]="RiskAssessmentWaterFlowPressureFormsData.UlcerRiskRating"
                     name="RiskAssessmentWaterFlowPressureFormsData.UlcerRiskRating" optionValue="optionId"
-                    placeholder="Select" [style]="{ width: '100%' }">
+                    placeholder="--select--" [style]="{ width: '100%' }">
                 </p-dropdown>
             </ng-container>
             <ng-template #UlcerRiskRating>

@@ -34,7 +34,7 @@
         </div>
         <div class="col-md-7 mt-4 form-text">
             <ng-container *ngIf="this.isEditable; else CapacityInRelationData">
-                <p-dropdown placeholder="Select" [style]="{ width: '100%' }" [options]="lstCapacityInRelation"
+                <p-dropdown placeholder="--select--" [style]="{ width: '100%' }" [options]="lstCapacityInRelation"
                     optionLabel="optionName" optionValue="optionId" name="CareWishesFormsData.CapacityInRelation"
                     [(ngModel)]="CareWishesFormsData.CapacityInRelation">
                 </p-dropdown>
@@ -51,7 +51,7 @@
         </div>
         <div class="col-md-7 form-text">
             <ng-container *ngIf="this.isEditable; else WishesData">
-                <p-dropdown placeholder="Select" [style]="{ width: '100%' }" [options]="lstWishes"
+                <p-dropdown placeholder="--select--" [style]="{ width: '100%' }" [options]="lstWishes"
                     optionLabel="optionName" optionValue="optionId"
                     [(ngModel)]="CareWishesFormsData.Wishes"></p-dropdown>
             </ng-container>
@@ -220,7 +220,7 @@
         </div>
         <div class="col-md-7 form-text">
             <ng-container *ngIf="this.isEditable; else BuriedOrCrematedData">
-                <p-dropdown placeholder="Select" [style]="{ width: '100%' }" [options]="lstBuriedOrCremated"
+                <p-dropdown placeholder="--select--" [style]="{ width: '100%' }" [options]="lstBuriedOrCremated"
                     optionLabel="optionName" optionValue="optionId"
                     [(ngModel)]="CareWishesFormsData.BuriedOrCremated"></p-dropdown>
             </ng-container>
@@ -476,7 +476,7 @@
         </div>
         <div class="col-md-7 form-text">
             <ng-container *ngIf="this.isEditable; else GoalsData">
-                <p-dropdown placeholder="Select" [style]="{ width: '100%' }" [options]="lstGoals"
+                <p-dropdown placeholder="--select--" [style]="{ width: '100%' }" [options]="lstGoals"
                     optionLabel="optionName" optionValue="optionId"
                     [(ngModel)]="CareWishesFormsData.Goals"></p-dropdown>
             </ng-container>
@@ -520,7 +520,7 @@
         </div>
         <div class="col-md-7 form-text">
             <ng-container *ngIf="this.isEditable; else PalliativeEndOfLifeData">
-                <p-dropdown placeholder="Select" [style]="{ width: '100%' }" [options]="lstPalliativeEndOfLife"
+                <p-dropdown placeholder="--select--" [style]="{ width: '100%' }" [options]="lstPalliativeEndOfLife"
                     optionLabel="optionName" optionValue="optionId"
                     [(ngModel)]="CareWishesFormsData.PalliativeEndOfLife"></p-dropdown>
             </ng-container>
@@ -708,7 +708,7 @@
         </div>
         <div class="col-md-7 form-text">
             <ng-container *ngIf="this.isEditable; else AnyRestrictiveMeasuresData">
-                <p-dropdown placeholder="Select" [style]="{ width: '100%' }" [options]="lstAnyRestrictiveMeasures"
+                <p-dropdown placeholder="--select--" [style]="{ width: '100%' }" [options]="lstAnyRestrictiveMeasures"
                     optionLabel="optionName" optionValue="optionId"
                     [(ngModel)]="CareWishesFormsData.AnyRestrictiveMeasures"></p-dropdown>
                 <p class="mb-4">E.g. crash mat (increase in falls)</p>
@@ -740,7 +740,7 @@
         </div>
         <div class="col-md-7 form-text">
             <ng-container *ngIf="this.isEditable; else ClinicalFrailtyScaleData">
-                <p-dropdown placeholder="Select" [style]="{ width: '100%' }" [options]="lstClinicalFrailtyScale"
+                <p-dropdown placeholder="--select--" [style]="{ width: '100%' }" [options]="lstClinicalFrailtyScale"
                     optionLabel="optionName" optionValue="optionId"
                     [(ngModel)]="CareWishesFormsData.ClinicalFrailtyScale"></p-dropdown>
                 <p class="mb-4">Please chose which profile best describe the person we are assessing -</p>

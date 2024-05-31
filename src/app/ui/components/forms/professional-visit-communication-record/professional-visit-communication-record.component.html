@@ -81,7 +81,7 @@
         </div>
         <div class="col-md-8 ">
             <ng-container *ngIf="this.isEditable; else CommRelay">
-                <p-dropdown [required]="true" [options]="lstCommRelay"   optionLabel="optionName" [(ngModel)]="ProfVisitFormsData.CommRelay" name="CommRelay" optionValue="optionId" placeholder="Select" [style]="{ width: '100%' }">
+                <p-dropdown [required]="true" [options]="lstCommRelay"   optionLabel="optionName" [(ngModel)]="ProfVisitFormsData.CommRelay" name="CommRelay" optionValue="optionId" placeholder="--select--" [style]="{ width: '100%' }">
                 </p-dropdown>
             </ng-container>
             <ng-template #CommRelay>
@@ -95,7 +95,7 @@
         </div>
         <div class="col-md-8">
             <ng-container *ngIf="this.isEditable; else HealthcareType">
-                <p-dropdown [required]="true" [options]="lstHealthcareType"   optionLabel="optionName" [(ngModel)]="ProfVisitFormsData.HealthcareType" name="HealthcareType" optionValue="optionId" placeholder="Select" [style]="{ width: '100%' }">
+                <p-dropdown [required]="true" [options]="lstHealthcareType"   optionLabel="optionName" [(ngModel)]="ProfVisitFormsData.HealthcareType" name="HealthcareType" optionValue="optionId" placeholder="--select--" [style]="{ width: '100%' }">
                 </p-dropdown>
             </ng-container>
             <ng-template #HealthcareType>
