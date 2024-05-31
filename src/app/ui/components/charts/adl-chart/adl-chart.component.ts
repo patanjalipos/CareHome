@@ -176,7 +176,10 @@ export class AdlChartComponent extends AppComponentBase implements OnInit {
                         tdata = tdata ? tdata : {};
                         this.ADLChartData = tdata;
                         this.openAndClose();
-                        this.ADLChartData.DateAndTime = this.datePipe.transform(this.ADLChartData.DateAndTime,'dd-MM-yyyy HH:mm');
+                        this.ADLChartData.DateAndTime = this.datePipe.transform(
+                            this.ADLChartData.DateAndTime,
+                            'dd-MM-yyyy HH:mm'
+                        );
                     } else {
                         this.ADLChartData = {};
                     }
@@ -199,7 +202,24 @@ export class AdlChartComponent extends AppComponentBase implements OnInit {
                 this.residentAdmissionInfoId;
             this.ADLChartData.StartedBy = this.loginId;
             this.ADLChartData.LastEnteredBy = this.loginId;
-            this.ADLChartData.DateAndTime = this.datePipe.transform(this.ADLChartData.DateAndTime,'yyyy-MM-ddTHH:mm');
+
+            if (this.StatementType == 'Update') {
+                //Pare dateTime
+                const dateParts = this.ADLChartData.DateAndTime.split(/[- :]/);
+                const parsedDate = new Date(
+                    +dateParts[2],
+                    dateParts[1] - 1,
+                    +dateParts[0],
+                    +dateParts[3],
+                    +dateParts[4]
+                );
+                this.ADLChartData.DateAndTime = parsedDate;
+            }
+
+            this.ADLChartData.DateAndTime = this.datePipe.transform(
+                this.ADLChartData.DateAndTime,
+                'yyyy-MM-ddTHH:mm'
+            );
 
             const objectBody: any = {
                 StatementType: this.StatementType,
