@@ -126,11 +126,16 @@ export class BloodPressureChartComponent
                 },
             });
     }
-    completeForm() {
-        this.save();
+
+    ClearAllfeilds() {
+        if (this.preSelectedChartData.selectedChartID) {
+            this.bloodPressureChartFormData = <any>{};
+            this.bloodPressureChartFormData.activitiesChartId =
+                this.preSelectedChartData.selectedChartID;
+        }
     }
 
-    save() {
+    Save() {
         if (
             this.userId != null &&
             this.residentAdmissionInfoId != null &&
@@ -139,29 +144,36 @@ export class BloodPressureChartComponent
             this.bloodPressureChartFormData.userId = this.userId;
             this.bloodPressureChartFormData.StartedBy = this.loginId;
             this.bloodPressureChartFormData.LastEnteredBy = this.loginId;
-
-            if (this.StatementType == 'Update') {
-                //Pare dateTime
-                const dateParts =
-                    this.bloodPressureChartFormData.DateAndTime.split(/[- :]/);
-                const parsedDate = new Date(
-                    +dateParts[2],
-                    dateParts[1] - 1,
-                    +dateParts[0],
-                    +dateParts[3],
-                    +dateParts[4]
-                );
-                this.bloodPressureChartFormData.DateAndTime = parsedDate;
-            }
-
-            this.bloodPressureChartFormData.DateAndTime =
-                this.datePipte.transform(
-                    this.bloodPressureChartFormData.DateAndTime,
-                    'yyyy-MM-ddTHH:mm'
-                );
-
             this.bloodPressureChartFormData.ResidentAdmissionInfoId =
                 this.residentAdmissionInfoId;
+
+            if (this.bloodPressureChartFormData.DateAndTime) {
+                if (
+                    this.StatementType == 'Update' &&
+                    typeof this.bloodPressureChartFormData.DateAndTime ===
+                        'string'
+                ) {
+                    //Pare dateTime
+                    const dateParts =
+                        this.bloodPressureChartFormData.DateAndTime.split(
+                            /[- :]/
+                        );
+                    const parsedDate = new Date(
+                        +dateParts[2],
+                        dateParts[1] - 1,
+                        +dateParts[0],
+                        +dateParts[3],
+                        +dateParts[4]
+                    );
+                    this.bloodPressureChartFormData.DateAndTime = parsedDate;
+                }
+                this.bloodPressureChartFormData.DateAndTime =
+                    this.datePipte.transform(
+                        this.bloodPressureChartFormData.DateAndTime,
+                        'yyyy-MM-ddTHH:mm'
+                    );
+            }
+
             const objectBody: any = {
                 StatementType: this.StatementType,
                 bloodPressureChartData: this.bloodPressureChartFormData,
