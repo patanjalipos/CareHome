@@ -103,13 +103,13 @@
         <div class="d-flex justify-content-end mt-4" *ngIf="this.isEditable == true">
             <div>
                 <span class="p-ml-left mr-4">
-                    <button pButton title="New" label="Clear all feild" (click)="ResetModel()"></button>
+                    <button pButton title="New" label="Clear all feild" (click)="ClearAllfeilds()"></button>
                     <span class="total-txt"></span>
                 </span>
             </div>
             <div>
                 <span class="p-ml-left mr-4">
-                    <button pButton title="New" label="Save" (click)="completeForm()"></button>
+                    <button pButton title="New" label="Save" (click)="Save()"></button>
                     <span class="total-txt"></span>
                 </span>
             </div>
