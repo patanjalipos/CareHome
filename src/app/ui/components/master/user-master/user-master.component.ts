@@ -215,8 +215,9 @@ export class UserMasterComponent extends AppComponentBase implements OnInit {
             this.RegistrationMainModel.DateOfBirth = new Date(this.RegistrationMainModel.DateOfBirth); 
             if(this.RegistrationMainModel?.ProfileImage!=null && this.RegistrationMainModel?.ProfileImage!=undefined)
               {
-                const imageFormat = this.RegistrationMainModel.ProfileImage.endsWith(".jpg") || this.RegistrationMainModel.ProfileImage.endsWith(".jpeg") ? "jpeg" : "png";
-                this.imageSrc = "data:image/" + imageFormat + ";base64," + this.RegistrationMainModel.ProfileImage;               
+               // const imageFormat = this.RegistrationMainModel.ProfileImage.endsWith(".jpg") || this.RegistrationMainModel.ProfileImage.endsWith(".jpeg") ? "jpeg" : "png";
+               var imageFormat=this._UtilityService.getFileExtension(this.RegistrationMainModel.ProfileImage);
+               this.imageSrc = "data:image/" + imageFormat + ";base64," + this.RegistrationMainModel.ProfileImage;               
                 //console.log(this.imageSrc);
               }          
             this.mode = "update"; 

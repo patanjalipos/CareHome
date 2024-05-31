@@ -96,7 +96,8 @@ export class ResidentListComponent extends AppComponentBase implements OnInit {
         //  this.lstResidentMaster = tdata;          
               this.lstResidentMaster = tdata.map(resident => {
                 if (resident.ProfileImage) {
-                  const imageFormat = resident.ProfileImage.endsWith(".jpg") || resident.ProfileImage.endsWith(".jpeg") ? "jpeg" : "png";
+                 // const imageFormat = resident.ProfileImage.endsWith(".jpg") || resident.ProfileImage.endsWith(".jpeg") ? "jpeg" : "png";
+                  var imageFormat=this._UtilityService.getFileExtension(resident.ProfileImage);
                   resident.imageSrc = "data:image/" + imageFormat + ";base64," + resident.ProfileImage;
                 } else {
                   resident.imageSrc = '';

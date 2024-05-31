@@ -100,4 +100,41 @@ export class UtilityService {
             }
           });   
     }
+      //Get Extension from Base64
+  getFileExtension(base64String: string): string | null {
+    const binaryString = atob(base64String);
+    const bytes = new Uint8Array(binaryString.length);
+    
+    for (let i = 0; i < binaryString.length; i++) {
+      bytes[i] = binaryString.charCodeAt(i);
+    }
+    const hexString = Array.from(bytes.slice(0, 4)).map(b => b.toString(16).padStart(2, '0')).join('').toUpperCase();    
+   //console.log(hexString);
+    if (hexString.startsWith('FFD8FF')) {
+      return 'jpg'; // JPEG/JPG files
+    } 
+    else if (hexString.startsWith('89504E47')) {
+      return 'png'; // PNG files
+    } 
+    else if (hexString.startsWith('47494638')) {
+       return 'gif';  // GIF
+     }
+     else if (hexString.startsWith('25504446')) {
+       return 'pdf';  // PDF files
+     }
+     else if (hexString.startsWith('D0CF11E0')) {
+       return 'xls';  // XLS files 
+     }     
+     else if (hexString.startsWith('504B0304')) {
+       return 'xlsx'; // XLSX files 
+     }
+     else if (hexString.startsWith('D0CF11E0')) {
+       return 'doc';  // DOC files 
+     }     
+     else if (hexString.startsWith('504B0304')) {
+       return 'docx'; // DOCX files 
+     }else {
+     return null; // Unknown file type
+    }
+  }
 }
