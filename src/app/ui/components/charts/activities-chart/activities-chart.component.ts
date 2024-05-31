@@ -125,11 +125,11 @@ export class ActivitiesChartComponent
                         var tdata = JSON.parse(data.actionResult.result);
                         tdata = tdata ? tdata : {};
                         this.ActivitiesChartFormData = tdata;
-                        this.ActivitiesChartFormData.DateAndTime = this.datePipte.transform(this.ActivitiesChartFormData.DateAndTime,'dd-MM-yyyy HH:mm');
-                        console.log("data===>");
-                        console.log(data);
-                        
-                        
+                        this.ActivitiesChartFormData.DateAndTime =
+                            this.datePipte.transform(
+                                this.ActivitiesChartFormData.DateAndTime,
+                                'dd-MM-yyyy HH:mm'
+                            );
                         this.openAndClose();
                     } else {
                         this.ActivitiesChartFormData = {};
@@ -187,7 +187,26 @@ export class ActivitiesChartComponent
             this.ActivitiesChartFormData.LastEnteredBy = this.loginId;
             this.ActivitiesChartFormData.ResidentAdmissionInfoId =
                 this.residentAdmissionInfoId;
-                this.ActivitiesChartFormData.DateAndTime = this.datePipte.transform(this.ActivitiesChartFormData.DateAndTime,'yyyy-MM-ddTHH:mm');
+
+            if (this.StatementType == 'Update') {
+                //Pare dateTime
+                const dateParts =
+                    this.ActivitiesChartFormData.DateAndTime.split(/[- :]/);
+                const parsedDate = new Date(
+                    +dateParts[2],
+                    dateParts[1] - 1,
+                    +dateParts[0],
+                    +dateParts[3],
+                    +dateParts[4]
+                );
+                this.ActivitiesChartFormData.DateAndTime= parsedDate;
+            }
+
+            this.ActivitiesChartFormData.DateAndTime = this.datePipte.transform(
+                this.ActivitiesChartFormData.DateAndTime,
+                'yyyy-MM-ddTHH:mm'
+            );
+
             const objectBody: any = {
                 StatementType: this.StatementType,
                 activitiesChartData: this.ActivitiesChartFormData,
