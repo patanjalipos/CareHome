@@ -31,7 +31,7 @@
         </div>
         <div class="col-md-7 mt-4">
             <ng-container *ngIf="this.isEditable; else EpilepsyType">
-                <p-dropdown [required]="true" [options]="lstEpilepsyType"   optionLabel="optionName" [(ngModel)]="EpilepsySupportFormsData.EpilepsyType" name="EpilepsyType" optionValue="optionId" placeholder="Select" [style]="{ width: '100%' }">
+                <p-dropdown [required]="true" [options]="lstEpilepsyType"   optionLabel="optionName" [(ngModel)]="EpilepsySupportFormsData.EpilepsyType" name="EpilepsyType" optionValue="optionId" placeholder="--select--" [style]="{ width: '100%' }">
                 </p-dropdown>
             </ng-container>
             <ng-template #EpilepsyType>
@@ -46,7 +46,7 @@
         </div>
         <div class="col-md-7">
             <ng-container *ngIf="this.isEditable; else Seizures">
-                <p-dropdown [required]="true" [options]="lstSeizures"   optionLabel="optionName" [(ngModel)]="EpilepsySupportFormsData.Seizures" name="Seizures" optionValue="optionId" placeholder="Select" [style]="{ width: '100%' }">
+                <p-dropdown [required]="true" [options]="lstSeizures"   optionLabel="optionName" [(ngModel)]="EpilepsySupportFormsData.Seizures" name="Seizures" optionValue="optionId" placeholder="--select--" [style]="{ width: '100%' }">
                 </p-dropdown>
             </ng-container>
             <ng-template #Seizures>
@@ -76,7 +76,7 @@
         </div>
         <div class="col-md-7">
             <ng-container *ngIf="this.isEditable; else TonicClonicSeizures">
-                <p-dropdown [required]="true" [options]="lstTonicClonicSeizures"   optionLabel="optionName" [(ngModel)]="EpilepsySupportFormsData.TonicClonicSeizures" name="TonicClonicSeizures" optionValue="optionId" placeholder="Select" [style]="{ width: '100%' }">
+                <p-dropdown [required]="true" [options]="lstTonicClonicSeizures"   optionLabel="optionName" [(ngModel)]="EpilepsySupportFormsData.TonicClonicSeizures" name="TonicClonicSeizures" optionValue="optionId" placeholder="--select--" [style]="{ width: '100%' }">
                 </p-dropdown>
                 <p class="mb-4">Select all of the below for inclusion in the support plan</p>
             </ng-container>
@@ -92,7 +92,7 @@
         </div>
         <div class="col-md-7">
             <ng-container *ngIf="this.isEditable; else FocalSeizuresCheck">
-                <p-dropdown [required]="true" [options]="lstFocalSeizuresCheck"   optionLabel="optionName" [(ngModel)]="EpilepsySupportFormsData.FocalSeizuresCheck" name="FocalSeizuresCheck" optionValue="optionId" placeholder="Select" [style]="{ width: '100%' }">
+                <p-dropdown [required]="true" [options]="lstFocalSeizuresCheck"   optionLabel="optionName" [(ngModel)]="EpilepsySupportFormsData.FocalSeizuresCheck" name="FocalSeizuresCheck" optionValue="optionId" placeholder="--select--" [style]="{ width: '100%' }">
                 </p-dropdown>
             </ng-container>
             <ng-template #FocalSeizuresCheck>
@@ -107,7 +107,7 @@
         </div>
         <div class="col-md-7">
             <ng-container *ngIf="this.isEditable; else TestCheck">
-                <p-dropdown [required]="true" [options]="lstTestCheck"   optionLabel="optionName" [(ngModel)]="EpilepsySupportFormsData.TestCheck" name="TestCheck" optionValue="optionId" placeholder="Select" [style]="{ width: '100%' }">
+                <p-dropdown [required]="true" [options]="lstTestCheck"   optionLabel="optionName" [(ngModel)]="EpilepsySupportFormsData.TestCheck" name="TestCheck" optionValue="optionId" placeholder="--select--" [style]="{ width: '100%' }">
                 </p-dropdown>
                 <p class="mb-4">Please chose from options below and include dates if available in the other text box</p>
             </ng-container>
@@ -123,7 +123,7 @@
         </div>
         <div class="col-md-7">
             <ng-container *ngIf="this.isEditable; else EpilepsyTreatment">
-                <p-dropdown [required]="true" [options]="lstEpilepsyTreatment"   optionLabel="optionName" [(ngModel)]="EpilepsySupportFormsData.EpilepsyTreatment" name="EpilepsyTreatment" optionValue="optionId" placeholder="Select" [style]="{ width: '100%' }">
+                <p-dropdown [required]="true" [options]="lstEpilepsyTreatment"   optionLabel="optionName" [(ngModel)]="EpilepsySupportFormsData.EpilepsyTreatment" name="EpilepsyTreatment" optionValue="optionId" placeholder="--select--" [style]="{ width: '100%' }">
                 </p-dropdown>
             </ng-container>
             <ng-template #EpilepsyTreatment>
@@ -223,7 +223,7 @@
         </div>
         <div class="col-md-7">
             <ng-container *ngIf="this.isEditable; else EmergencyMedication">
-                <p-dropdown [required]="true" [options]="lstEmergencyMedication"   optionLabel="optionName" [(ngModel)]="EpilepsySupportFormsData.EmergencyMedication" name="EmergencyMedication" optionValue="optionId" placeholder="Select" [style]="{ width: '100%' }">
+                <p-dropdown [required]="true" [options]="lstEmergencyMedication"   optionLabel="optionName" [(ngModel)]="EpilepsySupportFormsData.EmergencyMedication" name="EmergencyMedication" optionValue="optionId" placeholder="--select--" [style]="{ width: '100%' }">
                 </p-dropdown>
             </ng-container>
             <ng-template #EmergencyMedication>
@@ -238,7 +238,7 @@
         </div>
         <div class="col-md-7">
             <ng-container *ngIf="this.isEditable; else SeizuresAffect">
-                <p-dropdown [required]="true" [options]="lstSeizuresAffect"   optionLabel="optionName" [(ngModel)]="EpilepsySupportFormsData.SeizuresAffect" name="SeizuresAffect" optionValue="optionId" placeholder="Select" [style]="{ width: '100%' }">
+                <p-dropdown [required]="true" [options]="lstSeizuresAffect"   optionLabel="optionName" [(ngModel)]="EpilepsySupportFormsData.SeizuresAffect" name="SeizuresAffect" optionValue="optionId" placeholder="--select--" [style]="{ width: '100%' }">
                 </p-dropdown>
             </ng-container>
             <ng-template #SeizuresAffect>

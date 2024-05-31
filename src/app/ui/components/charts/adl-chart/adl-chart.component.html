@@ -4,11 +4,13 @@
             <h4>New observation</h4>
         </div>
         <div class="col-md-4 mt-4">
-            <label class="form-label">
-                Date and Time</label>
+            <div class="labelcontent">
+                <label class="form-label bold">
+                    Date and Time</label>
+            </div>
             <ng-container *ngIf="this.isEditable; else DateAndTime">
                 <p-calendar name="txtDate" [showIcon]="true" inputId="icon" class="iconcal" [readonlyInput]="true"
-                    appendTo="body" [maxDate]="" [showTime]="true" hourFormat="12"
+                    appendTo="body" [maxDate]="" [showTime]="true" hourFormat="24"
                     [dateFormat]="customDateFormat.CalendarFormat" #dobref=""
                     [(ngModel)]="ADLChartData.DateAndTime"></p-calendar>
             </ng-container>
@@ -17,7 +19,9 @@
             </ng-template>
         </div>
         <div class="col-md-4 mt-4">
-            <label class="form-label">Care Given</label>
+            <div class="labelcontent">
+                <label class="form-label bold">Care Given</label>
+            </div>
             <ng-container *ngIf="this.isEditable; else CareGivenOptions">
                 <p-dropdown [required]="true" name="CareGiven" [options]="stLstYesNoOptions" optionLabel="optionValue"
                     optionValue="optionId" placeholder="--select--" [style]="{ width: '100%' }"
@@ -31,7 +35,9 @@
         <div *ngIf="inputFieldsCheck" class="row">
             <h5 class="formheader">Mobility</h5>
             <div class="col-md-4">
-                <label class="form-label">What was the transfer method?></label>
+                <div class="labelcontent">
+                    <label class="form-label bold">What was the transfer method?</label>
+                </div>
                 <ng-container *ngIf="this.isEditable; else TransferMethodOptions">
                     <p-dropdown [required]="true" name="TransferMethod" [(ngModel)]="ADLChartData.TransferMethodOptions"
                         [options]="LstTransferMethod" optionLabel="optionName" optionValue="optionId"
@@ -43,7 +49,9 @@
                 </ng-template>
             </div>
             <div class="col-md-4">
-                <label class="form-label">Assistance level </label>
+                <div class="labelcontent">
+                    <label class="form-label bold">Assistance level </label>
+                </div>
                 <ng-container *ngIf="this.isEditable; else MobilityAssistanceLevelOptions">
                 <p-dropdown [required]="true" name="MobilityAssistanceLevelOptions"
                     [(ngModel)]="ADLChartData.MobilityAssistanceLevelOptions" [options]="LstAssistanceLevel"
@@ -56,7 +64,9 @@
                 </ng-template>
             </div>
             <div class="col-md-4">
-                <label class="form-label">How many people assisted?</label>
+                <div class="labelcontent">
+                    <label class="form-label bold">How many people assisted?</label>
+                </div>
                 <ng-container *ngIf="this.isEditable; else MobilityPeopleAssisted">
                 <input type="number" pInputText name="ActivitiesChartFormData"
                     [(ngModel)]="ADLChartData.MobilityPeopleAssisted" [required]="true" [style]="{ width: '100%' }" />
@@ -67,7 +77,9 @@
             </div>
             <h5 class="formheader">Hygiene</h5>
             <div class="col-md-4">
-                <label class="form-label">What assistance was required?</label>
+                <div class="labelcontent">
+                    <label class="form-label bold">What assistance was required?</label>
+                </div>
                 <ng-container *ngIf="this.isEditable; else HygieneAssistanceRequiredOptions">
                 <p-dropdown [required]="true" name="HygieneAssistanceRequiredOptions"
                     [(ngModel)]="ADLChartData.HygieneAssistanceRequiredOptions" [options]="LstHygieneAssistanceRequired"
@@ -80,7 +92,9 @@
                 </ng-template>
             </div>
             <div class="col-md-4">
-                <label class="form-label">How many people assisted?</label>
+                <div class="labelcontent">
+                    <label class="form-label bold">How many people assisted?</label>
+                </div>
                 <ng-container *ngIf="this.isEditable; else HygienePeopleAssisted">
                 <input type="number" pInputText name="ActivitiesChartFormData"
                     [(ngModel)]="ADLChartData.HygienePeopleAssisted" [required]="true" [style]="{ width: '100%' }" />
@@ -90,7 +104,9 @@
                 </ng-template>
             </div>
             <div class="col-md-4">
-                <label class="form-label">Assistance level</label>
+                <div class="labelcontent">
+                    <label class="form-label bold">Assistance level</label>
+                </div>
                 <ng-container *ngIf="this.isEditable; else HygieneAssistanceLevelOptions">
                 <p-dropdown [required]="true" name="HygieneAssistanceLevelOptions"
                     [(ngModel)]="ADLChartData.HygieneAssistanceLevelOptions" [options]="LstAssistanceLevel"
@@ -104,7 +120,9 @@
             </div>
             <h5 class="formheader">Skin Integrity</h5>
             <div class="col-md-4">
-                <label class="form-label">Status of skin - skin inspection comments</label>
+                <div class="labelcontent">
+                    <label class="form-label bold">Status of skin - skin inspection comments</label>
+                </div>
                 <ng-container *ngIf="this.isEditable; else SkinStatus">
                 <textarea type="text" pInputTextarea name="ActivitiesChartFormData"
                     [(ngModel)]="ADLChartData.SkinStatus" [required]="true" [style]="{ width: '100%' }"></textarea>
@@ -114,7 +132,9 @@
                 </ng-template>
             </div>
             <div class="col-md-4">
-                <label class="form-label">Repositional changes</label>
+                <div class="labelcontent">
+                    <label class="form-label bold">Repositional changes</label>
+                </div>
                 <ng-container *ngIf="this.isEditable; else RepositionalChangesOptions">
                 <p-dropdown [required]="true" name="RepositionalChangesOptions"
                     [(ngModel)]="ADLChartData.RepositionalChangesOptions" [options]="LstRepositionalChanges"
@@ -128,7 +148,9 @@
             </div>
             <h5 class="formheader">Dressing and Grooming</h5>
             <div class="col-md-4">
-                <label class="form-label">What assistance was required?</label>
+                <div class="labelcontent">
+                    <label class="form-label bold">What assistance was required?</label>
+                </div>
                 <ng-container *ngIf="this.isEditable; else DressingAssistanceRequiredOptions">
                 <p-dropdown [required]="true" name="DressingAssistanceRequiredOptions"
                     [(ngModel)]="ADLChartData.DressingAssistanceRequiredOptions"
@@ -141,7 +163,9 @@
                 </ng-template>
             </div>
             <div class="col-md-4">
-                <label class="form-label">Assistance level</label>
+                <div class="labelcontent">
+                    <label class="form-label bold">Assistance level</label>
+                </div>
                 <ng-container *ngIf="this.isEditable; else DressingAssistanceLevelOptions">
                 <p-dropdown [required]="true" name="DressingAssistanceLevelOptions"
                     [(ngModel)]="ADLChartData.DressingAssistanceLevelOptions" [options]="LstAssistanceLevel"
@@ -155,7 +179,9 @@
             </div>
             <h5 class="formheader">Toileting</h5>
             <div class="col-md-4">
-                <label class="form-label">What assistance was required?</label>
+                <div class="labelcontent">
+                    <label class="form-label bold">What assistance was required?</label>
+                </div>
                 <ng-container *ngIf="this.isEditable; else ToiletingAssistanceRequiredOptions">
                 <p-dropdown [required]="true" name="ToiletingAssistanceRequiredOptions"
                     [(ngModel)]="ADLChartData.ToiletingAssistanceRequiredOptions"
@@ -168,7 +194,9 @@
                 </ng-template>
             </div>
             <div class="col-md-4">
-                <label class="form-label">Assistance level</label>
+                <div class="labelcontent">
+                    <label class="form-label bold">Assistance level</label>
+                </div>
                 <ng-container *ngIf="this.isEditable; else ToiletingAssistanceLevelOptions">
                 <p-dropdown [required]="true" name="ToiletingAssistanceLevelOptions"
                     [(ngModel)]="ADLChartData.ToiletingAssistanceLevelOptions" [options]="LstAssistanceLevel"

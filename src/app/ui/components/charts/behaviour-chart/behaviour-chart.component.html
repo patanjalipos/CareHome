@@ -4,11 +4,13 @@
             <h4>New observation</h4>
         </div>
         <div class="col-md-4 mt-4">
-            <label class="form-label">
-                Date and Time</label>
+            <div class="labelcontent">
+                <label class="form-label bold">
+                    Date and Time</label>
+            </div>
             <ng-container *ngIf="this.isEditable; else DateAndTime">
                 <p-calendar name="txtDate" [showIcon]="true" inputId="icon" class="iconcal" [readonlyInput]="true"
-                    appendTo="body" [maxDate]="" [showTime]="true" hourFormat="12"
+                    appendTo="body" [maxDate]="" [showTime]="true" hourFormat="24"
                     [dateFormat]="customDateFormat.CalendarFormat" #dobref=""
                     [(ngModel)]="BehaviourChartData.DateAndTime"></p-calendar>
             </ng-container>
@@ -17,7 +19,9 @@
             </ng-template>
         </div>
         <div class="col-md-4 mt-4">
-            <label class="form-label">Care Given</label>
+            <div class="labelcontent">
+                <label class="form-label bold">Care Given</label>
+            </div>
             <ng-container *ngIf="this.isEditable; else CareGivenOptions">
                 <p-dropdown [required]="true" name="CareGiven" [options]="stLstYesNoOptions" optionLabel="optionValue"
                     optionValue="optionId" placeholder="--select--" [style]="{ width: '100%' }"
@@ -31,7 +35,9 @@
         <div *ngIf="inputFieldsCheck" class="row">
             <h5 class="formheader">Incident</h5>
             <div class="col-md-4">
-                <label class="form-label">Antecedent events</label>
+                <div class="labelcontent">
+                    <label class="form-label bold">Antecedent events</label>
+                </div>
                 <ng-container *ngIf="this.isEditable; else AntecedentEvents">
                     <textarea type="text" pInputTextarea name="AntecedentEvents"
                         [(ngModel)]="BehaviourChartData.AntecedentEvents" [required]="true"
@@ -42,7 +48,9 @@
                 </ng-template>
             </div>
             <div class="col-md-4">
-                <label class="form-label">Definition of behaviour</label>
+                <div class="labelcontent">
+                    <label class="form-label bold">Definition of behaviour</label>
+                </div>
                 <ng-container *ngIf="this.isEditable; else BehaviourDefinition">
                     <textarea type="text" pInputTextarea name="BehaviourDefinition"
                         [(ngModel)]="BehaviourChartData.BehaviourDefinition" [required]="true"
@@ -53,7 +61,9 @@
                 </ng-template>
             </div>
             <div class="col-md-4">
-                <label class="form-label">Consequent events</label>
+                <div class="labelcontent">
+                    <label class="form-label bold">Consequent events</label>
+                </div>
                 <ng-container *ngIf="this.isEditable; else ConsequentEvents">
                     <textarea type="text" pInputTextarea name="ConsequentEvents"
                         [(ngModel)]="BehaviourChartData.ConsequentEvents" [required]="true"
@@ -65,7 +75,9 @@
             </div>
             <h5 class="formheader">Functional assessment</h5>
             <div class="col-md-4">
-                <label class="form-label">What purpose does this behaviour serve for the resident?</label>
+                <div class="labelcontent">
+                    <label class="form-label bold">What purpose does this behaviour serve for the resident?</label>
+                </div>
                 <ng-container *ngIf="this.isEditable; else BehaviourPurpose">
                     <p-dropdown [required]="true" name="BehaviourPurpose"
                         [(ngModel)]="BehaviourChartData.BehaviourPurposeOptions"
@@ -74,7 +86,7 @@
                     </p-dropdown>
                 </ng-container>
                 <ng-template #BehaviourPurpose>
-                    <label>{{BehaviourChartData.BehaviourPurposeName}}</label>
+                    <label>{{BehaviourChartData.BehaviourPurposeOptionsName}}</label>
                 </ng-template>
             </div>
         </div>

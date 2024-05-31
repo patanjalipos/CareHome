@@ -16,9 +16,11 @@ import { Observable, catchError, forkJoin, map, of } from 'rxjs';
 import {
     ChartTypes,
     ConstantsService,
+    CustomDateFormat,
 } from 'src/app/ui/service/constants.service';
 import { UserService } from 'src/app/ui/service/user.service';
 import { ActivatedRoute } from '@angular/router';
+import { DatePipe } from '@angular/common';
 
 @Component({
     selector: 'app-activities-chart',
@@ -32,6 +34,7 @@ export class ActivitiesChartComponent
     @Input() preSelectedChartData: any = <any>{};
     @Output() EmitUpdateForm: EventEmitter<any> = new EventEmitter<any>();
 
+    customDateFormat = CustomDateFormat;
     inputFields: boolean = false;
     ActivitiesChartFormData: any = <any>{};
     isEditable: boolean;
@@ -51,6 +54,7 @@ export class ActivitiesChartComponent
         private optionService: OptionService,
         private _UtilityService: UtilityService,
         private _UserService: UserService,
+        private datePipte: DatePipe,
         private _ActivityChartServices: ActivityChartService,
         private _ConstantServices: ConstantsService,
         private route: ActivatedRoute
@@ -121,6 +125,11 @@ export class ActivitiesChartComponent
                         var tdata = JSON.parse(data.actionResult.result);
                         tdata = tdata ? tdata : {};
                         this.ActivitiesChartFormData = tdata;
+                        this.ActivitiesChartFormData.DateAndTime = this.datePipte.transform(this.ActivitiesChartFormData.DateAndTime,'dd-MM-yyyy HH:mm');
+                        console.log("data===>");
+                        console.log(data);
+                        
+                        
                         this.openAndClose();
                     } else {
                         this.ActivitiesChartFormData = {};
@@ -178,7 +187,7 @@ export class ActivitiesChartComponent
             this.ActivitiesChartFormData.LastEnteredBy = this.loginId;
             this.ActivitiesChartFormData.ResidentAdmissionInfoId =
                 this.residentAdmissionInfoId;
-
+                this.ActivitiesChartFormData.DateAndTime = this.datePipte.transform(this.ActivitiesChartFormData.DateAndTime,'yyyy-MM-ddTHH:mm');
             const objectBody: any = {
                 StatementType: this.StatementType,
                 activitiesChartData: this.ActivitiesChartFormData,
