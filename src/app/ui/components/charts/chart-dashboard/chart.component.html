@@ -195,3 +195,12 @@
     "
 >
 </app-adl-chart>
+
+<app-pain-chart
+    [preSelectedChartData]="selectedChartData"
+    (EmitUpdateForm)="EmitUpdateForm($event)"
+    *ngIf="
+        ShowChildComponent == true &&
+        selectedChartMasterId == ChartTypes.PainChart
+    ">
+</app-pain-chart>

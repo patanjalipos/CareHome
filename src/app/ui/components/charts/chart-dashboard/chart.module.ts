@@ -15,11 +15,13 @@ import { BowelChartModule } from '../bowel-chart/bowel-chart.module';
 import { EnteralFeedingChartModule } from '../enteral-feeding-chart/enteral-feeding-chart.module';
 import { AdlChartModule } from '../adl-chart/adl-chart.module';
 import { TableModule } from 'primeng/table';
+import { PainChartModule } from "../pain-chart/pain-chart.module";
 
 @NgModule({
     declarations: [
         ChartComponent
     ],
+    exports: [ChartComponent],
     imports: [
         CommonModule,
         ChartRoutingModule,
@@ -35,8 +37,8 @@ import { TableModule } from 'primeng/table';
         BloodPressureChartModule,
         BowelChartModule,
         EnteralFeedingChartModule,
-        AdlChartModule
-    ],
-    exports: [ChartComponent]
+        AdlChartModule,
+        PainChartModule
+    ]
 })
 export class ChartModule { }
