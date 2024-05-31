@@ -60,8 +60,9 @@ export class ResidentProfileComponent extends AppComponentBase implements OnInit
             this.ResidentMaster = tdata;
             if (this.ResidentMaster.ProfileImage != undefined && this.ResidentMaster.ProfileImage != null && this.ResidentMaster.ProfileImage!= '')
              {
-             var imageFormat = this.ResidentMaster.ProfileImage.endsWith(".jpg") ||this.ResidentMaster.ProfileImage.endsWith(".jpeg") ? "jpeg" : "png";
-              this.imageSrc = "data:image/" + imageFormat + ";base64," + this.ResidentMaster.ProfileImage;
+            // var imageFormat = this.ResidentMaster.ProfileImage.endsWith(".jpg") ||this.ResidentMaster.ProfileImage.endsWith(".jpeg") ? "jpeg" : "png";
+             var imageFormat=this._UtilityService.getFileExtension(this.ResidentMaster.ProfileImage);
+             this.imageSrc = "data:image/" + imageFormat + ";base64," + this.ResidentMaster.ProfileImage;
              }
               else{
               this.imageSrc ="";

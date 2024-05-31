@@ -30,4 +30,7 @@ export class AppTopBarComponent extends AppComponentBase implements OnInit {
     ChangePassword() {
         this._Router.navigateByUrl("/change-password");
     }
+    MyProfile() {
+        this._Router.navigateByUrl("/my-profile");
+      }
 }
