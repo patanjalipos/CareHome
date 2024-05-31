@@ -23,6 +23,7 @@ import { ResidentLayoutComponent } from './layout/resident.layout.component';
                     { path: 'documentation', loadChildren: () => import('./ui/components/documentation/documentation.module').then(m => m.DocumentationModule) },
                     { path: 'report', loadChildren: () => import('./ui/components/report/report.module').then(m => m.ReportModule) },
                     { path: 'change-password', loadChildren: () => import('./ui/components/change-password/change-password.module').then(m => m.ChangePasswordModule) },                   
+                    { path: 'my-profile', loadChildren: () => import('./ui/components/my-profile/my-profile.module').then(m => m.MyProfileModule) },  
                     // { path: 'resident', loadChildren: () => import('./ui/components/resident/resident.module').then(m => m.ResidentModule) },
                     // { path: 'clinical', loadChildren: () => import('./ui/components/clinical/clinical.module').then(m => m.ClinicalModule) },
                     // { path: 'contacts', loadChildren: () => import('./ui/components/contacts/contacts.module').then(m => m.ContactsModule) }
