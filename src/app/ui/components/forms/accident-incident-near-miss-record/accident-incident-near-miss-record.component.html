@@ -108,7 +108,7 @@
                 <p-dropdown [required]="true" [options]="lstlocationaccident" optionLabel="optionName"
                     [(ngModel)]="AccidentNearMissRecordFormsData.LocationOfAccident"
                     name="AccidentNearMissRecordFormsData.LocationOfAccident" optionValue="optionId"
-                    placeholder="Select" [style]="{ width: '100%' }">
+                    placeholder="--select--" [style]="{ width: '100%' }">
                 </p-dropdown>
             </ng-container>
             <ng-template #LocationOfAccident>
@@ -126,7 +126,7 @@
                 <p-dropdown [required]="true" [options]="lstAccidentPlace" optionLabel="optionName"
                     [(ngModel)]="AccidentNearMissRecordFormsData.AccidentFloorPlace"
                     name="AccidentNearMissRecordFormsData.AccidentFloorPlace" optionValue="optionId"
-                    placeholder="Select" [style]="{ width: '100%' }">
+                    placeholder="--select--" [style]="{ width: '100%' }">
                 </p-dropdown>
             </ng-container>
             <ng-template #AccidentFloorPlace>
@@ -143,7 +143,7 @@
             <ng-container *ngIf="this.isEditable; else AccidentType">
                 <p-dropdown [required]="true" [options]="lstAccidentType" optionLabel="optionName"
                     [(ngModel)]="AccidentNearMissRecordFormsData.AccidentType"
-                    name="AccidentNearMissRecordFormsData.AccidentType" optionValue="optionId" placeholder="Select"
+                    name="AccidentNearMissRecordFormsData.AccidentType" optionValue="optionId" placeholder="--select--"
                     [style]="{ width: '100%' }">
                 </p-dropdown>
             </ng-container>
@@ -215,7 +215,7 @@
             <ng-container *ngIf="this.isEditable; else InjuriesSustained">
                 <p-dropdown [required]="true" [options]="lstInjurySustained" optionLabel="optionName"
                     [(ngModel)]="AccidentNearMissRecordFormsData.InjuriesSustained"
-                    name="AccidentNearMissRecordFormsData.InjuriesSustained" optionValue="optionId" placeholder="Select"
+                    name="AccidentNearMissRecordFormsData.InjuriesSustained" optionValue="optionId" placeholder="--select--"
                     [style]="{ width: '100%' }">
                 </p-dropdown>
             </ng-container>
@@ -249,7 +249,7 @@
             <ng-container *ngIf="this.isEditable; else JobRole">
                 <p-dropdown [required]="true" [options]="lstJobRole" optionLabel="optionName"
                     [(ngModel)]="AccidentNearMissRecordFormsData.JobRole" name="AccidentNearMissRecordFormsData.JobRole"
-                    optionValue="optionId" placeholder="Select" [style]="{ width: '100%' }">
+                    optionValue="optionId" placeholder="--select--" [style]="{ width: '100%' }">
                 </p-dropdown>
             </ng-container>
             <ng-template #JobRole>
@@ -298,7 +298,7 @@
             <ng-container *ngIf="this.isEditable; else EmergencyServices">
                 <p-dropdown [required]="true" [options]="lstEmergencyServices" optionLabel="optionName"
                     [(ngModel)]="AccidentNearMissRecordFormsData.EmergencyServices"
-                    name="AccidentNearMissRecordFormsData.EmergencyServices" optionValue="optionId" placeholder="Select"
+                    name="AccidentNearMissRecordFormsData.EmergencyServices" optionValue="optionId" placeholder="--select--"
                     [style]="{ width: '100%' }">
                 </p-dropdown>
             </ng-container>

@@ -51,7 +51,7 @@
         </div>
         <div class="col-md-7 form-text">
             <ng-container *ngIf="this.isEditable; else PersonsBehaviourData">
-                <p-dropdown placeholder="Select" [style]="{ width: '100%' }" [options]="lstPersonsBehaviour"
+                <p-dropdown placeholder="--select--" [style]="{ width: '100%' }" [options]="lstPersonsBehaviour"
                     optionLabel="optionName" optionValue="optionId"
                     [(ngModel)]="PositiveBehaviourSupportFormsData.PersonsBehaviour"></p-dropdown>
                 <p class="mb-4">Detail what behaviour is exhibited by the resident which is an indicator of their
@@ -70,7 +70,7 @@
         </div>
         <div class="col-md-7 form-text">
             <ng-container *ngIf="this.isEditable; else PrimaryPreventionData">
-                <p-dropdown placeholder="Select" [style]="{ width: '100%' }" [options]="lstPrimaryPrevention"
+                <p-dropdown placeholder="--select--" [style]="{ width: '100%' }" [options]="lstPrimaryPrevention"
                     optionLabel="optionName" optionValue="optionId"
                     [(ngModel)]="PositiveBehaviourSupportFormsData.PrimaryPrevention"></p-dropdown>
 
@@ -88,7 +88,7 @@
         </div>
         <div class="col-md-7 form-text">
             <ng-container *ngIf="this.isEditable; else DeEscalationTechniquesData">
-                <p-dropdown placeholder="Select" [style]="{ width: '100%' }" [options]="lstDeEscalationTechniques"
+                <p-dropdown placeholder="--select--" [style]="{ width: '100%' }" [options]="lstDeEscalationTechniques"
                     optionLabel="optionName" optionValue="optionId"
                     [(ngModel)]="PositiveBehaviourSupportFormsData.DeEscalationTechniques"></p-dropdown>
             </ng-container>
@@ -106,7 +106,7 @@
         </div>
         <div class="col-md-7 form-text">
             <ng-container *ngIf="this.isEditable; else SenseOfWellbeingData">
-                <p-dropdown placeholder="Select" [style]="{ width: '100%' }" [options]="lstSenseOfWellbeing"
+                <p-dropdown placeholder="--select--" [style]="{ width: '100%' }" [options]="lstSenseOfWellbeing"
                     optionLabel="optionName" optionValue="optionId"
                     [(ngModel)]="PositiveBehaviourSupportFormsData.SenseOfWellbeing"></p-dropdown>
             </ng-container>
