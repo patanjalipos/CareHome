@@ -1,1 +1,104 @@
-<p>blood-pressure-chart works!</p>
+<div class="card">
+    <div class="row">
+        <div class="formheader">
+            <h4>New observation</h4>
+        </div>
+        <div class="col-md-4 mt-4">
+            <div class="col-md-4">
+                <label class="form-label bold">Date/Time<span class="required"></span></label>
+            </div>
+            <ng-container *ngIf="this.isEditable; else DateTimeData">
+                <p-calendar name="bloodPressureChartFormData.DateAndTime" [showIcon]="true" inputId="icon"
+                    class="iconcal" [readonlyInput]="true" appendTo="body" [maxDate]="" #dobref="" hourFormat="24"
+                    [(ngModel)]="bloodPressureChartFormData.DateAndTime" [showTime]="true" [dateFormat]="customDateFormat.CalendarFormat"></p-calendar>
+            </ng-container>
+            <ng-template #DateTimeData>
+                <label>{{bloodPressureChartFormData.DateAndTime}}</label>
+            </ng-template>
+        </div>
+        <div class="col-md-4 mt-4">
+            <div class="col-md-4">
+                <label class="form-label bold">Care Given <span class="required"></span></label>
+            </div>
+            <ng-container *ngIf="this.isEditable; else CareGivenData">
+                <p-dropdown [required]="true" name="bloodPressureChartFormData.CareGiven" placeholder="--Select--"
+                    [style]="{ width: '100%' }" [options]="stLstYesNoOptions" optionValue="optionId"
+                    optionLabel="optionValue" [(ngModel)]="bloodPressureChartFormData.CareGiven"
+                    (onChange)="openAndClose()">
+                </p-dropdown>
+            </ng-container>
+            <ng-template #CareGivenData>
+                <label>{{bloodPressureChartFormData.CareGiven}}</label>
+            </ng-template>
+        </div>
+        <div *ngIf="inputFields" class="row">
+            <h5 class="formheader">Blood Pressure</h5>
+            <div class="col-md-4">
+                <div class="labelcontent">
+                    <label class="form-label bold">Systolic(mm Hg)<span class="required"></span></label>
+                </div>
+                <ng-container *ngIf="this.isEditable; else SystolicData">
+                    <input type="number" pInputText [style]="{ width: '100%' }"
+                        [(ngModel)]="bloodPressureChartFormData.Systolic" />
+                </ng-container>
+                <ng-template #SystolicData>
+                    <label>{{bloodPressureChartFormData.Systolic}}</label>
+                </ng-template>
+            </div>
+
+            <div class="col-md-4">
+                <div class="col-md-4">
+                    <label class="form-label bold">Diastolic(mm Hg)<span class="required"></span></label>
+                </div>
+                <ng-container *ngIf="this.isEditable; else DiastolicData">
+                    <input type="number" pInputText [style]="{ width: '100%' }"
+                        [(ngModel)]="bloodPressureChartFormData.Diastolic" />
+                </ng-container>
+                <ng-template #DiastolicData>
+                    <label>{{bloodPressureChartFormData.Diastolic}}</label>
+                </ng-template>
+            </div>
+
+            <div class="col-md-4">
+                <div class="col-md-4">
+                    <label class="form-label bold">Method<span class="required"></span></label>
+                </div>
+                <ng-container *ngIf="this.isEditable; else MethodData">
+                    <p-dropdown [required]="true" name="bloodPressureChartFormData.PurposeOfActivity"
+                        placeholder="--select--" [style]="{ width: '100%' }"
+                        [(ngModel)]="bloodPressureChartFormData.Method" [options]="stLstMethod"
+                        optionLabel="optionValue" optionValue="optionId">
+                    </p-dropdown>
+                </ng-container>
+                <ng-template #MethodData>
+                    <label>{{bloodPressureChartFormData.Method}}</label>
+                </ng-template>
+            </div>
+        </div>
+        <h5 class="formheader">Additional information</h5>
+        <div class="col-md-4">
+            <ng-container *ngIf="this.isEditable; else AdditionalInformationData">
+                <input type="text" pInputText name="bloodPressureChartFormData.AdditionalInformation" [required]="true"
+                    [style]="{ width: '100%' }" [(ngModel)]="bloodPressureChartFormData.AdditionalInformation" />
+            </ng-container>
+            <ng-template #AdditionalInformationData>
+                <label>{{bloodPressureChartFormData.AdditionalInformation}}</label>
+            </ng-template>
+        </div>
+
+        <div class="d-flex justify-content-end mt-4">
+            <div>
+                <span class="p-ml-left mr-4">
+                    <button pButton title="Clear all field" label="Clear all feild"></button>
+                    <span class="total-txt"></span>
+                </span>
+            </div>
+            <div>
+                <span class="p-ml-left mr-4">
+                    <button pButton title="save" label="Save" (click)="completeForm()"></button>
+                    <span class="total-txt"></span>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>

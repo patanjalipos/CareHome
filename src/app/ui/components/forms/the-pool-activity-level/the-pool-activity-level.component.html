@@ -31,7 +31,7 @@
         </div>
         <div class="col-md-7 mt-4">
             <ng-container *ngIf="this.isEditable; else BathingAndWashing">
-                <p-dropdown [required]="true" [options]="lstBathingAndWashing"   optionLabel="optionName" [(ngModel)]="PoolActivityFormsData.BathingAndWashing" name="BathingAndWashing" optionValue="optionId" placeholder="Select" [style]="{ width: '100%' }">
+                <p-dropdown [required]="true" [options]="lstBathingAndWashing"   optionLabel="optionName" [(ngModel)]="PoolActivityFormsData.BathingAndWashing" name="BathingAndWashing" optionValue="optionId" placeholder="--select--" [style]="{ width: '100%' }">
                 </p-dropdown>
             </ng-container>
             <ng-template #BathingAndWashing>
@@ -46,7 +46,7 @@
         </div>
         <div class="col-md-7">
             <ng-container *ngIf="this.isEditable; else Dressed">
-                <p-dropdown [required]="true" [options]="lstDressed"   optionLabel="optionName" [(ngModel)]="PoolActivityFormsData.Dressed" name="Dressed" optionValue="optionId" placeholder="Select" [style]="{ width: '100%' }">
+                <p-dropdown [required]="true" [options]="lstDressed"   optionLabel="optionName" [(ngModel)]="PoolActivityFormsData.Dressed" name="Dressed" optionValue="optionId" placeholder="--select--" [style]="{ width: '100%' }">
                 </p-dropdown>
             </ng-container>
             <ng-template #Dressed>
@@ -61,7 +61,7 @@
         </div>
         <div class="col-md-7">
             <ng-container *ngIf="this.isEditable; else Eating">
-                <p-dropdown [required]="true" [options]="lstEating"   optionLabel="optionName" [(ngModel)]="PoolActivityFormsData.Eating" name="Eating" optionValue="optionId" placeholder="Select" [style]="{ width: '100%' }">
+                <p-dropdown [required]="true" [options]="lstEating"   optionLabel="optionName" [(ngModel)]="PoolActivityFormsData.Eating" name="Eating" optionValue="optionId" placeholder="--select--" [style]="{ width: '100%' }">
                 </p-dropdown>
             </ng-container>
             <ng-template #Eating>
@@ -76,7 +76,7 @@
         </div>
         <div class="col-md-7">
             <ng-container *ngIf="this.isEditable; else Contact">
-                <p-dropdown [required]="true" [options]="lstContact"   optionLabel="optionName" [(ngModel)]="PoolActivityFormsData.Contact" name="Contact" optionValue="optionId" placeholder="Select" [style]="{ width: '100%' }">
+                <p-dropdown [required]="true" [options]="lstContact"   optionLabel="optionName" [(ngModel)]="PoolActivityFormsData.Contact" name="Contact" optionValue="optionId" placeholder="--select--" [style]="{ width: '100%' }">
                 </p-dropdown>
             </ng-container>
             <ng-template #Contact>
@@ -91,7 +91,7 @@
         </div>
         <div class="col-md-7">
             <ng-container *ngIf="this.isEditable; else GroupworkSkills">
-                <p-dropdown [required]="true" [options]="lstGroupworkSkills"   optionLabel="optionName" [(ngModel)]="PoolActivityFormsData.GroupworkSkills" name="GroupworkSkills" optionValue="optionId" placeholder="Select" [style]="{ width: '100%' }">
+                <p-dropdown [required]="true" [options]="lstGroupworkSkills"   optionLabel="optionName" [(ngModel)]="PoolActivityFormsData.GroupworkSkills" name="GroupworkSkills" optionValue="optionId" placeholder="--select--" [style]="{ width: '100%' }">
                 </p-dropdown>
             </ng-container>
             <ng-template #GroupworkSkills>
@@ -106,7 +106,7 @@
         </div>
         <div class="col-md-7">
             <ng-container *ngIf="this.isEditable; else CommSkills">
-                <p-dropdown [required]="true" [options]="lstCommSkills"   optionLabel="optionName" [(ngModel)]="PoolActivityFormsData.CommSkills" name="CommSkills" optionValue="optionId" placeholder="Select" [style]="{ width: '100%' }">
+                <p-dropdown [required]="true" [options]="lstCommSkills"   optionLabel="optionName" [(ngModel)]="PoolActivityFormsData.CommSkills" name="CommSkills" optionValue="optionId" placeholder="--select--" [style]="{ width: '100%' }">
                 </p-dropdown>
             </ng-container>
             <ng-template #CommSkills>
@@ -121,7 +121,7 @@
         </div>
         <div class="col-md-7">
             <ng-container *ngIf="this.isEditable; else PracticalActivities">
-                <p-dropdown [required]="true" [options]="lstPracticalActivities"   optionLabel="optionName" [(ngModel)]="PoolActivityFormsData.PracticalActivities" name="PracticalActivities" optionValue="optionId" placeholder="Select" [style]="{ width: '100%' }">
+                <p-dropdown [required]="true" [options]="lstPracticalActivities"   optionLabel="optionName" [(ngModel)]="PoolActivityFormsData.PracticalActivities" name="PracticalActivities" optionValue="optionId" placeholder="--select--" [style]="{ width: '100%' }">
                 </p-dropdown>
             </ng-container>
             <ng-template #PracticalActivities>
@@ -136,7 +136,7 @@
         </div>
         <div class="col-md-7">
             <ng-container *ngIf="this.isEditable; else ObjectUse">
-                <p-dropdown [required]="true" [options]="lstObjectUse"   optionLabel="optionName" [(ngModel)]="PoolActivityFormsData.ObjectUse" name="ObjectUse" optionValue="optionId" placeholder="Select" [style]="{ width: '100%' }">
+                <p-dropdown [required]="true" [options]="lstObjectUse"   optionLabel="optionName" [(ngModel)]="PoolActivityFormsData.ObjectUse" name="ObjectUse" optionValue="optionId" placeholder="--select--" [style]="{ width: '100%' }">
                 </p-dropdown>
             </ng-container>
             <ng-template #ObjectUse>
@@ -151,7 +151,7 @@
         </div>
         <div class="col-md-7">
             <ng-container *ngIf="this.isEditable; else NewspaperCheck">
-                <p-dropdown [required]="true" [options]="lstNewspaperCheck"   optionLabel="optionName" [(ngModel)]="PoolActivityFormsData.NewspaperCheck" name="NewspaperCheck" optionValue="optionId" placeholder="Select" [style]="{ width: '100%' }">
+                <p-dropdown [required]="true" [options]="lstNewspaperCheck"   optionLabel="optionName" [(ngModel)]="PoolActivityFormsData.NewspaperCheck" name="NewspaperCheck" optionValue="optionId" placeholder="--select--" [style]="{ width: '100%' }">
                 </p-dropdown>
             </ng-container>
             <ng-template #NewspaperCheck>
@@ -166,7 +166,7 @@
         </div>
         <div class="col-md-7">
             <ng-container *ngIf="this.isEditable; else ActivityLevel">
-                <p-dropdown [required]="true" [options]="lstActivityLevel"   optionLabel="optionName" [(ngModel)]="PoolActivityFormsData.ActivityLevel" name="ActivityLevel" optionValue="optionId" placeholder="Select" [style]="{ width: '100%' }">
+                <p-dropdown [required]="true" [options]="lstActivityLevel"   optionLabel="optionName" [(ngModel)]="PoolActivityFormsData.ActivityLevel" name="ActivityLevel" optionValue="optionId" placeholder="--select--" [style]="{ width: '100%' }">
                 </p-dropdown>
             </ng-container>
             <ng-template #ActivityLevel>
@@ -181,7 +181,7 @@
         </div>
         <div class="col-md-7">
             <ng-container *ngIf="this.isEditable; else PlannedActivityLevel">
-                <p-dropdown [required]="true" [options]="lstPlannedActivityLevel"   optionLabel="optionName" [(ngModel)]="PoolActivityFormsData.PlannedActivityLevel" name="PlannedActivityLevel" optionValue="optionId" placeholder="Select" [style]="{ width: '100%' }">
+                <p-dropdown [required]="true" [options]="lstPlannedActivityLevel"   optionLabel="optionName" [(ngModel)]="PoolActivityFormsData.PlannedActivityLevel" name="PlannedActivityLevel" optionValue="optionId" placeholder="--select--" [style]="{ width: '100%' }">
                 </p-dropdown>
             </ng-container>
             <ng-template #PlannedActivityLevel>
@@ -196,7 +196,7 @@
         </div>
         <div class="col-md-7">
             <ng-container *ngIf="this.isEditable; else ExploratoryActivityLevel">
-                <p-dropdown [required]="true" [options]="lstExploratoryActivityLevel"   optionLabel="optionName" [(ngModel)]="PoolActivityFormsData.ExploratoryActivityLevel" name="ExploratoryActivityLevel" optionValue="optionId" placeholder="Select" [style]="{ width: '100%' }">
+                <p-dropdown [required]="true" [options]="lstExploratoryActivityLevel"   optionLabel="optionName" [(ngModel)]="PoolActivityFormsData.ExploratoryActivityLevel" name="ExploratoryActivityLevel" optionValue="optionId" placeholder="--select--" [style]="{ width: '100%' }">
                 </p-dropdown>
             </ng-container>
             <ng-template #ExploratoryActivityLevel>
@@ -211,7 +211,7 @@
         </div>
         <div class="col-md-7">
             <ng-container *ngIf="this.isEditable; else SensoryActivityLevel">
-                <p-dropdown [required]="true" [options]="lstSensoryActivityLevel"   optionLabel="optionName" [(ngModel)]="PoolActivityFormsData.SensoryActivityLevel" name="SensoryActivityLevel" optionValue="optionId" placeholder="Select" [style]="{ width: '100%' }">
+                <p-dropdown [required]="true" [options]="lstSensoryActivityLevel"   optionLabel="optionName" [(ngModel)]="PoolActivityFormsData.SensoryActivityLevel" name="SensoryActivityLevel" optionValue="optionId" placeholder="--select--" [style]="{ width: '100%' }">
                 </p-dropdown>
             </ng-container>
             <ng-template #SensoryActivityLevel>
@@ -226,7 +226,7 @@
         </div>
         <div class="col-md-7">
             <ng-container *ngIf="this.isEditable; else ReflexActivityLevel">
-                <p-dropdown [required]="true" [options]="lstReflexActivityLevel"   optionLabel="optionName" [(ngModel)]="PoolActivityFormsData.ReflexActivityLevel" name="ReflexActivityLevel" optionValue="optionId" placeholder="Select" [style]="{ width: '100%' }">
+                <p-dropdown [required]="true" [options]="lstReflexActivityLevel"   optionLabel="optionName" [(ngModel)]="PoolActivityFormsData.ReflexActivityLevel" name="ReflexActivityLevel" optionValue="optionId" placeholder="--select--" [style]="{ width: '100%' }">
                 </p-dropdown>
             </ng-container>
             <ng-template #ReflexActivityLevel>
