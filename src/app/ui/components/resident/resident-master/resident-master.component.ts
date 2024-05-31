@@ -230,7 +230,8 @@ export class ResidentMasterComponent extends AppComponentBase implements OnInit 
             }
             if(this.ResidentMaster?.ProfileImage!=null && this.ResidentMaster?.ProfileImage!=undefined)
               {
-                const imageFormat = this.ResidentMaster.ProfileImage.endsWith(".jpg") || this.ResidentMaster.ProfileImage.endsWith(".jpeg") ? "jpeg" : "png";
+                //const imageFormat = this.ResidentMaster.ProfileImage.endsWith(".jpg") || this.ResidentMaster.ProfileImage.endsWith(".jpeg") ? "jpeg" : "png";
+                var imageFormat=this._UtilityService.getFileExtension(this.ResidentMaster.ProfileImage);
                 this.ResidentMaster.ProfileImage = "data:image/" + imageFormat + ";base64," + this.ResidentMaster.ProfileImage;               
               }
             this.mode = "edit";   
