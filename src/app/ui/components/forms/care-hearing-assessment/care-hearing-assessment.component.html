@@ -39,7 +39,7 @@
                 <p-dropdown [required]="true" [options]="lstHearingDiagnosisCheck" optionLabel="optionName"
                     [(ngModel)]="CareAssessmentHearingFormsData.HearingDiagnosisCheck"
                     name="CareAssessmentFreshAndCleanFormsData.HearingDiagnosisCheck" optionValue="optionId"
-                    placeholder="Select" [style]="{ width: '100%' }">
+                    placeholder="--select--" [style]="{ width: '100%' }">
                 </p-dropdown>
             </ng-container>
             <ng-template #HearingDiagnosisCheck>
@@ -64,7 +64,7 @@
                 <p-dropdown [required]="true" [options]="lstCurrentHearingDiagnosis" optionLabel="optionName"
                     [(ngModel)]="CareAssessmentHearingFormsData.CurrentHearingDiagnosis"
                     name="CareAssessmentFreshAndCleanFormsData.CurrentHearingDiagnosis" optionValue="optionId"
-                    placeholder="Select" [style]="{ width: '100%' }">
+                    placeholder="--select--" [style]="{ width: '100%' }">
                 </p-dropdown>
             </ng-container>
             <ng-template #CurrentHearingDiagnosis>
@@ -108,7 +108,7 @@
                 <p-dropdown [required]="true" [options]="lstHearingInterventions" optionLabel="optionName"
                     [(ngModel)]="CareAssessmentHearingFormsData.HearingInterventions"
                     name="CareAssessmentHearingFormsData.HearingInterventions" optionValue="optionId"
-                    placeholder="Select" [style]="{ width: '100%' }">
+                    placeholder="--select--" [style]="{ width: '100%' }">
                 </p-dropdown>
             </ng-container>
             <ng-template #HearingInterventions>
@@ -127,7 +127,7 @@
             <ng-container *ngIf="this.isEditable; else HearingAids">
                 <p-dropdown [required]="true" [options]="lstHearingAids" optionLabel="optionName"
                     [(ngModel)]="CareAssessmentHearingFormsData.HearingAids"
-                    name="CareAssessmentHearingFormsData.HearingAids" optionValue="optionId" placeholder="Select"
+                    name="CareAssessmentHearingFormsData.HearingAids" optionValue="optionId" placeholder="--select--"
                     [style]="{ width: '100%' }">
                 </p-dropdown>
             </ng-container>
@@ -149,7 +149,7 @@
                 <p-dropdown [required]="true" [options]="lstAidsAssistance" optionLabel="optionName"
                     [(ngModel)]="CareAssessmentHearingFormsData.AidsAssistance"
                     name="CareAssessmentFreshAndCleanFormsData.AidsAssistance" optionValue="optionId"
-                    placeholder="Select" [style]="{ width: '100%' }">
+                    placeholder="--select--" [style]="{ width: '100%' }">
                 </p-dropdown>
             </ng-container>
             <ng-template #AidsAssistance>
@@ -192,7 +192,7 @@
             <ng-container *ngIf="this.isEditable; else GoalsToHearing">
                 <p-dropdown [required]="true" [options]="lstGoalsToHearing" optionLabel="optionName"
                     [(ngModel)]="CareAssessmentHearingFormsData.GoalsToHearing"
-                    name="CareAssessmentHearingFormsData.GoalsToHearing" optionValue="optionId" placeholder="Select"
+                    name="CareAssessmentHearingFormsData.GoalsToHearing" optionValue="optionId" placeholder="--select--"
                     [style]="{ width: '100%' }">
                 </p-dropdown>
             </ng-container>

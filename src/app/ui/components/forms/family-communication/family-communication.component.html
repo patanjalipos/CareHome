@@ -77,7 +77,7 @@
             </div>
             <div class="col-md-8 form-text">
                 <ng-container *ngIf="isEditable==true">
-                    <p-dropdown placeholder="Select" [(ngModel)]="FamilyCommFormsData.CommRelay" name="ddlCommRelay"
+                    <p-dropdown placeholder="--select--" [(ngModel)]="FamilyCommFormsData.CommRelay" name="ddlCommRelay"
                         [style]="{ width: '100%' }" [options]="lstFamilyComRelayMaster" optionLabel="optionName"
                         optionValue="optionId">
                     </p-dropdown>
@@ -104,7 +104,7 @@
             </div>
             <div class="col-md-8 form-text">
                 <ng-container *ngIf="isEditable==true">
-                    <p-dropdown placeholder="Select" [(ngModel)]="FamilyCommFormsData.CommReason" name="ddlReasonName"
+                    <p-dropdown placeholder="--select--" [(ngModel)]="FamilyCommFormsData.CommReason" name="ddlReasonName"
                         [style]="{ width: '100%' }" [options]="lstFamilyComReasonMaster" optionLabel="optionName"
                         optionValue="optionId">
                     </p-dropdown>
