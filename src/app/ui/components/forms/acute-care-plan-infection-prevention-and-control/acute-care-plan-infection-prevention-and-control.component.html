@@ -51,7 +51,7 @@
         </div>
         <div class="col-md-7 mt-4">
             <ng-container *ngIf="isEditable==true">
-                <p-dropdown [required]="true" placeholder="Select" [(ngModel)]="AcuteCarePlanInfectionFormsData.NatureInfc" name="ddlNatureInfc"
+                <p-dropdown [required]="true" placeholder="--select--" [(ngModel)]="AcuteCarePlanInfectionFormsData.NatureInfc" name="ddlNatureInfc"
                     [style]="{ width: '100%' }" [options]="lstAcuteInfection" optionLabel="optionName"
                     optionValue="optionId">
                 </p-dropdown>
@@ -99,7 +99,7 @@
         </div>
         <div class="col-md-7 form-text">
             <ng-container *ngIf="isEditable==true">
-                <p-dropdown placeholder="Select" [(ngModel)]="AcuteCarePlanInfectionFormsData.Strategies" name="ddlStrategies"
+                <p-dropdown placeholder="--select--" [(ngModel)]="AcuteCarePlanInfectionFormsData.Strategies" name="ddlStrategies"
                     [style]="{ width: '100%' }" [options]="lstAcuteStratagy" optionLabel="optionName"
                     optionValue="optionId">
                 </p-dropdown>
@@ -147,7 +147,7 @@
         </div>
         <div class="col-md-7 form-text">
             <ng-container *ngIf="isEditable==true">
-                <p-dropdown placeholder="Select" [(ngModel)]="AcuteCarePlanInfectionFormsData.OutCome" name="ddlOutCome"
+                <p-dropdown placeholder="--select--" [(ngModel)]="AcuteCarePlanInfectionFormsData.OutCome" name="ddlOutCome"
                     [style]="{ width: '100%' }" [options]="lstAcuteOutCome" optionLabel="optionName"
                     optionValue="optionId">
                 </p-dropdown>

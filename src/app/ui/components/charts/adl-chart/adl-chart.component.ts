@@ -19,6 +19,7 @@ import { OptionService } from 'src/app/ui/service/option.service';
 import { UtilityService } from 'src/app/utility/utility.service';
 import { AdlChartService } from './adl-chart.service';
 import { UserService } from 'src/app/ui/service/user.service';
+import { DatePipe } from '@angular/common';
 
 @Component({
     selector: 'app-adl-chart',
@@ -53,7 +54,8 @@ export class AdlChartComponent extends AppComponentBase implements OnInit {
         private route: ActivatedRoute,
         private _UtilityService: UtilityService,
         private _UserService: UserService,
-        private _ADLChart: AdlChartService
+        private _ADLChart: AdlChartService,
+        private datePipe: DatePipe
     ) {
         super();
 
@@ -174,6 +176,7 @@ export class AdlChartComponent extends AppComponentBase implements OnInit {
                         tdata = tdata ? tdata : {};
                         this.ADLChartData = tdata;
                         this.openAndClose();
+                        this.ADLChartData.DateAndTime = this.datePipe.transform(this.ADLChartData.DateAndTime,'dd-MM-yyyy HH:mm');
                     } else {
                         this.ADLChartData = {};
                     }
@@ -196,6 +199,7 @@ export class AdlChartComponent extends AppComponentBase implements OnInit {
                 this.residentAdmissionInfoId;
             this.ADLChartData.StartedBy = this.loginId;
             this.ADLChartData.LastEnteredBy = this.loginId;
+            this.ADLChartData.DateAndTime = this.datePipe.transform(this.ADLChartData.DateAndTime,'yyyy-MM-ddTHH:mm');
 
             const objectBody: any = {
                 StatementType: this.StatementType,

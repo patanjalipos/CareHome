@@ -64,7 +64,7 @@ export class FormsDashboardComponent
             }
         });
     }
-    
+
     ngOnInit() {
         this.GetformMaster();
     }
@@ -151,21 +151,24 @@ export class FormsDashboardComponent
         selectedFormdata: any = <any>{},
         isEditable = true
     ) {
-        this.selectedFormMasterId = selectedFormMasterId;
-        this.selectedFormData = {
-            formMasterId: selectedFormMasterId,
-            selectedFormID: selectedFormdata.FormId,
-            isEditable: isEditable,
-            IsCompleted: selectedFormdata.IsCompleted,
-            StartedBy: selectedFormdata.StartedBy,
-            StartedByDesignation: selectedFormdata.StartedByDesignation,
-            StartedOn: selectedFormdata.StartedOn,
-            ModifiedBy: selectedFormdata.ModifiedBy,
-            ModifiedByDesignation: selectedFormdata.ModifiedByDesignation,
-            ModifiedOn: selectedFormdata.ModifiedOn,
-        };
-        this.ShowModel();
+        if (selectedFormMasterId != null) {
+            this.selectedFormMasterId = selectedFormMasterId;
+            this.selectedFormData = {
+                formMasterId: selectedFormMasterId,
+                selectedFormID: selectedFormdata.FormId,
+                isEditable: isEditable,
+                IsCompleted: selectedFormdata.IsCompleted,
+                StartedBy: selectedFormdata.StartedBy,
+                StartedByDesignation: selectedFormdata.StartedByDesignation,
+                StartedOn: selectedFormdata.StartedOn,
+                ModifiedBy: selectedFormdata.ModifiedBy,
+                ModifiedByDesignation: selectedFormdata.ModifiedByDesignation,
+                ModifiedOn: selectedFormdata.ModifiedOn,
+            };
+            this.ShowModel();
+        } else alert('Kindly select an Assessment Form');
     }
+
     ShowModel() {
         this.ShowChildComponent = true;
     }

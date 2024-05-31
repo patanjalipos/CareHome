@@ -34,7 +34,7 @@
         </div>
         <div class="col-md-7 mt-4">
             <ng-container *ngIf="this.isEditable; else Capacity">
-                <p-dropdown [required]="true" [options]="lstCapacity"   optionLabel="optionName" [(ngModel)]="CareAssessmentSleepAndRestFormsData.Capacity" name="CareAssessmentSleepAndRestFormsData.Capacity" optionValue="optionId" placeholder="Select" [style]="{ width: '100%' }">
+                <p-dropdown [required]="true" [options]="lstCapacity"   optionLabel="optionName" [(ngModel)]="CareAssessmentSleepAndRestFormsData.Capacity" name="CareAssessmentSleepAndRestFormsData.Capacity" optionValue="optionId" placeholder="--select--" [style]="{ width: '100%' }">
                 </p-dropdown>
             </ng-container>
             <ng-template #Capacity>
@@ -72,7 +72,7 @@
         </div>
         <div class="col-md-7">
             <ng-container *ngIf="this.isEditable; else TroubleSleeping">
-                <p-dropdown [required]="true" [options]="lstTroubleSleeping"   optionLabel="optionName" [(ngModel)]="CareAssessmentSleepAndRestFormsData.TroubleSleeping" name="CareAssessmentSleepAndRestFormsData.TroubleSleeping" optionValue="optionId" placeholder="Select" [style]="{ width: '100%' }">
+                <p-dropdown [required]="true" [options]="lstTroubleSleeping"   optionLabel="optionName" [(ngModel)]="CareAssessmentSleepAndRestFormsData.TroubleSleeping" name="CareAssessmentSleepAndRestFormsData.TroubleSleeping" optionValue="optionId" placeholder="--select--" [style]="{ width: '100%' }">
                 </p-dropdown>
             </ng-container>
             <ng-template #TroubleSleeping>
@@ -89,7 +89,7 @@
         </div>
         <div class="col-md-7">
             <ng-container *ngIf="this.isEditable; else SleepAssistance">
-                <p-dropdown [required]="true" [options]="lstSleepAssistance"   optionLabel="optionName" [(ngModel)]="CareAssessmentSleepAndRestFormsData.SleepAssistance" name="CareAssessmentSleepAndRestFormsData.SleepAssistance" optionValue="optionId" placeholder="Select" [style]="{ width: '100%' }">
+                <p-dropdown [required]="true" [options]="lstSleepAssistance"   optionLabel="optionName" [(ngModel)]="CareAssessmentSleepAndRestFormsData.SleepAssistance" name="CareAssessmentSleepAndRestFormsData.SleepAssistance" optionValue="optionId" placeholder="--select--" [style]="{ width: '100%' }">
                 </p-dropdown>
             </ng-container>
             <ng-template #SleepAssistance>
@@ -106,7 +106,7 @@
         </div>
         <div class="col-md-7 form-text">
             <ng-container *ngIf="this.isEditable; else SleepBackAssistance">
-                <p-dropdown [required]="true" [options]="lstSleepBackAssistance"   optionLabel="optionName" [(ngModel)]="CareAssessmentSleepAndRestFormsData.SleepBackAssistance" name="CareAssessmentSleepAndRestFormsData.SleepBackAssistance" optionValue="optionId" placeholder="Select" [style]="{ width: '100%' }">
+                <p-dropdown [required]="true" [options]="lstSleepBackAssistance"   optionLabel="optionName" [(ngModel)]="CareAssessmentSleepAndRestFormsData.SleepBackAssistance" name="CareAssessmentSleepAndRestFormsData.SleepBackAssistance" optionValue="optionId" placeholder="--select--" [style]="{ width: '100%' }">
                 </p-dropdown>
                 <p class="mb-4">i.e. if disturbed</p>
             </ng-container>
@@ -124,7 +124,7 @@
         </div>
         <div class="col-md-7">
             <ng-container *ngIf="this.isEditable; else NightAssistance">
-                <p-dropdown [required]="true" [options]="lstNightAssistance"   optionLabel="optionName" [(ngModel)]="CareAssessmentSleepAndRestFormsData.NightAssistance" name="CareAssessmentSleepAndRestFormsData.NightAssistance" optionValue="optionId" placeholder="Select" [style]="{ width: '100%' }">
+                <p-dropdown [required]="true" [options]="lstNightAssistance"   optionLabel="optionName" [(ngModel)]="CareAssessmentSleepAndRestFormsData.NightAssistance" name="CareAssessmentSleepAndRestFormsData.NightAssistance" optionValue="optionId" placeholder="--select--" [style]="{ width: '100%' }">
                 </p-dropdown>
             </ng-container>
             <ng-template #NightAssistance>
@@ -217,7 +217,7 @@
         </div>
         <div class="col-md-7">
             <ng-container *ngIf="this.isEditable; else GoalsToAchieve">
-                <p-dropdown [required]="true" [options]="lstGoalsToAchieve"   optionLabel="optionName" [(ngModel)]="CareAssessmentSleepAndRestFormsData.GoalsToAchieve" name="CareAssessmentSleepAndRestFormsData.GoalsToAchieve" optionValue="optionId" placeholder="Select" [style]="{ width: '100%' }">
+                <p-dropdown [required]="true" [options]="lstGoalsToAchieve"   optionLabel="optionName" [(ngModel)]="CareAssessmentSleepAndRestFormsData.GoalsToAchieve" name="CareAssessmentSleepAndRestFormsData.GoalsToAchieve" optionValue="optionId" placeholder="--select--" [style]="{ width: '100%' }">
                 </p-dropdown>
             </ng-container>
             <ng-template #GoalsToAchieve>
@@ -251,7 +251,7 @@
         </div>
         <div class="col-md-7">
             <ng-container *ngIf="this.isEditable; else StrategyToManageCheck">
-                <p-dropdown [required]="true" [options]="lstStrategyToManageCheck"   optionLabel="optionName" [(ngModel)]="CareAssessmentSleepAndRestFormsData.StrategyToManageCheck" name="CareAssessmentSleepAndRestFormsData.StrategyToManageCheck" optionValue="optionId" placeholder="Select" [style]="{ width: '100%' }">
+                <p-dropdown [required]="true" [options]="lstStrategyToManageCheck"   optionLabel="optionName" [(ngModel)]="CareAssessmentSleepAndRestFormsData.StrategyToManageCheck" name="CareAssessmentSleepAndRestFormsData.StrategyToManageCheck" optionValue="optionId" placeholder="--select--" [style]="{ width: '100%' }">
                 </p-dropdown>
             </ng-container>
             <ng-template #StrategyToManageCheck>
