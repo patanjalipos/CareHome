@@ -191,6 +191,14 @@ export class AdlChartComponent extends AppComponentBase implements OnInit {
             });
     }
 
+    ClearAllfeilds() {
+        if (this.preSelectedChartData.selectedChartID) {
+            this.ADLChartData = <any>{};
+            this.ADLChartData.activitiesChartId =
+                this.preSelectedChartData.selectedChartID;
+        }
+    }
+
     Save() {
         if (
             this.userId != null &&
@@ -203,23 +211,29 @@ export class AdlChartComponent extends AppComponentBase implements OnInit {
             this.ADLChartData.StartedBy = this.loginId;
             this.ADLChartData.LastEnteredBy = this.loginId;
 
-            if (this.StatementType == 'Update') {
-                //Pare dateTime
-                const dateParts = this.ADLChartData.DateAndTime.split(/[- :]/);
-                const parsedDate = new Date(
-                    +dateParts[2],
-                    dateParts[1] - 1,
-                    +dateParts[0],
-                    +dateParts[3],
-                    +dateParts[4]
-                );
-                this.ADLChartData.DateAndTime = parsedDate;
+            if (this.ADLChartData.DateAndTime) {
+                if (
+                    this.StatementType == 'Update' &&
+                    typeof this.ADLChartData.DateAndTime === 'string'
+                ) {
+                    //Pare dateTime
+                    const dateParts =
+                        this.ADLChartData.DateAndTime.split(/[- :]/);
+                    const parsedDate = new Date(
+                        +dateParts[2],
+                        dateParts[1] - 1,
+                        +dateParts[0],
+                        +dateParts[3],
+                        +dateParts[4]
+                    );
+                    this.ADLChartData.DateAndTime = parsedDate;
+                }
+                this.ADLChartData.DateAndTime =
+                    this.datePipe.transform(
+                        this.ADLChartData.DateAndTime,
+                        'yyyy-MM-ddTHH:mm'
+                    );
             }
-
-            this.ADLChartData.DateAndTime = this.datePipe.transform(
-                this.ADLChartData.DateAndTime,
-                'yyyy-MM-ddTHH:mm'
-            );
 
             const objectBody: any = {
                 StatementType: this.StatementType,

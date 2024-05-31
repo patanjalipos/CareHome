@@ -164,7 +164,6 @@ export class BehaviourChartComponent
                     if (data.actionResult.success == true) {
                         var tdata = JSON.parse(data.actionResult.result);
                         tdata = tdata ? tdata : {};
-                        // console.log(tdata)
                         this.BehaviourChartData = tdata;
                         this.openAndClose();
                         this.BehaviourChartData.DateAndTime =
@@ -183,7 +182,15 @@ export class BehaviourChartComponent
             });
     }
 
-    completeForm() {
+    ClearAllfeilds() {
+        if (this.preSelectedChartData.selectedChartID) {
+            this.BehaviourChartData = <any>{};
+            this.BehaviourChartData.activitiesChartId =
+                this.preSelectedChartData.selectedChartID;
+        }
+    }
+
+    Save() {
         if (
             this.userId != null &&
             this.residentAdmissionInfoId != null &&
@@ -195,24 +202,28 @@ export class BehaviourChartComponent
             this.BehaviourChartData.StartedBy = this.loginId;
             this.BehaviourChartData.LastEnteredBy = this.loginId;
 
-            if (this.StatementType == 'Update') {
-                //Pare dateTime
-                const dateParts =
-                    this.BehaviourChartData.DateAndTime.split(/[- :]/);
-                const parsedDate = new Date(
-                    +dateParts[2],
-                    dateParts[1] - 1,
-                    +dateParts[0],
-                    +dateParts[3],
-                    +dateParts[4]
+            if (this.BehaviourChartData.DateAndTime) {
+                if (
+                    this.StatementType == 'Update' &&
+                    typeof this.BehaviourChartData.DateAndTime === 'string'
+                ) {
+                    //Pare dateTime
+                    const dateParts =
+                        this.BehaviourChartData.DateAndTime.split(/[- :]/);
+                    const parsedDate = new Date(
+                        +dateParts[2],
+                        dateParts[1] - 1,
+                        +dateParts[0],
+                        +dateParts[3],
+                        +dateParts[4]
+                    );
+                    this.BehaviourChartData.DateAndTime = parsedDate;
+                }
+                this.BehaviourChartData.DateAndTime = this.datePipe.transform(
+                    this.BehaviourChartData.DateAndTime,
+                    'yyyy-MM-ddTHH:mm'
                 );
-                this.BehaviourChartData.DateAndTime = parsedDate;
             }
-
-            this.BehaviourChartData.DateAndTime = this.datePipe.transform(
-                this.BehaviourChartData.DateAndTime,
-                'yyyy-MM-ddTHH:mm'
-            );
 
             const objectBody: any = {
                 StatementType: this.StatementType,
