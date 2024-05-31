@@ -1,5 +1,6 @@
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
@@ -22,6 +23,20 @@ export class BloodPressureChartService {
       environment.BaseUriUser +
       'api/User/AddInsertUpdateBloodPressureChart',
       data,
+      { headers: reqHeader, params: params }
+    );
+  }
+
+  GetBloodPressureChartById(selectedChartID: any): Observable<any> {
+    let reqHeader = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Access-Control-Allow-Origin': environment.BaseUriAdmin,
+      'Authorization': 'Bearer ' + localStorage.getItem('token')
+    });
+    let params = new HttpParams();
+    params = params.append('chartId', selectedChartID);
+    return this._httpclient.get<any>(
+      environment.BaseUriUser + 'api/User/GetBloodPressureChartById',
       { headers: reqHeader, params: params }
     );
   }
