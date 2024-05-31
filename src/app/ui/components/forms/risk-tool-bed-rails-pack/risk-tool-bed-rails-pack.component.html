@@ -48,7 +48,7 @@
         </div>
         <div class="col-md-7">
             <ng-container *ngIf="this.isEditable; else BedRailsNotUseRisk">
-                <p-dropdown [required]="true" [options]="lstBedRailsNotUseRisk"   optionLabel="optionName" [(ngModel)]="RiskToolFormsData.BedRailsNotUseRisk" name="RiskToolFormsData.BedRailsNotUseRisk" optionValue="optionId" placeholder="Select" [style]="{ width: '100%' }">
+                <p-dropdown [required]="true" [options]="lstBedRailsNotUseRisk"   optionLabel="optionName" [(ngModel)]="RiskToolFormsData.BedRailsNotUseRisk" name="RiskToolFormsData.BedRailsNotUseRisk" optionValue="optionId" placeholder="--select--" [style]="{ width: '100%' }">
                 </p-dropdown>
                 <p class="mb-4">Please select all appropriate options</p>
             </ng-container>
@@ -80,7 +80,7 @@
         </div>
         <div class="col-md-7">
             <ng-container *ngIf="this.isEditable; else BedRailsUseRisk">
-                <p-dropdown [required]="true" [options]="lstBedRailsUseRisk"   optionLabel="optionName" [(ngModel)]="RiskToolFormsData.BedRailsUseRisk" name="RiskToolFormsData.BedRailsUseRisk" optionValue="optionId" placeholder="Select" [style]="{ width: '100%' }">
+                <p-dropdown [required]="true" [options]="lstBedRailsUseRisk"   optionLabel="optionName" [(ngModel)]="RiskToolFormsData.BedRailsUseRisk" name="RiskToolFormsData.BedRailsUseRisk" optionValue="optionId" placeholder="--select--" [style]="{ width: '100%' }">
                 </p-dropdown>
                 <p class="mb-4">Please select all appropriate options</p>
             </ng-container>
@@ -114,7 +114,7 @@
         </div>
         <div class="col-md-7">
             <ng-container *ngIf="this.isEditable; else BedRailUseExceedsBedRailNotUse">
-                <p-dropdown [required]="true" [options]="lstBedRailUseExceedsBedRailNotUse"   optionLabel="optionName" [(ngModel)]="RiskToolFormsData.BedRailUseExceedsBedRailNotUse" name="RiskToolFormsData.BedRailUseExceedsBedRailNotUse" optionValue="optionId" placeholder="Select" [style]="{ width: '100%' }">
+                <p-dropdown [required]="true" [options]="lstBedRailUseExceedsBedRailNotUse"   optionLabel="optionName" [(ngModel)]="RiskToolFormsData.BedRailUseExceedsBedRailNotUse" name="RiskToolFormsData.BedRailUseExceedsBedRailNotUse" optionValue="optionId" placeholder="--select--" [style]="{ width: '100%' }">
                 </p-dropdown>
                 <p class="mb-4">Based on the risk assessment is the resident safe for the use of bed rails</p>
             </ng-container>
@@ -133,7 +133,7 @@
         </div>
         <div class="col-md-7">
             <ng-container *ngIf="this.isEditable; else CapacityReason">
-                <p-dropdown [required]="true" [options]="lstCapacityReason"   optionLabel="optionName" [(ngModel)]="RiskToolFormsData.CapacityReason" name="RiskToolFormsData.CapacityReason" optionValue="optionId" placeholder="Select" [style]="{ width: '100%' }">
+                <p-dropdown [required]="true" [options]="lstCapacityReason"   optionLabel="optionName" [(ngModel)]="RiskToolFormsData.CapacityReason" name="RiskToolFormsData.CapacityReason" optionValue="optionId" placeholder="--select--" [style]="{ width: '100%' }">
                 </p-dropdown>
             </ng-container>
             <ng-template #CapacityReason>
@@ -148,7 +148,7 @@
         </div>
         <div class="col-md-7">
             <ng-container *ngIf="this.isEditable; else MindImpairment">
-                <p-dropdown [required]="true" [options]="lstMindImpairment"   optionLabel="optionName" [(ngModel)]="RiskToolFormsData.MindImpairment" name="RiskToolFormsData.MindImpairment" optionValue="optionId" placeholder="Select" [style]="{ width: '100%' }">
+                <p-dropdown [required]="true" [options]="lstMindImpairment"   optionLabel="optionName" [(ngModel)]="RiskToolFormsData.MindImpairment" name="RiskToolFormsData.MindImpairment" optionValue="optionId" placeholder="--select--" [style]="{ width: '100%' }">
                 </p-dropdown>
             </ng-container>
             <ng-template #MindImpairment>
@@ -179,7 +179,7 @@
         </div>
         <div class="col-md-7">
             <ng-container *ngIf="this.isEditable; else DecisionLackDueToDisturb">
-                <p-dropdown [required]="true" [options]="lstDecisionLackDueToDisturb"   optionLabel="optionName" [(ngModel)]="RiskToolFormsData.DecisionLackDueToDisturb" name="RiskToolFormsData.DecisionLackDueToDisturb" optionValue="optionId" placeholder="Select" [style]="{ width: '100%' }">
+                <p-dropdown [required]="true" [options]="lstDecisionLackDueToDisturb"   optionLabel="optionName" [(ngModel)]="RiskToolFormsData.DecisionLackDueToDisturb" name="RiskToolFormsData.DecisionLackDueToDisturb" optionValue="optionId" placeholder="--select--" [style]="{ width: '100%' }">
                 </p-dropdown>
             </ng-container>
             <ng-template #DecisionLackDueToDisturb>
@@ -225,7 +225,7 @@
         </div>
         <div class="col-md-7">
             <ng-container *ngIf="this.isEditable; else BedRailsUseDecision">
-                <p-dropdown [required]="true" [options]="lstBedRailsUseDecision"   optionLabel="optionName" [(ngModel)]="RiskToolFormsData.BedRailsUseDecision" name="RiskToolFormsData.BedRailsUseDecision" optionValue="optionId" placeholder="Select" [style]="{ width: '100%' }">
+                <p-dropdown [required]="true" [options]="lstBedRailsUseDecision"   optionLabel="optionName" [(ngModel)]="RiskToolFormsData.BedRailsUseDecision" name="RiskToolFormsData.BedRailsUseDecision" optionValue="optionId" placeholder="--select--" [style]="{ width: '100%' }">
                 </p-dropdown>
             </ng-container>
             <ng-template #BedRailsUseDecision>
@@ -242,7 +242,7 @@
         </div>
         <div class="col-md-7">
             <ng-container *ngIf="this.isEditable; else Consideration">
-                <p-dropdown [required]="true" [options]="lstConsideration"   optionLabel="optionName" [(ngModel)]="RiskToolFormsData.Consideration" name="RiskToolFormsData.Consideration" optionValue="optionId" placeholder="Select" [style]="{ width: '100%' }">
+                <p-dropdown [required]="true" [options]="lstConsideration"   optionLabel="optionName" [(ngModel)]="RiskToolFormsData.Consideration" name="RiskToolFormsData.Consideration" optionValue="optionId" placeholder="--select--" [style]="{ width: '100%' }">
                 </p-dropdown>
             </ng-container>
             <ng-template #Consideration>
@@ -270,7 +270,7 @@
         </div>
         <div class="col-md-7">
             <ng-container *ngIf="this.isEditable; else ConsultedStatus">
-                <p-dropdown [required]="true" [options]="lstConsultedStatus"   optionLabel="optionName" [(ngModel)]="RiskToolFormsData.ConsultedStatus" name="RiskToolFormsData.ConsultedStatus" optionValue="optionId" placeholder="Select" [style]="{ width: '100%' }">
+                <p-dropdown [required]="true" [options]="lstConsultedStatus"   optionLabel="optionName" [(ngModel)]="RiskToolFormsData.ConsultedStatus" name="RiskToolFormsData.ConsultedStatus" optionValue="optionId" placeholder="--select--" [style]="{ width: '100%' }">
                 </p-dropdown>
             </ng-container>
             <ng-template #ConsultedStatus>
@@ -297,7 +297,7 @@
         </div>
         <div class="col-md-7">
             <ng-container *ngIf="this.isEditable; else BedRailsFitRisk">
-                <p-dropdown [required]="true" [options]="lstBedRailsFitRisk"   optionLabel="optionName" [(ngModel)]="RiskToolFormsData.BedRailsFitRisk" name="RiskToolFormsData.BedRailsFitRisk" optionValue="optionId" placeholder="Select" [style]="{ width: '100%' }">
+                <p-dropdown [required]="true" [options]="lstBedRailsFitRisk"   optionLabel="optionName" [(ngModel)]="RiskToolFormsData.BedRailsFitRisk" name="RiskToolFormsData.BedRailsFitRisk" optionValue="optionId" placeholder="--select--" [style]="{ width: '100%' }">
                 </p-dropdown>
             </ng-container>
             <ng-template #BedRailsFitRisk>

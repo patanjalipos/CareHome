@@ -1,36 +1,33 @@
-import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
-import { environment } from 'src/environments/environment';
+import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
-export class ActivityChartService {
+export class BloodPressureChartService {
 
   constructor(private _httpclient: HttpClient) { }
 
-
-  //#region ActivityChart
-
-  AddInsertUpdateActivityChartForm(ActivitiesChartFormData: any): Observable<any> {
+  AddInsertUpdateBloodPressureChartForm(BloodPressureChartForm: any) {
     let reqHeader = new HttpHeaders({
       'Content-Type': 'application/json',
       'Access-Control-Allow-Origin': environment.BaseUriUser,
       'Authorization': 'Bearer ' + localStorage.getItem('token')
     });
     let params = new HttpParams();
-    var data = JSON.stringify(ActivitiesChartFormData).toString();
+    var data = JSON.stringify(BloodPressureChartForm).toString();
     console.log(data);
     return this._httpclient.post<any>(
       environment.BaseUriUser +
-      'api/User/AddInsertUpdateActivitiesChart',
+      'api/User/AddInsertUpdateBloodPressureChart',
       data,
       { headers: reqHeader, params: params }
     );
   }
 
-  GetActivitiesChartById(selectedChartID: any): Observable<any> {
+  GetBloodPressureChartById(selectedChartID: any): Observable<any> {
     let reqHeader = new HttpHeaders({
       'Content-Type': 'application/json',
       'Access-Control-Allow-Origin': environment.BaseUriAdmin,
@@ -39,10 +36,8 @@ export class ActivityChartService {
     let params = new HttpParams();
     params = params.append('chartId', selectedChartID);
     return this._httpclient.get<any>(
-        environment.BaseUriUser + 'api/User/GetActivitiesChartById',
-        { headers: reqHeader, params: params }
+      environment.BaseUriUser + 'api/User/GetBloodPressureChartById',
+      { headers: reqHeader, params: params }
     );
   }
-
-  //#endregion
 }

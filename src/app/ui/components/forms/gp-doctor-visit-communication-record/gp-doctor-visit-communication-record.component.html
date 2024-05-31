@@ -98,7 +98,7 @@
                 </div>
             </div>
             <!-- <div class="col-md-8 mb-4 ">
-                <p-dropdown *ngIf="this.isEditable;" placeholder="Select" [style]="{ width: '100%' }"
+                <p-dropdown *ngIf="this.isEditable;" placeholder="--select--" [style]="{ width: '100%' }"
                     [options]="lstComRelayMaster" optionLabel="RelayName" optionValue="FamilyComRelayMasterId"
                     [(ngModel)]="GPDoctorVisitCommDetails.CommunicationRelayed">
                 </p-dropdown>
@@ -106,7 +106,7 @@
             </div> -->
             <div class="col-md-8">
                 <ng-container *ngIf="isEditable==true">
-                    <p-dropdown placeholder="Select" [(ngModel)]="GPDoctorVisitCommDetails.CommunicationRelayed"
+                    <p-dropdown placeholder="--select--" [(ngModel)]="GPDoctorVisitCommDetails.CommunicationRelayed"
                         name="ddlCommRelay" [style]="{ width: '100%' }" [options]="lstFamilyComRelayMaster"
                         optionLabel="optionName" optionValue="optionId">
                     </p-dropdown>

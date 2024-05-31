@@ -1,1 +1,118 @@
-<p>behaviour-chart works!</p>
+<div class="card">
+    <div class="row">
+        <div class="formheader">
+            <h4>New observation</h4>
+        </div>
+        <div class="col-md-4 mt-4">
+            <div class="labelcontent">
+                <label class="form-label bold">
+                    Date and Time</label>
+            </div>
+            <ng-container *ngIf="this.isEditable; else DateAndTime">
+                <p-calendar name="txtDate" [showIcon]="true" inputId="icon" class="iconcal" [readonlyInput]="true"
+                    appendTo="body" [maxDate]="" [showTime]="true" hourFormat="24"
+                    [dateFormat]="customDateFormat.CalendarFormat" #dobref=""
+                    [(ngModel)]="BehaviourChartData.DateAndTime"></p-calendar>
+            </ng-container>
+            <ng-template #DateAndTime>
+                <label>{{BehaviourChartData.DateAndTime}}</label>
+            </ng-template>
+        </div>
+        <div class="col-md-4 mt-4">
+            <div class="labelcontent">
+                <label class="form-label bold">Care Given</label>
+            </div>
+            <ng-container *ngIf="this.isEditable; else CareGivenOptions">
+                <p-dropdown [required]="true" name="CareGiven" [options]="stLstYesNoOptions" optionLabel="optionValue"
+                    optionValue="optionId" placeholder="--select--" [style]="{ width: '100%' }"
+                    [(ngModel)]="BehaviourChartData.CareGivenOptions" (onChange)="openAndClose()">
+                </p-dropdown>
+            </ng-container>
+            <ng-template #CareGivenOptions>
+                <label>{{BehaviourChartData.CareGivenOptions}}</label>
+            </ng-template>
+        </div>
+        <div *ngIf="inputFieldsCheck" class="row">
+            <h5 class="formheader">Incident</h5>
+            <div class="col-md-4">
+                <div class="labelcontent">
+                    <label class="form-label bold">Antecedent events</label>
+                </div>
+                <ng-container *ngIf="this.isEditable; else AntecedentEvents">
+                    <textarea type="text" pInputTextarea name="AntecedentEvents"
+                        [(ngModel)]="BehaviourChartData.AntecedentEvents" [required]="true"
+                        [style]="{ width: '100%' }"></textarea>
+                </ng-container>
+                <ng-template #AntecedentEvents>
+                    <label>{{BehaviourChartData.AntecedentEvents}}</label>
+                </ng-template>
+            </div>
+            <div class="col-md-4">
+                <div class="labelcontent">
+                    <label class="form-label bold">Definition of behaviour</label>
+                </div>
+                <ng-container *ngIf="this.isEditable; else BehaviourDefinition">
+                    <textarea type="text" pInputTextarea name="BehaviourDefinition"
+                        [(ngModel)]="BehaviourChartData.BehaviourDefinition" [required]="true"
+                        [style]="{ width: '100%' }"></textarea>
+                </ng-container>
+                <ng-template #BehaviourDefinition>
+                    <label>{{BehaviourChartData.BehaviourDefinition}}</label>
+                </ng-template>
+            </div>
+            <div class="col-md-4">
+                <div class="labelcontent">
+                    <label class="form-label bold">Consequent events</label>
+                </div>
+                <ng-container *ngIf="this.isEditable; else ConsequentEvents">
+                    <textarea type="text" pInputTextarea name="ConsequentEvents"
+                        [(ngModel)]="BehaviourChartData.ConsequentEvents" [required]="true"
+                        [style]="{ width: '100%' }"></textarea>
+                </ng-container>
+                <ng-template #ConsequentEvents>
+                    <label>{{BehaviourChartData.ConsequentEvents}}</label>
+                </ng-template>
+            </div>
+            <h5 class="formheader">Functional assessment</h5>
+            <div class="col-md-4">
+                <div class="labelcontent">
+                    <label class="form-label bold">What purpose does this behaviour serve for the resident?</label>
+                </div>
+                <ng-container *ngIf="this.isEditable; else BehaviourPurpose">
+                    <p-dropdown [required]="true" name="BehaviourPurpose"
+                        [(ngModel)]="BehaviourChartData.BehaviourPurposeOptions"
+                        [options]="LstBehaviourPurpose" optionLabel="optionName" optionValue="optionId"
+                        placeholder="--select--" [style]="{ width: '100%' }">
+                    </p-dropdown>
+                </ng-container>
+                <ng-template #BehaviourPurpose>
+                    <label>{{BehaviourChartData.BehaviourPurposeOptionsName}}</label>
+                </ng-template>
+            </div>
+        </div>
+        <h5 class="formheader">Additional information</h5>
+        <div class="col-md-4">
+            <ng-container *ngIf="this.isEditable; else AdditionalInfo">
+                <textarea pInputTextarea name="AdditionalInfo" [(ngModel)]="BehaviourChartData.AdditionalInfo"
+                    [required]="true" [style]="{ width: '100%' }"></textarea>
+            </ng-container>
+            <ng-template #AdditionalInfo>
+                <label>{{BehaviourChartData.AdditionalInfo}}</label>
+            </ng-template>
+        </div>
+        <div class="d-flex justify-content-end mt-4" *ngIf="this.isEditable == true">
+            <div>
+                <span class="p-ml-left mr-4">
+                    <button pButton title="New" label="Clear all feild" (click)="ResetModel()"></button>
+                    <span class="total-txt"></span>
+                </span>
+            </div>
+            <div>
+                <span class="p-ml-left mr-4">
+                    <button pButton title="New" label="Save" (click)="completeForm()"></button>
+                    <span class="total-txt"></span>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>

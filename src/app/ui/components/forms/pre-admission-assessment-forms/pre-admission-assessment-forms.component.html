@@ -74,7 +74,7 @@
                 <p-dropdown name="PreAdmissionAssessmentFormsData.PersonCapacity"
                     [(ngModel)]="PreAdmissionAssessmentFormsData.PersonCapacity"
                     [options]="LstPreAdmPersonCapacityOptionsMaster" optionLabel="optionName" optionValue="optionId"
-                    placeholder="Select" [style]="{ width: '100%' }">
+                    placeholder="--select--" [style]="{ width: '100%' }">
                 </p-dropdown>
                 <p class="mb-4">
                     If person lacks capacity what powers are they being moved
@@ -104,7 +104,7 @@
                 <p-dropdown name="PreAdmissionAssessmentFormsData.ProfessionalDocObtained" [(ngModel)]="
                         PreAdmissionAssessmentFormsData.ProfessionalDocObtained
                     " [options]="LstPreAdmProfessionalDocObtainedOptionsMaster" optionLabel="optionName"
-                    optionValue="optionId" placeholder="Select" [style]="{ width: '100%' }">
+                    optionValue="optionId" placeholder="--select--" [style]="{ width: '100%' }">
                 </p-dropdown>
                 <p class="mb-4">
                     If not obtained or in place, AWI certificate and
@@ -131,7 +131,7 @@
                 <p-dropdown name="PreAdmissionAssessmentFormsData.ResidentMovingFrom" [(ngModel)]="
                         PreAdmissionAssessmentFormsData.ResidentMovingFrom
                     " [options]="LstPreAdmResidentMovingOptionsMaster" optionLabel="optionName" optionValue="optionId"
-                    placeholder="Select" [style]="{ width: '100%' }">
+                    placeholder="--select--" [style]="{ width: '100%' }">
                 </p-dropdown>
             </ng-container>
             <ng-template #ResidentMovingFrom>
@@ -152,7 +152,7 @@
             <ng-container *ngIf="this.isEditable; else Payment">
                 <p-dropdown name="PreAdmissionAssessmentFormsData.Payment"
                     [(ngModel)]="PreAdmissionAssessmentFormsData.Payment" [options]="LstPreAdmPaymentOptionsMaster"
-                    optionLabel="optionName" optionValue="optionId" placeholder="Select" [style]="{ width: '100%' }">
+                    optionLabel="optionName" optionValue="optionId" placeholder="--select--" [style]="{ width: '100%' }">
                 </p-dropdown>
                 <p class="mb-4">Update resident admission details</p>
             </ng-container>
@@ -176,7 +176,7 @@
                 <p-dropdown name="PreAdmissionAssessmentFormsData.PeronsCurrentAbilities" [(ngModel)]="
                         PreAdmissionAssessmentFormsData.PeronsCurrentAbilities
                     " [options]="LstPreAdmPeronsCurrentAbilitiesOptionsMaster" optionLabel="optionName"
-                    optionValue="optionId" placeholder="Select" [style]="{ width: '100%' }">
+                    optionValue="optionId" placeholder="--select--" [style]="{ width: '100%' }">
                 </p-dropdown>
                 <p class="mb-4">
                     Focus in this section on the persona abilities not their
@@ -204,7 +204,7 @@
                 <p-dropdown [(ngModel)]="
                         PreAdmissionAssessmentFormsData.AdvancedCarePlanning
                     " [options]="LstPreAdmAdvancedCarePlanningOptionsMaster" optionLabel="optionName"
-                    optionValue="optionId" placeholder="Select" [style]="{ width: '100%' }">
+                    optionValue="optionId" placeholder="--select--" [style]="{ width: '100%' }">
                 </p-dropdown>
             </ng-container>
             <ng-template #AdvancedCarePlanning>
@@ -227,7 +227,7 @@
                         PreAdmissionAssessmentFormsData.MedicalHistoryCondition
                     " name="PreAdmissionAssessmentFormsData.MedicalHistoryCondition"
                     [options]="LstPreAdmMedicalHistoryConditionOptionsMaster" optionLabel="optionName"
-                    placeholder="Select" optionValue="optionId" [style]="{ width: '100%' }">
+                    placeholder="--select--" optionValue="optionId" [style]="{ width: '100%' }">
                 </p-dropdown>
                 <p class="mb-4">
                     Include any pacemakers, please at the point of pre admission
@@ -280,7 +280,7 @@
                 <p-dropdown name="PreAdmissionAssessmentFormsData.ConnectingAndCommunicating" [(ngModel)]="
                         PreAdmissionAssessmentFormsData.ConnectingAndCommunicating
                     " [options]="LstPreAdmConnectingAndCommunicatingOptionsMaster" optionLabel="optionName"
-                    optionValue="optionId" placeholder="Select" [style]="{ width: '100%' }">
+                    optionValue="optionId" placeholder="--select--" [style]="{ width: '100%' }">
                 </p-dropdown>
                 <p class="mb-4">
                     Include all the applicable options below and expand if
@@ -309,7 +309,7 @@
                 <p-dropdown [(ngModel)]="PreAdmissionAssessmentFormsData.PersonalSafety"
                     name="PreAdmissionAssessmentFormsData.PersonalSafety"
                     [options]="LstPreAdmPersonalSafetyOptionsMaster" optionLabel="optionName" optionValue="optionId"
-                    placeholder="Select" [style]="{ width: '100%' }">
+                    placeholder="--select--" [style]="{ width: '100%' }">
                 </p-dropdown>
                 <p class="mb-4">
                     Please review in a risk aware manner how can we safely
@@ -363,7 +363,7 @@
                         PreAdmissionAssessmentFormsData.ResidentExpAnyMHConditions
                     " name="PreAdmissionAssessmentFormsData.ResidentExpAnyMHConditions"
                     [options]="LstPreAdmResidentExpAnyMHConditionsOptionsMaster" optionLabel="optionName"
-                    optionValue="optionId" placeholder="Select" [style]="{ width: '100%' }">
+                    optionValue="optionId" placeholder="--select--" [style]="{ width: '100%' }">
                 </p-dropdown>
                 <p class="mb-4">
                     If yes, has this been diagnosed by a GP (state condition)
@@ -390,7 +390,7 @@
                         PreAdmissionAssessmentFormsData.SpeechSightHearing
                     " name="PreAdmissionAssessmentFormsData.SpeechSightHearing"
                     [options]="LstPreAdmSpeechSightHearingOptionsMaster" optionLabel="optionName" optionValue="optionId"
-                    placeholder="Select" [style]="{ width: '100%' }">
+                    placeholder="--select--" [style]="{ width: '100%' }">
                 </p-dropdown>
             </ng-container>
             <ng-template #SpeechSightHearingLabel>
@@ -465,7 +465,7 @@
                         PreAdmissionAssessmentFormsData.FallsAndMobility
                     " name="PreAdmissionAssessmentFormsData.FallsAndMobility"
                     [options]="LstPreAdmFallsAndMobilityOptionsMaster" optionLabel="optionName" optionValue="optionId"
-                    placeholder="Select" [style]="{ width: '100%' }">
+                    placeholder="--select--" [style]="{ width: '100%' }">
                 </p-dropdown>
             </ng-container>
             <ng-template #FallsAndMobilityLabel>
@@ -511,7 +511,7 @@
             <ng-container *ngIf="isEditable; else PainStatusLabel">
                 <p-dropdown [(ngModel)]="PreAdmissionAssessmentFormsData.PainStatus"
                     name="PreAdmissionAssessmentFormsData.PainStatus" [options]="LstPreAdmPainStatusOptionMaster"
-                    optionLabel="optionName" optionValue="optionId" placeholder="Select" [style]="{ width: '100%' }">
+                    optionLabel="optionName" optionValue="optionId" placeholder="--select--" [style]="{ width: '100%' }">
                 </p-dropdown>
             </ng-container>
             <ng-template #PainStatusLabel>
@@ -559,7 +559,7 @@
                 <p-dropdown [(ngModel)]="PreAdmissionAssessmentFormsData.SkinAssessment"
                     name="PreAdmissionAssessmentFormsData.SkinAssessment"
                     [options]="LstPreAdmSkinAssessmentOptionsMaster" optionLabel="optionName" optionValue="optionId"
-                    placeholder="Select" [style]="{ width: '100%' }">
+                    placeholder="--select--" [style]="{ width: '100%' }">
                 </p-dropdown>
                 <p class="mb-4">
                     Include any medical conditions that affect skin or could
@@ -603,7 +603,7 @@
                         PreAdmissionAssessmentFormsData.EatingDrinkingAssessment
                     " name="PreAdmissionAssessmentFormsData.EatingDrinkingAssessment"
                     [options]="LstPreAdmEatingDrinkingAssessmentOptionsMaster" optionLabel="optionName"
-                    optionValue="optionId" placeholder="Select" [style]="{ width: '100%' }">
+                    optionValue="optionId" placeholder="--select--" [style]="{ width: '100%' }">
                 </p-dropdown>
             </ng-container>
             <ng-template #EatingDrinkingAssessmentLabel>
@@ -653,7 +653,7 @@
                 <p-dropdown name="PreAdmissionAssessmentFormsData.PromotionOfContinence" [(ngModel)]="
                         PreAdmissionAssessmentFormsData.PromotionOfContinence
                     " [options]="LstPreAdmPromotionOfContinenceOptionsMaster" optionLabel="optionName"
-                    optionValue="optionId" placeholder="Select" [style]="{ width: '100%' }">
+                    optionValue="optionId" placeholder="--select--" [style]="{ width: '100%' }">
                 </p-dropdown>
             </ng-container>
             <ng-template #PromotionOfContinenceLabel>
@@ -704,7 +704,7 @@
                         PreAdmissionAssessmentFormsData.FeelingFreshAndClean
                     " [options]="LstPreAdmFeelingFreshAndCleanOptionsMaster" optionLabel="optionName"
                     optionValue="optionId" name="PreAdmissionAssessmentFormsData.FeelingFreshAndClean"
-                    placeholder="Select" [style]="{ width: '100%' }">
+                    placeholder="--select--" [style]="{ width: '100%' }">
                 </p-dropdown>
             </ng-container>
             <ng-template #FeelingFreshAndCleanLabel>
@@ -754,7 +754,7 @@
                 <p-dropdown name="PreAdmissionAssessmentFormsData.SleepingAndResting" [(ngModel)]="
                         PreAdmissionAssessmentFormsData.SleepingAndResting
                     " [options]="LstPreAdmSleepingAndRestingOptionsMaster" optionLabel="optionName"
-                    optionValue="optionId" placeholder="Select" [style]="{ width: '100%' }">
+                    optionValue="optionId" placeholder="--select--" [style]="{ width: '100%' }">
                 </p-dropdown>
             </ng-container>
             <ng-template #SleepingAndRestingLabel>
@@ -804,7 +804,7 @@
                 <p-dropdown name="PreAdmissionAssessmentFormsData.ExpressingSexuality" [(ngModel)]="
                         PreAdmissionAssessmentFormsData.ExpressingSexuality
                     " [options]="LstPreAdmExpressingSexualityOptionsMaster" optionLabel="optionName"
-                    optionValue="optionId" placeholder="Select" [style]="{ width: '100%' }">
+                    optionValue="optionId" placeholder="--select--" [style]="{ width: '100%' }">
                 </p-dropdown>
             </ng-container>
             <ng-template #ExpressingSexualityLabel>
@@ -882,7 +882,7 @@
                 <p-dropdown name="PreAdmissionAssessmentFormsData.EpilepsySeizureManagement" [(ngModel)]="
                         PreAdmissionAssessmentFormsData.EpilepsySeizureManagement
                     " [options]="LstPreAdmEpilepsySeizureManagementOptionsMaster" optionValue="optionId"
-                    optionLabel="optionName" placeholder="Select" [style]="{ width: '100%' }">
+                    optionLabel="optionName" placeholder="--select--" [style]="{ width: '100%' }">
                 </p-dropdown>
             </ng-container>
             <ng-template #EpilepsySeizureManagementLabel>
@@ -933,7 +933,7 @@
                 <p-dropdown name="PreAdmissionAssessmentFormsData.InfectionStatus" [(ngModel)]="
                         PreAdmissionAssessmentFormsData.InfectionStatus
                     " [options]="LstPreAdmInfectionStatusOptionsMaster" optionLabel="optionName" optionValue="optionId"
-                    placeholder="Select" [style]="{ width: '100%' }">
+                    placeholder="--select--" [style]="{ width: '100%' }">
                 </p-dropdown>
             </ng-container>
             <ng-template #InfectionStatusLabel>
@@ -981,7 +981,7 @@
             <ng-container *ngIf="isEditable; else MedicationDropdownLabel">
                 <p-dropdown [(ngModel)]="PreAdmissionAssessmentFormsData.Medication"
                     name="PreAdmissionAssessmentFormsData.Medication" [options]="LstPreAdmMedicationOptionMaster"
-                    optionLabel="optionName" optionValue="optionId" placeholder="Select" [style]="{ width: '100%' }">
+                    optionLabel="optionName" optionValue="optionId" placeholder="--select--" [style]="{ width: '100%' }">
                 </p-dropdown>
             </ng-container>
             <ng-template #MedicationDropdownLabel>
@@ -1031,7 +1031,7 @@
                         PreAdmissionAssessmentFormsData.FirstAidEpilepticSeizure
                     " name="PreAdmissionAssessmentFormsData.FirstAidEpilepticSeizure"
                     [options]="LstPreAdmFirstAidEpilepticSeizureOptionsMaster" optionLabel="optionName"
-                    optionValue="optionId" placeholder="Select" [style]="{ width: '100%' }">
+                    optionValue="optionId" placeholder="--select--" [style]="{ width: '100%' }">
                     <p class="mb-4">Choose all statements below</p>
                 </p-dropdown>
             </ng-container>
@@ -1079,7 +1079,7 @@
                 <p-dropdown [(ngModel)]="
                         PreAdmissionAssessmentFormsData.CCTVPolicy
                     " name="PreAdmissionAssessmentFormsData.CCTVPolicy" [options]="LstPreAdmCCTVPolicyOptionsMaster"
-                    optionLabel="optionName" optionValue="optionId" placeholder="Select" [style]="{ width: '100%' }">
+                    optionLabel="optionName" optionValue="optionId" placeholder="--select--" [style]="{ width: '100%' }">
                 </p-dropdown>
             </ng-container>
             <ng-template #CCTVPolicyDropdownLabel>
