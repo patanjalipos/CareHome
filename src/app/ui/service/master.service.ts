@@ -7,13 +7,13 @@ import { environment } from 'src/environments/environment';
     providedIn: 'root',
 })
 export class MasterService {
-    constructor(private _httpclient: HttpClient) { }
+    constructor(private _httpclient: HttpClient) {}
 
     GetCountryMaster(): Observable<any> {
         let reqHeader = new HttpHeaders({
             'Content-Type': 'application/json',
             'Access-Control-Allow-Origin': environment.BaseUriAdmin,
-            'Authorization': 'Bearer ' + localStorage.getItem('token')
+            Authorization: 'Bearer ' + localStorage.getItem('token'),
         });
         let params = new HttpParams();
         return this._httpclient.get<any>(
@@ -22,47 +22,60 @@ export class MasterService {
         );
     }
 
-    // Common Email Drafting 
+    // Common Email Drafting
 
     GetAllEmailDrafting(): Observable<any> {
         let reqHeader = new HttpHeaders({
             'Content-Type': 'application/json',
             'Access-Control-Allow-Origin': environment.BaseUriAdmin,
-            'Authorization': 'Bearer ' + localStorage.getItem('token')
+            Authorization: 'Bearer ' + localStorage.getItem('token'),
         });
         let params = new HttpParams();
-        var data = "";
-        return this._httpclient.get(environment.BaseUriAdmin + "api/Admin/GetAllEmailDrafting", { "headers": reqHeader, "params": params });
+        var data = '';
+        return this._httpclient.get(
+            environment.BaseUriAdmin + 'api/Admin/GetAllEmailDrafting',
+            { headers: reqHeader, params: params }
+        );
     }
     GetEmailTemplateByType(DId): Observable<any> {
         let reqHeader = new HttpHeaders({
             'Content-Type': 'application/json',
             'Access-Control-Allow-Origin': environment.BaseUriAdmin,
-            'Authorization': 'Bearer ' + localStorage.getItem('token')
+            Authorization: 'Bearer ' + localStorage.getItem('token'),
         });
         let params = new HttpParams();
         params = params.append('DId', DId);
-        return this._httpclient.get(environment.BaseUriAdmin + "api/Admin/GetEmailTemplateByType", { "headers": reqHeader, "params": params });
+        return this._httpclient.get(
+            environment.BaseUriAdmin + 'api/Admin/GetEmailTemplateByType',
+            { headers: reqHeader, params: params }
+        );
     }
     SaveUpdateEmailDrafting(commonEmailDraftingMaster: any): Observable<any> {
-
         let reqHeader = new HttpHeaders({
             'Content-Type': 'application/json',
             'Access-Control-Allow-Origin': environment.BaseUriAdmin,
-            'Authorization': 'Bearer ' + localStorage.getItem('token')
+            Authorization: 'Bearer ' + localStorage.getItem('token'),
         });
         let params = new HttpParams();
         var data = JSON.stringify(commonEmailDraftingMaster).toString();
 
-        if (commonEmailDraftingMaster.DId != null && commonEmailDraftingMaster.DId != "") {
-            return this._httpclient.post<any>(environment.BaseUriAdmin + "api/Admin/UpdateEmailDrafting", data, { "headers": reqHeader, "params": params });
-        }
-        else {
-            return this._httpclient.post<any>(environment.BaseUriAdmin + "api/Admin/AddEmailDrafting", data, { "headers": reqHeader, "params": params });
+        if (
+            commonEmailDraftingMaster.DId != null &&
+            commonEmailDraftingMaster.DId != ''
+        ) {
+            return this._httpclient.post<any>(
+                environment.BaseUriAdmin + 'api/Admin/UpdateEmailDrafting',
+                data,
+                { headers: reqHeader, params: params }
+            );
+        } else {
+            return this._httpclient.post<any>(
+                environment.BaseUriAdmin + 'api/Admin/AddEmailDrafting',
+                data,
+                { headers: reqHeader, params: params }
+            );
         }
     }
-
-
 
     //#region Form Dashboard
 
@@ -75,7 +88,7 @@ export class MasterService {
         let reqHeader = new HttpHeaders({
             'Content-Type': 'application/json',
             'Access-Control-Allow-Origin': environment.BaseUriAdmin,
-            'Authorization': 'Bearer ' + localStorage.getItem('token')
+            Authorization: 'Bearer ' + localStorage.getItem('token'),
         });
         let params = new HttpParams();
         params = params.append(
@@ -109,7 +122,7 @@ export class MasterService {
         let reqHeader = new HttpHeaders({
             'Content-Type': 'application/json',
             'Access-Control-Allow-Origin': environment.BaseUriAdmin,
-            'Authorization': 'Bearer ' + localStorage.getItem('token')
+            Authorization: 'Bearer ' + localStorage.getItem('token'),
         });
         let params = new HttpParams();
         params = params.append('formMasterId', formMasterId);
@@ -217,13 +230,13 @@ export class MasterService {
         let reqHeader = new HttpHeaders({
             'Content-Type': 'application/json',
             'Access-Control-Allow-Origin': environment.BaseUriAdmin,
-            'Authorization': 'Bearer ' + localStorage.getItem('token')
+            Authorization: 'Bearer ' + localStorage.getItem('token'),
         });
         let params = new HttpParams();
         params = params.append('fromId', fromId);
         return this._httpclient.get<any>(
             environment.BaseUriAdmin +
-            'api/Admin/GetAccidentNearOrMissRecordForm',
+                'api/Admin/GetAccidentNearOrMissRecordForm',
             { headers: reqHeader, params: params }
         );
     }
@@ -234,14 +247,14 @@ export class MasterService {
         let reqHeader = new HttpHeaders({
             'Content-Type': 'application/json',
             'Access-Control-Allow-Origin': environment.BaseUriAdmin,
-            'Authorization': 'Bearer ' + localStorage.getItem('token')
+            Authorization: 'Bearer ' + localStorage.getItem('token'),
         });
         let params = new HttpParams();
         var data = JSON.stringify(AccidentNearMissRecordFormsData).toString();
         console.log(data);
         return this._httpclient.post<any>(
             environment.BaseUriAdmin +
-            'api/Admin/AddInsertUpdateAccidentNearOrMissRecordForm',
+                'api/Admin/AddInsertUpdateAccidentNearOrMissRecordForm',
             data,
             { headers: reqHeader, params: params }
         );
@@ -255,7 +268,7 @@ export class MasterService {
         let reqHeader = new HttpHeaders({
             'Content-Type': 'application/json',
             'Access-Control-Allow-Origin': environment.BaseUriAdmin,
-            'Authorization': 'Bearer ' + localStorage.getItem('token')
+            Authorization: 'Bearer ' + localStorage.getItem('token'),
         });
         let params = new HttpParams();
         params = params.append('status', status);
@@ -269,7 +282,7 @@ export class MasterService {
         let reqHeader = new HttpHeaders({
             'Content-Type': 'application/json',
             'Access-Control-Allow-Origin': environment.BaseUriAdmin,
-            'Authorization': 'Bearer ' + localStorage.getItem('token')
+            Authorization: 'Bearer ' + localStorage.getItem('token'),
         });
         let params = new HttpParams();
         params = params.append('id', id);
@@ -283,7 +296,7 @@ export class MasterService {
         let reqHeader = new HttpHeaders({
             'Content-Type': 'application/json',
             'Access-Control-Allow-Origin': environment.BaseUriAdmin,
-            'Authorization': 'Bearer ' + localStorage.getItem('token')
+            Authorization: 'Bearer ' + localStorage.getItem('token'),
         });
         let params = new HttpParams();
         var data = JSON.stringify(obj).toString();
@@ -302,7 +315,7 @@ export class MasterService {
         let reqHeader = new HttpHeaders({
             'Content-Type': 'application/json',
             'Access-Control-Allow-Origin': environment.BaseUriAdmin,
-            'Authorization': 'Bearer ' + localStorage.getItem('token')
+            Authorization: 'Bearer ' + localStorage.getItem('token'),
         });
         let params = new HttpParams();
         params = params.append('moduleId', moduleId);
@@ -316,7 +329,7 @@ export class MasterService {
         let reqHeader = new HttpHeaders({
             'Content-Type': 'application/json',
             'Access-Control-Allow-Origin': environment.BaseUriAdmin,
-            'Authorization': 'Bearer ' + localStorage.getItem('token')
+            Authorization: 'Bearer ' + localStorage.getItem('token'),
         });
         let params = new HttpParams();
         params = params.append('menuid', menuid);
@@ -329,7 +342,7 @@ export class MasterService {
         let reqHeader = new HttpHeaders({
             'Content-Type': 'application/json',
             'Access-Control-Allow-Origin': environment.BaseUriAdmin,
-            'Authorization': 'Bearer ' + localStorage.getItem('token')
+            Authorization: 'Bearer ' + localStorage.getItem('token'),
         });
         let params = new HttpParams();
         var data = JSON.stringify(MenuItemMaster).toString();
@@ -348,7 +361,7 @@ export class MasterService {
         let reqHeader = new HttpHeaders({
             'Content-Type': 'application/json',
             'Access-Control-Allow-Origin': environment.BaseUriAdmin,
-            'Authorization': 'Bearer ' + localStorage.getItem('token')
+            Authorization: 'Bearer ' + localStorage.getItem('token'),
         });
         let params = new HttpParams();
         params = params.append('status', status);
@@ -361,7 +374,7 @@ export class MasterService {
         let reqHeader = new HttpHeaders({
             'Content-Type': 'application/json',
             'Access-Control-Allow-Origin': environment.BaseUriAdmin,
-            'Authorization': 'Bearer ' + localStorage.getItem('token')
+            Authorization: 'Bearer ' + localStorage.getItem('token'),
         });
         let params = new HttpParams();
         params = params.append('id', id);
@@ -374,7 +387,7 @@ export class MasterService {
         let reqHeader = new HttpHeaders({
             'Content-Type': 'application/json',
             'Access-Control-Allow-Origin': environment.BaseUriAdmin,
-            'Authorization': 'Bearer ' + localStorage.getItem('token')
+            Authorization: 'Bearer ' + localStorage.getItem('token'),
         });
         let params = new HttpParams();
         return this._httpclient.get<any>(
@@ -386,7 +399,7 @@ export class MasterService {
         let reqHeader = new HttpHeaders({
             'Content-Type': 'application/json',
             'Access-Control-Allow-Origin': environment.BaseUriAdmin,
-            'Authorization': 'Bearer ' + localStorage.getItem('token')
+            Authorization: 'Bearer ' + localStorage.getItem('token'),
         });
         let params = new HttpParams();
         var data = JSON.stringify(HomeMaster).toString();
@@ -405,7 +418,7 @@ export class MasterService {
         let reqHeader = new HttpHeaders({
             'Content-Type': 'application/json',
             'Access-Control-Allow-Origin': environment.BaseUriAdmin,
-            'Authorization': 'Bearer ' + localStorage.getItem('token')
+            Authorization: 'Bearer ' + localStorage.getItem('token'),
         });
         let params = new HttpParams();
         params = params.append('status', status);
@@ -418,7 +431,7 @@ export class MasterService {
         let reqHeader = new HttpHeaders({
             'Content-Type': 'application/json',
             'Access-Control-Allow-Origin': environment.BaseUriAdmin,
-            'Authorization': 'Bearer ' + localStorage.getItem('token')
+            Authorization: 'Bearer ' + localStorage.getItem('token'),
         });
         let params = new HttpParams();
         params = params.append('homeMasterId', homeMasterId);
@@ -431,7 +444,7 @@ export class MasterService {
         let reqHeader = new HttpHeaders({
             'Content-Type': 'application/json',
             'Access-Control-Allow-Origin': environment.BaseUriAdmin,
-            'Authorization': 'Bearer ' + localStorage.getItem('token')
+            Authorization: 'Bearer ' + localStorage.getItem('token'),
         });
         let params = new HttpParams();
         params = params.append('id', id);
@@ -445,13 +458,13 @@ export class MasterService {
         let reqHeader = new HttpHeaders({
             'Content-Type': 'application/json',
             'Access-Control-Allow-Origin': environment.BaseUriAdmin,
-            'Authorization': 'Bearer ' + localStorage.getItem('token')
+            Authorization: 'Bearer ' + localStorage.getItem('token'),
         });
         let params = new HttpParams();
         var data = JSON.stringify(LocationMaster).toString();
         return this._httpclient.post<any>(
             environment.BaseUriAdmin +
-            'api/Admin/AddInsertUpdateLocationMaster',
+                'api/Admin/AddInsertUpdateLocationMaster',
             data,
             { headers: reqHeader, params: params }
         );
@@ -465,7 +478,7 @@ export class MasterService {
         let reqHeader = new HttpHeaders({
             'Content-Type': 'application/json',
             'Access-Control-Allow-Origin': environment.BaseUriAdmin,
-            'Authorization': 'Bearer ' + localStorage.getItem('token')
+            Authorization: 'Bearer ' + localStorage.getItem('token'),
         });
         let params = new HttpParams();
         params = params.append('status', status);
@@ -478,7 +491,7 @@ export class MasterService {
         let reqHeader = new HttpHeaders({
             'Content-Type': 'application/json',
             'Access-Control-Allow-Origin': environment.BaseUriAdmin,
-            'Authorization': 'Bearer ' + localStorage.getItem('token')
+            Authorization: 'Bearer ' + localStorage.getItem('token'),
         });
         let params = new HttpParams();
         params = params.append('id', id);
@@ -491,7 +504,7 @@ export class MasterService {
         let reqHeader = new HttpHeaders({
             'Content-Type': 'application/json',
             'Access-Control-Allow-Origin': environment.BaseUriAdmin,
-            'Authorization': 'Bearer ' + localStorage.getItem('token')
+            Authorization: 'Bearer ' + localStorage.getItem('token'),
         });
         let params = new HttpParams();
         var data = JSON.stringify(obj).toString();
@@ -506,7 +519,7 @@ export class MasterService {
         let reqHeader = new HttpHeaders({
             'Content-Type': 'application/json',
             'Access-Control-Allow-Origin': environment.BaseUriAdmin,
-            'Authorization': 'Bearer ' + localStorage.getItem('token')
+            Authorization: 'Bearer ' + localStorage.getItem('token'),
         });
         let params = new HttpParams();
         params = params.append('status', status);
@@ -519,7 +532,7 @@ export class MasterService {
         let reqHeader = new HttpHeaders({
             'Content-Type': 'application/json',
             'Access-Control-Allow-Origin': environment.BaseUriAdmin,
-            'Authorization': 'Bearer ' + localStorage.getItem('token')
+            Authorization: 'Bearer ' + localStorage.getItem('token'),
         });
         let params = new HttpParams();
         params = params.append('id', id);
@@ -532,7 +545,7 @@ export class MasterService {
         let reqHeader = new HttpHeaders({
             'Content-Type': 'application/json',
             'Access-Control-Allow-Origin': environment.BaseUriAdmin,
-            'Authorization': 'Bearer ' + localStorage.getItem('token')
+            Authorization: 'Bearer ' + localStorage.getItem('token'),
         });
         let params = new HttpParams();
         var data = JSON.stringify(obj).toString();
@@ -551,7 +564,7 @@ export class MasterService {
         let reqHeader = new HttpHeaders({
             'Content-Type': 'application/json',
             'Access-Control-Allow-Origin': environment.BaseUriAdmin,
-            'Authorization': 'Bearer ' + localStorage.getItem('token')
+            Authorization: 'Bearer ' + localStorage.getItem('token'),
         });
         let params = new HttpParams();
         params = params.append('status', status);
@@ -564,7 +577,7 @@ export class MasterService {
         let reqHeader = new HttpHeaders({
             'Content-Type': 'application/json',
             'Access-Control-Allow-Origin': environment.BaseUriAdmin,
-            'Authorization': 'Bearer ' + localStorage.getItem('token')
+            Authorization: 'Bearer ' + localStorage.getItem('token'),
         });
         let params = new HttpParams();
         params = params.append('id', id);
@@ -577,7 +590,7 @@ export class MasterService {
         let reqHeader = new HttpHeaders({
             'Content-Type': 'application/json',
             'Access-Control-Allow-Origin': environment.BaseUriAdmin,
-            'Authorization': 'Bearer ' + localStorage.getItem('token')
+            Authorization: 'Bearer ' + localStorage.getItem('token'),
         });
         let params = new HttpParams();
         var data = JSON.stringify(obj).toString();
@@ -592,7 +605,7 @@ export class MasterService {
         let reqHeader = new HttpHeaders({
             'Content-Type': 'application/json',
             'Access-Control-Allow-Origin': environment.BaseUriAdmin,
-            'Authorization': 'Bearer ' + localStorage.getItem('token')
+            Authorization: 'Bearer ' + localStorage.getItem('token'),
         });
         let params = new HttpParams();
         params = params.append('status', status);
@@ -605,7 +618,7 @@ export class MasterService {
         let reqHeader = new HttpHeaders({
             'Content-Type': 'application/json',
             'Access-Control-Allow-Origin': environment.BaseUriAdmin,
-            'Authorization': 'Bearer ' + localStorage.getItem('token')
+            Authorization: 'Bearer ' + localStorage.getItem('token'),
         });
         let params = new HttpParams();
         params = params.append('id', id);
@@ -618,7 +631,7 @@ export class MasterService {
         let reqHeader = new HttpHeaders({
             'Content-Type': 'application/json',
             'Access-Control-Allow-Origin': environment.BaseUriAdmin,
-            'Authorization': 'Bearer ' + localStorage.getItem('token')
+            Authorization: 'Bearer ' + localStorage.getItem('token'),
         });
         let params = new HttpParams();
         var data = JSON.stringify(obj).toString();
@@ -637,7 +650,7 @@ export class MasterService {
         let reqHeader = new HttpHeaders({
             'Content-Type': 'application/json',
             'Access-Control-Allow-Origin': environment.BaseUriAdmin,
-            'Authorization': 'Bearer ' + localStorage.getItem('token')
+            Authorization: 'Bearer ' + localStorage.getItem('token'),
         });
         let params = new HttpParams();
         params = params.append('status', status);
@@ -650,7 +663,7 @@ export class MasterService {
         let reqHeader = new HttpHeaders({
             'Content-Type': 'application/json',
             'Access-Control-Allow-Origin': environment.BaseUriAdmin,
-            'Authorization': 'Bearer ' + localStorage.getItem('token')
+            Authorization: 'Bearer ' + localStorage.getItem('token'),
         });
         let params = new HttpParams();
         params = params.append('id', id);
@@ -663,13 +676,13 @@ export class MasterService {
         let reqHeader = new HttpHeaders({
             'Content-Type': 'application/json',
             'Access-Control-Allow-Origin': environment.BaseUriAdmin,
-            'Authorization': 'Bearer ' + localStorage.getItem('token')
+            Authorization: 'Bearer ' + localStorage.getItem('token'),
         });
         let params = new HttpParams();
         var data = JSON.stringify(obj).toString();
         return this._httpclient.post<any>(
             environment.BaseUriAdmin +
-            'api/Admin/AddInsertUpdateIndicatorGroup',
+                'api/Admin/AddInsertUpdateIndicatorGroup',
             data,
             { headers: reqHeader, params: params }
         );
@@ -679,7 +692,7 @@ export class MasterService {
         let reqHeader = new HttpHeaders({
             'Content-Type': 'application/json',
             'Access-Control-Allow-Origin': environment.BaseUriAdmin,
-            'Authorization': 'Bearer ' + localStorage.getItem('token')
+            Authorization: 'Bearer ' + localStorage.getItem('token'),
         });
         let params = new HttpParams();
         params = params.append('status', status);
@@ -692,7 +705,7 @@ export class MasterService {
         let reqHeader = new HttpHeaders({
             'Content-Type': 'application/json',
             'Access-Control-Allow-Origin': environment.BaseUriAdmin,
-            'Authorization': 'Bearer ' + localStorage.getItem('token')
+            Authorization: 'Bearer ' + localStorage.getItem('token'),
         });
         let params = new HttpParams();
         params = params.append('id', id);
@@ -705,7 +718,7 @@ export class MasterService {
         let reqHeader = new HttpHeaders({
             'Content-Type': 'application/json',
             'Access-Control-Allow-Origin': environment.BaseUriAdmin,
-            'Authorization': 'Bearer ' + localStorage.getItem('token')
+            Authorization: 'Bearer ' + localStorage.getItem('token'),
         });
         let params = new HttpParams();
         var data = JSON.stringify(obj).toString();
@@ -724,7 +737,7 @@ export class MasterService {
         let reqHeader = new HttpHeaders({
             'Content-Type': 'application/json',
             'Access-Control-Allow-Origin': environment.BaseUriAdmin,
-            'Authorization': 'Bearer ' + localStorage.getItem('token')
+            Authorization: 'Bearer ' + localStorage.getItem('token'),
         });
         let params = new HttpParams();
         params = params.append('status', status);
@@ -737,7 +750,7 @@ export class MasterService {
         let reqHeader = new HttpHeaders({
             'Content-Type': 'application/json',
             'Access-Control-Allow-Origin': environment.BaseUriAdmin,
-            'Authorization': 'Bearer ' + localStorage.getItem('token')
+            Authorization: 'Bearer ' + localStorage.getItem('token'),
         });
         let params = new HttpParams();
         params = params.append('id', id);
@@ -750,7 +763,7 @@ export class MasterService {
         let reqHeader = new HttpHeaders({
             'Content-Type': 'application/json',
             'Access-Control-Allow-Origin': environment.BaseUriAdmin,
-            'Authorization': 'Bearer ' + localStorage.getItem('token')
+            Authorization: 'Bearer ' + localStorage.getItem('token'),
         });
         let params = new HttpParams();
         var data = JSON.stringify(obj).toString();
@@ -769,7 +782,7 @@ export class MasterService {
         let reqHeader = new HttpHeaders({
             'Content-Type': 'application/json',
             'Access-Control-Allow-Origin': environment.BaseUriAdmin,
-            'Authorization': 'Bearer ' + localStorage.getItem('token')
+            Authorization: 'Bearer ' + localStorage.getItem('token'),
         });
         let params = new HttpParams();
         params = params.append('status', status);
@@ -782,7 +795,7 @@ export class MasterService {
         let reqHeader = new HttpHeaders({
             'Content-Type': 'application/json',
             'Access-Control-Allow-Origin': environment.BaseUriAdmin,
-            'Authorization': 'Bearer ' + localStorage.getItem('token')
+            Authorization: 'Bearer ' + localStorage.getItem('token'),
         });
         let params = new HttpParams();
         params = params.append('id', id);
@@ -795,7 +808,7 @@ export class MasterService {
         let reqHeader = new HttpHeaders({
             'Content-Type': 'application/json',
             'Access-Control-Allow-Origin': environment.BaseUriAdmin,
-            'Authorization': 'Bearer ' + localStorage.getItem('token')
+            Authorization: 'Bearer ' + localStorage.getItem('token'),
         });
         let params = new HttpParams();
         var data = JSON.stringify(obj).toString();
@@ -808,16 +821,20 @@ export class MasterService {
 
     //#end region
 
-    GetGroupResidentTagDetailsList(Status=0): Observable<any> {
+    GetGroupResidentTagDetailsList(Status = 0): Observable<any> {
         let reqHeader = new HttpHeaders({
             'Content-Type': 'application/json',
             'Access-Control-Allow-Origin': environment.BaseUriAdmin,
-            'Authorization': 'Bearer ' + localStorage.getItem('token')
+            Authorization: 'Bearer ' + localStorage.getItem('token'),
         });
         let params = new HttpParams();
-        params = params.append('Status', (Status==null || Status==undefined)?0:Status);
+        params = params.append(
+            'Status',
+            Status == null || Status == undefined ? 0 : Status
+        );
         return this._httpclient.get<any>(
-            environment.BaseUriAdmin + 'api/Admin/GetGroupResidentTagDetailsList',
+            environment.BaseUriAdmin +
+                'api/Admin/GetGroupResidentTagDetailsList',
             { headers: reqHeader, params: params }
         );
     }
@@ -828,7 +845,7 @@ export class MasterService {
         let reqHeader = new HttpHeaders({
             'Content-Type': 'application/json',
             'Access-Control-Allow-Origin': environment.BaseUriAdmin,
-            'Authorization': 'Bearer ' + localStorage.getItem('token')
+            Authorization: 'Bearer ' + localStorage.getItem('token'),
         });
         let params = new HttpParams();
         params = params.append('moduleId', moduleId);
@@ -846,7 +863,7 @@ export class MasterService {
         let reqHeader = new HttpHeaders({
             'Content-Type': 'application/json',
             'Access-Control-Allow-Origin': environment.BaseUriAdmin,
-            'Authorization': 'Bearer ' + localStorage.getItem('token')
+            Authorization: 'Bearer ' + localStorage.getItem('token'),
         });
         let params = new HttpParams();
         params = params.append('homeMasterId', homeMasterId);
@@ -860,7 +877,7 @@ export class MasterService {
         let reqHeader = new HttpHeaders({
             'Content-Type': 'application/json',
             'Access-Control-Allow-Origin': environment.BaseUriAdmin,
-            'Authorization': 'Bearer ' + localStorage.getItem('token')
+            Authorization: 'Bearer ' + localStorage.getItem('token'),
         });
         let params = new HttpParams();
         params = params.append('userId', userId);
@@ -876,14 +893,14 @@ export class MasterService {
         let reqHeader = new HttpHeaders({
             'Content-Type': 'application/json',
             'Access-Control-Allow-Origin': environment.BaseUriAdmin,
-            'Authorization': 'Bearer ' + localStorage.getItem('token')
+            Authorization: 'Bearer ' + localStorage.getItem('token'),
         });
         let params = new HttpParams();
         params = params.append('userTypeId', userTypeId);
         params = params.append('UserId', UserId);
         return this._httpclient.get<any>(
             environment.BaseUriAdmin +
-            'api/Admin/GetUserMenuItemAccessByModuleId',
+                'api/Admin/GetUserMenuItemAccessByModuleId',
             { headers: reqHeader, params: params }
         );
     }
@@ -892,7 +909,7 @@ export class MasterService {
         let reqHeader = new HttpHeaders({
             'Content-Type': 'application/json',
             'Access-Control-Allow-Origin': environment.BaseUriAdmin,
-            'Authorization': 'Bearer ' + localStorage.getItem('token')
+            Authorization: 'Bearer ' + localStorage.getItem('token'),
         });
         let params = new HttpParams();
         params = params.append('loginId', localStorage.getItem('userId'));
@@ -911,7 +928,7 @@ export class MasterService {
         let reqHeader = new HttpHeaders({
             'Content-Type': 'application/json',
             'Access-Control-Allow-Origin': environment.BaseUriAdmin,
-            'Authorization': 'Bearer ' + localStorage.getItem('token')
+            Authorization: 'Bearer ' + localStorage.getItem('token'),
         });
         let params = new HttpParams();
         params = params.append('userTypeId', UserTypeId);
@@ -919,7 +936,7 @@ export class MasterService {
         var data = '';
         return this._httpclient.get<any>(
             environment.BaseUriAdmin +
-            'api/Admin/GetUserMenuItemAccessByModuleId',
+                'api/Admin/GetUserMenuItemAccessByModuleId',
             { headers: reqHeader, params: params }
         );
     }
@@ -927,7 +944,7 @@ export class MasterService {
         let reqHeader = new HttpHeaders({
             'Content-Type': 'application/json',
             'Access-Control-Allow-Origin': environment.BaseUriAdmin,
-            'Authorization': 'Bearer ' + localStorage.getItem('token')
+            Authorization: 'Bearer ' + localStorage.getItem('token'),
         });
         let params = new HttpParams();
         var data = '';
@@ -941,14 +958,16 @@ export class MasterService {
 
     //#region  ResidentMaster
 
-    GetResidentMaster(HomeMasterId, status = true): Observable<any> {
+    GetResidentMaster(HomeMasterId = null, status = true): Observable<any> {
         let reqHeader = new HttpHeaders({
             'Content-Type': 'application/json',
             'Access-Control-Allow-Origin': environment.BaseUriAdmin,
-            'Authorization': 'Bearer ' + localStorage.getItem('token')
+            Authorization: 'Bearer ' + localStorage.getItem('token'),
         });
         let params = new HttpParams();
-        params = params.append('HomeMasterId', HomeMasterId);
+
+        if (HomeMasterId) params = params.append('HomeMasterId', HomeMasterId);
+        
         params = params.append('status', status);
         return this._httpclient.get<any>(
             environment.BaseUriAdmin + 'api/Admin/GetResidentMaster',
@@ -960,7 +979,7 @@ export class MasterService {
         let reqHeader = new HttpHeaders({
             'Content-Type': 'application/json',
             'Access-Control-Allow-Origin': environment.BaseUriAdmin,
-            'Authorization': 'Bearer ' + localStorage.getItem('token')
+            Authorization: 'Bearer ' + localStorage.getItem('token'),
         });
         let params = new HttpParams();
         params = params.append('id', id);
@@ -973,13 +992,13 @@ export class MasterService {
     AddInsertUpdateResidentMaster(obj: FormData): Observable<any> {
         let reqHeader = new HttpHeaders({
             'Access-Control-Allow-Origin': environment.BaseUriAdmin,
-            'Authorization': 'Bearer ' + localStorage.getItem('token'),
+            Authorization: 'Bearer ' + localStorage.getItem('token'),
         });
         let params = new HttpParams();
         var data = obj; //JSON.stringify(obj).toString();
         return this._httpclient.post<any>(
             environment.BaseUriAdmin +
-            'api/Admin/AddInsertUpdateResidentMaster',
+                'api/Admin/AddInsertUpdateResidentMaster',
             data,
             { headers: reqHeader, params: params }
         );
@@ -989,7 +1008,7 @@ export class MasterService {
         let reqHeader = new HttpHeaders({
             'Content-Type': 'application/json',
             'Access-Control-Allow-Origin': environment.BaseUriAdmin,
-            'Authorization': 'Bearer ' + localStorage.getItem('token')
+            Authorization: 'Bearer ' + localStorage.getItem('token'),
         });
         let params = new HttpParams();
         params = params.append('admissionid', admissionid);
@@ -1003,13 +1022,13 @@ export class MasterService {
         let reqHeader = new HttpHeaders({
             'Content-Type': 'application/json',
             'Access-Control-Allow-Origin': environment.BaseUriAdmin,
-            'Authorization': 'Bearer ' + localStorage.getItem('token')
+            Authorization: 'Bearer ' + localStorage.getItem('token'),
         });
         let params = new HttpParams();
         var data = JSON.stringify(obj).toString();
         return this._httpclient.post<any>(
             environment.BaseUriAdmin +
-            'api/Admin/AddUpdateResidentOccupancyData',
+                'api/Admin/AddUpdateResidentOccupancyData',
             data,
             { headers: reqHeader, params: params }
         );
@@ -1019,7 +1038,7 @@ export class MasterService {
         let reqHeader = new HttpHeaders({
             'Content-Type': 'application/json',
             'Access-Control-Allow-Origin': environment.BaseUriAdmin,
-            'Authorization': 'Bearer ' + localStorage.getItem('token')
+            Authorization: 'Bearer ' + localStorage.getItem('token'),
         });
         let params = new HttpParams();
         params = params.append('admissionid', admissionid);
@@ -1033,13 +1052,13 @@ export class MasterService {
         let reqHeader = new HttpHeaders({
             'Content-Type': 'application/json',
             'Access-Control-Allow-Origin': environment.BaseUriAdmin,
-            'Authorization': 'Bearer ' + localStorage.getItem('token')
+            Authorization: 'Bearer ' + localStorage.getItem('token'),
         });
         let params = new HttpParams();
         var data = JSON.stringify(obj).toString();
         return this._httpclient.post<any>(
             environment.BaseUriAdmin +
-            'api/Admin/AddInsertUpdateResidentHealthCare',
+                'api/Admin/AddInsertUpdateResidentHealthCare',
             data,
             { headers: reqHeader, params: params }
         );
@@ -1048,7 +1067,7 @@ export class MasterService {
         let reqHeader = new HttpHeaders({
             'Content-Type': 'application/json',
             'Access-Control-Allow-Origin': environment.BaseUriAdmin,
-            'Authorization': 'Bearer ' + localStorage.getItem('token')
+            Authorization: 'Bearer ' + localStorage.getItem('token'),
         });
         let params = new HttpParams();
         params = params.append('admissionid', admissionid);
@@ -1061,13 +1080,13 @@ export class MasterService {
         let reqHeader = new HttpHeaders({
             'Content-Type': 'application/json',
             'Access-Control-Allow-Origin': environment.BaseUriAdmin,
-            'Authorization': 'Bearer ' + localStorage.getItem('token')
+            Authorization: 'Bearer ' + localStorage.getItem('token'),
         });
         let params = new HttpParams();
         var data = JSON.stringify(obj).toString();
         return this._httpclient.post<any>(
             environment.BaseUriAdmin +
-            'api/Admin/AddInsertUpdateResidentPreferences',
+                'api/Admin/AddInsertUpdateResidentPreferences',
             data,
             { headers: reqHeader, params: params }
         );
@@ -1076,13 +1095,13 @@ export class MasterService {
         let reqHeader = new HttpHeaders({
             'Content-Type': 'application/json',
             'Access-Control-Allow-Origin': environment.BaseUriAdmin,
-            'Authorization': 'Bearer ' + localStorage.getItem('token')
+            Authorization: 'Bearer ' + localStorage.getItem('token'),
         });
         let params = new HttpParams();
         params = params.append('admissionid', admissionid);
         return this._httpclient.get<any>(
             environment.BaseUriAdmin +
-            'api/Admin/GetResidentPriorAdmissionById',
+                'api/Admin/GetResidentPriorAdmissionById',
             { headers: reqHeader, params: params }
         );
     }
@@ -1090,13 +1109,13 @@ export class MasterService {
         let reqHeader = new HttpHeaders({
             'Content-Type': 'application/json',
             'Access-Control-Allow-Origin': environment.BaseUriAdmin,
-            'Authorization': 'Bearer ' + localStorage.getItem('token')
+            Authorization: 'Bearer ' + localStorage.getItem('token'),
         });
         let params = new HttpParams();
         var data = JSON.stringify(obj).toString();
         return this._httpclient.post<any>(
             environment.BaseUriAdmin +
-            'api/Admin/AddInsertUpdateResidentPriorAdmission',
+                'api/Admin/AddInsertUpdateResidentPriorAdmission',
             data,
             { headers: reqHeader, params: params }
         );
@@ -1110,7 +1129,7 @@ export class MasterService {
         let reqHeader = new HttpHeaders({
             'Content-Type': 'application/json',
             'Access-Control-Allow-Origin': environment.BaseUriAdmin,
-            'Authorization': 'Bearer ' + localStorage.getItem('token')
+            Authorization: 'Bearer ' + localStorage.getItem('token'),
         });
         let params = new HttpParams();
         params = params.append('userid', userid);
@@ -1126,13 +1145,13 @@ export class MasterService {
         let reqHeader = new HttpHeaders({
             'Content-Type': 'application/json',
             'Access-Control-Allow-Origin': environment.BaseUriAdmin,
-            'Authorization': 'Bearer ' + localStorage.getItem('token')
+            Authorization: 'Bearer ' + localStorage.getItem('token'),
         });
         let params = new HttpParams();
         var data = JSON.stringify(obj).toString();
         return this._httpclient.post<any>(
             environment.BaseUriAdmin +
-            'api/Admin/UpdateResidentAdmissionProfile',
+                'api/Admin/UpdateResidentAdmissionProfile',
             data,
             { headers: reqHeader, params: params }
         );
@@ -1145,7 +1164,7 @@ export class MasterService {
         let reqHeader = new HttpHeaders({
             'Content-Type': 'application/json',
             'Access-Control-Allow-Origin': environment.BaseUriAdmin,
-            'Authorization': 'Bearer ' + localStorage.getItem('token')
+            Authorization: 'Bearer ' + localStorage.getItem('token'),
         });
         let params = new HttpParams();
         params = params.append('admissionid', admissionid);
@@ -1158,13 +1177,13 @@ export class MasterService {
         let reqHeader = new HttpHeaders({
             'Content-Type': 'application/json',
             'Access-Control-Allow-Origin': environment.BaseUriAdmin,
-            'Authorization': 'Bearer ' + localStorage.getItem('token')
+            Authorization: 'Bearer ' + localStorage.getItem('token'),
         });
         let params = new HttpParams();
         var data = JSON.stringify(obj).toString();
         return this._httpclient.post<any>(
             environment.BaseUriAdmin +
-            'api/Admin/AddInsertUpdateClinicalAllergies',
+                'api/Admin/AddInsertUpdateClinicalAllergies',
             data,
             { headers: reqHeader, params: params }
         );
@@ -1177,7 +1196,7 @@ export class MasterService {
         let reqHeader = new HttpHeaders({
             'Content-Type': 'application/json',
             'Access-Control-Allow-Origin': environment.BaseUriAdmin,
-            'Authorization': 'Bearer ' + localStorage.getItem('token')
+            Authorization: 'Bearer ' + localStorage.getItem('token'),
         });
         let params = new HttpParams();
         params = params.append('admissionid', admissionid);
@@ -1191,13 +1210,13 @@ export class MasterService {
         let reqHeader = new HttpHeaders({
             'Content-Type': 'application/json',
             'Access-Control-Allow-Origin': environment.BaseUriAdmin,
-            'Authorization': 'Bearer ' + localStorage.getItem('token')
+            Authorization: 'Bearer ' + localStorage.getItem('token'),
         });
         let params = new HttpParams();
         var data = JSON.stringify(obj).toString();
         return this._httpclient.post<any>(
             environment.BaseUriAdmin +
-            'api/Admin/AddInsertUpdateClinicalIndicator',
+                'api/Admin/AddInsertUpdateClinicalIndicator',
             data,
             { headers: reqHeader, params: params }
         );
@@ -1207,7 +1226,7 @@ export class MasterService {
         let reqHeader = new HttpHeaders({
             'Content-Type': 'application/json',
             'Access-Control-Allow-Origin': environment.BaseUriAdmin,
-            'Authorization': 'Bearer ' + localStorage.getItem('token')
+            Authorization: 'Bearer ' + localStorage.getItem('token'),
         });
         let params = new HttpParams();
         params = params.append('admissionid', admissionid);
@@ -1220,13 +1239,13 @@ export class MasterService {
         let reqHeader = new HttpHeaders({
             'Content-Type': 'application/json',
             'Access-Control-Allow-Origin': environment.BaseUriAdmin,
-            'Authorization': 'Bearer ' + localStorage.getItem('token')
+            Authorization: 'Bearer ' + localStorage.getItem('token'),
         });
         let params = new HttpParams();
         var data = JSON.stringify(obj).toString();
         return this._httpclient.post<any>(
             environment.BaseUriAdmin +
-            'api/Admin/AddInsertUpdateClinicalInformation',
+                'api/Admin/AddInsertUpdateClinicalInformation',
             data,
             { headers: reqHeader, params: params }
         );
@@ -1236,13 +1255,13 @@ export class MasterService {
         let reqHeader = new HttpHeaders({
             'Content-Type': 'application/json',
             'Access-Control-Allow-Origin': environment.BaseUriAdmin,
-            'Authorization': 'Bearer ' + localStorage.getItem('token')
+            Authorization: 'Bearer ' + localStorage.getItem('token'),
         });
         let params = new HttpParams();
         params = params.append('admissionid', admissionid);
         return this._httpclient.get<any>(
             environment.BaseUriAdmin +
-            'api/Admin/GetClinicalBaselineHealthInfoById',
+                'api/Admin/GetClinicalBaselineHealthInfoById',
             { headers: reqHeader, params: params }
         );
     }
@@ -1250,13 +1269,13 @@ export class MasterService {
         let reqHeader = new HttpHeaders({
             'Content-Type': 'application/json',
             'Access-Control-Allow-Origin': environment.BaseUriAdmin,
-            'Authorization': 'Bearer ' + localStorage.getItem('token')
+            Authorization: 'Bearer ' + localStorage.getItem('token'),
         });
         let params = new HttpParams();
         var data = JSON.stringify(obj).toString();
         return this._httpclient.post<any>(
             environment.BaseUriAdmin +
-            'api/Admin/AddInsertUpdateClinicalBaselineHealthInfo',
+                'api/Admin/AddInsertUpdateClinicalBaselineHealthInfo',
             data,
             { headers: reqHeader, params: params }
         );
@@ -1266,13 +1285,13 @@ export class MasterService {
         let reqHeader = new HttpHeaders({
             'Content-Type': 'application/json',
             'Access-Control-Allow-Origin': environment.BaseUriAdmin,
-            'Authorization': 'Bearer ' + localStorage.getItem('token')
+            Authorization: 'Bearer ' + localStorage.getItem('token'),
         });
         let params = new HttpParams();
         params = params.append('admissionid', admissionid);
         return this._httpclient.get<any>(
             environment.BaseUriAdmin +
-            'api/Admin/GetClinicalAlertPreferencesById',
+                'api/Admin/GetClinicalAlertPreferencesById',
             { headers: reqHeader, params: params }
         );
     }
@@ -1280,13 +1299,13 @@ export class MasterService {
         let reqHeader = new HttpHeaders({
             'Content-Type': 'application/json',
             'Access-Control-Allow-Origin': environment.BaseUriAdmin,
-            'Authorization': 'Bearer ' + localStorage.getItem('token')
+            Authorization: 'Bearer ' + localStorage.getItem('token'),
         });
         let params = new HttpParams();
         var data = JSON.stringify(obj).toString();
         return this._httpclient.post<any>(
             environment.BaseUriAdmin +
-            'api/Admin/AddInsertUpdateAlertPreferences',
+                'api/Admin/AddInsertUpdateAlertPreferences',
             data,
             { headers: reqHeader, params: params }
         );
@@ -1296,13 +1315,13 @@ export class MasterService {
         let reqHeader = new HttpHeaders({
             'Content-Type': 'application/json',
             'Access-Control-Allow-Origin': environment.BaseUriAdmin,
-            'Authorization': 'Bearer ' + localStorage.getItem('token')
+            Authorization: 'Bearer ' + localStorage.getItem('token'),
         });
         let params = new HttpParams();
         params = params.append('admissionid', admissionid);
         return this._httpclient.get<any>(
             environment.BaseUriAdmin +
-            'api/Admin/GetClinicalChartPreferencesById',
+                'api/Admin/GetClinicalChartPreferencesById',
             { headers: reqHeader, params: params }
         );
     }
@@ -1310,13 +1329,13 @@ export class MasterService {
         let reqHeader = new HttpHeaders({
             'Content-Type': 'application/json',
             'Access-Control-Allow-Origin': environment.BaseUriAdmin,
-            'Authorization': 'Bearer ' + localStorage.getItem('token')
+            Authorization: 'Bearer ' + localStorage.getItem('token'),
         });
         let params = new HttpParams();
         var data = JSON.stringify(obj).toString();
         return this._httpclient.post<any>(
             environment.BaseUriAdmin +
-            'api/Admin/AddInsertUpdateChartPreferences',
+                'api/Admin/AddInsertUpdateChartPreferences',
             data,
             { headers: reqHeader, params: params }
         );
@@ -1329,7 +1348,7 @@ export class MasterService {
         let reqHeader = new HttpHeaders({
             'Content-Type': 'application/json',
             'Access-Control-Allow-Origin': environment.BaseUriAdmin,
-            'Authorization': 'Bearer ' + localStorage.getItem('token')
+            Authorization: 'Bearer ' + localStorage.getItem('token'),
         });
         let params = new HttpParams();
         params = params.append('admissionid', admissionid);
@@ -1339,15 +1358,15 @@ export class MasterService {
             { headers: reqHeader, params: params }
         );
     }
-    AddInsertUpdateDailyVital(obj: any,loginId:any): Observable<any> {
+    AddInsertUpdateDailyVital(obj: any, loginId: any): Observable<any> {
         let reqHeader = new HttpHeaders({
             'Content-Type': 'application/json',
             'Access-Control-Allow-Origin': environment.BaseUriAdmin,
-            'Authorization': 'Bearer ' + localStorage.getItem('token')
+            Authorization: 'Bearer ' + localStorage.getItem('token'),
         });
         let params = new HttpParams();
         var data = JSON.stringify(obj).toString();
-        params = params.append('loginid',loginId);
+        params = params.append('loginid', loginId);
         return this._httpclient.post<any>(
             environment.BaseUriAdmin + 'api/Admin/AddInsertUpdateDailyVital',
             data,
@@ -1355,11 +1374,11 @@ export class MasterService {
         );
     }
 
-    GetDailyVitalAlertLog(userid,firstdate,enddate,name,status) {
+    GetDailyVitalAlertLog(userid, firstdate, enddate, name, status) {
         let reqHeader = new HttpHeaders({
             'Content-Type': 'application/json',
             'Access-Control-Allow-Origin': environment.BaseUriAdmin,
-            'Authorization': 'Bearer ' + localStorage.getItem('token')
+            Authorization: 'Bearer ' + localStorage.getItem('token'),
         });
         let params = new HttpParams();
         params = params.append('userid', userid);
@@ -1367,8 +1386,6 @@ export class MasterService {
         params = params.append('enddate', enddate);
         params = params.append('name', name);
         params = params.append('status', status);
-        console.log(firstdate,enddate);
-        
         return this._httpclient.get<any>(
             environment.BaseUriAdmin + 'api/Admin/GetDailyVitalAlertLog',
             { headers: reqHeader, params: params }
@@ -1382,7 +1399,7 @@ export class MasterService {
         let reqHeader = new HttpHeaders({
             'Content-Type': 'application/json',
             'Access-Control-Allow-Origin': environment.BaseUriAdmin,
-            'Authorization': 'Bearer ' + localStorage.getItem('token')
+            Authorization: 'Bearer ' + localStorage.getItem('token'),
         });
         let params = new HttpParams();
         params = params.append('admissionid', admissionid);
@@ -1396,7 +1413,7 @@ export class MasterService {
         let reqHeader = new HttpHeaders({
             'Content-Type': 'application/json',
             'Access-Control-Allow-Origin': environment.BaseUriAdmin,
-            'Authorization': 'Bearer ' + localStorage.getItem('token')
+            Authorization: 'Bearer ' + localStorage.getItem('token'),
         });
         let params = new HttpParams();
         var data = JSON.stringify(obj).toString();
@@ -1411,13 +1428,13 @@ export class MasterService {
         let reqHeader = new HttpHeaders({
             'Content-Type': 'application/json',
             'Access-Control-Allow-Origin': environment.BaseUriAdmin,
-            'Authorization': 'Bearer ' + localStorage.getItem('token')
+            Authorization: 'Bearer ' + localStorage.getItem('token'),
         });
         let params = new HttpParams();
         params = params.append('admissionid', admissionid);
         return this._httpclient.get<any>(
             environment.BaseUriAdmin +
-            'api/Admin/GetClinicalFallRiskAssessmentById',
+                'api/Admin/GetClinicalFallRiskAssessmentById',
             { headers: reqHeader, params: params }
         );
     }
@@ -1425,13 +1442,13 @@ export class MasterService {
         let reqHeader = new HttpHeaders({
             'Content-Type': 'application/json',
             'Access-Control-Allow-Origin': environment.BaseUriAdmin,
-            'Authorization': 'Bearer ' + localStorage.getItem('token')
+            Authorization: 'Bearer ' + localStorage.getItem('token'),
         });
         let params = new HttpParams();
         var data = JSON.stringify(obj).toString();
         return this._httpclient.post<any>(
             environment.BaseUriAdmin +
-            'api/Admin/AddInsertUpdateFallRiskAssessment',
+                'api/Admin/AddInsertUpdateFallRiskAssessment',
             data,
             { headers: reqHeader, params: params }
         );
@@ -1445,7 +1462,7 @@ export class MasterService {
         let reqHeader = new HttpHeaders({
             'Content-Type': 'application/json',
             'Access-Control-Allow-Origin': environment.BaseUriAdmin,
-            'Authorization': 'Bearer ' + localStorage.getItem('token')
+            Authorization: 'Bearer ' + localStorage.getItem('token'),
         });
         let params = new HttpParams();
         params = params.append('admissionid', admissionid);
@@ -1458,13 +1475,13 @@ export class MasterService {
         let reqHeader = new HttpHeaders({
             'Content-Type': 'application/json',
             'Access-Control-Allow-Origin': environment.BaseUriAdmin,
-            'Authorization': 'Bearer ' + localStorage.getItem('token')
+            Authorization: 'Bearer ' + localStorage.getItem('token'),
         });
         let params = new HttpParams();
         var data = JSON.stringify(obj).toString();
         return this._httpclient.post<any>(
             environment.BaseUriAdmin +
-            'api/Admin/AddInsertUpdateContactPrimary',
+                'api/Admin/AddInsertUpdateContactPrimary',
             data,
             { headers: reqHeader, params: params }
         );
@@ -1474,7 +1491,7 @@ export class MasterService {
         let reqHeader = new HttpHeaders({
             'Content-Type': 'application/json',
             'Access-Control-Allow-Origin': environment.BaseUriAdmin,
-            'Authorization': 'Bearer ' + localStorage.getItem('token')
+            Authorization: 'Bearer ' + localStorage.getItem('token'),
         });
         let params = new HttpParams();
         params = params.append('admissionid', admissionid);
@@ -1487,13 +1504,13 @@ export class MasterService {
         let reqHeader = new HttpHeaders({
             'Content-Type': 'application/json',
             'Access-Control-Allow-Origin': environment.BaseUriAdmin,
-            'Authorization': 'Bearer ' + localStorage.getItem('token')
+            Authorization: 'Bearer ' + localStorage.getItem('token'),
         });
         let params = new HttpParams();
         var data = JSON.stringify(obj).toString();
         return this._httpclient.post<any>(
             environment.BaseUriAdmin +
-            'api/Admin/AddInsertUpdateContactSecondary',
+                'api/Admin/AddInsertUpdateContactSecondary',
             data,
             { headers: reqHeader, params: params }
         );
@@ -1503,13 +1520,13 @@ export class MasterService {
         let reqHeader = new HttpHeaders({
             'Content-Type': 'application/json',
             'Access-Control-Allow-Origin': environment.BaseUriAdmin,
-            'Authorization': 'Bearer ' + localStorage.getItem('token')
+            Authorization: 'Bearer ' + localStorage.getItem('token'),
         });
         let params = new HttpParams();
         params = params.append('admissionid', admissionid);
         return this._httpclient.get<any>(
             environment.BaseUriAdmin +
-            'api/Admin/GetContactResponsiblePersonById',
+                'api/Admin/GetContactResponsiblePersonById',
             { headers: reqHeader, params: params }
         );
     }
@@ -1517,13 +1534,13 @@ export class MasterService {
         let reqHeader = new HttpHeaders({
             'Content-Type': 'application/json',
             'Access-Control-Allow-Origin': environment.BaseUriAdmin,
-            'Authorization': 'Bearer ' + localStorage.getItem('token')
+            Authorization: 'Bearer ' + localStorage.getItem('token'),
         });
         let params = new HttpParams();
         var data = JSON.stringify(obj).toString();
         return this._httpclient.post<any>(
             environment.BaseUriAdmin +
-            'api/Admin/AddInsertUpdateContactResponsiblePerson',
+                'api/Admin/AddInsertUpdateContactResponsiblePerson',
             data,
             { headers: reqHeader, params: params }
         );
@@ -1533,7 +1550,7 @@ export class MasterService {
         let reqHeader = new HttpHeaders({
             'Content-Type': 'application/json',
             'Access-Control-Allow-Origin': environment.BaseUriAdmin,
-            'Authorization': 'Bearer ' + localStorage.getItem('token')
+            Authorization: 'Bearer ' + localStorage.getItem('token'),
         });
         let params = new HttpParams();
         params = params.append('admissionid', admissionid);
@@ -1546,13 +1563,13 @@ export class MasterService {
         let reqHeader = new HttpHeaders({
             'Content-Type': 'application/json',
             'Access-Control-Allow-Origin': environment.BaseUriAdmin,
-            'Authorization': 'Bearer ' + localStorage.getItem('token')
+            Authorization: 'Bearer ' + localStorage.getItem('token'),
         });
         let params = new HttpParams();
         var data = JSON.stringify(obj).toString();
         return this._httpclient.post<any>(
             environment.BaseUriAdmin +
-            'api/Admin/AddInsertUpdateContactFirstAttorney',
+                'api/Admin/AddInsertUpdateContactFirstAttorney',
             data,
             { headers: reqHeader, params: params }
         );
@@ -1562,7 +1579,7 @@ export class MasterService {
         let reqHeader = new HttpHeaders({
             'Content-Type': 'application/json',
             'Access-Control-Allow-Origin': environment.BaseUriAdmin,
-            'Authorization': 'Bearer ' + localStorage.getItem('token')
+            Authorization: 'Bearer ' + localStorage.getItem('token'),
         });
         let params = new HttpParams();
         params = params.append('admissionid', admissionid);
@@ -1575,13 +1592,13 @@ export class MasterService {
         let reqHeader = new HttpHeaders({
             'Content-Type': 'application/json',
             'Access-Control-Allow-Origin': environment.BaseUriAdmin,
-            'Authorization': 'Bearer ' + localStorage.getItem('token')
+            Authorization: 'Bearer ' + localStorage.getItem('token'),
         });
         let params = new HttpParams();
         var data = JSON.stringify(obj).toString();
         return this._httpclient.post<any>(
             environment.BaseUriAdmin +
-            'api/Admin/AddInsertUpdateContactSecondAttorney',
+                'api/Admin/AddInsertUpdateContactSecondAttorney',
             data,
             { headers: reqHeader, params: params }
         );
@@ -1591,7 +1608,7 @@ export class MasterService {
         let reqHeader = new HttpHeaders({
             'Content-Type': 'application/json',
             'Access-Control-Allow-Origin': environment.BaseUriAdmin,
-            'Authorization': 'Bearer ' + localStorage.getItem('token')
+            Authorization: 'Bearer ' + localStorage.getItem('token'),
         });
         let params = new HttpParams();
         params = params.append('admissionid', admissionid);
@@ -1604,7 +1621,7 @@ export class MasterService {
         let reqHeader = new HttpHeaders({
             'Content-Type': 'application/json',
             'Access-Control-Allow-Origin': environment.BaseUriAdmin,
-            'Authorization': 'Bearer ' + localStorage.getItem('token')
+            Authorization: 'Bearer ' + localStorage.getItem('token'),
         });
         let params = new HttpParams();
         var data = JSON.stringify(obj).toString();
@@ -1623,7 +1640,7 @@ export class MasterService {
         let reqHeader = new HttpHeaders({
             'Content-Type': 'application/json',
             'Access-Control-Allow-Origin': environment.BaseUriAdmin,
-            'Authorization': 'Bearer ' + localStorage.getItem('token')
+            Authorization: 'Bearer ' + localStorage.getItem('token'),
         });
         let params = new HttpParams();
         params = params.append('homeMasterId', homeMasterId);
@@ -1638,7 +1655,7 @@ export class MasterService {
         let reqHeader = new HttpHeaders({
             'Content-Type': 'application/json',
             'Access-Control-Allow-Origin': environment.BaseUriAdmin,
-            'Authorization': 'Bearer ' + localStorage.getItem('token')
+            Authorization: 'Bearer ' + localStorage.getItem('token'),
         });
         let params = new HttpParams();
         params = params.append('status', status == undefined ? 0 : status);
@@ -1652,7 +1669,7 @@ export class MasterService {
         let reqHeader = new HttpHeaders({
             'Content-Type': 'application/json',
             'Access-Control-Allow-Origin': environment.BaseUriAdmin,
-            'Authorization': 'Bearer ' + localStorage.getItem('token')
+            Authorization: 'Bearer ' + localStorage.getItem('token'),
         });
         let params = new HttpParams();
         params = params.append('id', id);
@@ -1665,7 +1682,7 @@ export class MasterService {
         let reqHeader = new HttpHeaders({
             'Content-Type': 'application/json',
             'Access-Control-Allow-Origin': environment.BaseUriAdmin,
-            'Authorization': 'Bearer ' + localStorage.getItem('token')
+            Authorization: 'Bearer ' + localStorage.getItem('token'),
         });
         let params = new HttpParams();
         var data = JSON.stringify(obj).toString();
@@ -1680,7 +1697,7 @@ export class MasterService {
         let reqHeader = new HttpHeaders({
             'Content-Type': 'application/json',
             'Access-Control-Allow-Origin': environment.BaseUriAdmin,
-            'Authorization': 'Bearer ' + localStorage.getItem('token')
+            Authorization: 'Bearer ' + localStorage.getItem('token'),
         });
         let params = new HttpParams();
         params = params.append('status', status == undefined ? false : status);
@@ -1694,7 +1711,7 @@ export class MasterService {
         let reqHeader = new HttpHeaders({
             'Content-Type': 'application/json',
             'Access-Control-Allow-Origin': environment.BaseUriAdmin,
-            'Authorization': 'Bearer ' + localStorage.getItem('token')
+            Authorization: 'Bearer ' + localStorage.getItem('token'),
         });
         let params = new HttpParams();
         params = params.append('id', id);
@@ -1707,7 +1724,7 @@ export class MasterService {
         let reqHeader = new HttpHeaders({
             'Content-Type': 'application/json',
             'Access-Control-Allow-Origin': environment.BaseUriAdmin,
-            'Authorization': 'Bearer ' + localStorage.getItem('token')
+            Authorization: 'Bearer ' + localStorage.getItem('token'),
         });
         let params = new HttpParams();
         var data = JSON.stringify(obj).toString();
@@ -1721,12 +1738,12 @@ export class MasterService {
     //#end region
 
     //#region  ExportToExcel
-    
+
     downloadReport(obj: any): void {
         let reqHeader = new HttpHeaders({
             'Content-Type': 'application/json',
             'Access-Control-Allow-Origin': environment.BaseUriAdmin,
-            'Authorization': 'Bearer ' + localStorage.getItem('token')
+            Authorization: 'Bearer ' + localStorage.getItem('token'),
         });
         let params = new HttpParams();
         var data = JSON.stringify(obj).toString();
@@ -1758,14 +1775,14 @@ export class MasterService {
         let reqHeader = new HttpHeaders({
             'Content-Type': 'application/json',
             'Access-Control-Allow-Origin': environment.BaseUriAdmin,
-            'Authorization': 'Bearer ' + localStorage.getItem('token')
+            Authorization: 'Bearer ' + localStorage.getItem('token'),
         });
         let params = new HttpParams();
         params = params.append('userTypeId', userTypeId);
         params = params.append('UserId', UserId);
         return this._httpclient.get<any>(
             environment.BaseUriAdmin +
-            'api/Admin/GetUserMenuItemAccessByModuleIdTreeTable',
+                'api/Admin/GetUserMenuItemAccessByModuleIdTreeTable',
             { headers: reqHeader, params: params }
         );
     }
@@ -1777,7 +1794,7 @@ export class MasterService {
         let reqHeader = new HttpHeaders({
             'Content-Type': 'application/json',
             'Access-Control-Allow-Origin': environment.BaseUriAdmin,
-            'Authorization': 'Bearer ' + localStorage.getItem('token')
+            Authorization: 'Bearer ' + localStorage.getItem('token'),
         });
         let params = new HttpParams();
         let newreqobj: any = <any>{};
@@ -1791,7 +1808,6 @@ export class MasterService {
         );
     }
 
-    
     //#region Alert
 
     GetVitalAlertsByStatus(status: boolean = null): Observable<any> {
@@ -1803,8 +1819,7 @@ export class MasterService {
         let params = new HttpParams();
         params = params.append('status', status);
         return this._httpclient.get<any>(
-            environment.BaseUriAdmin +
-                'api/Admin/GetVitalAlertsByStatus',
+            environment.BaseUriAdmin + 'api/Admin/GetVitalAlertsByStatus',
             { headers: reqHeader, params: params }
         );
     }
@@ -1819,14 +1834,14 @@ export class MasterService {
         let reqHeader = new HttpHeaders({
             'Content-Type': 'application/json',
             'Access-Control-Allow-Origin': environment.BaseUriAdmin,
-            'Authorization': 'Bearer ' + localStorage.getItem('token')
+            Authorization: 'Bearer ' + localStorage.getItem('token'),
         });
         let params = new HttpParams();
         var data = JSON.stringify(AcuteCarePlanFormsData).toString();
         console.log(data);
         return this._httpclient.post<any>(
             environment.BaseUriAdmin +
-            'api/Admin/InsertUpdateAcuteCarePlanForm',
+                'api/Admin/InsertUpdateAcuteCarePlanForm',
             data,
             { headers: reqHeader, params: params }
         );
@@ -1836,7 +1851,7 @@ export class MasterService {
         let reqHeader = new HttpHeaders({
             'Content-Type': 'application/json',
             'Access-Control-Allow-Origin': environment.BaseUriAdmin,
-            'Authorization': 'Bearer ' + localStorage.getItem('token')
+            Authorization: 'Bearer ' + localStorage.getItem('token'),
         });
         let params = new HttpParams();
         params = params.append('fromId', fromId);
@@ -1849,12 +1864,12 @@ export class MasterService {
     //#end Region
 
     //#region Family Communication
-   
+
     InsertUpdateFamilyCommForm(AcuteCarePlanFormsData: any): Observable<any> {
         let reqHeader = new HttpHeaders({
             'Content-Type': 'application/json',
             'Access-Control-Allow-Origin': environment.BaseUriAdmin,
-            'Authorization': 'Bearer ' + localStorage.getItem('token')
+            Authorization: 'Bearer ' + localStorage.getItem('token'),
         });
         let params = new HttpParams();
         var data = JSON.stringify(AcuteCarePlanFormsData).toString();
@@ -1869,7 +1884,7 @@ export class MasterService {
         let reqHeader = new HttpHeaders({
             'Content-Type': 'application/json',
             'Access-Control-Allow-Origin': environment.BaseUriAdmin,
-            'Authorization': 'Bearer ' + localStorage.getItem('token')
+            Authorization: 'Bearer ' + localStorage.getItem('token'),
         });
         let params = new HttpParams();
         params = params.append('fromId', fromId);
@@ -1878,36 +1893,46 @@ export class MasterService {
             { headers: reqHeader, params: params }
         );
     }
-  
+
     // #region GP Doctor Visit
 
-    AddUpdateGPDoctorVisitCommDetails(GPDoctorVisitCommDetails: any): Observable<any> {
+    AddUpdateGPDoctorVisitCommDetails(
+        GPDoctorVisitCommDetails: any
+    ): Observable<any> {
         let reqHeader = new HttpHeaders({
             'Content-Type': 'application/json',
             'Access-Control-Allow-Origin': environment.BaseUriAdmin,
-            'Authorization': 'Bearer ' + localStorage.getItem('token')
+            Authorization: 'Bearer ' + localStorage.getItem('token'),
         });
         let params = new HttpParams();
         var data = JSON.stringify(GPDoctorVisitCommDetails).toString();
-        return this._httpclient.post<any>(environment.BaseUriAdmin + 'api/Admin/AddUpdateGPDoctorVisitCommDetails', data, { headers: reqHeader, params: params });
+        return this._httpclient.post<any>(
+            environment.BaseUriAdmin +
+                'api/Admin/AddUpdateGPDoctorVisitCommDetails',
+            data,
+            { headers: reqHeader, params: params }
+        );
     }
     GPDoctorVisitCommDetailsByid(fromId: any) {
         let reqHeader = new HttpHeaders({
             'Content-Type': 'application/json',
             'Access-Control-Allow-Origin': environment.BaseUriAdmin,
-            'Authorization': 'Bearer ' + localStorage.getItem('token')
+            Authorization: 'Bearer ' + localStorage.getItem('token'),
         });
         let params = new HttpParams();
         params = params.append('fromId', fromId);
-        return this._httpclient.get<any>(environment.BaseUriAdmin + 'api/Admin/GPDoctorVisitCommDetailsByid', { headers: reqHeader, params: params });
+        return this._httpclient.get<any>(
+            environment.BaseUriAdmin + 'api/Admin/GPDoctorVisitCommDetailsByid',
+            { headers: reqHeader, params: params }
+        );
     }
-    //#endregion 
+    //#endregion
     //region progress Note
     AddInsertResidentProgressNote(obj: any): Observable<any> {
         let reqHeader = new HttpHeaders({
             'Content-Type': 'application/json',
             'Access-Control-Allow-Origin': environment.BaseUriAdmin,
-            'Authorization': 'Bearer ' + localStorage.getItem('token')
+            Authorization: 'Bearer ' + localStorage.getItem('token'),
         });
         let params = new HttpParams();
         params = params.append('loginId', localStorage.getItem('userId'));
@@ -1923,7 +1948,7 @@ export class MasterService {
         let reqHeader = new HttpHeaders({
             'Content-Type': 'application/json',
             'Access-Control-Allow-Origin': environment.BaseUriAdmin,
-            'Authorization': 'Bearer ' + localStorage.getItem('token')
+            Authorization: 'Bearer ' + localStorage.getItem('token'),
         });
         let params = new HttpParams();
         params = params.append('admissionid', admissionid);
@@ -1940,13 +1965,14 @@ export class MasterService {
         let reqHeader = new HttpHeaders({
             'Content-Type': 'application/json',
             'Access-Control-Allow-Origin': environment.BaseUriAdmin,
-            'Authorization': 'Bearer ' + localStorage.getItem('token')
+            Authorization: 'Bearer ' + localStorage.getItem('token'),
         });
         let params = new HttpParams();
         params = params.append('loginId', localStorage.getItem('userId'));
         var data = JSON.stringify(obj).toString();
         return this._httpclient.post<any>(
-            environment.BaseUriUser + 'api/User/AddInsertResidentAdditionalProgressNote',
+            environment.BaseUriUser +
+                'api/User/AddInsertResidentAdditionalProgressNote',
             data,
             { headers: reqHeader, params: params }
         );

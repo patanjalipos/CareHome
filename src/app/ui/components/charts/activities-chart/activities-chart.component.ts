@@ -114,6 +114,14 @@ export class ActivitiesChartComponent
         });
     }
 
+    ClearAllfeilds() {
+        if (this.preSelectedChartData.selectedChartID) {
+            this.ActivitiesChartFormData = <any>{};
+            this.ActivitiesChartFormData.activitiesChartId =
+                this.preSelectedChartData.selectedChartID;
+        }
+    }
+
     GetActivitiesChartDetails(chartId: string) {
         this._UtilityService.showSpinner();
         this.unsubscribe.add = this._ActivityChartServices
@@ -188,24 +196,29 @@ export class ActivitiesChartComponent
             this.ActivitiesChartFormData.ResidentAdmissionInfoId =
                 this.residentAdmissionInfoId;
 
-            if (this.StatementType == 'Update') {
-                //Pare dateTime
-                const dateParts =
-                    this.ActivitiesChartFormData.DateAndTime.split(/[- :]/);
-                const parsedDate = new Date(
-                    +dateParts[2],
-                    dateParts[1] - 1,
-                    +dateParts[0],
-                    +dateParts[3],
-                    +dateParts[4]
-                );
-                this.ActivitiesChartFormData.DateAndTime= parsedDate;
+            if (this.ActivitiesChartFormData.DateAndTime) {
+                if (
+                    this.StatementType == 'Update' &&
+                    typeof this.ActivitiesChartFormData.DateAndTime === 'string'
+                ) {
+                    //Pare dateTime
+                    const dateParts =
+                        this.ActivitiesChartFormData.DateAndTime.split(/[- :]/);
+                    const parsedDate = new Date(
+                        +dateParts[2],
+                        dateParts[1] - 1,
+                        +dateParts[0],
+                        +dateParts[3],
+                        +dateParts[4]
+                    );
+                    this.ActivitiesChartFormData.DateAndTime = parsedDate;
+                }
+                this.ActivitiesChartFormData.DateAndTime =
+                    this.datePipte.transform(
+                        this.ActivitiesChartFormData.DateAndTime,
+                        'yyyy-MM-ddTHH:mm'
+                    );
             }
-
-            this.ActivitiesChartFormData.DateAndTime = this.datePipte.transform(
-                this.ActivitiesChartFormData.DateAndTime,
-                'yyyy-MM-ddTHH:mm'
-            );
 
             const objectBody: any = {
                 StatementType: this.StatementType,
