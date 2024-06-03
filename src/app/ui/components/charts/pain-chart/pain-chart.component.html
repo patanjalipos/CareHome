@@ -182,8 +182,10 @@
                     <label class="form-label bold"><span class="required"></span>Duration of Pain</label>
                 </div>
                 <ng-container *ngIf="this.isEditable; else DurationOfPainData">
-                    <p-calendar inputId="calendar-timeonly" [(ngModel)]="painChartFormData.DurationOfPain"
-                        [timeOnly]="true" [dateFormat]="customDateFormat.CalendarFormat"></p-calendar>
+                    <input pInputText type="time" [(ngModel)]="painChartFormData.DurationOfPain" required
+                    name="painChartFormData.DurationOfPain" class="form-control mr-4"
+                    [style]="{ width: '35%' }">
+                <p class="mb-4">Use 24 hour clock</p>
                 </ng-container>
                 <ng-template #DurationOfPainData>
                     <label>{{painChartFormData.DurationOfPain}}</label>
@@ -258,7 +260,7 @@
                 </div>
                 <ng-container *ngIf="this.isEditable; else NextReviewDateData">
                     <p-calendar name="" [showIcon]="true" inputId="icon" class="iconcal"
-                        appendTo="body" [maxDate]="" #dobref="" [dateFormat]="customDateFormat.CalendarFormat"
+                        appendTo="body" [maxDate]="" #dobref=""
                         [(ngModel)]="painChartFormData.NextReviewDate"></p-calendar>
                 </ng-container>
                 <ng-template #NextReviewDateData>
