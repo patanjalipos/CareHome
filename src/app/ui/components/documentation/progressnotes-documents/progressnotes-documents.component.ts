@@ -116,7 +116,7 @@ export class ProgressnotesDocumentsComponent extends AppComponentBase implements
               this.dataTable.reset();
               this.filteredValuesLength = this.lstlocationMaster?.length;
               }      
-              this.LoadResidentList();      
+              //this.LoadResidentList();      
           // console.log(this.lstlocationMaster);
           }
           else {
@@ -134,7 +134,7 @@ export class ProgressnotesDocumentsComponent extends AppComponentBase implements
     var HomeMasterId = "";
      HomeMasterId = this.ProgressnoteDocument.Facility;
     this._UtilityService.showSpinner();   
-    this.unsubscribe.add = this._MasterServices.GetResidentMaster(HomeMasterId,false)
+    this.unsubscribe.add = this._MasterServices.GetResidentMaster(HomeMasterId,null,this.ProgressnoteDocument.Status)
       .subscribe({
         next:(data) => {
           this._UtilityService.hideSpinner();          

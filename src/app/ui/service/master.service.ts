@@ -958,7 +958,7 @@ export class MasterService {
 
     //#region  ResidentMaster
 
-    GetResidentMaster(HomeMasterId = null, status = true): Observable<any> {
+    GetResidentMaster(HomeMasterId = null, LocationMasterId=null,status = 1): Observable<any> {
         let reqHeader = new HttpHeaders({
             'Content-Type': 'application/json',
             'Access-Control-Allow-Origin': environment.BaseUriAdmin,
@@ -967,7 +967,7 @@ export class MasterService {
         let params = new HttpParams();
 
         if (HomeMasterId) params = params.append('HomeMasterId', HomeMasterId);
-        
+        if (LocationMasterId) params = params.append('LocationMasterId', LocationMasterId);        
         params = params.append('status', status);
         return this._httpclient.get<any>(
             environment.BaseUriAdmin + 'api/Admin/GetResidentMaster',
