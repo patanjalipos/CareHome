@@ -1,0 +1,299 @@
+<div class="card">
+    <div class="row">
+        <div class="formheader">
+            <h4>New observation</h4>
+        </div>
+        <div class="col-md-4 mt-4">
+            <div class="col-md-4">
+                <label class="form-label bold"> Date/Time<span class="required"></span></label>
+            </div>
+            <ng-container>
+                <p-calendar name="" [showIcon]="true" inputId="icon" class="iconcal" [readonlyInput]="true"
+                    appendTo="body" [maxDate]="" #dobref="" [dateFormat]="customDateFormat.CalendarFormat"
+                    [(ngModel)]="painChartFormData.DateAndTime" [showTime]="true" hourFormat="24"></p-calendar>
+            </ng-container>
+            <ng-template #DateAndTimeData>
+                <label>{{painChartFormData.DateAndTime}}</label>
+            </ng-template>
+        </div>
+        <div class="col-md-4 mt-4">
+            <div class="col-md-4">
+                <label class="form-label bold">Care Given <span class="required"></span></label>
+            </div>
+            <ng-container>
+                <p-dropdown [required]="true" name="ActivitiesChartFormData.CareGiven" placeholder="----select----"
+                    [style]="{ width: '100%' }" [options]="stLstYesNoOptions" optionValue="optionId"
+                    optionLabel="optionValue" [(ngModel)]="painChartFormData.CareGiven" (onChange)="openAndClose()">
+                </p-dropdown>
+            </ng-container>
+            <ng-template #CareGivenData>
+                <label>{{painChartFormData.CareGiven}}</label>
+            </ng-template>
+        </div>
+
+        <div *ngIf="inputFields" class="row">
+            <div class="formheader bold">
+                <h5>Enquiry About the presence of Pain</h5>
+            </div>
+            <div class="col-md-9">
+                <div class="col-md-9">
+                    <label class="form-label bold">can the resident communicate pain successfully <span class="required"></span></label>
+                </div>
+                <ng-container>
+
+                    <p-selectButton [options]="stateOptions" [(ngModel)]="value" optionLabel="label"
+                        optionValue="value"></p-selectButton>
+
+                </ng-container>
+                <ng-template #ActivityData>
+                    <label>{{painChartFormData.ActivityOptionName}}</label>
+                </ng-template>
+            </div>
+
+            <div class="col-md-5">
+                <div class="col-md-5">
+                    <label class="form-label bold">vocalisation <span class="required"></span></label>
+                </div>
+                <ng-container>
+
+                    <p-selectButton [options]="rangeOption" [(ngModel)]="value" optionLabel="label"
+                        optionValue="value"></p-selectButton>
+
+                </ng-container>
+                <ng-template #ActivityData>
+                    <label>{{painChartFormData.ActivityOptionName}}</label>
+                </ng-template>
+            </div>
+
+
+            <div class="col-md-4">
+                <div class="col-md-4">
+                    <label class="form-label bold">Facial expresion <span class="required"></span></label>
+                </div>
+                <ng-container>
+
+                    <p-selectButton [options]="rangeOption" [(ngModel)]="value" optionLabel="label"
+                        optionValue="value"></p-selectButton>
+
+                </ng-container>
+                <ng-template #ActivityData>
+                    <label>{{painChartFormData.ActivityOptionName}}</label>
+                </ng-template>
+            </div>
+
+            <div class="col-md-5">
+                <div class="col-md-5">
+                    <label class="form-label bold">change in body language <span class="required"></span></label>
+                </div>
+                <ng-container>
+
+                    <p-selectButton [options]="rangeOption" [(ngModel)]="value" optionLabel="label"
+                        optionValue="value"></p-selectButton>
+
+                </ng-container>
+                <ng-template #ActivityData>
+                    <label>{{painChartFormData.ActivityOptionName}}</label>
+                </ng-template>
+            </div>
+
+
+            <div class="col-md-5">
+                <div class="col-md-5">
+                    <label class="form-label bold">Behavioural changes <span class="required"></span></label>
+                </div>
+                <ng-container>
+
+                    <p-selectButton [options]="rangeOption" [(ngModel)]="value" optionLabel="label"
+                        optionValue="value"></p-selectButton>
+
+                </ng-container>
+                <ng-template #ActivityData>
+                    <label>{{painChartFormData.ActivityOptionName}}</label>
+                </ng-template>
+            </div>
+
+
+            <div class="formheader bold">
+                <h5>Discription Of Pain</h5>
+            </div>
+            <div class="col-md-4">
+                <div class="col-md-4">
+                    <label class="form-label bold">Type of pain<span class="required"></span></label>
+                </div>
+                <ng-container>
+                    <p-dropdown [required]="true" name="ActivitiesChartFormData.Attendance" placeholder="--select--"
+                        [style]="{ width: '100%' }" [options]="" optionValue="optionId" optionLabel="optionValue"
+                        [(ngModel)]="painChartFormData.Attendance">
+                    </p-dropdown>
+                </ng-container>
+                <ng-template #AttendanceData>
+                    <label>{{painChartFormData.Attendance}}</label>
+                </ng-template>
+            </div>
+
+            <div class="col-md-4">
+                <div class="col-md-6">
+                    <label class="form-label bold">Emotional Response To Pain<span class="required"></span></label>
+                </div>
+                <ng-container>
+                    <p-dropdown [required]="true" name="ActivitiesChartFormData.Attendance" placeholder="--select--"
+                        [style]="{ width: '100%' }" [options]="" optionValue="optionId" optionLabel="optionValue"
+                        [(ngModel)]="painChartFormData.Attendance">
+                    </p-dropdown>
+                </ng-container>
+                <ng-template #AttendanceData>
+                    <label>{{painChartFormData.Attendance}}</label>
+                </ng-template>
+            </div>
+
+            <div class="col-md-4">
+                <div class="col-md-4">
+                    <label class="form-label bold">Impect<span class="required"></span></label>
+                </div>
+                <ng-container>
+                    <p-dropdown [required]="true" name="ActivitiesChartFormData.PurposeOfActivity"
+                        placeholder="--select--" [style]="{ width: '100%' }"
+                        [(ngModel)]="painChartFormData.PurposeOfActivity" [options]="" optionLabel="optionName"
+                        optionValue="optionId">
+                    </p-dropdown>
+                </ng-container>
+                <ng-template #PurposeOfActivityData>
+                    <label>{{painChartFormData.PurposeOfActivityOptionName}}</label>
+                </ng-template>
+            </div>
+
+            <div class="col-md-4">
+                <div class="col-md-4">
+                    <label class="form-label bold"><span class="required"></span>Duration of Pain</label>
+                </div>
+                <ng-container>
+                    <input type="text" pInputText name="ActivitiesChartFormData.AdditionalInformation" [required]="true"
+                        [style]="{ width: '100%' }" [(ngModel)]="painChartFormData.AdditionalInformation" />
+                </ng-container>
+                <ng-template #AdditionalInformationData>
+                    <label>{{painChartFormData.AdditionalInformation}}</label>
+                </ng-template>
+            </div>
+
+            <div class="col-md-4">
+                <div class="col-md-4">
+                    <label class="form-label bold"><span class="required"></span>Interval</label>
+                </div>
+                <ng-container>
+                    <input type="text" pInputText name="ActivitiesChartFormData.AdditionalInformation" [required]="true"
+                        [style]="{ width: '100%' }" [(ngModel)]="painChartFormData.AdditionalInformation" />
+                </ng-container>
+                <ng-template #AdditionalInformationData>
+                    <label>{{painChartFormData.AdditionalInformation}}</label>
+                </ng-template>
+            </div>
+
+            <div class="col-md-4">
+                <div class="col-md-5">
+                    <label class="form-label bold"><span class="required"></span>Factors affecting pain</label>
+                </div>
+                <ng-container>
+                    <input type="text" pInputText name="ActivitiesChartFormData.AdditionalInformation" [required]="true"
+                        [style]="{ width: '100%' }" [(ngModel)]="painChartFormData.AdditionalInformation" />
+                </ng-container>
+                <ng-template #AdditionalInformationData>
+                    <label>{{painChartFormData.AdditionalInformation}}</label>
+                </ng-template>
+            </div>
+
+            <div class="formheader bold mt-3">
+                <h4>Interventions</h4>
+            </div>
+
+            <div class="col-md-4">
+                <div class="col-md-4">
+                    <label class="form-label bold">Interventions<span class="required"></span></label>
+                </div>
+                <ng-container>
+                    <p-dropdown [required]="true" name="ActivitiesChartFormData.PurposeOfActivity"
+                        placeholder="--select--" [style]="{ width: '100%' }"
+                        [(ngModel)]="painChartFormData.PurposeOfActivity" [options]="" optionLabel="optionName"
+                        optionValue="optionId">
+                    </p-dropdown>
+                </ng-container>
+                <ng-template #PurposeOfActivityData>
+                    <label>{{painChartFormData.PurposeOfActivityOptionName}}</label>
+                </ng-template>
+            </div>
+
+            <div class="col-md-4">
+                <div class="col-md-4">
+                    <label class="form-label bold">Referrals<span class="required"></span></label>
+                </div>
+                <ng-container>
+                    <p-dropdown [required]="true" name="ActivitiesChartFormData.PurposeOfActivity"
+                        placeholder="--select--" [style]="{ width: '100%' }"
+                        [(ngModel)]="painChartFormData.PurposeOfActivity" [options]="" optionLabel="optionName"
+                        optionValue="optionId">
+                    </p-dropdown>
+                </ng-container>
+                <ng-template #PurposeOfActivityData>
+                    <label>{{painChartFormData.PurposeOfActivityOptionName}}</label>
+                </ng-template>
+            </div>
+
+            <div class="col-md-5 mt-4">
+                <div class="col-md-4">
+                    <label class="form-label bold">Next Review Date<span class="required"></span></label>
+                </div>
+                <ng-container>
+                    <p-calendar name="" [showIcon]="true" inputId="icon" class="iconcal" [readonlyInput]="true"
+                        appendTo="body" [maxDate]="" #dobref="" [dateFormat]="customDateFormat.CalendarFormat"
+                        [(ngModel)]="painChartFormData.DateAndTime" [showTime]="true" hourFormat="24"></p-calendar>
+                </ng-container>
+                <ng-template #DateAndTimeData>
+                    <label>{{painChartFormData.DateAndTime}}</label>
+                </ng-template>
+            </div>
+        </div>
+        <h5 class="formheader mt-3">Additional information</h5>
+        <div class="col-md-4">
+            <div class="col-md-4">
+                <label class="form-label"><span class="required"></span></label>
+            </div>
+            <ng-container>
+                <input type="text" pInputText name="ActivitiesChartFormData.AdditionalInformation" [required]="true"
+                    [style]="{ width: '100%' }" [(ngModel)]="painChartFormData.AdditionalInformation" />
+            </ng-container>
+            <ng-template #AdditionalInformationData>
+                <label>{{painChartFormData.AdditionalInformation}}</label>
+            </ng-template>
+        </div>
+
+        <h5 class="formheader mt-3">Discription Of Pain</h5>
+        <div class="col-md-4">
+            <div class="col-md-4">
+                <label class="form-label"><span class="required"></span>Type Of Pain</label>
+            </div>
+            <ng-container>
+                <p-dropdown [required]="true" name="ActivitiesChartFormData.PurposeOfActivity" placeholder="--select--"
+                    [style]="{ width: '100%' }" [(ngModel)]="painChartFormData.PurposeOfActivity" [options]=""
+                    optionLabel="optionName" optionValue="optionId">
+                </p-dropdown>
+            </ng-container>
+            <ng-template #PurposeOfActivityData>
+                <label>{{painChartFormData.PurposeOfActivityOptionName}}</label>
+            </ng-template>
+        </div>
+
+        <div class="d-flex justify-content-end mt-4">
+            <div>
+                <span class="p-ml-left mr-4">
+                    <button pButton title="Clear all field" label="Clear all feild" (click)="ClearAllfeilds()"></button>
+                    <span class="total-txt"></span>
+                </span>
+            </div>
+            <div>
+                <span class="p-ml-left mr-4">
+                    <button pButton title="save" label="Save" (click)="Save()"></button>
+                    <span class="total-txt"></span>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
