@@ -1,6 +1,7 @@
 import {
     Component,
     ComponentRef,
+    Input,
     OnInit,
     ViewChild,
     ViewContainerRef,
@@ -26,6 +27,8 @@ export class FormsDashboardComponent
     extends AppComponentBase
     implements OnInit
 {
+    @Input() admissionid: any = null;
+    
     @ViewChild('formContainer', { read: ViewContainerRef })
     formContainer: ViewContainerRef;
     componentRef: ComponentRef<any>;
