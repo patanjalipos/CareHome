@@ -21,7 +21,8 @@ export class ResidentProgressnotesComponent extends AppComponentBase implements 
   @ViewChild('calendar') calendar: Calendar;
   @Input() admissionid: any = null;
   @Input() userid: any = null;
-
+  @Input() isProgressnoteDoc:boolean=false;
+  //@Input() PNDocUserId:string="";
  // AddnoteactiveIndex: number | null = null;
   customDateFormat = CustomDateFormat;
   progress_Note = progressNoteFilters;
@@ -119,11 +120,20 @@ export class ResidentProgressnotesComponent extends AppComponentBase implements 
 
 
   ngOnInit(): void {
-    // this.AddNote.Notes = 'Progressnote';    
+    // this.AddNote.Notes = 'Progressnote';        
+     
     this.createdBy=localStorage.getItem('userId');
-   this.LoadResidentProgressDetails(this.admissionid,this.dFrom, this.dTo);
+   this.LoadResidentProgressDetails(this.admissionid,this.dFrom, this.dTo,this.userid);
   }
-
+  ngOnChanges() {  
+    if(this.isProgressnoteDoc==true)
+      {    
+        this._ConstantServices.ActiveMenuName="Progress notes Documents";
+        
+        // console.log(this.PNDocUserId);
+         this.LoadResidentProgressDetails(this.admissionid,this.dFrom, this.dTo,this.userid);
+      }
+  }
   
   Close()
   { 
@@ -147,7 +157,7 @@ export class ResidentProgressnotesComponent extends AppComponentBase implements 
         {
           this._UtilityService.showSuccessAlert(data.actionResult.errMsg);  
           this.Close();
-          this.LoadResidentProgressDetails(this.admissionid,this.dFrom, this.dTo);
+          this.LoadResidentProgressDetails(this.admissionid,this.dFrom, this.dTo,this.userid);
         }
         else
         {
@@ -213,18 +223,18 @@ ShowAvailableDetails() {
   }
   else
   {
-    this.LoadResidentProgressDetails(this.admissionid,this.dFrom, this.dTo);
+    this.LoadResidentProgressDetails(this.admissionid,this.dFrom, this.dTo,this.userid);
   }
    // this.GetPatientRegistrationDetails(this.dFrom, this.dTo);
 }
 
-LoadResidentProgressDetails(admissionid,dFrom: string, dTo: string)
+LoadResidentProgressDetails(admissionid,dFrom: string, dTo: string,userid)
 {
       
   this._UtilityService.showSpinner();
   this.unsubscribe.add = this._MasterServices.GetResidentProgressNoteById(admissionid,
      this.datePipe.transform(dFrom, "MM-dd-yyyy"),
-     this.datePipe.transform(dTo, "MM-dd-yyyy"),)
+     this.datePipe.transform(dTo, "MM-dd-yyyy"),userid)
     .subscribe
     ({
       next:(data) => {
@@ -234,7 +244,7 @@ LoadResidentProgressDetails(admissionid,dFrom: string, dTo: string)
           var tdata = JSON.parse(data.actionResult.result);
           tdata = tdata ? tdata : [];
          this.lstResidentProgressNote = tdata;
-         console.log(this.lstResidentProgressNote);
+        //  console.log(this.lstResidentProgressNote);
         //  this.TotalRecords = tdata.length;
         }
         else {
@@ -257,7 +267,7 @@ ShowAddNote(id: string) {
   this.filteritems = [];
   this.filteritems = this.lstResidentProgressNote.filter(e => e.ResidentProgressNotesId == id);
   this.AdditionalProgressNote.ResidentProgressNotesId=this.filteritems[0].ResidentProgressNotesId;
-  console.log(this.AdditionalProgressNote);
+  // console.log(this.AdditionalProgressNote);
   this.showAdditionalNote=true;
 }
 
@@ -278,7 +288,7 @@ this.unsubscribe.add = this._MasterServices.AddInsertResidentAdditionalProgressN
       {
         this._UtilityService.showSuccessAlert(data.actionResult.errMsg);  
         this.ClearAddionalNote();
-        this.LoadResidentProgressDetails(this.admissionid,this.dFrom, this.dTo);
+        this.LoadResidentProgressDetails(this.admissionid,this.dFrom, this.dTo,this.userid);
       }
       else
       {

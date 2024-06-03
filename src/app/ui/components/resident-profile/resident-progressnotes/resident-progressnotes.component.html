@@ -4,7 +4,7 @@
         <button pButton type="button" >Print</button>      
     </div> -->
     <div class="row mt-1">
-       <p-accordion>
+       <p-accordion *ngIf="!isProgressnoteDoc">
             <p-accordionTab header="Add a Progress note" [selected]="isExpanded" >
             <div class="row">               
                <!-- <div class="col-md-6 mt-2">            
@@ -46,12 +46,12 @@
     </p-accordion> 
       <p-accordion [activeIndex]="0">
         <p-accordionTab header="All Progress notes since first admission">
-            <div class="form-group pos-rel col-md-5">
+            <div class="form-group pos-rel col-md-5" *ngIf="!isProgressnoteDoc">
                 <label for="" class="form-label label-line">From / Upto <span class="required">*</span></label>
                             <p-calendar #calendar [maxDate]="today" selectionMode="range" [(ngModel)]="SearchDate"
                             [ngModelOptions]="{standalone: true}" [showIcon]="true" inputId="icon"
                             [dateFormat]="customDateFormat.CalendarFormat" class="iconcal" [readonlyInput]="true" [showButtonBar]="true"
-                            (onSelect)="onSelect()" (onClearClick)="LoadResidentProgressDetails(admissionid,null,null)"></p-calendar>
+                            (onSelect)="onSelect()" (onClearClick)="LoadResidentProgressDetails(admissionid,null,null,null)"></p-calendar>
 
             </div>
             <div class="row">
@@ -124,7 +124,7 @@
                             date:customDateFormat.DEF_DATE_TIME}}
                             </p>
                     </div> -->
-                    <div>
+                    <div *ngIf="!isProgressnoteDoc">
                         <button pButton class="mt-5" type="button" style="float:right;position:absolute; top: 0; right: 0; margin: 10px;"
                             (click)="ShowAddNote(dt.ResidentProgressNotesId)">Addtional Note</button>
                     </div>   
