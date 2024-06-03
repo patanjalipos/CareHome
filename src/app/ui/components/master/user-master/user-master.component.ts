@@ -624,7 +624,6 @@ export class UserMasterComponent extends AppComponentBase implements OnInit {
       });
   }
   ShowResidentDetails(HomeMasterId, i, selectedResident=null) {
-    console.log('selectedResident',selectedResident, i);
     this.lstHomeMaster[i].ResidentList=[];
     this.lstHomeMaster[i].SelectedResidentList=[];
     this._UtilityService.showSpinner();
