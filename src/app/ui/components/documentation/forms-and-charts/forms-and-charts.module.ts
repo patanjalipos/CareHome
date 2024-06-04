@@ -7,6 +7,7 @@ import { RadioButtonModule } from 'primeng/radiobutton';
 import { FormsModule } from '@angular/forms';
 import { DropdownModule } from 'primeng/dropdown';
 import { FormsDashboardModule } from '../../forms/forms-dashboard/forms-dashboard.module';
+import { ChartModule } from '../../charts/chart-dashboard/chart.module';
 
 @NgModule({
     declarations: [FormsAndChartsComponent],
@@ -16,7 +17,8 @@ import { FormsDashboardModule } from '../../forms/forms-dashboard/forms-dashboar
         FormsModule,
         RadioButtonModule,
         DropdownModule,
-        FormsDashboardModule
+        FormsDashboardModule,
+        ChartModule
     ],
 })
 export class FormsAndChartsModule {}
