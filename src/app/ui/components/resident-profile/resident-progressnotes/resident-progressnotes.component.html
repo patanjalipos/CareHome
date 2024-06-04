@@ -1,11 +1,12 @@
 
 <div class="card">
-    <!-- <div class="flex flex-wrap gap-2 justify-content-end">
-        <button pButton type="button" >Print</button>      
+    <!-- <div class="flex flex-wrap gap-2 justify-content-end ">
+        <button pButton type="button" >Print</button>    *ngIf="!isProgressnoteDoc"  
     </div> -->
+
     <div class="row mt-1">
-       <p-accordion *ngIf="!isProgressnoteDoc">
-            <p-accordionTab header="Add a Progress note" [selected]="isExpanded" >
+       <p-accordion >
+            <p-accordionTab header="Add a Progress note"  [selected]="isExpanded" >
             <div class="row">               
                <!-- <div class="col-md-6 mt-2">            
                      <div class="field-radiobutton">                                
@@ -46,14 +47,22 @@
     </p-accordion> 
       <p-accordion [activeIndex]="0">
         <p-accordionTab header="All Progress notes since first admission">
-            <div class="form-group pos-rel col-md-5" *ngIf="!isProgressnoteDoc">
+        <div class="row">
+            <div class="form-group pos-rel col-md-6" *ngIf="!isProgressnoteDoc">
                 <label for="" class="form-label label-line">From / Upto <span class="required">*</span></label>
                             <p-calendar #calendar [maxDate]="today" selectionMode="range" [(ngModel)]="SearchDate"
                             [ngModelOptions]="{standalone: true}" [showIcon]="true" inputId="icon"
                             [dateFormat]="customDateFormat.CalendarFormat" class="iconcal" [readonlyInput]="true" [showButtonBar]="true"
-                            (onSelect)="onSelect()" (onClearClick)="LoadResidentProgressDetails(admissionid,null,null,null)"></p-calendar>
-
+                            (onSelect)="onSelectDate()" (onClearClick)="LoadResidentProgressDetails(admissionid,null,null,null,0)"></p-calendar>
             </div>
+            <div class="form-group pos-rel col-md-6" >
+                <label for="" class="form-label label-line">Types of Progress notes<span class="required">*</span></label>
+                            <p-multiSelect  name="ddlFormTypes" display="chip" [(ngModel)]="SearchProgressnoteType" [filter]="false"
+                            [options]="lstprogressnotetypes"  optionLabel="name" optionValue="code" (ngModelChange)="onSelectFormType()"
+                            placeholder="Please Select Progressnotes Type" [style]="{width: '100%'}" #usertyperef="">                                    
+                        </p-multiSelect>       
+            </div>
+        </div>
             <div class="row">
                 <!-- <div class="col-md-10">               
                     <div class="row row-cols-4 mt-4">

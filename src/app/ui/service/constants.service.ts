@@ -184,7 +184,7 @@ export enum UserEnteredNote
 {
     UserEnteredNotes = 1,
 }
-export enum progressNoteFilters {
+export enum progressNoteFilters1 {
     Allnotes = 'All notes',
     MedicationException = 'Medication Exception',
     CareplanEvaluations = 'Care plan Evaluations',
@@ -197,6 +197,20 @@ export enum progressNoteFilters {
     Occupancynotes = 'Occupancy Notes',
     UserEnteredNotes = 'User Entered Notes',
     ResidentDeparture = 'ResidentDeparture'
+}
+export enum progressNoteFilters {
+    Allnotes = 0,
+    UserEnteredNotes = 1,
+    MedicationException = 2,
+    CareplanEvaluations = 3,
+    FormsObservationcharts = 4,
+    Alerts = 5,
+    ResidentDocumentLoaded = 6,
+    CareplanCharges = 7,
+    ResidentTransfer = 8,
+    ResidentIndicators = 9,
+    Occupancynotes = 10,    
+    ResidentDeparture = 11,
 }
 export enum EnteredNotes {
     OnlyDoctorenterednotes= 'Only Doctor-entered notes',
