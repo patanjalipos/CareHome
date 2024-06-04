@@ -1,0 +1,36 @@
+<div class="card">
+    <div class="row">
+    <div class="form-group pos-rel col-md-5">
+        <label for="" class="form-label label-line">Facility </label>
+        <p-dropdown [required]="true" name="ddlFacility" [options]="lstHomeMaster" [(ngModel)]="ProgressnoteDocument.Facility"
+        optionLabel="HomeName" optionValue="HomeMasterId" placeholder="-Select-" (onChange)="LoadLocationMaster();"
+        [style]="{width: '100%'}"  >
+    </p-dropdown>
+    </div>
+    <div class="form-group pos-rel col-md-5">
+        <label for="" class="form-label label-line">Location </label>
+        <p-dropdown [required]="true" name="ddlLocation" [options]="lstlocationMaster" [(ngModel)]="ProgressnoteDocument.Location"
+        optionLabel="LocationName" optionValue="LocationMasterId" placeholder="-All-" 
+        [style]="{width: '100%'}"  >
+    </p-dropdown>
+    </div>
+    <div class="form-group pos-rel col-md-5">
+        <label for="" class="form-label label-line">Status </label>
+        <p-dropdown [required]="true" name="ddlStatus" [options]="stlstadmissionstatus" [(ngModel)]="ProgressnoteDocument.Status"
+        optionLabel="name" optionValue="code" placeholder="-Select-" (onChange)="LoadResidentList();"
+        [style]="{width: '100%'}"  >
+    </p-dropdown>
+    </div>
+    <div class="form-group pos-rel col-md-5">
+        <label for="" class="form-label label-line">Resident </label>
+        <p-dropdown [required]="true" name="ddlResident" [options]="lstResidentMaster" [(ngModel)]="ProgressnoteDocument.Resident"
+        optionLabel="FullName" optionValue="UserId" placeholder="-Select-" (onChange)="onResident()"
+        [style]="{width: '100%'}"  >
+    </p-dropdown>
+    </div>
+</div>
+<div class="mt-2" *ngIf="ShowProgressnotes" [style.display]="ShowProgressnotes ? 'block' : 'none'">
+    <app-resident-progressnotes [isProgressnoteDoc]="isProgressnoteDoc" [userid]="ProgressnoteDocument.Resident"
+    [admissionid]="admissionid"></app-resident-progressnotes>
+</div>
+</div>

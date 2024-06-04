@@ -91,6 +91,10 @@ export class ActivitiesChartComponent
     }
 
     ngOnInit(): void {
+        this.userId = this.preSelectedChartData.userId;
+        this.residentAdmissionInfoId =
+            this.preSelectedChartData.residentAdmissionInfoId;
+
         this.optionService.getstLstYesNoOptions().subscribe((data) => {
             this.stLstYesNoOptions = data;
         });

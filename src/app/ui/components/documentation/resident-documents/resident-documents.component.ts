@@ -54,7 +54,7 @@ export class ResidentDocumentsComponent extends AppComponentBase implements OnIn
       HomeMasterId = localStorage.getItem('HomeMasterId');
     }
     this._UtilityService.showSpinner();
-    this.unsubscribe.add = this._MasterServices.GetResidentMaster(HomeMasterId, false)
+    this.unsubscribe.add = this._MasterServices.GetResidentMaster(HomeMasterId,null,1)
       .subscribe({
         next: (data) => {
           this._UtilityService.hideSpinner();
