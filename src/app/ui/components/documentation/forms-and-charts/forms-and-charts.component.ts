@@ -14,38 +14,43 @@ export class FormsAndChartsComponent
     extends AppComponentBase
     implements OnInit
 {
-    selectedOption: string;
-    selectedResident: any;
     lstResidents: any[];
+    filteritems: any[] = [];
 
-    isShowFormDashboard: boolean = false;
-    isShowChartDashboard: boolean = false;
+    selectedOption: string;
+    selectedResidentUserId: any;
+
+    userId: string;
+    admissionId: string;
+
+    isShowDashboard: boolean = false;
 
     constructor(
         private _ConstantServices: ConstantsService,
         private _MasterServices: MasterService,
         private _UtilityService: UtilityService
-    ) //private router: Router,
-    {
+    ) {
         super();
         this._ConstantServices.ActiveMenuName = 'Forms and Charts';
     }
 
-    Next() {
-        if (this.selectedOption == 'Forms') {
-            alert('Open Forms for Resident: ' + this.selectedResident);
-            this.isShowFormDashboard = true;
-            this.isShowChartDashboard = false;
-            //this.router.navigate(['/forms-dashboard', this.selectedResident]);
-        } else {
-            alert('Open Charts for Resident: ' + this.selectedResident);
-            this.isShowChartDashboard = false;
-            this.isShowFormDashboard = true;
+    showDashBoardComponent() {
+        this.isShowDashboard = false;
+        this.filteritems = this.lstResidents.filter(
+            (x) => x.UserId === this.selectedResidentUserId
+        );
 
-        }
+        setTimeout(() => {
+            this.admissionId = this.filteritems[0].ResidentAdmissionInfoId;
+            this.userId = this.filteritems[0].UserId;
+
+            this.isShowDashboard = true;
+        }, 0);
     }
 
     onRadioSelect() {
+        this.selectedResidentUserId = null;
+        this.isShowDashboard = false;
         this._UtilityService.showSpinner();
         this.unsubscribe.add = this._MasterServices
             .GetResidentMaster()
@@ -56,7 +61,6 @@ export class FormsAndChartsComponent
                         var tdata = JSON.parse(data.actionResult.result);
                         tdata = tdata ? tdata : [];
                         this.lstResidents = tdata;
-                        console.log(this.lstResidents);
                     }
                 },
                 error: (e) => {
@@ -67,4 +71,10 @@ export class FormsAndChartsComponent
     }
 
     ngOnInit(): void {}
+
+    // Reset() {
+    //     this.selectedOption = null;
+    //     this.selectedResidentUserId = null;
+    //     this.isShowDashboard = false;
+    // }
 }

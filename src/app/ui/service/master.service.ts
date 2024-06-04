@@ -958,7 +958,7 @@ export class MasterService {
 
     //#region  ResidentMaster
 
-    GetResidentMaster(HomeMasterId = null, status = true): Observable<any> {
+    GetResidentMaster(HomeMasterId = null, LocationMasterId=null,status = 1): Observable<any> {
         let reqHeader = new HttpHeaders({
             'Content-Type': 'application/json',
             'Access-Control-Allow-Origin': environment.BaseUriAdmin,
@@ -967,7 +967,7 @@ export class MasterService {
         let params = new HttpParams();
 
         if (HomeMasterId) params = params.append('HomeMasterId', HomeMasterId);
-        
+        if (LocationMasterId) params = params.append('LocationMasterId', LocationMasterId);        
         params = params.append('status', status);
         return this._httpclient.get<any>(
             environment.BaseUriAdmin + 'api/Admin/GetResidentMaster',
@@ -1944,11 +1944,7 @@ export class MasterService {
         );
     }
 
-    GetResidentProgressNoteById(
-        admissionid,
-        dFrom = null,
-        dTo = null
-    ): Observable<any> {
+    GetResidentProgressNoteById(admissionid,dFrom = null, dTo = null,userid): Observable<any> {
         let reqHeader = new HttpHeaders({
             'Content-Type': 'application/json',
             'Access-Control-Allow-Origin': environment.BaseUriAdmin,
@@ -1956,9 +1952,9 @@ export class MasterService {
         });
         let params = new HttpParams();
         params = params.append('admissionid', admissionid);
-        // params = params.append('userid', userid);
         params = params.append('dFrom', dFrom);
         params = params.append('dTo', dTo);
+        params = params.append('userid', userid);
         return this._httpclient.get<any>(
             environment.BaseUriUser + 'api/User/GetResidentProgressNoteById',
             { headers: reqHeader, params: params }
@@ -1981,4 +1977,6 @@ export class MasterService {
             { headers: reqHeader, params: params }
         );
     }
+    
+   
 }

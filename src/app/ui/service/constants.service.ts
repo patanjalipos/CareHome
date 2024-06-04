@@ -207,3 +207,7 @@ export enum TimeFrameNotes {
     InthePrevious = 'In the Previous',
     Specifyatimeframe = 'Specify a time frame',
 }
+export enum ResidentSelection {
+    AllresidentAssigned= 'All Resident assigned to me',
+    selectedresidentsonly = 'Selected Residents Only',
+}
