@@ -22,8 +22,6 @@ export class ResidentProgressnotesComponent extends AppComponentBase implements 
   @Input() admissionid: any = null;
   @Input() userid: any = null;
   @Input() isProgressnoteDoc:boolean=false;
-  //@Input() PNDocUserId:string="";
- // AddnoteactiveIndex: number | null = null;
   customDateFormat = CustomDateFormat;
   progress_Note = progressNoteFilters;
   Entered_Notes = EnteredNotes;
@@ -42,6 +40,7 @@ export class ResidentProgressnotesComponent extends AppComponentBase implements 
   filteritems: any[]=[];
   public isExpanded:boolean=true;
   SearchDate: Date[]=[];
+  SearchProgressnoteType: any[]=[];
   dFrom: any;
   dTo: any;
   createdBy:string="";
@@ -53,6 +52,7 @@ export class ResidentProgressnotesComponent extends AppComponentBase implements 
   TimeFrameStatuses: string | undefined;
   UserEnteredNoteEnum=UserEnteredNote;
   lstUserNote:any[]=[];
+  lstprogressnotetypes:any[]=[];
   AdditionProgressNoteID:string="";
 
   constructor(
@@ -64,10 +64,10 @@ export class ResidentProgressnotesComponent extends AppComponentBase implements 
     { 
     super();
     this._ConstantServices.ActiveMenuName="Resident Progress Notes";
-    this.statusOptions = Object.keys(this.progress_Note).map(key => ({
-      key,
-      value: this.progress_Note[key as keyof typeof progressNoteFilters]
-    }));
+    // this.statusOptions = Object.keys(this.progress_Note).map(key => ({
+    //   key,
+    //   value: this.progress_Note[key as keyof typeof progressNoteFilters]
+    // }));
 
     this.lstUserNote = [
       { name: this.UserEnteredNoteEnum[this.UserEnteredNoteEnum.UserEnteredNotes], code: this.UserEnteredNoteEnum.UserEnteredNotes }
@@ -77,6 +77,21 @@ export class ResidentProgressnotesComponent extends AppComponentBase implements 
     //   this.selectedStatuses[option.key] = false; 
     // });
 
+   
+    this.lstprogressnotetypes = [
+      { name: this.progress_Note[this.progress_Note.Allnotes], code: this.progress_Note.Allnotes },
+      { name: this.progress_Note[this.progress_Note.MedicationException], code: this.progress_Note.MedicationException },
+      { name: this.progress_Note[this.progress_Note.CareplanEvaluations], code: this.progress_Note.CareplanEvaluations },
+      { name: this.progress_Note[this.progress_Note.FormsObservationcharts], code: this.progress_Note.FormsObservationcharts },
+      { name: this.progress_Note[this.progress_Note.Alerts], code: this.progress_Note.Alerts },
+      { name: this.progress_Note[this.progress_Note.ResidentDocumentLoaded], code: this.progress_Note.ResidentDocumentLoaded },
+      { name: this.progress_Note[this.progress_Note.CareplanCharges], code: this.progress_Note.CareplanCharges },
+      { name: this.progress_Note[this.progress_Note.ResidentTransfer], code: this.progress_Note.ResidentTransfer },
+      { name: this.progress_Note[this.progress_Note.ResidentIndicators], code: this.progress_Note.ResidentIndicators },
+      { name: this.progress_Note[this.progress_Note.Occupancynotes], code: this.progress_Note.Occupancynotes },
+      { name: this.progress_Note[this.progress_Note.UserEnteredNotes], code: this.progress_Note.UserEnteredNotes },
+      { name: this.progress_Note[this.progress_Note.ResidentDeparture], code: this.progress_Note.ResidentDeparture },
+    ];
     // this.EnteredOptions = Object.keys(this.Entered_Notes).map(key => ({
     //   key,
     //   value: this.Entered_Notes[key as keyof typeof EnteredNotes]
@@ -120,24 +135,23 @@ export class ResidentProgressnotesComponent extends AppComponentBase implements 
 
 
   ngOnInit(): void {
-    // this.AddNote.Notes = 'Progressnote';        
-     
-    this.createdBy=localStorage.getItem('userId');
-   this.LoadResidentProgressDetails(this.admissionid,this.dFrom, this.dTo,this.userid);
+    // this.AddNote.Notes = 'Progressnote';       
+     this.createdBy=localStorage.getItem('userId');
+   this.LoadResidentProgressDetails(this.admissionid,this.dFrom, this.dTo,this.userid,this.SearchProgressnoteType);
   }
   ngOnChanges() {  
     if(this.isProgressnoteDoc==true)
       {    
-        this._ConstantServices.ActiveMenuName="Progress notes Documents";
-        
+        this._ConstantServices.ActiveMenuName="Progress notes Documents";        
         // console.log(this.PNDocUserId);
-         this.LoadResidentProgressDetails(this.admissionid,this.dFrom, this.dTo,this.userid);
+         this.LoadResidentProgressDetails(this.admissionid,this.dFrom, this.dTo,this.userid,0);
       }
   }
   
   Close()
   { 
     this.isExpanded=false;
+    this.AddNote='';
   }
   submit()
   {
@@ -157,7 +171,7 @@ export class ResidentProgressnotesComponent extends AppComponentBase implements 
         {
           this._UtilityService.showSuccessAlert(data.actionResult.errMsg);  
           this.Close();
-          this.LoadResidentProgressDetails(this.admissionid,this.dFrom, this.dTo,this.userid);
+          this.LoadResidentProgressDetails(this.admissionid,this.dFrom, this.dTo,this.userid,null);
         }
         else
         {
@@ -203,7 +217,7 @@ toggleMenu(menu, event, id,) {
 
 //Get Details
 
-onSelect() {
+onSelectDate() {
   if (this.SearchDate[0] !== null && this.SearchDate[1] !== null) {
     this.calendar.overlayVisible = false;
     this.ShowAvailableDetails();
@@ -223,18 +237,29 @@ ShowAvailableDetails() {
   }
   else
   {
-    this.LoadResidentProgressDetails(this.admissionid,this.dFrom, this.dTo,this.userid);
+    this.LoadResidentProgressDetails(this.admissionid,this.dFrom, this.dTo,this.userid,0);
   }
    // this.GetPatientRegistrationDetails(this.dFrom, this.dTo);
 }
 
-LoadResidentProgressDetails(admissionid,dFrom: string, dTo: string,userid)
+onSelectFormType() {
+  var checkedItemArray: any[] = [];
+    for (var i = 0; i < this.SearchProgressnoteType?.length; i++) {
+      checkedItemArray.push({
+        "id": this.SearchProgressnoteType[i]
+      });      
+    }
+   // this.SearchProgressnoteType=checkedItemArray;
+  this.LoadResidentProgressDetails(this.admissionid,this.dFrom, this.dTo,this.userid,checkedItemArray);
+}
+
+LoadResidentProgressDetails(admissionid,dFrom: string, dTo: string,userid,formType)
 {
       
   this._UtilityService.showSpinner();
   this.unsubscribe.add = this._MasterServices.GetResidentProgressNoteById(admissionid,
      this.datePipe.transform(dFrom, "MM-dd-yyyy"),
-     this.datePipe.transform(dTo, "MM-dd-yyyy"),userid)
+     this.datePipe.transform(dTo, "MM-dd-yyyy"),userid,formType)
     .subscribe
     ({
       next:(data) => {
@@ -288,7 +313,7 @@ this.unsubscribe.add = this._MasterServices.AddInsertResidentAdditionalProgressN
       {
         this._UtilityService.showSuccessAlert(data.actionResult.errMsg);  
         this.ClearAddionalNote();
-        this.LoadResidentProgressDetails(this.admissionid,this.dFrom, this.dTo,this.userid);
+        this.LoadResidentProgressDetails(this.admissionid,this.dFrom, this.dTo,this.userid,0);
       }
       else
       {
