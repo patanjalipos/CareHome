@@ -45,6 +45,7 @@ export class ActivitiesChartComponent
 
     lstActivity: any[] = [];
     lstPurposeOfActivity: any[] = [];
+    lstParticipation:any[]=[];
 
     //Static Options
     stLstYesNoOptions: any[] = [];
@@ -90,6 +91,10 @@ export class ActivitiesChartComponent
     }
 
     ngOnInit(): void {
+        this.userId = this.preSelectedChartData.userId;
+        this.residentAdmissionInfoId =
+            this.preSelectedChartData.residentAdmissionInfoId;
+
         this.optionService.getstLstYesNoOptions().subscribe((data) => {
             this.stLstYesNoOptions = data;
         });
@@ -98,7 +103,7 @@ export class ActivitiesChartComponent
             this.stLstAttendanceOptions = data;
         });
 
-        const collectionNames = ['Activity', 'PurposeofActivity'];
+        const collectionNames = ['Activity','Participation', 'PurposeofActivity'];
 
         forkJoin(
             collectionNames.map((collectionName) =>
@@ -110,7 +115,8 @@ export class ActivitiesChartComponent
             )
         ).subscribe((responses: any[]) => {
             this.lstActivity = responses[0];
-            this.lstPurposeOfActivity = responses[1];
+            this.lstParticipation=responses[1];
+            this.lstPurposeOfActivity = responses[2];
         });
     }
 

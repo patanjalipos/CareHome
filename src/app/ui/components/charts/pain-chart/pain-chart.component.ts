@@ -50,20 +50,8 @@ export class PainChartComponent extends AppComponentBase implements OnInit {
     private _PainChartServices: PainChartService
   ) {
     super();
+    this._ConstantServices.ActiveMenuName = 'Pain Chart';
     this.loginId = localStorage.getItem('userId');
-
-    this.unsubscribe.add = this.route.queryParams.subscribe((params) => {
-      var ParamsArray = this._ConstantServices.GetParmasVal(params['q']);
-
-      if (ParamsArray?.length > 0) {
-        this.userId =
-          ParamsArray.find((e) => e.FieldStr == 'id')?.FieldVal ||
-          null;
-        this.residentAdmissionInfoId =
-          ParamsArray.find((e) => e.FieldStr == 'admissionid')
-            ?.FieldVal || null;
-      }
-    });
   }
 
 
@@ -81,6 +69,10 @@ export class PainChartComponent extends AppComponentBase implements OnInit {
   }
 
   ngOnInit(): void {
+    this.userId = this.preSelectedChartData.userId;
+    this.residentAdmissionInfoId =
+        this.preSelectedChartData.residentAdmissionInfoId;
+
     this.optionService.getstLstYesNoOptions().subscribe((data) => {
       this.stLstYesNoOptions = data;
     });
@@ -141,7 +133,6 @@ export class PainChartComponent extends AppComponentBase implements OnInit {
             +dateParts[4]
           );
           this.painChartFormData.DateAndTime = parsedDate;
-          console.log(parsedDate);
         }
 
 
@@ -152,29 +143,11 @@ export class PainChartComponent extends AppComponentBase implements OnInit {
           );
       }
 
-
       this.painChartFormData.NextReviewDate =
         this.datePipte.transform(
           this.painChartFormData.NextReviewDate,
           'yyyy-MM-dd'
         );
-
-
-      if (this.painChartFormData.DurationOfPain) {
-        // if (this.StatementType == 'Update' && typeof this.painChartFormData.DurationOfPain == 'string') {
-        //   //pare review date
-        //   const reviewDate = this.painChartFormData.DurationOfPain.split(/[- :]/);
-        //   const parsedDurationDate = new Date(
-        //     +reviewDate[2],
-        //     reviewDate[1] - 1,
-        //     +reviewDate[0],
-        //     +reviewDate[3],
-        //     +reviewDate[4]
-        //   );
-        //   this.painChartFormData.DurationOfPain = parsedDurationDate;
-        // }
-        
-      }
 
       const objectBody: any = {
         StatementType: this.StatementType,
@@ -236,13 +209,6 @@ export class PainChartComponent extends AppComponentBase implements OnInit {
                 this.painChartFormData.NextReviewDate,
                 'MM/dd/yyyy'
               );
-            // this.painChartFormData.DurationOfPain =
-            //   this.datePipte.transform(
-            //     this.painChartFormData.DurationOfPain,
-            //     'HH:mm'
-            //   );
-
-            console.log("==>" + this.painChartFormData.NextReviewDate);
 
             this.openAndClose();
           } else {
