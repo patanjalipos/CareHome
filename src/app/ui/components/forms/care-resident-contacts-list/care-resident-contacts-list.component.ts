@@ -25,8 +25,7 @@ import { CareResidentContactsListService } from './care-resident-contacts-list.s
 })
 export class CareResidentContactsListComponent
     extends AppComponentBase
-    implements OnInit
-{
+    implements OnInit {
     @Input() preSelectedFormData: any = <any>{};
     @Output() EmitUpdateForm: EventEmitter<any> = new EventEmitter<any>();
 
@@ -56,19 +55,6 @@ export class CareResidentContactsListComponent
         this._ConstantServices.ActiveMenuName =
             'Care Assessment - Residents Contact Lists';
         this.loginId = localStorage.getItem('userId');
-
-        this.unsubscribe.add = this.route.queryParams.subscribe((params) => {
-            var ParamsArray = this._ConstantServices.GetParmasVal(params['q']);
-
-            if (ParamsArray?.length > 0) {
-                this.userId =
-                    ParamsArray.find((e) => e.FieldStr == 'id')?.FieldVal ||
-                    null;
-                this.residentAdmissionInfoId =
-                    ParamsArray.find((e) => e.FieldStr == 'admissionid')
-                        ?.FieldVal || null;
-            }
-        });
     }
 
     ngOnChanges(changes: SimpleChanges): void {
@@ -85,7 +71,9 @@ export class CareResidentContactsListComponent
     }
 
     ngOnInit(): void {
-     
+        this.userId = this.preSelectedFormData.userId;
+        this.residentAdmissionInfoId =
+            this.preSelectedFormData.residentAdmissionInfoId;
         this.isEditable = this.preSelectedFormData.isEditable;
 
         if (this.preSelectedFormData.selectedFormID != null) {
@@ -100,7 +88,7 @@ export class CareResidentContactsListComponent
         }
     }
 
-    SaveAsPDF() {}
+    SaveAsPDF() { }
 
     saveAsUnfinished() {
         this.ResidentContactsListFormData.IsFormCompleted = false;
@@ -180,7 +168,6 @@ export class CareResidentContactsListComponent
     }
 
     ResetModel() {
-        this.preSelectedFormData = <any>{};
         this.isEditable = true;
         this.ResidentContactsListFormData = <any>{};
         this.StatementType = 'Insert';
