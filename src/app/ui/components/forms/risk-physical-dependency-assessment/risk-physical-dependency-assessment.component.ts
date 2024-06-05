@@ -25,8 +25,7 @@ import { RiskPhysicalDependencyAssessmentService } from './risk-physical-depende
 })
 export class RiskPhysicalDependencyAssessmentComponent
     extends AppComponentBase
-    implements OnInit
-{
+    implements OnInit {
     @Input() preSelectedFormData: any = <any>{};
     @Output() EmitUpdateForm: EventEmitter<any> = new EventEmitter<any>();
 
@@ -77,19 +76,6 @@ export class RiskPhysicalDependencyAssessmentComponent
         this._ConstantServices.ActiveMenuName =
             'Risk Assessment - Physical Dependency Assessement';
         this.loginId = localStorage.getItem('userId');
-
-        this.unsubscribe.add = this.route.queryParams.subscribe((params) => {
-            var ParamsArray = this._ConstantServices.GetParmasVal(params['q']);
-
-            if (ParamsArray?.length > 0) {
-                this.userId =
-                    ParamsArray.find((e) => e.FieldStr == 'id')?.FieldVal ||
-                    null;
-                this.residentAdmissionInfoId =
-                    ParamsArray.find((e) => e.FieldStr == 'admissionid')
-                        ?.FieldVal || null;
-            }
-        });
     }
 
     ngOnChanges(changes: SimpleChanges): void {
@@ -106,6 +92,10 @@ export class RiskPhysicalDependencyAssessmentComponent
     }
 
     ngOnInit(): void {
+        this.userId = this.preSelectedFormData.userId;
+        this.residentAdmissionInfoId =
+            this.preSelectedFormData.residentAdmissionInfoId;
+        this.isEditable = this.preSelectedFormData.isEditable;
         const dropDownNames = [
             'communicationOptions',
             'breathingOptions',
@@ -173,7 +163,7 @@ export class RiskPhysicalDependencyAssessmentComponent
         }
     }
 
-    SaveAsPDF() {}
+    SaveAsPDF() { }
 
     saveAsUnfinished() {
         this.RiskPhysicalDependencyAssessmentFormData.IsFormCompleted = false;
@@ -281,7 +271,6 @@ export class RiskPhysicalDependencyAssessmentComponent
     }
 
     ResetModel() {
-        this.preSelectedFormData = <any>{};
         this.isEditable = true;
         this.RiskPhysicalDependencyAssessmentFormData = <any>{};
         this.StatementType = 'Insert';
