@@ -77,22 +77,10 @@ export class RiskPhysicalDependencyAssessmentComponent
         this._ConstantServices.ActiveMenuName =
             'Risk Assessment - Physical Dependency Assessement';
         this.loginId = localStorage.getItem('userId');
-
-        this.unsubscribe.add = this.route.queryParams.subscribe((params) => {
-            var ParamsArray = this._ConstantServices.GetParmasVal(params['q']);
-
-            if (ParamsArray?.length > 0) {
-                this.userId =
-                    ParamsArray.find((e) => e.FieldStr == 'id')?.FieldVal ||
-                    null;
-                this.residentAdmissionInfoId =
-                    ParamsArray.find((e) => e.FieldStr == 'admissionid')
-                        ?.FieldVal || null;
-            }
-        });
     }
 
     ngOnChanges(changes: SimpleChanges): void {
+
         this.isEditable = this.preSelectedFormData.isEditable;
         if (this.preSelectedFormData.selectedFormID != null) {
             this.RiskPhysicalDependencyAssessmentFormData = <any>{};
@@ -106,6 +94,10 @@ export class RiskPhysicalDependencyAssessmentComponent
     }
 
     ngOnInit(): void {
+        
+        this.userId = this.preSelectedFormData.userId;
+        this.residentAdmissionInfoId = this.preSelectedFormData.residentAdmissionInfoId;
+
         const dropDownNames = [
             'communicationOptions',
             'breathingOptions',
@@ -133,7 +125,7 @@ export class RiskPhysicalDependencyAssessmentComponent
             dropDownNames.map((collectionName) =>
                 this.GetDropDownMasterList(
                     FormTypes.RiskAssessmentPhysical,
-                    collectionName
+                    collectionName,1
                 )
             )
         ).subscribe((responses: any[]) => {
@@ -187,11 +179,12 @@ export class RiskPhysicalDependencyAssessmentComponent
 
     GetDropDownMasterList(
         formMasterId: string,
-        dropDownName: string
+        dropDownName: string,
+        status:number
     ): Observable<any> {
         this._UtilityService.showSpinner();
         return this._MasterService
-            .GetDropDownMasterList(formMasterId, dropDownName, 1)
+            .GetDropDownMasterList(formMasterId, dropDownName, status)
             .pipe(
                 map((response) => {
                     this._UtilityService.hideSpinner();
@@ -281,7 +274,7 @@ export class RiskPhysicalDependencyAssessmentComponent
     }
 
     ResetModel() {
-        this.preSelectedFormData = <any>{};
+        // this.preSelectedFormData = <any>{};
         this.isEditable = true;
         this.RiskPhysicalDependencyAssessmentFormData = <any>{};
         this.StatementType = 'Insert';

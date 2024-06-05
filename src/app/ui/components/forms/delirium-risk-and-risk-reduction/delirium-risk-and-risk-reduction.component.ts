@@ -41,19 +41,6 @@ export class DeliriumRiskAndRiskReductionComponent extends AppComponentBase impl
 
     this._ConstantServices.ActiveMenuName = "Delirium Risk And Risk Reduction Form";
     this.loginId = localStorage.getItem('userId');
-
-    this.unsubscribe.add = this.route.queryParams.subscribe((params) => {
-      var ParamsArray = this._ConstantServices.GetParmasVal(params['q']);
-
-      if (ParamsArray?.length > 0) {
-        this.userId =
-        ParamsArray.find((e) => e.FieldStr == 'id')?.FieldVal ||
-        null;
-        this.residentAdmissionInfoId =
-        ParamsArray.find((e) => e.FieldStr == 'admissionid')
-            ?.FieldVal || null;
-      }
-    });
    }
 
   
@@ -74,6 +61,10 @@ export class DeliriumRiskAndRiskReductionComponent extends AppComponentBase impl
   }
 
   ngOnInit(): void {
+
+    this.userId = this.preSelectedFormData.userId;
+    this.residentAdmissionInfoId = this.preSelectedFormData.residentAdmissionInfoId;
+    
     const collectionNames = [
       'DeliriumRiskCheck',
       'DisorientationPrevention',
@@ -170,7 +161,6 @@ completeForm() {
 }
 
 Save() {
-  debugger
 if (this.userId != null && this.residentAdmissionInfoId != null && this.loginId!=null) {
     
     this.DeliriumRiskFormsData.userId = this.userId;
@@ -185,7 +175,7 @@ if (this.userId != null && this.residentAdmissionInfoId != null && this.loginId!
       };
       
 
-      console.log(objectBody);
+      // console.log(objectBody);
 
     this._UtilityService.showSpinner();
     this.unsubscribe.add = this._DeliriumRisk
