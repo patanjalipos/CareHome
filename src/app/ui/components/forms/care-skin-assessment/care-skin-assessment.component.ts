@@ -13,13 +13,13 @@ import { CareSkinAssessmentService } from './care-skin-assessment.service';
   styleUrls: ['./care-skin-assessment.component.scss']
 })
 export class CareSkinAssessmentComponent extends AppComponentBase implements OnInit {
-  @Input() preSelectedFormData: any=<any>{};
+  @Input() preSelectedFormData: any = <any>{};
   @Output() EmitUpdateForm: EventEmitter<any> = new EventEmitter<any>();
 
   customDateFormat = CustomDateFormat;
   isEditable: boolean;
-  CareSkinAssessmentFormsData:any = <any>{};
-  residentAdmissionInfoId:any;
+  CareSkinAssessmentFormsData: any = <any>{};
+  residentAdmissionInfoId: any;
   loginId: any;
   userId: any;
   StatementType: string = null;
@@ -44,38 +44,25 @@ export class CareSkinAssessmentComponent extends AppComponentBase implements OnI
   lstSkinCareStrategies: any[] = [];
   lstGoalsToAchieve: any[] = [];
   lstSafeguardReferral: any[] = [];
-  
 
-  constructor(private _ConstantServices: ConstantsService,private route: ActivatedRoute,private _UtilityService: UtilityService,private _MasterServices : MasterService, private _CareSkin: CareSkinAssessmentService) {
+
+  constructor(private _ConstantServices: ConstantsService, private route: ActivatedRoute, private _UtilityService: UtilityService, private _MasterServices: MasterService, private _CareSkin: CareSkinAssessmentService) {
     super();
     this._ConstantServices.ActiveMenuName = "Care Skin Assessment Form";
     this.loginId = localStorage.getItem('userId');
 
-    
-    this.unsubscribe.add = this.route.queryParams.subscribe((params) => {
-      var ParamsArray = this._ConstantServices.GetParmasVal(params['q']);
+  }
 
-      if (ParamsArray?.length > 0) {
-        this.userId =
-        ParamsArray.find((e) => e.FieldStr == 'id')?.FieldVal ||
-        null;
-        this.residentAdmissionInfoId =
-        ParamsArray.find((e) => e.FieldStr == 'admissionid')
-            ?.FieldVal || null;
-      }
-    });
-
-   }
-
-   ngOnChanges(changes: SimpleChanges): void {
+  ngOnChanges(changes: SimpleChanges): void {
     this.isEditable = this.preSelectedFormData.isEditable;
-    
+
     if (this.preSelectedFormData.selectedFormID != null) {
       this.CareSkinAssessmentFormsData = <any>{};
-        this.GetCareSkinAssessmentDetails(
-            this.preSelectedFormData.selectedFormID
-        );
-        this.StatementType = 'Update';
+      this.GetCareSkinAssessmentDetails(
+        this.preSelectedFormData.selectedFormID
+      );
+      this.StatementType = 'Update';
+      
     }
     else {
       this.ResetModel();
@@ -83,6 +70,10 @@ export class CareSkinAssessmentComponent extends AppComponentBase implements OnI
   }
 
   ngOnInit(): void {
+    this.userId = this.preSelectedFormData.userId;
+    this.residentAdmissionInfoId =
+      this.preSelectedFormData.residentAdmissionInfoId;
+    this.isEditable = this.preSelectedFormData.isEditable;
 
     const collectionNames = [
       'SkinIntegrityDecisions',
@@ -105,9 +96,9 @@ export class CareSkinAssessmentComponent extends AppComponentBase implements OnI
       'SkinCareStrategies',
       'GoalsToAchieve',
       'SafeguardReferral'
-  ];
+    ];
 
-  forkJoin(collectionNames.map((collectionName) => this.getDropdownMasterLists(FormTypes.careskinassessment,collectionName,1))).subscribe((responses: any[]) => {
+    forkJoin(collectionNames.map((collectionName) => this.getDropdownMasterLists(FormTypes.careskinassessment, collectionName, 1))).subscribe((responses: any[]) => {
       this.lstSkinIntegrityDecisions = responses[0];
       this.lstSkinAgeingEffects = responses[1];
       this.lstHealthStatus = responses[2];
@@ -128,142 +119,141 @@ export class CareSkinAssessmentComponent extends AppComponentBase implements OnI
       this.lstSkinCareStrategies = responses[17];
       this.lstGoalsToAchieve = responses[18];
       this.lstSafeguardReferral = responses[19];
-  });
+    });
 
     this.isEditable = this.preSelectedFormData.isEditable;
-  
+
     if (this.preSelectedFormData.selectedFormID != null) {
       this.CareSkinAssessmentFormsData = <any>{};
-        this.GetCareSkinAssessmentDetails(
-            this.preSelectedFormData.selectedFormID
-        );
-        this.StatementType = 'Update';
+      this.GetCareSkinAssessmentDetails(
+        this.preSelectedFormData.selectedFormID
+      );
+      this.StatementType = 'Update';
     }
     else {
       this.ResetModel();
-  }
+    }
   }
 
-  SaveAsPDF() {}
+  SaveAsPDF() { }
 
   GetCareSkinAssessmentDetails(formId: string) {
     this._UtilityService.showSpinner();
     this.unsubscribe.add = this._CareSkin
-        .GetCareSkinAssessmentDetails(formId)
-        .subscribe({
-            next: (data) => {
-                this._UtilityService.hideSpinner();
-                if (data.actionResult.success == true) {
-                    var tdata = JSON.parse(data.actionResult.result);
-                    tdata = tdata ? tdata : {};
-                    console.log(tdata)
-                    this.CareSkinAssessmentFormsData = tdata;
-                    console.log(this.CareSkinAssessmentFormsData.CareAssessmentHearingFormId)
-                    
-                    // console.log(this.CareAssessmentHearingFormsData.HearingDiagnosisCheck);
-                    
-                } else {
-                    this.CareSkinAssessmentFormsData = {};
-                }
-            },
-            error: (e) => {
-                this._UtilityService.hideSpinner();
-                this._UtilityService.showErrorAlert(e.message);
-            },
-        });
-}
-
-
-getDropdownMasterLists(formMasterId: string, dropdownName: string,status:number): Observable<any> {
-  this._UtilityService.showSpinner();
-  return this._MasterServices.GetDropDownMasterList(formMasterId,dropdownName, status).pipe(
-      map((response) => {
+      .GetCareSkinAssessmentDetails(formId)
+      .subscribe({
+        next: (data) => {
           this._UtilityService.hideSpinner();
-          if (response.actionResult.success) {
-              return JSON.parse(response.actionResult.result);
+          if (data.actionResult.success == true) {
+            var tdata = JSON.parse(data.actionResult.result);
+            tdata = tdata ? tdata : {};
+            console.log(tdata)
+            this.CareSkinAssessmentFormsData = tdata;
+            console.log(this.CareSkinAssessmentFormsData.CareAssessmentHearingFormId)
+
+            // console.log(this.CareAssessmentHearingFormsData.HearingDiagnosisCheck);
+
           } else {
-              return [];
+            this.CareSkinAssessmentFormsData = {};
           }
+        },
+        error: (e) => {
+          this._UtilityService.hideSpinner();
+          this._UtilityService.showErrorAlert(e.message);
+        },
+      });
+  }
+
+
+  getDropdownMasterLists(formMasterId: string, dropdownName: string, status: number): Observable<any> {
+    this._UtilityService.showSpinner();
+    return this._MasterServices.GetDropDownMasterList(formMasterId, dropdownName, status).pipe(
+      map((response) => {
+        this._UtilityService.hideSpinner();
+        if (response.actionResult.success) {
+          return JSON.parse(response.actionResult.result);
+        } else {
+          return [];
+        }
       }),
       catchError((error) => {
-          this._UtilityService.hideSpinner();
-          this._UtilityService.showErrorAlert(error.message);
-          alert(error.message);
-          return of([]); // Returning empty array in case of error
+        this._UtilityService.hideSpinner();
+        this._UtilityService.showErrorAlert(error.message);
+        alert(error.message);
+        return of([]); // Returning empty array in case of error
       })
-  );
-}
+    );
+  }
 
 
 
-saveAsUnfinished() {
+  saveAsUnfinished() {
 
-this.CareSkinAssessmentFormsData.isFormCompleted = false;
-this.Save();
-}
+    this.CareSkinAssessmentFormsData.isFormCompleted = false;
+    this.Save();
+  }
 
-completeForm() {
-this.CareSkinAssessmentFormsData.isFormCompleted = true;
-this.Save();
-}
+  completeForm() {
+    this.CareSkinAssessmentFormsData.isFormCompleted = true;
+    this.Save();
+  }
 
-Save() {
-  debugger
-if (this.userId != null && this.residentAdmissionInfoId != null && this.loginId!=null) {
-    
-    this.CareSkinAssessmentFormsData.userId = this.userId;
-    this.CareSkinAssessmentFormsData.residentAdmissionInfoId =
+  Save() {
+    if (this.userId != null && this.residentAdmissionInfoId != null && this.loginId != null) {
+
+      this.CareSkinAssessmentFormsData.userId = this.userId;
+      this.CareSkinAssessmentFormsData.residentAdmissionInfoId =
         this.residentAdmissionInfoId;
-    this.CareSkinAssessmentFormsData.StartedBy = this.loginId;
-    this.CareSkinAssessmentFormsData.LastEnteredBy = this.loginId;
-    
-    
-        const objectBody: any = {
-          StatementType: this.StatementType,
-          careSkinAssessmentForm: this.CareSkinAssessmentFormsData,
+      this.CareSkinAssessmentFormsData.StartedBy = this.loginId;
+      this.CareSkinAssessmentFormsData.LastEnteredBy = this.loginId;
+
+
+      const objectBody: any = {
+        StatementType: this.StatementType,
+        careSkinAssessmentForm: this.CareSkinAssessmentFormsData,
       };
-      
+
 
       console.log(objectBody);
 
-    this._UtilityService.showSpinner();
-    this.unsubscribe.add = this._CareSkin
+      this._UtilityService.showSpinner();
+      this.unsubscribe.add = this._CareSkin
         .AddInsertUpdateCareSkinAssessmentForm(
-            objectBody
+          objectBody
         )
         .subscribe({
-            next: (data) => {
-                this._UtilityService.hideSpinner();
-                if (data.actionResult.success == true){
-                    this.EmitUpdateForm.emit(true);
-                //   this.ResetModel();
-                    this._UtilityService.showSuccessAlert(
-                        data.actionResult.errMsg
-                    );
-                  }
-                else
-                    this._UtilityService.showWarningAlert(
-                        data.actionResult.errMsg
-                    );
-            },
-            error: (e) => {
-                this._UtilityService.hideSpinner();
-                this._UtilityService.showErrorAlert(e.message);
-            },
+          next: (data) => {
+            this._UtilityService.hideSpinner();
+            if (data.actionResult.success == true) {
+              this.EmitUpdateForm.emit(true);
+              //   this.ResetModel();
+              this._UtilityService.showSuccessAlert(
+                data.actionResult.errMsg
+              );
+            }
+            else
+              this._UtilityService.showWarningAlert(
+                data.actionResult.errMsg
+              );
+          },
+          error: (e) => {
+            this._UtilityService.hideSpinner();
+            this._UtilityService.showErrorAlert(e.message);
+          },
         });
-} else {
-    this._UtilityService.showWarningAlert(
+    } else {
+      this._UtilityService.showWarningAlert(
         'Care Skin Assessment details are missing.'
-    );
-}
-}
+      );
+    }
+  }
 
 
-ResetModel() {
-  this.isEditable = true;
-  this.CareSkinAssessmentFormsData = <any>{};
-  this.StatementType = 'Insert';
-}
+  ResetModel() {
+    this.isEditable = true;
+    this.CareSkinAssessmentFormsData = <any>{};
+    this.StatementType = 'Insert';
+  }
 
 
 

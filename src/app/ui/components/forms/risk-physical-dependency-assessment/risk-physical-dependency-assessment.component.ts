@@ -25,8 +25,7 @@ import { RiskPhysicalDependencyAssessmentService } from './risk-physical-depende
 })
 export class RiskPhysicalDependencyAssessmentComponent
     extends AppComponentBase
-    implements OnInit
-{
+    implements OnInit {
     @Input() preSelectedFormData: any = <any>{};
     @Output() EmitUpdateForm: EventEmitter<any> = new EventEmitter<any>();
 
@@ -165,7 +164,7 @@ export class RiskPhysicalDependencyAssessmentComponent
         }
     }
 
-    SaveAsPDF() {}
+    SaveAsPDF() { }
 
     saveAsUnfinished() {
         this.RiskPhysicalDependencyAssessmentFormData.IsFormCompleted = false;
@@ -274,7 +273,6 @@ export class RiskPhysicalDependencyAssessmentComponent
     }
 
     ResetModel() {
-        // this.preSelectedFormData = <any>{};
         this.isEditable = true;
         this.RiskPhysicalDependencyAssessmentFormData = <any>{};
         this.StatementType = 'Insert';

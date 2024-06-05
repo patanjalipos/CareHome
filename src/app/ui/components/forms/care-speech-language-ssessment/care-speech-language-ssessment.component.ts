@@ -26,8 +26,7 @@ import { CareSpeechLanguageSsessmentService } from './care-speech-language-ssess
 
 export class CareSpeechLanguageSsessmentComponent
     extends AppComponentBase
-    implements OnInit
-{
+    implements OnInit {
     @Input() preSelectedFormData: any = <any>{};
     @Output() EmitUpdateForm: EventEmitter<any> = new EventEmitter<any>();
 
@@ -64,18 +63,6 @@ export class CareSpeechLanguageSsessmentComponent
             'Care Assessment - Speech & Language Assessment Form';
         this.loginId = localStorage.getItem('userId');
 
-        this.unsubscribe.add = this.route.queryParams.subscribe((params) => {
-            var ParamsArray = this._ConstantServices.GetParmasVal(params['q']);
-
-            if (ParamsArray?.length > 0) {
-                this.userId =
-                    ParamsArray.find((e) => e.FieldStr == 'id')?.FieldVal ||
-                    null;
-                this.residentAdmissionInfoId =
-                    ParamsArray.find((e) => e.FieldStr == 'admissionid')
-                        ?.FieldVal || null;
-            }
-        });
     }
 
     ngOnChanges(changes: SimpleChanges): void {
@@ -92,6 +79,10 @@ export class CareSpeechLanguageSsessmentComponent
     }
 
     ngOnInit(): void {
+        this.userId = this.preSelectedFormData.userId;
+        this.residentAdmissionInfoId =
+            this.preSelectedFormData.residentAdmissionInfoId;
+        this.isEditable = this.preSelectedFormData.isEditable;
         const dropDownNames = [
             'speechComprehensionImpairmentOptions',
             'nonVerbalCommunicationOptions',
@@ -105,7 +96,7 @@ export class CareSpeechLanguageSsessmentComponent
                 this.GetDropDownMasterList(
                     FormTypes.CareAssessmentSpeech,
                     collectionName
-                )   
+                )
             )
         ).subscribe((responses: any[]) => {
             // responses is an array containing the responses for each request
@@ -129,7 +120,7 @@ export class CareSpeechLanguageSsessmentComponent
         }
     }
 
-    SaveAsPDF() {}
+    SaveAsPDF() { }
 
     saveAsUnfinished() {
         this.CareSpeechLanguageFormData.IsFormCompleted = false;
@@ -234,7 +225,6 @@ export class CareSpeechLanguageSsessmentComponent
     }
 
     ResetModel() {
-        this.preSelectedFormData = <any>{};
         this.isEditable = true;
         this.CareSpeechLanguageFormData = <any>{};
         this.StatementType = 'Insert';
