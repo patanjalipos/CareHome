@@ -12,6 +12,7 @@ import { AccordionModule } from 'primeng/accordion';
 import { RadioButtonModule } from 'primeng/radiobutton';
 import { TieredMenuModule } from 'primeng/tieredmenu';
 import { DialogModule } from 'primeng/dialog';
+import { MultiSelectModule } from 'primeng/multiselect';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import { DialogModule } from 'primeng/dialog';
     CheckboxModule,
     TieredMenuModule,
     DialogModule,
+    MultiSelectModule,
   ],
   exports:[ResidentProgressnotesComponent]
 })
