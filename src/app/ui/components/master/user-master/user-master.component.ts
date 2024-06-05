@@ -627,7 +627,7 @@ export class UserMasterComponent extends AppComponentBase implements OnInit {
     this.lstHomeMaster[i].ResidentList=[];
     this.lstHomeMaster[i].SelectedResidentList=[];
     this._UtilityService.showSpinner();
-    this.unsubscribe.add = this._MasterServices.GetResidentMaster(HomeMasterId, true)
+    this.unsubscribe.add = this._MasterServices.GetResidentMaster(HomeMasterId,null,1)
       .subscribe
       ({
         next: (data) => {

@@ -37,17 +37,12 @@ export class GpDoctorVisitCommunicationRecordComponent extends AppComponentBase 
     super();
     this._ConstantServices.ActiveMenuName = 'GP Doctor Visit Communication Record';
     this.loginId = localStorage.getItem('userId');
-    this.unsubscribe.add = this.route.queryParams.subscribe((params) => {
-      var ParamsArray = this._ConstantServices.GetParmasVal(params['q']);
-      if (ParamsArray?.length > 0) {
-        this.userId =
-          ParamsArray.find((e) => e.FieldStr == 'id')?.FieldVal || null;
-        this.ResidentAdmissionInfoId = ParamsArray.find((e) => e.FieldStr == 'admissionid')?.FieldVal || null;
-      }
-    });
   }
 
   ngOnInit(): void {
+    this.userId = this.preSelectedFormData.userId;
+    this.ResidentAdmissionInfoId =
+      this.preSelectedFormData.residentAdmissionInfoId;
     this.isEditable = this.preSelectedFormData.isEditable;
     if (this.preSelectedFormData.selectedFormID != null) {
       this.GPDoctorVisitCommDetails = <any>{};
@@ -146,7 +141,6 @@ export class GpDoctorVisitCommunicationRecordComponent extends AppComponentBase 
       });
   }
   ResetModel() {
-    this.preSelectedFormData = <any>{};
     this.isEditable = true;
     this.GPDoctorVisitCommDetails = <any>{};
     this.StatementType = 'Insert';

@@ -13,65 +13,52 @@ import { Observable, catchError, forkJoin, map, of } from 'rxjs';
   styleUrls: ['./care-feeling-fresh-and-clean.component.scss']
 })
 export class CareFeelingFreshAndCleanComponent extends AppComponentBase implements OnInit {
-  @Input() preSelectedFormData: any=<any>{};
+  @Input() preSelectedFormData: any = <any>{};
   @Output() EmitUpdateForm: EventEmitter<any> = new EventEmitter<any>();
 
   customDateFormat = CustomDateFormat;
   isEditable: boolean;
-  CareAssessmentFreshAndCleanFormsData:any = <any>{};
-  residentAdmissionInfoId:any;
+  CareAssessmentFreshAndCleanFormsData: any = <any>{};
+  residentAdmissionInfoId: any;
   loginId: any;
   userId: any;
   StatementType: string = null;
 
-  lstAppearance:any[] = [];
-  lstCapacity:any[] = [];
-  lstHygienePreference:any[] =[]
-  lstDressingPreference:any[] = []
-  lstDressingAndUndressing:any[] = []
-  lstGrooming:any[] = []
-  lstGroomingAssistance:any[] = []
-  lstHairRoutine:any[] = []
-  lstEyeCare:any[] = []
-  lstNailCare:any[] = []
-  lstMakeup:any[] = []
-  lstJewellery:any[] = []
-  lstFragrance:any[] = []
-  lstFaceAndBodyCreams:any[] = []
-  lstGoalsToAchieveFreshAndClean:any[] = []
-  lstStrategyToManageHygiene:any[] = []
-  lstActionToManageAdditionalRisk:any[] = []
+  lstAppearance: any[] = [];
+  lstCapacity: any[] = [];
+  lstHygienePreference: any[] = []
+  lstDressingPreference: any[] = []
+  lstDressingAndUndressing: any[] = []
+  lstGrooming: any[] = []
+  lstGroomingAssistance: any[] = []
+  lstHairRoutine: any[] = []
+  lstEyeCare: any[] = []
+  lstNailCare: any[] = []
+  lstMakeup: any[] = []
+  lstJewellery: any[] = []
+  lstFragrance: any[] = []
+  lstFaceAndBodyCreams: any[] = []
+  lstGoalsToAchieveFreshAndClean: any[] = []
+  lstStrategyToManageHygiene: any[] = []
+  lstActionToManageAdditionalRisk: any[] = []
 
-  constructor(private _ConstantServices: ConstantsService,private route: ActivatedRoute,private _UtilityService: UtilityService, private _CareFreshAndClean: CareFeelingFreshAndCleanService,private _MasterServices: MasterService) {
-    
-    super(); 
+  constructor(private _ConstantServices: ConstantsService, private route: ActivatedRoute, private _UtilityService: UtilityService, private _CareFreshAndClean: CareFeelingFreshAndCleanService, private _MasterServices: MasterService) {
+
+    super();
     this._ConstantServices.ActiveMenuName = "Care Assessment Fresh And Clean Form";
     this.loginId = localStorage.getItem('userId');
 
-    this.unsubscribe.add = this.route.queryParams.subscribe((params) => {
-      var ParamsArray = this._ConstantServices.GetParmasVal(params['q']);
-
-      if (ParamsArray?.length > 0) {
-        this.userId =
-        ParamsArray.find((e) => e.FieldStr == 'id')?.FieldVal ||
-        null;
-        this.residentAdmissionInfoId =
-        ParamsArray.find((e) => e.FieldStr == 'admissionid')
-            ?.FieldVal || null;
-      }
-    });
-  
   }
 
   ngOnChanges(changes: SimpleChanges): void {
     this.isEditable = this.preSelectedFormData.isEditable;
-    
+
     if (this.preSelectedFormData.selectedFormID != null) {
       this.CareAssessmentFreshAndCleanFormsData = <any>{};
-        this.GetCareAssessmentFreshAndCleanDetails(
-            this.preSelectedFormData.selectedFormID
-        );
-        this.StatementType = 'Update';
+      this.GetCareAssessmentFreshAndCleanDetails(
+        this.preSelectedFormData.selectedFormID
+      );
+      this.StatementType = 'Update';
     }
     else {
       this.ResetModel();
@@ -79,546 +66,175 @@ export class CareFeelingFreshAndCleanComponent extends AppComponentBase implemen
   }
 
   ngOnInit(): void {
+    this.userId = this.preSelectedFormData.userId;
+    this.residentAdmissionInfoId =
+      this.preSelectedFormData.residentAdmissionInfoId;
+    this.isEditable = this.preSelectedFormData.isEditable;
+
     const collectionNames = [
-        'Appearance',
-        'Capacity',
-        'HygienePreference',
-        'DressingPreference',
-        'DressingAndUndressing',
-        'Grooming',
-        'HairRoutine',
-        'EyeCare',
-        'NailCare',
-        'Makeup',
-        'Jewellery',
-        'Fragrance',
-        'FaceAndBodyCreams',
-        'GoalsToAchieveFreshAndClean',
-        'StrategyToManageHygiene'
+      'Appearance',
+      'Capacity',
+      'HygienePreference',
+      'DressingPreference',
+      'DressingAndUndressing',
+      'Grooming',
+      'HairRoutine',
+      'EyeCare',
+      'NailCare',
+      'Makeup',
+      'Jewellery',
+      'Fragrance',
+      'FaceAndBodyCreams',
+      'GoalsToAchieveFreshAndClean',
+      'StrategyToManageHygiene'
     ];
 
-    forkJoin(collectionNames.map((collectionName) => this.getDropdownMasterLists(FormTypes.CareAssessmentFeeling,collectionName,1))).subscribe((responses: any[]) => {
-        this.lstAppearance = responses[0];
-        this.lstCapacity = responses[1];
-        this.lstHygienePreference = responses[2];
-        this.lstDressingPreference = responses[3];
-        this.lstDressingAndUndressing = responses[4];
-        this.lstGrooming = responses[5];
-        this.lstHairRoutine = responses[6];
-        this.lstEyeCare = responses[7];
-        this.lstNailCare = responses[8];
-        this.lstMakeup = responses[9];
-        this.lstJewellery = responses[10];
-        this.lstFragrance = responses[11];
-        this.lstFaceAndBodyCreams = responses[12];
-        this.lstGoalsToAchieveFreshAndClean = responses[13];
-        this.lstStrategyToManageHygiene = responses[14];
+    forkJoin(collectionNames.map((collectionName) => this.getDropdownMasterLists(FormTypes.CareAssessmentFeeling, collectionName, 1))).subscribe((responses: any[]) => {
+      this.lstAppearance = responses[0];
+      this.lstCapacity = responses[1];
+      this.lstHygienePreference = responses[2];
+      this.lstDressingPreference = responses[3];
+      this.lstDressingAndUndressing = responses[4];
+      this.lstGrooming = responses[5];
+      this.lstHairRoutine = responses[6];
+      this.lstEyeCare = responses[7];
+      this.lstNailCare = responses[8];
+      this.lstMakeup = responses[9];
+      this.lstJewellery = responses[10];
+      this.lstFragrance = responses[11];
+      this.lstFaceAndBodyCreams = responses[12];
+      this.lstGoalsToAchieveFreshAndClean = responses[13];
+      this.lstStrategyToManageHygiene = responses[14];
     });
 
     this.isEditable = this.preSelectedFormData.isEditable;
-  
+
     if (this.preSelectedFormData.selectedFormID != null) {
       this.CareAssessmentFreshAndCleanFormsData = <any>{};
-        this.GetCareAssessmentFreshAndCleanDetails(
-            this.preSelectedFormData.selectedFormID
-        );
-        this.StatementType = 'Update';
+      this.GetCareAssessmentFreshAndCleanDetails(
+        this.preSelectedFormData.selectedFormID
+      );
+      this.StatementType = 'Update';
     }
     else {
       this.ResetModel();
-  }
-//   this.GetAppearance();
-//   this.GetCapacity();
-//   this.GetDressingAndUndressing();
-//   this.GetDressingPreference();
-//   this.GetEyeCare();
-//   this.GetFaceAndBodyCreams();
-//   this.GetFragrance();
-//   this.GetGoalsToAchieveFreshAndClean();
-//   this.GetGrooming();
-//   this.GetHairRoutine();
-//   this.GetHygienePreference();
-//   this.GetJewellery();
-//   this.GetMakeup();
-//   this.GetNailCare();
-//   this.GetStrategyToManageHygiene();
+    }
 
-}
+
+  }
 
   GetCareAssessmentFreshAndCleanDetails(formId: string) {
     this._UtilityService.showSpinner();
     this.unsubscribe.add = this._CareFreshAndClean
-        .GetCareAssessmentFreshAndCleanDetails(formId)
-        .subscribe({
-            next: (data) => {
-                this._UtilityService.hideSpinner();
-                if (data.actionResult.success == true) {
-                    var tdata = JSON.parse(data.actionResult.result);
-                    tdata = tdata ? tdata : {};
-                    this.CareAssessmentFreshAndCleanFormsData = tdata;
-                    // console.log(this.CareAssessmentEatsAndDrinksFormsData)
-                } else {
-                    this.CareAssessmentFreshAndCleanFormsData = {};
-                }
-            },
-            error: (e) => {
-                this._UtilityService.hideSpinner();
-                this._UtilityService.showErrorAlert(e.message);
-            },
-        });
-}
+      .GetCareAssessmentFreshAndCleanDetails(formId)
+      .subscribe({
+        next: (data) => {
+          this._UtilityService.hideSpinner();
+          if (data.actionResult.success == true) {
+            var tdata = JSON.parse(data.actionResult.result);
+            tdata = tdata ? tdata : {};
+            this.CareAssessmentFreshAndCleanFormsData = tdata;
+            // console.log(this.CareAssessmentEatsAndDrinksFormsData)
+          } else {
+            this.CareAssessmentFreshAndCleanFormsData = {};
+          }
+        },
+        error: (e) => {
+          this._UtilityService.hideSpinner();
+          this._UtilityService.showErrorAlert(e.message);
+        },
+      });
+  }
 
-getDropdownMasterLists(formMasterId: string, dropdownName: string,status:number): Observable<any> {
+  getDropdownMasterLists(formMasterId: string, dropdownName: string, status: number): Observable<any> {
     this._UtilityService.showSpinner();
-    return this._MasterServices.GetDropDownMasterList(formMasterId,dropdownName, status).pipe(
-        map((response) => {
-            this._UtilityService.hideSpinner();
-            if (response.actionResult.success) {
-                return JSON.parse(response.actionResult.result);
-            } else {
-                return [];
-            }
-        }),
-        catchError((error) => {
-            this._UtilityService.hideSpinner();
-            this._UtilityService.showErrorAlert(error.message);
-            alert(error.message);
-            return of([]); // Returning empty array in case of error
-        })
+    return this._MasterServices.GetDropDownMasterList(formMasterId, dropdownName, status).pipe(
+      map((response) => {
+        this._UtilityService.hideSpinner();
+        if (response.actionResult.success) {
+          return JSON.parse(response.actionResult.result);
+        } else {
+          return [];
+        }
+      }),
+      catchError((error) => {
+        this._UtilityService.hideSpinner();
+        this._UtilityService.showErrorAlert(error.message);
+        alert(error.message);
+        return of([]); // Returning empty array in case of error
+      })
     );
-}
+  }
 
-SaveAsPDF() {}
-
-// GetAppearance() {
-//   this._UtilityService.showSpinner();
-//   this.unsubscribe.add = this._CareFreshAndClean
-//       .GetAppearance(1)
-//       .subscribe({
-//           next: (data) => {
-//             // console.log(data)
-//               this._UtilityService.hideSpinner();
-//               if (data.actionResult.success == true) {
-//                   var tdata = JSON.parse(data.actionResult.result);
-//                   // console.log(tdata);
-//                   tdata = tdata ? tdata : [];
-//                   this.lstAppearance = tdata;
-//                   console.log(this.lstAppearance)
-//               } else {
-//                   this.lstAppearance = [];
-//               }
-//           },
-//           error: (e) => {
-//               this._UtilityService.hideSpinner();
-//               this._UtilityService.showErrorAlert(e.message);
-//           },
-//       });
-// }
-
-// GetCapacity() {
-//   this._UtilityService.showSpinner();
-//   this.unsubscribe.add = this._CareFreshAndClean
-//       .GetCapacity(1)
-//       .subscribe({
-//           next: (data) => {
-//           //   console.log(data)
-//               this._UtilityService.hideSpinner();
-//               if (data.actionResult.success == true) {
-//                   var tdata = JSON.parse(data.actionResult.result);
-//                   // console.log(tdata);
-//                   tdata = tdata ? tdata : [];
-//                   this.lstCapacity = tdata;
-//               } else {
-//                   this.lstCapacity = [];
-//               }
-//           },
-//           error: (e) => {
-//               this._UtilityService.hideSpinner();
-//               this._UtilityService.showErrorAlert(e.message);
-//           },
-//       });
-// }
-
-// GetHygienePreference() {
-//   this._UtilityService.showSpinner();
-//   this.unsubscribe.add = this._CareFreshAndClean
-//       .GetHygienePreference(1)
-//       .subscribe({
-//           next: (data) => {
-//           //   console.log(data)
-//               this._UtilityService.hideSpinner();
-//               if (data.actionResult.success == true) {
-//                   var tdata = JSON.parse(data.actionResult.result);
-//                   // console.log(tdata);
-//                   tdata = tdata ? tdata : [];
-//                   this.lstHygienePreference = tdata;
-//               } else {
-//                   this.lstHygienePreference = [];
-//               }
-//           },
-//           error: (e) => {
-//               this._UtilityService.hideSpinner();
-//               this._UtilityService.showErrorAlert(e.message);
-//           },
-//       });
-// }
-
-// GetDressingPreference() {
-//   this._UtilityService.showSpinner();
-//   this.unsubscribe.add = this._CareFreshAndClean
-//       .GetDressingPreference(1)
-//       .subscribe({
-//           next: (data) => {
-//           //   console.log(data)
-//               this._UtilityService.hideSpinner();
-//               if (data.actionResult.success == true) {
-//                   var tdata = JSON.parse(data.actionResult.result);
-//                   // console.log(tdata);
-//                   tdata = tdata ? tdata : [];
-//                   this.lstDressingPreference = tdata;
-//               } else {
-//                   this.lstDressingPreference = [];
-//               }
-//           },
-//           error: (e) => {
-//               this._UtilityService.hideSpinner();
-//               this._UtilityService.showErrorAlert(e.message);
-//           },
-//       });
-// }
-
-// GetDressingAndUndressing() {
-//   this._UtilityService.showSpinner();
-//   this.unsubscribe.add = this._CareFreshAndClean
-//       .GetDressingAndUndressing(1)
-//       .subscribe({
-//           next: (data) => {
-//           //   console.log(data)
-//               this._UtilityService.hideSpinner();
-//               if (data.actionResult.success == true) {
-//                   var tdata = JSON.parse(data.actionResult.result);
-//                   // console.log(tdata);
-//                   tdata = tdata ? tdata : [];
-//                   this.lstDressingAndUndressing = tdata;
-//               } else {
-//                   this.lstDressingAndUndressing = [];
-//               }
-//           },
-//           error: (e) => {
-//               this._UtilityService.hideSpinner();
-//               this._UtilityService.showErrorAlert(e.message);
-//           },
-//       });
-// }
-
-// GetGrooming() {
-//   this._UtilityService.showSpinner();
-//   this.unsubscribe.add = this._CareFreshAndClean
-//       .GetGrooming(1)
-//       .subscribe({
-//           next: (data) => {
-//           //   console.log(data)
-//               this._UtilityService.hideSpinner();
-//               if (data.actionResult.success == true) {
-//                   var tdata = JSON.parse(data.actionResult.result);
-//                   // console.log(tdata);
-//                   tdata = tdata ? tdata : [];
-//                   this.lstGrooming = tdata;
-//               } else {
-//                   this.lstGrooming = [];
-//               }
-//           },
-//           error: (e) => {
-//               this._UtilityService.hideSpinner();
-//               this._UtilityService.showErrorAlert(e.message);
-//           },
-//       });
-// }
+  SaveAsPDF() { }
 
 
-// GetHairRoutine() {
-//   this._UtilityService.showSpinner();
-//   this.unsubscribe.add = this._CareFreshAndClean
-//       .GetHairRoutine(1)
-//       .subscribe({
-//           next: (data) => {
-//           //   console.log(data)
-//               this._UtilityService.hideSpinner();
-//               if (data.actionResult.success == true) {
-//                   var tdata = JSON.parse(data.actionResult.result);
-//                   // console.log(tdata);
-//                   tdata = tdata ? tdata : [];
-//                   this.lstHairRoutine = tdata;
-//               } else {
-//                   this.lstHairRoutine = [];
-//               }
-//           },
-//           error: (e) => {
-//               this._UtilityService.hideSpinner();
-//               this._UtilityService.showErrorAlert(e.message);
-//           },
-//       });
-// }
 
-// GetEyeCare() {
-//   this._UtilityService.showSpinner();
-//   this.unsubscribe.add = this._CareFreshAndClean
-//       .GetEyeCare(1)
-//       .subscribe({
-//           next: (data) => {
-//           //   console.log(data)
-//               this._UtilityService.hideSpinner();
-//               if (data.actionResult.success == true) {
-//                   var tdata = JSON.parse(data.actionResult.result);
-//                   // console.log(tdata);
-//                   tdata = tdata ? tdata : [];
-//                   this.lstEyeCare = tdata;
-//               } else {
-//                   this.lstEyeCare = [];
-//               }
-//           },
-//           error: (e) => {
-//               this._UtilityService.hideSpinner();
-//               this._UtilityService.showErrorAlert(e.message);
-//           },
-//       });
-// }
+  saveAsUnfinished() {
 
-// GetNailCare() {
-//   this._UtilityService.showSpinner();
-//   this.unsubscribe.add = this._CareFreshAndClean
-//       .GetNailCare(1)
-//       .subscribe({
-//           next: (data) => {
-//           //   console.log(data)
-//               this._UtilityService.hideSpinner();
-//               if (data.actionResult.success == true) {
-//                   var tdata = JSON.parse(data.actionResult.result);
-//                   // console.log(tdata);
-//                   tdata = tdata ? tdata : [];
-//                   this.lstNailCare = tdata;
-//               } else {
-//                   this.lstNailCare = [];
-//               }
-//           },
-//           error: (e) => {
-//               this._UtilityService.hideSpinner();
-//               this._UtilityService.showErrorAlert(e.message);
-//           },
-//       });
-// }
+    this.CareAssessmentFreshAndCleanFormsData.isFormCompleted = false;
+    this.Save();
+  }
 
-// GetMakeup() {
-//   this._UtilityService.showSpinner();
-//   this.unsubscribe.add = this._CareFreshAndClean
-//       .GetMakeup(1)
-//       .subscribe({
-//           next: (data) => {
-//           //   console.log(data)
-//               this._UtilityService.hideSpinner();
-//               if (data.actionResult.success == true) {
-//                   var tdata = JSON.parse(data.actionResult.result);
-//                   // console.log(tdata);
-//                   tdata = tdata ? tdata : [];
-//                   this.lstMakeup = tdata;
-//               } else {
-//                   this.lstMakeup = [];
-//               }
-//           },
-//           error: (e) => {
-//               this._UtilityService.hideSpinner();
-//               this._UtilityService.showErrorAlert(e.message);
-//           },
-//       });
-// }
+  completeForm() {
+    this.CareAssessmentFreshAndCleanFormsData.isFormCompleted = true;
+    this.Save();
+  }
 
-// GetJewellery() {
-//   this._UtilityService.showSpinner();
-//   this.unsubscribe.add = this._CareFreshAndClean
-//       .GetJewellery(1)
-//       .subscribe({
-//           next: (data) => {
-//           //   console.log(data)
-//               this._UtilityService.hideSpinner();
-//               if (data.actionResult.success == true) {
-//                   var tdata = JSON.parse(data.actionResult.result);
-//                   // console.log(tdata);
-//                   tdata = tdata ? tdata : [];
-//                   this.lstJewellery = tdata;
-//               } else {
-//                   this.lstJewellery = [];
-//               }
-//           },
-//           error: (e) => {
-//               this._UtilityService.hideSpinner();
-//               this._UtilityService.showErrorAlert(e.message);
-//           },
-//       });
-// }
+  Save() {
+    if (this.userId != null && this.residentAdmissionInfoId != null && this.loginId != null) {
 
-// GetFragrance() {
-//   this._UtilityService.showSpinner();
-//   this.unsubscribe.add = this._CareFreshAndClean
-//       .GetFragrance(1)
-//       .subscribe({
-//           next: (data) => {
-//           //   console.log(data)
-//               this._UtilityService.hideSpinner();
-//               if (data.actionResult.success == true) {
-//                   var tdata = JSON.parse(data.actionResult.result);
-//                   // console.log(tdata);
-//                   tdata = tdata ? tdata : [];
-//                   this.lstFragrance = tdata;
-//               } else {
-//                   this.lstFragrance = [];
-//               }
-//           },
-//           error: (e) => {
-//               this._UtilityService.hideSpinner();
-//               this._UtilityService.showErrorAlert(e.message);
-//           },
-//       });
-// }
-
-// GetFaceAndBodyCreams() {
-//   this._UtilityService.showSpinner();
-//   this.unsubscribe.add = this._CareFreshAndClean
-//       .GetFaceAndBodyCreams(1)
-//       .subscribe({
-//           next: (data) => {
-//           //   console.log(data)
-//               this._UtilityService.hideSpinner();
-//               if (data.actionResult.success == true) {
-//                   var tdata = JSON.parse(data.actionResult.result);
-//                   // console.log(tdata);
-//                   tdata = tdata ? tdata : [];
-//                   this.lstFaceAndBodyCreams = tdata;
-//               } else {
-//                   this.lstFaceAndBodyCreams = [];
-//               }
-//           },
-//           error: (e) => {
-//               this._UtilityService.hideSpinner();
-//               this._UtilityService.showErrorAlert(e.message);
-//           },
-//       });
-// }
-
-// GetGoalsToAchieveFreshAndClean() {
-//   this._UtilityService.showSpinner();
-//   this.unsubscribe.add = this._CareFreshAndClean
-//       .GetGoalsToAchieveFreshAndClean(1)
-//       .subscribe({
-//           next: (data) => {
-//           //   console.log(data)
-//               this._UtilityService.hideSpinner();
-//               if (data.actionResult.success == true) {
-//                   var tdata = JSON.parse(data.actionResult.result);
-//                   // console.log(tdata);
-//                   tdata = tdata ? tdata : [];
-//                   this.lstGoalsToAchieveFreshAndClean = tdata;
-//               } else {
-//                   this.lstGoalsToAchieveFreshAndClean = [];
-//               }
-//           },
-//           error: (e) => {
-//               this._UtilityService.hideSpinner();
-//               this._UtilityService.showErrorAlert(e.message);
-//           },
-//       });
-// }
-
-// GetStrategyToManageHygiene() {
-//   this._UtilityService.showSpinner();
-//   this.unsubscribe.add = this._CareFreshAndClean
-//       .GetStrategyToManageHygiene(1)
-//       .subscribe({
-//           next: (data) => {
-//           //   console.log(data)
-//               this._UtilityService.hideSpinner();
-//               if (data.actionResult.success == true) {
-//                   var tdata = JSON.parse(data.actionResult.result);
-//                   // console.log(tdata);
-//                   tdata = tdata ? tdata : [];
-//                   this.lstStrategyToManageHygiene = tdata;
-//               } else {
-//                   this.lstStrategyToManageHygiene = [];
-//               }
-//           },
-//           error: (e) => {
-//               this._UtilityService.hideSpinner();
-//               this._UtilityService.showErrorAlert(e.message);
-//           },
-//       });
-// }
-
-saveAsUnfinished() {
-
-  this.CareAssessmentFreshAndCleanFormsData.isFormCompleted = false;
-  this.Save();
-}
-
-completeForm() {
-  this.CareAssessmentFreshAndCleanFormsData.isFormCompleted = true;
-  this.Save();
-}
-
-Save() {
-  debugger
-if (this.userId != null && this.residentAdmissionInfoId != null && this.loginId!=null) {
-    
-    this.CareAssessmentFreshAndCleanFormsData.userId = this.userId;
-    this.CareAssessmentFreshAndCleanFormsData.residentAdmissionInfoId =
+      this.CareAssessmentFreshAndCleanFormsData.userId = this.userId;
+      this.CareAssessmentFreshAndCleanFormsData.residentAdmissionInfoId =
         this.residentAdmissionInfoId;
-    this.CareAssessmentFreshAndCleanFormsData.StartedBy = this.loginId;
-    this.CareAssessmentFreshAndCleanFormsData.LastEnteredBy = this.loginId;
-    
-        const objectBody: any = {
-          StatementType: this.StatementType,
-          careAssessmentFreshAndCleanForm: this.CareAssessmentFreshAndCleanFormsData,
+      this.CareAssessmentFreshAndCleanFormsData.StartedBy = this.loginId;
+      this.CareAssessmentFreshAndCleanFormsData.LastEnteredBy = this.loginId;
+
+      const objectBody: any = {
+        StatementType: this.StatementType,
+        careAssessmentFreshAndCleanForm: this.CareAssessmentFreshAndCleanFormsData,
       };
-      
+
 
       console.log(objectBody);
 
-    this._UtilityService.showSpinner();
-    this.unsubscribe.add = this._CareFreshAndClean
+      this._UtilityService.showSpinner();
+      this.unsubscribe.add = this._CareFreshAndClean
         .AddInsertUpdateCareAssessmentFreshAndCleanForm(
-            objectBody
+          objectBody
         )
         .subscribe({
-            next: (data) => {
-                this._UtilityService.hideSpinner();
-                if (data.actionResult.success == true){
-                    this.EmitUpdateForm.emit(true);
-                //   this.ResetModel();
-                    this._UtilityService.showSuccessAlert(
-                        data.actionResult.errMsg
-                    );
-                  }
-                else
-                    this._UtilityService.showWarningAlert(
-                        data.actionResult.errMsg
-                    );
-            },
-            error: (e) => {
-                this._UtilityService.hideSpinner();
-                this._UtilityService.showErrorAlert(e.message);
-            },
+          next: (data) => {
+            this._UtilityService.hideSpinner();
+            if (data.actionResult.success == true) {
+              this.EmitUpdateForm.emit(true);
+              //   this.ResetModel();
+              this._UtilityService.showSuccessAlert(
+                data.actionResult.errMsg
+              );
+            }
+            else
+              this._UtilityService.showWarningAlert(
+                data.actionResult.errMsg
+              );
+          },
+          error: (e) => {
+            this._UtilityService.hideSpinner();
+            this._UtilityService.showErrorAlert(e.message);
+          },
         });
-} else {
-    this._UtilityService.showWarningAlert(
+    } else {
+      this._UtilityService.showWarningAlert(
         'Care Assessment Fresh and Clean details are missing.'
-    );
-}
-}
+      );
+    }
+  }
 
 
-ResetModel() {
-  this.isEditable = true;
-  this.CareAssessmentFreshAndCleanFormsData = <any>{};
-//   this.preSelectedFormData = <any>{};
-  this.StatementType = 'Insert';
-}
+  ResetModel() {
+    this.isEditable = true;
+    this.CareAssessmentFreshAndCleanFormsData = <any>{};
+    this.StatementType = 'Insert';
+  }
 
 }

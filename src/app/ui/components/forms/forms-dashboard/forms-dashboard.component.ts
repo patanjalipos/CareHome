@@ -27,8 +27,9 @@ export class FormsDashboardComponent
     extends AppComponentBase
     implements OnInit
 {
-    @Input() admissionid: any = null;
-    
+    @Input() residentAdmissionInfoId: string = null;
+    @Input() userId: any = null;
+
     @ViewChild('formContainer', { read: ViewContainerRef })
     formContainer: ViewContainerRef;
     componentRef: ComponentRef<any>;
@@ -41,7 +42,6 @@ export class FormsDashboardComponent
     selectedFormData: any;
     selectedFormId: string;
 
-    residentAdmissionInfoId: string;
     rangeDates: Date[] | undefined;
     FormTypes = FormTypes;
     ShowChildComponent: boolean = false;
@@ -55,17 +55,6 @@ export class FormsDashboardComponent
     ) {
         super();
         this._ConstantServices.ActiveMenuName = 'Form Dashboard';
-
-        this.unsubscribe.add = this.route.queryParams.subscribe((params) => {
-            var ParamsArray = this._ConstantServices.GetParmasVal(params['q']);
-
-            if (ParamsArray?.length > 0) {
-                //console.log('ParamsArray',ParamsArray);
-                this.residentAdmissionInfoId =
-                    ParamsArray.find((e) => e.FieldStr == 'admissionid')
-                        ?.FieldVal || null;
-            }
-        });
     }
 
     ngOnInit() {
@@ -75,7 +64,6 @@ export class FormsDashboardComponent
     dateRangeChange(calendar: Calendar) {
         if (this.rangeDates[0] !== null && this.rangeDates[1] !== null) {
             calendar.overlayVisible = false;
-            //this.GetDailyVitalAlertLog();
         }
     }
 
@@ -137,6 +125,8 @@ export class FormsDashboardComponent
                         var tdata = JSON.parse(data.actionResult.result);
                         tdata = tdata ? tdata : [];
                         this.formDashboardList = tdata;
+                        console.log(this.formDashboardList);
+                        
                     } else {
                         this.formDashboardList = [];
                     }
@@ -159,6 +149,8 @@ export class FormsDashboardComponent
             this.selectedFormData = {
                 formMasterId: selectedFormMasterId,
                 selectedFormID: selectedFormdata.FormId,
+                residentAdmissionInfoId: this.residentAdmissionInfoId,
+                userId: this.userId,
                 isEditable: isEditable,
                 IsCompleted: selectedFormdata.IsCompleted,
                 StartedBy: selectedFormdata.StartedBy,

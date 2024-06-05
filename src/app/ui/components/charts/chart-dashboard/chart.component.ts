@@ -3,7 +3,6 @@ import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Calendar } from 'primeng/calendar';
 import { AppComponentBase } from 'src/app/app-component-base';
-import { AppComponent } from 'src/app/app.component';
 import {
     ChartTypes,
     ConstantsService,
@@ -20,9 +19,8 @@ import { UtilityService } from 'src/app/utility/utility.service';
 })
 export class ChartComponent extends AppComponentBase implements OnInit {
     @Input() mode: string = 'view';
-    @Input() userid: any = null;
-    @Input() admissionid: any = null;
-    @Input() residentadmissiondetails: any = <any>{};
+    @Input() userId: any = null;
+    @Input() residentAdmissionInfoId: any = null;
     customDateFormat = CustomDateFormat;
 
     public lstMaster: any[] = [];
@@ -32,7 +30,6 @@ export class ChartComponent extends AppComponentBase implements OnInit {
     selectedChartData: any;
     selectedChartId: string;
 
-    residentAdmissionInfoId: string;
     rangeDates: Date[] | undefined;
     ChartTypes = ChartTypes;
     ShowChildComponent: boolean = false;
@@ -47,17 +44,6 @@ export class ChartComponent extends AppComponentBase implements OnInit {
     ) {
         super();
         this._ConstantServices.ActiveMenuName = 'Chart Dashboard';
-
-        this.unsubscribe.add = this.route.queryParams.subscribe((params) => {
-            var ParamsArray = this._ConstantServices.GetParmasVal(params['q']);
-
-            if (ParamsArray?.length > 0) {
-                //console.log('ParamsArray',ParamsArray);
-                this.residentAdmissionInfoId =
-                    ParamsArray.find((e) => e.FieldStr == 'admissionid')
-                        ?.FieldVal || null;
-            }
-        });
     }
 
     ngOnInit(): void {
@@ -129,6 +115,8 @@ export class ChartComponent extends AppComponentBase implements OnInit {
             this.selectedChartData = {
                 chartMasterId: selectedChartMasterId,
                 selectedChartID: selectedChartdata.ChartId,
+                userId: this.userId,
+                residentAdmissionInfoId: this.residentAdmissionInfoId,
                 isEditable: isEditable,
                 StartedBy: selectedChartdata.StartedBy,
                 StartedByDesignation: selectedChartdata.StartedByDesignation,
