@@ -79,6 +79,7 @@ export class RiskPhysicalDependencyAssessmentComponent
     }
 
     ngOnChanges(changes: SimpleChanges): void {
+
         this.isEditable = this.preSelectedFormData.isEditable;
         if (this.preSelectedFormData.selectedFormID != null) {
             this.RiskPhysicalDependencyAssessmentFormData = <any>{};
@@ -92,10 +93,10 @@ export class RiskPhysicalDependencyAssessmentComponent
     }
 
     ngOnInit(): void {
+        
         this.userId = this.preSelectedFormData.userId;
-        this.residentAdmissionInfoId =
-            this.preSelectedFormData.residentAdmissionInfoId;
-        this.isEditable = this.preSelectedFormData.isEditable;
+        this.residentAdmissionInfoId = this.preSelectedFormData.residentAdmissionInfoId;
+
         const dropDownNames = [
             'communicationOptions',
             'breathingOptions',
@@ -123,7 +124,7 @@ export class RiskPhysicalDependencyAssessmentComponent
             dropDownNames.map((collectionName) =>
                 this.GetDropDownMasterList(
                     FormTypes.RiskAssessmentPhysical,
-                    collectionName
+                    collectionName,1
                 )
             )
         ).subscribe((responses: any[]) => {
@@ -177,11 +178,12 @@ export class RiskPhysicalDependencyAssessmentComponent
 
     GetDropDownMasterList(
         formMasterId: string,
-        dropDownName: string
+        dropDownName: string,
+        status:number
     ): Observable<any> {
         this._UtilityService.showSpinner();
         return this._MasterService
-            .GetDropDownMasterList(formMasterId, dropDownName, 1)
+            .GetDropDownMasterList(formMasterId, dropDownName, status)
             .pipe(
                 map((response) => {
                     this._UtilityService.hideSpinner();

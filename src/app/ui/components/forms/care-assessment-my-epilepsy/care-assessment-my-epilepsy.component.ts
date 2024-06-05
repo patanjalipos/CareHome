@@ -39,19 +39,6 @@ export class CareAssessmentMyEpilepsyComponent extends AppComponentBase implemen
 
     this._ConstantServices.ActiveMenuName = "Care Assessment Epilepsy Support Plan Form";
     this.loginId = localStorage.getItem('userId');
-
-    this.unsubscribe.add = this.route.queryParams.subscribe((params) => {
-      var ParamsArray = this._ConstantServices.GetParmasVal(params['q']);
-
-      if (ParamsArray?.length > 0) {
-        this.userId =
-        ParamsArray.find((e) => e.FieldStr == 'id')?.FieldVal ||
-        null;
-        this.residentAdmissionInfoId =
-        ParamsArray.find((e) => e.FieldStr == 'admissionid')
-            ?.FieldVal || null;
-      }
-    });
    }
 
    ngOnChanges(changes: SimpleChanges): void {
@@ -70,6 +57,9 @@ export class CareAssessmentMyEpilepsyComponent extends AppComponentBase implemen
   }
 
   ngOnInit(): void {
+
+    this.userId = this.preSelectedFormData.userId;
+    this.residentAdmissionInfoId = this.preSelectedFormData.residentAdmissionInfoId;
 
     const collectionNames = [
       'EpilepsyType',
