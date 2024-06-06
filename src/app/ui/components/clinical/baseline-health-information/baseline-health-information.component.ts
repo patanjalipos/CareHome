@@ -2,6 +2,7 @@ import { Component, Input, OnInit, SimpleChanges } from '@angular/core';
 import { AppComponentBase } from 'src/app/app-component-base';
 import { ConstantsService } from 'src/app/ui/service/constants.service';
 import { MasterService } from 'src/app/ui/service/master.service';
+import { UserService } from 'src/app/ui/service/user.service';
 import { UtilityService } from 'src/app/utility/utility.service';
 
 @Component({
@@ -14,10 +15,11 @@ export class BaselineHealthInformationComponent extends AppComponentBase impleme
   @Input() userid: any = null;
   @Input() admissionid: any = null;
   Clinical: any = <any>{};
-  isEditable:boolean=true;
+  isEditable: boolean = true;
   constructor(private _ConstantServices: ConstantsService,
     private _MasterServices: MasterService,
     private _UtilityService: UtilityService,
+    private _UserServices: UserService
   ) {
     super();
 
@@ -29,38 +31,35 @@ export class BaselineHealthInformationComponent extends AppComponentBase impleme
     }
   }
 
-  ngOnChanges(changes: SimpleChanges): void {  
-    if (this.userid != null && this.userid != undefined && this.admissionid != null && this.admissionid != undefined) {      
-      this.GetClinicalBaselineHealthInfoById(this.admissionid);      
+  ngOnChanges(changes: SimpleChanges): void {
+    if (this.userid != null && this.userid != undefined && this.admissionid != null && this.admissionid != undefined) {
+      this.GetClinicalBaselineHealthInfoById(this.admissionid);
     }
   }
-  edit()
-  {
-    this.mode='edit';
+  edit() {
+    this.mode = 'edit';
     if (this.userid != null && this.admissionid != null) {
       //this.GetClinicalBaselineHealthInfoById(this.admissionid);      
     }
-    else
-    {
+    else {
       this._UtilityService.showWarningAlert("Resident admission details are missing.");
-      this.mode='view';
+      this.mode = 'view';
     }
   }
-  AddNewAllergy()
-  {
-    
+  AddNewAllergy() {
+
   }
   GetClinicalBaselineHealthInfoById(admissionid) {
     this.Clinical.StatementType = "Insert";
-    this._UtilityService.showSpinner();   
-    this.unsubscribe.add = this._MasterServices.GetClinicalBaselineHealthInfoById(admissionid)  
+    this._UtilityService.showSpinner();
+    this.unsubscribe.add = this._UserServices.GetClinicalBaselineHealthInfoById(admissionid)
       .subscribe({
-        next:(data) => {
-          this._UtilityService.hideSpinner();          
+        next: (data) => {
+          this._UtilityService.hideSpinner();
           if (data.actionResult.success == true) {
             var tdata = JSON.parse(data.actionResult.result);
             tdata = tdata ? tdata : [];
-            this.Clinical = tdata;       
+            this.Clinical = tdata;
             //console.log('this.Clinical', this.Clinical);     
             this.Clinical.StatementType = "Update";
           }
@@ -70,15 +69,14 @@ export class BaselineHealthInformationComponent extends AppComponentBase impleme
           this._UtilityService.showErrorAlert(e.message);
         },
       });
-  }  
-  save()
-  {
-    if (this.userid != null && this.admissionid != null) {      
+  }
+  save() {
+    if (this.userid != null && this.admissionid != null) {
       this.Clinical.UserId = this.userid;
       this.Clinical.ResidentAdmissionInfoId = this.admissionid;
       this.Clinical.ModifiedBy = localStorage.getItem('userId');
       this._UtilityService.showSpinner();
-      this.unsubscribe.add = this._MasterServices.AddInsertUpdateClinicalBaselineHealthInfo(this.Clinical)
+      this.unsubscribe.add = this._UserServices.AddInsertUpdateClinicalBaselineHealthInfo(this.Clinical)
         .subscribe
         ({
           next: (data) => {
@@ -95,14 +93,12 @@ export class BaselineHealthInformationComponent extends AppComponentBase impleme
           },
         });
     }
-    else
-    {
+    else {
       this._UtilityService.showWarningAlert("Resident admission details are missing.");
     }
   }
-  close()
-  {
-    this.mode='view'
+  close() {
+    this.mode = 'view'
   }
 
 }
