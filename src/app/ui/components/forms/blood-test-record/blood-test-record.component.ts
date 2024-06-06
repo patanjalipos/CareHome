@@ -17,6 +17,7 @@ import {
 import { MasterService } from 'src/app/ui/service/master.service';
 import { UtilityService } from 'src/app/utility/utility.service';
 import { BloodTestRecordService } from './blood-test-record.service';
+import { DatePipe } from '@angular/common';
 
 @Component({
     selector: 'app-blood-test-record',
@@ -51,7 +52,8 @@ export class BloodTestRecordComponent
         private route: ActivatedRoute,
         private _UtilityService: UtilityService,
         private _MasterService: MasterService,
-        private _FormService: BloodTestRecordService
+        private _FormService: BloodTestRecordService,
+        private _datePipe: DatePipe
     ) {
         super();
         this._ConstantServices.ActiveMenuName =
@@ -114,6 +116,7 @@ export class BloodTestRecordComponent
                         var tdata = JSON.parse(data.actionResult.result);
                         tdata = tdata ? tdata : {};
                         this.BloodTestFormData = tdata;
+                        this.BloodTestFormData.DateTaken = this._datePipe.transform(this.BloodTestFormData.DateTaken,'yyyy-MM-dd');
                     } else {
                         this.BloodTestFormData = {};
                     }

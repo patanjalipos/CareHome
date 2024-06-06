@@ -1,11 +1,11 @@
 import { Component, EventEmitter, Input, OnInit, Output, SimpleChanges } from '@angular/core';
 import { Observable, catchError, forkJoin, map, of } from 'rxjs';
-import { MasterService } from 'src/app/ui/service/master.service';
 import { ActivatedRoute } from '@angular/router';
 import { AppComponentBase } from 'src/app/app-component-base';
 import { ConstantsService, CustomDateFormat, FormTypes } from 'src/app/ui/service/constants.service';
 import { UtilityService } from 'src/app/utility/utility.service';
 import { RiskWaterlowPressureUlcerService } from './risk-waterlow-pressure-ulcer.service';
+import { UserService } from 'src/app/ui/service/user.service';
 
 @Component({
   selector: 'app-risk-waterlow-pressure-ulcer',
@@ -37,7 +37,7 @@ export class RiskWaterlowPressureUlcerComponent extends AppComponentBase impleme
   lstMajorMedication: any[] = []
   lstUlcerRiskRating: any[] = []
 
-  constructor(private _ConstantServices: ConstantsService, private route: ActivatedRoute, private _UtilityService: UtilityService, private _MasterServices: MasterService, private _RiskAssWaterlow: RiskWaterlowPressureUlcerService) {
+  constructor(private _ConstantServices: ConstantsService, private route: ActivatedRoute, private _UtilityService: UtilityService, private _UserServices: UserService, private _RiskAssWaterlow: RiskWaterlowPressureUlcerService) {
 
     super();
 
@@ -137,7 +137,7 @@ export class RiskWaterlowPressureUlcerComponent extends AppComponentBase impleme
 
   getDropdownMasterLists(formMasterId: string, dropdownName: string, status: number): Observable<any> {
     this._UtilityService.showSpinner();
-    return this._MasterServices.GetDropDownMasterList(formMasterId, dropdownName, status).pipe(
+    return this._UserServices.GetDropDownMasterList(formMasterId, dropdownName, status).pipe(
       map((response) => {
         this._UtilityService.hideSpinner();
         if (response.actionResult.success) {

@@ -7,7 +7,7 @@ import { UtilityService } from 'src/app/utility/utility.service';
 import { DataService } from 'src/app/ui/service/data-service.service';
 import { AppComponentBase } from 'src/app/app-component-base';
 import { Observable, catchError, forkJoin, map, of } from 'rxjs';
-import { MasterService } from 'src/app/ui/service/master.service';
+import { UserService } from 'src/app/ui/service/user.service';
 
 @Component({
     selector: 'app-care-breathing-and-circulation-assessment',
@@ -49,7 +49,7 @@ export class CareBreathingAndCirculationAssessmentComponent extends AppComponent
         private route: ActivatedRoute,
         private _UtilityService: UtilityService,
         private _DataService: DataService,
-        private _MasterServices: MasterService
+        private _UserServices: UserService
 
     ) {
         super();
@@ -121,7 +121,7 @@ export class CareBreathingAndCirculationAssessmentComponent extends AppComponent
 
     getDropdownMasterLists(formMasterId: string, dropdownName: string, status: number): Observable<any> {
         this._UtilityService.showSpinner();
-        return this._MasterServices.GetDropDownMasterList(formMasterId, dropdownName, status).pipe(
+        return this._UserServices.GetDropDownMasterList(formMasterId, dropdownName, status).pipe(
             map((response) => {
                 this._UtilityService.hideSpinner();
                 if (response.actionResult.success) {

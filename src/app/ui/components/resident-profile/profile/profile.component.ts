@@ -3,6 +3,7 @@ import { ConstantsService } from 'src/app/ui/service/constants.service';
 import { MasterService } from 'src/app/ui/service/master.service';
 import { UtilityService } from 'src/app/utility/utility.service';
 import { AppComponentBase } from 'src/app/app-component-base';
+import { UserService } from 'src/app/ui/service/user.service';
 
 @Component({
   selector: 'app-profile',
@@ -24,6 +25,7 @@ export class ProfileComponent extends AppComponentBase implements OnInit {
   appointmentmode: string = 'view';
   constructor(private _ConstantServices: ConstantsService,
     private _MasterServices:MasterService,
+    private _UserServices:UserService,
     private _UtilityService: UtilityService) { 
       super();
     }
@@ -50,7 +52,7 @@ export class ProfileComponent extends AppComponentBase implements OnInit {
 
     GetClinicalIndicatorById(admissionid) {
       this._UtilityService.showSpinner();   
-      this.unsubscribe.add = this._MasterServices.GetClinicalIndicatorById(admissionid,true)  
+      this.unsubscribe.add = this._UserServices.GetClinicalIndicatorById(admissionid,true)  
         .subscribe({
           next:(data) => {
             this._UtilityService.hideSpinner();          
@@ -114,7 +116,7 @@ export class ProfileComponent extends AppComponentBase implements OnInit {
       this.ResidentMaster.ResidentAdmissionInfoId = this.admissionid;
       this.ResidentMaster.ModifiedBy = localStorage.getItem('userId');
       this._UtilityService.showSpinner();
-      this.unsubscribe.add = this._MasterServices.UpdateResidentAdmissionProfile(this.ResidentMaster)
+      this.unsubscribe.add = this._UserServices.UpdateResidentAdmissionProfile(this.ResidentMaster)
         .subscribe
         ({
           next: (data) => {

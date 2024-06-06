@@ -15,8 +15,8 @@ import {
 } from 'src/app/ui/service/constants.service';
 import { UtilityService } from 'src/app/utility/utility.service';
 import { PreAdmissionAssessmentFormsService } from './pre-admission-assessment-forms.service';
-import { MasterService } from 'src/app/ui/service/master.service';
 import { Observable, catchError, forkJoin, map, of } from 'rxjs';
+import { UserService } from 'src/app/ui/service/user.service';
 
 @Component({
     selector: 'app-pre-admission-assessment-forms',
@@ -73,7 +73,7 @@ export class PreAdmissionAssessmentFormsComponent
         private _ConstantServices: ConstantsService,
         private _PreAdmissionAssessmentFormsServices: PreAdmissionAssessmentFormsService,
         private _UtilityService: UtilityService,
-        private _MasterServices: MasterService
+        private _UserServices: UserService
     ) {
         super();
         this._ConstantServices.ActiveMenuName = 'Pre Assessment Admission Form';
@@ -167,7 +167,7 @@ export class PreAdmissionAssessmentFormsComponent
 
     getDropdownMasterLists(formMasterId: string, dropdownName: string,status:number): Observable<any> {
         this._UtilityService.showSpinner();
-        return this._MasterServices.GetDropDownMasterList(formMasterId,dropdownName, status).pipe(
+        return this._UserServices.GetDropDownMasterList(formMasterId,dropdownName, status).pipe(
             map((response) => {
                 this._UtilityService.hideSpinner();
                 if (response.actionResult.success) {

@@ -14,13 +14,13 @@ export class CareBreathingCirculationService {
 // ): Observable<any> {
 //     let reqHeader = new HttpHeaders({
 //         'Content-Type': 'application/json',
-//         'Access-Control-Allow-Origin': environment.BaseUriAdmin,
+//         'Access-Control-Allow-Origin': environment.BaseUriUser,
 //     });
 //     let params = new HttpParams();
 //     params=params.append('Status',Status);
 //     return this._httpclient.get<any>(
-//         environment.BaseUriAdmin +
-//             'api/Admin/GetBreathDecisionMaster',
+//         environment.BaseUriUser +
+//             'api/User/GetBreathDecisionMaster',
 //         { headers: reqHeader, params: params }
 //     );
 // }
@@ -29,13 +29,13 @@ export class CareBreathingCirculationService {
 // ): Observable<any> {
 //   let reqHeader = new HttpHeaders({
 //       'Content-Type': 'application/json',
-//       'Access-Control-Allow-Origin': environment.BaseUriAdmin,
+//       'Access-Control-Allow-Origin': environment.BaseUriUser,
 //   });
 //   let params = new HttpParams();
 //   params=params.append('Status',Status);
 //   return this._httpclient.get<any>(
-//       environment.BaseUriAdmin +
-//           'api/Admin/GetCareAssBreathDificultMaster',
+//       environment.BaseUriUser +
+//           'api/User/GetCareAssBreathDificultMaster',
 //       { headers: reqHeader, params: params }
 //   );
 // }
@@ -44,13 +44,13 @@ export class CareBreathingCirculationService {
 // ): Observable<any> {
 //   let reqHeader = new HttpHeaders({
 //       'Content-Type': 'application/json',
-//       'Access-Control-Allow-Origin': environment.BaseUriAdmin,
+//       'Access-Control-Allow-Origin': environment.BaseUriUser,
 //   });
 //   let params = new HttpParams();
 //   params=params.append('Status',Status);
 //   return this._httpclient.get<any>(
-//       environment.BaseUriAdmin +
-//           'api/Admin/GetCareAssBreathSmokingHabitMaster',
+//       environment.BaseUriUser +
+//           'api/User/GetCareAssBreathSmokingHabitMaster',
 //       { headers: reqHeader, params: params }
 //   );
 // }
@@ -59,13 +59,13 @@ export class CareBreathingCirculationService {
 // ): Observable<any> {
 //   let reqHeader = new HttpHeaders({
 //       'Content-Type': 'application/json',
-//       'Access-Control-Allow-Origin': environment.BaseUriAdmin,
+//       'Access-Control-Allow-Origin': environment.BaseUriUser,
 //   });
 //   let params = new HttpParams();
 //   params=params.append('Status',Status);
 //   return this._httpclient.get<any>(
-//       environment.BaseUriAdmin +
-//           'api/Admin/GetCareAssBreathSmokingActionPlan',
+//       environment.BaseUriUser +
+//           'api/User/GetCareAssBreathSmokingActionPlan',
 //       { headers: reqHeader, params: params }
 //   );
 // }
@@ -74,13 +74,13 @@ export class CareBreathingCirculationService {
 // ): Observable<any> {
 //   let reqHeader = new HttpHeaders({
 //       'Content-Type': 'application/json',
-//       'Access-Control-Allow-Origin': environment.BaseUriAdmin,
+//       'Access-Control-Allow-Origin': environment.BaseUriUser,
 //   });
 //   let params = new HttpParams();
 //   params=params.append('Status',Status);
 //   return this._httpclient.get<any>(
-//       environment.BaseUriAdmin +
-//           'api/Admin/GetCareAssBreathCoughTypeMaster',
+//       environment.BaseUriUser +
+//           'api/User/GetCareAssBreathCoughTypeMaster',
 //       { headers: reqHeader, params: params }
 //   );
 // }
@@ -89,13 +89,13 @@ export class CareBreathingCirculationService {
 // ): Observable<any> {
 //   let reqHeader = new HttpHeaders({
 //       'Content-Type': 'application/json',
-//       'Access-Control-Allow-Origin': environment.BaseUriAdmin,
+//       'Access-Control-Allow-Origin': environment.BaseUriUser,
 //   });
 //   let params = new HttpParams();
 //   params=params.append('Status',Status);
 //   return this._httpclient.get<any>(
-//       environment.BaseUriAdmin +
-//           'api/Admin/GetCareAssBreathTracheostomyMaster',
+//       environment.BaseUriUser +
+//           'api/User/GetCareAssBreathTracheostomyMaster',
 //       { headers: reqHeader, params: params }
 //   );
 // }
@@ -104,13 +104,13 @@ export class CareBreathingCirculationService {
 // ): Observable<any> {
 //   let reqHeader = new HttpHeaders({
 //       'Content-Type': 'application/json',
-//       'Access-Control-Allow-Origin': environment.BaseUriAdmin,
+//       'Access-Control-Allow-Origin': environment.BaseUriUser,
 //   });
 //   let params = new HttpParams();
 //   params=params.append('Status',Status);
 //   return this._httpclient.get<any>(
-//       environment.BaseUriAdmin +
-//           'api/Admin/GetCareAssBreathMachineTypeUsed',
+//       environment.BaseUriUser +
+//           'api/User/GetCareAssBreathMachineTypeUsed',
 //       { headers: reqHeader, params: params }
 //   );
 // }
@@ -119,13 +119,13 @@ export class CareBreathingCirculationService {
 // ): Observable<any> {
 //   let reqHeader = new HttpHeaders({
 //       'Content-Type': 'application/json',
-//       'Access-Control-Allow-Origin': environment.BaseUriAdmin,
+//       'Access-Control-Allow-Origin': environment.BaseUriUser,
 //   });
 //   let params = new HttpParams();
 //   params=params.append('Status',Status);
 //   return this._httpclient.get<any>(
-//       environment.BaseUriAdmin +
-//           'api/Admin/GetCareAssBreathInHealerTypeMaster',
+//       environment.BaseUriUser +
+//           'api/User/GetCareAssBreathInHealerTypeMaster',
 //       { headers: reqHeader, params: params }
 //   );
 // }
@@ -134,13 +134,13 @@ export class CareBreathingCirculationService {
 // ): Observable<any> {
 //   let reqHeader = new HttpHeaders({
 //       'Content-Type': 'application/json',
-//       'Access-Control-Allow-Origin': environment.BaseUriAdmin,
+//       'Access-Control-Allow-Origin': environment.BaseUriUser,
 //   });
 //   let params = new HttpParams();
 //   params=params.append('Status',Status);
 //   return this._httpclient.get<any>(
-//       environment.BaseUriAdmin +
-//           'api/Admin/GetCareAssBreathCreticalTreatmentMaster',
+//       environment.BaseUriUser +
+//           'api/User/GetCareAssBreathCreticalTreatmentMaster',
 //       { headers: reqHeader, params: params }
 //   );
 // }
@@ -149,13 +149,13 @@ export class CareBreathingCirculationService {
 // ): Observable<any> {
 //   let reqHeader = new HttpHeaders({
 //       'Content-Type': 'application/json',
-//       'Access-Control-Allow-Origin': environment.BaseUriAdmin,
+//       'Access-Control-Allow-Origin': environment.BaseUriUser,
 //   });
 //   let params = new HttpParams();
 //   params=params.append('Status',Status);
 //   return this._httpclient.get<any>(
-//       environment.BaseUriAdmin +
-//           'api/Admin/GetCareAssBreathGoalsWishesMaster',
+//       environment.BaseUriUser +
+//           'api/User/GetCareAssBreathGoalsWishesMaster',
 //       { headers: reqHeader, params: params }
 //   );
 // }
@@ -164,13 +164,13 @@ export class CareBreathingCirculationService {
 // ): Observable<any> {
 //   let reqHeader = new HttpHeaders({
 //       'Content-Type': 'application/json',
-//       'Access-Control-Allow-Origin': environment.BaseUriAdmin,
+//       'Access-Control-Allow-Origin': environment.BaseUriUser,
 //   });
 //   let params = new HttpParams();
 //   params=params.append('Status',Status);
 //   return this._httpclient.get<any>(
-//       environment.BaseUriAdmin +
-//           'api/Admin/GetCareAssBreathStrategiesMaster',
+//       environment.BaseUriUser +
+//           'api/User/GetCareAssBreathStrategiesMaster',
 //       { headers: reqHeader, params: params }
 //   );
 // }
@@ -179,15 +179,15 @@ InsertUpdateCareAssBreathCirculationForm(
 ): Observable<any> {
     let reqHeader = new HttpHeaders({
         'Content-Type': 'application/json',
-        'Access-Control-Allow-Origin': environment.BaseUriAdmin,
+        'Access-Control-Allow-Origin': environment.BaseUriUser,
         'Authorization': 'Bearer ' + localStorage.getItem('token')
     });
     let params = new HttpParams();
     var data = JSON.stringify(AcuteCarePlanFormsData).toString();
     console.log(data);
     return this._httpclient.post<any>(
-        environment.BaseUriAdmin +
-            'api/Admin/InsertUpdateCareAssBreathCirculationForm',
+        environment.BaseUriUser +
+            'api/User/InsertUpdateCareAssBreathCirculationForm',
         data,
         { headers: reqHeader, params: params }
     );
@@ -195,13 +195,13 @@ InsertUpdateCareAssBreathCirculationForm(
 GetCareBreathingCirculationFormById(fromId: any) {
     let reqHeader = new HttpHeaders({
         'Content-Type': 'application/json',
-        'Access-Control-Allow-Origin': environment.BaseUriAdmin,
+        'Access-Control-Allow-Origin': environment.BaseUriUser,
         'Authorization': 'Bearer ' + localStorage.getItem('token')
     });
     let params = new HttpParams();
     params = params.append('fromId', fromId);
     return this._httpclient.get<any>(
-        environment.BaseUriAdmin + 'api/Admin/GetCareBreathingCirculationFormById',
+        environment.BaseUriUser + 'api/User/GetCareBreathingCirculationFormById',
         { headers: reqHeader, params: params }
     );
 }
