@@ -4,6 +4,7 @@ import { UtilityService } from 'src/app/utility/utility.service';
 import { AppComponentBase } from 'src/app/app-component-base';
 import { MasterService } from 'src/app/ui/service/master.service';
 import { NgForm } from '@angular/forms';
+import { UserService } from 'src/app/ui/service/user.service';
 
 @Component({
   selector: 'app-primary-contact',
@@ -22,6 +23,7 @@ export class PrimaryContactComponent extends AppComponentBase implements OnInit 
   constructor(private _ConstantServices: ConstantsService,
     private _MasterServices: MasterService,
     private _UtilityService: UtilityService,
+    private _UserServices: UserService
   ) {
     super();
 
@@ -69,7 +71,7 @@ export class PrimaryContactComponent extends AppComponentBase implements OnInit 
   GetContactPrimaryById(admissionid) {
     this.Contact.statementtype = "Insert";
     this._UtilityService.showSpinner();
-    this.unsubscribe.add = this._MasterServices.GetContactPrimaryById(admissionid)
+    this.unsubscribe.add = this._UserServices.GetContactPrimaryById(admissionid)
       .subscribe({
         next: (data) => {
           this._UtilityService.hideSpinner();
@@ -95,9 +97,9 @@ export class PrimaryContactComponent extends AppComponentBase implements OnInit 
       this.Contact.Mobile = this.Contact.Mobile?.toString() || null;
       this.Contact.HomeTelephone = this.Contact.HomeTelephone?.toString() || null;
       this.Contact.WorkTelephone = this.Contact.WorkTelephone?.toString() || null;
-     
+
       this._UtilityService.showSpinner();
-      this.unsubscribe.add = this._MasterServices.AddInsertUpdateContactPrimary(this.Contact)
+      this.unsubscribe.add = this._UserServices.AddInsertUpdateContactPrimary(this.Contact)
         .subscribe
         ({
           next: (data) => {

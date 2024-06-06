@@ -4,6 +4,7 @@ import { UtilityService } from 'src/app/utility/utility.service';
 import { AppComponentBase } from 'src/app/app-component-base';
 import { MasterService } from 'src/app/ui/service/master.service';
 import { DatePipe } from '@angular/common';
+import { UserService } from 'src/app/ui/service/user.service';
 
 @Component({
   selector: 'app-daily-vital',
@@ -17,7 +18,7 @@ export class DailyVitalComponent extends AppComponentBase implements OnInit {
   loginId: any = localStorage.getItem('userId');
   customDateFormat = CustomDateFormat;
   currentDate = new Date();
-  selecteddate:Date = null;
+  selecteddate: Date = null;
   public Clinical: any = <any>{};
   lstClinicalVital: any[] = [];
   isEditable: boolean = true;
@@ -25,6 +26,7 @@ export class DailyVitalComponent extends AppComponentBase implements OnInit {
     private datepipe: DatePipe,
     private _ConstantServices: ConstantsService,
     private _MasterServices: MasterService,
+    private _UserServices: UserService,
     private _UtilityService: UtilityService,
   ) {
     super();
@@ -44,7 +46,7 @@ export class DailyVitalComponent extends AppComponentBase implements OnInit {
   }
 
   edit() {
-    this.Clinical= <any>{};
+    this.Clinical = <any>{};
     this.mode = 'edit';
     if (this.userid != null && this.admissionid != null) {
       this.GetClinicalDailyVitalById(this.admissionid);
@@ -54,23 +56,21 @@ export class DailyVitalComponent extends AppComponentBase implements OnInit {
     }
   }
 
-  dateRangeChange()
-  {
+  dateRangeChange() {
     this.GetClinicalDailyVitalById(this.admissionid)
   }
-  resetDate()
-  {
-    this.selecteddate=null;
+  resetDate() {
+    this.selecteddate = null;
     this.GetClinicalDailyVitalById(this.admissionid);
   }
 
   GetClinicalDailyVitalById(admissionid) {
     var startdate: any = null;
-    this.lstClinicalVital=[];
+    this.lstClinicalVital = [];
     if (this.selecteddate != null && this.selecteddate != undefined)
       startdate = this.datepipe.transform(this.selecteddate, 'yyyy-MM-dd');
     this._UtilityService.showSpinner();
-    this.unsubscribe.add = this._MasterServices.GetClinicalDailyVitalById(admissionid, startdate)
+    this.unsubscribe.add = this._UserServices.GetClinicalDailyVitalById(admissionid, startdate)
       .subscribe({
         next: (data) => {
           this._UtilityService.hideSpinner();
@@ -95,13 +95,13 @@ export class DailyVitalComponent extends AppComponentBase implements OnInit {
         && this.Clinical.RBS === undefined) {
         this._UtilityService.showWarningAlert("Please fill atleast one record");
         return;
-      }     
+      }
       this.Clinical.UserId = this.userid;
       this.Clinical.ResidentAdmissionInfoId = this.admissionid;
       this.Clinical.ModifiedBy = this.loginId;
       //console.log('Clinical', this.Clinical);
       this._UtilityService.showSpinner();
-      this.unsubscribe.add = this._MasterServices.AddInsertUpdateDailyVital(this.Clinical,this.loginId)
+      this.unsubscribe.add = this._UserServices.AddInsertUpdateDailyVital(this.Clinical, this.loginId)
         .subscribe
         ({
           next: (data) => {
@@ -127,21 +127,21 @@ export class DailyVitalComponent extends AppComponentBase implements OnInit {
     this.Clinical.UserId = this.userid;
     this.Clinical.ResidentAdmissionInfoId = this.admissionid;
     this.Clinical.ClinicalDailyVitalId = id;
-    this.Clinical.ModifiedBy = this.loginId;    
+    this.Clinical.ModifiedBy = this.loginId;
     this._UtilityService.showSpinner();
-      this.unsubscribe.add = this._MasterServices.AddInsertUpdateDailyVital(this.Clinical,this.loginId)
-        .subscribe
-        ({
-          next: (data) => {
-            this._UtilityService.hideSpinner();
-            this._UtilityService.showSuccessAlert(data.actionResult.errMsg);
-            this.close();
-          },
-          error: (e) => {
-            this._UtilityService.hideSpinner();
-            this._UtilityService.showErrorAlert(e.message);
-          },
-        });    
+    this.unsubscribe.add = this._UserServices.AddInsertUpdateDailyVital(this.Clinical, this.loginId)
+      .subscribe
+      ({
+        next: (data) => {
+          this._UtilityService.hideSpinner();
+          this._UtilityService.showSuccessAlert(data.actionResult.errMsg);
+          this.close();
+        },
+        error: (e) => {
+          this._UtilityService.hideSpinner();
+          this._UtilityService.showErrorAlert(e.message);
+        },
+      });
   }
   close() {
     this.mode = 'view';

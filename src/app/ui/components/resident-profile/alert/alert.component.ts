@@ -5,6 +5,7 @@ import { ConstantsService, CustomDateFormat } from 'src/app/ui/service/constants
 import { MasterService } from 'src/app/ui/service/master.service';
 import { UtilityService } from 'src/app/utility/utility.service';
 import { Calendar } from 'primeng/calendar';
+import { UserService } from 'src/app/ui/service/user.service';
 
 @Component({
     selector: 'app-alert',
@@ -28,6 +29,7 @@ export class AlertComponent extends AppComponentBase implements OnInit {
         private _ConstantServices: ConstantsService,
         private _MasterServices: MasterService,
         private _UtilityService: UtilityService,
+        private _UserServices:UserService,
         private datepipe: DatePipe) {
         super();
 
@@ -85,7 +87,7 @@ export class AlertComponent extends AppComponentBase implements OnInit {
             }
         }
         this._UtilityService.showSpinner();
-        this.unsubscribe.add = this._MasterServices
+        this.unsubscribe.add = this._UserServices
             .GetDailyVitalAlertLog(this.userid, dFrom, dTo, this.selectedAlertMasterId, this.selectedStatusId)
             .subscribe({
                 next: (data) => {
