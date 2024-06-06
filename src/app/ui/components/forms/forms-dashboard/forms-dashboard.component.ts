@@ -161,7 +161,7 @@ export class FormsDashboardComponent
                 ModifiedOn: selectedFormdata.ModifiedOn,
             };
             this.ShowModel();
-        } else alert('Kindly select an Assessment Form');
+        } this._UtilityService.showErrorAlert('Kindly select an Assessment Form');
     }
 
     ShowModel() {
