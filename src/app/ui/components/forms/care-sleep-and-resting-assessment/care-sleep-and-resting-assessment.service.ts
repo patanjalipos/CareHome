@@ -15,13 +15,13 @@ export class CareSleepAndRestingAssessmentService {
    GetCareAssessmentSleepAndRestDetails(fromId: any) {
     let reqHeader = new HttpHeaders({
         'Content-Type': 'application/json',
-        'Access-Control-Allow-Origin': environment.BaseUriAdmin,
+        'Access-Control-Allow-Origin': environment.BaseUriUser,
         'Authorization': 'Bearer ' + localStorage.getItem('token')
     });
     let params = new HttpParams();
     params = params.append('fromId', fromId);
     return this._httpclient.get<any>(
-        environment.BaseUriAdmin + 'api/Admin/GetCareAssessmentSleepAndRestForm',
+        environment.BaseUriUser + 'api/User/GetCareAssessmentSleepAndRestForm',
         { headers: reqHeader, params: params }
     );
 }
@@ -31,15 +31,15 @@ AddInsertUpdateCareAssessmentSleepAndRestForm(
 ): Observable<any> {
     let reqHeader = new HttpHeaders({
         'Content-Type': 'application/json',
-        'Access-Control-Allow-Origin': environment.BaseUriAdmin,
+        'Access-Control-Allow-Origin': environment.BaseUriUser,
         'Authorization': 'Bearer ' + localStorage.getItem('token')
     });
     let params = new HttpParams();
     var data = JSON.stringify(CareAssessmentSleepAndRestFormsData).toString();
     console.log(data);
     return this._httpclient.post<any>(
-        environment.BaseUriAdmin +
-            'api/Admin/InsertUpdateCareAssessmentSleepAndRestForm',
+        environment.BaseUriUser +
+            'api/User/InsertUpdateCareAssessmentSleepAndRestForm',
         data,
         { headers: reqHeader, params: params }
     );

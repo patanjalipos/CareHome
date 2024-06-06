@@ -12,14 +12,14 @@ export class PreAdmissionAssessmentFormsService {
     getPreAdmSleepingAndRestingOptionsMaster(status: any): Observable<any> {
         const reqHeader = new HttpHeaders({
             'Content-Type': 'application/json',
-            'Access-Control-Allow-Origin': environment.BaseUriAdmin,
+            'Access-Control-Allow-Origin': environment.BaseUriUser,
             'Authorization': 'Bearer ' + localStorage.getItem('token')
         });
         let params = new HttpParams();
         params = params.append('Status', status);
         return this._httpclient.get<any>(
-            environment.BaseUriAdmin +
-                'api/Admin/GetPreAdmSleepingAndRestingOptionsMaster',
+            environment.BaseUriUser +
+                'api/User/GetPreAdmSleepingAndRestingOptionsMaster',
             { headers: reqHeader, params: params }
         );
     }
@@ -27,14 +27,14 @@ export class PreAdmissionAssessmentFormsService {
     getPreAdmSkinAssessmentOptionsMaster(status: any): Observable<any> {
         const reqHeader = new HttpHeaders({
             'Content-Type': 'application/json',
-            'Access-Control-Allow-Origin': environment.BaseUriAdmin,
+            'Access-Control-Allow-Origin': environment.BaseUriUser,
             'Authorization': 'Bearer ' + localStorage.getItem('token')
         });
         let params = new HttpParams();
         params = params.append('Status', status);
         return this._httpclient.get<any>(
-            environment.BaseUriAdmin +
-                'api/Admin/GetPreAdmSkinAssessmentOptionsMaster',
+            environment.BaseUriUser +
+                'api/User/GetPreAdmSkinAssessmentOptionsMaster',
             { headers: reqHeader, params: params }
         );
     }
@@ -42,14 +42,14 @@ export class PreAdmissionAssessmentFormsService {
     getPreAdmResidentMovingOptionsMaster(status: any): Observable<any> {
         const reqHeader = new HttpHeaders({
             'Content-Type': 'application/json',
-            'Access-Control-Allow-Origin': environment.BaseUriAdmin,
+            'Access-Control-Allow-Origin': environment.BaseUriUser,
             'Authorization': 'Bearer ' + localStorage.getItem('token')
         });
         let params = new HttpParams();
         params = params.append('Status', status);
         return this._httpclient.get<any>(
-            environment.BaseUriAdmin +
-                'api/Admin/GetPreAdmResidentMovingOptionsMaster',
+            environment.BaseUriUser +
+                'api/User/GetPreAdmResidentMovingOptionsMaster',
             { headers: reqHeader, params: params }
         );
     }
@@ -59,14 +59,14 @@ export class PreAdmissionAssessmentFormsService {
     ): Observable<any> {
         const reqHeader = new HttpHeaders({
             'Content-Type': 'application/json',
-            'Access-Control-Allow-Origin': environment.BaseUriAdmin,
+            'Access-Control-Allow-Origin': environment.BaseUriUser,
             'Authorization': 'Bearer ' + localStorage.getItem('token')
         });
         let params = new HttpParams();
         params = params.append('Status', status);
         return this._httpclient.get<any>(
-            environment.BaseUriAdmin +
-                'api/Admin/GetPreAdmResidentExpAnyMHConditionsOptionsMaster',
+            environment.BaseUriUser +
+                'api/User/GetPreAdmResidentExpAnyMHConditionsOptionsMaster',
             { headers: reqHeader, params: params }
         );
     }
@@ -74,14 +74,14 @@ export class PreAdmissionAssessmentFormsService {
     getPreAdmPromotionOfContinenceOptionsMaster(status: any): Observable<any> {
         const reqHeader = new HttpHeaders({
             'Content-Type': 'application/json',
-            'Access-Control-Allow-Origin': environment.BaseUriAdmin,
+            'Access-Control-Allow-Origin': environment.BaseUriUser,
             'Authorization': 'Bearer ' + localStorage.getItem('token')
         });
         let params = new HttpParams();
         params = params.append('Status', status);
         return this._httpclient.get<any>(
-            environment.BaseUriAdmin +
-                'api/Admin/GetPreAdmPromotionOfContinenceOptionsMaster',
+            environment.BaseUriUser +
+                'api/User/GetPreAdmPromotionOfContinenceOptionsMaster',
             { headers: reqHeader, params: params }
         );
     }
@@ -91,14 +91,14 @@ export class PreAdmissionAssessmentFormsService {
     ): Observable<any> {
         const reqHeader = new HttpHeaders({
             'Content-Type': 'application/json',
-            'Access-Control-Allow-Origin': environment.BaseUriAdmin,
+            'Access-Control-Allow-Origin': environment.BaseUriUser,
             'Authorization': 'Bearer ' + localStorage.getItem('token')
         });
         let params = new HttpParams();
         params = params.append('Status', status);
         return this._httpclient.get<any>(
-            environment.BaseUriAdmin +
-                'api/Admin/GetPreAdmProfessionalDocObtainedOptionsMaster',
+            environment.BaseUriUser +
+                'api/User/GetPreAdmProfessionalDocObtainedOptionsMaster',
             { headers: reqHeader, params: params }
         );
     }
@@ -106,14 +106,14 @@ export class PreAdmissionAssessmentFormsService {
     getPreAdmPainStatusOptionsMaster(status: any): Observable<any> {
         const reqHeader = new HttpHeaders({
             'Content-Type': 'application/json',
-            'Access-Control-Allow-Origin': environment.BaseUriAdmin,
+            'Access-Control-Allow-Origin': environment.BaseUriUser,
             'Authorization': 'Bearer ' + localStorage.getItem('token')
         });
         let params = new HttpParams();
         params = params.append('Status', status);
         return this._httpclient.get<any>(
-            environment.BaseUriAdmin +
-                'api/Admin/GetPreAdmPainStatusOptionsMaster',
+            environment.BaseUriUser +
+                'api/User/GetPreAdmPainStatusOptionsMaster',
             { headers: reqHeader, params: params }
         );
     }
@@ -121,14 +121,14 @@ export class PreAdmissionAssessmentFormsService {
     getPreAdmPaymentOptionsMaster(status: any): Observable<any> {
         const reqHeader = new HttpHeaders({
             'Content-Type': 'application/json',
-            'Access-Control-Allow-Origin': environment.BaseUriAdmin,
+            'Access-Control-Allow-Origin': environment.BaseUriUser,
             'Authorization': 'Bearer ' + localStorage.getItem('token')
         });
         let params = new HttpParams();
         params = params.append('Status', status);
         return this._httpclient.get<any>(
-            environment.BaseUriAdmin +
-                'api/Admin/GetPreAdmPaymentOptionsMaster',
+            environment.BaseUriUser +
+                'api/User/GetPreAdmPaymentOptionsMaster',
             { headers: reqHeader, params: params }
         );
     }
@@ -136,14 +136,14 @@ export class PreAdmissionAssessmentFormsService {
     getPreAdmInfectionStatusOptionsMaster(status: any): Observable<any> {
         const reqHeader = new HttpHeaders({
             'Content-Type': 'application/json',
-            'Access-Control-Allow-Origin': environment.BaseUriAdmin,
+            'Access-Control-Allow-Origin': environment.BaseUriUser,
             'Authorization': 'Bearer ' + localStorage.getItem('token')
         });
         let params = new HttpParams();
         params = params.append('Status', status);
         return this._httpclient.get<any>(
-            environment.BaseUriAdmin +
-                'api/Admin/GetPreAdmInfectionStatusOptionsMaster',
+            environment.BaseUriUser +
+                'api/User/GetPreAdmInfectionStatusOptionsMaster',
             { headers: reqHeader, params: params }
         );
     }
@@ -153,14 +153,14 @@ export class PreAdmissionAssessmentFormsService {
     ): Observable<any> {
         const reqHeader = new HttpHeaders({
             'Content-Type': 'application/json',
-            'Access-Control-Allow-Origin': environment.BaseUriAdmin,
+            'Access-Control-Allow-Origin': environment.BaseUriUser,
             'Authorization': 'Bearer ' + localStorage.getItem('token')
         });
         let params = new HttpParams();
         params = params.append('Status', status);
         return this._httpclient.get<any>(
-            environment.BaseUriAdmin +
-                'api/Admin/GetPreAdmMedicalHistoryConditionOptionsMaster',
+            environment.BaseUriUser +
+                'api/User/GetPreAdmMedicalHistoryConditionOptionsMaster',
             { headers: reqHeader, params: params }
         );
     }
@@ -168,14 +168,14 @@ export class PreAdmissionAssessmentFormsService {
     getPreAdmMedicationOptionMaster(status: any): Observable<any> {
         const reqHeader = new HttpHeaders({
             'Content-Type': 'application/json',
-            'Access-Control-Allow-Origin': environment.BaseUriAdmin,
+            'Access-Control-Allow-Origin': environment.BaseUriUser,
             'Authorization': 'Bearer ' + localStorage.getItem('token')
         });
         let params = new HttpParams();
         params = params.append('Status', status);
         return this._httpclient.get<any>(
-            environment.BaseUriAdmin +
-                'api/Admin/GetPreAdmMedicationOptionMaster',
+            environment.BaseUriUser +
+                'api/User/GetPreAdmMedicationOptionMaster',
             { headers: reqHeader, params: params }
         );
     }
@@ -183,14 +183,14 @@ export class PreAdmissionAssessmentFormsService {
     getPreAdmSpeechSightHearingOptionsMaster(status: any): Observable<any> {
         const reqHeader = new HttpHeaders({
             'Content-Type': 'application/json',
-            'Access-Control-Allow-Origin': environment.BaseUriAdmin,
+            'Access-Control-Allow-Origin': environment.BaseUriUser,
             'Authorization': 'Bearer ' + localStorage.getItem('token')
         });
         let params = new HttpParams();
         params = params.append('Status', status);
         return this._httpclient.get<any>(
-            environment.BaseUriAdmin +
-                'api/Admin/GetPreAdmSpeechSightHearingOptionsMaster',
+            environment.BaseUriUser +
+                'api/User/GetPreAdmSpeechSightHearingOptionsMaster',
             { headers: reqHeader, params: params }
         );
     }
@@ -198,14 +198,14 @@ export class PreAdmissionAssessmentFormsService {
     getPreAdmPersonCapacityOptionsMaster(Status: any): Observable<any> {
         let reqHeader = new HttpHeaders({
             'Content-Type': 'application/json',
-            'Access-Control-Allow-Origin': environment.BaseUriAdmin,
+            'Access-Control-Allow-Origin': environment.BaseUriUser,
             'Authorization': 'Bearer ' + localStorage.getItem('token')
         });
         let params = new HttpParams();
         params = params.append('Status', Status);
         return this._httpclient.get<any>(
-            environment.BaseUriAdmin +
-                'api/Admin/GetPreAdmPersonCapacityOptionsMaster',
+            environment.BaseUriUser +
+                'api/User/GetPreAdmPersonCapacityOptionsMaster',
             { headers: reqHeader, params: params }
         );
     }
@@ -215,14 +215,14 @@ export class PreAdmissionAssessmentFormsService {
     ): Observable<any> {
         const reqHeader = new HttpHeaders({
             'Content-Type': 'application/json',
-            'Access-Control-Allow-Origin': environment.BaseUriAdmin,
+            'Access-Control-Allow-Origin': environment.BaseUriUser,
             'Authorization': 'Bearer ' + localStorage.getItem('token')
         });
         let params = new HttpParams();
         params = params.append('Status', status);
         return this._httpclient.get<any>(
-            environment.BaseUriAdmin +
-                'api/Admin/GetPreAdmFirstAidEpilepticSeizureOptionsMaster',
+            environment.BaseUriUser +
+                'api/User/GetPreAdmFirstAidEpilepticSeizureOptionsMaster',
             { headers: reqHeader, params: params }
         );
     }
@@ -230,14 +230,14 @@ export class PreAdmissionAssessmentFormsService {
     getPreAdmFeelingFreshAndCleanOptionsMaster(status: any): Observable<any> {
         const reqHeader = new HttpHeaders({
             'Content-Type': 'application/json',
-            'Access-Control-Allow-Origin': environment.BaseUriAdmin,
+            'Access-Control-Allow-Origin': environment.BaseUriUser,
             'Authorization': 'Bearer ' + localStorage.getItem('token')
         });
         let params = new HttpParams();
         params = params.append('Status', status);
         return this._httpclient.get<any>(
-            environment.BaseUriAdmin +
-                'api/Admin/GetPreAdmFeelingFreshAndCleanOptionsMaster',
+            environment.BaseUriUser +
+                'api/User/GetPreAdmFeelingFreshAndCleanOptionsMaster',
             { headers: reqHeader, params: params }
         );
     }
@@ -245,14 +245,14 @@ export class PreAdmissionAssessmentFormsService {
     getPreAdmExpressingSexualityOptionsMaster(status: any): Observable<any> {
         const reqHeader = new HttpHeaders({
             'Content-Type': 'application/json',
-            'Access-Control-Allow-Origin': environment.BaseUriAdmin,
+            'Access-Control-Allow-Origin': environment.BaseUriUser,
             'Authorization': 'Bearer ' + localStorage.getItem('token')
         });
         let params = new HttpParams();
         params = params.append('Status', status);
         return this._httpclient.get<any>(
-            environment.BaseUriAdmin +
-                'api/Admin/GetPreAdmExpressingSexualityOptionsMaster',
+            environment.BaseUriUser +
+                'api/User/GetPreAdmExpressingSexualityOptionsMaster',
             { headers: reqHeader, params: params }
         );
     }
@@ -260,14 +260,14 @@ export class PreAdmissionAssessmentFormsService {
     getPreAdmFallsAndMobilityOptionsMaster(status: any): Observable<any> {
         const reqHeader = new HttpHeaders({
             'Content-Type': 'application/json',
-            'Access-Control-Allow-Origin': environment.BaseUriAdmin,
+            'Access-Control-Allow-Origin': environment.BaseUriUser,
             'Authorization': 'Bearer ' + localStorage.getItem('token')
         });
         let params = new HttpParams();
         params = params.append('Status', status);
         return this._httpclient.get<any>(
-            environment.BaseUriAdmin +
-                'api/Admin/GetPreAdmFallsAndMobilityOptionsMaster',
+            environment.BaseUriUser +
+                'api/User/GetPreAdmFallsAndMobilityOptionsMaster',
             { headers: reqHeader, params: params }
         );
     }
@@ -277,14 +277,14 @@ export class PreAdmissionAssessmentFormsService {
     ): Observable<any> {
         const reqHeader = new HttpHeaders({
             'Content-Type': 'application/json',
-            'Access-Control-Allow-Origin': environment.BaseUriAdmin,
+            'Access-Control-Allow-Origin': environment.BaseUriUser,
             'Authorization': 'Bearer ' + localStorage.getItem('token')
         });
         let params = new HttpParams();
         params = params.append('Status', status);
         return this._httpclient.get<any>(
-            environment.BaseUriAdmin +
-                'api/Admin/GetPreAdmEpilepsySeizureManagementOptionsMaster',
+            environment.BaseUriUser +
+                'api/User/GetPreAdmEpilepsySeizureManagementOptionsMaster',
             { headers: reqHeader, params: params }
         );
     }
@@ -294,14 +294,14 @@ export class PreAdmissionAssessmentFormsService {
     ): Observable<any> {
         const reqHeader = new HttpHeaders({
             'Content-Type': 'application/json',
-            'Access-Control-Allow-Origin': environment.BaseUriAdmin,
+            'Access-Control-Allow-Origin': environment.BaseUriUser,
             'Authorization': 'Bearer ' + localStorage.getItem('token')
         });
         let params = new HttpParams();
         params = params.append('Status', status);
         return this._httpclient.get<any>(
-            environment.BaseUriAdmin +
-                'api/Admin/GetPreAdmEatingDrinkingAssessmentOptionsMaster',
+            environment.BaseUriUser +
+                'api/User/GetPreAdmEatingDrinkingAssessmentOptionsMaster',
             { headers: reqHeader, params: params }
         );
     }
@@ -311,14 +311,14 @@ export class PreAdmissionAssessmentFormsService {
     ): Observable<any> {
         const reqHeader = new HttpHeaders({
             'Content-Type': 'application/json',
-            'Access-Control-Allow-Origin': environment.BaseUriAdmin,
+            'Access-Control-Allow-Origin': environment.BaseUriUser,
             'Authorization': 'Bearer ' + localStorage.getItem('token')
         });
         let params = new HttpParams();
         params = params.append('Status', status);
         return this._httpclient.get<any>(
-            environment.BaseUriAdmin +
-                'api/Admin/GetPreAdmConnectingAndCommunicatingOptionsMaster',
+            environment.BaseUriUser +
+                'api/User/GetPreAdmConnectingAndCommunicatingOptionsMaster',
             { headers: reqHeader, params: params }
         );
     }
@@ -326,14 +326,14 @@ export class PreAdmissionAssessmentFormsService {
     getPreAdmPersonalSafetyOptionsMaster(status: any): Observable<any> {
         const reqHeader = new HttpHeaders({
             'Content-Type': 'application/json',
-            'Access-Control-Allow-Origin': environment.BaseUriAdmin,
+            'Access-Control-Allow-Origin': environment.BaseUriUser,
             'Authorization': 'Bearer ' + localStorage.getItem('token')
         });
         let params = new HttpParams();
         params = params.append('Status', status);
         return this._httpclient.get<any>(
-            environment.BaseUriAdmin +
-                'api/Admin/GetPreAdmPersonalSafetyOptionsMaster',
+            environment.BaseUriUser +
+                'api/User/GetPreAdmPersonalSafetyOptionsMaster',
             { headers: reqHeader, params: params }
         );
     }
@@ -341,14 +341,14 @@ export class PreAdmissionAssessmentFormsService {
     getPreAdmPeronsCurrentAbilitiesOptionsMaster(status: any): Observable<any> {
         const reqHeader = new HttpHeaders({
             'Content-Type': 'application/json',
-            'Access-Control-Allow-Origin': environment.BaseUriAdmin,
+            'Access-Control-Allow-Origin': environment.BaseUriUser,
             'Authorization': 'Bearer ' + localStorage.getItem('token')
         });
         let params = new HttpParams();
         params = params.append('Status', status);
         return this._httpclient.get<any>(
-            environment.BaseUriAdmin +
-                'api/Admin/GetPreAdmPeronsCurrentAbilitiesOptionsMaster',
+            environment.BaseUriUser +
+                'api/User/GetPreAdmPeronsCurrentAbilitiesOptionsMaster',
             { headers: reqHeader, params: params }
         );
     }
@@ -356,13 +356,13 @@ export class PreAdmissionAssessmentFormsService {
     getPreAdmAdvancedCarePlanningOptionsMaster(status: any): Observable<any> {
         const reqHeader = new HttpHeaders({
           'Content-Type': 'application/json',
-          'Access-Control-Allow-Origin': environment.BaseUriAdmin,
+          'Access-Control-Allow-Origin': environment.BaseUriUser,
           'Authorization': 'Bearer ' + localStorage.getItem('token')
         });
         let params = new HttpParams();
         params = params.append('Status', status);
         return this._httpclient.get<any>(
-          environment.BaseUriAdmin + 'api/Admin/GetPreAdmAdvancedCarePlanningOptionsMaster',
+          environment.BaseUriUser + 'api/User/GetPreAdmAdvancedCarePlanningOptionsMaster',
           { headers: reqHeader, params: params }
         );
       }
@@ -371,13 +371,13 @@ export class PreAdmissionAssessmentFormsService {
     GetPreAdmissionFormDetails(fromId: any) {
         let reqHeader = new HttpHeaders({
             'Content-Type': 'application/json',
-            'Access-Control-Allow-Origin': environment.BaseUriAdmin,
+            'Access-Control-Allow-Origin': environment.BaseUriUser,
             'Authorization': 'Bearer ' + localStorage.getItem('token')
         });
         let params = new HttpParams();
         params = params.append('fromId', fromId);
         return this._httpclient.get<any>(
-            environment.BaseUriAdmin + 'api/Admin/GetPreAdmissionForm',
+            environment.BaseUriUser + 'api/User/GetPreAdmissionForm',
             { headers: reqHeader, params: params }
         );
     }
@@ -387,15 +387,15 @@ export class PreAdmissionAssessmentFormsService {
     ): Observable<any> {
         let reqHeader = new HttpHeaders({
             'Content-Type': 'application/json',
-            'Access-Control-Allow-Origin': environment.BaseUriAdmin,
+            'Access-Control-Allow-Origin': environment.BaseUriUser,
             'Authorization': 'Bearer ' + localStorage.getItem('token')
         });
         let params = new HttpParams();
         var data = JSON.stringify(PreAdmissionAssessmentFormsData).toString();
         console.log(data);
         return this._httpclient.post<any>(
-            environment.BaseUriAdmin +
-                'api/Admin/AddInsertUpdatePreAdmissionForm',
+            environment.BaseUriUser +
+                'api/User/AddInsertUpdatePreAdmissionForm',
             data,
             { headers: reqHeader, params: params }
         );

@@ -13,14 +13,14 @@ export class RiskPhysicalDependencyAssessmentService {
   GetRiskPhysicalDependencyAssessmentFormById(selectedFormID: string): Observable<any> {
       const reqHeader = new HttpHeaders({
           'Content-Type': 'application/json',
-          'Access-Control-Allow-Origin': environment.BaseUriAdmin,
+          'Access-Control-Allow-Origin': environment.BaseUriUser,
           'Authorization': 'Bearer ' + localStorage.getItem('token')
       });
       let params = new HttpParams();
       params = params.append('fromId', selectedFormID);
       return this._httpclient.get<any>(
-          environment.BaseUriAdmin +
-              'api/Admin/GetRiskPhysicalDependencyAssessmentFormById',
+          environment.BaseUriUser +
+              'api/User/GetRiskPhysicalDependencyAssessmentFormById',
           { headers: reqHeader, params: params }
       );
   }
@@ -28,15 +28,15 @@ export class RiskPhysicalDependencyAssessmentService {
   AddInsertUpdateFormData(formdata: any): Observable<any> {
       let reqHeader = new HttpHeaders({
           'Content-Type': 'application/json',
-          'Access-Control-Allow-Origin': environment.BaseUriAdmin,
+          'Access-Control-Allow-Origin': environment.BaseUriUser,
           'Authorization': 'Bearer ' + localStorage.getItem('token')
       });   
       
       let params = new HttpParams();
       var data = JSON.stringify(formdata).toString();
       return this._httpclient.post<any>(
-          environment.BaseUriAdmin +
-              'api/Admin/InsertUpdateRiskPhysicalDependencyAssessmentForm',
+          environment.BaseUriUser +
+              'api/User/InsertUpdateRiskPhysicalDependencyAssessmentForm',
           data,
           { headers: reqHeader, params: params }
       );

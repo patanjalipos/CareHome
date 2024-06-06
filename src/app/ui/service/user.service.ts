@@ -132,6 +132,206 @@ export class UserService {
 }
 
 //#endregion
-    
+
+//#region Form Dashboard
+
+GetFormDasboardList(
+    residentAdmissionInfoId: string,
+    formMasterId: string,
+    fromDate: any = null,
+    toDate: any = null
+): Observable<any> {
+    let reqHeader = new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': environment.BaseUriUser,
+        Authorization: 'Bearer ' + localStorage.getItem('token'),
+    });
+    let params = new HttpParams();
+    params = params.append(
+        'residentAdmissionInfoId',
+        residentAdmissionInfoId
+    );
+    params = params.append('formMasterId', formMasterId);
+    // Convert fromDate and toDate to strings before appending them
+    if (fromDate !== null) {
+        params = params.append('fromDate', fromDate.toString());
+    }
+    if (toDate !== null) {
+        params = params.append('toDate', toDate.toString());
+    }
+
+    return this._httpclient.get<any>(
+        environment.BaseUriUser + 'api/User/GetFormDashboardList',
+        { headers: reqHeader, params: params }
+    );
+}
+
+//#endregion
+
+//#region Form DropDowns
+
+GetDropDownMasterList(
+    formMasterId: string,
+    dropdownName: string,
+    status: number
+) {
+    let reqHeader = new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': environment.BaseUriUser,
+        Authorization: 'Bearer ' + localStorage.getItem('token'),
+    });
+    let params = new HttpParams();
+    params = params.append('formMasterId', formMasterId);
+    params = params.append('dropDownName', dropdownName);
+    params = params.append('Status', status);
+    return this._httpclient.get<any>(
+        environment.BaseUriUser + 'api/User/GetDropDownMasterListV2',
+        { headers: reqHeader, params: params }
+    );
+}
+
+//#endregion
+
+//#region AccidentNearMissRecordForm
+
+GetAccidentNearMissRecordDetails(fromId: any) {
+    let reqHeader = new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': environment.BaseUriUser,
+        Authorization: 'Bearer ' + localStorage.getItem('token'),
+    });
+    let params = new HttpParams();
+    params = params.append('fromId', fromId);
+    return this._httpclient.get<any>(
+        environment.BaseUriUser +
+            'api/User/GetAccidentNearOrMissRecordForm',
+        { headers: reqHeader, params: params }
+    );
+}
+
+AddInsertUpdateAccidentNearMissRecordForm(
+    AccidentNearMissRecordFormsData: any
+): Observable<any> {
+    let reqHeader = new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': environment.BaseUriUser,
+        Authorization: 'Bearer ' + localStorage.getItem('token'),
+    });
+    let params = new HttpParams();
+    var data = JSON.stringify(AccidentNearMissRecordFormsData).toString();
+    console.log(data);
+    return this._httpclient.post<any>(
+        environment.BaseUriUser +
+            'api/User/AddInsertUpdateAccidentNearOrMissRecordForm',
+        data,
+        { headers: reqHeader, params: params }
+    );
+}
+
+//#endregion
+
+//#region Acute Care Plan
+
+InsertUpdateAcuteCarePlanForm(
+    AcuteCarePlanFormsData: any
+): Observable<any> {
+    let reqHeader = new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': environment.BaseUriUser,
+        Authorization: 'Bearer ' + localStorage.getItem('token'),
+    });
+    let params = new HttpParams();
+    var data = JSON.stringify(AcuteCarePlanFormsData).toString();
+    console.log(data);
+    return this._httpclient.post<any>(
+        environment.BaseUriUser +
+            'api/User/InsertUpdateAcuteCarePlanForm',
+        data,
+        { headers: reqHeader, params: params }
+    );
+}
+
+GetAcuteCarePlanFormByid(fromId: any) {
+    let reqHeader = new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': environment.BaseUriUser,
+        Authorization: 'Bearer ' + localStorage.getItem('token'),
+    });
+    let params = new HttpParams();
+    params = params.append('fromId', fromId);
+    return this._httpclient.get<any>(
+        environment.BaseUriUser + 'api/User/GetAcuteCarePlanForm',
+        { headers: reqHeader, params: params }
+    );
+}
+
+//#end Region
+
+//#region Family Communication
+
+InsertUpdateFamilyCommForm(AcuteCarePlanFormsData: any): Observable<any> {
+    let reqHeader = new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': environment.BaseUriUser,
+        Authorization: 'Bearer ' + localStorage.getItem('token'),
+    });
+    let params = new HttpParams();
+    var data = JSON.stringify(AcuteCarePlanFormsData).toString();
+    console.log(data);
+    return this._httpclient.post<any>(
+        environment.BaseUriUser + 'api/User/InsertUpdateFamilyCommForm',
+        data,
+        { headers: reqHeader, params: params }
+    );
+}
+GetFamilyCommFormById(fromId: any) {
+    let reqHeader = new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': environment.BaseUriUser,
+        Authorization: 'Bearer ' + localStorage.getItem('token'),
+    });
+    let params = new HttpParams();
+    params = params.append('fromId', fromId);
+    return this._httpclient.get<any>(
+        environment.BaseUriUser + 'api/User/GetFamilyCommFormById',
+        { headers: reqHeader, params: params }
+    );
+}
+
+//#endregion
+
+// #region GP Doctor Visit
+
+AddUpdateGPDoctorVisitCommDetails(
+    GPDoctorVisitCommDetails: any
+): Observable<any> {
+    let reqHeader = new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': environment.BaseUriUser,
+        Authorization: 'Bearer ' + localStorage.getItem('token'),
+    });
+    let params = new HttpParams();
+    var data = JSON.stringify(GPDoctorVisitCommDetails).toString();
+    return this._httpclient.post<any>(
+        environment.BaseUriUser +
+            'api/User/AddUpdateGPDoctorVisitCommDetails',
+        data,
+        { headers: reqHeader, params: params }
+    );
+}
+GPDoctorVisitCommDetailsByid(fromId: any) {
+    let reqHeader = new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': environment.BaseUriUser,
+        Authorization: 'Bearer ' + localStorage.getItem('token'),
+    });
+    let params = new HttpParams();
+    params = params.append('fromId', fromId);
+    return this._httpclient.get<any>(
+        environment.BaseUriUser + 'api/User/GPDoctorVisitCommDetailsByid',
+        { headers: reqHeader, params: params }
+    );
+}
+//#endregion
 
 }

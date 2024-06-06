@@ -14,7 +14,6 @@ import {
     CustomDateFormat,
     FormTypes,
 } from 'src/app/ui/service/constants.service';
-import { MasterService } from 'src/app/ui/service/master.service';
 import { UtilityService } from 'src/app/utility/utility.service';
 import { CareResidentContactsListService } from './care-resident-contacts-list.service';
 
@@ -48,7 +47,6 @@ export class CareResidentContactsListComponent
         private _ConstantServices: ConstantsService,
         private route: ActivatedRoute,
         private _UtilityService: UtilityService,
-        private _MasterService: MasterService,
         private _FormService: CareResidentContactsListService
     ) {
         super();

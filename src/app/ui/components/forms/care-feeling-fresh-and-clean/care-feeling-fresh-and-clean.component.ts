@@ -4,8 +4,8 @@ import { AppComponentBase } from 'src/app/app-component-base';
 import { ConstantsService, CustomDateFormat, FormTypes } from 'src/app/ui/service/constants.service';
 import { UtilityService } from 'src/app/utility/utility.service';
 import { CareFeelingFreshAndCleanService } from './care-feeling-fresh-and-clean.service';
-import { MasterService } from 'src/app/ui/service/master.service';
 import { Observable, catchError, forkJoin, map, of } from 'rxjs';
+import { UserService } from 'src/app/ui/service/user.service';
 
 @Component({
   selector: 'app-care-feeling-fresh-and-clean',
@@ -42,7 +42,7 @@ export class CareFeelingFreshAndCleanComponent extends AppComponentBase implemen
   lstStrategyToManageHygiene: any[] = []
   lstActionToManageAdditionalRisk: any[] = []
 
-  constructor(private _ConstantServices: ConstantsService, private route: ActivatedRoute, private _UtilityService: UtilityService, private _CareFreshAndClean: CareFeelingFreshAndCleanService, private _MasterServices: MasterService) {
+  constructor(private _ConstantServices: ConstantsService, private route: ActivatedRoute, private _UtilityService: UtilityService, private _CareFreshAndClean: CareFeelingFreshAndCleanService, private _UserServices: UserService) {
 
     super();
     this._ConstantServices.ActiveMenuName = "Care Assessment Fresh And Clean Form";
@@ -148,7 +148,7 @@ export class CareFeelingFreshAndCleanComponent extends AppComponentBase implemen
 
   getDropdownMasterLists(formMasterId: string, dropdownName: string, status: number): Observable<any> {
     this._UtilityService.showSpinner();
-    return this._MasterServices.GetDropDownMasterList(formMasterId, dropdownName, status).pipe(
+    return this._UserServices.GetDropDownMasterList(formMasterId, dropdownName, status).pipe(
       map((response) => {
         this._UtilityService.hideSpinner();
         if (response.actionResult.success) {
