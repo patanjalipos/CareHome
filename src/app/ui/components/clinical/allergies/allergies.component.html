@@ -3,169 +3,153 @@
         <div class="acc-tab">
             <span>Allergies</span>
             <div>
-            <button *ngIf="mode=='view'" pButton type="button" label="Edit" class="btn btn-primary"
-                (click)="$event.stopPropagation();edit()" [disabled]="isEditable"></button>
-            <button *ngIf="mode=='edit'" pButton type="button" label="Save" class="btn btn-primary"
-                (click)="$event.stopPropagation();save()"></button>
-            <button *ngIf="mode=='edit'" pButton type="button" label="Cancel" class="btn btn-secondary ml-2"
-                (click)="$event.stopPropagation();close()"></button>
+                <button *ngIf="mode=='view'" pButton type="button" label="Edit" class="btn btn-primary"
+                    (click)="$event.stopPropagation();edit()" [disabled]="isEditable"></button>
+                <button *ngIf="mode=='edit'" pButton type="button" label="Save" class="btn btn-primary"
+                    (click)="$event.stopPropagation();save()"></button>
+                <button *ngIf="mode=='edit'" pButton type="button" label="Cancel" class="btn btn-secondary ml-2"
+                    (click)="$event.stopPropagation();close()"></button>
             </div>
         </div>
-</p-header>
-<!-- <div *ngIf="mode=='view'">
+    </p-header>
+    <!-- <div *ngIf="mode=='view'">
     <p>The resident has no known allergies/ adverse reactions</p>
 </div> -->
-<div>
-    <h5>Allergies notes</h5>
-    <div class="row" *ngIf="mode=='view'">
-        <div class="col-md-12">
-           {{Clinical.IsUnknownAllergies? Clinical.UnknownReason : ''}}             
-        </div>
-        <div class="col-md-12">
-            {{allergies}}             
-         </div>
-        <div class="col-md-12">
-           {{Clinical.AllergyNotes}}             
-        </div>
-    </div>
-    <div class="row" *ngIf="mode=='edit'">
-        <div class="col-md-6">
-            <!-- <label class="form-label">Allergy notes</label> -->
-            <input pInputText type="text" class="form-control" name="AllergyNotes" [(ngModel)]="Clinical.AllergyNotes" placeholder="" /> 
-            
-        </div>
-    </div>
-    <h5 *ngIf="mode=='edit'" class="m-0 mb-3">Allergy details</h5>    
-    <div class="row" *ngIf="mode=='edit'">
-        <div class="col-md-6">
-            <!-- <label class="form-label">Allergy details</label> -->
-            <div class="field-checkbox">
-                <p-checkbox [disabled]="isDisabled" [(ngModel)]="Clinical.IsUnknownAllergies" [binary]="true" name="DNAR" inputId="binary"></p-checkbox>
-                <label for="binary">The resident has no known allergies</label>
+    <div>
+        <h5>Allergies notes</h5>
+        <div class="row" *ngIf="mode=='view'">
+            <div class="col-md-12">
+                {{Clinical.IsUnknownAllergies? Clinical.UnknownReason : ''}}
+            </div>
+            <div class="col-md-12">
+                {{allergies}}
+            </div>
+            <div class="col-md-12">
+                {{Clinical.AllergyNotes}}
             </div>
         </div>
-    </div>
-    <div class="row" *ngIf="mode=='edit' && Clinical.IsUnknownAllergies">
-        <div class="col-md-6">
-            <p-dropdown name="ddlUnknownAllergies" [options]="stlstUnknownAllergies" [(ngModel)]="Clinical.UnknownReason" optionLabel="name"
-                optionValue="code" [filter]="true" [style]="{width: '100%'}">
-            </p-dropdown>
-        </div>
-    </div>
-    <div class="row" *ngIf="!Clinical.IsUnknownAllergies">    
-        <div class="col-auto mt-2">Status</div>
-        <div class="col-md-4">          
-            <p-dropdown name="ddlStatus" [options]="stlstStatus" [(ngModel)]="status" optionLabel="name"
-            (onChange)="onChangeFilterStatus()" optionValue="code" [filter]="true" [style]="{width: '100%'}">
-            </p-dropdown>
-        </div>
-        <div class="col-auto mt-2">Show Column for:</div>
-        <div class="col-md-4 mt-2">            
-            <div class="field-radiobutton">                                
-                <p-radioButton name="rbMode" value="Created" [(ngModel)]="showcolumn"
-                    >
-                </p-radioButton>
-                <label class="pl-1 mr-2 radiolabel rbtext">Created by</label>
-                <p-radioButton name="rbMode" value="Closed" [(ngModel)]="showcolumn"
-                    >
-                </p-radioButton>
-                <label class="pl-1 radiolabel rbtext">Closed by</label>
+        <div class="row" *ngIf="mode=='edit'">
+            <div class="col-md-6">
+                <!-- <label class="form-label">Allergy notes</label> -->
+                <input pInputText type="text" class="form-control" name="AllergyNotes"
+                    [(ngModel)]="Clinical.AllergyNotes" placeholder="" />
+
             </div>
         </div>
-        <div class="col-md-12">   
-            <div class="table-responsive">
-            <table class="table table-bordered mb-0" style="width:100%;">
-                <thead>
-                    <tr>
-                        <th>Allergen</th>
-                        <th>Reaction</th>
-                        <th>Status</th>
-                        <th *ngIf="showcolumn=='Created'">Created By</th>
-                        <th *ngIf="showcolumn=='Created'">Created Date</th>
-                        <th *ngIf="showcolumn=='Closed'">Closed By</th>
-                        <th *ngIf="showcolumn=='Closed'">Closed Date</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr *ngFor="let item of lstExtraItemDetails;let i=index">                       
-                        <td> 
-                            <span *ngIf="lstExtraItemDetails[i].Mode!='add'">
-                                {{item.Allergen}}
-                            </span>
-                            <input *ngIf="lstExtraItemDetails[i].Mode=='add'" pInputText type="text" class="form-control" name="allergen_{{lstExtraItemDetails[i].Sequence}}" [(ngModel)]="lstExtraItemDetails[i].Allergen" placeholder="" /> 
-                                      
-                        </td>
-                        <td>  
-                            <span *ngIf="lstExtraItemDetails[i].Mode!='add'">
-                                {{item.Reaction}}
-                            </span> 
-                            <input *ngIf="lstExtraItemDetails[i].Mode=='add'" pInputText type="text" class="form-control" name="reaction_{{lstExtraItemDetails[i].Sequence}}" [(ngModel)]="lstExtraItemDetails[i].Reaction" placeholder="" /> 
-                                   
-                        </td>
-                        <td>
-                            <a class="btn btn-secondary" *ngIf="lstExtraItemDetails[i].Mode=='add'" href="javascript: void(0);"
-                                (click)="RemoveExtraItemDetails(lstExtraItemDetails[i].Sequence)">
-                                Delete
-                            </a>
-                            <span *ngIf="mode=='view' || (item.Status !=='Active' && item.Mode=='edit') ">
-                                {{item.Status}}
-                            </span> 
-                            <p-dropdown *ngIf="mode=='edit' && item.Status=='Active' && lstExtraItemDetails[i].Mode!='add'" name="ddlStatus_{{lstExtraItemDetails[i].Sequence}}"
-                            [options]="lstExtraItemDetails[i].StatusList" [(ngModel)]="lstExtraItemDetails[i].Status"
-                            appendTo="body" optionLabel="name" optionValue="code" [filter]="true"
-                            (onChange)="onChangeStatus(lstExtraItemDetails[i].Sequence, lstExtraItemDetails[i].Status)" [style]="{width: '100%'}">                            
-                        </p-dropdown>
-                        </td>
-                        <td *ngIf="showcolumn=='Created'">
-                            <span *ngIf="lstExtraItemDetails[i].Mode!='add'">
-                                {{item.CreatedName}}
-                            </span>
-                        </td>
-                        <td *ngIf="showcolumn=='Created'"><span *ngIf="lstExtraItemDetails[i].Mode!='add'">{{item.CreatedOn | date:customDateFormat.DEF_DATE_TIME}}</span></td>
-                        <td *ngIf="showcolumn=='Closed'"><span *ngIf="lstExtraItemDetails[i].Mode!='add'">{{item.ModifiedName}}</span></td>
-                        <td *ngIf="showcolumn=='Closed'"><span *ngIf="lstExtraItemDetails[i].Mode!='add'">{{item.ModifiedOn | date:customDateFormat.DEF_DATE_TIME}}</span></td>                        
-                    </tr>
-                </tbody>
-            </table>
-        </div> 
+        <h5 *ngIf="mode=='edit'" class="m-0 mb-3">Allergy details</h5>
+        <div class="row" *ngIf="mode=='edit'">
+            <div class="col-md-6">
+                <!-- <label class="form-label">Allergy details</label> -->
+                <div class="field-checkbox">
+                    <p-checkbox [disabled]="isDisabled" [(ngModel)]="Clinical.IsUnknownAllergies" [binary]="true"
+                        name="DNAR" inputId="binary"></p-checkbox>
+                    <label for="binary">The resident has no known allergies</label>
+                </div>
+            </div>
         </div>
-        <div class="col-md-3 mt-3" *ngIf="mode=='edit'">
-            <button pButton type="button" label="Add new allergy" class="btn btn-primary"
-                (click)="AddNewAllergy()"></button>
-            
-        </div>       
+        <div class="row" *ngIf="mode=='edit' && Clinical.IsUnknownAllergies">
+            <div class="col-md-6">
+                <p-dropdown name="ddlUnknownAllergies" [options]="stlstUnknownAllergies"
+                    [(ngModel)]="Clinical.UnknownReason" optionLabel="name" optionValue="code" [filter]="true"
+                    [style]="{width: '100%'}">
+                </p-dropdown>
+            </div>
+        </div>
+        <div class="row" *ngIf="!Clinical.IsUnknownAllergies">
+            <div class="col-auto mt-2">Status</div>
+            <div class="col-md-4">
+                <p-dropdown name="ddlStatus" [options]="stlstStatus" [(ngModel)]="status" optionLabel="name"
+                    (onChange)="onChangeFilterStatus()" optionValue="code" [filter]="true" [style]="{width: '100%'}">
+                </p-dropdown>
+            </div>
+            <div class="col-auto mt-2">Show Column for:</div>
+            <div class="col-md-4 mt-2">
+                <div class="field-radiobutton">
+                    <p-radioButton name="rbMode" value="Created" [(ngModel)]="showcolumn">
+                    </p-radioButton>
+                    <label class="pl-1 mr-2 radiolabel rbtext">Created by</label>
+                    <p-radioButton name="rbMode" value="Closed" [(ngModel)]="showcolumn">
+                    </p-radioButton>
+                    <label class="pl-1 radiolabel rbtext">Closed by</label>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="table-responsive">
+                    <table class="table table-bordered mb-0" style="width:100%;">
+                        <thead>
+                            <tr>
+                                <th>Allergen</th>
+                                <th>Reaction</th>
+                                <th>Status</th>
+                                <th *ngIf="showcolumn=='Created'">Created By</th>
+                                <th *ngIf="showcolumn=='Created'">Created Date</th>
+                                <th *ngIf="showcolumn=='Closed'">Closed By</th>
+                                <th *ngIf="showcolumn=='Closed'">Closed Date</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let item of lstExtraItemDetails;let i=index">
+                                <td>
+                                    <span *ngIf="lstExtraItemDetails[i].Mode!='add'">
+                                        {{item.Allergen}}
+                                    </span>
+                                    <input *ngIf="lstExtraItemDetails[i].Mode=='add'" pInputText type="text"
+                                        class="form-control" name="allergen_{{lstExtraItemDetails[i].Sequence}}"
+                                        [(ngModel)]="lstExtraItemDetails[i].Allergen" placeholder="" />
+
+                                </td>
+                                <td>
+                                    <span *ngIf="lstExtraItemDetails[i].Mode!='add'">
+                                        {{item.Reaction}}
+                                    </span>
+                                    <input *ngIf="lstExtraItemDetails[i].Mode=='add'" pInputText type="text"
+                                        class="form-control" name="reaction_{{lstExtraItemDetails[i].Sequence}}"
+                                        [(ngModel)]="lstExtraItemDetails[i].Reaction" placeholder="" />
+
+                                </td>
+                                <td>
+                                    <a class="btn btn-secondary" *ngIf="lstExtraItemDetails[i].Mode=='add'"
+                                        href="javascript: void(0);"
+                                        (click)="RemoveExtraItemDetails(lstExtraItemDetails[i].Sequence)">
+                                        Delete
+                                    </a>
+                                    <span *ngIf="mode=='view' || (item.Status !=='Active' && item.Mode=='edit') ">
+                                        {{item.Status}}
+                                    </span>
+                                    <p-dropdown
+                                        *ngIf="mode=='edit' && item.Status=='Active' && lstExtraItemDetails[i].Mode!='add'"
+                                        name="ddlStatus_{{lstExtraItemDetails[i].Sequence}}"
+                                        [options]="lstExtraItemDetails[i].StatusList"
+                                        [(ngModel)]="lstExtraItemDetails[i].Status" appendTo="body" optionLabel="name"
+                                        optionValue="code" [filter]="true"
+                                        (onChange)="onChangeStatus(lstExtraItemDetails[i].Sequence, lstExtraItemDetails[i].Status)"
+                                        [style]="{width: '100%'}">
+                                    </p-dropdown>
+                                </td>
+                                <td *ngIf="showcolumn=='Created'">
+                                    <span *ngIf="lstExtraItemDetails[i].Mode!='add'">
+                                        {{item.CreatedName}}
+                                    </span>
+                                </td>
+                                <td *ngIf="showcolumn=='Created'"><span
+                                        *ngIf="lstExtraItemDetails[i].Mode!='add'">{{item.CreatedOn |
+                                        date:customDateFormat.DEF_DATE_TIME}}</span></td>
+                                <td *ngIf="showcolumn=='Closed'"><span
+                                        *ngIf="lstExtraItemDetails[i].Mode!='add'">{{item.ModifiedName}}</span></td>
+                                <td *ngIf="showcolumn=='Closed'"><span
+                                        *ngIf="lstExtraItemDetails[i].Mode!='add'">{{item.ModifiedOn |
+                                        date:customDateFormat.DEF_DATE_TIME}}</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="col-md-3 mt-3" *ngIf="mode=='edit'">
+                <button pButton type="button" label="Add new allergy" class="btn btn-primary"
+                    (click)="AddNewAllergy()"></button>
+
+            </div>
+        </div>
+
     </div>
-    <!-- <div class="row  m-0">
-        <div class="col-md-6">
-            <p-table class="ColumnFilterTable" #dt [value]="lstallergies" [rowHover]="true"
-                [globalFilterFields]="['name']" [scrollable]="true" scrollHeight="calc(100vh - 400px)"
-                responsiveLayout="scroll">
-                <ng-template pTemplate="emptymessage" let-columns>
-                    <tr>
-                        <td [attr.colspan]="columns?.length">
-                            No records found
-                        </td>
-                    </tr>
-                </ng-template>
-                <ng-template pTemplate="header">
-                    <tr>
-                        <th></th>
-                        <th>Name</th>
-                    </tr>
-                </ng-template>
-                <ng-template pTemplate="body" let-item let-i="rowIndex" let-expanded="expanded">
-                    <tr>
-                        <td>
-                            <p-checkbox name="ChkItemCheck_{{i}}" [(ngModel)]="item.checkAccess" [binary]="true"
-                                inputId="binary"></p-checkbox>
-                        </td>
-                        <td>
-                            {{item.name}}
-                        </td>
-                    </tr>
-                </ng-template>
-            </p-table>
-        </div>
-    </div> -->
-</div>
 </p-accordionTab>

@@ -104,15 +104,6 @@ export class CareEatsAndTreatsComponent extends AppComponentBase implements OnIn
       this.ResetModel();
     }
 
-    // this.GetResidentStatusOfCapacity();
-    // this.GetChoking();
-    // this.GetFood();
-    // this.GetFluids();
-    // this.GetActionNeededToReduceChoking();
-    // this.GetGoalsToAchieve();
-    // this.GetProfessionalInput();
-    // this.GetRiskOfMalnutrition();
-    // this.GetStrategyToManageNutrition();
   }
 
   GetCareAssessmentEatsAndDrinksDetails(formId: string) {
