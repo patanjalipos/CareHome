@@ -17,13 +17,13 @@ export class PositiveBehaviourSupportService {
   GetPositiveBehaviourSupportDetails(fromId: any) {
     let reqHeader = new HttpHeaders({
       'Content-Type': 'application/json',
-      'Access-Control-Allow-Origin': environment.BaseUriAdmin,
+      'Access-Control-Allow-Origin': environment.BaseUriUser,
       'Authorization': 'Bearer ' + localStorage.getItem('token')
     });
     let params = new HttpParams();
     params = params.append('fromId', fromId);
     return this._httpclient.get<any>(
-      environment.BaseUriAdmin + 'api/Admin/GetPositiveBehaviourSupportDetails',
+      environment.BaseUriUser + 'api/User/GetPositiveBehaviourSupportDetails',
       { headers: reqHeader, params: params }
     );
   }
@@ -32,7 +32,7 @@ export class PositiveBehaviourSupportService {
   AddInsertUpdatePositiveBehaviourSupportForm(PositiveBehaviourSupportFormsData: any): Observable<any> {
     let reqHeader = new HttpHeaders({
       'Content-Type': 'application/json',
-      'Access-Control-Allow-Origin': environment.BaseUriAdmin,
+      'Access-Control-Allow-Origin': environment.BaseUriUser,
       'Authorization': 'Bearer ' + localStorage.getItem('token')
     });
     let params = new HttpParams();
@@ -40,7 +40,7 @@ export class PositiveBehaviourSupportService {
     console.log("last data");
     console.log(data);
 
-    return this._httpclient.post<any>(environment.BaseUriAdmin + 'api/Admin/AddInsertUpdatePositiveBehaviourSupportForm', data, { headers: reqHeader, params: params }
+    return this._httpclient.post<any>(environment.BaseUriUser + 'api/User/AddInsertUpdatePositiveBehaviourSupportForm', data, { headers: reqHeader, params: params }
     );
   }
 } 

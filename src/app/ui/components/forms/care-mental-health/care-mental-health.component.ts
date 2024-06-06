@@ -5,8 +5,8 @@ import { ConstantsService, CustomDateFormat, FormTypes } from 'src/app/ui/servic
 import { UtilityService } from 'src/app/utility/utility.service';
 import { CareMentalHealthService } from './care-mental-health.service';
 import { Observable, catchError, forkJoin, map, of } from 'rxjs';
-import { MasterService } from 'src/app/ui/service/master.service';
 import { DatePipe } from '@angular/common';
+import { UserService } from 'src/app/ui/service/user.service';
 
 @Component({
     selector: 'app-care-mental-health',
@@ -41,7 +41,7 @@ export class CareMentalHealthComponent extends AppComponentBase implements OnIni
     lstSexuality: any[] = [];
     lstGoalsToAchieve: any[] = [];
 
-    constructor(private _ConstantServices: ConstantsService, private route: ActivatedRoute, private _UtilityService: UtilityService, private _CareMentalHealth: CareMentalHealthService, private _MasterServices: MasterService, private datePipte: DatePipe) {
+    constructor(private _ConstantServices: ConstantsService, private route: ActivatedRoute, private _UtilityService: UtilityService, private _CareMentalHealth: CareMentalHealthService, private _UserServices: UserService, private datePipte: DatePipe) {
 
         super();
 
@@ -158,7 +158,7 @@ export class CareMentalHealthComponent extends AppComponentBase implements OnIni
 
     getDropdownMasterLists(formMasterId: string, dropdownName: string, status: number): Observable<any> {
         this._UtilityService.showSpinner();
-        return this._MasterServices.GetDropDownMasterList(formMasterId, dropdownName, status).pipe(
+        return this._UserServices.GetDropDownMasterList(formMasterId, dropdownName, status).pipe(
             map((response) => {
                 this._UtilityService.hideSpinner();
                 if (response.actionResult.success) {

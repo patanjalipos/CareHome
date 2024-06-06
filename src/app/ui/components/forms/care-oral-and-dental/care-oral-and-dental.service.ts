@@ -11,13 +11,13 @@ export class CareOralAndDentalService {
     GetCareOralAndDentalFormById(selectedFormID: string): Observable<any> {
         const reqHeader = new HttpHeaders({
             'Content-Type': 'application/json',
-            'Access-Control-Allow-Origin': environment.BaseUriAdmin,
+            'Access-Control-Allow-Origin': environment.BaseUriUser,
         });
         let params = new HttpParams();
         params = params.append('fromId', selectedFormID);
         return this._httpclient.get<any>(
-            environment.BaseUriAdmin +
-                'api/Admin/GetCareOralAndDentalFormById',
+            environment.BaseUriUser +
+                'api/User/GetCareOralAndDentalFormById',
             { headers: reqHeader, params: params }
         );
     }
@@ -25,14 +25,14 @@ export class CareOralAndDentalService {
     AddInsertUpdateFormData(formdata: any): Observable<any> {
         let reqHeader = new HttpHeaders({
             'Content-Type': 'application/json',
-            'Access-Control-Allow-Origin': environment.BaseUriAdmin,
+            'Access-Control-Allow-Origin': environment.BaseUriUser,
             'Authorization': 'Bearer ' + localStorage.getItem('token')
         });
         let params = new HttpParams();
         var data = JSON.stringify(formdata).toString();
         return this._httpclient.post<any>(
-            environment.BaseUriAdmin +
-                'api/Admin/InsertUpdateGetCareOralAndDentalForm',
+            environment.BaseUriUser +
+                'api/User/InsertUpdateGetCareOralAndDentalForm',
             data,
             { headers: reqHeader, params: params }
         );

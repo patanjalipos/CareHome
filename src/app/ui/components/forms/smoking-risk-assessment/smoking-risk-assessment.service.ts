@@ -14,13 +14,13 @@ export class SmokingRiskAssessmentService {
   GetSmokingRiskAssessmentDetails(fromId: any) {
     let reqHeader = new HttpHeaders({
       'Content-Type': 'application/json',
-      'Access-Control-Allow-Origin': environment.BaseUriAdmin,
+      'Access-Control-Allow-Origin': environment.BaseUriUser,
       'Authorization': 'Bearer ' + localStorage.getItem('token')
     });
     let params = new HttpParams();
     params = params.append('fromId', fromId);
     return this.httpclient.get<any>(
-      environment.BaseUriAdmin + 'api/Admin/GetSmokingRiskAssessmentDetails',
+      environment.BaseUriUser + 'api/User/GetSmokingRiskAssessmentDetails',
       { headers: reqHeader, params: params }
     );
   }
@@ -30,12 +30,12 @@ export class SmokingRiskAssessmentService {
   AddInsertUpdateSmokingRiskAssessmentForm(smokingRiskAssessmentFormData: any): Observable<any> {
     let reqHeader = new HttpHeaders({
       'Content-Type': 'application/json',
-      'Access-Control-Allow-Origin': environment.BaseUriAdmin,
+      'Access-Control-Allow-Origin': environment.BaseUriUser,
       'Authorization': 'Bearer ' + localStorage.getItem('token')
     });
     let params = new HttpParams();
     var data = JSON.stringify(smokingRiskAssessmentFormData).toString();
-    return this.httpclient.post<any>(environment.BaseUriAdmin + 'api/Admin/AddInsertUpdateSmokingRiskAssessmentForm', data, { headers: reqHeader, params: params }
+    return this.httpclient.post<any>(environment.BaseUriUser + 'api/User/AddInsertUpdateSmokingRiskAssessmentForm', data, { headers: reqHeader, params: params }
     );
   }
 }

@@ -14,10 +14,10 @@ import {
 } from 'src/app/ui/service/constants.service';
 import { AppComponentBase } from 'src/app/app-component-base';
 import { DataService } from 'src/app/ui/service/data-service.service';
-import { MasterService } from 'src/app/ui/service/master.service';
 import { UtilityService } from 'src/app/utility/utility.service';
 import { DatePipe } from '@angular/common';
 import { Observable, catchError, forkJoin, map, of } from 'rxjs';
+import { UserService } from 'src/app/ui/service/user.service';
 
 @Component({
     selector: 'app-accident-incident-near-miss-record',
@@ -49,7 +49,7 @@ export class AccidentIncidentNearMissRecordComponent
     lstEmergencyServices: any[] = [];
     constructor(
         private _ConstantServices: ConstantsService,
-        private _MasterServices: MasterService,
+        private _UserServices: UserService,
         private _UtilityService: UtilityService,
         private datePipte: DatePipe
     ) {
@@ -128,7 +128,7 @@ export class AccidentIncidentNearMissRecordComponent
         status: number
     ): Observable<any> {
         this._UtilityService.showSpinner();
-        return this._MasterServices
+        return this._UserServices
             .GetDropDownMasterList(formMasterId, dropdownName, status)
             .pipe(
                 map((response) => {
@@ -152,7 +152,7 @@ export class AccidentIncidentNearMissRecordComponent
 
     GetAccidentNearMissRecordDetails(formId: string) {
         this._UtilityService.showSpinner();
-        this.unsubscribe.add = this._MasterServices
+        this.unsubscribe.add = this._UserServices
             .GetAccidentNearMissRecordDetails(formId)
             .subscribe({
                 next: (data) => {
@@ -227,7 +227,7 @@ export class AccidentIncidentNearMissRecordComponent
             console.log(objectBody);
 
             this._UtilityService.showSpinner();
-            this.unsubscribe.add = this._MasterServices
+            this.unsubscribe.add = this._UserServices
                 .AddInsertUpdateAccidentNearMissRecordForm(objectBody)
                 .subscribe({
                     next: (data) => {

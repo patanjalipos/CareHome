@@ -15,13 +15,13 @@ export class MustStep5NutritionalManagementService {
   GetNutritionalManagementDetails(fromId: any) {
     let reqHeader = new HttpHeaders({
         'Content-Type': 'application/json',
-        'Access-Control-Allow-Origin': environment.BaseUriAdmin,
+        'Access-Control-Allow-Origin': environment.BaseUriUser,
         'Authorization': 'Bearer ' + localStorage.getItem('token')
     });
     let params = new HttpParams();
     params = params.append('fromId', fromId);
     return this._httpclient.get<any>(
-        environment.BaseUriAdmin + 'api/Admin/GetNutritionalManagementPlanForm',
+        environment.BaseUriUser + 'api/User/GetNutritionalManagementPlanForm',
         { headers: reqHeader, params: params }
     );
 }
@@ -31,15 +31,15 @@ InsertUpdateNutritionalManagementForm(
 ): Observable<any> {
     let reqHeader = new HttpHeaders({
         'Content-Type': 'application/json',
-        'Access-Control-Allow-Origin': environment.BaseUriAdmin,
+        'Access-Control-Allow-Origin': environment.BaseUriUser,
         'Authorization': 'Bearer ' + localStorage.getItem('token')
     });
     let params = new HttpParams();
     var data = JSON.stringify(NutritionalManagementFormsData).toString();
     console.log(data);
     return this._httpclient.post<any>(
-        environment.BaseUriAdmin +
-            'api/Admin/InsertUpdateNutritionalManagementPlanForm',
+        environment.BaseUriUser +
+            'api/User/InsertUpdateNutritionalManagementPlanForm',
         data,
         { headers: reqHeader, params: params }
     );
