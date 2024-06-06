@@ -13,10 +13,10 @@ import {
     CustomDateFormat,
     FormTypes,
 } from 'src/app/ui/service/constants.service';
-import { MasterService } from 'src/app/ui/service/master.service';
 import { UtilityService } from 'src/app/utility/utility.service';
 import { CareContinencePromotionService } from './care-continence-promotion.service';
 import { Observable, catchError, forkJoin, map, of } from 'rxjs';
+import { UserService } from 'src/app/ui/service/user.service';
 
 @Component({
     selector: 'app-care-continence-promotion',
@@ -60,7 +60,7 @@ export class CareContinencePromotionComponent
         private _ConstantServices: ConstantsService,
         private route: ActivatedRoute,
         private _UtilityService: UtilityService,
-        private _MasterServices: MasterService,
+        private _UserServices: UserService,
         private _FormService: CareContinencePromotionService,
     ) {
         super();
@@ -161,7 +161,7 @@ export class CareContinencePromotionComponent
 
     getDropdownMasterLists(formMasterId: string, dropdownName: string, status: number): Observable<any> {
         this._UtilityService.showSpinner();
-        return this._MasterServices.GetDropDownMasterList(formMasterId, dropdownName, status).pipe(
+        return this._UserServices.GetDropDownMasterList(formMasterId, dropdownName, status).pipe(
             map((response) => {
                 this._UtilityService.hideSpinner();
                 if (response.actionResult.success) {

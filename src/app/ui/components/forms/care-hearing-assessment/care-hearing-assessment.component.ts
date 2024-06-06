@@ -5,8 +5,8 @@ import { ConstantsService, CustomDateFormat, FormTypes } from 'src/app/ui/servic
 import { UtilityService } from 'src/app/utility/utility.service';
 import { CareHearingAssessmentService } from './care-hearing-assessment.service';
 import { Observable, catchError, forkJoin, map, of } from 'rxjs';
-import { MasterService } from 'src/app/ui/service/master.service';
 import { DatePipe } from '@angular/common';
+import { UserService } from 'src/app/ui/service/user.service';
 
 @Component({
   selector: 'app-care-hearing-assessment',
@@ -32,7 +32,7 @@ export class CareHearingAssessmentComponent extends AppComponentBase implements 
   lstAidsAssistance: any[] = []
   lstGoalsToHearing: any[] = []
 
-  constructor(private _ConstantServices: ConstantsService, private datePipte: DatePipe, private route: ActivatedRoute, private _UtilityService: UtilityService, private _CareHearing: CareHearingAssessmentService, private _MasterServices: MasterService) {
+  constructor(private _ConstantServices: ConstantsService, private datePipte: DatePipe, private route: ActivatedRoute, private _UtilityService: UtilityService, private _CareHearing: CareHearingAssessmentService, private _UserServices: UserService) {
 
     super();
 
@@ -128,7 +128,7 @@ export class CareHearingAssessmentComponent extends AppComponentBase implements 
   getDropdownMasterLists(formMasterId: string, dropdownName: string, status: number): Observable<any> {
     debugger
     this._UtilityService.showSpinner();
-    return this._MasterServices.GetDropDownMasterList(formMasterId, dropdownName, status).pipe(
+    return this._UserServices.GetDropDownMasterList(formMasterId, dropdownName, status).pipe(
       map((response) => {
         this._UtilityService.hideSpinner();
 

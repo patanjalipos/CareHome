@@ -4,6 +4,7 @@ import { MasterService } from '../../service/master.service';import { UtilitySer
 import { AppComponentBase } from 'src/app/app-component-base';
 import { ActivatedRoute } from '@angular/router';
 import { environment } from 'src/environments/environment';
+import { UserService } from '../../service/user.service';
 
 @Component({
   selector: 'app-resident-profile',
@@ -24,6 +25,7 @@ export class ResidentProfileComponent extends AppComponentBase implements OnInit
     private route: ActivatedRoute,
     private _ConstantServices: ConstantsService,
     private _MasterServices:MasterService,
+    private _UserServices:UserService,
     private _UtilityService: UtilityService,  
   ) {
     super();
@@ -48,7 +50,7 @@ export class ResidentProfileComponent extends AppComponentBase implements OnInit
   LoadResidentDetails(userid, admissionid)
   {
     this._UtilityService.showSpinner();
-    this.unsubscribe.add = this._MasterServices.GetResidentDetailsById(userid, admissionid)
+    this.unsubscribe.add = this._UserServices.GetResidentDetailsById(userid, admissionid)
       .subscribe
       ({
         next:(data) => {

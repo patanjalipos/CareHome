@@ -13,14 +13,14 @@ export class CareResidentContactsListService {
     GetCareResidentContactsListFormById(selectedFormID: string): Observable<any> {
         const reqHeader = new HttpHeaders({
             'Content-Type': 'application/json',
-            'Access-Control-Allow-Origin': environment.BaseUriAdmin,
+            'Access-Control-Allow-Origin': environment.BaseUriUser,
             'Authorization': 'Bearer ' + localStorage.getItem('token')
         });
         let params = new HttpParams();
         params = params.append('fromId', selectedFormID);
         return this._httpclient.get<any>(
-            environment.BaseUriAdmin +
-                'api/Admin/GetCareResidentContactsListFormById',
+            environment.BaseUriUser +
+                'api/User/GetCareResidentContactsListFormById',
             { headers: reqHeader, params: params }
         );
     }
@@ -28,7 +28,7 @@ export class CareResidentContactsListService {
     AddInsertUpdateFormData(formdata: any): Observable<any> {
         let reqHeader = new HttpHeaders({
             'Content-Type': 'application/json',
-            'Access-Control-Allow-Origin': environment.BaseUriAdmin,
+            'Access-Control-Allow-Origin': environment.BaseUriUser,
             'Authorization': 'Bearer ' + localStorage.getItem('token')
         });   
         
@@ -37,8 +37,8 @@ export class CareResidentContactsListService {
         let params = new HttpParams();
         var data = JSON.stringify(formdata).toString();
         return this._httpclient.post<any>(
-            environment.BaseUriAdmin +
-                'api/Admin/InsertUpdateCareResidentContactsListForm',
+            environment.BaseUriUser +
+                'api/User/InsertUpdateCareResidentContactsListForm',
             data,
             { headers: reqHeader, params: params }
         );

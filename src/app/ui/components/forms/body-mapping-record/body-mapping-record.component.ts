@@ -7,7 +7,7 @@ import { DataService } from 'src/app/ui/service/data-service.service';
 import { UtilityService } from 'src/app/utility/utility.service';
 import { BodyMappingRecordService } from './body-mapping-record.service';
 import { Observable, catchError, forkJoin, map, of } from 'rxjs';
-import { MasterService } from 'src/app/ui/service/master.service';
+import { UserService } from 'src/app/ui/service/user.service';
 
 @Component({
     selector: 'app-body-mapping-record',
@@ -39,7 +39,7 @@ export class BodyMappingRecordComponent extends AppComponentBase implements OnIn
         private _UtilityService: UtilityService,
         private _DataService: DataService,
         private _BodyMappingService: BodyMappingRecordService,
-        private _MasterServices: MasterService
+        private _UserServices: UserService
     ) {
         super();
         this._ConstantServices.ActiveMenuName = 'Body Mapping Record Form';
@@ -64,7 +64,7 @@ export class BodyMappingRecordComponent extends AppComponentBase implements OnIn
 
     getDropdownMasterLists(formMasterId: string, dropdownName: string, status: number): Observable<any> {
         this._UtilityService.showSpinner();
-        return this._MasterServices.GetDropDownMasterList(formMasterId, dropdownName, status).pipe(
+        return this._UserServices.GetDropDownMasterList(formMasterId, dropdownName, status).pipe(
             map((response) => {
                 this._UtilityService.hideSpinner();
                 if (response.actionResult.success) {

@@ -101,7 +101,6 @@ export class ChartComponent extends AppComponentBase implements OnInit {
     dateRangeChange(calendar: Calendar) {
         if (this.rangeDates[0] !== null && this.rangeDates[1] !== null) {
             calendar.overlayVisible = false;
-            //this.GetDailyVitalAlertLog();
         }
     }
 
@@ -126,7 +125,7 @@ export class ChartComponent extends AppComponentBase implements OnInit {
                 ModifiedOn: selectedChartdata.ModifiedOn,
             };
             this.ShowModel();
-        } else alert('Kindly select Chart Type');
+        } else this._UtilityService.showErrorAlert('Select Chart Type');
     }
 
     ShowModel() {

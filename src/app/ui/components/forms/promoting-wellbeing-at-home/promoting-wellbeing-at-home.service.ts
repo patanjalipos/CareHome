@@ -14,13 +14,13 @@ export class PromotingWellbeingAtHomeService {
   GetPromotingWellbeingAtHomeDetails(fromId: any) {
     let reqHeader = new HttpHeaders({
       'Content-Type': 'application/json',
-      'Access-Control-Allow-Origin': environment.BaseUriAdmin,
+      'Access-Control-Allow-Origin': environment.BaseUriUser,
       'Authorization': 'Bearer ' + localStorage.getItem('token')
     });
     let params = new HttpParams();
     params = params.append('fromId', fromId);
     return this._httpclient.get<any>(
-      environment.BaseUriAdmin + 'api/Admin/GetPromotingWellbeingAtHomeDetails',
+      environment.BaseUriUser + 'api/User/GetPromotingWellbeingAtHomeDetails',
       { headers: reqHeader, params: params }
     );
   }
@@ -31,13 +31,13 @@ export class PromotingWellbeingAtHomeService {
 
     let reqHeader = new HttpHeaders({
       'Content-Type': 'application/json',
-      'Access-Control-Allow-Origin': environment.BaseUriAdmin,
+      'Access-Control-Allow-Origin': environment.BaseUriUser,
       'Authorization': 'Bearer ' + localStorage.getItem('token')
     });
     let params = new HttpParams();
     var data = JSON.stringify(PromotingWellbeingAtHomeFormData).toString();
     
-    return this._httpclient.post<any>(environment.BaseUriAdmin + 'api/Admin/AddInsertUpdatePromotingWellbeingAtHomeForm', data, { headers: reqHeader, params: params }
+    return this._httpclient.post<any>(environment.BaseUriUser + 'api/User/AddInsertUpdatePromotingWellbeingAtHomeForm', data, { headers: reqHeader, params: params }
     );
   }
 
