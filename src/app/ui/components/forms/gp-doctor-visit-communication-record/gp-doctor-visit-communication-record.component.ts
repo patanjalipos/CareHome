@@ -3,9 +3,9 @@ import { NgForm } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { AppComponentBase } from 'src/app/app-component-base';
 import { ConstantsService, CustomDateFormat, FormTypes } from 'src/app/ui/service/constants.service';
-import { MasterService } from 'src/app/ui/service/master.service';
 import { UtilityService } from 'src/app/utility/utility.service';
 import { Observable, catchError, forkJoin, map, of } from 'rxjs';
+import { UserService } from 'src/app/ui/service/user.service';
 @Component({
   selector: 'app-gp-doctor-visit-communication-record',
   templateUrl: './gp-doctor-visit-communication-record.component.html',
@@ -32,7 +32,7 @@ export class GpDoctorVisitCommunicationRecordComponent extends AppComponentBase 
     private _UtilityService: UtilityService,
     private _ConstantServices: ConstantsService,
     private route: ActivatedRoute,
-    private _MasterServices: MasterService
+    private _UserServices: UserService
   ) {
     super();
     this._ConstantServices.ActiveMenuName = 'GP Doctor Visit Communication Record';
@@ -77,7 +77,7 @@ export class GpDoctorVisitCommunicationRecordComponent extends AppComponentBase 
 
   getDropdownMasterLists(formMasterId: string, dropdownName: string,status:number): Observable<any> {
     this._UtilityService.showSpinner();
-    return this._MasterServices.GetDropDownMasterList(formMasterId,dropdownName, status).pipe(
+    return this._UserServices.GetDropDownMasterList(formMasterId,dropdownName, status).pipe(
         map((response) => {
             this._UtilityService.hideSpinner();
             if (response.actionResult.success) {
@@ -94,32 +94,10 @@ export class GpDoctorVisitCommunicationRecordComponent extends AppComponentBase 
         })
     );
 }
-
-  // GetFamilyRelayMaster() {
-  //   this._UtilityService.showSpinner();
-  //   this.unsubscribe.add = this._MasterServices
-  //       .GetFamilyRelayMaster(0)
-  //       .subscribe({
-  //           next: (data) => {
-  //               this._UtilityService.hideSpinner();
-  //               if (data.actionResult.success == true) {
-  //                   var tdata = JSON.parse(data.actionResult.result);
-  //                   tdata = tdata ? tdata : {};
-  //                   this.lstComRelayMaster = tdata;
-  //                   //console.log(this.PreAdmissionAssessmentFormsData);
-  //               } else {
-  //                   this.lstComRelayMaster = [];
-  //               }
-  //           },
-  //           error: (e) => {
-  //               this._UtilityService.hideSpinner();
-  //               this._UtilityService.showErrorAlert(e.message);
-  //           },
-  //       });
-  // }
+  
   GPDoctorVisitCommDetailsByid(formId: string) {
     this._UtilityService.showSpinner();
-    this.unsubscribe.add = this._MasterServices
+    this.unsubscribe.add = this._UserServices
       .GPDoctorVisitCommDetailsByid(formId)
       .subscribe({
         next: (data) => {
@@ -164,7 +142,7 @@ export class GpDoctorVisitCommunicationRecordComponent extends AppComponentBase 
         GPDoctorVisitCommunicationDetailsForm: this.GPDoctorVisitCommDetails,
       };
       this._UtilityService.showSpinner();
-      this.unsubscribe.add = this._MasterServices.AddUpdateGPDoctorVisitCommDetails(objectBody)
+      this.unsubscribe.add = this._UserServices.AddUpdateGPDoctorVisitCommDetails(objectBody)
         .subscribe({
           next: (data) => {
             this._UtilityService.hideSpinner();

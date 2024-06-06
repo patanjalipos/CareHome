@@ -3,9 +3,9 @@ import { ActivatedRoute } from '@angular/router';
 import { Observable, map, catchError, of, forkJoin } from 'rxjs';
 import { AppComponentBase } from 'src/app/app-component-base';
 import { ConstantsService, CustomDateFormat, FormTypes } from 'src/app/ui/service/constants.service';
-import { MasterService } from 'src/app/ui/service/master.service';
 import { UtilityService } from 'src/app/utility/utility.service';
 import { OralHealthRiskAndOralPlanService } from './oral-health-risk-and-oral-plan.service';
+import { UserService } from 'src/app/ui/service/user.service';
 
 @Component({
   selector: 'app-oral-health-risk-and-oral-plan',
@@ -39,7 +39,7 @@ export class OralHealthRiskAndOralPlanComponent extends AppComponentBase impleme
   lstOralHygieneMeasures: any[] = [];
   lstOralCareOutcomes: any[] = [];
   
-  constructor(private _ConstantServices: ConstantsService,private route: ActivatedRoute,private _UtilityService: UtilityService,private _MasterServices: MasterService, private _OralHealth: OralHealthRiskAndOralPlanService) {
+  constructor(private _ConstantServices: ConstantsService,private route: ActivatedRoute,private _UtilityService: UtilityService,private _UserServices: UserService, private _OralHealth: OralHealthRiskAndOralPlanService) {
 
     super();
 
@@ -145,7 +145,7 @@ export class OralHealthRiskAndOralPlanComponent extends AppComponentBase impleme
 
 getDropdownMasterLists(formMasterId: string, dropdownName: string,status:number): Observable<any> {
   this._UtilityService.showSpinner();
-  return this._MasterServices.GetDropDownMasterList(formMasterId,dropdownName, status).pipe(
+  return this._UserServices.GetDropDownMasterList(formMasterId,dropdownName, status).pipe(
       map((response) => {
           this._UtilityService.hideSpinner();
           if (response.actionResult.success) {

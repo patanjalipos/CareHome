@@ -3,9 +3,9 @@ import { ActivatedRoute } from '@angular/router';
 import { Observable, catchError, forkJoin, map, of } from 'rxjs';
 import { AppComponentBase } from 'src/app/app-component-base';
 import { ConstantsService, CustomDateFormat, FormTypes } from 'src/app/ui/service/constants.service';
-import { MasterService } from 'src/app/ui/service/master.service';
 import { UtilityService } from 'src/app/utility/utility.service';
 import { ThePoolActivityLevelService } from './the-pool-activity-level.service';
+import { UserService } from 'src/app/ui/service/user.service';
 
 @Component({
   selector: 'app-the-pool-activity-level',
@@ -40,7 +40,7 @@ export class ThePoolActivityLevelComponent extends AppComponentBase implements O
   lstSensoryActivityLevel: any[] = [];
   lstReflexActivityLevel: any[] = [];
 
-  constructor(private _ConstantServices: ConstantsService,private route: ActivatedRoute,private _UtilityService: UtilityService,private _MasterServices: MasterService,private _PoolActivity: ThePoolActivityLevelService) {
+  constructor(private _ConstantServices: ConstantsService,private route: ActivatedRoute,private _UtilityService: UtilityService,private _UserServices: UserService,private _PoolActivity: ThePoolActivityLevelService) {
 
     super();
 
@@ -143,7 +143,7 @@ this.isEditable = this.preSelectedFormData.isEditable;
 
 getDropdownMasterLists(formMasterId: string, dropdownName: string,status:number): Observable<any> {
   this._UtilityService.showSpinner();
-  return this._MasterServices.GetDropDownMasterList(formMasterId,dropdownName, status).pipe(
+  return this._UserServices.GetDropDownMasterList(formMasterId,dropdownName, status).pipe(
       map((response) => {
           this._UtilityService.hideSpinner();
           if (response.actionResult.success) {

@@ -14,9 +14,9 @@ import {
     CustomDateFormat,
     FormTypes,
 } from 'src/app/ui/service/constants.service';
-import { MasterService } from 'src/app/ui/service/master.service';
 import { UtilityService } from 'src/app/utility/utility.service';
 import { FASTStrokeAssessmentService } from './f-a-s-t-stroke-assessment.service';
+import { UserService } from 'src/app/ui/service/user.service';
 
 @Component({
     selector: 'app-f-a-s-t-stroke-assessment',
@@ -52,7 +52,7 @@ export class FASTStrokeAssessmentComponent
         private _ConstantServices: ConstantsService,
         private route: ActivatedRoute,
         private _UtilityService: UtilityService,
-        private _MasterService: MasterService,
+        private _UserService: UserService,
         private _FormService: FASTStrokeAssessmentService
     ) {
         super();
@@ -124,7 +124,7 @@ export class FASTStrokeAssessmentComponent
         dropDownName: string
     ): Observable<any> {
         this._UtilityService.showSpinner();
-        return this._MasterService
+        return this._UserService
             .GetDropDownMasterList(formMasterId, dropDownName, 1)
             .pipe(
                 map((response) => {

@@ -3,6 +3,7 @@ import { ConstantsService, CustomDateFormat, UserTypes } from 'src/app/ui/servic
 import { UtilityService } from 'src/app/utility/utility.service';
 import { AppComponentBase } from 'src/app/app-component-base';
 import { MasterService } from 'src/app/ui/service/master.service';
+import { UserService } from 'src/app/ui/service/user.service';
 
 @Component({
   selector: 'app-first-power-of-attorney',
@@ -20,6 +21,7 @@ export class FirstPowerOfAttorneyComponent extends AppComponentBase implements O
   constructor(private _ConstantServices: ConstantsService,
     private _MasterServices: MasterService,
     private _UtilityService: UtilityService,
+    private _UserServices :UserService
   ) {
     super();
   }
@@ -66,7 +68,7 @@ export class FirstPowerOfAttorneyComponent extends AppComponentBase implements O
   GetContactFirstAttorneyById(admissionid) {
     this.Contact.statementtype = "Insert";
     this._UtilityService.showSpinner();
-    this.unsubscribe.add = this._MasterServices.GetContactFirstAttorneyById(admissionid)
+    this.unsubscribe.add = this._UserServices.GetContactFirstAttorneyById(admissionid)
       .subscribe({
         next: (data) => {
           this._UtilityService.hideSpinner();
@@ -91,7 +93,7 @@ export class FirstPowerOfAttorneyComponent extends AppComponentBase implements O
       this.Contact.ModifiedBy = localStorage.getItem('userId');
       this.Contact.Telephone = this.Contact.Telephone?.toString() || null;
       this._UtilityService.showSpinner();
-      this.unsubscribe.add = this._MasterServices.AddInsertUpdateContactFirstAttorney(this.Contact)
+      this.unsubscribe.add = this._UserServices.AddInsertUpdateContactFirstAttorney(this.Contact)
         .subscribe
         ({
           next: (data) => {

@@ -3,6 +3,7 @@ import { ConstantsService, CustomDateFormat, UserTypes } from 'src/app/ui/servic
 import { UtilityService } from 'src/app/utility/utility.service';
 import { AppComponentBase } from 'src/app/app-component-base';
 import { MasterService } from 'src/app/ui/service/master.service';
+import { UserService } from 'src/app/ui/service/user.service';
 
 @Component({
   selector: 'app-responsible-person-contact',
@@ -13,13 +14,14 @@ export class ResponsiblePersonContactComponent extends AppComponentBase implemen
   @Input() mode: string = 'view';
   @Input() userid: any = null;
   @Input() admissionid: any = null;
-  loginId:any=localStorage.getItem('userId'); 
-  Contact:any = <any>{};
-  lstCountryMaster: any[]=[];
+  loginId: any = localStorage.getItem('userId');
+  Contact: any = <any>{};
+  lstCountryMaster: any[] = [];
   isEditable: boolean = true;
   constructor(private _ConstantServices: ConstantsService,
     private _MasterServices: MasterService,
     private _UtilityService: UtilityService,
+    private _UserServices: UserService,
   ) {
     super();
 
@@ -31,10 +33,10 @@ export class ResponsiblePersonContactComponent extends AppComponentBase implemen
     }
   }
 
-  ngOnChanges(changes: SimpleChanges): void {  
+  ngOnChanges(changes: SimpleChanges): void {
     this.LoadCountryList();
     if (this.userid != null && this.admissionid != null) {
-      this.GetContactResponsiblePersonById(this.admissionid);      
+      this.GetContactResponsiblePersonById(this.admissionid);
     }
   }
 
@@ -52,37 +54,33 @@ export class ResponsiblePersonContactComponent extends AppComponentBase implemen
         this._UtilityService.showErrorAlert(e.message);
       },
     });
-  } 
+  }
 
-  edit()
-  {
-    this.mode='edit';
+  edit() {
+    this.mode = 'edit';
     if (this.userid != null && this.admissionid != null) {
       //this.GetContactResponsiblePersonById(this.admissionid);      
     }
-    else
-    {
+    else {
       this._UtilityService.showWarningAlert("Resident admission details are missing.");
-      this.mode='view';
+      this.mode = 'view';
     }
-  } 
-  onChangeIsPrimary(event)
-  {
-    if(event.checked)
-    this.GetContactPrimaryById();
+  }
+  onChangeIsPrimary(event) {
+    if (event.checked)
+      this.GetContactPrimaryById();
 
   }
   GetContactPrimaryById() {
-    this._UtilityService.showSpinner();   
-    this.unsubscribe.add = this._MasterServices.GetContactPrimaryById(this.admissionid)  
+    this._UtilityService.showSpinner();
+    this.unsubscribe.add = this._UserServices.GetContactPrimaryById(this.admissionid)
       .subscribe({
-        next:(data) => {
-          this._UtilityService.hideSpinner();          
+        next: (data) => {
+          this._UtilityService.hideSpinner();
           if (data.actionResult.success == true) {
             var tdata = JSON.parse(data.actionResult.result);
             tdata = tdata ? tdata : [];
-            if(tdata)
-            {
+            if (tdata) {
               this.Contact.ContactNote = tdata.ContactNote;
               this.Contact.FirstName = tdata.FirstName;
               this.Contact.LastName = tdata.LastName;
@@ -97,10 +95,10 @@ export class ResponsiblePersonContactComponent extends AppComponentBase implemen
               this.Contact.Town = tdata.Town;
               this.Contact.County = tdata.County;
               this.Contact.CountryId = tdata.CountryId;
-              this.Contact.PostCode = tdata.PostCode;   
+              this.Contact.PostCode = tdata.PostCode;
 
             }
-                
+
           }
         },
         error: (e) => {
@@ -108,18 +106,18 @@ export class ResponsiblePersonContactComponent extends AppComponentBase implemen
           this._UtilityService.showErrorAlert(e.message);
         },
       });
-  }  
+  }
   GetContactResponsiblePersonById(admissionid) {
     this.Contact.statementtype = "Insert";
-    this._UtilityService.showSpinner();   
-    this.unsubscribe.add = this._MasterServices.GetContactResponsiblePersonById(admissionid)  
+    this._UtilityService.showSpinner();
+    this.unsubscribe.add = this._UserServices.GetContactResponsiblePersonById(admissionid)
       .subscribe({
-        next:(data) => {
-          this._UtilityService.hideSpinner();          
+        next: (data) => {
+          this._UtilityService.hideSpinner();
           if (data.actionResult.success == true) {
             var tdata = JSON.parse(data.actionResult.result);
             tdata = tdata ? tdata : [];
-            this.Contact = tdata;       
+            this.Contact = tdata;
             //console.log('this.Contact', this.Contact);     
             this.Contact.statementtype = "Update";
           }
@@ -129,19 +127,18 @@ export class ResponsiblePersonContactComponent extends AppComponentBase implemen
           this._UtilityService.showErrorAlert(e.message);
         },
       });
-  }  
-  save()
-  {
-    if (this.userid != null && this.admissionid != null) {      
+  }
+  save() {
+    if (this.userid != null && this.admissionid != null) {
       this.Contact.UserId = this.userid;
       this.Contact.ResidentAdmissionInfoId = this.admissionid;
       this.Contact.ModifiedBy = localStorage.getItem('userId');
       this.Contact.Mobile = this.Contact.Mobile?.toString() || null;
       this.Contact.HomeTelephone = this.Contact.HomeTelephone?.toString() || null;
       this.Contact.WorkTelephone = this.Contact.WorkTelephone?.toString() || null;
-     
+
       this._UtilityService.showSpinner();
-      this.unsubscribe.add = this._MasterServices.AddInsertUpdateContactResponsiblePerson(this.Contact)
+      this.unsubscribe.add = this._UserServices.AddInsertUpdateContactResponsiblePerson(this.Contact)
         .subscribe
         ({
           next: (data) => {
@@ -155,14 +152,12 @@ export class ResponsiblePersonContactComponent extends AppComponentBase implemen
           },
         });
     }
-    else
-    {
+    else {
       this._UtilityService.showWarningAlert("Resident admission details are missing.");
     }
   }
-  close()
-  {
-    this.mode='view'
+  close() {
+    this.mode = 'view'
   }
 
 }

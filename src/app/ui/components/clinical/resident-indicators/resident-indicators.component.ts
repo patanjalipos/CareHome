@@ -3,6 +3,7 @@ import { ConstantsService } from 'src/app/ui/service/constants.service';
 import { MasterService } from 'src/app/ui/service/master.service';
 import { UtilityService } from 'src/app/utility/utility.service';
 import { AppComponentBase } from 'src/app/app-component-base';
+import { UserService } from 'src/app/ui/service/user.service';
 
 @Component({
   selector: 'app-resident-indicators',
@@ -25,6 +26,7 @@ export class ResidentIndicatorsComponent extends AppComponentBase implements OnI
   constructor(
     private _ConstantServices: ConstantsService,
     private _MasterServices:MasterService,
+    private _UserServices:UserService,
     private _UtilityService: UtilityService) 
     { 
     super();
@@ -124,7 +126,7 @@ export class ResidentIndicatorsComponent extends AppComponentBase implements OnI
     this.lstResidentIndicators = [];   
     this.lstResidentIndicatorsFilter = []; 
     this._UtilityService.showSpinner();   
-    this.unsubscribe.add = this._MasterServices.GetClinicalIndicatorById(admissionid)  
+    this.unsubscribe.add = this._UserServices.GetClinicalIndicatorById(admissionid)  
       .subscribe({
         next:(data) => {
           this._UtilityService.hideSpinner();          
@@ -168,7 +170,7 @@ export class ResidentIndicatorsComponent extends AppComponentBase implements OnI
     this.Clinical.indicatorDTOs = selectedExtraItemDetails;
       //console.log('Clinical', this.Clinical);
       this._UtilityService.showSpinner();
-      this.unsubscribe.add = this._MasterServices.AddInsertUpdateClinicalIndicator(this.Clinical)
+      this.unsubscribe.add = this._UserServices.AddInsertUpdateClinicalIndicator(this.Clinical)
         .subscribe
         ({
           next: (data) => {
