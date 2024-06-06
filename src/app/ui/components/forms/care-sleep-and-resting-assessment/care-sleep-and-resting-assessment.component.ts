@@ -3,10 +3,10 @@ import { ActivatedRoute } from '@angular/router';
 import { Observable, map, catchError, of, forkJoin } from 'rxjs';
 import { AppComponentBase } from 'src/app/app-component-base';
 import { ConstantsService, CustomDateFormat, FormTypes } from 'src/app/ui/service/constants.service';
-import { MasterService } from 'src/app/ui/service/master.service';
 import { UtilityService } from 'src/app/utility/utility.service';
 import { CareSleepAndRestingAssessmentService } from './care-sleep-and-resting-assessment.service';
 import { DatePipe } from '@angular/common';
+import { UserService } from 'src/app/ui/service/user.service';
 
 @Component({
   selector: 'app-care-sleep-and-resting-assessment',
@@ -35,7 +35,7 @@ export class CareSleepAndRestingAssessmentComponent extends AppComponentBase imp
   lstGoalsToAchieve: any[] = [];
   lstStrategyToManageCheck: any[] = [];
 
-  constructor(private _ConstantServices: ConstantsService,private route: ActivatedRoute,private _UtilityService: UtilityService,private _MasterServices: MasterService, private _CareSleepAndRest: CareSleepAndRestingAssessmentService,private datePipe: DatePipe) {
+  constructor(private _ConstantServices: ConstantsService,private route: ActivatedRoute,private _UtilityService: UtilityService,private _UserServices: UserService, private _CareSleepAndRest: CareSleepAndRestingAssessmentService,private datePipe: DatePipe) {
 
     super();
 
@@ -128,7 +128,7 @@ this.isEditable = this.preSelectedFormData.isEditable;
 
 getDropdownMasterLists(formMasterId: string, dropdownName: string,status:number): Observable<any> {
   this._UtilityService.showSpinner();
-  return this._MasterServices.GetDropDownMasterList(formMasterId,dropdownName, status).pipe(
+  return this._UserServices.GetDropDownMasterList(formMasterId,dropdownName, status).pipe(
       map((response) => {
           this._UtilityService.hideSpinner();
           if (response.actionResult.success) {

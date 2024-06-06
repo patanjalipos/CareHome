@@ -14,9 +14,9 @@ import {
     CustomDateFormat,
     FormTypes,
 } from 'src/app/ui/service/constants.service';
-import { MasterService } from 'src/app/ui/service/master.service';
 import { UtilityService } from 'src/app/utility/utility.service';
 import { CareSpeechLanguageSsessmentService } from './care-speech-language-ssessment.service';
+import { UserService } from 'src/app/ui/service/user.service';
 
 @Component({
     selector: 'app-care-speech-language-ssessment',
@@ -55,7 +55,7 @@ export class CareSpeechLanguageSsessmentComponent
         private _ConstantServices: ConstantsService,
         private route: ActivatedRoute,
         private _UtilityService: UtilityService,
-        private _MasterService: MasterService,
+        private _UserService: UserService,
         private _FormService: CareSpeechLanguageSsessmentService
     ) {
         super();
@@ -137,7 +137,7 @@ export class CareSpeechLanguageSsessmentComponent
         dropDownName: string
     ): Observable<any> {
         this._UtilityService.showSpinner();
-        return this._MasterService
+        return this._UserService
             .GetDropDownMasterList(formMasterId, dropDownName, 1)
             .pipe(
                 map((response) => {

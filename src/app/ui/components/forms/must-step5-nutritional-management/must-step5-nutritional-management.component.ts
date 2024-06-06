@@ -4,9 +4,9 @@ import { ActivatedRoute } from '@angular/router';
 import { Observable, catchError, forkJoin, map, of } from 'rxjs';
 import { AppComponentBase } from 'src/app/app-component-base';
 import { ConstantsService, CustomDateFormat, FormTypes } from 'src/app/ui/service/constants.service';
-import { MasterService } from 'src/app/ui/service/master.service';
 import { UtilityService } from 'src/app/utility/utility.service';
 import { MustStep5NutritionalManagementService } from './must-step5-nutritional-management.service';
+import { UserService } from 'src/app/ui/service/user.service';
 
 @Component({
   selector: 'app-must-step5-nutritional-management',
@@ -29,7 +29,7 @@ export class MustStep5NutritionalManagementComponent extends AppComponentBase im
   lstNutritionalAims: any[] = [];
   lstInterventions: any[] = [];
 
-  constructor(private _ConstantServices: ConstantsService,private route: ActivatedRoute,private _UtilityService: UtilityService,private _MasterServices : MasterService, private datePipe: DatePipe,private _Nutritional: MustStep5NutritionalManagementService) {
+  constructor(private _ConstantServices: ConstantsService,private route: ActivatedRoute,private _UtilityService: UtilityService,private _UserServices : UserService, private datePipe: DatePipe,private _Nutritional: MustStep5NutritionalManagementService) {
 
     super();
     this._ConstantServices.ActiveMenuName = "Nutritional Management Plan Form";
@@ -115,7 +115,7 @@ export class MustStep5NutritionalManagementComponent extends AppComponentBase im
 
 getDropdownMasterLists(formMasterId: string, dropdownName: string,status:number): Observable<any> {
   this._UtilityService.showSpinner();
-  return this._MasterServices.GetDropDownMasterList(formMasterId,dropdownName, status).pipe(
+  return this._UserServices.GetDropDownMasterList(formMasterId,dropdownName, status).pipe(
       map((response) => {
           this._UtilityService.hideSpinner();
           if (response.actionResult.success) {
