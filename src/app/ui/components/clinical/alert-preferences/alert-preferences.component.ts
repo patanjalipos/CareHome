@@ -3,6 +3,7 @@ import { ConstantsService } from 'src/app/ui/service/constants.service';
 import { MasterService } from 'src/app/ui/service/master.service';
 import { UtilityService } from 'src/app/utility/utility.service';
 import { AppComponentBase } from 'src/app/app-component-base';
+import { UserService } from 'src/app/ui/service/user.service';
 
 @Component({
   selector: 'app-alert-preferences',
@@ -21,10 +22,11 @@ export class AlertPreferencesComponent extends AppComponentBase implements OnIni
   constructor(
     private _ConstantServices: ConstantsService,
     private _MasterServices: MasterService,
+    private _UserServices: UserService,
     private _UtilityService: UtilityService) {
     super();
   }
-  
+
   ngOnInit(): void {
     if (this.userid != null && this.userid != undefined && this.admissionid != null && this.admissionid != undefined) {
       this.isEditable = false;
@@ -58,7 +60,7 @@ export class AlertPreferencesComponent extends AppComponentBase implements OnIni
 
   GetClinicalAlertPreferencesById(admissionid) {
     this._UtilityService.showSpinner();
-    this.unsubscribe.add = this._MasterServices.GetClinicalAlertPreferencesById(admissionid)
+    this.unsubscribe.add = this._UserServices.GetClinicalAlertPreferencesById(admissionid)
       .subscribe({
         next: (data) => {
           this._UtilityService.hideSpinner();
@@ -114,15 +116,15 @@ export class AlertPreferencesComponent extends AppComponentBase implements OnIni
         }
         selectedExtraItemDetails.push(jsonObject);
       });
-      if (selectedExtraItemDetails?.length==0) {
+      if (selectedExtraItemDetails?.length == 0) {
         this._UtilityService.showWarningAlert("Please select atleast one record");
         return;
-      } 
+      }
       //console.log('selectedExtraItemDetails', selectedExtraItemDetails);    
       this.Clinical.alertDTOs = selectedExtraItemDetails;
       //console.log('Clinical', this.Clinical);
       this._UtilityService.showSpinner();
-      this.unsubscribe.add = this._MasterServices.AddInsertUpdateAlertPreferences(this.Clinical)
+      this.unsubscribe.add = this._UserServices.AddInsertUpdateAlertPreferences(this.Clinical)
         .subscribe
         ({
           next: (data) => {
