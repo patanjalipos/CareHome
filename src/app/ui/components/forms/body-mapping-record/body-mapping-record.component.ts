@@ -76,7 +76,7 @@ export class BodyMappingRecordComponent extends AppComponentBase implements OnIn
             catchError((error) => {
                 this._UtilityService.hideSpinner();
                 this._UtilityService.showErrorAlert(error.message);
-                alert(error.message);
+             
                 return of([]); // Returning empty array in case of error
             })
         );
@@ -110,7 +110,7 @@ export class BodyMappingRecordComponent extends AppComponentBase implements OnIn
                         this.BodyMappingFormsData = tdata;
                         this.BodyMappingFormsData.DateTimeObservation = new Date(this.BodyMappingFormsData.DateTimeObservation);
                         this.BodyMappingFormsData.NextReviewDate = new Date(this.BodyMappingFormsData.NextReviewDate);
-                        //console.log(this.PreAdmissionAssessmentFormsData);
+                        
                     } else {
                         this.BodyMappingFormsData = {};
                     }

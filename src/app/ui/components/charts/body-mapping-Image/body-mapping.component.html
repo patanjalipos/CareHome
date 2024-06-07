@@ -1,0 +1,180 @@
+<div style="position: relative">
+    <img src="assets/Images/bodymap.png" usemap="#bodymap" alt="Human Body" />
+    <map name="bodymap">
+        <area
+            shape="poly"
+            coords="54,26,64,26,66,36,51,37"
+            (click)="selectBodyPart($event, 'Forehead')"
+            alt="Forehead"
+            title="Forehead"
+        />
+        <area
+            shape="poly"
+            coords="40,68,79,68,70,89,46,89"
+            (click)="selectBodyPart($event, 'Chest')"
+            alt="Chest"
+            title="Chest"
+        />
+        <area
+            shape="poly"
+            coords="48,124,70,123,71,150,47,151"
+            (click)="selectBodyPart($event, 'Abdomen')"
+            alt="Abdomen"
+            title="Abdomen"
+        />
+        <area
+            shape="poly"
+            coords="41,159,57,160,51,247,43,246"
+            (click)="selectBodyPart($event, 'Right Leg (Front)')"
+            alt="Right Leg (Front)"
+            title="Right Leg (Front)"
+        />
+        <area
+            shape="poly"
+            coords="61,158,77,157,76,246,66,248"
+            (click)="selectBodyPart($event, 'Left Leg (Front)')"
+            alt="Left Leg (Front)"
+            title="Left Leg (Front)"
+        />
+        <area
+            shape="poly"
+            coords="233,81,247,81,246,138,236,143"
+            (click)="selectBodyPart($event, 'Right Arm')"
+            alt="Right Arm"
+            title="Right Arm"
+        />
+        <area
+            shape="poly"
+            coords="293,82,308,83,302,144,288,142"
+            (click)="selectBodyPart($event, 'Left Arm')"
+            alt="Left Arm"
+            title="Left Arm"
+        />
+        <area
+            shape="poly"
+            coords="162,57,183,68,177,100,148,102,140,69"
+            (click)="selectBodyPart($event, 'Upper Back')"
+            alt="Upper Back"
+            title="Upper Back"
+        />
+        <area
+            shape="poly"
+            coords="152,106,172,105,176,130,150,131"
+            (click)="selectBodyPart($event, 'Lower Back')"
+            alt="Lower Back"
+            title="Lower Back"
+        />
+        <area
+            shape="poly"
+            coords="149,133,176,132,178,149,146,150"
+            (click)="selectBodyPart($event, 'Hips')"
+            alt="Hips"
+            title="Hips"
+        />
+        <area
+            shape="poly"
+            coords="164,153,178,152,176,189,168,189"
+            (click)="selectBodyPart($event, 'Right Hamstrings')"
+            alt="Right Hamstrings"
+            title="Right Hamstrings"
+        />
+        <area
+            shape="poly"
+            coords="145,153,159,154,156,189,148,190"
+            (click)="selectBodyPart($event, 'Left Hamstrings')"
+            alt="Left Hamstrings"
+            title="Left Hamstrings"
+        />
+        <area
+            shape="poly"
+            coords="167,202,178,201,176,240,169,242"
+            (click)="selectBodyPart($event, 'Right Calve')"
+            alt="Right Calve"
+            title="Right Calve"
+        />
+        <area
+            shape="poly"
+            coords="144,202,157,203,154,243,148,243,146,227"
+            (click)="selectBodyPart($event, 'Left Calve')"
+            alt="Left Calve"
+            title="Left Calve"
+        />
+        <area
+            shape="poly"
+            coords="291,65,303,60,305,78,288,80"
+            (click)="selectBodyPart($event, 'Left Shoulder')"
+            alt="Left Shoulder"
+            title="Left Shoulder"
+        />
+        <area
+            shape="poly"
+            coords="235,61,243,62,252,76,233,79"
+            (click)="selectBodyPart($event, 'Right Shoulder')"
+            alt="Right Shoulder"
+            title="Right Shoulder"
+        />
+        <area
+            shape="poly"
+            coords="77,111,90,108,88,140"
+            (click)="selectBodyPart($event, 'Left Fore Arm')"
+            alt="Left Fore Arm"
+            title="Left Fore Arm"
+        />
+        <area
+            shape="poly"
+            coords="31,105,40,109,35,129,29,140,27,125"
+            (click)="selectBodyPart($event, 'Right Fore Arm')"
+            alt="Right Fore Arm"
+            title="Right Fore Arm"
+        />
+        <area
+            shape="poly"
+            coords="288,186,304,184,305,202,292,204"
+            (click)="selectBodyPart($event, 'Left Knee')"
+            alt="Left Knee"
+            title="Left Knee"
+        />
+        <area
+            shape="poly"
+            coords="236,188,248,186,246,207,233,207"
+            (click)="selectBodyPart($event, 'Right Knee')"
+            alt="Right Knee"
+            title="Right Knee"
+        />
+        <area
+            shape="poly"
+            coords="280,257,302,247,303,258,287,263"
+            (click)="selectBodyPart($event, 'Left Foot')"
+            alt="Left Foot"
+            title="Left Foot"
+        />
+        <area
+            shape="poly"
+            coords="235,249,260,257,254,262,234,259"
+            (click)="selectBodyPart($event, 'Right Foot')"
+            alt="Right Foot"
+            title="Right Foot"
+        />
+        <area
+            shape="poly"
+            coords="45,92,73,91,70,120,47,122"
+            (click)="selectBodyPart($event, 'Stomach')"
+            alt="Stomach"
+            title="Stomach"
+        />
+    </map>
+    <div
+        *ngFor="let part of selectedParts"        
+        [ngStyle]="{ top: part.top + 'px', left: part.left + 'px' }"
+        style="
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background-color: red;
+            border-radius: 50%;
+        "
+    ></div>
+</div>
+<ul>
+    <li *ngFor="let part of selectedParts">{{ part.name }}</li>
+</ul>

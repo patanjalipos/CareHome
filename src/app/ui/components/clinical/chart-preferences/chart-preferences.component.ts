@@ -106,7 +106,7 @@ export class ChartPreferencesComponent extends AppComponentBase implements OnIni
             this.rowGroupMetadata[ChartHeadName] = { index: i, size: 1 };
         }
       }
-      //console.log("data---", this.rowGroupMetadata)      
+   
     }    
   }
   save()
@@ -130,9 +130,9 @@ export class ChartPreferencesComponent extends AppComponentBase implements OnIni
       this._UtilityService.showWarningAlert("Please select atleast one record");
       return;
     } 
-    //console.log('selectedExtraItemDetails', selectedExtraItemDetails);    
+     
     this.Clinical.chartDTOs = selectedExtraItemDetails;
-      //console.log('Clinical', this.Clinical);
+    
       this._UtilityService.showSpinner();
       this.unsubscribe.add = this._UserServices.AddInsertUpdateChartPreferences(this.Clinical)
         .subscribe
