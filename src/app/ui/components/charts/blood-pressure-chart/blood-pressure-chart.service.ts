@@ -18,7 +18,7 @@ export class BloodPressureChartService {
     });
     let params = new HttpParams();
     var data = JSON.stringify(BloodPressureChartForm).toString();
-    console.log(data);
+
     return this._httpclient.post<any>(
       environment.BaseUriUser +
       'api/User/AddInsertUpdateBloodPressureChart',

@@ -36,7 +36,6 @@ InsertUpdateDistrictNurseVisitForm(
     });
     let params = new HttpParams();
     var data = JSON.stringify(DistrictNurseFormsData).toString();
-    console.log(data);
     return this._httpclient.post<any>(
         environment.BaseUriUser +
             'api/User/InsertUpdateDistrictNurseVisitForm',

@@ -36,7 +36,6 @@ InsertUpdateProfessionalVisitForm(
     });
     let params = new HttpParams();
     var data = JSON.stringify(ProfVisitFormsData).toString();
-    console.log(data);
     return this._httpclient.post<any>(
         environment.BaseUriUser +
             'api/User/InsertUpdateProfessionalVisitForm',

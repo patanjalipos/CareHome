@@ -254,7 +254,7 @@ export class AdminDashboardComponent extends AppComponentBase implements OnInit 
                         var tdata = JSON.parse(data.actionResult.result);
                         tdata = tdata ? tdata : [];
                         this.lstTaskPlanner = tdata;
-                        //  console.log(this.lstTaskPlanner);
+                       
                     }
                     else {
                         this.lstTaskPlanner = [];

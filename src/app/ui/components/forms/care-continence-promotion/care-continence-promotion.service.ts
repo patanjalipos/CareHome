@@ -33,7 +33,7 @@ export class CareContinencePromotionService {
         });
         let params = new HttpParams();
         var data = JSON.stringify(formdata).toString();
-        console.log(data);
+      
         debugger
         return this._httpclient.post<any>(
             environment.BaseUriUser +

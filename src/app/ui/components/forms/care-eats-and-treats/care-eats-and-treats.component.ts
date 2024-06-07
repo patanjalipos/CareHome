@@ -117,7 +117,7 @@ export class CareEatsAndTreatsComponent extends AppComponentBase implements OnIn
                     var tdata = JSON.parse(data.actionResult.result);
                     tdata = tdata ? tdata : {};
                     this.CareAssessmentEatsAndDrinksFormsData = tdata;
-                    // console.log(this.CareAssessmentEatsAndDrinksFormsData)
+                   
                 } else {
                     this.CareAssessmentEatsAndDrinksFormsData = {};
                 }
@@ -143,7 +143,7 @@ getDropdownMasterLists(formMasterId: string, dropdownName: string,status:number)
         catchError((error) => {
             this._UtilityService.hideSpinner();
             this._UtilityService.showErrorAlert(error.message);
-            alert(error.message);
+         
             return of([]); // Returning empty array in case of error
         })
     );
@@ -178,7 +178,7 @@ if (this.userId != null && this.residentAdmissionInfoId != null && this.loginId!
       };
       
 
-      console.log(objectBody);
+    
 
     this._UtilityService.showSpinner();
     this.unsubscribe.add = this._CareEatsAndDrinks

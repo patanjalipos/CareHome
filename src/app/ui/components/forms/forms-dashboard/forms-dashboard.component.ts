@@ -127,7 +127,6 @@ export class FormsDashboardComponent
                         var tdata = JSON.parse(data.actionResult.result);
                         tdata = tdata ? tdata : [];
                         this.formDashboardList = tdata;
-                        console.log(this.formDashboardList);
                         
                     } else {
                         this.formDashboardList = [];

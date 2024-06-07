@@ -36,7 +36,6 @@ AddInsertUpdateRiskAssessmentWaterlowPressureForm(
     });
     let params = new HttpParams();
     var data = JSON.stringify(RiskAssessmentWaterFlowPressureFormsData).toString();
-    console.log(data);
     return this._httpclient.post<any>(
         environment.BaseUriUser +
             'api/User/InsertUpdateRiskAssessmentWaterlowPressureForm',

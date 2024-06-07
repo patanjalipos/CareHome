@@ -110,7 +110,7 @@ export class AcuteCarePlanInfectionPreventionAndControlComponent extends AppComp
             catchError((error) => {
                 this._UtilityService.hideSpinner();
                 this._UtilityService.showErrorAlert(error.message);
-                alert(error.message);
+             
                 return of([]); // Returning empty array in case of error
             })
         );
@@ -127,7 +127,7 @@ export class AcuteCarePlanInfectionPreventionAndControlComponent extends AppComp
                         var tdata = JSON.parse(data.actionResult.result);
                         tdata = tdata ? tdata : {};
                         this.AcuteCarePlanInfectionFormsData = tdata;
-                        //console.log(this.PreAdmissionAssessmentFormsData);
+                      
                     } else {
                         this.AcuteCarePlanInfectionFormsData = {};
                     }

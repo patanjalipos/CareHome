@@ -51,7 +51,7 @@ export class IndicatorGroupMasterComponent extends AppComponentBase implements O
               this.dataTable.reset();
               this.filteredValuesLength = this.lstMaster?.length;
               }            
-          //  console.log(this.lstmaster);
+         
           }
           else {
             this.lstMaster = [];            

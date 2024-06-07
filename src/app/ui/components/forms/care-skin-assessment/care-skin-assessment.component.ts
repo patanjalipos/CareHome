@@ -147,12 +147,9 @@ export class CareSkinAssessmentComponent extends AppComponentBase implements OnI
           if (data.actionResult.success == true) {
             var tdata = JSON.parse(data.actionResult.result);
             tdata = tdata ? tdata : {};
-            console.log(tdata)
+         
             this.CareSkinAssessmentFormsData = tdata;
-            console.log(this.CareSkinAssessmentFormsData.CareAssessmentHearingFormId)
-
-            // console.log(this.CareAssessmentHearingFormsData.HearingDiagnosisCheck);
-
+            
           } else {
             this.CareSkinAssessmentFormsData = {};
           }
@@ -179,7 +176,7 @@ export class CareSkinAssessmentComponent extends AppComponentBase implements OnI
       catchError((error) => {
         this._UtilityService.hideSpinner();
         this._UtilityService.showErrorAlert(error.message);
-        alert(error.message);
+     
         return of([]); // Returning empty array in case of error
       })
     );
@@ -214,7 +211,7 @@ export class CareSkinAssessmentComponent extends AppComponentBase implements OnI
       };
 
 
-      console.log(objectBody);
+   
 
       this._UtilityService.showSpinner();
       this.unsubscribe.add = this._CareSkin

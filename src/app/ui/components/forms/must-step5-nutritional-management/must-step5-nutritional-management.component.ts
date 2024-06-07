@@ -94,12 +94,10 @@ export class MustStep5NutritionalManagementComponent extends AppComponentBase im
                 if (data.actionResult.success == true) {
                     var tdata = JSON.parse(data.actionResult.result);
                     tdata = tdata ? tdata : {};
-                    console.log(tdata)
+
                     this.NutritionalManagementFormsData = tdata;
-                    console.log(this.NutritionalManagementFormsData.CareAssessmentHearingFormId)
+
                     this.NutritionalManagementFormsData.ReviewDate = this.datePipe.transform(this.NutritionalManagementFormsData.ReviewDate,'MM/dd/yyyy');
-                    
-                    // console.log(this.CareAssessmentHearingFormsData.HearingDiagnosisCheck);
                     
                 } else {
                     this.NutritionalManagementFormsData = {};
@@ -161,9 +159,6 @@ if (this.userId != null && this.residentAdmissionInfoId != null && this.loginId!
           StatementType: this.StatementType,
           nutritionalManagementPlanForm: this.NutritionalManagementFormsData,
       };
-      
-
-      console.log(objectBody);
 
     this._UtilityService.showSpinner();
     this.unsubscribe.add = this._Nutritional

@@ -109,7 +109,7 @@ export class UtilityService {
       bytes[i] = binaryString.charCodeAt(i);
     }
     const hexString = Array.from(bytes.slice(0, 4)).map(b => b.toString(16).padStart(2, '0')).join('').toUpperCase();    
-   //console.log(hexString);
+
     if (hexString.startsWith('FFD8FF')) {
       return 'jpg'; // JPEG/JPG files
     } 

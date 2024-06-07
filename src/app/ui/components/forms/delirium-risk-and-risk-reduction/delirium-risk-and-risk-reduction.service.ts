@@ -36,7 +36,7 @@ export class DeliriumRiskAndRiskReductionService {
       });
       let params = new HttpParams();
       var data = JSON.stringify(DeliriumRiskFormsData).toString();
-      console.log(data);
+    
       return this._httpclient.post<any>(
           environment.BaseUriUser +
               'api/User/InsertUpdateDeliriumRiskAndRiskReductionForm',

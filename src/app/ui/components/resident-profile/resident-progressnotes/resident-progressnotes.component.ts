@@ -111,7 +111,7 @@ export class ResidentProgressnotesComponent extends AppComponentBase implements 
     this.AddNote = '';
   }
   submit() {
-    console.log(this.AddNote);
+ 
     this.AddNote.ProgressnotesType = this.UserEnteredNoteEnum.UserEnteredNotes;
     this.AddNote.CreatedBy = localStorage.getItem('userId');
     this.AddNote.ModifiedBy = localStorage.getItem('userId');

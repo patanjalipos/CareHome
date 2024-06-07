@@ -31,7 +31,7 @@ export class AppMenuComponent implements OnInit {
                             var tdata = JSON.parse(data.actionResult.result);
                             tdata = tdata ? tdata : [];
                             this.model = tdata;
-                            //console.log('Menu', this.model);
+                         
                             localStorage.removeItem('UerRoleAccess');
                             var tdata2 = JSON.parse(data.actionResult.result2);
                             tdata2 = tdata2 ? tdata2 : [];

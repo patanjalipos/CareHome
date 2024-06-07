@@ -109,7 +109,7 @@ export class PositiveBehaviourSupportComponent extends AppComponentBase implemen
       catchError((error) => {
         this._UtilityService.hideSpinner();
         this._UtilityService.showErrorAlert(error.message);
-        alert(error.message);
+ 
         return of([]); // Returning empty array in case of error
       })
     );
@@ -142,7 +142,6 @@ export class PositiveBehaviourSupportComponent extends AppComponentBase implemen
         PositiveBehaviourSupportForm: this.PositiveBehaviourSupportFormsData,
       };
 
-      console.log(objectBody);
 
       this._UtilityService.showSpinner();
       this.unsubscribe.add = this._positiveBehaviourSupport
@@ -185,12 +184,7 @@ export class PositiveBehaviourSupportComponent extends AppComponentBase implemen
           if (data.actionResult.success == true) {
             var tdata = JSON.parse(data.actionResult.result);
             tdata = tdata ? tdata : {};
-           
-            console.log("detail data");
-            
-            console.log(tdata);
             this.PositiveBehaviourSupportFormsData = tdata;
-           // this.PositiveBehaviourSupportFormsData.DateOfComplete = this.datePipte.transform(this.CareWishesFormsData.DateOfComplete,'MM/dd/yyyy')
 
           } else {
             this.PositiveBehaviourSupportFormsData = {};

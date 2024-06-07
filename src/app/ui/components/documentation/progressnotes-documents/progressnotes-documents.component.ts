@@ -83,7 +83,7 @@ export class ProgressnotesDocumentsComponent extends AppComponentBase implements
               this.LoadLocationMaster();
 
             });
-            //console.log('this.lstHomeMaster', this.lstHomeMaster);
+       
 
           }
           else {
@@ -116,8 +116,7 @@ export class ProgressnotesDocumentsComponent extends AppComponentBase implements
               this.dataTable.reset();
               this.filteredValuesLength = this.lstlocationMaster?.length;
             }
-            //this.LoadResidentList();      
-            // console.log(this.lstlocationMaster);
+           
           }
           else {
             this.lstlocationMaster = [];
@@ -155,7 +154,7 @@ export class ProgressnotesDocumentsComponent extends AppComponentBase implements
               this.dataTable.reset();
               this.filteredValuesLength = this.lstResidentMaster?.length;
             }
-            // console.log(this.lstResidentMaster);           
+                
           }
           else {
             this.lstResidentMaster = [];

@@ -93,10 +93,10 @@ this.isEditable = this.preSelectedFormData.isEditable;
                 if (data.actionResult.success == true) {
                     var tdata = JSON.parse(data.actionResult.result);
                     tdata = tdata ? tdata : {};
-                    console.log(tdata)
+                  
                     this.ProfVisitFormsData = tdata;
                     this.ProfVisitFormsData.HealthcareVisitDate = this.datePipte.transform(this.ProfVisitFormsData.HealthcareVisitDate,'MM/dd/yyyy');
-                    // console.log(this.CareAssessmentHearingFormsData.HearingDiagnosisCheck);
+                   
                     
                 } else {
                     this.ProfVisitFormsData = {};
@@ -123,7 +123,7 @@ getDropdownMasterLists(formMasterId: string, dropdownName: string,status:number)
       catchError((error) => {
           this._UtilityService.hideSpinner();
           this._UtilityService.showErrorAlert(error.message);
-          alert(error.message);
+     
           return of([]); // Returning empty array in case of error
       })
   );
@@ -156,8 +156,6 @@ if (this.userId != null && this.residentAdmissionInfoId != null && this.loginId!
           professionalVisitForm: this.ProfVisitFormsData
       };
       
-
-      console.log(objectBody);
 
     this._UtilityService.showSpinner();
     this.unsubscribe.add = this._ProfVisit
