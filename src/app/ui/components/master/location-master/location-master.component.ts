@@ -49,7 +49,7 @@ export class LocationMasterComponent extends AppComponentBase implements OnInit 
             var tdata = JSON.parse(data.actionResult.result);
             tdata = tdata ? tdata : [];
             this.lstHomeMaster = tdata;  
-            //console.log('lstHomeMaster',this.lstHomeMaster)          
+                
           }
           else {
             this.lstHomeMaster = [];            
@@ -76,7 +76,7 @@ export class LocationMasterComponent extends AppComponentBase implements OnInit 
               this.dataTable.reset();
               this.filteredValuesLength = this.lstMaster?.length;
               }            
-          //  console.log(this.lstmaster);
+       
           }
           else {
             this.lstMaster = [];            
@@ -100,7 +100,7 @@ export class LocationMasterComponent extends AppComponentBase implements OnInit 
             var tdata = JSON.parse(data.actionResult.result);
             tdata = tdata ? tdata : [];
             this.master = tdata;
-            console.log('1', this.master.homemasterid)
+       
             }
         },
         error: (e) => {

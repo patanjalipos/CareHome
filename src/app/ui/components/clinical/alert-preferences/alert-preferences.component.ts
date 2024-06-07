@@ -97,7 +97,7 @@ export class AlertPreferencesComponent extends AppComponentBase implements OnIni
             this.rowGroupMetadata[AlertHeadName] = { index: i, size: 1 };
         }
       }
-      //console.log("data---", this.rowGroupMetadata)      
+  
     }
   }
   save() {
@@ -120,9 +120,9 @@ export class AlertPreferencesComponent extends AppComponentBase implements OnIni
         this._UtilityService.showWarningAlert("Please select atleast one record");
         return;
       }
-      //console.log('selectedExtraItemDetails', selectedExtraItemDetails);    
+    
       this.Clinical.alertDTOs = selectedExtraItemDetails;
-      //console.log('Clinical', this.Clinical);
+ 
       this._UtilityService.showSpinner();
       this.unsubscribe.add = this._UserServices.AddInsertUpdateAlertPreferences(this.Clinical)
         .subscribe

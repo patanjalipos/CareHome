@@ -60,7 +60,7 @@ export class BaselineHealthInformationComponent extends AppComponentBase impleme
             var tdata = JSON.parse(data.actionResult.result);
             tdata = tdata ? tdata : [];
             this.Clinical = tdata;
-            //console.log('this.Clinical', this.Clinical);     
+            
             this.Clinical.StatementType = "Update";
           }
         },

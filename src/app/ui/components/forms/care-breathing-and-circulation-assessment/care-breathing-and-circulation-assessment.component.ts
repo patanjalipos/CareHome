@@ -133,7 +133,7 @@ export class CareBreathingAndCirculationAssessmentComponent extends AppComponent
             catchError((error) => {
                 this._UtilityService.hideSpinner();
                 this._UtilityService.showErrorAlert(error.message);
-                alert(error.message);
+               
                 return of([]); // Returning empty array in case of error
             })
         );
@@ -150,7 +150,7 @@ export class CareBreathingAndCirculationAssessmentComponent extends AppComponent
                         tdata = tdata ? tdata : {};
                         this.CareBreathAssFormsData = tdata;
                         this.CareBreathAssFormsData.NextReviewDate = new Date(this.CareBreathAssFormsData.NextReviewDate);
-                        //console.log(this.PreAdmissionAssessmentFormsData);
+                        
                     } else {
                         this.CareBreathAssFormsData = {};
                     }

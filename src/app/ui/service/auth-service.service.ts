@@ -42,7 +42,6 @@ export class AuthServiceService {
             'Access-Control-Allow-Origin': environment.BaseUriUser
         });
         let params = new HttpParams();
-        console.log(environment.BaseUriUser);
         var UserMasterNew:any=<any>{};
         UserMasterNew.LoginId=LoginId;
         UserMasterNew.Password=Password;

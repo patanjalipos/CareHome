@@ -90,8 +90,7 @@ export class FallRiskAssessmentComponent extends AppComponentBase implements OnI
       this.Clinical.ModifiedBy = this.loginId;
       var selectedExtraItemDetails = [];
       var result = this.lstFallRiskAssessment.filter(f => f.Isenable == true || f.ClinicalFallRiskAssessmentId != null);
-      console.log('lstFallRiskAssessment', this.lstFallRiskAssessment);
-      console.log('result', result);
+   
       result.forEach(x => {
         var jsonObject = {
           "ClinicalFallRiskAssessmentId": x.ClinicalFallRiskAssessmentId,
@@ -105,9 +104,9 @@ export class FallRiskAssessmentComponent extends AppComponentBase implements OnI
         this._UtilityService.showWarningAlert("Please select atleast one record");
         return;
       }
-      //console.log('selectedExtraItemDetails', selectedExtraItemDetails);    
+     
       this.Clinical.fallriskDTOs = selectedExtraItemDetails;
-      //console.log('Clinical', this.Clinical);
+   
       this._UtilityService.showSpinner();
       this.unsubscribe.add = this._UserServices.AddInsertUpdateFallRiskAssessment(this.Clinical)
         .subscribe

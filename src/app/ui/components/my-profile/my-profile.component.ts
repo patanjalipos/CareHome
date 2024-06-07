@@ -76,7 +76,7 @@ export class MyProfileComponent extends AppComponentBase implements OnInit {
     this.fileUploadFormAWB = this.formBuilder.group({
       myfileAWB: ['']
     });
-    console.log(this.userId);
+  
     this.LoadUserDetails(this.userId);
   }
 
@@ -134,7 +134,7 @@ export class MyProfileComponent extends AppComponentBase implements OnInit {
             var tdata = JSON.parse(data.actionResult.result);
             tdata = tdata ? tdata : [];   
             this.lstUser=tdata; 
-            console.log(this.lstUser);
+         
             this.MyProfileModel.Title= this.lstUser[0].Title;
               this.MyProfileModel.FirstName= this.lstUser[0].FirstName;
               this.MyProfileModel.LastName= this.lstUser[0].LastName;                             

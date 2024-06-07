@@ -134,7 +134,7 @@ export class CareFeelingFreshAndCleanComponent extends AppComponentBase implemen
             var tdata = JSON.parse(data.actionResult.result);
             tdata = tdata ? tdata : {};
             this.CareAssessmentFreshAndCleanFormsData = tdata;
-            // console.log(this.CareAssessmentEatsAndDrinksFormsData)
+          
           } else {
             this.CareAssessmentFreshAndCleanFormsData = {};
           }
@@ -160,7 +160,7 @@ export class CareFeelingFreshAndCleanComponent extends AppComponentBase implemen
       catchError((error) => {
         this._UtilityService.hideSpinner();
         this._UtilityService.showErrorAlert(error.message);
-        alert(error.message);
+    
         return of([]); // Returning empty array in case of error
       })
     );
@@ -196,7 +196,7 @@ export class CareFeelingFreshAndCleanComponent extends AppComponentBase implemen
       };
 
 
-      console.log(objectBody);
+  
 
       this._UtilityService.showSpinner();
       this.unsubscribe.add = this._CareFreshAndClean

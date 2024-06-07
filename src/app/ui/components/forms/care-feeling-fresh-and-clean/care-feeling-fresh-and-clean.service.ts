@@ -36,7 +36,7 @@ AddInsertUpdateCareAssessmentFreshAndCleanForm(
     });
     let params = new HttpParams();
     var data = JSON.stringify(CareAssessmentFreshAndCleanFormsData).toString();
-    console.log(data);
+  
     return this._httpclient.post<any>(
         environment.BaseUriUser +
             'api/User/AddInsertUpdateCareAssessmentFreshAndCleanForm',

@@ -24,7 +24,6 @@ export class ResidentlistComponent implements OnInit {
 
   ngOnInit(): void {
     this.careService.getResidentList().then(data => this.residents = data);
-    console.log('this.residents', this.residents);
     this.viewMode = true;
   }
   

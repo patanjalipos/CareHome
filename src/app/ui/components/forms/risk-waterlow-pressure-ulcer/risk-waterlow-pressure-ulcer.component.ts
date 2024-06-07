@@ -119,10 +119,7 @@ export class RiskWaterlowPressureUlcerComponent extends AppComponentBase impleme
           if (data.actionResult.success == true) {
             var tdata = JSON.parse(data.actionResult.result);
             tdata = tdata ? tdata : {};
-            console.log(tdata)
             this.RiskAssessmentWaterFlowPressureFormsData = tdata;
-            console.log(this.RiskAssessmentWaterFlowPressureFormsData.CareAssessmentHearingFormId)
-            // console.log(this.CareAssessmentHearingFormsData.HearingDiagnosisCheck);
 
           } else {
             this.RiskAssessmentWaterFlowPressureFormsData = {};
@@ -149,7 +146,7 @@ export class RiskWaterlowPressureUlcerComponent extends AppComponentBase impleme
       catchError((error) => {
         this._UtilityService.hideSpinner();
         this._UtilityService.showErrorAlert(error.message);
-        alert(error.message);
+    
         return of([]); // Returning empty array in case of error
       })
     );
@@ -181,8 +178,6 @@ export class RiskWaterlowPressureUlcerComponent extends AppComponentBase impleme
         riskAssWaterlowPressureForm: this.RiskAssessmentWaterFlowPressureFormsData,
       };
 
-
-      console.log(objectBody);
 
       this._UtilityService.showSpinner();
       this.unsubscribe.add = this._RiskAssWaterlow
