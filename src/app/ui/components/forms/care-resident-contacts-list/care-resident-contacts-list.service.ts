@@ -32,7 +32,7 @@ export class CareResidentContactsListService {
             'Authorization': 'Bearer ' + localStorage.getItem('token')
         });   
         
-        console.log(formdata);
+   
 
         let params = new HttpParams();
         var data = JSON.stringify(formdata).toString();

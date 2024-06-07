@@ -82,9 +82,7 @@ export class PromotingWellbeingAtHomeComponent extends AppComponentBase implemen
             var tdata = JSON.parse(data.actionResult.result);
             tdata = tdata ? tdata : {};
 
-            console.log("detail data");
-
-            console.log(tdata);
+        
             this.PromotingWellbeingAtHomeFormData = tdata;
             // this.PromotingWellbeingAtHomeFormData.DateOfComplete = this.datePipte.transform(this.PromotingWellbeingAtHomeFormData.DateOfComplete, 'MM/dd/yyyy')
 

@@ -78,7 +78,7 @@ export class SecondPowerOfAttorneyComponent extends AppComponentBase implements 
             var tdata = JSON.parse(data.actionResult.result);
             tdata = tdata ? tdata : [];
             this.Contact = tdata;       
-            //console.log('this.Contact', this.Contact);     
+           
             this.Contact.statementtype = "Update";
           }
         },

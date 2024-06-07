@@ -732,7 +732,7 @@ export class UserService {
     });
     let params = new HttpParams();
     var data = JSON.stringify(AccidentNearMissRecordFormsData).toString();
-    console.log(data);
+
     return this._httpclient.post<any>(
       environment.BaseUriUser +
         "api/User/AddInsertUpdateAccidentNearOrMissRecordForm",
@@ -753,7 +753,7 @@ export class UserService {
     });
     let params = new HttpParams();
     var data = JSON.stringify(AcuteCarePlanFormsData).toString();
-    console.log(data);
+
     return this._httpclient.post<any>(
       environment.BaseUriUser + "api/User/InsertUpdateAcuteCarePlanForm",
       data,
@@ -787,7 +787,7 @@ export class UserService {
     });
     let params = new HttpParams();
     var data = JSON.stringify(AcuteCarePlanFormsData).toString();
-    console.log(data);
+
     return this._httpclient.post<any>(
       environment.BaseUriUser + "api/User/InsertUpdateFamilyCommForm",
       data,

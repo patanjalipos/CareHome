@@ -10,11 +10,7 @@ export const environment = {
   BaseUriUser:'http://localhost:34435/',
   BaseUriAdmin:'http://localhost:36099/',
   BaseUriHome:'http://localhost:18157/'
-  // BaseURIFileServer:"https://hmstest.patanjaliwellness.com:31003/",
-  // BaseUriUser:'https://hmstest.patanjaliwellness.com:31008/user/',
-  // BaseUriAdmin:'https://hmstest.patanjaliwellness.com:31009/admin/',
-  // BaseUriHome:'https://hmstest.patanjaliwellness.com:31001/home/'
-
+ 
 };
 
 /*

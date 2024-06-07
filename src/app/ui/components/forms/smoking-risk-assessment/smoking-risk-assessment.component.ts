@@ -144,7 +144,7 @@ export class SmokingRiskAssessmentComponent extends AppComponentBase implements 
       catchError((error) => {
         this._UtilityService.hideSpinner();
         this._UtilityService.showErrorAlert(error.message);
-        alert(error.message);
+     
         return of([]); // Returning empty array in case of error
       })
     );
@@ -162,9 +162,7 @@ export class SmokingRiskAssessmentComponent extends AppComponentBase implements 
             var tdata = JSON.parse(data.actionResult.result);
             tdata = tdata ? tdata : {};
 
-            console.log("detail data");
-
-            console.log(tdata);
+          
             this.SmokingRiskAssessmentFormData = tdata;
             this.SmokingRiskAssessmentFormData.ReviewDate = this.datePipte.transform(this.SmokingRiskAssessmentFormData.ReviewDate, 'MM/dd/yyyy')
 
@@ -206,8 +204,6 @@ export class SmokingRiskAssessmentComponent extends AppComponentBase implements 
         StatementType: this.StatementType,
         smokingRiskAssessmentForm: this.SmokingRiskAssessmentFormData,
       };
-
-      console.log(objectBody);
 
       this._UtilityService.showSpinner();
       this.unsubscribe.add = this._SmokingRiskServices

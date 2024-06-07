@@ -120,7 +120,7 @@ this.isEditable = this.preSelectedFormData.isEditable;
         catchError((error) => {
             this._UtilityService.hideSpinner();
             this._UtilityService.showErrorAlert(error.message);
-            alert(error.message);
+         
             return of([]); // Returning empty array in case of error
         })
     );
@@ -140,7 +140,6 @@ GetRiskToolDetails(formId: string) {
                   tdata = tdata ? tdata : {};
                   this.RiskToolFormsData = tdata;
                   this.RiskToolFormsData.ReviewDate = this.datePipte.transform(this.RiskToolFormsData.ReviewDate,'MM/dd/yyyy')
-                  console.log(this.RiskToolFormsData)
               } else {
                   this.RiskToolFormsData = {};
               }
@@ -176,9 +175,7 @@ if (this.userId != null && this.residentAdmissionInfoId != null && this.loginId!
           StatementType: this.StatementType,
           riskToolBedRailsForm: this.RiskToolFormsData,
       };
-      
-
-      console.log(objectBody);
+    
 
     this._UtilityService.showSpinner();
     this.unsubscribe.add = this._RiskTool

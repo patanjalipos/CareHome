@@ -74,7 +74,7 @@ export class IndicatorMasterComponent extends AppComponentBase implements OnInit
               this.dataTable.reset();
               this.filteredValuesLength = this.lstMaster?.length;
               }            
-          //  console.log(this.lstmaster);
+         
           }
           else {
             this.lstMaster = [];            

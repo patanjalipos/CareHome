@@ -66,7 +66,7 @@ export class MenuItemMasterComponent extends AppComponentBase implements OnInit{
               this.dataTable.reset();
               this.filteredValuesLength = this.lstMenuItemMaster?.length;
               }            
-          //  console.log(this.lstMenuItemMaster);
+          
           }
           else {
             this.lstMenuItemMaster = [];

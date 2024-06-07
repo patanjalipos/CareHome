@@ -36,7 +36,7 @@ AddInsertUpdateCareAssessmentEatsAndDrinksForm(
     });
     let params = new HttpParams();
     var data = JSON.stringify(CareAssessmentEatsAndDrinksFormsData).toString();
-    console.log(data);
+   
     return this._httpclient.post<any>(
         environment.BaseUriUser +
             'api/User/AddInsertUpdateCareAssessmentEatsAndDrinksForm',

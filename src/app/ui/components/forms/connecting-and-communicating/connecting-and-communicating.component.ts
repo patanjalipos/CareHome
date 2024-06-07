@@ -159,7 +159,7 @@ export class ConnectingAndCommunicatingComponent
                 catchError((error) => {
                     this._UtilityService.hideSpinner();
                     this._UtilityService.showErrorAlert(error.message);
-                    alert(error.message);
+                  
                     return of([]); // Returning empty array in case of error
                 })
             );
