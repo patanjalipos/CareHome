@@ -179,7 +179,7 @@ export class PreAdmissionAssessmentFormsComponent
             catchError((error) => {
                 this._UtilityService.hideSpinner();
                 this._UtilityService.showErrorAlert(error.message);
-                alert(error.message);
+           
                 return of([]); // Returning empty array in case of error
             })
         );
@@ -258,7 +258,6 @@ export class PreAdmissionAssessmentFormsComponent
                     if (data.actionResult.success == true) {
                         var tdata = JSON.parse(data.actionResult.result);
                         tdata = tdata ? tdata : {};
-                        console.log(tdata)
                         this.PreAdmissionAssessmentFormsData = tdata;
                     } else {
                         this.PreAdmissionAssessmentFormsData = {};

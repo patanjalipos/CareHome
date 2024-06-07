@@ -169,7 +169,7 @@ export class ResidentMasterComponent extends AppComponentBase implements OnInit 
             var tdata = JSON.parse(data.actionResult.result);
             tdata = tdata ? tdata : [];
             this.lstHomeMaster = tdata;  
-            console.log('lstHomeMaster',this.lstHomeMaster)          
+             
           }
           else {
             this.lstHomeMaster = [];            
@@ -254,7 +254,7 @@ export class ResidentMasterComponent extends AppComponentBase implements OnInit 
         const reader = new FileReader();
         reader.onload = () => {
           this.SelectedFile.push(reader.result as string);
-          console.log(this.SelectedFile);
+        
         };
         reader.onerror = (error) => {
           console.error('Error reading file:', error);
@@ -288,7 +288,7 @@ RemoveProfileImage(){
     this.ResidentMaster.ModifiedBy = localStorage.getItem('userId');  
     this.ResidentMaster.PayerTelephone = this.ResidentMaster.PayerTelephone?.toString() || null;
     this.ResidentMaster.ProfileImage=this.SelectedFile[0];
-    console.log('ResidentMaster',this.ResidentMaster);
+   
     const formData = new FormData();
     formData.append('data', JSON.stringify(this.ResidentMaster));
     // if(this.SelectedFile?.length > 0){

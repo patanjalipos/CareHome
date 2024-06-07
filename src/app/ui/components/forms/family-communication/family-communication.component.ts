@@ -106,7 +106,7 @@ export class FamilyCommunicationComponent extends AppComponentBase implements On
             catchError((error) => {
                 this._UtilityService.hideSpinner();
                 this._UtilityService.showErrorAlert(error.message);
-                alert(error.message);
+        
                 return of([]); // Returning empty array in case of error
             })
         );
@@ -129,7 +129,6 @@ export class FamilyCommunicationComponent extends AppComponentBase implements On
                         tdata = tdata ? tdata : {};
                         this.FamilyCommFormsData = tdata;
                         this.FamilyCommFormsData.DateTimeObservation = new Date(this.FamilyCommFormsData.DateTimeObservation);
-                        //console.log(this.PreAdmissionAssessmentFormsData);
                     } else {
                         this.FamilyCommFormsData = {};
                     }

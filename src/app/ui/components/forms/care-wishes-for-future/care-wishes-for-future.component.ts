@@ -113,10 +113,6 @@ export class CareWishesForFutureComponent extends AppComponentBase implements On
           if (data.actionResult.success == true) {
             var tdata = JSON.parse(data.actionResult.result);
             tdata = tdata ? tdata : {};
-           
-            console.log("detail data");
-            
-            console.log(tdata);
             this.CareWishesFormsData = tdata;
             this.CareWishesFormsData.DateOfComplete = this.datePipte.transform(this.CareWishesFormsData.DateOfComplete,'MM/dd/yyyy')
 
@@ -177,7 +173,6 @@ export class CareWishesForFutureComponent extends AppComponentBase implements On
         careWishesForFutureForm: this.CareWishesFormsData,
       };
 
-      console.log(objectBody);
 
       this._UtilityService.showSpinner();
       this.unsubscribe.add = this._CareWishes

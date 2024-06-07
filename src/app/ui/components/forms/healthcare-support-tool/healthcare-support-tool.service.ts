@@ -36,7 +36,6 @@ InsertUpdateHealthcareSupportForm(
     });
     let params = new HttpParams();
     var data = JSON.stringify(HealthcareSupportFormsData).toString();
-    console.log(data);
     return this._httpclient.post<any>(
         environment.BaseUriUser +
             'api/User/InsertUpdateHealthcareSupportForm',

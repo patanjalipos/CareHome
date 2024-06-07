@@ -154,11 +154,11 @@ this.isEditable = this.preSelectedFormData.isEditable;
                 if (data.actionResult.success == true) {
                     var tdata = JSON.parse(data.actionResult.result);
                     tdata = tdata ? tdata : {};
-                    console.log(tdata)
+                 
                     this.RiskAssOnTheMoveFormsData = tdata;
-                    console.log(this.RiskAssOnTheMoveFormsData.CareAssessmentHearingFormId)
+                   
                     this.RiskAssOnTheMoveFormsData.ReviewDate = this.datePipte.transform(this.RiskAssOnTheMoveFormsData.ReviewDate,'MM/dd/yyyy');
-                    // console.log(this.CareAssessmentHearingFormsData.HearingDiagnosisCheck);
+                  
                     
                 } else {
                     this.RiskAssOnTheMoveFormsData = {};
@@ -185,7 +185,7 @@ getDropdownMasterLists(formMasterId: string, dropdownName: string,status:number)
       catchError((error) => {
           this._UtilityService.hideSpinner();
           this._UtilityService.showErrorAlert(error.message);
-          alert(error.message);
+     
           return of([]); // Returning empty array in case of error
       })
   );
@@ -217,9 +217,6 @@ if (this.userId != null && this.residentAdmissionInfoId != null && this.loginId!
           StatementType: this.StatementType,
           riskAssOnTheMoveForm: this.RiskAssOnTheMoveFormsData
       };
-      
-
-      console.log(objectBody);
 
     this._UtilityService.showSpinner();
     this.unsubscribe.add = this._RiskAssOnMove

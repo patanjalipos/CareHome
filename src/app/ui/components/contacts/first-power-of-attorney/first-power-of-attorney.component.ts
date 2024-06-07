@@ -76,7 +76,7 @@ export class FirstPowerOfAttorneyComponent extends AppComponentBase implements O
             var tdata = JSON.parse(data.actionResult.result);
             tdata = tdata ? tdata : [];
             this.Contact = tdata;
-            //console.log('this.Contact', this.Contact);     
+               
             this.Contact.statementtype = "Update";
           }
         },

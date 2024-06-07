@@ -20,7 +20,7 @@ export class AdlChartService {
       });
       let params = new HttpParams();
       var data = JSON.stringify(ADLChartData).toString();
-      // console.log(data);
+
       return this._httpclient.post<any>(
           environment.BaseUriUser +
               'api/User/InsertUpdateADLChart',
