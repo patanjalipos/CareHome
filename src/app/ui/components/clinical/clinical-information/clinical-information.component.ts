@@ -64,7 +64,7 @@ export class ClinicalInformationComponent extends AppComponentBase implements On
             var tdata = JSON.parse(data.actionResult.result);
             tdata = tdata ? tdata : [];
             this.Clinical = tdata;       
-            //console.log('this.Clinical', this.Clinical);     
+             
             this.Clinical.statementtype = "Update";
           }
         },

@@ -127,9 +127,9 @@ export class CareMentalHealthComponent extends AppComponentBase implements OnIni
                     if (data.actionResult.success == true) {
                         var tdata = JSON.parse(data.actionResult.result);
                         tdata = tdata ? tdata : {};
-                        console.log(tdata)
+                       
                         this.CareAssessmentMentalHealthFormsData = tdata;
-                        console.log(this.CareAssessmentMentalHealthFormsData.CareAssessmentHearingFormId)
+                       
                         this.CareAssessmentMentalHealthFormsData.ReviewDate = this.datePipte.transform(this.CareAssessmentMentalHealthFormsData.ReviewDate, 'MM/dd/yyyy')
                         if (this.CareAssessmentMentalHealthFormsData.MentalHealthOrCognitionStatus == 'Mental Health') {
                             this.MentalHealthStatus = true
@@ -143,7 +143,7 @@ export class CareMentalHealthComponent extends AppComponentBase implements OnIni
                         if (this.CareAssessmentMentalHealthFormsData.SexualityOrCulturalStatus == 'Cultural') {
                             this.SexualityStatus = !true
                         }
-                        // console.log(this.CareAssessmentHearingFormsData.HearingDiagnosisCheck);
+                    
 
                     } else {
                         this.CareAssessmentMentalHealthFormsData = {};
@@ -170,7 +170,7 @@ export class CareMentalHealthComponent extends AppComponentBase implements OnIni
             catchError((error) => {
                 this._UtilityService.hideSpinner();
                 this._UtilityService.showErrorAlert(error.message);
-                alert(error.message);
+             
                 return of([]); // Returning empty array in case of error
             })
         );
@@ -222,7 +222,7 @@ export class CareMentalHealthComponent extends AppComponentBase implements OnIni
             };
 
 
-            console.log(objectBody);
+          
 
             this._UtilityService.showSpinner();
             this.unsubscribe.add = this._CareMentalHealth

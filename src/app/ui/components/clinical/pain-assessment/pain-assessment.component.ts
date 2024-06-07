@@ -134,7 +134,7 @@ export class PainAssessmentComponent extends AppComponentBase implements OnInit 
       this.Clinical.UserId = this.userid;
       this.Clinical.ResidentAdmissionInfoId = this.admissionid;
       this.Clinical.ModifiedBy = this.loginId;
-      //console.log('Clinical', this.Clinical);
+    
       this._UtilityService.showSpinner();
       this.unsubscribe.add = this._UserServices.AddInsertUpdatePainAssesment(this.Clinical)
         .subscribe

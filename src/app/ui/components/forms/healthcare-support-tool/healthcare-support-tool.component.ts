@@ -93,7 +93,7 @@ export class HealthcareSupportToolComponent extends AppComponentBase implements 
                 if (data.actionResult.success == true) {
                     var tdata = JSON.parse(data.actionResult.result);
                     tdata = tdata ? tdata : {};
-                    console.log(tdata)
+               
                     this.HealthcareSupportFormsData = tdata;
                     
                 } else {
@@ -155,9 +155,6 @@ if (this.userId != null && this.residentAdmissionInfoId != null && this.loginId!
           StatementType: this.StatementType,
           healthcareSupportForm: this.HealthcareSupportFormsData,
       };
-      
-
-      console.log(objectBody);
 
     this._UtilityService.showSpinner();
     this.unsubscribe.add = this._Healthcare

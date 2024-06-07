@@ -109,11 +109,11 @@ this.isEditable = this.preSelectedFormData.isEditable;
                 if (data.actionResult.success == true) {
                     var tdata = JSON.parse(data.actionResult.result);
                     tdata = tdata ? tdata : {};
-                    console.log(tdata)
+                
                     this.CareAssessmentSleepAndRestFormsData = tdata;
-                    console.log(this.CareAssessmentSleepAndRestFormsData.CareAssessmentHearingFormId)
+                  
                     this.CareAssessmentSleepAndRestFormsData.ReviewDate = this.datePipe.transform(this.CareAssessmentSleepAndRestFormsData.ReviewDate,'MM/dd/yyyy');
-                    // console.log(this.CareAssessmentHearingFormsData.HearingDiagnosisCheck);
+                  
                     
                 } else {
                     this.CareAssessmentSleepAndRestFormsData = {};
@@ -140,7 +140,7 @@ getDropdownMasterLists(formMasterId: string, dropdownName: string,status:number)
       catchError((error) => {
           this._UtilityService.hideSpinner();
           this._UtilityService.showErrorAlert(error.message);
-          alert(error.message);
+      
           return of([]); // Returning empty array in case of error
       })
   );
@@ -172,9 +172,6 @@ if (this.userId != null && this.residentAdmissionInfoId != null && this.loginId!
           StatementType: this.StatementType,
           careAssessmentSleepAndRestForm: this.CareAssessmentSleepAndRestFormsData
       };
-      
-
-      console.log(objectBody);
 
     this._UtilityService.showSpinner();
     this.unsubscribe.add = this._CareSleepAndRest

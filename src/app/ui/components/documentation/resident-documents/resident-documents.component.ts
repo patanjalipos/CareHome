@@ -118,12 +118,7 @@ export class ResidentDocumentsComponent extends AppComponentBase implements OnIn
             tdata = tdata ? tdata : [];
             this.lstMaster = tdata;
             this.filteredValuesLength = this.lstMaster?.length;
-            // if (this.filtr !== undefined) {
-            //   this.filtr.nativeElement.value = "";
-            //   this.dataTable.reset();
-             
-            // }
-            //  console.log(this.lstmaster);
+           
           }
           else {
             this.lstMaster = [];

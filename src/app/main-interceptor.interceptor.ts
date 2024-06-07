@@ -25,10 +25,10 @@ export class MainInterceptorInterceptor implements HttpInterceptor {
       .set('X-XSS-Protection', '1; mode=block')
       .set('Strict-Transport-Security', 'max-age=60000; includeSubDomains')
       .set('Content-Security-Policy', "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'")
-      // .set('referer',this.router.routerState.snapshot.toString())
+   
     });
     return next.handle(modifiedReq).pipe(catchError((err: any) => {
-      //console.log('this log isn't');
+
       if (err instanceof HttpErrorResponse) {
         if (err.status === 401 || err.status === 403 || err.status === 0) {
           localStorage.clear();
