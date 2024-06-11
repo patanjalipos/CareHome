@@ -10,6 +10,12 @@ import { AppComponentBase } from 'src/app/app-component-base';
 import { Observable, catchError, forkJoin, map, of } from 'rxjs';
 import { PainChartService } from './pain-chart.service';
 
+interface BodyPart {
+  name: string;
+  top: number;
+  left: number;
+}
+
 @Component({
   selector: 'app-pain-chart',
   templateUrl: './pain-chart.component.html',
@@ -40,6 +46,10 @@ export class PainChartComponent extends AppComponentBase implements OnInit {
   lstInterventions: any[] = [];
   lstTypeOfPain: any[] = [];
 
+  //Body Map PopUp
+  isShowBodyMap: boolean = false;
+  selectedBodyParts :string[]=null;
+
   constructor(
     private optionService: OptionService,
     private _UtilityService: UtilityService,
@@ -54,6 +64,19 @@ export class PainChartComponent extends AppComponentBase implements OnInit {
     this.loginId = localStorage.getItem('userId');
   }
 
+  ShowBodyMapPopUp(){
+    this.isShowBodyMap = true;
+  }
+
+  onSelectedBodyParts(selectedBodyParts: BodyPart[]) {
+    this.painChartFormData.selectBodyParts = selectedBodyParts;
+    this.isShowBodyMap = false; // Optionally close the dialog after selection
+    console.log(selectedBodyParts);
+  }
+
+  closeDialog() {
+    this.isShowBodyMap = false;
+  }
 
   ngOnChanges(changes: SimpleChanges): void {
     this.isEditable = this.preSelectedChartData.isEditable;
