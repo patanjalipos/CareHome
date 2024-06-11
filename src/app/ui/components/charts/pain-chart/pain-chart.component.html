@@ -5,29 +5,52 @@
         </div>
         <div class="col-md-4 mt-4">
             <div class="col-md-4">
-                <label class="form-label bold"> Date/Time<span class="required"></span></label>
+                <label class="form-label bold">
+                    Date/Time<span class="required"></span
+                ></label>
             </div>
             <ng-container *ngIf="this.isEditable; else DateAndTimeData">
-                <p-calendar name="" [showIcon]="true" inputId="icon" class="iconcal" [readonlyInput]="true"
-                    appendTo="body" [maxDate]="" #dobref="" [dateFormat]="customDateFormat.CalendarFormat"
-                    [(ngModel)]="painChartFormData.DateAndTime" [showTime]="true" hourFormat="24"></p-calendar>
+                <p-calendar
+                    name=""
+                    [showIcon]="true"
+                    inputId="icon"
+                    class="iconcal"
+                    [readonlyInput]="true"
+                    appendTo="body"
+                    [maxDate]=""
+                    #dobref=""
+                    [dateFormat]="customDateFormat.CalendarFormat"
+                    [(ngModel)]="painChartFormData.DateAndTime"
+                    [showTime]="true"
+                    hourFormat="24"
+                ></p-calendar>
             </ng-container>
             <ng-template #DateAndTimeData>
-                <label>{{painChartFormData.DateAndTime}}</label>
+                <label>{{ painChartFormData.DateAndTime }}</label>
             </ng-template>
         </div>
         <div class="col-md-4 mt-4">
             <div class="col-md-4">
-                <label class="form-label bold">Care Given <span class="required"></span></label>
+                <label class="form-label bold"
+                    >Care Given <span class="required"></span
+                ></label>
             </div>
             <ng-container *ngIf="this.isEditable; else CareGivenData">
-                <p-dropdown [required]="true" name="ActivitiesChartFormData.CareGiven" placeholder="----select----"
-                    [style]="{ width: '100%' }" [options]="stLstYesNoOptions" optionValue="optionId"
-                    optionLabel="optionValue" [(ngModel)]="painChartFormData.CareGiven" (onChange)="openAndClose()">
+                <p-dropdown
+                    [required]="true"
+                    name="ActivitiesChartFormData.CareGiven"
+                    placeholder="----select----"
+                    [style]="{ width: '100%' }"
+                    [options]="stLstYesNoOptions"
+                    optionValue="optionId"
+                    optionLabel="optionValue"
+                    [(ngModel)]="painChartFormData.CareGiven"
+                    (onChange)="openAndClose()"
+                >
                 </p-dropdown>
             </ng-container>
             <ng-template #CareGivenData>
-                <label>{{painChartFormData.CareGiven}}</label>
+                <label>{{ painChartFormData.CareGiven }}</label>
             </ng-template>
         </div>
 
@@ -37,186 +60,246 @@
             </div>
             <div class="col-md-9">
                 <div class="col-md-9">
-                    <label class="form-label bold">Can the Resident Communicate Pain Successfully <span
-                            class="required"></span></label>
+                    <label class="form-label bold"
+                        >Can the Resident Communicate Pain Successfully
+                        <span class="required"></span
+                    ></label>
                 </div>
                 <ng-container *ngIf="this.isEditable; else communicationData">
-
-                    <p-selectButton [options]="communicationOptions" [(ngModel)]="painChartFormData.CommunicatePain"
-                        optionLabel="label" optionValue="value"></p-selectButton>
-
+                    <p-selectButton
+                        [options]="communicationOptions"
+                        [(ngModel)]="painChartFormData.CommunicatePain"
+                        optionLabel="label"
+                        optionValue="value"
+                    ></p-selectButton>
                 </ng-container>
                 <ng-template #communicationData>
-                    <label>{{painChartFormData.CommunicatePain}}</label>
+                    <label>{{ painChartFormData.CommunicatePain }}</label>
                 </ng-template>
             </div>
             <div class="formheader bold">
-                <h5>Abbey Pain Scale </h5>
+                <h5>Abbey Pain Scale</h5>
             </div>
-            <div class="col-md-8 ">
-                <div>
-                    <span class="bold">0 = </span><span>Absent</span>
-                </div>
-                <div>
-                    <span class="bold">1 = </span><span>Mild</span>
-                </div>
-                <div>
-                    <span class="bold">2 = </span><span>Moderate</span>
-                </div>
-                <div>
-                    <span class="bold">3 = </span><span>Severe</span>
-                </div>
-
+            <div class="col-md-8">
+                <div><span class="bold">0 = </span><span>Absent</span></div>
+                <div><span class="bold">1 = </span><span>Mild</span></div>
+                <div><span class="bold">2 = </span><span>Moderate</span></div>
+                <div><span class="bold">3 = </span><span>Severe</span></div>
             </div>
             <div class="col-md-5">
                 <div class="col-md-5">
-                    <label class="form-label bold">Vocalisation <span class="required"></span></label>
+                    <label class="form-label bold"
+                        >Vocalisation <span class="required"></span
+                    ></label>
                 </div>
                 <ng-container *ngIf="this.isEditable; else VocalisationData">
-                    <p-selectButton [options]="rangeOption" [(ngModel)]="painChartFormData.Vocalisation"
-                        optionLabel="label" optionValue="value"></p-selectButton>
+                    <p-selectButton
+                        [options]="rangeOption"
+                        [(ngModel)]="painChartFormData.Vocalisation"
+                        optionLabel="label"
+                        optionValue="value"
+                    ></p-selectButton>
                 </ng-container>
                 <ng-template #VocalisationData>
-                    <label>{{painChartFormData.Vocalisation}}</label>
+                    <label>{{ painChartFormData.Vocalisation }}</label>
                 </ng-template>
             </div>
-
 
             <div class="col-md-4">
                 <div class="col-md-4">
-                    <label class="form-label bold">Facial expresion <span class="required"></span></label>
+                    <label class="form-label bold"
+                        >Facial expresion <span class="required"></span
+                    ></label>
                 </div>
                 <ng-container *ngIf="this.isEditable; else FacialExpresionData">
-
-                    <p-selectButton [options]="rangeOption" [(ngModel)]="painChartFormData.FacialExpresion"
-                        optionLabel="label" optionValue="value"></p-selectButton>
-
+                    <p-selectButton
+                        [options]="rangeOption"
+                        [(ngModel)]="painChartFormData.FacialExpresion"
+                        optionLabel="label"
+                        optionValue="value"
+                    ></p-selectButton>
                 </ng-container>
                 <ng-template #FacialExpresionData>
-                    <label>{{painChartFormData.FacialExpresion}}</label>
+                    <label>{{ painChartFormData.FacialExpresion }}</label>
                 </ng-template>
             </div>
 
             <div class="col-md-5">
                 <div class="col-md-5">
-                    <label class="form-label bold">Change in Body Language <span class="required"></span></label>
+                    <label class="form-label bold"
+                        >Change in Body Language <span class="required"></span
+                    ></label>
                 </div>
                 <ng-container *ngIf="this.isEditable; else BodyLanguageData">
-
-                    <p-selectButton [options]="rangeOption" [(ngModel)]="painChartFormData.BodyLanguage"
-                        optionLabel="label" optionValue="value"></p-selectButton>
-
+                    <p-selectButton
+                        [options]="rangeOption"
+                        [(ngModel)]="painChartFormData.BodyLanguage"
+                        optionLabel="label"
+                        optionValue="value"
+                    ></p-selectButton>
                 </ng-container>
                 <ng-template #BodyLanguageData>
-                    <label>{{painChartFormData.BodyLanguage}}</label>
+                    <label>{{ painChartFormData.BodyLanguage }}</label>
                 </ng-template>
             </div>
-
 
             <div class="col-md-5">
                 <div class="col-md-5">
-                    <label class="form-label bold">Behavioural Changes <span class="required"></span></label>
+                    <label class="form-label bold"
+                        >Behavioural Changes <span class="required"></span
+                    ></label>
                 </div>
-                <ng-container *ngIf="this.isEditable; else BehaviouralChangesData">
-
-                    <p-selectButton [options]="rangeOption" [(ngModel)]="painChartFormData.BehaviouralChanges"
-                        optionLabel="label" optionValue="value"></p-selectButton>
-
+                <ng-container
+                    *ngIf="this.isEditable; else BehaviouralChangesData"
+                >
+                    <p-selectButton
+                        [options]="rangeOption"
+                        [(ngModel)]="painChartFormData.BehaviouralChanges"
+                        optionLabel="label"
+                        optionValue="value"
+                    ></p-selectButton>
                 </ng-container>
                 <ng-template #BehaviouralChangesData>
-                    <label>{{painChartFormData.BehaviouralChanges}}</label>
+                    <label>{{ painChartFormData.BehaviouralChanges }}</label>
                 </ng-template>
             </div>
-
 
             <div class="formheader bold">
                 <h5>Discription Of Pain</h5>
             </div>
             <div class="col-md-4">
                 <div class="col-md-4">
-                    <label class="form-label bold">Type of pain<span class="required"></span></label>
+                    <label class="form-label bold"
+                        >Type of pain<span class="required"></span
+                    ></label>
                 </div>
                 <ng-container *ngIf="this.isEditable; else TypeOfPainData">
-                    <p-dropdown [required]="true" name="ActivitiesChartFormData.Attendance" placeholder="--select--"
-                        [style]="{ width: '100%' }" [options]="lstTypeOfPain" optionValue="optionId"
-                        optionLabel="optionName" [(ngModel)]="painChartFormData.TypeOfPain">
+                    <p-dropdown
+                        [required]="true"
+                        name="ActivitiesChartFormData.Attendance"
+                        placeholder="--select--"
+                        [style]="{ width: '100%' }"
+                        [options]="lstTypeOfPain"
+                        optionValue="optionId"
+                        optionLabel="optionName"
+                        [(ngModel)]="painChartFormData.TypeOfPain"
+                    >
                     </p-dropdown>
                 </ng-container>
                 <ng-template #TypeOfPainData>
-                    <label>{{painChartFormData.TypeOfPainOption}}</label>
+                    <label>{{ painChartFormData.TypeOfPainOption }}</label>
                 </ng-template>
             </div>
 
             <div class="col-md-4">
                 <div class="col-md-6">
-                    <label class="form-label bold">Emotional Response To Pain<span class="required"></span></label>
+                    <label class="form-label bold"
+                        >Emotional Response To Pain<span class="required"></span
+                    ></label>
                 </div>
                 <ng-container *ngIf="this.isEditable; else ResponseToPainData">
-                    <p-dropdown [required]="true" name="ActivitiesChartFormData.Attendance" placeholder="--select--"
-                        [style]="{ width: '100%' }" [options]="lstResponseToPain" optionValue="optionId"
-                        optionLabel="optionName" [(ngModel)]="painChartFormData.ResponseToPain">
+                    <p-dropdown
+                        [required]="true"
+                        name="ActivitiesChartFormData.Attendance"
+                        placeholder="--select--"
+                        [style]="{ width: '100%' }"
+                        [options]="lstResponseToPain"
+                        optionValue="optionId"
+                        optionLabel="optionName"
+                        [(ngModel)]="painChartFormData.ResponseToPain"
+                    >
                     </p-dropdown>
                 </ng-container>
                 <ng-template #ResponseToPainData>
-                    <label>{{painChartFormData.ResponseToPainOption}}</label>
+                    <label>{{ painChartFormData.ResponseToPainOption }}</label>
                 </ng-template>
             </div>
 
             <div class="col-md-4">
                 <div class="col-md-4">
-                    <label class="form-label bold">Impact<span class="required"></span></label>
+                    <label class="form-label bold"
+                        >Impact<span class="required"></span
+                    ></label>
                 </div>
                 <ng-container *ngIf="this.isEditable; else ImpectData">
-                    <p-dropdown [required]="true" name="ActivitiesChartFormData.PurposeOfActivity"
-                        placeholder="--select--" [style]="{ width: '100%' }" [(ngModel)]="painChartFormData.Impect"
-                        [options]="lstImpact" optionLabel="optionName" optionValue="optionId">
+                    <p-dropdown
+                        [required]="true"
+                        name="ActivitiesChartFormData.PurposeOfActivity"
+                        placeholder="--select--"
+                        [style]="{ width: '100%' }"
+                        [(ngModel)]="painChartFormData.Impect"
+                        [options]="lstImpact"
+                        optionLabel="optionName"
+                        optionValue="optionId"
+                    >
                     </p-dropdown>
                 </ng-container>
                 <ng-template #ImpectData>
-                    <label>{{painChartFormData.ImpectOption}}</label>
+                    <label>{{ painChartFormData.ImpectOption }}</label>
                 </ng-template>
             </div>
 
             <div class="col-md-4">
                 <div class="col-md-4">
-                    <label class="form-label bold"><span class="required"></span>Duration of Pain</label>
+                    <label class="form-label bold"
+                        ><span class="required"></span>Duration of Pain</label
+                    >
                 </div>
                 <ng-container *ngIf="this.isEditable; else DurationOfPainData">
-                    <input pInputText type="time" [(ngModel)]="painChartFormData.DurationOfPain" required
-                    name="painChartFormData.DurationOfPain" class="form-control mr-4"
-                    [style]="{ width: '35%' }">
-                <p class="mb-4">Use 24 hour clock</p>
+                    <input
+                        pInputText
+                        type="time"
+                        [(ngModel)]="painChartFormData.DurationOfPain"
+                        required
+                        name="painChartFormData.DurationOfPain"
+                        class="form-control mr-4"
+                        [style]="{ width: '35%' }"
+                    />
+                    <p class="mb-4">Use 24 hour clock</p>
                 </ng-container>
                 <ng-template #DurationOfPainData>
-                    <label>{{painChartFormData.DurationOfPain}}</label>
+                    <label>{{ painChartFormData.DurationOfPain }}</label>
                 </ng-template>
             </div>
 
             <div class="col-md-4">
                 <div class="col-md-4">
-                    <label class="form-label bold"><span class="required"></span>Interval</label>
+                    <label class="form-label bold"
+                        ><span class="required"></span>Interval</label
+                    >
                 </div>
                 <ng-container *ngIf="this.isEditable; else IntervalData">
-
-                    <p-selectButton [options]="intervalOption" [(ngModel)]="painChartFormData.Interval"
-                        optionLabel="label" optionValue="value"></p-selectButton>
-
+                    <p-selectButton
+                        [options]="intervalOption"
+                        [(ngModel)]="painChartFormData.Interval"
+                        optionLabel="label"
+                        optionValue="value"
+                    ></p-selectButton>
                 </ng-container>
                 <ng-template #IntervalData>
-                    <label>{{painChartFormData.Interval}}</label>
+                    <label>{{ painChartFormData.Interval }}</label>
                 </ng-template>
             </div>
 
             <div class="col-md-4">
                 <div class="col-md-5">
-                    <label class="form-label bold"><span class="required"></span>Factors Affecting Pain</label>
+                    <label class="form-label bold"
+                        ><span class="required"></span>Factors Affecting
+                        Pain</label
+                    >
                 </div>
                 <ng-container *ngIf="this.isEditable; else AffectingPainData">
-                    <input type="text" pInputText name="ActivitiesChartFormData.AffectingPain" [required]="true"
-                        [style]="{ width: '100%' }" [(ngModel)]="painChartFormData.AffectingPain" />
+                    <input
+                        type="text"
+                        pInputText
+                        name="ActivitiesChartFormData.AffectingPain"
+                        [required]="true"
+                        [style]="{ width: '100%' }"
+                        [(ngModel)]="painChartFormData.AffectingPain"
+                    />
                 </ng-container>
                 <ng-template #AffectingPainData>
-                    <label>{{painChartFormData.AffectingPain}}</label>
+                    <label>{{ painChartFormData.AffectingPain }}</label>
                 </ng-template>
             </div>
 
@@ -226,45 +309,72 @@
 
             <div class="col-md-4">
                 <div class="col-md-4">
-                    <label class="form-label bold">Interventions<span class="required"></span></label>
+                    <label class="form-label bold"
+                        >Interventions<span class="required"></span
+                    ></label>
                 </div>
                 <ng-container *ngIf="this.isEditable; else InterventionsData">
-                    <p-dropdown [required]="true" name="ActivitiesChartFormData.Interventions" placeholder="--select--"
-                        [style]="{ width: '100%' }" [(ngModel)]="painChartFormData.Interventions"
-                        [options]="lstInterventions" optionLabel="optionName" optionValue="optionId">
+                    <p-dropdown
+                        [required]="true"
+                        name="ActivitiesChartFormData.Interventions"
+                        placeholder="--select--"
+                        [style]="{ width: '100%' }"
+                        [(ngModel)]="painChartFormData.Interventions"
+                        [options]="lstInterventions"
+                        optionLabel="optionName"
+                        optionValue="optionId"
+                    >
                     </p-dropdown>
                 </ng-container>
                 <ng-template #InterventionsData>
-                    <label>{{painChartFormData.InterventionsOption}}</label>
+                    <label>{{ painChartFormData.InterventionsOption }}</label>
                 </ng-template>
             </div>
 
             <div class="col-md-4">
                 <div class="col-md-4">
-                    <label class="form-label bold">Referrals<span class="required"></span></label>
+                    <label class="form-label bold"
+                        >Referrals<span class="required"></span
+                    ></label>
                 </div>
                 <ng-container *ngIf="this.isEditable; else ReferralsData">
-                    <p-dropdown [required]="true" name="ActivitiesChartFormData.Referrals" placeholder="--select--"
-                        [style]="{ width: '100%' }" [(ngModel)]="painChartFormData.Referrals" [options]="lstReferrals"
-                        optionLabel="optionName" optionValue="optionId">
+                    <p-dropdown
+                        [required]="true"
+                        name="ActivitiesChartFormData.Referrals"
+                        placeholder="--select--"
+                        [style]="{ width: '100%' }"
+                        [(ngModel)]="painChartFormData.Referrals"
+                        [options]="lstReferrals"
+                        optionLabel="optionName"
+                        optionValue="optionId"
+                    >
                     </p-dropdown>
                 </ng-container>
                 <ng-template #ReferralsData>
-                    <label>{{painChartFormData.ReferralsOption}}</label>
+                    <label>{{ painChartFormData.ReferralsOption }}</label>
                 </ng-template>
             </div>
 
             <div class="col-md-5 mt-4">
                 <div class="col-md-4">
-                    <label class="form-label bold">Next Review Date<span class="required"></span></label>
+                    <label class="form-label bold"
+                        >Next Review Date<span class="required"></span
+                    ></label>
                 </div>
                 <ng-container *ngIf="this.isEditable; else NextReviewDateData">
-                    <p-calendar name="" [showIcon]="true" inputId="icon" class="iconcal"
-                        appendTo="body" [maxDate]="" #dobref=""
-                        [(ngModel)]="painChartFormData.NextReviewDate"></p-calendar>
+                    <p-calendar
+                        name=""
+                        [showIcon]="true"
+                        inputId="icon"
+                        class="iconcal"
+                        appendTo="body"
+                        [maxDate]=""
+                        #dobref=""
+                        [(ngModel)]="painChartFormData.NextReviewDate"
+                    ></p-calendar>
                 </ng-container>
                 <ng-template #NextReviewDateData>
-                    <label>{{painChartFormData.NextReviewDate}}</label>
+                    <label>{{ painChartFormData.NextReviewDate }}</label>
                 </ng-template>
             </div>
         </div>
@@ -273,28 +383,75 @@
             <div class="col-md-4">
                 <label class="form-label"><span class="required"></span></label>
             </div>
-            <ng-container *ngIf="this.isEditable; else AdditionalInformationData">
-                <input type="text" pInputText name="ActivitiesChartFormData.AdditionalInformation" [required]="true"
-                    [style]="{ width: '100%' }" [(ngModel)]="painChartFormData.AdditionalInformation" />
+            <ng-container
+                *ngIf="this.isEditable; else AdditionalInformationData"
+            >
+                <input
+                    type="text"
+                    pInputText
+                    name="ActivitiesChartFormData.AdditionalInformation"
+                    [required]="true"
+                    [style]="{ width: '100%' }"
+                    [(ngModel)]="painChartFormData.AdditionalInformation"
+                />
             </ng-container>
             <ng-template #AdditionalInformationData>
-                <label>{{painChartFormData.AdditionalInformation}}</label>
+                <label>{{ painChartFormData.AdditionalInformation }}</label>
             </ng-template>
         </div>
 
         <div class="d-flex justify-content-end mt-4">
             <div>
                 <span class="p-ml-left mr-4">
-                    <button pButton title="Clear all field" label="Clear all feild" (click)="ClearAllfeilds()"></button>
+                    <button
+                        pButton
+                        title="Body Map"
+                        label="Add Body Pain"
+                        (click)="ShowBodyMapPopUp()"
+                    ></button>
                     <span class="total-txt"></span>
                 </span>
             </div>
             <div>
                 <span class="p-ml-left mr-4">
-                    <button pButton title="save" label="Save" (click)="Save()"></button>
+                    <button
+                        pButton
+                        title="Clear all field"
+                        label="Clear all feild"
+                        (click)="ClearAllfeilds()"
+                    ></button>
+                    <span class="total-txt"></span>
+                </span>
+            </div>
+            <div>
+                <span class="p-ml-left mr-4">
+                    <button
+                        pButton
+                        title="save"
+                        label="Save"
+                        (click)="Save()"
+                    ></button>
                     <span class="total-txt"></span>
                 </span>
             </div>
         </div>
     </div>
+</div>
+
+<!-- Body Map Dailogue -->
+
+<div class="card flex justify-content-center">
+    <p-dialog
+        header="Add Body Pain"
+        [modal]="true"
+        [(visible)]="isShowBodyMap"
+        [breakpoints]="{ '1199px': '75vw', '575px': '90vw' }"
+    >
+        <div *ngIf="isShowBodyMap">
+            <app-body-mapping
+                (bodyData)="onSelectedBodyParts($event)"
+                [preselectedBodyParts]="selectedBodyParts"
+            ></app-body-mapping>
+        </div>
+    </p-dialog>
 </div>
