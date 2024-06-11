@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 interface BodyPart {
     name: string;
@@ -13,15 +13,15 @@ interface BodyPart {
 })
 export class BodyMappingComponent implements OnInit {
     @Output() bodyData: EventEmitter<BodyPart[]> = new EventEmitter();
-    @Output() closeWindow = new EventEmitter<void>();
+    @Input() preselectedBodyParts: any = <any>[];
 
     selectedParts: BodyPart[] = [];
 
     constructor() {}
-    ngOnInit(): void {}
-
-    close() {
-        this.closeWindow.emit();
+    ngOnInit(): void {
+        if (this.preselectedBodyParts) {
+            this.selectedParts = [...this.preselectedBodyParts];
+        }
     }
 
     selectBodyPart(event: MouseEvent, partName: string): void {
@@ -46,7 +46,7 @@ export class BodyMappingComponent implements OnInit {
                 left: offsetX,
             });
 
-            // Emit the updated selected parts
+            // Emit the selected parts
             this.bodyData.emit(this.selectedParts);
         }
     }

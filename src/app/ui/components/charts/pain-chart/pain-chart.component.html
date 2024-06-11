@@ -445,10 +445,13 @@
         header="Add Body Pain"
         [modal]="true"
         [(visible)]="isShowBodyMap"
-        [style]="{ width: '50rem' }"
         [breakpoints]="{ '1199px': '75vw', '575px': '90vw' }"
-        [closable]="false"
     >
-        <app-body-mapping (bodyData)="onSelectedBodyParts($event)" (close)="closeDialog()"></app-body-mapping>
+        <div *ngIf="isShowBodyMap">
+            <app-body-mapping
+                (bodyData)="onSelectedBodyParts($event)"
+                [preselectedBodyParts]="selectedBodyParts"
+            ></app-body-mapping>
+        </div>
     </p-dialog>
 </div>
