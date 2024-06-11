@@ -1,5 +1,5 @@
 <div style="position: relative">
-    <img src="assets/Images/bodyMap.png" usemap="#bodymap" alt="Human Body" />
+    <img src="assets/Images/bodymap.png" usemap="#bodymap" alt="Human Body" />
     <map name="bodymap">
         <area
             (click)="selectBodyPart($event, 'Chest')"
@@ -273,14 +273,10 @@
         "
     ></div>
 
+    <div class="card p-fluid">
+        <p-chips
+            [(ngModel)]="selectedParts"
+            [field]="'name'"
+        ></p-chips>
+    </div>
 </div>
-
-<div class="card p-fluid">
-    <p-chips
-        [(ngModel)]="selectedParts"
-        [field]="'name'"
-        variant="filled"
-    ></p-chips>
-</div>
-
-    <!-- <button pButton type="button" label="Close" (click)="close()"></=button> -->

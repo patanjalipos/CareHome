@@ -51,6 +51,10 @@ export class ActivitiesChartComponent
     stLstYesNoOptions: any[] = [];
     stLstAttendanceOptions: any[] = [];
 
+    //for carousel
+    ActvityChartsLst:any = <any>[];
+
+
     constructor(
         private optionService: OptionService,
         private _UtilityService: UtilityService,
@@ -145,6 +149,8 @@ export class ActivitiesChartComponent
                                 'dd-MM-yyyy HH:mm'
                             );
                         this.openAndClose();
+                        this.ActvityChartsLst.push(this.ActivitiesChartFormData);
+                            console.log(this.ActvityChartsLst)
                     } else {
                         this.ActivitiesChartFormData = {};
                     }
