@@ -1,40 +1,53 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 interface BodyPart {
-  name: string;
-  top: number;
-  left: number;
+    name: string;
+    top: number;
+    left: number;
 }
 
 @Component({
-  selector: 'app-body-mapping',
-  templateUrl: './body-mapping.component.html',
-  styleUrls: ['./body-mapping.component.scss']
+    selector: 'app-body-mapping',
+    templateUrl: './body-mapping.component.html',
+    styleUrls: ['./body-mapping.component.scss'],
 })
-
 export class BodyMappingComponent implements OnInit {
+    @Output() bodyData: EventEmitter<BodyPart[]> = new EventEmitter();
+    @Input() preselectedBodyParts: any = <any>[];
 
-  constructor() { }
+    selectedParts: BodyPart[] = [];
 
-  ngOnInit(): void {
-  }
-
-  selectedParts: BodyPart[] = [];
-
-  selectBodyPart(event: MouseEvent, partName: string): void {
-    const existingPart = this.selectedParts.find(part => part.name === partName);
-
-    if (existingPart) {
-      // Remove the part if it is already selected
-      this.selectedParts = this.selectedParts.filter(part => part.name !== partName);
-    } else {
-      // Add the part with its position
-      const rect = (event.target as HTMLElement).getBoundingClientRect();
-      const offsetX = event.clientX - rect.left;
-      const offsetY = event.clientY - rect.top;
-
-      this.selectedParts.push({ name: partName, top: offsetY, left: offsetX });
+    constructor() {}
+    ngOnInit(): void {
+        if (this.preselectedBodyParts) {
+            this.selectedParts = [...this.preselectedBodyParts];
+        }
     }
-  }
 
+    selectBodyPart(event: MouseEvent, partName: string): void {
+        const existingPart = this.selectedParts.find(
+            (part) => part.name === partName
+        );
+
+        if (existingPart) {
+            // Remove the part if it is already selected
+            this.selectedParts = this.selectedParts.filter(
+                (part) => part.name !== partName
+            );
+        } else {
+            // Add the part with its position
+            const rect = (event.target as HTMLElement).getBoundingClientRect();
+            const offsetX = event.clientX - rect.left;
+            const offsetY = event.clientY - rect.top;
+
+            this.selectedParts.push({
+                name: partName,
+                top: offsetY,
+                left: offsetX,
+            });
+
+            // Emit the selected parts
+            this.bodyData.emit(this.selectedParts);
+        }
+    }
 }
