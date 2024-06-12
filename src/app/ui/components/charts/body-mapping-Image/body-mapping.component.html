@@ -272,11 +272,16 @@
             border-radius: 50%;
         "
     ></div>
-
-    <div class="card p-fluid">
-        <p-chips
-            [(ngModel)]="selectedParts"
-            [field]="'name'"
-        ></p-chips>
-    </div>
 </div>
+
+<div class="card p-fluid">
+    <!-- <p-chips
+        [(ngModel)]="selectedParts"
+        [field]="'name'"
+    ></p-chips>  -->
+    <ul>
+        <li *ngFor="let part of selectedParts">{{ part.name }}</li>
+    </ul>
+</div>
+
+
