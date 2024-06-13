@@ -93,7 +93,6 @@ export class DailyReportComponent implements OnInit {
 
         this.DailyReportObj=<DailyReportDetails>{};
         this.DailyReportDialog=false;
-        alert("Daily Report Saved Successfully");
   }   
   hideDialog()
   {
