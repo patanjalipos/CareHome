@@ -274,12 +274,9 @@
     ></div>
 </div>
 
-<div class="card p-fluid">
-    <!-- <p-chips
-        [(ngModel)]="selectedParts"
-        [field]="'name'"
-    ></p-chips>  -->
-    <ul>
+<!-- List of selected parts  -->
+<div class="card p-fluid fixed-width-card">
+    <ul class="horizontal-list">
         <li *ngFor="let part of selectedParts">{{ part.name }}</li>
     </ul>
 </div>
