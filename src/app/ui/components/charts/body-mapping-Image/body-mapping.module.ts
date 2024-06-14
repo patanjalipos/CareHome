@@ -5,6 +5,7 @@ import { BodyMappingComponent } from './body-mapping.component';
 import { DialogModule } from 'primeng/dialog';
 import { ChipsModule } from 'primeng/chips';
 import { FormsModule } from '@angular/forms';
+import { ChipModule } from 'primeng/chip';
 
 
 @NgModule({
@@ -14,6 +15,7 @@ import { FormsModule } from '@angular/forms';
     FormsModule,
     DialogModule,
     ChipsModule,
+    ChipModule,
     BodyMappingImageRoutingModule
   ],
   exports:[BodyMappingComponent]

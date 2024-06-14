@@ -82,7 +82,7 @@
                     <th>Designation</th>
                     <!-- <th>Status</th> -->
                     <th>Last Update</th>
-                    <th>Actions</th>
+                    <!-- <th>Actions</th> -->
                 </tr>
             </ng-template>
             <ng-template pTemplate="body" let-dt let-i="rowIndex">
@@ -99,7 +99,7 @@
                                 | date : customDateFormat.DEF_DATE_TIME
                         }}
                     </td>
-                    <td>
+                    <!-- <td>
                         <a
                             title="View"
                             (click)="OpenChart(dt.ChartMasterId, dt, false)"
@@ -107,14 +107,14 @@
                             <i class="fa fa-eye" aria-hidden="true"></i>
                         </a>
                         <span style="margin-left: 10px"></span>
-                        <!-- Adjust the margin-left as needed -->
+                        
                         <a
                             title="Edit"
                             (click)="OpenChart(dt.ChartMasterId, dt, true)"
                         >
                             <i class="fa fa-pencil" aria-hidden="true"></i>
                         </a>
-                    </td>
+                    </td> -->
                 </tr>
             </ng-template>
         </p-table>

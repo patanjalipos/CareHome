@@ -1476,3 +1476,65 @@ p.date-box {
 
 }
 
+//BodyMap Pop Up
+
+.fixed-width-card {
+    width: 350px; /* Set your desired fixed width */
+    overflow-y: auto; /* Allow horizontal scrolling if content overflows */
+    max-height: 500px;
+  }
+  
+.horizontal-list li:last-child {
+    margin-right: 0; /* Remove margin from the last item */
+  }
+ 
+// .horizontal-list {
+//     display: flex;
+//     flex-wrap: wrap; /* enable wrapping of items */
+//     list-style-type: none;
+//     padding: 0;
+//     margin: 0;
+//   }
+  
+// .horizontal-list li {
+//     display: inline-block; /* ensure each item is a block element */
+//     margin: 0.5rem; /* add equal margin around each item */
+//     padding: 0.5rem;
+//     border: 1px solid #eee;
+//     border-radius: 4px;
+//     white-space: nowrap; /* prevent text from wrapping */
+//   }
+
+  .horizontal-list {
+    display: flex;
+    flex-wrap: wrap; /* Enable wrapping of items */
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .horizontal-list li {
+    display: inline-block; /* Ensure each item is a block element */
+    margin: 0.5rem; /* Add equal margin around each item */
+    padding: 0.5rem;
+    border: 1px solid #eee;
+    border-radius: 4px;
+    white-space: nowrap; /* Prevent text from wrapping */
+    position: relative; /* To position the remove button */
+  }
+  
+  .remove-button {
+    background: none;
+    border: none;
+    color: #ff0000;
+    font-size: 1.2rem;
+    font-weight: bold;
+    line-height: 1;
+    padding: 0;
+    cursor: pointer;
+    position: absolute;
+    top: 0;
+    right: 0;
+    transform: translate(50%, -50%);
+  }
+
