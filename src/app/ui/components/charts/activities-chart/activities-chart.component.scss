@@ -1,0 +1,23 @@
+.left-nav-btn {
+    position: absolute;
+    left:282px;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 1000;
+  }
+  
+  .right-nav-btn {
+    position: absolute;
+    right:28px;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 1000;
+  }
+  
+  .carousel-container {
+    position: relative;
+  }
+  .p-button:focus {
+    outline: none;
+    box-shadow: none; /* Also remove any shadow if present */
+}
