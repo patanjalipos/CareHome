@@ -31,11 +31,11 @@ export class BodyMappingComponent implements OnInit {
         }
     }
 
-    removePart(part: { name: string, top: number, left: number }) {
-        this.selectedParts = this.selectedParts.filter(p => p !== part);
+    removePart(part: { name: string; top: number; left: number }) {
+        this.selectedParts = this.selectedParts.filter((p) => p !== part);
         // Emit the selected parts
         this.bodyData.emit(this.selectedParts);
-      }
+    }
 
     selectBodyPart(event: MouseEvent, partName: string): void {
         const existingPart = this.selectedParts.find(
