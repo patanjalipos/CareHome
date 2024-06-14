@@ -26,8 +26,7 @@ import { UserService } from 'src/app/ui/service/user.service';
 })
 export class AccidentIncidentNearMissRecordComponent
     extends AppComponentBase
-    implements OnInit
-{
+    implements OnInit {
     @Input() preSelectedFormData: any = <any>{};
     @Output() EmitUpdateForm: EventEmitter<any> = new EventEmitter<any>();
 
@@ -142,13 +141,13 @@ export class AccidentIncidentNearMissRecordComponent
                 catchError((error) => {
                     this._UtilityService.hideSpinner();
                     this._UtilityService.showErrorAlert(error.message);
-                 
+
                     return of([]); // Returning empty array in case of error
                 })
             );
     }
 
-    SaveAsPDF() {}
+    SaveAsPDF() { }
 
     GetAccidentNearMissRecordDetails(formId: string) {
         this._UtilityService.showSpinner();
@@ -160,7 +159,7 @@ export class AccidentIncidentNearMissRecordComponent
                     if (data.actionResult.success == true) {
                         var tdata = JSON.parse(data.actionResult.result);
                         tdata = tdata ? tdata : {};
-                  
+
                         this.AccidentNearMissRecordFormsData = tdata;
                         this.AccidentNearMissRecordFormsData.DateOfAccident =
                             this.datePipte.transform(
@@ -174,7 +173,7 @@ export class AccidentIncidentNearMissRecordComponent
                                     .EmergencyServicesContacted,
                                 'MM/dd/yyyy'
                             );
-                       
+
                     } else {
                         this.AccidentNearMissRecordFormsData = {};
                     }
@@ -224,7 +223,7 @@ export class AccidentIncidentNearMissRecordComponent
                     this.AccidentNearMissRecordFormsData,
             };
 
-         
+
 
             this._UtilityService.showSpinner();
             this.unsubscribe.add = this._UserServices
