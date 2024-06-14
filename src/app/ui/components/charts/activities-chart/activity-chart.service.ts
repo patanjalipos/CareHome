@@ -46,16 +46,16 @@ export class ActivityChartService {
   GetChartDataById(selectedChartID,residentAdmissionInfoId,pageNumber,pageSize){
     let reqHeader = new HttpHeaders({
       'Content-Type': 'application/json',
-      'Access-Control-Allow-Origin': environment.BaseUriAdmin,
+      'Access-Control-Allow-Origin': environment.BaseUriUser,
       'Authorization': 'Bearer ' + localStorage.getItem('token')
     });
     let params = new HttpParams();
-    params = params.append('chartId', selectedChartID);
+    params = params.append('chartMasterId', selectedChartID);
     params = params.append('residentAdmissionInfoId', residentAdmissionInfoId);
     params = params.append('pageNumber', pageNumber);
     params = params.append('pageSize', pageSize);
     return this._httpclient.get<any>(
-        environment.BaseUriUser + 'api/User/GetActivitiesChartById',
+        environment.BaseUriUser + 'api/User/GetChartDetails',
         { headers: reqHeader, params: params }
     );
   }

@@ -145,12 +145,12 @@
     </div>
 </div> -->
 <div class="card">
-    <div class="row mt-2">
+    <div class="row mt-2 p-0">
         <div class="col-md-3 chart-box">
             <div class="formheader mt-2">
                 <h4>New observation</h4>
             </div>
-            <div class="mt-4">
+            <div class="col-md-12 mt-4">
                 <label class="form-label bold">
                     Date/Time<span class="required"></span></label>
 
@@ -164,8 +164,10 @@
                     <label>{{ ActivitiesChartFormData.DateAndTime }}</label>
                 </ng-template>
             </div>
-            <div>
+            <div class="col-md-12">
+
                 <label class="form-label bold">Care Given <span class="required"></span></label>
+
                 <ng-container *ngIf="this.isEditable; else CareGivenData">
                     <p-dropdown [required]="true" name="ActivitiesChartFormData.CareGiven" placeholder="----select----"
                         [style]="{ width: '100%' }" [options]="stLstYesNoOptions" optionValue="optionId"
@@ -178,7 +180,7 @@
                 </ng-template>
             </div>
             <div *ngIf="inputFields" class="row">
-                <div>
+                <div class="col-md-12">
                     <label class="form-label bold">Activity <span class="required"></span></label>
                     <ng-container *ngIf="this.isEditable; else ActivityData">
                         <p-dropdown [required]="true" name="ActivitiesChartFormData.Activity" placeholder="--select--"
@@ -193,7 +195,7 @@
                     </ng-template>
                 </div>
 
-                <div>
+                <div class="col-md-12">
                     <label class="form-label bold">Attendance<span class="required"></span></label>
                     <ng-container *ngIf="this.isEditable; else AttendanceData">
                         <p-dropdown [required]="true" name="ActivitiesChartFormData.Attendance" placeholder="--select--"
@@ -206,7 +208,7 @@
                     </ng-template>
                 </div>
 
-                <div>
+                <div class="col-md-12">
                     <label class="form-label bold">Participation<span class="required"></span></label>
                     <ng-container *ngIf="this.isEditable; else ParticipationData">
                         <p-dropdown [required]="true" name="ActivitiesChartFormData.Participation"
@@ -222,7 +224,7 @@
                     </ng-template>
                 </div>
 
-                <div>
+                <div class="col-md-12">
                     <label class="form-label bold">Purpose of activity<span class="required"></span></label>
 
                     <ng-container *ngIf="this.isEditable; else PurposeOfActivityData">
@@ -238,7 +240,7 @@
                             }}</label>
                     </ng-template>
                 </div>
-                <div>
+                <div class="col-md-12">
 
                     <label class="form-label bold">Duration (minutes)<span class="required"></span></label>
 
@@ -252,7 +254,7 @@
                 </div>
             </div>
             <h5 class="formheader">Additional information</h5>
-            <div>
+            <div class="col-md-12">
                 <label class="form-label"><span class="required"></span></label>
                 <ng-container *ngIf="this.isEditable; else AdditionalInformationData">
                     <input type="text" pInputText name="ActivitiesChartFormData.AdditionalInformation" [required]="true"
@@ -275,47 +277,55 @@
                 <div>
                     <span class="p-ml-left mr-4 ">
                         <button pButton title="save" label="Save" (click)="Save()"></button>
+
                     </span>
                 </div>
             </div>
         </div>
-        <div class="col-md-9">
+        <div class="col-md-9 px-7">
+            <!-- Left navigation button -->
+            <button pButton type="button" icon="pi pi-chevron-left" class="left-nav-btn" (click)="leftBtn()" [disabled]="pageNumber==0"></button>
             <p-carousel [value]="ActivityChartsLst" [numVisible]="pageSize" [numScroll]="pageSize" [circular]="false"
-                (onPage)="chartOnChange($event)">
+                [showIndicators]="false" [showNavigators]="false">
                 <ng-template let-chart pTemplate="item">
-                    <div class=" chart-box p-2">
+                    <div class="col-md-11 chart-box p-2">
                         <div class="formheader">
-                            <h4>Observation</h4>
-                        </div>
-                        <div class="mt-4">
-                            <label class="form-label bold">
-                                Date/Time<span class="required"></span></label>
-
-                            <div>
-                                <label>{{ chart.DateAndTime }}</label>
+                            <div class="col-md-12 mt-4">
+                                <label class="form-label bold">
+                                    Date/Time<span class="required"></span></label>
+                                <div>
+                                    <label>{{ chart.DateAndTime | date:'dd-MM-yyyy HH:mm' }}</label>
+                                </div>
                             </div>
                         </div>
-                        <div>
+
+                        <div class="col-md-12">
+
                             <label class="form-label bold">Care Given <span class="required"></span></label>
+
                             <div>
                                 <label>{{ chart.CareGiven }}</label>
                             </div>
+
                         </div>
                         <div *ngIf="chart.CareGiven=='Yes'" class="row">
-                            <div>
+                            <div class="col-md-12">
                                 <label class="form-label bold">Activity <span class="required"></span></label>
+
                                 <div>
                                     <label>{{chart.ActivityOptionName}}</label>
                                 </div>
                             </div>
-                            <div>
+
+                            <div class="col-md-12">
                                 <label class="form-label bold">Attendance<span class="required"></span></label>
 
                                 <div>
                                     <label>{{ chart.Attendance }}</label>
                                 </div>
                             </div>
-                            <div>
+
+                            <div class="col-md-12">
                                 <label class="form-label bold">Participation<span class="required"></span></label>
 
                                 <div>
@@ -325,22 +335,24 @@
                                 </div>
                             </div>
 
-                            <div>
+                            <div class="col-md-12">
                                 <label class="form-label bold">Purpose of activity<span class="required"></span></label>
 
                                 <div>
                                     <label>{{chart.PurposeOfActivityOptionName}}</label>
                                 </div>
                             </div>
-                            <div>
+                            <div class="col-md-12">
+
                                 <label class="form-label bold">Duration (minutes)<span class="required"></span></label>
+
                                 <div>
                                     <label>{{ chart.Duration }}</label>
                                 </div>
                             </div>
                         </div>
                         <h5 class="formheader">Additional information</h5>
-                        <div>
+                        <div class="col-md-12">
                             <label class="form-label"><span class="required"></span></label>
                             <div>
                                 <label>{{chart.AdditionalInformation}}</label>
@@ -348,11 +360,11 @@
                         </div>
                     </div>
                 </ng-template>
-                <!-- <div>
-                <button pButton type="button" icon="pi pi-chevron-right"></button>
-                <button pButton type="button" icon="pi pi-chevron-left" ></button>
-                </div> -->
+
             </p-carousel>
+            <!-- Right navigation button -->
+            <button pButton type="button" icon="pi pi-chevron-right" class="right-nav-btn" 
+                (click)="rightBtn()" [disabled]="ActivityChartsLst.length<3"></button>
         </div>
     </div>
 </div>
