@@ -7,16 +7,16 @@ export const environment = {
   EncryptKey:'1203199320052021',
   EncryptIV:'1203199320052021',
   
-  BaseURIFileServer:"http://localhost:8080/",
-  BaseUriUser:'http://localhost:34435/',
-  BaseUriAdmin:'http://localhost:36099/',
-  BaseUriHome:'http://localhost:18157/'
+  // BaseURIFileServer:"http://localhost:8080/",
+  // BaseUriUser:'http://localhost:34435/',
+  // BaseUriAdmin:'http://localhost:36099/',
+  // BaseUriHome:'http://localhost:18157/'
 
     
-  // BaseURIFileServer:"https://hmsstaging.patanjaliwellness.com:31003/",
-  // BaseUriUser:'https://hmsstaging.patanjaliwellness.com:31008/user/',
-  // BaseUriAdmin:'https://hmsstaging.patanjaliwellness.com:31009/admin/',
-  // BaseUriHome:'https://hmsstaging.patanjaliwellness.com:31001/home/'
+  BaseURIFileServer:"https://hmsstaging.patanjaliwellness.com:31003/",
+  BaseUriUser:'https://hmsstaging.patanjaliwellness.com:31008/user/',
+  BaseUriAdmin:'https://hmsstaging.patanjaliwellness.com:31009/admin/',
+  BaseUriHome:'https://hmsstaging.patanjaliwellness.com:31001/home/'
  
 };
 

@@ -144,7 +144,7 @@ export class AcuteCarePlanInfectionPreventionAndControlComponent extends AppComp
         this.Save();
     }
     Save() {
-        alert(this.userId);
+      
         if (this.userId != null && this.residentAdmissionInfoId != null) {
             this.AcuteCarePlanInfectionFormsData.userId = this.userId;
             this.AcuteCarePlanInfectionFormsData.StartedBy = localStorage.getItem('userId');
