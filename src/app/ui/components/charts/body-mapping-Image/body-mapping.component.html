@@ -272,11 +272,21 @@
             border-radius: 50%;
         "
     ></div>
+</div>
 
-    <div class="card p-fluid">
-        <p-chips
-            [(ngModel)]="selectedParts"
-            [field]="'name'"
-        ></p-chips>
-    </div>
+<!-- List of selected parts  -->
+
+<!-- <div class="card p-fluid fixed-width-card">
+    <ul class="horizontal-list">
+        <li *ngFor="let part of selectedParts">{{ part.name }}</li>
+    </ul>
+</div> -->
+
+<div class="card p-fluid fixed-width-card">
+    <ul class="horizontal-list">
+        <li *ngFor="let part of selectedParts">
+            {{ part.name }}
+            <button class="remove-button" (click)="removePart(part)">×</button>
+        </li>
+    </ul>
 </div>
