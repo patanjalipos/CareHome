@@ -1,4 +1,11 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import {
+    ChangeDetectorRef,
+    Component,
+    EventEmitter,
+    Input,
+    OnInit,
+    Output,
+} from '@angular/core';
 
 interface BodyPart {
     name: string;
@@ -24,6 +31,12 @@ export class BodyMappingComponent implements OnInit {
         }
     }
 
+    removePart(part: { name: string; top: number; left: number }) {
+        this.selectedParts = this.selectedParts.filter((p) => p !== part);
+        // Emit the selected parts
+        this.bodyData.emit(this.selectedParts);
+    }
+
     selectBodyPart(event: MouseEvent, partName: string): void {
         const existingPart = this.selectedParts.find(
             (part) => part.name === partName
@@ -41,13 +54,12 @@ export class BodyMappingComponent implements OnInit {
             const offsetY = event.clientY - rect.top;
 
             this.selectedParts.push({
+                left: offsetX,
                 name: partName,
                 top: offsetY,
-                left: offsetX,
             });
-
-            // Emit the selected parts
-            this.bodyData.emit(this.selectedParts);
         }
+        // Emit the selected parts
+        this.bodyData.emit(this.selectedParts);
     }
 }
