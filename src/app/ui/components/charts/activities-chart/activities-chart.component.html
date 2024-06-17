@@ -286,7 +286,7 @@
             <!-- Left navigation button -->
             <button pButton type="button" icon="pi pi-chevron-left" class="left-nav-btn" (click)="leftBtn()" [disabled]="pageNumber==0"></button>
             <p-carousel [value]="ActivityChartsLst" [numVisible]="pageSize" [numScroll]="pageSize" [circular]="false"
-                [showIndicators]="false" [showNavigators]="false">
+                [showIndicators]="false" [showNavigators]="false" [responsiveOptions]="responsiveOptions">
                 <ng-template let-chart pTemplate="item">
                     <div class="col-md-11 chart-box p-2">
                         <div class="formheader">
@@ -364,7 +364,7 @@
             </p-carousel>
             <!-- Right navigation button -->
             <button pButton type="button" icon="pi pi-chevron-right" class="right-nav-btn" 
-                (click)="rightBtn()" [disabled]="ActivityChartsLst.length<3"></button>
+                (click)="rightBtn()" [disabled]="rightBtnCheck"></button>
         </div>
     </div>
 </div>
