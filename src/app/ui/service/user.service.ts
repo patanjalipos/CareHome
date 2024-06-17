@@ -153,6 +153,24 @@ export class UserService {
     );
   }
 
+
+  GetChartDataById(selectedChartID,residentAdmissionInfoId,pageNumber,pageSize){
+    let reqHeader = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Access-Control-Allow-Origin': environment.BaseUriUser,
+      'Authorization': 'Bearer ' + localStorage.getItem('token')
+    });
+    let params = new HttpParams();
+    params = params.append('chartMasterId', selectedChartID);
+    params = params.append('residentAdmissionInfoId', residentAdmissionInfoId);
+    params = params.append('pageNumber', pageNumber);
+    params = params.append('pageSize', pageSize);
+    return this._httpclient.get<any>(
+        environment.BaseUriUser + 'api/User/GetChartDetails',
+        { headers: reqHeader, params: params }
+    );
+  }
+
   //#endregion
 
   //#region  Resident Profile

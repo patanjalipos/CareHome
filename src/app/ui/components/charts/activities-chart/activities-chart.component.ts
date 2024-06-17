@@ -174,6 +174,8 @@ export class ActivitiesChartComponent
                         else{
                             this.rightBtnCheck = false;
                         }
+                        console.log(this.ActivityChartsLst);
+                        
                     } else {
                         this.ActivityChartsLst = [];
                     }
@@ -183,6 +185,9 @@ export class ActivitiesChartComponent
                     this._UtilityService.showErrorAlert(e.message);
                 },
             });
+    }
+    showPopup(){
+        alert("asdfasdf");
     }
     GetActivitiesChartDetails(chartId: string) {
         this._UtilityService.showSpinner();

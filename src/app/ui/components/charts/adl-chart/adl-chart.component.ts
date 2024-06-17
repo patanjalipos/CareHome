@@ -48,6 +48,14 @@ export class AdlChartComponent extends AppComponentBase implements OnInit {
     //Static Options
     stLstYesNoOptions: any[] = [];
 
+    //for carousel
+    ADLChartsLst: any[] = [];
+    pageNumber: number = 0;
+    pageSize: number = 3;
+    responsiveOptions: any[] | undefined;
+    rightBtnCheck: boolean = false;
+
+
     constructor(
         private optionService: OptionService,
         private _ConstantServices: ConstantsService,
@@ -83,6 +91,24 @@ export class AdlChartComponent extends AppComponentBase implements OnInit {
             this.stLstYesNoOptions = data;
         });
 
+        this.getChartDataById(this.preSelectedChartData.chartMasterId, this.preSelectedChartData.residentAdmissionInfoId, this.pageNumber, this.pageSize);
+        this.responsiveOptions = [
+            {
+                breakpoint: '1199px',
+                numVisible: 1,
+                numScroll: 1
+            },
+            {
+                breakpoint: '991px',
+                numVisible: 2,
+                numScroll: 1
+            },
+            {
+                breakpoint: '767px',
+                numVisible: 1,
+                numScroll: 1
+            }
+        ];
         const collectionNames = [
             'TransferMethodOptions',
             'AssistanceLevelOptions',
@@ -121,7 +147,7 @@ export class AdlChartComponent extends AppComponentBase implements OnInit {
     }
 
     openAndClose() {
-        if (this.ADLChartData.CareGivenOptions == 'Yes') {
+        if (this.ADLChartData.CareGivenOptions == "Yes") {
             this.inputFieldsCheck = true;
         } else {
             this.inputFieldsCheck = false;
@@ -148,7 +174,7 @@ export class AdlChartComponent extends AppComponentBase implements OnInit {
                 catchError((error) => {
                     this._UtilityService.hideSpinner();
                     this._UtilityService.showErrorAlert(error.message);
-                 
+
                     return of([]); // Returning empty array in case of error
                 })
             );
@@ -264,5 +290,56 @@ export class AdlChartComponent extends AppComponentBase implements OnInit {
         this.StatementType = 'Insert';
     }
 
-    SaveAsPDF() {}
+    SaveAsPDF() { }
+
+    leftBtn() {
+        if (this.pageNumber > 0) {
+            this.pageNumber--;
+            this.chartOnChange();
+        }
+    }
+
+    rightBtn() {
+        this.pageNumber++;
+        this.chartOnChange();
+    }
+
+    chartOnChange() {
+        this.getChartDataById(this.preSelectedChartData.chartMasterId, this.preSelectedChartData.residentAdmissionInfoId, this.pageNumber, this.pageSize);
+    }
+
+    getChartDataById(chartId: any, residentAdmissionInfoId: any, pageNumber: number, pageSize: number) {
+
+        this._UtilityService.showSpinner();
+        this.unsubscribe.add = this._UserService
+            .GetChartDataById(chartId, residentAdmissionInfoId, pageNumber, pageSize)
+            .subscribe({
+                next: (data) => {
+                    this._UtilityService.hideSpinner();
+                    if (data.actionResult.success == true) {
+                        var tdata = JSON.parse(data.actionResult.result);
+                        tdata = tdata ? tdata : [];
+                        this.ADLChartsLst = tdata;
+                        if (this.ADLChartsLst.length < 3 || (((this.ADLChartsLst.length) * (this.pageNumber + 1)) >= this.ADLChartsLst[0].countRecords)) {
+                            this.rightBtnCheck = true;
+                        }
+                        else {
+                            this.rightBtnCheck = false;
+                        }
+                        console.log(this.ADLChartsLst);
+
+                    } else {
+                        this.ADLChartsLst = [];
+                    }
+                },
+                error: (e) => {
+                    this._UtilityService.hideSpinner();
+                    this._UtilityService.showErrorAlert(e.message);
+                },
+            });
+    }
+
+    showPopup() {
+
+    }
 }

@@ -293,17 +293,31 @@
                 [showIndicators]="false" [showNavigators]="false" [responsiveOptions]="responsiveOptions">
                 <ng-template let-chart pTemplate="item">
                     <div class="col-md-11 chart-box p-2">
-                        <div class="formheader">
-                            <div class="col-md-12 mt-4">
-                                <label class="form-label bold">
-                                    Date/Time<span class="required"></span></label>
+                        <div class="formheader p-2 mb-3">
+                            <div class="col-md-12 mb-2 d-flex justify-content-between fs-4 ">
                                 <div>
-                                    <label>{{ chart.DateAndTime | date:'dd-MM-yyyy HH:mm' }}</label>
+                                    <label class="bold">{{ chart.DateAndTime | date:'dd-MM-yyyy'}}</label>
                                 </div>
+                                <div>
+                                    <label>{{ chart.DateAndTime | date:'hh:mm'}}</label>
+                                </div>
+                              
                             </div>
                         </div>
+                        <div class="col-md-12 mb-2">
 
-                        <div class="col-md-12">
+                            <label class="form-label bold">Enterted By<span class="required"></span></label>
+
+                            <div>
+                                <label>{{chart.StartedBy}}</label>
+                            </div>
+                        </div>
+                        <div class="mb-2">
+                            <button pButton type="button" label="Strike Through Entry" class="p-button-link p-0"
+                                (click)="showPopup()">
+                            </button>
+                        </div>
+                        <div class="col-md-12 mb-4">
 
                             <label class="form-label bold">Care Given <span class="required"></span></label>
 
@@ -313,7 +327,7 @@
 
                         </div>
                         <div *ngIf="chart.CareGiven=='Yes'" class="row">
-                            <div class="col-md-12">
+                            <div class="col-md-12 mb-4">
                                 <label class="form-label bold">Activity <span class="required"></span></label>
 
                                 <div>
@@ -321,7 +335,7 @@
                                 </div>
                             </div>
 
-                            <div class="col-md-12">
+                            <div class="col-md-12 mb-5">
                                 <label class="form-label bold">Attendance<span class="required"></span></label>
 
                                 <div>
@@ -329,7 +343,7 @@
                                 </div>
                             </div>
 
-                            <div class="col-md-12">
+                            <div class="col-md-12 mb-5">
                                 <label class="form-label bold">Participation<span class="required"></span></label>
 
                                 <div>
@@ -339,14 +353,14 @@
                                 </div>
                             </div>
 
-                            <div class="col-md-12">
+                            <div class="col-md-12 mb-5">
                                 <label class="form-label bold">Purpose of activity<span class="required"></span></label>
 
                                 <div>
                                     <label>{{chart.PurposeOfActivityOptionName}}</label>
                                 </div>
                             </div>
-                            <div class="col-md-12">
+                            <div class="col-md-12 mb-5">
 
                                 <label class="form-label bold">Duration (minutes)<span class="required"></span></label>
 
@@ -368,8 +382,8 @@
             </p-carousel>
             <!-- Right navigation button -->
 
-            <button pButton type="button" icon="pi pi-chevron-right" class="right-nav-btn" 
-                (click)="rightBtn()" [disabled]="rightBtnCheck"></button>
+            <button pButton type="button" icon="pi pi-chevron-right" class="right-nav-btn" (click)="rightBtn()"
+                [disabled]="rightBtnCheck"></button>
         </div>
     </div>
 </div>
