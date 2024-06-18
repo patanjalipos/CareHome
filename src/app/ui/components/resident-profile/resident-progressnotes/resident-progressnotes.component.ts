@@ -171,7 +171,7 @@ export class ResidentProgressnotesComponent extends AppComponentBase implements 
         {
           this._UtilityService.showSuccessAlert(data.actionResult.errMsg);  
           this.Close();
-          this.LoadResidentProgressDetails(this.admissionid,this.dFrom, this.dTo,this.userid,null);
+          this.LoadResidentProgressDetails(this.admissionid,this.dFrom, this.dTo,this.userid,this.SearchProgressnoteType);
         }
         else
         {
@@ -313,7 +313,7 @@ this.unsubscribe.add = this._MasterServices.AddInsertResidentAdditionalProgressN
       {
         this._UtilityService.showSuccessAlert(data.actionResult.errMsg);  
         this.ClearAddionalNote();
-        this.LoadResidentProgressDetails(this.admissionid,this.dFrom, this.dTo,this.userid,0);
+        this.LoadResidentProgressDetails(this.admissionid,this.dFrom, this.dTo,this.userid,this.SearchProgressnoteType);
       }
       else
       {

@@ -30,6 +30,8 @@ export class TaskPlannerComponent extends AppComponentBase implements OnInit {
   results: any[]=[];
   disabled:boolean=false;
   selectedUser: any = <any>{};
+  filteritems:any[]=[];
+  isTaskPlanner: boolean = false;
   constructor(
     private _ConstantServices: ConstantsService,
     private _MasterServices:MasterService,
@@ -97,8 +99,14 @@ export class TaskPlannerComponent extends AppComponentBase implements OnInit {
   }
   
   GetTaskPlanner() {
-    this._UtilityService.showSpinner();   
-    this.unsubscribe.add = this._MasterServices.GetTaskPlanner()
+    let importData: any = <any>{};
+    let SearchList:any[]=[];     
+    if(this.isTaskPlanner==true && this.filteritems !=null && this.filteritems !=undefined)
+      {       
+        importData.SearchList=this.filteritems;
+      }
+    this._UtilityService.showSpinner(); 
+    this.unsubscribe.add = this._MasterServices.GetTaskPlanner(importData)
       .subscribe({
         next:(data) => {
           this._UtilityService.hideSpinner();          
@@ -236,4 +244,15 @@ export class TaskPlannerComponent extends AppComponentBase implements OnInit {
   onGlobalFilter(table: Table, event: Event) {
     table.filterGlobal((event.target as HTMLInputElement).value, 'contains');
   }
+
+  ShowFilters() {
+    this.isTaskPlanner =!this.isTaskPlanner;  
+  }
+
+GetTaskPlannerFilter($event) {
+  // console.log('event',$event);
+  this.filteritems=$event;   
+   //console.log(this.filteritems); 
+   this.GetTaskPlanner(); 
+ }
 }

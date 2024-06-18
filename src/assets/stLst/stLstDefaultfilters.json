@@ -1,0 +1,32 @@
+{
+    "UserMaster": [
+        {
+            "optionId": "HomeCode",
+            "optionValue": "Home Code"
+        },
+        {
+            "optionId": "HomeName",
+            "optionValue": "Home Name"
+        }
+    ],
+    "TaskPlanner": [
+        {
+            "optionId": "TaskName",
+            "optionValue": "Task Name"
+        },
+        {
+            "optionId": "Description",
+            "optionValue": "Description"
+        }
+    ],
+    "AlertMaster": [
+        {
+            "optionId": "AlertHeadName",
+            "optionValue": "Alert HeadName"
+        },
+        {
+            "optionId": "AlertName",
+            "optionValue": "Alert Name"
+        }
+    ]
+}

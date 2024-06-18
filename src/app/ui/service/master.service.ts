@@ -515,7 +515,7 @@ export class MasterService {
         );
     }
 
-    GetAlertMaster(status: any = true): Observable<any> {
+    GetAlertMaster(NewObj:any=<any>{},status: any = true): Observable<any> {
         let reqHeader = new HttpHeaders({
             'Content-Type': 'application/json',
             'Access-Control-Allow-Origin': environment.BaseUriAdmin,
@@ -523,11 +523,13 @@ export class MasterService {
         });
         let params = new HttpParams();
         params = params.append('status', status);
-        return this._httpclient.get<any>(
-            environment.BaseUriAdmin + 'api/Admin/GetAlertMaster',
+        let data=JSON.stringify(NewObj);
+        return this._httpclient.post<any>(
+            environment.BaseUriAdmin + 'api/Admin/GetAlertMaster',data,
             { headers: reqHeader, params: params }
         );
     }
+   
     GetAlertMasterById(id): Observable<any> {
         let reqHeader = new HttpHeaders({
             'Content-Type': 'application/json',
@@ -859,20 +861,21 @@ export class MasterService {
 
     //#region  UserMaster
 
-    GetUserMaster(homeMasterId): Observable<any> {
+    GetUserMaster(homeMasterId,NewObj:any=<any>{}): Observable<any> {
         let reqHeader = new HttpHeaders({
             'Content-Type': 'application/json',
             'Access-Control-Allow-Origin': environment.BaseUriAdmin,
             Authorization: 'Bearer ' + localStorage.getItem('token'),
         });
         let params = new HttpParams();
+        let data=JSON.stringify(NewObj);
         params = params.append('homeMasterId', homeMasterId);
-        return this._httpclient.get<any>(
-            environment.BaseUriAdmin + 'api/Admin/GetUserMaster',
+        return this._httpclient.post<any>(
+            environment.BaseUriAdmin + 'api/Admin/GetUserMaster',data,
             { headers: reqHeader, params: params }
         );
     }
-
+      
     GetUserMasterById(userId): Observable<any> {
         let reqHeader = new HttpHeaders({
             'Content-Type': 'application/json',
@@ -1651,17 +1654,18 @@ export class MasterService {
         );
     }
 
-    GetTaskPlanner(status = 0, date = null): Observable<any> {
+    GetTaskPlanner(NewObj:any=<any>{},status = 0, date = null): Observable<any> {
         let reqHeader = new HttpHeaders({
             'Content-Type': 'application/json',
             'Access-Control-Allow-Origin': environment.BaseUriAdmin,
             Authorization: 'Bearer ' + localStorage.getItem('token'),
         });
+        let data=JSON.stringify(NewObj);
         let params = new HttpParams();
         params = params.append('status', status == undefined ? 0 : status);
-        params = params.append('date', date == undefined ? null : date);
-        return this._httpclient.get<any>(
-            environment.BaseUriAdmin + 'api/Admin/GetTaskPlanner',
+        params = params.append('date', date == undefined ? null : date);        
+        return this._httpclient.post<any>(
+            environment.BaseUriAdmin + 'api/Admin/GetTaskPlanner',data,
             { headers: reqHeader, params: params }
         );
     }

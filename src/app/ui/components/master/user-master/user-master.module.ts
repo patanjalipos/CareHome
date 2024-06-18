@@ -18,6 +18,8 @@ import { MultiSelectModule } from 'primeng/multiselect';
 import { TreeTableModule } from 'primeng/treetable';
 import { InputTextareaModule } from 'primeng/inputtextarea';
 import { DialogModule } from 'primeng/dialog';
+import { FilterationComponent } from '../../filteration/filteration.component';
+import { FilterationModule } from '../../filteration/filteration.module';
 
 
 @NgModule({
@@ -42,7 +44,8 @@ import { DialogModule } from 'primeng/dialog';
     CalendarModule,
     MultiSelectModule,
     TreeTableModule,
-    DialogModule
+    DialogModule,
+    FilterationModule,
   ]
 })
 export class UserMasterModule { }

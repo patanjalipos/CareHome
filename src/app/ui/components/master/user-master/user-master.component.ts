@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import { Table } from 'primeng/table';
 import { ActionItem, ConstantsService, CustomDateFormat, OtherActionAccess, UserTypes } from 'src/app/ui/service/constants.service';
 import { MasterService } from 'src/app/ui/service/master.service';
@@ -18,6 +18,8 @@ declare var $: any;
 export class UserMasterComponent extends AppComponentBase implements OnInit {
   @ViewChild('dt') public dataTable: Table;
   @ViewChild('filtr') filtr: ElementRef;
+  @Input() filteredData: any[] = [];
+  isUserMaster:Boolean=false;
   updateMode: Boolean = false;
   @ViewChild('fileInput') fileInput: FileUpload; 
   UserTypes = UserTypes;
@@ -60,7 +62,7 @@ export class UserMasterComponent extends AppComponentBase implements OnInit {
     fileSource: new FormControl('', [Validators.required])
   }); 
   imageSrc: any;
-
+  filteritems:any[]=[];
 
   constructor(
     private _ConstantServices: ConstantsService,
@@ -155,9 +157,15 @@ export class UserMasterComponent extends AppComponentBase implements OnInit {
         },
       });
   }
-  LoadUserList() {
+  LoadUserList() {    
+    let importData: any = <any>{};
+    if(this.isUserMaster==true && this.filteritems !=null && this.filteritems !=undefined)
+      {       
+        importData.SearchList=this.filteritems;
+      }   
+      console.log(importData);
     this._UtilityService.showSpinner();
-    this.unsubscribe.add = this._MasterServices.GetUserMaster(this.s_HomeMasterId)
+    this.unsubscribe.add = this._MasterServices.GetUserMaster(this.s_HomeMasterId,importData)
       .subscribe
       ({
         next: (data) => {
@@ -283,7 +291,7 @@ export class UserMasterComponent extends AppComponentBase implements OnInit {
       else {
         this.fileInputLabelAWB = file.name;
         this.fileUploadFormAWB.get('myfileAWB').setValue(file);
-      }
+       }
       const reader = new FileReader();
       if (event.target.files && event.target.files?.length) {
         const [file] = event.target.files;
@@ -948,5 +956,15 @@ export class UserMasterComponent extends AppComponentBase implements OnInit {
   transform(value: any): [number, string][] {
     return Object.keys(value).filter(t => isNaN(+t)).map(t => [value[t], t]);
   }
+//Filteration User Data
 
+  ShowFilters() {
+    this.isUserMaster =!this.isUserMaster;
+  }
+
+  GetUserMasterFilterData($event) {
+    // console.log('event',$event);
+    this.filteritems=$event;   
+     this.LoadUserList(); 
+   }
 }

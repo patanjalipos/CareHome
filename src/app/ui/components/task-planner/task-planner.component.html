@@ -1,5 +1,5 @@
 <div *ngIf="mode==null">
-    <div class="card">
+    <div class="card mb-4">
         <p-table #dt [value]="lstMaster" responsiveLayout="scroll" styleClass="p-datatable-striped" [rowHover]="true"
             [globalFilterFields]="['TaskName','TaskDescription','AssignedToName']" [scrollable]="true" scrollHeight="calc(100vh - 155px)">
             <ng-template pTemplate="caption">
@@ -15,9 +15,18 @@
                         <span class="p-input-icon-left">
                             <i class="pi pi-search"></i>
                             <input #filtr pInputText type="text" (input)="onGlobalFilter(dt, $event)"
-                                placeholder="Search..." /></span>
-                    </span>
-                </div>
+                                placeholder="Search..." />
+                        </span>                               
+                        <span class="m-3">
+                          <button pButton title="Filters" label="Filters" class="p-button-outlined mr-2" icon="pi pi-filter" 
+                          (click)="ShowFilters()" style="height: 40px; width: 100px;"></button>                         
+                          
+                      </span>
+                    </span>                    
+                </div>               
+                <div *ngIf="isTaskPlanner">
+                    <app-filteration [isTaskPlanner]="isTaskPlanner" (TaskPlannerFilterData)="GetTaskPlannerFilter($event)"></app-filteration>  
+                </div> 
             </ng-template>
             <ng-template pTemplate="emptymessage" let-columns>
                 <tr>
