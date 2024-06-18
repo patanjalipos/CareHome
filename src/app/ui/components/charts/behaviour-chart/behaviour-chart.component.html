@@ -1,118 +1,195 @@
 <div class="card">
-    <div class="row">
-        <div class="formheader">
-            <h4>New observation</h4>
+    <div class="row mt-2 p-0">
+        <div class="col-md-12 formheader">
+            <h2>Behaviour Chart</h2>
         </div>
-        <div class="col-md-4 mt-4">
-            <div class="labelcontent">
+        <div class="col-md-3 mt-3 chart-box">
+            <div class="formheader mt-2">
+                <h4>New observation</h4>
+            </div>
+            <div class="col-md-12 mt-4">
                 <label class="form-label bold">
-                    Date and Time</label>
-            </div>
-            <ng-container *ngIf="this.isEditable; else DateAndTime">
-                <p-calendar name="txtDate" [showIcon]="true" inputId="icon" class="iconcal" [readonlyInput]="true"
-                    appendTo="body" [maxDate]="" [showTime]="true" hourFormat="24"
-                    [dateFormat]="customDateFormat.CalendarFormat" #dobref=""
-                    [(ngModel)]="BehaviourChartData.DateAndTime"></p-calendar>
-            </ng-container>
-            <ng-template #DateAndTime>
-                <label>{{BehaviourChartData.DateAndTime}}</label>
-            </ng-template>
-        </div>
-        <div class="col-md-4 mt-4">
-            <div class="labelcontent">
-                <label class="form-label bold">Care Given</label>
-            </div>
-            <ng-container *ngIf="this.isEditable; else CareGivenOptions">
-                <p-dropdown [required]="true" name="CareGiven" [options]="stLstYesNoOptions" optionLabel="optionValue"
-                    optionValue="optionId" placeholder="--select--" [style]="{ width: '100%' }"
-                    [(ngModel)]="BehaviourChartData.CareGivenOptions" (onChange)="openAndClose()">
-                </p-dropdown>
-            </ng-container>
-            <ng-template #CareGivenOptions>
-                <label>{{BehaviourChartData.CareGivenOptions}}</label>
-            </ng-template>
-        </div>
-        <div *ngIf="inputFieldsCheck" class="row">
-            <h5 class="formheader">Incident</h5>
-            <div class="col-md-4">
-                <div class="labelcontent">
-                    <label class="form-label bold">Antecedent events</label>
-                </div>
-                <ng-container *ngIf="this.isEditable; else AntecedentEvents">
-                    <textarea type="text" pInputTextarea name="AntecedentEvents"
-                        [(ngModel)]="BehaviourChartData.AntecedentEvents" [required]="true"
-                        [style]="{ width: '100%' }"></textarea>
+                    Date/Time<span class="required"></span></label>
+
+                <ng-container>
+                    <p-calendar name="" [showIcon]="true" inputId="icon" class="iconcal" [readonlyInput]="true"
+                        appendTo="body" [maxDate]="" #dobref="" [dateFormat]="customDateFormat.CalendarFormat"
+                        [(ngModel)]="BehaviourChartData.DateAndTime" [showTime]="true" hourFormat="24"></p-calendar>
                 </ng-container>
-                <ng-template #AntecedentEvents>
-                    <label>{{BehaviourChartData.AntecedentEvents}}</label>
-                </ng-template>
             </div>
-            <div class="col-md-4">
-                <div class="labelcontent">
-                    <label class="form-label bold">Definition of behaviour</label>
-                </div>
-                <ng-container *ngIf="this.isEditable; else BehaviourDefinition">
-                    <textarea type="text" pInputTextarea name="BehaviourDefinition"
-                        [(ngModel)]="BehaviourChartData.BehaviourDefinition" [required]="true"
-                        [style]="{ width: '100%' }"></textarea>
-                </ng-container>
-                <ng-template #BehaviourDefinition>
-                    <label>{{BehaviourChartData.BehaviourDefinition}}</label>
-                </ng-template>
-            </div>
-            <div class="col-md-4">
-                <div class="labelcontent">
-                    <label class="form-label bold">Consequent events</label>
-                </div>
-                <ng-container *ngIf="this.isEditable; else ConsequentEvents">
-                    <textarea type="text" pInputTextarea name="ConsequentEvents"
-                        [(ngModel)]="BehaviourChartData.ConsequentEvents" [required]="true"
-                        [style]="{ width: '100%' }"></textarea>
-                </ng-container>
-                <ng-template #ConsequentEvents>
-                    <label>{{BehaviourChartData.ConsequentEvents}}</label>
-                </ng-template>
-            </div>
-            <h5 class="formheader">Functional assessment</h5>
-            <div class="col-md-4">
-                <div class="labelcontent">
-                    <label class="form-label bold">What purpose does this behaviour serve for the resident?</label>
-                </div>
-                <ng-container *ngIf="this.isEditable; else BehaviourPurpose">
-                    <p-dropdown [required]="true" name="BehaviourPurpose"
-                        [(ngModel)]="BehaviourChartData.BehaviourPurposeOptions"
-                        [options]="LstBehaviourPurpose" optionLabel="optionName" optionValue="optionId"
-                        placeholder="--select--" [style]="{ width: '100%' }">
+            <div class="col-md-12">
+                <label class="form-label bold">Care Given <span class="required"></span></label>
+
+                <ng-container>
+                    <p-dropdown [required]="true" name="ActivitiesChartFormData.CareGiven" placeholder="----select----"
+                        [style]="{ width: '100%' }" [options]="stLstYesNoOptions" optionValue="optionId"
+                        optionLabel="optionValue" [(ngModel)]="BehaviourChartData.CareGivenOptions"
+                        (onChange)="openAndClose()">
                     </p-dropdown>
                 </ng-container>
-                <ng-template #BehaviourPurpose>
-                    <label>{{BehaviourChartData.BehaviourPurposeOptionsName}}</label>
+            </div>
+            <div *ngIf="inputFieldsCheck" class="row">
+                <h5 class="formheader">Incident</h5>
+                <div class="col-md-12">
+                    <div class="labelcontent">
+                        <label class="form-label bold">Antecedent events</label>
+                    </div>
+                    <ng-container>
+                        <textarea type="text" pInputTextarea name="AntecedentEvents"
+                            [(ngModel)]="BehaviourChartData.AntecedentEvents" [required]="true"
+                            [style]="{ width: '100%' }"></textarea>
+                    </ng-container>
+                </div>
+                <div class="col-md-12">
+                    <div class="labelcontent">
+                        <label class="form-label bold">Definition of behaviour</label>
+                    </div>
+                    <ng-container>
+                        <textarea type="text" pInputTextarea name="BehaviourDefinition"
+                            [(ngModel)]="BehaviourChartData.BehaviourDefinition" [required]="true"
+                            [style]="{ width: '100%' }"></textarea>
+                    </ng-container>
+                </div>
+                <div class="col-md-12">
+                    <div class="labelcontent">
+                        <label class="form-label bold">Consequent events</label>
+                    </div>
+                    <ng-container>
+                        <textarea type="text" pInputTextarea name="ConsequentEvents"
+                            [(ngModel)]="BehaviourChartData.ConsequentEvents" [required]="true"
+                            [style]="{ width: '100%' }"></textarea>
+                    </ng-container>
+                </div>
+                <h5 class="formheader">Functional assessment</h5>
+                <div class="col-md-12">
+                    <div class="labelcontent">
+                        <label class="form-label bold">What purpose does this behaviour serve for the resident?</label>
+                    </div>
+                    <ng-container>
+                        <p-dropdown [required]="true" name="BehaviourPurpose"
+                            [(ngModel)]="BehaviourChartData.BehaviourPurposeOptions" [options]="LstBehaviourPurpose"
+                            optionLabel="optionName" optionValue="optionId" placeholder="--select--"
+                            [style]="{ width: '100%' }">
+                        </p-dropdown>
+                    </ng-container>
+                </div>
+            </div>
+            <h5 class="formheader">Additional information</h5>
+            <div class="col-md-12">
+                <ng-container>
+                    <textarea pInputTextarea name="AdditionalInfo" [(ngModel)]="BehaviourChartData.AdditionalInfo"
+                        [required]="true" [style]="{ width: '100%' }"></textarea>
+                </ng-container>
+            </div>
+            <div class="d-flex justify-content-end mt-4" *ngIf="this.isEditable == true">
+                <div>
+                    <span class="p-ml-left mr-4">
+                        <button pButton title="New" label="Clear all feild" (click)="ClearAllfeilds()"></button>
+                        <span class="total-txt"></span>
+                    </span>
+                </div>
+                <div>
+                    <span class="p-ml-left mr-4">
+                        <button pButton title="New" label="Save" (click)="Save()"></button>
+                        <span class="total-txt"></span>
+                    </span>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-9 mt-3">
+            <!-- Left navigation button -->
+            <button pButton type="button" icon="pi pi-chevron-left" class="left-nav-btn" (click)="leftBtn()"
+                [disabled]="pageNumber==0"></button>
+            <p-carousel [value]="behaviourChartsLst" [numVisible]="pageSize" [numScroll]="pageSize" [circular]="false"
+                [showIndicators]="false" [showNavigators]="false" [responsiveOptions]="responsiveOptions">
+                <ng-template let-chart pTemplate="item">
+                    <div class="col-md-11 chart-box p-2">
+                        <div class="formheader p-2 mb-3">
+                            <div class="col-md-12 mb-2 d-flex justify-content-between fs-4 ">
+                                <div>
+                                    <label class="bold">{{ chart.DateAndTime | date:'dd-MM-yyyy'}}</label>
+                                </div>
+                                <div>
+                                    <label>{{ chart.DateAndTime | date:'hh:mm'}}</label>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="col-md-12 mb-2">
+
+                            <label class="form-label bold">Enterted By<span class="required"></span></label>
+
+                            <div>
+                                <label>{{chart.StartedBy}}</label>
+                            </div>
+                        </div>
+                        <div class="mb-2">
+                            <button pButton type="button" label="Strike Through Entry" class="p-button-link p-0"
+                                (click)="showPopup()">
+                            </button>
+                        </div>
+                        <div class="col-md-12 mb-3">
+
+                            <label class="form-label bold">Care Given <span class="required"></span></label>
+
+                            <div>
+                                <label>{{ chart.CareGivenOptions }}</label>
+                            </div>
+
+                        </div>
+
+                        <div *ngIf="chart.CareGivenOptions=='Yes'" class="row">
+                            <h5 class="formheader">Incident</h5>
+                            <div class="col-md-12 mb-5">
+                                <div class="labelcontent">
+                                    <label class="form-label bold">Antecedent events</label>
+                                </div>
+                                <div>
+                                    <label>{{ chart.AntecedentEvents }}</label>
+                                </div>
+                            </div>
+                            <div class="col-md-12 mb-4">
+                                <div class="labelcontent">
+                                    <label class="form-label bold">Definition of behaviour</label>
+                                </div>
+                                <div>
+                                    <label>{{ chart.BehaviourDefinition }}</label>
+                                </div>
+                            </div>
+                            <div class="col-md-12 mb-4">
+                                <div class="labelcontent">
+                                    <label class="form-label bold">Consequent events</label>
+                                </div>
+                                <div>
+                                    <label>{{ chart.ConsequentEvents }}</label>
+                                </div>
+                            </div>
+                            <h5 class="formheader">Functional assessment</h5>
+                            <div class="col-md-12 mb-5">
+                                <div class="labelcontent">
+                                    <label class="form-label bold">What purpose does this behaviour serve for the
+                                        resident?</label>
+                                </div>
+                                <div>
+                                    <label>{{ chart.BehaviourPurposeOptionName }}</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <h5 class="formheader">Additional information</h5>
+                        <div class="col-md-12">
+                            <div>
+                                <label>{{ chart.AdditionalInformation }}</label>
+                            </div>
+                        </div>
+                    </div>
                 </ng-template>
-            </div>
-        </div>
-        <h5 class="formheader">Additional information</h5>
-        <div class="col-md-4">
-            <ng-container *ngIf="this.isEditable; else AdditionalInfo">
-                <textarea pInputTextarea name="AdditionalInfo" [(ngModel)]="BehaviourChartData.AdditionalInfo"
-                    [required]="true" [style]="{ width: '100%' }"></textarea>
-            </ng-container>
-            <ng-template #AdditionalInfo>
-                <label>{{BehaviourChartData.AdditionalInfo}}</label>
-            </ng-template>
-        </div>
-        <div class="d-flex justify-content-end mt-4" *ngIf="this.isEditable == true">
-            <div>
-                <span class="p-ml-left mr-4">
-                    <button pButton title="New" label="Clear all feild" (click)="ClearAllfeilds()"></button>
-                    <span class="total-txt"></span>
-                </span>
-            </div>
-            <div>
-                <span class="p-ml-left mr-4">
-                    <button pButton title="New" label="Save" (click)="Save()"></button>
-                    <span class="total-txt"></span>
-                </span>
-            </div>
+
+            </p-carousel>
+            <!-- Right navigation button -->
+
+            <button pButton type="button" icon="pi pi-chevron-right" class="right-nav-btn" (click)="rightBtn()"
+                [disabled]="rightBtnCheck"></button>
         </div>
     </div>
-</div>
