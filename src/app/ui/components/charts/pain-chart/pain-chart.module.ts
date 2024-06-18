@@ -9,6 +9,7 @@ import { InputTextModule } from 'primeng/inputtext';
 import { CalendarModule } from 'primeng/calendar';
 import { SelectButtonModule } from 'primeng/selectbutton';
 import { BodyMappingImageModule } from '../body-mapping-Image/body-mapping.module';
+import { CarouselModule } from 'primeng/carousel';
 
 
 @NgModule({
@@ -22,7 +23,8 @@ import { BodyMappingImageModule } from '../body-mapping-Image/body-mapping.modul
     CalendarModule,
     SelectButtonModule,
     DialogModule,
-    BodyMappingImageModule
+    BodyMappingImageModule,
+    CarouselModule
   ],
   exports:[PainChartComponent]
 })

@@ -53,7 +53,7 @@ export class ActivitiesChartComponent
     pageNumber: number = 0;
     pageSize: number = 3;
     responsiveOptions: any[] | undefined;
-    rightBtnCheck:boolean = false;
+    rightBtnCheck: boolean = false;
 
     constructor(
         private optionService: OptionService,
@@ -168,14 +168,14 @@ export class ActivitiesChartComponent
                         var tdata = JSON.parse(data.actionResult.result);
                         tdata = tdata ? tdata : [];
                         this.ActivityChartsLst = tdata;
-                        if(this.ActivityChartsLst.length<3 || (((this.ActivityChartsLst.length)*(this.pageNumber+1)) >= this.ActivityChartsLst[0].countRecords)) {
+                        if (this.ActivityChartsLst.length < 3 || (((this.ActivityChartsLst.length) * (this.pageNumber + 1)) >= this.ActivityChartsLst[0].countRecords)) {
                             this.rightBtnCheck = true;
                         }
-                        else{
+                        else {
                             this.rightBtnCheck = false;
                         }
                         console.log(this.ActivityChartsLst);
-                        
+
                     } else {
                         this.ActivityChartsLst = [];
                     }
@@ -186,9 +186,7 @@ export class ActivitiesChartComponent
                 },
             });
     }
-    showPopup(){
-        alert("asdfasdf");
-    }
+
     GetActivitiesChartDetails(chartId: string) {
         this._UtilityService.showSpinner();
         this.unsubscribe.add = this._ActivityChartServices
@@ -337,4 +335,9 @@ export class ActivitiesChartComponent
         this.pageNumber++;
         this.chartOnChange();
     }
+    showPopup() {
+
+    }
+
+
 }
