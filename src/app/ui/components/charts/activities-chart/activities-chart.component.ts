@@ -29,8 +29,7 @@ import { DatePipe } from '@angular/common';
 })
 export class ActivitiesChartComponent
     extends AppComponentBase
-    implements OnInit
-{
+    implements OnInit {
     @Input() preSelectedChartData: any = <any>{};
     @Output() EmitUpdateForm: EventEmitter<any> = new EventEmitter<any>();
 
@@ -45,11 +44,19 @@ export class ActivitiesChartComponent
 
     lstActivity: any[] = [];
     lstPurposeOfActivity: any[] = [];
-    lstParticipation:any[]=[];
+    lstParticipation: any[] = [];
 
     //Static Options
     stLstYesNoOptions: any[] = [];
     stLstAttendanceOptions: any[] = [];
+
+    //for carousel
+    ActivityChartsLst: any[] = [];
+    pageNumber: number = 0;
+    pageSize: number = 3;
+
+
+
 
     constructor(
         private optionService: OptionService,
@@ -75,6 +82,8 @@ export class ActivitiesChartComponent
                         ?.FieldVal || null;
             }
         });
+
+
     }
 
     ngOnChanges(changes: SimpleChanges): void {
@@ -88,6 +97,7 @@ export class ActivitiesChartComponent
         } else {
             this.ResetModel();
         }
+
     }
 
     ngOnInit(): void {
@@ -103,7 +113,7 @@ export class ActivitiesChartComponent
             this.stLstAttendanceOptions = data;
         });
 
-        const collectionNames = ['Activity','Participation', 'PurposeofActivity'];
+        const collectionNames = ['Activity', 'Participation', 'PurposeofActivity'];
 
         forkJoin(
             collectionNames.map((collectionName) =>
@@ -115,9 +125,105 @@ export class ActivitiesChartComponent
             )
         ).subscribe((responses: any[]) => {
             this.lstActivity = responses[0];
-            this.lstParticipation=responses[1];
+            this.lstParticipation = responses[1];
             this.lstPurposeOfActivity = responses[2];
         });
+
+        this.getChartDataById(this.preSelectedChartData.chartMasterId, this.preSelectedChartData.residentAdmissionInfoId, this.pageNumber, this.pageSize);
+        this.ActivityChartsLst = [
+            // {
+            //     DateAndTime: new Date(),
+            //     CareGiven: 'Yes',
+            //     ActivityOptionName: 'Exercise',
+            //     Attendance: 'Present',
+            //     ParticipationOption: 'Active',
+            //     PurposeOfActivityOptionName: 'Health Improvement',
+            //     Duration: 30,
+            //     AdditionalInformation: 'all is good'
+            // },
+            // {
+            //     DateAndTime: new Date(),
+            //     CareGiven: 'Yes',
+            //     ActivityOptionName: 'Exercise',
+            //     Attendance: 'Present',
+            //     ParticipationOption: 'Active',
+            //     PurposeOfActivityOptionName: 'Health Improvement',
+            //     Duration: 30,
+            //     AdditionalInformation: 'all is good'
+            // },
+            // {
+            //     DateAndTime: new Date(),
+            //     CareGiven: 'Yes',
+            //     ActivityOptionName: 'Exercise',
+            //     Attendance: 'Present',
+            //     ParticipationOption: 'Active',
+            //     PurposeOfActivityOptionName: 'Health Improvement',
+            //     Duration: 30,
+            //     AdditionalInformation: 'all is good'
+            // },
+            // {
+            //     DateAndTime: new Date(),
+            //     CareGiven: 'Yes',
+            //     ActivityOptionName: 'Exercise',
+            //     Attendance: 'Present',
+            //     ParticipationOption: 'Active',
+            //     PurposeOfActivityOptionName: 'Health Improvement',
+            //     Duration: 30,
+            //     AdditionalInformation: 'all is good'
+            // },
+            // {
+            //     DateAndTime: new Date(),
+            //     CareGiven: 'Yes',
+            //     ActivityOptionName: 'Exercise',
+            //     Attendance: 'Present',
+            //     ParticipationOption: 'Active',
+            //     PurposeOfActivityOptionName: 'Health Improvement',
+            //     Duration: 30,
+            //     AdditionalInformation: 'all is good'
+            // },
+            // {
+            //     DateAndTime: new Date(),
+            //     CareGiven: 'Yes',
+            //     ActivityOptionName: 'Exercise',
+            //     Attendance: 'Present',
+            //     ParticipationOption: 'Active',
+            //     PurposeOfActivityOptionName: 'Health Improvement',
+            //     Duration: 30,
+            //     AdditionalInformation: 'all is good'
+            // },
+            // {
+            //     DateAndTime: new Date(),
+            //     CareGiven: 'Yes',
+            //     ActivityOptionName: 'Exercise',
+            //     Attendance: 'Present',
+            //     ParticipationOption: 'Active',
+            //     PurposeOfActivityOptionName: 'Health Improvement',
+            //     Duration: 30,
+            //     AdditionalInformation: 'all is good'
+            // }, {
+            //     DateAndTime: new Date(),
+            //     CareGiven: 'Yes',
+            //     ActivityOptionName: 'Exercise',
+            //     Attendance: 'Present',
+            //     ParticipationOption: 'Active',
+            //     PurposeOfActivityOptionName: 'Health Improvement',
+            //     Duration: 30,
+            //     AdditionalInformation: 'all is good'
+            // },
+            // {
+            //     DateAndTime: new Date(),
+            //     CareGiven: 'Yes',
+            //     ActivityOptionName: 'Exercise',
+            //     Attendance: 'Present',
+            //     ParticipationOption: 'Active',
+            //     PurposeOfActivityOptionName: 'Health Improvement',
+            //     Duration: 30,
+            //     AdditionalInformation: 'all is good'
+            // }
+        ];
+    }
+    chartOnChange() {
+        this.getChartDataById(this.preSelectedChartData.chartMasterId, this.preSelectedChartData.residentAdmissionInfoId, this.pageNumber, this.pageSize);
     }
 
     ClearAllfeilds() {
@@ -128,6 +234,33 @@ export class ActivitiesChartComponent
         }
     }
 
+    getChartDataById(chartId: any, residentAdmissionInfoId: any, pageNumber: number, pageSize: number) {
+        console.log(chartId);
+        console.log(residentAdmissionInfoId);
+        console.log(pageNumber);
+        console.log(pageSize);
+
+        this._UtilityService.showSpinner();
+        this.unsubscribe.add = this._ActivityChartServices
+            .GetChartDataById(chartId, residentAdmissionInfoId, pageNumber, pageSize)
+            .subscribe({
+                next: (data) => {
+                    this._UtilityService.hideSpinner();
+                    if (data.actionResult.success == true) {
+                        var tdata = JSON.parse(data.actionResult.result);
+                        tdata = tdata ? tdata : [];
+                        this.ActivityChartsLst = tdata;
+                        
+                    } else {
+                        this.ActivityChartsLst = [];
+                    }
+                },
+                error: (e) => {
+                    this._UtilityService.hideSpinner();
+                    this._UtilityService.showErrorAlert(e.message);
+                },
+            });
+    }
     GetActivitiesChartDetails(chartId: string) {
         this._UtilityService.showSpinner();
         this.unsubscribe.add = this._ActivityChartServices
@@ -145,6 +278,8 @@ export class ActivitiesChartComponent
                                 'dd-MM-yyyy HH:mm'
                             );
                         this.openAndClose();
+                        this.ActivityChartsLst.push(this.ActivitiesChartFormData);
+                        console.log(this.ActivityChartsLst)
                     } else {
                         this.ActivitiesChartFormData = {};
                     }
@@ -184,7 +319,7 @@ export class ActivitiesChartComponent
                 catchError((error) => {
                     this._UtilityService.hideSpinner();
                     this._UtilityService.showErrorAlert(error.message);
-                    alert(error.message);
+
                     return of([]); // Returning empty array in case of error
                 })
             );
@@ -262,5 +397,18 @@ export class ActivitiesChartComponent
         this.isEditable = true;
         this.ActivitiesChartFormData = <any>{};
         this.StatementType = 'Insert';
+    }
+
+    leftBtn() {
+        if (this.pageNumber > 0) {
+            this.pageNumber--;
+            this.chartOnChange();
+        }
+    }
+
+    rightBtn() {
+        
+        this.pageNumber++;
+        this.chartOnChange();
     }
 }

@@ -5,7 +5,7 @@ import { Observable, catchError, forkJoin, map, of } from 'rxjs';
 import { AppComponentBase } from 'src/app/app-component-base';
 import { ConstantsService, CustomDateFormat, FormTypes } from 'src/app/ui/service/constants.service';
 import { DataService } from 'src/app/ui/service/data-service.service';
-import { MasterService } from 'src/app/ui/service/master.service';
+import { UserService } from 'src/app/ui/service/user.service';
 import { UtilityService } from 'src/app/utility/utility.service';
 
 @Component({
@@ -37,7 +37,7 @@ export class FamilyCommunicationComponent extends AppComponentBase implements On
         private datepipe: DatePipe,
         private _ConstantServices: ConstantsService,
         private route: ActivatedRoute,
-        private _MasterServices: MasterService,
+        private _UserServices: UserService,
         private _UtilityService: UtilityService,
         private _DataService: DataService) {
         super();
@@ -94,7 +94,7 @@ export class FamilyCommunicationComponent extends AppComponentBase implements On
 
     getDropdownMasterLists(formMasterId: string, dropdownName: string, status: number): Observable<any> {
         this._UtilityService.showSpinner();
-        return this._MasterServices.GetDropDownMasterList(formMasterId, dropdownName, status).pipe(
+        return this._UserServices.GetDropDownMasterList(formMasterId, dropdownName, status).pipe(
             map((response) => {
                 this._UtilityService.hideSpinner();
                 if (response.actionResult.success) {
@@ -106,7 +106,7 @@ export class FamilyCommunicationComponent extends AppComponentBase implements On
             catchError((error) => {
                 this._UtilityService.hideSpinner();
                 this._UtilityService.showErrorAlert(error.message);
-                alert(error.message);
+        
                 return of([]); // Returning empty array in case of error
             })
         );
@@ -119,7 +119,7 @@ export class FamilyCommunicationComponent extends AppComponentBase implements On
    
     GetFamilyCommFormByid(formId: string) {
         this._UtilityService.showSpinner();
-        this.unsubscribe.add = this._MasterServices
+        this.unsubscribe.add = this._UserServices
             .GetFamilyCommFormById(formId)
             .subscribe({
                 next: (data) => {
@@ -129,7 +129,6 @@ export class FamilyCommunicationComponent extends AppComponentBase implements On
                         tdata = tdata ? tdata : {};
                         this.FamilyCommFormsData = tdata;
                         this.FamilyCommFormsData.DateTimeObservation = new Date(this.FamilyCommFormsData.DateTimeObservation);
-                        //console.log(this.PreAdmissionAssessmentFormsData);
                     } else {
                         this.FamilyCommFormsData = {};
                     }
@@ -156,7 +155,7 @@ export class FamilyCommunicationComponent extends AppComponentBase implements On
                 FamilyCommForm: this.FamilyCommFormsData,
             };
             this._UtilityService.showSpinner();
-            this.unsubscribe.add = this._MasterServices
+            this.unsubscribe.add = this._UserServices
                 .InsertUpdateFamilyCommForm(objectBody)
                 .subscribe({
                     next: (data) => {

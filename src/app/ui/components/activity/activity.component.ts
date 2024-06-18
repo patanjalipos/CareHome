@@ -79,13 +79,13 @@ export class ActivityComponent extends AppComponentBase implements OnInit {
             var tdata = JSON.parse(data.actionResult.result);
             tdata = tdata ? tdata : [];
             this.lstMaster = tdata;
-            console.log(this.filtr);
+        
             if (this.filtr !== undefined) {
               this.filtr.nativeElement.value = "";
               this.dataTable.reset();
               this.filteredValuesLength = this.lstMaster?.length;
               }            
-          //  console.log(this.lstmaster);
+
           }
           else {
             this.lstMaster = [];            

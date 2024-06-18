@@ -7,7 +7,7 @@ import { DropdownModule } from 'primeng/dropdown';
 import { InputTextModule } from 'primeng/inputtext';
 import { InputTextareaModule } from 'primeng/inputtextarea';
 import { FormsModule } from '@angular/forms';
-
+import { CarouselModule } from 'primeng/carousel';
 @NgModule({
     declarations: [ActivitiesChartComponent],
     imports: [
@@ -17,7 +17,9 @@ import { FormsModule } from '@angular/forms';
         DropdownModule,
         InputTextModule,
         InputTextareaModule,
-        FormsModule
+        FormsModule,
+        CarouselModule
+       
     ],
     exports: [ActivitiesChartComponent],
 })

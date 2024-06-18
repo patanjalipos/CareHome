@@ -517,40 +517,7 @@ export class UserMasterComponent extends AppComponentBase implements OnInit {
       }
       );
     
-    // if (this.FacilityAndResidentAssignmentModel != null) {
-    //   this.FacilityAndResidentAssignmentModel.UserId = this.RegistrationMainModel.UserId;
-
-    //   this.FacilityAndResidentAssignmentModel.HomeMasterId = this.RegistrationMainModel.HomeMasterId;
-    //   this.FacilityAndResidentAssignmentModel.createdBy=localStorage.getItem('userId');
-    //   this.FacilityAndResidentAssignmentModel.modifiedBy=localStorage.getItem('userId');
-
-
-    //   const objectBody: any = {
-    //     StatementType: this.mode,
-    //     FacilityAndResidentAssignment: [this.FacilityAndResidentAssignmentModel],
-    //   };
-    //   console.log(objectBody);
-
-    //   this.unsubscribe.add = this._MasterServices.AddInsertUpdateFacilityAndResidentAssignment(objectBody)
-    //     .subscribe
-    //     ({
-    //       next: (data) => {
-    //         this._UtilityService.hideSpinner();
-    //         if (data.actionResult.success == true) {
-    //           this.LoadUserList();
-    //           this._UtilityService.showSuccessAlert(data.actionResult.errMsg);
-    //         }
-    //         else {
-    //           this._UtilityService.showWarningAlert(data.actionResult.errMsg);
-    //         }
-
-    //       },
-    //       error: (e) => {
-    //         this._UtilityService.hideSpinner();
-    //         this._UtilityService.showErrorAlert(e.message);
-    //       },
-    //     });
-    // }
+    
   }
 
   CloseModal() {

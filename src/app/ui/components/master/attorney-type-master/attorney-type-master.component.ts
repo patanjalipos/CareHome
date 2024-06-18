@@ -51,7 +51,7 @@ export class AttorneyTypeMasterComponent extends AppComponentBase implements OnI
               this.dataTable.reset();
               this.filteredValuesLength = this.lstMaster?.length;
               }            
-          //  console.log(this.lstmaster);
+        
           }
           else {
             this.lstMaster = [];            

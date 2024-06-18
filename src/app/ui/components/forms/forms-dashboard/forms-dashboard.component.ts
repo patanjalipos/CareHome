@@ -17,6 +17,7 @@ import { AppComponentBase } from 'src/app/app-component-base';
 import { ActivatedRoute } from '@angular/router';
 import { Calendar } from 'primeng/calendar';
 import { DatePipe } from '@angular/common';
+import { UserService } from 'src/app/ui/service/user.service';
 
 @Component({
     selector: 'app-forms-dashboard',
@@ -49,6 +50,7 @@ export class FormsDashboardComponent
     constructor(
         private _ConstantServices: ConstantsService,
         private _MasterServices: MasterService,
+        private _UserServices: UserService,
         private _UtilityService: UtilityService,
         private route: ActivatedRoute,
         private datepipe: DatePipe
@@ -111,7 +113,7 @@ export class FormsDashboardComponent
         }
 
         // Call the API
-        this._MasterServices
+        this._UserServices
             .GetFormDasboardList(
                 residentAdmissionInfoId,
                 formMasterId,
@@ -125,7 +127,6 @@ export class FormsDashboardComponent
                         var tdata = JSON.parse(data.actionResult.result);
                         tdata = tdata ? tdata : [];
                         this.formDashboardList = tdata;
-                        console.log(this.formDashboardList);
                         
                     } else {
                         this.formDashboardList = [];
@@ -161,7 +162,7 @@ export class FormsDashboardComponent
                 ModifiedOn: selectedFormdata.ModifiedOn,
             };
             this.ShowModel();
-        } else alert('Kindly select an Assessment Form');
+        } this._UtilityService.showErrorAlert('Kindly select an Assessment Form');
     }
 
     ShowModel() {

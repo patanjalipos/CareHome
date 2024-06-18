@@ -3,6 +3,7 @@ import { ConstantsService, CustomDateFormat, UserTypes } from 'src/app/ui/servic
 import { UtilityService } from 'src/app/utility/utility.service';
 import { AppComponentBase } from 'src/app/app-component-base';
 import { MasterService } from 'src/app/ui/service/master.service';
+import { UserService } from 'src/app/ui/service/user.service';
 
 @Component({
   selector: 'app-doctor',
@@ -21,11 +22,12 @@ export class DoctorComponent extends AppComponentBase implements OnInit {
   constructor(private _ConstantServices: ConstantsService,
     private _MasterServices: MasterService,
     private _UtilityService: UtilityService,
+    private _UserServices: UserService
   ) {
     super();
   }
 
-  ngOnInit(): void { 
+  ngOnInit(): void {
     if (this.userid != null && this.userid != undefined && this.admissionid != null && this.admissionid != undefined) {
       this.isEditable = false;
     }
@@ -34,7 +36,7 @@ export class DoctorComponent extends AppComponentBase implements OnInit {
     if (this.userid != null && this.admissionid != null) {
       this.LoadCountryList();
       this.GetContactDoctorById(this.admissionid);
-    }    
+    }
   }
   LoadCountryList() {
     this.unsubscribe.add = this._MasterServices.GetCountryMaster().subscribe({
@@ -65,7 +67,7 @@ export class DoctorComponent extends AppComponentBase implements OnInit {
   GetContactDoctorById(admissionid) {
     this.Contact.statementtype = "Insert";
     this._UtilityService.showSpinner();
-    this.unsubscribe.add = this._MasterServices.GetContactDoctorById(admissionid)
+    this.unsubscribe.add = this._UserServices.GetContactDoctorById(admissionid)
       .subscribe({
         next: (data) => {
           this._UtilityService.hideSpinner();
@@ -73,7 +75,7 @@ export class DoctorComponent extends AppComponentBase implements OnInit {
             var tdata = JSON.parse(data.actionResult.result);
             tdata = tdata ? tdata : [];
             this.Contact = tdata;
-            //console.log('this.Contact', this.Contact);     
+           
             this.Contact.statementtype = "Update";
           }
         },
@@ -93,9 +95,9 @@ export class DoctorComponent extends AppComponentBase implements OnInit {
       this.Contact.Mobile = this.Contact.Mobile?.toString() || null;
       this.Contact.SurgeryFax = this.Contact.SurgeryFax?.toString() || null;
       this.Contact.SurgeryPhone = this.Contact.SurgeryPhone?.toString() || null;
-     
+
       this._UtilityService.showSpinner();
-      this.unsubscribe.add = this._MasterServices.AddInsertUpdateContactDoctor(this.Contact)
+      this.unsubscribe.add = this._UserServices.AddInsertUpdateContactDoctor(this.Contact)
         .subscribe
         ({
           next: (data) => {

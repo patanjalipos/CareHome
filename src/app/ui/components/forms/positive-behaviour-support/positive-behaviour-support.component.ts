@@ -1,11 +1,11 @@
 import { Component, EventEmitter, Input, OnInit, Output, SimpleChanges } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ConstantsService, CustomDateFormat, FormTypes } from 'src/app/ui/service/constants.service';
-import { MasterService } from 'src/app/ui/service/master.service';
 import { UtilityService } from 'src/app/utility/utility.service';
 import { PositiveBehaviourSupportService } from './positive-behaviour-support.service';
 import { AppComponentBase } from 'src/app/app-component-base';
 import { Observable, catchError, forkJoin, map, of } from 'rxjs';
+import { UserService } from 'src/app/ui/service/user.service';
 
 @Component({
   selector: 'app-positive-behaviour-support',
@@ -35,7 +35,7 @@ export class PositiveBehaviourSupportComponent extends AppComponentBase implemen
   constructor(private _ConstantServices: ConstantsService,
     private route: ActivatedRoute,
     private _UtilityService: UtilityService,
-    private _MasterServices: MasterService,
+    private _UserServices: UserService,
     private _positiveBehaviourSupport: PositiveBehaviourSupportService
   ) {
 
@@ -97,7 +97,7 @@ export class PositiveBehaviourSupportComponent extends AppComponentBase implemen
 
   getDropdownMasterLists(formMasterId: string, dropdownName: string, status: number): Observable<any> {
     this._UtilityService.showSpinner();
-    return this._MasterServices.GetDropDownMasterList(formMasterId, dropdownName, status).pipe(
+    return this._UserServices.GetDropDownMasterList(formMasterId, dropdownName, status).pipe(
       map((response) => {
         this._UtilityService.hideSpinner();
         if (response.actionResult.success) {
@@ -109,7 +109,7 @@ export class PositiveBehaviourSupportComponent extends AppComponentBase implemen
       catchError((error) => {
         this._UtilityService.hideSpinner();
         this._UtilityService.showErrorAlert(error.message);
-        alert(error.message);
+ 
         return of([]); // Returning empty array in case of error
       })
     );
@@ -142,7 +142,6 @@ export class PositiveBehaviourSupportComponent extends AppComponentBase implemen
         PositiveBehaviourSupportForm: this.PositiveBehaviourSupportFormsData,
       };
 
-      console.log(objectBody);
 
       this._UtilityService.showSpinner();
       this.unsubscribe.add = this._positiveBehaviourSupport
@@ -185,12 +184,7 @@ export class PositiveBehaviourSupportComponent extends AppComponentBase implemen
           if (data.actionResult.success == true) {
             var tdata = JSON.parse(data.actionResult.result);
             tdata = tdata ? tdata : {};
-           
-            console.log("detail data");
-            
-            console.log(tdata);
             this.PositiveBehaviourSupportFormsData = tdata;
-           // this.PositiveBehaviourSupportFormsData.DateOfComplete = this.datePipte.transform(this.CareWishesFormsData.DateOfComplete,'MM/dd/yyyy')
 
           } else {
             this.PositiveBehaviourSupportFormsData = {};

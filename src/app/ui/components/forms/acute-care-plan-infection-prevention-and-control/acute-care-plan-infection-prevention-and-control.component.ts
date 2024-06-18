@@ -4,7 +4,7 @@ import { Observable, catchError, forkJoin, map, of } from 'rxjs';
 import { AppComponentBase } from 'src/app/app-component-base';
 import { ConstantsService, CustomDateFormat, FormTypes } from 'src/app/ui/service/constants.service';
 import { DataService } from 'src/app/ui/service/data-service.service';
-import { MasterService } from 'src/app/ui/service/master.service';
+import { UserService } from 'src/app/ui/service/user.service';
 import { UtilityService } from 'src/app/utility/utility.service';
 
 @Component({
@@ -34,7 +34,7 @@ export class AcuteCarePlanInfectionPreventionAndControlComponent extends AppComp
     constructor(
         private _ConstantServices: ConstantsService,
         private route: ActivatedRoute,
-        private _MasterServices: MasterService,
+        private _UserServices: UserService,
         private _UtilityService: UtilityService,
         private _DataService: DataService
     ) {
@@ -98,7 +98,7 @@ export class AcuteCarePlanInfectionPreventionAndControlComponent extends AppComp
 
     getDropdownMasterLists(formMasterId: string, dropdownName: string, status: number): Observable<any> {
         this._UtilityService.showSpinner();
-        return this._MasterServices.GetDropDownMasterList(formMasterId, dropdownName, status).pipe(
+        return this._UserServices.GetDropDownMasterList(formMasterId, dropdownName, status).pipe(
             map((response) => {
                 this._UtilityService.hideSpinner();
                 if (response.actionResult.success) {
@@ -110,7 +110,7 @@ export class AcuteCarePlanInfectionPreventionAndControlComponent extends AppComp
             catchError((error) => {
                 this._UtilityService.hideSpinner();
                 this._UtilityService.showErrorAlert(error.message);
-                alert(error.message);
+             
                 return of([]); // Returning empty array in case of error
             })
         );
@@ -118,7 +118,7 @@ export class AcuteCarePlanInfectionPreventionAndControlComponent extends AppComp
 
     GetAcuteCarePlanFormByid(formId: string) {
         this._UtilityService.showSpinner();
-        this.unsubscribe.add = this._MasterServices
+        this.unsubscribe.add = this._UserServices
             .GetAcuteCarePlanFormByid(formId)
             .subscribe({
                 next: (data) => {
@@ -127,7 +127,7 @@ export class AcuteCarePlanInfectionPreventionAndControlComponent extends AppComp
                         var tdata = JSON.parse(data.actionResult.result);
                         tdata = tdata ? tdata : {};
                         this.AcuteCarePlanInfectionFormsData = tdata;
-                        //console.log(this.PreAdmissionAssessmentFormsData);
+                      
                     } else {
                         this.AcuteCarePlanInfectionFormsData = {};
                     }
@@ -144,7 +144,7 @@ export class AcuteCarePlanInfectionPreventionAndControlComponent extends AppComp
         this.Save();
     }
     Save() {
-        alert(this.userId);
+      
         if (this.userId != null && this.residentAdmissionInfoId != null) {
             this.AcuteCarePlanInfectionFormsData.userId = this.userId;
             this.AcuteCarePlanInfectionFormsData.StartedBy = localStorage.getItem('userId');
@@ -156,7 +156,7 @@ export class AcuteCarePlanInfectionPreventionAndControlComponent extends AppComp
                 AcuteCareForm: this.AcuteCarePlanInfectionFormsData,
             };
             this._UtilityService.showSpinner();
-            this.unsubscribe.add = this._MasterServices
+            this.unsubscribe.add = this._UserServices
                 .InsertUpdateAcuteCarePlanForm(objectBody)
                 .subscribe({
                     next: (data) => {

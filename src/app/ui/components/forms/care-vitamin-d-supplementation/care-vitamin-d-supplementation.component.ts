@@ -14,9 +14,9 @@ import {
     CustomDateFormat,
     FormTypes,
 } from 'src/app/ui/service/constants.service';
-import { MasterService } from 'src/app/ui/service/master.service';
 import { UtilityService } from 'src/app/utility/utility.service';
 import { CareVitaminDSupplementationService } from './care-vitamin-d-supplementation.service';
+import { UserService } from 'src/app/ui/service/user.service';
 
 @Component({
     selector: 'app-care-vitamin-d-supplementation',
@@ -59,7 +59,7 @@ export class CareVitaminDSupplementationComponent
         private _ConstantServices: ConstantsService,
         private route: ActivatedRoute,
         private _UtilityService: UtilityService,
-        private _MasterService: MasterService,
+        private _UserService: UserService,
         private _FormService: CareVitaminDSupplementationService
     ) {
         super();
@@ -148,7 +148,7 @@ export class CareVitaminDSupplementationComponent
         dropDownName: string
     ): Observable<any> {
         this._UtilityService.showSpinner();
-        return this._MasterService
+        return this._UserService
             .GetDropDownMasterList(formMasterId, dropDownName, 1)
             .pipe(
                 map((response) => {
@@ -162,7 +162,7 @@ export class CareVitaminDSupplementationComponent
                 catchError((error) => {
                     this._UtilityService.hideSpinner();
                     this._UtilityService.showErrorAlert(error.message);
-                    alert(error.message);
+                  
                     return of([]); // Returning empty array in case of error
                 })
             );

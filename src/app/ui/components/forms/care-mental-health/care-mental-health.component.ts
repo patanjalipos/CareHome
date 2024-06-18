@@ -5,8 +5,8 @@ import { ConstantsService, CustomDateFormat, FormTypes } from 'src/app/ui/servic
 import { UtilityService } from 'src/app/utility/utility.service';
 import { CareMentalHealthService } from './care-mental-health.service';
 import { Observable, catchError, forkJoin, map, of } from 'rxjs';
-import { MasterService } from 'src/app/ui/service/master.service';
 import { DatePipe } from '@angular/common';
+import { UserService } from 'src/app/ui/service/user.service';
 
 @Component({
     selector: 'app-care-mental-health',
@@ -41,7 +41,7 @@ export class CareMentalHealthComponent extends AppComponentBase implements OnIni
     lstSexuality: any[] = [];
     lstGoalsToAchieve: any[] = [];
 
-    constructor(private _ConstantServices: ConstantsService, private route: ActivatedRoute, private _UtilityService: UtilityService, private _CareMentalHealth: CareMentalHealthService, private _MasterServices: MasterService, private datePipte: DatePipe) {
+    constructor(private _ConstantServices: ConstantsService, private route: ActivatedRoute, private _UtilityService: UtilityService, private _CareMentalHealth: CareMentalHealthService, private _UserServices: UserService, private datePipte: DatePipe) {
 
         super();
 
@@ -127,9 +127,9 @@ export class CareMentalHealthComponent extends AppComponentBase implements OnIni
                     if (data.actionResult.success == true) {
                         var tdata = JSON.parse(data.actionResult.result);
                         tdata = tdata ? tdata : {};
-                        console.log(tdata)
+                       
                         this.CareAssessmentMentalHealthFormsData = tdata;
-                        console.log(this.CareAssessmentMentalHealthFormsData.CareAssessmentHearingFormId)
+                       
                         this.CareAssessmentMentalHealthFormsData.ReviewDate = this.datePipte.transform(this.CareAssessmentMentalHealthFormsData.ReviewDate, 'MM/dd/yyyy')
                         if (this.CareAssessmentMentalHealthFormsData.MentalHealthOrCognitionStatus == 'Mental Health') {
                             this.MentalHealthStatus = true
@@ -143,7 +143,7 @@ export class CareMentalHealthComponent extends AppComponentBase implements OnIni
                         if (this.CareAssessmentMentalHealthFormsData.SexualityOrCulturalStatus == 'Cultural') {
                             this.SexualityStatus = !true
                         }
-                        // console.log(this.CareAssessmentHearingFormsData.HearingDiagnosisCheck);
+                    
 
                     } else {
                         this.CareAssessmentMentalHealthFormsData = {};
@@ -158,7 +158,7 @@ export class CareMentalHealthComponent extends AppComponentBase implements OnIni
 
     getDropdownMasterLists(formMasterId: string, dropdownName: string, status: number): Observable<any> {
         this._UtilityService.showSpinner();
-        return this._MasterServices.GetDropDownMasterList(formMasterId, dropdownName, status).pipe(
+        return this._UserServices.GetDropDownMasterList(formMasterId, dropdownName, status).pipe(
             map((response) => {
                 this._UtilityService.hideSpinner();
                 if (response.actionResult.success) {
@@ -170,7 +170,7 @@ export class CareMentalHealthComponent extends AppComponentBase implements OnIni
             catchError((error) => {
                 this._UtilityService.hideSpinner();
                 this._UtilityService.showErrorAlert(error.message);
-                alert(error.message);
+             
                 return of([]); // Returning empty array in case of error
             })
         );
@@ -222,7 +222,7 @@ export class CareMentalHealthComponent extends AppComponentBase implements OnIni
             };
 
 
-            console.log(objectBody);
+          
 
             this._UtilityService.showSpinner();
             this.unsubscribe.add = this._CareMentalHealth

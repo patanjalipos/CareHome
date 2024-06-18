@@ -21,11 +21,7 @@ import { AppLayoutModule } from './app.layout.module';
 
 @NgModule({
     declarations: [
-        // AppMenuitemComponent,
-        // AppTopBarComponent,
-        // AppFooterComponent,
-        // AppMenuComponent,
-        //AppSidebarComponent,
+      
         ResidentLayoutComponent,
     ],
     imports: [

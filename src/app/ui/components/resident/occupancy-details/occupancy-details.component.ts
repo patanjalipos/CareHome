@@ -75,7 +75,7 @@ export class OccupancyDetailsComponent extends AppComponentBase implements OnIni
             var tdata = JSON.parse(data.actionResult.result);
             tdata = tdata ? tdata : [];
             this.lstHomeMaster = tdata;  
-            console.log('lstHomeMaster',this.lstHomeMaster)          
+                 
           }
           else {
             this.lstHomeMaster = [];            
@@ -129,7 +129,7 @@ export class OccupancyDetailsComponent extends AppComponentBase implements OnIni
     if (this.userid != null && this.admissionid != null) {
       this.mode='edit';
       this.GetResidentOccupancyById(this.admissionid);  
-      console.log(this.userid, this.admissionid);    
+      
     }
     else
     {

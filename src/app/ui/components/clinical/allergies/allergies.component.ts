@@ -5,6 +5,7 @@ import { AppComponentBase } from 'src/app/app-component-base';
 import { MasterService } from 'src/app/ui/service/master.service';
 import { CareService } from 'src/app/ui/service/CareServices';
 import { ConfirmationService } from 'primeng/api';
+import { UserService } from 'src/app/ui/service/user.service';
 
 @Component({
   selector: 'app-allergies',
@@ -35,6 +36,7 @@ constructor(
   private _MasterServices:MasterService,
   private _UtilityService: UtilityService, 
   private careService: CareService,
+  private _UserServices:UserService,
   private confirmationService: ConfirmationService,
 ) {
   super();
@@ -176,12 +178,12 @@ constructor(
         this.isDisabled=this.lstExtraItemDetailsFilter.filter(e => e.Status === "Active")?.length>0?true:false;       
       }
     }
-    //console.log('lstExtraItemDetails', this.lstExtraItemDetails);
+
   } 
   GetClinicalAllergiesById(admissionid) {
     this.Clinical.statementtype = "Insert";
     this._UtilityService.showSpinner();   
-    this.unsubscribe.add = this._MasterServices.GetClinicalAllergiesById(admissionid)  
+    this.unsubscribe.add = this._UserServices.GetClinicalAllergiesById(admissionid)  
       .subscribe({
         next:(data) => {
           this._UtilityService.hideSpinner();          
@@ -198,7 +200,7 @@ constructor(
               this.lstExtraItemDetails.forEach((d, index) => { 
                     d.StatusList = this.stAllergyStatus;
                   }) 
-              //console.log('Get-lstExtraItemDetails', this.lstExtraItemDetails);  
+        
               this.extraItemRowCounter=this.lstExtraItemDetails?.length;    
               this.lstExtraItemDetailsFilter=JSON.parse(JSON.stringify(this.lstExtraItemDetails)); 
               this.isDisabled=this.lstExtraItemDetailsFilter.filter(e => e.Status === "Active")?.length>0?true:false;
@@ -227,7 +229,7 @@ constructor(
       this.Clinical.UserId = this.userid;
       this.Clinical.ResidentAdmissionInfoId = this.admissionid;
       this.Clinical.ModifiedBy = this.loginId;
-      console.log('selectedExtraItemDetails', this.lstExtraItemDetails);
+    
     var selectedExtraItemDetails = [];
     var bl: Boolean = true;
     this.lstExtraItemDetails.forEach(x => {
@@ -250,15 +252,15 @@ constructor(
         bl = false;
 
     });
-    //console.log('selectedExtraItemDetails', selectedExtraItemDetails);
+  
     if (!bl) {
       this._UtilityService.showWarningAlert("Please select all Item Details");
       return;
     }
       this.Clinical.clinicalallergieslists = selectedExtraItemDetails;
-      console.log('Clinical', this.Clinical);
+    
       this._UtilityService.showSpinner();
-      this.unsubscribe.add = this._MasterServices.AddInsertUpdateClinicalAllergies(this.Clinical)
+      this.unsubscribe.add = this._UserServices.AddInsertUpdateClinicalAllergies(this.Clinical)
         .subscribe
         ({
           next: (data) => {

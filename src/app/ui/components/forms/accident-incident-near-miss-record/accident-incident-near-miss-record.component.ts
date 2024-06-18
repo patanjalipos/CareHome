@@ -14,10 +14,10 @@ import {
 } from 'src/app/ui/service/constants.service';
 import { AppComponentBase } from 'src/app/app-component-base';
 import { DataService } from 'src/app/ui/service/data-service.service';
-import { MasterService } from 'src/app/ui/service/master.service';
 import { UtilityService } from 'src/app/utility/utility.service';
 import { DatePipe } from '@angular/common';
 import { Observable, catchError, forkJoin, map, of } from 'rxjs';
+import { UserService } from 'src/app/ui/service/user.service';
 
 @Component({
     selector: 'app-accident-incident-near-miss-record',
@@ -49,7 +49,7 @@ export class AccidentIncidentNearMissRecordComponent
     lstEmergencyServices: any[] = [];
     constructor(
         private _ConstantServices: ConstantsService,
-        private _MasterServices: MasterService,
+        private _UserServices: UserService,
         private _UtilityService: UtilityService,
         private datePipte: DatePipe
     ) {
@@ -128,7 +128,7 @@ export class AccidentIncidentNearMissRecordComponent
         status: number
     ): Observable<any> {
         this._UtilityService.showSpinner();
-        return this._MasterServices
+        return this._UserServices
             .GetDropDownMasterList(formMasterId, dropdownName, status)
             .pipe(
                 map((response) => {
@@ -142,7 +142,7 @@ export class AccidentIncidentNearMissRecordComponent
                 catchError((error) => {
                     this._UtilityService.hideSpinner();
                     this._UtilityService.showErrorAlert(error.message);
-                    alert(error.message);
+                 
                     return of([]); // Returning empty array in case of error
                 })
             );
@@ -152,7 +152,7 @@ export class AccidentIncidentNearMissRecordComponent
 
     GetAccidentNearMissRecordDetails(formId: string) {
         this._UtilityService.showSpinner();
-        this.unsubscribe.add = this._MasterServices
+        this.unsubscribe.add = this._UserServices
             .GetAccidentNearMissRecordDetails(formId)
             .subscribe({
                 next: (data) => {
@@ -160,7 +160,7 @@ export class AccidentIncidentNearMissRecordComponent
                     if (data.actionResult.success == true) {
                         var tdata = JSON.parse(data.actionResult.result);
                         tdata = tdata ? tdata : {};
-                        console.log(tdata.DateOfAccident);
+                  
                         this.AccidentNearMissRecordFormsData = tdata;
                         this.AccidentNearMissRecordFormsData.DateOfAccident =
                             this.datePipte.transform(
@@ -174,7 +174,7 @@ export class AccidentIncidentNearMissRecordComponent
                                     .EmergencyServicesContacted,
                                 'MM/dd/yyyy'
                             );
-                        // console.log(this.AccidentNearMissRecordFormsData)
+                       
                     } else {
                         this.AccidentNearMissRecordFormsData = {};
                     }
@@ -224,10 +224,10 @@ export class AccidentIncidentNearMissRecordComponent
                     this.AccidentNearMissRecordFormsData,
             };
 
-            console.log(objectBody);
+         
 
             this._UtilityService.showSpinner();
-            this.unsubscribe.add = this._MasterServices
+            this.unsubscribe.add = this._UserServices
                 .AddInsertUpdateAccidentNearMissRecordForm(objectBody)
                 .subscribe({
                     next: (data) => {

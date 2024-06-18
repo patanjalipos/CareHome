@@ -15,13 +15,13 @@ export class RiskWaterlowPressureUlcerService {
   GetRiskAssessmentWaterlowPressureDetails(fromId: any) {
     let reqHeader = new HttpHeaders({
         'Content-Type': 'application/json',
-        'Access-Control-Allow-Origin': environment.BaseUriAdmin,
+        'Access-Control-Allow-Origin': environment.BaseUriUser,
         'Authorization': 'Bearer ' + localStorage.getItem('token')
     });
     let params = new HttpParams();
     params = params.append('fromId', fromId);
     return this._httpclient.get<any>(
-        environment.BaseUriAdmin + 'api/Admin/GetRiskAssessmentWaterlowPressureForm',
+        environment.BaseUriUser + 'api/User/GetRiskAssessmentWaterlowPressureForm',
         { headers: reqHeader, params: params }
     );
 }
@@ -31,15 +31,14 @@ AddInsertUpdateRiskAssessmentWaterlowPressureForm(
 ): Observable<any> {
     let reqHeader = new HttpHeaders({
         'Content-Type': 'application/json',
-        'Access-Control-Allow-Origin': environment.BaseUriAdmin,
+        'Access-Control-Allow-Origin': environment.BaseUriUser,
         'Authorization': 'Bearer ' + localStorage.getItem('token')
     });
     let params = new HttpParams();
     var data = JSON.stringify(RiskAssessmentWaterFlowPressureFormsData).toString();
-    console.log(data);
     return this._httpclient.post<any>(
-        environment.BaseUriAdmin +
-            'api/Admin/InsertUpdateRiskAssessmentWaterlowPressureForm',
+        environment.BaseUriUser +
+            'api/User/InsertUpdateRiskAssessmentWaterlowPressureForm',
         data,
         { headers: reqHeader, params: params }
     );

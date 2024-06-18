@@ -14,9 +14,9 @@ import {
     CustomDateFormat,
     FormTypes,
 } from 'src/app/ui/service/constants.service';
-import { MasterService } from 'src/app/ui/service/master.service';
 import { UtilityService } from 'src/app/utility/utility.service';
 import { CarePersonalEmergencyEvacuationPlanService } from './care-personal-emergency-evacuation-plan.service';
+import { UserService } from 'src/app/ui/service/user.service';
 
 @Component({
     selector: 'app-care-personal-emergency-evacuation-plan',
@@ -56,7 +56,7 @@ export class CarePersonalEmergencyEvacuationPlanComponent
         private _ConstantServices: ConstantsService,
         private route: ActivatedRoute,
         private _UtilityService: UtilityService,
-        private _MasterService: MasterService,
+        private _UserService: UserService,
         private _FormService: CarePersonalEmergencyEvacuationPlanService
     ) {
         super();
@@ -141,7 +141,7 @@ export class CarePersonalEmergencyEvacuationPlanComponent
         dropDownName: string
     ): Observable<any> {
         this._UtilityService.showSpinner();
-        return this._MasterService
+        return this._UserService
             .GetDropDownMasterList(formMasterId, dropDownName, 1)
             .pipe(
                 map((response) => {
@@ -155,7 +155,7 @@ export class CarePersonalEmergencyEvacuationPlanComponent
                 catchError((error) => {
                     this._UtilityService.hideSpinner();
                     this._UtilityService.showErrorAlert(error.message);
-                    alert(error.message);
+                   
                     return of([]); // Returning empty array in case of error
                 })
             );

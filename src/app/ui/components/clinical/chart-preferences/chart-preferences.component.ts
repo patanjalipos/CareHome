@@ -3,6 +3,7 @@ import { ConstantsService } from 'src/app/ui/service/constants.service';
 import { MasterService } from 'src/app/ui/service/master.service';
 import { UtilityService } from 'src/app/utility/utility.service';
 import { AppComponentBase } from 'src/app/app-component-base';
+import { UserService } from 'src/app/ui/service/user.service';
 
 @Component({
   selector: 'app-chart-preferences',
@@ -21,6 +22,7 @@ export class ChartPreferencesComponent extends AppComponentBase implements OnIni
   constructor(
     private _ConstantServices: ConstantsService,
     private _MasterServices:MasterService,
+    private _UserServices:UserService,
     private _UtilityService: UtilityService) 
     { 
     super();    
@@ -67,7 +69,7 @@ export class ChartPreferencesComponent extends AppComponentBase implements OnIni
   
   GetClinicalChartPreferencesById(admissionid) {
     this._UtilityService.showSpinner();   
-    this.unsubscribe.add = this._MasterServices.GetClinicalChartPreferencesById(admissionid)  
+    this.unsubscribe.add = this._UserServices.GetClinicalChartPreferencesById(admissionid)  
       .subscribe({
         next:(data) => {
           this._UtilityService.hideSpinner();          
@@ -104,7 +106,7 @@ export class ChartPreferencesComponent extends AppComponentBase implements OnIni
             this.rowGroupMetadata[ChartHeadName] = { index: i, size: 1 };
         }
       }
-      //console.log("data---", this.rowGroupMetadata)      
+   
     }    
   }
   save()
@@ -128,11 +130,11 @@ export class ChartPreferencesComponent extends AppComponentBase implements OnIni
       this._UtilityService.showWarningAlert("Please select atleast one record");
       return;
     } 
-    //console.log('selectedExtraItemDetails', selectedExtraItemDetails);    
+     
     this.Clinical.chartDTOs = selectedExtraItemDetails;
-      //console.log('Clinical', this.Clinical);
+    
       this._UtilityService.showSpinner();
-      this.unsubscribe.add = this._MasterServices.AddInsertUpdateChartPreferences(this.Clinical)
+      this.unsubscribe.add = this._UserServices.AddInsertUpdateChartPreferences(this.Clinical)
         .subscribe
         ({
           next: (data) => {

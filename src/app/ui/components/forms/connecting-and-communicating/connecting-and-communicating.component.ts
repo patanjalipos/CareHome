@@ -14,9 +14,9 @@ import {
     CustomDateFormat,
     FormTypes,
 } from 'src/app/ui/service/constants.service';
-import { MasterService } from 'src/app/ui/service/master.service';
 import { UtilityService } from 'src/app/utility/utility.service';
 import { ConnectingAndCommunicatingService } from './connecting-and-communicating.service';
+import { UserService } from 'src/app/ui/service/user.service';
 
 @Component({
     selector: 'app-connecting-and-communicating',
@@ -58,7 +58,7 @@ export class ConnectingAndCommunicatingComponent
         private _ConstantServices: ConstantsService,
         private route: ActivatedRoute,
         private _UtilityService: UtilityService,
-        private _MasterService: MasterService,
+        private _UserService: UserService,
         private _FormService: ConnectingAndCommunicatingService
     ) {
         super();
@@ -145,7 +145,7 @@ export class ConnectingAndCommunicatingComponent
         dropDownName: string
     ): Observable<any> {
         this._UtilityService.showSpinner();
-        return this._MasterService
+        return this._UserService
             .GetDropDownMasterList(formMasterId, dropDownName, 1)
             .pipe(
                 map((response) => {
@@ -159,7 +159,7 @@ export class ConnectingAndCommunicatingComponent
                 catchError((error) => {
                     this._UtilityService.hideSpinner();
                     this._UtilityService.showErrorAlert(error.message);
-                    alert(error.message);
+                  
                     return of([]); // Returning empty array in case of error
                 })
             );

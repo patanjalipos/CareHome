@@ -15,13 +15,13 @@ export class CareSkinAssessmentService {
   GetCareSkinAssessmentDetails(fromId: any) {
     let reqHeader = new HttpHeaders({
         'Content-Type': 'application/json',
-        'Access-Control-Allow-Origin': environment.BaseUriAdmin,
+        'Access-Control-Allow-Origin': environment.BaseUriUser,
         'Authorization': 'Bearer ' + localStorage.getItem('token')
     });
     let params = new HttpParams();
     params = params.append('fromId', fromId);
     return this._httpclient.get<any>(
-        environment.BaseUriAdmin + 'api/Admin/GetCareSkinAssessmentForm',
+        environment.BaseUriUser + 'api/User/GetCareSkinAssessmentForm',
         { headers: reqHeader, params: params }
     );
 }
@@ -31,15 +31,15 @@ AddInsertUpdateCareSkinAssessmentForm(
 ): Observable<any> {
     let reqHeader = new HttpHeaders({
         'Content-Type': 'application/json',
-        'Access-Control-Allow-Origin': environment.BaseUriAdmin,
+        'Access-Control-Allow-Origin': environment.BaseUriUser,
         'Authorization': 'Bearer ' + localStorage.getItem('token')
     });
     let params = new HttpParams();
     var data = JSON.stringify(CareSkinAssessmentFormsData).toString();
-    console.log(data);
+   
     return this._httpclient.post<any>(
-        environment.BaseUriAdmin +
-            'api/Admin/AddInsertUpdateCareSkinAssessmentForm',
+        environment.BaseUriUser +
+            'api/User/AddInsertUpdateCareSkinAssessmentForm',
         data,
         { headers: reqHeader, params: params }
     );

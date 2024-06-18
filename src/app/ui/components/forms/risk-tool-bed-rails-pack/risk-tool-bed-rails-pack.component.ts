@@ -5,9 +5,9 @@ import { Observable, catchError, forkJoin, map, of } from 'rxjs';
 import { AppComponentBase } from 'src/app/app-component-base';
 import { ConstantsService, CustomDateFormat, FormTypes } from 'src/app/ui/service/constants.service';
 import { DataService } from 'src/app/ui/service/data-service.service';
-import { MasterService } from 'src/app/ui/service/master.service';
 import { UtilityService } from 'src/app/utility/utility.service';
 import { RiskToolBedRailsPackService } from './risk-tool-bed-rails-pack.service';
+import { UserService } from 'src/app/ui/service/user.service';
 
 @Component({
   selector: 'app-risk-tool-bed-rails-pack',
@@ -39,7 +39,7 @@ export class RiskToolBedRailsPackComponent extends AppComponentBase implements O
   lstConsultedStatus: any[] = [];
   lstBedRailsFitRisk: any[] = [];
 
-  constructor(private _ConstantServices: ConstantsService,private route: ActivatedRoute,private _DataService: DataService,private _MasterServices: MasterService,private _UtilityService: UtilityService, private datePipte: DatePipe,private _RiskTool: RiskToolBedRailsPackService) {
+  constructor(private _ConstantServices: ConstantsService,private route: ActivatedRoute,private _DataService: DataService,private _UserServices: UserService,private _UtilityService: UtilityService, private datePipte: DatePipe,private _RiskTool: RiskToolBedRailsPackService) {
 
     super();
     this._ConstantServices.ActiveMenuName = "Risk Tool Bed Rails Pack Form";
@@ -108,7 +108,7 @@ this.isEditable = this.preSelectedFormData.isEditable;
 
   getDropdownMasterLists(formMasterId: string, dropdownName: string,status:number): Observable<any> {
     this._UtilityService.showSpinner();
-    return this._MasterServices.GetDropDownMasterList(formMasterId,dropdownName, status).pipe(
+    return this._UserServices.GetDropDownMasterList(formMasterId,dropdownName, status).pipe(
         map((response) => {
             this._UtilityService.hideSpinner();
             if (response.actionResult.success) {
@@ -120,7 +120,7 @@ this.isEditable = this.preSelectedFormData.isEditable;
         catchError((error) => {
             this._UtilityService.hideSpinner();
             this._UtilityService.showErrorAlert(error.message);
-            alert(error.message);
+         
             return of([]); // Returning empty array in case of error
         })
     );
@@ -140,7 +140,6 @@ GetRiskToolDetails(formId: string) {
                   tdata = tdata ? tdata : {};
                   this.RiskToolFormsData = tdata;
                   this.RiskToolFormsData.ReviewDate = this.datePipte.transform(this.RiskToolFormsData.ReviewDate,'MM/dd/yyyy')
-                  console.log(this.RiskToolFormsData)
               } else {
                   this.RiskToolFormsData = {};
               }
@@ -176,9 +175,7 @@ if (this.userId != null && this.residentAdmissionInfoId != null && this.loginId!
           StatementType: this.StatementType,
           riskToolBedRailsForm: this.RiskToolFormsData,
       };
-      
-
-      console.log(objectBody);
+    
 
     this._UtilityService.showSpinner();
     this.unsubscribe.add = this._RiskTool

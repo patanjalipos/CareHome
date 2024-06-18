@@ -1,11 +1,11 @@
 import { Component, EventEmitter, Input, OnInit, Output, SimpleChanges } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ConstantsService, CustomDateFormat, FormTypes } from 'src/app/ui/service/constants.service';
-import { MasterService } from 'src/app/ui/service/master.service';
 import { UtilityService } from 'src/app/utility/utility.service';
 import { SepsisScreeningToolService } from './sepsis-screening-tool.service';
 import { AppComponentBase } from 'src/app/app-component-base';
 import { Observable, catchError, forkJoin, map, of } from 'rxjs';
+import { UserService } from 'src/app/ui/service/user.service';
 
 @Component({
   selector: 'app-sepsis-screening-tool',
@@ -30,7 +30,7 @@ export class SepsisScreeningToolComponent extends AppComponentBase implements On
   lstAmberFlags: any[] = [];
   lstAssessmentOutcome: any[] = []; 
 
-  constructor(private _ConstantServices: ConstantsService,private route: ActivatedRoute,private _UtilityService: UtilityService,private _MasterServices : MasterService, private _Sepsis: SepsisScreeningToolService) {
+  constructor(private _ConstantServices: ConstantsService,private route: ActivatedRoute,private _UtilityService: UtilityService,private _UserServices : UserService, private _Sepsis: SepsisScreeningToolService) {
 
     super();
     this._ConstantServices.ActiveMenuName = "Sepsis Screening Tool Form";
@@ -99,7 +99,6 @@ export class SepsisScreeningToolComponent extends AppComponentBase implements On
                 if (data.actionResult.success == true) {
                     var tdata = JSON.parse(data.actionResult.result);
                     tdata = tdata ? tdata : {};
-                    console.log(tdata)
                     this.SepsisScreeningFormsData = tdata;
                     
                 } else {
@@ -116,7 +115,7 @@ export class SepsisScreeningToolComponent extends AppComponentBase implements On
 
 getDropdownMasterLists(formMasterId: string, dropdownName: string,status:number): Observable<any> {
   this._UtilityService.showSpinner();
-  return this._MasterServices.GetDropDownMasterList(formMasterId,dropdownName, status).pipe(
+  return this._UserServices.GetDropDownMasterList(formMasterId,dropdownName, status).pipe(
       map((response) => {
           this._UtilityService.hideSpinner();
           if (response.actionResult.success) {
@@ -128,7 +127,7 @@ getDropdownMasterLists(formMasterId: string, dropdownName: string,status:number)
       catchError((error) => {
           this._UtilityService.hideSpinner();
           this._UtilityService.showErrorAlert(error.message);
-          alert(error.message);
+      
           return of([]); // Returning empty array in case of error
       })
   );
@@ -161,9 +160,6 @@ if (this.userId != null && this.residentAdmissionInfoId != null && this.loginId!
           StatementType: this.StatementType,
           sepsisScreeningForm: this.SepsisScreeningFormsData,
       };
-      
-
-      console.log(objectBody);
 
     this._UtilityService.showSpinner();
     this.unsubscribe.add = this._Sepsis

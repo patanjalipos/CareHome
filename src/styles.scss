@@ -21,6 +21,7 @@ $gutter: 1rem; //for primeflex grid system
 @import '~ng-wizard/themes/ng_wizard_theme_arrows.min.css';
 
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+
 body,
 .p-component {
     font-family: 'Roboto', sans-serif !important;
@@ -224,17 +225,18 @@ h5.label-name {
 
 .form-group {
     margin-bottom: 16px;
-  }
+}
 
-  .pos-rel {
+.pos-rel {
     position: relative;
-  }
-  .col {
+}
+
+.col {
     flex-basis: auto !important;
     padding-top: 0;
     padding-bottom: 0;
-  }
-  
+}
+
 .danger,
 .required {
     color: red;
@@ -260,8 +262,6 @@ body {
 }
 
 .p-fileupload-buttonbar .p-button {
-    height: 38px !important;
-
     background-color: #023C40 !important;
     border-color: #023C40 !important;
 }
@@ -272,6 +272,7 @@ body {
 
 .p-button {
     border-color: #023C40 !important;
+    height: 38px !important;
 }
 
 .btn-primary {
@@ -293,9 +294,10 @@ body {
 
 
 .btn-secondary {
-    color: #fff;
-    background-color: #617C7E !important;
+    color: #000;
+    background-color: #fff !important;
     border-color: #617C7E !important;
+    height: 38px;
 }
 
 .btn-secondary:hover {
@@ -404,7 +406,7 @@ body {
 .layout-wrapper.layout-static.layout-static-inactive .layout-menu ul a {
     left: 20px;
     width: auto;
-    
+
 }
 
 .layout-wrapper.layout-static.layout-static-inactive .layout-main {
@@ -569,9 +571,7 @@ p-inputnumber,
     margin-bottom: 10px !important;
 }
 
-// .p-button {
-//     height: 35px !important;
-// }
+
 
 .p-fileupload-row>div {
     width: auto !important;
@@ -802,7 +802,7 @@ i.iconset:hover {
     border: 1px solid #fff !important;
     background: #617C7E !important;
     color: #fff !important;
-    height: 50px !important;
+    height: 40px !important;
 }
 
 .form-box-inner .p-inputtext::placeholder {
@@ -814,15 +814,15 @@ i.iconset:hover {
 }
 
 .form-box-inner button {
-    background: #94B0B3 !important;
-    color: #fff;
+    background: #fff !important;
+    color: #000;
     font-size: 16px !important;
-    height: 50px;
+    height: 40px;
     font-weight: 500;
 }
 
 .form-box-inner button:hover {
-    color: #fff;
+    color: #000;
 }
 
 .big-menu-bar {
@@ -1100,24 +1100,24 @@ i.iconset:hover {
     width: 130px;
     height: 170px;
     border-radius: 100%;
-  }
-  
-  .img-prview-box img {
+}
+
+.img-prview-box img {
     margin: 20px 0;
     border-radius: 100%;
     margin: 20px 0;
     height: 130px;
     width: 130px;
     object-fit: cover;
-  
-  }
-  
-  .img-prview-box i {
+
+}
+
+.img-prview-box i {
     font-size: 130px !important;
     margin: 20px 0;
     text-align: center;
     color: #c1c1c1;
-  }
+}
 
 .revenu {
     display: block !important;
@@ -1432,11 +1432,109 @@ p.date-box {
         padding: 5px 10px;
     }
 }
+
 // form css 
 // new css add {pre admission form css }
-.labelcontent p{font-weight: 600;}
-.formheader {background-color: #F6F9F9; color: #000; padding: 10px 10px;border-radius: 5px;}
-.p-button { color: #ffffff; background: #023c40;border: 1px solid #023c40;}
-.form-icon i{color: #023c40;}
-.implabel{color: red;}
-.form-text p{font-size: 13px; line-height: 15px;}
+.labelcontent p {
+    font-weight: 600;
+}
+
+.formheader {
+    background-color: #F6F9F9;
+    color: #000;
+    padding: 10px 10px;
+    border-radius: 5px;
+}
+
+.p-button {
+    color: #ffffff;
+    background: #023c40;
+    border: 1px solid #023c40;
+}
+
+.form-icon i {
+    color: #023c40;
+}
+
+.implabel {
+    color: red;
+}
+
+.form-text p {
+    font-size: 13px;
+    line-height: 15px;
+}
+
+// add new css for chart
+.chart-box {
+    border: 1px solid #f3f4f4;
+    border-radius: 5px ;
+}
+.form-box-inner{
+    font-size: 18px;
+    color: #fff;
+
+}
+
+//BodyMap Pop Up
+
+.fixed-width-card {
+    width: 350px; /* Set your desired fixed width */
+    overflow-y: auto; /* Allow horizontal scrolling if content overflows */
+    max-height: 500px;
+  }
+  
+.horizontal-list li:last-child {
+    margin-right: 0; /* Remove margin from the last item */
+  }
+ 
+// .horizontal-list {
+//     display: flex;
+//     flex-wrap: wrap; /* enable wrapping of items */
+//     list-style-type: none;
+//     padding: 0;
+//     margin: 0;
+//   }
+  
+// .horizontal-list li {
+//     display: inline-block; /* ensure each item is a block element */
+//     margin: 0.5rem; /* add equal margin around each item */
+//     padding: 0.5rem;
+//     border: 1px solid #eee;
+//     border-radius: 4px;
+//     white-space: nowrap; /* prevent text from wrapping */
+//   }
+
+  .horizontal-list {
+    display: flex;
+    flex-wrap: wrap; /* Enable wrapping of items */
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .horizontal-list li {
+    display: inline-block; /* Ensure each item is a block element */
+    margin: 0.5rem; /* Add equal margin around each item */
+    padding: 0.5rem;
+    border: 1px solid #eee;
+    border-radius: 4px;
+    white-space: nowrap; /* Prevent text from wrapping */
+    position: relative; /* To position the remove button */
+  }
+  
+  .remove-button {
+    background: none;
+    border: none;
+    color: #ff0000;
+    font-size: 1.2rem;
+    font-weight: bold;
+    line-height: 1;
+    padding: 0;
+    cursor: pointer;
+    position: absolute;
+    top: 0;
+    right: 0;
+    transform: translate(50%, -50%);
+  }
+

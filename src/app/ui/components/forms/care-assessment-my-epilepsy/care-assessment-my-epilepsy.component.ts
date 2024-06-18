@@ -3,9 +3,9 @@ import { ActivatedRoute } from '@angular/router';
 import { Observable, catchError, forkJoin, map, of } from 'rxjs';
 import { AppComponentBase } from 'src/app/app-component-base';
 import { ConstantsService, CustomDateFormat, FormTypes } from 'src/app/ui/service/constants.service';
-import { MasterService } from 'src/app/ui/service/master.service';
 import { UtilityService } from 'src/app/utility/utility.service';
 import { CareAssessmentMyEpilepsyService } from './care-assessment-my-epilepsy.service';
+import { UserService } from 'src/app/ui/service/user.service';
 
 @Component({
   selector: 'app-care-assessment-my-epilepsy',
@@ -33,7 +33,7 @@ export class CareAssessmentMyEpilepsyComponent extends AppComponentBase implemen
   lstEmergencyMedication: any[] = [];
   lstSeizuresAffect: any[] = [];
 
-  constructor(private _ConstantServices: ConstantsService,private route: ActivatedRoute,private _UtilityService: UtilityService,private _MasterServices: MasterService,private _Epilepsy: CareAssessmentMyEpilepsyService) {
+  constructor(private _ConstantServices: ConstantsService,private route: ActivatedRoute,private _UtilityService: UtilityService,private _UserServices: UserService,private _Epilepsy: CareAssessmentMyEpilepsyService) {
 
     super();
 
@@ -109,7 +109,7 @@ this.isEditable = this.preSelectedFormData.isEditable;
                 if (data.actionResult.success == true) {
                     var tdata = JSON.parse(data.actionResult.result);
                     tdata = tdata ? tdata : {};
-                    console.log(tdata)
+                   
                     this.EpilepsySupportFormsData = tdata;
                 } else {
                     this.EpilepsySupportFormsData = {};
@@ -124,7 +124,7 @@ this.isEditable = this.preSelectedFormData.isEditable;
 
 getDropdownMasterLists(formMasterId: string, dropdownName: string,status:number): Observable<any> {
   this._UtilityService.showSpinner();
-  return this._MasterServices.GetDropDownMasterList(formMasterId,dropdownName, status).pipe(
+  return this._UserServices.GetDropDownMasterList(formMasterId,dropdownName, status).pipe(
       map((response) => {
           this._UtilityService.hideSpinner();
           if (response.actionResult.success) {
@@ -136,7 +136,7 @@ getDropdownMasterLists(formMasterId: string, dropdownName: string,status:number)
       catchError((error) => {
           this._UtilityService.hideSpinner();
           this._UtilityService.showErrorAlert(error.message);
-          alert(error.message);
+        
           return of([]); // Returning empty array in case of error
       })
   );
@@ -168,9 +168,6 @@ if (this.userId != null && this.residentAdmissionInfoId != null && this.loginId!
           careAssEpilepsySupportForm: this.EpilepsySupportFormsData
       };
       
-
-      console.log(objectBody);
-
     this._UtilityService.showSpinner();
     this.unsubscribe.add = this._Epilepsy
         .InsertUpdateEpilepsySupportForm(
