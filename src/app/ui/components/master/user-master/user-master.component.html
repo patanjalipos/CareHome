@@ -30,8 +30,8 @@
                     </span>
                 </div>
                 <div *ngIf="isUserMaster">
-                    <app-filteration [isUserMaster]="isUserMaster" [s_HomeMasterId]="s_HomeMasterId" 
-                    (UserMasterFilterData)="GetUserMasterFilterData($event)"></app-filteration>       
+                    <app-filteration [ComponentName]="ComponentName" 
+                    (FiltrationOutputData)="GetUserMasterFilterData($event)"></app-filteration>       
                 </div> 
             </ng-template>
             <ng-template pTemplate="emptymessage" let-columns>

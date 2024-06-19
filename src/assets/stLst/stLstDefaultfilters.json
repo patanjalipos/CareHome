@@ -28,5 +28,15 @@
             "optionId": "AlertName",
             "optionValue": "Alert Name"
         }
+    ],
+    "MenuMaster": [
+        {
+             "optionId": "UserType",
+             "optionValue": "User Type"
+        },
+        {
+            "optionId": "MenuName",
+            "optionValue": "Menu Name"
+        }
     ]
 }

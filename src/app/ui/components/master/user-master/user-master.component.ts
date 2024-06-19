@@ -19,6 +19,7 @@ export class UserMasterComponent extends AppComponentBase implements OnInit {
   @ViewChild('dt') public dataTable: Table;
   @ViewChild('filtr') filtr: ElementRef;
   @Input() filteredData: any[] = [];
+  ComponentName: string = 'UserMaster';
   isUserMaster:Boolean=false;
   updateMode: Boolean = false;
   @ViewChild('fileInput') fileInput: FileUpload; 

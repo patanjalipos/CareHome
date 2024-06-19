@@ -16,6 +16,7 @@ export class TaskPlannerComponent extends AppComponentBase implements OnInit {
   @ViewChild('myForm') public myForm: NgForm;
   @ViewChild('dt') public dataTable: Table;
   @ViewChild('filtr') filtr: ElementRef;
+  ComponentName: string = 'TaskPlanner';
   UserTypes = UserTypes;
   customDateFormat = CustomDateFormat;
   taskPlannerStatus = TaskPlannerStatus;

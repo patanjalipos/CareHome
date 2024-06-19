@@ -21,6 +21,7 @@ export class AlertMasterComponent extends AppComponentBase implements OnInit {
   public master: any = <any>{};
   filteredValuesLength:number=0;
   stlststatus: any[]=[];
+  ComponentName: string = 'AlertMaster';
   isAlertMaster:Boolean=false;
   filteritems:any[]=[];
 
@@ -68,9 +69,10 @@ export class AlertMasterComponent extends AppComponentBase implements OnInit {
       {       
         importData.SearchList=this.filteritems;
       }   
-      console.log(importData);
+     // console.log(importData);
+        importData.AlertStatus=false;      
     this._UtilityService.showSpinner();   
-    this.unsubscribe.add = this._MasterServices.GetAlertMaster(importData,false)
+    this.unsubscribe.add = this._MasterServices.GetAlertMaster(importData)
       .subscribe({
         next:(data) => {
           this._UtilityService.hideSpinner();          
@@ -170,7 +172,6 @@ export class AlertMasterComponent extends AppComponentBase implements OnInit {
     this.isAlertMaster =!this.isAlertMaster;
   }
   GetAlertMasterFilterData($event) {
-    // console.log('event',$event);
     this.filteritems=$event;   
      this.GetAlertMaster(); 
    }

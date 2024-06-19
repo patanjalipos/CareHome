@@ -67,5 +67,24 @@
             "optionValue": "Status"
         }
        
+    ],
+    "MenuMaster": [
+        {
+             "optionId": "UserType",
+             "optionValue": "User Type"
+        },
+        {
+            "optionId": "MenuName",
+            "optionValue": "Menu Name"
+        },
+        {
+            "optionId": "OrderNo",
+            "optionValue": "Order No"
+        },
+        {
+            "optionId": "Status",
+            "optionValue": "Status"
+        }
+       
     ]
 }

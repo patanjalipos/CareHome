@@ -25,7 +25,7 @@
                     </span>                    
                 </div>               
                 <div *ngIf="isTaskPlanner">
-                    <app-filteration [isTaskPlanner]="isTaskPlanner" (TaskPlannerFilterData)="GetTaskPlannerFilter($event)"></app-filteration>  
+                    <app-filteration  [ComponentName]="ComponentName"  (FiltrationOutputData)="GetTaskPlannerFilter($event)"></app-filteration>  
                 </div> 
             </ng-template>
             <ng-template pTemplate="emptymessage" let-columns>

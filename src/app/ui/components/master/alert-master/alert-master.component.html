@@ -25,7 +25,7 @@
                     </span>
                 </div>
                 <div *ngIf="isAlertMaster">
-                    <app-filteration [isAlertMaster]="isAlertMaster" (AlertMasterFilterData)="GetAlertMasterFilterData($event)"></app-filteration>       
+                    <app-filteration [ComponentName]="ComponentName" (FiltrationOutputData)="GetAlertMasterFilterData($event)"></app-filteration>       
                 </div> 
             </ng-template>
             <ng-template pTemplate="emptymessage" let-columns>
