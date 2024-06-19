@@ -5,6 +5,7 @@ import {
     OnInit,
     Output,
     SimpleChanges,
+    ViewChild,
 } from '@angular/core';
 import { AppComponentBase } from 'src/app/app-component-base';
 import { OptionService } from 'src/app/ui/service/option.service';
@@ -19,6 +20,7 @@ import {
 import { UserService } from 'src/app/ui/service/user.service';
 import { ActivatedRoute } from '@angular/router';
 import { DatePipe } from '@angular/common';
+import { StrikeThroughEntryComponent } from '../strike-through-entry/strike-through-entry.component';
 
 @Component({
     selector: 'app-activities-chart',
@@ -30,6 +32,7 @@ export class ActivitiesChartComponent
     implements OnInit {
     @Input() preSelectedChartData: any = <any>{};
     @Output() EmitUpdateForm: EventEmitter<any> = new EventEmitter<any>();
+    @ViewChild('child') child: StrikeThroughEntryComponent;
 
     customDateFormat = CustomDateFormat;
     inputFields: boolean = false;
@@ -54,6 +57,8 @@ export class ActivitiesChartComponent
     pageSize: number = 3;
     responsiveOptions: any[] | undefined;
     rightBtnCheck:boolean = false;
+    isShowStrikeThroughPopup:boolean = false;
+    StrikeThroughData:any = <any>{};
 
     constructor(
         private optionService: OptionService,
@@ -94,6 +99,7 @@ export class ActivitiesChartComponent
         } else {
             this.ResetModel();
         }
+        
     }
 
     ngOnInit(): void {
@@ -314,7 +320,18 @@ export class ActivitiesChartComponent
             this._UtilityService.showWarningAlert('Activities Chart details are missing.');
         }
     }
-
+    showPopup(chartId,chart) {
+         this.StrikeThroughData = {
+            ChartMasterId:ChartTypes.ActivitiesChart,
+            ChartId: chartId,
+            ModifiedBy:this.loginId,
+         };
+         this.isShowStrikeThroughPopup = true;
+         console.log(chart,'particular chart');
+         
+         console.log(this.StrikeThroughData,'chartdata');
+        }
+    
     ResetModel() {
         this.isEditable = true;
         this.ActivitiesChartFormData = <any>{};
@@ -331,5 +348,9 @@ export class ActivitiesChartComponent
     rightBtn() {
         this.pageNumber++;
         this.chartOnChange();
+    }
+    Changes(value: boolean) {
+        this.isShowStrikeThroughPopup = value;
+        this.chartOnChange()
     }
 }

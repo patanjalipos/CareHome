@@ -155,6 +155,26 @@ export class UserService {
 
   //#endregion
 
+  //#region ChartStrikeThrough
+
+  ChartStrikeThrough(ChartData: any): Observable<any> {
+    let reqHeader = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Access-Control-Allow-Origin': environment.BaseUriUser,
+      'Authorization': 'Bearer ' + localStorage.getItem('token')
+    });
+    let params = new HttpParams();
+    var data = JSON.stringify(ChartData).toString();
+    return this._httpclient.post<any>(
+      environment.BaseUriUser +
+      'api/User/ChartStrikeThrough',
+      data,
+      { headers: reqHeader, params: params }
+    );
+  }
+
+  //#endregion
+
   //#region  Resident Profile
 
   GetResidentDetailsById(userid: any, admissionid: any): Observable<any> {
