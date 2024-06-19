@@ -53,9 +53,11 @@ export class AlertComponent extends AppComponentBase implements OnInit {
     }
 
     GetAlertMaster() {
+        let importData: any = <any>{};
+        importData.AlertStatus=true;      
         this._UtilityService.showSpinner();
         this.unsubscribe.add = this._MasterServices
-            .GetAlertMaster(true)
+            .GetAlertMaster(importData)
             .subscribe({
                 next: (data) => {
                     this._UtilityService.hideSpinner();

@@ -29,6 +29,10 @@ export class MenuItemMasterComponent extends AppComponentBase implements OnInit{
   filteredValuesLength:number=0;
   stlststatus: any[]=[];
   stlstsubmenu: any[]=[];
+
+  ComponentName: string = 'MenuMaster';
+  isMenuMaster:Boolean=false;
+  filteritems:any[]=[];
   constructor(
     private _ConstantServices: ConstantsService,
     private _MasterServices:MasterService,
@@ -51,8 +55,14 @@ export class MenuItemMasterComponent extends AppComponentBase implements OnInit{
     this.LoadUserTypeMasterList();    
   }
   LoadMenuItemList() {
+    let importData: any = <any>{};
+    if(this.isMenuMaster==true && this.filteritems !=null && this.filteritems !=undefined)
+      {       
+        importData.SearchList=this.filteritems;
+      }   
+     importData.StatusType=false;
     this._UtilityService.showSpinner();   
-    this.unsubscribe.add = this._MasterServices.GetMenuItemMaster (this.s_userTypeId==this.userTypes.SuperAdmin?"":this.s_userTypeId,false)
+    this.unsubscribe.add = this._MasterServices.GetMenuItemMaster (importData,this.s_userTypeId==this.userTypes.SuperAdmin?"":this.s_userTypeId)
       .subscribe({
         next:(data) => {
           this._UtilityService.hideSpinner();          
@@ -195,4 +205,12 @@ export class MenuItemMasterComponent extends AppComponentBase implements OnInit{
   onGlobalFilter(table: Table, event: Event) {
     table.filterGlobal((event.target as HTMLInputElement).value, 'contains');
   }
+
+  ShowFilters() {
+    this.isMenuMaster =!this.isMenuMaster;
+  }
+  GetMenuMasterFilterData($event) {
+    this.filteritems=$event;   
+    this.LoadMenuItemList();
+   }
 }

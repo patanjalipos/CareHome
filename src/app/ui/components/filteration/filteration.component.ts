@@ -1,9 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { AppComponentBase } from 'src/app/app-component-base';
-import { ConstantsService, CustomDateFormat, TaskPlannerStatus } from '../../service/constants.service';
-import { FormBuilder } from '@angular/forms';
+import { CustomDateFormat, TaskPlannerStatus } from '../../service/constants.service';
 import { UtilityService } from 'src/app/utility/utility.service';
-import { EncryptDecryptService } from '../../service/encrypt-decrypt.service';
 import { MasterService } from '../../service/master.service';
 import { Calendar } from 'primeng/calendar';
 import { OptionService } from '../../service/option.service';
@@ -14,24 +12,16 @@ import { OptionService } from '../../service/option.service';
   styleUrls: ['./filteration.component.scss']
 })
 export class FilterationComponent extends AppComponentBase implements OnInit {
-  @Input() isUserMaster:Boolean=false;
-  @Input() isMenuMaster:Boolean=false;
-  @Input() isTaskPlanner:Boolean=false;
-  @Input() isAlertMaster:Boolean=false;
-  @Input() s_HomeMasterId : string ;
-  @Input() UserTypeId : string ;
   @ViewChild('calendar') calendar: Calendar;
-  @Output() filteredDataEvent = new EventEmitter<any[]>();
-  @Output() TaskPlannerFilterData: EventEmitter<any> = new EventEmitter<any>();
-  @Output() UserMasterFilterData: EventEmitter<any> = new EventEmitter<any>();
-  @Output() AlertMasterFilterData: EventEmitter<any> = new EventEmitter<any>();
+  @Input() ComponentName:string;
+  @Input() UserTypeId : string ;  
+  @Output() FiltrationOutputData: EventEmitter<any> = new EventEmitter<any>();
   customDateFormat = CustomDateFormat;
   //UserMaster
   lstUserType: any[] = [];
   SearchHomeCode:string=null;
   SearchHomeName:string=null;
-  SearchUserType:string=null;
-  SearchUserStatusType:any;
+  SearchUserType:string=null;  
   SearchName:string=null;
   //TaskPlanner
   SearchTaskName : any;
@@ -44,18 +34,19 @@ export class FilterationComponent extends AppComponentBase implements OnInit {
 //Alert Master
   SearchAlertHeadName:string=null;
   SearchAlertName:string=null;
-  SearchOrderNo:any;
-  SearchAlertStatus:any;
-
+//Menu Master
+SearchMenuUserType:string=null;
+SearchMenuName:any;
+//common
+SearchStatus:any;
+SearchOrderNo:any;
   lstTaskStatus: any[]=[];
-  lstUserstatus: any[]=[];
+  lststatus: any[]=[];
   SearchmoreFiletrs: any[] = [];
   lstmoreFiletrs:any[]=[];
   taskPlannerStatus = TaskPlannerStatus;
   
-  userMasterData: any[];
-  taskPlannerData: any[];
-  AlertMasterData: any[];
+  MasterData: any[];
 
   constructor( 
     private optionService: OptionService,
@@ -71,34 +62,22 @@ export class FilterationComponent extends AppComponentBase implements OnInit {
       { name: this.taskPlannerStatus[this.taskPlannerStatus.Done], code: this.taskPlannerStatus.Done },
       
     ];
-    this.lstUserstatus = [
+    this.lststatus = [
       { name: 'Active', code: 1 },
       { name: 'Inactive', code: 0 }
     ];
-
-   
   }
 
 
   ngOnInit(): void {
-    this.optionService.getFilterData().subscribe(data => {
-      if(this.isUserMaster==true)
-        {
-          this.lstmoreFiletrs=data.UserMaster;
-        }
-      if(this.isTaskPlanner==true)
-        {
-          this.lstmoreFiletrs=data.TaskPlanner;
-        }
-      if(this.isAlertMaster==true)
-        {
-          this.lstmoreFiletrs=data.AlertMaster;
-        }
-     //  console.log('UserMaster Data:', data.UserMaster);
+    this.optionService.getFilterData().subscribe(data => {       
+      this.lstmoreFiletrs=data[this.ComponentName];
+      if(this.ComponentName === 'UserMaster'|| this.ComponentName==='MenuMaster')
+          {
+            this.LoadUserTypeList();
+          }
     });
     this.CheckDefaultVales();
-    this.LoadUserTypeList();
-    
   }
 
   LoadUserTypeList() {
@@ -131,27 +110,10 @@ export class FilterationComponent extends AppComponentBase implements OnInit {
   CheckDefaultVales()
   {
     this.optionService.getDefaultFilterData().subscribe(data=>{
-      this.userMasterData = data.UserMaster;
-      this.taskPlannerData= data.TaskPlanner;
-      this.AlertMasterData= data.AlertMaster;
-      
-     if(this.isUserMaster==true){
-         this.SearchmoreFiletrs = this.userMasterData.filter(item =>
+      this.MasterData =  data[this.ComponentName];
+         this.SearchmoreFiletrs = data[this.ComponentName].filter(item =>
           this.lstmoreFiletrs.some(option => option.optionValue === item.optionValue)
          );
-      }
-      if(this.isTaskPlanner==true)
-      {
-          this.SearchmoreFiletrs = this.taskPlannerData.filter(item =>
-            this.lstmoreFiletrs.some(option => option.optionValue === item.optionValue)
-          );
-      }
-      if(this.isAlertMaster==true)
-      {
-          this.SearchmoreFiletrs = this.AlertMasterData.filter(item =>
-            this.lstmoreFiletrs.some(option => option.optionValue === item.optionValue)
-          );
-      }
     });
   }
 
@@ -173,17 +135,15 @@ export class FilterationComponent extends AppComponentBase implements OnInit {
       calendar.overlayVisible = false;  
     }
   }
-   
 
 hasItem(items: any[], optionId: string): boolean {
   return items && items.some(item => item.optionId === optionId);
 }
 
-ApplyFilterTaskPlanner()
-{
-  let SearchList1:any[]=[];  
-  if(this.isUserMaster==true)
+   ApplyFilterTaskPlanner()
     {
+      let SearchList1:any[]=[];  
+  
       if(this.SearchHomeCode!=null && this.SearchHomeCode!=undefined && this.SearchHomeCode!='')
         {
           SearchList1.push({'SearchBy':'HomeCode','SearchVal':this.SearchHomeCode.trim()});
@@ -200,14 +160,10 @@ ApplyFilterTaskPlanner()
         {
           SearchList1.push({'SearchBy':'Name','SearchVal':this.SearchName.trim()});
         }
-       if(this.SearchUserStatusType!=null && this.SearchUserStatusType!=undefined )
+       if(this.SearchStatus!=null && this.SearchStatus!=undefined )
         {
-          SearchList1.push({'SearchBy':'Status','SearchVal':this.SearchUserStatusType.toString()});
-        }
-        this.UserMasterFilterData.emit(SearchList1); 
-    }
-    if(this.isTaskPlanner==true)
-    {      
+          SearchList1.push({'SearchBy':'Status','SearchVal':this.SearchStatus.toString()});
+        } 
         if(this.SearchTaskName!=null && this.SearchTaskName!=undefined && this.SearchTaskName!='')
         {
           SearchList1.push({'SearchBy':'TaskName','SearchVal':this.SearchTaskName.trim()});
@@ -235,15 +191,11 @@ ApplyFilterTaskPlanner()
         if(this.SearchAssignedTo!=null && this.SearchAssignedTo!=undefined && this.SearchAssignedTo!='')
          {
            SearchList1.push({'SearchBy':'AssignedTo','SearchVal':this.SearchAssignedTo.trim()});
+         }  
+        if(this.SearchAlertHeadName!=null && this.SearchAlertHeadName!=undefined && this.SearchAlertHeadName!='')
+         {
+           SearchList1.push({'SearchBy':'AlertHeadName','SearchVal':this.SearchAlertHeadName.trim()});
          }
-       this.TaskPlannerFilterData.emit(SearchList1); 
-    }
-    if(this.isAlertMaster==true)
-      {      
-          if(this.SearchAlertHeadName!=null && this.SearchAlertHeadName!=undefined && this.SearchAlertHeadName!='')
-          {
-            SearchList1.push({'SearchBy':'AlertHeadName','SearchVal':this.SearchAlertHeadName.trim()});
-          }
          if(this.SearchAlertName!=null && this.SearchAlertName!=undefined && this.SearchAlertName!='')
            {
              SearchList1.push({'SearchBy':'AlertName','SearchVal':this.SearchAlertName.trim()});
@@ -252,26 +204,29 @@ ApplyFilterTaskPlanner()
            {
              SearchList1.push({'SearchBy':'OrderNo','SearchVal':this.SearchOrderNo.toString()});
            }
-           if(this.SearchAlertStatus!=null && this.SearchAlertStatus!=undefined )
+           if(this.SearchMenuUserType!=null && this.SearchMenuUserType!=undefined && this.SearchMenuUserType!='')
             {
-              SearchList1.push({'SearchBy':'Status','SearchVal':this.SearchAlertStatus.toString()});
-            }                
-         this.AlertMasterFilterData.emit(SearchList1); 
-      }
+              SearchList1.push({'SearchBy':'UserType','SearchVal':this.SearchMenuUserType.trim()});
+            }
+           if(this.SearchMenuName!=null && this.SearchMenuName!=undefined && this.SearchMenuName!='')
+            {
+              SearchList1.push({'SearchBy':'MenuName','SearchVal':this.SearchMenuName.trim()});
+            }   
+      this.FiltrationOutputData.emit(SearchList1);
 }
 
 ClearTaskPlanner()
 {
   this.CheckDefaultVales();
-  if(this.isUserMaster==true)
+  if(this.ComponentName === 'UserMaster')
     {
         this.SearchHomeCode='';
         this.SearchHomeName='';
         this.SearchUserType='';
-        this.SearchUserStatusType=null;
+        this.SearchStatus=null;
         this.SearchName='';
     }
-    if(this.isTaskPlanner==true)
+    if(this.ComponentName === 'TaskPlanner')
     {
        this.SearchTaskName='';
        this.SearchDescription='';
@@ -283,13 +238,20 @@ ClearTaskPlanner()
        this.SearchStartTime = null;
      
     }
-    if(this.isAlertMaster==true)
+    if(this.ComponentName === 'AlertMaster')
     {
        this.SearchAlertHeadName='';
        this.SearchAlertName='';
        this.SearchOrderNo='';
-       this.SearchAlertStatus=null;
+       this.SearchStatus=null;
     }
+    if(this.ComponentName === 'MenuMaster')
+      {
+         this.SearchMenuUserType='';
+         this.SearchMenuName='';
+         this.SearchOrderNo='';
+         this.SearchStatus=null;
+      }
     this.ApplyFilterTaskPlanner();
 }
 }
