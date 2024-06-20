@@ -356,7 +356,4 @@ export class ActivitiesChartComponent
         this.isShowStrikeThroughPopup = value;
         this.chartOnChange()
     }
-    showPopup() {
-
-    }
 }
