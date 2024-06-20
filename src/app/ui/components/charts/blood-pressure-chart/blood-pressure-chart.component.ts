@@ -17,6 +17,7 @@ import {
 } from 'src/app/ui/service/constants.service';
 import { ActivatedRoute } from '@angular/router';
 import { DatePipe } from '@angular/common';
+import { log } from 'console';
 
 @Component({
     selector: 'app-blood-pressure-chart',
@@ -25,8 +26,7 @@ import { DatePipe } from '@angular/common';
 })
 export class BloodPressureChartComponent
     extends AppComponentBase
-    implements OnInit
-{
+    implements OnInit {
     @Input() preSelectedChartData: any = <any>{};
     @Output() EmitUpdateForm: EventEmitter<any> = new EventEmitter<any>();
 
@@ -41,6 +41,13 @@ export class BloodPressureChartComponent
     residentAdmissionInfoId: any;
     userId: any;
     StatementType: string = null;
+
+    //for carousel
+    bloodPressureChartsLst: any[] = [];
+    pageNumber: number = 0;
+    pageSize: number = 3;
+    responsiveOptions: any[] | undefined;
+    rightBtnCheck: boolean = false;
 
     constructor(
         private optionService: OptionService,
@@ -81,6 +88,7 @@ export class BloodPressureChartComponent
         this.optionService.getstLstMethod().subscribe((data) => {
             this.stLstMethod = data;
         });
+        this.getChartDataById(this.preSelectedChartData.chartMasterId, this.preSelectedChartData.residentAdmissionInfoId, this.pageNumber, this.pageSize);
     }
 
     openAndClose() {
@@ -144,7 +152,7 @@ export class BloodPressureChartComponent
                 if (
                     this.StatementType == 'Update' &&
                     typeof this.bloodPressureChartFormData.DateAndTime ===
-                        'string'
+                    'string'
                 ) {
                     //Pare dateTime
                     const dateParts =
@@ -203,5 +211,57 @@ export class BloodPressureChartComponent
         this.isEditable = true;
         this.bloodPressureChartFormData = <any>{};
         this.StatementType = 'Insert';
+    }
+
+    leftBtn() {
+        if (this.pageNumber > 0) {
+            this.pageNumber--;
+            this.chartOnChange();
+        }
+    }
+
+    rightBtn() {
+        this.pageNumber++;
+        this.chartOnChange();
+    }
+
+    chartOnChange() {
+        this.getChartDataById(this.preSelectedChartData.chartMasterId, this.preSelectedChartData.residentAdmissionInfoId, this.pageNumber, this.pageSize);
+    }
+
+    getChartDataById(chartId: any, residentAdmissionInfoId: any, pageNumber: number, pageSize: number) {
+
+        this._UtilityService.showSpinner();
+        this.unsubscribe.add = this._UserService
+            .GetChartDataById(chartId, residentAdmissionInfoId, pageNumber, pageSize)
+            .subscribe({
+                next: (data) => {
+                    this._UtilityService.hideSpinner();
+                    if (data.actionResult.success == true) {
+                        var tdata = JSON.parse(data.actionResult.result);
+                        tdata = tdata ? tdata : [];
+                        this.bloodPressureChartsLst = tdata;
+                        if (this.bloodPressureChartsLst.length < 3 || (((this.bloodPressureChartsLst.length) * (this.pageNumber + 1)) >= this.bloodPressureChartsLst[0].countRecords)) {
+                            this.rightBtnCheck = true;
+                        }
+                        else {
+                            this.rightBtnCheck = false;
+                        }
+                        console.log(this.bloodPressureChartsLst);
+
+                    } else {
+                        this.bloodPressureChartsLst = [];
+                    }
+                },
+                error: (e) => {
+                    this._UtilityService.hideSpinner();
+                    this._UtilityService.showErrorAlert(e.message);
+                },
+            });
+    }
+
+    showPopup() {
+
+
     }
 }

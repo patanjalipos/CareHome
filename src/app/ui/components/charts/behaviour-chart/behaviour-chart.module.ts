@@ -7,7 +7,7 @@ import { InputTextModule } from 'primeng/inputtext';
 import { InputTextareaModule } from 'primeng/inputtextarea';
 import { FormsModule } from '@angular/forms';
 import { CalendarModule } from 'primeng/calendar';
-
+import { CarouselModule } from 'primeng/carousel';
 
 @NgModule({
   declarations: [BehaviourChartComponent],
@@ -18,7 +18,8 @@ import { CalendarModule } from 'primeng/calendar';
     DropdownModule,
     InputTextModule,
     InputTextareaModule,
-    FormsModule
+    FormsModule,
+    CarouselModule
   ],
   exports:[BehaviourChartComponent]
 })
