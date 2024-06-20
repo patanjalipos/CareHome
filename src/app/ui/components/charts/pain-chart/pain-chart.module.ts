@@ -10,6 +10,7 @@ import { CalendarModule } from 'primeng/calendar';
 import { SelectButtonModule } from 'primeng/selectbutton';
 import { BodyMappingImageModule } from '../body-mapping-Image/body-mapping.module';
 import { CarouselModule } from 'primeng/carousel';
+import { RadioButtonModule } from 'primeng/radiobutton';
 
 
 @NgModule({
@@ -24,7 +25,8 @@ import { CarouselModule } from 'primeng/carousel';
     SelectButtonModule,
     DialogModule,
     BodyMappingImageModule,
-    CarouselModule
+    CarouselModule,
+    RadioButtonModule
   ],
   exports:[PainChartComponent]
 })
