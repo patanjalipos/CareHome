@@ -9,6 +9,7 @@ import { DropdownModule } from 'primeng/dropdown';
 import { InputTextModule } from 'primeng/inputtext';
 import { InputNumberModule } from "primeng/inputnumber";
 import { ButtonModule } from 'primeng/button';
+import { FilterationModule } from '../../filteration/filteration.module';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { ButtonModule } from 'primeng/button';
     InputTextModule,
     InputNumberModule,
     ButtonModule,
+    FilterationModule,
   ]
 })
 export class AlertMasterModule { }

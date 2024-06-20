@@ -1,0 +1,134 @@
+
+<div class="mt-3"  >
+
+    <div class="row mt-4" >  
+<!-- User Master -->
+        <div class="form-group pos-rel col-auto" *ngIf="ComponentName === 'UserMaster'">
+        <ng-container *ngIf="SearchmoreFiletrs && hasItem(SearchmoreFiletrs,'HomeCode')">
+           <input type="text" pInputText [placeholder]="MasterData?.[0]?.optionValue"  [(ngModel)]="SearchHomeCode" />
+          </ng-container>
+          </div>       
+       <div class="form-group  pos-rel col-auto" *ngIf="ComponentName === 'UserMaster'">   
+        <ng-container *ngIf="SearchmoreFiletrs && hasItem(SearchmoreFiletrs,'HomeName')">
+          <input type="text" pInputText [placeholder]="MasterData?.[1]?.optionValue" [(ngModel)]="SearchHomeName" />
+         </ng-container>   
+       </div>
+          <ng-container *ngIf="SearchmoreFiletrs && hasItem(SearchmoreFiletrs,'UserType')&& ComponentName === 'UserMaster'">
+              <div class="form-group pos-rel col-auto" > 
+                  <p-dropdown  name="ddlUserType"
+                            [options]="lstUserType" [(ngModel)]="SearchUserType"
+                            optionLabel="UserTypeName" optionValue="UserTypeId" [filter]="true" placeholder="User Type"
+                            [style]="{width: '100%'}" #usertyperef="ngModel">
+                        </p-dropdown>
+              </div> 
+          </ng-container>
+          <ng-container *ngIf="SearchmoreFiletrs && hasItem(SearchmoreFiletrs,'Name')&& ComponentName === 'UserMaster'">
+              <div class="form-group pos-rel col-auto" >
+                  <input type="text" pInputText class="form-control" name="txtName"
+                  [(ngModel)]="SearchName" placeholder="Name">
+              </div>  
+          </ng-container>  
+         <!-- Task Planner -->
+
+        <div class="form-group pos-rel col-auto"  *ngIf="ComponentName === 'TaskPlanner'">
+          <ng-container *ngIf="SearchmoreFiletrs && hasItem(SearchmoreFiletrs,'TaskName')">
+            <input type="text" pInputText [placeholder]="MasterData?.[0]?.optionValue"  [(ngModel)]="SearchTaskName" />
+            </ng-container>
+        </div>
+        <div class="form-group pos-rel col-auto"  *ngIf="ComponentName === 'TaskPlanner'">
+              <ng-container *ngIf="SearchmoreFiletrs && hasItem(SearchmoreFiletrs,'Description')">
+              <input type="text" pInputText [placeholder]="MasterData?.[1]?.optionValue" [(ngModel)]="SearchDescription" />
+              </ng-container>
+        </div>
+        <ng-container *ngIf="SearchmoreFiletrs && hasItem(SearchmoreFiletrs,'Status') && ComponentName === 'TaskPlanner'">
+        <div class="form-group  pos-rel col-auto">
+            <p-dropdown name="ddlStatus" [options]="lstTaskStatus" [(ngModel)]="SearchTaskStatusType" [style]="{width: '110px'}"
+        optionLabel="name" optionValue="code" placeholder="Status" [ngModelOptions]="{standalone: true}" >
+       </p-dropdown>
+        </div>
+        </ng-container>
+        <ng-container *ngIf="SearchmoreFiletrs && hasItem(SearchmoreFiletrs,'CreatedOn')">
+                <div class="form-group pos-rel col-auto">
+                  <p-calendar #cal1 appendTo="body" selectionMode="range" [(ngModel)]="SearchCreatedOn" [ngModelOptions]="{standalone: true}" [showIcon]="true" inputId="icon"
+                   class="iconcal" [readonlyInput]="true" (onSelect)="CreatedDateRangeChange(cal1)" [showButtonBar]="true"
+                  placeholder='Created On' style="margin-left: 5px;">
+                </p-calendar>
+                </div>
+        </ng-container>
+        <ng-container *ngIf="SearchmoreFiletrs && hasItem(SearchmoreFiletrs,'StartTime')">
+                <div class="form-group pos-rel col-auto">
+                  <p-calendar #cal1 appendTo="body" selectionMode="range" [(ngModel)]="SearchStartTime" [ngModelOptions]="{standalone: true}" [showIcon]="true" inputId="icon"
+                   class="iconcal" [readonlyInput]="true" (onSelect)="StartDateRangeChange(cal1)" [showButtonBar]="true"
+                  placeholder='Start Time' style="margin-left: 5px;">
+                </p-calendar>
+                </div>
+        </ng-container>
+        <ng-container *ngIf="SearchmoreFiletrs && hasItem(SearchmoreFiletrs,'DueTime')">
+                <div class="form-group pos-rel col-auto">
+                  <p-calendar #cal1 appendTo="body" selectionMode="range" [(ngModel)]="SearchDueTime" [ngModelOptions]="{standalone: true}" [showIcon]="true" inputId="icon"
+                    class="iconcal" [readonlyInput]="true" (onSelect)="DueDateRangeChange(cal1)" [showButtonBar]="true"
+                    placeholder='Due Time' style="margin-left: 5px;">
+                  </p-calendar>
+                </div>
+        </ng-container>
+
+           <!-- Alert Master -->
+          <div class="form-group pos-rel col-auto"  *ngIf="ComponentName === 'AlertMaster'">
+            <ng-container *ngIf="SearchmoreFiletrs && hasItem(SearchmoreFiletrs,'AlertHeadName')">
+              <input type="text" pInputText [placeholder]="MasterData?.[0]?.optionValue"  [(ngModel)]="SearchAlertHeadName" />
+            </ng-container>
+          </div>
+          <div class="form-group pos-rel col-auto"  *ngIf="ComponentName === 'AlertMaster'">
+                <ng-container *ngIf="SearchmoreFiletrs && hasItem(SearchmoreFiletrs,'AlertName')">
+                  <input type="text" pInputText [placeholder]="MasterData?.[1]?.optionValue" [(ngModel)]="SearchAlertName" />
+                </ng-container>
+          </div>
+          
+    <!-- Menu Master -->
+          <div class="form-group pos-rel col-auto" *ngIf="ComponentName === 'MenuMaster'">
+            <ng-container *ngIf="SearchmoreFiletrs && hasItem(SearchmoreFiletrs,'UserType')">
+              <p-dropdown  name="ddlUserType"
+              [options]="lstUserType" [(ngModel)]="SearchMenuUserType"
+              optionLabel="UserTypeName" optionValue="UserTypeId" [filter]="true" [placeholder]="MasterData?.[0]?.optionValue"
+              [style]="{width: '100%'}" #usertyperef="ngModel">
+          </p-dropdown>
+              </ng-container>
+              </div>       
+           <div class="form-group  pos-rel col-auto" *ngIf="ComponentName === 'MenuMaster'">   
+            <ng-container *ngIf="SearchmoreFiletrs && hasItem(SearchmoreFiletrs,'MenuName')">
+              <input type="text" pInputText [placeholder]="MasterData?.[1]?.optionValue" [(ngModel)]="SearchMenuName" />
+             </ng-container>   
+           </div>
+           <ng-container *ngIf="SearchmoreFiletrs && hasItem(SearchmoreFiletrs,'OrderNo') && (ComponentName === 'MenuMaster' ||
+           ComponentName === 'AlertMaster')">
+            <div class="form-group pos-rel col-auto" >
+                <input type="text" pInputText class="form-control" name="txtOrderNo"
+                [(ngModel)]="SearchOrderNo" placeholder="Order No">
+            </div>  
+        </ng-container>                         
+        <ng-container *ngIf="SearchmoreFiletrs && hasItem(SearchmoreFiletrs,'Status') && (ComponentName === 'UserMaster' ||
+           ComponentName === 'AlertMaster' ||  ComponentName === 'MenuMaster')">
+          <div class="form-group  pos-rel col-auto">
+              <p-dropdown name="ddlMenuStatus" [options]="lststatus" [(ngModel)]="SearchStatus" [style]="{width: '110px'}"
+          optionLabel="name" optionValue="code" placeholder="Status" [ngModelOptions]="{standalone: true}" >
+         </p-dropdown>
+          </div>
+        </ng-container>
+        <!-- More Filters -->
+            <div class="form-group  pos-rel col-md-2" *ngIf="ComponentName === 'TaskPlanner' || ComponentName === 'AlertMaster' || ComponentName === 'UserMaster' || ComponentName === 'MenuMaster'">           
+              <p-multiSelect [options]="lstmoreFiletrs" [(ngModel)]="SearchmoreFiletrs" [maxSelectedLabels]="0" selectedItemsLabel="More"
+              optionLabel="optionValue" placeholder="More" [style]="{width: '100%'}" >
+           </p-multiSelect>
+           </div> 
+           <div class="form-group  pos-rel col-auto">
+               <button pButton type="button" (click)="ApplyFilterTaskPlanner()">Apply</button>           
+           </div>
+           <div class="form-group  pos-rel col-auto">
+               <button pButton type="button" (click)="ClearTaskPlanner()">Clear</button> 
+           </div>
+    </div>
+
+
+    
+        
+</div>
