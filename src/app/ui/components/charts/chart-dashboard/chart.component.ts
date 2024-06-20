@@ -21,6 +21,7 @@ export class ChartComponent extends AppComponentBase implements OnInit {
     @Input() mode: string = 'view';
     @Input() userId: any = null;
     @Input() residentAdmissionInfoId: any = null;
+    @Input() homeMasterId: any = null;
     customDateFormat = CustomDateFormat;
 
     public lstMaster: any[] = [];
@@ -116,6 +117,7 @@ export class ChartComponent extends AppComponentBase implements OnInit {
                 selectedChartID: selectedChartdata.ChartId,
                 userId: this.userId,
                 residentAdmissionInfoId: this.residentAdmissionInfoId,
+                homeMasterId: this.homeMasterId,
                 isEditable: isEditable,
                 StartedBy: selectedChartdata.StartedBy,
                 StartedByDesignation: selectedChartdata.StartedByDesignation,

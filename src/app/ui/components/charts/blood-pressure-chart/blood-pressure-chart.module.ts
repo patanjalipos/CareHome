@@ -6,6 +6,7 @@ import { FormsModule } from '@angular/forms';
 import { InputTextModule } from 'primeng/inputtext';
 import { DropdownModule } from 'primeng/dropdown';
 import { CalendarModule } from 'primeng/calendar';
+import { CarouselModule } from 'primeng/carousel';
 
 
 @NgModule({
@@ -16,7 +17,8 @@ import { CalendarModule } from 'primeng/calendar';
     FormsModule,
     InputTextModule,
     DropdownModule,
-    CalendarModule
+    CalendarModule,
+    CarouselModule
   ],
   exports:[BloodPressureChartComponent]
 })

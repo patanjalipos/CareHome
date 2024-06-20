@@ -5,11 +5,10 @@ import {
     OnInit,
     Output,
     SimpleChanges,
+    ViewChild,
 } from '@angular/core';
 import { AppComponentBase } from 'src/app/app-component-base';
-import { MasterService } from 'src/app/ui/service/master.service';
 import { OptionService } from 'src/app/ui/service/option.service';
-import { UtilityModule } from 'src/app/utility/utility.module';
 import { UtilityService } from 'src/app/utility/utility.service';
 import { ActivityChartService } from './activity-chart.service';
 import { Observable, catchError, forkJoin, map, of } from 'rxjs';
@@ -21,6 +20,7 @@ import {
 import { UserService } from 'src/app/ui/service/user.service';
 import { ActivatedRoute } from '@angular/router';
 import { DatePipe } from '@angular/common';
+import { StrikeThroughEntryComponent } from '../strike-through-entry/strike-through-entry.component';
 
 @Component({
     selector: 'app-activities-chart',
@@ -32,6 +32,7 @@ export class ActivitiesChartComponent
     implements OnInit {
     @Input() preSelectedChartData: any = <any>{};
     @Output() EmitUpdateForm: EventEmitter<any> = new EventEmitter<any>();
+    @ViewChild('child') child: StrikeThroughEntryComponent;
 
     customDateFormat = CustomDateFormat;
     inputFields: boolean = false;
@@ -54,10 +55,11 @@ export class ActivitiesChartComponent
     ActivityChartsLst: any[] = [];
     pageNumber: number = 0;
     pageSize: number = 3;
-
-
-
-
+    responsiveOptions: any[] | undefined;
+    rightBtnCheck:boolean = false;
+    isShowStrikeThroughPopup:boolean = false;
+    StrikeThroughData:any = <any>{};
+      
     constructor(
         private optionService: OptionService,
         private _UtilityService: UtilityService,
@@ -97,7 +99,7 @@ export class ActivitiesChartComponent
         } else {
             this.ResetModel();
         }
-
+        
     }
 
     ngOnInit(): void {
@@ -128,98 +130,24 @@ export class ActivitiesChartComponent
             this.lstParticipation = responses[1];
             this.lstPurposeOfActivity = responses[2];
         });
-
+        this.GetActivitiesChartDetails(this.preSelectedChartData.chartId);
         this.getChartDataById(this.preSelectedChartData.chartMasterId, this.preSelectedChartData.residentAdmissionInfoId, this.pageNumber, this.pageSize);
-        this.ActivityChartsLst = [
-            // {
-            //     DateAndTime: new Date(),
-            //     CareGiven: 'Yes',
-            //     ActivityOptionName: 'Exercise',
-            //     Attendance: 'Present',
-            //     ParticipationOption: 'Active',
-            //     PurposeOfActivityOptionName: 'Health Improvement',
-            //     Duration: 30,
-            //     AdditionalInformation: 'all is good'
-            // },
-            // {
-            //     DateAndTime: new Date(),
-            //     CareGiven: 'Yes',
-            //     ActivityOptionName: 'Exercise',
-            //     Attendance: 'Present',
-            //     ParticipationOption: 'Active',
-            //     PurposeOfActivityOptionName: 'Health Improvement',
-            //     Duration: 30,
-            //     AdditionalInformation: 'all is good'
-            // },
-            // {
-            //     DateAndTime: new Date(),
-            //     CareGiven: 'Yes',
-            //     ActivityOptionName: 'Exercise',
-            //     Attendance: 'Present',
-            //     ParticipationOption: 'Active',
-            //     PurposeOfActivityOptionName: 'Health Improvement',
-            //     Duration: 30,
-            //     AdditionalInformation: 'all is good'
-            // },
-            // {
-            //     DateAndTime: new Date(),
-            //     CareGiven: 'Yes',
-            //     ActivityOptionName: 'Exercise',
-            //     Attendance: 'Present',
-            //     ParticipationOption: 'Active',
-            //     PurposeOfActivityOptionName: 'Health Improvement',
-            //     Duration: 30,
-            //     AdditionalInformation: 'all is good'
-            // },
-            // {
-            //     DateAndTime: new Date(),
-            //     CareGiven: 'Yes',
-            //     ActivityOptionName: 'Exercise',
-            //     Attendance: 'Present',
-            //     ParticipationOption: 'Active',
-            //     PurposeOfActivityOptionName: 'Health Improvement',
-            //     Duration: 30,
-            //     AdditionalInformation: 'all is good'
-            // },
-            // {
-            //     DateAndTime: new Date(),
-            //     CareGiven: 'Yes',
-            //     ActivityOptionName: 'Exercise',
-            //     Attendance: 'Present',
-            //     ParticipationOption: 'Active',
-            //     PurposeOfActivityOptionName: 'Health Improvement',
-            //     Duration: 30,
-            //     AdditionalInformation: 'all is good'
-            // },
-            // {
-            //     DateAndTime: new Date(),
-            //     CareGiven: 'Yes',
-            //     ActivityOptionName: 'Exercise',
-            //     Attendance: 'Present',
-            //     ParticipationOption: 'Active',
-            //     PurposeOfActivityOptionName: 'Health Improvement',
-            //     Duration: 30,
-            //     AdditionalInformation: 'all is good'
-            // }, {
-            //     DateAndTime: new Date(),
-            //     CareGiven: 'Yes',
-            //     ActivityOptionName: 'Exercise',
-            //     Attendance: 'Present',
-            //     ParticipationOption: 'Active',
-            //     PurposeOfActivityOptionName: 'Health Improvement',
-            //     Duration: 30,
-            //     AdditionalInformation: 'all is good'
-            // },
-            // {
-            //     DateAndTime: new Date(),
-            //     CareGiven: 'Yes',
-            //     ActivityOptionName: 'Exercise',
-            //     Attendance: 'Present',
-            //     ParticipationOption: 'Active',
-            //     PurposeOfActivityOptionName: 'Health Improvement',
-            //     Duration: 30,
-            //     AdditionalInformation: 'all is good'
-            // }
+        this.responsiveOptions = [
+            {
+                breakpoint: '1199px',
+                numVisible: 1,
+                numScroll: 1
+            },
+            {
+                breakpoint: '991px',
+                numVisible: 2,
+                numScroll: 1
+            },
+            {
+                breakpoint: '767px',
+                numVisible: 1,
+                numScroll: 1
+            }
         ];
     }
     chartOnChange() {
@@ -235,10 +163,6 @@ export class ActivitiesChartComponent
     }
 
     getChartDataById(chartId: any, residentAdmissionInfoId: any, pageNumber: number, pageSize: number) {
-        console.log(chartId);
-        console.log(residentAdmissionInfoId);
-        console.log(pageNumber);
-        console.log(pageSize);
 
         this._UtilityService.showSpinner();
         this.unsubscribe.add = this._ActivityChartServices
@@ -250,7 +174,14 @@ export class ActivitiesChartComponent
                         var tdata = JSON.parse(data.actionResult.result);
                         tdata = tdata ? tdata : [];
                         this.ActivityChartsLst = tdata;
-                        
+                        if (this.ActivityChartsLst.length < 3 || (((this.ActivityChartsLst.length) * (this.pageNumber + 1)) >= this.ActivityChartsLst[0].countRecords)) {
+                            this.rightBtnCheck = true;
+                        }
+                        else {
+                            this.rightBtnCheck = false;
+                        }
+                        console.log(this.ActivityChartsLst);
+
                     } else {
                         this.ActivityChartsLst = [];
                     }
@@ -261,6 +192,7 @@ export class ActivitiesChartComponent
                 },
             });
     }
+
     GetActivitiesChartDetails(chartId: string) {
         this._UtilityService.showSpinner();
         this.unsubscribe.add = this._ActivityChartServices
@@ -279,7 +211,6 @@ export class ActivitiesChartComponent
                             );
                         this.openAndClose();
                         this.ActivityChartsLst.push(this.ActivitiesChartFormData);
-                        console.log(this.ActivityChartsLst)
                     } else {
                         this.ActivitiesChartFormData = {};
                     }
@@ -389,10 +320,21 @@ export class ActivitiesChartComponent
                     },
                 });
         } else {
-            this._UtilityService.showWarningAlert('Activities Chart');
+            this._UtilityService.showWarningAlert('Activities Chart details are missing.');
         }
     }
-
+    showPopup(chartId,chart) {
+         this.StrikeThroughData = {
+            ChartMasterId:ChartTypes.ActivitiesChart,
+            ChartId: chartId,
+            ModifiedBy:this.loginId,
+         };
+         this.isShowStrikeThroughPopup = true;
+         console.log(chart,'particular chart');
+         
+         console.log(this.StrikeThroughData,'chartdata');
+        }
+    
     ResetModel() {
         this.isEditable = true;
         this.ActivitiesChartFormData = <any>{};
@@ -407,8 +349,11 @@ export class ActivitiesChartComponent
     }
 
     rightBtn() {
-        
         this.pageNumber++;
         this.chartOnChange();
+    }
+    Changes(value: boolean) {
+        this.isShowStrikeThroughPopup = value;
+        this.chartOnChange()
     }
 }

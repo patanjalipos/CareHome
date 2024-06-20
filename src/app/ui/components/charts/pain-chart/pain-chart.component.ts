@@ -19,6 +19,7 @@ import { ActivatedRoute } from '@angular/router';
 import { AppComponentBase } from 'src/app/app-component-base';
 import { Observable, catchError, forkJoin, map, of } from 'rxjs';
 import { PainChartService } from './pain-chart.service';
+import { Chart } from 'chart.js';
 
 interface BodyPart {
     name: string;
@@ -45,6 +46,23 @@ export class PainChartComponent extends AppComponentBase implements OnInit {
     isEditable: boolean;
     inputFields: boolean;
     StatementType: string;
+
+    //for carousel
+    PainChartLst: any[] = [];
+    pageNumber: number = 0;
+    pageSize: number = 3;
+    responsiveOptions: any[] | undefined;
+    rightBtnCheck: boolean = false;
+
+    evaluateIntervention: boolean = false;
+    evaluateInterventionPopupData: any = <any>{}
+
+
+    evaluateInterventionOption: any[] = [
+        { name: 'Effective - Continue as planned', code: 'Effective - Continue as planned' },
+        { name: 'Effectiveness - Undergoing Evaluation', code: 'Effectiveness - Undergoing Evaluation' },
+        { name: 'Ineffective - New Intervation Required', code: 'Ineffective - New Intervation Required' },
+    ];
 
     communicationOptions: any[] = [
         { label: 'Yes', value: 'Yes' },
@@ -106,6 +124,7 @@ export class PainChartComponent extends AppComponentBase implements OnInit {
     }
 
     ngOnInit(): void {
+        // this.selectedevaluateIntervention = this.evaluateInterventionOption[0];
         this.userId = this.preSelectedChartData.userId;
         this.residentAdmissionInfoId =
             this.preSelectedChartData.residentAdmissionInfoId;
@@ -137,6 +156,8 @@ export class PainChartComponent extends AppComponentBase implements OnInit {
             this.lstInterventions = responses[3];
             this.lstReferrals = responses[4];
         });
+
+        this.getChartDataById(this.preSelectedChartData.chartMasterId, this.preSelectedChartData.residentAdmissionInfoId, this.pageNumber, this.pageSize);
     }
 
     openAndClose() {
@@ -294,4 +315,103 @@ export class PainChartComponent extends AppComponentBase implements OnInit {
         this.painChartFormData = <any>{};
         this.StatementType = 'Insert';
     }
+
+    chartOnChange() {
+        this.getChartDataById(this.preSelectedChartData.chartMasterId, this.preSelectedChartData.residentAdmissionInfoId, this.pageNumber, this.pageSize);
+    }
+
+    getChartDataById(chartId: any, residentAdmissionInfoId: any, pageNumber: number, pageSize: number) {
+
+        this._UtilityService.showSpinner();
+        this.unsubscribe.add = this._UserService
+            .GetChartDataById(chartId, residentAdmissionInfoId, pageNumber, pageSize)
+            .subscribe({
+                next: (data) => {
+                    this._UtilityService.hideSpinner();
+                    if (data.actionResult.success == true) {
+                        var tdata = JSON.parse(data.actionResult.result);
+                        tdata = tdata ? tdata : [];
+                        this.PainChartLst = tdata;
+                        if (this.PainChartLst.length < 3 || (((this.PainChartLst.length) * (this.pageNumber + 1)) >= this.PainChartLst[0].countRecords)) {
+                            this.rightBtnCheck = true;
+                        }
+                        else {
+                            this.rightBtnCheck = false;
+                        }
+                        console.log(this.PainChartLst);
+
+                    } else {
+                        this.PainChartLst = [];
+                    }
+                },
+                error: (e) => {
+                    this._UtilityService.hideSpinner();
+                    this._UtilityService.showErrorAlert(e.message);
+                },
+            });
+    }
+    leftBtn() {
+        if (this.pageNumber > 0) {
+            this.pageNumber--;
+            this.chartOnChange();
+        }
+    }
+
+    rightBtn() {
+        this.pageNumber++;
+        this.chartOnChange();
+    }
+
+    showEvaluateInterventionPopup(chartId:string) {
+        this.evaluateIntervention = true;
+        this.evaluateInterventionPopupData.chartId = chartId;
+    }
+
+    closeEvaluateInterventionPopup() {
+        this.evaluateIntervention = false;
+        this.evaluateInterventionPopupData = {}
+    }
+    saveEvaluateInterventionPopupData() {
+        this.evaluateInterventionPopupData.evaluateBy = this.userId;
+        this.evaluateInterventionPopupData.selectedevaluate = this.evaluateInterventionPopupData.selectedevaluate.code;
+        this.evaluateInterventionPopupData.isEvaluate=true;
+        this.evaluateInterventionPopupData.chartMasterId=this.preSelectedChartData.chartMasterId;
+        console.log(this.preSelectedChartData);
+        
+        const objectBody: any = {
+            ChartData: this.evaluateInterventionPopupData,
+        };
+        console.log(objectBody);
+        
+        this._UtilityService.showSpinner();
+        this.unsubscribe.add = this._PainChartServices
+            .ChartEvaluate(objectBody)
+            .subscribe({
+                next: (data) => {
+                    this._UtilityService.hideSpinner();
+                    if (data.actionResult.success == true) {
+                        this._UtilityService.showSuccessAlert(
+                            data.actionResult.errMsg
+                        );
+                    } else
+                        this._UtilityService.showWarningAlert(
+                            data.actionResult.errMsg
+                        );
+                },
+                error: (e) => {
+                    this._UtilityService.hideSpinner();
+                    this._UtilityService.showErrorAlert(e.message);
+                },
+
+            });
+        this.closeEvaluateInterventionPopup();
+        this.getChartDataById(this.preSelectedChartData.chartMasterId, this.preSelectedChartData.residentAdmissionInfoId, this.pageNumber, this.pageSize);
+    }
+
+
+    showPopup() {
+
+    }
+
+
 }

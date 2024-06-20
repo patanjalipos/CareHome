@@ -32,7 +32,7 @@ export class ActivityChartService {
   GetActivitiesChartById(selectedChartID: any): Observable<any> {
     let reqHeader = new HttpHeaders({
       'Content-Type': 'application/json',
-      'Access-Control-Allow-Origin': environment.BaseUriAdmin,
+      'Access-Control-Allow-Origin': environment.BaseUriUser,
       'Authorization': 'Bearer ' + localStorage.getItem('token')
     });
     let params = new HttpParams();
