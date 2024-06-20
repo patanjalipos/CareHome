@@ -46,6 +46,13 @@ export class PainChartComponent extends AppComponentBase implements OnInit {
     inputFields: boolean;
     StatementType: string;
 
+    //for carousel
+    ActivityChartsLst: any[] = [];
+    pageNumber: number = 0;
+    pageSize: number = 3;
+    responsiveOptions: any[] | undefined;
+    rightBtnCheck: boolean = false;
+
     communicationOptions: any[] = [
         { label: 'Yes', value: 'Yes' },
         { label: 'No', value: 'No' },
@@ -137,6 +144,8 @@ export class PainChartComponent extends AppComponentBase implements OnInit {
             this.lstInterventions = responses[3];
             this.lstReferrals = responses[4];
         });
+
+        this.getChartDataById(this.preSelectedChartData.chartMasterId, this.preSelectedChartData.residentAdmissionInfoId, this.pageNumber, this.pageSize);
     }
 
     openAndClose() {
@@ -293,5 +302,54 @@ export class PainChartComponent extends AppComponentBase implements OnInit {
         this.isEditable = true;
         this.painChartFormData = <any>{};
         this.StatementType = 'Insert';
+    }
+
+    chartOnChange() {
+        this.getChartDataById(this.preSelectedChartData.chartMasterId, this.preSelectedChartData.residentAdmissionInfoId, this.pageNumber, this.pageSize);
+    }
+
+    getChartDataById(chartId: any, residentAdmissionInfoId: any, pageNumber: number, pageSize: number) {
+
+        this._UtilityService.showSpinner();
+        this.unsubscribe.add = this._UserService
+            .GetChartDataById(chartId, residentAdmissionInfoId, pageNumber, pageSize)
+            .subscribe({
+                next: (data) => {
+                    this._UtilityService.hideSpinner();
+                    if (data.actionResult.success == true) {
+                        var tdata = JSON.parse(data.actionResult.result);
+                        tdata = tdata ? tdata : [];
+                        this.ActivityChartsLst = tdata;
+                        if (this.ActivityChartsLst.length < 3 || (((this.ActivityChartsLst.length) * (this.pageNumber + 1)) >= this.ActivityChartsLst[0].countRecords)) {
+                            this.rightBtnCheck = true;
+                        }
+                        else {
+                            this.rightBtnCheck = false;
+                        }
+                        console.log(this.ActivityChartsLst);
+
+                    } else {
+                        this.ActivityChartsLst = [];
+                    }
+                },
+                error: (e) => {
+                    this._UtilityService.hideSpinner();
+                    this._UtilityService.showErrorAlert(e.message);
+                },
+            });
+    }
+    leftBtn() {
+        if (this.pageNumber > 0) {
+            this.pageNumber--;
+            this.chartOnChange();
+        }
+    }
+
+    rightBtn() {
+        this.pageNumber++;
+        this.chartOnChange();
+    }
+    showPopup() {
+
     }
 }

@@ -29,14 +29,14 @@
         <p-accordionTab header="All Progress notes since first admission">
         <div class="row">
             <div class="form-group pos-rel col-md-6" *ngIf="!isProgressnoteDoc">
-                <label for="" class="form-label label-line">From / Upto <span class="required">*</span></label>
+                <label for="" class="form-label label-line">From / Upto</label>
                             <p-calendar #calendar [maxDate]="today" selectionMode="range" [(ngModel)]="SearchDate"
                             [ngModelOptions]="{standalone: true}" [showIcon]="true" inputId="icon"
                             [dateFormat]="customDateFormat.CalendarFormat" class="iconcal" [readonlyInput]="true" [showButtonBar]="true"
                             (onSelect)="onSelectDate()" (onClearClick)="LoadResidentProgressDetails(admissionid,null,null,null,0)"></p-calendar>
             </div>
-            <div class="form-group pos-rel col-md-6" >
-                <label for="" class="form-label label-line">Types of Progress notes<span class="required">*</span></label>
+            <div class="form-group pos-rel col-md-6" *ngIf="!isProgressnoteDoc">
+                <label for="" class="form-label label-line">Types of Progress notes</label>
                             <p-multiSelect  name="ddlFormTypes" display="chip" [(ngModel)]="SearchProgressnoteType" [filter]="false"
                             [options]="lstprogressnotetypes"  optionLabel="name" optionValue="code" (ngModelChange)="onSelectFormType()"
                             placeholder="Please Select Progressnotes Type" [style]="{width: '100%'}" #usertyperef="">                                    

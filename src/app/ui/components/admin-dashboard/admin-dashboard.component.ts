@@ -242,11 +242,14 @@ export class AdminDashboardComponent extends AppComponentBase implements OnInit 
     }
 
     GetTaskPlanner() {
+        let importData: any = <any>{};
+        importData.status=0;        
         var startdate: any = null;
         if (this.currentDate != null && this.currentDate != undefined)
             startdate = this.datepipe.transform(this.currentDate, 'yyyy-MM-dd');
+        importData.dFrom=startdate;
         this._UtilityService.showSpinner();
-        this.unsubscribe.add = this._MasterServices.GetTaskPlanner(0, startdate)
+        this.unsubscribe.add = this._MasterServices.GetTaskPlanner(importData)
             .subscribe({
                 next: (data) => {
                     this._UtilityService.hideSpinner();

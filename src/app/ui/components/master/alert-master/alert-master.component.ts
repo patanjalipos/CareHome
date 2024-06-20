@@ -21,7 +21,10 @@ export class AlertMasterComponent extends AppComponentBase implements OnInit {
   public master: any = <any>{};
   filteredValuesLength:number=0;
   stlststatus: any[]=[];
-  
+  ComponentName: string = 'AlertMaster';
+  isAlertMaster:Boolean=false;
+  filteritems:any[]=[];
+
   constructor(
     private _ConstantServices: ConstantsService,
     private _MasterServices:MasterService,
@@ -61,8 +64,15 @@ export class AlertMasterComponent extends AppComponentBase implements OnInit {
       });
   }   
   GetAlertMaster() {
+    let importData: any = <any>{};
+    if(this.isAlertMaster==true && this.filteritems !=null && this.filteritems !=undefined)
+      {       
+        importData.SearchList=this.filteritems;
+      }   
+     // console.log(importData);
+        importData.AlertStatus=false;      
     this._UtilityService.showSpinner();   
-    this.unsubscribe.add = this._MasterServices.GetAlertMaster(false)
+    this.unsubscribe.add = this._MasterServices.GetAlertMaster(importData)
       .subscribe({
         next:(data) => {
           this._UtilityService.hideSpinner();          
@@ -157,4 +167,12 @@ export class AlertMasterComponent extends AppComponentBase implements OnInit {
   onGlobalFilter(table: Table, event: Event) {
     table.filterGlobal((event.target as HTMLInputElement).value, 'contains');
   }
+
+  ShowFilters() {
+    this.isAlertMaster =!this.isAlertMaster;
+  }
+  GetAlertMasterFilterData($event) {
+    this.filteritems=$event;   
+     this.GetAlertMaster(); 
+   }
 }

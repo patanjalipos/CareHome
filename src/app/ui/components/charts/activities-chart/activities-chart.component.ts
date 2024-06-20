@@ -59,7 +59,7 @@ export class ActivitiesChartComponent
     rightBtnCheck:boolean = false;
     isShowStrikeThroughPopup:boolean = false;
     StrikeThroughData:any = <any>{};
-
+      
     constructor(
         private optionService: OptionService,
         private _UtilityService: UtilityService,
@@ -174,12 +174,14 @@ export class ActivitiesChartComponent
                         var tdata = JSON.parse(data.actionResult.result);
                         tdata = tdata ? tdata : [];
                         this.ActivityChartsLst = tdata;
-                        if(this.ActivityChartsLst.length<3 || (((this.ActivityChartsLst.length)*(this.pageNumber+1)) >= this.ActivityChartsLst[0].countRecords)) {
+                        if (this.ActivityChartsLst.length < 3 || (((this.ActivityChartsLst.length) * (this.pageNumber + 1)) >= this.ActivityChartsLst[0].countRecords)) {
                             this.rightBtnCheck = true;
                         }
-                        else{
+                        else {
                             this.rightBtnCheck = false;
                         }
+                        console.log(this.ActivityChartsLst);
+
                     } else {
                         this.ActivityChartsLst = [];
                     }
@@ -190,6 +192,7 @@ export class ActivitiesChartComponent
                 },
             });
     }
+
     GetActivitiesChartDetails(chartId: string) {
         this._UtilityService.showSpinner();
         this.unsubscribe.add = this._ActivityChartServices
@@ -352,5 +355,8 @@ export class ActivitiesChartComponent
     Changes(value: boolean) {
         this.isShowStrikeThroughPopup = value;
         this.chartOnChange()
+    }
+    showPopup() {
+
     }
 }
