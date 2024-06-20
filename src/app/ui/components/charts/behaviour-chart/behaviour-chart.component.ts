@@ -27,8 +27,7 @@ import { DatePipe } from '@angular/common';
 })
 export class BehaviourChartComponent
     extends AppComponentBase
-    implements OnInit
-{
+    implements OnInit {
     @Input() preSelectedChartData: any = <any>{};
     @Output() EmitUpdateForm: EventEmitter<any> = new EventEmitter<any>();
 
@@ -44,6 +43,13 @@ export class BehaviourChartComponent
     LstBehaviourPurpose: any[] = [];
     //Static Options
     stLstYesNoOptions: any[] = [];
+
+    //for carousel
+    behaviourChartsLst: any[] = [];
+    pageNumber: number = 0;
+    pageSize: number = 3;
+    responsiveOptions: any[] | undefined;
+    rightBtnCheck: boolean = false;
 
     constructor(
         private optionService: OptionService,
@@ -108,6 +114,8 @@ export class BehaviourChartComponent
         } else {
             this.ResetModel();
         }
+
+        this.getChartDataById(this.preSelectedChartData.chartMasterId, this.preSelectedChartData.residentAdmissionInfoId, this.pageNumber, this.pageSize);
     }
 
     openAndClose() {
@@ -138,7 +146,7 @@ export class BehaviourChartComponent
                 catchError((error) => {
                     this._UtilityService.hideSpinner();
                     this._UtilityService.showErrorAlert(error.message);
-                  
+
                     return of([]); // Returning empty array in case of error
                 })
             );
@@ -255,5 +263,56 @@ export class BehaviourChartComponent
         this.StatementType = 'Insert';
     }
 
-    SaveAsPDF() {}
+    SaveAsPDF() { }
+
+    leftBtn() {
+        if (this.pageNumber > 0) {
+            this.pageNumber--;
+            this.chartOnChange();
+        }
+    }
+
+    rightBtn() {
+        this.pageNumber++;
+        this.chartOnChange();
+    }
+
+    chartOnChange() {
+        this.getChartDataById(this.preSelectedChartData.chartMasterId, this.preSelectedChartData.residentAdmissionInfoId, this.pageNumber, this.pageSize);
+    }
+
+    getChartDataById(chartId: any, residentAdmissionInfoId: any, pageNumber: number, pageSize: number) {
+
+        this._UtilityService.showSpinner();
+        this.unsubscribe.add = this._UserService
+            .GetChartDataById(chartId, residentAdmissionInfoId, pageNumber, pageSize)
+            .subscribe({
+                next: (data) => {
+                    this._UtilityService.hideSpinner();
+                    if (data.actionResult.success == true) {
+                        var tdata = JSON.parse(data.actionResult.result);
+                        tdata = tdata ? tdata : [];
+                        this.behaviourChartsLst = tdata;
+                        if (this.behaviourChartsLst.length < 3 || (((this.behaviourChartsLst.length) * (this.pageNumber + 1)) >= this.behaviourChartsLst[0].countRecords)) {
+                            this.rightBtnCheck = true;
+                        }
+                        else {
+                            this.rightBtnCheck = false;
+                        }
+                        console.log(this.behaviourChartsLst);
+
+                    } else {
+                        this.behaviourChartsLst = [];
+                    }
+                },
+                error: (e) => {
+                    this._UtilityService.hideSpinner();
+                    this._UtilityService.showErrorAlert(e.message);
+                },
+            });
+    }
+
+    showPopup() {
+
+    }
 }

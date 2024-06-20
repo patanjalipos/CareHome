@@ -12,6 +12,7 @@ import {MultiSelectModule} from 'primeng/multiselect';
 import { DropdownModule } from "primeng/dropdown";
 import { InputTextModule } from "primeng/inputtext";
 import { InputNumberModule } from "primeng/inputnumber";
+import { FilterationModule } from '../../filteration/filteration.module';
 
 
 @NgModule({
@@ -27,7 +28,8 @@ import { InputNumberModule } from "primeng/inputnumber";
     MultiSelectModule,
     DropdownModule,
     InputTextModule,
-    InputNumberModule
+    InputNumberModule,
+    FilterationModule,
   ]
 })
 export class MenuItemMasterModule { }
