@@ -22,6 +22,10 @@ export class FormMasterComponent extends AppComponentBase implements OnInit {
   filteredValuesLength:number=0;
   stlststatus: any[]=[];
   
+  ComponentName: string = 'FormMaster';
+  isFormMaster:Boolean=false;
+  filteritems:any[]=[];
+
   //Utiliy Services
   constructor(private _ConstantServices: ConstantsService,
     private _MasterServices:MasterService,
@@ -41,8 +45,15 @@ export class FormMasterComponent extends AppComponentBase implements OnInit {
   }
 
   GetformMaster(){
+    let importData: any = <any>{};
+    if(this.isFormMaster==true && this.filteritems !=null && this.filteritems !=undefined)
+      {       
+        importData.SearchList=this.filteritems;
+      }   
+      importData.StatusType=true;  
+      importData.isExcel=false;  
     this._UtilityService.showSpinner();   
-    this.unsubscribe.add = this._MasterServices.GetFormMaster(true)
+    this.unsubscribe.add = this._MasterServices.GetFormMaster(importData)
       .subscribe({
         next:(data) => {
           this._UtilityService.hideSpinner();          
@@ -146,5 +157,12 @@ export class FormMasterComponent extends AppComponentBase implements OnInit {
     this.filteredValuesLength = event.filteredValue.length; // count of displayed rows     
   }
 
+  ShowFilters() {
+    this.isFormMaster =!this.isFormMaster;
+  }
+  GetFormMasterFilterData($event) {
+    this.filteritems=$event;   
+     this.GetformMaster(); 
+   }
   
 }

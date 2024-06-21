@@ -11,6 +11,7 @@ import { InputNumberModule } from "primeng/inputnumber";
 import { ButtonModule } from 'primeng/button';
 import {CheckboxModule} from 'primeng/checkbox';
 import { AccordionModule } from 'primeng/accordion';
+import { FilterationModule } from '../../filteration/filteration.module';
 @NgModule({
   declarations: [
     HomeMasterComponent
@@ -25,7 +26,8 @@ import { AccordionModule } from 'primeng/accordion';
     InputNumberModule,
     ButtonModule,
     AccordionModule,
-    CheckboxModule
+    CheckboxModule,
+    FilterationModule,
   ]
 })
 export class HomeMasterModule { }

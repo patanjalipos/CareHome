@@ -20,6 +20,10 @@ export class AttorneyTypeMasterComponent extends AppComponentBase implements OnI
   public master: any = <any>{};
   filteredValuesLength:number=0;
   stlststatus: any[]=[];
+
+  ComponentName: string = 'AttorneyTypeMaster';
+  isAttorneyTypeMaster:Boolean=false;
+  filteritems:any[]=[];
   
   constructor(private _ConstantServices: ConstantsService,
     private _MasterServices:MasterService,
@@ -37,8 +41,15 @@ export class AttorneyTypeMasterComponent extends AppComponentBase implements OnI
    this.GetAttorneyTypeMaster();        
   }
   GetAttorneyTypeMaster() {
+    let importData: any = <any>{};
+    if(this.isAttorneyTypeMaster==true && this.filteritems !=null && this.filteritems !=undefined)
+      {       
+        importData.SearchList=this.filteritems;
+      }   
+      importData.StatusType=false;  
+      importData.isExcel=false;  
     this._UtilityService.showSpinner();   
-    this.unsubscribe.add = this._MasterServices.GetAttorneyTypeMaster(false)
+    this.unsubscribe.add = this._MasterServices.GetAttorneyTypeMaster(importData)
       .subscribe({
         next:(data) => {
           this._UtilityService.hideSpinner();          
@@ -132,5 +143,13 @@ export class AttorneyTypeMasterComponent extends AppComponentBase implements OnI
   onGlobalFilter(table: Table, event: Event) {
     table.filterGlobal((event.target as HTMLInputElement).value, 'contains');
   }
+
+  ShowFilters() {
+    this.isAttorneyTypeMaster =!this.isAttorneyTypeMaster;
+  }
+  GetAttorneyTypeMasterFilterData($event) {
+    this.filteritems=$event;   
+     this.GetAttorneyTypeMaster(); 
+   }
 }
 
