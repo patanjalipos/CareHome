@@ -50,7 +50,7 @@ export class RiskOnTheMoveComponent extends AppComponentBase implements OnInit {
   lstEquipment: any[] = [];
   lstAssessPain: any[] = [];
   
-  constructor(private _ConstantServices: ConstantsService,private route: ActivatedRoute,private _UtilityService: UtilityService,private _UserServices: UserService, private _RiskAssOnMove: RiskOnTheMoveService, private datePipte: DatePipe) {
+  constructor(private _ConstantServices: ConstantsService,private route: ActivatedRoute,private _UtilityService: UtilityService,private _UserServices: UserService, private _RiskAssOnMove: RiskOnTheMoveService, private datePipe: DatePipe) {
     super();
 
     this._ConstantServices.ActiveMenuName = "Risk Assessment On The Move Form";
@@ -157,7 +157,7 @@ this.isEditable = this.preSelectedFormData.isEditable;
                  
                     this.RiskAssOnTheMoveFormsData = tdata;
                    
-                    this.RiskAssOnTheMoveFormsData.ReviewDate = this.datePipte.transform(this.RiskAssOnTheMoveFormsData.ReviewDate,'MM/dd/yyyy');
+                    this.RiskAssOnTheMoveFormsData.ReviewDate = this.datePipe.transform(this.RiskAssOnTheMoveFormsData.ReviewDate,'MM/dd/yyyy');
                   
                     
                 } else {
@@ -211,7 +211,7 @@ if (this.userId != null && this.residentAdmissionInfoId != null && this.loginId!
         this.residentAdmissionInfoId;
     this.RiskAssOnTheMoveFormsData.StartedBy = this.loginId;
     this.RiskAssOnTheMoveFormsData.LastEnteredBy = this.loginId;
-    this.RiskAssOnTheMoveFormsData.ReviewDate = this.datePipte.transform(this.RiskAssOnTheMoveFormsData.ReviewDate,'yyyy-MM-dd');
+    this.RiskAssOnTheMoveFormsData.ReviewDate = this.datePipe.transform(this.RiskAssOnTheMoveFormsData.ReviewDate,'yyyy-MM-dd');
     
         const objectBody: any = {
           StatementType: this.StatementType,

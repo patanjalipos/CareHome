@@ -5,6 +5,7 @@ import {
     OnInit,
     Output,
     SimpleChanges,
+    ViewChild,
 } from '@angular/core';
 import { OptionService } from 'src/app/ui/service/option.service';
 import { UtilityService } from 'src/app/utility/utility.service';
@@ -12,12 +13,13 @@ import { BloodPressureChartService } from './blood-pressure-chart.service';
 import { UserService } from 'src/app/ui/service/user.service';
 import { AppComponentBase } from 'src/app/app-component-base';
 import {
+    ChartTypes,
     ConstantsService,
     CustomDateFormat,
 } from 'src/app/ui/service/constants.service';
 import { ActivatedRoute } from '@angular/router';
 import { DatePipe } from '@angular/common';
-import { log } from 'console';
+import { StrikeThroughEntryComponent } from '../strike-through-entry/strike-through-entry.component';
 
 @Component({
     selector: 'app-blood-pressure-chart',
@@ -27,6 +29,7 @@ import { log } from 'console';
 export class BloodPressureChartComponent
     extends AppComponentBase
     implements OnInit {
+    @ViewChild('child') child: StrikeThroughEntryComponent;
     @Input() preSelectedChartData: any = <any>{};
     @Output() EmitUpdateForm: EventEmitter<any> = new EventEmitter<any>();
 
@@ -48,11 +51,14 @@ export class BloodPressureChartComponent
     pageSize: number = 3;
     responsiveOptions: any[] | undefined;
     rightBtnCheck: boolean = false;
+    isShowStrikeThroughPopup: boolean = false;
+    StrikeThroughData: any = <any>{};
+
 
     constructor(
         private optionService: OptionService,
         private _UtilityService: UtilityService,
-        private datePipte: DatePipe,
+        private datePipe: DatePipe,
         private _UserService: UserService,
         private _ConstantServices: ConstantsService,
         private route: ActivatedRoute,
@@ -62,6 +68,7 @@ export class BloodPressureChartComponent
         this._ConstantServices.ActiveMenuName = 'Blood Pressure Chart';
         this.loginId = localStorage.getItem('userId');
     }
+    
 
     ngOnChanges(changes: SimpleChanges): void {
         this.isEditable = this.preSelectedChartData.isEditable;
@@ -112,7 +119,7 @@ export class BloodPressureChartComponent
                         tdata = tdata ? tdata : {};
                         this.bloodPressureChartFormData = tdata;
                         this.bloodPressureChartFormData.DateAndTime =
-                            this.datePipte.transform(
+                            this.datePipe.transform(
                                 this.bloodPressureChartFormData.DateAndTime,
                                 'dd-MM-yyyy HH:mm'
                             );
@@ -169,7 +176,7 @@ export class BloodPressureChartComponent
                     this.bloodPressureChartFormData.DateAndTime = parsedDate;
                 }
                 this.bloodPressureChartFormData.DateAndTime =
-                    this.datePipte.transform(
+                    this.datePipe.transform(
                         this.bloodPressureChartFormData.DateAndTime,
                         'yyyy-MM-ddTHH:mm'
                     );
@@ -260,8 +267,21 @@ export class BloodPressureChartComponent
             });
     }
 
-    showPopup() {
+    showPopup(chartId, chart) {
+        this.StrikeThroughData = {
+            ChartMasterId: ChartTypes.BloodPressureChart,
+            ChartId: chartId,
+            ModifiedBy: this.loginId,
+        };
+        this.isShowStrikeThroughPopup = true;
+        console.log(chart, 'particular chart');
 
-
+        console.log(this.StrikeThroughData, 'chartdata');
     }
+
+    Changes(value: boolean) {
+        this.isShowStrikeThroughPopup = value;
+        this.chartOnChange()
+    }
+
 }

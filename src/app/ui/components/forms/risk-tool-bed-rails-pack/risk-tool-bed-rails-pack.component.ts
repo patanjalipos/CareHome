@@ -39,7 +39,7 @@ export class RiskToolBedRailsPackComponent extends AppComponentBase implements O
   lstConsultedStatus: any[] = [];
   lstBedRailsFitRisk: any[] = [];
 
-  constructor(private _ConstantServices: ConstantsService,private route: ActivatedRoute,private _DataService: DataService,private _UserServices: UserService,private _UtilityService: UtilityService, private datePipte: DatePipe,private _RiskTool: RiskToolBedRailsPackService) {
+  constructor(private _ConstantServices: ConstantsService,private route: ActivatedRoute,private _DataService: DataService,private _UserServices: UserService,private _UtilityService: UtilityService, private datePipe: DatePipe,private _RiskTool: RiskToolBedRailsPackService) {
 
     super();
     this._ConstantServices.ActiveMenuName = "Risk Tool Bed Rails Pack Form";
@@ -139,7 +139,7 @@ GetRiskToolDetails(formId: string) {
                   var tdata = JSON.parse(data.actionResult.result);
                   tdata = tdata ? tdata : {};
                   this.RiskToolFormsData = tdata;
-                  this.RiskToolFormsData.ReviewDate = this.datePipte.transform(this.RiskToolFormsData.ReviewDate,'MM/dd/yyyy')
+                  this.RiskToolFormsData.ReviewDate = this.datePipe.transform(this.RiskToolFormsData.ReviewDate,'MM/dd/yyyy')
               } else {
                   this.RiskToolFormsData = {};
               }
@@ -170,7 +170,7 @@ if (this.userId != null && this.residentAdmissionInfoId != null && this.loginId!
         this.residentAdmissionInfoId;
     this.RiskToolFormsData.StartedBy = this.loginId;
     this.RiskToolFormsData.LastEnteredBy = this.loginId;
-    this.RiskToolFormsData.ReviewDate = this.datePipte.transform(this.RiskToolFormsData.ReviewDate,'yyyy-MM-dd');
+    this.RiskToolFormsData.ReviewDate = this.datePipe.transform(this.RiskToolFormsData.ReviewDate,'yyyy-MM-dd');
         const objectBody: any = {
           StatementType: this.StatementType,
           riskToolBedRailsForm: this.RiskToolFormsData,

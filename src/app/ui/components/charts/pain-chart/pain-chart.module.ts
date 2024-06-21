@@ -11,6 +11,7 @@ import { SelectButtonModule } from 'primeng/selectbutton';
 import { BodyMappingImageModule } from '../body-mapping-Image/body-mapping.module';
 import { CarouselModule } from 'primeng/carousel';
 import { RadioButtonModule } from 'primeng/radiobutton';
+import { StrikeThroughEntryModule } from '../strike-through-entry/strike-through-entry.module';
 
 
 @NgModule({
@@ -26,7 +27,8 @@ import { RadioButtonModule } from 'primeng/radiobutton';
     DialogModule,
     BodyMappingImageModule,
     CarouselModule,
-    RadioButtonModule
+    RadioButtonModule,
+    StrikeThroughEntryModule
   ],
   exports:[PainChartComponent]
 })
