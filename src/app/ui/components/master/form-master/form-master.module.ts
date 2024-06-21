@@ -8,6 +8,7 @@ import { InputTextModule } from 'primeng/inputtext';
 import { InputNumberModule } from "primeng/inputnumber";
 import { ButtonModule } from 'primeng/button';
 import { FormMasterComponent } from './form-master.component';
+import { FilterationModule } from '../../filteration/filteration.module';
 
 
 
@@ -24,6 +25,7 @@ import { FormMasterComponent } from './form-master.component';
     InputTextModule,
     InputNumberModule,
     ButtonModule,
+    FilterationModule,
   ]
 })
 export class FormMasterModule { }

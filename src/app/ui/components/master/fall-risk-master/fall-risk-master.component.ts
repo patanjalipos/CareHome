@@ -21,6 +21,10 @@ export class FallRiskMasterComponent extends AppComponentBase implements OnInit 
   filteredValuesLength:number=0;
   stlststatus: any[]=[];
   
+  ComponentName: string = 'FallRiskMaster';
+  isFallRiskMaster:Boolean=false;
+  filteritems:any[]=[];
+
   constructor(private _ConstantServices: ConstantsService,
     private _MasterServices:MasterService,
     private _UtilityService: UtilityService,    
@@ -38,8 +42,15 @@ export class FallRiskMasterComponent extends AppComponentBase implements OnInit 
   }
    
   GetFallRiskMaster() {
+    let importData: any = <any>{};
+    if(this.isFallRiskMaster==true && this.filteritems !=null && this.filteritems !=undefined)
+      {       
+        importData.SearchList=this.filteritems;
+      }   
+      importData.StatusType=false;  
+      importData.isExcel=false;  
     this._UtilityService.showSpinner();   
-    this.unsubscribe.add = this._MasterServices.GetFallRiskMaster(false)
+    this.unsubscribe.add = this._MasterServices.GetFallRiskMaster(importData)
       .subscribe({
         next:(data) => {
           this._UtilityService.hideSpinner();          
@@ -134,4 +145,12 @@ export class FallRiskMasterComponent extends AppComponentBase implements OnInit 
   onGlobalFilter(table: Table, event: Event) {
     table.filterGlobal((event.target as HTMLInputElement).value, 'contains');
   }
+
+  ShowFilters() {
+    this.isFallRiskMaster =!this.isFallRiskMaster;
+  }
+  GetFallRiskMasterFilterData($event) {
+    this.filteritems=$event;   
+     this.GetFallRiskMaster(); 
+   }
 }

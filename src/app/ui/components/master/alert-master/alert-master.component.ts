@@ -23,6 +23,7 @@ export class AlertMasterComponent extends AppComponentBase implements OnInit {
   stlststatus: any[]=[];
   ComponentName: string = 'AlertMaster';
   isAlertMaster:Boolean=false;
+  isAlertHeadMaster:Boolean=false;
   filteritems:any[]=[];
 
   constructor(
@@ -39,12 +40,18 @@ export class AlertMasterComponent extends AppComponentBase implements OnInit {
     ];    
   } 
   ngOnInit(): void {
-   this.GetAlertHeadMaster();
-   this.GetAlertMaster();        
+    this.GetAlertMaster(); 
+   this.GetAlertHeadMaster();         
   }
   GetAlertHeadMaster() {
+    let importData: any = <any>{};
+    if(this.isAlertHeadMaster==true && this.filteritems !=null && this.filteritems !=undefined)
+      {       
+        importData.SearchList=this.filteritems;
+      } 
+      importData.StatusType=true;      
     this._UtilityService.showSpinner();   
-    this.unsubscribe.add = this._MasterServices.GetAlertHeadMaster(true)
+    this.unsubscribe.add = this._MasterServices.GetAlertHeadMaster(importData)
       .subscribe({
         next:(data) => {
           this._UtilityService.hideSpinner();          
@@ -70,7 +77,7 @@ export class AlertMasterComponent extends AppComponentBase implements OnInit {
         importData.SearchList=this.filteritems;
       }   
      // console.log(importData);
-        importData.AlertStatus=false;      
+        importData.StatusType=false;      
     this._UtilityService.showSpinner();   
     this.unsubscribe.add = this._MasterServices.GetAlertMaster(importData)
       .subscribe({

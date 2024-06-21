@@ -21,6 +21,7 @@ export class UserMasterComponent extends AppComponentBase implements OnInit {
   @Input() filteredData: any[] = [];
   ComponentName: string = 'UserMaster';
   isUserMaster:Boolean=false;
+  isHomeMaster:Boolean=false;
   updateMode: Boolean = false;
   @ViewChild('fileInput') fileInput: FileUpload; 
   UserTypes = UserTypes;
@@ -570,8 +571,14 @@ export class UserMasterComponent extends AppComponentBase implements OnInit {
   }
 
   LoadHomeMaster() {
+    let importData: any = <any>{};
+    if(this.isHomeMaster==true && this.filteritems !=null && this.filteritems !=undefined)
+      {       
+        importData.SearchList=this.filteritems;
+      } 
+      importData.StatusType=true;
     this._UtilityService.showSpinner();
-    this.unsubscribe.add = this._MasterServices.GetHomeMaster(true)
+    this.unsubscribe.add = this._MasterServices.GetHomeMaster(importData)
       .subscribe
       ({
         next: (data) => {

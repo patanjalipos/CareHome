@@ -86,5 +86,174 @@
             "optionValue": "Status"
         }
        
+    ],
+    "AlertHeadMaster": [        
+        {
+            "optionId": "AlertHeadName",
+            "optionValue": "Alert Head Name"
+        },
+        {
+            "optionId": "OrderNo",
+            "optionValue": "Order No"
+        },
+        {
+            "optionId": "Status",
+            "optionValue": "Status"
+        }
+       
+    ],
+    "ChartMaster": [
+        {
+            "optionId": "ChartHeadName",
+            "optionValue": "Chart HeadName"
+        },
+        {
+            "optionId": "ChartName",
+            "optionValue": "Chart Name"
+        },
+        {
+            "optionId": "OrderNo",
+            "optionValue": "Order No"
+        },
+        {
+            "optionId": "Status",
+            "optionValue": "Status"
+        }
+       
+    ],
+    "ChartHeadMaster": [        
+        {
+            "optionId": "ChartHeadName",
+            "optionValue": "Chart Head Name"
+        },
+        {
+            "optionId": "OrderNo",
+            "optionValue": "Order No"
+        },
+        {
+            "optionId": "Status",
+            "optionValue": "Status"
+        }
+       
+    ],
+    "IndicatorMaster": [  
+        {
+            "optionId": "IndicatorGroupName",
+            "optionValue": "Indicator Group Name"
+        },      
+        {
+            "optionId": "IndicatorName",
+            "optionValue": "Indicator Name"
+        },
+        {
+            "optionId": "OrderNo",
+            "optionValue": "Order No"
+        },
+        {
+            "optionId": "Status",
+            "optionValue": "Status"
+        }
+       
+    ],
+    "IndicatorGroupMaster": [        
+        {
+            "optionId": "GroupName",
+            "optionValue": "Group Name"
+        },
+        {
+            "optionId": "OrderNo",
+            "optionValue": "Order No"
+        },
+        {
+            "optionId": "Status",
+            "optionValue": "Status"
+        }
+       
+    ],
+    "AttorneyTypeMaster": [  
+        {
+            "optionId": "TypeName",
+            "optionValue": "Type Name"
+        }, 
+        {
+            "optionId": "OrderNo",
+            "optionValue": "Order No"
+        },
+        {
+            "optionId": "Status",
+            "optionValue": "Status"
+        }
+       
+    ],
+    "FormMaster": [        
+        {
+            "optionId": "FormName",
+            "optionValue": "Form Name"
+        },      
+        {
+            "optionId": "Sequence",
+            "optionValue": "Sequence"
+        },
+        {
+            "optionId": "Status",
+            "optionValue": "Status"
+        }
+    ],
+    "FallRiskMaster": [  
+        {
+            "optionId": "FallRiskName",
+            "optionValue": "Fall Risk Name"
+        },      
+        {
+            "optionId": "RiskPoint",
+            "optionValue": "Risk Point"
+        },
+        {
+            "optionId": "OrderNo",
+            "optionValue": "Order No"
+        },
+        {
+            "optionId": "Status",
+            "optionValue": "Status"
+        }
+       
+    ],
+    "HomeMaster": [  
+        {
+            "optionId": "HomeCode",
+            "optionValue": "Home Code"
+        },      
+        {
+            "optionId": "HomeName",
+            "optionValue": "Home Name"
+        },
+        {
+            "optionId": "OrderNo",
+            "optionValue": "Order No"
+        },
+        {
+            "optionId": "Status",
+            "optionValue": "Status"
+        }
+       
+    ],
+    "LocationMaster": [  
+        {
+            "optionId": "Facility",
+            "optionValue": "Facility"
+        },      
+        {
+            "optionId": "Location",
+            "optionValue": "Location"
+        },
+        {
+            "optionId": "OrderNo",
+            "optionValue": "Order No"
+        },
+        {
+            "optionId": "Status",
+            "optionValue": "Status"
+        }
+       
     ]
 }
