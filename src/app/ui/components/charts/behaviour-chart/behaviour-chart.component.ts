@@ -5,6 +5,7 @@ import {
     OnInit,
     Output,
     SimpleChanges,
+    ViewChild,
 } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Observable, catchError, forkJoin, map, of } from 'rxjs';
@@ -19,6 +20,7 @@ import { UserService } from 'src/app/ui/service/user.service';
 import { UtilityService } from 'src/app/utility/utility.service';
 import { BehaviourChartService } from './behaviour-chart.service';
 import { DatePipe } from '@angular/common';
+import { StrikeThroughEntryComponent } from '../strike-through-entry/strike-through-entry.component';
 
 @Component({
     selector: 'app-behaviour-chart',
@@ -28,10 +30,11 @@ import { DatePipe } from '@angular/common';
 export class BehaviourChartComponent
     extends AppComponentBase
     implements OnInit {
+    @ViewChild('child') child: StrikeThroughEntryComponent;
     @Input() preSelectedChartData: any = <any>{};
     @Output() EmitUpdateForm: EventEmitter<any> = new EventEmitter<any>();
 
-    inputFieldsCheck: boolean = false;
+    inputFieldsCheck: boolean;
     customDateFormat = CustomDateFormat;
     isEditable: boolean;
     residentAdmissionInfoId: any;
@@ -50,6 +53,9 @@ export class BehaviourChartComponent
     pageSize: number = 3;
     responsiveOptions: any[] | undefined;
     rightBtnCheck: boolean = false;
+    isShowStrikeThroughPopup: boolean = false;
+    StrikeThroughData: any = <any>{};
+    stLstReason:any[]=[];
 
     constructor(
         private optionService: OptionService,
@@ -87,6 +93,9 @@ export class BehaviourChartComponent
 
         this.optionService.getstLstYesNoOptions().subscribe((data) => {
             this.stLstYesNoOptions = data;
+        });
+        this.optionService.getstLstReason().subscribe((data) => {
+            this.stLstReason = data;
         });
 
         const collectionNames = ['BehaviourPurposeOptions'];
@@ -312,7 +321,21 @@ export class BehaviourChartComponent
             });
     }
 
-    showPopup() {
+    showPopup(chartId,chart) {
+        this.StrikeThroughData = {
+           ChartMasterId:ChartTypes.BehaviourChart,
+           ChartId: chartId,
+           ModifiedBy:this.loginId,
+        };
+        this.isShowStrikeThroughPopup = true;
+        console.log(chart,'particular chart');
+        
+        console.log(this.StrikeThroughData,'chartdata');
+       }
 
+    Changes(value: boolean) {
+        this.isShowStrikeThroughPopup = value;
+        this.chartOnChange()
     }
+
 }

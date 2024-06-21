@@ -32,7 +32,7 @@ export class CareHearingAssessmentComponent extends AppComponentBase implements 
   lstAidsAssistance: any[] = []
   lstGoalsToHearing: any[] = []
 
-  constructor(private _ConstantServices: ConstantsService, private datePipte: DatePipe, private route: ActivatedRoute, private _UtilityService: UtilityService, private _CareHearing: CareHearingAssessmentService, private _UserServices: UserService) {
+  constructor(private _ConstantServices: ConstantsService, private datePipe: DatePipe, private route: ActivatedRoute, private _UtilityService: UtilityService, private _CareHearing: CareHearingAssessmentService, private _UserServices: UserService) {
 
     super();
 
@@ -107,7 +107,7 @@ export class CareHearingAssessmentComponent extends AppComponentBase implements 
       
             this.CareAssessmentHearingFormsData = tdata;
            
-            this.CareAssessmentHearingFormsData.NextReviewDate=  this.datePipte.transform(
+            this.CareAssessmentHearingFormsData.NextReviewDate=  this.datePipe.transform(
               this.CareAssessmentHearingFormsData.NextReviewDate,
               'MM/dd/yyyy'
             );;

@@ -1,0 +1,22 @@
+[
+    {
+        "optionId": "Not Present",
+        "optionValue": "Not Present"
+    },
+    {
+        "optionId": "Hospitalised",
+        "optionValue": "Hospitalised"
+    },
+    {
+        "optionId": "Declined",
+        "optionValue": "Declined"
+    },
+    {
+        "optionId": "Self-isolating",
+        "optionValue": "Self-isolating"
+    },
+    {
+        "optionId": "Other",
+        "optionValue": "Other"
+    }
+]
