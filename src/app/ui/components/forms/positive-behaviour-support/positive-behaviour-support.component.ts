@@ -135,7 +135,7 @@ export class PositiveBehaviourSupportComponent extends AppComponentBase implemen
         this.residentAdmissionInfoId;
       this.PositiveBehaviourSupportFormsData.StartedBy = this.loginId;
       this.PositiveBehaviourSupportFormsData.LastEnteredBy = this.loginId;
-      //this.PositiveBehaviourSupportFormsData.DateOfComplete = this.datePipte.transform(this.CareWishesFormsData.DateOfComplete,'yyyy-MM-dd');
+      //this.PositiveBehaviourSupportFormsData.DateOfComplete = this.datePipe.transform(this.CareWishesFormsData.DateOfComplete,'yyyy-MM-dd');
 
       const objectBody: any = {
         StatementType: this.StatementType,

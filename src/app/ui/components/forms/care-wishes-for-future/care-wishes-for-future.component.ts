@@ -40,7 +40,7 @@ export class CareWishesForFutureComponent extends AppComponentBase implements On
     private _UtilityService: UtilityService,
     private _UserServices: UserService,
     private _CareWishes: CareWishesForFutureService,
-    private datePipte: DatePipe
+    private datePipe: DatePipe
   ) {
 
     super();
@@ -114,7 +114,7 @@ export class CareWishesForFutureComponent extends AppComponentBase implements On
             var tdata = JSON.parse(data.actionResult.result);
             tdata = tdata ? tdata : {};
             this.CareWishesFormsData = tdata;
-            this.CareWishesFormsData.DateOfComplete = this.datePipte.transform(this.CareWishesFormsData.DateOfComplete,'MM/dd/yyyy')
+            this.CareWishesFormsData.DateOfComplete = this.datePipe.transform(this.CareWishesFormsData.DateOfComplete,'MM/dd/yyyy')
 
           } else {
             this.CareWishesFormsData = {};
@@ -165,7 +165,7 @@ export class CareWishesForFutureComponent extends AppComponentBase implements On
         this.residentAdmissionInfoId;
       this.CareWishesFormsData.StartedBy = this.loginId;
       this.CareWishesFormsData.LastEnteredBy = this.loginId;
-      this.CareWishesFormsData.DateOfComplete = this.datePipte.transform(this.CareWishesFormsData.DateOfComplete,'yyyy-MM-dd');
+      this.CareWishesFormsData.DateOfComplete = this.datePipe.transform(this.CareWishesFormsData.DateOfComplete,'yyyy-MM-dd');
 
       const objectBody: any = {
         StatementType: this.StatementType,

@@ -50,7 +50,7 @@ export class AccidentIncidentNearMissRecordComponent
         private _ConstantServices: ConstantsService,
         private _UserServices: UserService,
         private _UtilityService: UtilityService,
-        private datePipte: DatePipe
+        private datePipe: DatePipe
     ) {
         super();
         this._ConstantServices.ActiveMenuName =
@@ -162,13 +162,13 @@ export class AccidentIncidentNearMissRecordComponent
 
                         this.AccidentNearMissRecordFormsData = tdata;
                         this.AccidentNearMissRecordFormsData.DateOfAccident =
-                            this.datePipte.transform(
+                            this.datePipe.transform(
                                 this.AccidentNearMissRecordFormsData
                                     .DateOfAccident,
                                 'MM/dd/yyyy'
                             );
                         this.AccidentNearMissRecordFormsData.EmergencyServicesContacted =
-                            this.datePipte.transform(
+                            this.datePipe.transform(
                                 this.AccidentNearMissRecordFormsData
                                     .EmergencyServicesContacted,
                                 'MM/dd/yyyy'
@@ -207,12 +207,12 @@ export class AccidentIncidentNearMissRecordComponent
             this.AccidentNearMissRecordFormsData.StartedBy = this.loginId;
             this.AccidentNearMissRecordFormsData.LastEnteredBy = this.loginId;
             this.AccidentNearMissRecordFormsData.DateOfAccident =
-                this.datePipte.transform(
+                this.datePipe.transform(
                     this.AccidentNearMissRecordFormsData.DateOfAccident,
                     'yyyy-MM-dd'
                 );
             this.AccidentNearMissRecordFormsData.EmergencyServicesContacted =
-                this.datePipte.transform(
+                this.datePipe.transform(
                     this.AccidentNearMissRecordFormsData
                         .EmergencyServicesContacted,
                     'yyyy-MM-dd'

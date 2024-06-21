@@ -6,6 +6,7 @@ import {
     OnInit,
     Output,
     SimpleChanges,
+    ViewChild,
 } from '@angular/core';
 import { OptionService } from 'src/app/ui/service/option.service';
 import { UserService } from 'src/app/ui/service/user.service';
@@ -20,6 +21,7 @@ import { AppComponentBase } from 'src/app/app-component-base';
 import { Observable, catchError, forkJoin, map, of } from 'rxjs';
 import { PainChartService } from './pain-chart.service';
 import { Chart } from 'chart.js';
+import { StrikeThroughEntryComponent } from '../strike-through-entry/strike-through-entry.component';
 
 interface BodyPart {
     name: string;
@@ -33,6 +35,7 @@ interface BodyPart {
     styleUrls: ['./pain-chart.component.scss'],
 })
 export class PainChartComponent extends AppComponentBase implements OnInit {
+    @ViewChild('child') child: StrikeThroughEntryComponent;
     @Input() preSelectedChartData: any = <any>{};
     @Output() EmitUpdateForm: EventEmitter<any> = new EventEmitter<any>();
 
@@ -53,6 +56,8 @@ export class PainChartComponent extends AppComponentBase implements OnInit {
     pageSize: number = 3;
     responsiveOptions: any[] | undefined;
     rightBtnCheck: boolean = false;
+    isShowStrikeThroughPopup: boolean = false;
+    StrikeThroughData: any = <any>{};
 
     evaluateIntervention: boolean = false;
     evaluateInterventionPopupData: any = <any>{}
@@ -85,16 +90,18 @@ export class PainChartComponent extends AppComponentBase implements OnInit {
     lstImpact: any[] = [];
     lstInterventions: any[] = [];
     lstTypeOfPain: any[] = [];
+    stLstReason:any[]=[];
 
     //Body Map PopUp
     isShowBodyMap: boolean = false;
     selectedBodyParts: string[] = null;
+    
 
     constructor(
         private optionService: OptionService,
         private _UtilityService: UtilityService,
         private _UserService: UserService,
-        private datePipte: DatePipe,
+        private datePipe: DatePipe,
         private _ConstantServices: ConstantsService,
         private route: ActivatedRoute,
         private _PainChartServices: PainChartService
@@ -131,6 +138,9 @@ export class PainChartComponent extends AppComponentBase implements OnInit {
 
         this.optionService.getstLstYesNoOptions().subscribe((data) => {
             this.stLstYesNoOptions = data;
+        });
+        this.optionService.getstLstReason().subscribe((data) => {
+            this.stLstReason = data;
         });
 
         const collectionNames = [
@@ -201,13 +211,13 @@ export class PainChartComponent extends AppComponentBase implements OnInit {
                     this.painChartFormData.DateAndTime = parsedDate;
                 }
 
-                this.painChartFormData.DateAndTime = this.datePipte.transform(
+                this.painChartFormData.DateAndTime = this.datePipe.transform(
                     this.painChartFormData.DateAndTime,
                     'yyyy-MM-ddTHH:mm'
                 );
             }
 
-            this.painChartFormData.NextReviewDate = this.datePipte.transform(
+            this.painChartFormData.NextReviewDate = this.datePipe.transform(
                 this.painChartFormData.NextReviewDate,
                 'yyyy-MM-dd'
             );
@@ -263,12 +273,12 @@ export class PainChartComponent extends AppComponentBase implements OnInit {
                         tdata = tdata ? tdata : {};
                         this.painChartFormData = tdata;
                         this.painChartFormData.DateAndTime =
-                            this.datePipte.transform(
+                            this.datePipe.transform(
                                 this.painChartFormData.DateAndTime,
                                 'dd-MM-yyyy HH:mm'
                             );
                         this.painChartFormData.NextReviewDate =
-                            this.datePipte.transform(
+                            this.datePipe.transform(
                                 this.painChartFormData.NextReviewDate,
                                 'MM/dd/yyyy'
                             );
@@ -409,9 +419,21 @@ export class PainChartComponent extends AppComponentBase implements OnInit {
     }
 
 
-    showPopup() {
+    showPopup(chartId, chart) {
+        this.StrikeThroughData = {
+            ChartMasterId: ChartTypes.PainChart ,
+            ChartId: chartId,
+            ModifiedBy: this.loginId,
+        };
+        this.isShowStrikeThroughPopup = true;
+        console.log(chart, 'particular chart');
 
+        console.log(this.StrikeThroughData, 'chartdata');
     }
 
+    Changes(value: boolean) {
+        this.isShowStrikeThroughPopup = value;
+        this.chartOnChange()
+    }
 
 }

@@ -84,7 +84,7 @@ export class PromotingWellbeingAtHomeComponent extends AppComponentBase implemen
 
         
             this.PromotingWellbeingAtHomeFormData = tdata;
-            // this.PromotingWellbeingAtHomeFormData.DateOfComplete = this.datePipte.transform(this.PromotingWellbeingAtHomeFormData.DateOfComplete, 'MM/dd/yyyy')
+            // this.PromotingWellbeingAtHomeFormData.DateOfComplete = this.datePipe.transform(this.PromotingWellbeingAtHomeFormData.DateOfComplete, 'MM/dd/yyyy')
 
           } else {
             this.PromotingWellbeingAtHomeFormData = {};
@@ -120,7 +120,7 @@ export class PromotingWellbeingAtHomeComponent extends AppComponentBase implemen
         this.residentAdmissionInfoId;
       this.PromotingWellbeingAtHomeFormData.StartedBy = this.loginId;
       this.PromotingWellbeingAtHomeFormData.LastEnteredBy = this.loginId;
-     // this.PromotingWellbeingAtHomeFormData.DateOfComplete = this.datePipte.transform(this.PromotingWellbeingAtHomeFormData.DateOfComplete, 'yyyy-MM-dd');
+     // this.PromotingWellbeingAtHomeFormData.DateOfComplete = this.datePipe.transform(this.PromotingWellbeingAtHomeFormData.DateOfComplete, 'yyyy-MM-dd');
 
       const objectBody: any = {
         StatementType: this.StatementType,
