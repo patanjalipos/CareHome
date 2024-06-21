@@ -6,7 +6,6 @@ import {
     Output,
     SimpleChanges,
 } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
 import { Observable, catchError, forkJoin, map, of } from 'rxjs';
 import { AppComponentBase } from 'src/app/app-component-base';
 import {
@@ -14,7 +13,6 @@ import {
     ConstantsService,
     CustomDateFormat,
 } from 'src/app/ui/service/constants.service';
-import { MasterService } from 'src/app/ui/service/master.service';
 import { OptionService } from 'src/app/ui/service/option.service';
 import { UtilityService } from 'src/app/utility/utility.service';
 import { AdlChartService } from './adl-chart.service';
@@ -30,7 +28,7 @@ export class AdlChartComponent extends AppComponentBase implements OnInit {
     @Input() preSelectedChartData: any = <any>{};
     @Output() EmitUpdateForm: EventEmitter<any> = new EventEmitter<any>();
 
-    inputFieldsCheck: boolean = false;
+    inputFieldsCheck: boolean;
     customDateFormat = CustomDateFormat;
     isEditable: boolean;
     residentAdmissionInfoId: any;
@@ -54,12 +52,13 @@ export class AdlChartComponent extends AppComponentBase implements OnInit {
     pageSize: number = 3;
     responsiveOptions: any[] | undefined;
     rightBtnCheck: boolean = false;
-
+    isShowStrikeThroughPopup:boolean = false;
+    StrikeThroughData:any = <any>{};
+    stLstReason:any[]=[];
 
     constructor(
         private optionService: OptionService,
         private _ConstantServices: ConstantsService,
-        private route: ActivatedRoute,
         private _UtilityService: UtilityService,
         private _UserService: UserService,
         private _ADLChart: AdlChartService,
@@ -89,6 +88,9 @@ export class AdlChartComponent extends AppComponentBase implements OnInit {
 
         this.optionService.getstLstYesNoOptions().subscribe((data) => {
             this.stLstYesNoOptions = data;
+        });
+        this.optionService.getstLstReason().subscribe((data) => {
+            this.stLstReason = data;
         });
 
         this.getChartDataById(this.preSelectedChartData.chartMasterId, this.preSelectedChartData.residentAdmissionInfoId, this.pageNumber, this.pageSize);
@@ -339,7 +341,19 @@ export class AdlChartComponent extends AppComponentBase implements OnInit {
             });
     }
 
-    showPopup() {
+    showPopup(chartId) {
+        this.StrikeThroughData = {
+            ChartMasterId:ChartTypes.ADLChart,
+            ChartId: chartId,
+            ModifiedBy:this.loginId,
+         };
+         this.isShowStrikeThroughPopup = true;
+         
+         console.log(this.StrikeThroughData,'chartdata');
+    }
 
+    Changes(value: boolean) {
+        this.isShowStrikeThroughPopup = value;
+        this.chartOnChange()
     }
 }

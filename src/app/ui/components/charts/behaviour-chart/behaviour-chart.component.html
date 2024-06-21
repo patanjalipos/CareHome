@@ -21,10 +21,20 @@
                 <label class="form-label bold">Care Given <span class="required"></span></label>
 
                 <ng-container>
-                    <p-dropdown [required]="true" name="ActivitiesChartFormData.CareGiven" placeholder="----select----"
+                    <p-dropdown [required]="true" name="BehaviourChartData.CareGiven" placeholder="----select----"
                         [style]="{ width: '100%' }" [options]="stLstYesNoOptions" optionValue="optionId"
                         optionLabel="optionValue" [(ngModel)]="BehaviourChartData.CareGivenOptions"
                         (onChange)="openAndClose()">
+                    </p-dropdown>
+                </ng-container>
+            </div>
+            <div *ngIf="inputFieldsCheck==false">
+                <label class="form-label bold">Reason<span class="required"></span></label>
+
+                <ng-container>
+                    <p-dropdown [required]="true" name="BehaviourChartData.Reason" placeholder="----select----"
+                        [style]="{ width: '100%' }" [options]="stLstReason" optionValue="optionId"
+                        optionLabel="optionValue" [(ngModel)]="BehaviourChartData.Reason" (onChange)="openAndClose()">
                     </p-dropdown>
                 </ng-container>
             </div>
@@ -108,85 +118,114 @@
                         <div class="formheader p-2 mb-3">
                             <div class="col-md-12 mb-2 d-flex justify-content-between fs-4 ">
                                 <div>
-                                    <label class="bold">{{ chart.DateAndTime | date:'dd-MM-yyyy'}}</label>
+                                    <label class="bold" [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">{{ chart.DateAndTime | date:'dd-MM-yyyy'}}</label>
                                 </div>
                                 <div>
-                                    <label>{{ chart.DateAndTime | date:'hh:mm'}}</label>
+                                    <label [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">{{ chart.DateAndTime | date:'hh:mm'}}</label>
                                 </div>
 
                             </div>
                         </div>
                         <div class="col-md-12 mb-2">
 
-                            <label class="form-label bold">Enterted By<span class="required"></span></label>
+                            <label class="form-label bold" [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">Enterted By<span class="required"></span></label>
 
                             <div>
-                                <label>{{chart.StartedBy}}</label>
+                                <label [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">{{chart.StartedBy}}</label>
                             </div>
                         </div>
-                        <div class="mb-2">
-                            <button pButton type="button" label="Strike Through Entry" class="p-button-link p-0"
-                                (click)="showPopup()">
-                            </button>
+                        <div>
+                            <div class="mb-2">
+                                <button *ngIf="!chart.isStrikeThrough" pButton type="button"
+                                    label="Strike Through Entry" class="p-button-link p-0"
+                                    (click)="showPopup(chart.BehaviourChartId,chart)">
+                                </button>
+                            </div>
                         </div>
-                        <div class="col-md-12 mb-3">
+                        <div class="col-md-12 mb-3" >
 
-                            <label class="form-label bold">Care Given <span class="required"></span></label>
+                            <label class="form-label bold" [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">Care Given <span class="required"></span></label>
 
                             <div>
-                                <label>{{ chart.CareGivenOptions }}</label>
+                                <label [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">{{ chart.CareGivenOptions }}</label>
                             </div>
 
                         </div>
-
+                        <div *ngIf="chart.CareGivenOptions=='No'">
+                            <div class="col-md-12">
+                                <div class="col-md-12">
+                                    <label class="form-label bold"
+                                        [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">Reason
+                                        <span class="required"></span></label>
+                                </div>
+                                <div>
+                                    <label [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">{{
+                                        chart.Reason }}</label>
+                                </div>
+                            </div>
+                        </div>
                         <div *ngIf="chart.CareGivenOptions=='Yes'" class="row">
-                            <h5 class="formheader">Incident</h5>
+                            <h5 class="formheader" [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">Incident</h5>
                             <div class="col-md-12 mb-5">
                                 <div class="labelcontent">
-                                    <label class="form-label bold">Antecedent events</label>
+                                    <label class="form-label bold" [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">Antecedent events</label>
                                 </div>
                                 <div>
-                                    <label>{{ chart.AntecedentEvents }}</label>
+                                    <label [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">{{ chart.AntecedentEvents }}</label>
                                 </div>
                             </div>
                             <div class="col-md-12 mb-4">
                                 <div class="labelcontent">
-                                    <label class="form-label bold">Definition of behaviour</label>
+                                    <label class="form-label bold" [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">Definition of behaviour</label>
                                 </div>
                                 <div>
-                                    <label>{{ chart.BehaviourDefinition }}</label>
+                                    <label [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">{{ chart.BehaviourDefinition }}</label>
                                 </div>
                             </div>
                             <div class="col-md-12 mb-4">
                                 <div class="labelcontent">
-                                    <label class="form-label bold">Consequent events</label>
+                                    <label class="form-label bold" [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">Consequent events</label>
                                 </div>
                                 <div>
-                                    <label>{{ chart.ConsequentEvents }}</label>
+                                    <label [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">{{ chart.ConsequentEvents }}</label>
                                 </div>
                             </div>
-                            <h5 class="formheader">Functional assessment</h5>
+                            <h5 class="formheader" [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">Functional assessment</h5>
                             <div class="col-md-12 mb-5">
                                 <div class="labelcontent">
-                                    <label class="form-label bold">What purpose does this behaviour serve for the
+                                    <label class="form-label bold" [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">What purpose does this behaviour serve for the
                                         resident?</label>
                                 </div>
                                 <div>
-                                    <label>{{ chart.BehaviourPurposeOptionName }}</label>
+                                    <label [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">{{ chart.BehaviourPurposeOptionName }}</label>
                                 </div>
                             </div>
                         </div>
 
-                        <h5 class="formheader">Additional information</h5>
+                        <h5 class="formheader" [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">Additional information</h5>
                         <div class="col-md-12">
                             <div>
-                                <label>{{ chart.AdditionalInformation }}</label>
+                                <label [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">{{ chart.AdditionalInformation }}</label>
                             </div>
                         </div>
                     </div>
                 </ng-template>
 
             </p-carousel>
+
+            <div class="card flex justify-content-center">
+                <p-dialog [closable]="true" header="Strike-Through" [(visible)]="isShowStrikeThroughPopup"
+                    [modal]="true" [breakpoints]="{ '1199px': '75vw', '575px': '90vw' }" [style]="{ width: '40vw' }"
+                    [draggable]="false" [resizable]="false">
+                    <div *ngIf="isShowStrikeThroughPopup">
+
+                        <app-strike-through-entry [StrikeThroughData]="StrikeThroughData"
+                            (StrikeThroughCheck)="Changes($event)"
+                        ></app-strike-through-entry>
+                    </div>
+                </p-dialog>
+            </div>
+
             <!-- Right navigation button -->
 
             <button pButton type="button" icon="pi pi-chevron-right" class="right-nav-btn" (click)="rightBtn()"

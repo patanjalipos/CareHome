@@ -7,6 +7,8 @@ import { InputTextModule } from 'primeng/inputtext';
 import { DropdownModule } from 'primeng/dropdown';
 import { CalendarModule } from 'primeng/calendar';
 import { CarouselModule } from 'primeng/carousel';
+import { StrikeThroughEntryModule } from '../strike-through-entry/strike-through-entry.module';
+import { DialogModule } from 'primeng/dialog';
 
 
 @NgModule({
@@ -18,7 +20,9 @@ import { CarouselModule } from 'primeng/carousel';
     InputTextModule,
     DropdownModule,
     CalendarModule,
-    CarouselModule
+    CarouselModule,
+    StrikeThroughEntryModule,
+    DialogModule
   ],
   exports:[BloodPressureChartComponent]
 })

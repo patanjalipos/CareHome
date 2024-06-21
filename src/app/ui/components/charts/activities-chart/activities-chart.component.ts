@@ -5,7 +5,6 @@ import {
     OnInit,
     Output,
     SimpleChanges,
-    ViewChild,
 } from '@angular/core';
 import { AppComponentBase } from 'src/app/app-component-base';
 import { OptionService } from 'src/app/ui/service/option.service';
@@ -20,7 +19,6 @@ import {
 import { UserService } from 'src/app/ui/service/user.service';
 import { ActivatedRoute } from '@angular/router';
 import { DatePipe } from '@angular/common';
-import { StrikeThroughEntryComponent } from '../strike-through-entry/strike-through-entry.component';
 
 @Component({
     selector: 'app-activities-chart',
@@ -32,10 +30,9 @@ export class ActivitiesChartComponent
     implements OnInit {
     @Input() preSelectedChartData: any = <any>{};
     @Output() EmitUpdateForm: EventEmitter<any> = new EventEmitter<any>();
-    @ViewChild('child') child: StrikeThroughEntryComponent;
 
     customDateFormat = CustomDateFormat;
-    inputFields: boolean = false;
+    inputFields: boolean;
     ActivitiesChartFormData: any = <any>{};
     isEditable: boolean;
     loginId: any;
@@ -59,12 +56,13 @@ export class ActivitiesChartComponent
     rightBtnCheck:boolean = false;
     isShowStrikeThroughPopup:boolean = false;
     StrikeThroughData:any = <any>{};
+    stLstReason:any[]=[];
       
     constructor(
         private optionService: OptionService,
         private _UtilityService: UtilityService,
         private _UserService: UserService,
-        private datePipte: DatePipe,
+        private datePipe: DatePipe,
         private _ActivityChartServices: ActivityChartService,
         private _ConstantServices: ConstantsService,
         private route: ActivatedRoute
@@ -113,6 +111,9 @@ export class ActivitiesChartComponent
 
         this.optionService.getstLstAttendaceOptions().subscribe((data) => {
             this.stLstAttendanceOptions = data;
+        });
+        this.optionService.getstLstReason().subscribe((data) => {
+            this.stLstReason = data;
         });
 
         const collectionNames = ['Activity', 'Participation', 'PurposeofActivity'];
@@ -205,7 +206,7 @@ export class ActivitiesChartComponent
                         tdata = tdata ? tdata : {};
                         this.ActivitiesChartFormData = tdata;
                         this.ActivitiesChartFormData.DateAndTime =
-                            this.datePipte.transform(
+                            this.datePipe.transform(
                                 this.ActivitiesChartFormData.DateAndTime,
                                 'dd-MM-yyyy HH:mm'
                             );
@@ -286,7 +287,7 @@ export class ActivitiesChartComponent
                     this.ActivitiesChartFormData.DateAndTime = parsedDate;
                 }
                 this.ActivitiesChartFormData.DateAndTime =
-                    this.datePipte.transform(
+                    this.datePipe.transform(
                         this.ActivitiesChartFormData.DateAndTime,
                         'yyyy-MM-ddTHH:mm'
                     );
@@ -323,14 +324,13 @@ export class ActivitiesChartComponent
             this._UtilityService.showWarningAlert('Activities Chart details are missing.');
         }
     }
-    showPopup(chartId,chart) {
+    showPopup(chartId) {
          this.StrikeThroughData = {
             ChartMasterId:ChartTypes.ActivitiesChart,
             ChartId: chartId,
             ModifiedBy:this.loginId,
          };
          this.isShowStrikeThroughPopup = true;
-         console.log(chart,'particular chart');
          
          console.log(this.StrikeThroughData,'chartdata');
         }
