@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { AppComponentBase } from 'src/app/app-component-base';
 import { UtilityService } from 'src/app/utility/utility.service';
-import { ActivityChartService } from '../activities-chart/activity-chart.service';
+
 import { UserService } from 'src/app/ui/service/user.service';
 
 @Component({

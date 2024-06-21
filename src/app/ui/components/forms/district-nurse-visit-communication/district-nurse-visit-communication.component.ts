@@ -29,7 +29,7 @@ export class DistrictNurseVisitCommunicationComponent extends AppComponentBase i
 
   lstCommStatus: any[] = [];
 
-  constructor(private _ConstantServices: ConstantsService,private route: ActivatedRoute,private _DataService: DataService,private _UserServices: UserService,private _UtilityService: UtilityService, private datePipte: DatePipe,private _District: DistrictNurseVisitCommunicationService) {
+  constructor(private _ConstantServices: ConstantsService,private route: ActivatedRoute,private _DataService: DataService,private _UserServices: UserService,private _UtilityService: UtilityService, private datePipe: DatePipe,private _District: DistrictNurseVisitCommunicationService) {
 
     super();
     this._ConstantServices.ActiveMenuName = "District Nurse Visit Communication Form";
@@ -118,7 +118,7 @@ GetDistrictNurseVisitDetails(formId: string) {
                   tdata = tdata ? tdata : {};
                
                   this.DistrictNurseFormsData = tdata;
-                  this.DistrictNurseFormsData.NurseVisitDate = this.datePipte.transform(this.DistrictNurseFormsData.NurseVisitDate,'MM/dd/yyyy')
+                  this.DistrictNurseFormsData.NurseVisitDate = this.datePipe.transform(this.DistrictNurseFormsData.NurseVisitDate,'MM/dd/yyyy')
                  
               } else {
                   this.DistrictNurseFormsData = {};
@@ -150,7 +150,7 @@ if (this.userId != null && this.residentAdmissionInfoId != null && this.loginId!
         this.residentAdmissionInfoId;
     this.DistrictNurseFormsData.StartedBy = this.loginId;
     this.DistrictNurseFormsData.LastEnteredBy = this.loginId;
-    this.DistrictNurseFormsData.NurseVisitDate = this.datePipte.transform(this.DistrictNurseFormsData.NurseVisitDate,'yyyy-MM-dd');
+    this.DistrictNurseFormsData.NurseVisitDate = this.datePipe.transform(this.DistrictNurseFormsData.NurseVisitDate,'yyyy-MM-dd');
         const objectBody: any = {
           StatementType: this.StatementType,
           districtNurseVisitCommunicationForm: this.DistrictNurseFormsData,
