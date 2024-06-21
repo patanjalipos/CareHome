@@ -21,6 +21,10 @@ export class ChartMasterComponent extends AppComponentBase implements OnInit {
   public master: any = <any>{};
   filteredValuesLength:number=0;
   stlststatus: any[]=[];
+  ComponentName: string = 'ChartMaster';
+  isChartMaster:Boolean=false;
+  isChartHeadMaster:Boolean=false;
+  filteritems:any[]=[];
   
   constructor(private _ConstantServices: ConstantsService,
     private _MasterServices:MasterService,
@@ -39,8 +43,14 @@ export class ChartMasterComponent extends AppComponentBase implements OnInit {
    this.GetChartMaster();        
   }
   GetChartHeadMaster() {
+    let importData: any = <any>{};
+    if(this.isChartHeadMaster==true && this.filteritems !=null && this.filteritems !=undefined)
+      {       
+        importData.SearchList=this.filteritems;
+      } 
+      importData.StatusType=true;
     this._UtilityService.showSpinner();   
-    this.unsubscribe.add = this._MasterServices.GetChartHeadMaster(true)
+    this.unsubscribe.add = this._MasterServices.GetChartHeadMaster(importData)
       .subscribe({
         next:(data) => {
           this._UtilityService.hideSpinner();          
@@ -60,8 +70,15 @@ export class ChartMasterComponent extends AppComponentBase implements OnInit {
       });
   }   
   GetChartMaster() {
+    let importData: any = <any>{};
+    if(this.isChartMaster==true && this.filteritems !=null && this.filteritems !=undefined)
+      {       
+        importData.SearchList=this.filteritems;
+      }   
+      importData.StatusType=false;  
+      importData.isExcel=false;  
     this._UtilityService.showSpinner();   
-    this.unsubscribe.add = this._MasterServices.GetChartMaster(false)
+    this.unsubscribe.add = this._MasterServices.GetChartMaster(importData)
       .subscribe({
         next:(data) => {
           this._UtilityService.hideSpinner();          
@@ -156,4 +173,12 @@ export class ChartMasterComponent extends AppComponentBase implements OnInit {
   onGlobalFilter(table: Table, event: Event) {
     table.filterGlobal((event.target as HTMLInputElement).value, 'contains');
   }
+
+  ShowFilters() {
+    this.isChartMaster =!this.isChartMaster;
+  }
+  GetChartMasterFilterData($event) {
+    this.filteritems=$event;   
+     this.GetChartMaster(); 
+   }
 }

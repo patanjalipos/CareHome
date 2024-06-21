@@ -65,8 +65,10 @@ export class OccupancyDetailsComponent extends AppComponentBase implements OnIni
   }
 
   LoadHomeMaster() {
+    let importData: any = <any>{};   
+      importData.StatusType=true;
     this._UtilityService.showSpinner();
-    this.unsubscribe.add = this._MasterServices.GetHomeMaster(true)
+    this.unsubscribe.add = this._MasterServices.GetHomeMaster(importData)
       .subscribe
       ({
         next:(data) => {
