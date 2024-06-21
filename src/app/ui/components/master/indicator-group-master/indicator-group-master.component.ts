@@ -20,6 +20,11 @@ export class IndicatorGroupMasterComponent extends AppComponentBase implements O
   public master: any = <any>{};
   filteredValuesLength:number=0;
   stlststatus: any[]=[];
+
+  ComponentName: string = 'IndicatorGroupMaster';
+  isIndicatorGroupMaster:Boolean=false;
+  filteritems:any[]=[];
+
   
   constructor(private _ConstantServices: ConstantsService,
     private _MasterServices:MasterService,
@@ -37,8 +42,15 @@ export class IndicatorGroupMasterComponent extends AppComponentBase implements O
    this.GetIndicatorGroupMaster();        
   }
   GetIndicatorGroupMaster() {
+    let importData: any = <any>{};
+    if(this.isIndicatorGroupMaster==true && this.filteritems !=null && this.filteritems !=undefined)
+      {       
+        importData.SearchList=this.filteritems;
+      }   
+      importData.StatusType=false;  
+      importData.isExcel=false;  
     this._UtilityService.showSpinner();   
-    this.unsubscribe.add = this._MasterServices.GetIndicatorGroupMaster(false)
+    this.unsubscribe.add = this._MasterServices.GetIndicatorGroupMaster(importData)
       .subscribe({
         next:(data) => {
           this._UtilityService.hideSpinner();          
@@ -132,4 +144,12 @@ export class IndicatorGroupMasterComponent extends AppComponentBase implements O
   onGlobalFilter(table: Table, event: Event) {
     table.filterGlobal((event.target as HTMLInputElement).value, 'contains');
   }
+
+  ShowFilters() {
+    this.isIndicatorGroupMaster =!this.isIndicatorGroupMaster;
+  }
+  GetIndicatorGroupMasterFilterData($event) {
+    this.filteritems=$event;   
+     this.GetIndicatorGroupMaster(); 
+   }
 }

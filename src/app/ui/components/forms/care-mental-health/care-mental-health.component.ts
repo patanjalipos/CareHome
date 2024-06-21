@@ -41,7 +41,7 @@ export class CareMentalHealthComponent extends AppComponentBase implements OnIni
     lstSexuality: any[] = [];
     lstGoalsToAchieve: any[] = [];
 
-    constructor(private _ConstantServices: ConstantsService, private route: ActivatedRoute, private _UtilityService: UtilityService, private _CareMentalHealth: CareMentalHealthService, private _UserServices: UserService, private datePipte: DatePipe) {
+    constructor(private _ConstantServices: ConstantsService, private route: ActivatedRoute, private _UtilityService: UtilityService, private _CareMentalHealth: CareMentalHealthService, private _UserServices: UserService, private datePipe: DatePipe) {
 
         super();
 
@@ -130,7 +130,7 @@ export class CareMentalHealthComponent extends AppComponentBase implements OnIni
                        
                         this.CareAssessmentMentalHealthFormsData = tdata;
                        
-                        this.CareAssessmentMentalHealthFormsData.ReviewDate = this.datePipte.transform(this.CareAssessmentMentalHealthFormsData.ReviewDate, 'MM/dd/yyyy')
+                        this.CareAssessmentMentalHealthFormsData.ReviewDate = this.datePipe.transform(this.CareAssessmentMentalHealthFormsData.ReviewDate, 'MM/dd/yyyy')
                         if (this.CareAssessmentMentalHealthFormsData.MentalHealthOrCognitionStatus == 'Mental Health') {
                             this.MentalHealthStatus = true
                         }
@@ -198,7 +198,7 @@ export class CareMentalHealthComponent extends AppComponentBase implements OnIni
                 this.residentAdmissionInfoId;
             this.CareAssessmentMentalHealthFormsData.StartedBy = this.loginId;
             this.CareAssessmentMentalHealthFormsData.LastEnteredBy = this.loginId;
-            this.CareAssessmentMentalHealthFormsData.ReviewDate = this.datePipte.transform(this.CareAssessmentMentalHealthFormsData.ReviewDate, 'yyyy-MM-dd')
+            this.CareAssessmentMentalHealthFormsData.ReviewDate = this.datePipe.transform(this.CareAssessmentMentalHealthFormsData.ReviewDate, 'yyyy-MM-dd')
 
             if (this.MentalHealthStatus == true) {
 

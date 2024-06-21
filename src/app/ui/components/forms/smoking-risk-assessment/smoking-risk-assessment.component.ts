@@ -49,7 +49,7 @@ export class SmokingRiskAssessmentComponent extends AppComponentBase implements 
     private _UtilityService: UtilityService,
     private _UserServices: UserService,
     private _SmokingRiskServices: SmokingRiskAssessmentService,
-    private datePipte: DatePipe
+    private datePipe: DatePipe
   ) {
 
     super();
@@ -164,7 +164,7 @@ export class SmokingRiskAssessmentComponent extends AppComponentBase implements 
 
           
             this.SmokingRiskAssessmentFormData = tdata;
-            this.SmokingRiskAssessmentFormData.ReviewDate = this.datePipte.transform(this.SmokingRiskAssessmentFormData.ReviewDate, 'MM/dd/yyyy')
+            this.SmokingRiskAssessmentFormData.ReviewDate = this.datePipe.transform(this.SmokingRiskAssessmentFormData.ReviewDate, 'MM/dd/yyyy')
 
           } else {
             this.SmokingRiskAssessmentFormData = {};
@@ -198,7 +198,7 @@ export class SmokingRiskAssessmentComponent extends AppComponentBase implements 
         this.residentAdmissionInfoId;
       this.SmokingRiskAssessmentFormData.StartedBy = this.loginId;
       this.SmokingRiskAssessmentFormData.LastEnteredBy = this.loginId;
-      this.SmokingRiskAssessmentFormData.ReviewDate = this.datePipte.transform(this.SmokingRiskAssessmentFormData.ReviewDate, 'yyyy-MM-dd');
+      this.SmokingRiskAssessmentFormData.ReviewDate = this.datePipe.transform(this.SmokingRiskAssessmentFormData.ReviewDate, 'yyyy-MM-dd');
 
       const objectBody: any = {
         StatementType: this.StatementType,

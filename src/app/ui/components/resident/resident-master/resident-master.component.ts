@@ -159,8 +159,10 @@ export class ResidentMasterComponent extends AppComponentBase implements OnInit 
   
   public onClick(elementId: string): void { this.viewportScroller.scrollToAnchor(elementId); }
   LoadHomeMaster() {
+    let importData: any = <any>{};
+      importData.StatusType=true;
     this._UtilityService.showSpinner();
-    this.unsubscribe.add = this._MasterServices.GetHomeMaster(true)
+    this.unsubscribe.add = this._MasterServices.GetHomeMaster(importData)
       .subscribe
       ({
         next:(data) => {

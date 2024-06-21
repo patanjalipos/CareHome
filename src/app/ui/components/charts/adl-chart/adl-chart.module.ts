@@ -8,6 +8,8 @@ import { InputTextareaModule } from 'primeng/inputtextarea';
 import { AdlChartComponent } from './adl-chart.component';
 import { FormsModule } from '@angular/forms';
 import { CarouselModule } from 'primeng/carousel';
+import { DialogModule } from 'primeng/dialog';
+import { StrikeThroughEntryModule } from '../strike-through-entry/strike-through-entry.module';
 
 @NgModule({
     declarations: [AdlChartComponent],
@@ -19,7 +21,9 @@ import { CarouselModule } from 'primeng/carousel';
         InputTextModule,
         InputTextareaModule,
         FormsModule,
-        CarouselModule
+        CarouselModule,
+        DialogModule,
+        StrikeThroughEntryModule
     ],
     exports:[AdlChartComponent]
 })

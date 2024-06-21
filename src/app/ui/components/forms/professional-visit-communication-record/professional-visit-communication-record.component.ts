@@ -29,7 +29,7 @@ export class ProfessionalVisitCommunicationRecordComponent extends AppComponentB
   lstCommRelay: any[] = [];
   lstHealthcareType: any[] = [];
 
-  constructor(private _ConstantServices: ConstantsService,private route: ActivatedRoute,private _UtilityService: UtilityService,private _UserServices: UserService,private datePipte: DatePipe,private _ProfVisit: ProfessionalVisitCommunicationRecordService) {
+  constructor(private _ConstantServices: ConstantsService,private route: ActivatedRoute,private _UtilityService: UtilityService,private _UserServices: UserService,private datePipe: DatePipe,private _ProfVisit: ProfessionalVisitCommunicationRecordService) {
 
     super();
 
@@ -95,7 +95,7 @@ this.isEditable = this.preSelectedFormData.isEditable;
                     tdata = tdata ? tdata : {};
                   
                     this.ProfVisitFormsData = tdata;
-                    this.ProfVisitFormsData.HealthcareVisitDate = this.datePipte.transform(this.ProfVisitFormsData.HealthcareVisitDate,'MM/dd/yyyy');
+                    this.ProfVisitFormsData.HealthcareVisitDate = this.datePipe.transform(this.ProfVisitFormsData.HealthcareVisitDate,'MM/dd/yyyy');
                    
                     
                 } else {
@@ -149,7 +149,7 @@ if (this.userId != null && this.residentAdmissionInfoId != null && this.loginId!
         this.residentAdmissionInfoId;
     this.ProfVisitFormsData.StartedBy = this.loginId;
     this.ProfVisitFormsData.LastEnteredBy = this.loginId;
-    this.ProfVisitFormsData.HealthcareVisitDate = this.datePipte.transform(this.ProfVisitFormsData.HealthcareVisitDate,'yyyy-MM-dd');
+    this.ProfVisitFormsData.HealthcareVisitDate = this.datePipe.transform(this.ProfVisitFormsData.HealthcareVisitDate,'yyyy-MM-dd');
     
         const objectBody: any = {
           StatementType: this.StatementType,

@@ -9,9 +9,10 @@ export class OptionService {
 
   private yesNoJsonUrl = 'assets/stLst/stLstYesNo.json';
   private attendanceJsonUrl = 'assets/stLst/stLstAttendance.json';
-  private methodJsonUrl='assets/stLst/stLstMethod.json';
+  private methodJsonUrl = 'assets/stLst/stLstMethod.json';
   private jsonDataUrl = 'assets/stLst/stLstFilters.json';
   private DefaultjsonDataUrl = 'assets/stLst/stLstDefaultfilters.json';
+  private stLstReason = 'assets/stLst/stLstReason.json';
 
   constructor(private http: HttpClient) { }
 
@@ -23,7 +24,7 @@ export class OptionService {
     return this.http.get<any>(this.attendanceJsonUrl);
   }
 
-  getstLstMethod():Observable<any>{
+  getstLstMethod(): Observable<any> {
     return this.http.get<any>(this.methodJsonUrl);
   }
 
@@ -32,6 +33,9 @@ export class OptionService {
   }
   getDefaultFilterData(): Observable<any> {
     return this.http.get<any>(this.DefaultjsonDataUrl);
+  }
+  getstLstReason(): Observable<any> {
+    return this.http.get<any>(this.stLstReason);
   }
 
 }
