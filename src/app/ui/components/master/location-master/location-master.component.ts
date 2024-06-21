@@ -22,6 +22,11 @@ export class LocationMasterComponent extends AppComponentBase implements OnInit 
   filteredValuesLength:number=0;
   stlststatus: any[]=[];
   
+  ComponentName: string = 'LocationMaster';
+  isLocationMaster:Boolean=false;
+  isHomeMaster:Boolean=false;
+  filteritems:any[]=[];
+
   constructor(private _ConstantServices: ConstantsService,
     private _MasterServices:MasterService,
     private _UtilityService: UtilityService,    
@@ -39,8 +44,14 @@ export class LocationMasterComponent extends AppComponentBase implements OnInit 
    this.GetLocationMaster();        
   }
   LoadHomeMaster() {
+    let importData: any = <any>{};
+    if(this.isHomeMaster==true && this.filteritems !=null && this.filteritems !=undefined)
+      {       
+        importData.SearchList=this.filteritems;
+      } 
+      importData.StatusType=true;
     this._UtilityService.showSpinner();
-    this.unsubscribe.add = this._MasterServices.GetHomeMaster(true)
+    this.unsubscribe.add = this._MasterServices.GetHomeMaster(importData)
       .subscribe
       ({
         next:(data) => {
@@ -62,8 +73,15 @@ export class LocationMasterComponent extends AppComponentBase implements OnInit 
       });
   }  
   GetLocationMaster() {
+    let importData: any = <any>{};
+    if(this.isLocationMaster==true && this.filteritems !=null && this.filteritems !=undefined)
+      {       
+        importData.SearchList=this.filteritems;
+      }   
+      importData.StatusType=false;  
+      importData.isExcel=false;  
     this._UtilityService.showSpinner();   
-    this.unsubscribe.add = this._MasterServices.GetLocationMaster(false)
+    this.unsubscribe.add = this._MasterServices.GetLocationMaster(importData)
       .subscribe({
         next:(data) => {
           this._UtilityService.hideSpinner();          
@@ -159,4 +177,12 @@ export class LocationMasterComponent extends AppComponentBase implements OnInit 
   onGlobalFilter(table: Table, event: Event) {
     table.filterGlobal((event.target as HTMLInputElement).value, 'contains');
   }
+
+  ShowFilters() {
+    this.isLocationMaster =!this.isLocationMaster;
+  }
+  GetLocationMasterFilterData($event) {
+    this.filteritems=$event;   
+     this.GetLocationMaster(); 
+   }
 }
