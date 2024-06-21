@@ -295,21 +295,40 @@
                 <ng-template let-chart pTemplate="item">
                     <div class="col-md-11 chart-box p-2">
                         <div class="formheader">
-                            <div class="col-md-12 mt-4">
-                                <label class="form-label bold" [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">
-                                    Date/Time<span class="required"></span></label>
+                            <div class="col-md-12 mb-2 d-flex justify-content-between fs-4">
+                                <div>
+                                    <label [ngClass]="{'text-decoration-line-through bold':chart.isStrikeThrough}">{{ chart.DateAndTime |
+                                        date:'dd-MM-yyyy' }}</label>
+                                </div>
                                 <div>
                                     <label [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">{{ chart.DateAndTime |
-                                        date:'dd-MM-yyyy HH:mm' }}</label>
+                                        date:'hh:mm' }}</label>
                                 </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12 mb-2">
+
+                            <label class="form-label bold" [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">Enterted By<span class="required"></span></label>
+
+                            <div>
+                                <label [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">{{chart.StartedBy}}</label>
                             </div>
                         </div>
                         <div>
                             <div class="mb-2">
                                 <button *ngIf="!chart.isStrikeThrough" pButton type="button"
                                     label="Strike Through Entry" class="p-button-link p-0"
-                                    (click)="showPopup(chart.activitiesChartId,chart)">
+                                    (click)="showPopup(chart.activitiesChartId)">
                                 </button>
+                            </div>
+                        </div>
+
+                        <div class="col-md-12 mb-2">
+
+                            <label *ngIf="chart.isStrikeThrough" class="form-label bold">Strike Through Reason<span class="required"></span></label>
+
+                            <div>
+                                <label *ngIf="chart.isStrikeThrough">{{chart.StrikeThroughRemark}}</label>
                             </div>
                         </div>
 
