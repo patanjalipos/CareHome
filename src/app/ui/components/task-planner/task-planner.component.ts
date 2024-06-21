@@ -54,6 +54,8 @@ export class TaskPlannerComponent extends AppComponentBase implements OnInit {
    this.GetTaskPlanner();        
   }
   LoadHomeMaster() {
+    let importData: any = <any>{};
+      importData.StatusType=true;
     this._UtilityService.showSpinner();
     this.unsubscribe.add = this._MasterServices.GetHomeMaster(true)
       .subscribe
@@ -101,7 +103,6 @@ export class TaskPlannerComponent extends AppComponentBase implements OnInit {
   
   GetTaskPlanner() {
     let importData: any = <any>{};
-    let SearchList:any[]=[];     
     if(this.isTaskPlanner==true && this.filteritems !=null && this.filteritems !=undefined)
       {       
         importData.SearchList=this.filteritems;

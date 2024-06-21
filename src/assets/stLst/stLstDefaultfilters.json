@@ -38,5 +38,105 @@
             "optionId": "MenuName",
             "optionValue": "Menu Name"
         }
+    ],
+    "AlertHeadMaster": [        
+        {
+            "optionId": "AlertHeadName",
+            "optionValue": "Alert Head Name"
+        },
+        {
+            "optionId": "OrderNo",
+            "optionValue": "Order No"
+        }
+    ],
+    "ChartMaster": [
+        {
+            "optionId": "ChartHeadName",
+            "optionValue": "Chart HeadName"
+        },
+        {
+            "optionId": "ChartName",
+            "optionValue": "Chart Name"
+        }
+    ],
+    "ChartHeadMaster": [        
+        {
+            "optionId": "ChartHeadName",
+            "optionValue": "Chart Head Name"
+        },
+        {
+            "optionId": "OrderNo",
+            "optionValue": "Order No"
+        }
+    ],
+    "IndicatorGroupMaster": [        
+        {
+            "optionId": "GroupName",
+            "optionValue": "Group Name"
+        },
+        {
+            "optionId": "OrderNo",
+            "optionValue": "Order No"
+        }
+    ],
+    "IndicatorMaster": [        
+        {
+            "optionId": "IndicatorGroupName",
+            "optionValue": "Indicator Group Name"
+        },      
+        {
+            "optionId": "IndicatorName",
+            "optionValue": "Indicator Name"
+        }
+    ],
+    "AttorneyTypeMaster": [        
+        {
+            "optionId": "TypeName",
+            "optionValue": "Type Name"
+        },      
+        {
+            "optionId": "OrderNo",
+            "optionValue": "Order No"
+        }
+    ],
+    "FormMaster": [        
+        {
+            "optionId": "FormName",
+            "optionValue": "Form Name"
+        },      
+        {
+            "optionId": "Sequence",
+            "optionValue": "Sequence"
+        }
+    ],
+    "FallRiskMaster": [  
+        {
+            "optionId": "FallRiskName",
+            "optionValue": "Fall Risk Name"
+        },      
+        {
+            "optionId": "RiskPoint",
+            "optionValue": "Risk Point"
+        }
+    ],
+    "HomeMaster": [  
+        {
+            "optionId": "HomeCode",
+            "optionValue": "Home Code"
+        },      
+        {
+            "optionId": "HomeName",
+            "optionValue": "Home Name"
+        }
+    ],
+    "LocationMaster": [  
+        {
+            "optionId": "Facility",
+            "optionValue": "Facility"
+        },      
+        {
+            "optionId": "Location",
+            "optionValue": "Location"
+        }
     ]
 }
