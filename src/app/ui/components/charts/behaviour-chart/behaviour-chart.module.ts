@@ -8,6 +8,8 @@ import { InputTextareaModule } from 'primeng/inputtextarea';
 import { FormsModule } from '@angular/forms';
 import { CalendarModule } from 'primeng/calendar';
 import { CarouselModule } from 'primeng/carousel';
+import { StrikeThroughEntryModule } from '../strike-through-entry/strike-through-entry.module';
+import { DialogModule } from 'primeng/dialog';
 
 @NgModule({
   declarations: [BehaviourChartComponent],
@@ -19,7 +21,9 @@ import { CarouselModule } from 'primeng/carousel';
     InputTextModule,
     InputTextareaModule,
     FormsModule,
-    CarouselModule
+    CarouselModule,
+    StrikeThroughEntryModule,
+    DialogModule
   ],
   exports:[BehaviourChartComponent]
 })

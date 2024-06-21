@@ -64,7 +64,7 @@ export class ActivitiesChartComponent
         private optionService: OptionService,
         private _UtilityService: UtilityService,
         private _UserService: UserService,
-        private datePipte: DatePipe,
+        private datePipe: DatePipe,
         private _ActivityChartServices: ActivityChartService,
         private _ConstantServices: ConstantsService,
         private route: ActivatedRoute
@@ -205,7 +205,7 @@ export class ActivitiesChartComponent
                         tdata = tdata ? tdata : {};
                         this.ActivitiesChartFormData = tdata;
                         this.ActivitiesChartFormData.DateAndTime =
-                            this.datePipte.transform(
+                            this.datePipe.transform(
                                 this.ActivitiesChartFormData.DateAndTime,
                                 'dd-MM-yyyy HH:mm'
                             );
@@ -286,7 +286,7 @@ export class ActivitiesChartComponent
                     this.ActivitiesChartFormData.DateAndTime = parsedDate;
                 }
                 this.ActivitiesChartFormData.DateAndTime =
-                    this.datePipte.transform(
+                    this.datePipe.transform(
                         this.ActivitiesChartFormData.DateAndTime,
                         'yyyy-MM-ddTHH:mm'
                     );
