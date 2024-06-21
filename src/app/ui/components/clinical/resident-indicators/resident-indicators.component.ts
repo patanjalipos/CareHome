@@ -53,8 +53,10 @@ export class ResidentIndicatorsComponent extends AppComponentBase implements OnI
   }
 
   GetIndicatorGroupMaster() {
+    let importData: any = <any>{};   
+    importData.StatusType=true;
     this._UtilityService.showSpinner();   
-    this.unsubscribe.add = this._MasterServices.GetIndicatorGroupMaster(true)
+    this.unsubscribe.add = this._MasterServices.GetIndicatorGroupMaster(importData)
       .subscribe({
         next:(data) => {
           this._UtilityService.hideSpinner();          

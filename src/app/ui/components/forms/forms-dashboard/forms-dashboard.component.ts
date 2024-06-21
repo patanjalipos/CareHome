@@ -70,9 +70,10 @@ export class FormsDashboardComponent
     }
 
     GetformMaster() {
+        let importData: any = <any>{};   
+        importData.StatusType=true;
         this._UtilityService.showSpinner();
-        this.unsubscribe.add = this._MasterServices
-            .GetFormMaster(true)
+        this.unsubscribe.add = this._MasterServices.GetFormMaster(importData)
             .subscribe({
                 next: (data) => {
                     this._UtilityService.hideSpinner();
@@ -140,11 +141,12 @@ export class FormsDashboardComponent
     }
 
     //View/Edit Form
-    OpenForm(
+    OpenForm(        
         selectedFormMasterId: string,
         selectedFormdata: any = <any>{},
         isEditable = true
     ) {
+        //console.log(selectedFormMasterId);
         if (selectedFormMasterId != null) {
             this.selectedFormMasterId = selectedFormMasterId;
             this.selectedFormData = {
