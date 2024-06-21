@@ -21,10 +21,20 @@
                 <label class="form-label bold">Care Given <span class="required"></span></label>
 
                 <ng-container>
-                    <p-dropdown [required]="true" name="ActivitiesChartFormData.CareGiven" placeholder="----select----"
+                    <p-dropdown [required]="true" name="BehaviourChartData.CareGiven" placeholder="----select----"
                         [style]="{ width: '100%' }" [options]="stLstYesNoOptions" optionValue="optionId"
                         optionLabel="optionValue" [(ngModel)]="BehaviourChartData.CareGivenOptions"
                         (onChange)="openAndClose()">
+                    </p-dropdown>
+                </ng-container>
+            </div>
+            <div *ngIf="inputFieldsCheck==false">
+                <label class="form-label bold">Reason<span class="required"></span></label>
+
+                <ng-container>
+                    <p-dropdown [required]="true" name="BehaviourChartData.Reason" placeholder="----select----"
+                        [style]="{ width: '100%' }" [options]="stLstReason" optionValue="optionId"
+                        optionLabel="optionValue" [(ngModel)]="BehaviourChartData.Reason" (onChange)="openAndClose()">
                     </p-dropdown>
                 </ng-container>
             </div>
@@ -141,7 +151,19 @@
                             </div>
 
                         </div>
-
+                        <div *ngIf="chart.CareGivenOptions=='No'">
+                            <div class="col-md-12">
+                                <div class="col-md-12">
+                                    <label class="form-label bold"
+                                        [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">Reason
+                                        <span class="required"></span></label>
+                                </div>
+                                <div>
+                                    <label [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">{{
+                                        chart.Reason }}</label>
+                                </div>
+                            </div>
+                        </div>
                         <div *ngIf="chart.CareGivenOptions=='Yes'" class="row">
                             <h5 class="formheader" [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">Incident</h5>
                             <div class="col-md-12 mb-5">

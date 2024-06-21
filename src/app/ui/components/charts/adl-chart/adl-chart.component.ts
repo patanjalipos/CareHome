@@ -28,7 +28,7 @@ export class AdlChartComponent extends AppComponentBase implements OnInit {
     @Input() preSelectedChartData: any = <any>{};
     @Output() EmitUpdateForm: EventEmitter<any> = new EventEmitter<any>();
 
-    inputFieldsCheck: boolean = false;
+    inputFieldsCheck: boolean;
     customDateFormat = CustomDateFormat;
     isEditable: boolean;
     residentAdmissionInfoId: any;
@@ -54,6 +54,7 @@ export class AdlChartComponent extends AppComponentBase implements OnInit {
     rightBtnCheck: boolean = false;
     isShowStrikeThroughPopup:boolean = false;
     StrikeThroughData:any = <any>{};
+    stLstReason:any[]=[];
 
     constructor(
         private optionService: OptionService,
@@ -87,6 +88,9 @@ export class AdlChartComponent extends AppComponentBase implements OnInit {
 
         this.optionService.getstLstYesNoOptions().subscribe((data) => {
             this.stLstYesNoOptions = data;
+        });
+        this.optionService.getstLstReason().subscribe((data) => {
+            this.stLstReason = data;
         });
 
         this.getChartDataById(this.preSelectedChartData.chartMasterId, this.preSelectedChartData.residentAdmissionInfoId, this.pageNumber, this.pageSize);

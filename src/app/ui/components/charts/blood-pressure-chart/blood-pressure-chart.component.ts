@@ -37,7 +37,7 @@ export class BloodPressureChartComponent
     bloodPressureChartFormData: any = <any>{};
     stLstMethod: any[] = [];
     stLstYesNoOptions: any[] = [];
-    inputFields: boolean = false;
+    inputFields: boolean;
 
     isEditable: boolean;
     loginId: any;
@@ -53,6 +53,7 @@ export class BloodPressureChartComponent
     rightBtnCheck: boolean = false;
     isShowStrikeThroughPopup: boolean = false;
     StrikeThroughData: any = <any>{};
+    stLstReason:any[]=[];
 
 
     constructor(
@@ -94,6 +95,9 @@ export class BloodPressureChartComponent
 
         this.optionService.getstLstMethod().subscribe((data) => {
             this.stLstMethod = data;
+        });
+        this.optionService.getstLstReason().subscribe((data) => {
+            this.stLstReason = data;
         });
         this.getChartDataById(this.preSelectedChartData.chartMasterId, this.preSelectedChartData.residentAdmissionInfoId, this.pageNumber, this.pageSize);
     }

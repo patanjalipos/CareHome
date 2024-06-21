@@ -32,7 +32,7 @@ export class ActivitiesChartComponent
     @Output() EmitUpdateForm: EventEmitter<any> = new EventEmitter<any>();
 
     customDateFormat = CustomDateFormat;
-    inputFields: boolean = false;
+    inputFields: boolean;
     ActivitiesChartFormData: any = <any>{};
     isEditable: boolean;
     loginId: any;
@@ -56,6 +56,7 @@ export class ActivitiesChartComponent
     rightBtnCheck:boolean = false;
     isShowStrikeThroughPopup:boolean = false;
     StrikeThroughData:any = <any>{};
+    stLstReason:any[]=[];
       
     constructor(
         private optionService: OptionService,
@@ -110,6 +111,9 @@ export class ActivitiesChartComponent
 
         this.optionService.getstLstAttendaceOptions().subscribe((data) => {
             this.stLstAttendanceOptions = data;
+        });
+        this.optionService.getstLstReason().subscribe((data) => {
+            this.stLstReason = data;
         });
 
         const collectionNames = ['Activity', 'Participation', 'PurposeofActivity'];

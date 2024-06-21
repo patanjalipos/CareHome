@@ -34,7 +34,7 @@ export class BehaviourChartComponent
     @Input() preSelectedChartData: any = <any>{};
     @Output() EmitUpdateForm: EventEmitter<any> = new EventEmitter<any>();
 
-    inputFieldsCheck: boolean = false;
+    inputFieldsCheck: boolean;
     customDateFormat = CustomDateFormat;
     isEditable: boolean;
     residentAdmissionInfoId: any;
@@ -55,6 +55,7 @@ export class BehaviourChartComponent
     rightBtnCheck: boolean = false;
     isShowStrikeThroughPopup: boolean = false;
     StrikeThroughData: any = <any>{};
+    stLstReason:any[]=[];
 
     constructor(
         private optionService: OptionService,
@@ -92,6 +93,9 @@ export class BehaviourChartComponent
 
         this.optionService.getstLstYesNoOptions().subscribe((data) => {
             this.stLstYesNoOptions = data;
+        });
+        this.optionService.getstLstReason().subscribe((data) => {
+            this.stLstReason = data;
         });
 
         const collectionNames = ['BehaviourPurposeOptions'];
