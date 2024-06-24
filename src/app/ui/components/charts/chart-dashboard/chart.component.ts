@@ -135,9 +135,10 @@ export class ChartComponent extends AppComponentBase implements OnInit {
     }
 
     GetChartMaster() {
+     let importData: any = <any>{};   
+      importData.StatusType=true;
         this._UtilityService.showSpinner();
-        this.unsubscribe.add = this._MasterServices
-            .GetChartMaster(true)
+        this.unsubscribe.add = this._MasterServices.GetChartMaster(importData)
             .subscribe({
                 next: (data) => {
                     this._UtilityService.hideSpinner();
