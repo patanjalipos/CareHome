@@ -40,7 +40,9 @@ export class FirstPowerOfAttorneyComponent extends AppComponentBase implements O
   }
 
   GetAttorneyTypeMaster() {
-    this.unsubscribe.add = this._MasterServices.GetAttorneyTypeMaster(true).subscribe({
+    let importData: any = <any>{};   
+    importData.StatusType=true;
+    this.unsubscribe.add = this._MasterServices.GetAttorneyTypeMaster(importData).subscribe({
       next: (data) => {
         if (data.actionResult.success == true) {
           var tdata = JSON.parse(data.actionResult.result);
