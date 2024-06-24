@@ -57,7 +57,7 @@ export class TaskPlannerComponent extends AppComponentBase implements OnInit {
     let importData: any = <any>{};
       importData.StatusType=true;
     this._UtilityService.showSpinner();
-    this.unsubscribe.add = this._MasterServices.GetHomeMaster(true)
+    this.unsubscribe.add = this._MasterServices.GetHomeMaster(importData)
       .subscribe
       ({
         next:(data) => {
