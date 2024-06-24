@@ -146,7 +146,6 @@ export class FormsDashboardComponent
         selectedFormdata: any = <any>{},
         isEditable = true
     ) {
-        //console.log(selectedFormMasterId);
         if (selectedFormMasterId != null) {
             this.selectedFormMasterId = selectedFormMasterId;
             this.selectedFormData = {
@@ -164,7 +163,10 @@ export class FormsDashboardComponent
                 ModifiedOn: selectedFormdata.ModifiedOn,
             };
             this.ShowModel();
-        } this._UtilityService.showErrorAlert('Kindly select an Assessment Form');
+        } 
+        else{
+            this._UtilityService.showErrorAlert('Kindly select an Assessment Form');
+        }
     }
 
     ShowModel() {
