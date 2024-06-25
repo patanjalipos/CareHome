@@ -1,25 +1,14 @@
-.left-nav-btn {
-    position: absolute;
-    left: 89%;
-    top: 8%;
-    transform: translateY(-50%);
-    z-index: 1000;
-}
-
-.right-nav-btn {
-    position: absolute;
-    right: 15px;
-    top: 8%;
-    transform: translateY(-50%);
-    z-index: 1000;
-}
 
 .carousel-container {
-    position: relative;
+  position: relative;
 }
-
 .p-button:focus {
-    outline: none;
-    box-shadow: none;
-    /* Also remove any shadow if present */
+  outline: none;
+  box-shadow: none;
+//   /* Also remove any shadow if present */
+}
+@media screen and (min-width: 1366px) {
+  .chart-date {
+    font-size: 17px;
+  }
 }

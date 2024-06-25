@@ -1468,9 +1468,13 @@ p.date-box {
 // add new css for chart
 .chart-box {
     border: 1px solid #f3f4f4;
-    border-radius: 5px ;
+    border-radius: 5px;
 }
-.form-box-inner{
+
+// .active-chart{
+//     border: 1px solid #023C40 ;
+// }
+.form-box-inner {
     font-size: 18px;
     color: #fff;
 
@@ -1479,15 +1483,18 @@ p.date-box {
 //BodyMap Pop Up
 
 .fixed-width-card {
-    width: 350px; /* Set your desired fixed width */
-    overflow-y: auto; /* Allow horizontal scrolling if content overflows */
+    width: 350px;
+    /* Set your desired fixed width */
+    overflow-y: auto;
+    /* Allow horizontal scrolling if content overflows */
     max-height: 500px;
-  }
-  
+}
+
 .horizontal-list li:last-child {
-    margin-right: 0; /* Remove margin from the last item */
-  }
- 
+    margin-right: 0;
+    /* Remove margin from the last item */
+}
+
 // .horizontal-list {
 //     display: flex;
 //     flex-wrap: wrap; /* enable wrapping of items */
@@ -1495,7 +1502,7 @@ p.date-box {
 //     padding: 0;
 //     margin: 0;
 //   }
-  
+
 // .horizontal-list li {
 //     display: inline-block; /* ensure each item is a block element */
 //     margin: 0.5rem; /* add equal margin around each item */
@@ -1505,25 +1512,30 @@ p.date-box {
 //     white-space: nowrap; /* prevent text from wrapping */
 //   }
 
-  .horizontal-list {
+.horizontal-list {
     display: flex;
-    flex-wrap: wrap; /* Enable wrapping of items */
+    flex-wrap: wrap;
+    /* Enable wrapping of items */
     list-style-type: none;
     padding: 0;
     margin: 0;
-  }
-  
-  .horizontal-list li {
-    display: inline-block; /* Ensure each item is a block element */
-    margin: 0.5rem; /* Add equal margin around each item */
+}
+
+.horizontal-list li {
+    display: inline-block;
+    /* Ensure each item is a block element */
+    margin: 0.5rem;
+    /* Add equal margin around each item */
     padding: 0.5rem;
     border: 1px solid #eee;
     border-radius: 4px;
-    white-space: nowrap; /* Prevent text from wrapping */
-    position: relative; /* To position the remove button */
-  }
-  
-  .remove-button {
+    white-space: nowrap;
+    /* Prevent text from wrapping */
+    position: relative;
+    /* To position the remove button */
+}
+
+.remove-button {
     background: none;
     border: none;
     color: #ff0000;
@@ -1536,7 +1548,13 @@ p.date-box {
     top: 0;
     right: 0;
     transform: translate(50%, -50%);
-  }
+}
 
- 
+.chart-heading {
+    font-size: 20px;
+    color: #023C40;
+}
 
+.p-datatable-thead {
+    line-height: 8px;
+}
