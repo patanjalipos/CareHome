@@ -13,6 +13,7 @@ export class OptionService {
   private jsonDataUrl = 'assets/stLst/stLstFilters.json';
   private DefaultjsonDataUrl = 'assets/stLst/stLstDefaultfilters.json';
   private stLstReason = 'assets/stLst/stLstReason.json';
+  private stLstErrorAndWarnings = 'assets/stLst/stLstErrorWarnings.json';
 
   constructor(private http: HttpClient) { }
 
@@ -36,6 +37,9 @@ export class OptionService {
   }
   getstLstReason(): Observable<any> {
     return this.http.get<any>(this.stLstReason);
+  }
+  getstLstErrorAndWarning() : Observable<any> {
+    return this.http.get<any>(this.stLstErrorAndWarnings);
   }
 
 }

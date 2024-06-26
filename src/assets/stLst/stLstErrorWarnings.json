@@ -1,0 +1,24 @@
+{
+    "Warnings": {
+        "Common": {
+            "DetailMissMessage": "Details are missing"
+        },
+        "Components": {
+            "Charts": [
+                {
+                    "ChartName": "Activities Chart",
+                    "ChartId": "65b8e9b70d77d0a4c616b8e2"
+                },
+                {
+                    "ChartName": "ADL Chart",
+                    "ChartId": "6642f13bb33c8394db706069"
+                }
+            ]
+        }
+    },
+    "Errors": [
+        {
+            "SelectionMessage": "Please select an appropriate data"
+        }
+    ]
+}

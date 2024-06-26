@@ -57,6 +57,9 @@ export class ActivitiesChartComponent
     isShowStrikeThroughPopup:boolean = false;
     StrikeThroughData:any = <any>{};
     stLstReason:any[]=[];
+    stLstErrorAndWarning: any = <any>{};
+    result:any = <any>{};
+    ChartName:string;
       
     constructor(
         private optionService: OptionService,
@@ -114,6 +117,14 @@ export class ActivitiesChartComponent
         });
         this.optionService.getstLstReason().subscribe((data) => {
             this.stLstReason = data;
+        });
+        this.optionService.getstLstErrorAndWarning().subscribe((data) => {
+            this.stLstErrorAndWarning = data;
+            console.log(this.stLstErrorAndWarning);
+            this.result = this.stLstErrorAndWarning.Warnings.Components.Charts.find(i => i.ChartId === ChartTypes.ActivitiesChart);
+            console.log(this.result);
+            this.ChartName = this.result["ChartName"];
+            this._ConstantServices.ActiveMenuName = this.ChartName;
         });
 
         const collectionNames = ['Activity', 'Participation', 'PurposeofActivity'];
@@ -321,7 +332,7 @@ export class ActivitiesChartComponent
                     },
                 });
         } else {
-            this._UtilityService.showWarningAlert('Activities Chart details are missing.');
+            this._UtilityService.showWarningAlert(this.ChartName + " " + this.stLstErrorAndWarning.Warnings.Common.DetailMissMessage);
         }
     }
     showPopup(chartId) {

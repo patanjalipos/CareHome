@@ -55,6 +55,9 @@ export class AdlChartComponent extends AppComponentBase implements OnInit {
     isShowStrikeThroughPopup:boolean = false;
     StrikeThroughData:any = <any>{};
     stLstReason:any[]=[];
+    stLstErrorAndWarning: any = <any>{};
+    result:any = <any>{};
+    ChartName:string;
 
     constructor(
         private optionService: OptionService,
@@ -65,7 +68,6 @@ export class AdlChartComponent extends AppComponentBase implements OnInit {
         private datePipe: DatePipe
     ) {
         super();
-        this._ConstantServices.ActiveMenuName = 'ADL Chart';
         this.loginId = localStorage.getItem('userId');
     }
 
@@ -91,6 +93,14 @@ export class AdlChartComponent extends AppComponentBase implements OnInit {
         });
         this.optionService.getstLstReason().subscribe((data) => {
             this.stLstReason = data;
+        });
+        this.optionService.getstLstErrorAndWarning().subscribe((data) => {
+            this.stLstErrorAndWarning = data;
+            console.log(this.stLstErrorAndWarning);
+            this.result = this.stLstErrorAndWarning.Warnings.Components.Charts.find(i => i.ChartId === ChartTypes.ADLChart);
+            console.log(this.result);
+            this.ChartName = this.result["ChartName"];
+            this._ConstantServices.ActiveMenuName = this.ChartName;
         });
 
         this.getChartDataById(this.preSelectedChartData.chartMasterId, this.preSelectedChartData.residentAdmissionInfoId, this.pageNumber, this.pageSize);
@@ -281,7 +291,7 @@ export class AdlChartComponent extends AppComponentBase implements OnInit {
                 });
         } else {
             this._UtilityService.showWarningAlert(
-                'ADL Chart details are missing.'
+                this.ChartName + " " + this.stLstErrorAndWarning.Warnings.Common.DetailMissMessage
             );
         }
     }
