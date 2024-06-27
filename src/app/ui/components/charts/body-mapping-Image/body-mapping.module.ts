@@ -6,7 +6,8 @@ import { DialogModule } from 'primeng/dialog';
 import { ChipsModule } from 'primeng/chips';
 import { FormsModule } from '@angular/forms';
 import { ChipModule } from 'primeng/chip';
-
+import { ButtonModule } from 'primeng/button';
+import { DropdownModule } from 'primeng/dropdown';
 
 @NgModule({
   declarations: [BodyMappingComponent],
@@ -15,8 +16,10 @@ import { ChipModule } from 'primeng/chip';
     FormsModule,
     DialogModule,
     ChipsModule,
+    ButtonModule,
     ChipModule,
-    BodyMappingImageRoutingModule
+    BodyMappingImageRoutingModule,
+    DropdownModule
   ],
   exports:[BodyMappingComponent]
 })
