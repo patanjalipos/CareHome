@@ -12,7 +12,7 @@ import { BodyMappingImageModule } from '../body-mapping-Image/body-mapping.modul
 import { CarouselModule } from 'primeng/carousel';
 import { RadioButtonModule } from 'primeng/radiobutton';
 import { StrikeThroughEntryModule } from '../strike-through-entry/strike-through-entry.module';
-
+import { AccordionModule } from 'primeng/accordion';
 
 @NgModule({
   declarations: [PainChartComponent],
@@ -28,7 +28,8 @@ import { StrikeThroughEntryModule } from '../strike-through-entry/strike-through
     BodyMappingImageModule,
     CarouselModule,
     RadioButtonModule,
-    StrikeThroughEntryModule
+    StrikeThroughEntryModule,
+    AccordionModule
   ],
   exports:[PainChartComponent]
 })
