@@ -42,6 +42,8 @@ export class BehaviourChartComponent
     userId: any;
     BehaviourChartData: any = <any>{};
     StatementType: string = null;
+    CareGivenCheck:boolean = false;
+    ReasonCheck: boolean = false;
 
     LstBehaviourPurpose: any[] = [];
     //Static Options
@@ -56,6 +58,9 @@ export class BehaviourChartComponent
     isShowStrikeThroughPopup: boolean = false;
     StrikeThroughData: any = <any>{};
     stLstReason:any[]=[];
+    stLstErrorAndWarning: any = <any>{};
+    result:any = <any>{};
+    ChartName:string;
 
     constructor(
         private optionService: OptionService,
@@ -67,7 +72,6 @@ export class BehaviourChartComponent
         private datePipe: DatePipe
     ) {
         super();
-        this._ConstantServices.ActiveMenuName = 'Behaviour Chart';
         this.loginId = localStorage.getItem('userId');
     }
 
@@ -96,6 +100,12 @@ export class BehaviourChartComponent
         });
         this.optionService.getstLstReason().subscribe((data) => {
             this.stLstReason = data;
+        });
+        this.optionService.getstLstErrorAndWarning().subscribe((data) => {
+            this.stLstErrorAndWarning = data;
+            this.result = this.stLstErrorAndWarning.Warnings.Components.Charts.find(i => i.ChartId === ChartTypes.BehaviourChart);
+            this.ChartName = this.result["ChartName"];
+            this._ConstantServices.ActiveMenuName = this.ChartName;
         });
 
         const collectionNames = ['BehaviourPurposeOptions'];
@@ -198,10 +208,27 @@ export class BehaviourChartComponent
     }
 
     Save() {
+        if(this.BehaviourChartData.CareGivenOptions == null) {
+            this.CareGivenCheck = true;
+        }
+        else if(this.BehaviourChartData.CareGivenOptions != null) {
+            this.CareGivenCheck = false;
+            if(this.BehaviourChartData.CareGivenOptions == 'Yes') {
+                this.ReasonCheck = false;
+            }
+            else{
+                if(this.BehaviourChartData.Reason == null) {
+                    this.ReasonCheck = true;
+                }
+                else {
+                    this.ReasonCheck = false;
+                }
+            }
+        }
         if (
             this.userId != null &&
             this.residentAdmissionInfoId != null &&
-            this.loginId != null
+            this.loginId != null && this.CareGivenCheck == false && this.ReasonCheck == false
         ) {
             this.BehaviourChartData.userId = this.userId;
             this.BehaviourChartData.residentAdmissionInfoId =
@@ -261,7 +288,7 @@ export class BehaviourChartComponent
                 });
         } else {
             this._UtilityService.showWarningAlert(
-                'Behaviour Chart details are missing.'
+                this.ChartName + " " + this.stLstErrorAndWarning.Warnings.Common.DetailMissMessage
             );
         }
     }
@@ -308,8 +335,6 @@ export class BehaviourChartComponent
                         else {
                             this.rightBtnCheck = false;
                         }
-                        console.log(this.behaviourChartsLst);
-
                     } else {
                         this.behaviourChartsLst = [];
                     }
@@ -328,9 +353,6 @@ export class BehaviourChartComponent
            ModifiedBy:this.loginId,
         };
         this.isShowStrikeThroughPopup = true;
-        console.log(chart,'particular chart');
-        
-        console.log(this.StrikeThroughData,'chartdata');
        }
 
     Changes(value: boolean) {

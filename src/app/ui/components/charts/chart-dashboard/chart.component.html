@@ -205,12 +205,19 @@
     ">
 </app-pain-chart>
 
+<app-weight-chart [preSelectedChartData]="selectedChartData"
+    (EmitUpdateForm)="EmitUpdateForm($event)"
+    *ngIf="
+        ShowChildComponent == true &&
+        selectedChartMasterId == ChartTypes.WeightChart
+    ">
+</app-weight-chart>
 
 <app-blood-glucose-chart  
-[preSelectedChartData]="selectedChartData"
-(EmitUpdateForm)="EmitUpdateForm($event)"
-*ngIf="
-    ShowChildComponent == true &&
-    selectedChartMasterId == ChartTypes.BloodGlucoseChart
-">
+    [preSelectedChartData]="selectedChartData"
+    (EmitUpdateForm)="EmitUpdateForm($event)"
+    *ngIf="
+        ShowChildComponent == true &&
+        selectedChartMasterId == ChartTypes.BloodGlucoseChart
+    ">
 </app-blood-glucose-chart>
