@@ -1,124 +1,138 @@
 <div class="card">
     <div class="row p-0">
         <div class="col-md-12 formheader d-flex justify-content-between align-items-center">
-            <h4 class="mb-0">Behaviour Chart</h4>
-            <div> <button pButton type="button" icon="pi pi-chevron-left" class="mr-2" (click)="leftBtn()"
+            <h4 class="mb-0">Weight Chart</h4>
+            <div>
+                <button pButton type="button" icon="pi pi-chevron-left" class="mr-2" (click)="leftBtn()"
                     [disabled]="pageNumber==0"></button>
                 <button pButton type="button" icon="pi pi-chevron-right" class="" (click)="rightBtn()"
                     [disabled]="rightBtnCheck"></button>
             </div>
         </div>
     </div>
-    <div class="row">
-        <div class="col-md-3 mt-3 chart-box">
+    <div class="row ">
+        <div class="col-md-3 mt-3  chart-box active-chart">
             <div class="formheader mt-2 chart-heading">
                 <p><b>New observation</b></p>
             </div>
-            <div class="col-md-12 mt-4">
+            <div class="mt-4">
                 <label class="form-label bold">
                     Date/Time<span class="required"></span></label>
 
                 <ng-container>
-                    <p-calendar name="" [showIcon]="true" inputId="icon" class="iconcal" [readonlyInput]="true"
+                    <p-calendar [required]="true" name="WeightChartData.DateAndTime" [showIcon]="true" inputId="icon" class="iconcal" [readonlyInput]="true"
                         appendTo="body" [maxDate]="" #dobref="" [dateFormat]="customDateFormat.CalendarFormat"
-                        [(ngModel)]="BehaviourChartData.DateAndTime" [showTime]="true" hourFormat="24"></p-calendar>
+                        [(ngModel)]="WeightChartData.DateAndTime" [showTime]="true" hourFormat="24"></p-calendar>
                 </ng-container>
             </div>
-            <div class="col-md-12">
-                <label class="form-label bold">Care Given <span class="required">*</span></label>
+            <div>
+                <label class="form-label formheader bold">Care Given <span class="required">*</span></label>
 
                 <ng-container>
-                    <p-dropdown [ngClass]="{'ng-dirty ng-invalid':CareGivenCheck}" [required]="true" name="BehaviourChartData.CareGiven" placeholder="----select----"
+                    <p-dropdown [ngClass]="{'ng-dirty ng-invalid':CareGivenCheck}" [required]="true" name="WeightChartData.CareGiven" placeholder="----select----"
                         [style]="{ width: '100%' }" [options]="stLstYesNoOptions" optionValue="optionId"
-                        optionLabel="optionValue" [(ngModel)]="BehaviourChartData.CareGivenOptions"
+                        optionLabel="optionValue" [(ngModel)]="WeightChartData.CareGivenOptions"
                         (onChange)="openAndClose()">
                     </p-dropdown>
-                    <span class="required" *ngIf="BehaviourChartData.CareGivenOptions==null && CareGivenCheck == true">This field is required!</span>
+                    <span class="required" *ngIf="WeightChartData.CareGivenOptions==null && CareGivenCheck == true">This field is required!</span>
                 </ng-container>
             </div>
             <div *ngIf="inputFieldsCheck==false">
                 <label class="form-label bold">Reason<span class="required">*</span></label>
 
                 <ng-container>
-                    <p-dropdown [ngClass]="{'ng-dirty ng-invalid':ReasonCheck}" [required]="true" name="BehaviourChartData.Reason" placeholder="----select----"
+                    <p-dropdown [ngClass]="{'ng-dirty ng-invalid':ReasonCheck}" [required]="true" name="WeightChartData.Reason" placeholder="----select----"
                         [style]="{ width: '100%' }" [options]="stLstReason" optionValue="optionId"
-                        optionLabel="optionValue" [(ngModel)]="BehaviourChartData.Reason" (onChange)="openAndClose()">
+                        optionLabel="optionValue" [(ngModel)]="WeightChartData.Reason" (onChange)="openAndClose()">
                     </p-dropdown>
-                    <span class="required" *ngIf="BehaviourChartData.Reason==null && ReasonCheck == true">This field is required!</span>
+                    <span class="required" *ngIf="WeightChartData.Reason==null && ReasonCheck == true">This field is required!</span>
                 </ng-container>
             </div>
+
             <div *ngIf="inputFieldsCheck" class="row">
-                <h5 class="formheader">Incident</h5>
-                <div class="col-md-12">
+                <div>
                     <div class="labelcontent">
-                        <label class="form-label bold">Antecedent events</label>
+                        <label class="form-label bold">Weight <span class="required"></span></label>
                     </div>
                     <ng-container>
-                        <textarea type="text" pInputTextarea name="AntecedentEvents"
-                            [(ngModel)]="BehaviourChartData.AntecedentEvents" [required]="true"
-                            [style]="{ width: '100%' }"></textarea>
+                        <input type="number" pInputText name="WeightChartData.Weight"
+                            [(ngModel)]="WeightChartData.Weight" [required]="true"
+                            [style]="{ width: '100%' }" (change)="CalculateBMI(2)"/>
                     </ng-container>
                 </div>
-                <div class="col-md-12">
+                <div>
                     <div class="labelcontent">
-                        <label class="form-label bold">Definition of behaviour</label>
+                        <label class="form-label bold">Type of Scales </label>
                     </div>
                     <ng-container>
-                        <textarea type="text" pInputTextarea name="BehaviourDefinition"
-                            [(ngModel)]="BehaviourChartData.BehaviourDefinition" [required]="true"
-                            [style]="{ width: '100%' }"></textarea>
-                    </ng-container>
-                </div>
-                <div class="col-md-12">
-                    <div class="labelcontent">
-                        <label class="form-label bold">Consequent events</label>
-                    </div>
-                    <ng-container>
-                        <textarea type="text" pInputTextarea name="ConsequentEvents"
-                            [(ngModel)]="BehaviourChartData.ConsequentEvents" [required]="true"
-                            [style]="{ width: '100%' }"></textarea>
-                    </ng-container>
-                </div>
-                <h5 class="formheader">Functional assessment</h5>
-                <div class="col-md-12">
-                    <div class="labelcontent">
-                        <label class="form-label bold">What purpose does this behaviour serve for the resident?</label>
-                    </div>
-                    <ng-container>
-                        <p-dropdown [required]="true" name="BehaviourPurpose"
-                            [(ngModel)]="BehaviourChartData.BehaviourPurposeOptions" [options]="LstBehaviourPurpose"
+                        <p-dropdown [required]="true" name="ScaleTypeOption"
+                            [(ngModel)]="WeightChartData.ScaleTypeOption" [options]="LstScaleTypes"
                             optionLabel="optionName" optionValue="optionId" placeholder="--select--"
                             [style]="{ width: '100%' }">
                         </p-dropdown>
                     </ng-container>
                 </div>
+                <div class="mb-2">
+                    <div class="labelcontent">
+                        <label class="form-label bold">Height</label>
+                    </div>
+                    <ng-container>
+                        <input type="number" pInputText name="WeightChartData.Height"
+                            [(ngModel)]="WeightChartData.Height" [required]="true"
+                            [style]="{ width: '100%' }" (change)="CalculateBMI(2)"/>
+                        <span *ngIf="ZeroValueCheck == true" class="required">The value of height cannot be null/zero</span>
+                    </ng-container>
+                </div>
+                <div>
+                    <div class="labelcontent">
+                        <label class="form-label bold">BMI</label>
+                    </div>
+                    <ng-container>
+                        <p-button [disabled]="ButtonCheck" label="Calculate BMI" (click)="CalculateBMI(1)"></p-button>
+                    </ng-container>
+                    <div class="my-1" *ngIf="(WeightChartData.Weight != null || WeightChartData.Weight != 0) && (WeightChartData.Height !=null && WeightChartData.Height != 0)">
+                        <span>{{WeightChartData.BMI}}</span>
+                    </div>
+                </div>
+                <div>
+                    <div class="labelcontent">
+                        <label class="form-label bold my-2">Factors Affecting Weight</label>
+                    </div>
+                    <ng-container>
+                        <textarea type="text" pInputTextarea name="WeightChartData.WeightFactors" [(ngModel)]="WeightChartData.WeightFactors"
+                            [required]="true" [style]="{ width: '100%' }"></textarea>
+                    </ng-container>
+                </div>
             </div>
             <h5 class="formheader">Additional information</h5>
-            <div class="col-md-12">
+            <div>
                 <ng-container>
-                    <textarea pInputTextarea name="AdditionalInfo" [(ngModel)]="BehaviourChartData.AdditionalInfo"
+                    <textarea pInputTextarea name="AdditionalInfo" [(ngModel)]="WeightChartData.AdditionalInfo"
                         [required]="true" [style]="{ width: '100%' }"></textarea>
                 </ng-container>
             </div>
             <div class="d-flex justify-content-center mt-4" *ngIf="this.isEditable == true">
                 <div class="mr-4">
-                    <span class="p-ml-left">
-                        <button pButton title="New" label="Clear all " (click)="ClearAllfeilds()"></button>
+                    <span class="p-ml-left ">
+                        <button pButton title="New" label="Clear all" (click)="ClearAllfeilds()"></button>
                         <span class="total-txt"></span>
                     </span>
                 </div>
                 <div>
-                    <span class="p-ml-left">
+                    <span class="p-ml-left ">
                         <button pButton title="New" label="Save" (click)="Save()"></button>
                         <span class="total-txt"></span>
                     </span>
                 </div>
             </div>
         </div>
-
         <div class="col-md-9 mt-3">
             <!-- Left navigation button -->
-            <p-carousel [value]="behaviourChartsLst" [numVisible]="pageSize" [numScroll]="pageSize" [circular]="false"
+
+
+
+
+            <p-carousel [value]="WeightChartsLst" [numVisible]="pageSize" [numScroll]="pageSize" [circular]="false"
                 [showIndicators]="false" [showNavigators]="false" [responsiveOptions]="responsiveOptions">
                 <ng-template let-chart pTemplate="item">
                     <div class="col-md-11 chart-box p-2">
@@ -133,42 +147,42 @@
                                     <label [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">{{
                                         chart.DateAndTime | date:'hh:mm'}}</label>
                                 </div>
-
                             </div>
                         </div>
                         <div class="col-md-12 mb-2">
-
                             <label class="form-label bold"
                                 [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">Enterted By<span
                                     class="required"></span></label>
-
                             <div>
                                 <label
                                     [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">{{chart.StartedBy}}</label>
                             </div>
                         </div>
-                        <div>
-                            <div class="mb-2">
-                                <button *ngIf="!chart.isStrikeThrough" pButton type="button"
-                                    label="Strike Through Entry" class="p-button-link p-0"
-                                    (click)="showPopup(chart.BehaviourChartId,chart)">
-                                </button>
+                        <div class="mb-2">
+                            <button pButton *ngIf="!chart.isStrikeThrough" type="button" label="Strike Through Entry"
+                                class="p-button-link p-0" (click)="showPopup(chart.WeightChartId)">
+                            </button>
+                        </div>
+                        <div class="mb-2">
+
+                            <label *ngIf="chart.isStrikeThrough" class="form-label bold">Strike Through Reason<span
+                                    class="required"></span></label>
+
+                            <div>
+                                <label *ngIf="chart.isStrikeThrough">{{chart.StrikeThroughRemark}}</label>
                             </div>
                         </div>
-                        <div class="col-md-12 mb-3">
-
+                        <div class=" mb-3">
                             <label class="form-label bold"
                                 [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">Care Given <span
                                     class="required"></span></label>
-
                             <div>
                                 <label [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">{{
                                     chart.CareGivenOptions }}</label>
                             </div>
-
                         </div>
                         <div *ngIf="chart.CareGivenOptions=='No'">
-                            <div class="col-md-12">
+                            <div>
                                 <div class="col-md-12">
                                     <label class="form-label bold"
                                         [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">Reason
@@ -181,57 +195,57 @@
                             </div>
                         </div>
                         <div *ngIf="chart.CareGivenOptions=='Yes'" class="row">
-                            <h5 class="formheader" [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">
-                                Incident</h5>
                             <div class="col-md-12 mb-5">
                                 <div class="labelcontent">
                                     <label class="form-label bold"
-                                        [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">Antecedent
-                                        events</label>
+                                        [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">Weight</label>
                                 </div>
                                 <div>
                                     <label [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">{{
-                                        chart.AntecedentEvents }}</label>
+                                        chart.Weight }}</label>
                                 </div>
                             </div>
-                            <div class="col-md-12 mb-4">
-                                <div class="labelcontent">
-                                    <label class="form-label bold"
-                                        [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">Definition of
-                                        behaviour</label>
-                                </div>
-                                <div>
-                                    <label [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">{{
-                                        chart.BehaviourDefinition }}</label>
-                                </div>
-                            </div>
-                            <div class="col-md-12 mb-4">
-                                <div class="labelcontent">
-                                    <label class="form-label bold"
-                                        [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">Consequent
-                                        events</label>
-                                </div>
-                                <div>
-                                    <label [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">{{
-                                        chart.ConsequentEvents }}</label>
-                                </div>
-                            </div>
-                            <h5 class="formheader" [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">
-                                Functional assessment</h5>
                             <div class="col-md-12 mb-5">
                                 <div class="labelcontent">
                                     <label class="form-label bold"
-                                        [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">What purpose
-                                        does this behaviour serve for the
-                                        resident?</label>
+                                        [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">Types of Scales </label>
                                 </div>
                                 <div>
                                     <label [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">{{
-                                        chart.BehaviourPurposeOptionName }}</label>
+                                        chart.ScaleTypeOptionName }}</label>
+                                </div>
+                            </div>
+                            <div class="col-md-12 mb-5">
+                                <div class="labelcontent">
+                                    <label class="form-label bold"
+                                        [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">Height</label>
+                                </div>
+                                <div>
+                                    <label [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">{{
+                                        chart.Height }}</label>
+                                </div>
+                            </div>
+                            <div class="col-md-12 mb-5">
+                                <div class="labelcontent">
+                                    <label class="form-label bold"
+                                        [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">BMI</label>
+                                </div>
+                                <div>
+                                    <label [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">{{
+                                        chart.BMI }}</label>
+                                </div>
+                            </div>
+                            <div class="col-md-12 mb-5">
+                                <div class="labelcontent">
+                                    <label class="form-label bold"
+                                        [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">Factors Affecting Weight</label>
+                                </div>
+                                <div>
+                                    <label [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">{{
+                                        chart.WeightFactors }}</label>
                                 </div>
                             </div>
                         </div>
-
                         <h5 class="formheader" [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">
                             Additional information</h5>
                         <div class="col-md-12">
@@ -242,7 +256,6 @@
                         </div>
                     </div>
                 </ng-template>
-
             </p-carousel>
 
             <div *ngIf="isShowStrikeThroughPopup" class="card flex justify-content-center">
@@ -250,7 +263,6 @@
                     [modal]="true" [breakpoints]="{ '1199px': '75vw', '575px': '90vw' }" [style]="{ width: '40vw' }"
                     [draggable]="false" [resizable]="false">
                     <div *ngIf="isShowStrikeThroughPopup">
-
                         <app-strike-through-entry [StrikeThroughData]="StrikeThroughData"
                             (StrikeThroughCheck)="Changes($event)"></app-strike-through-entry>
                     </div>

@@ -39,6 +39,8 @@ export class ActivitiesChartComponent
     residentAdmissionInfoId: any;
     userId: any;
     StatementType: string = null;
+    CareGivenCheck:boolean = false;
+    ReasonCheck: boolean = false;
 
     lstActivity: any[] = [];
     lstPurposeOfActivity: any[] = [];
@@ -57,6 +59,9 @@ export class ActivitiesChartComponent
     isShowStrikeThroughPopup:boolean = false;
     StrikeThroughData:any = <any>{};
     stLstReason:any[]=[];
+    stLstErrorAndWarning: any = <any>{};
+    result:any = <any>{};
+    ChartName:string;
       
     constructor(
         private optionService: OptionService,
@@ -115,6 +120,12 @@ export class ActivitiesChartComponent
         this.optionService.getstLstReason().subscribe((data) => {
             this.stLstReason = data;
         });
+        this.optionService.getstLstErrorAndWarning().subscribe((data) => {
+            this.stLstErrorAndWarning = data;
+            this.result = this.stLstErrorAndWarning.Warnings.Components.Charts.find(i => i.ChartId === ChartTypes.ActivitiesChart);
+            this.ChartName = this.result["ChartName"];
+            this._ConstantServices.ActiveMenuName = this.ChartName;
+        });
 
         const collectionNames = ['Activity', 'Participation', 'PurposeofActivity'];
 
@@ -131,7 +142,6 @@ export class ActivitiesChartComponent
             this.lstParticipation = responses[1];
             this.lstPurposeOfActivity = responses[2];
         });
-        this.GetActivitiesChartDetails(this.preSelectedChartData.chartId);
         this.getChartDataById(this.preSelectedChartData.chartMasterId, this.preSelectedChartData.residentAdmissionInfoId, this.pageNumber, this.pageSize);
         this.responsiveOptions = [
             {
@@ -150,6 +160,19 @@ export class ActivitiesChartComponent
                 numScroll: 1
             }
         ];
+
+        if (this.preSelectedChartData.selectedChartID != null) {
+            this.ActivitiesChartFormData = <any>{};
+            this.GetActivitiesChartDetails(this.preSelectedChartData.selectedChartID);
+            this.StatementType = 'Update';
+        } else {
+            this.ResetModel();
+        }
+
+        this.ActivitiesChartFormData.DateAndTime = new Date();
+        // this.ActivitiesChartFormData.DateAndTime = this.datePipe.transform(this.ActivitiesChartFormData.DateAndTime,'dd-MM-yyyy HH:mm');
+        console.log(this.ActivitiesChartFormData.DateAndTime);
+        
     }
     chartOnChange() {
         this.getChartDataById(this.preSelectedChartData.chartMasterId, this.preSelectedChartData.residentAdmissionInfoId, this.pageNumber, this.pageSize);
@@ -181,8 +204,6 @@ export class ActivitiesChartComponent
                         else {
                             this.rightBtnCheck = false;
                         }
-                        console.log(this.ActivityChartsLst);
-
                     } else {
                         this.ActivityChartsLst = [];
                     }
@@ -258,10 +279,27 @@ export class ActivitiesChartComponent
     }
 
     Save() {
+        if(this.ActivitiesChartFormData.CareGiven == null) {
+            this.CareGivenCheck = true;
+        }
+        else if(this.ActivitiesChartFormData.CareGiven != null) {
+            this.CareGivenCheck = false;
+            if(this.ActivitiesChartFormData.CareGiven == 'Yes') {
+                this.ReasonCheck = false;
+            }
+            else{
+                if(this.ActivitiesChartFormData.Reason == null) {
+                    this.ReasonCheck = true;
+                }
+                else {
+                    this.ReasonCheck = false;
+                }
+            }
+        }
         if (
             this.userId != null &&
             this.residentAdmissionInfoId != null &&
-            this.loginId != null
+            this.loginId != null && this.CareGivenCheck == false && this.ReasonCheck == false
         ) {
             this.ActivitiesChartFormData.userId = this.userId;
             this.ActivitiesChartFormData.StartedBy = this.loginId;
@@ -321,7 +359,7 @@ export class ActivitiesChartComponent
                     },
                 });
         } else {
-            this._UtilityService.showWarningAlert('Activities Chart details are missing.');
+            this._UtilityService.showWarningAlert(this.ChartName + " " + this.stLstErrorAndWarning.Warnings.Common.DetailMissMessage);
         }
     }
     showPopup(chartId) {
@@ -331,8 +369,6 @@ export class ActivitiesChartComponent
             ModifiedBy:this.loginId,
          };
          this.isShowStrikeThroughPopup = true;
-         
-         console.log(this.StrikeThroughData,'chartdata');
         }
     
     ResetModel() {
