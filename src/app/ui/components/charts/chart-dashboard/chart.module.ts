@@ -16,6 +16,7 @@ import { EnteralFeedingChartModule } from '../enteral-feeding-chart/enteral-feed
 import { AdlChartModule } from '../adl-chart/adl-chart.module';
 import { TableModule } from 'primeng/table';
 import { PainChartModule } from "../pain-chart/pain-chart.module";
+import { BloodGlucoseChartModule } from "../blood-glucose-chart/blood-glucose-chart.module";
 
 @NgModule({
     declarations: [
@@ -38,7 +39,8 @@ import { PainChartModule } from "../pain-chart/pain-chart.module";
         BowelChartModule,
         EnteralFeedingChartModule,
         AdlChartModule,
-        PainChartModule
+        PainChartModule,
+        BloodGlucoseChartModule
     ]
 })
 export class ChartModule { }

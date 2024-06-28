@@ -204,3 +204,13 @@
         selectedChartMasterId == ChartTypes.PainChart
     ">
 </app-pain-chart>
+
+
+<app-blood-glucose-chart  
+[preSelectedChartData]="selectedChartData"
+(EmitUpdateForm)="EmitUpdateForm($event)"
+*ngIf="
+    ShowChildComponent == true &&
+    selectedChartMasterId == ChartTypes.BloodGlucoseChart
+">
+</app-blood-glucose-chart>
