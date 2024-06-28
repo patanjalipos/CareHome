@@ -19,22 +19,38 @@ interface BodyPart {
     styleUrls: ['./body-mapping.component.scss'],
 })
 export class BodyMappingComponent implements OnInit {
-    @Output() bodyData: EventEmitter<BodyPart[]> = new EventEmitter();
-    @Input() preselectedBodyParts: any = <any>[];
+    @Output() bodyData: EventEmitter<any> = new EventEmitter();
+    @Input() preSelectedBodyMapData: any = <any>[];
+    @Input() isReadOnly: boolean = false; //View Mode
 
+    bodyMapData: any;
     selectedParts: BodyPart[] = [];
+    lstStatusOptions: any = ['InActive', 'Active'];
+    selectedStatus: string | null = null;
 
     constructor() {}
     ngOnInit(): void {
-        if (this.preselectedBodyParts) {
-            this.selectedParts = [...this.preselectedBodyParts];
+        if (this.preSelectedBodyMapData) {
+            this.selectedParts = [...this.preSelectedBodyMapData.preselectedBodyParts];
+            this.selectedStatus = this.preSelectedBodyMapData.status
+        }
+    }
+
+    // Emit the selected parts and Status
+    emitData(){
+        if(!this.isReadOnly){
+            this.bodyMapData = {
+                selectedBodyParts: this.selectedParts,
+                bodyMapStatus: this.selectedStatus!=null?this.selectedStatus:this.lstStatusOptions[0],
+            };
+            this.bodyData.emit(this.bodyMapData);
         }
     }
 
     removePart(part: { name: string; top: number; left: number }) {
         this.selectedParts = this.selectedParts.filter((p) => p !== part);
         // Emit the selected parts
-        this.bodyData.emit(this.selectedParts);
+        this.emitData();
     }
 
     selectBodyPart(event: MouseEvent, partName: string): void {
@@ -59,7 +75,6 @@ export class BodyMappingComponent implements OnInit {
                 top: offsetY,
             });
         }
-        // Emit the selected parts
-        this.bodyData.emit(this.selectedParts);
+       this.emitData();
     }
 }

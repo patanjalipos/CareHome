@@ -1,7 +1,7 @@
 <div class="card">
     <div class="row p-0">
         <div class="col-md-12 formheader d-flex justify-content-between align-items-center">
-            <h4 class="mb-0">Activities Chart</h4>
+            <h4 class="mb-0">Blood Glucose Chart</h4>
             <div>
                 <button pButton type="button" icon="pi pi-chevron-left" class="mr-2" (click)="leftBtn()"
                     [disabled]="pageNumber==0"></button>
@@ -20,103 +20,65 @@
                     Date/Time<span class="required"></span></label>
 
                 <ng-container>
-                    <p-calendar name="ActivitiesChartFormData.DateAndTime" [showIcon]="true" inputId="icon" class="iconcal" [readonlyInput]="true"
-
+                    <p-calendar name="" [showIcon]="true" inputId="icon" class="iconcal" [readonlyInput]="true"
                         appendTo="body" [maxDate]="" #dobref="" [dateFormat]="customDateFormat.CalendarFormat"
-                        [(ngModel)]="ActivitiesChartFormData.DateAndTime" [showTime]="true"
-                        hourFormat="24"></p-calendar>
+                        [(ngModel)]="bloodGlucoseChartFormData.DateAndTime" [showTime]="true"></p-calendar>
                 </ng-container>
             </div>
             <div class="col-md-12">
 
-                <label class="form-label bold">Care Given <span class="required">*</span></label>
+                <label class="form-label bold">Care Given <span class="required"></span></label>
 
                 <ng-container>
-                    <p-dropdown [ngClass]="{'ng-dirty ng-invalid':CareGivenCheck}" [required]="true" name="ActivitiesChartFormData.CareGiven" placeholder="----select----"
+                    <p-dropdown [required]="true" name="BowelChartFormData.CareGiven" placeholder="----select----"
                         [style]="{ width: '100%' }" [options]="stLstYesNoOptions" optionValue="optionId"
-                        optionLabel="optionValue" [(ngModel)]="ActivitiesChartFormData.CareGiven"
+                        optionLabel="optionValue" [(ngModel)]="bloodGlucoseChartFormData.CareGiven"
                         (onChange)="openAndClose()">
                     </p-dropdown>
-                    <span class="required" *ngIf="ActivitiesChartFormData.CareGiven==null && CareGivenCheck == true">This field is required!</span>
+                    <label for="" *ngIf="careGiven" class="text-danger">This field is required</label>
                 </ng-container>
 
             </div>
             <div *ngIf="inputFields==false">
-                <label class="form-label bold">Reason<span class="required">*</span></label>
+                <label class="form-label bold">Reason<span class="required"></span></label>
 
                 <ng-container>
-                    <p-dropdown [ngClass]="{'ng-dirty ng-invalid':ReasonCheck}" [required]="true" name="ActivitiesChartFormData.Reason" placeholder="----select----"
+                    <p-dropdown [required]="true" name="BowelChartFormData.Reason" placeholder="----select----"
                         [style]="{ width: '100%' }" [options]="stLstReason" optionValue="optionId"
-                        optionLabel="optionValue" [(ngModel)]="ActivitiesChartFormData.Reason">
+                        optionLabel="optionValue" [(ngModel)]="bloodGlucoseChartFormData.Reason">
                     </p-dropdown>
-                    <span class="required" *ngIf="ActivitiesChartFormData.Reason==null && ReasonCheck == true">This field is required!</span>
+                    <label for="" *ngIf="reason" class="text-danger">This field is required</label>
                 </ng-container>
             </div>
-
-            <div *ngIf="inputFields" class="row">
-                <div class="col-md-12">
-                    <label class="form-label bold">Activity <span class="required"></span></label>
-                    <ng-container>
-                        <p-dropdown [required]="true" name="ActivitiesChartFormData.Activity" placeholder="--select--"
-                            [style]="{ width: '100%' }" [(ngModel)]="ActivitiesChartFormData.Activity"
-                            [options]="lstActivity" optionLabel="optionName" optionValue="optionId">
-                        </p-dropdown>
-                    </ng-container>
-
+            <div *ngIf="inputFields==true">
+                <h5 class="formheader">Blood Glucose</h5>
+                <div class="mb-4">
+                    <label class="form-label bold">Blood Glucose<span class="required"></span></label>
+                    <div class="col-md-12">
+                        <input type="number" pInputText name="bloodGlucoseChartFormData.bloodGlucose" [required]="true"
+                            [style]="{ width: '100%' }" [(ngModel)]="bloodGlucoseChartFormData.bloodGlucose"
+                            placeholder="mmol/L" />
+                    </div>
                 </div>
-
-                <div class="col-md-12">
-                    <label class="form-label bold">Attendance<span class="required"></span></label>
-                    <ng-container>
-                        <p-dropdown [required]="true" name="ActivitiesChartFormData.Attendance" placeholder="--select--"
-                            [style]="{ width: '100%' }" [options]="stLstAttendanceOptions" optionValue="optionId"
-                            optionLabel="optionValue" [(ngModel)]="ActivitiesChartFormData.Attendance">
-                        </p-dropdown>
-                    </ng-container>
-
-                </div>
-
-                <div class="col-md-12">
-                    <label class="form-label bold">Participation<span class="required"></span></label>
-                    <ng-container>
-                        <p-dropdown [required]="true" name="ActivitiesChartFormData.Participation"
-                            placeholder="--select--" [style]="{ width: '100%' }" [options]="lstParticipation"
-                            optionValue="optionId" optionLabel="optionName"
-                            [(ngModel)]="ActivitiesChartFormData.Participation">
-                        </p-dropdown>
-                    </ng-container>
-
-                </div>
-
-                <div class="col-md-12">
-                    <label class="form-label bold">Purpose of activity<span class="required"></span></label>
-
-                    <ng-container>
-                        <p-dropdown [required]="true" name="ActivitiesChartFormData.PurposeOfActivity"
-                            placeholder="--select--" [style]="{ width: '100%' }"
-                            [(ngModel)]="ActivitiesChartFormData.PurposeOfActivity" [options]="lstPurposeOfActivity"
-                            optionLabel="optionName" optionValue="optionId">
-                        </p-dropdown>
-                    </ng-container>
-
-                </div>
-                <div class="col-md-12">
-
-                    <label class="form-label bold">Duration (minutes)<span class="required"></span></label>
-
-                    <ng-container>
-                        <input pInputText type="number" required name="ActivitiesChartFormData.Duration"
-                            class="form-control mr-4" [(ngModel)]="ActivitiesChartFormData.Duration" min="0" />
-                    </ng-container>
-
+                <div>
+                    <label class="form-label bold">Pre Or Post Meal<span class="required"></span></label>
+                    <div class="col-md-12">
+                        <ng-container>
+                            <p-selectButton [options]="rangeOptionPrePostMeal"
+                                [(ngModel)]="bloodGlucoseChartFormData.prePostMeal" optionLabel="label"
+                                optionValue="value"></p-selectButton>
+                        </ng-container>
+                    </div>
                 </div>
             </div>
+
             <h5 class="formheader">Additional information</h5>
             <div class="col-md-12">
                 <label class="form-label"><span class="required"></span></label>
                 <ng-container>
-                    <input type="text" pInputText name="ActivitiesChartFormData.AdditionalInformation" [required]="true"
-                        [style]="{ width: '100%' }" [(ngModel)]="ActivitiesChartFormData.AdditionalInformation" />
+                    <input type="text" pInputText name="bloodGlucoseChartFormData.AdditionalInformation"
+                        [required]="true" [style]="{ width: '100%' }"
+                        [(ngModel)]="bloodGlucoseChartFormData.AdditionalInformation" />
                 </ng-container>
 
             </div>
@@ -130,17 +92,17 @@
                 <div>
                     <span class="p-ml-left">
                         <button pButton title="save" label="Save" (click)="Save()"></button>
-
                     </span>
                 </div>
             </div>
         </div>
+
+
         <div class="col-md-9 mt-3">
             <!-- Left navigation button -->
-
-
-            <p-carousel [value]="ActivityChartsLst" [numVisible]="pageSize" [numScroll]="pageSize" [circular]="false"
-                [showIndicators]="false" [showNavigators]="false" [responsiveOptions]="responsiveOptions">
+            <p-carousel [value]="bloodGlucoseChartsLst" [numVisible]="pageSize" [numScroll]="pageSize"
+                [circular]="false" [showIndicators]="false" [showNavigators]="false"
+                [responsiveOptions]="responsiveOptions">
                 <ng-template let-chart pTemplate="item">
                     <div class="col-md-11 chart-box p-2">
                         <div class="formheader">
@@ -172,7 +134,7 @@
                             <div class="mb-2">
                                 <button *ngIf="!chart.isStrikeThrough" pButton type="button"
                                     label="Strike Through Entry" class="p-button-link p-0"
-                                    (click)="showPopup(chart.activitiesChartId)">
+                                    (click)="showPopup(chart.bloodGlucoseChartId)">
                                 </button>
                             </div>
                         </div>
@@ -216,58 +178,23 @@
                         <div *ngIf="chart.CareGiven=='Yes'" class="row">
                             <div class="col-md-12">
                                 <label class="form-label bold"
-                                    [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">Activity <span
-                                        class="required"></span></label>
+                                    [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">Blood
+                                    Gulcose<span class="required"></span></label>
 
                                 <div>
                                     <label
-                                        [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">{{chart.ActivityOptionName}}</label>
+                                        [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">{{chart.bloodGlucose}}</label>
                                 </div>
                             </div>
 
                             <div class="col-md-12">
                                 <label class="form-label bold"
-                                    [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">Attendance<span
-                                        class="required"></span></label>
+                                    [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">Pre or Post
+                                    Meal<span class="required"></span></label>
 
                                 <div>
                                     <label [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">{{
-                                        chart.Attendance
-                                        }}</label>
-                                </div>
-                            </div>
-
-                            <div class="col-md-12">
-                                <label class="form-label bold"
-                                    [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">Participation<span
-                                        class="required"></span></label>
-
-                                <div>
-                                    <label [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">{{
-                                        chart.ParticipationOption
-                                        }}</label>
-                                </div>
-                            </div>
-
-                            <div class="col-md-12">
-                                <label class="form-label bold"
-                                    [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">Purpose of
-                                    activity<span class="required"></span></label>
-
-                                <div>
-                                    <label
-                                        [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">{{chart.PurposeOfActivityOptionName}}</label>
-                                </div>
-                            </div>
-                            <div class="col-md-12">
-
-                                <label class="form-label bold"
-                                    [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">Duration
-                                    (minutes)<span class="required"></span></label>
-
-                                <div>
-                                    <label [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">{{
-                                        chart.Duration
+                                        chart.prePostMeal
                                         }}</label>
                                 </div>
                             </div>
@@ -286,6 +213,7 @@
                 </ng-template>
 
             </p-carousel>
+            
             <div *ngIf="isShowStrikeThroughPopup" class="card flex justify-content-center">
                 <p-dialog [closable]="true" header="Strike-Through" [(visible)]="isShowStrikeThroughPopup"
                     [modal]="true" [breakpoints]="{ '1199px': '75vw', '575px': '90vw' }" [style]="{ width: '40vw' }"

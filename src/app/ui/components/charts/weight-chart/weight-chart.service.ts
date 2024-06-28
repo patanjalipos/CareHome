@@ -6,12 +6,12 @@ import { environment } from 'src/environments/environment';
 @Injectable({
   providedIn: 'root'
 })
-export class AdlChartService {
+export class WeightChartService {
 
   constructor(private _httpclient: HttpClient) { }
 
-  InsertUpdateADLChart(
-    ADLChartData: any
+  InsertUpdateWeightChart(
+    WeightChartData: any
   ): Observable<any> {
       let reqHeader = new HttpHeaders({
           'Content-Type': 'application/json',
@@ -19,19 +19,17 @@ export class AdlChartService {
           'Authorization': 'Bearer ' + localStorage.getItem('token')
       });
       let params = new HttpParams();
-      var data = JSON.stringify(ADLChartData).toString();
-      console.log(data);
+      var data = JSON.stringify(WeightChartData).toString();
       
-
       return this._httpclient.post<any>(
           environment.BaseUriUser +
-              'api/User/InsertUpdateADLChart',
+              'api/User/InsertUpdateWeightChart',
           data,
           { headers: reqHeader, params: params }
       );
   }
 
-  GetADLChartDetails(selectedChartID: any) {
+  GetWeightChartDetails(selectedChartID: any) {
     let reqHeader = new HttpHeaders({
         'Content-Type': 'application/json',
         'Access-Control-Allow-Origin': environment.BaseUriUser,
@@ -40,7 +38,7 @@ export class AdlChartService {
     let params = new HttpParams();
     params = params.append('chartId', selectedChartID);
     return this._httpclient.get<any>(
-        environment.BaseUriUser + 'api/User/GetADLChartDetails',
+        environment.BaseUriUser + 'api/User/GetWeightChartDetails',
         { headers: reqHeader, params: params }
     );
 }
