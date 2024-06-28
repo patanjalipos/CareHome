@@ -1,0 +1,36 @@
+{
+    "Warnings": {
+        "Common": {
+            "DetailMissMessage": "Details are missing"
+        },
+        "Components": {
+            "Charts": [
+                {
+                    "ChartName": "Activities Chart",
+                    "ChartId": "65b8e9b70d77d0a4c616b8e2"
+                },
+                {
+                    "ChartName": "ADL Chart",
+                    "ChartId": "6642f13bb33c8394db706069"
+                },
+                {
+                    "ChartName": "Weight Chart",
+                    "ChartId": "6642f401b33c8394db706081"
+                },
+                {
+                    "ChartName": "Behaviour Chart",
+                    "ChartId": "6642f15db33c8394db70606a"
+                },
+                {
+                    "ChartName": "Blood Pressure Chart",
+                    "ChartId": "6642f195b33c8394db70606c"
+                }
+            ]
+        }
+    },
+    "Errors": [
+        {
+            "SelectionMessage": "Please select an appropriate data"
+        }
+    ]
+}

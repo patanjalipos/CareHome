@@ -44,6 +44,8 @@ export class BloodPressureChartComponent
     residentAdmissionInfoId: any;
     userId: any;
     StatementType: string = null;
+    CareGivenCheck:boolean = false;
+    ReasonCheck: boolean = false;
 
     //for carousel
     bloodPressureChartsLst: any[] = [];
@@ -54,7 +56,9 @@ export class BloodPressureChartComponent
     isShowStrikeThroughPopup: boolean = false;
     StrikeThroughData: any = <any>{};
     stLstReason:any[]=[];
-
+    stLstErrorAndWarning: any = <any>{};
+    result:any = <any>{};
+    ChartName:string;
 
     constructor(
         private optionService: OptionService,
@@ -66,7 +70,6 @@ export class BloodPressureChartComponent
         private _BloodPressureChartService: BloodPressureChartService
     ) {
         super();
-        this._ConstantServices.ActiveMenuName = 'Blood Pressure Chart';
         this.loginId = localStorage.getItem('userId');
     }
     
@@ -99,6 +102,13 @@ export class BloodPressureChartComponent
         this.optionService.getstLstReason().subscribe((data) => {
             this.stLstReason = data;
         });
+        this.optionService.getstLstErrorAndWarning().subscribe((data) => {
+            this.stLstErrorAndWarning = data;
+            this.result = this.stLstErrorAndWarning.Warnings.Components.Charts.find(i => i.ChartId === ChartTypes.BloodPressureChart);
+            this.ChartName = this.result["ChartName"];
+            this._ConstantServices.ActiveMenuName = this.ChartName;
+        });
+
         this.getChartDataById(this.preSelectedChartData.chartMasterId, this.preSelectedChartData.residentAdmissionInfoId, this.pageNumber, this.pageSize);
     }
 
@@ -148,10 +158,27 @@ export class BloodPressureChartComponent
     }
 
     Save() {
+        if(this.bloodPressureChartFormData.CareGiven == null) {
+            this.CareGivenCheck = true;
+        }
+        else if(this.bloodPressureChartFormData.CareGiven != null) {
+            this.CareGivenCheck = false;
+            if(this.bloodPressureChartFormData.CareGiven == 'Yes') {
+                this.ReasonCheck = false;
+            }
+            else{
+                if(this.bloodPressureChartFormData.Reason == null) {
+                    this.ReasonCheck = true;
+                }
+                else {
+                    this.ReasonCheck = false;
+                }
+            }
+        }
         if (
             this.userId != null &&
             this.residentAdmissionInfoId != null &&
-            this.loginId != null
+            this.loginId != null && this.CareGivenCheck == false && this.ReasonCheck == false
         ) {
             this.bloodPressureChartFormData.userId = this.userId;
             this.bloodPressureChartFormData.StartedBy = this.loginId;
@@ -214,7 +241,7 @@ export class BloodPressureChartComponent
                     },
                 });
         } else {
-            this._UtilityService.showWarningAlert('Blood Pressure Chart');
+            this._UtilityService.showWarningAlert(this.ChartName + " " + this.stLstErrorAndWarning.Warnings.Common.DetailMissMessage);
         }
     }
 
@@ -258,8 +285,6 @@ export class BloodPressureChartComponent
                         else {
                             this.rightBtnCheck = false;
                         }
-                        console.log(this.bloodPressureChartsLst);
-
                     } else {
                         this.bloodPressureChartsLst = [];
                     }
@@ -278,9 +303,6 @@ export class BloodPressureChartComponent
             ModifiedBy: this.loginId,
         };
         this.isShowStrikeThroughPopup = true;
-        console.log(chart, 'particular chart');
-
-        console.log(this.StrikeThroughData, 'chartdata');
     }
 
     Changes(value: boolean) {
