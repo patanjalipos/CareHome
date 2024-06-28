@@ -225,13 +225,18 @@ Save() {
     }
     else if(this.WeightChartData.CareGivenOptions != null) {
         this.CareGivenCheck = false;
-        if(this.WeightChartData.Reason == null) {
-            this.ReasonCheck = true;
-        }
-        else{
+        if(this.WeightChartData.CareGivenOptions == 'Yes') {
             this.ReasonCheck = false;
         }
+        else{
+            if(this.WeightChartData.Reason == null) {
+                this.ReasonCheck = true;
+            }
+            else {
+                this.ReasonCheck = false;
+            }
     }
+}
   if (
       this.userId != null &&
       this.residentAdmissionInfoId != null &&
