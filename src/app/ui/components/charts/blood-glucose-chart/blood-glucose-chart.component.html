@@ -25,25 +25,29 @@
                         [(ngModel)]="bloodGlucoseChartFormData.DateAndTime" [showTime]="true"></p-calendar>
                 </ng-container>
             </div>
-            <div class="col-md-12 mb-3">
-                <label class="form-label bold">Care Given <span class="required"></span></label>
-                <ng-container>
-                    <p-dropdown [required]="true" name="bloodGlucoseChartFormData.CareGiven"
-                        placeholder="----select----" [style]="{ width: '100%' }" [options]="stLstYesNoOptions"
-                        optionValue="optionId" optionLabel="optionValue"
-                        [(ngModel)]="bloodGlucoseChartFormData.CareGiven" (onChange)="openAndClose()">
-                    </p-dropdown>
-                </ng-container>
-            </div>
+            <div class="col-md-12">
 
-            <div *ngIf="inputFields==false" class="col-md-12">
+                <label class="form-label bold">Care Given <span class="required"></span></label>
+
+                <ng-container>
+                    <p-dropdown [required]="true" name="BowelChartFormData.CareGiven" placeholder="----select----"
+                        [style]="{ width: '100%' }" [options]="stLstYesNoOptions" optionValue="optionId"
+                        optionLabel="optionValue" [(ngModel)]="bloodGlucoseChartFormData.CareGiven"
+                        (onChange)="openAndClose()">
+                    </p-dropdown>
+                    <label for="" *ngIf="careGiven" class="text-danger">This field is required</label>
+                </ng-container>
+
+            </div>
+            <div *ngIf="inputFields==false">
                 <label class="form-label bold">Reason<span class="required"></span></label>
 
                 <ng-container>
-                    <p-dropdown [required]="true" name="bloodGlucoseChartFormData.Reason" placeholder="----select----"
+                    <p-dropdown [required]="true" name="BowelChartFormData.Reason" placeholder="----select----"
                         [style]="{ width: '100%' }" [options]="stLstReason" optionValue="optionId"
                         optionLabel="optionValue" [(ngModel)]="bloodGlucoseChartFormData.Reason">
                     </p-dropdown>
+                    <label for="" *ngIf="reason" class="text-danger">This field is required</label>
                 </ng-container>
             </div>
             <div *ngIf="inputFields==true">

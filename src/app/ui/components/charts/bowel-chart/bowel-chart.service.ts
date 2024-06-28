@@ -6,27 +6,30 @@ import { environment } from 'src/environments/environment';
 @Injectable({
   providedIn: 'root'
 })
-export class BloodGlucoseChartService {
+export class BowelChartService {
 
   constructor(private _httpclient: HttpClient) { }
 
 
-  //#region BloodGlucoseChart
+  //#region Bowel Chart
 
-  AddInsertUpdatebloodGlucoseChartForm(bloodGlucoseChartFormData: any): Observable<any> {
+  AddInsertUpdateBowelChartForm(BowelChartFormData: any): Observable<any> {
     let reqHeader = new HttpHeaders({
       'Content-Type': 'application/json',
       'Access-Control-Allow-Origin': environment.BaseUriUser,
       'Authorization': 'Bearer ' + localStorage.getItem('token')
     });
     let params = new HttpParams();
-    var data = JSON.stringify(bloodGlucoseChartFormData).toString();
+    var data = JSON.stringify(BowelChartFormData).toString();
     return this._httpclient.post<any>(
       environment.BaseUriUser +
-      'api/User/AddInsertUpdatebloodGlucoseChartForm',
+      'api/User/AddInsertUpdateBowelChartForm',
       data,
       { headers: reqHeader, params: params }
     );
   }
+
+
+  //#endregion
 
 }

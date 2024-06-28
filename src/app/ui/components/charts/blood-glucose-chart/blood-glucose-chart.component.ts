@@ -29,6 +29,8 @@ export class BloodGlucoseChartComponent extends AppComponentBase implements OnIn
   isEditable: boolean;
   StatementType: string;
   inputFields: boolean;
+  reason:boolean=false;
+  careGiven:boolean=false;
 
   rangeOptionPrePostMeal: any[] = [
     { label: 'Pre Meal', value: 'Pre Meal' },
@@ -85,6 +87,7 @@ export class BloodGlucoseChartComponent extends AppComponentBase implements OnIn
   }
 
   ngOnInit(): void {
+    this.bloodGlucoseChartFormData.DateAndTime = new Date()
     this.userId = this.preSelectedChartData.userId;
     this.residentAdmissionInfoId =
       this.preSelectedChartData.residentAdmissionInfoId;
@@ -129,7 +132,14 @@ export class BloodGlucoseChartComponent extends AppComponentBase implements OnIn
   }
 
   Save() {
-    if (
+    this.reason=false;
+    this.careGiven=false;
+    if(this.bloodGlucoseChartFormData.CareGiven==null){
+      this.careGiven=true;
+    }else if(this.bloodGlucoseChartFormData.CareGiven=='No' &&this.bloodGlucoseChartFormData.Reason==null){
+      this.reason=true;
+    }
+    else if (
       this.userId != null &&
       this.residentAdmissionInfoId != null &&
       this.loginId != null

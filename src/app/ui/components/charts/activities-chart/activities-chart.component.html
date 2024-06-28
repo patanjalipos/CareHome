@@ -166,12 +166,11 @@
                     Date/Time<span class="required"></span></label>
 
                 <ng-container>
-                    <p-calendar name="" [showIcon]="true" inputId="icon" class="iconcal" [readonlyInput]="true"
+                    <p-calendar name="" [required]="true" [showIcon]="true" inputId="icon" class="iconcal" [readonlyInput]="true"
                         appendTo="body" [maxDate]="" #dobref="" [dateFormat]="customDateFormat.CalendarFormat"
                         [(ngModel)]="ActivitiesChartFormData.DateAndTime" [showTime]="true"
                         hourFormat="24"></p-calendar>
                 </ng-container>
-
             </div>
             <div class="col-md-12">
 
