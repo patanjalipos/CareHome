@@ -348,8 +348,6 @@ export class PainChartComponent extends AppComponentBase implements OnInit {
                         else {
                             this.rightBtnCheck = false;
                         }
-                        console.log(this.PainChartLst);
-
                     } else {
                         this.PainChartLst = [];
                     }
@@ -386,12 +384,10 @@ export class PainChartComponent extends AppComponentBase implements OnInit {
         this.evaluateInterventionPopupData.selectedevaluate = this.evaluateInterventionPopupData.selectedevaluate.code;
         this.evaluateInterventionPopupData.isEvaluate=true;
         this.evaluateInterventionPopupData.chartMasterId=this.preSelectedChartData.chartMasterId;
-        console.log(this.preSelectedChartData);
         
         const objectBody: any = {
             ChartData: this.evaluateInterventionPopupData,
         };
-        console.log(objectBody);
         
         this._UtilityService.showSpinner();
         this.unsubscribe.add = this._PainChartServices
@@ -426,9 +422,6 @@ export class PainChartComponent extends AppComponentBase implements OnInit {
             ModifiedBy: this.loginId,
         };
         this.isShowStrikeThroughPopup = true;
-        console.log(chart, 'particular chart');
-
-        console.log(this.StrikeThroughData, 'chartdata');
     }
 
     Changes(value: boolean) {

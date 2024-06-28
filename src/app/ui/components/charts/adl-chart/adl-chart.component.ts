@@ -96,9 +96,7 @@ export class AdlChartComponent extends AppComponentBase implements OnInit {
         });
         this.optionService.getstLstErrorAndWarning().subscribe((data) => {
             this.stLstErrorAndWarning = data;
-            console.log(this.stLstErrorAndWarning);
             this.result = this.stLstErrorAndWarning.Warnings.Components.Charts.find(i => i.ChartId === ChartTypes.ADLChart);
-            console.log(this.result);
             this.ChartName = this.result["ChartName"];
             this._ConstantServices.ActiveMenuName = this.ChartName;
         });
@@ -267,6 +265,8 @@ export class AdlChartComponent extends AppComponentBase implements OnInit {
                 StatementType: this.StatementType,
                 ADLChartDetail: this.ADLChartData,
             };
+            console.log(objectBody);
+            
             this._UtilityService.showSpinner();
             this.unsubscribe.add = this._ADLChart
                 .InsertUpdateADLChart(objectBody)
@@ -338,8 +338,6 @@ export class AdlChartComponent extends AppComponentBase implements OnInit {
                         else {
                             this.rightBtnCheck = false;
                         }
-                        console.log(this.ADLChartsLst);
-
                     } else {
                         this.ADLChartsLst = [];
                     }
@@ -358,8 +356,6 @@ export class AdlChartComponent extends AppComponentBase implements OnInit {
             ModifiedBy:this.loginId,
          };
          this.isShowStrikeThroughPopup = true;
-         
-         console.log(this.StrikeThroughData,'chartdata');
     }
 
     Changes(value: boolean) {

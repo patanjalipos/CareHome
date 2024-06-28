@@ -258,8 +258,6 @@ export class BloodPressureChartComponent
                         else {
                             this.rightBtnCheck = false;
                         }
-                        console.log(this.bloodPressureChartsLst);
-
                     } else {
                         this.bloodPressureChartsLst = [];
                     }
@@ -278,9 +276,6 @@ export class BloodPressureChartComponent
             ModifiedBy: this.loginId,
         };
         this.isShowStrikeThroughPopup = true;
-        console.log(chart, 'particular chart');
-
-        console.log(this.StrikeThroughData, 'chartdata');
     }
 
     Changes(value: boolean) {

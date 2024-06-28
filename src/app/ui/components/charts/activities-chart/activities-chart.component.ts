@@ -120,9 +120,7 @@ export class ActivitiesChartComponent
         });
         this.optionService.getstLstErrorAndWarning().subscribe((data) => {
             this.stLstErrorAndWarning = data;
-            console.log(this.stLstErrorAndWarning);
             this.result = this.stLstErrorAndWarning.Warnings.Components.Charts.find(i => i.ChartId === ChartTypes.ActivitiesChart);
-            console.log(this.result);
             this.ChartName = this.result["ChartName"];
             this._ConstantServices.ActiveMenuName = this.ChartName;
         });
@@ -192,8 +190,6 @@ export class ActivitiesChartComponent
                         else {
                             this.rightBtnCheck = false;
                         }
-                        console.log(this.ActivityChartsLst);
-
                     } else {
                         this.ActivityChartsLst = [];
                     }
@@ -342,8 +338,6 @@ export class ActivitiesChartComponent
             ModifiedBy:this.loginId,
          };
          this.isShowStrikeThroughPopup = true;
-         
-         console.log(this.StrikeThroughData,'chartdata');
         }
     
     ResetModel() {

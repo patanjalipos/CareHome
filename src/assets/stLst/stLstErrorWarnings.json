@@ -12,6 +12,10 @@
                 {
                     "ChartName": "ADL Chart",
                     "ChartId": "6642f13bb33c8394db706069"
+                },
+                {
+                    "ChartName": "Weight Chart",
+                    "ChartId": "6642f401b33c8394db706081"
                 }
             ]
         }

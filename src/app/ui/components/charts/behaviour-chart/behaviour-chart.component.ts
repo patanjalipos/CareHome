@@ -308,8 +308,6 @@ export class BehaviourChartComponent
                         else {
                             this.rightBtnCheck = false;
                         }
-                        console.log(this.behaviourChartsLst);
-
                     } else {
                         this.behaviourChartsLst = [];
                     }
@@ -328,9 +326,6 @@ export class BehaviourChartComponent
            ModifiedBy:this.loginId,
         };
         this.isShowStrikeThroughPopup = true;
-        console.log(chart,'particular chart');
-        
-        console.log(this.StrikeThroughData,'chartdata');
        }
 
     Changes(value: boolean) {
