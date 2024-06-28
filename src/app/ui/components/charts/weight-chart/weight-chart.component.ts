@@ -235,8 +235,8 @@ Save() {
             else {
                 this.ReasonCheck = false;
             }
+        }
     }
-}
   if (
       this.userId != null &&
       this.residentAdmissionInfoId != null &&

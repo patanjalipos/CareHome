@@ -16,6 +16,14 @@
                 {
                     "ChartName": "Weight Chart",
                     "ChartId": "6642f401b33c8394db706081"
+                },
+                {
+                    "ChartName": "Behaviour Chart",
+                    "ChartId": "6642f15db33c8394db70606a"
+                },
+                {
+                    "ChartName": "Blood Pressure Chart",
+                    "ChartId": "6642f195b33c8394db70606c"
                 }
             ]
         }

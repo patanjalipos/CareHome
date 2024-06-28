@@ -25,24 +25,26 @@
                 </ng-container>
             </div>
             <div class="col-md-12">
-                <label class="form-label bold">Care Given <span class="required"></span></label>
+                <label class="form-label bold">Care Given <span class="required">*</span></label>
 
                 <ng-container>
-                    <p-dropdown [required]="true" name="BehaviourChartData.CareGiven" placeholder="----select----"
+                    <p-dropdown [ngClass]="{'ng-dirty ng-invalid':CareGivenCheck}" [required]="true" name="BehaviourChartData.CareGiven" placeholder="----select----"
                         [style]="{ width: '100%' }" [options]="stLstYesNoOptions" optionValue="optionId"
                         optionLabel="optionValue" [(ngModel)]="BehaviourChartData.CareGivenOptions"
                         (onChange)="openAndClose()">
                     </p-dropdown>
+                    <span class="required" *ngIf="BehaviourChartData.CareGivenOptions==null && CareGivenCheck == true">This field is required!</span>
                 </ng-container>
             </div>
             <div *ngIf="inputFieldsCheck==false">
-                <label class="form-label bold">Reason<span class="required"></span></label>
+                <label class="form-label bold">Reason<span class="required">*</span></label>
 
                 <ng-container>
-                    <p-dropdown [required]="true" name="BehaviourChartData.Reason" placeholder="----select----"
+                    <p-dropdown [ngClass]="{'ng-dirty ng-invalid':ReasonCheck}" [required]="true" name="BehaviourChartData.Reason" placeholder="----select----"
                         [style]="{ width: '100%' }" [options]="stLstReason" optionValue="optionId"
                         optionLabel="optionValue" [(ngModel)]="BehaviourChartData.Reason" (onChange)="openAndClose()">
                     </p-dropdown>
+                    <span class="required" *ngIf="BehaviourChartData.Reason==null && ReasonCheck == true">This field is required!</span>
                 </ng-container>
             </div>
             <div *ngIf="inputFieldsCheck" class="row">

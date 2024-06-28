@@ -27,25 +27,27 @@
                 </ng-container>
             </div>
             <div class="col-md-12">
-                <label class="form-label bold">Care Given <span class="required"></span></label>
+                <label class="form-label bold">Care Given <span class="required">*</span></label>
 
                 <ng-container>
-                    <p-dropdown [required]="true" name="bloodPressureChartFormData.CareGiven"
+                    <p-dropdown [ngClass]="{'ng-dirty ng-invalid':CareGivenCheck}" [required]="true" name="bloodPressureChartFormData.CareGiven"
                         placeholder="----select----" [style]="{ width: '100%' }" [options]="stLstYesNoOptions"
                         optionValue="optionId" optionLabel="optionValue"
                         [(ngModel)]="bloodPressureChartFormData.CareGiven" (onChange)="openAndClose()">
                     </p-dropdown>
+                    <span class="required" *ngIf="bloodPressureChartFormData.CareGiven==null && CareGivenCheck == true">This field is required!</span>
                 </ng-container>
             </div>
             <div *ngIf="inputFields==false">
-                <label class="form-label bold">Reason<span class="required"></span></label>
+                <label class="form-label bold">Reason<span class="required">*</span></label>
 
                 <ng-container>
-                    <p-dropdown [required]="true" name="bloodPressureChartFormData.Reason" placeholder="----select----"
+                    <p-dropdown [ngClass]="{'ng-dirty ng-invalid':ReasonCheck}" [required]="true" name="bloodPressureChartFormData.Reason" placeholder="----select----"
                         [style]="{ width: '100%' }" [options]="stLstReason" optionValue="optionId"
                         optionLabel="optionValue" [(ngModel)]="bloodPressureChartFormData.Reason"
                         (onChange)="openAndClose()">
                     </p-dropdown>
+                    <span class="required" *ngIf="bloodPressureChartFormData.Reason==null && ReasonCheck == true">This field is required!</span>
                 </ng-container>
             </div>
             <div *ngIf="inputFields" class="row">

@@ -39,6 +39,8 @@ export class ActivitiesChartComponent
     residentAdmissionInfoId: any;
     userId: any;
     StatementType: string = null;
+    CareGivenCheck:boolean = false;
+    ReasonCheck: boolean = false;
 
     lstActivity: any[] = [];
     lstPurposeOfActivity: any[] = [];
@@ -140,7 +142,6 @@ export class ActivitiesChartComponent
             this.lstParticipation = responses[1];
             this.lstPurposeOfActivity = responses[2];
         });
-        this.GetActivitiesChartDetails(this.preSelectedChartData.chartId);
         this.getChartDataById(this.preSelectedChartData.chartMasterId, this.preSelectedChartData.residentAdmissionInfoId, this.pageNumber, this.pageSize);
         this.responsiveOptions = [
             {
@@ -159,6 +160,19 @@ export class ActivitiesChartComponent
                 numScroll: 1
             }
         ];
+
+        if (this.preSelectedChartData.selectedChartID != null) {
+            this.ActivitiesChartFormData = <any>{};
+            this.GetActivitiesChartDetails(this.preSelectedChartData.selectedChartID);
+            this.StatementType = 'Update';
+        } else {
+            this.ResetModel();
+        }
+
+        this.ActivitiesChartFormData.DateAndTime = new Date();
+        // this.ActivitiesChartFormData.DateAndTime = this.datePipe.transform(this.ActivitiesChartFormData.DateAndTime,'dd-MM-yyyy HH:mm');
+        console.log(this.ActivitiesChartFormData.DateAndTime);
+        
     }
     chartOnChange() {
         this.getChartDataById(this.preSelectedChartData.chartMasterId, this.preSelectedChartData.residentAdmissionInfoId, this.pageNumber, this.pageSize);
@@ -265,10 +279,27 @@ export class ActivitiesChartComponent
     }
 
     Save() {
+        if(this.ActivitiesChartFormData.CareGiven == null) {
+            this.CareGivenCheck = true;
+        }
+        else if(this.ActivitiesChartFormData.CareGiven != null) {
+            this.CareGivenCheck = false;
+            if(this.ActivitiesChartFormData.CareGiven == 'Yes') {
+                this.ReasonCheck = false;
+            }
+            else{
+                if(this.ActivitiesChartFormData.Reason == null) {
+                    this.ReasonCheck = true;
+                }
+                else {
+                    this.ReasonCheck = false;
+                }
+            }
+        }
         if (
             this.userId != null &&
             this.residentAdmissionInfoId != null &&
-            this.loginId != null
+            this.loginId != null && this.CareGivenCheck == false && this.ReasonCheck == false
         ) {
             this.ActivitiesChartFormData.userId = this.userId;
             this.ActivitiesChartFormData.StartedBy = this.loginId;

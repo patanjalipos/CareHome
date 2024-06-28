@@ -36,6 +36,8 @@ export class AdlChartComponent extends AppComponentBase implements OnInit {
     userId: any;
     ADLChartData: any = <any>{};
     StatementType: string = null;
+    CareGivenCheck:boolean = false;
+    ReasonCheck: boolean = false;
 
     LstTransferMethod: any[] = [];
     LstAssistanceLevel: any[] = [];
@@ -154,6 +156,7 @@ export class AdlChartComponent extends AppComponentBase implements OnInit {
         } else {
             this.ResetModel();
         }
+        this.ADLChartData.DateAndTime = new Date();
     }
 
     openAndClose() {
@@ -226,10 +229,27 @@ export class AdlChartComponent extends AppComponentBase implements OnInit {
     }
 
     Save() {
+        if(this.ADLChartData.CareGivenOptions == null) {
+            this.CareGivenCheck = true;
+        }
+        else if(this.ADLChartData.CareGivenOptions != null) {
+            this.CareGivenCheck = false;
+            if(this.ADLChartData.CareGivenOptions == 'Yes') {
+                this.ReasonCheck = false;
+            }
+            else{
+                if(this.ADLChartData.Reason == null) {
+                    this.ReasonCheck = true;
+                }
+                else {
+                    this.ReasonCheck = false;
+                }
+            }
+        }
         if (
             this.userId != null &&
             this.residentAdmissionInfoId != null &&
-            this.loginId != null
+            this.loginId != null && this.CareGivenCheck == false && this.ReasonCheck == false
         ) {
             this.ADLChartData.userId = this.userId;
             this.ADLChartData.residentAdmissionInfoId =
