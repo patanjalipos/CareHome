@@ -17,7 +17,6 @@ import { ResidentLayoutModule } from './layout/resident.layout.module';
 import { MainInterceptorInterceptor } from './main-interceptor.interceptor';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthGuard } from './ui/components/auth/auth.guard';
-import { WeightChartComponent } from './ui/components/charts/weight-chart/weight-chart.component';
 
 @NgModule({
     declarations: [
