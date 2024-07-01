@@ -2,74 +2,36 @@
     <div class="row d-flex align-items-center">
         <div class="col-md-3">
             <label class="form-label"> From Date / To Date </label>
-            <p-calendar
-                #cal1
-                selectionMode="range"
-                [(ngModel)]="rangeDates"
-                placeholder="--select--"
-                [ngModelOptions]="{ standalone: true }"
-                [showIcon]="true"
-                inputId="icon"
-                [readonlyInput]="true"
-                [dateFormat]="customDateFormat.CalendarFormat"
-                (onSelect)="dateRangeChange(cal1)"
-                (onChange)="SearchChart()"
-                [showButtonBar]="true"
-            ></p-calendar>
+            <p-calendar #cal1 selectionMode="range" [(ngModel)]="rangeDates" placeholder="--select--"
+                [ngModelOptions]="{ standalone: true }" [showIcon]="true" inputId="icon" [readonlyInput]="true"
+                [dateFormat]="customDateFormat.CalendarFormat" (onSelect)="dateRangeChange(cal1)"
+                (onChange)="SearchChart()" [showButtonBar]="true"></p-calendar>
         </div>
         <div class="col-md-3">
             <label class="form-label">
-                Select Chart </label
-            >
-            <p-dropdown
-                [(ngModel)]="selectedChartMasterId"
-                [required]="true"
-                [options]="lstMaster"
-                optionLabel="ChartName"
-                optionValue="ChartMasterId"
-                placeholder="--select--"
-                [style]="{ width: '100%' }"
-                [filter]="true"
-                filterPlaceholder="Search Chart Name"
-                (onChange)="SearchChart()"
-            >
+                Select Chart </label>
+            <p-dropdown [(ngModel)]="selectedChartMasterId" [required]="true" [options]="lstMaster"
+                optionLabel="ChartName" optionValue="ChartMasterId" placeholder="--select--" [style]="{ width: '100%' }"
+                [filter]="true" filterPlaceholder="Search Chart Name" (onChange)="SearchChart()">
             </p-dropdown>
         </div>
 
         <div class="col-md-6 d-flex mt-3">
             <span class="p-ml-left mr-4">
-                <button
-                    pButton
-                    title="Create"
-                    label="Create Chart"
-                    (click)="OpenChart(selectedChartMasterId)"
-                ></button>
+                <button pButton title="Create" label="Create Chart" (click)="OpenChart(selectedChartMasterId)"></button>
                 <span class="total-txt"> </span>
             </span>
             <div>
                 <span class="p-ml-left">
-                    <button
-                        pButton
-                        title="Clear"
-                        label="Clear Search"
-                        (click)="ResetModel()"
-                    ></button>
+                    <button pButton title="Clear" label="Clear Search" (click)="ResetModel()"></button>
                     <span class="total-txt"> </span>
                 </span>
             </div>
         </div>
 
-        <p-table
-            #dt 
-            [value]="chartDashboardList"
-            responsiveLayout="scroll"
-            class="mt-4"
-            styleClass="p-datatable-striped"
-            [rowHover]="true"
-            [globalFilterFields]="['ChartName,ModifiedOn']"
-            [scrollable]="true"
-            scrollHeight="calc(100vh - 155px)"
-        >
+        <p-table #dt [value]="chartDashboardList" responsiveLayout="scroll" class="mt-4"
+            styleClass="p-datatable-striped" [rowHover]="true" [globalFilterFields]="['ChartName,ModifiedOn']"
+            [scrollable]="true" scrollHeight="calc(100vh - 155px)">
             <ng-template pTemplate="emptymessage" let-columns>
                 <tr>
                     <td [attr.colspan]="columns?.length">No records found</td>
@@ -95,8 +57,8 @@
                     </td> -->
                     <td>
                         {{
-                            dt.ModifiedOn
-                                | date : customDateFormat.DEF_DATE_TIME
+                        dt.ModifiedOn
+                        | date : customDateFormat.DEF_DATE_TIME
                         }}
                     </td>
                     <!-- <td>
@@ -123,101 +85,67 @@
 
 <!-- Dynamic Form Component -->
 
-<app-activities-chart
-    [preSelectedChartData]="selectedChartData"
-    (EmitUpdateForm)="EmitUpdateForm($event)"
-    *ngIf="
+<app-activities-chart [preSelectedChartData]="selectedChartData" (EmitUpdateForm)="EmitUpdateForm($event)" *ngIf="
         ShowChildComponent == true &&
         selectedChartMasterId == ChartTypes.ActivitiesChart
-    "
-></app-activities-chart>
+    "></app-activities-chart>
 
-<app-behaviour-chart
-    [preSelectedChartData]="selectedChartData"
-    (EmitUpdateForm)="EmitUpdateForm($event)"
-    *ngIf="
+<app-behaviour-chart [preSelectedChartData]="selectedChartData" (EmitUpdateForm)="EmitUpdateForm($event)" *ngIf="
         ShowChildComponent == true &&
         selectedChartMasterId == ChartTypes.BehaviourChart
-    "
-></app-behaviour-chart>
+    "></app-behaviour-chart>
 
-<app-blood-pressure-chart
-    [preSelectedChartData]="selectedChartData"
-    (EmitUpdateForm)="EmitUpdateForm($event)"
-    *ngIf="
+<app-blood-pressure-chart [preSelectedChartData]="selectedChartData" (EmitUpdateForm)="EmitUpdateForm($event)" *ngIf="
         ShowChildComponent == true &&
         selectedChartMasterId == ChartTypes.BloodPressureChart
-    "
-></app-blood-pressure-chart>
+    "></app-blood-pressure-chart>
 
-<app-fluid-combined-chart
-    [preSelectedChartData]="selectedChartData"
-    (EmitUpdateForm)="EmitUpdateForm($event)"
-    *ngIf="
+<app-fluid-combined-chart [preSelectedChartData]="selectedChartData" (EmitUpdateForm)="EmitUpdateForm($event)" *ngIf="
         ShowChildComponent == true &&
         selectedChartMasterId == ChartTypes.FluidCombinedChart
-    "
-></app-fluid-combined-chart>
+    "></app-fluid-combined-chart>
 
-<app-infection-chart
-    [preSelectedChartData]="selectedChartData"
-    (EmitUpdateForm)="EmitUpdateForm($event)"
-    *ngIf="
+<app-infection-chart [preSelectedChartData]="selectedChartData" (EmitUpdateForm)="EmitUpdateForm($event)" *ngIf="
         ShowChildComponent == true &&
         selectedChartMasterId == ChartTypes.InfectionChart
-    "
-></app-infection-chart>
+    "></app-infection-chart>
 
-<app-bowel-chart
-    [preSelectedChartData]="selectedChartData"
-    (EmitUpdateForm)="EmitUpdateForm($event)"
-    *ngIf="
+<app-bowel-chart [preSelectedChartData]="selectedChartData" (EmitUpdateForm)="EmitUpdateForm($event)" *ngIf="
         ShowChildComponent == true &&
         selectedChartMasterId == ChartTypes.BowelChart
-    "
-></app-bowel-chart>
+    "></app-bowel-chart>
 
-<app-enteral-feeding-chart
-    [preSelectedChartData]="selectedChartData"
-    (EmitUpdateForm)="EmitUpdateForm($event)"
-    *ngIf="
+<app-enteral-feeding-chart [preSelectedChartData]="selectedChartData" (EmitUpdateForm)="EmitUpdateForm($event)" *ngIf="
         ShowChildComponent == true &&
         selectedChartMasterId == ChartTypes.EnteralFeedingChart
-    "
-></app-enteral-feeding-chart>
+    "></app-enteral-feeding-chart>
 
-<app-adl-chart
-    [preSelectedChartData]="selectedChartData"
-    (EmitUpdateForm)="EmitUpdateForm($event)"
-    *ngIf="
+<app-adl-chart [preSelectedChartData]="selectedChartData" (EmitUpdateForm)="EmitUpdateForm($event)" *ngIf="
         ShowChildComponent == true &&
         selectedChartMasterId == ChartTypes.ADLChart
-    "
->
+    ">
 </app-adl-chart>
 
-<app-pain-chart
-    [preSelectedChartData]="selectedChartData"
-    (EmitUpdateForm)="EmitUpdateForm($event)"
-    *ngIf="
+<app-pain-chart [preSelectedChartData]="selectedChartData" (EmitUpdateForm)="EmitUpdateForm($event)" *ngIf="
         ShowChildComponent == true &&
         selectedChartMasterId == ChartTypes.PainChart
     ">
 </app-pain-chart>
 
-<app-weight-chart [preSelectedChartData]="selectedChartData"
-    (EmitUpdateForm)="EmitUpdateForm($event)"
-    *ngIf="
+<app-weight-chart [preSelectedChartData]="selectedChartData" (EmitUpdateForm)="EmitUpdateForm($event)" *ngIf="
         ShowChildComponent == true &&
         selectedChartMasterId == ChartTypes.WeightChart
     ">
 </app-weight-chart>
 
-<app-blood-glucose-chart  
-    [preSelectedChartData]="selectedChartData"
-    (EmitUpdateForm)="EmitUpdateForm($event)"
-    *ngIf="
+<app-blood-glucose-chart [preSelectedChartData]="selectedChartData" (EmitUpdateForm)="EmitUpdateForm($event)" *ngIf="
         ShowChildComponent == true &&
         selectedChartMasterId == ChartTypes.BloodGlucoseChart
     ">
 </app-blood-glucose-chart>
+
+<app-fluid-intake-chart [preSelectedChartData]="selectedChartData" (EmitUpdateForm)="EmitUpdateForm($event)" *ngIf="
+    ShowChildComponent == true &&
+    selectedChartMasterId == ChartTypes.FluidIntakeChart
+">
+</app-fluid-intake-chart>
