@@ -95,10 +95,6 @@ export class BloodGlucoseChartComponent extends AppComponentBase implements OnIn
     this.optionService.getstLstYesNoOptions().subscribe((data) => {
       this.stLstYesNoOptions = data;
     });
-
-    this.optionService.getstLstAttendaceOptions().subscribe((data) => {
-      this.stLstAttendanceOptions = data;
-    });
     this.optionService.getstLstReason().subscribe((data) => {
       this.stLstReason = data;
     });
