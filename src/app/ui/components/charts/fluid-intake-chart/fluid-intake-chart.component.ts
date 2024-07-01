@@ -1,44 +1,44 @@
+import { DatePipe } from '@angular/common';
 import { Component, EventEmitter, Input, OnInit, Output, SimpleChanges } from '@angular/core';
-import { AppComponentBase } from 'src/app/app-component-base';
+import { ChartTypes, ConstantsService, CustomDateFormat } from 'src/app/ui/service/constants.service';
 import { OptionService } from 'src/app/ui/service/option.service';
 import { UserService } from 'src/app/ui/service/user.service';
 import { UtilityService } from 'src/app/utility/utility.service';
-import { BloodGlucoseChartService } from './blood-glucose-chart.service';
-import { DatePipe } from '@angular/common';
-import { ChartTypes, ConstantsService, CustomDateFormat } from 'src/app/ui/service/constants.service';
+import { FluidCombinedChartService } from '../fluid-combined-chart/fluid-combined-chart.service';
 import { ActivatedRoute } from '@angular/router';
+import { Observable, catchError, forkJoin, map, of } from 'rxjs';
+import { AppComponentBase } from 'src/app/app-component-base';
+import { FluidIntakeChartService } from './fluid-intake-chart.service';
 
 @Component({
-  selector: 'app-blood-glucose-chart',
-  templateUrl: './blood-glucose-chart.component.html',
-  styleUrls: ['./blood-glucose-chart.component.scss']
+  selector: 'app-fluid-intake-chart',
+  templateUrl: './fluid-intake-chart.component.html',
+  styleUrls: ['./fluid-intake-chart.component.scss']
 })
-export class BloodGlucoseChartComponent extends AppComponentBase implements OnInit {
+export class FluidIntakeChartComponent extends AppComponentBase implements OnInit {
 
   @Input() preSelectedChartData: any = <any>{};
   @Output() EmitUpdateForm: EventEmitter<any> = new EventEmitter<any>();
-
   customDateFormat = CustomDateFormat;
-  loginId: string;
-  userId: any;
-  residentAdmissionInfoId: any;
-
-  bloodGlucoseChartFormData: any = <any>{};
-  stLstYesNoOptions: any[];
-  stLstAttendanceOptions: any;
-  isEditable: boolean;
-  StatementType: string;
   inputFields: boolean;
   reason:boolean=false;
   careGiven:boolean=false;
+  FluidIntakeChartFormData: any = <any>{};
+  isEditable: boolean;
+  loginId: any;
+  residentAdmissionInfoId: any;
+  userId: any;
+  StatementType: string = null;
+  CareGivenCheck: boolean = false;
+  ReasonCheck: boolean = false;
+  lstFluidIntake: any[] = [];
 
-  rangeOptionPrePostMeal: any[] = [
-    { label: 'Pre Meal', value: 'Pre Meal' },
-    { label: 'Post Meal', value: 'Post Meal' }
-  ];
+  //Static Options
+  stLstYesNoOptions: any[] = [];
+  stLstAttendanceOptions: any[] = [];
 
   //for carousel
-  bloodGlucoseChartsLst: any[] = [];
+  FluidIntakeChartsLst: any[] = [];
   pageNumber: number = 0;
   pageSize: number = 3;
   responsiveOptions: any[] | undefined;
@@ -46,13 +46,16 @@ export class BloodGlucoseChartComponent extends AppComponentBase implements OnIn
   isShowStrikeThroughPopup: boolean = false;
   StrikeThroughData: any = <any>{};
   stLstReason: any[] = [];
+  stLstErrorAndWarning: any = <any>{};
+  result: any = <any>{};
+  ChartName: string;
 
   constructor(
     private optionService: OptionService,
     private _UtilityService: UtilityService,
     private _UserService: UserService,
     private datePipe: DatePipe,
-    private _bloodGlucoseServices: BloodGlucoseChartService,
+    private _fluidIntakeChart: FluidIntakeChartService,
     private _ConstantServices: ConstantsService,
     private route: ActivatedRoute
   ) {
@@ -78,7 +81,7 @@ export class BloodGlucoseChartComponent extends AppComponentBase implements OnIn
   ngOnChanges(changes: SimpleChanges): void {
     this.isEditable = this.preSelectedChartData.isEditable;
     if (this.preSelectedChartData.selectedChartID != null) {
-      this.bloodGlucoseChartFormData = <any>{};
+      this.FluidIntakeChartFormData = <any>{};
       this.StatementType = 'Update';
     } else {
       this.ResetModel();
@@ -87,7 +90,6 @@ export class BloodGlucoseChartComponent extends AppComponentBase implements OnIn
   }
 
   ngOnInit(): void {
-    this.bloodGlucoseChartFormData.DateAndTime = new Date()
     this.userId = this.preSelectedChartData.userId;
     this.residentAdmissionInfoId =
       this.preSelectedChartData.residentAdmissionInfoId;
@@ -95,10 +97,30 @@ export class BloodGlucoseChartComponent extends AppComponentBase implements OnIn
     this.optionService.getstLstYesNoOptions().subscribe((data) => {
       this.stLstYesNoOptions = data;
     });
+
     this.optionService.getstLstReason().subscribe((data) => {
       this.stLstReason = data;
     });
+    this.optionService.getstLstErrorAndWarning().subscribe((data) => {
+      this.stLstErrorAndWarning = data;
+      this.result = this.stLstErrorAndWarning.Warnings.Components.Charts.find(i => i.ChartId === ChartTypes.ActivitiesChart);
+      this.ChartName = this.result["ChartName"];
+      this._ConstantServices.ActiveMenuName = this.ChartName;
+    });
 
+    const collectionNames = ['fluidIntake'];
+
+    forkJoin(
+      collectionNames.map((collectionName) =>
+        this.GetChartDropDownMasterList(
+          ChartTypes.FluidIntakeChart,
+          collectionName,
+          1
+        )
+      )
+    ).subscribe((responses: any[]) => {
+      this.lstFluidIntake = responses[0];
+    });
     this.getChartDataById(this.preSelectedChartData.chartMasterId, this.preSelectedChartData.residentAdmissionInfoId, this.pageNumber, this.pageSize);
     this.responsiveOptions = [
       {
@@ -117,22 +139,27 @@ export class BloodGlucoseChartComponent extends AppComponentBase implements OnIn
         numScroll: 1
       }
     ];
+
+    if (this.preSelectedChartData.selectedChartID != null) {
+      this.FluidIntakeChartFormData = <any>{};
+      this.StatementType = 'Update';
+    } else {
+      this.ResetModel();
+    }
+
+    this.FluidIntakeChartFormData.DateAndTime = new Date();
+    // this.ActivitiesChartFormData.DateAndTime = this.datePipe.transform(this.ActivitiesChartFormData.DateAndTime,'dd-MM-yyyy HH:mm');
+    console.log(this.FluidIntakeChartFormData.DateAndTime);
+
   }
 
-  ClearAllfeilds() {
-    if (this.preSelectedChartData.selectedChartID) {
-      this.bloodGlucoseChartFormData = <any>{};
-      this.bloodGlucoseChartFormData.activitiesChartId =
-        this.preSelectedChartData.selectedChartID;
-    }
-  }
 
   Save() {
     this.reason=false;
     this.careGiven=false;
-    if(this.bloodGlucoseChartFormData.CareGiven==null){
+    if(this.FluidIntakeChartFormData.CareGiven==null){
       this.careGiven=true;
-    }else if(this.bloodGlucoseChartFormData.CareGiven=='No' &&this.bloodGlucoseChartFormData.Reason==null){
+    }else if(this.FluidIntakeChartFormData.CareGiven=='No' &&this.FluidIntakeChartFormData.Reason==null){
       this.reason=true;
     }
     else if (
@@ -140,20 +167,20 @@ export class BloodGlucoseChartComponent extends AppComponentBase implements OnIn
       this.residentAdmissionInfoId != null &&
       this.loginId != null
     ) {
-      this.bloodGlucoseChartFormData.userId = this.userId;
-      this.bloodGlucoseChartFormData.StartedBy = this.loginId;
-      this.bloodGlucoseChartFormData.LastEnteredBy = this.loginId;
-      this.bloodGlucoseChartFormData.ResidentAdmissionInfoId =
+      this.FluidIntakeChartFormData.userId = this.userId;
+      this.FluidIntakeChartFormData.StartedBy = this.loginId;
+      this.FluidIntakeChartFormData.LastEnteredBy = this.loginId;
+      this.FluidIntakeChartFormData.ResidentAdmissionInfoId =
         this.residentAdmissionInfoId;
 
-      if (this.bloodGlucoseChartFormData.DateAndTime) {
+      if (this.FluidIntakeChartFormData.DateAndTime) {
         if (
           this.StatementType == 'Update' &&
-          typeof this.bloodGlucoseChartFormData.DateAndTime === 'string'
+          typeof this.FluidIntakeChartFormData.DateAndTime === 'string'
         ) {
           //Pare dateTime
           const dateParts =
-            this.bloodGlucoseChartFormData.DateAndTime.split(/[- :]/);
+            this.FluidIntakeChartFormData.DateAndTime.split(/[- :]/);
           const parsedDate = new Date(
             +dateParts[2],
             dateParts[1] - 1,
@@ -161,23 +188,23 @@ export class BloodGlucoseChartComponent extends AppComponentBase implements OnIn
             +dateParts[3],
             +dateParts[4]
           );
-          this.bloodGlucoseChartFormData.DateAndTime = parsedDate;
+          this.FluidIntakeChartFormData.DateAndTime = parsedDate;
         }
-        this.bloodGlucoseChartFormData.DateAndTime =
+        this.FluidIntakeChartFormData.DateAndTime =
           this.datePipe.transform(
-            this.bloodGlucoseChartFormData.DateAndTime,
+            this.FluidIntakeChartFormData.DateAndTime,
             'yyyy-MM-ddTHH:mm'
           );
       }
 
       const objectBody: any = {
         StatementType: this.StatementType,
-        bloodGlucoseChart: this.bloodGlucoseChartFormData,
+        fluidIntakeChart: this.FluidIntakeChartFormData,
       };
 
       this._UtilityService.showSpinner();
-      this.unsubscribe.add = this._bloodGlucoseServices
-        .AddInsertUpdatebloodGlucoseChartForm(objectBody)
+      this.unsubscribe.add = this._fluidIntakeChart
+        .AddInsertUpdateFluidIntakeChartForm(objectBody)
         .subscribe({
           next: (data) => {
             this._UtilityService.hideSpinner();
@@ -213,17 +240,15 @@ export class BloodGlucoseChartComponent extends AppComponentBase implements OnIn
           if (data.actionResult.success == true) {
             var tdata = JSON.parse(data.actionResult.result);
             tdata = tdata ? tdata : [];
-            this.bloodGlucoseChartsLst = tdata;
-            if (this.bloodGlucoseChartsLst.length < 3 || (((this.bloodGlucoseChartsLst.length) * (this.pageNumber + 1)) >= this.bloodGlucoseChartsLst[0].countRecords)) {
+            this.FluidIntakeChartsLst = tdata;
+            if (this.FluidIntakeChartsLst.length < 3 || (((this.FluidIntakeChartsLst.length) * (this.pageNumber + 1)) >= this.FluidIntakeChartsLst[0].countRecords)) {
               this.rightBtnCheck = true;
             }
             else {
               this.rightBtnCheck = false;
             }
-            console.log(this.bloodGlucoseChartsLst);
-
           } else {
-            this.bloodGlucoseChartsLst = [];
+            this.FluidIntakeChartsLst = [];
           }
         },
         error: (e) => {
@@ -233,28 +258,44 @@ export class BloodGlucoseChartComponent extends AppComponentBase implements OnIn
       });
   }
 
+  GetChartDropDownMasterList(
+    chartMasterId: string,
+    dropdownName: string,
+    status: number
+  ): Observable<any> {
+    this._UtilityService.showSpinner();
+    return this._UserService
+      .GetChartDropDownMasterList(chartMasterId, dropdownName, status)
+      .pipe(
+        map((response) => {
+          this._UtilityService.hideSpinner();
+          if (response.actionResult.success) {
+            return JSON.parse(response.actionResult.result);
+          } else {
+            return [];
+          }
+        }),
+        catchError((error) => {
+          this._UtilityService.hideSpinner();
+          this._UtilityService.showErrorAlert(error.message);
+
+          return of([]); // Returning empty array in case of error
+        })
+      );
+  }
+
   showPopup(chartId) {
     this.StrikeThroughData = {
-      ChartMasterId: ChartTypes.BloodGlucoseChart,
+      ChartMasterId: ChartTypes.FluidIntakeChart,
       ChartId: chartId,
       ModifiedBy: this.loginId,
     };
     this.isShowStrikeThroughPopup = true;
-
-    console.log(this.StrikeThroughData, 'chartdata');
-  }
-
-  openAndClose() {
-    if (this.bloodGlucoseChartFormData.CareGiven == 'Yes') {
-      this.inputFields = true;
-    } else {
-      this.inputFields = false;
-    }
   }
 
   ResetModel() {
     this.isEditable = true;
-    this.bloodGlucoseChartFormData = <any>{};
+    this.FluidIntakeChartFormData = <any>{};
     this.StatementType = 'Insert';
   }
 
@@ -265,19 +306,32 @@ export class BloodGlucoseChartComponent extends AppComponentBase implements OnIn
     }
   }
 
-
   rightBtn() {
     this.pageNumber++;
     this.chartOnChange();
   }
-
   Changes(value: boolean) {
     this.isShowStrikeThroughPopup = value;
     this.chartOnChange()
   }
-
+  openAndClose() {
+    if (this.FluidIntakeChartFormData.CareGiven == 'Yes') {
+      this.inputFields = true;
+    } else {
+      this.inputFields = false;
+    }
+  }
   chartOnChange() {
     this.getChartDataById(this.preSelectedChartData.chartMasterId, this.preSelectedChartData.residentAdmissionInfoId, this.pageNumber, this.pageSize);
   }
+
+  ClearAllfeilds() {
+    if (this.preSelectedChartData.selectedChartID) {
+      this.FluidIntakeChartFormData = <any>{};
+      this.FluidIntakeChartFormData.activitiesChartId =
+        this.preSelectedChartData.selectedChartID;
+    }
+  }
+
 
 }
