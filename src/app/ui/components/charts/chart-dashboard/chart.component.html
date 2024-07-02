@@ -221,3 +221,10 @@
         selectedChartMasterId == ChartTypes.BloodGlucoseChart
     ">
 </app-blood-glucose-chart>
+
+<app-waterlow-chart [preSelectedChartData]="selectedChartData"
+(EmitUpdateForm)="EmitUpdateForm($event)"
+*ngIf="
+    ShowChildComponent == true &&
+    selectedChartMasterId == ChartTypes.WaterlowChart
+"></app-waterlow-chart>

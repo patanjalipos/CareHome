@@ -18,6 +18,7 @@ import { TableModule } from 'primeng/table';
 import { PainChartModule } from "../pain-chart/pain-chart.module";
 import { WeightChartModule } from '../weight-chart/weight-chart.module';
 import { BloodGlucoseChartModule } from "../blood-glucose-chart/blood-glucose-chart.module";
+import { WaterlowChartModule } from '../waterlow-chart/waterlow-chart.module';
 
 @NgModule({
     declarations: [
@@ -42,7 +43,8 @@ import { BloodGlucoseChartModule } from "../blood-glucose-chart/blood-glucose-ch
         AdlChartModule,
         PainChartModule,
         WeightChartModule,
-        BloodGlucoseChartModule
+        BloodGlucoseChartModule,
+        WaterlowChartModule
     ]
 })
 export class ChartModule { }

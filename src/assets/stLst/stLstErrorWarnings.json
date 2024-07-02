@@ -24,6 +24,10 @@
                 {
                     "ChartName": "Blood Pressure Chart",
                     "ChartId": "6642f195b33c8394db70606c"
+                },
+                {
+                    "ChartName": "Waterlow Chart",
+                    "ChartId": "6642f3ebb33c8394db706080"
                 }
             ]
         }
