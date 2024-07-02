@@ -57,12 +57,6 @@ constructor(
   ];
  }
 
-  // async ngOnInit(): Promise<void> {
-  //   //const data$ = this.careService.getAllergiesList();
-  //   //this.lstallergies = await lastValueFrom(data$);
-  //   //console.log('lstallergies', this.lstallergies);    
-  // }
-
   ngOnInit(): void {
     if (this.userid != null && this.userid != undefined && this.admissionid != null && this.admissionid != undefined) {
       this.isEditable = false;

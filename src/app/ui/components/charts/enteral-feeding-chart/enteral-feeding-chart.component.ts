@@ -228,7 +228,6 @@ export class EnteralFeedingChartComponent extends AppComponentBase implements On
             else {
               this.rightBtnCheck = false;
             }
-            console.log(this.enteralfeedingChartsLst);
 
           } else {
             this.enteralfeedingChartsLst = [];
@@ -248,8 +247,6 @@ export class EnteralFeedingChartComponent extends AppComponentBase implements On
       ModifiedBy: this.loginId,
     };
     this.isShowStrikeThroughPopup = true;
-
-    console.log(this.StrikeThroughData, 'chartdata');
   }
 
   openAndClose() {

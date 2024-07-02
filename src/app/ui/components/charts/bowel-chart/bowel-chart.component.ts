@@ -276,8 +276,6 @@ export class BowelChartComponent extends AppComponentBase implements OnInit {
       ModifiedBy: this.loginId,
     };
     this.isShowStrikeThroughPopup = true;
-
-    console.log(this.StrikeThroughData, 'chartdata');
   }
 
   ResetModel() {
@@ -308,7 +306,6 @@ export class BowelChartComponent extends AppComponentBase implements OnInit {
             else {
               this.rightBtnCheck = false;
             }
-            console.log(this.BowelChartsLst);
 
           } else {
             this.BowelChartsLst = [];

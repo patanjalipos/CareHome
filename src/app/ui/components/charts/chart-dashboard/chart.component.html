@@ -149,3 +149,16 @@
     selectedChartMasterId == ChartTypes.FluidIntakeChart
 ">
 </app-fluid-intake-chart>
+
+<app-fluid-output-chart [preSelectedChartData]="selectedChartData" (EmitUpdateForm)="EmitUpdateForm($event)" *ngIf="
+ShowChildComponent == true &&
+selectedChartMasterId == ChartTypes.FluidOutputChart
+">
+</app-fluid-output-chart>
+
+<app-glasgow-coma-scale-chart [preSelectedChartData]="selectedChartData" (EmitUpdateForm)="EmitUpdateForm($event)"
+    *ngIf="
+ShowChildComponent == true &&
+selectedChartMasterId == ChartTypes.GlasgowComaScaleChart
+">
+</app-glasgow-coma-scale-chart>

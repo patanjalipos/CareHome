@@ -1,44 +1,48 @@
+import { DatePipe } from '@angular/common';
 import { Component, EventEmitter, Input, OnInit, Output, SimpleChanges } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { AppComponentBase } from 'src/app/app-component-base';
+import { ChartTypes, ConstantsService, CustomDateFormat } from 'src/app/ui/service/constants.service';
 import { OptionService } from 'src/app/ui/service/option.service';
 import { UserService } from 'src/app/ui/service/user.service';
 import { UtilityService } from 'src/app/utility/utility.service';
-import { BloodGlucoseChartService } from './blood-glucose-chart.service';
-import { DatePipe } from '@angular/common';
-import { ChartTypes, ConstantsService, CustomDateFormat } from 'src/app/ui/service/constants.service';
-import { ActivatedRoute } from '@angular/router';
+import { GlasgowComaScaleChartService } from './glasgow-coma-scale-chart.service';
+import { Observable, catchError, forkJoin, map, of } from 'rxjs';
 
 @Component({
-  selector: 'app-blood-glucose-chart',
-  templateUrl: './blood-glucose-chart.component.html',
-  styleUrls: ['./blood-glucose-chart.component.scss']
+  selector: 'app-glasgow-coma-scale-chart',
+  templateUrl: './glasgow-coma-scale-chart.component.html',
+  styleUrls: ['./glasgow-coma-scale-chart.component.scss']
 })
-export class BloodGlucoseChartComponent extends AppComponentBase implements OnInit {
+export class GlasgowComaScaleChartComponent extends AppComponentBase implements OnInit {
 
   @Input() preSelectedChartData: any = <any>{};
   @Output() EmitUpdateForm: EventEmitter<any> = new EventEmitter<any>();
+
 
   customDateFormat = CustomDateFormat;
   loginId: string;
   userId: any;
   residentAdmissionInfoId: any;
 
-  bloodGlucoseChartFormData: any = <any>{};
+  glasgowComaScaleChartFormData: any = <any>{};
   stLstYesNoOptions: any[];
   stLstAttendanceOptions: any;
   isEditable: boolean;
   StatementType: string;
   inputFields: boolean;
-  reason:boolean=false;
-  careGiven:boolean=false;
+  reason: boolean = false;
+  careGiven: boolean = false;
 
-  rangeOptionPrePostMeal: any[] = [
-    { label: 'Pre Meal', value: 'Pre Meal' },
-    { label: 'Post Meal', value: 'Post Meal' }
-  ];
+  lstEyeOpening: any[] = [];
+  lstVerbalResponse: any[] = [];
+  lstBestMotorResponse: any[] = [];
+  lstSiteOfMeasurement: any[] = [];
+  lstRhythm: any[] = [];
+  lstResidentPosition: any[] = [];
 
   //for carousel
-  bloodGlucoseChartsLst: any[] = [];
+  glasgowComaScaleChartLst: any[] = [];
   pageNumber: number = 0;
   pageSize: number = 3;
   responsiveOptions: any[] | undefined;
@@ -52,7 +56,7 @@ export class BloodGlucoseChartComponent extends AppComponentBase implements OnIn
     private _UtilityService: UtilityService,
     private _UserService: UserService,
     private datePipe: DatePipe,
-    private _bloodGlucoseServices: BloodGlucoseChartService,
+    private _glasgowComaScaleChartServices: GlasgowComaScaleChartService,
     private _ConstantServices: ConstantsService,
     private route: ActivatedRoute
   ) {
@@ -73,12 +77,14 @@ export class BloodGlucoseChartComponent extends AppComponentBase implements OnIn
     });
 
 
+
+
   }
 
   ngOnChanges(changes: SimpleChanges): void {
     this.isEditable = this.preSelectedChartData.isEditable;
     if (this.preSelectedChartData.selectedChartID != null) {
-      this.bloodGlucoseChartFormData = <any>{};
+      this.glasgowComaScaleChartFormData = <any>{};
       this.StatementType = 'Update';
     } else {
       this.ResetModel();
@@ -87,7 +93,7 @@ export class BloodGlucoseChartComponent extends AppComponentBase implements OnIn
   }
 
   ngOnInit(): void {
-    this.bloodGlucoseChartFormData.DateAndTime = new Date()
+    this.glasgowComaScaleChartFormData.DateAndTime = new Date()
     this.userId = this.preSelectedChartData.userId;
     this.residentAdmissionInfoId =
       this.preSelectedChartData.residentAdmissionInfoId;
@@ -98,6 +104,26 @@ export class BloodGlucoseChartComponent extends AppComponentBase implements OnIn
     this.optionService.getstLstReason().subscribe((data) => {
       this.stLstReason = data;
     });
+
+    const collectionNames = ['eyeOpening', 'verbalResponse', 'bestMotorResponse', 'siteOfMeasurement', 'rhythm', 'residentPosition'];
+
+    forkJoin(
+      collectionNames.map((collectionName) =>
+        this.GetChartDropDownMasterList(
+          ChartTypes.GlasgowComaScaleChart,
+          collectionName,
+          1
+        )
+      )
+    ).subscribe((responses: any[]) => {
+      this.lstEyeOpening = responses[0];
+      this.lstVerbalResponse = responses[1];
+      this.lstBestMotorResponse = responses[2];
+      this.lstSiteOfMeasurement = responses[3];
+      this.lstRhythm = responses[4];
+      this.lstResidentPosition = responses[5];
+    });
+
 
     this.getChartDataById(this.preSelectedChartData.chartMasterId, this.preSelectedChartData.residentAdmissionInfoId, this.pageNumber, this.pageSize);
     this.responsiveOptions = [
@@ -121,39 +147,65 @@ export class BloodGlucoseChartComponent extends AppComponentBase implements OnIn
 
   ClearAllfeilds() {
     if (this.preSelectedChartData.selectedChartID) {
-      this.bloodGlucoseChartFormData = <any>{};
-      this.bloodGlucoseChartFormData.activitiesChartId =
+      this.glasgowComaScaleChartFormData = <any>{};
+      this.glasgowComaScaleChartFormData.activitiesChartId =
         this.preSelectedChartData.selectedChartID;
     }
   }
 
+  GetChartDropDownMasterList(
+    chartMasterId: string,
+    dropdownName: string,
+    status: number
+  ): Observable<any> {
+    this._UtilityService.showSpinner();
+    return this._UserService
+      .GetChartDropDownMasterList(chartMasterId, dropdownName, status)
+      .pipe(
+        map((response) => {
+          this._UtilityService.hideSpinner();
+          if (response.actionResult.success) {
+            return JSON.parse(response.actionResult.result);
+          } else {
+            return [];
+          }
+        }),
+        catchError((error) => {
+          this._UtilityService.hideSpinner();
+          this._UtilityService.showErrorAlert(error.message);
+
+          return of([]); // Returning empty array in case of error
+        })
+      );
+  }
+
   Save() {
-    this.reason=false;
-    this.careGiven=false;
-    if(this.bloodGlucoseChartFormData.CareGiven==null){
-      this.careGiven=true;
-    }else if(this.bloodGlucoseChartFormData.CareGiven=='No' &&this.bloodGlucoseChartFormData.Reason==null){
-      this.reason=true;
+    this.reason = false;
+    this.careGiven = false;
+    if (this.glasgowComaScaleChartFormData.CareGiven == null) {
+      this.careGiven = true;
+    } else if (this.glasgowComaScaleChartFormData.CareGiven == 'No' && this.glasgowComaScaleChartFormData.Reason == null) {
+      this.reason = true;
     }
     else if (
       this.userId != null &&
       this.residentAdmissionInfoId != null &&
       this.loginId != null
     ) {
-      this.bloodGlucoseChartFormData.userId = this.userId;
-      this.bloodGlucoseChartFormData.StartedBy = this.loginId;
-      this.bloodGlucoseChartFormData.LastEnteredBy = this.loginId;
-      this.bloodGlucoseChartFormData.ResidentAdmissionInfoId =
+      this.glasgowComaScaleChartFormData.userId = this.userId;
+      this.glasgowComaScaleChartFormData.StartedBy = this.loginId;
+      this.glasgowComaScaleChartFormData.LastEnteredBy = this.loginId;
+      this.glasgowComaScaleChartFormData.ResidentAdmissionInfoId =
         this.residentAdmissionInfoId;
 
-      if (this.bloodGlucoseChartFormData.DateAndTime) {
+      if (this.glasgowComaScaleChartFormData.DateAndTime) {
         if (
           this.StatementType == 'Update' &&
-          typeof this.bloodGlucoseChartFormData.DateAndTime === 'string'
+          typeof this.glasgowComaScaleChartFormData.DateAndTime === 'string'
         ) {
           //Pare dateTime
           const dateParts =
-            this.bloodGlucoseChartFormData.DateAndTime.split(/[- :]/);
+            this.glasgowComaScaleChartFormData.DateAndTime.split(/[- :]/);
           const parsedDate = new Date(
             +dateParts[2],
             dateParts[1] - 1,
@@ -161,23 +213,23 @@ export class BloodGlucoseChartComponent extends AppComponentBase implements OnIn
             +dateParts[3],
             +dateParts[4]
           );
-          this.bloodGlucoseChartFormData.DateAndTime = parsedDate;
+          this.glasgowComaScaleChartFormData.DateAndTime = parsedDate;
         }
-        this.bloodGlucoseChartFormData.DateAndTime =
+        this.glasgowComaScaleChartFormData.DateAndTime =
           this.datePipe.transform(
-            this.bloodGlucoseChartFormData.DateAndTime,
+            this.glasgowComaScaleChartFormData.DateAndTime,
             'yyyy-MM-ddTHH:mm'
           );
       }
 
       const objectBody: any = {
         StatementType: this.StatementType,
-        bloodGlucoseChart: this.bloodGlucoseChartFormData,
+        glasgowComaScaleChart: this.glasgowComaScaleChartFormData,
       };
 
       this._UtilityService.showSpinner();
-      this.unsubscribe.add = this._bloodGlucoseServices
-        .AddInsertUpdatebloodGlucoseChartForm(objectBody)
+      this.unsubscribe.add = this._glasgowComaScaleChartServices
+        .AddInsertUpdateGlasgowComaChartForm(objectBody)
         .subscribe({
           next: (data) => {
             this._UtilityService.hideSpinner();
@@ -213,17 +265,15 @@ export class BloodGlucoseChartComponent extends AppComponentBase implements OnIn
           if (data.actionResult.success == true) {
             var tdata = JSON.parse(data.actionResult.result);
             tdata = tdata ? tdata : [];
-            this.bloodGlucoseChartsLst = tdata;
-            if (this.bloodGlucoseChartsLst.length < 3 || (((this.bloodGlucoseChartsLst.length) * (this.pageNumber + 1)) >= this.bloodGlucoseChartsLst[0].countRecords)) {
+            this.glasgowComaScaleChartLst = tdata;
+            if (this.glasgowComaScaleChartLst.length < 3 || (((this.glasgowComaScaleChartLst.length) * (this.pageNumber + 1)) >= this.glasgowComaScaleChartLst[0].countRecords)) {
               this.rightBtnCheck = true;
             }
             else {
               this.rightBtnCheck = false;
             }
-       
-
           } else {
-            this.bloodGlucoseChartsLst = [];
+            this.glasgowComaScaleChartLst = [];
           }
         },
         error: (e) => {
@@ -235,7 +285,7 @@ export class BloodGlucoseChartComponent extends AppComponentBase implements OnIn
 
   showPopup(chartId) {
     this.StrikeThroughData = {
-      ChartMasterId: ChartTypes.BloodGlucoseChart,
+      ChartMasterId: ChartTypes.GlasgowComaScaleChart,
       ChartId: chartId,
       ModifiedBy: this.loginId,
     };
@@ -244,7 +294,7 @@ export class BloodGlucoseChartComponent extends AppComponentBase implements OnIn
   }
 
   openAndClose() {
-    if (this.bloodGlucoseChartFormData.CareGiven == 'Yes') {
+    if (this.glasgowComaScaleChartFormData.CareGiven == 'Yes') {
       this.inputFields = true;
     } else {
       this.inputFields = false;
@@ -253,7 +303,7 @@ export class BloodGlucoseChartComponent extends AppComponentBase implements OnIn
 
   ResetModel() {
     this.isEditable = true;
-    this.bloodGlucoseChartFormData = <any>{};
+    this.glasgowComaScaleChartFormData = <any>{};
     this.StatementType = 'Insert';
   }
 
@@ -278,5 +328,6 @@ export class BloodGlucoseChartComponent extends AppComponentBase implements OnIn
   chartOnChange() {
     this.getChartDataById(this.preSelectedChartData.chartMasterId, this.preSelectedChartData.residentAdmissionInfoId, this.pageNumber, this.pageSize);
   }
+
 
 }

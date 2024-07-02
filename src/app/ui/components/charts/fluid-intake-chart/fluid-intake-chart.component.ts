@@ -148,8 +148,6 @@ export class FluidIntakeChartComponent extends AppComponentBase implements OnIni
     }
 
     this.FluidIntakeChartFormData.DateAndTime = new Date();
-    // this.ActivitiesChartFormData.DateAndTime = this.datePipe.transform(this.ActivitiesChartFormData.DateAndTime,'dd-MM-yyyy HH:mm');
-    console.log(this.FluidIntakeChartFormData.DateAndTime);
 
   }
 

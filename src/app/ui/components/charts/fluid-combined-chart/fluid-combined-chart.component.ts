@@ -258,7 +258,6 @@ export class FluidCombinedChartComponent extends AppComponentBase implements OnI
             else {
               this.rightBtnCheck = false;
             }
-            console.log(this.fluidCombinedChartsLst);
 
           } else {
             this.fluidCombinedChartsLst = [];
@@ -278,8 +277,6 @@ export class FluidCombinedChartComponent extends AppComponentBase implements OnI
       ModifiedBy: this.loginId,
     };
     this.isShowStrikeThroughPopup = true;
-
-    console.log(this.StrikeThroughData, 'chartdata');
   }
 
   openAndClose() {
