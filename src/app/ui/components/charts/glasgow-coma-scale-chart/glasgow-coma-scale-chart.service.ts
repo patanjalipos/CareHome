@@ -12,7 +12,7 @@ export class GlasgowComaScaleChartService {
   constructor(private _httpclient: HttpClient) { }
 
 
-  //#region BloodGlucoseChart
+  //#region Glasgow Coma Scale Chart
 
   AddInsertUpdateGlasgowComaChartForm(glasgowComaChartFormData: any): Observable<any> {
     let reqHeader = new HttpHeaders({

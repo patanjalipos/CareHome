@@ -8,6 +8,7 @@ import { UserService } from 'src/app/ui/service/user.service';
 import { UtilityService } from 'src/app/utility/utility.service';
 import { GlasgowComaScaleChartService } from './glasgow-coma-scale-chart.service';
 import { Observable, catchError, forkJoin, map, of } from 'rxjs';
+import { log } from 'console';
 
 @Component({
   selector: 'app-glasgow-coma-scale-chart',
@@ -33,6 +34,8 @@ export class GlasgowComaScaleChartComponent extends AppComponentBase implements 
   inputFields: boolean;
   reason: boolean = false;
   careGiven: boolean = false;
+  message: any[] = [];
+  ScaleScore: number = 0;
 
   lstEyeOpening: any[] = [];
   lstVerbalResponse: any[] = [];
@@ -105,6 +108,10 @@ export class GlasgowComaScaleChartComponent extends AppComponentBase implements 
       this.stLstReason = data;
     });
 
+    this.message = [
+      { severity: 'info', detail: 'Complete the eye verbal and motor responses to calculate the score' }
+    ];
+
     const collectionNames = ['eyeOpening', 'verbalResponse', 'bestMotorResponse', 'siteOfMeasurement', 'rhythm', 'residentPosition'];
 
     forkJoin(
@@ -143,6 +150,26 @@ export class GlasgowComaScaleChartComponent extends AppComponentBase implements 
         numScroll: 1
       }
     ];
+  }
+
+  scaleScoreCalculater(optionId: any) {
+    if (this.ScaleScore == -1) {
+      return;
+    }else if (optionId == "6683cf8b047186747f31e460") {
+      this.ScaleScore += 6;
+    } else if (optionId == "6683cf8b047186747f31e45b" || optionId == "6683cf8b047186747f31e461") {
+      this.ScaleScore += 5;
+    } else if (optionId == "6683cf8b047186747f31e456" || optionId == "6683cf8b047186747f31e45c" || optionId == "6683cf8b047186747f31e462") {
+      this.ScaleScore += 4;
+    } else if (optionId == "6683cf8b047186747f31e463" || optionId == "6683cf8b047186747f31e457" || optionId == "66851349b87aeab16ecd10e3") {
+      this.ScaleScore += 3;
+    } else if (optionId == "6683cf8b047186747f31e458" || optionId == "6683cf8b047186747f31e45d" || optionId == "6683cf8b047186747f31e464") {
+      this.ScaleScore += 2;
+    } else if (optionId == "6683cf8b047186747f31e459" || optionId == "6683cf8b047186747f31e45e" || optionId == "6683cf8b047186747f31e465") {
+      this.ScaleScore += 1;
+    } else {
+      this.ScaleScore = -1;
+    }
   }
 
   ClearAllfeilds() {
