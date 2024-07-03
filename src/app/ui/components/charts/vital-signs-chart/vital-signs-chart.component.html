@@ -1,7 +1,7 @@
 <div class="card">
     <div class="row p-0">
         <div class="col-md-12 formheader d-flex justify-content-between align-items-center">
-            <h4 class="mb-0">Waterlow Chart</h4>
+            <h4 class="mb-0">Vital Signs Chart</h4>
             <div>
                 <button pButton type="button" icon="pi pi-chevron-left" class="mr-2" (click)="leftBtn()"
                     [disabled]="pageNumber==0"></button>
@@ -20,160 +20,101 @@
                     Date/Time<span class="required"></span></label>
 
                 <ng-container>
-                    <p-calendar name="WaterlowChartData.DateAndTime" [showIcon]="true" inputId="icon" class="iconcal" [readonlyInput]="true"
+                    <p-calendar name="" [showIcon]="true" inputId="icon" class="iconcal" [readonlyInput]="true"
                         appendTo="body" [maxDate]="" #dobref="" [dateFormat]="customDateFormat.CalendarFormat"
-                        [(ngModel)]="WaterlowChartData.DateAndTime" [showTime]="true" hourFormat="24"></p-calendar>
+                        [(ngModel)]="VitalSignsChartData.DateAndTime" [showTime]="true" hourFormat="24"></p-calendar>
                 </ng-container>
             </div>
             <div>
                 <label class="form-label formheader bold">Care Given <span class="required">*</span></label>
 
                 <ng-container>
-                    <p-dropdown [ngClass]="{'ng-dirty ng-invalid':CareGivenCheck}" [required]="true" name="WaterlowChartData.CareGiven" placeholder="----select----"
+                    <p-dropdown [ngClass]="{'ng-dirty ng-invalid':CareGivenCheck}" [required]="true" name="ADLChartData.CareGiven" placeholder="----select----"
                         [style]="{ width: '100%' }" [options]="stLstYesNoOptions" optionValue="optionId"
-                        optionLabel="optionValue" [(ngModel)]="WaterlowChartData.CareGivenOptions"
+                        optionLabel="optionValue" [(ngModel)]="VitalSignsChartData.CareGivenOptions"
                         (onChange)="openAndClose()">
                     </p-dropdown>
-                    <span class="required" *ngIf="WaterlowChartData.CareGivenOptions==null && CareGivenCheck == true">This field is required!</span>
+                    <span class="required" *ngIf="VitalSignsChartData.CareGivenOptions==null && CareGivenCheck == true">This field is required!</span>
                 </ng-container>
             </div>
             <div *ngIf="inputFieldsCheck==false">
                 <label class="form-label bold">Reason<span class="required">*</span></label>
 
                 <ng-container>
-                    <p-dropdown [ngClass]="{'ng-dirty ng-invalid':ReasonCheck}" [required]="true" name="WaterlowChartData.Reason" placeholder="----select----"
+                    <p-dropdown [ngClass]="{'ng-dirty ng-invalid':ReasonCheck}" [required]="true" name="ADLChartData.Reason" placeholder="----select----"
                         [style]="{ width: '100%' }" [options]="stLstReason" optionValue="optionId"
-                        optionLabel="optionValue" [(ngModel)]="WaterlowChartData.Reason" (onChange)="openAndClose()">
+                        optionLabel="optionValue" [(ngModel)]="VitalSignsChartData.Reason" (onChange)="openAndClose()">
                     </p-dropdown>
-                    <span class="required" *ngIf="WaterlowChartData.Reason==null && ReasonCheck == true">This field is required!</span>
+                    <span class="required" *ngIf="VitalSignsChartData.Reason==null && ReasonCheck == true">This field is required!</span>
                 </ng-container>
             </div>
 
 
             <div *ngIf="inputFieldsCheck" class="row">
-                <h5 class="formheader">Nutrition</h5>
+                <h5 class="formheader">Blood Pressure</h5>
                 <div>
                     <div class="labelcontent">
-                        <label class="form-label bold">Build/Weight for Height(BMI)</label>
+                        <label class="form-label bold">Systolic</label>
                     </div>
                     <ng-container>
-                        <p-dropdown [required]="true" name="BMIValue"
-                            [(ngModel)]="WaterlowChartData.BMIValueOption" [options]="LstBMIValue"
-                            optionLabel="optionName" optionValue="optionId" placeholder="--select--"
-                            [style]="{ width: '100%' }">
-                        </p-dropdown>
+                        <input type="number" pInputText name="VitalSignsChartData.Systolic"
+                            [(ngModel)]="VitalSignsChartData.Systolic" [required]="true"
+                            [style]="{ width: '100%' }" />
+                            <label>mm Hg</label>
                     </ng-container>
                 </div>
                 <div>
                     <div class="labelcontent">
-                        <label class="form-label bold">Continence </label>
+                        <label class="form-label bold">Diastolic</label>
                     </div>
                     <ng-container>
-                        <p-dropdown [required]="true" name="ContinenceOption"
-                            [(ngModel)]="WaterlowChartData.ContinenceOption" [options]="LstContinence"
-                            optionLabel="optionName" optionValue="optionId" placeholder="--select--"
-                            [style]="{ width: '100%' }">
-                        </p-dropdown>
+                        <input type="number" pInputText name="VitalSignsChartData.Diastolic"
+                            [(ngModel)]="VitalSignsChartData.Diastolic" [required]="true"
+                            [style]="{ width: '100%' }" />
+                            <label>mm Hg</label>
                     </ng-container>
                 </div>
                 <div class="mb-2">
                     <div class="labelcontent">
-                        <label class="form-label bold">Skin Type</label>
+                        <label class="form-label bold">Comment</label>
                     </div>
                     <ng-container>
-                        <p-dropdown [required]="true" name="SkinTypeOption"
-                            [(ngModel)]="WaterlowChartData.SkinTypeOption" [options]="LstSkinType"
-                            optionLabel="optionName" optionValue="optionId" placeholder="--select--"
-                            [style]="{ width: '100%' }">
-                        </p-dropdown>
+                        <textarea type="text" pInputTextarea name="VitalSignsChartData.Comment" [(ngModel)]="VitalSignsChartData.Comment"
+                            [required]="true" [style]="{ width: '100%' }"></textarea>
                     </ng-container>
                 </div>
-                <div class="mb-2">
-                    <div class="labelcontent">
-                        <label class="form-label bold">Mobility</label>
-                    </div>
-                    <ng-container>
-                        <p-dropdown [required]="true" name="MobilityOption"
-                            [(ngModel)]="WaterlowChartData.MobilityOption" [options]="LstMobility"
-                            optionLabel="optionName" optionValue="optionId" placeholder="--select--"
-                            [style]="{ width: '100%' }">
-                        </p-dropdown>
-                    </ng-container>
-                </div>
-                <div class="mb-2">
-                    <div class="labelcontent">
-                        <label class="form-label bold">Sex</label>
-                    </div>
-                    <ng-container>
-                        <p-selectButton [options]="SexOption" [(ngModel)]="WaterlowChartData.Sex"
-                        optionLabel="label" optionValue="value"></p-selectButton>
-                    </ng-container>
-                </div>
-                <div class="mb-2">
-                    <div class="labelcontent">
-                        <label class="form-label bold">Age</label>
-                    </div>
-                    <ng-container>
-                        <p-dropdown [required]="true" name="AgeOption"
-                            [(ngModel)]="WaterlowChartData.AgeOption" [options]="LstAge"
-                            optionLabel="optionName" optionValue="optionId" placeholder="--select--"
-                            [style]="{ width: '100%' }">
-                        </p-dropdown>
-                    </ng-container>
-                </div>
-                <div class="mb-2">
-                    <div class="labelcontent">
-                        <label class="form-label bold">Malnutrition Screening</label>
-                    </div>
-                    <ng-container>
-                        <p-dropdown [required]="true" name="MalnutritionScreeningOption"
-                            [(ngModel)]="WaterlowChartData.MalnutritionScreeningOption" [options]="LstMalnutritionScreening"
-                            optionLabel="optionName" optionValue="optionId" placeholder="--select--"
-                            [style]="{ width: '100%' }">
-                        </p-dropdown>
-                    </ng-container>
-                </div>
-                <div class="mb-2">
-                    <div class="labelcontent">
-                        <label class="form-label bold">Nutrition Score</label>
-                    </div>
-                    <ng-container>
-                        <label>{{NutritionScoreValue}}</label>
-                        <p-messages [(value)]="messages" [enableService]="false"></p-messages>
-                    </ng-container>
-                </div>
-                <h5 class="formheader">Special Risks</h5>
                 <div>
                     <div class="labelcontent">
-                        <label class="form-label bold">Special Risks Tissue</label>
+                        <label class="form-label bold">Resident Position</label>
                     </div>
                     <ng-container>
-                        <p-dropdown [required]="true" name="SpecialRisksTissueOption"
-                            [(ngModel)]="WaterlowChartData.SpecialRisksTissueOption"
-                            [options]="LstSpecialRisksTissue" optionLabel="optionName" optionValue="optionId"
+                        <p-dropdown [required]="true" name="VitalSignsChartData.BPResidentPositionOption"
+                            [(ngModel)]="VitalSignsChartData.BPResidentPositionOption"
+                            [options]="LstResidentPosition" optionLabel="optionName" optionValue="optionId"
                             placeholder="--select--" [style]="{ width: '100%' }">
                         </p-dropdown>
                     </ng-container>
                 </div>
+                
+                <h5 class="formheader">Pulse</h5>
                 <div>
                     <div class="labelcontent">
-                        <label class="form-label bold">Special Risks Neurological</label>
+                        <label class="form-label bold">Pulse Rate</label>
                     </div>
                     <ng-container>
-                        <p-dropdown [required]="true" name="SpecialRisksNeurologicalOption"
-                            [(ngModel)]="WaterlowChartData.SpecialRisksNeurologicalOption"
-                            [options]="LstSpecialRisksNeurological" optionLabel="optionName" optionValue="optionId"
-                            placeholder="--select--" [style]="{ width: '100%' }">
-                        </p-dropdown>
+                        <input type="number" pInputText name="VitalSignsChartData.PulseRate"
+                            [(ngModel)]="VitalSignsChartData.PulseRate" [required]="true"
+                            [style]="{ width: '100%' }" />
+                            <label>Beats per minute</label>
                     </ng-container>
                 </div>
                 <div>
                     <div class="labelcontent">
-                        <label class="form-label bold">Special Risks Major Surgery or Trauma</label>
+                        <label class="form-label bold">Site of Measurement</label>
                     </div>
                     <ng-container>
-                        <p-dropdown [required]="true" name="SpecialRisksMajorSurgeryOrTraumaOption"
-                            [(ngModel)]="WaterlowChartData.SpecialRisksMajorSurgeryOrTraumaOption" [options]="LstSpecialRisksMajorSurgeryOrTrauma"
+                        <p-dropdown [required]="true" name="VitalSignsChartData.PulseSiteOfMeasurementOption"
+                            [(ngModel)]="VitalSignsChartData.PulseSiteOfMeasurementOption" [options]="LstPulseSiteOfMeasurement"
                             optionLabel="optionName" optionValue="optionId" placeholder="--select--"
                             [style]="{ width: '100%' }">
                         </p-dropdown>
@@ -181,41 +122,103 @@
                 </div>
                 <div>
                     <div class="labelcontent">
-                        <label class="form-label bold">Special Risks Medication</label>
+                        <label class="form-label bold">Rhythm</label>
                     </div>
                     <ng-container>
-                        <p-dropdown [required]="true" name="SpecialRisksMedicationOption"
-                            [(ngModel)]="WaterlowChartData.SpecialRisksMedicationOption" [options]="LstSpecialRisksMedication"
+                        <p-dropdown [required]="true" name="VitalSignsChartData.RhythmOption"
+                            [(ngModel)]="VitalSignsChartData.RhythmOption" [options]="LstRhythm"
                             optionLabel="optionName" optionValue="optionId" placeholder="--select--"
                             [style]="{ width: '100%' }">
                         </p-dropdown>
                     </ng-container>
                 </div>
-                <h5 class="formheader">Score</h5>
                 <div>
                     <div class="labelcontent">
-                        <label class="form-label bold">The Water Low Score is</label>
+                        <label class="form-label bold">Amplitude Or Volume</label>
                     </div>
                     <ng-container>
-                        <label>{{WaterlowScoreValue}}</label>
-
+                        <p-dropdown [required]="true" name="VitalSignsChartData.AmplitudeOrVolumeOption"
+                            [(ngModel)]="VitalSignsChartData.AmplitudeOrVolumeOption" [options]="LstAmplitudeOrVolume"
+                            optionLabel="optionName" optionValue="optionId" placeholder="--select--"
+                            [style]="{ width: '100%' }">
+                        </p-dropdown>
                     </ng-container>
                 </div>
                 <div>
                     <div class="labelcontent">
-                        <label class="form-label bold">This is classified as</label>
+                        <label class="form-label bold">Resident Position</label>
                     </div>
                     <ng-container>
-                        <label class="success">{{ClassificationValue}}</label>
-
+                        <p-dropdown [required]="true" name="VitalSignsChartData.PulseResidentPositionOption"
+                            [(ngModel)]="VitalSignsChartData.PulseResidentPositionOption" [options]="LstResidentPosition"
+                            optionLabel="optionName" optionValue="optionId" placeholder="--select--"
+                            [style]="{ width: '100%' }">
+                        </p-dropdown>
                     </ng-container>
                 </div>
+                <h5 class="formheader">Respiration</h5>
+                <div>
+                    <div class="labelcontent">
+                        <label class="form-label bold">Respiratory Rate</label>
+                    </div>
+                    <ng-container>
+                        <input type="number" pInputText name="VitalSignsChartData.RespiratoryRate"
+                            [(ngModel)]="VitalSignsChartData.RespiratoryRate" [required]="true"
+                            [style]="{ width: '100%' }" />
+                            <label>Breaths per minute</label>
+                    </ng-container>
+                </div>
+                
+                <h5 class="formheader">Oximetry</h5>
+                <div>
+                    <div class="labelcontent">
+                        <label class="form-label bold">Oxygen Saturation</label>
+                    </div>
+                    <ng-container>
+                        <input type="number" pInputText name="VitalSignsChartData.OxygenSaturation"
+                            [(ngModel)]="VitalSignsChartData.OxygenSaturation" [required]="true"
+                            [style]="{ width: '100%' }" />
+                            <label>%</label>
+                    </ng-container>
+                </div>
+                <h5 class="formheader">Temperature</h5>
+                <div>
+                    <div class="labelcontent">
+                        <label class="form-label bold">Temperature</label>
+                    </div>
+                    <ng-container>
+                        <input type="number" pInputText name="VitalSignsChartData.Temperature"
+                            [(ngModel)]="VitalSignsChartData.Temperature" [required]="true"
+                            [style]="{ width: '100%' }" />
+                            <label>Degrees Celsius</label>
+                    </ng-container>
+                </div>
+                <div>
+                    <div class="labelcontent">
+                        <label class="form-label bold">Site of Measurement</label>
+                    </div>
+                    <ng-container>
+                        <p-dropdown [required]="true" name="VitalSignsChartData.OxygenSiteOfMeasurementOption"
+                            [(ngModel)]="VitalSignsChartData.OxygenSiteOfMeasurementOption" [options]="LstOxygenSiteOfMeasurement"
+                            optionLabel="optionName" optionValue="optionId" placeholder="--select--"
+                            [style]="{ width: '100%' }">
+                        </p-dropdown>
+                    </ng-container>
+                </div>
+                <h5 class="formheader">Urinalysis</h5>
+            <div>
+                <ng-container>
+                    <textarea pInputTextarea name="VitalSignsChartData.Urinalysis" [(ngModel)]="VitalSignsChartData.Urinalysis"
+                        [required]="true" [style]="{ width: '100%' }"></textarea>
+                </ng-container>
+            </div>
+                
             </div>
 
             <h5 class="formheader">Additional information</h5>
             <div>
                 <ng-container>
-                    <textarea pInputTextarea name="AdditionalInfo" [(ngModel)]="WaterlowChartData.AdditionalInfo"
+                    <textarea pInputTextarea name="VitalSignsChartData.AdditionalInfo" [(ngModel)]="VitalSignsChartData.AdditionalInfo"
                         [required]="true" [style]="{ width: '100%' }"></textarea>
                 </ng-container>
             </div>
@@ -240,7 +243,7 @@
 
 
 
-            <p-carousel [value]="WaterlowChartsLst" [numVisible]="pageSize" [numScroll]="pageSize" [circular]="false"
+            <p-carousel [value]="VitalSignsChartLst" [numVisible]="pageSize" [numScroll]="pageSize" [circular]="false"
                 [showIndicators]="false" [showNavigators]="false" [responsiveOptions]="responsiveOptions">
                 <ng-template let-chart pTemplate="item">
                     <div class="col-md-11 chart-box p-2">
@@ -268,7 +271,7 @@
                         </div>
                         <div class="mb-2">
                             <button pButton *ngIf="!chart.isStrikeThrough" type="button" label="Strike Through Entry"
-                                class="p-button-link p-0" (click)="showPopup(chart.WaterlowChartId)">
+                                class="p-button-link p-0" (click)="showPopup(chart.VitalSignsChartId)">
                             </button>
                         </div>
                         <div class="mb-2">
@@ -304,149 +307,151 @@
                         </div>
                         <div *ngIf="chart.CareGivenOptions=='Yes'" class="row">
                             <h5 class="formheader" [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">
-                                Nutrition</h5>
+                                Blood Pressure</h5>
                             <div class="col-md-12 mb-5">
                                 <div class="labelcontent">
                                     <label class="form-label bold"
-                                        [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">Build/Weight for Height(BMI)</label>
+                                        [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">Systolic</label>
                                 </div>
                                 <div>
                                     <label [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">{{
-                                        chart.BMIValueOptionName }}</label>
+                                        chart.Systolic }} mm Hg</label>
                                 </div>
                             </div>
                             <div class="col-md-12 mb-5">
                                 <div class="labelcontent">
                                     <label class="form-label bold"
-                                        [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">Continence</label>
+                                        [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">Diastolic</label>
                                 </div>
                                 <div>
                                     <label [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">{{
-                                        chart.ContinenceOptionName }}</label>
+                                        chart.Diastolic }} mm Hg</label>
                                 </div>
                             </div>
                             <div class="col-md-12 mb-5">
                                 <div class="labelcontent">
                                     <label class="form-label bold"
-                                        [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">Skin Type</label>
+                                        [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">Comment</label>
                                 </div>
                                 <div>
                                     <label [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">{{
-                                        chart.SkinTypeOptionName }}</label>
+                                        chart.Comment }}</label>
                                 </div>
                             </div>
                             <div class="col-md-12 mb-5">
                                 <div class="labelcontent">
                                     <label class="form-label bold"
-                                        [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">Mobility</label>
+                                        [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">Resident Position</label>
                                 </div>
                                 <div>
                                     <label [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">{{
-                                        chart.MobilityOptionName }}</label>
-                                </div>
-                            </div>
-                            <div class="col-md-12 mb-5">
-                                <div class="labelcontent">
-                                    <label class="form-label bold"
-                                        [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">Sex</label>
-                                </div>
-                                <div>
-                                    <label [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">{{
-                                        chart.Sex }}</label>
-                                </div>
-                            </div>
-                            <div class="col-md-12 mb-5">
-                                <div class="labelcontent">
-                                    <label class="form-label bold"
-                                        [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">Age</label>
-                                </div>
-                                <div>
-                                    <label [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">{{
-                                        chart.AgeOptionName }}</label>
-                                </div>
-                            </div>
-                            <div class="col-md-12 mb-5">
-                                <div class="labelcontent">
-                                    <label class="form-label bold"
-                                        [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">Malnutrition Screening</label>
-                                </div>
-                                <div>
-                                    <label [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">{{
-                                        chart.MalnutritionScreeningOptionName }}</label>
-                                </div>
-                            </div>
-                            <div class="col-md-12 mb-5">
-                                <div class="labelcontent">
-                                    <label class="form-label bold"
-                                        [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">Nutrition Score</label>
-                                </div>
-                                <div>
-                                    <label [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">{{
-                                        chart.NutritionScore }}</label>
+                                        chart.BPResidentPositionOptionName }}</label>
                                 </div>
                             </div>
                             <h5 class="formheader" [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">
-                                Special Risks</h5>
+                                Pulse</h5>
                             <div class="col-md-12 mb-5">
                                 <div class="labelcontent">
                                     <label class="form-label bold"
-                                        [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">Special Risks Tissue</label>
+                                        [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">Pulse Rate</label>
                                 </div>
                                 <div>
                                     <label [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">{{
-                                        chart.SpecialRisksTissueOptionName }}</label>
+                                        chart.PulseRate }} Beats per minute</label>
                                 </div>
                             </div>
                             <div class="col-md-12 mb-5">
                                 <div class="labelcontent">
                                     <label class="form-label bold"
-                                        [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">Special Risks Neurological</label>
+                                        [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">Site of Measurement</label>
                                 </div>
                                 <div>
                                     <label [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">{{
-                                        chart.SpecialRisksNeurologicalOptionName }}</label>
+                                        chart.PulseSiteOfMeasurementOptionName }}</label>
                                 </div>
                             </div>
                             <div class="col-md-12 mb-2">
                                 <div class="labelcontent">
                                     <label class="form-label bold"
-                                        [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">Special Risks Major Surgery or Trauma</label>
+                                        [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">Rhythm</label>
                                 </div>
                                 <div>
                                     <label [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">{{
-                                        chart.SpecialRisksMajorSurgeryOrTraumaOptionName }}</label>
+                                        chart.RhythmOptionName }}</label>
                                 </div>
                             </div>
                             <div class="col-md-12 mb-2">
                                 <div class="labelcontent">
                                     <label class="form-label bold"
-                                        [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">Special Risks Medication</label>
+                                        [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">Amplitude or Volume</label>
                                 </div>
                                 <div>
                                     <label [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">{{
-                                        chart.SpecialRisksMedicationOptionName }}</label>
+                                        chart.AmplitudeOrVolumeOptionName }}</label>
+                                </div>
+                            </div>
+                            <div class="col-md-12 mb-2">
+                                <div class="labelcontent">
+                                    <label class="form-label bold"
+                                        [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">Resident Position</label>
+                                </div>
+                                <div>
+                                    <label [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">{{
+                                        chart.PulseResidentPositionOptionName }}</label>
                                 </div>
                             </div>
                             <h5 class="formheader" [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">
-                                Score</h5>
+                                Respiration</h5>
                             <div class="col-md-12 mb-5">
                                 <div class="labelcontent">
                                     <label class="form-label bold"
-                                        [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">The Water Low Score is</label>
+                                        [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">Respiratory Rate</label>
                                 </div>
                                 <div>
                                     <label [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">{{
-                                        chart.WaterlowScore }}</label>
+                                        chart.RespiratoryRate }} Breaths per minute</label>
                                 </div>
                             </div>
+                            <h5 class="formheader" [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">
+                                Oximetry</h5>
                             <div class="col-md-12 mb-5">
                                 <div class="labelcontent">
                                     <label class="form-label bold"
-                                        [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">This is classified as</label>
+                                        [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">Oxygen Saturation</label>
                                 </div>
                                 <div>
                                     <label [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">{{
-                                        chart.Classification }}</label>
+                                        chart.OxygenSaturation }}%</label>
+                                </div>
+                            </div>
+                            <h5 class="formheader" [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">
+                                Temperature</h5>
+                            <div class="col-md-12 mb-5">
+                                <div class="labelcontent">
+                                    <label class="form-label bold"
+                                        [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">Temperature</label>
+                                </div>
+                                <div>
+                                    <label [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">{{
+                                        chart.Temperature }} Degrees Celsius</label>
+                                </div>
+                            </div>
+                            <div class="col-md-12 mb-4">
+                                <div class="labelcontent">
+                                    <label class="form-label bold"
+                                        [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">Site of Measurement</label>
+                                </div>
+                                <div>
+                                    <label [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">{{
+                                        chart.OxygenSiteOfMeasurementOptionName }}</label>
+                                </div>
+                            </div>
+                            <h5 class="formheader" [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">
+                                Urinalysis</h5>
+                            <div class="col-md-12">
+                                <div>
+                                    <label [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">{{
+                                        chart.Urinalysis }}</label>
                                 </div>
                             </div>
                         </div>

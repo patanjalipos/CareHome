@@ -228,3 +228,10 @@
     ShowChildComponent == true &&
     selectedChartMasterId == ChartTypes.WaterlowChart
 "></app-waterlow-chart>
+
+<app-vital-signs-chart [preSelectedChartData]="selectedChartData"
+(EmitUpdateForm)="EmitUpdateForm($event)"
+*ngIf="
+    ShowChildComponent == true &&
+    selectedChartMasterId == ChartTypes.VitalSignsChart
+"></app-vital-signs-chart>

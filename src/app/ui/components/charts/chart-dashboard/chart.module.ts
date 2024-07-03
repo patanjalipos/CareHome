@@ -19,6 +19,7 @@ import { PainChartModule } from "../pain-chart/pain-chart.module";
 import { WeightChartModule } from '../weight-chart/weight-chart.module';
 import { BloodGlucoseChartModule } from "../blood-glucose-chart/blood-glucose-chart.module";
 import { WaterlowChartModule } from '../waterlow-chart/waterlow-chart.module';
+import { VitalSignsChartModule } from '../vital-signs-chart/vital-signs-chart.module';
 
 @NgModule({
     declarations: [
@@ -44,7 +45,8 @@ import { WaterlowChartModule } from '../waterlow-chart/waterlow-chart.module';
         PainChartModule,
         WeightChartModule,
         BloodGlucoseChartModule,
-        WaterlowChartModule
+        WaterlowChartModule,
+        VitalSignsChartModule
     ]
 })
 export class ChartModule { }
