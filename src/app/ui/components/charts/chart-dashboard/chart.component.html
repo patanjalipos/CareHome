@@ -235,3 +235,10 @@
     ShowChildComponent == true &&
     selectedChartMasterId == ChartTypes.VitalSignsChart
 "></app-vital-signs-chart>
+
+<app-urinary-chart [preSelectedChartData]="selectedChartData"
+(EmitUpdateForm)="EmitUpdateForm($event)"
+*ngIf="
+    ShowChildComponent == true &&
+    selectedChartMasterId == ChartTypes.UrinaryChart
+"></app-urinary-chart>
