@@ -162,3 +162,8 @@ ShowChildComponent == true &&
 selectedChartMasterId == ChartTypes.GlasgowComaScaleChart
 ">
 </app-glasgow-coma-scale-chart>
+<app-food-intake-chart [preSelectedChartData]="selectedChartData" (EmitUpdateForm)="EmitUpdateForm($event)" *ngIf="
+ShowChildComponent == true &&
+selectedChartMasterId == ChartTypes.FoodIntakeChart
+">
+</app-food-intake-chart>

@@ -21,6 +21,7 @@ import { BloodGlucoseChartModule } from "../blood-glucose-chart/blood-glucose-ch
 import { FluidIntakeChartModule } from "../fluid-intake-chart/fluid-intake-chart.module";
 import { FluidOutputChartModule } from "../fluid-output-chart/fluid-output-chart.module";
 import { GlasgowComaScaleChartModule } from "../glasgow-coma-scale-chart/glasgow-coma-scale-chart.module";
+import { FoodIntakeChartModule } from "../food-intake-chart/food-intake-chart.module";
 
 @NgModule({
     declarations: [
@@ -48,7 +49,8 @@ import { GlasgowComaScaleChartModule } from "../glasgow-coma-scale-chart/glasgow
         BloodGlucoseChartModule,
         FluidIntakeChartModule,
         FluidOutputChartModule,
-        GlasgowComaScaleChartModule
+        GlasgowComaScaleChartModule,
+        FoodIntakeChartModule
     ]
 })
 export class ChartModule { }
