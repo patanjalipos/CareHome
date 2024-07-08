@@ -6,24 +6,24 @@ import { environment } from 'src/environments/environment';
 @Injectable({
   providedIn: 'root'
 })
-export class FoodIntakeChartService {
+export class RepositioningChartService {
 
   constructor(private _httpclient: HttpClient) { }
 
 
-  //#region food intake chart
+  //#region Repositioning chart
 
-  AddInsertUpdateFoodIntakeChartForm(foodIntakeChartFormData: any): Observable<any> {
+  AddInsertUpdateRepositioningChartForm(repositioningChartFormData: any): Observable<any> {
     let reqHeader = new HttpHeaders({
       'Content-Type': 'application/json',
       'Access-Control-Allow-Origin': environment.BaseUriUser,
       'Authorization': 'Bearer ' + localStorage.getItem('token')
     });
     let params = new HttpParams();
-    var data = JSON.stringify(foodIntakeChartFormData).toString();
+    var data = JSON.stringify(repositioningChartFormData).toString();
     return this._httpclient.post<any>(
       environment.BaseUriUser +
-      'api/User/AddInsertUpdateFoodIntakeChartForm',
+      'api/User/AddInsertUpdateRepositioningChartForm',
       data,
       { headers: reqHeader, params: params }
     );

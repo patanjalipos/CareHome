@@ -167,3 +167,8 @@ ShowChildComponent == true &&
 selectedChartMasterId == ChartTypes.FoodIntakeChart
 ">
 </app-food-intake-chart>
+<app-repositioning-chart [preSelectedChartData]="selectedChartData" (EmitUpdateForm)="EmitUpdateForm($event)" *ngIf="
+ShowChildComponent == true &&
+selectedChartMasterId == ChartTypes.RepositioningChart
+">
+</app-repositioning-chart>
