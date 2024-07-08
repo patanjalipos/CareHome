@@ -242,3 +242,10 @@
     ShowChildComponent == true &&
     selectedChartMasterId == ChartTypes.UrinaryChart
 "></app-urinary-chart>
+
+<app-sighting-chart [preSelectedChartData]="selectedChartData"
+(EmitUpdateForm)="EmitUpdateForm($event)"
+*ngIf="
+    ShowChildComponent == true &&
+    selectedChartMasterId == ChartTypes.SightingChart
+"></app-sighting-chart>
