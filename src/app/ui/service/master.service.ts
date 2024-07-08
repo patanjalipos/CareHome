@@ -827,6 +827,7 @@ export class MasterService {
         });
         let params = new HttpParams();
         var data = obj; //JSON.stringify(obj).toString();
+        console.log(data);
         return this._httpclient.post<any>(
             environment.BaseUriAdmin +
                 'api/Admin/AddInsertUpdateResidentMaster',
