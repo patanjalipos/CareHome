@@ -28,6 +28,10 @@
                 {
                     "ChartName": "Waterlow Chart",
                     "ChartId": "6642f3ebb33c8394db706080"
+                },
+                {
+                    "ChartName": "Seizure Chart",
+                    "ChartId": "6642f367b33c8394db70607b"
                 }
             ]
         }

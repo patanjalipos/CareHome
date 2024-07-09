@@ -22,6 +22,7 @@ import { WaterlowChartModule } from '../waterlow-chart/waterlow-chart.module';
 import { VitalSignsChartModule } from '../vital-signs-chart/vital-signs-chart.module';
 import { UrinaryChartModule } from '../urinary-chart/urinary-chart.module';
 import { SightingChartModule } from '../sighting-chart/sighting-chart.module';
+import { SeizureChartModule } from '../seizure-chart/seizure-chart.module';
 
 @NgModule({
     declarations: [
@@ -50,7 +51,8 @@ import { SightingChartModule } from '../sighting-chart/sighting-chart.module';
         WaterlowChartModule,
         VitalSignsChartModule,
         UrinaryChartModule,
-        SightingChartModule
+        SightingChartModule,
+        SeizureChartModule
     ]
 })
 export class ChartModule { }

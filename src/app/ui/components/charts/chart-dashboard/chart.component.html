@@ -249,3 +249,10 @@
     ShowChildComponent == true &&
     selectedChartMasterId == ChartTypes.SightingChart
 "></app-sighting-chart>
+
+<app-seizure-chart [preSelectedChartData]="selectedChartData"
+(EmitUpdateForm)="EmitUpdateForm($event)"
+*ngIf="
+    ShowChildComponent == true &&
+    selectedChartMasterId == ChartTypes.SeizureChart
+"></app-seizure-chart>
