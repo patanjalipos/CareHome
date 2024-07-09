@@ -22,8 +22,8 @@ export class FoodIntakeChartComponent extends AppComponentBase implements OnInit
   loginId: string;
   userId: any;
   residentAdmissionInfoId: any;
-  lstMealSize:any[]=[];
-  lstAmountOfFoodEaten:any[]=[];
+  lstMealSize: any[] = [];
+  lstAmountOfFoodEaten: any[] = [];
 
   foodIntakeChartFormData: any = <any>{};
   stLstYesNoOptions: any[];
@@ -42,6 +42,9 @@ export class FoodIntakeChartComponent extends AppComponentBase implements OnInit
   isShowStrikeThroughPopup: boolean = false;
   StrikeThroughData: any = <any>{};
   stLstReason: any[] = [];
+  stLstErrorAndWarning: any;
+  result: any;
+  ChartName: any;
 
   constructor(
     private optionService: OptionService,
@@ -94,7 +97,12 @@ export class FoodIntakeChartComponent extends AppComponentBase implements OnInit
     this.optionService.getstLstReason().subscribe((data) => {
       this.stLstReason = data;
     });
-
+    this.optionService.getstLstErrorAndWarning().subscribe((data) => {
+      this.stLstErrorAndWarning = data;
+      this.result = this.stLstErrorAndWarning.Warnings.Components.Charts.find(i => i.ChartId === ChartTypes.FoodIntakeChart);
+      this.ChartName = this.result["ChartName"];
+      this._ConstantServices.ActiveMenuName = this.ChartName;
+    });
     const collectionNames = ['mealSize', 'amountOfFoodEaten'];
 
     forkJoin(
@@ -106,7 +114,7 @@ export class FoodIntakeChartComponent extends AppComponentBase implements OnInit
         )
       )
     ).subscribe((responses: any[]) => {
-      this.lstMealSize= responses[0];
+      this.lstMealSize = responses[0];
       this.lstAmountOfFoodEaten = responses[1];
     });
 
@@ -237,7 +245,7 @@ export class FoodIntakeChartComponent extends AppComponentBase implements OnInit
           },
         });
     } else {
-      this._UtilityService.showWarningAlert('Blood Glucose Chart details are missing.');
+      this._UtilityService.showWarningAlert(this.ChartName + " " + this.stLstErrorAndWarning.Warnings.Common.DetailMissMessage);
     }
   }
 

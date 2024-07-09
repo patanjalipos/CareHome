@@ -53,6 +53,9 @@ export class GlasgowComaScaleChartComponent extends AppComponentBase implements 
   isShowStrikeThroughPopup: boolean = false;
   StrikeThroughData: any = <any>{};
   stLstReason: any[] = [];
+  stLstErrorAndWarning: any;
+  result: any;
+  ChartName: any;
 
   constructor(
     private optionService: OptionService,
@@ -107,7 +110,12 @@ export class GlasgowComaScaleChartComponent extends AppComponentBase implements 
     this.optionService.getstLstReason().subscribe((data) => {
       this.stLstReason = data;
     });
-
+    this.optionService.getstLstErrorAndWarning().subscribe((data) => {
+      this.stLstErrorAndWarning = data;
+      this.result = this.stLstErrorAndWarning.Warnings.Components.Charts.find(i => i.ChartId === ChartTypes.GlasgowComaScaleChart);
+      this.ChartName = this.result["ChartName"];
+      this._ConstantServices.ActiveMenuName = this.ChartName;
+    });
     this.message = [
       { severity: 'info', detail: 'Complete the eye verbal and motor responses to calculate the score' }
     ];
@@ -277,7 +285,7 @@ export class GlasgowComaScaleChartComponent extends AppComponentBase implements 
           },
         });
     } else {
-      this._UtilityService.showWarningAlert('Blood Glucose Chart details are missing.');
+      this._UtilityService.showWarningAlert(this.ChartName + " " + this.stLstErrorAndWarning.Warnings.Common.DetailMissMessage);
     }
   }
 

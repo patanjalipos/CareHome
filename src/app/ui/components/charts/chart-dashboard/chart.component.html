@@ -172,3 +172,8 @@ ShowChildComponent == true &&
 selectedChartMasterId == ChartTypes.RepositioningChart
 ">
 </app-repositioning-chart>
+<app-restraint-chart [preSelectedChartData]="selectedChartData" (EmitUpdateForm)="EmitUpdateForm($event)" *ngIf="
+ShowChildComponent == true &&
+selectedChartMasterId == ChartTypes.RestraintChart
+">
+</app-restraint-chart>

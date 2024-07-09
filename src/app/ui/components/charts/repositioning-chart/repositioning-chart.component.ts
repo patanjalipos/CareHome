@@ -44,6 +44,9 @@ export class RepositioningChartComponent extends AppComponentBase implements OnI
   StrikeThroughData: any = <any>{};
   stLstReason: any[] = [];
   stLstRepositioning: any[] = [];
+  result: any;
+  stLstErrorAndWarning: any;
+  ChartName: any;
 
   constructor(
     private optionService: OptionService,
@@ -99,7 +102,12 @@ export class RepositioningChartComponent extends AppComponentBase implements OnI
     this.optionService.getstLstRepositionFromTo().subscribe((data) => {
       this.stLstRepositioning = data;
     });
-
+    this.optionService.getstLstErrorAndWarning().subscribe((data) => {
+      this.stLstErrorAndWarning = data;
+      this.result = this.stLstErrorAndWarning.Warnings.Components.Charts.find(i => i.ChartId === ChartTypes.RepositioningChart);
+      this.ChartName = this.result["ChartName"];
+      this._ConstantServices.ActiveMenuName = this.ChartName;
+    });
     const collectionNames = ['skinCheck', 'creams'];
 
     forkJoin(
@@ -239,8 +247,8 @@ export class RepositioningChartComponent extends AppComponentBase implements OnI
             this._UtilityService.showErrorAlert(e.message);
           },
         });
-    } else {
-      this._UtilityService.showWarningAlert('Blood Glucose Chart details are missing.');
+    }  else {
+      this._UtilityService.showWarningAlert(this.ChartName + " " + this.stLstErrorAndWarning.Warnings.Common.DetailMissMessage);
     }
   }
 

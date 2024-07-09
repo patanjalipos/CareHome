@@ -23,6 +23,7 @@ import { FluidOutputChartModule } from "../fluid-output-chart/fluid-output-chart
 import { GlasgowComaScaleChartModule } from "../glasgow-coma-scale-chart/glasgow-coma-scale-chart.module";
 import { FoodIntakeChartModule } from "../food-intake-chart/food-intake-chart.module";
 import { RepositioningChartModule } from "../repositioning-chart/repositioning-chart.module";
+import { RestraintChartModule } from "../restraint-chart/restraint-chart.module";
 
 @NgModule({
     declarations: [
@@ -52,7 +53,8 @@ import { RepositioningChartModule } from "../repositioning-chart/repositioning-c
         FluidOutputChartModule,
         GlasgowComaScaleChartModule,
         FoodIntakeChartModule,
-        RepositioningChartModule
+        RepositioningChartModule,
+        RestraintChartModule
     ]
 })
 export class ChartModule { }

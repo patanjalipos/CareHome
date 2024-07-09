@@ -47,6 +47,9 @@ export class EnteralFeedingChartComponent extends AppComponentBase implements On
   isShowStrikeThroughPopup: boolean = false;
   StrikeThroughData: any = <any>{};
   stLstReason: any[] = [];
+  stLstErrorAndWarning: any;
+  result: any;
+  ChartName: any;
 
 
   constructor(
@@ -104,7 +107,12 @@ export class EnteralFeedingChartComponent extends AppComponentBase implements On
     this.optionService.getstLstReason().subscribe((data) => {
       this.stLstReason = data;
     });
-
+    this.optionService.getstLstErrorAndWarning().subscribe((data) => {
+      this.stLstErrorAndWarning = data;
+      this.result = this.stLstErrorAndWarning.Warnings.Components.Charts.find(i => i.ChartId === ChartTypes.EnteralFeedingChart);
+      this.ChartName = this.result["ChartName"];
+      this._ConstantServices.ActiveMenuName = this.ChartName;
+    });
     this.getChartDataById(this.preSelectedChartData.chartMasterId, this.preSelectedChartData.residentAdmissionInfoId, this.pageNumber, this.pageSize);
     this.responsiveOptions = [
       {
@@ -206,7 +214,7 @@ export class EnteralFeedingChartComponent extends AppComponentBase implements On
           },
         });
     } else {
-      this._UtilityService.showWarningAlert('Blood Glucose Chart details are missing.');
+      this._UtilityService.showWarningAlert(this.ChartName + " " + this.stLstErrorAndWarning.Warnings.Common.DetailMissMessage);
     }
   }
 

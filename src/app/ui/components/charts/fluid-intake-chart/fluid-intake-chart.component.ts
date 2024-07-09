@@ -21,8 +21,8 @@ export class FluidIntakeChartComponent extends AppComponentBase implements OnIni
   @Output() EmitUpdateForm: EventEmitter<any> = new EventEmitter<any>();
   customDateFormat = CustomDateFormat;
   inputFields: boolean;
-  reason:boolean=false;
-  careGiven:boolean=false;
+  reason: boolean = false;
+  careGiven: boolean = false;
   FluidIntakeChartFormData: any = <any>{};
   isEditable: boolean;
   loginId: any;
@@ -103,7 +103,7 @@ export class FluidIntakeChartComponent extends AppComponentBase implements OnIni
     });
     this.optionService.getstLstErrorAndWarning().subscribe((data) => {
       this.stLstErrorAndWarning = data;
-      this.result = this.stLstErrorAndWarning.Warnings.Components.Charts.find(i => i.ChartId === ChartTypes.ActivitiesChart);
+      this.result = this.stLstErrorAndWarning.Warnings.Components.Charts.find(i => i.ChartId === ChartTypes.FluidIntakeChart);
       this.ChartName = this.result["ChartName"];
       this._ConstantServices.ActiveMenuName = this.ChartName;
     });
@@ -153,12 +153,12 @@ export class FluidIntakeChartComponent extends AppComponentBase implements OnIni
 
 
   Save() {
-    this.reason=false;
-    this.careGiven=false;
-    if(this.FluidIntakeChartFormData.CareGiven==null){
-      this.careGiven=true;
-    }else if(this.FluidIntakeChartFormData.CareGiven=='No' &&this.FluidIntakeChartFormData.Reason==null){
-      this.reason=true;
+    this.reason = false;
+    this.careGiven = false;
+    if (this.FluidIntakeChartFormData.CareGiven == null) {
+      this.careGiven = true;
+    } else if (this.FluidIntakeChartFormData.CareGiven == 'No' && this.FluidIntakeChartFormData.Reason == null) {
+      this.reason = true;
     }
     else if (
       this.userId != null &&
@@ -223,7 +223,7 @@ export class FluidIntakeChartComponent extends AppComponentBase implements OnIni
           },
         });
     } else {
-      this._UtilityService.showWarningAlert('Blood Glucose Chart details are missing.');
+      this._UtilityService.showWarningAlert(this.ChartName + " " + this.stLstErrorAndWarning.Warnings.Common.DetailMissMessage);
     }
   }
 

@@ -44,6 +44,9 @@ export class FluidOutputChartComponent extends AppComponentBase implements OnIni
   isShowStrikeThroughPopup: boolean = false;
   StrikeThroughData: any = <any>{};
   stLstReason: any[] = [];
+  stLstErrorAndWarning: any;
+  result: any;
+  ChartName: any;
 
   constructor(
     private optionService: OptionService,
@@ -96,7 +99,12 @@ export class FluidOutputChartComponent extends AppComponentBase implements OnIni
     this.optionService.getstLstReason().subscribe((data) => {
       this.stLstReason = data;
     });
-
+    this.optionService.getstLstErrorAndWarning().subscribe((data) => {
+      this.stLstErrorAndWarning = data;
+      this.result = this.stLstErrorAndWarning.Warnings.Components.Charts.find(i => i.ChartId === ChartTypes.FluidOutputChart);
+      this.ChartName = this.result["ChartName"];
+      this._ConstantServices.ActiveMenuName = this.ChartName;
+    });
     const collectionNames = ['output', 'outputNonCatheterised'];
 
     forkJoin(
@@ -236,8 +244,8 @@ export class FluidOutputChartComponent extends AppComponentBase implements OnIni
             this._UtilityService.showErrorAlert(e.message);
           },
         });
-    } else {
-      this._UtilityService.showWarningAlert('Fluid Output Chart details are missing.');
+    }  else {
+      this._UtilityService.showWarningAlert(this.ChartName + " " + this.stLstErrorAndWarning.Warnings.Common.DetailMissMessage);
     }
   }
 
