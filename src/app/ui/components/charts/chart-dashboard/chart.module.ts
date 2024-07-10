@@ -18,6 +18,11 @@ import { TableModule } from 'primeng/table';
 import { PainChartModule } from "../pain-chart/pain-chart.module";
 import { WeightChartModule } from '../weight-chart/weight-chart.module';
 import { BloodGlucoseChartModule } from "../blood-glucose-chart/blood-glucose-chart.module";
+import { WaterlowChartModule } from '../waterlow-chart/waterlow-chart.module';
+import { VitalSignsChartModule } from '../vital-signs-chart/vital-signs-chart.module';
+import { UrinaryChartModule } from '../urinary-chart/urinary-chart.module';
+import { SightingChartModule } from '../sighting-chart/sighting-chart.module';
+import { SeizureChartModule } from '../seizure-chart/seizure-chart.module';
 import { FluidIntakeChartModule } from "../fluid-intake-chart/fluid-intake-chart.module";
 import { FluidOutputChartModule } from "../fluid-output-chart/fluid-output-chart.module";
 import { GlasgowComaScaleChartModule } from "../glasgow-coma-scale-chart/glasgow-coma-scale-chart.module";
@@ -49,6 +54,11 @@ import { RestraintChartModule } from "../restraint-chart/restraint-chart.module"
         PainChartModule,
         WeightChartModule,
         BloodGlucoseChartModule,
+        WaterlowChartModule,
+        VitalSignsChartModule,
+        UrinaryChartModule,
+        SightingChartModule,
+        SeizureChartModule,
         FluidIntakeChartModule,
         FluidOutputChartModule,
         GlasgowComaScaleChartModule,
