@@ -1,0 +1,366 @@
+<div class="card">
+    <div class="row p-0">
+        <div class="col-md-12 formheader d-flex justify-content-between align-items-center">
+            <h4 class="mb-0">Glasgow Coma Scale Chart</h4>
+            <div>
+                <button pButton type="button" icon="pi pi-chevron-left" class="mr-2" (click)="leftBtn()"
+                    [disabled]="pageNumber==0"></button>
+                <button pButton type="button" icon="pi pi-chevron-right" class="" (click)="rightBtn()"
+                    [disabled]="rightBtnCheck"></button>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-3 mt-3 chart-box">
+            <div class="formheader mt-2 chart-heading">
+                <p><b>New observation</b></p>
+            </div>
+            <div class="col-md-12 mt-4">
+                <label class="form-label bold">
+                    Date/Time<span class="required"></span></label>
+
+                <ng-container>
+                    <p-calendar name="" [showIcon]="true" inputId="icon" class="iconcal" [readonlyInput]="true"
+                        appendTo="body" [maxDate]="" #dobref="" [dateFormat]="customDateFormat.CalendarFormat"
+                        [(ngModel)]="glasgowComaScaleChartFormData.DateAndTime" [showTime]="true"></p-calendar>
+                </ng-container>
+            </div>
+            <div class="col-md-12">
+
+                <label class="form-label bold">Care Given <span class="required"></span></label>
+
+                <ng-container>
+                    <p-dropdown [required]="true" name="glasgowComaScaleChartFormData.CareGiven"
+                        placeholder="----select----" [style]="{ width: '100%' }" [options]="stLstYesNoOptions"
+                        optionValue="optionId" optionLabel="optionValue"
+                        [(ngModel)]="glasgowComaScaleChartFormData.CareGiven" (onChange)="openAndClose()">
+                    </p-dropdown>
+                    <label for="" *ngIf="careGiven" class="text-danger">This field is required</label>
+                </ng-container>
+
+            </div>
+            <div *ngIf="inputFields==false">
+                <label class="form-label bold">Reason<span class="required"></span></label>
+
+                <ng-container>
+                    <p-dropdown [required]="true" name="glasgowComaScaleChartFormData.Reason"
+                        placeholder="----select----" [style]="{ width: '100%' }" [options]="stLstReason"
+                        optionValue="optionId" optionLabel="optionValue"
+                        [(ngModel)]="glasgowComaScaleChartFormData.Reason">
+                    </p-dropdown>
+                    <label for="" *ngIf="reason" class="text-danger">This field is required</label>
+                </ng-container>
+            </div>
+            <div *ngIf="inputFields==true">
+
+                <h5 class="formheader">Coma Scale</h5>
+                <div class="mb-4">
+                    <label class="form-label bold">Eye Opening<span class="required"></span></label>
+                    <ng-container>
+                        <p-dropdown [required]="true" name="glasgowComaScaleChartFormData.EyeOpening"
+                            placeholder="----select----" [style]="{ width: '100%' }" [options]="lstEyeOpening"
+                            optionValue="optionId" optionLabel="optionName"
+                            [(ngModel)]="glasgowComaScaleChartFormData.EyeOpening" (onChange)="scaleScoreCalculater($event.value)">
+
+                        </p-dropdown>
+
+                    </ng-container>
+                </div>
+                <div>
+                    <label class="form-label bold">Verbal Response<span class="required"></span></label>
+
+                    <ng-container>
+                        <p-dropdown [required]="true" name="glasgowComaScaleChartFormData.VerbalResponse"
+                            placeholder="----select----" [style]="{ width: '100%' }" [options]="lstVerbalResponse"
+                            optionValue="optionId" optionLabel="optionName"
+                            [(ngModel)]="glasgowComaScaleChartFormData.VerbalResponse" (onChange)="scaleScoreCalculater($event.value)">
+                        </p-dropdown>
+
+                    </ng-container>
+                </div>
+                <div>
+                    <label class="form-label bold">Best Motor Response<span class="required"></span></label>
+
+                    <ng-container>
+                        <p-dropdown [required]="true" name="glasgowComaScaleChartFormData.BestMotorResponse"
+                            placeholder="----select----" [style]="{ width: '100%' }" [options]="lstBestMotorResponse"
+                            optionValue="optionId" optionLabel="optionName"
+                            [(ngModel)]="glasgowComaScaleChartFormData.BestMotorResponse" (onChange)="scaleScoreCalculater($event.value)">
+                        </p-dropdown>
+
+                    </ng-container>
+                </div>
+                <div>
+                    <label class="form-label bold">Glasgow Coma Scale score<span class="required"></span></label>
+                    <div *ngIf="ScaleScore>0">
+                        <label class="form-label">{{ScaleScore}}</label>
+                    </div>
+                    <div *ngIf="ScaleScore<0">
+                        <label class="form-label">Not testable</label>
+                    </div>
+                    <ng-container>
+                        <p-messages [(value)]="message" [enableService]="false"></p-messages>
+                    </ng-container>
+                </div>
+
+                <h5 class="formheader">Pulse</h5>
+                <div class="mb-4">
+                    <label class="form-label bold">Pulse Rate<span class="required"></span></label>
+                    <div class="col-md-12">
+                        <input type="number" pInputText name="glasgowComaScaleChartFormData.pulseRate" [required]="true"
+                            [style]="{ width: '100%' }" [(ngModel)]="glasgowComaScaleChartFormData.pulseRate"
+                            placeholder="Beates Per minute" />
+                    </div>
+                </div>
+                <div>
+                    <label class="form-label bold">Site Of Measurement<span class="required"></span></label>
+
+                    <ng-container>
+                        <p-dropdown [required]="true" name="glasgowComaScaleChartFormData.SiteOfMeasurement"
+                            placeholder="----select----" [style]="{ width: '100%' }" [options]="lstSiteOfMeasurement"
+                            optionValue="optionId" optionLabel="optionName"
+                            [(ngModel)]="glasgowComaScaleChartFormData.SiteOfMeasurement">
+                        </p-dropdown>
+
+                    </ng-container>
+                </div>
+                <div>
+                    <label class="form-label bold">Rhythm<span class="required"></span></label>
+
+                    <ng-container>
+                        <p-dropdown [required]="true" name="glasgowComaScaleChartFormData.Rhythm"
+                            placeholder="----select----" [style]="{ width: '100%' }" [options]="lstRhythm"
+                            optionValue="optionId" optionLabel="optionName"
+                            [(ngModel)]="glasgowComaScaleChartFormData.Rhythm">
+                        </p-dropdown>
+
+                    </ng-container>
+                </div>
+                <div>
+                    <label class="form-label bold">Resident Position<span class="required"></span></label>
+
+                    <ng-container>
+                        <p-dropdown [required]="true" name="glasgowComaScaleChartFormData.ResidentPosition"
+                            placeholder="----select----" [style]="{ width: '100%' }" [options]="lstResidentPosition"
+                            optionValue="optionId" optionLabel="optionName"
+                            [(ngModel)]="glasgowComaScaleChartFormData.ResidentPosition">
+                        </p-dropdown>
+
+                    </ng-container>
+                </div>
+            </div>
+            <h5 class="formheader">Additional information</h5>
+            <div class="col-md-12">
+                <label class="form-label"><span class="required"></span></label>
+                <ng-container>
+                    <input type="text" pInputText name="glasgowComaScaleChartFormData.AdditionalInformation"
+                        [required]="true" [style]="{ width: '100%' }"
+                        [(ngModel)]="glasgowComaScaleChartFormData.AdditionalInformation" />
+                </ng-container>
+            </div>
+            <div class="d-flex justify-content-center mt-4 mb-4">
+                <div class="mr-4 ">
+                    <span class="p-ml-left">
+                        <button pButton title="Clear all" label="Clear all" (click)="ClearAllfeilds()"></button>
+
+                    </span>
+                </div>
+                <div>
+                    <span class="p-ml-left">
+                        <button pButton title="save" label="Save" (click)="Save()"></button>
+                    </span>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-9 mt-3">
+            <!-- Left navigation button -->
+
+            <p-carousel [value]="glasgowComaScaleChartLst" [numVisible]="pageSize" [numScroll]="pageSize"
+                [circular]="false" [showIndicators]="false" [showNavigators]="false"
+                [responsiveOptions]="responsiveOptions">
+                <ng-template let-chart pTemplate="item">
+                    <div class="col-md-11 chart-box p-2">
+                        <div class="formheader">
+                            <div class="col-md-12 mb-2 d-flex justify-content-between fs-4">
+                                <div class="chart-date bold">
+                                    <label [ngClass]="{'text-decoration-line-through bold':chart.isStrikeThrough}">{{
+                                        chart.DateAndTime |
+                                        date:'dd-MM-yyyy' }}</label>
+                                </div>
+                                <div class="chart-date">
+                                    <label [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">{{
+                                        chart.DateAndTime |
+                                        date:'hh:mm' }}</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12 mb-2">
+
+                            <label class="form-label bold"
+                                [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">Enterted By<span
+                                    class="required"></span></label>
+
+                            <div>
+                                <label
+                                    [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">{{chart.StartedBy}}</label>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="mb-2">
+                                <button *ngIf="!chart.isStrikeThrough" pButton type="button"
+                                    label="Strike Through Entry" class="p-button-link p-0"
+                                    (click)="showPopup(chart.glasgowComaScaleChartId)">
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="col-md-12 mb-2">
+
+                            <label *ngIf="chart.isStrikeThrough" class="form-label bold">Strike Through Reason<span
+                                    class="required"></span></label>
+
+                            <div>
+                                <label *ngIf="chart.isStrikeThrough">{{chart.StrikeThroughRemark}}</label>
+                            </div>
+                        </div>
+
+                        <div class="col-md-12">
+
+                            <label class="form-label bold"
+                                [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">Care Given
+                                <span class="required"></span></label>
+
+                            <div>
+                                <label [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">{{
+                                    chart.CareGiven }}</label>
+                            </div>
+
+                        </div>
+                        <div *ngIf="chart.CareGiven=='No'">
+                            <div class="col-md-12">
+                                <div class="col-md-12">
+                                    <label class="form-label bold"
+                                        [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">Reason
+                                        <span class="required"></span></label>
+                                </div>
+                                <div>
+                                    <label [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">{{
+                                        chart.Reason }}</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div *ngIf="chart.CareGiven=='Yes'" class="row">
+                            <div class="col-md-12">
+                                <label class="form-label bold"
+                                    [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">Eye Opening<span
+                                        class="required"></span></label>
+
+                                <div>
+                                    <label
+                                        [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">{{chart.EyeOpeningOptionName}}</label>
+                                </div>
+                            </div>
+
+                            <div class="col-md-12">
+                                <label class="form-label bold"
+                                    [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">Verbal
+                                    Response<span class="required"></span></label>
+
+                                <div>
+                                    <label [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">{{
+                                        chart.VerbalResponseOptionName
+                                        }}</label>
+                                </div>
+                            </div>
+
+                            <div class="col-md-12">
+                                <label class="form-label bold"
+                                    [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">Best Motor
+                                    Response<span class="required"></span></label>
+
+                                <div>
+                                    <label [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">{{
+                                        chart.BestMotorResponseOptionName
+                                        }}</label>
+                                </div>
+                            </div>
+
+                            <h5 class="formheader"
+                                [ngClass]="{'text-decoration-line-through':chart.isShowStrikeThroughPopup}">Pulse</h5>
+                            <div class="col-md-12">
+                                <label class="form-label bold"
+                                    [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">Pulse Rate<span
+                                        class="required"></span></label>
+
+                                <div>
+                                    <label
+                                        [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">{{chart.pulseRate}}</label>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+
+                                <label class="form-label bold"
+                                    [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">Site Of
+                                    Measurement<span class="required"></span></label>
+
+                                <div>
+                                    <label [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">{{
+                                        chart.SiteOfMeasurementOptionName
+                                        }}</label>
+                                </div>
+                            </div>
+                            <div>
+                                <label class="form-label bold"
+                                    [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">Rhytm<span
+                                        class="required"></span></label>
+                                <div>
+                                    <label [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">{{
+                                        chart.RhythmOptionName
+                                        }}</label>
+                                </div>
+                            </div>
+
+                            <div>
+                                <label class="form-label bold"
+                                    [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">Resident
+                                    Position<span class="required"></span></label>
+                                <div>
+                                    <label [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">{{
+                                        chart.ResidentPositionOptionName
+                                        }}</label>
+                                </div>
+                            </div>
+                        </div>
+                        <h5 class="formheader" [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">
+                            Additional information
+                        </h5>
+                        <div class="col-md-12">
+                            <label class="form-label"><span class="required"></span></label>
+                            <div>
+                                <label
+                                    [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">{{chart.AdditionalInformation}}</label>
+                            </div>
+                        </div>
+                    </div>
+                </ng-template>
+
+            </p-carousel>
+            <div *ngIf="isShowStrikeThroughPopup" class="card flex justify-content-center">
+                <p-dialog [closable]="true" header="Strike-Through" [(visible)]="isShowStrikeThroughPopup"
+                    [modal]="true" [breakpoints]="{ '1199px': '75vw', '575px': '90vw' }" [style]="{ width: '40vw' }"
+                    [draggable]="false" [resizable]="false">
+                    <div *ngIf="isShowStrikeThroughPopup">
+
+                        <app-strike-through-entry [StrikeThroughData]="StrikeThroughData"
+                            (StrikeThroughCheck)="Changes($event)"></app-strike-through-entry>
+                    </div>
+                </p-dialog>
+            </div>
+
+            <!-- Right navigation button -->
+
+        </div>
+    </div>
+</div>

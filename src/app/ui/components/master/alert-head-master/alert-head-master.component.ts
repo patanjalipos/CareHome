@@ -150,7 +150,6 @@ export class AlertHeadMasterComponent extends AppComponentBase implements OnInit
   }
 
 GetAlertHeadMasterFilter($event) {
-  // console.log('event',$event);
   this.filteritems=$event; 
    this.GetAlertHeadMaster(); 
  }

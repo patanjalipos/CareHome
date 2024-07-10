@@ -23,6 +23,12 @@ import { VitalSignsChartModule } from '../vital-signs-chart/vital-signs-chart.mo
 import { UrinaryChartModule } from '../urinary-chart/urinary-chart.module';
 import { SightingChartModule } from '../sighting-chart/sighting-chart.module';
 import { SeizureChartModule } from '../seizure-chart/seizure-chart.module';
+import { FluidIntakeChartModule } from "../fluid-intake-chart/fluid-intake-chart.module";
+import { FluidOutputChartModule } from "../fluid-output-chart/fluid-output-chart.module";
+import { GlasgowComaScaleChartModule } from "../glasgow-coma-scale-chart/glasgow-coma-scale-chart.module";
+import { FoodIntakeChartModule } from "../food-intake-chart/food-intake-chart.module";
+import { RepositioningChartModule } from "../repositioning-chart/repositioning-chart.module";
+import { RestraintChartModule } from "../restraint-chart/restraint-chart.module";
 
 @NgModule({
     declarations: [
@@ -52,7 +58,13 @@ import { SeizureChartModule } from '../seizure-chart/seizure-chart.module';
         VitalSignsChartModule,
         UrinaryChartModule,
         SightingChartModule,
-        SeizureChartModule
+        SeizureChartModule,
+        FluidIntakeChartModule,
+        FluidOutputChartModule,
+        GlasgowComaScaleChartModule,
+        FoodIntakeChartModule,
+        RepositioningChartModule,
+        RestraintChartModule
     ]
 })
 export class ChartModule { }
