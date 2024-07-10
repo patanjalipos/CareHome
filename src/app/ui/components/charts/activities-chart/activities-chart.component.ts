@@ -39,7 +39,7 @@ export class ActivitiesChartComponent
     residentAdmissionInfoId: any;
     userId: any;
     StatementType: string = null;
-    CareGivenCheck:boolean = false;
+    CareGivenCheck: boolean = false;
     ReasonCheck: boolean = false;
 
     lstActivity: any[] = [];
@@ -55,14 +55,14 @@ export class ActivitiesChartComponent
     pageNumber: number = 0;
     pageSize: number = 3;
     responsiveOptions: any[] | undefined;
-    rightBtnCheck:boolean = false;
-    isShowStrikeThroughPopup:boolean = false;
-    StrikeThroughData:any = <any>{};
-    stLstReason:any[]=[];
+    rightBtnCheck: boolean = false;
+    isShowStrikeThroughPopup: boolean = false;
+    StrikeThroughData: any = <any>{};
+    stLstReason: any[] = [];
     stLstErrorAndWarning: any = <any>{};
-    result:any = <any>{};
-    ChartName:string;
-      
+    result: any = <any>{};
+    ChartName: string;
+
     constructor(
         private optionService: OptionService,
         private _UtilityService: UtilityService,
@@ -102,7 +102,7 @@ export class ActivitiesChartComponent
         } else {
             this.ResetModel();
         }
-        
+
     }
 
     ngOnInit(): void {
@@ -170,9 +170,8 @@ export class ActivitiesChartComponent
         }
 
         this.ActivitiesChartFormData.DateAndTime = new Date();
-        // this.ActivitiesChartFormData.DateAndTime = this.datePipe.transform(this.ActivitiesChartFormData.DateAndTime,'dd-MM-yyyy HH:mm');
-        console.log(this.ActivitiesChartFormData.DateAndTime);
-        
+
+
     }
     chartOnChange() {
         this.getChartDataById(this.preSelectedChartData.chartMasterId, this.preSelectedChartData.residentAdmissionInfoId, this.pageNumber, this.pageSize);
@@ -279,16 +278,16 @@ export class ActivitiesChartComponent
     }
 
     Save() {
-        if(this.ActivitiesChartFormData.CareGiven == null) {
+        if (this.ActivitiesChartFormData.CareGiven == null) {
             this.CareGivenCheck = true;
         }
-        else if(this.ActivitiesChartFormData.CareGiven != null) {
+        else if (this.ActivitiesChartFormData.CareGiven != null) {
             this.CareGivenCheck = false;
-            if(this.ActivitiesChartFormData.CareGiven == 'Yes') {
+            if (this.ActivitiesChartFormData.CareGiven == 'Yes') {
                 this.ReasonCheck = false;
             }
-            else{
-                if(this.ActivitiesChartFormData.Reason == null) {
+            else {
+                if (this.ActivitiesChartFormData.Reason == null) {
                     this.ReasonCheck = true;
                 }
                 else {
@@ -363,14 +362,14 @@ export class ActivitiesChartComponent
         }
     }
     showPopup(chartId) {
-         this.StrikeThroughData = {
-            ChartMasterId:ChartTypes.ActivitiesChart,
+        this.StrikeThroughData = {
+            ChartMasterId: ChartTypes.ActivitiesChart,
             ChartId: chartId,
-            ModifiedBy:this.loginId,
-         };
-         this.isShowStrikeThroughPopup = true;
-        }
-    
+            ModifiedBy: this.loginId,
+        };
+        this.isShowStrikeThroughPopup = true;
+    }
+
     ResetModel() {
         this.isEditable = true;
         this.ActivitiesChartFormData = <any>{};

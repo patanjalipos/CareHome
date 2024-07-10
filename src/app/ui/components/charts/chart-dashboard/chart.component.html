@@ -144,8 +144,60 @@
     ">
 </app-blood-glucose-chart>
 
+<app-waterlow-chart [preSelectedChartData]="selectedChartData" (EmitUpdateForm)="EmitUpdateForm($event)" *ngIf="
+    ShowChildComponent == true &&
+    selectedChartMasterId == ChartTypes.WaterlowChart
+"></app-waterlow-chart>
+
+<app-vital-signs-chart [preSelectedChartData]="selectedChartData" (EmitUpdateForm)="EmitUpdateForm($event)" *ngIf="
+    ShowChildComponent == true &&
+    selectedChartMasterId == ChartTypes.VitalSignsChart
+"></app-vital-signs-chart>
+
+<app-urinary-chart [preSelectedChartData]="selectedChartData" (EmitUpdateForm)="EmitUpdateForm($event)" *ngIf="
+    ShowChildComponent == true &&
+    selectedChartMasterId == ChartTypes.UrinaryChart
+"></app-urinary-chart>
+
+<app-sighting-chart [preSelectedChartData]="selectedChartData" (EmitUpdateForm)="EmitUpdateForm($event)" *ngIf="
+    ShowChildComponent == true &&
+    selectedChartMasterId == ChartTypes.SightingChart
+"></app-sighting-chart>
+
+<app-seizure-chart [preSelectedChartData]="selectedChartData" (EmitUpdateForm)="EmitUpdateForm($event)" *ngIf="
+    ShowChildComponent == true &&
+    selectedChartMasterId == ChartTypes.SeizureChart
+"></app-seizure-chart>
+
 <app-fluid-intake-chart [preSelectedChartData]="selectedChartData" (EmitUpdateForm)="EmitUpdateForm($event)" *ngIf="
     ShowChildComponent == true &&
     selectedChartMasterId == ChartTypes.FluidIntakeChart
 ">
 </app-fluid-intake-chart>
+<app-fluid-output-chart [preSelectedChartData]="selectedChartData" (EmitUpdateForm)="EmitUpdateForm($event)" *ngIf="
+ShowChildComponent == true &&
+selectedChartMasterId == ChartTypes.FluidOutputChart
+">
+</app-fluid-output-chart>
+
+<app-glasgow-coma-scale-chart [preSelectedChartData]="selectedChartData" (EmitUpdateForm)="EmitUpdateForm($event)"
+    *ngIf="
+ShowChildComponent == true &&
+selectedChartMasterId == ChartTypes.GlasgowComaScaleChart
+">
+</app-glasgow-coma-scale-chart>
+<app-food-intake-chart [preSelectedChartData]="selectedChartData" (EmitUpdateForm)="EmitUpdateForm($event)" *ngIf="
+ShowChildComponent == true &&
+selectedChartMasterId == ChartTypes.FoodIntakeChart
+">
+</app-food-intake-chart>
+<app-repositioning-chart [preSelectedChartData]="selectedChartData" (EmitUpdateForm)="EmitUpdateForm($event)" *ngIf="
+ShowChildComponent == true &&
+selectedChartMasterId == ChartTypes.RepositioningChart
+">
+</app-repositioning-chart>
+<app-restraint-chart [preSelectedChartData]="selectedChartData" (EmitUpdateForm)="EmitUpdateForm($event)" *ngIf="
+ShowChildComponent == true &&
+selectedChartMasterId == ChartTypes.RestraintChart
+">
+</app-restraint-chart>
