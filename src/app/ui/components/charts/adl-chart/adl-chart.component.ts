@@ -285,7 +285,7 @@ export class AdlChartComponent extends AppComponentBase implements OnInit {
                 StatementType: this.StatementType,
                 ADLChartDetail: this.ADLChartData,
             };
-            console.log(objectBody);
+         
             
             this._UtilityService.showSpinner();
             this.unsubscribe.add = this._ADLChart

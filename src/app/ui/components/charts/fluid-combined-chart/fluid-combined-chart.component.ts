@@ -43,6 +43,9 @@ export class FluidCombinedChartComponent extends AppComponentBase implements OnI
   isShowStrikeThroughPopup: boolean = false;
   StrikeThroughData: any = <any>{};
   stLstReason: any[] = [];
+  stLstErrorAndWarning: any;
+  result: any;
+  ChartName: any;
 
   constructor(
     private optionService: OptionService,
@@ -115,7 +118,12 @@ export class FluidCombinedChartComponent extends AppComponentBase implements OnI
         numScroll: 1
       }
     ];
-
+    this.optionService.getstLstErrorAndWarning().subscribe((data) => {
+      this.stLstErrorAndWarning = data;
+      this.result = this.stLstErrorAndWarning.Warnings.Components.Charts.find(i => i.ChartId === ChartTypes.FluidCombinedChart);
+      this.ChartName = this.result["ChartName"];
+      this._ConstantServices.ActiveMenuName = this.ChartName;
+    });
     const collectionNames = ['fluidChart'];
 
     forkJoin(
@@ -236,7 +244,7 @@ export class FluidCombinedChartComponent extends AppComponentBase implements OnI
           },
         });
     } else {
-      this._UtilityService.showWarningAlert('Blood Glucose Chart details are missing.');
+      this._UtilityService.showWarningAlert(this.ChartName + " " + this.stLstErrorAndWarning.Warnings.Common.DetailMissMessage);
     }
   }
 
@@ -258,7 +266,6 @@ export class FluidCombinedChartComponent extends AppComponentBase implements OnI
             else {
               this.rightBtnCheck = false;
             }
-            console.log(this.fluidCombinedChartsLst);
 
           } else {
             this.fluidCombinedChartsLst = [];
@@ -278,8 +285,6 @@ export class FluidCombinedChartComponent extends AppComponentBase implements OnI
       ModifiedBy: this.loginId,
     };
     this.isShowStrikeThroughPopup = true;
-
-    console.log(this.StrikeThroughData, 'chartdata');
   }
 
   openAndClose() {

@@ -1,44 +1,40 @@
-import { DatePipe } from '@angular/common';
 import { Component, EventEmitter, Input, OnInit, Output, SimpleChanges } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { Observable, catchError, forkJoin, map, of } from 'rxjs';
-import { AppComponentBase } from 'src/app/app-component-base';
 import { ChartTypes, ConstantsService, CustomDateFormat } from 'src/app/ui/service/constants.service';
+import { FoodIntakeChartService } from './food-intake-chart.service';
 import { OptionService } from 'src/app/ui/service/option.service';
-import { UserService } from 'src/app/ui/service/user.service';
 import { UtilityService } from 'src/app/utility/utility.service';
-import { BowelChartService } from './bowel-chart.service';
+import { UserService } from 'src/app/ui/service/user.service';
+import { ActivatedRoute } from '@angular/router';
+import { DatePipe } from '@angular/common';
+import { AppComponentBase } from 'src/app/app-component-base';
+import { Observable, catchError, forkJoin, map, of } from 'rxjs';
 
 @Component({
-  selector: 'app-bowel-chart',
-  templateUrl: './bowel-chart.component.html',
-  styleUrls: ['./bowel-chart.component.scss']
+  selector: 'app-food-intake-chart',
+  templateUrl: './food-intake-chart.component.html',
+  styleUrls: ['./food-intake-chart.component.scss']
 })
-export class BowelChartComponent extends AppComponentBase implements OnInit {
-
+export class FoodIntakeChartComponent extends AppComponentBase implements OnInit {
   @Input() preSelectedChartData: any = <any>{};
   @Output() EmitUpdateForm: EventEmitter<any> = new EventEmitter<any>();
-  customDateFormat = CustomDateFormat;
-  inputFields: boolean;
-  BowelChartFormData: any = <any>{};
-  isEditable: boolean;
-  loginId: any;
-  residentAdmissionInfoId: any;
-  userId: any;
-  StatementType: string = null;
-  lstBowelAction: any;
-  lstAmount: any;
-  lstInterventions: any;
-  lstActivity: any[] = [];
-  lstPurposeOfActivity: any[] = [];
-  lstParticipation: any[] = [];
 
-  //Static Options
-  stLstYesNoOptions: any[] = [];
-  stLstAttendanceOptions: any[] = [];
+  customDateFormat = CustomDateFormat;
+  loginId: string;
+  userId: any;
+  residentAdmissionInfoId: any;
+  lstMealSize: any[] = [];
+  lstAmountOfFoodEaten: any[] = [];
+
+  foodIntakeChartFormData: any = <any>{};
+  stLstYesNoOptions: any[];
+  isEditable: boolean;
+  StatementType: string;
+  inputFields: boolean;
+  reason: boolean = false;
+  careGiven: boolean = false;
 
   //for carousel
-  BowelChartsLst: any[] = [];
+  foodIntakeChartsLst: any[] = [];
   pageNumber: number = 0;
   pageSize: number = 3;
   responsiveOptions: any[] | undefined;
@@ -46,34 +42,16 @@ export class BowelChartComponent extends AppComponentBase implements OnInit {
   isShowStrikeThroughPopup: boolean = false;
   StrikeThroughData: any = <any>{};
   stLstReason: any[] = [];
-  careGiven: boolean = false;
-  reason: boolean = false;
-  continenceRangeOption: any[] = [
-    { label: 'Continent', value: 'Continent' },
-    { label: 'Incontinent', value: 'Incontinent' }
-  ];
-
-  consistencyRangeOption: any[] = [
-    { label: "1", value: '1' },
-    { label: "2", value: '2' },
-    { label: "3", value: '3' },
-    { label: "4", value: '4' },
-    { label: "5", value: '5' },
-    { label: "6", value: '6' },
-    { label: "7", value: '7' }
-  ];
   stLstErrorAndWarning: any;
   result: any;
   ChartName: any;
-
-
 
   constructor(
     private optionService: OptionService,
     private _UtilityService: UtilityService,
     private _UserService: UserService,
     private datePipe: DatePipe,
-    private _bowelChartServices: BowelChartService,
+    private _foodIntakeServices: FoodIntakeChartService,
     private _ConstantServices: ConstantsService,
     private route: ActivatedRoute
   ) {
@@ -92,13 +70,14 @@ export class BowelChartComponent extends AppComponentBase implements OnInit {
             ?.FieldVal || null;
       }
     });
+
+
   }
 
   ngOnChanges(changes: SimpleChanges): void {
     this.isEditable = this.preSelectedChartData.isEditable;
     if (this.preSelectedChartData.selectedChartID != null) {
-      this.BowelChartFormData = <any>{};
-
+      this.foodIntakeChartFormData = <any>{};
       this.StatementType = 'Update';
     } else {
       this.ResetModel();
@@ -106,9 +85,8 @@ export class BowelChartComponent extends AppComponentBase implements OnInit {
 
   }
 
-
   ngOnInit(): void {
-    this.BowelChartFormData.DateAndTime = new Date()
+    this.foodIntakeChartFormData.DateAndTime = new Date()
     this.userId = this.preSelectedChartData.userId;
     this.residentAdmissionInfoId =
       this.preSelectedChartData.residentAdmissionInfoId;
@@ -116,34 +94,31 @@ export class BowelChartComponent extends AppComponentBase implements OnInit {
     this.optionService.getstLstYesNoOptions().subscribe((data) => {
       this.stLstYesNoOptions = data;
     });
-
-    this.optionService.getstLstAttendaceOptions().subscribe((data) => {
-      this.stLstAttendanceOptions = data;
-    });
     this.optionService.getstLstReason().subscribe((data) => {
       this.stLstReason = data;
     });
     this.optionService.getstLstErrorAndWarning().subscribe((data) => {
       this.stLstErrorAndWarning = data;
-      this.result = this.stLstErrorAndWarning.Warnings.Components.Charts.find(i => i.ChartId === ChartTypes.BowelChart);
+      this.result = this.stLstErrorAndWarning.Warnings.Components.Charts.find(i => i.ChartId === ChartTypes.FoodIntakeChart);
       this.ChartName = this.result["ChartName"];
       this._ConstantServices.ActiveMenuName = this.ChartName;
     });
-    const collectionNames = ['BowelAction', 'Amount', 'Interventions'];
+    const collectionNames = ['mealSize', 'amountOfFoodEaten'];
 
     forkJoin(
       collectionNames.map((collectionName) =>
         this.GetChartDropDownMasterList(
-          ChartTypes.BowelChart,
+          ChartTypes.FoodIntakeChart,
           collectionName,
           1
         )
       )
     ).subscribe((responses: any[]) => {
-      this.lstBowelAction = responses[0];
-      this.lstAmount = responses[1];
-      this.lstInterventions = responses[2];
+      this.lstMealSize = responses[0];
+      this.lstAmountOfFoodEaten = responses[1];
     });
+
+
 
     this.getChartDataById(this.preSelectedChartData.chartMasterId, this.preSelectedChartData.residentAdmissionInfoId, this.pageNumber, this.pageSize);
     this.responsiveOptions = [
@@ -165,12 +140,11 @@ export class BowelChartComponent extends AppComponentBase implements OnInit {
     ];
   }
 
-
-  openAndClose() {
-    if (this.BowelChartFormData.CareGiven == 'Yes') {
-      this.inputFields = true;
-    } else {
-      this.inputFields = false;
+  ClearAllfeilds() {
+    if (this.preSelectedChartData.selectedChartID) {
+      this.foodIntakeChartFormData = <any>{};
+      this.foodIntakeChartFormData.activitiesChartId =
+        this.preSelectedChartData.selectedChartID;
     }
   }
 
@@ -200,13 +174,12 @@ export class BowelChartComponent extends AppComponentBase implements OnInit {
       );
   }
 
-
   Save() {
     this.reason = false;
     this.careGiven = false;
-    if (this.BowelChartFormData.CareGiven == null) {
+    if (this.foodIntakeChartFormData.CareGiven == null) {
       this.careGiven = true;
-    } else if (this.BowelChartFormData.CareGiven == 'No' && this.BowelChartFormData.Reason == null) {
+    } else if (this.foodIntakeChartFormData.CareGiven == 'No' && this.foodIntakeChartFormData.Reason == null) {
       this.reason = true;
     }
     else if (
@@ -214,20 +187,20 @@ export class BowelChartComponent extends AppComponentBase implements OnInit {
       this.residentAdmissionInfoId != null &&
       this.loginId != null
     ) {
-      this.BowelChartFormData.userId = this.userId;
-      this.BowelChartFormData.StartedBy = this.loginId;
-      this.BowelChartFormData.LastEnteredBy = this.loginId;
-      this.BowelChartFormData.ResidentAdmissionInfoId =
+      this.foodIntakeChartFormData.userId = this.userId;
+      this.foodIntakeChartFormData.StartedBy = this.loginId;
+      this.foodIntakeChartFormData.LastEnteredBy = this.loginId;
+      this.foodIntakeChartFormData.ResidentAdmissionInfoId =
         this.residentAdmissionInfoId;
 
-      if (this.BowelChartFormData.DateAndTime) {
+      if (this.foodIntakeChartFormData.DateAndTime) {
         if (
           this.StatementType == 'Update' &&
-          typeof this.BowelChartFormData.DateAndTime === 'string'
+          typeof this.foodIntakeChartFormData.DateAndTime === 'string'
         ) {
           //Pare dateTime
           const dateParts =
-            this.BowelChartFormData.DateAndTime.split(/[- :]/);
+            this.foodIntakeChartFormData.DateAndTime.split(/[- :]/);
           const parsedDate = new Date(
             +dateParts[2],
             dateParts[1] - 1,
@@ -235,23 +208,23 @@ export class BowelChartComponent extends AppComponentBase implements OnInit {
             +dateParts[3],
             +dateParts[4]
           );
-          this.BowelChartFormData.DateAndTime = parsedDate;
+          this.foodIntakeChartFormData.DateAndTime = parsedDate;
         }
-        this.BowelChartFormData.DateAndTime =
+        this.foodIntakeChartFormData.DateAndTime =
           this.datePipe.transform(
-            this.BowelChartFormData.DateAndTime,
+            this.foodIntakeChartFormData.DateAndTime,
             'yyyy-MM-ddTHH:mm'
           );
       }
 
       const objectBody: any = {
         StatementType: this.StatementType,
-        bowelChartData: this.BowelChartFormData,
+        foodIntakeChart: this.foodIntakeChartFormData,
       };
 
       this._UtilityService.showSpinner();
-      this.unsubscribe.add = this._bowelChartServices
-        .AddInsertUpdateBowelChartForm(objectBody)
+      this.unsubscribe.add = this._foodIntakeServices
+        .AddInsertUpdateFoodIntakeChartForm(objectBody)
         .subscribe({
           next: (data) => {
             this._UtilityService.hideSpinner();
@@ -276,26 +249,6 @@ export class BowelChartComponent extends AppComponentBase implements OnInit {
     }
   }
 
-
-  showPopup(chartId) {
-    this.StrikeThroughData = {
-      ChartMasterId: ChartTypes.BowelChart,
-      ChartId: chartId,
-      ModifiedBy: this.loginId,
-    };
-    this.isShowStrikeThroughPopup = true;
-  }
-
-  ResetModel() {
-    this.isEditable = true;
-    this.BowelChartFormData = <any>{};
-    this.StatementType = 'Insert';
-  }
-
-  chartOnChange() {
-    this.getChartDataById(this.preSelectedChartData.chartMasterId, this.preSelectedChartData.residentAdmissionInfoId, this.pageNumber, this.pageSize);
-  }
-
   getChartDataById(chartId: any, residentAdmissionInfoId: any, pageNumber: number, pageSize: number) {
 
     this._UtilityService.showSpinner();
@@ -307,16 +260,17 @@ export class BowelChartComponent extends AppComponentBase implements OnInit {
           if (data.actionResult.success == true) {
             var tdata = JSON.parse(data.actionResult.result);
             tdata = tdata ? tdata : [];
-            this.BowelChartsLst = tdata;
-            if (this.BowelChartsLst.length < 3 || (((this.BowelChartsLst.length) * (this.pageNumber + 1)) >= this.BowelChartsLst[0].countRecords)) {
+            this.foodIntakeChartsLst = tdata;
+            if (this.foodIntakeChartsLst.length < 3 || (((this.foodIntakeChartsLst.length) * (this.pageNumber + 1)) >= this.foodIntakeChartsLst[0].countRecords)) {
               this.rightBtnCheck = true;
             }
             else {
               this.rightBtnCheck = false;
             }
 
+
           } else {
-            this.BowelChartsLst = [];
+            this.foodIntakeChartsLst = [];
           }
         },
         error: (e) => {
@@ -326,6 +280,30 @@ export class BowelChartComponent extends AppComponentBase implements OnInit {
       });
   }
 
+  showPopup(chartId) {
+    this.StrikeThroughData = {
+      ChartMasterId: ChartTypes.FoodIntakeChart,
+      ChartId: chartId,
+      ModifiedBy: this.loginId,
+    };
+    this.isShowStrikeThroughPopup = true;
+
+  }
+
+  openAndClose() {
+    if (this.foodIntakeChartFormData.CareGiven == 'Yes') {
+      this.inputFields = true;
+    } else {
+      this.inputFields = false;
+    }
+  }
+
+  ResetModel() {
+    this.isEditable = true;
+    this.foodIntakeChartFormData = <any>{};
+    this.StatementType = 'Insert';
+  }
+
   leftBtn() {
     if (this.pageNumber > 0) {
       this.pageNumber--;
@@ -333,26 +311,20 @@ export class BowelChartComponent extends AppComponentBase implements OnInit {
     }
   }
 
+
   rightBtn() {
     this.pageNumber++;
     this.chartOnChange();
   }
+
   Changes(value: boolean) {
     this.isShowStrikeThroughPopup = value;
     this.chartOnChange()
   }
 
-
-  ClearAllfeilds() {
-    if (this.preSelectedChartData.selectedChartID) {
-      this.BowelChartFormData = <any>{};
-      this.BowelChartFormData.bowelChartId =
-        this.preSelectedChartData.selectedChartID;
-    }
+  chartOnChange() {
+    this.getChartDataById(this.preSelectedChartData.chartMasterId, this.preSelectedChartData.residentAdmissionInfoId, this.pageNumber, this.pageSize);
   }
-
-
-
 
 
 }

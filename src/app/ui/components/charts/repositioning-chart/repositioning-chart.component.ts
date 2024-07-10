@@ -1,44 +1,41 @@
 import { DatePipe } from '@angular/common';
 import { Component, EventEmitter, Input, OnInit, Output, SimpleChanges } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Observable, catchError, forkJoin, map, of } from 'rxjs';
-import { AppComponentBase } from 'src/app/app-component-base';
 import { ChartTypes, ConstantsService, CustomDateFormat } from 'src/app/ui/service/constants.service';
 import { OptionService } from 'src/app/ui/service/option.service';
 import { UserService } from 'src/app/ui/service/user.service';
 import { UtilityService } from 'src/app/utility/utility.service';
-import { BowelChartService } from './bowel-chart.service';
+import { RepositioningChartService } from './repositioning-chart.service';
+import { AppComponentBase } from 'src/app/app-component-base';
+import { Observable, catchError, forkJoin, map, of } from 'rxjs';
 
 @Component({
-  selector: 'app-bowel-chart',
-  templateUrl: './bowel-chart.component.html',
-  styleUrls: ['./bowel-chart.component.scss']
+  selector: 'app-repositioning-chart',
+  templateUrl: './repositioning-chart.component.html',
+  styleUrls: ['./repositioning-chart.component.scss']
 })
-export class BowelChartComponent extends AppComponentBase implements OnInit {
-
+export class RepositioningChartComponent extends AppComponentBase implements OnInit {
   @Input() preSelectedChartData: any = <any>{};
   @Output() EmitUpdateForm: EventEmitter<any> = new EventEmitter<any>();
-  customDateFormat = CustomDateFormat;
-  inputFields: boolean;
-  BowelChartFormData: any = <any>{};
-  isEditable: boolean;
-  loginId: any;
-  residentAdmissionInfoId: any;
-  userId: any;
-  StatementType: string = null;
-  lstBowelAction: any;
-  lstAmount: any;
-  lstInterventions: any;
-  lstActivity: any[] = [];
-  lstPurposeOfActivity: any[] = [];
-  lstParticipation: any[] = [];
 
-  //Static Options
-  stLstYesNoOptions: any[] = [];
-  stLstAttendanceOptions: any[] = [];
+  customDateFormat = CustomDateFormat;
+  loginId: string;
+  userId: any;
+  residentAdmissionInfoId: any;
+
+  repositioningChartFormData: any = <any>{};
+  stLstYesNoOptions: any[];
+  stLstAttendanceOptions: any;
+  isEditable: boolean;
+  StatementType: string;
+  inputFields: boolean;
+  reason: boolean = false;
+  careGiven: boolean = false;
+  lstSkinCheck: any[] = [];
+  lstCreams: any[] = [];
 
   //for carousel
-  BowelChartsLst: any[] = [];
+  repositioningChartsLst: any[] = [];
   pageNumber: number = 0;
   pageSize: number = 3;
   responsiveOptions: any[] | undefined;
@@ -46,34 +43,17 @@ export class BowelChartComponent extends AppComponentBase implements OnInit {
   isShowStrikeThroughPopup: boolean = false;
   StrikeThroughData: any = <any>{};
   stLstReason: any[] = [];
-  careGiven: boolean = false;
-  reason: boolean = false;
-  continenceRangeOption: any[] = [
-    { label: 'Continent', value: 'Continent' },
-    { label: 'Incontinent', value: 'Incontinent' }
-  ];
-
-  consistencyRangeOption: any[] = [
-    { label: "1", value: '1' },
-    { label: "2", value: '2' },
-    { label: "3", value: '3' },
-    { label: "4", value: '4' },
-    { label: "5", value: '5' },
-    { label: "6", value: '6' },
-    { label: "7", value: '7' }
-  ];
-  stLstErrorAndWarning: any;
+  stLstRepositioning: any[] = [];
   result: any;
+  stLstErrorAndWarning: any;
   ChartName: any;
-
-
 
   constructor(
     private optionService: OptionService,
     private _UtilityService: UtilityService,
     private _UserService: UserService,
     private datePipe: DatePipe,
-    private _bowelChartServices: BowelChartService,
+    private _repositioningServices: RepositioningChartService,
     private _ConstantServices: ConstantsService,
     private route: ActivatedRoute
   ) {
@@ -92,13 +72,14 @@ export class BowelChartComponent extends AppComponentBase implements OnInit {
             ?.FieldVal || null;
       }
     });
+
+
   }
 
   ngOnChanges(changes: SimpleChanges): void {
     this.isEditable = this.preSelectedChartData.isEditable;
     if (this.preSelectedChartData.selectedChartID != null) {
-      this.BowelChartFormData = <any>{};
-
+      this.repositioningChartFormData = <any>{};
       this.StatementType = 'Update';
     } else {
       this.ResetModel();
@@ -106,9 +87,8 @@ export class BowelChartComponent extends AppComponentBase implements OnInit {
 
   }
 
-
   ngOnInit(): void {
-    this.BowelChartFormData.DateAndTime = new Date()
+    this.repositioningChartFormData.DateAndTime = new Date()
     this.userId = this.preSelectedChartData.userId;
     this.residentAdmissionInfoId =
       this.preSelectedChartData.residentAdmissionInfoId;
@@ -116,33 +96,31 @@ export class BowelChartComponent extends AppComponentBase implements OnInit {
     this.optionService.getstLstYesNoOptions().subscribe((data) => {
       this.stLstYesNoOptions = data;
     });
-
-    this.optionService.getstLstAttendaceOptions().subscribe((data) => {
-      this.stLstAttendanceOptions = data;
-    });
     this.optionService.getstLstReason().subscribe((data) => {
       this.stLstReason = data;
     });
+    this.optionService.getstLstRepositionFromTo().subscribe((data) => {
+      this.stLstRepositioning = data;
+    });
     this.optionService.getstLstErrorAndWarning().subscribe((data) => {
       this.stLstErrorAndWarning = data;
-      this.result = this.stLstErrorAndWarning.Warnings.Components.Charts.find(i => i.ChartId === ChartTypes.BowelChart);
+      this.result = this.stLstErrorAndWarning.Warnings.Components.Charts.find(i => i.ChartId === ChartTypes.RepositioningChart);
       this.ChartName = this.result["ChartName"];
       this._ConstantServices.ActiveMenuName = this.ChartName;
     });
-    const collectionNames = ['BowelAction', 'Amount', 'Interventions'];
+    const collectionNames = ['skinCheck', 'creams'];
 
     forkJoin(
       collectionNames.map((collectionName) =>
         this.GetChartDropDownMasterList(
-          ChartTypes.BowelChart,
+          ChartTypes.RepositioningChart,
           collectionName,
           1
         )
       )
     ).subscribe((responses: any[]) => {
-      this.lstBowelAction = responses[0];
-      this.lstAmount = responses[1];
-      this.lstInterventions = responses[2];
+      this.lstSkinCheck = responses[0];
+      this.lstCreams = responses[1];
     });
 
     this.getChartDataById(this.preSelectedChartData.chartMasterId, this.preSelectedChartData.residentAdmissionInfoId, this.pageNumber, this.pageSize);
@@ -163,15 +141,6 @@ export class BowelChartComponent extends AppComponentBase implements OnInit {
         numScroll: 1
       }
     ];
-  }
-
-
-  openAndClose() {
-    if (this.BowelChartFormData.CareGiven == 'Yes') {
-      this.inputFields = true;
-    } else {
-      this.inputFields = false;
-    }
   }
 
   GetChartDropDownMasterList(
@@ -200,13 +169,20 @@ export class BowelChartComponent extends AppComponentBase implements OnInit {
       );
   }
 
+  ClearAllfeilds() {
+    if (this.preSelectedChartData.selectedChartID) {
+      this.repositioningChartFormData = <any>{};
+      this.repositioningChartFormData.activitiesChartId =
+        this.preSelectedChartData.selectedChartID;
+    }
+  }
 
   Save() {
     this.reason = false;
     this.careGiven = false;
-    if (this.BowelChartFormData.CareGiven == null) {
+    if (this.repositioningChartFormData.CareGiven == null) {
       this.careGiven = true;
-    } else if (this.BowelChartFormData.CareGiven == 'No' && this.BowelChartFormData.Reason == null) {
+    } else if (this.repositioningChartFormData.CareGiven == 'No' && this.repositioningChartFormData.Reason == null) {
       this.reason = true;
     }
     else if (
@@ -214,20 +190,20 @@ export class BowelChartComponent extends AppComponentBase implements OnInit {
       this.residentAdmissionInfoId != null &&
       this.loginId != null
     ) {
-      this.BowelChartFormData.userId = this.userId;
-      this.BowelChartFormData.StartedBy = this.loginId;
-      this.BowelChartFormData.LastEnteredBy = this.loginId;
-      this.BowelChartFormData.ResidentAdmissionInfoId =
+      this.repositioningChartFormData.userId = this.userId;
+      this.repositioningChartFormData.StartedBy = this.loginId;
+      this.repositioningChartFormData.LastEnteredBy = this.loginId;
+      this.repositioningChartFormData.ResidentAdmissionInfoId =
         this.residentAdmissionInfoId;
 
-      if (this.BowelChartFormData.DateAndTime) {
+      if (this.repositioningChartFormData.DateAndTime) {
         if (
           this.StatementType == 'Update' &&
-          typeof this.BowelChartFormData.DateAndTime === 'string'
+          typeof this.repositioningChartFormData.DateAndTime === 'string'
         ) {
           //Pare dateTime
           const dateParts =
-            this.BowelChartFormData.DateAndTime.split(/[- :]/);
+            this.repositioningChartFormData.DateAndTime.split(/[- :]/);
           const parsedDate = new Date(
             +dateParts[2],
             dateParts[1] - 1,
@@ -235,23 +211,23 @@ export class BowelChartComponent extends AppComponentBase implements OnInit {
             +dateParts[3],
             +dateParts[4]
           );
-          this.BowelChartFormData.DateAndTime = parsedDate;
+          this.repositioningChartFormData.DateAndTime = parsedDate;
         }
-        this.BowelChartFormData.DateAndTime =
+        this.repositioningChartFormData.DateAndTime =
           this.datePipe.transform(
-            this.BowelChartFormData.DateAndTime,
+            this.repositioningChartFormData.DateAndTime,
             'yyyy-MM-ddTHH:mm'
           );
       }
 
       const objectBody: any = {
         StatementType: this.StatementType,
-        bowelChartData: this.BowelChartFormData,
+        repositioningChart: this.repositioningChartFormData,
       };
 
       this._UtilityService.showSpinner();
-      this.unsubscribe.add = this._bowelChartServices
-        .AddInsertUpdateBowelChartForm(objectBody)
+      this.unsubscribe.add = this._repositioningServices
+        .AddInsertUpdateRepositioningChartForm(objectBody)
         .subscribe({
           next: (data) => {
             this._UtilityService.hideSpinner();
@@ -271,29 +247,9 @@ export class BowelChartComponent extends AppComponentBase implements OnInit {
             this._UtilityService.showErrorAlert(e.message);
           },
         });
-    } else {
+    }  else {
       this._UtilityService.showWarningAlert(this.ChartName + " " + this.stLstErrorAndWarning.Warnings.Common.DetailMissMessage);
     }
-  }
-
-
-  showPopup(chartId) {
-    this.StrikeThroughData = {
-      ChartMasterId: ChartTypes.BowelChart,
-      ChartId: chartId,
-      ModifiedBy: this.loginId,
-    };
-    this.isShowStrikeThroughPopup = true;
-  }
-
-  ResetModel() {
-    this.isEditable = true;
-    this.BowelChartFormData = <any>{};
-    this.StatementType = 'Insert';
-  }
-
-  chartOnChange() {
-    this.getChartDataById(this.preSelectedChartData.chartMasterId, this.preSelectedChartData.residentAdmissionInfoId, this.pageNumber, this.pageSize);
   }
 
   getChartDataById(chartId: any, residentAdmissionInfoId: any, pageNumber: number, pageSize: number) {
@@ -307,16 +263,17 @@ export class BowelChartComponent extends AppComponentBase implements OnInit {
           if (data.actionResult.success == true) {
             var tdata = JSON.parse(data.actionResult.result);
             tdata = tdata ? tdata : [];
-            this.BowelChartsLst = tdata;
-            if (this.BowelChartsLst.length < 3 || (((this.BowelChartsLst.length) * (this.pageNumber + 1)) >= this.BowelChartsLst[0].countRecords)) {
+            this.repositioningChartsLst = tdata;
+            if (this.repositioningChartsLst.length < 3 || (((this.repositioningChartsLst.length) * (this.pageNumber + 1)) >= this.repositioningChartsLst[0].countRecords)) {
               this.rightBtnCheck = true;
             }
             else {
               this.rightBtnCheck = false;
             }
 
+
           } else {
-            this.BowelChartsLst = [];
+            this.repositioningChartsLst = [];
           }
         },
         error: (e) => {
@@ -326,6 +283,30 @@ export class BowelChartComponent extends AppComponentBase implements OnInit {
       });
   }
 
+  showPopup(chartId) {
+    this.StrikeThroughData = {
+      ChartMasterId: ChartTypes.RepositioningChart,
+      ChartId: chartId,
+      ModifiedBy: this.loginId,
+    };
+    this.isShowStrikeThroughPopup = true;
+
+  }
+
+  openAndClose() {
+    if (this.repositioningChartFormData.CareGiven == 'Yes') {
+      this.inputFields = true;
+    } else {
+      this.inputFields = false;
+    }
+  }
+
+  ResetModel() {
+    this.isEditable = true;
+    this.repositioningChartFormData = <any>{};
+    this.StatementType = 'Insert';
+  }
+
   leftBtn() {
     if (this.pageNumber > 0) {
       this.pageNumber--;
@@ -333,26 +314,19 @@ export class BowelChartComponent extends AppComponentBase implements OnInit {
     }
   }
 
+
   rightBtn() {
     this.pageNumber++;
     this.chartOnChange();
   }
+
   Changes(value: boolean) {
     this.isShowStrikeThroughPopup = value;
     this.chartOnChange()
   }
 
-
-  ClearAllfeilds() {
-    if (this.preSelectedChartData.selectedChartID) {
-      this.BowelChartFormData = <any>{};
-      this.BowelChartFormData.bowelChartId =
-        this.preSelectedChartData.selectedChartID;
-    }
+  chartOnChange() {
+    this.getChartDataById(this.preSelectedChartData.chartMasterId, this.preSelectedChartData.residentAdmissionInfoId, this.pageNumber, this.pageSize);
   }
-
-
-
-
 
 }
