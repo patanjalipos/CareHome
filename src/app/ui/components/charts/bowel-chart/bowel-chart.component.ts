@@ -46,8 +46,8 @@ export class BowelChartComponent extends AppComponentBase implements OnInit {
   isShowStrikeThroughPopup: boolean = false;
   StrikeThroughData: any = <any>{};
   stLstReason: any[] = [];
-  careGiven: boolean=false;
-  reason:boolean=false;
+  careGiven: boolean = false;
+  reason: boolean = false;
   continenceRangeOption: any[] = [
     { label: 'Continent', value: 'Continent' },
     { label: 'Incontinent', value: 'Incontinent' }
@@ -62,6 +62,9 @@ export class BowelChartComponent extends AppComponentBase implements OnInit {
     { label: "6", value: '6' },
     { label: "7", value: '7' }
   ];
+  stLstErrorAndWarning: any;
+  result: any;
+  ChartName: any;
 
 
 
@@ -120,7 +123,12 @@ export class BowelChartComponent extends AppComponentBase implements OnInit {
     this.optionService.getstLstReason().subscribe((data) => {
       this.stLstReason = data;
     });
-
+    this.optionService.getstLstErrorAndWarning().subscribe((data) => {
+      this.stLstErrorAndWarning = data;
+      this.result = this.stLstErrorAndWarning.Warnings.Components.Charts.find(i => i.ChartId === ChartTypes.BowelChart);
+      this.ChartName = this.result["ChartName"];
+      this._ConstantServices.ActiveMenuName = this.ChartName;
+    });
     const collectionNames = ['BowelAction', 'Amount', 'Interventions'];
 
     forkJoin(
@@ -194,12 +202,12 @@ export class BowelChartComponent extends AppComponentBase implements OnInit {
 
 
   Save() {
-    this.reason=false;
-    this.careGiven=false;
-    if(this.BowelChartFormData.CareGiven==null){
-      this.careGiven=true;
-    }else if(this.BowelChartFormData.CareGiven=='No' &&this.BowelChartFormData.Reason==null){
-      this.reason=true;
+    this.reason = false;
+    this.careGiven = false;
+    if (this.BowelChartFormData.CareGiven == null) {
+      this.careGiven = true;
+    } else if (this.BowelChartFormData.CareGiven == 'No' && this.BowelChartFormData.Reason == null) {
+      this.reason = true;
     }
     else if (
       this.userId != null &&
@@ -264,7 +272,7 @@ export class BowelChartComponent extends AppComponentBase implements OnInit {
           },
         });
     } else {
-      this._UtilityService.showWarningAlert('Bowel Chart details are missing.');
+      this._UtilityService.showWarningAlert(this.ChartName + " " + this.stLstErrorAndWarning.Warnings.Common.DetailMissMessage);
     }
   }
 
@@ -276,8 +284,6 @@ export class BowelChartComponent extends AppComponentBase implements OnInit {
       ModifiedBy: this.loginId,
     };
     this.isShowStrikeThroughPopup = true;
-
-    console.log(this.StrikeThroughData, 'chartdata');
   }
 
   ResetModel() {
@@ -308,7 +314,6 @@ export class BowelChartComponent extends AppComponentBase implements OnInit {
             else {
               this.rightBtnCheck = false;
             }
-            console.log(this.BowelChartsLst);
 
           } else {
             this.BowelChartsLst = [];

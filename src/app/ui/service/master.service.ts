@@ -826,11 +826,10 @@ export class MasterService {
             Authorization: 'Bearer ' + localStorage.getItem('token'),
         });
         let params = new HttpParams();
-        var data = obj; //JSON.stringify(obj).toString();
         return this._httpclient.post<any>(
             environment.BaseUriAdmin +
                 'api/Admin/AddInsertUpdateResidentMaster',
-            data,
+                obj,
             { headers: reqHeader, params: params }
         );
     }

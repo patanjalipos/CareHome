@@ -76,7 +76,6 @@ export class AlertMasterComponent extends AppComponentBase implements OnInit {
       {       
         importData.SearchList=this.filteritems;
       }   
-     // console.log(importData);
         importData.StatusType=false;      
     this._UtilityService.showSpinner();   
     this.unsubscribe.add = this._MasterServices.GetAlertMaster(importData)

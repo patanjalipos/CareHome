@@ -353,7 +353,6 @@ export class PainChartComponent extends AppComponentBase implements OnInit {
                         var tdata = JSON.parse(data.actionResult.result);
                         tdata = tdata ? tdata : [];
                         this.PainChartLst = tdata;
-                        console.log(JSON.stringify(this.PainChartLst));
                         if (this.PainChartLst.length < 3 || (((this.PainChartLst.length) * (this.pageNumber + 1)) >= this.PainChartLst[0].countRecords)) {
                             this.rightBtnCheck = true;
                         }

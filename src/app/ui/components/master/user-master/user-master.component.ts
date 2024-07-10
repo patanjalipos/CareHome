@@ -165,7 +165,6 @@ export class UserMasterComponent extends AppComponentBase implements OnInit {
       {       
         importData.SearchList=this.filteritems;
       }   
-      console.log(importData);
     this._UtilityService.showSpinner();
     this.unsubscribe.add = this._MasterServices.GetUserMaster(this.s_HomeMasterId,importData)
       .subscribe
@@ -216,7 +215,6 @@ export class UserMasterComponent extends AppComponentBase implements OnInit {
             var tdata = JSON.parse(data.actionResult.result);
             tdata = tdata ? tdata : [];
             this.RegistrationMainModel = tdata;
-            //console.log("ragistration data", this.RegistrationMainModel);
 
             if (this.RegistrationMainModel?.DateOfBirth != null && this.RegistrationMainModel?.DateOfBirth != undefined) {
               var newDate = new Date(this.RegistrationMainModel.DateOfBirth);
@@ -228,17 +226,12 @@ export class UserMasterComponent extends AppComponentBase implements OnInit {
                // const imageFormat = this.RegistrationMainModel.ProfileImage.endsWith(".jpg") || this.RegistrationMainModel.ProfileImage.endsWith(".jpeg") ? "jpeg" : "png";
                var imageFormat=this._UtilityService.getFileExtension(this.RegistrationMainModel.ProfileImage);
                this.imageSrc = "data:image/" + imageFormat + ";base64," + this.RegistrationMainModel.ProfileImage;               
-                //console.log(this.imageSrc);
+               
               }          
             this.mode = "update"; 
             this.onChangeUserType();
             this.LoadMenuItemAccessforActionItem();
             this.RegistrationMainModel.Password = this._EncryptDecryptService.decryptUsingAES256(this.RegistrationMainModel.Password);
-            // var encrypt=this._EncryptDecryptService.encryptUsingAES256('12345');
-            // console.log('encrypt', encrypt);
-            // var decrypt=this._EncryptDecryptService.decryptUsingAES256(encrypt);
-            // console.log('decrypt', decrypt);
-            //console.log(this.RegistrationMainModel.password);
             if (this.RegistrationMainModel?.UserFacilityResident != null && this.RegistrationMainModel?.UserFacilityResident != undefined) {
               if (this.RegistrationMainModel?.UserFacilityResident?.length > 0) {
                 var UserFacilityResident = this.RegistrationMainModel?.UserFacilityResident;
