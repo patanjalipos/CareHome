@@ -29,8 +29,8 @@ export class BloodGlucoseChartComponent extends AppComponentBase implements OnIn
   isEditable: boolean;
   StatementType: string;
   inputFields: boolean;
-  reason:boolean=false;
-  careGiven:boolean=false;
+  reason: boolean = false;
+  careGiven: boolean = false;
 
   rangeOptionPrePostMeal: any[] = [
     { label: 'Pre Meal', value: 'Pre Meal' },
@@ -46,6 +46,9 @@ export class BloodGlucoseChartComponent extends AppComponentBase implements OnIn
   isShowStrikeThroughPopup: boolean = false;
   StrikeThroughData: any = <any>{};
   stLstReason: any[] = [];
+  stLstErrorAndWarning: any;
+  result: any;
+  ChartName: any;
 
   constructor(
     private optionService: OptionService,
@@ -95,14 +98,15 @@ export class BloodGlucoseChartComponent extends AppComponentBase implements OnIn
     this.optionService.getstLstYesNoOptions().subscribe((data) => {
       this.stLstYesNoOptions = data;
     });
-
-    this.optionService.getstLstAttendaceOptions().subscribe((data) => {
-      this.stLstAttendanceOptions = data;
-    });
     this.optionService.getstLstReason().subscribe((data) => {
       this.stLstReason = data;
     });
-
+    this.optionService.getstLstErrorAndWarning().subscribe((data) => {
+      this.stLstErrorAndWarning = data;
+      this.result = this.stLstErrorAndWarning.Warnings.Components.Charts.find(i => i.ChartId === ChartTypes.BloodGlucoseChart);
+      this.ChartName = this.result["ChartName"];
+      this._ConstantServices.ActiveMenuName = this.ChartName;
+    });
     this.getChartDataById(this.preSelectedChartData.chartMasterId, this.preSelectedChartData.residentAdmissionInfoId, this.pageNumber, this.pageSize);
     this.responsiveOptions = [
       {
@@ -132,12 +136,12 @@ export class BloodGlucoseChartComponent extends AppComponentBase implements OnIn
   }
 
   Save() {
-    this.reason=false;
-    this.careGiven=false;
-    if(this.bloodGlucoseChartFormData.CareGiven==null){
-      this.careGiven=true;
-    }else if(this.bloodGlucoseChartFormData.CareGiven=='No' &&this.bloodGlucoseChartFormData.Reason==null){
-      this.reason=true;
+    this.reason = false;
+    this.careGiven = false;
+    if (this.bloodGlucoseChartFormData.CareGiven == null) {
+      this.careGiven = true;
+    } else if (this.bloodGlucoseChartFormData.CareGiven == 'No' && this.bloodGlucoseChartFormData.Reason == null) {
+      this.reason = true;
     }
     else if (
       this.userId != null &&
@@ -202,7 +206,7 @@ export class BloodGlucoseChartComponent extends AppComponentBase implements OnIn
           },
         });
     } else {
-      this._UtilityService.showWarningAlert('Blood Glucose Chart details are missing.');
+      this._UtilityService.showWarningAlert(this.ChartName + " " + this.stLstErrorAndWarning.Warnings.Common.DetailMissMessage);
     }
   }
 
@@ -224,7 +228,7 @@ export class BloodGlucoseChartComponent extends AppComponentBase implements OnIn
             else {
               this.rightBtnCheck = false;
             }
-            console.log(this.bloodGlucoseChartsLst);
+
 
           } else {
             this.bloodGlucoseChartsLst = [];
@@ -245,7 +249,6 @@ export class BloodGlucoseChartComponent extends AppComponentBase implements OnIn
     };
     this.isShowStrikeThroughPopup = true;
 
-    console.log(this.StrikeThroughData, 'chartdata');
   }
 
   openAndClose() {

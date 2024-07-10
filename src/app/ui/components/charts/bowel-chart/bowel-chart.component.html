@@ -1,7 +1,7 @@
 <div class="card">
     <div class="row p-0">
         <div class="col-md-12 formheader d-flex justify-content-between align-items-center">
-            <h4 class="mb-0">Activities Chart</h4>
+            <h4 class="mb-0">Bowel Chart</h4>
             <div>
                 <button pButton type="button" icon="pi pi-chevron-left" class="mr-2" (click)="leftBtn()"
                     [disabled]="pageNumber==0"></button>
@@ -143,7 +143,7 @@
                     <div class="col-md-11 chart-box p-2">
                         <div class="formheader">
                             <div class="col-md-12 mb-2 d-flex justify-content-between fs-4">
-                                <div class="chart-date">
+                                <div class="chart-date bold">
                                     <label [ngClass]="{'text-decoration-line-through bold':chart.isStrikeThrough}">{{
                                         chart.DateAndTime |
                                         date:'dd-MM-yyyy' }}</label>
