@@ -1,73 +1,74 @@
 <div *ngIf="mode==null">
-    <div class="card">        
+    <div class="card">
         <div class="mt-2">
-             <p-table #dt [value]="lstUserMaster" styleClass="p-datatable-striped" [rowHover]="true"
-            [globalFilterFields]="['HomeCode','HomeName','UserTypeName','LoginId','FullName']" [scrollable]="true"
-            scrollHeight="calc(100vh - 155px)" (onFilter)="onFilter($event, dt)">
-            <ng-template pTemplate="caption">
-                <div class="flex justify-content-between flex-column sm:flex-row">
-                    <span class="p-ml-left">
-                        <button pButton title="Add New User" label="Add New" class="p-button-outlined mr-2"
-                            icon="pi pi-plus" (click)="AddUserDetails()"></button>
-                        <span class="total-txt">{{lstUserMaster?.length>0?'Total Records:
-                            '+filteredValuesLength:''}} </span>
-                    </span>
-                    <span class="p-ml-auto">
-                        <span>
-                            <button *ngIf="lstUserMaster?.length>0" pButton title="Export Data" label=" "
-                                class="p-button-outlined mr-2" icon="pi pi-download"
-                                (click)="exportToItemExcel();"></button>
+            <p-table #dt [value]="lstUserMaster" styleClass="p-datatable-striped" [rowHover]="true"
+                [globalFilterFields]="['HomeCode','HomeName','UserTypeName','LoginId','FullName']" [scrollable]="true"
+                scrollHeight="calc(100vh - 155px)" (onFilter)="onFilter($event, dt)">
+                <ng-template pTemplate="caption">
+                    <div class="flex justify-content-between flex-column sm:flex-row">
+                        <span class="p-ml-left">
+                            <button pButton title="Add New User" label="Add New" class="p-button-outlined mr-2"
+                                icon="pi pi-plus" (click)="AddUserDetails()"></button>
+                            <span class="total-txt">{{lstUserMaster?.length>0?'Total Records:
+                                '+filteredValuesLength:''}} </span>
                         </span>
-                        <span class="p-input-icon-left">
-                            <i class="pi pi-search"></i>
-                            <input #filtr pInputText type="text" (input)="onGlobalFilter(dt, $event)"
-                                placeholder="Search..." />
+                        <span class="p-ml-auto">
+                            <span>
+                                <button *ngIf="lstUserMaster?.length>0" pButton title="Export Data" label=" "
+                                    class="p-button-outlined mr-2" icon="pi pi-download"
+                                    (click)="exportToItemExcel();"></button>
+                            </span>
+                            <span class="p-input-icon-left">
+                                <i class="pi pi-search"></i>
+                                <input #filtr pInputText type="text" (input)="onGlobalFilter(dt, $event)"
+                                    placeholder="Search..." />
+                            </span>
+                            <span class="m-3">
+                                <button pButton title="Filters" label="Filters" class="p-button-outlined mr-2"
+                                    icon="pi pi-filter" (click)="ShowFilters()"
+                                    style="height: 40px; width: 100px;"></button>
+                            </span>
                         </span>
-                        <span class="m-3">
-                            <button pButton title="Filters" label="Filters" class="p-button-outlined mr-2" icon="pi pi-filter" 
-                            (click)="ShowFilters()" style="height: 40px; width: 100px;"></button>  
-                        </span>
-                    </span>
-                </div>
-                <div *ngIf="isUserMaster">
-                    <app-filteration [ComponentName]="ComponentName" 
-                    (FiltrationOutputData)="GetUserMasterFilterData($event)"></app-filteration>       
-                </div> 
-            </ng-template>
-            <ng-template pTemplate="emptymessage" let-columns>
-                <tr>
-                    <td [attr.colspan]="columns?.length">
-                        No records found
-                    </td>
-                </tr>
-            </ng-template>
-            <ng-template pTemplate="header">
-                <tr>
-                    <th>Home Code</th>
-                    <th>Home Name</th>
-                    <th>User Type</th>
-                    <th>Login Id</th>
-                    <th>Name</th>
-                    <th>Status</th>
-                    <th>Action</th>
-                </tr>
-            </ng-template>
-            <ng-template pTemplate="body" let-col let-i="rowIndex">
-                <tr>
-                    <td>{{col.HomeCode}}</td>
-                    <td>{{col.HomeName}}</td>
-                    <td>{{col.UserTypeName}}</td>
-                    <td>{{col.LoginId}}</td>
-                    <td>{{col.FullName}}</td>
-                    <td>{{col.Status==1?'Active':'Inactive'}}</td>
-                    <td>
-                        <a title="View/Edit" style="cursor: pointer;" (click)="LoadUserDetails(col.UserId)">
-                            <i class="fa fa-eye" aria-hidden="true"></i>
-                        </a>
-                    </td>
-                </tr>
-            </ng-template>
-             </p-table>
+                    </div>
+                    <div *ngIf="isUserMaster">
+                        <app-filteration [ComponentName]="ComponentName"
+                            (FiltrationOutputData)="GetUserMasterFilterData($event)"></app-filteration>
+                    </div>
+                </ng-template>
+                <ng-template pTemplate="emptymessage" let-columns>
+                    <tr>
+                        <td [attr.colspan]="columns?.length">
+                            No records found
+                        </td>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="header">
+                    <tr>
+                        <th>Home Code</th>
+                        <th>Home Name</th>
+                        <th>User Type</th>
+                        <th>Login Id</th>
+                        <th>Name</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-col let-i="rowIndex">
+                    <tr>
+                        <td>{{col.HomeCode}}</td>
+                        <td>{{col.HomeName}}</td>
+                        <td>{{col.UserTypeName}}</td>
+                        <td>{{col.LoginId}}</td>
+                        <td>{{col.FullName}}</td>
+                        <td>{{col.Status==1?'Active':'Inactive'}}</td>
+                        <td>
+                            <a title="View/Edit" style="cursor: pointer;" (click)="LoadUserDetails(col.UserId)">
+                                <i class="fa fa-eye" aria-hidden="true"></i>
+                            </a>
+                        </td>
+                    </tr>
+                </ng-template>
+            </p-table>
         </div>
     </div>
 </div>
@@ -79,19 +80,19 @@
                     <div class="col-md-10">
                         <div class="row row-cols-4 mt-4">
                             <div class="form-group pos-rel col">
-                                    <label class="form-label">Home<span class="required">*</span></label>
-                                    <!-- <p-multiSelect name="ddlHome" [style]="{width: '100%'}" [options]="lstHomeMaster" 
+                                <label class="form-label">Home<span class="required">*</span></label>
+                                <!-- <p-multiSelect name="ddlHome" [style]="{width: '100%'}" [options]="lstHomeMaster" 
                                         [(ngModel)]="RegistrationMainModel.Homes" optionLabel="HomeName" optionValue="HomeMasterId"
                                         placeholder="Please select Home" #homeref="ngModel" (onChange)="SetFacility()">
                                     </p-multiSelect> -->
-                                    <p-dropdown [required]="true" name="ddlHome" [options]="lstHomeMaster"
-                                        [(ngModel)]="RegistrationMainModel.HomeMasterId" optionLabel="HomeName"
-                                        optionValue="HomeMasterId" [filter]="true" placeholder="--select--"
-                                        [style]="{width: '100%'}" #homeref="ngModel">
-                                    </p-dropdown>
-                                    <div *ngIf="homeref.errors &&(homeref.touched || homeref.dirty)" class="errorMessage">
-                                        <div *ngIf="homeref.errors?.['required']">Home is required.</div>
-                                    </div>
+                                <p-dropdown [required]="true" name="ddlHome" [options]="lstHomeMaster"
+                                    [(ngModel)]="RegistrationMainModel.HomeMasterId" optionLabel="HomeName"
+                                    optionValue="HomeMasterId" [filter]="true" placeholder="--select--"
+                                    [style]="{width: '100%'}" #homeref="ngModel">
+                                </p-dropdown>
+                                <div *ngIf="homeref.errors &&(homeref.touched || homeref.dirty)" class="errorMessage">
+                                    <div *ngIf="homeref.errors?.['required']">Home is required.</div>
+                                </div>
                             </div>
                             <div class="form-group pos-rel col">
                                 <label class="form-label">First Name<span class="required">*</span></label>
@@ -137,13 +138,15 @@
                             </div>                                     -->
                             <div class="form-group pos-rel col">
                                 <label class="form-label">Login Id</label>
-                                <input type="text" pInputText disabled="disabled" class="form-control" placeholder="Login Id"
-                                    name="txtLoginId" [(ngModel)]="RegistrationMainModel.LoginId">
+                                <input type="text" pInputText disabled="disabled" class="form-control"
+                                    placeholder="Login Id" name="txtLoginId"
+                                    [(ngModel)]="RegistrationMainModel.LoginId">
                             </div>
                             <div class="form-group pos-rel col">
                                 <label class="form-label">Password</label>
-                                <input type="text" pInputText disabled="disabled" class="form-control" placeholder="Password"
-                                    name="txtPassword" [(ngModel)]="RegistrationMainModel.Password">
+                                <input type="text" pInputText disabled="disabled" class="form-control"
+                                    placeholder="Password" name="txtPassword"
+                                    [(ngModel)]="RegistrationMainModel.Password">
                             </div>
                             <div class="form-group pos-rel col">
                                 <label class="form-label">Status <span class="required">*</span></label>
@@ -153,18 +156,19 @@
                                 </p-dropdown>
                             </div>
                         </div>
-                        </div>
-                    
+                    </div>
 
 
-                    
+
+
                     <div class="col-md-2 mt-0 pt-0">
                         <div class="form-group Profile-regis Profile-regis-new">
                             <h6>Profile Picture</h6>
                             <div class="img-prview-box">
                                 <img [src]="imageSrc" height="100%"
                                     *ngIf="imageSrc!=null && imageSrc!=undefined && imageSrc!=''">
-                                <div class="js-image-preview" *ngIf="imageSrc==null || imageSrc==undefined || imageSrc==''">
+                                <div class="js-image-preview"
+                                    *ngIf="imageSrc==null || imageSrc==undefined || imageSrc==''">
                                     <i class="fa-solid fa-circle-user"></i>
                                 </div>
                             </div>
@@ -176,10 +180,10 @@
                                     (click)="ClearProfile()"></i>
                             </a>
                         </div>
-        
+
                     </div>
-                    
-                 
+
+
                 </div>
             </p-accordionTab>
             <p-accordionTab header="User details">
@@ -192,7 +196,7 @@
                             class="iconcal"></p-calendar>
                     </div>
                     <div class="col-md-3">
-                        <label class="form-label">Title</label>
+                        <label class="form-label">Title<span class="required">*</span></label>
                         <p-dropdown [required]="true" name="ddlTitle" [options]="stlsttitle"
                             [(ngModel)]="RegistrationMainModel.Title" optionLabel="name" optionValue="code"
                             [filter]="true" placeholder="--select--" [style]="{width: '100%'}">
@@ -236,8 +240,8 @@
             <p-accordionTab header="Facility and resident assignments">
                 <div class="row">
                     <div class="col-md-12">
-                        <p-table #dt67 [value]="lstHomeMaster" 
-                            styleClass="p-datatable-striped" [rowHover]="true" scrollHeight="250px">
+                        <p-table #dt67 [value]="lstHomeMaster" styleClass="p-datatable-striped" [rowHover]="true"
+                            scrollHeight="250px">
                             <ng-template pTemplate="emptymessage" let-columns>
                                 <tr>
                                     <td [attr.colspan]="4">
@@ -260,14 +264,15 @@
                                             inputId="binary" class="mr-2"></p-checkbox>{{col.HomeName}}</td>
 
                                     <td style="width: 40%;">
-                                       
-                                            <p-multiSelect *ngIf="col.IsEnableFacility && !col.IsResidentAutoAssignment" [options]="col.ResidentList" optionLabel="FullName"
-                                                placeholder="--Select Resident--" [(ngModel)]="col.SelectedResidentList"
-                                                filterPlaceHolder="Selecte All" optionValue="UserId" appendTo="body"
-                                                display="chip" [showClear]="true" [style]="{width: '400px'}" >
-                                            </p-multiSelect>
+
+                                        <p-multiSelect *ngIf="col.IsEnableFacility && !col.IsResidentAutoAssignment"
+                                            [options]="col.ResidentList" optionLabel="FullName"
+                                            placeholder="--Select Resident--" [(ngModel)]="col.SelectedResidentList"
+                                            filterPlaceHolder="Selecte All" optionValue="UserId" appendTo="body"
+                                            display="chip" [showClear]="true" [style]="{width: '400px'}">
+                                        </p-multiSelect>
                                     </td>
-                                    <td style="width: 10%;" >
+                                    <td style="width: 10%;">
                                         <p-checkbox *ngIf="col.IsEnableFacility" name="ChkItemAutoAssignment_{{i}}"
                                             [(ngModel)]="col.IsResidentAutoAssignment"
                                             (onChange)="checkUncheckAutoAssignment($event,i)" [binary]="true"
@@ -427,9 +432,9 @@
             </p-accordionTab>
         </p-accordion>
         <div class="flex flex-wrap gap-2">
-            <!-- [disabled]="!myForm.form.valid" -->
-            <button pButton type="button" label="Submit" (click)="Submit()" class="btn-primary"></button>
-            <button pButton type="button" label="Close" class="btn-secondary" (click)="CloseModal()"></button>
+            <button pButton type="button" label="Submit" (click)="Submit()" class="btn-primary"
+                [disabled]="!myForm.form.valid"></button>
+            <button pButton type="button" label="Close" class="btn-primary" (click)="CloseModal()"></button>
         </div>
     </form>
 </div>
