@@ -30,8 +30,8 @@
             class="formheader d-flex justify-content-between align-items-center m-2"
         >
             <div class="m-0">
-                <p><b>Location :</b></p>
-                <p><b>Status</b></p>
+                <p><b>Location : {{BodyPartsName.join(", ")}}</b></p>
+                <p><b>Status: {{painChartRecordData.BodyMapStatus}}</b></p>
             </div>
             <div>
                 <!-- hyperlink  -->
@@ -443,7 +443,7 @@
             <div class="col-md-12">
                 <div class="formheader">
                     <label class="form-label bold"
-                        ><span class="required"></span>Body map</label
+                        ><span class="required"></span>Body Pain Locations</label
                     >
                 </div>
                 <div class="">
@@ -1066,7 +1066,12 @@
                                     <button pButton type="button" label="Show on Body Map" class="p-button-link p-0"
                                         (click)="ShowBodyMapPopUp(isReadOnly=true,chart.selectedBodyParts,chart.BodyMapStatus)"></button>
                                 </div>
-                                
+                            </div>
+                            <div *ngIf="chart.selectedBodyParts == null">
+                                <div>
+                                    <label [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}"
+                                    > Not Applicable </label>
+                                </div>
                             </div>
                         </div>
                        
