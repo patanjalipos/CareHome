@@ -7,6 +7,7 @@ import { UserService } from 'src/app/ui/service/user.service';
 import { UtilityService } from 'src/app/utility/utility.service';
 import { SeizureChartService } from './seizure-chart.service';
 import { Observable, catchError, forkJoin, map, of } from 'rxjs';
+import { Message } from 'primeng/api';
 
 @Component({
   selector: 'app-seizure-chart',
@@ -28,6 +29,11 @@ export class SeizureChartComponent extends AppComponentBase implements OnInit {
   StatementType: string = null;
   CareGivenCheck:boolean = false;
   ReasonCheck: boolean = false;
+  messages: Message[] | undefined;
+  messages1: Message[] | undefined;
+  messages2: Message[] | undefined;
+  messages3: Message[] | undefined;
+  messages4: Message[] | undefined;
 
   LstPossibleTriggers: any[] = [];
   LstSeizureLength: any[] = [];
@@ -75,6 +81,7 @@ export class SeizureChartComponent extends AppComponentBase implements OnInit {
 }
 
   ngOnInit(): void {
+
     this.userId = this.preSelectedChartData.userId;
         this.residentAdmissionInfoId =
             this.preSelectedChartData.residentAdmissionInfoId;
@@ -154,6 +161,43 @@ export class SeizureChartComponent extends AppComponentBase implements OnInit {
     } else {
         this.inputFieldsCheck = false;
     }
+}
+
+addMessages() {
+    this.messages = [
+        { severity: 'secondary', summary: 'Select all that apply' }
+    ];
+}
+
+addMessages1() {
+    if(this.SeizureChartData.SeizureTypeOption == "668cc0fc155e8339ed7b6813") {
+    this.messages1 = [
+        { severity: 'secondary', summary: 'Focal/partial seizures may be simple feeling of ‘strangeness’ or ‘aura’ and a warning that a secondary generalized seizure is about to occur, or they may be complex resulting in confusion, strange or confusion. Strange or repetitive movements wandering or strange behavior.' }
+    ];
+    }
+    else if(this.SeizureChartData.SeizureTypeOption == "668cc0fc155e8339ed7b6814") {
+        this.messages1 = [
+            { severity: 'secondary', summary: 'In generalized seizures, consciousness is usually lost although occasionally it might be so brief that no one notices .muscles in the body may stiffen and / or jerk and a fall might occur .' }
+        ];
+    }
+}
+
+addMessages2() {
+    this.messages2 = [
+        { severity: 'secondary', summary: 'Status epilepticus is present if the seizure lasts 30 minutes or longer, or if a cluster of shorter seizures lasts for 30 minutes or more, with little or no recovery in between.' }
+    ];
+}
+
+addMessages3() {
+    this.messages3 = [
+        { severity: 'secondary', summary: 'How did the resident feel after the seizure?' }
+    ];
+}
+
+addMessages4() {
+    this.messages4 = [
+        { severity: 'secondary', summary: 'Was medication administered either during or immediately after the seizure?' }
+    ];
 }
 
 GetChartDropDownMasterList(
