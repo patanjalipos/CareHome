@@ -14,14 +14,14 @@ export class BloodTestRecordService {
     GetBloodTestRecordFormById(selectedFormID: string): Observable<any> {
         const reqHeader = new HttpHeaders({
             'Content-Type': 'application/json',
-            'Access-Control-Allow-Origin': environment.BaseUriAdmin,
+            'Access-Control-Allow-Origin': environment.BaseUriUser,
             Authorization: 'Bearer ' + localStorage.getItem('token'),
         });
         let params = new HttpParams();
         params = params.append('fromId', selectedFormID);
         return this._httpclient.get<any>(
-            environment.BaseUriAdmin +
-                'api/Admin/GetBloodTestRecordFormById',
+            environment.BaseUriUser +
+                'api/User/GetBloodTestRecordFormById',
             { headers: reqHeader, params: params }
         );
     }
@@ -29,15 +29,15 @@ export class BloodTestRecordService {
     AddInsertUpdateFormData(formdata: any): Observable<any> {
         let reqHeader = new HttpHeaders({
             'Content-Type': 'application/json',
-            'Access-Control-Allow-Origin': environment.BaseUriAdmin,
+            'Access-Control-Allow-Origin': environment.BaseUriUser,
             Authorization: 'Bearer ' + localStorage.getItem('token'),
         });
         let params = new HttpParams();
         var data = JSON.stringify(formdata).toString();
         
         return this._httpclient.post<any>(
-            environment.BaseUriAdmin +
-                'api/Admin/InsertUpdateBloodTestRecordForm',
+            environment.BaseUriUser +
+                'api/User/InsertUpdateBloodTestRecordForm',
             data,
             { headers: reqHeader, params: params }
         );

@@ -5,9 +5,9 @@ import { Observable, catchError, forkJoin, map, of } from 'rxjs';
 import { AppComponentBase } from 'src/app/app-component-base';
 import { ConstantsService, CustomDateFormat, FormTypes } from 'src/app/ui/service/constants.service';
 import { DataService } from 'src/app/ui/service/data-service.service';
-import { MasterService } from 'src/app/ui/service/master.service';
 import { UtilityService } from 'src/app/utility/utility.service';
 import { DistrictNurseVisitCommunicationService } from './district-nurse-visit-communication.service';
+import { UserService } from 'src/app/ui/service/user.service';
 
 @Component({
   selector: 'app-district-nurse-visit-communication',
@@ -29,24 +29,11 @@ export class DistrictNurseVisitCommunicationComponent extends AppComponentBase i
 
   lstCommStatus: any[] = [];
 
-  constructor(private _ConstantServices: ConstantsService,private route: ActivatedRoute,private _DataService: DataService,private _MasterServices: MasterService,private _UtilityService: UtilityService, private datePipte: DatePipe,private _District: DistrictNurseVisitCommunicationService) {
+  constructor(private _ConstantServices: ConstantsService,private route: ActivatedRoute,private _DataService: DataService,private _UserServices: UserService,private _UtilityService: UtilityService, private datePipe: DatePipe,private _District: DistrictNurseVisitCommunicationService) {
 
     super();
     this._ConstantServices.ActiveMenuName = "District Nurse Visit Communication Form";
     this.loginId = localStorage.getItem('userId');
-
-    this.unsubscribe.add = this.route.queryParams.subscribe((params) => {
-      var ParamsArray = this._ConstantServices.GetParmasVal(params['q']);
-
-      if (ParamsArray?.length > 0) {
-        this.userId =
-        ParamsArray.find((e) => e.FieldStr == 'id')?.FieldVal ||
-        null;
-        this.residentAdmissionInfoId =
-        ParamsArray.find((e) => e.FieldStr == 'admissionid')
-            ?.FieldVal || null;
-      }
-    });
    }
 
    ngOnChanges(changes: SimpleChanges): void {
@@ -65,6 +52,9 @@ export class DistrictNurseVisitCommunicationComponent extends AppComponentBase i
   }
 
   ngOnInit(): void {
+
+    this.userId = this.preSelectedFormData.userId;
+    this.residentAdmissionInfoId = this.preSelectedFormData.residentAdmissionInfoId;
 
     const collectionNames = [
       'CommStatus'
@@ -98,7 +88,7 @@ this.isEditable = this.preSelectedFormData.isEditable;
 
   getDropdownMasterLists(formMasterId: string, dropdownName: string,status:number): Observable<any> {
     this._UtilityService.showSpinner();
-    return this._MasterServices.GetDropDownMasterList(formMasterId,dropdownName, status).pipe(
+    return this._UserServices.GetDropDownMasterList(formMasterId,dropdownName, status).pipe(
         map((response) => {
             this._UtilityService.hideSpinner();
             if (response.actionResult.success) {
@@ -110,7 +100,7 @@ this.isEditable = this.preSelectedFormData.isEditable;
         catchError((error) => {
             this._UtilityService.hideSpinner();
             this._UtilityService.showErrorAlert(error.message);
-            alert(error.message);
+           
             return of([]); // Returning empty array in case of error
         })
     );
@@ -126,10 +116,10 @@ GetDistrictNurseVisitDetails(formId: string) {
               if (data.actionResult.success == true) {
                   var tdata = JSON.parse(data.actionResult.result);
                   tdata = tdata ? tdata : {};
-                  console.log(tdata.DateOfAccident)
+               
                   this.DistrictNurseFormsData = tdata;
-                  this.DistrictNurseFormsData.NurseVisitDate = this.datePipte.transform(this.DistrictNurseFormsData.NurseVisitDate,'MM/dd/yyyy')
-                  // console.log(this.AccidentNearMissRecordFormsData)
+                  this.DistrictNurseFormsData.NurseVisitDate = this.datePipe.transform(this.DistrictNurseFormsData.NurseVisitDate,'MM/dd/yyyy')
+                 
               } else {
                   this.DistrictNurseFormsData = {};
               }
@@ -160,14 +150,11 @@ if (this.userId != null && this.residentAdmissionInfoId != null && this.loginId!
         this.residentAdmissionInfoId;
     this.DistrictNurseFormsData.StartedBy = this.loginId;
     this.DistrictNurseFormsData.LastEnteredBy = this.loginId;
-    this.DistrictNurseFormsData.NurseVisitDate = this.datePipte.transform(this.DistrictNurseFormsData.NurseVisitDate,'yyyy-MM-dd');
+    this.DistrictNurseFormsData.NurseVisitDate = this.datePipe.transform(this.DistrictNurseFormsData.NurseVisitDate,'yyyy-MM-dd');
         const objectBody: any = {
           StatementType: this.StatementType,
           districtNurseVisitCommunicationForm: this.DistrictNurseFormsData,
       };
-      
-
-      console.log(objectBody);
 
     this._UtilityService.showSpinner();
     this.unsubscribe.add = this._District

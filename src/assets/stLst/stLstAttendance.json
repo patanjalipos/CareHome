@@ -1,10 +1,10 @@
 [
     {
-        "optionId": 0,
+        "optionId": "Attended",
         "optionValue": "Attended"
     },
     {
-        "optionId": 1,
+        "optionId": "Did not Attend",
         "optionValue": "Did not Attend"
     }
 ]

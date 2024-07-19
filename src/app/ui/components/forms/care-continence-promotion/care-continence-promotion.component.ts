@@ -13,10 +13,10 @@ import {
     CustomDateFormat,
     FormTypes,
 } from 'src/app/ui/service/constants.service';
-import { MasterService } from 'src/app/ui/service/master.service';
 import { UtilityService } from 'src/app/utility/utility.service';
 import { CareContinencePromotionService } from './care-continence-promotion.service';
 import { Observable, catchError, forkJoin, map, of } from 'rxjs';
+import { UserService } from 'src/app/ui/service/user.service';
 
 @Component({
     selector: 'app-care-continence-promotion',
@@ -25,8 +25,7 @@ import { Observable, catchError, forkJoin, map, of } from 'rxjs';
 })
 export class CareContinencePromotionComponent
     extends AppComponentBase
-    implements OnInit
-{
+    implements OnInit {
     customDateFormat = CustomDateFormat;
     CareContinencePromotionFormsData: any = <any>{};
 
@@ -61,26 +60,13 @@ export class CareContinencePromotionComponent
         private _ConstantServices: ConstantsService,
         private route: ActivatedRoute,
         private _UtilityService: UtilityService,
-        private _MasterServices: MasterService,
+        private _UserServices: UserService,
         private _FormService: CareContinencePromotionService,
     ) {
         super();
         this._ConstantServices.ActiveMenuName =
             'Care Assessment - Continence Promotion Form';
         this.loginId = localStorage.getItem('userId');
-
-        this.unsubscribe.add = this.route.queryParams.subscribe((params) => {
-            var ParamsArray = this._ConstantServices.GetParmasVal(params['q']);
-
-            if (ParamsArray?.length > 0) {
-                this.userId =
-                    ParamsArray.find((e) => e.FieldStr == 'id')?.FieldVal ||
-                    null;
-                this.residentAdmissionInfoId =
-                    ParamsArray.find((e) => e.FieldStr == 'admissionid')
-                        ?.FieldVal || null;
-            }
-        });
     }
 
     ngOnChanges(changes: SimpleChanges): void {
@@ -98,6 +84,10 @@ export class CareContinencePromotionComponent
     }
 
     ngOnInit(): void {
+        this.userId = this.preSelectedFormData.userId;
+        this.residentAdmissionInfoId =
+            this.preSelectedFormData.residentAdmissionInfoId;
+        this.isEditable = this.preSelectedFormData.isEditable;
         const collectionNames = [
             'ContPromInsightIntoContinenceNeedsOptions',
             'ContPromResidentColostomyIleostomyOptions',
@@ -115,7 +105,7 @@ export class CareContinencePromotionComponent
         //Make requests in parallel
         forkJoin(
             collectionNames.map((collectionName) =>
-                this.getDropdownMasterLists(FormTypes.CareAssessmentContinence,collectionName,1)
+                this.getDropdownMasterLists(FormTypes.CareAssessmentContinence, collectionName, 1)
             )
         ).subscribe((responses: any[]) => {
             // responses is an array containing the responses for each request
@@ -169,9 +159,9 @@ export class CareContinencePromotionComponent
             });
     }
 
-    getDropdownMasterLists(formMasterId: string, dropdownName: string,status:number): Observable<any> {
+    getDropdownMasterLists(formMasterId: string, dropdownName: string, status: number): Observable<any> {
         this._UtilityService.showSpinner();
-        return this._MasterServices.GetDropDownMasterList(formMasterId,dropdownName, status).pipe(
+        return this._UserServices.GetDropDownMasterList(formMasterId, dropdownName, status).pipe(
             map((response) => {
                 this._UtilityService.hideSpinner();
                 if (response.actionResult.success) {
@@ -183,13 +173,13 @@ export class CareContinencePromotionComponent
             catchError((error) => {
                 this._UtilityService.hideSpinner();
                 this._UtilityService.showErrorAlert(error.message);
-                alert(error.message);
+           
                 return of([]); // Returning empty array in case of error
             })
         );
     }
 
-    SaveAsPDF() {}
+    SaveAsPDF() { }
 
     saveAsUnfinished() {
         this.CareContinencePromotionFormsData.IsFormCompleted = false;
@@ -247,7 +237,6 @@ export class CareContinencePromotionComponent
     }
 
     ResetModel() {
-        this.preSelectedFormData = <any>{};
         this.isEditable = true;
         this.CareContinencePromotionFormsData = <any>{};
         this.StatementType = 'Insert';

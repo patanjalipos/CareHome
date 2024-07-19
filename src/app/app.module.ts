@@ -20,7 +20,7 @@ import { AuthGuard } from './ui/components/auth/auth.guard';
 
 @NgModule({
     declarations: [
-        AppComponent, NotfoundComponent ],
+        AppComponent, NotfoundComponent],
     imports: [
         AppRoutingModule,
         AppLayoutModule,

@@ -205,7 +205,10 @@
                 role="tabpanel"
                 aria-labelledby="forms-tab"
             >
-                <app-forms-dashboard></app-forms-dashboard>
+                <app-forms-dashboard
+                    [userId]="selecteduserid"
+                    [residentAdmissionInfoId]="selectedadmissionid"
+                ></app-forms-dashboard>
             </div>
             <div
                 class="tab-pane fade"
@@ -214,9 +217,8 @@
                 aria-labelledby="charts-tab"
             >
                 <app-chart
-                    [userid]="selecteduserid"
-                    [admissionid]="selectedadmissionid"
-                    [residentadmissiondetails]="ResidentMaster"
+                    [userId]="selecteduserid"
+                    [residentAdmissionInfoId]="selectedadmissionid"
                 ></app-chart>
             </div>
             <div

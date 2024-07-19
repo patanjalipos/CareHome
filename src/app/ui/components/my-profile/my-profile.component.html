@@ -1,0 +1,107 @@
+
+
+<div class="card" >
+    <form #myForm="ngForm">
+        <p-accordion [multiple]="true" activeIndex="0,1">
+            <p-accordionTab header="Personal Details">
+                <div class="row">
+                    <div class="col-md-10">
+                        <div class="row row-cols-4 mt-4">
+                            <div class="form-group pos-rel col">
+                                    <label class="form-label">Home<span class="required">*</span></label>
+                                    <!-- <p-dropdown [required]="true" name="ddlHome" [options]="lstHomeMaster"
+                                    [(ngModel)]="MyProfileModel.HomeMasterId" optionLabel="HomeName"
+                                    optionValue="HomeMasterId" [filter]="true" placeholder="--select--"
+                                    [style]="{width: '100%'}" #homeref="ngModel">
+                                    </p-dropdown> -->
+                                    <input pInputText type="text" required class="form-control" name="ddlHome"
+                                    [(ngModel)]="MyProfileModel.HomeName" placeholder=""  [style]="{width: '100%'}" disabled>
+                                    </div>
+                            <div class="form-group pos-rel col">
+                                <label class="form-label">First Name<span class="required">*</span></label>
+                                <input pInputText type="text" required class="form-control" name="txtFName"
+                                    [(ngModel)]="MyProfileModel.FirstName" placeholder=""
+                                    (keypress)="validateText($event)">
+                            </div>
+                            <div class="form-group pos-rel col">
+                                <label class="form-label">Middle Name</label>
+                                <input type="text" pInputText class="form-control" name="txtMiddleName"
+                                    [(ngModel)]="MyProfileModel.MiddleName" placeholder=""
+                                    (keypress)="validateText($event)">
+                            </div>
+                            <div class="form-group pos-rel col">
+                                <label class="form-label">Last Name</label>
+                                <input type="text" pInputText class="form-control" name="txtLname"
+                                    [(ngModel)]="MyProfileModel.LastName" placeholder=""
+                                    (keypress)="validateText($event)">
+                            </div>
+                            <div class="form-group pos-rel col-md-3">
+                                <label class="form-label">Preferred Name</label>
+                                <input pInputText type="text" class="form-control" name="txtFHName"
+                                    [(ngModel)]="MyProfileModel.PreferredName" placeholder="">
+                            </div>
+                        </div>
+                        </div>
+                    <div class="col-md-2 mt-0 pt-0">
+                        <div class="form-group Profile-regis Profile-regis-new">
+                            <h6>Profile Picture</h6>
+                            <div class="img-prview-box">
+                                <img [src]="imageSrc" height="100%"
+                                    *ngIf="imageSrc!=null && imageSrc!=undefined && imageSrc!=''">
+                                <div class="js-image-preview" *ngIf="imageSrc==null || imageSrc==undefined || imageSrc==''">
+                                    <i class="fa-solid fa-circle-user"></i>
+                                </div>
+                            </div>
+                            <input type="file" class="custom-file-upload w-100 " id="customFileAWB" name="myfileAWB"
+                                (change)="onFileSelectAWB($event)" #UploadFileInputAWB accept=".JPEG,.JPG,.PNG"
+                                *ngIf="imageSrc==null || imageSrc==undefined || imageSrc==''">
+                            <a matTooltip="Clear" *ngIf="imageSrc!=null && imageSrc!=undefined && imageSrc!=''">
+                                <i class="fa fa-window-close" aria-hidden="true" [ngStyle]="{'font-size': '20px' }"
+                                    (click)="ClearProfile()"></i>
+                            </a>
+                        </div>
+        
+                    </div>
+                    
+                 
+                </div>
+            </p-accordionTab>
+            <p-accordionTab header="User details">
+                <div class="row">
+                    <div class="col-md-3">
+                        <label class="form-label">Date Of Birth</label>
+                        <p-calendar [maxDate]="todayDate" [(ngModel)]="MyProfileModel.DateOfBirth"
+                            [ngModelOptions]="{standalone: true}" [showIcon]="true" inputId="icon"
+                            [dateFormat]="customDateFormat.CalendarFormat" #dobref="ngModel"
+                            class="iconcal"></p-calendar>
+                    </div>
+                    <div class="col-md-3">
+                        <label class="form-label">Title</label>
+                        <p-dropdown [required]="true" name="ddlTitle" [options]="lsttitle"
+                            [(ngModel)]="MyProfileModel.Title" optionLabel="name" optionValue="code"
+                            [filter]="true" placeholder="--select--" [style]="{width: '100%'}">
+                        </p-dropdown>
+                    </div>
+                    <div class="col-md-3">
+                        <label class="form-label">Designation</label>
+                        <input type="text" pInputText name="txtDesignation" class="form-control"
+                            [(ngModel)]="MyProfileModel.Designation" (keypress)="validateText($event)" />
+                    </div>
+                    <div class="col-md-3">
+                        <label class="form-label">Date employment commenced</label>
+                        <p-calendar [(ngModel)]="MyProfileModel.EmploymentDate"
+                            [ngModelOptions]="{standalone: true}" [showIcon]="true" inputId="icon"
+                            [dateFormat]="customDateFormat.CalendarFormat" #empdateref="ngModel"
+                            class="iconcal"></p-calendar>
+                    </div>
+                </div>
+            </p-accordionTab>
+            
+        </p-accordion>
+        <div class="flex flex-wrap gap-2 justify-content-end btn-background">      
+            <button  type="button" pButton pRipple label="Update" [disabled]="!myForm.form.valid" (click)="UpdateUserDetails()" ></button>
+        </div>
+    
+    </form>
+</div>
+

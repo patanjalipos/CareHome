@@ -36,19 +36,6 @@ export class PromotingWellbeingAtHomeComponent extends AppComponentBase implemen
 
     this._ConstantServices.ActiveMenuName = "Promoting Well being At Home";
     this.loginId = localStorage.getItem('userId');
-
-    this.unsubscribe.add = this.route.queryParams.subscribe((params) => {
-      var ParamsArray = this._ConstantServices.GetParmasVal(params['q']);
-
-      if (ParamsArray?.length > 0) {
-        this.userId =
-          ParamsArray.find((e) => e.FieldStr == 'id')?.FieldVal ||
-          null;
-        this.residentAdmissionInfoId =
-          ParamsArray.find((e) => e.FieldStr == 'admissionid')
-            ?.FieldVal || null;
-      }
-    });
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -67,6 +54,9 @@ export class PromotingWellbeingAtHomeComponent extends AppComponentBase implemen
   }
 
   ngOnInit(): void {
+
+    this.userId = this.preSelectedFormData.userId;
+    this.residentAdmissionInfoId = this.preSelectedFormData.residentAdmissionInfoId;
 
     this.isEditable = this.preSelectedFormData.isEditable;
     if (this.preSelectedFormData.selectedFormID != null) {
@@ -92,11 +82,9 @@ export class PromotingWellbeingAtHomeComponent extends AppComponentBase implemen
             var tdata = JSON.parse(data.actionResult.result);
             tdata = tdata ? tdata : {};
 
-            console.log("detail data");
-
-            console.log(tdata);
+        
             this.PromotingWellbeingAtHomeFormData = tdata;
-            // this.PromotingWellbeingAtHomeFormData.DateOfComplete = this.datePipte.transform(this.PromotingWellbeingAtHomeFormData.DateOfComplete, 'MM/dd/yyyy')
+            // this.PromotingWellbeingAtHomeFormData.DateOfComplete = this.datePipe.transform(this.PromotingWellbeingAtHomeFormData.DateOfComplete, 'MM/dd/yyyy')
 
           } else {
             this.PromotingWellbeingAtHomeFormData = {};
@@ -132,7 +120,7 @@ export class PromotingWellbeingAtHomeComponent extends AppComponentBase implemen
         this.residentAdmissionInfoId;
       this.PromotingWellbeingAtHomeFormData.StartedBy = this.loginId;
       this.PromotingWellbeingAtHomeFormData.LastEnteredBy = this.loginId;
-     // this.PromotingWellbeingAtHomeFormData.DateOfComplete = this.datePipte.transform(this.PromotingWellbeingAtHomeFormData.DateOfComplete, 'yyyy-MM-dd');
+     // this.PromotingWellbeingAtHomeFormData.DateOfComplete = this.datePipe.transform(this.PromotingWellbeingAtHomeFormData.DateOfComplete, 'yyyy-MM-dd');
 
       const objectBody: any = {
         StatementType: this.StatementType,

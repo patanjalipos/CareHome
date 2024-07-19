@@ -15,13 +15,13 @@ export class RiskOnTheMoveService {
   GetRiskAssOnTheMoveDetails(fromId: any) {
     let reqHeader = new HttpHeaders({
         'Content-Type': 'application/json',
-        'Access-Control-Allow-Origin': environment.BaseUriAdmin,
+        'Access-Control-Allow-Origin': environment.BaseUriUser,
         'Authorization': 'Bearer ' + localStorage.getItem('token')
     });
     let params = new HttpParams();
     params = params.append('fromId', fromId);
     return this._httpclient.get<any>(
-        environment.BaseUriAdmin + 'api/Admin/GetRiskAssOnTheMoveForm',
+        environment.BaseUriUser + 'api/User/GetRiskAssOnTheMoveForm',
         { headers: reqHeader, params: params }
     );
 }
@@ -31,15 +31,14 @@ InsertUpdateRiskAssOnTheMoveForm(
 ): Observable<any> {
     let reqHeader = new HttpHeaders({
         'Content-Type': 'application/json',
-        'Access-Control-Allow-Origin': environment.BaseUriAdmin,
+        'Access-Control-Allow-Origin': environment.BaseUriUser,
         'Authorization': 'Bearer ' + localStorage.getItem('token')
     });
     let params = new HttpParams();
     var data = JSON.stringify(RiskAssOnTheMoveFormsData).toString();
-    console.log(data);
     return this._httpclient.post<any>(
-        environment.BaseUriAdmin +
-            'api/Admin/InsertUpdateRiskAssOnTheMoveForm',
+        environment.BaseUriUser +
+            'api/User/InsertUpdateRiskAssOnTheMoveForm',
         data,
         { headers: reqHeader, params: params }
     );

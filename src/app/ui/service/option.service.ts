@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, forkJoin, map, tap } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -9,6 +9,12 @@ export class OptionService {
 
   private yesNoJsonUrl = 'assets/stLst/stLstYesNo.json';
   private attendanceJsonUrl = 'assets/stLst/stLstAttendance.json';
+  private methodJsonUrl = 'assets/stLst/stLstMethod.json';
+  private jsonDataUrl = 'assets/stLst/stLstFilters.json';
+  private DefaultjsonDataUrl = 'assets/stLst/stLstDefaultfilters.json';
+  private stLstReason = 'assets/stLst/stLstReason.json';
+  private stLstErrorAndWarnings = 'assets/stLst/stLstErrorWarnings.json';
+  private stLstRepositioning = 'assets/stLst/stLstRepositionFromTo.json';
 
   constructor(private http: HttpClient) { }
 
@@ -18,6 +24,26 @@ export class OptionService {
 
   getstLstAttendaceOptions(): Observable<any> {
     return this.http.get<any>(this.attendanceJsonUrl);
+  }
+
+  getstLstMethod(): Observable<any> {
+    return this.http.get<any>(this.methodJsonUrl);
+  }
+
+  getFilterData(): Observable<any> {
+    return this.http.get<any>(this.jsonDataUrl);
+  }
+  getDefaultFilterData(): Observable<any> {
+    return this.http.get<any>(this.DefaultjsonDataUrl);
+  }
+  getstLstReason(): Observable<any> {
+    return this.http.get<any>(this.stLstReason);
+  }
+  getstLstErrorAndWarning(): Observable<any> {
+    return this.http.get<any>(this.stLstErrorAndWarnings);
+  }
+  getstLstRepositionFromTo(): Observable<any> {
+    return this.http.get<any>(this.stLstRepositioning);
   }
 
 }

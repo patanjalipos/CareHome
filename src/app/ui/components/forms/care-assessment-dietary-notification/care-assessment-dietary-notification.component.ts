@@ -12,11 +12,11 @@ import {
     CustomDateFormat,
     FormTypes,
 } from 'src/app/ui/service/constants.service';
-import { MasterService } from 'src/app/ui/service/master.service';
 import { UtilityService } from 'src/app/utility/utility.service';
 import { AppComponentBase } from 'src/app/app-component-base';
 import { CareAssessmentDietaryNotificationService } from './care-assessment-dietary-notification.service';
 import { Observable, catchError, forkJoin, map, of } from 'rxjs';
+import { UserService } from 'src/app/ui/service/user.service';
 
 @Component({
     selector: 'app-care-assessment-dietary-notification',
@@ -25,8 +25,7 @@ import { Observable, catchError, forkJoin, map, of } from 'rxjs';
 })
 export class CareAssessmentDietaryNotificationComponent
     extends AppComponentBase
-    implements OnInit
-{
+    implements OnInit {
     @Input() preSelectedFormData: any = <any>{};
     @Output() EmitUpdateForm: EventEmitter<any> = new EventEmitter<any>();
 
@@ -56,32 +55,19 @@ export class CareAssessmentDietaryNotificationComponent
         private _ConstantServices: ConstantsService,
         private route: ActivatedRoute,
         private _UtilityService: UtilityService,
-        private _MasterService: MasterService,
+        private _UserService: UserService,
         private _FormService: CareAssessmentDietaryNotificationService
     ) {
         super();
         this._ConstantServices.ActiveMenuName =
             'Care Assessment - Dietary Notification Form';
         this.loginId = localStorage.getItem('userId');
-
-        this.unsubscribe.add = this.route.queryParams.subscribe((params) => {
-            var ParamsArray = this._ConstantServices.GetParmasVal(params['q']);
-
-            if (ParamsArray?.length > 0) {
-                this.userId =
-                    ParamsArray.find((e) => e.FieldStr == 'id')?.FieldVal ||
-                    null;
-                this.residentAdmissionInfoId =
-                    ParamsArray.find((e) => e.FieldStr == 'admissionid')
-                        ?.FieldVal || null;
-            }
-        });
     }
 
     ngOnChanges(changes: SimpleChanges): void {
         this.isEditable = this.preSelectedFormData.isEditable;
 
-        console.log(this.preSelectedFormData);
+       
 
         if (this.preSelectedFormData.selectedFormID != null) {
             this.DietaryNotificationFormsData = <any>{};
@@ -95,6 +81,10 @@ export class CareAssessmentDietaryNotificationComponent
     }
 
     ngOnInit(): void {
+        this.userId = this.preSelectedFormData.userId;
+        this.residentAdmissionInfoId =
+            this.preSelectedFormData.residentAdmissionInfoId;
+        this.isEditable = this.preSelectedFormData.isEditable;
         const dropDownNames = [
             'specialDietaryOptions',
             'modifiedDietOptions',
@@ -134,7 +124,7 @@ export class CareAssessmentDietaryNotificationComponent
         }
     }
 
-    SaveAsPDF() {}
+    SaveAsPDF() { }
 
     saveAsUnfinished() {
         this.DietaryNotificationFormsData.IsFormCompleted = false;
@@ -151,7 +141,7 @@ export class CareAssessmentDietaryNotificationComponent
         dropDownName: string
     ): Observable<any> {
         this._UtilityService.showSpinner();
-        return this._MasterService
+        return this._UserService
             .GetDropDownMasterList(formMasterId, dropDownName, 1)
             .pipe(
                 map((response) => {
@@ -165,7 +155,7 @@ export class CareAssessmentDietaryNotificationComponent
                 catchError((error) => {
                     this._UtilityService.hideSpinner();
                     this._UtilityService.showErrorAlert(error.message);
-                    alert(error.message);
+                  
                     return of([]); // Returning empty array in case of error
                 })
             );
@@ -238,7 +228,6 @@ export class CareAssessmentDietaryNotificationComponent
     }
 
     ResetModel() {
-        this.preSelectedFormData = <any>{};
         this.isEditable = true;
         this.DietaryNotificationFormsData = <any>{};
         this.StatementType = 'Insert';

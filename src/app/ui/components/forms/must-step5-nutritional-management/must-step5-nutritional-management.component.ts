@@ -4,9 +4,9 @@ import { ActivatedRoute } from '@angular/router';
 import { Observable, catchError, forkJoin, map, of } from 'rxjs';
 import { AppComponentBase } from 'src/app/app-component-base';
 import { ConstantsService, CustomDateFormat, FormTypes } from 'src/app/ui/service/constants.service';
-import { MasterService } from 'src/app/ui/service/master.service';
 import { UtilityService } from 'src/app/utility/utility.service';
 import { MustStep5NutritionalManagementService } from './must-step5-nutritional-management.service';
+import { UserService } from 'src/app/ui/service/user.service';
 
 @Component({
   selector: 'app-must-step5-nutritional-management',
@@ -29,25 +29,11 @@ export class MustStep5NutritionalManagementComponent extends AppComponentBase im
   lstNutritionalAims: any[] = [];
   lstInterventions: any[] = [];
 
-  constructor(private _ConstantServices: ConstantsService,private route: ActivatedRoute,private _UtilityService: UtilityService,private _MasterServices : MasterService, private datePipe: DatePipe,private _Nutritional: MustStep5NutritionalManagementService) {
+  constructor(private _ConstantServices: ConstantsService,private route: ActivatedRoute,private _UtilityService: UtilityService,private _UserServices : UserService, private datePipe: DatePipe,private _Nutritional: MustStep5NutritionalManagementService) {
 
     super();
     this._ConstantServices.ActiveMenuName = "Nutritional Management Plan Form";
     this.loginId = localStorage.getItem('userId');
-
-    
-    this.unsubscribe.add = this.route.queryParams.subscribe((params) => {
-      var ParamsArray = this._ConstantServices.GetParmasVal(params['q']);
-
-      if (ParamsArray?.length > 0) {
-        this.userId =
-        ParamsArray.find((e) => e.FieldStr == 'id')?.FieldVal ||
-        null;
-        this.residentAdmissionInfoId =
-        ParamsArray.find((e) => e.FieldStr == 'admissionid')
-            ?.FieldVal || null;
-      }
-    });
    }
 
    ngOnChanges(changes: SimpleChanges): void {
@@ -66,6 +52,9 @@ export class MustStep5NutritionalManagementComponent extends AppComponentBase im
   }
 
   ngOnInit(): void {
+
+    this.userId = this.preSelectedFormData.userId;
+    this.residentAdmissionInfoId = this.preSelectedFormData.residentAdmissionInfoId;
 
     const collectionNames = [
       'NutritionalProblems',
@@ -105,12 +94,10 @@ export class MustStep5NutritionalManagementComponent extends AppComponentBase im
                 if (data.actionResult.success == true) {
                     var tdata = JSON.parse(data.actionResult.result);
                     tdata = tdata ? tdata : {};
-                    console.log(tdata)
+
                     this.NutritionalManagementFormsData = tdata;
-                    console.log(this.NutritionalManagementFormsData.CareAssessmentHearingFormId)
+
                     this.NutritionalManagementFormsData.ReviewDate = this.datePipe.transform(this.NutritionalManagementFormsData.ReviewDate,'MM/dd/yyyy');
-                    
-                    // console.log(this.CareAssessmentHearingFormsData.HearingDiagnosisCheck);
                     
                 } else {
                     this.NutritionalManagementFormsData = {};
@@ -126,7 +113,7 @@ export class MustStep5NutritionalManagementComponent extends AppComponentBase im
 
 getDropdownMasterLists(formMasterId: string, dropdownName: string,status:number): Observable<any> {
   this._UtilityService.showSpinner();
-  return this._MasterServices.GetDropDownMasterList(formMasterId,dropdownName, status).pipe(
+  return this._UserServices.GetDropDownMasterList(formMasterId,dropdownName, status).pipe(
       map((response) => {
           this._UtilityService.hideSpinner();
           if (response.actionResult.success) {
@@ -138,7 +125,6 @@ getDropdownMasterLists(formMasterId: string, dropdownName: string,status:number)
       catchError((error) => {
           this._UtilityService.hideSpinner();
           this._UtilityService.showErrorAlert(error.message);
-          alert(error.message);
           return of([]); // Returning empty array in case of error
       })
   );
@@ -172,9 +158,6 @@ if (this.userId != null && this.residentAdmissionInfoId != null && this.loginId!
           StatementType: this.StatementType,
           nutritionalManagementPlanForm: this.NutritionalManagementFormsData,
       };
-      
-
-      console.log(objectBody);
 
     this._UtilityService.showSpinner();
     this.unsubscribe.add = this._Nutritional

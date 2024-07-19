@@ -14,9 +14,9 @@ import {
     CustomDateFormat,
     FormTypes,
 } from 'src/app/ui/service/constants.service';
-import { MasterService } from 'src/app/ui/service/master.service';
 import { UtilityService } from 'src/app/utility/utility.service';
 import { CareSpeechLanguageSsessmentService } from './care-speech-language-ssessment.service';
+import { UserService } from 'src/app/ui/service/user.service';
 
 @Component({
     selector: 'app-care-speech-language-ssessment',
@@ -26,8 +26,7 @@ import { CareSpeechLanguageSsessmentService } from './care-speech-language-ssess
 
 export class CareSpeechLanguageSsessmentComponent
     extends AppComponentBase
-    implements OnInit
-{
+    implements OnInit {
     @Input() preSelectedFormData: any = <any>{};
     @Output() EmitUpdateForm: EventEmitter<any> = new EventEmitter<any>();
 
@@ -56,7 +55,7 @@ export class CareSpeechLanguageSsessmentComponent
         private _ConstantServices: ConstantsService,
         private route: ActivatedRoute,
         private _UtilityService: UtilityService,
-        private _MasterService: MasterService,
+        private _UserService: UserService,
         private _FormService: CareSpeechLanguageSsessmentService
     ) {
         super();
@@ -64,18 +63,6 @@ export class CareSpeechLanguageSsessmentComponent
             'Care Assessment - Speech & Language Assessment Form';
         this.loginId = localStorage.getItem('userId');
 
-        this.unsubscribe.add = this.route.queryParams.subscribe((params) => {
-            var ParamsArray = this._ConstantServices.GetParmasVal(params['q']);
-
-            if (ParamsArray?.length > 0) {
-                this.userId =
-                    ParamsArray.find((e) => e.FieldStr == 'id')?.FieldVal ||
-                    null;
-                this.residentAdmissionInfoId =
-                    ParamsArray.find((e) => e.FieldStr == 'admissionid')
-                        ?.FieldVal || null;
-            }
-        });
     }
 
     ngOnChanges(changes: SimpleChanges): void {
@@ -92,6 +79,10 @@ export class CareSpeechLanguageSsessmentComponent
     }
 
     ngOnInit(): void {
+        this.userId = this.preSelectedFormData.userId;
+        this.residentAdmissionInfoId =
+            this.preSelectedFormData.residentAdmissionInfoId;
+        this.isEditable = this.preSelectedFormData.isEditable;
         const dropDownNames = [
             'speechComprehensionImpairmentOptions',
             'nonVerbalCommunicationOptions',
@@ -105,7 +96,7 @@ export class CareSpeechLanguageSsessmentComponent
                 this.GetDropDownMasterList(
                     FormTypes.CareAssessmentSpeech,
                     collectionName
-                )   
+                )
             )
         ).subscribe((responses: any[]) => {
             // responses is an array containing the responses for each request
@@ -129,7 +120,7 @@ export class CareSpeechLanguageSsessmentComponent
         }
     }
 
-    SaveAsPDF() {}
+    SaveAsPDF() { }
 
     saveAsUnfinished() {
         this.CareSpeechLanguageFormData.IsFormCompleted = false;
@@ -146,7 +137,7 @@ export class CareSpeechLanguageSsessmentComponent
         dropDownName: string
     ): Observable<any> {
         this._UtilityService.showSpinner();
-        return this._MasterService
+        return this._UserService
             .GetDropDownMasterList(formMasterId, dropDownName, 1)
             .pipe(
                 map((response) => {
@@ -160,7 +151,7 @@ export class CareSpeechLanguageSsessmentComponent
                 catchError((error) => {
                     this._UtilityService.hideSpinner();
                     this._UtilityService.showErrorAlert(error.message);
-                    alert(error.message);
+              
                     return of([]); // Returning empty array in case of error
                 })
             );
@@ -234,7 +225,6 @@ export class CareSpeechLanguageSsessmentComponent
     }
 
     ResetModel() {
-        this.preSelectedFormData = <any>{};
         this.isEditable = true;
         this.CareSpeechLanguageFormData = <any>{};
         this.StatementType = 'Insert';

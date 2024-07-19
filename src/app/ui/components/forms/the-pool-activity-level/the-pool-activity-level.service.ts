@@ -16,13 +16,13 @@ export class ThePoolActivityLevelService {
   GetPoolActivityDetails(fromId: any) {
     let reqHeader = new HttpHeaders({
         'Content-Type': 'application/json',
-        'Access-Control-Allow-Origin': environment.BaseUriAdmin,
+        'Access-Control-Allow-Origin': environment.BaseUriUser,
         'Authorization': 'Bearer ' + localStorage.getItem('token')
     });
     let params = new HttpParams();
     params = params.append('fromId', fromId);
     return this._httpclient.get<any>(
-        environment.BaseUriAdmin + 'api/Admin/GetPoolActivityForm',
+        environment.BaseUriUser + 'api/User/GetPoolActivityForm',
         { headers: reqHeader, params: params }
     );
 }
@@ -32,15 +32,14 @@ InsertUpdatePoolActivityForm(
 ): Observable<any> {
     let reqHeader = new HttpHeaders({
         'Content-Type': 'application/json',
-        'Access-Control-Allow-Origin': environment.BaseUriAdmin,
+        'Access-Control-Allow-Origin': environment.BaseUriUser,
         'Authorization': 'Bearer ' + localStorage.getItem('token')
     });
     let params = new HttpParams();
     var data = JSON.stringify(PoolActivityFormsData).toString();
-    console.log(data);
     return this._httpclient.post<any>(
-        environment.BaseUriAdmin +
-            'api/Admin/InsertUpdatePoolActivityForm',
+        environment.BaseUriUser +
+            'api/User/InsertUpdatePoolActivityForm',
         data,
         { headers: reqHeader, params: params }
     );

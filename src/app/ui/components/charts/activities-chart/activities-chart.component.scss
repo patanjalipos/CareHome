@@ -1,0 +1,17 @@
+
+.carousel-container {
+  position: relative;
+}
+
+.p-button:focus {
+  outline: none;
+  box-shadow: none;
+  /* Also remove any shadow if present */
+
+}
+
+@media screen and (min-width: 1366px) {
+  .chart-date {
+    font-size: 17px;
+  }
+}

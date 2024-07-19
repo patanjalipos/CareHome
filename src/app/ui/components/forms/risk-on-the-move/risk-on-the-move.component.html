@@ -33,7 +33,7 @@
         </div>
         <div class="col-md-7 mt-4 ">
             <ng-container *ngIf="this.isEditable; else BearWeight">
-                <p-dropdown [required]="true" [options]="lstBearWeight"   optionLabel="optionName" [(ngModel)]="RiskAssOnTheMoveFormsData.BearWeight" name="RiskAssOnTheMoveFormsData.BearWeight" optionValue="optionId" placeholder="Select" [style]="{ width: '100%' }">
+                <p-dropdown [required]="true" [options]="lstBearWeight"   optionLabel="optionName" [(ngModel)]="RiskAssOnTheMoveFormsData.BearWeight" name="RiskAssOnTheMoveFormsData.BearWeight" optionValue="optionId" placeholder="--select--" [style]="{ width: '100%' }">
                 </p-dropdown>
             </ng-container>
             <ng-template #BearWeight>
@@ -50,7 +50,7 @@
         </div>
         <div class="col-md-7 form-text ">
             <ng-container *ngIf="this.isEditable; else Pain">
-                <p-dropdown [required]="true" [options]="lstPain"   optionLabel="optionName" [(ngModel)]="RiskAssOnTheMoveFormsData.Pain" name="RiskAssOnTheMoveFormsData.Pain" optionValue="optionId" placeholder="Select" [style]="{ width: '100%' }">
+                <p-dropdown [required]="true" [options]="lstPain"   optionLabel="optionName" [(ngModel)]="RiskAssOnTheMoveFormsData.Pain" name="RiskAssOnTheMoveFormsData.Pain" optionValue="optionId" placeholder="--select--" [style]="{ width: '100%' }">
                 </p-dropdown>
                 <p class="mb-4">Please</p>
             </ng-container>
@@ -69,7 +69,7 @@
         </div>
         <div class="col-md-7">
             <ng-container *ngIf="this.isEditable; else PhysicalConstraints">
-                <p-dropdown [required]="true" [options]="lstPhysicalConstraints"   optionLabel="optionName" [(ngModel)]="RiskAssOnTheMoveFormsData.PhysicalConstraints" name="RiskAssOnTheMoveFormsData.PhysicalConstraints" optionValue="optionId" placeholder="Select" [style]="{ width: '100%' }">
+                <p-dropdown [required]="true" [options]="lstPhysicalConstraints"   optionLabel="optionName" [(ngModel)]="RiskAssOnTheMoveFormsData.PhysicalConstraints" name="RiskAssOnTheMoveFormsData.PhysicalConstraints" optionValue="optionId" placeholder="--select--" [style]="{ width: '100%' }">
                 </p-dropdown>
             </ng-container>
             <ng-template #PhysicalConstraints>
@@ -86,7 +86,7 @@
         </div>
         <div class="col-md-7">
             <ng-container *ngIf="this.isEditable; else PersonFeelings">
-                <p-dropdown [required]="true" [options]="lstPersonFeelings"   optionLabel="optionName" [(ngModel)]="RiskAssOnTheMoveFormsData.PersonFeelings" name="RiskAssOnTheMoveFormsData.PersonFeelings" optionValue="optionId" placeholder="Select" [style]="{ width: '100%' }">
+                <p-dropdown [required]="true" [options]="lstPersonFeelings"   optionLabel="optionName" [(ngModel)]="RiskAssOnTheMoveFormsData.PersonFeelings" name="RiskAssOnTheMoveFormsData.PersonFeelings" optionValue="optionId" placeholder="--select--" [style]="{ width: '100%' }">
                 </p-dropdown>
             </ng-container>
             <ng-template #PersonFeelings>
@@ -104,7 +104,7 @@
         </div>
         <div class="col-md-7">
             <ng-container *ngIf="this.isEditable; else Manoeuvre">
-                <p-dropdown [required]="true" [options]="lstManoeuvre"   optionLabel="optionName" [(ngModel)]="RiskAssOnTheMoveFormsData.Manoeuvre" name="RiskAssOnTheMoveFormsData.Manoeuvre" optionValue="optionId" placeholder="Select" [style]="{ width: '100%' }">
+                <p-dropdown [required]="true" [options]="lstManoeuvre"   optionLabel="optionName" [(ngModel)]="RiskAssOnTheMoveFormsData.Manoeuvre" name="RiskAssOnTheMoveFormsData.Manoeuvre" optionValue="optionId" placeholder="--select--" [style]="{ width: '100%' }">
                 </p-dropdown>
             </ng-container>
             <ng-template #Manoeuvre>
@@ -122,7 +122,7 @@
         </div>
         <div class="col-md-7 ">
             <ng-container *ngIf="this.isEditable; else Stand">
-                <p-dropdown [required]="true" [options]="lstStand"   optionLabel="optionName" [(ngModel)]="RiskAssOnTheMoveFormsData.Stand" name="RiskAssOnTheMoveFormsData.Stand" optionValue="optionId" placeholder="Select" [style]="{ width: '100%' }">
+                <p-dropdown [required]="true" [options]="lstStand"   optionLabel="optionName" [(ngModel)]="RiskAssOnTheMoveFormsData.Stand" name="RiskAssOnTheMoveFormsData.Stand" optionValue="optionId" placeholder="--select--" [style]="{ width: '100%' }">
                 </p-dropdown>
             </ng-container>
             <ng-template #Stand>
@@ -140,7 +140,7 @@
         </div>
         <div class="col-md-7 ">
             <ng-container *ngIf="this.isEditable; else PersonalCare">
-                <p-dropdown [required]="true" [options]="lstPersonalCare"   optionLabel="optionName" [(ngModel)]="RiskAssOnTheMoveFormsData.PersonalCare" name="RiskAssOnTheMoveFormsData.PersonalCare" optionValue="optionId" placeholder="Select" [style]="{ width: '100%' }">
+                <p-dropdown [required]="true" [options]="lstPersonalCare"   optionLabel="optionName" [(ngModel)]="RiskAssOnTheMoveFormsData.PersonalCare" name="RiskAssOnTheMoveFormsData.PersonalCare" optionValue="optionId" placeholder="--select--" [style]="{ width: '100%' }">
                 </p-dropdown>
             </ng-container>
             <ng-template #PersonalCare>
@@ -157,7 +157,7 @@
         </div>
         <div class="col-md-7">
             <ng-container *ngIf="this.isEditable; else RiskScore">
-                <p-dropdown [required]="true" [options]="lstRiskScore"   optionLabel="optionName" [(ngModel)]="RiskAssOnTheMoveFormsData.RiskScore" name="RiskAssOnTheMoveFormsData.RiskScore" optionValue="optionId" placeholder="Select" [style]="{ width: '100%' }">
+                <p-dropdown [required]="true" [options]="lstRiskScore"   optionLabel="optionName" [(ngModel)]="RiskAssOnTheMoveFormsData.RiskScore" name="RiskAssOnTheMoveFormsData.RiskScore" optionValue="optionId" placeholder="--select--" [style]="{ width: '100%' }">
                 </p-dropdown>
             </ng-container>
             <ng-template #RiskScore>
@@ -194,7 +194,7 @@
         </div>
         <div class="col-md-7 ">
             <ng-container *ngIf="this.isEditable; else WalkCheck">
-                <p-dropdown [required]="true" [options]="lstWalkCheck"   optionLabel="optionName" [(ngModel)]="RiskAssOnTheMoveFormsData.WalkCheck" name="RiskAssOnTheMoveFormsData.WalkCheck" optionValue="optionId" placeholder="Select" [style]="{ width: '100%' }">
+                <p-dropdown [required]="true" [options]="lstWalkCheck"   optionLabel="optionName" [(ngModel)]="RiskAssOnTheMoveFormsData.WalkCheck" name="RiskAssOnTheMoveFormsData.WalkCheck" optionValue="optionId" placeholder="--select--" [style]="{ width: '100%' }">
                 </p-dropdown>
             </ng-container>
             <ng-template #WalkCheck>
@@ -211,7 +211,7 @@
         </div>
         <div class="col-md-7">
             <ng-container *ngIf="this.isEditable; else FeetCheck">
-                <p-dropdown [required]="true" [options]="lstFeetCheck"   optionLabel="optionName" [(ngModel)]="RiskAssOnTheMoveFormsData.FeetCheck" name="RiskAssOnTheMoveFormsData.FeetCheck" optionValue="optionId" placeholder="Select" [style]="{ width: '100%' }">
+                <p-dropdown [required]="true" [options]="lstFeetCheck"   optionLabel="optionName" [(ngModel)]="RiskAssOnTheMoveFormsData.FeetCheck" name="RiskAssOnTheMoveFormsData.FeetCheck" optionValue="optionId" placeholder="--select--" [style]="{ width: '100%' }">
                 </p-dropdown>
             </ng-container>
             <ng-template #FeetCheck>
@@ -229,7 +229,7 @@
         </div>
         <div class="col-md-7 ">
             <ng-container *ngIf="this.isEditable; else StandCheck">
-                <p-dropdown [required]="true" [options]="lstStandCheck"   optionLabel="optionName" [(ngModel)]="RiskAssOnTheMoveFormsData.StandCheck" name="RiskAssOnTheMoveFormsData.StandCheck" optionValue="optionId" placeholder="Select" [style]="{ width: '100%' }">
+                <p-dropdown [required]="true" [options]="lstStandCheck"   optionLabel="optionName" [(ngModel)]="RiskAssOnTheMoveFormsData.StandCheck" name="RiskAssOnTheMoveFormsData.StandCheck" optionValue="optionId" placeholder="--select--" [style]="{ width: '100%' }">
                 </p-dropdown>
             </ng-container>
             <ng-template #StandCheck>
@@ -247,7 +247,7 @@
         </div>
         <div class="col-md-7 ">
             <ng-container *ngIf="this.isEditable; else Transfer">
-                <p-dropdown [required]="true" [options]="lstTransfer"   optionLabel="optionName" [(ngModel)]="RiskAssOnTheMoveFormsData.Transfer" name="RiskAssOnTheMoveFormsData.Transfer" optionValue="optionId" placeholder="Select" [style]="{ width: '100%' }">
+                <p-dropdown [required]="true" [options]="lstTransfer"   optionLabel="optionName" [(ngModel)]="RiskAssOnTheMoveFormsData.Transfer" name="RiskAssOnTheMoveFormsData.Transfer" optionValue="optionId" placeholder="--select--" [style]="{ width: '100%' }">
                 </p-dropdown>
             </ng-container>
             <ng-template #Transfer>
@@ -265,7 +265,7 @@
         </div>
         <div class="col-md-7 ">
             <ng-container *ngIf="this.isEditable; else Dressing">
-                <p-dropdown [required]="true" [options]="lstDressing"   optionLabel="optionName" [(ngModel)]="RiskAssOnTheMoveFormsData.Dressing" name="RiskAssOnTheMoveFormsData.Dressing" optionValue="optionId" placeholder="Select" [style]="{ width: '100%' }">
+                <p-dropdown [required]="true" [options]="lstDressing"   optionLabel="optionName" [(ngModel)]="RiskAssOnTheMoveFormsData.Dressing" name="RiskAssOnTheMoveFormsData.Dressing" optionValue="optionId" placeholder="--select--" [style]="{ width: '100%' }">
                 </p-dropdown>
             </ng-container>
             <ng-template #Dressing>
@@ -283,7 +283,7 @@
         </div>
         <div class="col-md-7 ">
             <ng-container *ngIf="this.isEditable; else MovingCheck">
-                <p-dropdown [required]="true" [options]="lstMovingCheck"   optionLabel="optionName" [(ngModel)]="RiskAssOnTheMoveFormsData.MovingCheck" name="RiskAssOnTheMoveFormsData.MovingCheck" optionValue="optionId" placeholder="Select" [style]="{ width: '100%' }">
+                <p-dropdown [required]="true" [options]="lstMovingCheck"   optionLabel="optionName" [(ngModel)]="RiskAssOnTheMoveFormsData.MovingCheck" name="RiskAssOnTheMoveFormsData.MovingCheck" optionValue="optionId" placeholder="--select--" [style]="{ width: '100%' }">
                 </p-dropdown>
             </ng-container>
             <ng-template #MovingCheck>
@@ -301,7 +301,7 @@
         </div>
         <div class="col-md-7 ">
             <ng-container *ngIf="this.isEditable; else SitbackCheck">
-                <p-dropdown [required]="true" [options]="lstSitbackCheck"   optionLabel="optionName" [(ngModel)]="RiskAssOnTheMoveFormsData.SitbackCheck" name="RiskAssOnTheMoveFormsData.SitbackCheck" optionValue="optionId" placeholder="Select" [style]="{ width: '100%' }">
+                <p-dropdown [required]="true" [options]="lstSitbackCheck"   optionLabel="optionName" [(ngModel)]="RiskAssOnTheMoveFormsData.SitbackCheck" name="RiskAssOnTheMoveFormsData.SitbackCheck" optionValue="optionId" placeholder="--select--" [style]="{ width: '100%' }">
                 </p-dropdown>
             </ng-container>
             <ng-template #SitbackCheck>
@@ -319,7 +319,7 @@
         </div>
         <div class="col-md-7 ">
             <ng-container *ngIf="this.isEditable; else BathHelp">
-                <p-dropdown [required]="true" [options]="lstBathHelp"   optionLabel="optionName" [(ngModel)]="RiskAssOnTheMoveFormsData.BathHelp" name="RiskAssOnTheMoveFormsData.BathHelp" optionValue="optionId" placeholder="Select" [style]="{ width: '100%' }">
+                <p-dropdown [required]="true" [options]="lstBathHelp"   optionLabel="optionName" [(ngModel)]="RiskAssOnTheMoveFormsData.BathHelp" name="RiskAssOnTheMoveFormsData.BathHelp" optionValue="optionId" placeholder="--select--" [style]="{ width: '100%' }">
                 </p-dropdown>
             </ng-container>
             <ng-template #BathHelp>
@@ -337,7 +337,7 @@
         </div>
         <div class="col-md-7 ">
             <ng-container *ngIf="this.isEditable; else ShowerCheck">
-                <p-dropdown [required]="true" [options]="lstShowerCheck"   optionLabel="optionName" [(ngModel)]="RiskAssOnTheMoveFormsData.ShowerCheck" name="RiskAssOnTheMoveFormsData.ShowerCheck" optionValue="optionId" placeholder="Select" [style]="{ width: '100%' }">
+                <p-dropdown [required]="true" [options]="lstShowerCheck"   optionLabel="optionName" [(ngModel)]="RiskAssOnTheMoveFormsData.ShowerCheck" name="RiskAssOnTheMoveFormsData.ShowerCheck" optionValue="optionId" placeholder="--select--" [style]="{ width: '100%' }">
                 </p-dropdown>
             </ng-container>
             <ng-template #ShowerCheck>
@@ -355,7 +355,7 @@
         </div>
         <div class="col-md-7 ">
             <ng-container *ngIf="this.isEditable; else VehicleCheck">
-                <p-dropdown [required]="true" [options]="lstVehicleCheck"   optionLabel="optionName" [(ngModel)]="RiskAssOnTheMoveFormsData.VehicleCheck" name="RiskAssOnTheMoveFormsData.VehicleCheck" optionValue="optionId" placeholder="Select" [style]="{ width: '100%' }">
+                <p-dropdown [required]="true" [options]="lstVehicleCheck"   optionLabel="optionName" [(ngModel)]="RiskAssOnTheMoveFormsData.VehicleCheck" name="RiskAssOnTheMoveFormsData.VehicleCheck" optionValue="optionId" placeholder="--select--" [style]="{ width: '100%' }">
                 </p-dropdown>
             </ng-container>
             <ng-template #VehicleCheck>
@@ -372,7 +372,7 @@
         </div>
         <div class="col-md-7 ">
             <ng-container *ngIf="this.isEditable; else StairsManage">
-                <p-dropdown [required]="true" [options]="lstStairsManage"   optionLabel="optionName" [(ngModel)]="RiskAssOnTheMoveFormsData.StairsManage" name="RiskAssOnTheMoveFormsData.StairsManage" optionValue="optionId" placeholder="Select" [style]="{ width: '100%' }">
+                <p-dropdown [required]="true" [options]="lstStairsManage"   optionLabel="optionName" [(ngModel)]="RiskAssOnTheMoveFormsData.StairsManage" name="RiskAssOnTheMoveFormsData.StairsManage" optionValue="optionId" placeholder="--select--" [style]="{ width: '100%' }">
                 </p-dropdown>
             </ng-container>
             <ng-template #StairsManage>
@@ -390,7 +390,7 @@
         </div>
         <div class="col-md-7 ">
             <ng-container *ngIf="this.isEditable; else FloorCheck">
-                <p-dropdown [required]="true" [options]="lstFloorCheck"   optionLabel="optionName" [(ngModel)]="RiskAssOnTheMoveFormsData.FloorCheck" name="RiskAssOnTheMoveFormsData.FloorCheck" optionValue="optionId" placeholder="Select" [style]="{ width: '100%' }">
+                <p-dropdown [required]="true" [options]="lstFloorCheck"   optionLabel="optionName" [(ngModel)]="RiskAssOnTheMoveFormsData.FloorCheck" name="RiskAssOnTheMoveFormsData.FloorCheck" optionValue="optionId" placeholder="--select--" [style]="{ width: '100%' }">
                 </p-dropdown>
             </ng-container>
             <ng-template #FloorCheck>
@@ -429,7 +429,7 @@
         </div>
         <div class="col-md-7 form-text ">
             <ng-container *ngIf="this.isEditable; else Equipment">
-                <p-dropdown [required]="true" [options]="lstEquipment"   optionLabel="optionName" [(ngModel)]="RiskAssOnTheMoveFormsData.Equipment" name="RiskAssOnTheMoveFormsData.Equipment" optionValue="optionId" placeholder="Select" [style]="{ width: '100%' }">
+                <p-dropdown [required]="true" [options]="lstEquipment"   optionLabel="optionName" [(ngModel)]="RiskAssOnTheMoveFormsData.Equipment" name="RiskAssOnTheMoveFormsData.Equipment" optionValue="optionId" placeholder="--select--" [style]="{ width: '100%' }">
                 </p-dropdown>
                 <p class="mb-4">Please select all relevant statements</p>
             </ng-container>
@@ -488,7 +488,7 @@
         </div>
         <div class="col-md-7 form-text">
             <ng-container *ngIf="this.isEditable; else AssessPain">
-                <p-dropdown [required]="true" [options]="lstAssessPain"   optionLabel="optionName" [(ngModel)]="RiskAssOnTheMoveFormsData.AssessPain" name="RiskAssOnTheMoveFormsData.AssessPain" optionValue="optionId" placeholder="Select" [style]="{ width: '100%' }">
+                <p-dropdown [required]="true" [options]="lstAssessPain"   optionLabel="optionName" [(ngModel)]="RiskAssOnTheMoveFormsData.AssessPain" name="RiskAssOnTheMoveFormsData.AssessPain" optionValue="optionId" placeholder="--select--" [style]="{ width: '100%' }">
                 </p-dropdown>
                 <p class="mb-4">Please choose</p>
             </ng-container>

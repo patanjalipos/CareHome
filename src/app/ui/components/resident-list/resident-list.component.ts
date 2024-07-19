@@ -86,7 +86,7 @@ export class ResidentListComponent extends AppComponentBase implements OnInit {
     HomeMasterId = localStorage.getItem('HomeMasterId');
   }
   this._UtilityService.showSpinner();   
-  this.unsubscribe.add = this._MasterServices.GetResidentMaster(HomeMasterId,false)
+  this.unsubscribe.add = this._MasterServices.GetResidentMaster(HomeMasterId,null,1)
     .subscribe({
       next:(data) => {
         this._UtilityService.hideSpinner();          
@@ -96,7 +96,8 @@ export class ResidentListComponent extends AppComponentBase implements OnInit {
         //  this.lstResidentMaster = tdata;          
               this.lstResidentMaster = tdata.map(resident => {
                 if (resident.ProfileImage) {
-                  const imageFormat = resident.ProfileImage.endsWith(".jpg") || resident.ProfileImage.endsWith(".jpeg") ? "jpeg" : "png";
+                 // const imageFormat = resident.ProfileImage.endsWith(".jpg") || resident.ProfileImage.endsWith(".jpeg") ? "jpeg" : "png";
+                  var imageFormat=this._UtilityService.getFileExtension(resident.ProfileImage);
                   resident.imageSrc = "data:image/" + imageFormat + ";base64," + resident.ProfileImage;
                 } else {
                   resident.imageSrc = '';

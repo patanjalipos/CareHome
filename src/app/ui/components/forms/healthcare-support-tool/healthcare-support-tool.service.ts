@@ -15,13 +15,13 @@ export class HealthcareSupportToolService {
   GetHealthcareSupportDetails(fromId: any) {
     let reqHeader = new HttpHeaders({
         'Content-Type': 'application/json',
-        'Access-Control-Allow-Origin': environment.BaseUriAdmin,
+        'Access-Control-Allow-Origin': environment.BaseUriUser,
         'Authorization': 'Bearer ' + localStorage.getItem('token')
     });
     let params = new HttpParams();
     params = params.append('fromId', fromId);
     return this._httpclient.get<any>(
-        environment.BaseUriAdmin + 'api/Admin/GetHealthcareSupportForm',
+        environment.BaseUriUser + 'api/User/GetHealthcareSupportForm',
         { headers: reqHeader, params: params }
     );
 }
@@ -31,15 +31,14 @@ InsertUpdateHealthcareSupportForm(
 ): Observable<any> {
     let reqHeader = new HttpHeaders({
         'Content-Type': 'application/json',
-        'Access-Control-Allow-Origin': environment.BaseUriAdmin,
+        'Access-Control-Allow-Origin': environment.BaseUriUser,
         'Authorization': 'Bearer ' + localStorage.getItem('token')
     });
     let params = new HttpParams();
     var data = JSON.stringify(HealthcareSupportFormsData).toString();
-    console.log(data);
     return this._httpclient.post<any>(
-        environment.BaseUriAdmin +
-            'api/Admin/InsertUpdateHealthcareSupportForm',
+        environment.BaseUriUser +
+            'api/User/InsertUpdateHealthcareSupportForm',
         data,
         { headers: reqHeader, params: params }
     );

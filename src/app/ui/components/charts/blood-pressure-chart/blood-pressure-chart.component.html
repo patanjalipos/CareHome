@@ -1,1 +1,249 @@
-<p>blood-pressure-chart works!</p>
+<div class="card">
+    <div class="row p-0">
+        <div class="col-md-12 formheader d-flex justify-content-between align-items-center">
+            <h4 class="mb-0">Blood Pressure Chart</h4>
+            <div><button pButton type="button" icon="pi pi-chevron-left" class="mr-2" (click)="leftBtn()"
+                    [disabled]="pageNumber==0"></button>
+                <button pButton type="button" icon="pi pi-chevron-right" class="" (click)="rightBtn()"
+                    [disabled]="rightBtnCheck"></button>
+            </div>
+
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-3 mt-3 chart-box">
+            <div class="formheader mt-2 chart-heading">
+                <p><b>New observation</b></p>
+            </div>
+            <div class="col-md-12 mt-4">
+                <label class="form-label bold">
+                    Date/Time<span class="required"></span></label>
+
+                <ng-container>
+                    <p-calendar name="" [showIcon]="true" inputId="icon" class="iconcal" [readonlyInput]="true"
+                        appendTo="body" [maxDate]="" #dobref="" [dateFormat]="customDateFormat.CalendarFormat"
+                        [(ngModel)]="bloodPressureChartFormData.DateAndTime" [showTime]="true"
+                        hourFormat="24"></p-calendar>
+                </ng-container>
+            </div>
+            <div class="col-md-12">
+                <label class="form-label bold">Care Given <span class="required">*</span></label>
+
+                <ng-container>
+                    <p-dropdown [ngClass]="{'ng-dirty ng-invalid':CareGivenCheck}" [required]="true" name="bloodPressureChartFormData.CareGiven"
+                        placeholder="----select----" [style]="{ width: '100%' }" [options]="stLstYesNoOptions"
+                        optionValue="optionId" optionLabel="optionValue"
+                        [(ngModel)]="bloodPressureChartFormData.CareGiven" (onChange)="openAndClose()">
+                    </p-dropdown>
+                    <span class="required" *ngIf="bloodPressureChartFormData.CareGiven==null && CareGivenCheck == true">This field is required!</span>
+                </ng-container>
+            </div>
+            <div *ngIf="inputFields==false">
+                <label class="form-label bold">Reason<span class="required">*</span></label>
+
+                <ng-container>
+                    <p-dropdown [ngClass]="{'ng-dirty ng-invalid':ReasonCheck}" [required]="true" name="bloodPressureChartFormData.Reason" placeholder="----select----"
+                        [style]="{ width: '100%' }" [options]="stLstReason" optionValue="optionId"
+                        optionLabel="optionValue" [(ngModel)]="bloodPressureChartFormData.Reason"
+                        (onChange)="openAndClose()">
+                    </p-dropdown>
+                    <span class="required" *ngIf="bloodPressureChartFormData.Reason==null && ReasonCheck == true">This field is required!</span>
+                </ng-container>
+            </div>
+            <div *ngIf="inputFields" class="row">
+                <h5 class="formheader">Blood Pressure</h5>
+                <div class="col-md-12">
+                    <div class="labelcontent">
+                        <label class="form-label bold">Systolic(mm Hg)<span class="required"></span></label>
+                    </div>
+                    <ng-container>
+                        <input type="number" pInputText [style]="{ width: '100%' }"
+                            [(ngModel)]="bloodPressureChartFormData.Systolic" />
+                    </ng-container>
+                </div>
+
+                <div class="col-md-12">
+                    <div class="col-md-12">
+                        <label class="form-label bold">Diastolic(mm Hg)<span class="required"></span></label>
+                    </div>
+                    <ng-container>
+                        <input type="number" pInputText [style]="{ width: '100%' }"
+                            [(ngModel)]="bloodPressureChartFormData.Diastolic" />
+                    </ng-container>
+                </div>
+
+                <div class="col-md-12">
+                    <div class="col-md-4">
+                        <label class="form-label bold">Method<span class="required"></span></label>
+                    </div>
+                    <ng-container>
+                        <p-dropdown [required]="true" name="bloodPressureChartFormData.PurposeOfActivity"
+                            placeholder="--select--" [style]="{ width: '100%' }"
+                            [(ngModel)]="bloodPressureChartFormData.Method" [options]="stLstMethod"
+                            optionLabel="optionValue" optionValue="optionId">
+                        </p-dropdown>
+                    </ng-container>
+                </div>
+            </div>
+            <h5 class="formheader">Additional information</h5>
+            <div class="col-md-12">
+                <ng-container>
+                    <input type="text" pInputText name="bloodPressureChartFormData.AdditionalInformation"
+                        [required]="true" [style]="{ width: '100%' }"
+                        [(ngModel)]="bloodPressureChartFormData.AdditionalInformation" />
+                </ng-container>
+            </div>
+
+            <div class="d-flex justify-content-center mt-4">
+                <div class="mr-4">
+                    <span class="p-ml-left">
+                        <button pButton title="Clear all" label="Clear all" (click)="ClearAllfeilds()"></button>
+                        <span class="total-txt"></span>
+                    </span>
+                </div>
+                <div>
+                    <span class="p-ml-left">
+                        <button pButton title="save" label="Save" (click)="Save()"></button>
+                        <span class="total-txt"></span>
+                    </span>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-9 mt-3">
+            <!-- Left navigation button -->
+            <p-carousel [value]="bloodPressureChartsLst" [numVisible]="pageSize" [numScroll]="pageSize"
+                [circular]="false" [showIndicators]="false" [showNavigators]="false"
+                [responsiveOptions]="responsiveOptions">
+                <ng-template let-chart pTemplate="item">
+                    <div class="col-md-11 chart-box p-2">
+                        <div class="formheader p-2 mb-3">
+                            <div class="col-md-12 mb-2 d-flex justify-content-between fs-4 ">
+                                <div class="chart-date">
+                                    <label class="bold"
+                                        [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">{{
+                                        chart.DateAndTime | date:'dd-MM-yyyy'}}</label>
+                                </div>
+                                <div class="chart-date">
+                                    <label [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">{{
+                                        chart.DateAndTime | date:'hh:mm'}}</label>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="col-md-12 mb-2">
+
+                            <label class="form-label bold"
+                                [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">Enterted By<span
+                                    class="required"></span></label>
+
+                            <div>
+                                <label
+                                    [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">{{chart.StartedBy}}</label>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="mb-2">
+                                <button *ngIf="!chart.isStrikeThrough" pButton type="button"
+                                    label="Strike Through Entry" class="p-button-link p-0"
+                                    (click)="showPopup(chart.bloodPressureChartId,chart)">
+                                </button>
+                            </div>
+                        </div>
+                        <div class="col-md-12 mb-3">
+
+                            <label class="form-label bold"
+                                [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">Care Given <span
+                                    class="required"></span></label>
+
+                            <div>
+                                <label [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">{{
+                                    chart.CareGiven }}</label>
+                            </div>
+
+                        </div>
+
+                        <div *ngIf="chart.CareGiven=='No'">
+                            <div class="col-md-12">
+                                <div class="col-md-12">
+                                    <label class="form-label bold"
+                                        [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">Reason
+                                        <span class="required"></span></label>
+                                </div>
+                                <div>
+                                    <label [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">{{
+                                        chart.Reason }}</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div *ngIf="chart.CareGiven=='Yes'" class="row">
+                            <h5 class="formheader">Blood Pressure</h5>
+                            <div class="col-md-12 mb-4">
+                                <div class="labelcontent">
+                                    <label class="form-label bold"
+                                        [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">Systolic(mm
+                                        Hg)<span class="required"></span></label>
+                                </div>
+                                <div>
+                                    <label [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">{{
+                                        chart.Systolic}}</label>
+                                </div>
+                            </div>
+
+                            <div class="col-md-12 mb-4">
+                                <div class="col-md-12">
+                                    <label class="form-label bold"
+                                        [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">Diastolic(mm
+                                        Hg)<span class="required"></span></label>
+                                </div>
+                                <div>
+                                    <label [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">{{
+                                        chart.Diastolic }}</label>
+                                </div>
+                            </div>
+
+                            <div class="col-md-12 mb-4">
+                                <div class="col-md-4">
+                                    <label class="form-label bold"
+                                        [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">Method<span
+                                            class="required"></span></label>
+                                </div>
+                                <div>
+                                    <label [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">{{
+                                        chart.Method }}</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <h5 class="formheader" [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">
+                            Additional information</h5>
+                        <div class="col-md-12">
+                            <div>
+                                <label [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">{{
+                                    chart.AdditionalInformation }}</label>
+                            </div>
+                        </div>
+                    </div>
+                </ng-template>
+
+            </p-carousel>
+
+            <div *ngIf="isShowStrikeThroughPopup" class="card flex justify-content-center">
+                <p-dialog [closable]="true" header="Strike-Through" [(visible)]="isShowStrikeThroughPopup"
+                    [modal]="true" [breakpoints]="{ '1199px': '75vw', '575px': '90vw' }" [style]="{ width: '40vw' }"
+                    [draggable]="false" [resizable]="false">
+                    <div *ngIf="isShowStrikeThroughPopup">
+
+                        <app-strike-through-entry [StrikeThroughData]="StrikeThroughData"
+                            (StrikeThroughCheck)="Changes($event)"></app-strike-through-entry>
+                    </div>
+                </p-dialog>
+            </div>
+
+            <!-- Right navigation button -->
+
+
+        </div>
+    </div>
+</div>
+<!-- *ngIf="chart.CareGiven=='Yes'" -->

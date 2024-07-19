@@ -17,6 +17,7 @@ import {
 import { MasterService } from 'src/app/ui/service/master.service';
 import { UtilityService } from 'src/app/utility/utility.service';
 import { BloodTestRecordService } from './blood-test-record.service';
+import { DatePipe } from '@angular/common';
 
 @Component({
     selector: 'app-blood-test-record',
@@ -51,25 +52,13 @@ export class BloodTestRecordComponent
         private route: ActivatedRoute,
         private _UtilityService: UtilityService,
         private _MasterService: MasterService,
-        private _FormService: BloodTestRecordService
+        private _FormService: BloodTestRecordService,
+        private _datePipe: DatePipe
     ) {
         super();
         this._ConstantServices.ActiveMenuName =
             'Blood Test Record Form';
         this.loginId = localStorage.getItem('userId');
-
-        this.unsubscribe.add = this.route.queryParams.subscribe((params) => {
-            var ParamsArray = this._ConstantServices.GetParmasVal(params['q']);
-
-            if (ParamsArray?.length > 0) {
-                this.userId =
-                    ParamsArray.find((e) => e.FieldStr == 'id')?.FieldVal ||
-                    null;
-                this.residentAdmissionInfoId =
-                    ParamsArray.find((e) => e.FieldStr == 'admissionid')
-                        ?.FieldVal || null;
-            }
-        });
     }
 
     ngOnChanges(changes: SimpleChanges): void {
@@ -86,6 +75,9 @@ export class BloodTestRecordComponent
     }
 
     ngOnInit(): void {
+
+        this.userId = this.preSelectedFormData.userId;
+        this.residentAdmissionInfoId = this.preSelectedFormData.residentAdmissionInfoId;
 
         this.isEditable = this.preSelectedFormData.isEditable;
 
@@ -124,6 +116,7 @@ export class BloodTestRecordComponent
                         var tdata = JSON.parse(data.actionResult.result);
                         tdata = tdata ? tdata : {};
                         this.BloodTestFormData = tdata;
+                        this.BloodTestFormData.DateTaken = this._datePipe.transform(this.BloodTestFormData.DateTaken,'yyyy-MM-dd');
                     } else {
                         this.BloodTestFormData = {};
                     }
@@ -184,7 +177,6 @@ export class BloodTestRecordComponent
     }
 
     ResetModel() {
-        this.preSelectedFormData = <any>{};
         this.isEditable = true;
         this.BloodTestFormData = <any>{};
         this.StatementType = 'Insert';

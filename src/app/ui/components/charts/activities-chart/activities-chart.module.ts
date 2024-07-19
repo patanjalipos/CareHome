@@ -6,7 +6,11 @@ import { CalendarModule } from 'primeng/calendar';
 import { DropdownModule } from 'primeng/dropdown';
 import { InputTextModule } from 'primeng/inputtext';
 import { InputTextareaModule } from 'primeng/inputtextarea';
-
+import { FormsModule } from '@angular/forms';
+import { CarouselModule } from 'primeng/carousel';
+import { StrikeThroughEntryModule } from '../strike-through-entry/strike-through-entry.module';
+import { DialogModule } from 'primeng/dialog';
+import { ButtonModule } from 'primeng/button';
 @NgModule({
     declarations: [ActivitiesChartComponent],
     imports: [
@@ -15,7 +19,12 @@ import { InputTextareaModule } from 'primeng/inputtextarea';
         CalendarModule,
         DropdownModule,
         InputTextModule,
-        InputTextareaModule
+        InputTextareaModule,
+        FormsModule,
+        CarouselModule,
+        StrikeThroughEntryModule,
+        DialogModule,
+        ButtonModule
     ],
     exports: [ActivitiesChartComponent],
 })

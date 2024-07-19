@@ -3,9 +3,9 @@ import { ActivatedRoute } from '@angular/router';
 import { Observable, map, catchError, of, forkJoin } from 'rxjs';
 import { AppComponentBase } from 'src/app/app-component-base';
 import { ConstantsService, CustomDateFormat, FormTypes } from 'src/app/ui/service/constants.service';
-import { MasterService } from 'src/app/ui/service/master.service';
 import { UtilityService } from 'src/app/utility/utility.service';
 import { OralHealthRiskAndOralPlanService } from './oral-health-risk-and-oral-plan.service';
+import { UserService } from 'src/app/ui/service/user.service';
 
 @Component({
   selector: 'app-oral-health-risk-and-oral-plan',
@@ -39,25 +39,12 @@ export class OralHealthRiskAndOralPlanComponent extends AppComponentBase impleme
   lstOralHygieneMeasures: any[] = [];
   lstOralCareOutcomes: any[] = [];
   
-  constructor(private _ConstantServices: ConstantsService,private route: ActivatedRoute,private _UtilityService: UtilityService,private _MasterServices: MasterService, private _OralHealth: OralHealthRiskAndOralPlanService) {
+  constructor(private _ConstantServices: ConstantsService,private route: ActivatedRoute,private _UtilityService: UtilityService,private _UserServices: UserService, private _OralHealth: OralHealthRiskAndOralPlanService) {
 
     super();
 
     this._ConstantServices.ActiveMenuName = "Oral Health Risk And Oral Plan Form";
     this.loginId = localStorage.getItem('userId');
-
-    this.unsubscribe.add = this.route.queryParams.subscribe((params) => {
-      var ParamsArray = this._ConstantServices.GetParmasVal(params['q']);
-
-      if (ParamsArray?.length > 0) {
-        this.userId =
-        ParamsArray.find((e) => e.FieldStr == 'id')?.FieldVal ||
-        null;
-        this.residentAdmissionInfoId =
-        ParamsArray.find((e) => e.FieldStr == 'admissionid')
-            ?.FieldVal || null;
-      }
-    });
    }
 
    ngOnChanges(changes: SimpleChanges): void {
@@ -76,6 +63,9 @@ export class OralHealthRiskAndOralPlanComponent extends AppComponentBase impleme
   }
 
   ngOnInit(): void {
+
+    this.userId = this.preSelectedFormData.userId;
+    this.residentAdmissionInfoId = this.preSelectedFormData.residentAdmissionInfoId;
 
     const collectionNames = [
       'OralCareSupport',
@@ -137,10 +127,8 @@ export class OralHealthRiskAndOralPlanComponent extends AppComponentBase impleme
                 if (data.actionResult.success == true) {
                     var tdata = JSON.parse(data.actionResult.result);
                     tdata = tdata ? tdata : {};
-                    console.log(tdata)
+
                     this.OralHealthRiskFormsData = tdata;
-                    console.log(this.OralHealthRiskFormsData.CareAssessmentHearingFormId)
-                    // console.log(this.CareAssessmentHearingFormsData.HearingDiagnosisCheck);
                     
                 } else {
                     this.OralHealthRiskFormsData = {};
@@ -155,7 +143,7 @@ export class OralHealthRiskAndOralPlanComponent extends AppComponentBase impleme
 
 getDropdownMasterLists(formMasterId: string, dropdownName: string,status:number): Observable<any> {
   this._UtilityService.showSpinner();
-  return this._MasterServices.GetDropDownMasterList(formMasterId,dropdownName, status).pipe(
+  return this._UserServices.GetDropDownMasterList(formMasterId,dropdownName, status).pipe(
       map((response) => {
           this._UtilityService.hideSpinner();
           if (response.actionResult.success) {
@@ -167,7 +155,7 @@ getDropdownMasterLists(formMasterId: string, dropdownName: string,status:number)
       catchError((error) => {
           this._UtilityService.hideSpinner();
           this._UtilityService.showErrorAlert(error.message);
-          alert(error.message);
+     
           return of([]); // Returning empty array in case of error
       })
   );
@@ -198,9 +186,6 @@ if (this.userId != null && this.residentAdmissionInfoId != null && this.loginId!
           StatementType: this.StatementType,
           oralHealthRiskForm: this.OralHealthRiskFormsData
       };
-      
-
-      console.log(objectBody);
 
     this._UtilityService.showSpinner();
     this.unsubscribe.add = this._OralHealth

@@ -1,6 +1,7 @@
 import {
     Component,
     ComponentRef,
+    Input,
     OnInit,
     ViewChild,
     ViewContainerRef,
@@ -14,6 +15,9 @@ import { MasterService } from 'src/app/ui/service/master.service';
 import { UtilityService } from 'src/app/utility/utility.service';
 import { AppComponentBase } from 'src/app/app-component-base';
 import { ActivatedRoute } from '@angular/router';
+import { Calendar } from 'primeng/calendar';
+import { DatePipe } from '@angular/common';
+import { UserService } from 'src/app/ui/service/user.service';
 
 @Component({
     selector: 'app-forms-dashboard',
@@ -24,6 +28,9 @@ export class FormsDashboardComponent
     extends AppComponentBase
     implements OnInit
 {
+    @Input() residentAdmissionInfoId: string = null;
+    @Input() userId: any = null;
+
     @ViewChild('formContainer', { read: ViewContainerRef })
     formContainer: ViewContainerRef;
     componentRef: ComponentRef<any>;
@@ -36,40 +43,37 @@ export class FormsDashboardComponent
     selectedFormData: any;
     selectedFormId: string;
 
-    residentAdmissionInfoId: string;
     rangeDates: Date[] | undefined;
     FormTypes = FormTypes;
     ShowChildComponent: boolean = false;
 
     constructor(
         private _ConstantServices: ConstantsService,
-        private _MasterServices: MasterService,
+        private _MasterServices: MasterService,  
+        private _UserServices: UserService,
         private _UtilityService: UtilityService,
-        private route: ActivatedRoute
+        private route: ActivatedRoute,
+        private datepipe: DatePipe
     ) {
         super();
         this._ConstantServices.ActiveMenuName = 'Form Dashboard';
-
-        this.unsubscribe.add = this.route.queryParams.subscribe((params) => {
-            var ParamsArray = this._ConstantServices.GetParmasVal(params['q']);
-
-            if (ParamsArray?.length > 0) {
-                //console.log('ParamsArray',ParamsArray);
-                this.residentAdmissionInfoId =
-                    ParamsArray.find((e) => e.FieldStr == 'admissionid')
-                        ?.FieldVal || null;
-            }
-        });
     }
-    x;
+
     ngOnInit() {
         this.GetformMaster();
     }
 
+    dateRangeChange(calendar: Calendar) {
+        if (this.rangeDates[0] !== null && this.rangeDates[1] !== null) {
+            calendar.overlayVisible = false;
+        }
+    }
+
     GetformMaster() {
+        let importData: any = <any>{};   
+        importData.StatusType=true;
         this._UtilityService.showSpinner();
-        this.unsubscribe.add = this._MasterServices
-            .GetFormMaster(true)
+        this.unsubscribe.add = this._MasterServices.GetFormMaster(importData)
             .subscribe({
                 next: (data) => {
                     this._UtilityService.hideSpinner();
@@ -91,25 +95,31 @@ export class FormsDashboardComponent
     SearchForm() {
         this.ShowChildComponent = false;
         this._UtilityService.showSpinner();
-        //console.log('date Ranges: ' + rangeDates);
         const residentAdmissionInfoId = this.residentAdmissionInfoId;
         const formMasterId = this.selectedFormMasterId;
 
-        let fromDate: Date | null = null;
-        let toDate: Date | null = null;
-
-        if (this.rangeDates && this.rangeDates.length >= 2) {
-            fromDate = this.rangeDates[0];
-            toDate = this.rangeDates[1];
+        //Date conversions
+        var dFrom = null;
+        var dTo = null;
+        if (this.rangeDates != null) {
+            if (this.rangeDates[0] != null) {
+                dFrom = this.datepipe.transform(
+                    this.rangeDates[0],
+                    'yyyy-MM-dd'
+                );
+            }
+            if (this.rangeDates[1] != null) {
+                dTo = this.datepipe.transform(this.rangeDates[1], 'yyyy-MM-dd');
+            }
         }
 
         // Call the API
-        this._MasterServices
+        this._UserServices
             .GetFormDasboardList(
                 residentAdmissionInfoId,
                 formMasterId,
-                fromDate,
-                toDate
+                dFrom,
+                dTo
             )
             .subscribe({
                 next: (data) => {
@@ -118,6 +128,7 @@ export class FormsDashboardComponent
                         var tdata = JSON.parse(data.actionResult.result);
                         tdata = tdata ? tdata : [];
                         this.formDashboardList = tdata;
+                        
                     } else {
                         this.formDashboardList = [];
                     }
@@ -130,26 +141,34 @@ export class FormsDashboardComponent
     }
 
     //View/Edit Form
-    OpenForm(
+    OpenForm(        
         selectedFormMasterId: string,
         selectedFormdata: any = <any>{},
         isEditable = true
     ) {
-        this.selectedFormMasterId = selectedFormMasterId;
-        this.selectedFormData = {
-            formMasterId: selectedFormMasterId,
-            selectedFormID: selectedFormdata.FormId,
-            isEditable: isEditable,
-            IsCompleted: selectedFormdata.IsCompleted,
-            StartedBy: selectedFormdata.StartedBy,
-            StartedByDesignation: selectedFormdata.StartedByDesignation,
-            StartedOn: selectedFormdata.StartedOn,
-            ModifiedBy: selectedFormdata.ModifiedBy,
-            ModifiedByDesignation: selectedFormdata.ModifiedByDesignation,
-            ModifiedOn: selectedFormdata.ModifiedOn,
-        };
-        this.ShowModel();
+        if (selectedFormMasterId != null) {
+            this.selectedFormMasterId = selectedFormMasterId;
+            this.selectedFormData = {
+                formMasterId: selectedFormMasterId,
+                selectedFormID: selectedFormdata.FormId,
+                residentAdmissionInfoId: this.residentAdmissionInfoId,
+                userId: this.userId,
+                isEditable: isEditable,
+                IsCompleted: selectedFormdata.IsCompleted,
+                StartedBy: selectedFormdata.StartedBy,
+                StartedByDesignation: selectedFormdata.StartedByDesignation,
+                StartedOn: selectedFormdata.StartedOn,
+                ModifiedBy: selectedFormdata.ModifiedBy,
+                ModifiedByDesignation: selectedFormdata.ModifiedByDesignation,
+                ModifiedOn: selectedFormdata.ModifiedOn,
+            };
+            this.ShowModel();
+        } 
+        else{
+            this._UtilityService.showErrorAlert('Kindly select an Assessment Form');
+        }
     }
+
     ShowModel() {
         this.ShowChildComponent = true;
     }

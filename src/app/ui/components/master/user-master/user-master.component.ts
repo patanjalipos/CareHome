@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import { Table } from 'primeng/table';
 import { ActionItem, ConstantsService, CustomDateFormat, OtherActionAccess, UserTypes } from 'src/app/ui/service/constants.service';
 import { MasterService } from 'src/app/ui/service/master.service';
@@ -18,6 +18,10 @@ declare var $: any;
 export class UserMasterComponent extends AppComponentBase implements OnInit {
   @ViewChild('dt') public dataTable: Table;
   @ViewChild('filtr') filtr: ElementRef;
+  @Input() filteredData: any[] = [];
+  ComponentName: string = 'UserMaster';
+  isUserMaster:Boolean=false;
+  isHomeMaster:Boolean=false;
   updateMode: Boolean = false;
   @ViewChild('fileInput') fileInput: FileUpload; 
   UserTypes = UserTypes;
@@ -60,7 +64,7 @@ export class UserMasterComponent extends AppComponentBase implements OnInit {
     fileSource: new FormControl('', [Validators.required])
   }); 
   imageSrc: any;
-
+  filteritems:any[]=[];
 
   constructor(
     private _ConstantServices: ConstantsService,
@@ -155,9 +159,14 @@ export class UserMasterComponent extends AppComponentBase implements OnInit {
         },
       });
   }
-  LoadUserList() {
+  LoadUserList() {    
+    let importData: any = <any>{};
+    if(this.isUserMaster==true && this.filteritems !=null && this.filteritems !=undefined)
+      {       
+        importData.SearchList=this.filteritems;
+      }   
     this._UtilityService.showSpinner();
-    this.unsubscribe.add = this._MasterServices.GetUserMaster(this.s_HomeMasterId)
+    this.unsubscribe.add = this._MasterServices.GetUserMaster(this.s_HomeMasterId,importData)
       .subscribe
       ({
         next: (data) => {
@@ -206,7 +215,6 @@ export class UserMasterComponent extends AppComponentBase implements OnInit {
             var tdata = JSON.parse(data.actionResult.result);
             tdata = tdata ? tdata : [];
             this.RegistrationMainModel = tdata;
-            //console.log("ragistration data", this.RegistrationMainModel);
 
             if (this.RegistrationMainModel?.DateOfBirth != null && this.RegistrationMainModel?.DateOfBirth != undefined) {
               var newDate = new Date(this.RegistrationMainModel.DateOfBirth);
@@ -215,19 +223,15 @@ export class UserMasterComponent extends AppComponentBase implements OnInit {
             this.RegistrationMainModel.DateOfBirth = new Date(this.RegistrationMainModel.DateOfBirth); 
             if(this.RegistrationMainModel?.ProfileImage!=null && this.RegistrationMainModel?.ProfileImage!=undefined)
               {
-                const imageFormat = this.RegistrationMainModel.ProfileImage.endsWith(".jpg") || this.RegistrationMainModel.ProfileImage.endsWith(".jpeg") ? "jpeg" : "png";
-                this.imageSrc = "data:image/" + imageFormat + ";base64," + this.RegistrationMainModel.ProfileImage;               
-                //console.log(this.imageSrc);
+               // const imageFormat = this.RegistrationMainModel.ProfileImage.endsWith(".jpg") || this.RegistrationMainModel.ProfileImage.endsWith(".jpeg") ? "jpeg" : "png";
+               var imageFormat=this._UtilityService.getFileExtension(this.RegistrationMainModel.ProfileImage);
+               this.imageSrc = "data:image/" + imageFormat + ";base64," + this.RegistrationMainModel.ProfileImage;               
+               
               }          
             this.mode = "update"; 
             this.onChangeUserType();
             this.LoadMenuItemAccessforActionItem();
             this.RegistrationMainModel.Password = this._EncryptDecryptService.decryptUsingAES256(this.RegistrationMainModel.Password);
-            // var encrypt=this._EncryptDecryptService.encryptUsingAES256('12345');
-            // console.log('encrypt', encrypt);
-            // var decrypt=this._EncryptDecryptService.decryptUsingAES256(encrypt);
-            // console.log('decrypt', decrypt);
-            //console.log(this.RegistrationMainModel.password);
             if (this.RegistrationMainModel?.UserFacilityResident != null && this.RegistrationMainModel?.UserFacilityResident != undefined) {
               if (this.RegistrationMainModel?.UserFacilityResident?.length > 0) {
                 var UserFacilityResident = this.RegistrationMainModel?.UserFacilityResident;
@@ -282,7 +286,7 @@ export class UserMasterComponent extends AppComponentBase implements OnInit {
       else {
         this.fileInputLabelAWB = file.name;
         this.fileUploadFormAWB.get('myfileAWB').setValue(file);
-      }
+       }
       const reader = new FileReader();
       if (event.target.files && event.target.files?.length) {
         const [file] = event.target.files;
@@ -508,40 +512,7 @@ export class UserMasterComponent extends AppComponentBase implements OnInit {
       }
       );
     
-    // if (this.FacilityAndResidentAssignmentModel != null) {
-    //   this.FacilityAndResidentAssignmentModel.UserId = this.RegistrationMainModel.UserId;
-
-    //   this.FacilityAndResidentAssignmentModel.HomeMasterId = this.RegistrationMainModel.HomeMasterId;
-    //   this.FacilityAndResidentAssignmentModel.createdBy=localStorage.getItem('userId');
-    //   this.FacilityAndResidentAssignmentModel.modifiedBy=localStorage.getItem('userId');
-
-
-    //   const objectBody: any = {
-    //     StatementType: this.mode,
-    //     FacilityAndResidentAssignment: [this.FacilityAndResidentAssignmentModel],
-    //   };
-    //   console.log(objectBody);
-
-    //   this.unsubscribe.add = this._MasterServices.AddInsertUpdateFacilityAndResidentAssignment(objectBody)
-    //     .subscribe
-    //     ({
-    //       next: (data) => {
-    //         this._UtilityService.hideSpinner();
-    //         if (data.actionResult.success == true) {
-    //           this.LoadUserList();
-    //           this._UtilityService.showSuccessAlert(data.actionResult.errMsg);
-    //         }
-    //         else {
-    //           this._UtilityService.showWarningAlert(data.actionResult.errMsg);
-    //         }
-
-    //       },
-    //       error: (e) => {
-    //         this._UtilityService.hideSpinner();
-    //         this._UtilityService.showErrorAlert(e.message);
-    //       },
-    //     });
-    // }
+    
   }
 
   CloseModal() {
@@ -593,8 +564,14 @@ export class UserMasterComponent extends AppComponentBase implements OnInit {
   }
 
   LoadHomeMaster() {
+    let importData: any = <any>{};
+    if(this.isHomeMaster==true && this.filteritems !=null && this.filteritems !=undefined)
+      {       
+        importData.SearchList=this.filteritems;
+      } 
+      importData.StatusType=true;
     this._UtilityService.showSpinner();
-    this.unsubscribe.add = this._MasterServices.GetHomeMaster(true)
+    this.unsubscribe.add = this._MasterServices.GetHomeMaster(importData)
       .subscribe
       ({
         next: (data) => {
@@ -623,11 +600,10 @@ export class UserMasterComponent extends AppComponentBase implements OnInit {
       });
   }
   ShowResidentDetails(HomeMasterId, i, selectedResident=null) {
-    console.log('selectedResident',selectedResident, i);
     this.lstHomeMaster[i].ResidentList=[];
     this.lstHomeMaster[i].SelectedResidentList=[];
     this._UtilityService.showSpinner();
-    this.unsubscribe.add = this._MasterServices.GetResidentMaster(HomeMasterId, true)
+    this.unsubscribe.add = this._MasterServices.GetResidentMaster(HomeMasterId,null,1)
       .subscribe
       ({
         next: (data) => {
@@ -948,5 +924,15 @@ export class UserMasterComponent extends AppComponentBase implements OnInit {
   transform(value: any): [number, string][] {
     return Object.keys(value).filter(t => isNaN(+t)).map(t => [value[t], t]);
   }
+//Filteration User Data
 
+  ShowFilters() {
+    this.isUserMaster =!this.isUserMaster;
+  }
+
+  GetUserMasterFilterData($event) {
+    // console.log('event',$event);
+    this.filteritems=$event;   
+     this.LoadUserList(); 
+   }
 }

@@ -3,6 +3,7 @@ import { ConstantsService, CustomDateFormat, UserTypes } from 'src/app/ui/servic
 import { UtilityService } from 'src/app/utility/utility.service';
 import { AppComponentBase } from 'src/app/app-component-base';
 import { MasterService } from 'src/app/ui/service/master.service';
+import { UserService } from 'src/app/ui/service/user.service';
 
 @Component({
   selector: 'app-secondary-contact',
@@ -20,6 +21,7 @@ export class SecondaryContactComponent extends AppComponentBase implements OnIni
   constructor(private _ConstantServices: ConstantsService,
     private _MasterServices: MasterService,
     private _UtilityService: UtilityService,
+    private _UserServices:UserService
   ) {
     super();
   }
@@ -66,7 +68,7 @@ export class SecondaryContactComponent extends AppComponentBase implements OnIni
   GetContactSecondaryById(admissionid) {
     this.Contact.statementtype = "Insert";
     this._UtilityService.showSpinner();
-    this.unsubscribe.add = this._MasterServices.GetContactSecondaryById(admissionid)
+    this.unsubscribe.add = this._UserServices.GetContactSecondaryById(admissionid)
       .subscribe({
         next: (data) => {
           this._UtilityService.hideSpinner();
@@ -74,7 +76,7 @@ export class SecondaryContactComponent extends AppComponentBase implements OnIni
             var tdata = JSON.parse(data.actionResult.result);
             tdata = tdata ? tdata : [];
             this.Contact = tdata;
-            //console.log('this.Contact', this.Contact);     
+         
             this.Contact.statementtype = "Update";
           }
         },
@@ -94,7 +96,7 @@ export class SecondaryContactComponent extends AppComponentBase implements OnIni
       this.Contact.WorkTelephone = this.Contact.WorkTelephone?.toString() || null;
      
       this._UtilityService.showSpinner();
-      this.unsubscribe.add = this._MasterServices.AddInsertUpdateContactSecondary(this.Contact)
+      this.unsubscribe.add = this._UserServices.AddInsertUpdateContactSecondary(this.Contact)
         .subscribe
         ({
           next: (data) => {

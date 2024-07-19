@@ -14,9 +14,9 @@ import {
     CustomDateFormat,
     FormTypes,
 } from 'src/app/ui/service/constants.service';
-import { MasterService } from 'src/app/ui/service/master.service';
 import { UtilityService } from 'src/app/utility/utility.service';
 import { RiskPhysicalDependencyAssessmentService } from './risk-physical-dependency-assessment.service';
+import { UserService } from 'src/app/ui/service/user.service';
 
 @Component({
     selector: 'app-risk-physical-dependency-assessment',
@@ -25,8 +25,7 @@ import { RiskPhysicalDependencyAssessmentService } from './risk-physical-depende
 })
 export class RiskPhysicalDependencyAssessmentComponent
     extends AppComponentBase
-    implements OnInit
-{
+    implements OnInit {
     @Input() preSelectedFormData: any = <any>{};
     @Output() EmitUpdateForm: EventEmitter<any> = new EventEmitter<any>();
 
@@ -70,29 +69,17 @@ export class RiskPhysicalDependencyAssessmentComponent
         private _ConstantServices: ConstantsService,
         private route: ActivatedRoute,
         private _UtilityService: UtilityService,
-        private _MasterService: MasterService,
+        private _UserService: UserService,
         private _FormService: RiskPhysicalDependencyAssessmentService
     ) {
         super();
         this._ConstantServices.ActiveMenuName =
             'Risk Assessment - Physical Dependency Assessement';
         this.loginId = localStorage.getItem('userId');
-
-        this.unsubscribe.add = this.route.queryParams.subscribe((params) => {
-            var ParamsArray = this._ConstantServices.GetParmasVal(params['q']);
-
-            if (ParamsArray?.length > 0) {
-                this.userId =
-                    ParamsArray.find((e) => e.FieldStr == 'id')?.FieldVal ||
-                    null;
-                this.residentAdmissionInfoId =
-                    ParamsArray.find((e) => e.FieldStr == 'admissionid')
-                        ?.FieldVal || null;
-            }
-        });
     }
 
     ngOnChanges(changes: SimpleChanges): void {
+
         this.isEditable = this.preSelectedFormData.isEditable;
         if (this.preSelectedFormData.selectedFormID != null) {
             this.RiskPhysicalDependencyAssessmentFormData = <any>{};
@@ -106,6 +93,10 @@ export class RiskPhysicalDependencyAssessmentComponent
     }
 
     ngOnInit(): void {
+        
+        this.userId = this.preSelectedFormData.userId;
+        this.residentAdmissionInfoId = this.preSelectedFormData.residentAdmissionInfoId;
+
         const dropDownNames = [
             'communicationOptions',
             'breathingOptions',
@@ -133,7 +124,7 @@ export class RiskPhysicalDependencyAssessmentComponent
             dropDownNames.map((collectionName) =>
                 this.GetDropDownMasterList(
                     FormTypes.RiskAssessmentPhysical,
-                    collectionName
+                    collectionName,1
                 )
             )
         ).subscribe((responses: any[]) => {
@@ -173,7 +164,7 @@ export class RiskPhysicalDependencyAssessmentComponent
         }
     }
 
-    SaveAsPDF() {}
+    SaveAsPDF() { }
 
     saveAsUnfinished() {
         this.RiskPhysicalDependencyAssessmentFormData.IsFormCompleted = false;
@@ -187,11 +178,12 @@ export class RiskPhysicalDependencyAssessmentComponent
 
     GetDropDownMasterList(
         formMasterId: string,
-        dropDownName: string
+        dropDownName: string,
+        status:number
     ): Observable<any> {
         this._UtilityService.showSpinner();
-        return this._MasterService
-            .GetDropDownMasterList(formMasterId, dropDownName, 1)
+        return this._UserService
+            .GetDropDownMasterList(formMasterId, dropDownName, status)
             .pipe(
                 map((response) => {
                     this._UtilityService.hideSpinner();
@@ -204,7 +196,7 @@ export class RiskPhysicalDependencyAssessmentComponent
                 catchError((error) => {
                     this._UtilityService.hideSpinner();
                     this._UtilityService.showErrorAlert(error.message);
-                    alert(error.message);
+               
                     return of([]); // Returning empty array in case of error
                 })
             );
@@ -281,7 +273,6 @@ export class RiskPhysicalDependencyAssessmentComponent
     }
 
     ResetModel() {
-        this.preSelectedFormData = <any>{};
         this.isEditable = true;
         this.RiskPhysicalDependencyAssessmentFormData = <any>{};
         this.StatementType = 'Insert';

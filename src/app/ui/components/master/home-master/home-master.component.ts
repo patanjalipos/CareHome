@@ -25,6 +25,10 @@ export class HomeMasterComponent extends AppComponentBase implements OnInit {
   filteredValuesLength:number=0;
   stlststatus: any[]=[];
   
+  ComponentName: string = 'HomeMaster';
+  isHomeMaster:Boolean=false;
+  filteritems:any[]=[];
+
   constructor(private _ConstantServices: ConstantsService,
     private _MasterServices:MasterService,
     private _UtilityService: UtilityService,    
@@ -59,8 +63,15 @@ export class HomeMasterComponent extends AppComponentBase implements OnInit {
     });
   }  
   GetHomeMaster() {
+    let importData: any = <any>{};
+    if(this.isHomeMaster==true && this.filteritems !=null && this.filteritems !=undefined)
+      {       
+        importData.SearchList=this.filteritems;
+      }   
+      importData.StatusType=false;  
+      importData.isExcel=false; 
     this._UtilityService.showSpinner();   
-    this.unsubscribe.add = this._MasterServices.GetHomeMaster(false)
+    this.unsubscribe.add = this._MasterServices.GetHomeMaster(importData)
       .subscribe({
         next:(data) => {
           this._UtilityService.hideSpinner();          
@@ -73,7 +84,7 @@ export class HomeMasterComponent extends AppComponentBase implements OnInit {
               this.dataTable.reset();
               this.filteredValuesLength = this.lstMaster?.length;
               }            
-          //  console.log(this.lstmaster);
+        
           }
           else {
             this.lstMaster = [];            
@@ -159,4 +170,12 @@ export class HomeMasterComponent extends AppComponentBase implements OnInit {
   onGlobalFilter(table: Table, event: Event) {
     table.filterGlobal((event.target as HTMLInputElement).value, 'contains');
   }
+
+  ShowFilters() {
+    this.isHomeMaster =!this.isHomeMaster;
+  }
+  GetHomeMasterFilterData($event) {
+    this.filteritems=$event;   
+     this.GetHomeMaster(); 
+   }
 }

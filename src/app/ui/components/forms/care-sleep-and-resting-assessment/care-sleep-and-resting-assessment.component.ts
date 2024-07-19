@@ -3,10 +3,10 @@ import { ActivatedRoute } from '@angular/router';
 import { Observable, map, catchError, of, forkJoin } from 'rxjs';
 import { AppComponentBase } from 'src/app/app-component-base';
 import { ConstantsService, CustomDateFormat, FormTypes } from 'src/app/ui/service/constants.service';
-import { MasterService } from 'src/app/ui/service/master.service';
 import { UtilityService } from 'src/app/utility/utility.service';
 import { CareSleepAndRestingAssessmentService } from './care-sleep-and-resting-assessment.service';
 import { DatePipe } from '@angular/common';
+import { UserService } from 'src/app/ui/service/user.service';
 
 @Component({
   selector: 'app-care-sleep-and-resting-assessment',
@@ -35,25 +35,12 @@ export class CareSleepAndRestingAssessmentComponent extends AppComponentBase imp
   lstGoalsToAchieve: any[] = [];
   lstStrategyToManageCheck: any[] = [];
 
-  constructor(private _ConstantServices: ConstantsService,private route: ActivatedRoute,private _UtilityService: UtilityService,private _MasterServices: MasterService, private _CareSleepAndRest: CareSleepAndRestingAssessmentService,private datePipe: DatePipe) {
+  constructor(private _ConstantServices: ConstantsService,private route: ActivatedRoute,private _UtilityService: UtilityService,private _UserServices: UserService, private _CareSleepAndRest: CareSleepAndRestingAssessmentService,private datePipe: DatePipe) {
 
     super();
 
     this._ConstantServices.ActiveMenuName = "Care Assessment Sleep And Rest Form";
     this.loginId = localStorage.getItem('userId');
-
-    this.unsubscribe.add = this.route.queryParams.subscribe((params) => {
-      var ParamsArray = this._ConstantServices.GetParmasVal(params['q']);
-
-      if (ParamsArray?.length > 0) {
-        this.userId =
-        ParamsArray.find((e) => e.FieldStr == 'id')?.FieldVal ||
-        null;
-        this.residentAdmissionInfoId =
-        ParamsArray.find((e) => e.FieldStr == 'admissionid')
-            ?.FieldVal || null;
-      }
-    });
    }
 
    ngOnChanges(changes: SimpleChanges): void {
@@ -72,6 +59,10 @@ export class CareSleepAndRestingAssessmentComponent extends AppComponentBase imp
   }
 
   ngOnInit(): void {
+
+    this.userId = this.preSelectedFormData.userId;
+    this.residentAdmissionInfoId = this.preSelectedFormData.residentAdmissionInfoId;
+
     const collectionNames = [
       'Capacity',
       'TroubleSleeping',
@@ -118,11 +109,11 @@ this.isEditable = this.preSelectedFormData.isEditable;
                 if (data.actionResult.success == true) {
                     var tdata = JSON.parse(data.actionResult.result);
                     tdata = tdata ? tdata : {};
-                    console.log(tdata)
+                
                     this.CareAssessmentSleepAndRestFormsData = tdata;
-                    console.log(this.CareAssessmentSleepAndRestFormsData.CareAssessmentHearingFormId)
+                  
                     this.CareAssessmentSleepAndRestFormsData.ReviewDate = this.datePipe.transform(this.CareAssessmentSleepAndRestFormsData.ReviewDate,'MM/dd/yyyy');
-                    // console.log(this.CareAssessmentHearingFormsData.HearingDiagnosisCheck);
+                  
                     
                 } else {
                     this.CareAssessmentSleepAndRestFormsData = {};
@@ -137,7 +128,7 @@ this.isEditable = this.preSelectedFormData.isEditable;
 
 getDropdownMasterLists(formMasterId: string, dropdownName: string,status:number): Observable<any> {
   this._UtilityService.showSpinner();
-  return this._MasterServices.GetDropDownMasterList(formMasterId,dropdownName, status).pipe(
+  return this._UserServices.GetDropDownMasterList(formMasterId,dropdownName, status).pipe(
       map((response) => {
           this._UtilityService.hideSpinner();
           if (response.actionResult.success) {
@@ -149,7 +140,7 @@ getDropdownMasterLists(formMasterId: string, dropdownName: string,status:number)
       catchError((error) => {
           this._UtilityService.hideSpinner();
           this._UtilityService.showErrorAlert(error.message);
-          alert(error.message);
+      
           return of([]); // Returning empty array in case of error
       })
   );
@@ -181,9 +172,6 @@ if (this.userId != null && this.residentAdmissionInfoId != null && this.loginId!
           StatementType: this.StatementType,
           careAssessmentSleepAndRestForm: this.CareAssessmentSleepAndRestFormsData
       };
-      
-
-      console.log(objectBody);
 
     this._UtilityService.showSpinner();
     this.unsubscribe.add = this._CareSleepAndRest

@@ -54,7 +54,7 @@ export class ResidentDocumentsComponent extends AppComponentBase implements OnIn
       HomeMasterId = localStorage.getItem('HomeMasterId');
     }
     this._UtilityService.showSpinner();
-    this.unsubscribe.add = this._MasterServices.GetResidentMaster(HomeMasterId, false)
+    this.unsubscribe.add = this._MasterServices.GetResidentMaster(HomeMasterId,null,1)
       .subscribe({
         next: (data) => {
           this._UtilityService.hideSpinner();
@@ -118,12 +118,7 @@ export class ResidentDocumentsComponent extends AppComponentBase implements OnIn
             tdata = tdata ? tdata : [];
             this.lstMaster = tdata;
             this.filteredValuesLength = this.lstMaster?.length;
-            // if (this.filtr !== undefined) {
-            //   this.filtr.nativeElement.value = "";
-            //   this.dataTable.reset();
-             
-            // }
-            //  console.log(this.lstmaster);
+           
           }
           else {
             this.lstMaster = [];

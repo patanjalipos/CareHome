@@ -3,10 +3,10 @@ import { ActivatedRoute } from '@angular/router';
 import { Observable, map, catchError, of, forkJoin } from 'rxjs';
 import { AppComponentBase } from 'src/app/app-component-base';
 import { ConstantsService, CustomDateFormat, FormTypes } from 'src/app/ui/service/constants.service';
-import { MasterService } from 'src/app/ui/service/master.service';
 import { UtilityService } from 'src/app/utility/utility.service';
 import { RiskOnTheMoveService } from './risk-on-the-move.service';
 import { DatePipe } from '@angular/common';
+import { UserService } from 'src/app/ui/service/user.service';
 
 @Component({
   selector: 'app-risk-on-the-move',
@@ -50,24 +50,11 @@ export class RiskOnTheMoveComponent extends AppComponentBase implements OnInit {
   lstEquipment: any[] = [];
   lstAssessPain: any[] = [];
   
-  constructor(private _ConstantServices: ConstantsService,private route: ActivatedRoute,private _UtilityService: UtilityService,private _MasterServices: MasterService, private _RiskAssOnMove: RiskOnTheMoveService, private datePipte: DatePipe) {
+  constructor(private _ConstantServices: ConstantsService,private route: ActivatedRoute,private _UtilityService: UtilityService,private _UserServices: UserService, private _RiskAssOnMove: RiskOnTheMoveService, private datePipe: DatePipe) {
     super();
 
     this._ConstantServices.ActiveMenuName = "Risk Assessment On The Move Form";
     this.loginId = localStorage.getItem('userId');
-
-    this.unsubscribe.add = this.route.queryParams.subscribe((params) => {
-      var ParamsArray = this._ConstantServices.GetParmasVal(params['q']);
-
-      if (ParamsArray?.length > 0) {
-        this.userId =
-        ParamsArray.find((e) => e.FieldStr == 'id')?.FieldVal ||
-        null;
-        this.residentAdmissionInfoId =
-        ParamsArray.find((e) => e.FieldStr == 'admissionid')
-            ?.FieldVal || null;
-      }
-    });
    }
 
    ngOnChanges(changes: SimpleChanges): void {
@@ -86,6 +73,10 @@ export class RiskOnTheMoveComponent extends AppComponentBase implements OnInit {
   }
 
   ngOnInit(): void {
+
+    this.userId = this.preSelectedFormData.userId;
+    this.residentAdmissionInfoId = this.preSelectedFormData.residentAdmissionInfoId;
+    
 
     const collectionNames = [
       'BearWeight',
@@ -163,11 +154,11 @@ this.isEditable = this.preSelectedFormData.isEditable;
                 if (data.actionResult.success == true) {
                     var tdata = JSON.parse(data.actionResult.result);
                     tdata = tdata ? tdata : {};
-                    console.log(tdata)
+                 
                     this.RiskAssOnTheMoveFormsData = tdata;
-                    console.log(this.RiskAssOnTheMoveFormsData.CareAssessmentHearingFormId)
-                    this.RiskAssOnTheMoveFormsData.ReviewDate = this.datePipte.transform(this.RiskAssOnTheMoveFormsData.ReviewDate,'MM/dd/yyyy');
-                    // console.log(this.CareAssessmentHearingFormsData.HearingDiagnosisCheck);
+                   
+                    this.RiskAssOnTheMoveFormsData.ReviewDate = this.datePipe.transform(this.RiskAssOnTheMoveFormsData.ReviewDate,'MM/dd/yyyy');
+                  
                     
                 } else {
                     this.RiskAssOnTheMoveFormsData = {};
@@ -182,7 +173,7 @@ this.isEditable = this.preSelectedFormData.isEditable;
 
 getDropdownMasterLists(formMasterId: string, dropdownName: string,status:number): Observable<any> {
   this._UtilityService.showSpinner();
-  return this._MasterServices.GetDropDownMasterList(formMasterId,dropdownName, status).pipe(
+  return this._UserServices.GetDropDownMasterList(formMasterId,dropdownName, status).pipe(
       map((response) => {
           this._UtilityService.hideSpinner();
           if (response.actionResult.success) {
@@ -194,7 +185,7 @@ getDropdownMasterLists(formMasterId: string, dropdownName: string,status:number)
       catchError((error) => {
           this._UtilityService.hideSpinner();
           this._UtilityService.showErrorAlert(error.message);
-          alert(error.message);
+     
           return of([]); // Returning empty array in case of error
       })
   );
@@ -220,15 +211,12 @@ if (this.userId != null && this.residentAdmissionInfoId != null && this.loginId!
         this.residentAdmissionInfoId;
     this.RiskAssOnTheMoveFormsData.StartedBy = this.loginId;
     this.RiskAssOnTheMoveFormsData.LastEnteredBy = this.loginId;
-    this.RiskAssOnTheMoveFormsData.ReviewDate = this.datePipte.transform(this.RiskAssOnTheMoveFormsData.ReviewDate,'yyyy-MM-dd');
+    this.RiskAssOnTheMoveFormsData.ReviewDate = this.datePipe.transform(this.RiskAssOnTheMoveFormsData.ReviewDate,'yyyy-MM-dd');
     
         const objectBody: any = {
           StatementType: this.StatementType,
           riskAssOnTheMoveForm: this.RiskAssOnTheMoveFormsData
       };
-      
-
-      console.log(objectBody);
 
     this._UtilityService.showSpinner();
     this.unsubscribe.add = this._RiskAssOnMove

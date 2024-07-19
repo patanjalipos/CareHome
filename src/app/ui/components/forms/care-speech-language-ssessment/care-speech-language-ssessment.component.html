@@ -57,7 +57,7 @@
         <div class="col-md-7 mt-4">
             <ng-container *ngIf="isEditable; else SpeechLabel">
                 <p-dropdown
-                    placeholder="Select"
+                    placeholder="--select--"
                     [style]="{ width: '100%' }"
                     [(ngModel)]="
                         CareSpeechLanguageFormData.SpeechComprehensionImpairment
@@ -87,7 +87,7 @@
         <div class="col-md-7">
             <ng-container *ngIf="isEditable; else NonVerbalLabel">
                 <p-dropdown
-                    placeholder="Select"
+                    placeholder="--select--"
                     [style]="{ width: '100%' }"
                     [(ngModel)]="
                         CareSpeechLanguageFormData.NonVerbalCommunication
@@ -117,7 +117,7 @@
         <div class="col-md-7">
             <ng-container *ngIf="isEditable; else SpeechEffectLabel">
                 <p-dropdown
-                    placeholder="Select"
+                    placeholder="--select--"
                     [style]="{ width: '100%' }"
                     [(ngModel)]="
                         CareSpeechLanguageFormData.SpeechLanguageImpairmentEffect
@@ -176,7 +176,7 @@
         <div class="col-md-7">
             <ng-container *ngIf="isEditable; else GoalsSpeechLanguageLabel">
                 <p-dropdown
-                    placeholder="Select"
+                    placeholder="--select--"
                     [style]="{ width: '100%' }"
                     [(ngModel)]="
                         CareSpeechLanguageFormData.GoalsForSpeechLanguage

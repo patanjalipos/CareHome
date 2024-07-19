@@ -14,9 +14,9 @@ import {
     CustomDateFormat,
     FormTypes,
 } from 'src/app/ui/service/constants.service';
-import { MasterService } from 'src/app/ui/service/master.service';
 import { UtilityService } from 'src/app/utility/utility.service';
 import { CareOralAndDentalService } from './care-oral-and-dental.service';
+import { UserService } from 'src/app/ui/service/user.service';
 
 @Component({
     selector: 'app-care-oral-and-dental',
@@ -25,8 +25,7 @@ import { CareOralAndDentalService } from './care-oral-and-dental.service';
 })
 export class CareOralAndDentalComponent
     extends AppComponentBase
-    implements OnInit
-{
+    implements OnInit {
     @Input() preSelectedFormData: any = <any>{};
     @Output() EmitUpdateForm: EventEmitter<any> = new EventEmitter<any>();
 
@@ -59,26 +58,13 @@ export class CareOralAndDentalComponent
         private _ConstantServices: ConstantsService,
         private route: ActivatedRoute,
         private _UtilityService: UtilityService,
-        private _MasterService: MasterService,
+        private _UserService: UserService,
         private _FormService: CareOralAndDentalService
     ) {
         super();
         this._ConstantServices.ActiveMenuName =
             'Care Assessment - Oral and Dental Form';
         this.loginId = localStorage.getItem('userId');
-
-        this.unsubscribe.add = this.route.queryParams.subscribe((params) => {
-            var ParamsArray = this._ConstantServices.GetParmasVal(params['q']);
-
-            if (ParamsArray?.length > 0) {
-                this.userId =
-                    ParamsArray.find((e) => e.FieldStr == 'id')?.FieldVal ||
-                    null;
-                this.residentAdmissionInfoId =
-                    ParamsArray.find((e) => e.FieldStr == 'admissionid')
-                        ?.FieldVal || null;
-            }
-        });
     }
 
     ngOnChanges(changes: SimpleChanges): void {
@@ -95,6 +81,10 @@ export class CareOralAndDentalComponent
     }
 
     ngOnInit(): void {
+        this.userId = this.preSelectedFormData.userId;
+        this.residentAdmissionInfoId =
+            this.preSelectedFormData.residentAdmissionInfoId;
+        this.isEditable = this.preSelectedFormData.isEditable;
         const dropDownNames = [
             'oralCareAssessmentOptions',
             'teethDenturesConditionOptions',
@@ -116,7 +106,7 @@ export class CareOralAndDentalComponent
             )
         ).subscribe((responses: any[]) => {
             // responses is an array containing the responses for each request
-            this.oralCareAssessmentOptions= responses[0];
+            this.oralCareAssessmentOptions = responses[0];
             this.teethDenturesConditionOptions = responses[1];
             this.gumConditionOptions = responses[2];
             this.tongueConditionOptions = responses[3];
@@ -140,7 +130,7 @@ export class CareOralAndDentalComponent
         }
     }
 
-    SaveAsPDF() {}
+    SaveAsPDF() { }
 
     saveAsUnfinished() {
         this.CareOralAndDentalFormData.IsFormCompleted = false;
@@ -157,7 +147,7 @@ export class CareOralAndDentalComponent
         dropDownName: string
     ): Observable<any> {
         this._UtilityService.showSpinner();
-        return this._MasterService
+        return this._UserService
             .GetDropDownMasterList(formMasterId, dropDownName, 1)
             .pipe(
                 map((response) => {
@@ -171,7 +161,7 @@ export class CareOralAndDentalComponent
                 catchError((error) => {
                     this._UtilityService.hideSpinner();
                     this._UtilityService.showErrorAlert(error.message);
-                    alert(error.message);
+                  
                     return of([]); // Returning empty array in case of error
                 })
             );
@@ -245,7 +235,6 @@ export class CareOralAndDentalComponent
     }
 
     ResetModel() {
-        this.preSelectedFormData = <any>{};
         this.isEditable = true;
         this.CareOralAndDentalFormData = <any>{};
         this.StatementType = 'Insert';
