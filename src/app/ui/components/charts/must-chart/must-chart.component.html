@@ -1,0 +1,261 @@
+<div class="card">
+    <div class="row p-0">
+        <div class="col-md-12 formheader d-flex justify-content-between align-items-center">
+            <h4 class="mb-0">Must Chart</h4>
+            <div>
+                <button pButton type="button" icon="pi pi-chevron-left" class="mr-2" (click)="leftBtn()"
+                    [disabled]="pageNumber==0"></button>
+                <button pButton type="button" icon="pi pi-chevron-right" class="" (click)="rightBtn()"
+                    [disabled]="rightBtnCheck"></button>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-3 mt-3 chart-box">
+            <div class="formheader mt-2 chart-heading">
+                <p><b>New observation</b></p>
+            </div>
+            <div class="col-md-12 mt-4">
+                <label class="form-label bold">
+                    Date/Time<span class="required"></span></label>
+
+                <ng-container>
+                    <p-calendar name="" [showIcon]="true" inputId="icon" class="iconcal" [readonlyInput]="true"
+                        appendTo="body" [maxDate]="" #dobref="" [dateFormat]="customDateFormat.CalendarFormat"
+                        [(ngModel)]="mustChartFormData.DateAndTime" [showTime]="true"></p-calendar>
+                </ng-container>
+            </div>
+            <div class="col-md-12">
+
+                <label class="form-label bold">Care Given <span class="required"></span></label>
+
+                <ng-container>
+                    <p-dropdown [required]="true" name="BowelChartFormData.CareGiven" placeholder="----select----"
+                        [style]="{ width: '100%' }" [options]="stLstYesNoOptions" optionValue="optionId"
+                        optionLabel="optionValue" [(ngModel)]="mustChartFormData.CareGiven" (onChange)="openAndClose()">
+                    </p-dropdown>
+                    <label for="" *ngIf="careGiven" class="text-danger">This field is required</label>
+                </ng-container>
+
+            </div>
+            <div *ngIf="inputFields==false">
+                <label class="form-label bold">Reason<span class="required"></span></label>
+
+                <ng-container>
+                    <p-dropdown [required]="true" name="BowelChartFormData.Reason" placeholder="----select----"
+                        [style]="{ width: '100%' }" [options]="stLstReason" optionValue="optionId"
+                        optionLabel="optionValue" [(ngModel)]="mustChartFormData.Reason">
+                    </p-dropdown>
+                    <label for="" *ngIf="reason" class="text-danger">This field is required</label>
+                </ng-container>
+            </div>
+            <div *ngIf="inputFields==true">
+                <h5 class="formheader">Step 1 - BMI Score</h5>
+                <div class="mb-4">
+                    <label class="form-label bold">Weight (Kg)<span class="required"></span></label>
+                    <div class="col-md-12">
+                        <input type="number" pInputText name="mustChartFormData.weight" [required]="true"
+                            [style]="{ width: '100%' }" (keyup)="BMICalculater($event)"
+                            [(ngModel)]="mustChartFormData.weight" placeholder="Kg" />
+                    </div>
+                </div>
+
+                <div>
+                    <label class="form-label bold">How was weight measured ?<span class="required"></span></label>
+
+                    <ng-container>
+                        <p-dropdown [required]="true" name="BowelChartFormData.weightMeasured"
+                            placeholder="----select----" [style]="{ width: '100%' }" [options]="lstWeightMeasured"
+                            optionValue="optionId" optionLabel="optionName"
+                            [(ngModel)]="mustChartFormData.weightMeasured">
+                        </p-dropdown>
+                    </ng-container>
+                </div>
+                <div>
+                    <label class="form-label bold">Is the Resident an amputee<span class="required"></span></label>
+                    <div class="col-md-12">
+                        <ng-container>
+                            <p-selectButton [options]="rangeOptionResidentAmputee"
+                                [(ngModel)]="mustChartFormData.residentAmputee" optionLabel="label" optionValue="value"
+                                (onChange)="onOption($event)"></p-selectButton>
+                        </ng-container>
+                    </div>
+                </div>
+
+                <div *ngIf="amputee">
+                    <div>
+                        <label class="form-label bold">Arm<span class="required"></span></label>
+
+                        <ng-container>
+                            <p-dropdown [required]="true" name="BowelChartFormData.armoption"
+                                placeholder="----select----" [style]="{ width: '100%' }" [options]="lstArmOption"
+                                optionValue="optionId" optionLabel="optionName" (onChange)="BMICalIfResidentAmputeeByArms()"
+                                [(ngModel)]="mustChartFormData.armoption">
+                            </p-dropdown>
+                        </ng-container>
+                    </div>
+
+                    <div>
+                        <label class="form-label bold">Leg<span class="required"></span></label>
+
+                        <ng-container>
+                            <p-dropdown [required]="true" name="BowelChartFormData.legoption"
+                                placeholder="----select----" [style]="{ width: '100%' }" [options]="lstLegOption"
+                                optionValue="optionId" optionLabel="optionName"
+                                [(ngModel)]="mustChartFormData.legoption" (onChange)="BMICalIfResidentAmputeeByLegs()">
+                            </p-dropdown>
+                        </ng-container>
+                    </div>
+                </div>
+
+                <div class="mb-4">
+                    <label class="form-label bold">Height (Cm)<span class="required"></span></label>
+                    <div class="col-md-12">
+                        <input type="number" pInputText name="mustChartFormData.height" [required]="true"
+                            [style]="{ width: '100%' }" (keyup)="BMICalculater($event)"
+                            [(ngModel)]="mustChartFormData.height" placeholder="Cm" />
+                    </div>
+                </div>
+
+                <div>
+                    <label class="form-label bold">How was height measured ?<span class="required"></span></label>
+
+                    <ng-container>
+                        <p-dropdown [required]="true" name="BowelChartFormData.heightMeasured"
+                            placeholder="----select----" [style]="{ width: '100%' }" [options]="lstHeightMeasured"
+                            optionValue="optionId" optionLabel="optionName"
+                            [(ngModel)]="mustChartFormData.heightMeasured">
+                        </p-dropdown>
+                    </ng-container>
+                </div>
+
+                <div class="mb-4">
+                    <label class="form-label bold">Body Mass index(BMI)<span class="required"></span></label>
+                    <div *ngIf="this.BMI>0">
+                        <label for="bmi">{{this.BMI}}</label>
+                    </div>
+                </div>
+                <!-- <div class="mb-4">
+                    <label class="form-label bold">BMI Score<span class="required"></span></label>
+                    <div>
+                        <label for="bmiscore"></label>
+                    </div>
+                </div> -->
+
+                <div>
+                    <label class="form-label bold">Does the resident have oedema<span class="required"></span></label>
+                    <div class="col-md-12">
+                        <ng-container>
+                            <p-selectButton [options]="rangeOptionOedema" [(ngModel)]="mustChartFormData.oedema"
+                                optionLabel="label" optionValue="value"></p-selectButton>
+                        </ng-container>
+                    </div>
+                </div>
+
+                <div *ngIf="mustChartFormData.oedema=='No'">
+                    <h5 class="formheader">Stap 2 - Weight Loss Score</h5>
+
+                    <div>
+                        <label class="form-label bold">Method for determining weight loss ?<span
+                                class="required"></span></label>
+
+                        <ng-container>
+                            <p-dropdown [required]="true" name="BowelChartFormData.heightMeasured"
+                                placeholder="----select----" [style]="{ width: '100%' }" [options]="lstHeightMeasured"
+                                optionValue="optionId" optionLabel="optionName"
+                                [(ngModel)]="mustChartFormData.heightMeasured">
+                            </p-dropdown>
+                        </ng-container>
+                    </div>
+
+                    <div>
+                        <label class="form-label bold">Weight at this time ? (Kg)<span class="required"></span></label>
+
+                        <div class="col-md-12">
+                            <input type="number" pInputText name="bloodGlucoseChartFormData.bloodGlucose"
+                                [required]="true" [style]="{ width: '100%' }"
+                                [(ngModel)]="mustChartFormData.bloodGlucose" placeholder="Kg" />
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="form-label bold">what is the resident current weight ? (Kg)<span
+                                class="required"></span></label>
+
+                        <div class="col-md-12">
+                            <input type="number" pInputText name="bloodGlucoseChartFormData.bloodGlucose"
+                                [required]="true" [style]="{ width: '100%' }"
+                                [(ngModel)]="mustChartFormData.bloodGlucose" placeholder="Kg" />
+                        </div>
+                    </div>
+                    <div class="mb-4">
+                        <label class="form-label bold">Unplaned weight loss (Kg)<span class="required"></span></label>
+                        <div>
+                            <label for="bmiscore"></label>
+                        </div>
+                    </div>
+                    <div class="mb-4">
+                        <label class="form-label bold">Unplanned weight loss (%)<span class="required"></span></label>
+                        <div>
+                            <label for="bmiscore"></label>
+                        </div>
+                    </div>
+                    <div class="mb-4">
+                        <label class="form-label bold">Weight loss score<span class="required"></span></label>
+                        <div>
+                            <label for="bmiscore"></label>
+                        </div>
+                    </div>
+                    <div class="mb-4">
+                        <label class="form-label bold">Weight Loss significance<span class="required"></span></label>
+                        <div>
+                            <label for="bmiscore"></label>
+                        </div>
+                    </div>
+                </div>
+
+                <div *ngIf="mustChartFormData.oedema=='Yes'">
+                    <div>
+                        <label class="form-label bold">Mid Upper Arm circurmference(MUAC) (Cm)<span
+                                class="required"></span></label>
+
+                        <div class="col-md-12">
+                            <input type="number" pInputText name="bloodGlucoseChartFormData.bloodGlucose"
+                                [required]="true" [style]="{ width: '100%' }"
+                                [(ngModel)]="mustChartFormData.bloodGlucose" placeholder="Cm" />
+                        </div>
+                    </div>
+                    <div class="mb-4">
+                        <label class="form-label bold">MUAC BMI Estimation<span class="required"></span></label>
+                        <div>
+                            <label for="bmiscore"></label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <h5 class="formheader">Additional information</h5>
+            <div class="col-md-12">
+                <label class="form-label"><span class="required"></span></label>
+                <ng-container>
+                    <input type="text" pInputText name="bloodGlucoseChartFormData.AdditionalInformation"
+                        [required]="true" [style]="{ width: '100%' }"
+                        [(ngModel)]="mustChartFormData.AdditionalInformation" />
+                </ng-container>
+
+            </div>
+            <div class="d-flex justify-content-center mt-4 mb-4">
+                <div class="mr-4 ">
+                    <span class="p-ml-left">
+                        <button pButton title="Clear all" label="Clear all" (click)="ClearAllfeilds()"></button>
+                    </span>
+                </div>
+                <div>
+                    <span class="p-ml-left">
+                        <button pButton title="save" label="Save" (click)="Save()"></button>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
