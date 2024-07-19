@@ -20,7 +20,6 @@ import { ActivatedRoute } from '@angular/router';
 import { AppComponentBase } from 'src/app/app-component-base';
 import { Observable, catchError, forkJoin, map, of } from 'rxjs';
 import { PainChartService } from './pain-chart.service';
-import { Chart } from 'chart.js';
 import { StrikeThroughEntryComponent } from '../strike-through-entry/strike-through-entry.component';
 
 interface BodyPart {
@@ -38,17 +37,25 @@ export class PainChartComponent extends AppComponentBase implements OnInit {
     @ViewChild('child') child: StrikeThroughEntryComponent;
     @Input() preSelectedChartData: any = <any>{};
     @Output() EmitUpdateForm: EventEmitter<any> = new EventEmitter<any>();
-
+    
     customDateFormat = CustomDateFormat;
     loginId: any;
     userId: any;
     residentAdmissionInfoId: any;
-
+    
     painChartFormData: any = <any>{};
     stLstYesNoOptions: any;
     isEditable: boolean;
     inputFields: boolean;
     StatementType: string;
+    
+    BodyPartsName: any[] = [];
+    bodyDialogCount:number=0;
+    painChartRecordData: any = <any>{};
+    newlyBodyPart: any[] = [];
+    RemovePainPartsCheck: boolean = false;
+    NumberChecks: number = 0;
+    UpdatedPartsCheck: any[] = [];
 
     //for carousel
     PainChartLst: any[] = [];
@@ -90,7 +97,7 @@ export class PainChartComponent extends AppComponentBase implements OnInit {
     lstImpact: any[] = [];
     lstInterventions: any[] = [];
     lstTypeOfPain: any[] = [];
-    stLstReason:any[]=[];
+    stLstReason: any[] = [];
 
     //Body Map PopUp
     isShowBodyMap: boolean = false;
@@ -112,22 +119,30 @@ export class PainChartComponent extends AppComponentBase implements OnInit {
         this.loginId = localStorage.getItem('userId');
     }
 
-    ShowBodyMapPopUp(isReadOnly:boolean, preselectedBodyParts:BodyPart[]=null, bodyMapStatus=null) {
+    ShowBodyMapPopUp(isReadOnly: boolean, preselectedBodyParts: BodyPart[] = null, bodyMapStatus = null) {
+        this.bodyDialogCount++;
         this.isShowBodyMap = true;
         this.isReadOnly = isReadOnly;
-        this.bodyMapData ={
-            preselectedBodyParts:preselectedBodyParts,
-            status:bodyMapStatus
-        }   
+        this.bodyMapData = {
+            preselectedBodyParts: preselectedBodyParts,
+            status: bodyMapStatus,
+            count: this.bodyDialogCount,
+            lastSelectedBodyPart: this.painChartRecordData,
+            UpdatedParts: this.UpdatedPartsCheck.length == 0 ? [] : this.UpdatedPartsCheck,
+            buttoncheck: isReadOnly
+        }
     }
 
     onSelectedBodyParts(bodyMapData: any) {
-        this.painChartFormData.selectedBodyParts = bodyMapData.selectedBodyParts;
+        
+        this.painChartFormData.selectedBodyParts = [...bodyMapData.selectedBodyParts];
+        this.UpdatedPartsCheck = [];
+        this.UpdatedPartsCheck.push(...bodyMapData.selectedBodyParts);
         this.painChartFormData.bodyMapStatus = bodyMapData.bodyMapStatus
     }
 
-    extractBodyPainLocations(bodyParts: BodyPart[]):string{
-        if(bodyParts){
+    extractBodyPainLocations(bodyParts: BodyPart[]): string {
+        if (bodyParts) {
             return bodyParts.map(part => part.name).join(', ');
         }
         else return null;
@@ -180,6 +195,9 @@ export class PainChartComponent extends AppComponentBase implements OnInit {
             this.lstReferrals = responses[4];
         });
         this.chartOnChange();
+        this.painChartFormData.DateAndTime = new Date();
+        this.GetPainChartRecord();
+        console.log("Record Data", this.painChartRecordData);
     }
 
     openAndClose() {
@@ -307,6 +325,39 @@ export class PainChartComponent extends AppComponentBase implements OnInit {
             });
     }
 
+    GetPainChartRecord() {
+        this._UtilityService.showSpinner();
+        this.unsubscribe.add = this._PainChartServices
+            .GetPainChartRecord()
+            .subscribe({
+                next: (data) => {
+                    this._UtilityService.hideSpinner();
+                    if (data.actionResult.success == true) {
+                        var tdata = JSON.parse(data.actionResult.result);
+                        tdata = tdata ? tdata : {};
+                        this.painChartRecordData = tdata;
+                        console.log("Record Data",this.painChartRecordData.selectedBodyParts);
+                        for(let i = 0; i<this.painChartRecordData.selectedBodyParts.length;i++) {
+                            this.BodyPartsName.push(this.painChartRecordData.selectedBodyParts[i].name)
+                        }
+                        console.log(this.BodyPartsName);
+
+                        this.openAndClose();
+                    } else {
+                        this.painChartFormData = {};
+                    }
+                },
+                error: (e) => {
+                    this._UtilityService.hideSpinner();
+                    this._UtilityService.showErrorAlert(e.message);
+                },
+            });
+    }
+
+    commaSeparated(values: string[]): string {
+        return values.join(', '); // Join with a space after each comma
+    }
+
     GetChartDropDownMasterList(
         chartMasterId: string,
         dropdownName: string,
@@ -381,7 +432,7 @@ export class PainChartComponent extends AppComponentBase implements OnInit {
         this.chartOnChange();
     }
 
-    showEvaluateInterventionPopup(chartId:string) {
+    showEvaluateInterventionPopup(chartId: string) {
         this.evaluateIntervention = true;
         this.evaluateInterventionPopupData.chartId = chartId;
     }
@@ -393,8 +444,8 @@ export class PainChartComponent extends AppComponentBase implements OnInit {
     saveEvaluateInterventionPopupData() {
         this.evaluateInterventionPopupData.evaluateBy = this.userId;
         this.evaluateInterventionPopupData.selectedevaluate = this.evaluateInterventionPopupData.selectedevaluate.code;
-        this.evaluateInterventionPopupData.isEvaluate=true;
-        this.evaluateInterventionPopupData.chartMasterId=this.preSelectedChartData.chartMasterId;
+        this.evaluateInterventionPopupData.isEvaluate = true;
+        this.evaluateInterventionPopupData.chartMasterId = this.preSelectedChartData.chartMasterId;
         const objectBody: any = {
             ChartData: this.evaluateInterventionPopupData,
         };
@@ -426,7 +477,7 @@ export class PainChartComponent extends AppComponentBase implements OnInit {
 
     showPopup(chartId, chart) {
         this.StrikeThroughData = {
-            ChartMasterId: ChartTypes.PainChart ,
+            ChartMasterId: ChartTypes.PainChart,
             ChartId: chartId,
             ModifiedBy: this.loginId,
         };
