@@ -186,18 +186,45 @@ ShowChildComponent == true &&
 selectedChartMasterId == ChartTypes.GlasgowComaScaleChart
 ">
 </app-glasgow-coma-scale-chart>
+
 <app-food-intake-chart [preSelectedChartData]="selectedChartData" (EmitUpdateForm)="EmitUpdateForm($event)" *ngIf="
 ShowChildComponent == true &&
 selectedChartMasterId == ChartTypes.FoodIntakeChart
 ">
 </app-food-intake-chart>
+
 <app-repositioning-chart [preSelectedChartData]="selectedChartData" (EmitUpdateForm)="EmitUpdateForm($event)" *ngIf="
 ShowChildComponent == true &&
 selectedChartMasterId == ChartTypes.RepositioningChart
 ">
 </app-repositioning-chart>
+
 <app-restraint-chart [preSelectedChartData]="selectedChartData" (EmitUpdateForm)="EmitUpdateForm($event)" *ngIf="
 ShowChildComponent == true &&
 selectedChartMasterId == ChartTypes.RestraintChart
 ">
 </app-restraint-chart>
+
+<app-must-chart [preSelectedChartData]="selectedChartData" (EmitUpdateForm)="EmitUpdateForm($event)" *ngIf="
+ShowChildComponent == true &&
+selectedChartMasterId == ChartTypes.MUSTChart
+">
+</app-must-chart>
+
+<app-news-chart [preSelectedChartData]="selectedChartData" (EmitUpdateForm)="EmitUpdateForm($event)" *ngIf="
+ShowChildComponent == true &&
+selectedChartMasterId == ChartTypes.NEWS2Chart
+">
+</app-news-chart>
+
+<app-wound-chart [preSelectedChartData]="selectedChartData" (EmitUpdateForm)="EmitUpdateForm($event)" *ngIf="
+ShowChildComponent == true &&
+selectedChartMasterId == ChartTypes.WoundChart
+">
+</app-wound-chart>
+
+<app-painchek-chart [preSelectedChartData]="selectedChartData" (EmitUpdateForm)="EmitUpdateForm($event)" *ngIf="
+ShowChildComponent == true &&
+selectedChartMasterId == ChartTypes.PainChekChart
+">
+</app-painchek-chart>
