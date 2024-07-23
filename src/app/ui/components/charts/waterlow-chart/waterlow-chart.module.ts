@@ -14,6 +14,7 @@ import { InputTextareaModule } from 'primeng/inputtextarea';
 import { StrikeThroughEntryModule } from '../strike-through-entry/strike-through-entry.module';
 import { SelectButtonModule } from 'primeng/selectbutton';
 import { MessagesModule } from 'primeng/messages';
+import { MultiSelectModule } from 'primeng/multiselect';
 
 
 @NgModule({
@@ -31,7 +32,8 @@ import { MessagesModule } from 'primeng/messages';
     StrikeThroughEntryModule,
     ButtonModule,
     SelectButtonModule,
-    MessagesModule
+    MessagesModule,
+    MultiSelectModule
   ],
   exports:[WaterlowChartComponent]
 })
