@@ -1,19 +1,20 @@
 <div class="card">
     <div class="row d-flex align-items-center">
-        <div class="col-md-3">
-            <label class="form-label"> From Date / To Date </label>
-            <p-calendar #cal1 selectionMode="range" [(ngModel)]="rangeDates" placeholder="--select--"
-                [ngModelOptions]="{ standalone: true }" [showIcon]="true" inputId="icon" [readonlyInput]="true"
-                [dateFormat]="customDateFormat.CalendarFormat" (onSelect)="dateRangeChange(cal1)"
-                (onChange)="SearchChart()" [showButtonBar]="true"></p-calendar>
-        </div>
+        
         <div class="col-md-3">
             <label class="form-label">
-                Select Chart </label>
+                Select Chart  <span class="required">*</span></label>
             <p-dropdown [(ngModel)]="selectedChartMasterId" [required]="true" [options]="lstMaster"
                 optionLabel="ChartName" optionValue="ChartMasterId" placeholder="--select--" [style]="{ width: '100%' }"
                 [filter]="true" filterPlaceholder="Search Chart Name" (onChange)="SearchChart()">
             </p-dropdown>
+        </div>
+        <div class="col-md-3">
+            <label class="form-label"> From Date / To Date<span class="required">*</span></label>
+            <p-calendar #cal1 selectionMode="range" [(ngModel)]="rangeDates" placeholder="--select--"
+                [ngModelOptions]="{ standalone: true }" [showIcon]="true" inputId="icon" [readonlyInput]="true"
+                [dateFormat]="customDateFormat.CalendarFormat" (onSelect)="dateRangeChange(cal1)"
+                (onChange)="SearchChart()" [showButtonBar]="true"></p-calendar>
         </div>
 
         <div class="col-md-6 d-flex mt-3">
@@ -29,7 +30,7 @@
             </div>
         </div>
 
-        <p-table #dt [value]="chartDashboardList" responsiveLayout="scroll" class="mt-4"
+        <p-table #dt [value]="chartDashboardList" responsiveLayout="scroll" class="mt-2"
             styleClass="p-datatable-striped" [rowHover]="true" [globalFilterFields]="['ChartName,ModifiedOn']"
             [scrollable]="true" scrollHeight="calc(100vh - 155px)">
             <ng-template pTemplate="emptymessage" let-columns>
@@ -186,18 +187,45 @@ ShowChildComponent == true &&
 selectedChartMasterId == ChartTypes.GlasgowComaScaleChart
 ">
 </app-glasgow-coma-scale-chart>
+
 <app-food-intake-chart [preSelectedChartData]="selectedChartData" (EmitUpdateForm)="EmitUpdateForm($event)" *ngIf="
 ShowChildComponent == true &&
 selectedChartMasterId == ChartTypes.FoodIntakeChart
 ">
 </app-food-intake-chart>
+
 <app-repositioning-chart [preSelectedChartData]="selectedChartData" (EmitUpdateForm)="EmitUpdateForm($event)" *ngIf="
 ShowChildComponent == true &&
 selectedChartMasterId == ChartTypes.RepositioningChart
 ">
 </app-repositioning-chart>
+
 <app-restraint-chart [preSelectedChartData]="selectedChartData" (EmitUpdateForm)="EmitUpdateForm($event)" *ngIf="
 ShowChildComponent == true &&
 selectedChartMasterId == ChartTypes.RestraintChart
 ">
 </app-restraint-chart>
+
+<app-must-chart [preSelectedChartData]="selectedChartData" (EmitUpdateForm)="EmitUpdateForm($event)" *ngIf="
+ShowChildComponent == true &&
+selectedChartMasterId == ChartTypes.MUSTChart
+">
+</app-must-chart>
+
+<app-news-chart [preSelectedChartData]="selectedChartData" (EmitUpdateForm)="EmitUpdateForm($event)" *ngIf="
+ShowChildComponent == true &&
+selectedChartMasterId == ChartTypes.NEWS2Chart
+">
+</app-news-chart>
+
+<app-wound-chart [preSelectedChartData]="selectedChartData" (EmitUpdateForm)="EmitUpdateForm($event)" *ngIf="
+ShowChildComponent == true &&
+selectedChartMasterId == ChartTypes.WoundChart
+">
+</app-wound-chart>
+
+<app-painchek-chart [preSelectedChartData]="selectedChartData" (EmitUpdateForm)="EmitUpdateForm($event)" *ngIf="
+ShowChildComponent == true &&
+selectedChartMasterId == ChartTypes.PainChekChart
+">
+</app-painchek-chart>

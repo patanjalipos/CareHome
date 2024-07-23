@@ -43,7 +43,7 @@
                 <td>{{dt.AdmissionNumber}}</td>
                 <td>
                    <!-- <img [src]="profileUrl+ (dt.ProfileImage==''? 'no-picture.png': dt.ProfileImage)"
-                        class="table-image mr-2">--><img [src]="dt.imageSrc" class="w-6 shadow-2 my-1 mx-0"
+                        class="table-image mr-2">--><img [src]="dt.imageSrc" class="resident-picture"
                         *ngIf="dt.imageSrc!=null && dt.imageSrc!=undefined && dt.imageSrc!=''"> {{dt.FullName}} 
                         <span *ngIf="dt.PreferredName !== null">{{ '('+dt.PreferredName+')'}}</span>
                         <!-- {{dt.PreferredName==''? '': '('+dt.PreferredName+')'}} -->
