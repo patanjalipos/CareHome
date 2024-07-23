@@ -56,6 +56,9 @@ export class GlasgowComaScaleChartComponent extends AppComponentBase implements 
   stLstErrorAndWarning: any;
   result: any;
   ChartName: any;
+  EyeOpening: boolean = false;
+  VerbalResponse: boolean = false;
+  BestMotorResponse: boolean = false;
 
   constructor(
     private optionService: OptionService,
@@ -117,7 +120,7 @@ export class GlasgowComaScaleChartComponent extends AppComponentBase implements 
       this._ConstantServices.ActiveMenuName = this.ChartName;
     });
     this.message = [
-      { severity: 'info', detail: 'Complete the eye verbal and motor responses to calculate the score' }
+      { severity: 'secondary', detail: 'Complete the eye verbal and motor responses to calculate the score' }
     ];
 
     const collectionNames = ['eyeOpening', 'verbalResponse', 'bestMotorResponse', 'siteOfMeasurement', 'rhythm', 'residentPosition'];
@@ -163,7 +166,7 @@ export class GlasgowComaScaleChartComponent extends AppComponentBase implements 
   scaleScoreCalculater(optionId: any) {
     if (this.ScaleScore == -1) {
       return;
-    }else if (optionId == "6683cf8b047186747f31e460") {
+    } else if (optionId == "6683cf8b047186747f31e460") {
       this.ScaleScore += 6;
     } else if (optionId == "6683cf8b047186747f31e45b" || optionId == "6683cf8b047186747f31e461") {
       this.ScaleScore += 5;
@@ -217,12 +220,20 @@ export class GlasgowComaScaleChartComponent extends AppComponentBase implements 
   Save() {
     this.reason = false;
     this.careGiven = false;
+    this.EyeOpening=false;
+    this.VerbalResponse=false;
+    this.BestMotorResponse = false;
     if (this.glasgowComaScaleChartFormData.CareGiven == null) {
       this.careGiven = true;
     } else if (this.glasgowComaScaleChartFormData.CareGiven == 'No' && this.glasgowComaScaleChartFormData.Reason == null) {
       this.reason = true;
-    }
-    else if (
+    } else if (this.glasgowComaScaleChartFormData.CareGiven == 'Yes' &&this.glasgowComaScaleChartFormData.EyeOpening == null) {
+      this.EyeOpening = true;
+    }else if (this.glasgowComaScaleChartFormData.CareGiven == 'Yes' &&this.glasgowComaScaleChartFormData.VerbalResponse == null) {
+      this.VerbalResponse = true;
+    }else if (this.glasgowComaScaleChartFormData.CareGiven == 'Yes' &&this.glasgowComaScaleChartFormData.BestMotorResponse == null) {
+      this.BestMotorResponse = true;
+    }else if (
       this.userId != null &&
       this.residentAdmissionInfoId != null &&
       this.loginId != null
