@@ -327,7 +327,7 @@ export class WaterlowChartComponent extends AppComponentBase implements OnInit {
     // }
 
     ScoreCalc(check: number) {
-
+        debugger
         const regex = /\((\d+)\)/;
 
         if (check == 2) {
@@ -347,6 +347,18 @@ export class WaterlowChartComponent extends AppComponentBase implements OnInit {
                 this.messages1 = [
                     { severity: 'secondary', detail: 'This is a mix of both Urine and faecal incontinence.' }
                 ];
+            if (this.WaterlowChartData.ContinenceOption != null) {
+                for (let i = 0; i < this.LstContinence.length; i++) {
+                    if (this.LstContinence[i].optionId == this.WaterlowChartData.ContinenceOption) {
+                        this.ContinenceValue = parseInt(regex.exec(this.LstContinence[i].optionName)[1]);
+                        // console.log("ContinenceValue", this.ContinenceValue);
+
+                    }
+                }
+            }
+            else {
+                this.ContinenceValue = 0;
+            }
         }
 
         else if (check == 3) {
@@ -378,6 +390,19 @@ export class WaterlowChartComponent extends AppComponentBase implements OnInit {
                 this.messages2 = [
                     { severity: 'secondary', detail: ' Is already a pressure ulcer, grad 1 skin is broken.' }
                 ];
+
+            if (this.WaterlowChartData.SkinTypeOption != null) {
+                for (let i = 0; i < this.LstSkinType.length; i++) {
+                    if (this.LstSkinType[i].optionId == this.WaterlowChartData.SkinTypeOption) {
+                        this.SkinTypeValue = parseInt(regex.exec(this.LstSkinType[i].optionName)[1]);
+                        // console.log("SkinTypeValue", this.SkinTypeValue);
+
+                    }
+                }
+            }
+            else {
+                this.SkinTypeValue = 0;
+            }
         }
 
         else if (check == 4) {
@@ -405,6 +430,18 @@ export class WaterlowChartComponent extends AppComponentBase implements OnInit {
                 this.messages3 = [
                     { severity: 'secondary', detail: 'Chair bound with body weight concentrated on a small area of tissue.' }
                 ];
+            if (this.WaterlowChartData.MobilityOption != null) {
+                for (let i = 0; i < this.LstMobility.length; i++) {
+                    if (this.LstMobility[i].optionId == this.WaterlowChartData.MobilityOption) {
+                        this.MobilityValue = parseInt(regex.exec(this.LstMobility[i].optionName)[1]);
+                        // console.log("MobilityValue", this.MobilityValue);
+
+                    }
+                }
+            }
+            else {
+                this.MobilityValue = 0;
+            }
         }
 
         // NUTRITION SCORE AND WATERLOW SCORE Calculation code starts here(as Waterlow Score depends upon Nutrition Score also)
@@ -455,35 +492,35 @@ export class WaterlowChartComponent extends AppComponentBase implements OnInit {
 
         else if (check == 7) {
             this.LackOfAppetiteValue = 0;
-            if(this.WaterlowChartData.WeightLossScoreOption != null) {
-            for (let i = 0; i < this.LstWeightLossScore.length; i++) {
-                if (this.LstWeightLossScore[i].optionId == this.WaterlowChartData.WeightLossScoreOption) {
-                    this.WeightLossScoreValue = parseInt(regex.exec(this.LstWeightLossScore[i].optionName)[1]);
-                    // console.log("Weight Loss Score Value",this.WeightLossScoreValue);
+            if (this.WaterlowChartData.WeightLossScoreOption != null) {
+                for (let i = 0; i < this.LstWeightLossScore.length; i++) {
+                    if (this.LstWeightLossScore[i].optionId == this.WaterlowChartData.WeightLossScoreOption) {
+                        this.WeightLossScoreValue = parseInt(regex.exec(this.LstWeightLossScore[i].optionName)[1]);
+                        // console.log("Weight Loss Score Value",this.WeightLossScoreValue);
+                    }
                 }
             }
-        }
-        else {
-            this.WeightLossScoreValue = 0;
-        }
+            else {
+                this.WeightLossScoreValue = 0;
+            }
         }
         else if (check == 8) {
             this.WeightLossScoreValue = 0;
-            if(this.WaterlowChartData.LackOfAppetiteOption != null) {
-            for (let i = 0; i < this.LstLackOfAppetite.length; i++) {
-                if (this.LstLackOfAppetite[i].label == this.WaterlowChartData.LackOfAppetiteOption) {
-                    this.LackOfAppetiteValue = parseInt(regex.exec(this.LstLackOfAppetite[i].label)[1]);
-                    // console.log("LackOfAppetiteValue",this.LackOfAppetiteValue);
+            if (this.WaterlowChartData.LackOfAppetiteOption != null) {
+                for (let i = 0; i < this.LstLackOfAppetite.length; i++) {
+                    if (this.LstLackOfAppetite[i].label == this.WaterlowChartData.LackOfAppetiteOption) {
+                        this.LackOfAppetiteValue = parseInt(regex.exec(this.LstLackOfAppetite[i].label)[1]);
+                        // console.log("LackOfAppetiteValue",this.LackOfAppetiteValue);
+                    }
                 }
             }
+            else {
+                this.LackOfAppetiteValue = 0;
+            }
         }
-        else {
-            this.LackOfAppetiteValue = 0;
-        }
-        }
-        
+
         //NUTRITION SCORE Calculation code ends here
-        
+
         else if (check == 1) {
             if (this.WaterlowChartData.BMIValueOption != null) {
                 for (let i = 0; i < this.LstBMIValue.length; i++) {
@@ -499,50 +536,50 @@ export class WaterlowChartComponent extends AppComponentBase implements OnInit {
         }
 
 
-        else if (check == 2) {
-            if (this.WaterlowChartData.ContinenceOption != null) {
-                for (let i = 0; i < this.LstContinence.length; i++) {
-                    if (this.LstContinence[i].optionId == this.WaterlowChartData.ContinenceOption) {
-                        this.ContinenceValue = parseInt(regex.exec(this.LstContinence[i].optionName)[1]);
-                        // console.log("ContinenceValue", this.ContinenceValue);
+        // else if (check == 2) {
+        //     if (this.WaterlowChartData.ContinenceOption != null) {
+        //         for (let i = 0; i < this.LstContinence.length; i++) {
+        //             if (this.LstContinence[i].optionId == this.WaterlowChartData.ContinenceOption) {
+        //                 this.ContinenceValue = parseInt(regex.exec(this.LstContinence[i].optionName)[1]);
+        //                 // console.log("ContinenceValue", this.ContinenceValue);
 
-                    }
-                }
-            }
-            else {
-                this.ContinenceValue = 0;
-            }
-        }
+        //             }
+        //         }
+        //     }
+        //     else {
+        //         this.ContinenceValue = 0;
+        //     }
+        // }
 
-        else if (check == 3) {
-            if (this.WaterlowChartData.SkinTypeOption != null) {
-                for (let i = 0; i < this.LstSkinType.length; i++) {
-                    if (this.LstSkinType[i].optionId == this.WaterlowChartData.SkinTypeOption) {
-                        this.SkinTypeValue = parseInt(regex.exec(this.LstSkinType[i].optionName)[1]);
-                        // console.log("SkinTypeValue", this.SkinTypeValue);
+        // else if (check == 3) {
+        //     if (this.WaterlowChartData.SkinTypeOption != null) {
+        //         for (let i = 0; i < this.LstSkinType.length; i++) {
+        //             if (this.LstSkinType[i].optionId == this.WaterlowChartData.SkinTypeOption) {
+        //                 this.SkinTypeValue = parseInt(regex.exec(this.LstSkinType[i].optionName)[1]);
+        //                 // console.log("SkinTypeValue", this.SkinTypeValue);
 
-                    }
-                }
-            }
-            else {
-                this.SkinTypeValue = 0;
-            }
-        }
+        //             }
+        //         }
+        //     }
+        //     else {
+        //         this.SkinTypeValue = 0;
+        //     }
+        // }
 
-        else if (check == 4) {
-            if (this.WaterlowChartData.MobilityOption != null) {
-                for (let i = 0; i < this.LstMobility.length; i++) {
-                    if (this.LstMobility[i].optionId == this.WaterlowChartData.MobilityOption) {
-                        this.MobilityValue = parseInt(regex.exec(this.LstMobility[i].optionName)[1]);
-                        // console.log("MobilityValue", this.MobilityValue);
+        // else if (check == 4) {
+        //     if (this.WaterlowChartData.MobilityOption != null) {
+        //         for (let i = 0; i < this.LstMobility.length; i++) {
+        //             if (this.LstMobility[i].optionId == this.WaterlowChartData.MobilityOption) {
+        //                 this.MobilityValue = parseInt(regex.exec(this.LstMobility[i].optionName)[1]);
+        //                 // console.log("MobilityValue", this.MobilityValue);
 
-                    }
-                }
-            }
-            else {
-                this.MobilityValue = 0;
-            }
-        }
+        //             }
+        //         }
+        //     }
+        //     else {
+        //         this.MobilityValue = 0;
+        //     }
+        // }
 
         else if (check == 0) {
 
@@ -571,15 +608,15 @@ export class WaterlowChartComponent extends AppComponentBase implements OnInit {
         }
 
         else if (check == 9) {
-            if(this.WaterlowChartData.SpecialRisksTissueOption != null) {
-            for (let i = 0; i < this.LstSpecialRisksTissue.length; i++) {
-                if (this.LstSpecialRisksTissue[i].optionId == this.WaterlowChartData.SpecialRisksTissueOption) {
-                    this.SpecialRisksTissueValue = parseInt(regex.exec(this.LstSpecialRisksTissue[i].optionName)[1]);
-                    // console.log("SpecialRisksTissueValue", this.SpecialRisksTissueValue);
+            if (this.WaterlowChartData.SpecialRisksTissueOption != null) {
+                for (let i = 0; i < this.LstSpecialRisksTissue.length; i++) {
+                    if (this.LstSpecialRisksTissue[i].optionId == this.WaterlowChartData.SpecialRisksTissueOption) {
+                        this.SpecialRisksTissueValue = parseInt(regex.exec(this.LstSpecialRisksTissue[i].optionName)[1]);
+                        // console.log("SpecialRisksTissueValue", this.SpecialRisksTissueValue);
 
+                    }
                 }
             }
-        }
             else {
                 this.SpecialRisksTissueValue = 0;
             }
@@ -608,18 +645,18 @@ export class WaterlowChartComponent extends AppComponentBase implements OnInit {
         }
 
         else if (check == 11) {
-            if(this.WaterlowChartData.SpecialRisksMajorSurgeryOrTraumaOption != null) {
-            for (let i = 0; i < this.LstSpecialRisksMajorSurgeryOrTrauma.length; i++) {
-                if (this.LstSpecialRisksMajorSurgeryOrTrauma[i].optionId == this.WaterlowChartData.SpecialRisksMajorSurgeryOrTraumaOption) {
-                    this.SpecialRisksSurgeryValue = parseInt(regex.exec(this.LstSpecialRisksMajorSurgeryOrTrauma[i].optionName)[1]);
-                    // console.log("SpecialRisksSurgeryValue", this.SpecialRisksSurgeryValue);
+            if (this.WaterlowChartData.SpecialRisksMajorSurgeryOrTraumaOption != null) {
+                for (let i = 0; i < this.LstSpecialRisksMajorSurgeryOrTrauma.length; i++) {
+                    if (this.LstSpecialRisksMajorSurgeryOrTrauma[i].optionId == this.WaterlowChartData.SpecialRisksMajorSurgeryOrTraumaOption) {
+                        this.SpecialRisksSurgeryValue = parseInt(regex.exec(this.LstSpecialRisksMajorSurgeryOrTrauma[i].optionName)[1]);
+                        // console.log("SpecialRisksSurgeryValue", this.SpecialRisksSurgeryValue);
 
+                    }
                 }
             }
-        }
-        else {
-            this.SpecialRisksSurgeryValue = 0;
-        }
+            else {
+                this.SpecialRisksSurgeryValue = 0;
+            }
         }
 
         else if (check == 12) {
@@ -797,6 +834,10 @@ export class WaterlowChartComponent extends AppComponentBase implements OnInit {
             if (this.WaterlowChartData.SpecialRisksMedicationOption != null && this.WaterlowChartData.SpecialRisksMedicationScoreOption != null) {
                 this.WaterlowChartData.SpecialRisksMedicationScoreOption = parseInt(this.WaterlowChartData.SpecialRisksMedicationScoreOption);
             }
+
+            this.WaterlowChartData.NutritionScore = this.NutritionScoreValue;
+            this.WaterlowChartData.WaterlowScore = this.WaterlowScoreValue;
+            this.WaterlowChartData.Classification = this.ClassificationValue;
 
             const objectBody: any = {
                 StatementType: this.StatementType,

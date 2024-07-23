@@ -545,7 +545,9 @@
                                         [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">This is classified as</label>
                                 </div>
                                 <div>
-                                    <label [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">{{
+                                    <label [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough,
+                                    'text-success': chart.WaterlowScore>=0 && chart.WaterlowScore <=9,
+                                    'text-danger': chart.WaterlowScore>=10}">{{
                                         chart.Classification }}</label>
                                 </div>
                             </div>
