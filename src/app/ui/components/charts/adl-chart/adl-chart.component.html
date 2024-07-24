@@ -354,6 +354,26 @@
                                         chart.HygieneAssistanceRequiredOptionName }}</label>
                                 </div>
                             </div>
+                            <div class="col-md-12 mb-5" *ngIf="chart.WaterTemperature">
+                                <div class="labelcontent">
+                                    <label class="form-label bold"
+                                        [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">Water Temperature(°C)</label>
+                                </div>
+                                <div>
+                                    <label [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">{{
+                                        chart.WaterTemperature }}</label>
+                                </div>
+                            </div>
+                            <div class="col-md-12 mb-5" *ngIf="chart.OtherCheck">
+                                <div class="labelcontent">
+                                    <label class="form-label bold"
+                                        [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">Other</label>
+                                </div>
+                                <div>
+                                    <label [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">{{
+                                        chart.Other }}</label>
+                                </div>
+                            </div>
                             <div class="col-md-12 mb-5">
                                 <div class="labelcontent">
                                     <label class="form-label bold"

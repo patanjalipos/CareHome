@@ -312,6 +312,9 @@ export class AdlChartComponent extends AppComponentBase implements OnInit {
                     );
             }
 
+            this.ADLChartData.WaterTemperatureCheck = this.WaterTempCheck;
+            this.ADLChartData.OtherCheck = this.OtherCheck;
+
             const objectBody: any = {
                 StatementType: this.StatementType,
                 ADLChartDetail: this.ADLChartData,
