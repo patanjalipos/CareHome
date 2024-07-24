@@ -212,9 +212,9 @@ GetWeightChartDetails(chartId: string) {
 }
 
 ClearAllfeilds() {
-  if (this.preSelectedChartData.selectedChartID) {
+  if (this.preSelectedChartData.chartMasterId) {
       this.WeightChartData = <any>{};
-      this.WeightChartData.activitiesChartId =
+      this.WeightChartData.WeightChartId =
           this.preSelectedChartData.selectedChartID;
   }
 }

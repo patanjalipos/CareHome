@@ -36,6 +36,9 @@ export class GlasgowComaScaleChartComponent extends AppComponentBase implements 
   careGiven: boolean = false;
   message: any[] = [];
   ScaleScore: number = 0;
+  EyeOpeningValue: number = 0;
+  VerbalResponseValue: number = 0;
+  BestMotorResponseValue: number = 0;
 
   lstEyeOpening: any[] = [];
   lstVerbalResponse: any[] = [];
@@ -163,30 +166,61 @@ export class GlasgowComaScaleChartComponent extends AppComponentBase implements 
     ];
   }
 
-  scaleScoreCalculater(optionId: any) {
-    if (this.ScaleScore == -1) {
-      return;
-    } else if (optionId == "6683cf8b047186747f31e460") {
-      this.ScaleScore += 6;
-    } else if (optionId == "6683cf8b047186747f31e45b" || optionId == "6683cf8b047186747f31e461") {
-      this.ScaleScore += 5;
-    } else if (optionId == "6683cf8b047186747f31e456" || optionId == "6683cf8b047186747f31e45c" || optionId == "6683cf8b047186747f31e462") {
-      this.ScaleScore += 4;
-    } else if (optionId == "6683cf8b047186747f31e463" || optionId == "6683cf8b047186747f31e457" || optionId == "66851349b87aeab16ecd10e3") {
-      this.ScaleScore += 3;
-    } else if (optionId == "6683cf8b047186747f31e458" || optionId == "6683cf8b047186747f31e45d" || optionId == "6683cf8b047186747f31e464") {
-      this.ScaleScore += 2;
-    } else if (optionId == "6683cf8b047186747f31e459" || optionId == "6683cf8b047186747f31e45e" || optionId == "6683cf8b047186747f31e465") {
-      this.ScaleScore += 1;
-    } else {
-      this.ScaleScore = -1;
+  scaleScoreCalculater(check: any) {
+    const regex = /\((\d+)\)/;
+    if (check == 1) {
+      if (this.glasgowComaScaleChartFormData.EyeOpening != null) {
+        for (let i = 0; i < this.lstEyeOpening.length; i++) {
+          if (this.lstEyeOpening[i].optionId == this.glasgowComaScaleChartFormData.EyeOpening) {
+            this.EyeOpeningValue = regex.exec(this.lstEyeOpening[i].optionName) == null ? -1 : parseInt(regex.exec(this.lstEyeOpening[i].optionName)[1]);
+
+          }
+        }
+      }
+      else {
+        this.EyeOpeningValue = 0;
+      }
+      this.glasgowComaScaleChartFormData.scaleScore = this.EyeOpeningValue + this.BestMotorResponseValue + this.VerbalResponseValue;
+      this.glasgowComaScaleChartFormData.scaleScore=this.glasgowComaScaleChartFormData.scaleScore.toString()
+    } else if (check == 2) {
+      if (this.glasgowComaScaleChartFormData.VerbalResponse != null) {
+        for (let i = 0; i < this.lstVerbalResponse.length; i++) {
+          if (this.lstVerbalResponse[i].optionId == this.glasgowComaScaleChartFormData.VerbalResponse) {
+            this.VerbalResponseValue = regex.exec(this.lstVerbalResponse[i].optionName) == null ? -1 : parseInt(regex.exec(this.lstVerbalResponse[i].optionName)[1]);
+          }
+        }
+      }
+      else {
+        this.VerbalResponseValue = 0;
+      }
+      this.glasgowComaScaleChartFormData.scaleScore = this.BestMotorResponseValue + this.VerbalResponseValue + this.EyeOpeningValue;
+      this.glasgowComaScaleChartFormData.scaleScore=this.glasgowComaScaleChartFormData.scaleScore.toString()
+    } else if (check == 3) {
+      if (this.glasgowComaScaleChartFormData.BestMotorResponse != null) {
+        for (let i = 0; i < this.lstBestMotorResponse.length; i++) {
+          if (this.lstBestMotorResponse[i].optionId == this.glasgowComaScaleChartFormData.BestMotorResponse) {
+            this.BestMotorResponseValue = regex.exec(this.lstBestMotorResponse[i].optionName) == null ? -1 : parseInt(regex.exec(this.lstBestMotorResponse[i].optionName)[1]);
+          }
+        }
+      }
+      else {
+        this.BestMotorResponseValue = 0;
+      }
+      this.glasgowComaScaleChartFormData.scaleScore = this.BestMotorResponseValue + this.VerbalResponseValue + this.EyeOpeningValue;
+      this.glasgowComaScaleChartFormData.scaleScore=this.glasgowComaScaleChartFormData.scaleScore.toString()
+      
     }
+
+    if (this.BestMotorResponseValue == -1 || this.EyeOpeningValue == -1 || this.VerbalResponseValue == -1) {
+      this.glasgowComaScaleChartFormData.scaleScore = "Not testable";
+    }
+
   }
 
   ClearAllfeilds() {
-    if (this.preSelectedChartData.selectedChartID) {
+    if (this.preSelectedChartData.chartMasterId) {
       this.glasgowComaScaleChartFormData = <any>{};
-      this.glasgowComaScaleChartFormData.activitiesChartId =
+      this.glasgowComaScaleChartFormData.glasgowComaScaleChartId =
         this.preSelectedChartData.selectedChartID;
     }
   }
@@ -220,20 +254,20 @@ export class GlasgowComaScaleChartComponent extends AppComponentBase implements 
   Save() {
     this.reason = false;
     this.careGiven = false;
-    this.EyeOpening=false;
-    this.VerbalResponse=false;
+    this.EyeOpening = false;
+    this.VerbalResponse = false;
     this.BestMotorResponse = false;
     if (this.glasgowComaScaleChartFormData.CareGiven == null) {
       this.careGiven = true;
     } else if (this.glasgowComaScaleChartFormData.CareGiven == 'No' && this.glasgowComaScaleChartFormData.Reason == null) {
       this.reason = true;
-    } else if (this.glasgowComaScaleChartFormData.CareGiven == 'Yes' &&this.glasgowComaScaleChartFormData.EyeOpening == null) {
+    } else if (this.glasgowComaScaleChartFormData.CareGiven == 'Yes' && this.glasgowComaScaleChartFormData.EyeOpening == null) {
       this.EyeOpening = true;
-    }else if (this.glasgowComaScaleChartFormData.CareGiven == 'Yes' &&this.glasgowComaScaleChartFormData.VerbalResponse == null) {
+    } else if (this.glasgowComaScaleChartFormData.CareGiven == 'Yes' && this.glasgowComaScaleChartFormData.VerbalResponse == null) {
       this.VerbalResponse = true;
-    }else if (this.glasgowComaScaleChartFormData.CareGiven == 'Yes' &&this.glasgowComaScaleChartFormData.BestMotorResponse == null) {
+    } else if (this.glasgowComaScaleChartFormData.CareGiven == 'Yes' && this.glasgowComaScaleChartFormData.BestMotorResponse == null) {
       this.BestMotorResponse = true;
-    }else if (
+    } else if (
       this.userId != null &&
       this.residentAdmissionInfoId != null &&
       this.loginId != null

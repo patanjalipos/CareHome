@@ -141,9 +141,9 @@ export class FoodIntakeChartComponent extends AppComponentBase implements OnInit
   }
 
   ClearAllfeilds() {
-    if (this.preSelectedChartData.selectedChartID) {
+    if (this.preSelectedChartData.chartMasterId) {
       this.foodIntakeChartFormData = <any>{};
-      this.foodIntakeChartFormData.activitiesChartId =
+      this.foodIntakeChartFormData.foodIntakeChartId =
         this.preSelectedChartData.selectedChartID;
     }
   }

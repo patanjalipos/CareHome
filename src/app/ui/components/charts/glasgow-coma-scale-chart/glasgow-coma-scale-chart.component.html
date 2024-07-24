@@ -60,7 +60,7 @@
                         <p-dropdown [required]="true" name="glasgowComaScaleChartFormData.EyeOpening"
                             placeholder="----select----" [style]="{ width: '100%' }" [options]="lstEyeOpening"
                             optionValue="optionId" optionLabel="optionName"
-                            [(ngModel)]="glasgowComaScaleChartFormData.EyeOpening" (onChange)="scaleScoreCalculater($event.value)">
+                            [(ngModel)]="glasgowComaScaleChartFormData.EyeOpening" (onChange)="scaleScoreCalculater(1)">
 
                         </p-dropdown>
                         <label for="" *ngIf="EyeOpening" class="text-danger">This field is required</label>
@@ -73,7 +73,7 @@
                         <p-dropdown [required]="true" name="glasgowComaScaleChartFormData.VerbalResponse"
                             placeholder="----select----" [style]="{ width: '100%' }" [options]="lstVerbalResponse"
                             optionValue="optionId" optionLabel="optionName"
-                            [(ngModel)]="glasgowComaScaleChartFormData.VerbalResponse" (onChange)="scaleScoreCalculater($event.value)">
+                            [(ngModel)]="glasgowComaScaleChartFormData.VerbalResponse" (onChange)="scaleScoreCalculater(2)">
                         </p-dropdown>
 
                     </ng-container>
@@ -86,7 +86,7 @@
                         <p-dropdown [required]="true" name="glasgowComaScaleChartFormData.BestMotorResponse"
                             placeholder="----select----" [style]="{ width: '100%' }" [options]="lstBestMotorResponse"
                             optionValue="optionId" optionLabel="optionName"
-                            [(ngModel)]="glasgowComaScaleChartFormData.BestMotorResponse" (onChange)="scaleScoreCalculater($event.value)">
+                            [(ngModel)]="glasgowComaScaleChartFormData.BestMotorResponse" (onChange)="scaleScoreCalculater(3)">
                         </p-dropdown>
 
                     </ng-container>
@@ -94,16 +94,16 @@
                 </div>
                 <div>
                     <label class="form-label bold">Glasgow Coma Scale score<span class="required"></span></label>
-                    <div *ngIf="glasgowComaScaleChartFormData.scaleScore>0">
+                    <div *ngIf="glasgowComaScaleChartFormData.scaleScore!=null">
                         <label class="form-label">{{glasgowComaScaleChartFormData.scaleScore}}</label>
                     </div>
                     <div *ngIf="glasgowComaScaleChartFormData.scaleScore<0">
                         <label class="form-label">Not testable</label>
                     </div>
-                    <ng-container>
-                        <p-messages [(value)]="message" [enableService]="false"></p-messages>
-                    </ng-container>
                 </div>
+                <ng-container>
+                    <p-messages [(value)]="message" [enableService]="false"></p-messages>
+                </ng-container>
 
                 <h5 class="formheader">Pulse</h5>
                 <div class="mb-4">
@@ -291,11 +291,8 @@
 
                             <div>
                                 <label class="form-label bold" [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}" >Glasgow Coma Scale score<span class="required"></span></label>
-                                <div *ngIf="chart.scaleScore>0">
+                                <div>
                                     <label class="form-label" [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">{{chart.scaleScore}}</label>
-                                </div>
-                                <div *ngIf="chart.scaleScore<0">
-                                    <label class="form-label" [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">Not testable</label>
                                 </div>
                             </div>
 

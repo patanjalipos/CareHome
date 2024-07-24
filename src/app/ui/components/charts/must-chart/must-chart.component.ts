@@ -107,7 +107,6 @@ export class MustChartComponent extends AppComponentBase implements OnInit {
       }
     });
 
-
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -226,9 +225,9 @@ export class MustChartComponent extends AppComponentBase implements OnInit {
   }
 
   ClearAllfeilds() {
-    if (this.preSelectedChartData.selectedChartID) {
+    if (this.preSelectedChartData.chartMasterId) {
       this.mustChartFormData = <any>{};
-      this.mustChartFormData.activitiesChartId =
+      this.mustChartFormData.mustChartId =
         this.preSelectedChartData.selectedChartID;
     }
   }

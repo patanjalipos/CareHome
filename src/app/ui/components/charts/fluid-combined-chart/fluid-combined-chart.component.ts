@@ -140,7 +140,7 @@ export class FluidCombinedChartComponent extends AppComponentBase implements OnI
   }
 
   ClearAllfeilds() {
-    if (this.preSelectedChartData.selectedChartID) {
+    if (this.preSelectedChartData.chartMasterId) {
       this.fluidCombinedChartFormData = <any>{};
       this.fluidCombinedChartFormData.fluidCombinedChartId =
         this.preSelectedChartData.selectedChartID;

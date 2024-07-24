@@ -332,9 +332,9 @@ export class FluidIntakeChartComponent extends AppComponentBase implements OnIni
   }
 
   ClearAllfeilds() {
-    if (this.preSelectedChartData.selectedChartID) {
+    if (this.preSelectedChartData.chartMasterId) {
       this.FluidIntakeChartFormData = <any>{};
-      this.FluidIntakeChartFormData.activitiesChartId =
+      this.FluidIntakeChartFormData.fluidIntakeChartId =
         this.preSelectedChartData.selectedChartID;
     }
   }

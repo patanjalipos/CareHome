@@ -170,9 +170,9 @@ export class RepositioningChartComponent extends AppComponentBase implements OnI
   }
 
   ClearAllfeilds() {
-    if (this.preSelectedChartData.selectedChartID) {
+    if (this.preSelectedChartData.chartMasterId) {
       this.repositioningChartFormData = <any>{};
-      this.repositioningChartFormData.activitiesChartId =
+      this.repositioningChartFormData.repositioningChartId =
         this.preSelectedChartData.selectedChartID;
     }
   }
