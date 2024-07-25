@@ -1447,7 +1447,7 @@ p.date-box {
 }
 
 .formheader {
-    background-color: #e9ebeb;
+    background-color: #e1e7e7;
     color: #000;
     padding: 10px 10px;
     border-radius: 5px;
@@ -1478,9 +1478,11 @@ p.date-box {
     border-radius: 5px;
 }
 
-// .active-chart{
-//     border: 1px solid #023C40 ;
-// }
+.chart {
+    background-color: #eaf6f7;
+
+}
+
 .form-box-inner {
     font-size: 18px;
     color: #fff;
@@ -1586,7 +1588,7 @@ p.date-box {
 }
 
 input {
-    margin-top:5px;
+    margin-top: 5px;
 }
 
 input::file-selector-button {
