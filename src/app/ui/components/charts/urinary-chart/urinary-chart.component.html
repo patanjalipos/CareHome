@@ -67,13 +67,12 @@
                 <h5 class="formheader">Drinks</h5>
                 <div>
                     <div class="labelcontent">
-                        <label class="form-label bold">Volume</label>
+                        <label class="form-label bold">Volume(in ml)</label>
                     </div>
                     <ng-container>
                         <input type="number" (change)="SummaryCalculation()" pInputText name="UrinaryChartData.DrinkVolume"
                             [(ngModel)]="UrinaryChartData.DrinkVolume" [required]="true"
                             [style]="{ width: '100%' }" />
-                            <label>ml</label>
                     </ng-container>
                 </div>
                 <div>
@@ -90,13 +89,12 @@
                 <h5 class="formheader">Urine Output</h5>
                 <div>
                     <div class="labelcontent">
-                        <label class="form-label bold">Volume</label>
+                        <label class="form-label bold">Volume(in ml)</label>
                     </div>
                     <ng-container>
                         <input type="number" pInputText name="UrinaryChartData.UrineVolume"
                             [(ngModel)]="UrinaryChartData.UrineVolume" [required]="true"
                             [style]="{ width: '100%' }" (change)="SummaryCalculation()"/>
-                            <label>ml</label>
                     </ng-container>
                 </div>
                 <div>
