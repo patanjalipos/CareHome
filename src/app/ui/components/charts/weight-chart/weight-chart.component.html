@@ -52,7 +52,7 @@
             <div *ngIf="inputFieldsCheck" class="row">
                 <div>
                     <div class="labelcontent">
-                        <label class="form-label bold">Weight <span class="required"></span></label>
+                        <label class="form-label bold">Weight(in kg) <span class="required"></span></label>
                     </div>
                     <ng-container>
                         <input type="number" pInputText name="WeightChartData.Weight"
@@ -74,7 +74,7 @@
                 </div>
                 <div class="mb-2">
                     <div class="labelcontent">
-                        <label class="form-label bold">Height</label>
+                        <label class="form-label bold">Height(in cm)</label>
                     </div>
                     <ng-container>
                         <input type="number" pInputText name="WeightChartData.Height"
@@ -85,14 +85,15 @@
                 </div>
                 <div>
                     <div class="labelcontent">
-                        <label class="form-label bold">BMI</label>
+                        <label class="form-label bold">BMI(Body Mass Index)</label>
                     </div>
                     <ng-container>
                         <p-button [disabled]="ButtonCheck" label="Calculate BMI" (click)="CalculateBMI(1)"></p-button>
                     </ng-container>
-                    <div class="my-1" *ngIf="(WeightChartData.Weight != null || WeightChartData.Weight != 0) && (WeightChartData.Height !=null && WeightChartData.Height != 0)">
-                        <span>{{WeightChartData.BMI}}</span>
+                    <div class="my-3" *ngIf="(WeightChartData.Weight != null || WeightChartData.Weight != 0) && (WeightChartData.Height !=null && WeightChartData.Height != 0)">
+                        <span>{{WeightChartData.BMI}}  kg/m2</span>
                     </div>
+                    <p-messages [(value)]="messages" [enableService]="false"></p-messages>
                 </div>
                 <div>
                     <div class="labelcontent">

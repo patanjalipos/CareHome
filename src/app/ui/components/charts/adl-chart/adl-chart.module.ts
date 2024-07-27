@@ -10,6 +10,7 @@ import { FormsModule } from '@angular/forms';
 import { CarouselModule } from 'primeng/carousel';
 import { DialogModule } from 'primeng/dialog';
 import { StrikeThroughEntryModule } from '../strike-through-entry/strike-through-entry.module';
+import { MultiSelectModule } from 'primeng/multiselect';
 
 @NgModule({
     declarations: [AdlChartComponent],
@@ -23,7 +24,8 @@ import { StrikeThroughEntryModule } from '../strike-through-entry/strike-through
         FormsModule,
         CarouselModule,
         DialogModule,
-        StrikeThroughEntryModule
+        StrikeThroughEntryModule,
+        MultiSelectModule
     ],
     exports:[AdlChartComponent]
 })

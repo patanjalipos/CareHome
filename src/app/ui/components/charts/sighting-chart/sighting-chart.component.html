@@ -29,33 +29,29 @@
                 <label class="form-label formheader bold">Care Given <span class="required">*</span></label>
 
                 <ng-container>
-                    <p-dropdown [ngClass]="{'ng-dirty ng-invalid':CareGivenCheck}" [required]="true"
-                        name="ADLChartData.CareGiven" placeholder="----select----" [style]="{ width: '100%' }"
-                        [options]="stLstYesNoOptions" optionValue="optionId" optionLabel="optionValue"
-                        [(ngModel)]="SightingChartData.CareGivenOptions" (onChange)="openAndClose()">
+                    <p-dropdown [ngClass]="{'ng-dirty ng-invalid':CareGivenCheck}" [required]="true" name="ADLChartData.CareGiven" placeholder="----select----"
+                        [style]="{ width: '100%' }" [options]="stLstYesNoOptions" optionValue="optionId"
+                        optionLabel="optionValue" [(ngModel)]="SightingChartData.CareGivenOptions"
+                        (onChange)="openAndClose()">
                     </p-dropdown>
-                    <span class="required"
-                        *ngIf="SightingChartData.CareGivenOptions==null && CareGivenCheck == true">This field is
-                        required!</span>
+                    <span class="required" *ngIf="SightingChartData.CareGivenOptions==null && CareGivenCheck == true">This field is required!</span>
                 </ng-container>
             </div>
             <div *ngIf="inputFieldsCheck==false">
                 <label class="form-label bold">Reason<span class="required">*</span></label>
 
                 <ng-container>
-                    <p-dropdown [ngClass]="{'ng-dirty ng-invalid':ReasonCheck}" [required]="true"
-                        name="ADLChartData.Reason" placeholder="----select----" [style]="{ width: '100%' }"
-                        [options]="stLstReason" optionValue="optionId" optionLabel="optionValue"
-                        [(ngModel)]="SightingChartData.Reason" (onChange)="openAndClose()">
+                    <p-dropdown [ngClass]="{'ng-dirty ng-invalid':ReasonCheck}" [required]="true" name="ADLChartData.Reason" placeholder="----select----"
+                        [style]="{ width: '100%' }" [options]="stLstReason" optionValue="optionId"
+                        optionLabel="optionValue" [(ngModel)]="SightingChartData.Reason" (onChange)="openAndClose()">
                     </p-dropdown>
-                    <span class="required" *ngIf="SightingChartData.Reason==null && ReasonCheck == true">This field is
-                        required!</span>
+                    <span class="required" *ngIf="SightingChartData.Reason==null && ReasonCheck == true">This field is required!</span>
                 </ng-container>
             </div>
 
 
             <div *ngIf="inputFieldsCheck" class="row">
-
+                
                 <h5 class="formheader">Sighting</h5>
                 <div>
                     <div class="labelcontent">
@@ -63,10 +59,10 @@
                     </div>
                     <ng-container>
                         <p-dropdown [required]="true" name="SightingChartData.SightingTypeOption"
-                            [(ngModel)]="SightingChartData.SightingTypeOption" [options]="LstSightingType"
-                            optionLabel="optionName" optionValue="optionId" placeholder="--select--"
-                            [style]="{ width: '100%' }">
-                        </p-dropdown>
+                        [(ngModel)]="SightingChartData.SightingTypeOption"
+                        [options]="LstSightingType" optionLabel="optionName" optionValue="optionId"
+                        placeholder="--select--" [style]="{ width: '100%' }">
+                    </p-dropdown>
                     </ng-container>
                 </div>
                 <div>
@@ -85,28 +81,28 @@
                     </div>
                     <ng-container>
                         <p-dropdown [required]="true" name="SightingChartData.ResidentStateOption"
-                            [(ngModel)]="SightingChartData.ResidentStateOption" [options]="LstResidentState"
-                            optionLabel="optionName" optionValue="optionId" placeholder="--select--"
-                            [style]="{ width: '100%' }">
-                        </p-dropdown>
+                        [(ngModel)]="SightingChartData.ResidentStateOption"
+                        [options]="LstResidentState" optionLabel="optionName" optionValue="optionId"
+                        placeholder="--select--" [style]="{ width: '100%' }" (onChange)="ChangeState()">
+                    </p-dropdown>
                     </ng-container>
                 </div>
-
-                <div *ngIf="SightingChartData.ResidentStateOption=='668b84b2b6d601727db78a1b'">
+                <div *ngIf="SightingChartData.OtherCheck">
                     <div class="labelcontent">
                         <label class="form-label bold">Other</label>
                     </div>
-                    <input type="text" pInputText name="SightingChartData.other" [(ngModel)]="SightingChartData.other"
-                        [required]="true" [style]="{ width: '100%' }" />
+                    <ng-container>
+                        <textarea pInputTextarea name="SightingChartData.Other" [(ngModel)]="SightingChartData.Other"
+                        [required]="true" [style]="{ width: '100%' }"></textarea>
+                    </ng-container>
                 </div>
             </div>
 
             <h5 class="formheader">Additional information</h5>
             <div>
                 <ng-container>
-                    <textarea pInputTextarea name="SightingChartData.AdditionalInfo"
-                        [(ngModel)]="SightingChartData.AdditionalInfo" [required]="true"
-                        [style]="{ width: '100%' }"></textarea>
+                    <textarea pInputTextarea name="SightingChartData.AdditionalInfo" [(ngModel)]="SightingChartData.AdditionalInfo"
+                        [required]="true" [style]="{ width: '100%' }"></textarea>
                 </ng-container>
             </div>
             <div class="d-flex justify-content-center mt-4" *ngIf="this.isEditable == true">
@@ -193,14 +189,13 @@
                             </div>
                         </div>
                         <div *ngIf="chart.CareGivenOptions=='Yes'" class="row">
-
+                            
                             <h5 class="formheader" [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">
                                 Sighting</h5>
                             <div class="col-md-12 mb-5">
                                 <div class="labelcontent">
                                     <label class="form-label bold"
-                                        [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">Sighting
-                                        Type</label>
+                                        [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">Sighting Type</label>
                                 </div>
                                 <div>
                                     <label [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">{{
@@ -210,8 +205,7 @@
                             <div class="col-md-12 mb-5">
                                 <div class="labelcontent">
                                     <label class="form-label bold"
-                                        [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">Where was the
-                                        resident seen</label>
+                                        [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">Where was the resident seen</label>
                                 </div>
                                 <div>
                                     <label [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">{{
@@ -221,23 +215,21 @@
                             <div class="col-md-12 mb-5">
                                 <div class="labelcontent">
                                     <label class="form-label bold"
-                                        [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">Resident
-                                        State when sighted</label>
+                                        [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">Resident State when sighted</label>
                                 </div>
                                 <div>
                                     <label [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">{{
                                         chart.ResidentStateOptionName }}</label>
                                 </div>
                             </div>
-
-                            <div>
+                            <div class="col-md-12 mb-5" *ngIf="chart.OtherCheck">
                                 <div class="labelcontent">
                                     <label class="form-label bold"
                                         [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">Other</label>
                                 </div>
                                 <div>
                                     <label [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">{{
-                                        chart.other }}</label>
+                                        chart.Other }}</label>
                                 </div>
                             </div>
                         </div>
