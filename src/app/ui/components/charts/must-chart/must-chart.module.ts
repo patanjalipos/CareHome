@@ -13,6 +13,7 @@ import { InputTextareaModule } from 'primeng/inputtextarea';
 import { SelectButtonModule } from 'primeng/selectbutton';
 import { StrikeThroughEntryModule } from '../strike-through-entry/strike-through-entry.module';
 import { CalendarModule } from 'primeng/calendar';
+import { MessagesModule } from 'primeng/messages';
 
 
 @NgModule({
@@ -31,7 +32,8 @@ import { CalendarModule } from 'primeng/calendar';
     StrikeThroughEntryModule,
     DialogModule,
     ButtonModule,
-    CalendarModule
+    CalendarModule,
+    MessagesModule
   ],
   exports: [MustChartComponent]
 })

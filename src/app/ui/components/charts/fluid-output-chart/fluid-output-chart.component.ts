@@ -167,9 +167,9 @@ export class FluidOutputChartComponent extends AppComponentBase implements OnIni
   }
 
   ClearAllfeilds() {
-    if (this.preSelectedChartData.selectedChartID) {
+    if (this.preSelectedChartData.chartMasterId) {
       this.fluidOutputChartFormData = <any>{};
-      this.fluidOutputChartFormData.activitiesChartId =
+      this.fluidOutputChartFormData.fluidOutputChartId =
         this.preSelectedChartData.selectedChartID;
     }
   }

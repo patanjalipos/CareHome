@@ -128,9 +128,9 @@ export class BloodGlucoseChartComponent extends AppComponentBase implements OnIn
   }
 
   ClearAllfeilds() {
-    if (this.preSelectedChartData.selectedChartID) {
+    if (this.preSelectedChartData.chartMasterId) {
       this.bloodGlucoseChartFormData = <any>{};
-      this.bloodGlucoseChartFormData.activitiesChartId =
+      this.bloodGlucoseChartFormData.bloodGlucoseChartId =
         this.preSelectedChartData.selectedChartID;
     }
   }

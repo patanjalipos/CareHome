@@ -108,7 +108,7 @@ export class BloodPressureChartComponent
             this.ChartName = this.result["ChartName"];
             this._ConstantServices.ActiveMenuName = this.ChartName;
         });
-
+        this.bloodPressureChartFormData.DateAndTime = new Date()
         this.getChartDataById(this.preSelectedChartData.chartMasterId, this.preSelectedChartData.residentAdmissionInfoId, this.pageNumber, this.pageSize);
     }
 
@@ -150,9 +150,9 @@ export class BloodPressureChartComponent
     }
 
     ClearAllfeilds() {
-        if (this.preSelectedChartData.selectedChartID) {
+        if (this.preSelectedChartData.chartMasterId) {
             this.bloodPressureChartFormData = <any>{};
-            this.bloodPressureChartFormData.activitiesChartId =
+            this.bloodPressureChartFormData.bloodPressureChartId =
                 this.preSelectedChartData.selectedChartID;
         }
     }

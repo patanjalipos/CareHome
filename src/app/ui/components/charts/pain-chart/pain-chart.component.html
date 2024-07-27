@@ -1,41 +1,25 @@
 <div class="card">
     <div class="row p-0">
-        <div
-            class="col-md-12 formheader d-flex justify-content-between align-items-center"
-        >
+        <div class="col-md-12 formheader d-flex justify-content-between align-items-center">
             <h4 class="mb-0">Pain Chart</h4>
             <!-- carousel navigation button  -->
             <div>
-                <button
-                    pButton
-                    type="button"
-                    icon="pi pi-chevron-left"
-                    class="mr-2"
-                    (click)="leftBtn()"
-                    [disabled]="pageNumber == 0"
-                ></button>
-                <button
-                    pButton
-                    type="button"
-                    icon="pi pi-chevron-right"
-                    class=""
-                    (click)="rightBtn()"
-                    [disabled]="rightBtnCheck"
-                ></button>
+                <button pButton type="button" icon="pi pi-chevron-left" class="mr-2" (click)="leftBtn()"
+                    [disabled]="pageNumber == 0"></button>
+                <button pButton type="button" icon="pi pi-chevron-right" class="" (click)="rightBtn()"
+                    [disabled]="rightBtnCheck"></button>
             </div>
         </div>
     </div>
     <div class="row">
-        <div
-            class="formheader d-flex justify-content-between align-items-center m-2"
-        >
+        <div class="formheader d-flex justify-content-between align-items-center m-2">
             <div class="m-0">
                 <p><b>Location : {{BodyPartsName.join(", ")}}</b></p>
-                <p><b>Status: {{painChartRecordData.BodyMapStatus}}</b></p>
+                <p><b>Status: {{lastRecordBodyStatus}}</b></p>
             </div>
             <div>
-                <!-- hyperlink  -->
-                <p style="color: blue">Body map</p>
+                <button pButton type="button" label="Show Body Pain" class="p-button-link p-0"
+                    (click)="ShowBodyMapPopUp(isReadOnly=true,lastRecordData,lastRecordBodyStatus)"></button>
             </div>
         </div>
 
@@ -45,62 +29,30 @@
             </div>
             <div class="col-md-12 mt-4">
                 <label class="form-label bold">
-                    Date/Time<span class="required"></span
-                ></label>
+                    Date/Time<span class="required"></span></label>
 
                 <ng-container>
-                    <p-calendar
-                        name=""
-                        [showIcon]="true"
-                        inputId="icon"
-                        class="iconcal"
-                        [readonlyInput]="true"
-                        appendTo="body"
-                        [maxDate]=""
-                        #dobref=""
-                        [dateFormat]="customDateFormat.CalendarFormat"
-                        [(ngModel)]="painChartFormData.DateAndTime"
-                        [showTime]="true"
-                        hourFormat="24"
-                    ></p-calendar>
+                    <p-calendar name="" [showIcon]="true" inputId="icon" class="iconcal" [readonlyInput]="true"
+                        appendTo="body" [maxDate]="" #dobref="" [dateFormat]="customDateFormat.CalendarFormat"
+                        [(ngModel)]="painChartFormData.DateAndTime" [showTime]="true" hourFormat="24"></p-calendar>
                 </ng-container>
             </div>
             <div class="col-md-12">
-                <label class="form-label bold"
-                    >Care Given<span class="required"></span
-                ></label>
+                <label class="form-label bold">Care Given<span class="required"></span></label>
                 <ng-container>
-                    <p-dropdown
-                        [required]="true"
-                        name="ActivitiesChartFormData.CareGiven"
-                        placeholder="----select----"
-                        [style]="{ width: '100%' }"
-                        [options]="stLstYesNoOptions"
-                        optionValue="optionId"
-                        optionLabel="optionValue"
-                        [(ngModel)]="painChartFormData.CareGiven"
-                        (onChange)="openAndClose()"
-                    >
+                    <p-dropdown [required]="true" name="painChartFormData.CareGiven" placeholder="----select----"
+                        [style]="{ width: '100%' }" [options]="stLstYesNoOptions" optionValue="optionId"
+                        optionLabel="optionValue" [(ngModel)]="painChartFormData.CareGiven" (onChange)="openAndClose()">
                     </p-dropdown>
                 </ng-container>
             </div>
-            <div *ngIf="inputFields == false">
-                <label class="form-label bold"
-                    >Reason<span class="required"></span
-                ></label>
+            <div *ngIf="inputFields">
+                <label class="form-label bold">Reason<span class="required"></span></label>
 
                 <ng-container>
-                    <p-dropdown
-                        [required]="true"
-                        name="ActivitiesChartFormData.Reason"
-                        placeholder="----select----"
-                        [style]="{ width: '100%' }"
-                        [options]="stLstReason"
-                        optionValue="optionId"
-                        optionLabel="optionValue"
-                        [(ngModel)]="painChartFormData.Reason"
-                        (onChange)="openAndClose()"
-                    >
+                    <p-dropdown [required]="true" name="painChartFormData.Reason" placeholder="----select----"
+                        [style]="{ width: '100%' }" [options]="stLstReason" optionValue="optionId"
+                        optionLabel="optionValue" [(ngModel)]="painChartFormData.Reason" (onChange)="openAndClose()">
                     </p-dropdown>
                 </ng-container>
             </div>
@@ -109,129 +61,145 @@
                     Enquiry About the presence of Pain
                 </h5>
                 <div class="col-md-12">
-                    <label class="form-label bold"
-                        >Can the Resident Communicate Pain Successfully
-                        <span class="required"></span
-                    ></label>
+                    <label class="form-label bold">Can the Resident Communicate Pain Successfully
+                        <span class="required"></span></label>
 
-                    <ng-container
-                        *ngIf="this.isEditable; else communicationData"
-                    >
-                        <p-selectButton
-                            [options]="communicationOptions"
-                            [(ngModel)]="painChartFormData.CommunicatePain"
-                            optionLabel="label"
-                            optionValue="value"
-                        ></p-selectButton>
+                    <ng-container *ngIf="this.isEditable; else communicationData">
+                        <p-selectButton [options]="communicationOptions" [(ngModel)]="painChartFormData.CommunicatePain"
+                            optionLabel="label" optionValue="value"></p-selectButton>
                     </ng-container>
                     <ng-template #communicationData>
                         <label>{{ painChartFormData.CommunicatePain }}</label>
                     </ng-template>
                 </div>
+                <div class="col-md-12" style="height: 400px" *ngIf="painChartFormData.CommunicatePain == 'Yes'">
+                    <label class="form-label bold">Pain Rating - Numeric Scale
+                        <span class="required"></span></label>
 
-                <h5 class="formheader bold">Abbey Pain Scale</h5>
+                    <ng-container *ngIf="this.isEditable; else PainRatingData">
+                        <div style="padding-left: 8rem; padding-right: 5rem; height: 90%">
+                            <ngx-slider [(value)]="value" [(ngModel)]="painChartFormData.PainRating"
+                                [options]="options"></ngx-slider>
+                        </div>
+                    </ng-container>
+                    <ng-template #PainRatingData>
+                        <label>{{ painChartFormData.PainRating }}</label>
+                    </ng-template>
+                </div>
+                <div *ngIf="painChartFormData.CommunicatePain != 'Yes'">
+                    <h5 class="formheader bold">Abbey Pain Scale</h5>
 
-                <div class="col-md-12">
-                    <div><span class="bold">0 = </span><span>Absent</span></div>
-                    <div><span class="bold">1 = </span><span>Mild</span></div>
-                    <div>
-                        <span class="bold">2 = </span><span>Moderate</span>
+                    <div class="col-md-12">
+                        <div><span class="bold">0 = </span><span>Absent</span></div>
+                        <div><span class="bold">1 = </span><span>Mild</span></div>
+                        <div>
+                            <span class="bold">2 = </span><span>Moderate</span>
+                        </div>
+                        <div><span class="bold">3 = </span><span>Severe</span></div>
                     </div>
-                    <div><span class="bold">3 = </span><span>Severe</span></div>
-                </div>
-                <div class="col-md-12">
-                    <label class="form-label bold"
-                        >Vocalisation <span class="required"></span
-                    ></label>
-                    <ng-container
-                        *ngIf="this.isEditable; else VocalisationData"
-                    >
-                        <p-selectButton
-                            [options]="rangeOption"
-                            [(ngModel)]="painChartFormData.Vocalisation"
-                            optionLabel="label"
-                            optionValue="value"
-                        ></p-selectButton>
-                    </ng-container>
-                    <ng-template #VocalisationData>
-                        <label>{{ painChartFormData.Vocalisation }}</label>
-                    </ng-template>
-                </div>
+                    <div class="col-md-12">
+                        <label class="form-label bold">Vocalisation <span class="required"></span></label>
+                        <ng-container *ngIf="this.isEditable; else VocalisationData">
+                            <p-selectButton [options]="rangeOption" [(ngModel)]="painChartFormData.Vocalisation"
+                                optionLabel="label" optionValue="value" (onChange)="PainScoreCalc(1)"></p-selectButton>
+                        </ng-container>
+                        <ng-template #VocalisationData>
+                            <label>{{ painChartFormData.Vocalisation }}</label>
+                        </ng-template>
+                    </div>
 
-                <div class="col-md-12">
-                    <label class="form-label bold"
-                        >Facial expresion <span class="required"></span
-                    ></label>
-                    <ng-container
-                        *ngIf="this.isEditable; else FacialExpresionData"
-                    >
-                        <p-selectButton
-                            [options]="rangeOption"
-                            [(ngModel)]="painChartFormData.FacialExpresion"
-                            optionLabel="label"
-                            optionValue="value"
-                        ></p-selectButton>
-                    </ng-container>
-                    <ng-template #FacialExpresionData>
-                        <label>{{ painChartFormData.FacialExpresion }}</label>
-                    </ng-template>
-                </div>
+                    <div class="col-md-12">
+                        <label class="form-label bold">Facial expresion <span class="required"></span></label>
+                        <ng-container *ngIf="this.isEditable; else FacialExpresionData">
+                            <p-selectButton [options]="rangeOption" [(ngModel)]="painChartFormData.FacialExpresion"
+                                optionLabel="label" optionValue="value" (onChange)="PainScoreCalc(2)"></p-selectButton>
+                        </ng-container>
+                        <ng-template #FacialExpresionData>
+                            <label>{{ painChartFormData.FacialExpresion }}</label>
+                        </ng-template>
+                    </div>
 
-                <div class="col-md-12">
-                    <label class="form-label bold"
-                        >Change in Body Language <span class="required"></span
-                    ></label>
-                    <ng-container
-                        *ngIf="this.isEditable; else BodyLanguageData"
-                    >
-                        <p-selectButton
-                            [options]="rangeOption"
-                            [(ngModel)]="painChartFormData.BodyLanguage"
-                            optionLabel="label"
-                            optionValue="value"
-                        ></p-selectButton>
-                    </ng-container>
-                    <ng-template #BodyLanguageData>
-                        <label>{{ painChartFormData.BodyLanguage }}</label>
-                    </ng-template>
-                </div>
+                    <div class="col-md-12">
+                        <label class="form-label bold">Change in Body Language <span class="required"></span></label>
+                        <ng-container *ngIf="this.isEditable; else BodyLanguageData">
+                            <p-selectButton [options]="rangeOption" [(ngModel)]="painChartFormData.BodyLanguage"
+                                optionLabel="label" optionValue="value" (onChange)="PainScoreCalc(3)"></p-selectButton>
+                        </ng-container>
+                        <ng-template #BodyLanguageData>
+                            <label>{{ painChartFormData.BodyLanguage }}</label>
+                        </ng-template>
+                    </div>
 
-                <div class="col-md-12">
-                    <label class="form-label bold"
-                        >Behavioural Changes <span class="required"></span
-                    ></label>
-                    <ng-container
-                        *ngIf="this.isEditable; else BehaviouralChangesData"
-                    >
-                        <p-selectButton
-                            [options]="rangeOption"
-                            [(ngModel)]="painChartFormData.BehaviouralChanges"
-                            optionLabel="label"
-                            optionValue="value"
-                        ></p-selectButton>
-                    </ng-container>
-                    <ng-template #BehaviouralChangesData>
-                        <label>{{
-                            painChartFormData.BehaviouralChanges
-                        }}</label>
-                    </ng-template>
+                    <div class="col-md-12">
+                        <label class="form-label bold">Behavioural Changes <span class="required"></span></label>
+                        <ng-container *ngIf="this.isEditable; else BehaviouralChangesData">
+                            <p-selectButton [options]="rangeOption" [(ngModel)]="painChartFormData.BehaviouralChanges"
+                                optionLabel="label" optionValue="value" (onChange)="PainScoreCalc(4)"></p-selectButton>
+                        </ng-container>
+                        <ng-template #BehaviouralChangesData>
+                            <label>{{
+                                painChartFormData.BehaviouralChanges
+                                }}</label>
+                        </ng-template>
+                    </div>
+                    <div class="col-md-12">
+                        <label class="form-label bold">Physiological Change <span class="required"></span></label>
+                        <ng-container *ngIf="this.isEditable; else PhysiologicalChangeData">
+                            <p-selectButton [options]="rangeOption" [(ngModel)]="painChartFormData.PhysiologicalChange"
+                                optionLabel="label" optionValue="value" (onChange)="PainScoreCalc(5)"></p-selectButton>
+                        </ng-container>
+                        <ng-template #PhysiologicalChangeData>
+                            <label>{{
+                                painChartFormData.PhysiologicalChange
+                                }}</label>
+                        </ng-template>
+                    </div>
+                    <div class="col-md-12">
+                        <label class="form-label bold">Physical Change <span class="required"></span></label>
+                        <ng-container *ngIf="this.isEditable; else PhysicalChangeData">
+                            <p-selectButton [options]="rangeOption" [(ngModel)]="painChartFormData.PhysicalChange"
+                                optionLabel="label" optionValue="value" (onChange)="PainScoreCalc(6)"></p-selectButton>
+                        </ng-container>
+                        <ng-template #PhysicalChangeData>
+                            <label>{{
+                                painChartFormData.PhysicalChange
+                                }}</label>
+                        </ng-template>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="labelcontent">
+                            <label class="form-label bold">Total Pain Score<span class="required"></span></label>
+                        </div>
+                        <ng-container>
+                            <label>{{
+                                PainScore
+                                }}</label>
+                        </ng-container>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="labelcontent">
+                            <label class="form-label bold">Pain Category<span class="required"></span></label>
+                        </div>
+                        <ng-container>
+                            <label [ngClass]="{
+                            'text-success':PainScore >= 0 && PainScore <= 2,
+                            'text-info': PainScore >= 3 && PainScore <= 7,
+                            'text-warning': PainScore >= 8 && PainScore <= 13,
+                            'text-danger': PainScore >=14
+                        }">{{
+                                PainCategory
+                                }}</label>
+                            <p-messages [(value)]="messages" [enableService]="false"></p-messages>
+                        </ng-container>
+                    </div>
                 </div>
-                <h5 class="formheader bold">Discription Of Pain</h5>
+                <h5 class="formheader bold">Description Of Pain</h5>
                 <div class="col-md-12">
-                    <label class="form-label bold"
-                        >Type of pain<span class="required"></span
-                    ></label>
+                    <label class="form-label bold">Type of pain<span class="required"></span></label>
                     <ng-container *ngIf="this.isEditable; else TypeOfPainData">
-                        <p-dropdown
-                            [required]="true"
-                            name="ActivitiesChartFormData.Attendance"
-                            placeholder="--select--"
-                            [style]="{ width: '100%' }"
-                            [options]="lstTypeOfPain"
-                            optionValue="optionId"
-                            optionLabel="optionName"
-                            [(ngModel)]="painChartFormData.TypeOfPain"
-                        >
+                        <p-dropdown [required]="true" name="painChartFormData.TypeOfPain" placeholder="--select--"
+                            [style]="{ width: '100%' }" [options]="lstTypeOfPain" optionValue="optionId"
+                            optionLabel="optionName" [(ngModel)]="painChartFormData.TypeOfPain">
                         </p-dropdown>
                     </ng-container>
                     <ng-template #TypeOfPainData>
@@ -240,69 +208,66 @@
                 </div>
 
                 <div class="col-md-12">
-                    <label class="form-label bold"
-                        >Emotional Response To Pain<span class="required"></span
-                    ></label>
-                    <ng-container
-                        *ngIf="this.isEditable; else ResponseToPainData"
-                    >
-                        <p-dropdown
-                            [required]="true"
-                            name="ActivitiesChartFormData.Attendance"
-                            placeholder="--select--"
-                            [style]="{ width: '100%' }"
-                            [options]="lstResponseToPain"
-                            optionValue="optionId"
-                            optionLabel="optionName"
-                            [(ngModel)]="painChartFormData.ResponseToPain"
-                        >
-                        </p-dropdown>
+                    <label class="form-label bold">Emotional Response To Pain<span class="required"></span></label>
+                    <ng-container *ngIf="this.isEditable; else ResponseToPainData">
+                        <p-multiSelect display="chip" [required]="true" name="painChartFormData.ResponseToPain"
+                            placeholder="--select--" [style]="{ width: '100%' }" [options]="lstResponseToPain"
+                            optionValue="optionId" optionLabel="optionName"
+                            [(ngModel)]="painChartFormData.ResponseToPain" (onChange)="OtherValueCheck(1)">
+                        </p-multiSelect>
                     </ng-container>
                     <ng-template #ResponseToPainData>
                         <label>{{
                             painChartFormData.ResponseToPainOption
-                        }}</label>
+                            }}</label>
                     </ng-template>
                 </div>
-
-                <div class="col-md-12">
-                    <label class="form-label bold"
-                        >Impact<span class="required"></span
-                    ></label>
-                    <ng-container *ngIf="this.isEditable; else ImpectData">
-                        <p-dropdown
-                            [required]="true"
-                            name="ActivitiesChartFormData.PurposeOfActivity"
-                            placeholder="--select--"
-                            [style]="{ width: '100%' }"
-                            [(ngModel)]="painChartFormData.Impect"
-                            [options]="lstImpact"
-                            optionLabel="optionName"
-                            optionValue="optionId"
-                        >
-                        </p-dropdown>
+                <div class="col-md-12" *ngIf="ResponseOtherCheck">
+                    <label class="form-label bold">Other<span class="required">*</span></label>
+                    <ng-container *ngIf="this.isEditable; else OtherData">
+                        <input type="text" pInputText  name="painChartFormData.ResponseOther"
+                            [(ngModel)]="painChartFormData.ResponseOther" [required]="true"
+                            [style]="{ width: '100%' }" />
                     </ng-container>
-                    <ng-template #ImpectData>
-                        <label>{{ painChartFormData.ImpectOption }}</label>
+                    <ng-template #OtherData>
+                        <label>{{
+                            painChartFormData.ResponseOther
+                            }}</label>
                     </ng-template>
                 </div>
 
                 <div class="col-md-12">
-                    <label class="form-label bold"
-                        ><span class="required"></span>Duration of Pain</label
-                    >
-                    <ng-container
-                        *ngIf="this.isEditable; else DurationOfPainData"
-                    >
-                        <input
-                            pInputText
-                            type="time"
-                            [(ngModel)]="painChartFormData.DurationOfPain"
-                            required
-                            name="painChartFormData.DurationOfPain"
-                            class="form-control mr-4"
-                            [style]="{ width: '35%' }"
-                        />
+                    <label class="form-label bold">Impact<span class="required"></span></label>
+                    <ng-container *ngIf="this.isEditable; else ImpactData">
+                        <p-multiSelect display="chip" [required]="true" name="painChartFormData.Impact"
+                            placeholder="--select--" [style]="{ width: '100%' }" [(ngModel)]="painChartFormData.Impact"
+                            [options]="lstImpact" optionLabel="optionName" optionValue="optionId"
+                            (onChange)="OtherValueCheck(2)">
+                        </p-multiSelect>
+                    </ng-container>
+                    <ng-template #ImpactData>
+                        <label>{{ painChartFormData.ImpactOption }}</label>
+                    </ng-template>
+                </div>
+                <div class="col-md-12" *ngIf="ImpactOtherCheck">
+                    <label class="form-label bold">Other<span class="required">*</span></label>
+                    <ng-container *ngIf="this.isEditable; else OtherData">
+                        <input type="text" pInputText name="painChartFormData.ImpactOther"
+                            [(ngModel)]="painChartFormData.ImpactOther" [required]="true" [style]="{ width: '100%' }" />
+                    </ng-container>
+                    <ng-template #OtherData>
+                        <label>{{
+                            painChartFormData.ImpactOther
+                            }}</label>
+                    </ng-template>
+                </div>
+
+                <div class="col-md-12">
+                    <label class="form-label bold"><span class="required"></span>Duration of Pain</label>
+                    <ng-container *ngIf="this.isEditable; else DurationOfPainData">
+                        <input pInputText type="time" [(ngModel)]="painChartFormData.DurationOfPain" required
+                            name="painChartFormData.DurationOfPain" class="form-control mr-4"
+                            [style]="{ width: '35%' }" />
                         <p class="mb-4">Use 24 hour clock</p>
                     </ng-container>
                     <ng-template #DurationOfPainData>
@@ -311,16 +276,10 @@
                 </div>
 
                 <div class="col-md-12">
-                    <label class="form-label bold"
-                        ><span class="required"></span>Interval</label
-                    >
+                    <label class="form-label bold"><span class="required"></span>Interval</label>
                     <ng-container *ngIf="this.isEditable; else IntervalData">
-                        <p-selectButton
-                            [options]="intervalOption"
-                            [(ngModel)]="painChartFormData.Interval"
-                            optionLabel="label"
-                            optionValue="value"
-                        ></p-selectButton>
+                        <p-selectButton [options]="intervalOption" [(ngModel)]="painChartFormData.Interval"
+                            optionLabel="label" optionValue="value"></p-selectButton>
                     </ng-container>
                     <ng-template #IntervalData>
                         <label>{{ painChartFormData.Interval }}</label>
@@ -328,21 +287,11 @@
                 </div>
 
                 <div class="col-md-12">
-                    <label class="form-label bold"
-                        ><span class="required"></span>Factors Affecting
-                        Pain</label
-                    >
-                    <ng-container
-                        *ngIf="this.isEditable; else AffectingPainData"
-                    >
-                        <input
-                            type="text"
-                            pInputText
-                            name="ActivitiesChartFormData.AffectingPain"
-                            [required]="true"
-                            [style]="{ width: '100%' }"
-                            [(ngModel)]="painChartFormData.AffectingPain"
-                        />
+                    <label class="form-label bold"><span class="required"></span>Factors Affecting
+                        Pain</label>
+                    <ng-container *ngIf="this.isEditable; else AffectingPainData">
+                        <input type="text" pInputText name="painChartFormData.AffectingPain" [required]="true"
+                            [style]="{ width: '100%' }" [(ngModel)]="painChartFormData.AffectingPain" />
                     </ng-container>
                     <ng-template #AffectingPainData>
                         <label>{{ painChartFormData.AffectingPain }}</label>
@@ -351,71 +300,67 @@
                 <h5 class="formheader bold mt-3">Interventions</h5>
 
                 <div class="col-md-12">
-                    <label class="form-label bold"
-                        >Interventions<span class="required"></span
-                    ></label>
-                    <ng-container
-                        *ngIf="this.isEditable; else InterventionsData"
-                    >
-                        <p-dropdown
-                            [required]="true"
-                            name="ActivitiesChartFormData.Interventions"
-                            placeholder="--select--"
-                            [style]="{ width: '100%' }"
-                            [(ngModel)]="painChartFormData.Interventions"
-                            [options]="lstInterventions"
-                            optionLabel="optionName"
-                            optionValue="optionId"
-                        >
-                        </p-dropdown>
+                    <label class="form-label bold">Interventions<span class="required"></span></label>
+                    <ng-container *ngIf="this.isEditable; else InterventionsData">
+                        <p-multiSelect display="chip" [required]="true" name="painChartFormData.Interventions"
+                            placeholder="--select--" [style]="{ width: '100%' }"
+                            [(ngModel)]="painChartFormData.Interventions" [options]="lstInterventions"
+                            optionLabel="optionName" optionValue="optionId" (onChange)="OtherValueCheck(3)">
+                        </p-multiSelect>
                     </ng-container>
                     <ng-template #InterventionsData>
                         <label>{{
                             painChartFormData.InterventionsOption
-                        }}</label>
+                            }}</label>
+                    </ng-template>
+                </div>
+                <div class="col-md-12" *ngIf="InterventionsOtherCheck">
+                    <label class="form-label bold">Other<span class="required">*</span></label>
+                    <ng-container *ngIf="this.isEditable; else OtherData">
+                        <input type="text" pInputText name="painChartFormData.InterventionsOther"
+                            [(ngModel)]="painChartFormData.InterventionsOther" [required]="true"
+                            [style]="{ width: '100%' }" />
+                    </ng-container>
+                    <ng-template #OtherData>
+                        <label>{{
+                            painChartFormData.InterventionsOther
+                            }}</label>
                     </ng-template>
                 </div>
 
                 <div class="col-md-12">
-                    <label class="form-label bold"
-                        >Referrals<span class="required"></span
-                    ></label>
+                    <label class="form-label bold">Referrals<span class="required"></span></label>
 
                     <ng-container *ngIf="this.isEditable; else ReferralsData">
-                        <p-dropdown
-                            [required]="true"
-                            name="ActivitiesChartFormData.Referrals"
-                            placeholder="--select--"
-                            [style]="{ width: '100%' }"
-                            [(ngModel)]="painChartFormData.Referrals"
-                            [options]="lstReferrals"
-                            optionLabel="optionName"
-                            optionValue="optionId"
-                        >
-                        </p-dropdown>
+                        <p-multiSelect display="chip" [required]="true" name="painChartFormData.Referrals"
+                            placeholder="--select--" [style]="{ width: '100%' }"
+                            [(ngModel)]="painChartFormData.Referrals" [options]="lstReferrals" optionLabel="optionName"
+                            optionValue="optionId" (onChange)="OtherValueCheck(4)">
+                        </p-multiSelect>
                     </ng-container>
                     <ng-template #ReferralsData>
                         <label>{{ painChartFormData.ReferralsOption }}</label>
                     </ng-template>
                 </div>
+                <div class="col-md-12" *ngIf="ReferralsOtherCheck">
+                    <label class="form-label bold">Other<span class="required">*</span></label>
+                    <ng-container *ngIf="this.isEditable; else OtherData">
+                        <input type="text" pInputText name="painChartFormData.ReferralsOther"
+                            [(ngModel)]="painChartFormData.ReferralsOther" [required]="true"
+                            [style]="{ width: '100%' }" />
+                    </ng-container>
+                    <ng-template #OtherData>
+                        <label>{{
+                            painChartFormData.ReferralsOther
+                            }}</label>
+                    </ng-template>
+                </div>
 
                 <div class="col-md-12 mt-4">
-                    <label class="form-label bold"
-                        >Next Review Date<span class="required"></span
-                    ></label>
-                    <ng-container
-                        *ngIf="this.isEditable; else NextReviewDateData"
-                    >
-                        <p-calendar
-                            name=""
-                            [showIcon]="true"
-                            inputId="icon"
-                            class="iconcal"
-                            appendTo="body"
-                            [maxDate]=""
-                            #dobref=""
-                            [(ngModel)]="painChartFormData.NextReviewDate"
-                        ></p-calendar>
+                    <label class="form-label bold">Next Review Date<span class="required"></span></label>
+                    <ng-container *ngIf="this.isEditable; else NextReviewDateData">
+                        <p-calendar name="" [showIcon]="true" inputId="icon" class="iconcal" appendTo="body"
+                            [maxDate]="" #dobref="" [(ngModel)]="painChartFormData.NextReviewDate"></p-calendar>
                     </ng-container>
                     <ng-template #NextReviewDateData>
                         <label>{{ painChartFormData.NextReviewDate }}</label>
@@ -424,17 +369,9 @@
             </div>
             <h5 class="formheader mt-3">Additional information</h5>
             <div class="col-md-12 mb-5">
-                <ng-container
-                    *ngIf="this.isEditable; else AdditionalInformationData"
-                >
-                    <input
-                        type="text"
-                        pInputText
-                        name="ActivitiesChartFormData.AdditionalInformation"
-                        [required]="true"
-                        [style]="{ width: '100%' }"
-                        [(ngModel)]="painChartFormData.AdditionalInformation"
-                    />
+                <ng-container *ngIf="this.isEditable; else AdditionalInformationData">
+                    <input type="text" pInputText name="painChartFormData.AdditionalInformation" [required]="true"
+                        [style]="{ width: '100%' }" [(ngModel)]="painChartFormData.AdditionalInformation" />
                 </ng-container>
                 <ng-template #AdditionalInformationData>
                     <label>{{ painChartFormData.AdditionalInformation }}</label>
@@ -442,604 +379,496 @@
             </div>
             <div class="col-md-12">
                 <div class="formheader">
-                    <label class="form-label bold"
-                        ><span class="required"></span>Body Pain Locations</label
-                    >
+                    <label class="form-label bold"><span class="required"></span>Body Pain Locations</label>
                 </div>
                 <div class="">
-                    <button
-                        pButton
-                        type="button"
-                        label="Add Body Pain"
-                        class="p-button-link p-0"
-                        (click)="ShowBodyMapPopUp(false)"
-                    ></button>
+                    <button pButton type="button" label="Add Body Pain" class="p-button-link p-0"
+                        (click)="ShowBodyMapPopUp(false)"></button>
                 </div>
             </div>
 
             <div class="d-flex justify-content-center mt-4">
                 <div class="mr-4">
                     <span class="p-ml-left">
-                        <button
-                            pButton
-                            title="Clear all"
-                            label="Clear all"
-                            (click)="ClearAllfeilds()"
-                        ></button>
+                        <button pButton title="Clear all" label="Clear all" (click)="ClearAllfeilds()"></button>
                     </span>
                 </div>
                 <div>
                     <span class="p-ml-left">
-                        <button
-                            pButton
-                            title="save"
-                            label="Save"
-                            (click)="Save()"
-                        ></button>
+                        <button pButton title="save" label="Save" (click)="Save()"></button>
                     </span>
                 </div>
             </div>
         </div>
         <div class="col-md-9 mt-3">
-            <p-carousel
-                [value]="PainChartLst"
-                [numVisible]="pageSize"
-                [numScroll]="pageSize"
-                [circular]="false"
-                [showIndicators]="false"
-                [showNavigators]="false"
-                [responsiveOptions]="responsiveOptions"
-            >
+            <p-carousel [value]="PainChartLst" [numVisible]="pageSize" [numScroll]="pageSize" [circular]="false"
+                [showIndicators]="false" [showNavigators]="false" [responsiveOptions]="responsiveOptions">
                 <ng-template let-chart pTemplate="item">
                     <div class="col-md-11 chart-box p-2">
                         <div class="formheader p-2 mb-3">
-                            <div
-                                class="col-md-12 mb-2 d-flex justify-content-between fs-4"
-                            >
+                            <div class="col-md-12 mb-2 d-flex justify-content-between fs-4">
                                 <div class="chart-date">
-                                    <label
-                                        class="bold"
-                                        [ngClass]="{
+                                    <label class="bold" [ngClass]="{
                                             'text-decoration-line-through':
                                                 chart.isStrikeThrough
-                                        }"
-                                        >{{
-                                            chart.DateAndTime
-                                                | date : "dd-MM-yyyy"
-                                        }}</label
-                                    >
+                                        }">{{
+                                        chart.DateAndTime
+                                        | date : "dd-MM-yyyy"
+                                        }}</label>
                                 </div>
                                 <div class="chart-date">
-                                    <label
-                                        [ngClass]="{
+                                    <label [ngClass]="{
                                             'text-decoration-line-through':
                                                 chart.isStrikeThrough
-                                        }"
-                                        >{{
-                                            chart.DateAndTime | date : "hh:mm"
-                                        }}</label
-                                    >
+                                        }">{{
+                                        chart.DateAndTime | date : "hh:mm"
+                                        }}</label>
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-12 mb-2">
-                            <label
-                                class="form-label bold"
-                                [ngClass]="{
+                            <label class="form-label bold" [ngClass]="{
                                     'text-decoration-line-through':
                                         chart.isStrikeThrough
-                                }"
-                                >Enterted By<span class="required"></span
-                            ></label>
+                                }">Enterted By<span class="required"></span></label>
 
                             <div>
-                                <label
-                                    [ngClass]="{
+                                <label [ngClass]="{
                                         'text-decoration-line-through':
                                             chart.isStrikeThrough
-                                    }"
-                                    >{{ chart.StartedBy }}</label
-                                >
+                                    }">{{ chart.StartedBy }}</label>
                             </div>
                         </div>
                         <div>
                             <div class="mb-2">
-                                <button
-                                    *ngIf="!chart.isStrikeThrough"
-                                    pButton
-                                    type="button"
-                                    label="Strike Through Entry"
-                                    class="p-button-link p-0"
-                                    (click)="
+                                <button *ngIf="!chart.isStrikeThrough" pButton type="button"
+                                    label="Strike Through Entry" class="p-button-link p-0" (click)="
                                         showPopup(chart.painChartId, chart)
-                                    "
-                                ></button>
+                                    "></button>
                             </div>
                         </div>
                         <div class="mb-2">
-                            <button
-                                pButton
-                                type="button"
-                                label="Evaluate intervention"
-                                class="p-button py-2 px-2"
+                            <button pButton type="button" label="Evaluate intervention" class="p-button py-2 px-2"
                                 (click)="
                                     showEvaluateInterventionPopup(
                                         chart.painChartId
                                     )
-                                "
-                                [disabled]="
+                                " [disabled]="
                                     chart.isEvaluate || chart.isStrikeThrough
-                                "
-                            ></button>
+                                "></button>
                         </div>
                         <div class="col-md-12 mb-4" *ngIf="chart.isEvaluate">
-                            <label
-                                class="form-label bold"
-                                [ngClass]="{
+                            <label class="form-label bold" [ngClass]="{
                                     'text-decoration-line-through':
                                         chart.isStrikeThrough
-                                }"
-                            >
+                                }">
                                 <span class="required"></span>Select the
-                                effectiveness of the intervention taken</label
-                            >
+                                effectiveness of the intervention taken</label>
 
                             <div>
-                                <label
-                                    [ngClass]="{
+                                <label [ngClass]="{
                                         'text-decoration-line-through':
                                             chart.isStrikeThrough
-                                    }"
-                                    >{{ chart.selectedevaluate }}</label
-                                >
+                                    }">{{ chart.selectedevaluate }}</label>
                             </div>
                         </div>
                         <div class="col-md-12 mb-4" *ngIf="chart.isEvaluate">
-                            <label
-                                class="form-label bold"
-                                [ngClass]="{
+                            <label class="form-label bold" [ngClass]="{
                                     'text-decoration-line-through':
                                         chart.isStrikeThrough
-                                }"
-                                >Notes<span class="required"></span
-                            ></label>
+                                }">Notes<span class="required"></span></label>
 
                             <div>
-                                <label
-                                    [ngClass]="{
+                                <label [ngClass]="{
                                         'text-decoration-line-through':
                                             chart.isStrikeThrough
-                                    }"
-                                    >{{ chart.evaluateNote }}</label
-                                >
+                                    }">{{ chart.evaluateNote }}</label>
                             </div>
                         </div>
                         <div class="col-md-12 mb-4">
-                            <label
-                                class="form-label bold"
-                                [ngClass]="{
+                            <label class="form-label bold" [ngClass]="{
                                     'text-decoration-line-through':
                                         chart.isStrikeThrough
-                                }"
-                                >Care Given <span class="required"></span
-                            ></label>
+                                }">Care Given <span class="required"></span></label>
 
                             <div>
-                                <label
-                                    [ngClass]="{
+                                <label [ngClass]="{
                                         'text-decoration-line-through':
                                             chart.isStrikeThrough
-                                    }"
-                                    >{{ chart.CareGiven }}</label
-                                >
+                                    }">{{ chart.CareGiven }}</label>
                             </div>
                         </div>
 
                         <div *ngIf="chart.CareGiven == 'No'">
                             <div class="col-md-12">
                                 <div class="col-md-12">
-                                    <label
-                                        class="form-label bold"
-                                        [ngClass]="{
+                                    <label class="form-label bold" [ngClass]="{
                                             'text-decoration-line-through':
                                                 chart.isStrikeThrough
-                                        }"
-                                        >Reason <span class="required"></span
-                                    ></label>
+                                        }">Reason <span class="required"></span></label>
                                 </div>
                                 <div>
-                                    <label
-                                        [ngClass]="{
+                                    <label [ngClass]="{
                                             'text-decoration-line-through':
                                                 chart.isStrikeThrough
-                                        }"
-                                        >{{ chart.Reason }}</label
-                                    >
+                                        }">{{ chart.Reason }}</label>
                                 </div>
                             </div>
                         </div>
                         <div *ngIf="chart.CareGiven == 'Yes'" class="row">
                             <div class="formheader bold">
-                                <h5
-                                    [ngClass]="{
+                                <h5 [ngClass]="{
                                         'text-decoration-line-through':
                                             chart.isStrikeThrough
-                                    }"
-                                >
+                                    }">
                                     Enquiry About the presence of Pain
                                 </h5>
                             </div>
                             <div class="col-md-12">
                                 <div class="col-md-12">
-                                    <label
-                                        class="form-label bold"
-                                        [ngClass]="{
+                                    <label class="form-label bold" [ngClass]="{
                                             'text-decoration-line-through':
                                                 chart.isStrikeThrough
-                                        }"
-                                        >Can the Resident Communicate Pain
+                                        }">Can the Resident Communicate Pain
                                         Successfully
-                                        <span class="required"></span
-                                    ></label>
+                                        <span class="required"></span></label>
                                 </div>
                                 <div>
-                                    <label
-                                        [ngClass]="{
+                                    <label [ngClass]="{
                                             'text-decoration-line-through':
                                                 chart.isStrikeThrough
-                                        }"
-                                        >{{ chart.CommunicatePain }}</label
-                                    >
+                                        }">{{ chart.CommunicatePain }}</label>
                                 </div>
                             </div>
-                            <div class="formheader bold">
-                                <h5
-                                    [ngClass]="{
+                            <div class="col-md-12" *ngIf="chart.CommunicatePain == 'Yes'">
+                                <div class="col-md-12">
+                                    <label class="form-label bold" [ngClass]="{
+                                            'text-decoration-line-through':
+                                                chart.isStrikeThrough
+                                        }">Pain Rating - Numeric Scale
+                                        <span class="required"></span></label>
+                                </div>
+                                <div>
+                                    <label [ngClass]="{
+                                            'text-decoration-line-through':
+                                                chart.isStrikeThrough
+                                        }">{{ chart.PainRating }}</label>
+                                </div>
+                            </div>
+                            <div *ngIf="chart.CommunicatePain != 'Yes'">
+                                <div class="formheader bold">
+                                    <h5 [ngClass]="{
                                         'text-decoration-line-through':
                                             chart.isStrikeThrough
-                                    }"
-                                >
-                                    Abbey Pain Scale
-                                </h5>
-                            </div>
+                                    }">
+                                        Abbey Pain Scale
+                                    </h5>
+                                </div>
 
-                            <div class="col-md-12">
                                 <div class="col-md-12">
-                                    <label
-                                        class="form-label bold"
-                                        [ngClass]="{
+                                    <div class="col-md-12">
+                                        <label class="form-label bold" [ngClass]="{
                                             'text-decoration-line-through':
                                                 chart.isStrikeThrough
-                                        }"
-                                        >Vocalisation
-                                        <span class="required"></span
-                                    ></label>
-                                </div>
-                                <div>
-                                    <label
-                                        [ngClass]="{
+                                        }">Vocalisation
+                                            <span class="required"></span></label>
+                                    </div>
+                                    <div>
+                                        <label [ngClass]="{
                                             'text-decoration-line-through':
                                                 chart.isStrikeThrough
-                                        }"
-                                        >{{ chart.Vocalisation }}</label
-                                    >
+                                        }">{{ chart.Vocalisation }}</label>
+                                    </div>
                                 </div>
-                            </div>
 
-                            <div class="col-md-12">
                                 <div class="col-md-12">
-                                    <label
-                                        class="form-label bold"
-                                        [ngClass]="{
+                                    <div class="col-md-12">
+                                        <label class="form-label bold" [ngClass]="{
                                             'text-decoration-line-through':
                                                 chart.isStrikeThrough
-                                        }"
-                                        >Facial expresion
-                                        <span class="required"></span
-                                    ></label>
-                                </div>
+                                        }">Facial expresion
+                                            <span class="required"></span></label>
+                                    </div>
 
-                                <div>
-                                    <label
-                                        [ngClass]="{
+                                    <div>
+                                        <label [ngClass]="{
                                             'text-decoration-line-through':
                                                 chart.isStrikeThrough
-                                        }"
-                                        >{{ chart.FacialExpresion }}</label
-                                    >
+                                        }">{{ chart.FacialExpresion }}</label>
+                                    </div>
                                 </div>
-                            </div>
 
-                            <div class="col-md-12">
                                 <div class="col-md-12">
-                                    <label
-                                        class="form-label bold"
-                                        [ngClass]="{
+                                    <div class="col-md-12">
+                                        <label class="form-label bold" [ngClass]="{
                                             'text-decoration-line-through':
                                                 chart.isStrikeThrough
-                                        }"
-                                        >Change in Body Language
-                                        <span class="required"></span
-                                    ></label>
-                                </div>
+                                        }">Change in Body Language
+                                            <span class="required"></span></label>
+                                    </div>
 
-                                <div>
-                                    <label
-                                        [ngClass]="{
+                                    <div>
+                                        <label [ngClass]="{
                                             'text-decoration-line-through':
                                                 chart.isStrikeThrough
-                                        }"
-                                        >{{ chart.BodyLanguage }}</label
-                                    >
+                                        }">{{ chart.BodyLanguage }}</label>
+                                    </div>
                                 </div>
-                            </div>
 
-                            <div class="col-md-12">
                                 <div class="col-md-12">
-                                    <label
-                                        class="form-label bold"
-                                        [ngClass]="{
+                                    <div class="col-md-12">
+                                        <label class="form-label bold" [ngClass]="{
                                             'text-decoration-line-through':
                                                 chart.isStrikeThrough
-                                        }"
-                                        >Behavioural Changes
-                                        <span class="required"></span
-                                    ></label>
-                                </div>
+                                        }">Behavioural Changes
+                                            <span class="required"></span></label>
+                                    </div>
 
-                                <div>
-                                    <label
-                                        [ngClass]="{
+                                    <div>
+                                        <label [ngClass]="{
                                             'text-decoration-line-through':
                                                 chart.isStrikeThrough
-                                        }"
-                                        >{{ chart.BehaviouralChanges }}</label
-                                    >
+                                        }">{{ chart.BehaviouralChanges }}</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="col-md-12">
+                                        <label class="form-label bold" [ngClass]="{
+                                            'text-decoration-line-through':
+                                                chart.isStrikeThrough
+                                        }">Physiological Change
+                                            <span class="required"></span></label>
+                                    </div>
+
+                                    <div>
+                                        <label [ngClass]="{
+                                            'text-decoration-line-through':
+                                                chart.isStrikeThrough
+                                        }">{{ chart.PhysiologicalChange }}</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="col-md-12">
+                                        <label class="form-label bold" [ngClass]="{
+                                            'text-decoration-line-through':
+                                                chart.isStrikeThrough
+                                        }">Physical Change
+                                            <span class="required"></span></label>
+                                    </div>
+
+                                    <div>
+                                        <label [ngClass]="{
+                                            'text-decoration-line-through':
+                                                chart.isStrikeThrough
+                                        }">{{ chart.PhysicalChange }}</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="col-md-12">
+                                        <label class="form-label bold" [ngClass]="{
+                                            'text-decoration-line-through':
+                                                chart.isStrikeThrough
+                                        }">Total Pain Score
+                                            <span class="required"></span></label>
+                                    </div>
+
+                                    <div>
+                                        <label [ngClass]="{
+                                            'text-decoration-line-through':
+                                                chart.isStrikeThrough
+                                        }">{{ chart.PainScore }}</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="col-md-12">
+                                        <label class="form-label bold" [ngClass]="{
+                                            'text-decoration-line-through':
+                                                chart.isStrikeThrough
+                                        }">Pain Category
+                                            <span class="required"></span></label>
+                                    </div>
+
+                                    <div>
+                                        <label [ngClass]="{
+                                            'text-decoration-line-through':
+                                                chart.isStrikeThrough,
+                                                'text-success':chart.PainScore >= 0 && chart.PainScore <= 2,
+                                                'text-info': chart.PainScore >= 3 && chart.PainScore <= 7,
+                                                'text-warning': chart.PainScore >= 8 && chart.PainScore <= 13,
+                                                'text-danger': chart.PainScore >=14
+                                        }">{{ chart.PainCategory }}</label>
+                                    </div>
                                 </div>
                             </div>
 
                             <div class="formheader bold">
-                                <h5
-                                    [ngClass]="{
+                                <h5 [ngClass]="{
                                         'text-decoration-line-through':
                                             chart.isStrikeThrough
-                                    }"
-                                >
+                                    }">
                                     Description Of Pain
                                 </h5>
                             </div>
                             <div class="col-md-12">
                                 <div class="col-md-12">
-                                    <label
-                                        class="form-label bold"
-                                        [ngClass]="{
+                                    <label class="form-label bold" [ngClass]="{
                                             'text-decoration-line-through':
                                                 chart.isStrikeThrough
-                                        }"
-                                        >Type of pain<span
-                                            class="required"
-                                        ></span
-                                    ></label>
+                                        }">Type of pain<span class="required"></span></label>
                                 </div>
 
                                 <div>
-                                    <label
-                                        [ngClass]="{
+                                    <label [ngClass]="{
                                             'text-decoration-line-through':
                                                 chart.isStrikeThrough
-                                        }"
-                                        >{{ chart.TypeOfPainOptionName }}</label
-                                    >
+                                        }">{{ chart.TypeOfPainOptionName }}</label>
                                 </div>
                             </div>
 
                             <div class="col-md-12">
                                 <div class="col-md-12">
-                                    <label class="form-label bold"
-                                        >Emotional Response To Pain<span
-                                            class="required"
+                                    <label class="form-label bold">Emotional Response To Pain<span class="required"
                                             [ngClass]="{
                                                 'text-decoration-line-through':
                                                     chart.isStrikeThrough
-                                            }"
-                                        ></span
-                                    ></label>
+                                            }"></span></label>
                                 </div>
 
                                 <div>
-                                    <label
-                                        [ngClass]="{
+                                    <label [ngClass]="{
                                             'text-decoration-line-through':
                                                 chart.isStrikeThrough
-                                        }"
-                                        >{{
-                                            chart.ResponseToPainOptionName
-                                        }}</label
-                                    >
+                                        }">{{
+                                        chart.ResponseToPainOptionName
+                                        }}</label>
                                 </div>
                             </div>
 
                             <div class="col-md-12">
                                 <div class="col-md-12">
-                                    <label
-                                        class="form-label bold"
-                                        [ngClass]="{
+                                    <label class="form-label bold" [ngClass]="{
                                             'text-decoration-line-through':
                                                 chart.isStrikeThrough
-                                        }"
-                                        >Impact<span class="required"></span
-                                    ></label>
+                                        }">Impact<span class="required"></span></label>
                                 </div>
 
                                 <div>
-                                    <label
-                                        [ngClass]="{
+                                    <label [ngClass]="{
                                             'text-decoration-line-through':
                                                 chart.isStrikeThrough
-                                        }"
-                                        >{{ chart.ImpectOptionName }}</label
-                                    >
+                                        }">{{ chart.ImpectOptionName }}</label>
                                 </div>
                             </div>
 
                             <div class="col-md-12">
                                 <div class="col-md-12">
-                                    <label
-                                        class="form-label bold"
-                                        [ngClass]="{
+                                    <label class="form-label bold" [ngClass]="{
                                             'text-decoration-line-through':
                                                 chart.isStrikeThrough
-                                        }"
-                                        ><span class="required"></span>Duration
-                                        of Pain</label
-                                    >
+                                        }"><span class="required"></span>Duration
+                                        of Pain</label>
                                 </div>
 
                                 <div>
-                                    <label
-                                        [ngClass]="{
+                                    <label [ngClass]="{
                                             'text-decoration-line-through':
                                                 chart.isStrikeThrough
-                                        }"
-                                        >{{ chart.DurationOfPain }}</label
-                                    >
+                                        }">{{ chart.DurationOfPain }}</label>
                                 </div>
                             </div>
 
                             <div class="col-md-12">
                                 <div class="col-md-12">
-                                    <label
-                                        class="form-label bold"
-                                        [ngClass]="{
+                                    <label class="form-label bold" [ngClass]="{
                                             'text-decoration-line-through':
                                                 chart.isStrikeThrough
-                                        }"
-                                        ><span class="required"></span
-                                        >Interval</label
-                                    >
+                                        }"><span class="required"></span>Interval</label>
                                 </div>
 
                                 <div>
-                                    <label
-                                        [ngClass]="{
+                                    <label [ngClass]="{
                                             'text-decoration-line-through':
                                                 chart.isStrikeThrough
-                                        }"
-                                        >{{ chart.Interval }}</label
-                                    >
+                                        }">{{ chart.Interval }}</label>
                                 </div>
                             </div>
 
                             <div class="col-md-12">
                                 <div class="col-md-12">
-                                    <label
-                                        class="form-label bold"
-                                        [ngClass]="{
+                                    <label class="form-label bold" [ngClass]="{
                                             'text-decoration-line-through':
                                                 chart.isStrikeThrough
-                                        }"
-                                        ><span class="required"></span>Factors
-                                        Affecting Pain</label
-                                    >
+                                        }"><span class="required"></span>Factors
+                                        Affecting Pain</label>
                                 </div>
 
                                 <div>
-                                    <label
-                                        [ngClass]="{
+                                    <label [ngClass]="{
                                             'text-decoration-line-through':
                                                 chart.isStrikeThrough
-                                        }"
-                                        >{{ chart.AffectingPain }}</label
-                                    >
+                                        }">{{ chart.AffectingPain }}</label>
                                 </div>
                             </div>
 
                             <div class="formheader bold mt-3">
-                                <h5
-                                    [ngClass]="{
+                                <h5 [ngClass]="{
                                         'text-decoration-line-through':
                                             chart.isStrikeThrough
-                                    }"
-                                >
+                                    }">
                                     Interventions
                                 </h5>
                             </div>
 
                             <div class="col-md-12">
                                 <div class="col-md-12">
-                                    <label
-                                        class="form-label bold"
-                                        [ngClass]="{
+                                    <label class="form-label bold" [ngClass]="{
                                             'text-decoration-line-through':
                                                 chart.isStrikeThrough
-                                        }"
-                                        >Interventions<span
-                                            class="required"
-                                        ></span
-                                    ></label>
+                                        }">Interventions<span class="required"></span></label>
                                 </div>
 
                                 <div>
-                                    <label
-                                        [ngClass]="{
+                                    <label [ngClass]="{
                                             'text-decoration-line-through':
                                                 chart.isStrikeThrough
-                                        }"
-                                        >{{
-                                            chart.InterventionsOptionName
-                                        }}</label
-                                    >
+                                        }">{{
+                                        chart.InterventionsOptionName
+                                        }}</label>
                                 </div>
                             </div>
 
                             <div class="col-md-12">
                                 <div class="col-md-12">
-                                    <label
-                                        class="form-label bold"
-                                        [ngClass]="{
+                                    <label class="form-label bold" [ngClass]="{
                                             'text-decoration-line-through':
                                                 chart.isStrikeThrough
-                                        }"
-                                        >Referrals<span class="required"></span
-                                    ></label>
+                                        }">Referrals<span class="required"></span></label>
                                 </div>
 
                                 <div>
-                                    <label
-                                        [ngClass]="{
+                                    <label [ngClass]="{
                                             'text-decoration-line-through':
                                                 chart.isStrikeThrough
-                                        }"
-                                        >{{ chart.ReferralsOptionName }}</label
-                                    >
+                                        }">{{ chart.ReferralsOptionName }}</label>
                                 </div>
                             </div>
 
                             <div class="col-md-12 mt-4">
                                 <div class="col-md-12">
-                                    <label
-                                        class="form-label bold"
-                                        [ngClass]="{
+                                    <label class="form-label bold" [ngClass]="{
                                             'text-decoration-line-through':
                                                 chart.isStrikeThrough
-                                        }"
-                                        >Next Review Date<span
-                                            class="required"
-                                        ></span
-                                    ></label>
+                                        }">Next Review Date<span class="required"></span></label>
                                 </div>
 
                                 <div>
-                                    <label
-                                        [ngClass]="{
+                                    <label [ngClass]="{
                                             'text-decoration-line-through':
                                                 chart.isStrikeThrough
-                                        }"
-                                        >{{
-                                            chart.NextReviewDate
-                                                | date : "dd-MM-yyyy"
-                                        }}</label
-                                    >
+                                        }">{{
+                                        chart.NextReviewDate
+                                        | date : "dd-MM-yyyy"
+                                        }}</label>
                                 </div>
                             </div>
                         </div>
@@ -1058,10 +887,10 @@
                         <div class="col-md-12">
                             <div *ngIf="chart.selectedBodyParts">
                                 <div>
-                                    <label [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}"
-                                    > {{extractBodyPainLocations(chart.selectedBodyParts)}} </label>
+                                    <label [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">
+                                        {{extractBodyPainLocations(chart.selectedBodyParts)}} </label>
                                 </div>
-    
+
                                 <div class="">
                                     <button pButton type="button" label="Show on Body Map" class="p-button-link p-0"
                                         (click)="ShowBodyMapPopUp(isReadOnly=true,chart.selectedBodyParts,chart.BodyMapStatus)"></button>
@@ -1069,34 +898,22 @@
                             </div>
                             <div *ngIf="chart.selectedBodyParts == null">
                                 <div>
-                                    <label [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}"
-                                    > Not Applicable </label>
+                                    <label [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}"> Not
+                                        Applicable </label>
                                 </div>
                             </div>
                         </div>
-                       
+
                     </div>
                 </ng-template>
             </p-carousel>
-            <div
-                *ngIf="isShowStrikeThroughPopup"
-                class="card flex justify-content-center"
-            >
-                <p-dialog
-                    [closable]="true"
-                    header="Strike-Through"
-                    [(visible)]="isShowStrikeThroughPopup"
-                    [modal]="true"
-                    [breakpoints]="{ '1199px': '75vw', '575px': '90vw' }"
-                    [style]="{ width: '40vw' }"
-                    [draggable]="false"
-                    [resizable]="false"
-                >
+            <div *ngIf="isShowStrikeThroughPopup" class="card flex justify-content-center">
+                <p-dialog [closable]="true" header="Strike-Through" [(visible)]="isShowStrikeThroughPopup"
+                    [modal]="true" [breakpoints]="{ '1199px': '75vw', '575px': '90vw' }" [style]="{ width: '40vw' }"
+                    [draggable]="false" [resizable]="false">
                     <div *ngIf="isShowStrikeThroughPopup">
-                        <app-strike-through-entry
-                            [StrikeThroughData]="StrikeThroughData"
-                            (StrikeThroughCheck)="Changes($event)"
-                        ></app-strike-through-entry>
+                        <app-strike-through-entry [StrikeThroughData]="StrikeThroughData"
+                            (StrikeThroughCheck)="Changes($event)"></app-strike-through-entry>
                     </div>
                 </p-dialog>
             </div>
@@ -1107,77 +924,41 @@
     <!-- Body Map Dailogue -->
 
     <div class="card flex justify-content-center">
-        <p-dialog
-            header="Add Body Pain"
-            [modal]="true"
-            [(visible)]="isShowBodyMap"
-            [breakpoints]="{ '1199px': '75vw', '575px': '90vw' }"
-        >
+        <p-dialog header="Add Body Pain" [modal]="true" [(visible)]="isShowBodyMap"
+            [breakpoints]="{ '1199px': '75vw', '575px': '90vw' }">
             <div *ngIf="isShowBodyMap">
-                <app-body-mapping
-                    (bodyData)="onSelectedBodyParts($event)"
-                    [preSelectedBodyMapData]="bodyMapData"
-                    [isReadOnly]="isReadOnly"
-                ></app-body-mapping>
+                <app-body-mapping (bodyData)="onSelectedBodyParts($event)" [preSelectedBodyMapData]="bodyMapData"
+                    [isReadOnly]="isReadOnly"></app-body-mapping>
             </div>
         </p-dialog>
     </div>
 
     <!-- button popup -->
     <div>
-        <p-dialog
-            header="Evaluate Intervention"
-            [modal]="true"
-            [(visible)]="evaluateIntervention"
-            [style]="{ width: '50rem' }"
-            [draggable]="false"
-        >
+        <p-dialog header="Evaluate Intervention" [modal]="true" [(visible)]="evaluateIntervention"
+            [style]="{ width: '50rem' }" [draggable]="false">
             <div class="flex flex-column mt-4">
-                <label for="" class="bold mb-2"
-                    >Select the effectiveness of the intervention taken</label
-                >
-                <div
-                    *ngFor="let category of evaluateInterventionOption"
-                    class="field-checkbox"
-                >
-                    <p-radioButton
-                        [inputId]="category.code"
-                        name="category"
-                        [value]="category"
-                        [(ngModel)]="
+                <label for="" class="bold mb-2">Select the effectiveness of the intervention taken</label>
+                <div *ngFor="let category of evaluateInterventionOption" class="field-checkbox">
+                    <p-radioButton [inputId]="category.code" name="category" [value]="category" [(ngModel)]="
                             evaluateInterventionPopupData.selectedevaluate
-                        "
-                    ></p-radioButton>
+                        "></p-radioButton>
                     <label [for]="category.code" class="ml-2">
                         {{ category.name }}
                     </label>
                 </div>
             </div>
             <div class="mt-4">
-                <label for="Notes" class="font-semibold w-6rem bold mb-2"
-                    >Notes</label
-                >
+                <label for="Notes" class="font-semibold w-6rem bold mb-2">Notes</label>
                 <div>
-                    <input
-                        pInputText
-                        id="Notes"
-                        class="flex-auto w-100"
-                        autocomplete="off"
-                        [(ngModel)]="evaluateInterventionPopupData.evaluateNote"
-                    />
+                    <input pInputText id="Notes" class="flex-auto w-100" autocomplete="off"
+                        [(ngModel)]="evaluateInterventionPopupData.evaluateNote" />
                 </div>
             </div>
 
             <div class="flex justify-content-between mt-5">
-                <p-button
-                    label="Cancel"
-                    severity="secondary"
-                    (click)="closeEvaluateInterventionPopup()"
-                ></p-button>
-                <p-button
-                    label="Save evaluation"
-                    (click)="saveEvaluateInterventionPopupData()"
-                ></p-button>
+                <p-button label="Cancel" severity="secondary" (click)="closeEvaluateInterventionPopup()"></p-button>
+                <p-button label="Save evaluation" (click)="saveEvaluateInterventionPopupData()"></p-button>
             </div>
         </p-dialog>
     </div>

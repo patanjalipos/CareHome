@@ -13,17 +13,18 @@ export class MustChartService {
 
   //#region mustchart
 
-  AddInsertUpdatebloodGlucoseChartForm(bloodGlucoseChartFormData: any): Observable<any> {
+  AddInsertUpdateMustChartForm(mustChartFormData: any): Observable<any> {
     let reqHeader = new HttpHeaders({
       'Content-Type': 'application/json',
       'Access-Control-Allow-Origin': environment.BaseUriUser,
       'Authorization': 'Bearer ' + localStorage.getItem('token')
     });
+    console.log(mustChartFormData);
     let params = new HttpParams();
-    var data = JSON.stringify(bloodGlucoseChartFormData).toString();
+    var data = JSON.stringify(mustChartFormData).toString();
     return this._httpclient.post<any>(
       environment.BaseUriUser +
-      'api/User/AddInsertUpdatebloodGlucoseChartForm',
+      'api/User/AddInsertUpdateMustChartForm',
       data,
       { headers: reqHeader, params: params }
     );

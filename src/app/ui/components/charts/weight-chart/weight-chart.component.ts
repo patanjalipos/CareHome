@@ -8,6 +8,7 @@ import { UtilityService } from 'src/app/utility/utility.service';
 import { Observable, catchError, forkJoin, map, of } from 'rxjs';
 import { WeightChartService } from './weight-chart.service';
 import { ActivatedRoute } from '@angular/router';
+import { Message } from 'primeng/api';
 
 @Component({
   selector: 'app-weight-chart',
@@ -31,6 +32,7 @@ export class WeightChartComponent extends AppComponentBase implements OnInit {
     ZeroValueCheck: boolean = false;
     BMIValueCHeck: boolean = false;
     ButtonCheck: boolean = true;
+    messages: Message[] | undefined;
 
     LstScaleTypes: any[] = [];
 
@@ -86,6 +88,9 @@ export class WeightChartComponent extends AppComponentBase implements OnInit {
 }
 
   ngOnInit(): void {
+    this.messages = [
+        { severity: 'secondary', detail: 'BMI = Weight (kg)/ Height (m)2' }
+    ];
     this.userId = this.preSelectedChartData.userId;
         this.residentAdmissionInfoId =
             this.preSelectedChartData.residentAdmissionInfoId;
@@ -212,9 +217,9 @@ GetWeightChartDetails(chartId: string) {
 }
 
 ClearAllfeilds() {
-  if (this.preSelectedChartData.selectedChartID) {
+  if (this.preSelectedChartData.chartMasterId) {
       this.WeightChartData = <any>{};
-      this.WeightChartData.activitiesChartId =
+      this.WeightChartData.WeightChartId =
           this.preSelectedChartData.selectedChartID;
   }
 }
@@ -397,7 +402,11 @@ CalculateBMI(value: number) {
             this.ZeroValueCheck = false;
             this.ButtonCheck = false;
             this.BMIValueCHeck = true;
-            this.WeightChartData.BMI = this.WeightChartData.Weight/(Math.pow(this.WeightChartData.Height,2));
+            this.WeightChartData.BMI = this.WeightChartData.Weight/(Math.pow(this.WeightChartData.Height/100,2));
+            this.WeightChartData.BMI = parseFloat(this.WeightChartData.BMI).toFixed(4);
+            this.messages = [
+                { severity: 'secondary', detail: 'BMI = Weight (kg)/ Height (m)2' }
+            ];
             }
     }
 }
