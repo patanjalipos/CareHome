@@ -30,7 +30,7 @@
                 <label class="form-label bold">Care Given <span class="required"></span></label>
 
                 <ng-container>
-                    <p-dropdown [required]="true" name="BowelChartFormData.CareGiven" placeholder="----select----"
+                    <p-dropdown [required]="true" name="mustChartFormData.CareGiven" placeholder="----select----"
                         [style]="{ width: '100%' }" [options]="stLstYesNoOptions" optionValue="optionId"
                         optionLabel="optionValue" [(ngModel)]="mustChartFormData.CareGiven" (onChange)="openAndClose()">
                     </p-dropdown>
@@ -42,7 +42,7 @@
                 <label class="form-label bold">Reason<span class="required"></span></label>
 
                 <ng-container>
-                    <p-dropdown [required]="true" name="BowelChartFormData.Reason" placeholder="----select----"
+                    <p-dropdown [required]="true" name="mustChartFormData.Reason" placeholder="----select----"
                         [style]="{ width: '100%' }" [options]="stLstReason" optionValue="optionId"
                         optionLabel="optionValue" [(ngModel)]="mustChartFormData.Reason">
                     </p-dropdown>
@@ -55,10 +55,12 @@
                     <label class="form-label bold">Weight (Kg)<span class="required"></span></label>
                     <div class="col-md-12">
                         <input type="number" pInputText name="mustChartFormData.weight" [required]="true"
-                            [style]="{ width: '100%' }" (keyup)="BMICalculater($event)"
+                            [style]="{ width: '100%' }" (keyup)="BMICalculater($event,mustChartFormData.weight)"
                             [(ngModel)]="mustChartFormData.weight" placeholder="Kg" />
                     </div>
                 </div>
+
+                <p-messages [(value)]="weightmsg" [enableService]="false"></p-messages>
 
                 <div>
                     <label class="form-label bold">How was weight measured ?<span class="required"></span></label>
@@ -81,6 +83,7 @@
                         </ng-container>
                     </div>
                 </div>
+                <p-messages [(value)]="residentAmputeemsg" [enableService]="false"></p-messages>
 
                 <div *ngIf="amputee">
                     <div>
@@ -89,7 +92,7 @@
                         <ng-container>
                             <p-dropdown [required]="true" name="BowelChartFormData.armoption"
                                 placeholder="----select----" [style]="{ width: '100%' }" [options]="lstArmOption"
-                                optionValue="optionId" optionLabel="optionName" (onChange)="BMICalIfResidentAmputeeByArms()"
+                                optionValue="optionId" optionLabel="optionName" (onChange)="JumpBMICal()"
                                 [(ngModel)]="mustChartFormData.armoption">
                             </p-dropdown>
                         </ng-container>
@@ -102,9 +105,16 @@
                             <p-dropdown [required]="true" name="BowelChartFormData.legoption"
                                 placeholder="----select----" [style]="{ width: '100%' }" [options]="lstLegOption"
                                 optionValue="optionId" optionLabel="optionName"
-                                [(ngModel)]="mustChartFormData.legoption" (onChange)="BMICalIfResidentAmputeeByLegs()">
+                                [(ngModel)]="mustChartFormData.legoption" (onChange)="JumpBMICal()">
                             </p-dropdown>
                         </ng-container>
+                    </div>
+
+                    <div class="mb-4">
+                        <label class="form-label bold">Adjusted weight (Kg)<span class="required"></span></label>
+                        <div>
+                            <label for="adjustedWeight">{{this.mustChartFormData.adjustedWeight}}</label>
+                        </div>
                     </div>
                 </div>
 
@@ -112,10 +122,11 @@
                     <label class="form-label bold">Height (Cm)<span class="required"></span></label>
                     <div class="col-md-12">
                         <input type="number" pInputText name="mustChartFormData.height" [required]="true"
-                            [style]="{ width: '100%' }" (keyup)="BMICalculater($event)"
+                            [style]="{ width: '100%' }" (keyup)="BMICalculater($event,mustChartFormData.weight)"
                             [(ngModel)]="mustChartFormData.height" placeholder="Cm" />
                     </div>
                 </div>
+                <p-messages [(value)]="heightmsg" [enableService]="false"></p-messages>
 
                 <div>
                     <label class="form-label bold">How was height measured ?<span class="required"></span></label>
@@ -131,16 +142,17 @@
 
                 <div class="mb-4">
                     <label class="form-label bold">Body Mass index(BMI)<span class="required"></span></label>
-                    <div *ngIf="this.BMI>0">
-                        <label for="bmi">{{this.BMI}}</label>
+                    <div *ngIf="this.mustChartFormData.BMI>0">
+                        <label for="bmi">{{this.mustChartFormData.BMI}}</label>
                     </div>
                 </div>
-                <!-- <div class="mb-4">
+
+                <div class="mb-4">
                     <label class="form-label bold">BMI Score<span class="required"></span></label>
                     <div>
-                        <label for="bmiscore"></label>
+                        <label for="bmiscore">{{this.mustChartFormData.bmiScore}}</label>
                     </div>
-                </div> -->
+                </div>
 
                 <div>
                     <label class="form-label bold">Does the resident have oedema<span class="required"></span></label>
@@ -152,7 +164,26 @@
                     </div>
                 </div>
 
-                <div *ngIf="mustChartFormData.oedema=='No'">
+                <div *ngIf="mustChartFormData.oedema=='Yes'">
+                    <div>
+                        <label class="form-label bold">Mid Upper Arm circurmference(MUAC) (Cm)<span
+                                class="required"></span></label>
+
+                        <div class="col-md-12">
+                            <input type="number" pInputText name="mustChartFormData.armCircurmference" [required]="true"
+                                [style]="{ width: '100%' }" [(ngModel)]="mustChartFormData.armCircurmference"
+                                placeholder="Cm" (keyup)="calculateBMIEstimation()" />
+                        </div>
+                    </div>
+                    <div class="mb-4">
+                        <label class="form-label bold">MUAC BMI Estimation<span class="required"></span></label>
+                        <div>
+                            <label for="bmiestimation">{{mustChartFormData.BMIEstimation}}</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div *ngIf="mustChartFormData.oedema=='No'||openStepSection">
                     <h5 class="formheader">Stap 2 - Weight Loss Score</h5>
 
                     <div>
@@ -160,10 +191,10 @@
                                 class="required"></span></label>
 
                         <ng-container>
-                            <p-dropdown [required]="true" name="BowelChartFormData.heightMeasured"
-                                placeholder="----select----" [style]="{ width: '100%' }" [options]="lstHeightMeasured"
+                            <p-dropdown [required]="true" name="BowelChartFormData.weightLoss"
+                                placeholder="----select----" [style]="{ width: '100%' }" [options]="lstWeightLoss"
                                 optionValue="optionId" optionLabel="optionName"
-                                [(ngModel)]="mustChartFormData.heightMeasured">
+                                [(ngModel)]="mustChartFormData.weightLossMethod">
                             </p-dropdown>
                         </ng-container>
                     </div>
@@ -172,77 +203,154 @@
                         <label class="form-label bold">Weight at this time ? (Kg)<span class="required"></span></label>
 
                         <div class="col-md-12">
-                            <input type="number" pInputText name="bloodGlucoseChartFormData.bloodGlucose"
-                                [required]="true" [style]="{ width: '100%' }"
-                                [(ngModel)]="mustChartFormData.bloodGlucose" placeholder="Kg" />
+                            <input type="number" pInputText name="mustChartFormData.weightAtTime" [required]="true"
+                                [style]="{ width: '100%' }" [(ngModel)]="mustChartFormData.weightAtTime"
+                                placeholder="Kg" (keyup)="weightLossCal()" />
                         </div>
                     </div>
+                    <p-messages [(value)]="weightAtThisTimeMsg" [enableService]="false"></p-messages>
 
                     <div>
                         <label class="form-label bold">what is the resident current weight ? (Kg)<span
                                 class="required"></span></label>
 
                         <div class="col-md-12">
-                            <input type="number" pInputText name="bloodGlucoseChartFormData.bloodGlucose"
+                            <input type="number" pInputText name="bloodGlucoseChartFormData.currentWeight"
                                 [required]="true" [style]="{ width: '100%' }"
-                                [(ngModel)]="mustChartFormData.bloodGlucose" placeholder="Kg" />
+                                [(ngModel)]="mustChartFormData.currentWeight" placeholder="Kg" [disabled]="true" />
                         </div>
                     </div>
                     <div class="mb-4">
                         <label class="form-label bold">Unplaned weight loss (Kg)<span class="required"></span></label>
                         <div>
-                            <label for="bmiscore"></label>
+                            <label for="weightLossInKG">{{mustChartFormData.weightLossInKG}}</label>
                         </div>
                     </div>
                     <div class="mb-4">
                         <label class="form-label bold">Unplanned weight loss (%)<span class="required"></span></label>
                         <div>
-                            <label for="bmiscore"></label>
+                            <label for="weightLossInPercent">{{mustChartFormData.weightLossInPercent}}</label>
                         </div>
                     </div>
                     <div class="mb-4">
                         <label class="form-label bold">Weight loss score<span class="required"></span></label>
                         <div>
-                            <label for="bmiscore"></label>
+                            <label for="weightLossScore">{{mustChartFormData.weightLossScore}}</label>
                         </div>
                     </div>
                     <div class="mb-4">
                         <label class="form-label bold">Weight Loss significance<span class="required"></span></label>
                         <div>
-                            <label for="bmiscore"></label>
+                            <label for="weightSignificance">{{mustChartFormData.weightSignificance}}</label>
                         </div>
                     </div>
                 </div>
 
-                <div *ngIf="mustChartFormData.oedema=='Yes'">
+
+                <div *ngIf="acuteDisease">
+                    <h5 class="formheader">Step 3 - Acute disease effect score</h5>
                     <div>
-                        <label class="form-label bold">Mid Upper Arm circurmference(MUAC) (Cm)<span
-                                class="required"></span></label>
-
+                        <label class="form-label bold">Is the resident acutely ill AND has had or is likely to have no
+                            nutritional intake for 5 days?<span class="required"></span></label>
                         <div class="col-md-12">
-                            <input type="number" pInputText name="bloodGlucoseChartFormData.bloodGlucose"
-                                [required]="true" [style]="{ width: '100%' }"
-                                [(ngModel)]="mustChartFormData.bloodGlucose" placeholder="Cm" />
+                            <ng-container>
+                                <p-selectButton [options]="rangeOptionAcuteDisease"
+                                    [(ngModel)]="mustChartFormData.residentAcutelyIll" optionLabel="label"
+                                    optionValue="value" (onChange)="onAcuteScore($event)"></p-selectButton>
+                            </ng-container>
                         </div>
                     </div>
+                    <p-messages [(value)]="acuteDiseaseMsg" [enableService]="false"></p-messages>
                     <div class="mb-4">
-                        <label class="form-label bold">MUAC BMI Estimation<span class="required"></span></label>
+                        <label class="form-label bold">Acute disease effect score<span class="required"></span></label>
                         <div>
-                            <label for="bmiscore"></label>
+                            <label for="diseaseEffectScore">{{mustChartFormData.diseaseEffectScore}}</label>
                         </div>
                     </div>
                 </div>
+
+                <div *ngIf="mustChartFormData.residentAcutelyIll!=null">
+                    <h5 class="formheader">Step 4 - Overall risk of malnutrition</h5>
+                    <div class="mb-4">
+                        <label class="form-label bold">Must Score<span class="required"></span></label>
+                        <div>
+                            <label for="mustScore">{{mustChartFormData.mustScore}}</label>
+                        </div>
+                    </div>
+                    <h5 class="formheader">Subjective criteria</h5>
+                    <div>
+                        <label class="form-label bold">BMI<span class="required"></span></label>
+
+                        <ng-container>
+                            <p-dropdown [required]="true" name="BowelChartFormData.bmiOption"
+                                placeholder="----select----" [style]="{ width: '100%' }" [options]="lstBMIOption"
+                                optionValue="optionId" optionLabel="optionName"
+                                [(ngModel)]="mustChartFormData.bmiOption">
+                            </p-dropdown>
+                        </ng-container>
+                    </div>
+                    <div>
+                        <label class="form-label bold">Weight Loss<span class="required"></span></label>
+
+                        <ng-container>
+                            <p-dropdown [required]="true" name="BowelChartFormData.weightLossOption"
+                                placeholder="----select----" [style]="{ width: '100%' }" [options]="lstWeightLossOption"
+                                optionValue="optionId" optionLabel="optionName"
+                                [(ngModel)]="mustChartFormData.weightLossOption">
+                            </p-dropdown>
+                        </ng-container>
+                    </div>
+                    <div>
+                        <label class="form-label bold">Risk category<span class="required"></span></label>
+                        <div class="col-md-12">
+                            <ng-container>
+                                <p-selectButton [options]="rangeOptionRiskCategory"
+                                    [(ngModel)]="mustChartFormData.riskCategory" optionLabel="label"
+                                    optionValue="value"></p-selectButton>
+                            </ng-container>
+                        </div>
+                    </div>
+
+                    <div *ngIf="mustChartFormData.riskCategory!=null">
+                        <h5 class="formheader">Step 5 - Management guidelines</h5>
+                        <div>
+                            <label class="form-label bold">Guideline<span class="required"></span></label>
+                        </div>
+                        <div *ngIf="mustChartFormData.riskCategory=='Low'">
+                            <label>LOW RISK Routine clinical care. Repeat Must screening : care homes -monthly or
+                                (earlier if concerned) Hospital -weekly. Community annually for special
+                                groups,e.g.>75yrs</label>
+                            <p-messages [(value)]="message" [enableService]="false"></p-messages>
+                        </div>
+                        <div *ngIf="mustChartFormData.riskCategory=='Medium'">
+                            <label>MEDIUM RISK observe dietary intake for 3 days (using food chart). If adequate-little
+                                concern and repeat screening at least monthly in care homes, weekly in hospital, and
+                                every 2 to 3 months in the community . If inadequate – clinical concern , follow local
+                                policy, set goals improve and increase overall nutritional intake , monitor and review
+                                care plan regularly . </label>
+                            <p-messages [(value)]="message" [enableService]="false"></p-messages>
+                        </div>
+                        <div *ngIf="mustChartFormData.riskCategory=='High'">
+                            <label>HIGH RISK treat refer to dietitian , nutritional support team or implement local
+                                policy . Set goals improve and increase overall nutritional intake monitor and review
+                                care plan monthely in care homes and community , weekly in hospital . * Unless
+                                detrimental or no benefit is expected form nutritional support e.g imminent death
+                                .</label>
+                            <p-messages [(value)]="message" [enableService]="false"></p-messages>
+                        </div>
+                    </div>
+                </div>
+
+
             </div>
 
             <h5 class="formheader">Additional information</h5>
             <div class="col-md-12">
                 <label class="form-label"><span class="required"></span></label>
                 <ng-container>
-                    <input type="text" pInputText name="bloodGlucoseChartFormData.AdditionalInformation"
-                        [required]="true" [style]="{ width: '100%' }"
-                        [(ngModel)]="mustChartFormData.AdditionalInformation" />
+                    <input type="text" pInputText name="mustChartFormData.AdditionalInformation" [required]="true"
+                        [style]="{ width: '100%' }" [(ngModel)]="mustChartFormData.AdditionalInformation" />
                 </ng-container>
-
             </div>
             <div class="d-flex justify-content-center mt-4 mb-4">
                 <div class="mr-4 ">
@@ -255,6 +363,450 @@
                         <button pButton title="save" label="Save" (click)="Save()"></button>
                     </span>
                 </div>
+            </div>
+        </div>
+
+
+
+        <div class="col-md-9 mt-3">
+            <!-- Left navigation button -->
+            <p-carousel [value]="mustChartsLst" [numVisible]="pageSize" [numScroll]="pageSize" [circular]="false"
+                [showIndicators]="false" [showNavigators]="false" [responsiveOptions]="responsiveOptions">
+                <ng-template let-chart pTemplate="item">
+                    <div class="col-md-11 chart-box p-2">
+                        <div class="formheader">
+                            <div class="col-md-12 mb-2 d-flex justify-content-between fs-4">
+                                <div class="chart-date bold">
+                                    <label [ngClass]="{'text-decoration-line-through bold':chart.isStrikeThrough}">{{
+                                        chart.DateAndTime |
+                                        date:'dd-MM-yyyy' }}</label>
+                                </div>
+                                <div class="chart-date">
+                                    <label [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">{{
+                                        chart.DateAndTime |
+                                        date:'hh:mm' }}</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12 mb-2">
+
+                            <label class="form-label bold"
+                                [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">Enterted By<span
+                                    class="required"></span></label>
+
+                            <div>
+                                <label
+                                    [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">{{chart.StartedBy}}</label>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="mb-2">
+                                <button *ngIf="!chart.isStrikeThrough" pButton type="button"
+                                    label="Strike Through Entry" class="p-button-link p-0"
+                                    (click)="showPopup(chart.mustChartId)">
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="col-md-12 mb-2">
+
+                            <label *ngIf="chart.isStrikeThrough" class="form-label bold">Strike Through Reason<span
+                                    class="required"></span></label>
+
+                            <div>
+                                <label *ngIf="chart.isStrikeThrough">{{chart.StrikeThroughRemark}}</label>
+                            </div>
+                        </div>
+
+                        <div class="col-md-12">
+
+                            <label class="form-label bold"
+                                [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">Care Given
+                                <span class="required"></span></label>
+
+                            <div>
+                                <label [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">{{
+                                    chart.CareGiven }}</label>
+                            </div>
+
+                        </div>
+                        <div *ngIf="chart.CareGiven=='No'">
+                            <div class="col-md-12">
+                                <div class="col-md-12">
+                                    <label class="form-label bold"
+                                        [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">Reason
+                                        <span class="required"></span></label>
+                                </div>
+                                <div>
+                                    <label [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">{{
+                                        chart.Reason }}</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div *ngIf="chart.CareGiven=='Yes'" class="row">
+                            <h5 class="formheader" [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">
+                                Step 1 - BMI Score
+                            </h5>
+                            <div class="col-md-12">
+                                <label class="form-label bold"
+                                    [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">Weight<span
+                                        class="required"></span></label>
+
+                                <div>
+                                    <label
+                                        [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">{{chart.weight}}</label>
+                                </div>
+                            </div>
+
+                            <div class="col-md-12">
+                                <label class="form-label bold"
+                                    [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">How was weight
+                                    measured ?<span class="required"></span></label>
+
+                                <div>
+                                    <label
+                                        [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">{{chart.weightMeasuredOptionName}}</label>
+                                </div>
+                            </div>
+
+                            <div class="col-md-12">
+                                <label class="form-label bold"
+                                    [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">Is the Resident
+                                    an amputee<span class="required"></span></label>
+
+                                <div>
+                                    <label
+                                        [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">{{chart.residentAmputee}}</label>
+                                </div>
+                            </div>
+
+                            <div *ngIf="chart.residentAmputee=='Yes'">
+                                <div class="col-md-12">
+                                    <label class="form-label bold"
+                                        [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">Arm<span
+                                            class="required"></span></label>
+
+                                    <div>
+                                        <label
+                                            [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">{{chart.armOptionName}}</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <label class="form-label bold"
+                                        [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">Leg<span
+                                            class="required"></span></label>
+
+                                    <div>
+                                        <label
+                                            [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">{{chart.legOptionName}}</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <label class="form-label bold"
+                                        [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">Adjusted
+                                        Weight<span class="required"></span></label>
+
+                                    <div>
+                                        <label
+                                            [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">{{chart.adjustedWeight}}</label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-12">
+                                <label class="form-label bold"
+                                    [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">Height (Cm)<span
+                                        class="required"></span></label>
+
+                                <div>
+                                    <label
+                                        [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">{{chart.height}}</label>
+                                </div>
+                            </div>
+
+                            <div class="col-md-12">
+                                <label class="form-label bold"
+                                    [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">How was height
+                                    measured ?<span class="required"></span></label>
+
+                                <div>
+                                    <label
+                                        [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">{{chart.heightMeasuredOptionName}}</label>
+                                </div>
+                            </div>
+
+                            <div class="col-md-12">
+                                <label class="form-label bold"
+                                    [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">Body Mass
+                                    index(BMI)<span class="required"></span></label>
+
+                                <div>
+                                    <label
+                                        [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">{{chart.BMI}}</label>
+                                </div>
+                            </div>
+
+                            <div class="col-md-12">
+                                <label class="form-label bold"
+                                    [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">BMI Score<span
+                                        class="required"></span></label>
+
+                                <div>
+                                    <label
+                                        [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">{{chart.bmiScore}}</label>
+                                </div>
+                            </div>
+
+                            <div class="col-md-12">
+                                <label class="form-label bold"
+                                    [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">Does the resident
+                                    have oedema<span class="required"></span></label>
+
+                                <div>
+                                    <label
+                                        [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">{{chart.oedema}}</label>
+                                </div>
+                            </div>
+
+                            <div *ngIf="chart.oedema=='Yes'">
+                                <div class="col-md-12">
+                                    <label class="form-label bold"
+                                        [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">Mid upper arm
+                                        circumference (MUAC)<span class="required"></span></label>
+
+                                    <div>
+                                        <label
+                                            [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">{{chart.armCircurmference}}</label>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-12">
+                                    <label class="form-label bold"
+                                        [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">MUAC BMI
+                                        estimation<span class="required"></span></label>
+
+                                    <div>
+                                        <label
+                                            [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">{{chart.BMIEstimation}}</label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div *ngIf="chart.oedema=='No' || chart.armCircurmference!=null">
+                                <h5 class="formheader"
+                                    [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">
+                                    Step 2 - Weight Loss Score
+                                </h5>
+
+                                <div class="col-md-12">
+                                    <label class="form-label bold"
+                                        [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">Method for
+                                        determining weight loss ?<span class="required"></span></label>
+
+                                    <div>
+                                        <label
+                                            [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">{{chart.weightLossMethodOptionName}}</label>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-12">
+                                    <label class="form-label bold"
+                                        [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">what is the
+                                        resident current weight ? (Kg)<span class="required"></span></label>
+
+                                    <div>
+                                        <label
+                                            [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">{{chart.currentWeight}}</label>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-12">
+                                    <label class="form-label bold"
+                                        [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">Unplaned
+                                        weight loss (Kg)<span class="required"></span></label>
+
+                                    <div>
+                                        <label
+                                            [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">{{chart.weightLossInKG}}</label>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-12">
+                                    <label class="form-label bold"
+                                        [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">Unplanned
+                                        weight loss (%)<span class="required"></span></label>
+
+                                    <div>
+                                        <label
+                                            [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">{{chart.weightLossInPercent}}</label>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-12">
+                                    <label class="form-label bold"
+                                        [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">Weight loss
+                                        score<span class="required"></span></label>
+
+                                    <div>
+                                        <label
+                                            [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">{{chart.weightLossScore}}</label>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-12">
+                                    <label class="form-label bold"
+                                        [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">Weight Loss
+                                        significance<span class="required"></span></label>
+
+                                    <div>
+                                        <label
+                                            [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">{{chart.weightSignificance}}</label>
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <h5 class="formheader"
+                                        [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">
+                                        Step 3 - Acute disease effect score
+                                    </h5>
+
+                                    <div class="col-md-12">
+                                        <label class="form-label bold"
+                                            [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">Is the
+                                            resident acutely ill AND has had or is likely to have no nutritional intake
+                                            for 5 days?<span class="required"></span></label>
+
+                                        <div>
+                                            <label
+                                                [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">{{chart.residentAcutelyIll}}</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <label class="form-label bold"
+                                            [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">Acute
+                                            disease effect score<span class="required"></span></label>
+
+                                        <div>
+                                            <label
+                                                [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">{{chart.diseaseEffectScore}}</label>
+                                        </div>
+                                    </div>
+
+                                    <div>
+                                        <h5 class="formheader"
+                                            [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">
+                                            Step 4 - Overall risk of malnutrition
+                                        </h5>
+                                        <div class="col-md-12">
+                                            <label class="form-label bold"
+                                                [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">Must
+                                                Score<span class="required"></span></label>
+
+                                            <div>
+                                                <label
+                                                    [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">{{chart.mustScore}}</label>
+                                            </div>
+                                        </div>
+                                        <h5 class="formheader"
+                                            [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">
+                                            Subjective criteria
+                                        </h5>
+                                        <div class="col-md-12">
+                                            <label class="form-label bold"
+                                                [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">BMI<span
+                                                    class="required"></span></label>
+
+                                            <div>
+                                                <label
+                                                    [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">{{chart.bmiOptionName}}</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <label class="form-label bold"
+                                                [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">Weight
+                                                Loss<span class="required"></span></label>
+
+                                            <div>
+                                                <label
+                                                    [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">{{chart.weightLossOptionName}}</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <label class="form-label bold"
+                                                [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">Risk
+                                                category<span class="required"></span></label>
+
+                                            <div>
+                                                <label
+                                                    [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">{{chart.riskCategory}}</label>
+                                            </div>
+                                        </div>
+
+                                        <div *ngIf="chart.riskCategory!=null">
+                                            <h5 class="formheader" [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">Step 5 - Management guidelines</h5>
+                                            <div>
+                                                <label class="form-label bold" [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">Guideline<span
+                                                        class="required"></span></label>
+                                            </div>
+                                            <div *ngIf="chart.riskCategory=='Low'">
+                                                <label [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">LOW RISK Routine clinical care. Repeat Must screening : care
+                                                    homes -monthly or
+                                                    (earlier if concerned) Hospital -weekly. Community annually for
+                                                    special
+                                                    groups,e.g.>75yrs</label>
+                                            </div>
+                                            <div *ngIf="chart.riskCategory=='Medium'">
+                                                <label [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">MEDIUM RISK observe dietary intake for 3 days (using food chart).
+                                                    If adequate-little
+                                                    concern and repeat screening at least monthly in care homes, weekly
+                                                    in hospital, and
+                                                    every 2 to 3 months in the community . If inadequate – clinical
+                                                    concern , follow local
+                                                    policy, set goals improve and increase overall nutritional intake ,
+                                                    monitor and review
+                                                    care plan regularly . </label>
+                                            </div>
+                                            <div *ngIf="chart.riskCategory=='High'">
+                                                <label [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">HIGH RISK treat refer to dietitian , nutritional support team or
+                                                    implement local
+                                                    policy . Set goals improve and increase overall nutritional intake
+                                                    monitor and review
+                                                    care plan monthely in care homes and community , weekly in hospital
+                                                    . * Unless
+                                                    detrimental or no benefit is expected form nutritional support e.g
+                                                    imminent death
+                                                    .</label>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                        <h5 class="formheader" [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">
+                            Additional information
+                        </h5>
+                        <div class="col-md-12">
+                            <label class="form-label"><span class="required"></span></label>
+                            <div>
+                                <label
+                                    [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">{{chart.AdditionalInformation}}</label>
+                            </div>
+                        </div>
+                    </div>
+                </ng-template>
+            </p-carousel>
+
+            <div *ngIf="isShowStrikeThroughPopup" class="card flex justify-content-center">
+                <p-dialog [closable]="true" header="Strike-Through" [(visible)]="isShowStrikeThroughPopup"
+                    [modal]="true" [breakpoints]="{ '1199px': '75vw', '575px': '90vw' }" [style]="{ width: '40vw' }"
+                    [draggable]="false" [resizable]="false">
+                    <div *ngIf="isShowStrikeThroughPopup">
+
+                        <app-strike-through-entry [StrikeThroughData]="StrikeThroughData"
+                            (StrikeThroughCheck)="Changes($event)"></app-strike-through-entry>
+                    </div>
+                </p-dialog>
             </div>
         </div>
     </div>

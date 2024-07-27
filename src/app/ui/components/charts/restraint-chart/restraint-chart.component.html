@@ -78,6 +78,21 @@
                         </p-dropdown>
                     </ng-container>
                 </div>
+                <div class="col-md-12" *ngIf="restraintChartFormData.typeOfRestraint=='668cbed0cb0d4c0c1d43da13'">
+                    <label class="form-label bold">Physical restraint devices<span class="required"></span></label>
+                    <ng-container>
+                        <p-multiSelect [options]="lstRestraintDevices" [style]="{width:'100%'}"
+                            [(ngModel)]="restraintChartFormData.restraintDevices" optionLabel="optionName"
+                            optionValue="optionId" placeholder="----select----"></p-multiSelect>
+                    </ng-container>
+                </div>
+                <div class="col-md-12" *ngIf="restraintChartFormData.typeOfRestraint=='668cbed0cb0d4c0c1d43da15'">
+                    <label class="form-label bold">Other<span class="required"></span></label>
+                    <div class="col-md-12">
+                        <input type="text" pInputText name="restraintChartFormData.other" [required]="true"
+                            [style]="{ width: '100%' }" [(ngModel)]="restraintChartFormData.other" />
+                    </div>
+                </div>
                 <div class="col-md-12">
                     <label class="form-label bold">Triggers/behaviours<span class="required"></span></label>
                     <ng-container>
@@ -235,6 +250,29 @@
                                 <div>
                                     <label
                                         [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">{{chart.TypeOfRestraintOptionName}}</label>
+                                </div>
+                            </div>
+                            <div *ngIf="chart.TypeOfRestraintOptionName=='Physical'">
+                                <div class="col-md-12" >
+                                    <label class="form-label bold"
+                                        [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">Physical Restraint Devices<span class="required"></span></label>
+    
+                                    <div>
+                                        <label
+                                            [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">{{chart.RestraintDevicesOptionsName}}</label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div *ngIf="chart.TypeOfRestraintOptionName=='other'">
+                                <div class="col-md-12">
+                                    <label class="form-label bold"
+                                        [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">Other<span class="required"></span></label>
+    
+                                    <div>
+                                        <label
+                                            [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">{{chart.other}}</label>
+                                    </div>
                                 </div>
                             </div>
 

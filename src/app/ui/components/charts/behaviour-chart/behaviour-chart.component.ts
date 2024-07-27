@@ -91,6 +91,7 @@ export class BehaviourChartComponent
     }
 
     ngOnInit(): void {
+      
         this.userId = this.preSelectedChartData.userId;
         this.residentAdmissionInfoId =
             this.preSelectedChartData.residentAdmissionInfoId;
@@ -133,7 +134,7 @@ export class BehaviourChartComponent
         } else {
             this.ResetModel();
         }
-
+        this.BehaviourChartData.DateAndTime = new Date();
         this.getChartDataById(this.preSelectedChartData.chartMasterId, this.preSelectedChartData.residentAdmissionInfoId, this.pageNumber, this.pageSize);
     }
 
@@ -200,9 +201,9 @@ export class BehaviourChartComponent
     }
 
     ClearAllfeilds() {
-        if (this.preSelectedChartData.selectedChartID) {
+        if (this.preSelectedChartData.chartMasterId) {
             this.BehaviourChartData = <any>{};
-            this.BehaviourChartData.activitiesChartId =
+            this.BehaviourChartData.BehaviourChartId =
                 this.preSelectedChartData.selectedChartID;
         }
     }

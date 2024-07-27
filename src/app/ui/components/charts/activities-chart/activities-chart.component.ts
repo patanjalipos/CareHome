@@ -178,7 +178,7 @@ export class ActivitiesChartComponent
     }
 
     ClearAllfeilds() {
-        if (this.preSelectedChartData.selectedChartID) {
+        if (this.preSelectedChartData.chartMasterId) {
             this.ActivitiesChartFormData = <any>{};
             this.ActivitiesChartFormData.activitiesChartId =
                 this.preSelectedChartData.selectedChartID;

@@ -136,7 +136,7 @@ export class EnteralFeedingChartComponent extends AppComponentBase implements On
 
 
   ClearAllfeilds() {
-    if (this.preSelectedChartData.selectedChartID) {
+    if (this.preSelectedChartData.chartMasterId) {
       this.enteralFeedingChartFormData = <any>{};
       this.enteralFeedingChartFormData.enteralFeedingChartId =
         this.preSelectedChartData.selectedChartID;

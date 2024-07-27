@@ -199,9 +199,9 @@ GetUrinaryChartDetails(chartId: string) {
 }
 
 ClearAllfeilds() {
-  if (this.preSelectedChartData.selectedChartID) {
+  if (this.preSelectedChartData.chartMasterId) {
       this.UrinaryChartData = <any>{};
-      this.UrinaryChartData.activitiesChartId =
+      this.UrinaryChartData.UrinaryChartId =
           this.preSelectedChartData.selectedChartID;
   }
 }
