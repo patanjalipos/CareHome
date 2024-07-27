@@ -769,9 +769,9 @@ export class WaterlowChartComponent extends AppComponentBase implements OnInit {
     }
 
     ClearAllfeilds() {
-        if (this.preSelectedChartData.selectedChartID) {
+        if (this.preSelectedChartData.chartMasterId) {
             this.WaterlowChartData = <any>{};
-            this.WaterlowChartData.activitiesChartId =
+            this.WaterlowChartData.WaterlowChartId =
                 this.preSelectedChartData.selectedChartID;
         }
     }

@@ -35,6 +35,7 @@ export class RestraintChartComponent extends AppComponentBase implements OnInit 
   careGiven: boolean = false;
   lstTypeOfRestraint: any[] = [];
   lstTriggersAndBehaviors: any[] = [];
+  lstRestraintDevices:any[]=[];
 
   //for carousel
   restraintChartsLst: any[] = [];
@@ -109,7 +110,7 @@ export class RestraintChartComponent extends AppComponentBase implements OnInit 
       this.ChartName = this.result["ChartName"];
       this._ConstantServices.ActiveMenuName = this.ChartName;
     });
-    const collectionNames = ['typeOfRestraint', 'triggersAndBehaviors'];
+    const collectionNames = ['typeOfRestraint','restraintDevices', 'triggersAndBehaviors'];
 
     forkJoin(
       collectionNames.map((collectionName) =>
@@ -121,6 +122,7 @@ export class RestraintChartComponent extends AppComponentBase implements OnInit 
       )
     ).subscribe((responses: any[]) => {
       this.lstTypeOfRestraint = responses[0];
+      this.lstRestraintDevices=responses[1];
       this.lstTriggersAndBehaviors = responses[1];
     });
 
@@ -170,9 +172,9 @@ export class RestraintChartComponent extends AppComponentBase implements OnInit 
   }
 
   ClearAllfeilds() {
-    if (this.preSelectedChartData.selectedChartID) {
+    if (this.preSelectedChartData.chartMasterId) {
       this.restraintChartFormData = <any>{};
-      this.restraintChartFormData.activitiesChartId =
+      this.restraintChartFormData.restraintChartId =
         this.preSelectedChartData.selectedChartID;
     }
   }

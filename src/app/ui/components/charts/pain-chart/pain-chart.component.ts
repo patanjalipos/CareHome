@@ -478,9 +478,9 @@ export class PainChartComponent extends AppComponentBase implements OnInit {
         }
     }
     ClearAllfeilds() {
-        if (this.preSelectedChartData.selectedChartID) {
+        if (this.preSelectedChartData.chartMasterId) {
             this.painChartFormData = <any>{};
-            this.painChartFormData.activitiesChartId =
+            this.painChartFormData.painChartId =
                 this.preSelectedChartData.selectedChartID;
         }
     }

@@ -12,6 +12,7 @@ import { InputTextModule } from 'primeng/inputtext';
 import { InputTextareaModule } from 'primeng/inputtextarea';
 import { StrikeThroughEntryModule } from '../strike-through-entry/strike-through-entry.module';
 import { CalendarModule } from 'primeng/calendar';
+import { MultiSelectModule } from 'primeng/multiselect';
 
 
 @NgModule({
@@ -27,7 +28,8 @@ import { CalendarModule } from 'primeng/calendar';
     CarouselModule,
     StrikeThroughEntryModule,
     DialogModule,
-    ButtonModule
+    ButtonModule,
+    MultiSelectModule
   ],
   exports: [FluidIntakeChartComponent]
 })

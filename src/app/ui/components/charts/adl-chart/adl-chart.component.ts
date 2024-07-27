@@ -252,9 +252,9 @@ export class AdlChartComponent extends AppComponentBase implements OnInit {
     }
 
     ClearAllfeilds() {
-        if (this.preSelectedChartData.selectedChartID) {
+        if (this.preSelectedChartData.chartMasterId) {
             this.ADLChartData = <any>{};
-            this.ADLChartData.activitiesChartId =
+            this.ADLChartData.ADLChartId =
                 this.preSelectedChartData.selectedChartID;
         }
     }
