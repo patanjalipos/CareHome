@@ -236,7 +236,6 @@ export class FluidIntakeChartComponent extends AppComponentBase implements OnIni
   }
 
   getChartDataById(chartId: any, residentAdmissionInfoId: any, pageNumber: number, pageSize: number) {
-
     this._UtilityService.showSpinner();
     this.unsubscribe.add = this._UserService
       .GetChartDataById(chartId, residentAdmissionInfoId, pageNumber, pageSize)
