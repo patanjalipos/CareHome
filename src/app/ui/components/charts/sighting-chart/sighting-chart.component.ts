@@ -145,6 +145,19 @@ export class SightingChartComponent extends AppComponentBase implements OnInit {
     }
 }
 
+ChangeState() {
+    this.LstResidentState.forEach(ele => {
+        if(ele.optionId == this.SightingChartData.ResidentStateOption) {
+            if(ele.optionName == 'Other') {
+                this.SightingChartData.OtherCheck = true;
+            }
+            else {
+                this.SightingChartData.OtherCheck = false;
+            }
+        }
+    });
+}
+
 GetChartDropDownMasterList(
   chartMasterId: string,
   dropdownName: string,

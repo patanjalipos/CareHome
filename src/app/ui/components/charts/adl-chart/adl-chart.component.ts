@@ -36,8 +36,14 @@ export class AdlChartComponent extends AppComponentBase implements OnInit {
     userId: any;
     ADLChartData: any = <any>{};
     StatementType: string = null;
-    CareGivenCheck:boolean = false;
+    CareGivenCheck: boolean = false;
     ReasonCheck: boolean = false;
+    WaterTempCheck: boolean = false;
+    OtherCheck: boolean = false;
+    ShowerValueId: string;
+    BathValueId: string;
+    OtherValueId: string;
+    Assistance: any[] = [];
 
     LstTransferMethod: any[] = [];
     LstAssistanceLevel: any[] = [];
@@ -54,12 +60,12 @@ export class AdlChartComponent extends AppComponentBase implements OnInit {
     pageSize: number = 3;
     responsiveOptions: any[] | undefined;
     rightBtnCheck: boolean = false;
-    isShowStrikeThroughPopup:boolean = false;
-    StrikeThroughData:any = <any>{};
-    stLstReason:any[]=[];
+    isShowStrikeThroughPopup: boolean = false;
+    StrikeThroughData: any = <any>{};
+    stLstReason: any[] = [];
     stLstErrorAndWarning: any = <any>{};
-    result:any = <any>{};
-    ChartName:string;
+    result: any = <any>{};
+    ChartName: string;
 
     constructor(
         private optionService: OptionService,
@@ -167,6 +173,31 @@ export class AdlChartComponent extends AppComponentBase implements OnInit {
         }
     }
 
+    ChangeElement() {
+        this.Assistance = this.ADLChartData.HygieneAssistanceRequiredOptions;
+        if (this.ADLChartData.HygieneAssistanceRequiredOptions.length != 0) {
+                
+                this.WaterTempCheck = this.Assistance.includes(this.ShowerValueId) || this.Assistance.includes(this.BathValueId);
+                this.OtherCheck = this.Assistance.includes(this.OtherValueId);
+
+            this.LstHygieneAssistanceRequired.forEach(item => {
+                if (this.Assistance.includes(item.optionId)) {
+                  if (item.optionName === 'Shower' || item.optionName === 'Bath') {
+                    this.WaterTempCheck = true;
+                    item.optionName === 'Shower' ? this.ShowerValueId = item.optionId : this.BathValueId = item.optionId;
+                  } else if (item.optionName === 'Other') {
+                    this.OtherCheck = true;
+                    this.OtherValueId = item.optionId; 
+                  }
+                }
+              });
+        }
+        else {
+            this.WaterTempCheck = false;
+            this.OtherCheck = false;
+        }
+    }
+
     GetChartDropDownMasterList(
         chartMasterId: string,
         dropdownName: string,
@@ -229,16 +260,16 @@ export class AdlChartComponent extends AppComponentBase implements OnInit {
     }
 
     Save() {
-        if(this.ADLChartData.CareGivenOptions == null) {
+        if (this.ADLChartData.CareGivenOptions == null) {
             this.CareGivenCheck = true;
         }
-        else if(this.ADLChartData.CareGivenOptions != null) {
+        else if (this.ADLChartData.CareGivenOptions != null) {
             this.CareGivenCheck = false;
-            if(this.ADLChartData.CareGivenOptions == 'Yes') {
+            if (this.ADLChartData.CareGivenOptions == 'Yes') {
                 this.ReasonCheck = false;
             }
-            else{
-                if(this.ADLChartData.Reason == null) {
+            else {
+                if (this.ADLChartData.Reason == null) {
                     this.ReasonCheck = true;
                 }
                 else {
@@ -281,12 +312,15 @@ export class AdlChartComponent extends AppComponentBase implements OnInit {
                     );
             }
 
+            this.ADLChartData.WaterTemperatureCheck = this.WaterTempCheck;
+            this.ADLChartData.OtherCheck = this.OtherCheck;
+
             const objectBody: any = {
                 StatementType: this.StatementType,
                 ADLChartDetail: this.ADLChartData,
             };
-         
-            
+
+
             this._UtilityService.showSpinner();
             this.unsubscribe.add = this._ADLChart
                 .InsertUpdateADLChart(objectBody)
@@ -371,11 +405,11 @@ export class AdlChartComponent extends AppComponentBase implements OnInit {
 
     showPopup(chartId) {
         this.StrikeThroughData = {
-            ChartMasterId:ChartTypes.ADLChart,
+            ChartMasterId: ChartTypes.ADLChart,
             ChartId: chartId,
-            ModifiedBy:this.loginId,
-         };
-         this.isShowStrikeThroughPopup = true;
+            ModifiedBy: this.loginId,
+        };
+        this.isShowStrikeThroughPopup = true;
     }
 
     Changes(value: boolean) {
