@@ -68,6 +68,7 @@ export class FormsDashboardComponent
     dateRangeChange(calendar: Calendar) {
         if (this.rangeDates[0] !== null && this.rangeDates[1] !== null) {
             calendar.overlayVisible = false;
+            this.SearchForm();
         }
     }
 

@@ -52,7 +52,7 @@ export class ChartComponent extends AppComponentBase implements OnInit {
         this.GetChartMaster();
     }
 
-    SearchChart() {
+    SearchChart() {debugger
         this.ShowChildComponent = false;
         this._UtilityService.showSpinner();
         const residentAdmissionInfoId = this.residentAdmissionInfoId;
@@ -103,6 +103,7 @@ export class ChartComponent extends AppComponentBase implements OnInit {
     dateRangeChange(calendar: Calendar) {
         if (this.rangeDates[0] !== null && this.rangeDates[1] !== null) {
             calendar.overlayVisible = false;
+            this.SearchChart();
         }
     }
 
