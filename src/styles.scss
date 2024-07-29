@@ -224,7 +224,7 @@ h5.label-name {
 }
 
 .form-group {
-    margin-bottom: 16px;
+    margin-bottom: 5px;
 }
 
 .pos-rel {
@@ -251,7 +251,7 @@ body {
 
 /*Btn Start */
 .p-inputtext {
-    height: 38px !important;
+    height: 35px !important;
     padding: 0.5rem 0.5rem !important;
 }
 
@@ -272,7 +272,8 @@ body {
 
 .p-button {
     border-color: #023C40 !important;
-    height: 38px !important;
+    height: 35px !important;
+
 }
 
 .btn-primary {
@@ -532,7 +533,7 @@ body {
 .p-dropdown,
 .form-control,
 .p-inputnumber-input {
-    height: 38px;
+    height: 35px;
     border-radius: 6px;
     margin-bottom: 10px;
 }
@@ -977,6 +978,7 @@ i.iconset:hover {
 
 .p-accordion-header button {
     height: 30px !important;
+    background-color: #023C40 !important;
 }
 
 .p-input-icon-left>.p-inputtext {
@@ -1103,7 +1105,7 @@ i.iconset:hover {
     margin: 0 auto;
     text-align: center;
     width: 130px;
-    height: 170px;
+    // height: 170px;
     border-radius: 100%;
 }
 
@@ -1118,8 +1120,8 @@ i.iconset:hover {
 }
 
 .img-prview-box i {
-    font-size: 130px !important;
-    margin: 20px 0;
+    font-size: 100px !important;
+    margin: 10px 0;
     text-align: center;
     color: #c1c1c1;
 }
@@ -1207,7 +1209,7 @@ i.iconset:hover {
 
 .box-hgt {
     overflow-y: scroll;
-    height: 225px;
+    height: 213px;
 }
 
 p.date-box {
@@ -1445,7 +1447,7 @@ p.date-box {
 }
 
 .formheader {
-    background-color: #F6F9F9;
+    background-color: #e1e7e7;
     color: #000;
     padding: 10px 10px;
     border-radius: 5px;
@@ -1476,9 +1478,11 @@ p.date-box {
     border-radius: 5px;
 }
 
-// .active-chart{
-//     border: 1px solid #023C40 ;
-// }
+.chart {
+    background-color: #eaf6f7;
+
+}
+
 .form-box-inner {
     font-size: 18px;
     color: #fff;
@@ -1563,4 +1567,35 @@ p.date-box {
 .p-datatable-thead {
     line-height: 8px;
 }
-.resident-picture{height: 100px; width: 100px; object-fit: cover; margin-right: 10px;}
+
+.resident-picture {
+    height: 60px;
+    width: 60px;
+    object-fit: cover;
+    margin-right: 10px;
+}
+
+.p-dropdown-panel .p-dropdown-items .p-dropdown-item {
+    line-height: 10px;
+}
+
+.p-accordion .p-accordion-header:not(.p-disabled) .p-accordion-header-link:focus {
+    box-shadow: 0 0 0 0.2rem #b8d5d7;
+}
+
+.p-button:focus {
+    box-shadow: 0 0 0 2px #ffffff, 0 0 0 4px #b8d5d7,
+}
+
+input {
+    margin-top: 5px;
+}
+
+input::file-selector-button {
+    color: #fff;
+    padding: 5px;
+    border: thin solid #023C40;
+    font-weight: 500;
+    border-radius: 5px 5px 5px 5px !important;
+    background-color: #023C40;
+}
