@@ -121,6 +121,9 @@
     </div>
 </div>
 <!-- Dynamic Form Component -->
+
+<div #Forms>
+
 <app-pre-admission-assessment-forms
     [preSelectedFormData]="selectedFormData"
     (EmitUpdateForm)="EmitUpdateForm($event)"
@@ -707,3 +710,5 @@
         selectedFormMasterId == FormTypes.ProfessionalVisitCommunicationRecord
     "
 ></app-professional-visit-communication-record>
+
+</div>

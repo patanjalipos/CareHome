@@ -1,6 +1,7 @@
 import {
     Component,
     ComponentRef,
+    ElementRef,
     Input,
     OnInit,
     ViewChild,
@@ -31,6 +32,7 @@ export class FormsDashboardComponent
     @Input() residentAdmissionInfoId: string = null;
     @Input() userId: any = null;
 
+    @ViewChild('Forms',{static : false}) childRef : ElementRef;
     @ViewChild('formContainer', { read: ViewContainerRef })
     formContainer: ViewContainerRef;
     componentRef: ComponentRef<any>;
@@ -163,6 +165,9 @@ export class FormsDashboardComponent
                 ModifiedOn: selectedFormdata.ModifiedOn,
             };
             this.ShowModel();
+            setTimeout(() => {
+                this.childRef.nativeElement.scrollIntoView({ behavior: 'smooth' });
+            },200);
         } 
         else{
             this._UtilityService.showErrorAlert('Kindly select an Assessment Form');

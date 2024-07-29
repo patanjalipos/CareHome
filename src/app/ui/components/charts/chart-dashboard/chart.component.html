@@ -85,11 +85,13 @@
 </div>
 
 <!-- Dynamic Form Component -->
+<div #Charts>
 
 <app-activities-chart [preSelectedChartData]="selectedChartData" (EmitUpdateForm)="EmitUpdateForm($event)" *ngIf="
         ShowChildComponent == true &&
         selectedChartMasterId == ChartTypes.ActivitiesChart
     "></app-activities-chart>
+
 
 <app-behaviour-chart [preSelectedChartData]="selectedChartData" (EmitUpdateForm)="EmitUpdateForm($event)" *ngIf="
         ShowChildComponent == true &&
@@ -229,3 +231,5 @@ ShowChildComponent == true &&
 selectedChartMasterId == ChartTypes.PainChekChart
 ">
 </app-painchek-chart>
+
+</div>
