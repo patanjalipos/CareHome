@@ -1,1 +1,257 @@
-<p>news-chart works!</p>
+<div class="card">
+    <div class="row p-0">
+        <div class="col-md-12 formheader d-flex justify-content-between align-items-center">
+            <h4 class="mb-0">Bowel Chart</h4>
+            <div>
+                <button pButton type="button" icon="pi pi-chevron-left" class="mr-2" (click)="leftBtn()"
+                    [disabled]="pageNumber==0"></button>
+                <button pButton type="button" icon="pi pi-chevron-right" class="" (click)="rightBtn()"
+                    [disabled]="rightBtnCheck"></button>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-3 mt-3 chart-box chart">
+            <div class="formheader mt-2 chart-heading">
+                <p><b>New observation</b></p>
+            </div>
+            <div class="col-md-12 mt-4">
+                <label class="form-label bold">
+                    Date/Time<span class="required"></span></label>
+
+                <ng-container>
+                    <p-calendar name="" [required]="true" [showIcon]="true" inputId="icon" class="iconcal"
+                        [readonlyInput]="true" appendTo="body" [maxDate]="" #dobref=""
+                        [dateFormat]="customDateFormat.CalendarFormat" [(ngModel)]="BowelChartFormData.DateAndTime"
+                        [showTime]="true" hourFormat="24"></p-calendar>
+                </ng-container>
+            </div>
+            <div class="col-md-12">
+
+                <label class="form-label bold">Care Given <span class="required"></span></label>
+
+                <ng-container>
+                    <p-dropdown [required]="true" name="BowelChartFormData.CareGiven" placeholder="----select----"
+                        [style]="{ width: '100%' }" [options]="stLstYesNoOptions" optionValue="optionId"
+                        optionLabel="optionValue" [(ngModel)]="BowelChartFormData.CareGiven"
+                        (onChange)="openAndClose()">
+                    </p-dropdown>
+                    <label for="" *ngIf="careGiven" class="text-danger">This field is required</label>
+                </ng-container>
+
+            </div>
+            <div *ngIf="inputFields==false">
+                <label class="form-label bold">Reason<span class="required"></span></label>
+
+                <ng-container>
+                    <p-dropdown [required]="true" name="BowelChartFormData.Reason" placeholder="----select----"
+                        [style]="{ width: '100%' }" [options]="stLstReason" optionValue="optionId"
+                        optionLabel="optionValue" [(ngModel)]="BowelChartFormData.Reason">
+                    </p-dropdown>
+                    <label for="" *ngIf="reason" class="text-danger">This field is required</label>
+                </ng-container>
+            </div>
+
+            <div *ngIf="inputFields" class="row">
+                <h5 class="formheader">Respiration Rate</h5>
+                <div class="col-md-12">
+                    <label class="form-label bold">Breath/min<span class="required"></span></label>
+                    <ng-container>
+                        <input type="number" pInputText name="BowelChartFormData.AdditionalInformation"
+                            [required]="true" [style]="{ width: '100%' }"
+                            [(ngModel)]="BowelChartFormData.AdditionalInformation" />
+                    </ng-container>
+
+                </div>
+
+                <div class="col-md-12">
+                    <label class="form-label bold">Respiration Score<span class="required"></span></label>
+                    <ng-container>
+                        <label></label>
+                    </ng-container>
+                </div>
+
+
+
+
+                <h5 class="formheader">SpO2</h5>
+                <div class="col-md-12">
+                    <label class="form-label bold">Does the resident have hypercapnic Respiratory Failear</label>
+                    <ng-container>
+                        <input type="number" pInputText name="BowelChartFormData.AdditionalInformation"
+                            [required]="true" [style]="{ width: '100%' }"
+                            [(ngModel)]="BowelChartFormData.AdditionalInformation" />
+                    </ng-container>
+
+                </div>
+
+                <div class="col-md-12">
+                    <label class="form-label bold">Oxigen Saturation(%)</label>
+                    <ng-container>
+                        <input type="number" pInputText name="BowelChartFormData.AdditionalInformation"
+                            [required]="true" [style]="{ width: '100%' }"
+                            [(ngModel)]="BowelChartFormData.AdditionalInformation" placeholder="%" />
+                    </ng-container>
+
+                </div>
+
+                <div class="col-md-12">
+                    <label class="form-label bold">Scale 1 score<span class="required"></span></label>
+                    <ng-container>
+                        <label></label>
+                    </ng-container>
+                </div>
+
+
+
+                <h5 class="formheader">Systolic blood pressure</h5>
+                <div class="col-md-12">
+                    <label class="form-label bold">Systolic blood pressure (hhmg)</label>
+                    <ng-container>
+                        <input type="number" pInputText name="BowelChartFormData.AdditionalInformation"
+                            [required]="true" [style]="{ width: '100%' }"
+                            [(ngModel)]="BowelChartFormData.AdditionalInformation" />
+                    </ng-container>
+
+                </div>
+
+
+                <div class="col-md-12">
+                    <label class="form-label bold">Systolic blood pressure score<span class="required"></span></label>
+                    <ng-container>
+                        <label></label>
+                    </ng-container>
+                </div>
+
+
+
+                <h5 class="formheader">Pules Rate</h5>
+                <div class="col-md-12">
+                    <label class="form-label bold">pules Beat/min (beats per min)</label>
+                    <ng-container>
+                        <input type="number" pInputText name="BowelChartFormData.AdditionalInformation"
+                            [required]="true" [style]="{ width: '100%' }"
+                            [(ngModel)]="BowelChartFormData.AdditionalInformation" placeholder="beats per min" />
+                    </ng-container>
+
+                </div>
+
+
+                <div class="col-md-12">
+                    <label class="form-label bold">Pules Score<span class="required"></span></label>
+                    <ng-container>
+                        <label></label>
+                    </ng-container>
+                </div>
+
+
+                <h5 class="formheader">Level Of consciousness</h5>
+                <div class="col-md-12">
+                    <label class="form-label bold">consciousness</label>
+                    <ng-container>
+                        <p-dropdown [required]="true" name="BowelChartFormData.CareGiven" placeholder="----select----"
+                            [style]="{ width: '100%' }" [options]="stLstYesNoOptions" optionValue="optionId"
+                            optionLabel="optionValue" [(ngModel)]="BowelChartFormData.CareGiven"
+                            (onChange)="openAndClose()">
+                        </p-dropdown>
+                    </ng-container>
+
+                </div>
+
+
+                <div class="col-md-12">
+                    <label class="form-label bold">consciousness score<span class="required"></span></label>
+                    <ng-container>
+                        <label></label>
+                    </ng-container>
+                </div>
+
+                <h5 class="formheader">Temprature</h5>
+                <div class="col-md-12">
+                    <label class="form-label bold">Temprature (degree/calcius)</label>
+                    <ng-container>
+                        <input type="number" pInputText name="BowelChartFormData.AdditionalInformation"
+                            [required]="true" [style]="{ width: '100%' }"
+                            [(ngModel)]="BowelChartFormData.AdditionalInformation" placeholder="degree calcius" />
+                    </ng-container>
+
+                </div>
+
+
+                <div class="col-md-12">
+                    <label class="form-label bold">Temprature score<span class="required"></span></label>
+                    <ng-container>
+                        <label></label>
+                    </ng-container>
+                </div>
+
+
+                <h5 class="formheader">NEWS 2 Total</h5>
+                <div class="col-md-12">
+                    <label class="form-label bold">NEWS 2 score<span class="required"></span></label>
+                    <ng-container>
+                        <label></label>
+                    </ng-container>
+                </div>
+                <div class="col-md-12">
+                    <label class="form-label bold">Clinical Risk<span class="required"></span></label>
+                    <ng-container>
+                        <label></label>
+                    </ng-container>
+                </div>
+                <div class="col-md-12">
+                    <label class="form-label bold">Response<span class="required"></span></label>
+                    <ng-container>
+                        <label></label>
+                    </ng-container>
+                </div>
+
+                <div class="col-md-12">
+                    <label class="form-label bold">Monterning Frequacy</label>
+                    <ng-container>
+                        <p-dropdown [required]="true" name="BowelChartFormData.CareGiven" placeholder="----select----"
+                            [style]="{ width: '100%' }" [options]="stLstYesNoOptions" optionValue="optionId"
+                            optionLabel="optionValue" [(ngModel)]="BowelChartFormData.CareGiven"
+                            (onChange)="openAndClose()">
+                        </p-dropdown>
+                    </ng-container>
+
+                </div>
+                <div class="col-md-12">
+                    <label class="form-label bold">Esclation Of care</label>
+                    <ng-container>
+                        <p-dropdown [required]="true" name="BowelChartFormData.CareGiven" placeholder="----select----"
+                            [style]="{ width: '100%' }" [options]="stLstYesNoOptions" optionValue="optionId"
+                            optionLabel="optionValue" [(ngModel)]="BowelChartFormData.CareGiven"
+                            (onChange)="openAndClose()">
+                        </p-dropdown>
+                    </ng-container>
+
+                </div>
+            </div>
+
+            <h5 class="formheader">Additional information</h5>
+            <div class="col-md-12">
+                <ng-container>
+                    <input type="text" pInputText name="BowelChartFormData.AdditionalInformation" [required]="true"
+                        [style]="{ width: '100%' }" [(ngModel)]="BowelChartFormData.AdditionalInformation" />
+                </ng-container>
+
+            </div>
+            <div class="d-flex justify-content-center mt-4 mb-4">
+                <div class="mr-4 ">
+                    <span class="p-ml-left">
+                        <button pButton title="Clear all" label="Clear all" (click)="ClearAllfeilds()"></button>
+
+                    </span>
+                </div>
+                <div>
+                    <span class="p-ml-left">
+                        <button pButton title="save" label="Save" (click)="Save()"></button>
+
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

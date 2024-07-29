@@ -46,6 +46,9 @@ export class AccidentIncidentNearMissRecordComponent
     lstInjurySustained: any[] = [];
     lstJobRole: any[] = [];
     lstEmergencyServices: any[] = [];
+    lstQualifiedAssessor:any[]=[];
+    lstSecondarySurvay:any[]=[];
+    
     constructor(
         private _ConstantServices: ConstantsService,
         private _UserServices: UserService,
@@ -85,6 +88,8 @@ export class AccidentIncidentNearMissRecordComponent
             'InjuriesSustained',
             'JobRole',
             'EmergencyServices',
+            'QualifiedAssessor',
+            'SecondarySurvay'
         ];
 
         forkJoin(
@@ -102,6 +107,8 @@ export class AccidentIncidentNearMissRecordComponent
             this.lstInjurySustained = responses[3];
             this.lstJobRole = responses[4];
             this.lstEmergencyServices = responses[5];
+            this.lstQualifiedAssessor=responses[6];
+            this.lstSecondarySurvay=responses[7];
         });
 
         if (this.preSelectedFormData.selectedFormID != null) {
@@ -211,18 +218,19 @@ export class AccidentIncidentNearMissRecordComponent
                     this.AccidentNearMissRecordFormsData.DateOfAccident,
                     'yyyy-MM-dd'
                 );
-            this.AccidentNearMissRecordFormsData.EmergencyServicesContacted =
-                this.datePipe.transform(
-                    this.AccidentNearMissRecordFormsData
-                        .EmergencyServicesContacted,
-                    'yyyy-MM-dd'
-                );
+            // this.AccidentNearMissRecordFormsData.EmergencyServicesContacted =
+            //     this.datePipe.transform(
+            //         this.AccidentNearMissRecordFormsData
+            //             .EmergencyServicesContacted,
+            //         'yyyy-MM-dd'
+            //     );
             const objectBody: any = {
                 StatementType: this.StatementType,
                 accidentNearMissRecordForm:
                     this.AccidentNearMissRecordFormsData,
             };
 
+console.log(objectBody);
 
 
             this._UtilityService.showSpinner();
