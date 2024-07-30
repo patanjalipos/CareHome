@@ -57,4 +57,17 @@ export class PainChartService {
       { headers: reqHeader, params: params }
     );
   }
+
+  GetPainChartRecord(): Observable<any> {
+    let reqHeader = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Access-Control-Allow-Origin': environment.BaseUriAdmin,
+      'Authorization': 'Bearer ' + localStorage.getItem('token')
+    });
+    let params = new HttpParams();
+    return this._httpclient.get<any>(
+      environment.BaseUriUser + 'api/User/GetPainChartRecord',
+      { headers: reqHeader, params: params }
+    );
+  }
 }

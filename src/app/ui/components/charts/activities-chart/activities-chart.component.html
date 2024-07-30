@@ -11,7 +11,7 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-md-3 mt-3 chart-box">
+        <div class="col-md-3 mt-3 chart-box chart">
             <div class="formheader mt-2 chart-heading">
                 <p><b>New observation</b></p>
             </div>
@@ -20,11 +20,10 @@
                     Date/Time<span class="required"></span></label>
 
                 <ng-container>
-                    <p-calendar name="ActivitiesChartFormData.DateAndTime" [showIcon]="true" inputId="icon" class="iconcal" [readonlyInput]="true"
-
-                        appendTo="body" [maxDate]="" #dobref="" [dateFormat]="customDateFormat.CalendarFormat"
-                        [(ngModel)]="ActivitiesChartFormData.DateAndTime" [showTime]="true"
-                        hourFormat="24"></p-calendar>
+                    <p-calendar name="ActivitiesChartFormData.DateAndTime" [showIcon]="true" inputId="icon"
+                        class="iconcal" [readonlyInput]="true" appendTo="body" [maxDate]="" #dobref=""
+                        [dateFormat]="customDateFormat.CalendarFormat" [(ngModel)]="ActivitiesChartFormData.DateAndTime"
+                        [showTime]="true" hourFormat="24"></p-calendar>
                 </ng-container>
             </div>
             <div class="col-md-12">
@@ -32,12 +31,15 @@
                 <label class="form-label bold">Care Given <span class="required">*</span></label>
 
                 <ng-container>
-                    <p-dropdown [ngClass]="{'ng-dirty ng-invalid':CareGivenCheck}" [required]="true" name="ActivitiesChartFormData.CareGiven" placeholder="----select----"
+                    <p-dropdown [ngClass]="{'ng-dirty ng-invalid':CareGivenCheck}" [required]="true"
+                        name="ActivitiesChartFormData.CareGiven" placeholder="----select----"
                         [style]="{ width: '100%' }" [options]="stLstYesNoOptions" optionValue="optionId"
                         optionLabel="optionValue" [(ngModel)]="ActivitiesChartFormData.CareGiven"
                         (onChange)="openAndClose()">
                     </p-dropdown>
-                    <span class="required" *ngIf="ActivitiesChartFormData.CareGiven==null && CareGivenCheck == true">This field is required!</span>
+                    <span class="required"
+                        *ngIf="ActivitiesChartFormData.CareGiven==null && CareGivenCheck == true">This field is
+                        required!</span>
                 </ng-container>
 
             </div>
@@ -45,11 +47,13 @@
                 <label class="form-label bold">Reason<span class="required">*</span></label>
 
                 <ng-container>
-                    <p-dropdown [ngClass]="{'ng-dirty ng-invalid':ReasonCheck}" [required]="true" name="ActivitiesChartFormData.Reason" placeholder="----select----"
-                        [style]="{ width: '100%' }" [options]="stLstReason" optionValue="optionId"
-                        optionLabel="optionValue" [(ngModel)]="ActivitiesChartFormData.Reason">
+                    <p-dropdown [ngClass]="{'ng-dirty ng-invalid':ReasonCheck}" [required]="true"
+                        name="ActivitiesChartFormData.Reason" placeholder="----select----" [style]="{ width: '100%' }"
+                        [options]="stLstReason" optionValue="optionId" optionLabel="optionValue"
+                        [(ngModel)]="ActivitiesChartFormData.Reason">
                     </p-dropdown>
-                    <span class="required" *ngIf="ActivitiesChartFormData.Reason==null && ReasonCheck == true">This field is required!</span>
+                    <span class="required" *ngIf="ActivitiesChartFormData.Reason==null && ReasonCheck == true">This
+                        field is required!</span>
                 </ng-container>
             </div>
 
@@ -65,6 +69,17 @@
 
                 </div>
 
+                <div *ngIf="ActivitiesChartFormData.Activity=='6656c4f96e158add1b96da0f'">
+                    <div class="col-md-12">
+                        <label class="form-label bold">Other<span class="required"></span></label>
+                        <ng-container>
+                            <input type="text" [style]="{width:'100%'}" pInputText
+                                [(ngModel)]="ActivitiesChartFormData.other" />
+                        </ng-container>
+
+                    </div>
+                </div>
+
                 <div class="col-md-12">
                     <label class="form-label bold">Attendance<span class="required"></span></label>
                     <ng-container>
@@ -76,7 +91,7 @@
 
                 </div>
 
-                <div class="col-md-12">
+                <div class="col-md-12" *ngIf="ActivitiesChartFormData.Attendance=='Attended'">
                     <label class="form-label bold">Participation<span class="required"></span></label>
                     <ng-container>
                         <p-dropdown [required]="true" name="ActivitiesChartFormData.Participation"
@@ -225,6 +240,18 @@
                                 </div>
                             </div>
 
+                            <div *ngIf="chart.ActivityOptionName=='Other'">
+                                <label class="form-label bold"
+                                    [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">Other<span
+                                        class="required"></span></label>
+
+                                <div>
+                                    <label [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">{{
+                                        chart.other
+                                        }}</label>
+                                </div>
+                            </div>
+
                             <div class="col-md-12">
                                 <label class="form-label bold"
                                     [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">Attendance<span
@@ -237,7 +264,7 @@
                                 </div>
                             </div>
 
-                            <div class="col-md-12">
+                            <div class="col-md-12" *ngIf="chart.Attendance=='Attended'">
                                 <label class="form-label bold"
                                     [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">Participation<span
                                         class="required"></span></label>

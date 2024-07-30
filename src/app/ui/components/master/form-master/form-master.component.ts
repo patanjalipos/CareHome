@@ -126,7 +126,7 @@ export class FormMasterComponent extends AppComponentBase implements OnInit {
           this._UtilityService.showErrorAlert(e.message);
         },
       });
-  }npnp
+  }
 
   AddNewItem() {
     this.ResetModel();

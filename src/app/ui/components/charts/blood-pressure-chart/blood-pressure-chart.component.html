@@ -11,7 +11,7 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-md-3 mt-3 chart-box">
+        <div class="col-md-3 mt-3 chart-box chart">
             <div class="formheader mt-2 chart-heading">
                 <p><b>New observation</b></p>
             </div>
@@ -58,7 +58,7 @@
                     </div>
                     <ng-container>
                         <input type="number" pInputText [style]="{ width: '100%' }"
-                            [(ngModel)]="bloodPressureChartFormData.Systolic" />
+                            [(ngModel)]="bloodPressureChartFormData.Systolic" placeholder="mm Hg"/>
                     </ng-container>
                 </div>
 
@@ -68,7 +68,7 @@
                     </div>
                     <ng-container>
                         <input type="number" pInputText [style]="{ width: '100%' }"
-                            [(ngModel)]="bloodPressureChartFormData.Diastolic" />
+                            [(ngModel)]="bloodPressureChartFormData.Diastolic" placeholder="mm Hg" />
                     </ng-container>
                 </div>
 

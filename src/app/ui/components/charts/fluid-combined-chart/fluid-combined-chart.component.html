@@ -11,7 +11,7 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-md-3 mt-3 chart-box">
+        <div class="col-md-3 mt-3 chart-box chart">
             <div class="formheader mt-2 chart-heading">
                 <p><b>New observation</b></p>
             </div>
@@ -62,6 +62,198 @@
                         </p-dropdown>
 
                     </ng-container>
+                </div>
+
+                <div
+                    *ngIf="fluidCombinedChartFormData.fluidChart=='667e8581d18d00bd4af6dbdb'||fluidCombinedChartFormData.fluidChart=='667e8581d18d00bd4af6dbdd'">
+                    <h5 class="formheader">Fluid Input</h5>
+                    <div class="col-md-12">
+                        <label class="form-label bold">Fluid Input Type<span class="required"></span></label>
+                        <div>
+                            <p-multiSelect [required]="true" appendTo="body" [style]="{width:'100%'}"
+                                [options]="lstFluidInputType" [(ngModel)]="fluidCombinedChartFormData.fluidInputType"
+                                optionLabel="optionName" optionValue="optionId"
+                                placeholder="----select----"></p-multiSelect>
+                        </div>
+                    </div>
+
+
+                    <div class="col-md-12">
+                        <label class="form-label bold">Amount Offered (mis)<span class="required"></span></label>
+                        <ng-container>
+                            <input type="number" pInputText name="fluidCombinedChartFormData.amountOffered"
+                                [required]="true" [style]="{ width: '100%' }"
+                                [(ngModel)]="fluidCombinedChartFormData.amountOffered" />
+                        </ng-container>
+
+                    </div>
+
+                    <div class="col-md-12">
+                        <label class="form-label bold">Amount Consumed (mis)<span class="required"></span></label>
+                        <ng-container>
+                            <input type="number" pInputText name="fluidCombinedChartFormData.amountConsumed"
+                                [required]="true" [style]="{ width: '100%' }"
+                                [(ngModel)]="fluidCombinedChartFormData.amountConsumed" />
+                        </ng-container>
+
+                    </div>
+
+                    <div class="col-md-12">
+                        <label class="form-label bold">Approximation<span class="required"></span></label>
+                        <ng-container>
+                            <p-selectButton [options]="rangeOptionApproximation"
+                                [(ngModel)]="fluidCombinedChartFormData.approximation" optionLabel="label"
+                                optionValue="value"></p-selectButton>
+                        </ng-container>
+
+                    </div>
+
+                    <div class="col-md-12">
+                        <label class="form-label bold">Type Of Fluid<span class="required"></span></label>
+                        <ng-container>
+                            <input type="text" pInputText name="fluidCombinedChartFormData.typeOfFluid"
+                                [required]="true" [style]="{ width: '100%' }"
+                                [(ngModel)]="fluidCombinedChartFormData.typeOfFluid" />
+                        </ng-container>
+
+                    </div>
+
+                    <div class="col-md-12">
+                        <label class="form-label bold">Thickener Added<span class="required"></span></label>
+                        <ng-container>
+                            <p-selectButton [options]="rangeOptionThickener"
+                                [(ngModel)]="fluidCombinedChartFormData.thickenerAdded" optionLabel="label"
+                                optionValue="value"></p-selectButton>
+                        </ng-container>
+
+                    </div>
+
+                    <div class="col-md-12" *ngIf="fluidCombinedChartFormData.thickenerAdded=='Yes'">
+                        <label class="form-label bold">Thickener Details?<span class="required"></span></label>
+                        <ng-container>
+                            <input type="text" pInputText name="fluidCombinedChartFormData.thickenerDetails"
+                                [required]="true" [style]="{ width: '100%' }"
+                                [(ngModel)]="fluidCombinedChartFormData.thickenerDetails" />
+                        </ng-container>
+
+                    </div>
+                </div>
+
+
+                <div
+                    *ngIf="fluidCombinedChartFormData.fluidChart=='667e8581d18d00bd4af6dbdc'||fluidCombinedChartFormData.fluidChart=='667e8581d18d00bd4af6dbdd'">
+                    <h5 class="formheader">Fluid Output</h5>
+                    <div class="col-md-12">
+                        <label class="form-label bold">Fluid Output Type<span class="required"></span></label>
+                        <div>
+                            <p-multiSelect [required]="true" appendTo="body" [style]="{width:'100%'}"
+                                [options]="lstFluidOutputType" [(ngModel)]="fluidCombinedChartFormData.fluidOutputType"
+                                optionLabel="optionName" optionValue="optionId"
+                                placeholder="----select----"></p-multiSelect>
+                        </div>
+                    </div>
+
+                    <div
+                        *ngIf="fluidCombinedChartFormData.fluidOutputType && fluidCombinedChartFormData.fluidOutputType.includes('66a200dac783e76c084d3c36')">
+                        <div class="col-md-12">
+                            <label class="form-label bold">Fluid Output Type - Other<span
+                                    class="required"></span></label>
+                            <ng-container>
+                                <input type="text" pInputText name="fluidCombinedChartFormData.fluidOutputTypeOther"
+                                    [required]="true" [style]="{ width: '100%' }"
+                                    [(ngModel)]="fluidCombinedChartFormData.fluidOutputTypeOther" />
+                            </ng-container>
+                        </div>
+                    </div>
+
+
+
+                    <div class="mb-4">
+                        <label class="form-label bold">Continance Level<span class="required"></span></label>
+                        <ng-container>
+                            <p-dropdown [required]="true" name="fluidCombinedChartFormData.continanceLevel"
+                                placeholder="----select----" [style]="{ width: '100%' }" [options]="lstContinenceLevel"
+                                optionValue="optionId" optionLabel="optionName"
+                                [(ngModel)]="fluidCombinedChartFormData.continanceLevel">
+                            </p-dropdown>
+
+                        </ng-container>
+                    </div>
+
+                    <div class="mb-4">
+                        <label class="form-label bold">Fluid Output Method<span class="required"></span></label>
+                        <div>
+                            <p-multiSelect [required]="true" appendTo="body" [style]="{width:'100%'}"
+                                [options]="lstFluidOutputMethod"
+                                [(ngModel)]="fluidCombinedChartFormData.fluidOutputMethod" optionLabel="optionName"
+                                optionValue="optionId" placeholder="----select----"></p-multiSelect>
+                        </div>
+                    </div>
+
+                    <div class="col-md-12">
+                        <label class="form-label bold">Fluid Output Amount (mis)<span class="required"></span></label>
+                        <ng-container>
+                            <input type="number" pInputText name="fluidCombinedChartFormData.fluidOutputAmount"
+                                [required]="true" [style]="{ width: '100%' }"
+                                [(ngModel)]="fluidCombinedChartFormData.fluidOutputAmount" />
+                        </ng-container>
+
+                    </div>
+
+                    <div
+                        *ngIf="fluidCombinedChartFormData.fluidOutputMethod&&fluidCombinedChartFormData.fluidOutputMethod.includes('66a2041dc783e76c084d3c3b')">
+                        <h5 class="formheader">Catheter</h5>
+                        <div class="mb-4">
+                            <label class="form-label bold">Catheter Checks<span class="required"></span></label>
+                            <ng-container>
+                                <p-dropdown [required]="true" name="fluidCombinedChartFormData.catheter"
+                                    placeholder="----select----" [style]="{ width: '100%' }"
+                                    [options]="lstCatheterChecks" optionValue="optionId" optionLabel="optionName"
+                                    [(ngModel)]="fluidCombinedChartFormData.catheter">
+                                </p-dropdown>
+
+                            </ng-container>
+                        </div>
+                    </div>
+
+                    <div
+                        *ngIf="fluidCombinedChartFormData.fluidOutputMethod&&fluidCombinedChartFormData.fluidOutputMethod.includes('66a2041dc783e76c084d3c3c')">
+                        <h5 class="formheader">Fluid Output - Pad</h5>
+                        <div class="mb-4">
+                            <label class="form-label bold">Pad Fluid Output<span class="required"></span></label>
+                            <ng-container>
+                                <p-dropdown [required]="true" name="fluidCombinedChartFormData.padFluidOutput"
+                                    placeholder="----select----" [style]="{ width: '100%' }"
+                                    [options]="lstPadFluidOutput" optionValue="optionId" optionLabel="optionName"
+                                    [(ngModel)]="fluidCombinedChartFormData.padFluidOutput">
+                                </p-dropdown>
+
+                            </ng-container>
+                        </div>
+
+                        <div class="mb-4">
+                            <label class="form-label bold">Reason for pad change<span class="required"></span></label>
+                            <ng-container>
+                                <p-dropdown [required]="true" name="fluidCombinedChartFormData.reasonPadChange"
+                                    placeholder="----select----" [style]="{ width: '100%' }"
+                                    [options]="lstPadChangeReason" optionValue="optionId" optionLabel="optionName"
+                                    [(ngModel)]="fluidCombinedChartFormData.reasonPadChange">
+                                </p-dropdown>
+
+                            </ng-container>
+                        </div>
+
+                        <div class="col-md-12">
+                            <label class="form-label bold">New Pad size and Absorbency<span
+                                    class="required"></span></label>
+                            <ng-container>
+                                <input type="text" pInputText name="fluidCombinedChartFormData.newPadSize"
+                                    [required]="true" [style]="{ width: '100%' }"
+                                    [(ngModel)]="fluidCombinedChartFormData.newPadSize" />
+                            </ng-container>
+
+                        </div>
+                    </div>
                 </div>
             </div>
             <h5 class="formheader">Additional information</h5>
@@ -168,11 +360,184 @@
                         <div *ngIf="chart.CareGiven=='Yes'" class="row">
                             <div class="col-md-12">
                                 <label class="form-label bold"
-                                    [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">Select Fluid Chart<span class="required"></span></label>
+                                    [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">Select Fluid
+                                    Chart<span class="required"></span></label>
 
                                 <div>
                                     <label
                                         [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">{{chart.FluidChartOptionName}}</label>
+                                </div>
+                            </div>
+
+                            <div
+                                *ngIf="chart.fluidChart=='667e8581d18d00bd4af6dbdb'||chart.fluidChart=='667e8581d18d00bd4af6dbdd'">
+                                <h5 class="formheader" [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">Fluid Input</h5>
+                                <div class="col-md-12">
+                                    <label class="form-label bold" [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">Fluid Input Type<span
+                                            class="required"></span></label>
+                                    <div>
+                                        <label
+                                            [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">{{chart.FluidInputTypeOptionName}}</label>
+                                    </div>
+                                </div>
+
+
+                                <div class="col-md-12">
+                                    <label class="form-label bold" [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">Amount Offered (mis)<span
+                                            class="required"></span></label>
+                                    <div>
+                                        <label
+                                            [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">{{chart.amountOffered}}</label>
+                                    </div>
+
+                                </div>
+
+                                <div class="col-md-12">
+                                    <label class="form-label bold" [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">Amount Consumed (mis)<span
+                                            class="required"></span></label>
+                                    <div>
+                                        <label
+                                            [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">{{chart.amountConsumed}}</label>
+                                    </div>
+
+                                </div>
+
+                                <div class="col-md-12">
+                                    <label class="form-label bold" [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">Approximation<span class="required"></span></label>
+                                    <div>
+                                        <label
+                                            [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">{{chart.approximation}}</label>
+                                    </div>
+
+                                </div>
+
+                                <div class="col-md-12">
+                                    <label class="form-label bold" [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">Type Of Fluid<span class="required"></span></label>
+                                    <div>
+                                        <label
+                                            [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">{{chart.typeOfFluid}}</label>
+                                    </div>
+
+                                </div>
+
+                                <div class="col-md-12">
+                                    <label class="form-label bold" [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">Thickener Added<span class="required"></span></label>
+                                    <div>
+                                        <label
+                                            [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">{{chart.thickenerAdded}}</label>
+                                    </div>
+
+                                </div>
+
+                                <div class="col-md-12" *ngIf="chart.thickenerAdded=='Yes'">
+                                    <label class="form-label bold" [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">Thickener Details?<span
+                                            class="required"></span></label>
+                                    <div>
+                                        <label
+                                            [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">{{chart.thickenerDetails}}</label>
+                                    </div>
+
+                                </div>
+                            </div>
+
+
+                            <div
+                                *ngIf="chart.fluidChart=='667e8581d18d00bd4af6dbdc'||chart.fluidChart=='667e8581d18d00bd4af6dbdd'">
+                                <h5 class="formheader" [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">Fluid Output</h5>
+                                <div class="col-md-12">
+                                    <label class="form-label bold" [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">Fluid Output Type<span
+                                            class="required"></span></label>
+                                    <div>
+                                        <label
+                                            [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">{{chart.FluidOutputTypeOptionName}}</label>
+                                    </div>
+                                </div>
+
+                                <div
+                                    *ngIf="chart.fluidOutputType && chart.fluidOutputType.includes('66a200dac783e76c084d3c36')">
+                                    <div class="col-md-12">
+                                        <label class="form-label bold" [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">Fluid Output Type - Other<span
+                                                class="required"></span></label>
+                                        <div>
+                                            <label
+                                                [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">{{chart.fluidOutputTypeOther}}</label>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+
+                                <div class="mb-4">
+                                    <label class="form-label bold" [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">Continance Level<span
+                                            class="required"></span></label>
+                                    <div>
+                                        <label
+                                            [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">{{chart.continanceLevelOptionName}}</label>
+                                    </div>
+                                </div>
+
+                                <div class="mb-4">
+                                    <label class="form-label bold" [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">Fluid Output Method<span
+                                            class="required"></span></label>
+                                    <div>
+                                        <label
+                                            [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">{{chart.FluidOutputMethodOptionName}}</label>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-12">
+                                    <label class="form-label bold" [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">Fluid Output Amount (mis)<span
+                                            class="required"></span></label>
+                                    <div>
+                                        <label
+                                            [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">{{chart.fluidOutputAmount}}</label>
+                                    </div>
+
+                                </div>
+
+                                <div
+                                    *ngIf="chart.fluidOutputMethod&&chart.fluidOutputMethod.includes('66a2041dc783e76c084d3c3b')">
+                                    <h5 class="formheader" [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">Catheter</h5>
+                                    <div class="mb-4">
+                                        <label class="form-label bold" [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">Catheter Checks<span
+                                                class="required"></span></label>
+                                        <div>
+                                            <label
+                                                [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">{{chart.catheterOptionName}}</label>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div
+                                    *ngIf="chart.fluidOutputMethod&&chart.fluidOutputMethod.includes('66a2041dc783e76c084d3c3c')">
+                                    <h5 class="formheader" [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">Fluid Output - Pad</h5>
+                                    <div class="mb-4">
+                                        <label class="form-label bold" [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">Pad Fluid Output<span
+                                                class="required"></span></label>
+                                        <div>
+                                            <label
+                                                [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">{{chart.padFluidOutputOptionName}}</label>
+                                        </div>
+                                    </div>
+
+                                    <div class="mb-4">
+                                        <label class="form-label bold" [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">Reason for pad change<span
+                                                class="required"></span></label>
+                                        <div>
+                                            <label
+                                                [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">{{chart.reasonPadChangeOptionName}}</label>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-12">
+                                        <label class="form-label bold" [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">New Pad size and Absorbency<span
+                                                class="required"></span></label>
+                                        <div>
+                                            <label
+                                                [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">{{chart.newPadSize}}</label>
+                                        </div>
+
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -190,7 +555,7 @@
                 </ng-template>
 
             </p-carousel>
-            
+
             <div *ngIf="isShowStrikeThroughPopup" class="card flex justify-content-center">
                 <p-dialog [closable]="true" header="Strike-Through" [(visible)]="isShowStrikeThroughPopup"
                     [modal]="true" [breakpoints]="{ '1199px': '75vw', '575px': '90vw' }" [style]="{ width: '40vw' }"

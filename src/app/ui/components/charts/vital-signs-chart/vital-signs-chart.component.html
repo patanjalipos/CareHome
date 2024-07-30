@@ -11,7 +11,7 @@
         </div>
     </div>
     <div class="row ">
-        <div class="col-md-3 mt-3  chart-box active-chart">
+        <div class="col-md-3 mt-3  chart-box chart">
             <div class="formheader mt-2 chart-heading">
                 <p><b>New observation</b></p>
             </div>
@@ -54,24 +54,22 @@
                 <h5 class="formheader">Blood Pressure</h5>
                 <div>
                     <div class="labelcontent">
-                        <label class="form-label bold">Systolic</label>
+                        <label class="form-label bold">Systolic(mm Hg)</label>
                     </div>
                     <ng-container>
                         <input type="number" pInputText name="VitalSignsChartData.Systolic"
                             [(ngModel)]="VitalSignsChartData.Systolic" [required]="true"
                             [style]="{ width: '100%' }" />
-                            <label>mm Hg</label>
                     </ng-container>
                 </div>
                 <div>
                     <div class="labelcontent">
-                        <label class="form-label bold">Diastolic</label>
+                        <label class="form-label bold">Diastolic(mm Hg)</label>
                     </div>
                     <ng-container>
                         <input type="number" pInputText name="VitalSignsChartData.Diastolic"
                             [(ngModel)]="VitalSignsChartData.Diastolic" [required]="true"
                             [style]="{ width: '100%' }" />
-                            <label>mm Hg</label>
                     </ng-container>
                 </div>
                 <div class="mb-2">
@@ -99,13 +97,12 @@
                 <h5 class="formheader">Pulse</h5>
                 <div>
                     <div class="labelcontent">
-                        <label class="form-label bold">Pulse Rate</label>
+                        <label class="form-label bold">Pulse Rate(Beats per minute)</label>
                     </div>
                     <ng-container>
                         <input type="number" pInputText name="VitalSignsChartData.PulseRate"
                             [(ngModel)]="VitalSignsChartData.PulseRate" [required]="true"
                             [style]="{ width: '100%' }" />
-                            <label>Beats per minute</label>
                     </ng-container>
                 </div>
                 <div>
@@ -159,38 +156,35 @@
                 <h5 class="formheader">Respiration</h5>
                 <div>
                     <div class="labelcontent">
-                        <label class="form-label bold">Respiratory Rate</label>
+                        <label class="form-label bold">Respiratory Rate(Breaths per minute)</label>
                     </div>
                     <ng-container>
                         <input type="number" pInputText name="VitalSignsChartData.RespiratoryRate"
                             [(ngModel)]="VitalSignsChartData.RespiratoryRate" [required]="true"
                             [style]="{ width: '100%' }" />
-                            <label>Breaths per minute</label>
                     </ng-container>
                 </div>
                 
                 <h5 class="formheader">Oximetry</h5>
                 <div>
                     <div class="labelcontent">
-                        <label class="form-label bold">Oxygen Saturation</label>
+                        <label class="form-label bold">Oxygen Saturation(%)</label>
                     </div>
                     <ng-container>
                         <input type="number" pInputText name="VitalSignsChartData.OxygenSaturation"
                             [(ngModel)]="VitalSignsChartData.OxygenSaturation" [required]="true"
                             [style]="{ width: '100%' }" />
-                            <label>%</label>
                     </ng-container>
                 </div>
                 <h5 class="formheader">Temperature</h5>
                 <div>
                     <div class="labelcontent">
-                        <label class="form-label bold">Temperature</label>
+                        <label class="form-label bold">Temperature(°C)</label>
                     </div>
                     <ng-container>
                         <input type="number" pInputText name="VitalSignsChartData.Temperature"
                             [(ngModel)]="VitalSignsChartData.Temperature" [required]="true"
                             [style]="{ width: '100%' }" />
-                            <label>Degrees Celsius</label>
                     </ng-container>
                 </div>
                 <div>

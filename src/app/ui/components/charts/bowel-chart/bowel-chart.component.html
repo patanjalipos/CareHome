@@ -11,7 +11,7 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-md-3 mt-3 chart-box">
+        <div class="col-md-3 mt-3 chart-box chart">
             <div class="formheader mt-2 chart-heading">
                 <p><b>New observation</b></p>
             </div>
@@ -80,6 +80,10 @@
                         <p-selectButton [options]="consistencyRangeOption" [(ngModel)]="BowelChartFormData.Consistency"
                             optionLabel="label" optionValue="value"></p-selectButton>
                     </ng-container>
+                </div>
+
+                <div *ngIf="BowelChartFormData.Consistency=='1'">
+
                 </div>
 
                 <div class="col-md-12">
@@ -259,10 +263,7 @@
                             </div>
 
                             <div class="col-md-12">
-                                <label class="form-label bold"
-                                    [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">Interventions<span
-                                        class="required"></span></label>
-
+                                <h5 class="formheader" [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">Interventions</h5>
                                 <div>
                                     <label
                                         [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">{{chart.InterventionsOptionName}}</label>

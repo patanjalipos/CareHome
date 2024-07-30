@@ -11,7 +11,7 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-md-3 mt-3 chart-box">
+        <div class="col-md-3 mt-3 chart-box chart">
             <div class="formheader mt-2 chart-heading">
                 <p><b>New observation</b></p>
             </div>
@@ -53,7 +53,7 @@
             <div *ngIf="inputFields==true">
                 <h5 class="formheader">Blood Glucose</h5>
                 <div class="mb-4">
-                    <label class="form-label bold">Blood Glucose<span class="required"></span></label>
+                    <label class="form-label bold">Blood Glucose(mmol/L)<span class="required"></span></label>
                     <div class="col-md-12">
                         <input type="number" pInputText name="bloodGlucoseChartFormData.bloodGlucose" [required]="true"
                             [style]="{ width: '100%' }" [(ngModel)]="bloodGlucoseChartFormData.bloodGlucose"
@@ -177,9 +177,11 @@
 
                         <div *ngIf="chart.CareGiven=='Yes'" class="row">
                             <div class="col-md-12">
+                                <h5 class="formheader" [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">
+                                    Blood Glucose
+                                </h5>
                                 <label class="form-label bold"
-                                    [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">Blood
-                                    Gulcose<span class="required"></span></label>
+                                    [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">Blood Glucose(mmol/L)<span class="required"></span></label>
 
                                 <div>
                                     <label

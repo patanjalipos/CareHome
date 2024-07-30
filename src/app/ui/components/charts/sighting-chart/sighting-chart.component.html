@@ -11,7 +11,7 @@
         </div>
     </div>
     <div class="row ">
-        <div class="col-md-3 mt-3  chart-box active-chart">
+        <div class="col-md-3 mt-3  chart-box chart">
             <div class="formheader mt-2 chart-heading">
                 <p><b>New observation</b></p>
             </div>
@@ -83,8 +83,17 @@
                         <p-dropdown [required]="true" name="SightingChartData.ResidentStateOption"
                         [(ngModel)]="SightingChartData.ResidentStateOption"
                         [options]="LstResidentState" optionLabel="optionName" optionValue="optionId"
-                        placeholder="--select--" [style]="{ width: '100%' }">
+                        placeholder="--select--" [style]="{ width: '100%' }" (onChange)="ChangeState()">
                     </p-dropdown>
+                    </ng-container>
+                </div>
+                <div *ngIf="SightingChartData.OtherCheck">
+                    <div class="labelcontent">
+                        <label class="form-label bold">Other</label>
+                    </div>
+                    <ng-container>
+                        <textarea pInputTextarea name="SightingChartData.Other" [(ngModel)]="SightingChartData.Other"
+                        [required]="true" [style]="{ width: '100%' }"></textarea>
                     </ng-container>
                 </div>
             </div>
@@ -211,6 +220,16 @@
                                 <div>
                                     <label [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">{{
                                         chart.ResidentStateOptionName }}</label>
+                                </div>
+                            </div>
+                            <div class="col-md-12 mb-5" *ngIf="chart.OtherCheck">
+                                <div class="labelcontent">
+                                    <label class="form-label bold"
+                                        [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">Other</label>
+                                </div>
+                                <div>
+                                    <label [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">{{
+                                        chart.Other }}</label>
                                 </div>
                             </div>
                         </div>

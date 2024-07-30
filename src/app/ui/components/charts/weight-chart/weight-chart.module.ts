@@ -12,6 +12,7 @@ import { CarouselModule } from 'primeng/carousel';
 import { DialogModule } from 'primeng/dialog';
 import { StrikeThroughEntryModule } from '../strike-through-entry/strike-through-entry.module';
 import { ButtonModule } from 'primeng/button';
+import { MessagesModule } from 'primeng/messages';
 
 
 @NgModule({
@@ -27,7 +28,8 @@ import { ButtonModule } from 'primeng/button';
     CarouselModule,
     DialogModule,
     StrikeThroughEntryModule,
-    ButtonModule
+    ButtonModule,
+    MessagesModule
   ],
   exports:[WeightChartComponent]
 })

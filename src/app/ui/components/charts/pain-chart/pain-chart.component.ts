@@ -20,8 +20,9 @@ import { ActivatedRoute } from '@angular/router';
 import { AppComponentBase } from 'src/app/app-component-base';
 import { Observable, catchError, forkJoin, map, of } from 'rxjs';
 import { PainChartService } from './pain-chart.service';
-import { Chart } from 'chart.js';
 import { StrikeThroughEntryComponent } from '../strike-through-entry/strike-through-entry.component';
+import { Message } from 'primeng/api';
+import { Options } from '@angular-slider/ngx-slider';
 
 interface BodyPart {
     name: string;
@@ -49,6 +50,60 @@ export class PainChartComponent extends AppComponentBase implements OnInit {
     isEditable: boolean;
     inputFields: boolean;
     StatementType: string;
+
+    BodyPartsName: any[] = [];
+    bodyDialogCount: number = 0;
+    painChartRecordData: any = <any>{};
+    newlyBodyPart: any[] = [];
+    RemovePainPartsCheck: boolean = false;
+    NumberChecks: number = 0;
+    UpdatedPartsCheck: any[] = [];
+    lastRecordData: any[] = [];
+    lastRecordBodyStatus: string | null = null;
+    PainScore: number = 0;
+    PainCategory: string = 'No Pain';
+    VocalisationValue: number = 0;
+    FacialExpValue: number = 0;
+    BodyLanguageValue: number = 0;
+    BehaviouralValue: number = 0;
+    PhysiologicalValue: number = 0;
+    PhysicalValue: number = 0;
+    ResponseOtherCheck: boolean = false;
+    ImpactOtherCheck: boolean = false;
+    InterventionsOtherCheck: boolean = false;
+    ReferralsOtherCheck: boolean = false;
+    ResponseArr: any[] = [];
+    ImpactArr: any[] = [];
+    InterventionsArr: any[] = [];
+    ReferralsArr: any[] = [];
+    ResponseOtherValueId: string;
+    ImpactOtherValueId: string;
+    InterventionsOtherValueId: string;
+    ReferralsOtherValueId: string;
+    messages: Message[] | undefined;
+
+    //Ngx-Slider properties
+    value: number = 0;
+    options: Options = {
+        floor: 0,
+        ceil: 10,
+        showTicksValues: true,
+        showSelectionBar: true,
+        vertical: true,
+        stepsArray: [
+            { value: 0, legend: 'No Pain' },
+            { value: 1 },
+            { value: 2 },
+            { value: 3 },
+            { value: 4 },
+            { value: 5, legend: 'Moderate' },
+            { value: 6 },
+            { value: 7 },
+            { value: 8 },
+            { value: 9 },
+            { value: 10, legend: 'Worst Pain' }
+        ]
+    };
 
     //for carousel
     PainChartLst: any[] = [];
@@ -90,7 +145,7 @@ export class PainChartComponent extends AppComponentBase implements OnInit {
     lstImpact: any[] = [];
     lstInterventions: any[] = [];
     lstTypeOfPain: any[] = [];
-    stLstReason:any[]=[];
+    stLstReason: any[] = [];
 
     //Body Map PopUp
     isShowBodyMap: boolean = false;
@@ -112,22 +167,30 @@ export class PainChartComponent extends AppComponentBase implements OnInit {
         this.loginId = localStorage.getItem('userId');
     }
 
-    ShowBodyMapPopUp(isReadOnly:boolean, preselectedBodyParts:BodyPart[]=null, bodyMapStatus=null) {
+    ShowBodyMapPopUp(isReadOnly: boolean, preselectedBodyParts: BodyPart[] = null, bodyMapStatus = null) {
+        this.bodyDialogCount++;
         this.isShowBodyMap = true;
         this.isReadOnly = isReadOnly;
-        this.bodyMapData ={
-            preselectedBodyParts:preselectedBodyParts,
-            status:bodyMapStatus
-        }   
+        this.bodyMapData = {
+            preselectedBodyParts: preselectedBodyParts,
+            status: bodyMapStatus,
+            count: this.bodyDialogCount,
+            lastSelectedBodyPart: this.painChartRecordData,
+            UpdatedParts: this.UpdatedPartsCheck.length == 0 ? [] : this.UpdatedPartsCheck,
+            buttoncheck: isReadOnly
+        }
     }
 
     onSelectedBodyParts(bodyMapData: any) {
-        this.painChartFormData.selectedBodyParts = bodyMapData.selectedBodyParts;
+
+        this.painChartFormData.selectedBodyParts = [...bodyMapData.selectedBodyParts];
+        this.UpdatedPartsCheck = [];
+        this.UpdatedPartsCheck.push(...bodyMapData.selectedBodyParts);
         this.painChartFormData.bodyMapStatus = bodyMapData.bodyMapStatus
     }
 
-    extractBodyPainLocations(bodyParts: BodyPart[]):string{
-        if(bodyParts){
+    extractBodyPainLocations(bodyParts: BodyPart[]): string {
+        if (bodyParts) {
             return bodyParts.map(part => part.name).join(', ');
         }
         else return null;
@@ -145,6 +208,11 @@ export class PainChartComponent extends AppComponentBase implements OnInit {
     }
 
     ngOnInit(): void {
+
+        this.messages = [
+            { severity: 'secondary', detail: '0-2(No Pain)' }
+        ];
+
         this.userId = this.preSelectedChartData.userId;
         this.residentAdmissionInfoId =
             this.preSelectedChartData.residentAdmissionInfoId;
@@ -180,6 +248,8 @@ export class PainChartComponent extends AppComponentBase implements OnInit {
             this.lstReferrals = responses[4];
         });
         this.chartOnChange();
+        this.painChartFormData.DateAndTime = new Date();
+        // this.GetPainChartRecord();
     }
 
     openAndClose() {
@@ -194,12 +264,147 @@ export class PainChartComponent extends AppComponentBase implements OnInit {
         }
     }
 
+    PainScoreCalc(check: number) {
+        switch (check) {
+            case 1:
+                this.VocalisationValue = parseInt(this.painChartFormData.Vocalisation);
+                break;
+            case 2:
+                this.FacialExpValue = parseInt(this.painChartFormData.FacialExpresion);
+                break;
+            case 3:
+                this.BodyLanguageValue = parseInt(this.painChartFormData.BodyLanguage);
+                break;
+            case 4:
+                this.BehaviouralValue = parseInt(this.painChartFormData.BehaviouralChanges);
+                break;
+            case 5:
+                this.PhysiologicalValue = parseInt(this.painChartFormData.PhysiologicalChange);
+                break;
+            default:
+                this.PhysicalValue = parseInt(this.painChartFormData.PhysicalChange);
+        }
+
+
+        this.PainScore = this.VocalisationValue + this.FacialExpValue + this.BodyLanguageValue + this.BehaviouralValue + this.PhysiologicalValue + this.PhysicalValue;
+
+        switch (true) {
+            case this.PainScore >= 0 && this.PainScore <= 2:
+                this.PainCategory = 'No Pain';
+                break;
+            case this.PainScore >= 3 && this.PainScore <= 7:
+                this.PainCategory = 'Mild Pain';
+                this.messages = [
+                    { severity: 'secondary', detail: '3-7(Mild Pain)' }
+                ];
+                break;
+            case this.PainScore >= 8 && this.PainScore <= 13:
+                this.PainCategory = 'Moderate Pain';
+                this.messages = [
+                    { severity: 'secondary', detail: '8-13(Moderate Pain)' }
+                ];
+                break;
+            default:
+                this.PainCategory = 'Severe Pain';
+                this.messages = [
+                    { severity: 'secondary', detail: '14+(Severe Pain)' }
+                ];
+        }
+
+    }
+
+    OtherValueCheck(value: number) {
+
+        if (value == 1) {
+            this.ResponseArr = this.painChartFormData.ResponseToPain;
+            this.ResponseOtherCheck = this.ResponseArr.includes(this.ResponseOtherValueId);
+            this.painChartFormData.ResponseOther = this.ResponseOtherCheck == false ? null : this.painChartFormData.ResponseOther;
+            if (this.painChartFormData.ResponseToPain.length != 0) {
+                this.lstResponseToPain.forEach(ele => {
+                    if (this.ResponseArr.includes(ele.optionId)) {
+                        if (ele.optionName == 'Other') {
+                            this.ResponseOtherCheck = true;
+                            this.ResponseOtherValueId = ele.optionId;
+                        }
+                    }
+                })
+            }
+            else {
+                this.ResponseOtherCheck = false;
+                this.painChartFormData.ResponseOther = null;
+            }
+        }
+
+        else if (value == 2) {
+            this.ImpactArr = this.painChartFormData.Impact;
+            this.ImpactOtherCheck = this.ImpactArr.includes(this.ImpactOtherValueId);
+            this.painChartFormData.ImpactOther = this.ImpactOtherCheck == false ? null : this.painChartFormData.ImpactOther;
+            if (this.painChartFormData.Impact.length != 0) {
+                this.lstImpact.forEach(ele => {
+                    if (this.ImpactArr.includes(ele.optionId)) {
+                        if (ele.optionName == 'Other') {
+                            this.ImpactOtherCheck = true;
+                            this.ImpactOtherValueId = ele.optionId;
+                        }
+                    }
+                })
+            }
+            else {
+                this.ImpactOtherCheck = false;
+                this.painChartFormData.ImpactOther = null;
+            }
+        }
+
+        else if (value == 3) {
+            this.InterventionsArr = this.painChartFormData.Interventions;
+            this.InterventionsOtherCheck = this.InterventionsArr.includes(this.InterventionsOtherValueId);
+            this.painChartFormData.InterventionsOther = this.InterventionsOtherCheck == false ? null : this.painChartFormData.InterventionsOther;
+            if (this.painChartFormData.Interventions.length != 0) {
+                this.lstInterventions.forEach(ele => {
+                    if (this.InterventionsArr.includes(ele.optionId)) {
+                        if (ele.optionName == 'Other') {
+                            this.InterventionsOtherCheck = true;
+                            this.InterventionsOtherValueId = ele.optionId;
+                        }
+                    }
+                })
+            }
+            else {
+                this.InterventionsOtherCheck = false;
+                this.painChartFormData.InterventionsOther = null;
+            }
+        }
+
+        else {
+            this.ReferralsArr = this.painChartFormData.Referrals;
+            this.ReferralsOtherCheck = this.ReferralsArr.includes(this.ReferralsOtherValueId);
+            this.painChartFormData.ReferralsOther = this.ReferralsOtherCheck == false ? null : this.painChartFormData.ReferralsOther;
+            if (this.painChartFormData.Referrals.length != 0) {
+                this.lstReferrals.forEach(ele => {
+                    if (this.ReferralsArr.includes(ele.optionId)) {
+                        if (ele.optionName == 'Other') {
+                            this.ReferralsOtherCheck = true;
+                            this.ReferralsOtherValueId = ele.optionId;
+                        }
+                    }
+                })
+            }
+            else {
+                this.ReferralsOtherCheck = false;
+                this.painChartFormData.ReferralsOther = null;
+            }
+        }
+
+    }
+
     Save() {
         if (
             this.userId != null &&
             this.residentAdmissionInfoId != null &&
             this.loginId != null
         ) {
+            if(((this.ResponseOtherCheck == true && this.painChartFormData.ResponseOther != null) || (this.ResponseOtherCheck == false)) && ((this.ImpactOtherCheck == true && this.painChartFormData.ImpactOther != null) || (this.ImpactOtherCheck == false)) && ((this.InterventionsOtherCheck == true && this.painChartFormData.InterventionsOther != null) || (this.InterventionsOtherCheck == false)) && ((this.ReferralsOtherCheck == true && this.painChartFormData.ReferralsOther != null) || (this.ReferralsOtherCheck == false)) ) {
+
             this.painChartFormData.userId = this.userId;
             this.painChartFormData.StartedBy = this.loginId;
             this.painChartFormData.LastEnteredBy = this.loginId;
@@ -234,6 +439,9 @@ export class PainChartComponent extends AppComponentBase implements OnInit {
                 'yyyy-MM-dd'
             );
 
+            this.painChartFormData.PainScore = this.PainScore;
+            this.painChartFormData.PainCategory = this.PainCategory;
+
             const objectBody: any = {
                 StatementType: this.StatementType,
                 painChartData: this.painChartFormData,
@@ -261,14 +469,18 @@ export class PainChartComponent extends AppComponentBase implements OnInit {
                         this._UtilityService.showErrorAlert(e.message);
                     },
                 });
+            }
+            else {
+                this._UtilityService.showWarningAlert('Other field is required');
+            }
         } else {
-            this._UtilityService.showWarningAlert('Pain Chart');
+            this._UtilityService.showWarningAlert('Pain Chart details are missing!');
         }
     }
     ClearAllfeilds() {
-        if (this.preSelectedChartData.selectedChartID) {
+        if (this.preSelectedChartData.chartMasterId) {
             this.painChartFormData = <any>{};
-            this.painChartFormData.activitiesChartId =
+            this.painChartFormData.painChartId =
                 this.preSelectedChartData.selectedChartID;
         }
     }
@@ -284,6 +496,8 @@ export class PainChartComponent extends AppComponentBase implements OnInit {
                         var tdata = JSON.parse(data.actionResult.result);
                         tdata = tdata ? tdata : {};
                         this.painChartFormData = tdata;
+                        console.log("PainChartFormData", this.painChartFormData);
+
                         this.painChartFormData.DateAndTime =
                             this.datePipe.transform(
                                 this.painChartFormData.DateAndTime,
@@ -305,6 +519,40 @@ export class PainChartComponent extends AppComponentBase implements OnInit {
                     this._UtilityService.showErrorAlert(e.message);
                 },
             });
+    }
+
+    // GetPainChartRecord() {
+    //     this._UtilityService.showSpinner();
+    //     this.unsubscribe.add = this._PainChartServices
+    //         .GetPainChartRecord()
+    //         .subscribe({
+    //             next: (data) => {
+    //                 this._UtilityService.hideSpinner();
+    //                 if (data.actionResult.success == true) {
+    //                     var tdata = JSON.parse(data.actionResult.result);
+    //                     tdata = tdata ? tdata : {};
+    //                     this.painChartRecordData = tdata;
+    //                     this.lastRecordData = this.painChartRecordData.selectedBodyParts;
+    //                     this.lastRecordBodyStatus = this.painChartRecordData.BodyMapStatus;
+    //                     for (let i = 0; i < this.painChartRecordData.selectedBodyParts.length; i++) {
+    //                         this.BodyPartsName.push(this.painChartRecordData.selectedBodyParts[i].name)
+    //                     }
+    //                     console.log(this.BodyPartsName);
+
+    //                     this.openAndClose();
+    //                 } else {
+    //                     this.painChartFormData = {};
+    //                 }
+    //             },
+    //             error: (e) => {
+    //                 this._UtilityService.hideSpinner();
+    //                 this._UtilityService.showErrorAlert(e.message);
+    //             },
+    //         });
+    // }
+
+    commaSeparated(values: string[]): string {
+        return values.join(', '); // Join with a space after each comma
     }
 
     GetChartDropDownMasterList(
@@ -353,6 +601,19 @@ export class PainChartComponent extends AppComponentBase implements OnInit {
                         var tdata = JSON.parse(data.actionResult.result);
                         tdata = tdata ? tdata : [];
                         this.PainChartLst = tdata;
+                        if (this.PainChartLst[0].selectedBodyParts != null && this.PainChartLst[0].BodyMapStatus != null) {
+                            this.lastRecordData = this.PainChartLst[0].selectedBodyParts;
+                            this.lastRecordBodyStatus = this.PainChartLst[0].BodyMapStatus;
+                            for (let i = 0; i < this.PainChartLst[0].selectedBodyParts.length; i++) {
+                                this.BodyPartsName.push(this.PainChartLst[0].selectedBodyParts[i].name)
+                            }
+                            console.log(this.BodyPartsName);
+                        }
+                        else {
+                            this.BodyPartsName = [];
+                            this.lastRecordBodyStatus = null;
+                        }
+
                         if (this.PainChartLst.length < 3 || (((this.PainChartLst.length) * (this.pageNumber + 1)) >= this.PainChartLst[0].countRecords)) {
                             this.rightBtnCheck = true;
                         }
@@ -381,7 +642,7 @@ export class PainChartComponent extends AppComponentBase implements OnInit {
         this.chartOnChange();
     }
 
-    showEvaluateInterventionPopup(chartId:string) {
+    showEvaluateInterventionPopup(chartId: string) {
         this.evaluateIntervention = true;
         this.evaluateInterventionPopupData.chartId = chartId;
     }
@@ -393,8 +654,8 @@ export class PainChartComponent extends AppComponentBase implements OnInit {
     saveEvaluateInterventionPopupData() {
         this.evaluateInterventionPopupData.evaluateBy = this.userId;
         this.evaluateInterventionPopupData.selectedevaluate = this.evaluateInterventionPopupData.selectedevaluate.code;
-        this.evaluateInterventionPopupData.isEvaluate=true;
-        this.evaluateInterventionPopupData.chartMasterId=this.preSelectedChartData.chartMasterId;
+        this.evaluateInterventionPopupData.isEvaluate = true;
+        this.evaluateInterventionPopupData.chartMasterId = this.preSelectedChartData.chartMasterId;
         const objectBody: any = {
             ChartData: this.evaluateInterventionPopupData,
         };
@@ -426,7 +687,7 @@ export class PainChartComponent extends AppComponentBase implements OnInit {
 
     showPopup(chartId, chart) {
         this.StrikeThroughData = {
-            ChartMasterId: ChartTypes.PainChart ,
+            ChartMasterId: ChartTypes.PainChart,
             ChartId: chartId,
             ModifiedBy: this.loginId,
         };

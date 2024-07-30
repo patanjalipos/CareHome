@@ -29,6 +29,10 @@ import { GlasgowComaScaleChartModule } from "../glasgow-coma-scale-chart/glasgow
 import { FoodIntakeChartModule } from "../food-intake-chart/food-intake-chart.module";
 import { RepositioningChartModule } from "../repositioning-chart/repositioning-chart.module";
 import { RestraintChartModule } from "../restraint-chart/restraint-chart.module";
+import { MustChartModule } from "../must-chart/must-chart.module";
+import { NewsChartModule } from "../news-chart/news-chart.module";
+import { WoundChartModule } from "../wound-chart/wound-chart.module";
+import { PainchekChartModule } from "../painchek-chart/painchek-chart.module";
 
 @NgModule({
     declarations: [
@@ -36,35 +40,39 @@ import { RestraintChartModule } from "../restraint-chart/restraint-chart.module"
     ],
     exports: [ChartComponent],
     imports: [
-        CommonModule,
-        ChartRoutingModule,
-        CalendarModule,
-        CheckboxModule,
-        FormsModule,
-        TableModule,
-        DropdownModule,
-        ActivitiesChartModule,
-        FluidCombinedChartModule,
-        InfectionChartModule,
-        BehaviourChartModule,
-        BloodPressureChartModule,
-        BowelChartModule,
-        EnteralFeedingChartModule,
-        AdlChartModule,
-        PainChartModule,
-        WeightChartModule,
-        BloodGlucoseChartModule,
-        WaterlowChartModule,
-        VitalSignsChartModule,
-        UrinaryChartModule,
-        SightingChartModule,
-        SeizureChartModule,
-        FluidIntakeChartModule,
-        FluidOutputChartModule,
-        GlasgowComaScaleChartModule,
-        FoodIntakeChartModule,
-        RepositioningChartModule,
-        RestraintChartModule
-    ]
+    CommonModule,
+    ChartRoutingModule,
+    CalendarModule,
+    CheckboxModule,
+    FormsModule,
+    TableModule,
+    DropdownModule,
+    ActivitiesChartModule,
+    FluidCombinedChartModule,
+    InfectionChartModule,
+    BehaviourChartModule,
+    BloodPressureChartModule,
+    BowelChartModule,
+    EnteralFeedingChartModule,
+    AdlChartModule,
+    PainChartModule,
+    WeightChartModule,
+    BloodGlucoseChartModule,
+    WaterlowChartModule,
+    VitalSignsChartModule,
+    UrinaryChartModule,
+    SightingChartModule,
+    SeizureChartModule,
+    FluidIntakeChartModule,
+    FluidOutputChartModule,
+    GlasgowComaScaleChartModule,
+    FoodIntakeChartModule,
+    RepositioningChartModule,
+    RestraintChartModule,
+    MustChartModule,
+    NewsChartModule,
+    WoundChartModule,
+    PainchekChartModule
+]
 })
 export class ChartModule { }
