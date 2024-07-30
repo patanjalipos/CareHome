@@ -254,9 +254,9 @@ GetSeizureChartDetails(chartId: string) {
 }
 
 ClearAllfeilds() {
-  if (this.preSelectedChartData.selectedChartID) {
+  if (this.preSelectedChartData.chartMasterId) {
       this.SeizureChartData = <any>{};
-      this.SeizureChartData.activitiesChartId =
+      this.SeizureChartData.SeizureChartId =
           this.preSelectedChartData.selectedChartID;
   }
 }

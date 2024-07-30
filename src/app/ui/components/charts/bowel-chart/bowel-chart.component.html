@@ -82,6 +82,10 @@
                     </ng-container>
                 </div>
 
+                <div *ngIf="BowelChartFormData.Consistency=='1'">
+
+                </div>
+
                 <div class="col-md-12">
                     <label class="form-label bold">Amount<span class="required"></span></label>
 
@@ -259,10 +263,7 @@
                             </div>
 
                             <div class="col-md-12">
-                                <label class="form-label bold"
-                                    [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">Interventions<span
-                                        class="required"></span></label>
-
+                                <h5 class="formheader" [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">Interventions</h5>
                                 <div>
                                     <label
                                         [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">{{chart.InterventionsOptionName}}</label>

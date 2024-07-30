@@ -60,8 +60,9 @@
                         <p-dropdown [required]="true" name="BMIValue"
                             [(ngModel)]="WaterlowChartData.BMIValueOption" [options]="LstBMIValue"
                             optionLabel="optionName" optionValue="optionId" placeholder="--select--"
-                            [style]="{ width: '100%' }">
+                            [style]="{ width: '100%' }" [showClear]="true" (onChange)="ScoreCalc(1)" (onClick)="addmessages()">
                         </p-dropdown>
+                        <p-messages [(value)]="messages" [enableService]="false"></p-messages>
                     </ng-container>
                 </div>
                 <div>
@@ -72,8 +73,9 @@
                         <p-dropdown [required]="true" name="ContinenceOption"
                             [(ngModel)]="WaterlowChartData.ContinenceOption" [options]="LstContinence"
                             optionLabel="optionName" optionValue="optionId" placeholder="--select--"
-                            [style]="{ width: '100%' }">
+                            [style]="{ width: '100%' }" [showClear]="true" (onChange)="ScoreCalc(2)">
                         </p-dropdown>
+                        <p-messages [(value)]="messages1" [enableService]="false"></p-messages>
                     </ng-container>
                 </div>
                 <div class="mb-2">
@@ -84,8 +86,9 @@
                         <p-dropdown [required]="true" name="SkinTypeOption"
                             [(ngModel)]="WaterlowChartData.SkinTypeOption" [options]="LstSkinType"
                             optionLabel="optionName" optionValue="optionId" placeholder="--select--"
-                            [style]="{ width: '100%' }">
+                            [style]="{ width: '100%' }" [showClear]="true" (onChange)="ScoreCalc(3)">
                         </p-dropdown>
+                        <p-messages [(value)]="messages2" [enableService]="false"></p-messages>
                     </ng-container>
                 </div>
                 <div class="mb-2">
@@ -96,8 +99,9 @@
                         <p-dropdown [required]="true" name="MobilityOption"
                             [(ngModel)]="WaterlowChartData.MobilityOption" [options]="LstMobility"
                             optionLabel="optionName" optionValue="optionId" placeholder="--select--"
-                            [style]="{ width: '100%' }">
+                            [style]="{ width: '100%' }" [showClear]="true" (onChange)="ScoreCalc(4)">
                         </p-dropdown>
+                        <p-messages [(value)]="messages3" [enableService]="false"></p-messages>
                     </ng-container>
                 </div>
                 <div class="mb-2">
@@ -105,8 +109,8 @@
                         <label class="form-label bold">Sex</label>
                     </div>
                     <ng-container>
-                        <p-selectButton [options]="SexOption" [(ngModel)]="WaterlowChartData.Sex"
-                        optionLabel="label" optionValue="value"></p-selectButton>
+                        <p-selectButton [options]="GenderOption" [(ngModel)]="WaterlowChartData.Gender"
+                        optionLabel="label" optionValue="value" (onChange)="ScoreCalc(0)"></p-selectButton>
                     </ng-container>
                 </div>
                 <div class="mb-2">
@@ -117,7 +121,7 @@
                         <p-dropdown [required]="true" name="AgeOption"
                             [(ngModel)]="WaterlowChartData.AgeOption" [options]="LstAge"
                             optionLabel="optionName" optionValue="optionId" placeholder="--select--"
-                            [style]="{ width: '100%' }">
+                            [style]="{ width: '100%' }" [showClear]="true" (onChange)="ScoreCalc(5)">
                         </p-dropdown>
                     </ng-container>
                 </div>
@@ -129,8 +133,35 @@
                         <p-dropdown [required]="true" name="MalnutritionScreeningOption"
                             [(ngModel)]="WaterlowChartData.MalnutritionScreeningOption" [options]="LstMalnutritionScreening"
                             optionLabel="optionName" optionValue="optionId" placeholder="--select--"
-                            [style]="{ width: '100%' }">
+                            [style]="{ width: '100%' }" [showClear]="true" (onChange)="ScoreCalc(6)">
                         </p-dropdown>
+                        <p-messages [(value)]="messages4" [enableService]="false"></p-messages>
+                    </ng-container>
+                </div>
+                <div class="mb-2" *ngIf="MalnutritionConfirmCheck">
+                    <div class="labelcontent">
+                        <label class="form-label bold">Weight Loss Score</label>
+                    </div>
+                    <ng-container>
+                        <p-dropdown [required]="true" name="WeightLossScoreOption"
+                            [(ngModel)]="WaterlowChartData.WeightLossScoreOption" [options]="LstWeightLossScore"
+                            optionLabel="optionName" optionValue="optionId" placeholder="--select--"
+                            [style]="{ width: '100%' }" [showClear]="true" (onChange)="ScoreCalc(7)">
+                        </p-dropdown>
+                        <p-messages [(value)]="messages5" [enableService]="false"></p-messages>
+                    </ng-container>
+                </div>
+                <div class="mb-2" *ngIf="MalnutritionDeclineCheck">
+                    <div class="labelcontent">
+                        <label class="form-label bold">Lack of Appetite</label>
+                    </div>
+                    <ng-container>
+                        <p-dropdown [required]="true" name="LackOfAppetiteOption"
+                            [(ngModel)]="WaterlowChartData.LackOfAppetiteOption" [options]="LstLackOfAppetite"
+                            optionLabel="label" optionValue="value" placeholder="--select--"
+                            [style]="{ width: '100%' }" [showClear]="true" (onChange)="ScoreCalc(8)">
+                        </p-dropdown>
+                        <p-messages [(value)]="messages6" [enableService]="false"></p-messages>
                     </ng-container>
                 </div>
                 <div class="mb-2">
@@ -139,7 +170,7 @@
                     </div>
                     <ng-container>
                         <label>{{NutritionScoreValue}}</label>
-                        <p-messages [(value)]="messages" [enableService]="false"></p-messages>
+                        <p-messages [(value)]="messages7" [enableService]="false"></p-messages>
                     </ng-container>
                 </div>
                 <h5 class="formheader">Special Risks</h5>
@@ -151,7 +182,7 @@
                         <p-dropdown [required]="true" name="SpecialRisksTissueOption"
                             [(ngModel)]="WaterlowChartData.SpecialRisksTissueOption"
                             [options]="LstSpecialRisksTissue" optionLabel="optionName" optionValue="optionId"
-                            placeholder="--select--" [style]="{ width: '100%' }">
+                            placeholder="--select--" [style]="{ width: '100%' }" [showClear]="true" (onChange)="ScoreCalc(9)">
                         </p-dropdown>
                     </ng-container>
                 </div>
@@ -163,8 +194,22 @@
                         <p-dropdown [required]="true" name="SpecialRisksNeurologicalOption"
                             [(ngModel)]="WaterlowChartData.SpecialRisksNeurologicalOption"
                             [options]="LstSpecialRisksNeurological" optionLabel="optionName" optionValue="optionId"
-                            placeholder="--select--" [style]="{ width: '100%' }">
+                            placeholder="--select--" [style]="{ width: '100%' }" [showClear]="true" (onChange)="ScoreCalc(10)">
                         </p-dropdown>
+                    </ng-container>
+                </div>
+                <div *ngIf="ScoreDropdownCheck">
+                    <div class="labelcontent">
+                        <label class="form-label bold">Score</label>
+                    </div>
+                    <ng-container>
+                        <p-dropdown [required]="true" name="ScoreOption"
+                            [(ngModel)]="WaterlowChartData.ScoreOption"
+                            [options]="LstScore" optionLabel="label" optionValue="value"
+                            placeholder="--select--" [style]="{ width: '100%' }" [showClear]="true" (onChange)="ScoreCalc(10)">
+                        </p-dropdown>
+                        <p-messages [(value)]="messages8" [enableService]="false"></p-messages>
+
                     </ng-container>
                 </div>
                 <div>
@@ -175,7 +220,7 @@
                         <p-dropdown [required]="true" name="SpecialRisksMajorSurgeryOrTraumaOption"
                             [(ngModel)]="WaterlowChartData.SpecialRisksMajorSurgeryOrTraumaOption" [options]="LstSpecialRisksMajorSurgeryOrTrauma"
                             optionLabel="optionName" optionValue="optionId" placeholder="--select--"
-                            [style]="{ width: '100%' }">
+                            [style]="{ width: '100%' }" [showClear]="true" (onChange)="ScoreCalc(11)">
                         </p-dropdown>
                     </ng-container>
                 </div>
@@ -184,10 +229,22 @@
                         <label class="form-label bold">Special Risks Medication</label>
                     </div>
                     <ng-container>
-                        <p-dropdown [required]="true" name="SpecialRisksMedicationOption"
+                        <p-multiSelect display="chip" [required]="true" name="WaterlowChartData.SpecialRisksMedicationOption"
                             [(ngModel)]="WaterlowChartData.SpecialRisksMedicationOption" [options]="LstSpecialRisksMedication"
                             optionLabel="optionName" optionValue="optionId" placeholder="--select--"
-                            [style]="{ width: '100%' }">
+                            [style]="{ width: '100%' }" (onChange)="ScoreCalc(12)">
+                        </p-multiSelect>
+                    </ng-container>
+                </div>
+                <div *ngIf="MedicationValueCheck">
+                    <div class="labelcontent">
+                        <label class="form-label bold">Special Risks - Medication Score</label>
+                    </div>
+                    <ng-container>
+                        <p-dropdown [required]="true" name="SpecialRisksMedicationScoreOption"
+                            [(ngModel)]="WaterlowChartData.SpecialRisksMedicationScoreOption" [options]="LstSpecialRisksMedicationScore"
+                            optionLabel="label" optionValue="value" placeholder="--select--"
+                            [style]="{ width: '100%' }" [showClear]="true" (onChange)="ScoreCalc(12)">
                         </p-dropdown>
                     </ng-container>
                 </div>
@@ -206,7 +263,10 @@
                         <label class="form-label bold">This is classified as</label>
                     </div>
                     <ng-container>
-                        <label class="success">{{ClassificationValue}}</label>
+                        <label [ngClass]="{
+                            'text-success': WaterlowScoreValue>=0 && WaterlowScoreValue <=9,
+                            'text-danger': WaterlowScoreValue>=10
+                        }">{{ClassificationValue}}</label>
 
                     </ng-container>
                 </div>
@@ -375,6 +435,26 @@
                                         chart.MalnutritionScreeningOptionName }}</label>
                                 </div>
                             </div>
+                            <div class="col-md-12 mb-5" *ngIf="chart.MalnutritionScreeningOptionName == 'Yes(0)'">
+                                <div class="labelcontent">
+                                    <label class="form-label bold"
+                                        [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">Weight Loss Score</label>
+                                </div>
+                                <div>
+                                    <label [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">{{
+                                        chart.WeightLossScoreOptionName }}</label>
+                                </div>
+                            </div>
+                            <div class="col-md-12 mb-5" *ngIf="chart.MalnutritionScreeningOptionName != 'Yes(0)'">
+                                <div class="labelcontent">
+                                    <label class="form-label bold"
+                                        [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">Lack of Appetite</label>
+                                </div>
+                                <div>
+                                    <label [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">{{
+                                        chart.LackOfAppetiteOption }}</label>
+                                </div>
+                            </div>
                             <div class="col-md-12 mb-5">
                                 <div class="labelcontent">
                                     <label class="form-label bold"
@@ -407,6 +487,16 @@
                                         chart.SpecialRisksNeurologicalOptionName }}</label>
                                 </div>
                             </div>
+                            <div class="col-md-12 mb-5" *ngIf="chart.SpecialRisksNeurologicalOptionName">
+                                <div class="labelcontent">
+                                    <label class="form-label bold"
+                                        [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">Score</label>
+                                </div>
+                                <div>
+                                    <label [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">{{
+                                        chart.ScoreOption }}</label>
+                                </div>
+                            </div>
                             <div class="col-md-12 mb-2">
                                 <div class="labelcontent">
                                     <label class="form-label bold"
@@ -427,6 +517,16 @@
                                         chart.SpecialRisksMedicationOptionName }}</label>
                                 </div>
                             </div>
+                            <div class="col-md-12 mb-2" *ngIf="chart.SpecialRisksMedicationOptionName">
+                                <div class="labelcontent">
+                                    <label class="form-label bold"
+                                        [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">Special Risks - Medication Score</label>
+                                </div>
+                                <div>
+                                    <label [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">{{
+                                        chart.SpecialRisksMedicationScoreOption }}</label>
+                                </div>
+                            </div>
                             <h5 class="formheader" [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">
                                 Score</h5>
                             <div class="col-md-12 mb-5">
@@ -445,7 +545,9 @@
                                         [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">This is classified as</label>
                                 </div>
                                 <div>
-                                    <label [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">{{
+                                    <label [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough,
+                                    'text-success': chart.WaterlowScore>=0 && chart.WaterlowScore <=9,
+                                    'text-danger': chart.WaterlowScore>=10}">{{
                                         chart.Classification }}</label>
                                 </div>
                             </div>

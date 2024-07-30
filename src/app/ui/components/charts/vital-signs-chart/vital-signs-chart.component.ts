@@ -208,9 +208,9 @@ GetVitalSignsChartDetails(chartId: string) {
 }
 
 ClearAllfeilds() {
-  if (this.preSelectedChartData.selectedChartID) {
+  if (this.preSelectedChartData.chartMasterId) {
       this.VitalSignsChartData = <any>{};
-      this.VitalSignsChartData.activitiesChartId =
+      this.VitalSignsChartData.VitalSignsChartId =
           this.preSelectedChartData.selectedChartID;
   }
 }

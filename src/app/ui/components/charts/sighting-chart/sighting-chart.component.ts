@@ -145,6 +145,19 @@ export class SightingChartComponent extends AppComponentBase implements OnInit {
     }
 }
 
+ChangeState() {
+    this.LstResidentState.forEach(ele => {
+        if(ele.optionId == this.SightingChartData.ResidentStateOption) {
+            if(ele.optionName == 'Other') {
+                this.SightingChartData.OtherCheck = true;
+            }
+            else {
+                this.SightingChartData.OtherCheck = false;
+            }
+        }
+    });
+}
+
 GetChartDropDownMasterList(
   chartMasterId: string,
   dropdownName: string,
@@ -199,9 +212,9 @@ GetSightingChartDetails(chartId: string) {
 }
 
 ClearAllfeilds() {
-  if (this.preSelectedChartData.selectedChartID) {
+  if (this.preSelectedChartData.chartMasterId) {
       this.SightingChartData = <any>{};
-      this.SightingChartData.activitiesChartId =
+      this.SightingChartData.SightingChartId =
           this.preSelectedChartData.selectedChartID;
   }
 }

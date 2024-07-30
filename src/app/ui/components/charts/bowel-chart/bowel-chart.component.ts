@@ -344,7 +344,7 @@ export class BowelChartComponent extends AppComponentBase implements OnInit {
 
 
   ClearAllfeilds() {
-    if (this.preSelectedChartData.selectedChartID) {
+    if (this.preSelectedChartData.chartMasterId) {
       this.BowelChartFormData = <any>{};
       this.BowelChartFormData.bowelChartId =
         this.preSelectedChartData.selectedChartID;

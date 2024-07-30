@@ -32,6 +32,8 @@ export class FluidIntakeChartComponent extends AppComponentBase implements OnIni
   CareGivenCheck: boolean = false;
   ReasonCheck: boolean = false;
   lstFluidIntake: any[] = [];
+  amount:boolean=false;
+  typeOfFluid:boolean=false;
 
   //Static Options
   stLstYesNoOptions: any[] = [];
@@ -155,10 +157,16 @@ export class FluidIntakeChartComponent extends AppComponentBase implements OnIni
   Save() {
     this.reason = false;
     this.careGiven = false;
+    this.amount=false;
+    this.typeOfFluid=false;
     if (this.FluidIntakeChartFormData.CareGiven == null) {
       this.careGiven = true;
     } else if (this.FluidIntakeChartFormData.CareGiven == 'No' && this.FluidIntakeChartFormData.Reason == null) {
       this.reason = true;
+    }else if(this.FluidIntakeChartFormData.amount==null&&this.FluidIntakeChartFormData.careGiven=='Yes'){
+      this.amount=true;
+    }else if(this.FluidIntakeChartFormData.typesOfFluid==null&&this.FluidIntakeChartFormData.careGiven=='Yes'){
+      this.typeOfFluid=true;
     }
     else if (
       this.userId != null &&
@@ -228,7 +236,6 @@ export class FluidIntakeChartComponent extends AppComponentBase implements OnIni
   }
 
   getChartDataById(chartId: any, residentAdmissionInfoId: any, pageNumber: number, pageSize: number) {
-
     this._UtilityService.showSpinner();
     this.unsubscribe.add = this._UserService
       .GetChartDataById(chartId, residentAdmissionInfoId, pageNumber, pageSize)
@@ -324,9 +331,9 @@ export class FluidIntakeChartComponent extends AppComponentBase implements OnIni
   }
 
   ClearAllfeilds() {
-    if (this.preSelectedChartData.selectedChartID) {
+    if (this.preSelectedChartData.chartMasterId) {
       this.FluidIntakeChartFormData = <any>{};
-      this.FluidIntakeChartFormData.activitiesChartId =
+      this.FluidIntakeChartFormData.fluidIntakeChartId =
         this.preSelectedChartData.selectedChartID;
     }
   }

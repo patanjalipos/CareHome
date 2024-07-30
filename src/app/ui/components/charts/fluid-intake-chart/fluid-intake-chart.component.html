@@ -55,29 +55,27 @@
                 <h5 class="formheader">Intake</h5>
                 <div>
                     <label class="form-label bold">Fluid Intake<span class="required"></span></label>
-                    <ng-container>
-                        <p-dropdown [required]="true" name="FluidIntakeChartFormData.fluidIntake"
-                            placeholder="----select----" [style]="{ width: '100%' }" [options]="lstFluidIntake"
-                            optionValue="optionId" optionLabel="optionName"
-                            [(ngModel)]="FluidIntakeChartFormData.fluidIntake">
-                        </p-dropdown>
-                        <label for="" *ngIf="reason" class="text-danger">This field is required</label>
-                    </ng-container>
+                    <div>
+                        <p-multiSelect appendTo="body" [options]="lstFluidIntake" [(ngModel)]="FluidIntakeChartFormData.fluidIntake"
+                            optionLabel="optionName" optionValue="optionId" placeholder="----select----" [style]="{width:'100%'}"></p-multiSelect>
+                    </div>
                 </div>
                 <div class="mb-4">
-                    <label class="form-label bold">Amount<span class="required"></span></label>
-                    <div class="col-md-12">
+                    <label class="form-label bold">Amount (mis)<span class="required"></span></label>
+                    <ng-container class="col-md-12">
                         <input type="number" pInputText name="FluidIntakeChartFormData.amount" [required]="true"
                             [style]="{ width: '100%' }" [(ngModel)]="FluidIntakeChartFormData.amount"
                             placeholder="mis" />
-                    </div>
+                        <label for="" *ngIf="amount" class="text-danger">This field is required</label>
+                    </ng-container>
                 </div>
 
                 <div class="col-md-12">
-                    <label class="form-label"><span class="required"></span>Types Of Fluid</label>
+                    <label class="form-label bold"><span class="required"></span>Types Of Fluid</label>
                     <ng-container>
                         <input type="text" pInputText name="bloodGlucoseChartFormData.typesOfFluid" [required]="true"
                             [style]="{ width: '100%' }" [(ngModel)]="FluidIntakeChartFormData.typesOfFluid" />
+                        <label for="" *ngIf="typeOfFluid" class="text-danger">This field is required</label>
                     </ng-container>
                 </div>
             </div>
@@ -194,13 +192,13 @@
 
                                 <div>
                                     <label
-                                        [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">{{chart.FluidIntakeOptionName}}</label>
+                                        [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">{{chart.fluidIntakeOptionName}}</label>
                                 </div>
                             </div>
 
                             <div class="col-md-12">
                                 <label class="form-label bold"
-                                    [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">Amount<span
+                                    [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">Amount (mis)<span
                                         class="required"></span></label>
 
                                 <div>

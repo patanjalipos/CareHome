@@ -92,11 +92,31 @@
                         <label class="form-label bold">What assistance was required?</label>
                     </div>
                     <ng-container>
-                        <p-dropdown [required]="true" name="ADLChartData"
+                        <p-multiSelect display="chip" [required]="true" name="ADLChartData.HygieneAssistanceRequiredOptions"
                             [(ngModel)]="ADLChartData.HygieneAssistanceRequiredOptions"
                             [options]="LstHygieneAssistanceRequired" optionLabel="optionName" optionValue="optionId"
-                            placeholder="--select--" [style]="{ width: '100%' }">
-                        </p-dropdown>
+                            placeholder="--select--" [style]="{ width: '100%' }" (onChange)="ChangeElement()">
+                        </p-multiSelect>
+                    </ng-container>
+                </div>
+                <div *ngIf="WaterTempCheck">
+                    <div class="labelcontent">
+                        <label class="form-label bold">Water Temperature(°C)</label>
+                    </div>
+                    <ng-container>
+                        <input type="number" pInputText name="ADLChartData.WaterTemperature"
+                            [(ngModel)]="ADLChartData.WaterTemperature" [required]="true"
+                            [style]="{ width: '100%' }" />
+                    </ng-container>
+                </div>
+                <div *ngIf="OtherCheck">
+                    <div class="labelcontent">
+                        <label class="form-label bold">Other</label>
+                    </div>
+                    <ng-container>
+                        <input type="text" pInputText name="ADLChartData.Other"
+                            [(ngModel)]="ADLChartData.Other" [required]="true"
+                            [style]="{ width: '100%' }" />
                     </ng-container>
                 </div>
                 <div>
@@ -332,6 +352,26 @@
                                 <div>
                                     <label [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">{{
                                         chart.HygieneAssistanceRequiredOptionName }}</label>
+                                </div>
+                            </div>
+                            <div class="col-md-12 mb-5" *ngIf="chart.WaterTemperature">
+                                <div class="labelcontent">
+                                    <label class="form-label bold"
+                                        [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">Water Temperature(°C)</label>
+                                </div>
+                                <div>
+                                    <label [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">{{
+                                        chart.WaterTemperature }}</label>
+                                </div>
+                            </div>
+                            <div class="col-md-12 mb-5" *ngIf="chart.OtherCheck">
+                                <div class="labelcontent">
+                                    <label class="form-label bold"
+                                        [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">Other</label>
+                                </div>
+                                <div>
+                                    <label [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">{{
+                                        chart.Other }}</label>
                                 </div>
                             </div>
                             <div class="col-md-12 mb-5">

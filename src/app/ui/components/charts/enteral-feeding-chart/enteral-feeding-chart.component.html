@@ -63,15 +63,25 @@
                     </div>
                 </div>
 
+                <div *ngIf="enteralFeedingChartFormData.typeOfTube=='Other'">
+                    <div class="mb-4">
+                        <label class="form-label bold">Other<span class="required"></span></label>
+                        <div class="col-md-12">
+                            <input type="text" pInputText name="enteralFeedingChartFormData.other" [required]="true"
+                                [style]="{ width: '100%' }" [(ngModel)]="enteralFeedingChartFormData.other" />
+                        </div>
+                    </div>
+                </div>
+
                 <div class="mb-4">
                     <label class="form-label bold">Formula<span class="required"></span></label>
                     <div class="col-md-12">
-                        <input type="text" pInputText name="bloodGlucoseChartFormData.formula" [required]="true"
+                        <input type="text" pInputText name="enteralFeedingChartFormData.formula" [required]="true"
                             [style]="{ width: '100%' }" [(ngModel)]="enteralFeedingChartFormData.formula" />
                     </div>
                 </div>
                 <div class="mb-4">
-                    <label class="form-label bold">Formula Amount<span class="required"></span></label>
+                    <label class="form-label bold">Formula Amount (mis)<span class="required"></span></label>
                     <div class="col-md-12">
                         <input type="number" pInputText name="enteralFeedingChartFormData.formulaAmount"
                             [required]="true" [style]="{ width: '100%' }"
@@ -79,7 +89,7 @@
                     </div>
                 </div>
                 <div class="mb-4">
-                    <label class="form-label bold">Amount Of Water<span class="required"></span></label>
+                    <label class="form-label bold">Amount Of Water (mis)<span class="required"></span></label>
                     <div class="col-md-12">
                         <input type="number" pInputText name="enteralFeedingChartFormData.amountOfWater"
                             [required]="true" [style]="{ width: '100%' }"
@@ -202,6 +212,19 @@
                                         }}</label>
                                 </div>
                             </div>
+
+                            <div *ngIf="chart.typeOfTube=='Other'">
+                                <div class="col-md-12">
+                                    <label class="form-label bold"
+                                        [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">Other<span
+                                            class="required"></span></label>
+
+                                    <div>
+                                        <label
+                                            [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">{{chart.other}}</label>
+                                    </div>
+                                </div>
+                            </div>
                             <div class="col-md-12">
                                 <label class="form-label bold"
                                     [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">Formula<span
@@ -216,7 +239,7 @@
                             <div class="col-md-12">
                                 <label class="form-label bold"
                                     [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">Formula
-                                    Amount<span class="required"></span></label>
+                                    Amount (mis)<span class="required"></span></label>
 
                                 <div>
                                     <label [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">{{
@@ -228,7 +251,7 @@
                             <div class="col-md-12">
                                 <label class="form-label bold"
                                     [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">Amount Of
-                                    Water<span class="required"></span></label>
+                                    Water (mis)<span class="required"></span></label>
 
                                 <div>
                                     <label [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">{{

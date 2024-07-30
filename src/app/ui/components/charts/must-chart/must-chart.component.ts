@@ -9,6 +9,7 @@ import { MustChartService } from './must-chart.service';
 import { AppComponentBase } from 'src/app/app-component-base';
 import { catchError, forkJoin, map, Observable, of } from 'rxjs';
 import { log } from 'console';
+import { Message } from 'primeng/api';
 
 @Component({
   selector: 'app-must-chart',
@@ -38,7 +39,17 @@ export class MustChartComponent extends AppComponentBase implements OnInit {
   lstLegOption: any[] = [];
   lstArmOption: any[] = [];
   amputee: boolean = false;
-  BMI: number;
+  lstWeightLoss: any[] = [];
+  lstWeightLossOption: any[] = [];
+  lstBMIOption: any[] = [];
+  acuteDisease: boolean = false;
+  openStepSection: boolean = false;
+  message: Message[];
+  weightmsg: Message[];
+  residentAmputeemsg: Message[];
+  heightmsg: Message[];
+  weightAtThisTimeMsg: Message[];
+  acuteDiseaseMsg: Message[];
 
   rangeOptionResidentAmputee: any[] = [
     { label: 'Yes', value: 'Yes' },
@@ -47,6 +58,15 @@ export class MustChartComponent extends AppComponentBase implements OnInit {
   rangeOptionOedema: any[] = [
     { label: 'Yes', value: 'Yes' },
     { label: 'No', value: 'No' }
+  ]
+  rangeOptionAcuteDisease: any[] = [
+    { label: 'Yes', value: 'Yes' },
+    { label: 'No', value: 'No' }
+  ]
+  rangeOptionRiskCategory: any[] = [
+    { label: 'Low', value: 'Low' },
+    { label: 'Medium', value: 'Medium' },
+    { label: 'High', value: 'High' }
   ]
 
   //for carousel
@@ -87,7 +107,6 @@ export class MustChartComponent extends AppComponentBase implements OnInit {
       }
     });
 
-
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -115,12 +134,31 @@ export class MustChartComponent extends AppComponentBase implements OnInit {
     });
     this.optionService.getstLstErrorAndWarning().subscribe((data) => {
       this.stLstErrorAndWarning = data;
-      this.result = this.stLstErrorAndWarning.Warnings.Components.Charts.find(i => i.ChartId === ChartTypes.BloodGlucoseChart);
+      this.result = this.stLstErrorAndWarning.Warnings.Components.Charts.find(i => i.ChartId === ChartTypes.MUSTChart);
       this.ChartName = this.result["ChartName"];
       this._ConstantServices.ActiveMenuName = this.ChartName;
     });
 
-    const collectionNames = ['heightMeasured', 'weightMeasured', 'armoption', 'legoption'];
+    this.message = [
+      { severity: 'secondary', summary: 'All Risk Categories', detail: 'Treat underlying condition and provide help and advice on food choices, eating and drinking when necessary Record malnutrition risk category. Record need for category diets and follow local policy' }
+    ];
+    this.weightmsg = [
+      { severity: 'secondary', detail: 'Use clinical scales where possible. Ensure scales are set to 0 without the resident standing on it.weight the resident in light clothing and without shoes.' }
+    ];
+    this.residentAmputeemsg = [
+      { severity: 'secondary', detail: 'If the resident has had an amputation, the type of amputation will affect their BMI calculation as an adjust.' }
+    ]
+    this.heightmsg = [
+      { severity: 'secondary', detail: 'Use a height stick where possible. Make sure it is correctly positioned against the wall. ask the resident to remove shoes and to stand upright,feet,flat,heels against the height stick or wall looking straight ahead lower the head plate untill it gently touches the top of the head.' }
+    ]
+    this.weightAtThisTimeMsg = [
+      { severity: 'secondary', detail: 'Find the residents highest weight within the last 6 months.' }
+    ]
+    this.acuteDiseaseMsg = [
+      { severity: 'secondary', detail: 'Almost all patients in the community will not be acutely ill. This effect is unlikely to apply outside of a hospital setting. see "MUST" Explanatory Booklet for further infomation.' }
+    ]
+
+    const collectionNames = ['heightMeasured', 'weightMeasured', 'armoption', 'legoption', 'weightLoss', 'bmiOption', 'weightLossOption'];
 
     forkJoin(
       collectionNames.map((collectionName) =>
@@ -135,6 +173,9 @@ export class MustChartComponent extends AppComponentBase implements OnInit {
       this.lstWeightMeasured = responses[1];
       this.lstArmOption = responses[2];
       this.lstLegOption = responses[3];
+      this.lstWeightLoss = responses[4];
+      this.lstBMIOption = responses[5];
+      this.lstWeightLossOption = responses[6];
     });
 
     this.getChartDataById(this.preSelectedChartData.chartMasterId, this.preSelectedChartData.residentAdmissionInfoId, this.pageNumber, this.pageSize);
@@ -184,9 +225,9 @@ export class MustChartComponent extends AppComponentBase implements OnInit {
   }
 
   ClearAllfeilds() {
-    if (this.preSelectedChartData.selectedChartID) {
+    if (this.preSelectedChartData.chartMasterId) {
       this.mustChartFormData = <any>{};
-      this.mustChartFormData.activitiesChartId =
+      this.mustChartFormData.mustChartId =
         this.preSelectedChartData.selectedChartID;
     }
   }
@@ -234,6 +275,7 @@ export class MustChartComponent extends AppComponentBase implements OnInit {
           );
       }
 
+
       const objectBody: any = {
         StatementType: this.StatementType,
         mustChart: this.mustChartFormData,
@@ -241,7 +283,7 @@ export class MustChartComponent extends AppComponentBase implements OnInit {
 
       this._UtilityService.showSpinner();
       this.unsubscribe.add = this._mustChartServices
-        .AddInsertUpdatebloodGlucoseChartForm(objectBody)
+        .AddInsertUpdateMustChartForm(objectBody)
         .subscribe({
           next: (data) => {
             this._UtilityService.hideSpinner();
@@ -350,73 +392,423 @@ export class MustChartComponent extends AppComponentBase implements OnInit {
       this.amputee = false;
     }
   }
-  BMICalIfResidentAmputeeByArms() {
-    this.BMI = 0;
-    let weight = this.mustChartFormData.weight;
+  BMICalByAmupteYes() {
+    this.mustChartFormData.BMI = 0;
+    let weight = this.mustChartFormData.adjustedWeight;
     let height = this.mustChartFormData.height / 100;
-    this.BMI = parseFloat((weight / (height * height)).toFixed(4));
+    this.mustChartFormData.BMI = parseFloat((weight / (height * height)).toFixed(4));
+
+  }
+  calBMIScore() {
+    if (this.mustChartFormData.BMI < 18.5) {
+      this.mustChartFormData.bmiScore = 2;
+    } else if (this.mustChartFormData.BMI < 18.5 && this.mustChartFormData.BMI < 20) {
+      this.mustChartFormData.bmiScore = 1;
+    } else if (this.mustChartFormData.BMI > 20) {
+      this.mustChartFormData.bmiScore = 0;
+    }
+  }
+
+  JumpBMICal() {
+    if (this.mustChartFormData.legoption != null && this.mustChartFormData.armoption != null) {
+      this.CalBMIArmAndLeg();
+    } else if (this.mustChartFormData.legoption != null || this.mustChartFormData.armoption != null) {
+      if (this.mustChartFormData.armoption != null) {
+        this.BMICalIfResidentAmputeeByArms();
+      }
+      else if (this.mustChartFormData.legoption != null) {
+        this.BMICalIfResidentAmputeeByLegs();
+      }
+    }
+  }
+  BMICalIfResidentAmputeeByArms() {
+    let weight = this.mustChartFormData.weight;
 
     if (this.mustChartFormData.armoption == "6694fae4348f88d811a5812e") {
-      this.BMI = this.BMI + (parseFloat((weight + (weight * 5 / 100)).toFixed(4)));
+      this.mustChartFormData.adjustedWeight = parseFloat((weight + (weight * 5 / 100)).toFixed(4));
+      this.BMICalByAmupteYes();
     }
     if (this.mustChartFormData.armoption == "6694fae4348f88d811a5812f") {
-      this.BMI = this.BMI + (parseFloat((weight + (weight * 5 / 100) + (this.BMI * 5 / 100)).toFixed(4)));
+      this.mustChartFormData.adjustedWeight = parseFloat((weight + (weight * 5 / 100) + (weight * 5 / 100)).toFixed(4));
+      this.BMICalByAmupteYes();
     }
     if (this.mustChartFormData.armoption == "6694fae4348f88d811a58130") {
-      this.BMI = this.BMI + (parseFloat((weight + (weight * 2.2 / 100)).toFixed(2)));
+      this.mustChartFormData.adjustedWeight = parseFloat((weight + (weight * 2.2 / 100)).toFixed(2));
+      this.BMICalByAmupteYes();
     }
     if (this.mustChartFormData.armoption == "6694fae4348f88d811a58131") {
-      this.BMI = this.BMI + (parseFloat((weight + (weight * 2.2 / 100) + (weight * 2.2 / 100)).toFixed(4)));
+      this.mustChartFormData.adjustedWeight = parseFloat((weight + (weight * 2.2 / 100) + (weight * 2.2 / 100)).toFixed(4));
+      this.BMICalByAmupteYes();
     }
     if (this.mustChartFormData.armoption == "6694fae4348f88d811a58132") {
-      this.BMI = this.BMI + (parseFloat((weight + (weight * 5 / 100) + (weight * 2.2 / 100)).toFixed(4)));
+      this.mustChartFormData.adjustedWeight = parseFloat((weight + (weight * 5 / 100) + (weight * 2.2 / 100)).toFixed(4));
+      this.BMICalByAmupteYes();
     }
 
+    this.calBMIScore();
+
   }
+
 
   BMICalIfResidentAmputeeByLegs() {
-    this.BMI = 0;
     let weight = this.mustChartFormData.weight;
-    let height = this.mustChartFormData.height / 100;
-    this.BMI = parseFloat((weight / (height * height)).toFixed(4));
-
 
     if (this.mustChartFormData.legoption == "6694fae4348f88d811a58133") {
-      this.BMI = this.BMI + (parseFloat((weight + (weight * 18 / 100)).toFixed(4)));
+      this.mustChartFormData.adjustedWeight = parseFloat((weight + (weight * (18 / 100))).toFixed(4));
+      this.BMICalByAmupteYes();
     }
     if (this.mustChartFormData.legoption == "6694fae4348f88d811a58134") {
-      this.BMI = this.BMI + (parseFloat(weight + (weight * 18 / 100) + (weight * 18 / 100).toFixed(4)));
+      this.mustChartFormData.adjustedWeight = parseFloat((weight + (weight * 18 / 100) + (weight * 18 / 100)).toFixed(4));
+      this.BMICalByAmupteYes();
     }
     if (this.mustChartFormData.legoption == "6694fae4348f88d811a58135") {
-      this.BMI = this.BMI + (parseFloat(weight + (weight * 10 / 100)));
+      this.mustChartFormData.adjustedWeight = parseFloat((weight + (weight * 10 / 100)).toFixed(4));
+      this.BMICalByAmupteYes();
     }
     if (this.mustChartFormData.legoption == "6694fae4348f88d811a58136") {
-      this.BMI = this.BMI + (parseFloat(weight + (weight * 10 / 100) + (weight * 10 / 100).toFixed(4)));
+      this.mustChartFormData.adjustedWeight = parseFloat((weight + (weight * 10 / 100) + (weight * 10 / 100)).toFixed(4));
+      this.BMICalByAmupteYes();
     }
     if (this.mustChartFormData.legoption == "6694fae4348f88d811a58137") {
-      this.BMI = this.BMI + (parseFloat((weight + (weight * 6.3 / 100)).toFixed(4)));
+      this.mustChartFormData.adjustedWeight = parseFloat((weight + (weight * 6.3 / 100)).toFixed(4));
+      this.BMICalByAmupteYes();
     }
     if (this.mustChartFormData.legoption == "6694fae4348f88d811a58138") {
-      this.BMI = this.BMI + (parseFloat((weight + (weight * 6.3 / 100) + (weight * 6.3 / 100)).toFixed(4)));
+      this.mustChartFormData.adjustedWeight = parseFloat((weight + (weight * 6.3 / 100) + (weight * 6.3 / 100)).toFixed(4));
+      this.BMICalByAmupteYes();
     }
     if (this.mustChartFormData.legoption == "6694fae4348f88d811a58139") {
-      this.BMI = this.BMI + (parseFloat((weight + (weight * 18 / 100) + (weight * 10 / 100)).toFixed(4)));
+      this.mustChartFormData.adjustedWeight = parseFloat((weight + (weight * 18 / 100) + (weight * 10 / 100)).toFixed(4));
+      this.BMICalByAmupteYes();
     }
     if (this.mustChartFormData.legoption == "6694fae4348f88d811a5813a") {
-      this.BMI = this.BMI + (parseFloat((weight + (weight * 18 / 100) + (weight * 6.3 / 100)).toFixed(4)));
+      this.mustChartFormData.adjustedWeight = parseFloat((weight + (weight * 18 / 100) + (weight * 6.3 / 100)).toFixed(4));
+      this.BMICalByAmupteYes();
     }
     if (this.mustChartFormData.legoption == "6694fae4348f88d811a5813b") {
-      this.BMI = this.BMI + (parseFloat(weight + (weight * 10 / 100) + (weight * 6.3 / 100).toFixed(4)));
+      this.mustChartFormData.adjustedWeight = parseFloat((weight + (weight * 10 / 100) + (weight * 6.3 / 100)).toFixed(4));
+      this.BMICalByAmupteYes();
     }
+
+    this.calBMIScore();
+
+
   }
-  BMICalculater(event) {
+  CalBMIArmAndLeg() {
+    let weight = this.mustChartFormData.weight;
+
+    if (this.mustChartFormData.armoption == "6694fae4348f88d811a5812e" && this.mustChartFormData.legoption == "6694fae4348f88d811a58133") {
+      this.mustChartFormData.adjustedWeight = parseFloat((weight * (5 / 100)).toFixed(4));
+      this.mustChartFormData.adjustedWeight += parseFloat((weight * (18 / 100)).toFixed(4));
+      this.mustChartFormData.adjustedWeight = this.mustChartFormData.adjustedWeight + this.mustChartFormData.weight;
+      this.BMICalByAmupteYes();
+    } else if (this.mustChartFormData.armoption == "6694fae4348f88d811a5812e" && this.mustChartFormData.legoption == "6694fae4348f88d811a58134") {
+      this.mustChartFormData.adjustedWeight = parseFloat((weight * (5 / 100)).toFixed(4));
+      this.mustChartFormData.adjustedWeight += parseFloat((weight * (18 / 100) + (weight * (18 / 100))).toFixed(4));
+      this.mustChartFormData.adjustedWeight = this.mustChartFormData.adjustedWeight + this.mustChartFormData.weight;
+      this.BMICalByAmupteYes();
+    } else if (this.mustChartFormData.armoption == "6694fae4348f88d811a5812e" && this.mustChartFormData.legoption == "6694fae4348f88d811a58135") {
+      this.mustChartFormData.adjustedWeight = parseFloat((weight * (5 / 100)).toFixed(4));
+      this.mustChartFormData.adjustedWeight += parseFloat((weight * (10 / 100)).toFixed(4));
+      this.mustChartFormData.adjustedWeight = this.mustChartFormData.adjustedWeight + this.mustChartFormData.weight;
+      this.BMICalByAmupteYes();
+    } else if (this.mustChartFormData.armoption == "6694fae4348f88d811a5812e" && this.mustChartFormData.legoption == "6694fae4348f88d811a58136") {
+      this.mustChartFormData.adjustedWeight = parseFloat((weight * (5 / 100)).toFixed(4));
+      this.mustChartFormData.adjustedWeight += parseFloat((weight * (10 / 100) + (weight * (10 / 100))).toFixed(4));
+      this.mustChartFormData.adjustedWeight = this.mustChartFormData.adjustedWeight + this.mustChartFormData.weight;
+      this.BMICalByAmupteYes();
+    } else if (this.mustChartFormData.armoption == "6694fae4348f88d811a5812e" && this.mustChartFormData.legoption == "6694fae4348f88d811a58137") {
+      this.mustChartFormData.adjustedWeight = parseFloat((weight * (5 / 100)).toFixed(4));
+      this.mustChartFormData.adjustedWeight += parseFloat((weight * (6.3 / 100)).toFixed(4));
+      this.mustChartFormData.adjustedWeight = this.mustChartFormData.adjustedWeight + this.mustChartFormData.weight;
+      this.BMICalByAmupteYes();
+    } else if (this.mustChartFormData.armoption == "6694fae4348f88d811a5812e" && this.mustChartFormData.legoption == "6694fae4348f88d811a58138") {
+      this.mustChartFormData.adjustedWeight = parseFloat((weight * (5 / 100)).toFixed(4));
+      this.mustChartFormData.adjustedWeight += parseFloat((weight * (6.3 / 100) + (weight * (6.3 / 100))).toFixed(4));
+      this.mustChartFormData.adjustedWeight = this.mustChartFormData.adjustedWeight + this.mustChartFormData.weight;
+      this.BMICalByAmupteYes();
+    } else if (this.mustChartFormData.armoption == "6694fae4348f88d811a5812e" && this.mustChartFormData.legoption == "6694fae4348f88d811a58139") {
+      this.mustChartFormData.adjustedWeight = parseFloat((weight * (5 / 100)).toFixed(4));
+      this.mustChartFormData.adjustedWeight += parseFloat((weight * (18 / 100) + (weight * (10 / 100))).toFixed(4));
+      this.mustChartFormData.adjustedWeight = this.mustChartFormData.adjustedWeight + this.mustChartFormData.weight;
+      this.BMICalByAmupteYes();
+    } else if (this.mustChartFormData.armoption == "6694fae4348f88d811a5812e" && this.mustChartFormData.legoption == "6694fae4348f88d811a5813a") {
+      this.mustChartFormData.adjustedWeight = parseFloat((weight * (5 / 100)).toFixed(4));
+      this.mustChartFormData.adjustedWeight += parseFloat((weight * (18 / 100) + (weight * 6.3 / 100)).toFixed(4));
+      this.mustChartFormData.adjustedWeight = this.mustChartFormData.adjustedWeight + this.mustChartFormData.weight;
+      this.BMICalByAmupteYes();
+    } else if (this.mustChartFormData.armoption == "6694fae4348f88d811a5812e" && this.mustChartFormData.legoption == "6694fae4348f88d811a5813b") {
+      this.mustChartFormData.adjustedWeight = parseFloat((weight * (5 / 100)).toFixed(4));
+      this.mustChartFormData.adjustedWeight += parseFloat((weight * (10 / 100) + (weight * (6.3 / 100))).toFixed(4));
+      this.mustChartFormData.adjustedWeight = this.mustChartFormData.adjustedWeight + this.mustChartFormData.weight;
+      this.BMICalByAmupteYes();
+    }
+
+
+    else if (this.mustChartFormData.armoption == "6694fae4348f88d811a5812f" && this.mustChartFormData.legoption == "6694fae4348f88d811a58133") {
+      this.mustChartFormData.adjustedWeight = parseFloat((weight * (5 / 100) + (weight * (5 / 100))).toFixed(4));
+      this.mustChartFormData.adjustedWeight += parseFloat((weight * (18 / 100)).toFixed(4));
+      this.mustChartFormData.adjustedWeight = this.mustChartFormData.adjustedWeight + this.mustChartFormData.weight;
+      this.BMICalByAmupteYes();
+    } else if (this.mustChartFormData.armoption == "6694fae4348f88d811a5812f" && this.mustChartFormData.legoption == "6694fae4348f88d811a58134") {
+      this.mustChartFormData.adjustedWeight = parseFloat((weight * (5 / 100) + (weight * (5 / 100))).toFixed(4));
+      this.mustChartFormData.adjustedWeight += parseFloat((weight * (18 / 100) + (weight * (18 / 100))).toFixed(4));
+      this.mustChartFormData.adjustedWeight = this.mustChartFormData.adjustedWeight + this.mustChartFormData.weight;
+      this.BMICalByAmupteYes();
+    } else if (this.mustChartFormData.armoption == "6694fae4348f88d811a5812f" && this.mustChartFormData.legoption == "6694fae4348f88d811a58135") {
+      this.mustChartFormData.adjustedWeight = parseFloat((weight * (5 / 100) + (weight * (5 / 100))).toFixed(4));
+      this.mustChartFormData.adjustedWeight += parseFloat((weight * (10 / 100)).toFixed(4));
+      this.mustChartFormData.adjustedWeight = this.mustChartFormData.adjustedWeight + this.mustChartFormData.weight;
+      this.BMICalByAmupteYes();
+    } else if (this.mustChartFormData.armoption == "6694fae4348f88d811a5812f" && this.mustChartFormData.legoption == "6694fae4348f88d811a58136") {
+      this.mustChartFormData.adjustedWeight = parseFloat((weight * (5 / 100) + (weight * (5 / 100))).toFixed(4));
+      this.mustChartFormData.adjustedWeight += parseFloat((weight * (10 / 100) + (weight * (10 / 100))).toFixed(4));
+      this.mustChartFormData.adjustedWeight = this.mustChartFormData.adjustedWeight + this.mustChartFormData.weight;
+      this.BMICalByAmupteYes();
+    } else if (this.mustChartFormData.armoption == "6694fae4348f88d811a5812f" && this.mustChartFormData.legoption == "6694fae4348f88d811a58137") {
+      this.mustChartFormData.adjustedWeight = parseFloat((weight * (5 / 100) + (weight * (5 / 100))).toFixed(4));
+      this.mustChartFormData.adjustedWeight += parseFloat((weight * (6.3 / 100)).toFixed(4));
+      this.mustChartFormData.adjustedWeight = this.mustChartFormData.adjustedWeight + this.mustChartFormData.weight;
+      this.BMICalByAmupteYes();
+    } else if (this.mustChartFormData.armoption == "6694fae4348f88d811a5812f" && this.mustChartFormData.legoption == "6694fae4348f88d811a58138") {
+      this.mustChartFormData.adjustedWeight = parseFloat((weight * (5 / 100) + (weight * (5 / 100))).toFixed(4));
+      this.mustChartFormData.adjustedWeight += parseFloat((weight * (6.3 / 100) + (weight * (6.3 / 100))).toFixed(4));
+      this.mustChartFormData.adjustedWeight = this.mustChartFormData.adjustedWeight + this.mustChartFormData.weight;
+      this.BMICalByAmupteYes();
+    } else if (this.mustChartFormData.armoption == "6694fae4348f88d811a5812f" && this.mustChartFormData.legoption == "6694fae4348f88d811a58139") {
+      this.mustChartFormData.adjustedWeight = parseFloat((weight * (5 / 100) + (weight * (5 / 100))).toFixed(4));
+      this.mustChartFormData.adjustedWeight += parseFloat((weight * (18 / 100) + (weight * (10 / 100))).toFixed(4));
+      this.mustChartFormData.adjustedWeight = this.mustChartFormData.adjustedWeight + this.mustChartFormData.weight;
+      this.BMICalByAmupteYes();
+    } else if (this.mustChartFormData.armoption == "6694fae4348f88d811a5812f" && this.mustChartFormData.legoption == "6694fae4348f88d811a5813a") {
+      this.mustChartFormData.adjustedWeight = parseFloat((weight * (5 / 100) + (weight * (5 / 100))).toFixed(4));
+      this.mustChartFormData.adjustedWeight += parseFloat((weight * (18 / 100) + (weight * (6.3 / 100))).toFixed(4));
+      this.mustChartFormData.adjustedWeight = this.mustChartFormData.adjustedWeight + this.mustChartFormData.weight;
+      this.BMICalByAmupteYes();
+    } else if (this.mustChartFormData.armoption == "6694fae4348f88d811a5812f" && this.mustChartFormData.legoption == "6694fae4348f88d811a5813b") {
+      this.mustChartFormData.adjustedWeight = parseFloat((weight * (5 / 100) + (weight * (5 / 100))).toFixed(4));
+      this.mustChartFormData.adjustedWeight += parseFloat((weight * (10 / 100) + (weight * (6.3 / 100))).toFixed(4));
+      this.mustChartFormData.adjustedWeight = this.mustChartFormData.adjustedWeight + this.mustChartFormData.weight;
+      this.BMICalByAmupteYes();
+    }
+
+
+
+    else if (this.mustChartFormData.armoption == "6694fae4348f88d811a58130" && this.mustChartFormData.legoption == "6694fae4348f88d811a58133") {
+      this.mustChartFormData.adjustedWeight = parseFloat((weight * (2.2 / 100)).toFixed(2));
+      this.mustChartFormData.adjustedWeight += parseFloat((weight * (18 / 100)).toFixed(4));
+      this.mustChartFormData.adjustedWeight = this.mustChartFormData.adjustedWeight + this.mustChartFormData.weight;
+      this.mustChartFormData.adjustedWeight = this.mustChartFormData.adjustedWeight + this.mustChartFormData.weight;
+      this.BMICalByAmupteYes();
+    } else if (this.mustChartFormData.armoption == "6694fae4348f88d811a58130" && this.mustChartFormData.legoption == "6694fae4348f88d811a58134") {
+      this.mustChartFormData.adjustedWeight = parseFloat((weight * (2.2 / 100)).toFixed(2));
+      this.mustChartFormData.adjustedWeight += parseFloat((weight * (18 / 100) + (weight * (18 / 100))).toFixed(4));
+      this.mustChartFormData.adjustedWeight = this.mustChartFormData.adjustedWeight + this.mustChartFormData.weight;
+      this.BMICalByAmupteYes();
+    } else if (this.mustChartFormData.armoption == "6694fae4348f88d811a58130" && this.mustChartFormData.legoption == "6694fae4348f88d811a58135") {
+      this.mustChartFormData.adjustedWeight = parseFloat((weight + (weight * (2.2 / 100))).toFixed(2));
+      this.mustChartFormData.adjustedWeight += parseFloat(weight + (weight * (10 / 100)).toFixed(4));
+      this.mustChartFormData.adjustedWeight = this.mustChartFormData.adjustedWeight + this.mustChartFormData.weight;
+      this.BMICalByAmupteYes();
+    } else if (this.mustChartFormData.armoption == "6694fae4348f88d811a58130" && this.mustChartFormData.legoption == "6694fae4348f88d811a58136") {
+      this.mustChartFormData.adjustedWeight = parseFloat((weight * (2.2 / 100)).toFixed(2));
+      this.mustChartFormData.adjustedWeight += parseFloat((weight * (10 / 100) + (weight * (10 / 100))).toFixed(4));
+      this.mustChartFormData.adjustedWeight = this.mustChartFormData.adjustedWeight + this.mustChartFormData.weight;
+      this.BMICalByAmupteYes();
+    } else if (this.mustChartFormData.armoption == "6694fae4348f88d811a58130" && this.mustChartFormData.legoption == "6694fae4348f88d811a58137") {
+      this.mustChartFormData.adjustedWeight = parseFloat((weight * (2.2 / 100)).toFixed(2));
+      this.mustChartFormData.adjustedWeight += parseFloat((weight * (6.3 / 100)).toFixed(4));
+      this.mustChartFormData.adjustedWeight = this.mustChartFormData.adjustedWeight + this.mustChartFormData.weight;
+      this.BMICalByAmupteYes();
+    } else if (this.mustChartFormData.armoption == "6694fae4348f88d811a58130" && this.mustChartFormData.legoption == "6694fae4348f88d811a58138") {
+      this.mustChartFormData.adjustedWeight = parseFloat((weight * (2.2 / 100)).toFixed(2));
+      this.mustChartFormData.adjustedWeight += parseFloat((weight * (6.3 / 100) + (weight * (6.3 / 100))).toFixed(4));
+      this.mustChartFormData.adjustedWeight = this.mustChartFormData.adjustedWeight + this.mustChartFormData.weight;
+      this.BMICalByAmupteYes();
+    } else if (this.mustChartFormData.armoption == "6694fae4348f88d811a58130" && this.mustChartFormData.legoption == "6694fae4348f88d811a58139") {
+      this.mustChartFormData.adjustedWeight = parseFloat((weight * (2.2 / 100)).toFixed(2));
+      this.mustChartFormData.adjustedWeight += parseFloat((weight * (18 / 100) + (weight * (10 / 100))).toFixed(4));
+      this.mustChartFormData.adjustedWeight = this.mustChartFormData.adjustedWeight + this.mustChartFormData.weight;
+      this.BMICalByAmupteYes();
+    } else if (this.mustChartFormData.armoption == "6694fae4348f88d811a58130" && this.mustChartFormData.legoption == "6694fae4348f88d811a5813a") {
+      this.mustChartFormData.adjustedWeight = parseFloat((weight * (2.2 / 100)).toFixed(2));
+      this.mustChartFormData.adjustedWeight += parseFloat((weight * (18 / 100) + (weight * (6.3 / 100))).toFixed(4));
+      this.mustChartFormData.adjustedWeight = this.mustChartFormData.adjustedWeight + this.mustChartFormData.weight;
+      this.BMICalByAmupteYes();
+    } else if (this.mustChartFormData.armoption == "6694fae4348f88d811a58130" && this.mustChartFormData.legoption == "6694fae4348f88d811a5813b") {
+      this.mustChartFormData.adjustedWeight = parseFloat((weight * (2.2 / 100)).toFixed(2));
+      this.mustChartFormData.adjustedWeight += parseFloat((weight * (10 / 100) + (weight * (6.3 / 100))).toFixed(4));
+      this.mustChartFormData.adjustedWeight = this.mustChartFormData.adjustedWeight + this.mustChartFormData.weight;
+      this.BMICalByAmupteYes();
+    }
+
+
+    else if (this.mustChartFormData.armoption == "6694fae4348f88d811a58131" && this.mustChartFormData.legoption == "6694fae4348f88d811a58133") {
+      this.mustChartFormData.adjustedWeight = parseFloat((weight * (2.2 / 100) + (weight * (2.2 / 100))).toFixed(4));
+      this.mustChartFormData.adjustedWeight += parseFloat((weight * (18 / 100)).toFixed(4));
+      this.mustChartFormData.adjustedWeight = this.mustChartFormData.adjustedWeight + this.mustChartFormData.weight;
+      this.BMICalByAmupteYes();
+    } else if (this.mustChartFormData.armoption == "6694fae4348f88d811a58131" && this.mustChartFormData.legoption == "6694fae4348f88d811a58134") {
+      this.mustChartFormData.adjustedWeight = parseFloat((weight * (2.2 / 100) + (weight * (2.2 / 100))).toFixed(4));
+      this.mustChartFormData.adjustedWeight += parseFloat((weight * (18 / 100) + (weight * (18 / 100))).toFixed(4));
+      this.mustChartFormData.adjustedWeight = this.mustChartFormData.adjustedWeight + this.mustChartFormData.weight;
+      this.BMICalByAmupteYes();
+    } else if (this.mustChartFormData.armoption == "6694fae4348f88d811a58131" && this.mustChartFormData.legoption == "6694fae4348f88d811a58135") {
+      this.mustChartFormData.adjustedWeight = parseFloat((weight * (2.2 / 100) + (weight * (2.2 / 100))).toFixed(4));
+      this.mustChartFormData.adjustedWeight += parseFloat((weight * (10 / 100)).toFixed(4));
+      this.mustChartFormData.adjustedWeight = this.mustChartFormData.adjustedWeight + this.mustChartFormData.weight;
+      this.BMICalByAmupteYes();
+    } else if (this.mustChartFormData.armoption == "6694fae4348f88d811a58131" && this.mustChartFormData.legoption == "6694fae4348f88d811a58136") {
+      this.mustChartFormData.adjustedWeight = parseFloat((weight * (2.2 / 100) + (weight * (2.2 / 100))).toFixed(4));
+      this.mustChartFormData.adjustedWeight += parseFloat((weight * (10 / 100) + (weight * (10 / 100))).toFixed(4));
+      this.mustChartFormData.adjustedWeight = this.mustChartFormData.adjustedWeight + this.mustChartFormData.weight;
+      this.BMICalByAmupteYes();
+    } else if (this.mustChartFormData.armoption == "6694fae4348f88d811a58131" && this.mustChartFormData.legoption == "6694fae4348f88d811a58137") {
+      this.mustChartFormData.adjustedWeight = parseFloat((weight * (2.2 / 100) + (weight * (2.2 / 100))).toFixed(4));
+      this.mustChartFormData.adjustedWeight += parseFloat((weight * (6.3 / 100)).toFixed(4));
+      this.mustChartFormData.adjustedWeight = this.mustChartFormData.adjustedWeight + this.mustChartFormData.weight;
+      this.BMICalByAmupteYes();
+    } else if (this.mustChartFormData.armoption == "6694fae4348f88d811a58131" && this.mustChartFormData.legoption == "6694fae4348f88d811a58138") {
+      this.mustChartFormData.adjustedWeight = parseFloat((weight * (2.2 / 100) + (weight * (2.2 / 100))).toFixed(4));
+      this.mustChartFormData.adjustedWeight += parseFloat((weight * (6.3 / 100) + (weight * (6.3 / 100))).toFixed(4));
+      this.mustChartFormData.adjustedWeight = this.mustChartFormData.adjustedWeight + this.mustChartFormData.weight;
+      this.BMICalByAmupteYes();
+    } else if (this.mustChartFormData.armoption == "6694fae4348f88d811a58131" && this.mustChartFormData.legoption == "6694fae4348f88d811a58139") {
+      this.mustChartFormData.adjustedWeight = parseFloat((weight * (2.2 / 100) + (weight * (2.2 / 100))).toFixed(4));
+      this.mustChartFormData.adjustedWeight += parseFloat((weight * (18 / 100) + (weight * (10 / 100))).toFixed(4));
+      this.mustChartFormData.adjustedWeight = this.mustChartFormData.adjustedWeight + this.mustChartFormData.weight;
+      this.BMICalByAmupteYes();
+    } else if (this.mustChartFormData.armoption == "6694fae4348f88d811a58131" && this.mustChartFormData.legoption == "6694fae4348f88d811a5813a") {
+      this.mustChartFormData.adjustedWeight = parseFloat((weight * (2.2 / 100) + (weight * (2.2 / 100))).toFixed(4));
+      this.mustChartFormData.adjustedWeight += parseFloat((weight * (18 / 100) + (weight * (6.3 / 100))).toFixed(4));
+      this.mustChartFormData.adjustedWeight = this.mustChartFormData.adjustedWeight + this.mustChartFormData.weight;
+      this.BMICalByAmupteYes();
+    } else if (this.mustChartFormData.armoption == "6694fae4348f88d811a58131" && this.mustChartFormData.legoption == "6694fae4348f88d811a5813b") {
+      this.mustChartFormData.adjustedWeight = parseFloat((weight * (2.2 / 100) + (weight * (2.2 / 100))).toFixed(4));
+      this.mustChartFormData.adjustedWeight += parseFloat((weight * (10 / 100) + (weight * (6.3 / 100))).toFixed(4));
+      this.mustChartFormData.adjustedWeight = this.mustChartFormData.adjustedWeight + this.mustChartFormData.weight;
+      this.BMICalByAmupteYes();
+    }
+
+
+    if (this.mustChartFormData.armoption == "6694fae4348f88d811a58132" && this.mustChartFormData.legoption == "6694fae4348f88d811a58133") {
+      this.mustChartFormData.adjustedWeight = parseFloat((weight * (5 / 100) + (weight * (2.2 / 100))).toFixed(4));
+      this.mustChartFormData.adjustedWeight += parseFloat((weight * (18 / 100)).toFixed(4));
+      this.mustChartFormData.adjustedWeight = this.mustChartFormData.adjustedWeight + this.mustChartFormData.weight;
+      this.BMICalByAmupteYes();
+    } else if (this.mustChartFormData.armoption == "6694fae4348f88d811a58132" && this.mustChartFormData.legoption == "6694fae4348f88d811a58134") {
+      this.mustChartFormData.adjustedWeight = parseFloat((weight * (5 / 100) + (weight * (2.2 / 100))).toFixed(4));
+      this.mustChartFormData.adjustedWeight += parseFloat((weight * (18 / 100) + (weight * (18 / 100))).toFixed(4));
+      this.mustChartFormData.adjustedWeight = this.mustChartFormData.adjustedWeight + this.mustChartFormData.weight;
+      this.BMICalByAmupteYes();
+    } else if (this.mustChartFormData.armoption == "6694fae4348f88d811a58132" && this.mustChartFormData.legoption == "6694fae4348f88d811a58135") {
+      this.mustChartFormData.adjustedWeight = parseFloat((weight * (5 / 100) + (weight * (2.2 / 100))).toFixed(4));
+      this.mustChartFormData.adjustedWeight += parseFloat((weight * (10 / 100)).toFixed(4));
+      this.mustChartFormData.adjustedWeight = this.mustChartFormData.adjustedWeight + this.mustChartFormData.weight;
+      this.BMICalByAmupteYes();
+    } else if (this.mustChartFormData.armoption == "6694fae4348f88d811a58132" && this.mustChartFormData.legoption == "6694fae4348f88d811a58136") {
+      this.mustChartFormData.adjustedWeight = parseFloat((weight * (5 / 100) + (weight * (2.2 / 100))).toFixed(4));
+      this.mustChartFormData.adjustedWeight += parseFloat((weight * (10 / 100) + (weight * (10 / 100))).toFixed(4));
+      this.mustChartFormData.adjustedWeight = this.mustChartFormData.adjustedWeight + this.mustChartFormData.weight;
+      this.BMICalByAmupteYes();
+    } else if (this.mustChartFormData.armoption == "6694fae4348f88d811a58132" && this.mustChartFormData.legoption == "6694fae4348f88d811a58137") {
+      this.mustChartFormData.adjustedWeight = parseFloat((weight * (5 / 100) + (weight * (2.2 / 100))).toFixed(4));
+      this.mustChartFormData.adjustedWeight += parseFloat((weight * (6.3 / 100)).toFixed(4));
+      this.mustChartFormData.adjustedWeight = this.mustChartFormData.adjustedWeight + this.mustChartFormData.weight;
+      this.BMICalByAmupteYes();
+    } else if (this.mustChartFormData.armoption == "6694fae4348f88d811a58132" && this.mustChartFormData.legoption == "6694fae4348f88d811a58138") {
+      this.mustChartFormData.adjustedWeight = parseFloat((weight * (5 / 100) + (weight * (2.2 / 100))).toFixed(4));
+      this.mustChartFormData.adjustedWeight += parseFloat((weight * (6.3 / 100) + (weight * (6.3 / 100))).toFixed(4));
+      this.mustChartFormData.adjustedWeight = this.mustChartFormData.adjustedWeight + this.mustChartFormData.weight;
+      this.BMICalByAmupteYes();
+    } else if (this.mustChartFormData.armoption == "6694fae4348f88d811a58132" && this.mustChartFormData.legoption == "6694fae4348f88d811a58139") {
+      this.mustChartFormData.adjustedWeight = parseFloat((weight * (5 / 100) + (weight * (2.2 / 100))).toFixed(4));
+      this.mustChartFormData.adjustedWeight += parseFloat((weight * (18 / 100) + (weight * (10 / 100))).toFixed(4));
+      this.mustChartFormData.adjustedWeight = this.mustChartFormData.adjustedWeight + this.mustChartFormData.weight;
+      this.BMICalByAmupteYes();
+    } else if (this.mustChartFormData.armoption == "6694fae4348f88d811a58132" && this.mustChartFormData.legoption == "6694fae4348f88d811a5813a") {
+      this.mustChartFormData.adjustedWeight = parseFloat((weight * (5 / 100) + (weight * (2.2 / 100))).toFixed(4));
+      this.mustChartFormData.adjustedWeight += parseFloat((weight * (18 / 100) + (weight * (6.3 / 100))).toFixed(4));
+      this.mustChartFormData.adjustedWeight = this.mustChartFormData.adjustedWeight + this.mustChartFormData.weight;
+      this.BMICalByAmupteYes();
+    } else if (this.mustChartFormData.armoption == "6694fae4348f88d811a58132" && this.mustChartFormData.legoption == "6694fae4348f88d811a5813b") {
+      this.mustChartFormData.adjustedWeight = parseFloat((weight * (5 / 100) + (weight * (2.2 / 100))).toFixed(4));
+      this.mustChartFormData.adjustedWeight += parseFloat((weight * (10 / 100) + (weight * (6.3 / 100))).toFixed(4));
+      this.mustChartFormData.adjustedWeight = this.mustChartFormData.adjustedWeight + this.mustChartFormData.weight;
+      this.BMICalByAmupteYes();
+    }
+
+    this.calBMIScore();
+
+  }
+
+  BMICalculater(event, currentweight) {
     if (this.mustChartFormData.weight != 0 && this.mustChartFormData.height != 0) {
+      this.mustChartFormData.currentWeight = currentweight;
       let weight = this.mustChartFormData.weight;
       let height = this.mustChartFormData.height / 100;
 
-      this.BMI = parseFloat((weight / (height * height)).toFixed(4));
+      this.mustChartFormData.BMI = parseFloat((weight / (height * height)).toFixed(4));
       this.BMICalIfResidentAmputeeByArms();
       this.BMICalIfResidentAmputeeByLegs();
+    }
+
+    if (this.mustChartFormData.BMI < 18.5) {
+      this.mustChartFormData.bmiScore = 2;
+    } else if (this.mustChartFormData.BMI < 18.5 && this.mustChartFormData.BMI < 20) {
+      this.mustChartFormData.bmiScore = 1;
+    } else if (this.mustChartFormData.BMI > 20) {
+      this.mustChartFormData.bmiScore = 0;
+    }
+  }
+  weightLossCal() {
+    this.acuteDisease = true;
+    let currentWeight = this.mustChartFormData.currentWeight;
+    let weightAtTime = this.mustChartFormData.weightAtTime;
+
+    this.mustChartFormData.weightLossInKG = weightAtTime - currentWeight;
+
+    this.mustChartFormData.weightLossInPercent = (1 - (currentWeight / weightAtTime));
+    console.log(weightAtTime);
+    console.log(currentWeight);
+
+    this.mustChartFormData.weightLossInPercent = (this.mustChartFormData.weightLossInPercent * 100).toFixed(4);
+
+
+    if (this.mustChartFormData.weightLossInPercent < 5) {
+      this.mustChartFormData.weightLossScore = 0;
+    } else if (this.mustChartFormData.weightLossInPercent >= 5 && this.mustChartFormData.weightLossInPercent < 10) {
+      this.mustChartFormData.weightLossScore = 1;
+    } else {
+      this.mustChartFormData.weightLossScore = 2;
+    }
+    if (this.mustChartFormData.weightLossScore == 0) {
+      this.mustChartFormData.weightSignificance = "0 - Within NORMAL intra-individual variation.";
+    } else if (this.mustChartFormData.weightLossScore == 1) {
+      this.mustChartFormData.weightSignificance = "1 - More than normal intra-individual variation, early indicator of increased risk of undernutrition"
+    } else if (this.mustChartFormData.weightLossScore == 2) {
+      this.mustChartFormData.weightSignificance = "2 - Clinically significant";
+    }
+  }
+
+
+  onAcuteScore(event) {
+    if (this.mustChartFormData.residentAcutelyIll == 'Yes') {
+      this.mustChartFormData.diseaseEffectScore = 2;
+    } else {
+      this.mustChartFormData.diseaseEffectScore = 0;
+    }
+
+    this.mustChartFormData.mustScore = this.mustChartFormData.bmiScore + parseInt(this.mustChartFormData.diseaseEffectScore) + parseInt(this.mustChartFormData.weightLossScore);
+
+  }
+
+  calculateBMIEstimation() {
+    this.openStepSection = true;
+    if (this.mustChartFormData.armCircurmference <= 20) {
+      this.mustChartFormData.BMIEstimation = "Less than 20 (under weight)";
+    } else if (this.mustChartFormData.armCircurmference > 20) {
+      this.mustChartFormData.BMIEstimation = "More than 20 (normal weight)";
     }
   }
 
