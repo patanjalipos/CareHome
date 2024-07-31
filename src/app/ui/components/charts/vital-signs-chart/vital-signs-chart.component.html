@@ -244,19 +244,17 @@
                         <div class="formheader p-2 mb-3">
                             <div class="col-md-12 mb-2 d-flex justify-content-between fs-4 ">
                                 <div class="chart-date">
-                                    <label class="bold"
-                                        [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">{{
+                                    <label class="bold">{{
                                         chart.DateAndTime | date:'dd-MM-yyyy'}}</label>
                                 </div>
                                 <div class="chart-date">
-                                    <label [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">{{
+                                    <label>{{
                                         chart.DateAndTime | date:'hh:mm'}}</label>
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-12 mb-2">
-                            <label class="form-label bold"
-                                [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">Enterted By<span
+                            <label class="form-label bold">Enterted By<span
                                     class="required"></span></label>
                             <div>
                                 <label
@@ -264,13 +262,13 @@
                             </div>
                         </div>
                         <div class="mb-2">
-                            <button pButton *ngIf="!chart.isStrikeThrough" type="button" label="Strike Through Entry"
+                            <button pButton *ngIf="!chart.isStrikeThrough" type="button" label="Strike Out Entry"
                                 class="p-button-link p-0" (click)="showPopup(chart.VitalSignsChartId)">
                             </button>
                         </div>
                         <div class="mb-2">
 
-                            <label *ngIf="chart.isStrikeThrough" class="form-label bold">Strike Through Reason<span
+                            <label *ngIf="chart.isStrikeThrough" class="form-label bold">Strike Out Reason<span
                                     class="required"></span></label>
 
                             <div>
@@ -278,8 +276,7 @@
                             </div>
                         </div>
                         <div class=" mb-3">
-                            <label class="form-label bold"
-                                [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">Care Given <span
+                            <label class="form-label bold">Care Given <span
                                     class="required"></span></label>
                             <div>
                                 <label [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">{{
@@ -289,8 +286,7 @@
                         <div *ngIf="chart.CareGivenOptions=='No'">
                             <div>
                                 <div class="col-md-12">
-                                    <label class="form-label bold"
-                                        [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">Reason
+                                    <label class="form-label bold">Reason
                                         <span class="required"></span></label>
                                 </div>
                                 <div>
@@ -300,12 +296,11 @@
                             </div>
                         </div>
                         <div *ngIf="chart.CareGivenOptions=='Yes'" class="row">
-                            <h5 class="formheader" [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">
+                            <h5 class="formheader">
                                 Blood Pressure</h5>
                             <div class="col-md-12 mb-5">
                                 <div class="labelcontent">
-                                    <label class="form-label bold"
-                                        [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">Systolic</label>
+                                    <label class="form-label bold">Systolic</label>
                                 </div>
                                 <div>
                                     <label [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">{{
@@ -314,8 +309,7 @@
                             </div>
                             <div class="col-md-12 mb-5">
                                 <div class="labelcontent">
-                                    <label class="form-label bold"
-                                        [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">Diastolic</label>
+                                    <label class="form-label bold">Diastolic</label>
                                 </div>
                                 <div>
                                     <label [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">{{
@@ -324,8 +318,7 @@
                             </div>
                             <div class="col-md-12 mb-5">
                                 <div class="labelcontent">
-                                    <label class="form-label bold"
-                                        [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">Comment</label>
+                                    <label class="form-label bold">Comment</label>
                                 </div>
                                 <div>
                                     <label [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">{{
@@ -334,20 +327,18 @@
                             </div>
                             <div class="col-md-12 mb-5">
                                 <div class="labelcontent">
-                                    <label class="form-label bold"
-                                        [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">Resident Position</label>
+                                    <label class="form-label bold">Resident Position</label>
                                 </div>
                                 <div>
                                     <label [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">{{
                                         chart.BPResidentPositionOptionName }}</label>
                                 </div>
                             </div>
-                            <h5 class="formheader" [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">
+                            <h5 class="formheader">
                                 Pulse</h5>
                             <div class="col-md-12 mb-5">
                                 <div class="labelcontent">
-                                    <label class="form-label bold"
-                                        [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">Pulse Rate</label>
+                                    <label class="form-label bold">Pulse Rate</label>
                                 </div>
                                 <div>
                                     <label [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">{{
@@ -356,8 +347,7 @@
                             </div>
                             <div class="col-md-12 mb-5">
                                 <div class="labelcontent">
-                                    <label class="form-label bold"
-                                        [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">Site of Measurement</label>
+                                    <label class="form-label bold">Site of Measurement</label>
                                 </div>
                                 <div>
                                     <label [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">{{
@@ -366,8 +356,7 @@
                             </div>
                             <div class="col-md-12 mb-2">
                                 <div class="labelcontent">
-                                    <label class="form-label bold"
-                                        [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">Rhythm</label>
+                                    <label class="form-label bold">Rhythm</label>
                                 </div>
                                 <div>
                                     <label [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">{{
@@ -376,8 +365,7 @@
                             </div>
                             <div class="col-md-12 mb-2">
                                 <div class="labelcontent">
-                                    <label class="form-label bold"
-                                        [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">Amplitude or Volume</label>
+                                    <label class="form-label bold">Amplitude or Volume</label>
                                 </div>
                                 <div>
                                     <label [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">{{
@@ -386,61 +374,56 @@
                             </div>
                             <div class="col-md-12 mb-2">
                                 <div class="labelcontent">
-                                    <label class="form-label bold"
-                                        [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">Resident Position</label>
+                                    <label class="form-label bold">Resident Position</label>
                                 </div>
                                 <div>
                                     <label [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">{{
                                         chart.PulseResidentPositionOptionName }}</label>
                                 </div>
                             </div>
-                            <h5 class="formheader" [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">
+                            <h5 class="formheader">
                                 Respiration</h5>
                             <div class="col-md-12 mb-5">
                                 <div class="labelcontent">
-                                    <label class="form-label bold"
-                                        [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">Respiratory Rate</label>
+                                    <label class="form-label bold">Respiratory Rate</label>
                                 </div>
                                 <div>
                                     <label [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">{{
                                         chart.RespiratoryRate }} Breaths per minute</label>
                                 </div>
                             </div>
-                            <h5 class="formheader" [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">
+                            <h5 class="formheader">
                                 Oximetry</h5>
                             <div class="col-md-12 mb-5">
                                 <div class="labelcontent">
-                                    <label class="form-label bold"
-                                        [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">Oxygen Saturation</label>
+                                    <label class="form-label bold">Oxygen Saturation</label>
                                 </div>
                                 <div>
                                     <label [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">{{
                                         chart.OxygenSaturation }}%</label>
                                 </div>
                             </div>
-                            <h5 class="formheader" [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">
+                            <h5 class="formheader">
                                 Temperature</h5>
                             <div class="col-md-12 mb-5">
                                 <div class="labelcontent">
-                                    <label class="form-label bold"
-                                        [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">Temperature</label>
+                                    <label class="form-label bold">Temperature</label>
                                 </div>
                                 <div>
                                     <label [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">{{
-                                        chart.Temperature }} Degrees Celsius</label>
+                                        chart.Temperature }} °C</label>
                                 </div>
                             </div>
                             <div class="col-md-12 mb-4">
                                 <div class="labelcontent">
-                                    <label class="form-label bold"
-                                        [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">Site of Measurement</label>
+                                    <label class="form-label bold">Site of Measurement</label>
                                 </div>
                                 <div>
                                     <label [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">{{
                                         chart.OxygenSiteOfMeasurementOptionName }}</label>
                                 </div>
                             </div>
-                            <h5 class="formheader" [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">
+                            <h5 class="formheader">
                                 Urinalysis</h5>
                             <div class="col-md-12">
                                 <div>
@@ -450,7 +433,7 @@
                             </div>
                         </div>
 
-                        <h5 class="formheader" [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">
+                        <h5 class="formheader">
                             Additional information</h5>
                         <div class="col-md-12">
                             <div>
@@ -463,7 +446,7 @@
             </p-carousel>
 
             <div *ngIf="isShowStrikeThroughPopup" class="card flex justify-content-center">
-                <p-dialog [closable]="true" header="Strike-Through" [(visible)]="isShowStrikeThroughPopup"
+                <p-dialog [closable]="true" header="Strike-Out" [(visible)]="isShowStrikeThroughPopup"
                     [modal]="true" [breakpoints]="{ '1199px': '75vw', '575px': '90vw' }" [style]="{ width: '40vw' }"
                     [draggable]="false" [resizable]="false">
                     <div *ngIf="isShowStrikeThroughPopup">
