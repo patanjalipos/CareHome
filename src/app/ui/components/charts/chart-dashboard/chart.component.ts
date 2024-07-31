@@ -52,7 +52,7 @@ export class ChartComponent extends AppComponentBase implements OnInit {
         this.GetChartMaster();
     }
 
-    SearchChart() {debugger
+    SearchChart() {
         this.ShowChildComponent = false;
         this._UtilityService.showSpinner();
         const residentAdmissionInfoId = this.residentAdmissionInfoId;
@@ -109,13 +109,18 @@ export class ChartComponent extends AppComponentBase implements OnInit {
 
     OpenChart(
         selectedChartMasterId: string,
+        selectedChartId: string = null,
+        StartedOn: any,
         selectedChartdata: any = <any>{},
         isEditable = true
     ) {
         if (selectedChartMasterId != null) {
+            this.ShowChildComponent = false;
             this.selectedChartMasterId = selectedChartMasterId;
             this.selectedChartData = {
                 chartMasterId: selectedChartMasterId,
+                chartId: selectedChartId,
+                selectedStartedOn: StartedOn,
                 selectedChartID: selectedChartdata.ChartId,
                 userId: this.userId,
                 residentAdmissionInfoId: this.residentAdmissionInfoId,
