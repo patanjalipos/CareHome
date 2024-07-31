@@ -8,6 +8,8 @@ import { ActivatedRoute } from '@angular/router';
 import { DatePipe } from '@angular/common';
 import { UserService } from 'src/app/ui/service/user.service';
 import { catchError, forkJoin, map, Observable, of } from 'rxjs';
+import { Message } from 'primeng/api';
+import { NewsChartService } from './news-chart.service';
 
 @Component({
   selector: 'app-news-chart',
@@ -20,7 +22,7 @@ export class NewsChartComponent extends AppComponentBase implements OnInit {
   @Output() EmitUpdateForm: EventEmitter<any> = new EventEmitter<any>();
   customDateFormat = CustomDateFormat;
   inputFields: boolean;
-  BowelChartFormData: any = <any>{};
+  NewsChartFormData: any = <any>{};
   isEditable: boolean;
   loginId: any;
   residentAdmissionInfoId: any;
@@ -32,13 +34,24 @@ export class NewsChartComponent extends AppComponentBase implements OnInit {
   lstActivity: any[] = [];
   lstPurposeOfActivity: any[] = [];
   lstParticipation: any[] = [];
+  lstConsciousness: any[] = [];
+  lstAirOrOxygen: any[] = [];
+  lstDevice: any[] = [];
+  alertMsg: Message[];
+  confuseMsg: Message[];
+  verbalmsg: Message[];
+  painMsg: Message[];
+  unresponshiveMsg: Message[];
+  monterningFrequancySuffix: string;
+
 
   //Static Options
   stLstYesNoOptions: any[] = [];
   stLstAttendanceOptions: any[] = [];
+  stLstmonterningFrequancySuffix: any[] = [];
 
   //for carousel
-  BowelChartsLst: any[] = [];
+  NewsChartsLst: any[] = [];
   pageNumber: number = 0;
   pageSize: number = 3;
   responsiveOptions: any[] | undefined;
@@ -48,20 +61,7 @@ export class NewsChartComponent extends AppComponentBase implements OnInit {
   stLstReason: any[] = [];
   careGiven: boolean = false;
   reason: boolean = false;
-  continenceRangeOption: any[] = [
-    { label: 'Continent', value: 'Continent' },
-    { label: 'Incontinent', value: 'Incontinent' }
-  ];
 
-  consistencyRangeOption: any[] = [
-    { label: "1", value: '1' },
-    { label: "2", value: '2' },
-    { label: "3", value: '3' },
-    { label: "4", value: '4' },
-    { label: "5", value: '5' },
-    { label: "6", value: '6' },
-    { label: "7", value: '7' }
-  ];
   stLstErrorAndWarning: any;
   result: any;
   ChartName: any;
@@ -73,7 +73,7 @@ export class NewsChartComponent extends AppComponentBase implements OnInit {
     private _UtilityService: UtilityService,
     private _UserService: UserService,
     private datePipe: DatePipe,
-    private _bowelChartServices: BowelChartService,
+    private _newsChartServices: NewsChartService,
     private _ConstantServices: ConstantsService,
     private route: ActivatedRoute
   ) {
@@ -97,7 +97,7 @@ export class NewsChartComponent extends AppComponentBase implements OnInit {
   ngOnChanges(changes: SimpleChanges): void {
     this.isEditable = this.preSelectedChartData.isEditable;
     if (this.preSelectedChartData.selectedChartID != null) {
-      this.BowelChartFormData = <any>{};
+      this.NewsChartFormData = <any>{};
 
       this.StatementType = 'Update';
     } else {
@@ -108,7 +108,7 @@ export class NewsChartComponent extends AppComponentBase implements OnInit {
 
 
   ngOnInit(): void {
-    this.BowelChartFormData.DateAndTime = new Date()
+    this.NewsChartFormData.DateAndTime = new Date()
     this.userId = this.preSelectedChartData.userId;
     this.residentAdmissionInfoId =
       this.preSelectedChartData.residentAdmissionInfoId;
@@ -117,33 +117,35 @@ export class NewsChartComponent extends AppComponentBase implements OnInit {
       this.stLstYesNoOptions = data;
     });
 
-    this.optionService.getstLstAttendaceOptions().subscribe((data) => {
-      this.stLstAttendanceOptions = data;
-    });
     this.optionService.getstLstReason().subscribe((data) => {
       this.stLstReason = data;
     });
+
+    this.optionService.getstLstmonterningFrequancySuffix().subscribe((data) => {
+      this.stLstmonterningFrequancySuffix = data;
+    })
     this.optionService.getstLstErrorAndWarning().subscribe((data) => {
       this.stLstErrorAndWarning = data;
       this.result = this.stLstErrorAndWarning.Warnings.Components.Charts.find(i => i.ChartId === ChartTypes.BowelChart);
       this.ChartName = this.result["ChartName"];
       this._ConstantServices.ActiveMenuName = this.ChartName;
     });
-    const collectionNames = ['BowelAction', 'Amount', 'Interventions'];
+    const collectionNames = ['consciousness', 'airOrOxygen', 'device'];
 
     forkJoin(
       collectionNames.map((collectionName) =>
         this.GetChartDropDownMasterList(
-          ChartTypes.BowelChart,
+          ChartTypes.NEWS2Chart,
           collectionName,
           1
         )
       )
     ).subscribe((responses: any[]) => {
-      this.lstBowelAction = responses[0];
-      this.lstAmount = responses[1];
-      this.lstInterventions = responses[2];
+      this.lstConsciousness = responses[0];
+      this.lstAirOrOxygen = responses[1];
+      this.lstDevice = responses[2];
     });
+
 
     this.getChartDataById(this.preSelectedChartData.chartMasterId, this.preSelectedChartData.residentAdmissionInfoId, this.pageNumber, this.pageSize);
     this.responsiveOptions = [
@@ -163,11 +165,26 @@ export class NewsChartComponent extends AppComponentBase implements OnInit {
         numScroll: 1
       }
     ];
+
+    this.alertMsg = [
+      { severity: 'secondary', detail: 'The Person is alert.' }
+    ];
+    this.confuseMsg = [
+      { severity: 'secondary', detail: 'The Person may be alert but confused or disorientated.' }
+    ]
+    this.verbalmsg = [
+      { severity: 'secondary', detail: 'The Person only responds to varbal simulation.' }
+    ]
+    this.painMsg = [
+      { severity: 'secondary', detail: 'The Person only responds to pain simulation.' }
+    ]
+    this.unresponshiveMsg = [
+      { severity: 'secondary', detail: 'The Person completely unresposive.' }
+    ]
   }
 
-
   openAndClose() {
-    if (this.BowelChartFormData.CareGiven == 'Yes') {
+    if (this.NewsChartFormData.CareGiven == 'Yes') {
       this.inputFields = true;
     } else {
       this.inputFields = false;
@@ -204,9 +221,9 @@ export class NewsChartComponent extends AppComponentBase implements OnInit {
   Save() {
     this.reason = false;
     this.careGiven = false;
-    if (this.BowelChartFormData.CareGiven == null) {
+    if (this.NewsChartFormData.CareGiven == null) {
       this.careGiven = true;
-    } else if (this.BowelChartFormData.CareGiven == 'No' && this.BowelChartFormData.Reason == null) {
+    } else if (this.NewsChartFormData.CareGiven == 'No' && this.NewsChartFormData.Reason == null) {
       this.reason = true;
     }
     else if (
@@ -214,20 +231,20 @@ export class NewsChartComponent extends AppComponentBase implements OnInit {
       this.residentAdmissionInfoId != null &&
       this.loginId != null
     ) {
-      this.BowelChartFormData.userId = this.userId;
-      this.BowelChartFormData.StartedBy = this.loginId;
-      this.BowelChartFormData.LastEnteredBy = this.loginId;
-      this.BowelChartFormData.ResidentAdmissionInfoId =
+      this.NewsChartFormData.userId = this.userId;
+      this.NewsChartFormData.StartedBy = this.loginId;
+      this.NewsChartFormData.LastEnteredBy = this.loginId;
+      this.NewsChartFormData.ResidentAdmissionInfoId =
         this.residentAdmissionInfoId;
 
-      if (this.BowelChartFormData.DateAndTime) {
+      if (this.NewsChartFormData.DateAndTime) {
         if (
           this.StatementType == 'Update' &&
-          typeof this.BowelChartFormData.DateAndTime === 'string'
+          typeof this.NewsChartFormData.DateAndTime === 'string'
         ) {
           //Pare dateTime
           const dateParts =
-            this.BowelChartFormData.DateAndTime.split(/[- :]/);
+            this.NewsChartFormData.DateAndTime.split(/[- :]/);
           const parsedDate = new Date(
             +dateParts[2],
             dateParts[1] - 1,
@@ -235,23 +252,23 @@ export class NewsChartComponent extends AppComponentBase implements OnInit {
             +dateParts[3],
             +dateParts[4]
           );
-          this.BowelChartFormData.DateAndTime = parsedDate;
+          this.NewsChartFormData.DateAndTime = parsedDate;
         }
-        this.BowelChartFormData.DateAndTime =
+        this.NewsChartFormData.DateAndTime =
           this.datePipe.transform(
-            this.BowelChartFormData.DateAndTime,
+            this.NewsChartFormData.DateAndTime,
             'yyyy-MM-ddTHH:mm'
           );
       }
 
       const objectBody: any = {
         StatementType: this.StatementType,
-        bowelChartData: this.BowelChartFormData,
+        newsChart: this.NewsChartFormData,
       };
 
       this._UtilityService.showSpinner();
-      this.unsubscribe.add = this._bowelChartServices
-        .AddInsertUpdateBowelChartForm(objectBody)
+      this.unsubscribe.add = this._newsChartServices
+        .AddInsertUpdateNewsChartForm(objectBody)
         .subscribe({
           next: (data) => {
             this._UtilityService.hideSpinner();
@@ -279,7 +296,7 @@ export class NewsChartComponent extends AppComponentBase implements OnInit {
 
   showPopup(chartId) {
     this.StrikeThroughData = {
-      ChartMasterId: ChartTypes.BowelChart,
+      ChartMasterId: ChartTypes.NEWS2Chart,
       ChartId: chartId,
       ModifiedBy: this.loginId,
     };
@@ -288,7 +305,7 @@ export class NewsChartComponent extends AppComponentBase implements OnInit {
 
   ResetModel() {
     this.isEditable = true;
-    this.BowelChartFormData = <any>{};
+    this.NewsChartFormData = <any>{};
     this.StatementType = 'Insert';
   }
 
@@ -307,8 +324,8 @@ export class NewsChartComponent extends AppComponentBase implements OnInit {
           if (data.actionResult.success == true) {
             var tdata = JSON.parse(data.actionResult.result);
             tdata = tdata ? tdata : [];
-            this.BowelChartsLst = tdata;
-            if (this.BowelChartsLst.length < 3 || (((this.BowelChartsLst.length) * (this.pageNumber + 1)) >= this.BowelChartsLst[0].countRecords)) {
+            this.NewsChartsLst = tdata;
+            if (this.NewsChartsLst.length < 3 || (((this.NewsChartsLst.length) * (this.pageNumber + 1)) >= this.NewsChartsLst[0].countRecords)) {
               this.rightBtnCheck = true;
             }
             else {
@@ -316,7 +333,7 @@ export class NewsChartComponent extends AppComponentBase implements OnInit {
             }
 
           } else {
-            this.BowelChartsLst = [];
+            this.NewsChartsLst = [];
           }
         },
         error: (e) => {
@@ -345,10 +362,147 @@ export class NewsChartComponent extends AppComponentBase implements OnInit {
 
   ClearAllfeilds() {
     if (this.preSelectedChartData.chartMasterId) {
-      this.BowelChartFormData = <any>{};
-      this.BowelChartFormData.bowelChartId =
+      this.NewsChartFormData = <any>{};
+      this.NewsChartFormData.newsChartId =
         this.preSelectedChartData.selectedChartID;
     }
+  }
+
+  caluNewsTwoScore() {
+    this.NewsChartFormData.newstwoScore = this.NewsChartFormData.scaleScore + this.NewsChartFormData.bloodPressureScore + this.NewsChartFormData.airOrOxygenScore + this.NewsChartFormData.pulesScore + this.NewsChartFormData.airOrOxygenScore + this.NewsChartFormData.respirationScore + this.NewsChartFormData.consciousnessScore + this.NewsChartFormData.tempratureScore;
+
+    this.calcuClinicalRisk();
+  }
+  msgForResponse(){
+    this.NewsChartFormData.response="Urgent or Emergency Response Consider sepsis.";
+  }
+  calcuClinicalRisk() {
+    let data = this.NewsChartFormData.newstwoScore;
+
+    if (data > 0 && data <= 2) {
+      this.NewsChartFormData.clinicalRisk = "Low"
+    } else if (data > 3 && data <= 4) {
+      this.NewsChartFormData.clinicalRisk = "Low Medium";
+    } else if (data > 5 && data <= 7) {
+      this.NewsChartFormData.clinicalRisk = "Medium";
+    } else if (data > 8) {
+      this.NewsChartFormData.clinicalRisk = "Risk";
+    }
+    this.msgForResponse();
+
+  }
+
+  calcuRespirationRate() {
+    let data = this.NewsChartFormData.respirationRate;
+    if (data > 0 && data <= 8) {
+      this.NewsChartFormData.respirationScore = 3;
+    } else if (data > 9 && data <= 11) {
+      this.NewsChartFormData.respirationScore = 1;
+    } else if (data > 12 && data <= 20) {
+      this.NewsChartFormData.respirationScore = 0;
+    } else if (data > 21 && data <= 24) {
+      this.NewsChartFormData.respirationScore = 2;
+    } else if (data > 25) {
+      this.NewsChartFormData.respirationScore = 3;
+    }
+    this.caluNewsTwoScore();
+  }
+
+  calcuScaleScore() {
+    let data = this.NewsChartFormData.oxigen;
+
+    if (data > 0 && data <= 83) {
+      this.NewsChartFormData.scaleScore = 3;
+    } else if (data > 83 && data <= 85) {
+      this.NewsChartFormData.scaleScore = 2;
+    } else if (data > 86 && data <= 87) {
+      this.NewsChartFormData.scaleScore = 1;
+    } else if (data > 88 && data <= 100) {
+      this.NewsChartFormData.scaleScore = 0;
+    } else if (data > 100) {
+      this.NewsChartFormData.scaleScore = 3;
+    }
+    this.caluNewsTwoScore();
+  }
+
+  calcuAirOxygenScore() {
+    if (this.NewsChartFormData.airOrOxygen == '66a878fdc3c14242d80a2647') {
+      this.NewsChartFormData.airOrOxygenScore = 0;
+    } else if (this.NewsChartFormData.airOrOxygen == '66a878fdc3c14242d80a2648') {
+      this.NewsChartFormData.airOrOxygenScore = 2;
+    }
+    this.caluNewsTwoScore();
+
+  }
+
+  caluSystolicBPScore() {
+    let data = this.NewsChartFormData.bloodPressure;
+
+    if (data > 0 && data <= 90) {
+      this.NewsChartFormData.bloodPressureScore = 3;
+    } else if (data > 91 && data <= 100) {
+      this.NewsChartFormData.bloodPressureScore = 2;
+    } else if (data > 101 && data <= 110) {
+      this.NewsChartFormData.bloodPressureScore = 1;
+    } else if (data > 111 && data <= 218) {
+      this.NewsChartFormData.bloodPressureScore = 0;
+    } else if (data > 218) {
+      this.NewsChartFormData.bloodPressureScore = 3;
+    }
+    this.caluNewsTwoScore();
+  }
+
+  calcuPulesScore() {
+
+    let data = this.NewsChartFormData.pulesRate;
+
+    if (data > 0 && data <=40) {
+      this.NewsChartFormData.pulesScore = 3;
+    } else if (data > 41 && data <= 50) {
+      this.NewsChartFormData.pulesScore = 1;
+    } else if (data > 51 && data <= 90) {
+      this.NewsChartFormData.pulesScore = 0;
+    } else if (data > 91 && data <= 110) {
+      this.NewsChartFormData.pulesScore = 1;
+    } else if (data > 110 && data <= 130) {
+      this.NewsChartFormData.pulesScore = 2;
+    } else if (data > 131) {
+      this.NewsChartFormData.pulesScore = 3;
+    }
+
+    this.caluNewsTwoScore();
+  }
+
+  calcuConsciousnessScore() {
+    if (this.NewsChartFormData.consciousness == '66a878fdc3c14242d80a2642') {
+      this.NewsChartFormData.consciousnessScore = 0;
+    } else {
+      this.NewsChartFormData.consciousnessScore = 3;
+    }
+    this.caluNewsTwoScore();
+  }
+
+  caluTempratureScore() {
+    let data = this.NewsChartFormData.temprature;
+
+    if (data <= 35) {
+      this.NewsChartFormData.tempratureScore = 3;
+    } else if (data > 35.1 && data <= 36) {
+      this.NewsChartFormData.tempratureScore = 1;
+    } else if (data > 36.1 && data <= 38) {
+      this.NewsChartFormData.tempratureScore = 0;
+    } else if (data > 38.1 && data <= 39) {
+      this.NewsChartFormData.tempratureScore = 1;
+    } else if (data > 39) {
+      this.NewsChartFormData.tempratureScore = 2;
+    }
+
+    this.caluNewsTwoScore();
+  }
+
+  setValueOfMonterningFrequancy() {
+    this.NewsChartFormData.monterningFrequancy = this.NewsChartFormData.monterningFrequancy + this.monterningFrequancySuffix;
+    alert(this.NewsChartFormData.monterningFrequancy);
   }
 
 }
