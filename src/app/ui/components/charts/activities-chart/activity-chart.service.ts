@@ -43,7 +43,7 @@ export class ActivityChartService {
     );
   }
 
-  GetChartDataById(selectedChartID,residentAdmissionInfoId,pageNumber,pageSize){
+  GetChartDataById(selectedChartID,chartId, selectedStartedOn, residentAdmissionInfoId,pageNumber,pageSize){
     let reqHeader = new HttpHeaders({
       'Content-Type': 'application/json',
       'Access-Control-Allow-Origin': environment.BaseUriUser,
@@ -51,6 +51,8 @@ export class ActivityChartService {
     });
     let params = new HttpParams();
     params = params.append('chartMasterId', selectedChartID);
+    params = params.append('chartId', chartId);
+    params = params.append('selectedStartedOn', selectedStartedOn);
     params = params.append('residentAdmissionInfoId', residentAdmissionInfoId);
     params = params.append('pageNumber', pageNumber);
     params = params.append('pageSize', pageSize);
