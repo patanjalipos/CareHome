@@ -1,5 +1,3 @@
-
-
 <div class="card" >
     <form #myForm="ngForm">
         <p-accordion [multiple]="true" activeIndex="0,1">
@@ -59,10 +57,7 @@
                                     (click)="ClearProfile()"></i>
                             </a>
                         </div>
-        
                     </div>
-                    
-                 
                 </div>
             </p-accordionTab>
             <p-accordionTab header="User details">
@@ -95,12 +90,10 @@
                     </div>
                 </div>
             </p-accordionTab>
-            
         </p-accordion>
         <div class="flex flex-wrap gap-2 justify-content-end btn-background">      
             <button  type="button" pButton pRipple label="Update" [disabled]="!myForm.form.valid" (click)="UpdateUserDetails()" ></button>
         </div>
-    
     </form>
 </div>
 

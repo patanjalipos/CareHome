@@ -1613,3 +1613,9 @@ input::file-selector-button {
         font-size: 17px;
     }
 }
+.p-message .p-message-wrapper {padding:0px !important;}
+.p-message .p-message-icon {font-size: 1.5rem;margin-right:0px;}
+.p-message-wrapper{display: block !important}
+.p-message-close{display: block !important}
+.p-message .p-message-detail{margin: 0px;}
+.p-message {border: 1px solid #cfe4e5;; padding: 4px;}
