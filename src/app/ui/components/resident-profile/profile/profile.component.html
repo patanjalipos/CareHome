@@ -5,7 +5,7 @@
             <div class="card-body box-height box-height2">
                 <p-table class="ColumnFilterTable" #dt [value]="lstResidentIndicators" datakey="GroupName"
                     [rowHover]="true" [globalFilterFields]="['indicatorname']" [scrollable]="true"
-                    scrollHeight="calc(100vh - 440px)" responsiveLayout="scroll">
+                    scrollHeight="calc(100vh - 210px)" responsiveLayout="scroll">
                     <ng-template pTemplate="emptymessage" let-columns>
                         <tr style="border-top: 1px solid #e3e3e3;">
                             <td [attr.colspan]="columns?.length">
