@@ -15,6 +15,7 @@ export class OptionService {
   private stLstReason = 'assets/stLst/stLstReason.json';
   private stLstErrorAndWarnings = 'assets/stLst/stLstErrorWarnings.json';
   private stLstRepositioning = 'assets/stLst/stLstRepositionFromTo.json';
+  private stLstmonterningFrequancySuffix = 'assets/stLst/stLstmonterningFrequancySuffix.json';
 
   constructor(private http: HttpClient) { }
 
@@ -46,4 +47,7 @@ export class OptionService {
     return this.http.get<any>(this.stLstRepositioning);
   }
 
+  getstLstmonterningFrequancySuffix(): Observable<any> {
+    return this.http.get<any>(this.stLstmonterningFrequancySuffix);
+  }
 }

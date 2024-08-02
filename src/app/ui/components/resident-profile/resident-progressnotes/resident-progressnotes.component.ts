@@ -138,6 +138,8 @@ export class ResidentProgressnotesComponent extends AppComponentBase implements 
     // this.AddNote.Notes = 'Progressnote';       
      this.createdBy=localStorage.getItem('userId');
    this.LoadResidentProgressDetails(this.admissionid,this.dFrom, this.dTo,this.userid,this.SearchProgressnoteType);
+   this.ClearAddionalNote();
+
   }
   ngOnChanges() {  
     if(this.isProgressnoteDoc==true)

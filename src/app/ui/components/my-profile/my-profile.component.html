@@ -1,12 +1,10 @@
-
-
 <div class="card" >
     <form #myForm="ngForm">
         <p-accordion [multiple]="true" activeIndex="0,1">
             <p-accordionTab header="Personal Details">
                 <div class="row">
                     <div class="col-md-10">
-                        <div class="row row-cols-4 mt-4">
+                        <div class="row row-cols-4">
                             <div class="form-group pos-rel col">
                                     <label class="form-label">Home<span class="required">*</span></label>
                                     <!-- <p-dropdown [required]="true" name="ddlHome" [options]="lstHomeMaster"
@@ -44,7 +42,6 @@
                         </div>
                     <div class="col-md-2 mt-0 pt-0">
                         <div class="form-group Profile-regis Profile-regis-new">
-                            <h6>Profile Picture</h6>
                             <div class="img-prview-box">
                                 <img [src]="imageSrc" height="100%"
                                     *ngIf="imageSrc!=null && imageSrc!=undefined && imageSrc!=''">
@@ -60,10 +57,7 @@
                                     (click)="ClearProfile()"></i>
                             </a>
                         </div>
-        
                     </div>
-                    
-                 
                 </div>
             </p-accordionTab>
             <p-accordionTab header="User details">
@@ -96,12 +90,10 @@
                     </div>
                 </div>
             </p-accordionTab>
-            
         </p-accordion>
         <div class="flex flex-wrap gap-2 justify-content-end btn-background">      
             <button  type="button" pButton pRipple label="Update" [disabled]="!myForm.form.valid" (click)="UpdateUserDetails()" ></button>
         </div>
-    
     </form>
 </div>
 

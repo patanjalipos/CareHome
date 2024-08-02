@@ -5,18 +5,12 @@
                 <div class="profile-img">
                     <!-- <img [src]="profileUrl+ (ResidentMaster.ProfileImage==''? 'no-picture.png': ResidentMaster.ProfileImage)"
                        class="w-6 shadow-2 my-1 mx-0"> -->
-                    <img
-                        [src]="imageSrc"
-                        class="w-6 shadow-2 my-1 mx-0"
-                        *ngIf="
+                    <img [src]="imageSrc" class="w-6 shadow-2 my-1 mx-0" *ngIf="
                             imageSrc != null &&
                             imageSrc != undefined &&
                             imageSrc != ''
-                        "
-                    />
-                    <!-- <div class="js-image-preview" *ngIf="imageSrc==null || imageSrc==undefined || imageSrc==''">
-                      <i class="fa-solid fa-circle-user"></i> 
-                   </div> -->
+                        " />
+                  
                 </div>
                 <h1>{{ ResidentMaster.FullName }}</h1>
                 <div class="detail-table">
@@ -27,8 +21,8 @@
                             <td>
                                 {{ calculateAge(ResidentMaster.DateOfBirth) }}y
                                 ({{
-                                    ResidentMaster.DateOfBirth
-                                        | date : customDateFormat.DEF_DATE
+                                ResidentMaster.DateOfBirth
+                                | date : customDateFormat.DEF_DATE
                                 }})
                             </td>
                         </tr>
@@ -47,9 +41,9 @@
                             <td>:</td>
                             <td>
                                 {{
-                                    admissionStatus[
-                                        ResidentMaster.AdmissionStatus
-                                    ]
+                                admissionStatus[
+                                ResidentMaster.AdmissionStatus
+                                ]
                                 }}
                             </td>
                         </tr>
@@ -66,180 +60,70 @@
         <div class="card pb-0 profile-tab">
             <ul class="nav nav-tabs" id="myTab" role="tablist">
                 <li class="nav-item" role="presentation">
-                    <button
-                        class="nav-link active"
-                        id="profile-tab"
-                        data-bs-toggle="tab"
-                        data-bs-target="#profile"
-                        type="button"
-                        role="tab"
-                        aria-controls="profile"
-                        aria-selected="true"
-                    >
-                        Profile
-                    </button>
+                    <p-button class="nav-link active" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile"
+                        type="button" role="tab" aria-controls="profile" aria-selected="true" label="Profile" ></p-button>
                 </li>
                 <li class="nav-item" role="presentation">
-                    <button
-                        class="nav-link"
-                        id="progress-tab"
-                        data-bs-toggle="tab"
-                        data-bs-target="#progress"
-                        type="button"
-                        role="tab"
-                        aria-controls="progress"
-                        aria-selected="false"
-                    >
-                        Progress notes
-                    </button>
+                    <p-button class="nav-link" id="progress-tab" data-bs-toggle="tab" data-bs-target="#progress"
+                        type="button" role="tab" aria-controls="progress" aria-selected="false"
+                        (click)="confirm($event,'ProgressNote')" label="Progress notes" ></p-button>
                 </li>
                 <li class="nav-item" role="presentation">
-                    <button
-                        class="nav-link"
-                        id="care-tab"
-                        data-bs-toggle="tab"
-                        data-bs-target="#care"
-                        type="button"
-                        role="tab"
-                        aria-controls="care"
-                        aria-selected="false"
-                    >
-                        Care plan
-                    </button>
+                    <p-button class="nav-link" id="care-tab" data-bs-toggle="tab" data-bs-target="#care" type="button"
+                        role="tab" aria-controls="care" aria-selected="false" (click)="confirm($event,'CarePlan')"
+                        label="Care plan" ></p-button>
                 </li>
                 <li class="nav-item" role="presentation">
-                    <button
-                        class="nav-link"
-                        id="forms-tab"
-                        data-bs-toggle="tab"
-                        data-bs-target="#forms"
-                        type="button"
-                        role="tab"
-                        aria-controls="forms"
-                        aria-selected="false"
-                    >
-                        Forms
-                    </button>
+                    <p-button class="nav-link" id="forms-tab" data-bs-toggle="tab" data-bs-target="#forms" type="button"
+                        role="tab" aria-controls="forms" aria-selected="false" (click)="confirm($event,'Form')"
+                        label="Form" ></p-button>
                 </li>
                 <li class="nav-item" role="presentation">
-                    <button
-                        class="nav-link"
-                        id="charts-tab"
-                        data-bs-toggle="tab"
-                        data-bs-target="#charts"
-                        type="button"
-                        role="tab"
-                        aria-controls="charts"
-                        aria-selected="false"
-                    >
-                        Charts
-                    </button>
+                    <p-button class="nav-link" id="charts-tab" data-bs-toggle="tab" data-bs-target="#charts"
+                        type="button" role="tab" aria-controls="charts" aria-selected="false" (click)="confirm($event,
+                        'Chart')" label="Charts"></p-button>
                 </li>
                 <li class="nav-item" role="presentation">
-                    <button
-                        class="nav-link"
-                        id="actions-tab"
-                        data-bs-toggle="tab"
-                        data-bs-target="#actions"
-                        type="button"
-                        role="tab"
-                        aria-controls="actions"
-                        aria-selected="false"
-                    >
-                        Actions (0)
-                    </button>
+                    <p-button class="nav-link" id="actions-tab" data-bs-toggle="tab" data-bs-target="#actions"
+                        type="button" role="tab" aria-controls="actions" aria-selected="false" (click)="confirm($event,'Action')"
+                        label="Actions"></p-button>
                 </li>
                 <li class="nav-item" role="presentation">
-                    <button
-                        class="nav-link"
-                        id="alerts-tab"
-                        data-bs-toggle="tab"
-                        data-bs-target="#alerts"
-                        type="button"
-                        role="tab"
-                        aria-controls="alerts"
-                        aria-selected="false"
-                    >
-                        Alerts (0)
-                    </button>
+                    <p-button class="nav-link" id="alerts-tab" data-bs-toggle="tab" data-bs-target="#alerts"
+                        type="button" role="tab" aria-controls="alerts" aria-selected="false" (click)="confirm($event,'Alert')"
+                        label="Alerts (0)"></p-button>
                 </li>
             </ul>
         </div>
 
         <div class="tab-content" id="myTabContent">
-            <div
-                class="tab-pane fade show active"
-                id="profile"
-                role="tabpanel"
-                aria-labelledby="profile-tab"
-            >
-                <app-profile
-                    [userid]="selecteduserid"
-                    [admissionid]="selectedadmissionid"
-                    [residentadmissiondetails]="ResidentMaster"
-                ></app-profile>
+            <div class="tab-pane fade show active" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                <app-profile [userid]="selecteduserid" [admissionid]="selectedadmissionid"
+                    [residentadmissiondetails]="ResidentMaster"></app-profile>
             </div>
 
-            <div
-                class="tab-pane fade"
-                id="progress"
-                role="tabpanel"
-                aria-labelledby="progress-tab"
-            >
-                <app-resident-progressnotes
-                    [admissionid]="selectedadmissionid"
-                    [userid]="selecteduserid"
-                ></app-resident-progressnotes>
+            <div class="tab-pane fade" id="progress" role="tabpanel" aria-labelledby="progress-tab">
+                <app-resident-progressnotes [admissionid]="selectedadmissionid"
+                    [userid]="selecteduserid" *ngIf="ProgressNote"></app-resident-progressnotes>
             </div>
-            <div
-                class="tab-pane fade"
-                id="care"
-                role="tabpanel"
-                aria-labelledby="care-tab"
-            >
+            <div class="tab-pane fade" id="care" role="tabpanel" aria-labelledby="care-tab">
+                ..
+
+            </div>
+            <div class="tab-pane fade" id="forms" role="tabpanel" aria-labelledby="forms-tab">
+                <app-forms-dashboard [userId]="selecteduserid" [residentAdmissionInfoId]="selectedadmissionid"
+                    *ngIf="Form"></app-forms-dashboard>
+            </div>
+            <div class="tab-pane fade" id="charts" role="tabpanel" aria-labelledby="charts-tab">
+                <app-chart [userId]="selecteduserid" [residentAdmissionInfoId]="selectedadmissionid"
+                    *ngIf="Chart"></app-chart>
+            </div>
+            <div class="tab-pane fade" id="actions" role="tabpanel" aria-labelledby="actions-tab" >
                 ...
             </div>
-            <div
-                class="tab-pane fade"
-                id="forms"
-                role="tabpanel"
-                aria-labelledby="forms-tab"
-            >
-                <app-forms-dashboard
-                    [userId]="selecteduserid"
-                    [residentAdmissionInfoId]="selectedadmissionid"
-                ></app-forms-dashboard>
-            </div>
-            <div
-                class="tab-pane fade"
-                id="charts"
-                role="tabpanel"
-                aria-labelledby="charts-tab"
-            >
-                <app-chart
-                    [userId]="selecteduserid"
-                    [residentAdmissionInfoId]="selectedadmissionid"
-                ></app-chart>
-            </div>
-            <div
-                class="tab-pane fade"
-                id="actions"
-                role="tabpanel"
-                aria-labelledby="actions-tab"
-            >
-                ...
-            </div>
-            <div
-                class="tab-pane fade"
-                id="alerts"
-                role="tabpanel"
-                aria-labelledby="alerts-tab"
-            >
-                <app-alert
-                    [userid]="selecteduserid"
-                    [admissionid]="selectedadmissionid"
-                    [residentadmissiondetails]="ResidentMaster"
-                ></app-alert>
+            <div class="tab-pane fade" id="alerts" role="tabpanel" aria-labelledby="alerts-tab">
+                <app-alert [userid]="selecteduserid" [admissionid]="selectedadmissionid"
+                    [residentadmissiondetails]="ResidentMaster" *ngIf="Alert"></app-alert>
             </div>
         </div>
     </div>

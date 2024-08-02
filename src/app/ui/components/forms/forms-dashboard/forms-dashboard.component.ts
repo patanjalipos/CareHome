@@ -1,8 +1,11 @@
 import {
     Component,
     ComponentRef,
+    ElementRef,
+    EventEmitter,
     Input,
     OnInit,
+    Output,
     ViewChild,
     ViewContainerRef,
 } from '@angular/core';
@@ -31,9 +34,9 @@ export class FormsDashboardComponent
     @Input() residentAdmissionInfoId: string = null;
     @Input() userId: any = null;
 
+    @ViewChild('Forms',{static : false}) childRef : ElementRef;
     @ViewChild('formContainer', { read: ViewContainerRef })
-    formContainer: ViewContainerRef;
-    componentRef: ComponentRef<any>;
+ 
     customDateFormat = CustomDateFormat;
 
     public lstMaster: any[] = [];
@@ -61,11 +64,12 @@ export class FormsDashboardComponent
 
     ngOnInit() {
         this.GetformMaster();
+        this.ResetModel();
     }
-
     dateRangeChange(calendar: Calendar) {
         if (this.rangeDates[0] !== null && this.rangeDates[1] !== null) {
             calendar.overlayVisible = false;
+            this.SearchForm();
         }
     }
 
@@ -163,6 +167,9 @@ export class FormsDashboardComponent
                 ModifiedOn: selectedFormdata.ModifiedOn,
             };
             this.ShowModel();
+            setTimeout(() => {
+                this.childRef.nativeElement.scrollIntoView({ behavior: 'smooth' });
+            },200);
         } 
         else{
             this._UtilityService.showErrorAlert('Kindly select an Assessment Form');
@@ -174,12 +181,11 @@ export class FormsDashboardComponent
     }
 
     ResetModel() {
-        this.formDashboardList = null;
-        this.rangeDates = undefined;
+        this.formDashboardList =null;
+        this.rangeDates =null;
         this.selectedFormMasterId = null;
         this.selectedFormId = null;
         this.selectedFormData = null;
-        this.componentRef.destroy();
     }
     EmitUpdateForm(event) {
         this.SearchForm();

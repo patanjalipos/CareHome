@@ -1,5 +1,5 @@
 import { DatePipe } from '@angular/common';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, ViewChild, ElementRef, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Calendar } from 'primeng/calendar';
 import { AppComponentBase } from 'src/app/app-component-base';
@@ -18,6 +18,7 @@ import { UtilityService } from 'src/app/utility/utility.service';
     styleUrls: ['./chart.component.scss'],
 })
 export class ChartComponent extends AppComponentBase implements OnInit {
+    @ViewChild('Charts', { static: false }) childref: ElementRef;
     @Input() mode: string = 'view';
     @Input() userId: any = null;
     @Input() residentAdmissionInfoId: any = null;
@@ -48,7 +49,9 @@ export class ChartComponent extends AppComponentBase implements OnInit {
     }
 
     ngOnInit(): void {
+        this.ResetModel();
         this.GetChartMaster();
+        this.ResetModel();
     }
 
     SearchChart() {
@@ -102,18 +105,24 @@ export class ChartComponent extends AppComponentBase implements OnInit {
     dateRangeChange(calendar: Calendar) {
         if (this.rangeDates[0] !== null && this.rangeDates[1] !== null) {
             calendar.overlayVisible = false;
+            this.SearchChart();
         }
     }
 
     OpenChart(
         selectedChartMasterId: string,
+        selectedChartId: string = null,
+        StartedOn: any,
         selectedChartdata: any = <any>{},
         isEditable = true
     ) {
         if (selectedChartMasterId != null) {
+            this.ShowChildComponent = false;
             this.selectedChartMasterId = selectedChartMasterId;
             this.selectedChartData = {
                 chartMasterId: selectedChartMasterId,
+                chartId: selectedChartId,
+                selectedStartedOn: StartedOn,
                 selectedChartID: selectedChartdata.ChartId,
                 userId: this.userId,
                 residentAdmissionInfoId: this.residentAdmissionInfoId,
@@ -127,6 +136,9 @@ export class ChartComponent extends AppComponentBase implements OnInit {
                 ModifiedOn: selectedChartdata.ModifiedOn,
             };
             this.ShowModel();
+            setTimeout(() => {
+                this.childref.nativeElement.scrollIntoView({ behavior: 'smooth' });
+            }, 200);
         } else this._UtilityService.showErrorAlert('Select Chart Type');
     }
 
@@ -135,8 +147,8 @@ export class ChartComponent extends AppComponentBase implements OnInit {
     }
 
     GetChartMaster() {
-     let importData: any = <any>{};   
-      importData.StatusType=true;
+        let importData: any = <any>{};
+        importData.StatusType = true;
         this._UtilityService.showSpinner();
         this.unsubscribe.add = this._MasterServices.GetChartMaster(importData)
             .subscribe({
