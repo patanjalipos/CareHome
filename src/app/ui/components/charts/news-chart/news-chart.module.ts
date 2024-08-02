@@ -24,6 +24,7 @@ import { CalendarModule } from 'primeng/calendar';
   imports: [
     CommonModule,
     NewsChartRoutingModule,
+    MessagesModule,
     CommonModule,
     CalendarModule,
     DropdownModule,
