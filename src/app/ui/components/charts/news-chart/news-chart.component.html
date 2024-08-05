@@ -359,12 +359,12 @@
                         <div class="formheader">
                             <div class="col-md-12 mb-2 d-flex justify-content-between fs-4">
                                 <div class="chart-date bold">
-                                    <label [ngClass]="{'text-decoration-line-through bold':chart.isStrikeThrough}">{{
+                                    <label>{{
                                         chart.DateAndTime |
                                         date:'dd-MM-yyyy' }}</label>
                                 </div>
                                 <div class="chart-date">
-                                    <label [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">{{
+                                    <label>{{
                                         chart.DateAndTime |
                                         date:'hh:mm' }}</label>
                                 </div>
@@ -373,7 +373,7 @@
                         <div class="col-md-12 mb-2">
 
                             <label class="form-label bold"
-                                [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">Enterted By<span
+                                >Enterted By<span
                                     class="required"></span></label>
 
                             <div>
@@ -392,7 +392,7 @@
 
                         <div class="col-md-12 mb-2">
 
-                            <label *ngIf="chart.isStrikeThrough" class="form-label bold">Strike Through Reason<span
+                            <label *ngIf="chart.isStrikeThrough" class="form-label bold">Strike Out Reason<span
                                     class="required"></span></label>
 
                             <div>
@@ -402,8 +402,7 @@
 
                         <div class="col-md-12">
 
-                            <label class="form-label bold"
-                                [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">Care Given
+                            <label class="form-label bold">Care Given
                                 <span class="required"></span></label>
 
                             <div>
@@ -415,8 +414,7 @@
                         <div *ngIf="chart.CareGiven=='No'">
                             <div class="col-md-12">
                                 <div class="col-md-12">
-                                    <label class="form-label bold"
-                                        [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">Reason
+                                    <label class="form-label bold">Reason
                                         <span class="required"></span></label>
                                 </div>
                                 <div>
@@ -656,7 +654,7 @@
 
             </p-carousel>
             <div *ngIf="isShowStrikeThroughPopup" class="card flex justify-content-center">
-                <p-dialog [closable]="true" header="Strike-Through" [(visible)]="isShowStrikeThroughPopup"
+                <p-dialog [closable]="true" header="Strike-Out" [(visible)]="isShowStrikeThroughPopup"
                     [modal]="true" [breakpoints]="{ '1199px': '75vw', '575px': '90vw' }" [style]="{ width: '40vw' }"
                     [draggable]="false" [resizable]="false">
                     <div *ngIf="isShowStrikeThroughPopup">
