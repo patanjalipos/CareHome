@@ -135,9 +135,10 @@ export class ResidentProgressnotesComponent extends AppComponentBase implements 
 
 
   ngOnInit(): void {
-    // this.AddNote.Notes = 'Progressnote';       
-     this.createdBy=localStorage.getItem('userId');
+   // this.AddNote.Notes = 'Progressnote';       
+   this.createdBy=localStorage.getItem('userId');
    this.LoadResidentProgressDetails(this.admissionid,this.dFrom, this.dTo,this.userid,this.SearchProgressnoteType);
+   this.ClearAddionalNote();
    this.AddNote.DateOfEvent = new Date();
   }
   ngOnChanges() {  

@@ -29,7 +29,7 @@
                 [showIcon]="true"
                 inputId="icon"
                 [readonlyInput]="true"
-                [dateFormat]="customDateFormat.CalendarFormat"
+                dateFormat="{{ customDateFormat?.CalendarFormat }}" 
                 (onSelect)="dateRangeChange(cal1)"
                 (onChange)="SearchForm()"
                 [showButtonBar]="true"
