@@ -10,7 +10,7 @@
                             imageSrc != undefined &&
                             imageSrc != ''
                         " />
-                  
+
                 </div>
                 <h1>{{ ResidentMaster.FullName }}</h1>
                 <div class="detail-table">
@@ -59,71 +59,60 @@
     <div class="col-md-9">
         <div class="card pb-0 profile-tab">
             <ul class="nav nav-tabs" id="myTab" role="tablist">
-                <li class="nav-item" role="presentation">
-                    <p-button class="nav-link active" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile"
-                        type="button" role="tab" aria-controls="profile" aria-selected="true" label="Profile" ></p-button>
+                <li class="nav-item " role="presentation" >
+                    <p-button class="nav-link" type="button" label="Profile" (click)="confirm($event,'Profile')"></p-button>
                 </li>
                 <li class="nav-item" role="presentation">
-                    <p-button class="nav-link" id="progress-tab" data-bs-toggle="tab" data-bs-target="#progress"
-                        type="button" role="tab" aria-controls="progress" aria-selected="false"
-                        (click)="confirm($event,'ProgressNote')" label="Progress notes" ></p-button>
+                    <p-button class="nav-link" type="button" (click)="confirm($event,'ProgressNote')"
+                        label="Progress notes"></p-button>
                 </li>
                 <li class="nav-item" role="presentation">
-                    <p-button class="nav-link" id="care-tab" data-bs-toggle="tab" data-bs-target="#care" type="button"
-                        role="tab" aria-controls="care" aria-selected="false" (click)="confirm($event,'CarePlan')"
-                        label="Care plan" ></p-button>
+                    <p-button class="nav-link" type="button" (click)="confirm($event,'CarePlan')"
+                        label="Care plan"></p-button>
                 </li>
                 <li class="nav-item" role="presentation">
-                    <p-button class="nav-link" id="forms-tab" data-bs-toggle="tab" data-bs-target="#forms" type="button"
-                        role="tab" aria-controls="forms" aria-selected="false" (click)="confirm($event,'Form')"
-                        label="Form" ></p-button>
+                    <p-button class="nav-link" type="button" (click)="confirm($event,'Form')" label="Form"></p-button>
                 </li>
                 <li class="nav-item" role="presentation">
-                    <p-button class="nav-link" id="charts-tab" data-bs-toggle="tab" data-bs-target="#charts"
-                        type="button" role="tab" aria-controls="charts" aria-selected="false" (click)="confirm($event,
+                    <p-button class="nav-link" (click)="confirm($event,
                         'Chart')" label="Charts"></p-button>
                 </li>
                 <li class="nav-item" role="presentation">
-                    <p-button class="nav-link" id="actions-tab" data-bs-toggle="tab" data-bs-target="#actions"
-                        type="button" role="tab" aria-controls="actions" aria-selected="false" (click)="confirm($event,'Action')"
-                        label="Actions"></p-button>
+                    <p-button class="nav-link" (click)="confirm($event,'Action')" label="Actions"></p-button>
                 </li>
                 <li class="nav-item" role="presentation">
-                    <p-button class="nav-link" id="alerts-tab" data-bs-toggle="tab" data-bs-target="#alerts"
-                        type="button" role="tab" aria-controls="alerts" aria-selected="false" (click)="confirm($event,'Alert')"
-                        label="Alerts (0)"></p-button>
+                    <p-button class="nav-link" (click)="confirm($event,'Alert')" label="Alerts (0)"></p-button>
                 </li>
             </ul>
         </div>
 
         <div class="tab-content" id="myTabContent">
-            <div class="tab-pane fade show active" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+            <div aria-labelledby="profile-tab" *ngIf="Profile">
                 <app-profile [userid]="selecteduserid" [admissionid]="selectedadmissionid"
                     [residentadmissiondetails]="ResidentMaster"></app-profile>
             </div>
 
-            <div class="tab-pane fade" id="progress" role="tabpanel" aria-labelledby="progress-tab">
+            <div *ngIf="ProgressNote">
                 <app-resident-progressnotes [admissionid]="selectedadmissionid"
-                    [userid]="selecteduserid" *ngIf="ProgressNote"></app-resident-progressnotes>
+                    [userid]="selecteduserid"></app-resident-progressnotes>
             </div>
             <div class="tab-pane fade" id="care" role="tabpanel" aria-labelledby="care-tab">
                 ..
 
             </div>
-            <div class="tab-pane fade" id="forms" role="tabpanel" aria-labelledby="forms-tab">
-                <app-forms-dashboard [userId]="selecteduserid" [residentAdmissionInfoId]="selectedadmissionid"
-                    *ngIf="Form"></app-forms-dashboard>
+            <div *ngIf="Form">
+                <app-forms-dashboard [userId]="selecteduserid"
+                    [residentAdmissionInfoId]="selectedadmissionid"></app-forms-dashboard>
             </div>
-            <div class="tab-pane fade" id="charts" role="tabpanel" aria-labelledby="charts-tab">
-                <app-chart [userId]="selecteduserid" [residentAdmissionInfoId]="selectedadmissionid"
-                    *ngIf="Chart"></app-chart>
+            <div *ngIf="Chart">
+                <app-chart [userId]="selecteduserid" [residentAdmissionInfoId]="selectedadmissionid"></app-chart>
             </div>
-            <div class="tab-pane fade" id="actions" role="tabpanel" aria-labelledby="actions-tab" >
+            <div>
                 ...
             </div>
-            <div class="tab-pane fade" id="alerts" role="tabpanel" aria-labelledby="alerts-tab">
+            <div *ngIf="Alert">
                 <app-alert [userid]="selecteduserid" [admissionid]="selectedadmissionid"
-                    [residentadmissiondetails]="ResidentMaster" *ngIf="Alert"></app-alert>
+                    [residentadmissiondetails]="ResidentMaster"></app-alert>
             </div>
         </div>
     </div>
