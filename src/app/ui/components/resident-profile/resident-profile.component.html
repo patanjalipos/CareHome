@@ -96,7 +96,7 @@
                 <app-resident-progressnotes [admissionid]="selectedadmissionid"
                     [userid]="selecteduserid"></app-resident-progressnotes>
             </div>
-            <div class="tab-pane fade" id="care" role="tabpanel" aria-labelledby="care-tab">
+            <div  aria-labelledby="care-tab" *ngIf="CarePlan">
                 ..
 
             </div>

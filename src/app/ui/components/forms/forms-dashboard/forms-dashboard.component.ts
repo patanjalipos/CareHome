@@ -21,6 +21,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Calendar } from 'primeng/calendar';
 import { DatePipe } from '@angular/common';
 import { UserService } from 'src/app/ui/service/user.service';
+import { ResidentProfileService } from '../../resident-profile/resident-profile.service';
 
 @Component({
     selector: 'app-forms-dashboard',
@@ -56,7 +57,8 @@ export class FormsDashboardComponent
         private _UserServices: UserService,
         private _UtilityService: UtilityService,
         private route: ActivatedRoute,
-        private datepipe: DatePipe
+        private datepipe: DatePipe,
+        private sharedStateService: ResidentProfileService
     ) {
         super();
         this._ConstantServices.ActiveMenuName = 'Form Dashboard';
@@ -97,6 +99,7 @@ export class FormsDashboardComponent
     }
 
     SearchForm() {
+        this.sharedStateService.tranferValu(true);
         this.ShowChildComponent = false;
         this._UtilityService.showSpinner();
         const residentAdmissionInfoId = this.residentAdmissionInfoId;

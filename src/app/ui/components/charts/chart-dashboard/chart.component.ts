@@ -11,6 +11,7 @@ import {
 import { MasterService } from 'src/app/ui/service/master.service';
 import { UserService } from 'src/app/ui/service/user.service';
 import { UtilityService } from 'src/app/utility/utility.service';
+import { ResidentProfileService } from '../../resident-profile/resident-profile.service';
 
 @Component({
     selector: 'app-chart',
@@ -42,7 +43,8 @@ export class ChartComponent extends AppComponentBase implements OnInit {
         private _UtilityService: UtilityService,
         private route: ActivatedRoute,
         private datepipe: DatePipe,
-        private _UserServices: UserService
+        private _UserServices: UserService,
+        private sharedStateService: ResidentProfileService
     ) {
         super();
         this._ConstantServices.ActiveMenuName = 'Chart Dashboard';
@@ -55,6 +57,8 @@ export class ChartComponent extends AppComponentBase implements OnInit {
     }
 
     SearchChart() {
+        //this.sharedStateService.setValue(true);
+        this.sharedStateService.tranferValu(true);
         this.ShowChildComponent = false;
         this._UtilityService.showSpinner();
         const residentAdmissionInfoId = this.residentAdmissionInfoId;

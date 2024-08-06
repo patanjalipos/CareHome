@@ -67,7 +67,7 @@
             </div>
             <div class="card-footer">
                 <div>
-                    <button *ngIf="likemode=='view'" pButton type="button" label="Edit" class="btn btn-primary"
+                    <button *ngIf="likemode=='view'" pButton type="button" label="Edit" (click)="changeValue()" class="btn btn-primary"
                         (click)="likeedit()" [disabled]="isEditable"></button>
                     <button *ngIf="likemode=='edit'" pButton type="button" label="Save" class="btn btn-primary"
                         (click)="updateResident()"></button>
@@ -98,7 +98,7 @@
             </div>
             <div class="card-footer">
                 <div>
-                    <button *ngIf="activitymode=='view'" pButton type="button" label="Edit" class="btn btn-primary"
+                    <button *ngIf="activitymode=='view'" pButton type="button" label="Edit"  (click)="changeValue()" class="btn btn-primary"
                         (click)="activityedit()" [disabled]="isEditable"></button>
                     <button *ngIf="activitymode=='edit'" pButton type="button" label="Save" class="btn btn-primary"
                         (click)="updateResident()"></button>
@@ -124,7 +124,7 @@
                     </div>
                     <div class="card-footer">
                         <div>
-                            <button *ngIf="appointmentmode=='view'" pButton type="button" label="Edit"
+                            <button *ngIf="appointmentmode=='view'" pButton type="button" label="Edit"  (click)="changeValue()"
                                 class="btn btn-primary" (click)="appointmentedit()" [disabled]="isEditable"></button>
                             <button *ngIf="appointmentmode=='edit'" pButton type="button" label="Save"
                                 class="btn btn-primary" (click)="updateResident()"></button>
