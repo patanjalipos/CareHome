@@ -31,7 +31,7 @@ export class ResidentProfileComponent extends AppComponentBase implements OnInit
   Chart: boolean = false;
   Alert: boolean = false;
   Action: boolean = false;
-  Profile: boolean = false;
+  Profile: boolean = true;
   visible: boolean = false;
 
 
@@ -68,12 +68,21 @@ export class ResidentProfileComponent extends AppComponentBase implements OnInit
     this.confirmationService.confirm({
       target: event.target as EventTarget,
       message: 'Are you sure you want to leave this page?',
-      header: 'Confirmation',
+      header: 'Alert',
       icon: 'pi pi-exclamation-triangle',
       acceptIcon: "none",
       rejectIcon: "none",
       rejectButtonStyleClass: "p-button-text",
       accept: () => {
+        if (componentType == 'Profile') {
+          this.Profile = true;
+          this.Chart = false;
+          this.CarePlan = false;
+          this.ProgressNote = false;
+          this.Action = false;
+          this.Form = false;
+          this.Alert = false;
+        }
         if (componentType == 'Form') {
           this.Form = true;
           this.Chart = false;
@@ -125,123 +134,11 @@ export class ResidentProfileComponent extends AppComponentBase implements OnInit
         }
       },
       reject: () => {
-
-        console.log(componentType);
-        console.log(this.Profile + " " + this.Chart + " " + this.Form);
-        if (this.Form==true) {
-          this.Form = true;
-          this.Chart = false;
-          this.CarePlan = false;
-          this.ProgressNote = false;
-          this.Action = false;
-          this.Profile = false;
-          this.Alert = false;
-        } else if (this.Chart==true) {
-          this.Chart = true;
-          this.Form = false;
-          this.CarePlan = false;
-          this.ProgressNote = false;
-          this.Action = false;
-          this.Alert = false;
-          this.Profile = false;
-        } else if (componentType == 'CarePlan') {
-          this.CarePlan = true;
-          this.Chart = false;
-          this.Form = false;
-          this.ProgressNote = false;
-          this.Action = false;
-          this.Alert = false;
-          this.Profile = false;
-        } else if (componentType == 'ProgressNote') {
-          this.ProgressNote = true;
-          this.Chart = false;
-          this.CarePlan = false;
-          this.Form = false;
-          this.Action = false;
-          this.Alert = false;
-          this.Profile = false;
-        } else if (componentType == 'Action') {
-          this.Action = true;
-          this.Chart = false;
-          this.CarePlan = false;
-          this.ProgressNote = false;
-          this.Form = false;
-          this.Alert = false;
-          this.Profile = false;
-        } else if (componentType == 'Alert') {
-          this.Alert = true;
-          this.Chart = false;
-          this.CarePlan = false;
-          this.ProgressNote = false;
-          this.Action = false;
-          this.Form = false;
-          this.Profile = false;
-        }
       }
     });
   }
 
 
-  showProgressNote() {
-    if (this.Chart || this.Form || this.Action || this.Alert || this.CarePlan) {
-      // confirm("Are you sure To leave this page..");
-      this.visible = true;
-
-    } else {
-      this.Profile = false;
-      this.ProgressNote = true;
-    }
-  }
-
-  showChart() {
-    if (this.ProgressNote || this.Form || this.Action || this.Alert || this.CarePlan) {
-      this.showDiscardPopup();
-    } else {
-      this.Profile = false;
-      this.Chart = true;
-    }
-  }
-  showForm() {
-    if (this.Chart || this.CarePlan || this.Action || this.Alert || this.ProgressNote) {
-      // confirm("Are you sure To leave this page..");
-      this.showDiscardPopup();
-    } else {
-      this.Profile = false;
-      this.Form = true;
-    }
-  }
-  showAlert() {
-    if (this.Chart || this.Form || this.Action || this.CarePlan || this.ProgressNote) {
-      //confirm("Are you sure To leave this page..");
-      this.showDiscardPopup();
-
-    } else {
-      this.Profile = false;
-      this.Alert = true;
-    }
-  }
-  showCarePlan() {
-    if (this.Chart || this.Form || this.Action || this.Alert || this.ProgressNote) {
-      // confirm("Are you sure To leave this page..");
-      this.showDiscardPopup();
-    } else {
-      this.Profile = false;
-      this.CarePlan = true;
-    }
-  }
-  showAction() {
-    if (this.Chart || this.Form || this.CarePlan || this.Alert || this.ProgressNote) {
-      // confirm("Are you sure To leave this page..");
-      this.showDiscardPopup();
-    } else {
-      this.Profile = false;
-      this.Action = true;
-    }
-  }
-
-  showDiscardPopup() {
-    this.visible = true;
-  }
   LoadResidentDetails(userid, admissionid) {
     this._UtilityService.showSpinner();
     this.unsubscribe.add = this._UserServices.GetResidentDetailsById(userid, admissionid)
