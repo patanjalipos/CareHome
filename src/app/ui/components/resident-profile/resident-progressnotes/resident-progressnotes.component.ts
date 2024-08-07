@@ -9,6 +9,7 @@ import { Table } from 'primeng/table';
 import { MenuItem } from 'primeng/api/menuitem';
 import { Calendar } from 'primeng/calendar';
 import { DatePipe } from '@angular/common';
+import { ResidentProfileService } from '../resident-profile.service';
 
 @Component({
   selector: 'app-resident-progressnotes',
@@ -59,6 +60,7 @@ export class ResidentProgressnotesComponent extends AppComponentBase implements 
     private _ConstantServices: ConstantsService,
     private datePipe: DatePipe,
     private _MasterServices:MasterService,
+    private sharedStateService: ResidentProfileService,
     private _UtilityService: UtilityService,
     ) 
     { 
@@ -149,6 +151,9 @@ export class ResidentProgressnotesComponent extends AppComponentBase implements 
          this.LoadResidentProgressDetails(this.admissionid,this.dFrom, this.dTo,this.userid,0);
       }
   }
+  changeValue(){
+    this.sharedStateService.tranferValu(true);
+  }
   
   Close()
   { 
@@ -224,6 +229,7 @@ onSelectDate() {
     this.calendar.overlayVisible = false;
     this.ShowAvailableDetails();
   }
+  this.changeValue();
 }
 
 ShowAvailableDetails() {
