@@ -8,6 +8,7 @@ import { UserService } from '../../service/user.service';
 import { FallRiskAssessmentModule } from '../clinical/fall-risk-assessment/fall-risk-assessment.module';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { Router } from '@angular/router';
+import { ResidentProfileService } from './resident-profile.service';
 
 @Component({
   selector: 'app-resident-profile',
@@ -33,8 +34,7 @@ export class ResidentProfileComponent extends AppComponentBase implements OnInit
   Action: boolean = false;
   Profile: boolean = true;
   visible: boolean = false;
-
-
+  value: boolean = false;
   constructor(
     private route: ActivatedRoute,
     private _ConstantServices: ConstantsService,
@@ -43,6 +43,7 @@ export class ResidentProfileComponent extends AppComponentBase implements OnInit
     private _UtilityService: UtilityService,
     private confirmationService: ConfirmationService,
     private router: Router,
+    private sharedStateService: ResidentProfileService,
     private messageService: MessageService
   ) {
     super();
@@ -62,80 +63,152 @@ export class ResidentProfileComponent extends AppComponentBase implements OnInit
     this.Profile = true;
     if (this.selecteduserid != null)
       this.LoadResidentDetails(this.selecteduserid, this.selectedadmissionid);
+
+    this.sharedStateService.value.subscribe(data => {
+      this.value = data;
+    });
   }
 
   confirm(event: Event, componentType: string) {
-    this.confirmationService.confirm({
-      target: event.target as EventTarget,
-      message: 'Are you sure you want to leave this page?',
-      header: 'Alert',
-      icon: 'pi pi-exclamation-triangle',
-      acceptIcon: "none",
-      rejectIcon: "none",
-      rejectButtonStyleClass: "p-button-text",
-      accept: () => {
-        if (componentType == 'Profile') {
-          this.Profile = true;
-          this.Chart = false;
-          this.CarePlan = false;
-          this.ProgressNote = false;
-          this.Action = false;
-          this.Form = false;
-          this.Alert = false;
+    if (this.value == true) {
+      console.log(this.value);
+      this.confirmationService.confirm({
+        target: event.target as EventTarget,
+        message: 'Are you sure you want to leave this page?',
+        header: 'Alert',
+        icon: 'pi pi-exclamation-triangle',
+        acceptIcon: "none",
+        rejectIcon: "none",
+        rejectButtonStyleClass: "p-button-text",
+        accept: () => {
+          if (componentType == 'Profile') {
+            this.Profile = true;
+            this.Chart = false;
+            this.CarePlan = false;
+            this.ProgressNote = false;
+            this.Action = false;
+            this.Form = false;
+            this.Alert = false;
+            this.value=false;
+          }
+          else if (componentType == 'Form') {
+            this.Form = true;
+            this.Chart = false;
+            this.CarePlan = false;
+            this.ProgressNote = false;
+            this.Action = false;
+            this.Profile = false;
+            this.Alert = false;
+            this.value=false;
+          } else if (componentType == 'Chart') {
+            this.Chart = true;
+            this.Form = false;
+            this.CarePlan = false;
+            this.ProgressNote = false;
+            this.Action = false;
+            this.Alert = false;
+            this.Profile = false;
+            this.value=false;
+          } else if (componentType == 'CarePlan') {
+            this.CarePlan = true;
+            this.Chart = false;
+            this.Form = false;
+            this.ProgressNote = false;
+            this.Action = false;
+            this.Alert = false;
+            this.Profile = false;
+          } else if (componentType == 'ProgressNote') {
+            this.ProgressNote = true;
+            this.Chart = false;
+            this.CarePlan = false;
+            this.Form = false;
+            this.Action = false;
+            this.Alert = false;
+            this.Profile = false;
+          } else if (componentType == 'Action') {
+            this.Action = true;
+            this.Chart = false;
+            this.CarePlan = false;
+            this.ProgressNote = false;
+            this.Form = false;
+            this.Alert = false;
+            this.Profile = false;
+          } else if (componentType == 'Alert') {
+            this.Alert = true;
+            this.Chart = false;
+            this.CarePlan = false;
+            this.ProgressNote = false;
+            this.Action = false;
+            this.Form = false;
+            this.Profile = false;
+          }
+        },
+        reject: () => {
         }
-        if (componentType == 'Form') {
-          this.Form = true;
-          this.Chart = false;
-          this.CarePlan = false;
-          this.ProgressNote = false;
-          this.Action = false;
-          this.Profile = false;
-          this.Alert = false;
-        } else if (componentType == 'Chart') {
-          this.Chart = true;
-          this.Form = false;
-          this.CarePlan = false;
-          this.ProgressNote = false;
-          this.Action = false;
-          this.Alert = false;
-          this.Profile = false;
-        } else if (componentType == 'CarePlan') {
-          this.CarePlan = true;
-          this.Chart = false;
-          this.Form = false;
-          this.ProgressNote = false;
-          this.Action = false;
-          this.Alert = false;
-          this.Profile = false;
-        } else if (componentType == 'ProgressNote') {
-          this.ProgressNote = true;
-          this.Chart = false;
-          this.CarePlan = false;
-          this.Form = false;
-          this.Action = false;
-          this.Alert = false;
-          this.Profile = false;
-        } else if (componentType == 'Action') {
-          this.Action = true;
-          this.Chart = false;
-          this.CarePlan = false;
-          this.ProgressNote = false;
-          this.Form = false;
-          this.Alert = false;
-          this.Profile = false;
-        } else if (componentType == 'Alert') {
-          this.Alert = true;
-          this.Chart = false;
-          this.CarePlan = false;
-          this.ProgressNote = false;
-          this.Action = false;
-          this.Form = false;
-          this.Profile = false;
-        }
-      },
-      reject: () => {
+      });
+    }else {
+      if (componentType == 'Profile') {
+        this.Profile = true;
+        this.Chart = false;
+        this.CarePlan = false;
+        this.ProgressNote = false;
+        this.Action = false;
+        this.Form = false;
+        this.Alert = false;
+        this.value=false;
       }
-    });
+      else if (componentType == 'Form') {
+        this.Form = true;
+        this.Chart = false;
+        this.CarePlan = false;
+        this.ProgressNote = false;
+        this.Action = false;
+        this.Profile = false;
+        this.Alert = false;
+        this.value=false;
+      } else if (componentType == 'Chart') {
+        this.Chart = true;
+        this.Form = false;
+        this.CarePlan = false;
+        this.ProgressNote = false;
+        this.Action = false;
+        this.Alert = false;
+        this.Profile = false;
+        this.value=false;
+      } else if (componentType == 'CarePlan') {
+        this.CarePlan = true;
+        this.Chart = false;
+        this.Form = false;
+        this.ProgressNote = false;
+        this.Action = false;
+        this.Alert = false;
+        this.Profile = false;
+      } else if (componentType == 'ProgressNote') {
+        this.ProgressNote = true;
+        this.Chart = false;
+        this.CarePlan = false;
+        this.Form = false;
+        this.Action = false;
+        this.Alert = false;
+        this.Profile = false;
+      } else if (componentType == 'Action') {
+        this.Action = true;
+        this.Chart = false;
+        this.CarePlan = false;
+        this.ProgressNote = false;
+        this.Form = false;
+        this.Alert = false;
+        this.Profile = false;
+      } else if (componentType == 'Alert') {
+        this.Alert = true;
+        this.Chart = false;
+        this.CarePlan = false;
+        this.ProgressNote = false;
+        this.Action = false;
+        this.Form = false;
+        this.Profile = false;
+      }
+    }
   }
 
 
