@@ -35,13 +35,13 @@ export class FormsDashboardComponent
     @Input() userId: any = null;
 
     @ViewChild('Forms',{static : false}) childRef : ElementRef;
-    @ViewChild('formContainer', { read: ViewContainerRef })
+    @ViewChild('formContainer', { read: ViewContainerRef }) formRef : ViewContainerRef;
  
-    customDateFormat = CustomDateFormat;
-
+    
     public lstMaster: any[] = [];
     public formDashboardList: any[] = [];
-
+    customDateFormat = CustomDateFormat;
+    
     selectedFormMasterId: string;
     selectedFormData: any;
     selectedFormId: string;
