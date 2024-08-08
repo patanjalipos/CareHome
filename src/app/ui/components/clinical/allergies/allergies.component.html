@@ -113,7 +113,8 @@
                                         (click)="RemoveExtraItemDetails(lstExtraItemDetails[i].Sequence)">
                                         Delete
                                     </a>
-                                    <span *ngIf="mode=='view' || (item.Status !=='Active' && item.Mode=='edit') ">
+                                    <!-- <span *ngIf="mode=='view' || (item.Status !=='Active' && item.Mode=='edit') "> -->
+                                        <span>
                                         {{item.Status}}
                                     </span>
                                     <p-dropdown
