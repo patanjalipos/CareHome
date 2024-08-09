@@ -154,7 +154,8 @@ export class ChartComponent extends AppComponentBase implements OnInit {
         let importData: any = <any>{};
         importData.StatusType = true;
         this._UtilityService.showSpinner();
-        this.unsubscribe.add = this._MasterServices.GetChartMaster(importData)
+        
+        this.unsubscribe.add = this._UserServices.GetClinicalChartPreferencesById(this.residentAdmissionInfoId)
             .subscribe({
                 next: (data) => {
                     this._UtilityService.hideSpinner();
@@ -162,6 +163,8 @@ export class ChartComponent extends AppComponentBase implements OnInit {
                         var tdata = JSON.parse(data.actionResult.result);
                         tdata = tdata ? tdata : [];
                         this.lstMaster = tdata;
+                        this.lstMaster = this.lstMaster.filter(e => e.Isenable == true);
+                        
                     } else {
                         this.lstMaster = [];
                     }
