@@ -333,8 +333,8 @@ export class WoundChartComponent extends AppComponentBase implements OnInit {
               }
 
               if (chart.selectedBodyParts && chart.BodyMapStatus) {
-                this.lastRecordData = chart.selectedBodyParts;
-                this.lastRecordBodyStatus = chart.BodyMapStatus;
+                this.lastRecordData = chart.selectedBodyParts[0];
+                this.lastRecordBodyStatus = chart.BodyMapStatus[0];
                 chart.selectedBodyParts.forEach(part => this.BodyPartsName.push(part.name));
               } else {
                 this.BodyPartsName = [];
