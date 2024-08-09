@@ -23,6 +23,7 @@ export class ResidentProfileComponent extends AppComponentBase implements OnInit
   healthcareMode: string = "view";
   public ResidentMaster: any = <any>{};
   allergies: string = "";
+  allIndicator:string ="";
   profileUrl: string = environment.BaseURIFileServer + 'ProfileImage/';
   imageSrc: any;
 
@@ -220,6 +221,8 @@ export class ResidentProfileComponent extends AppComponentBase implements OnInit
         next: (data) => {
           this._UtilityService.hideSpinner();
           if (data.actionResult.success == true) {
+            console.log(data);
+            
             var tdata = JSON.parse(data.actionResult.result);
             tdata = tdata ? tdata : [];
             this.ResidentMaster = tdata;
@@ -236,6 +239,15 @@ export class ResidentProfileComponent extends AppComponentBase implements OnInit
               this.allergies = tdata2.AllergyNotes;
               if (tdata2.Allergen) {
                 this.allergies = ((this.allergies != '' && this.allergies != null && this.allergies != undefined) ? (this.allergies + ', ') : this.allergies) + tdata2.Allergen;
+              }
+
+            }
+
+            if (data.actionResult.result3 != null && data.actionResult.result3 != undefined && data.actionResult.result3?.length > 0) {
+              var tdata3 = JSON.parse(data.actionResult.result3);
+              this.allIndicator = tdata3.AllIndicator;
+              if (tdata3.allIndicator) {
+                this.allIndicator = ((this.allIndicator != '' && this.allIndicator != null && this.allIndicator != undefined) ? (this.allIndicator + ', ') : this.allIndicator) + tdata2.allIndicator;
               }
 
             }
