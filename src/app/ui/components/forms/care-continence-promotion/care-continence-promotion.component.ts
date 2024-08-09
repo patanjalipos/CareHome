@@ -11,10 +11,12 @@ import { AppComponentBase } from 'src/app/app-component-base';
 import {
     ConstantsService,
     CustomDateFormat,
+    FormTypes,
 } from 'src/app/ui/service/constants.service';
-import { MasterService } from 'src/app/ui/service/master.service';
 import { UtilityService } from 'src/app/utility/utility.service';
 import { CareContinencePromotionService } from './care-continence-promotion.service';
+import { Observable, catchError, forkJoin, map, of } from 'rxjs';
+import { UserService } from 'src/app/ui/service/user.service';
 
 @Component({
     selector: 'app-care-continence-promotion',
@@ -23,22 +25,21 @@ import { CareContinencePromotionService } from './care-continence-promotion.serv
 })
 export class CareContinencePromotionComponent
     extends AppComponentBase
-    implements OnInit
-{
+    implements OnInit {
     customDateFormat = CustomDateFormat;
     CareContinencePromotionFormsData: any = <any>{};
 
+    LstContPromInsightIntoContinenceNeedsOptions: any[] = [];
+    LstContPromResidentColostomyIleostomyOptions: any[] = [];
+    LstContPromSupportRequiredForColostomyOptions: any[] = [];
     LstContPromCatheterCareOptions: any[] = [];
     LstContPromClinicalObservationsOptions: any[] = [];
-    LstContPromContinenceAidBestPracticeGuidanceOptions: any[] = [];
     LstContPromIdentifiedRisksOptions: any[] = [];
-    LstContPromInsightIntoContinenceNeedsOptions: any[] = [];
+    LstContPromRiskManagementOptions: any[] = [];
+    LstContPromoteHealthyBladderAndBowelOptions: any[] = [];
     LstContPromLegDrainageBagChangeOptions: any[] = [];
     LstContPromNightDrainageBagRemovalOptions: any[] = [];
-    LstContPromResidentColostomyIleostomyOptions: any[] = [];
-    LstContPromRiskManagementOptions: any[] = [];
-    LstContPromSupportRequiredForColostomyOptions: any[] = [];
-    LstContPromoteHealthyBladderAndBowelOptions: any[] = [];
+    LstContPromContinenceAidBestPracticeGuidanceOptions: any[] = [];
 
     //Form which is selected to edit or view
     isEditable: boolean;
@@ -59,25 +60,13 @@ export class CareContinencePromotionComponent
         private _ConstantServices: ConstantsService,
         private route: ActivatedRoute,
         private _UtilityService: UtilityService,
-        private _FormService: CareContinencePromotionService
+        private _UserServices: UserService,
+        private _FormService: CareContinencePromotionService,
     ) {
         super();
         this._ConstantServices.ActiveMenuName =
             'Care Assessment - Continence Promotion Form';
         this.loginId = localStorage.getItem('userId');
-
-        this.unsubscribe.add = this.route.queryParams.subscribe((params) => {
-            var ParamsArray = this._ConstantServices.GetParmasVal(params['q']);
-
-            if (ParamsArray?.length > 0) {
-                this.userId =
-                    ParamsArray.find((e) => e.FieldStr == 'id')?.FieldVal ||
-                    null;
-                this.residentAdmissionInfoId =
-                    ParamsArray.find((e) => e.FieldStr == 'admissionid')
-                        ?.FieldVal || null;
-            }
-        });
     }
 
     ngOnChanges(changes: SimpleChanges): void {
@@ -85,9 +74,9 @@ export class CareContinencePromotionComponent
 
         if (this.preSelectedFormData.selectedFormID != null) {
             this.CareContinencePromotionFormsData = <any>{};
-
-            // get preselected form data
-
+            this.GetSelectedFormDetails(
+                this.preSelectedFormData.selectedFormID
+            );
             this.StatementType = 'Update';
         } else {
             this.ResetModel();
@@ -95,49 +84,52 @@ export class CareContinencePromotionComponent
     }
 
     ngOnInit(): void {
-        //Fetch Dropdown values
+        this.userId = this.preSelectedFormData.userId;
+        this.residentAdmissionInfoId =
+            this.preSelectedFormData.residentAdmissionInfoId;
+        this.isEditable = this.preSelectedFormData.isEditable;
+        const collectionNames = [
+            'ContPromInsightIntoContinenceNeedsOptions',
+            'ContPromResidentColostomyIleostomyOptions',
+            'ContPromSupportRequiredForColostomyOptions',
+            'ContPromCatheterCareOptions',
+            'ContPromClinicalObservationsOptions',
+            'ContPromIdentifiedRisksOptions',
+            'ContPromRiskManagementOptions',
+            'ContPromoteHealthyBladderAndBowelOptions',
+            'ContPromLegDrainageBagChangeOptions',
+            'ContPromNightDrainageBagRemovalOptions',
+            'ContPromContinenceAidBestPracticeGuidanceOptions',
+        ];
 
-        // interface DropdownLists {
-        //     [key: string]: any[];
-        // }
-
-        // const dropdownLists: DropdownLists = {};
-
-        // const options = [
-        //     'ContPromCatheterCareOptions',
-        //     'ContPromClinicalObservationsOptions',
-        //     'ContPromContinenceAidBestPracticeGuidanceOptions',
-        //     'ContPromIdentifiedRisksOptions',
-        //     'ContPromInsightIntoContinenceNeedsOptions',
-        //     'ContPromLegDrainageBagChangeOptions',
-        //     'ContPromNightDrainageBagRemovalOptions',
-        //     'ContPromResidentColostomyIleostomyOptions',
-        //     'ContPromRiskManagementOptions',
-        //     'ContPromSupportRequiredForColostomyOptions',
-        //     'ContPromoteHealthyBladderAndBowelOptions',
-        // ];
-
-        // //function to initialize the dropdown lists
-
-        // function initializeDropdownLists(options: string[]): void {
-        //     // Iterate through the options array
-        //     options.forEach((option) => {
-        //         // Initialize each dropdown list and assign it to the corresponding key
-        //         dropdownLists[`Lst${option}`] =
-        //             this.getDropdownMasterLists(option);
-        //     });
-        // }
-
-        // initializeDropdownLists(options);
-
-        this.getDropdownMasterLists('ContPromCatheterCareOptions');
+        //Make requests in parallel
+        forkJoin(
+            collectionNames.map((collectionName) =>
+                this.getDropdownMasterLists(FormTypes.CareAssessmentContinence, collectionName, 1)
+            )
+        ).subscribe((responses: any[]) => {
+            // responses is an array containing the responses for each request
+            this.LstContPromInsightIntoContinenceNeedsOptions = responses[0];
+            this.LstContPromResidentColostomyIleostomyOptions = responses[1];
+            this.LstContPromSupportRequiredForColostomyOptions =
+                responses[2];
+            this.LstContPromCatheterCareOptions = responses[3];
+            this.LstContPromClinicalObservationsOptions = responses[4];
+            this.LstContPromIdentifiedRisksOptions = responses[5];
+            this.LstContPromRiskManagementOptions = responses[6];
+            this.LstContPromoteHealthyBladderAndBowelOptions = responses[7];
+            this.LstContPromLegDrainageBagChangeOptions = responses[8];
+            this.LstContPromNightDrainageBagRemovalOptions = responses[9];
+            this.LstContPromContinenceAidBestPracticeGuidanceOptions = responses[10];
+        });
 
         this.isEditable = this.preSelectedFormData.isEditable;
 
         if (this.preSelectedFormData.selectedFormID != null) {
             this.CareContinencePromotionFormsData = <any>{};
-
-            // get preselected form data
+            this.GetSelectedFormDetails(
+                this.preSelectedFormData.selectedFormID
+            );
 
             this.StatementType = 'Update';
         } else {
@@ -145,19 +137,19 @@ export class CareContinencePromotionComponent
         }
     }
 
-    getDropdownMasterLists(CollectionName: string): any {
+    GetSelectedFormDetails(formId: string) {
         this._UtilityService.showSpinner();
         this.unsubscribe.add = this._FormService
-            .getDropdownMasterList(CollectionName, 1)
+            .GetContinencePromotionFormById(formId)
             .subscribe({
                 next: (data) => {
                     this._UtilityService.hideSpinner();
                     if (data.actionResult.success == true) {
                         var tdata = JSON.parse(data.actionResult.result);
-                        console.log(tdata);
-                        return tdata ? tdata : {};
+                        tdata = tdata ? tdata : {};
+                        this.CareContinencePromotionFormsData = tdata;
                     } else {
-                        return [];
+                        this.CareContinencePromotionFormsData = {};
                     }
                 },
                 error: (e) => {
@@ -167,8 +159,84 @@ export class CareContinencePromotionComponent
             });
     }
 
+    getDropdownMasterLists(formMasterId: string, dropdownName: string, status: number): Observable<any> {
+        this._UtilityService.showSpinner();
+        return this._UserServices.GetDropDownMasterList(formMasterId, dropdownName, status).pipe(
+            map((response) => {
+                this._UtilityService.hideSpinner();
+                if (response.actionResult.success) {
+                    return JSON.parse(response.actionResult.result);
+                } else {
+                    return [];
+                }
+            }),
+            catchError((error) => {
+                this._UtilityService.hideSpinner();
+                this._UtilityService.showErrorAlert(error.message);
+           
+                return of([]); // Returning empty array in case of error
+            })
+        );
+    }
+
+    SaveAsPDF() { }
+
+    saveAsUnfinished() {
+        this.CareContinencePromotionFormsData.IsFormCompleted = false;
+        this.Save();
+    }
+
+    completeForm() {
+        this.CareContinencePromotionFormsData.IsFormCompleted = true;
+        this.Save();
+    }
+
+    Save() {
+        if (
+            this.userId != null &&
+            this.residentAdmissionInfoId != null &&
+            this.loginId != null
+        ) {
+            this.CareContinencePromotionFormsData.UserId = this.userId;
+            this.CareContinencePromotionFormsData.ResidentAdmissionInfoId =
+                this.residentAdmissionInfoId;
+            this.CareContinencePromotionFormsData.StartedBy = this.loginId;
+            this.CareContinencePromotionFormsData.ModifiedBy = this.loginId;
+
+            const objectBody: any = {
+                StatementType: this.StatementType,
+                CareContinencePromotionForm:
+                    this.CareContinencePromotionFormsData,
+            };
+            this._UtilityService.showSpinner();
+            this.unsubscribe.add = this._FormService
+                .AddInsertUpdateFormData(objectBody)
+                .subscribe({
+                    next: (data) => {
+                        this._UtilityService.hideSpinner();
+                        if (data.actionResult.success == true) {
+                            this.EmitUpdateForm.emit(true);
+                            this._UtilityService.showSuccessAlert(
+                                data.actionResult.errMsg
+                            );
+                        } else
+                            this._UtilityService.showWarningAlert(
+                                data.actionResult.errMsg
+                            );
+                    },
+                    error: (e) => {
+                        this._UtilityService.hideSpinner();
+                        this._UtilityService.showErrorAlert(e.message);
+                    },
+                });
+        } else {
+            this._UtilityService.showWarningAlert(
+                'Resident admission details are missing.'
+            );
+        }
+    }
+
     ResetModel() {
-        this.preSelectedFormData = <any>{};
         this.isEditable = true;
         this.CareContinencePromotionFormsData = <any>{};
         this.StatementType = 'Insert';

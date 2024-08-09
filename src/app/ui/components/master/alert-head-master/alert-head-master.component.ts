@@ -16,11 +16,14 @@ export class AlertHeadMasterComponent extends AppComponentBase implements OnInit
   @ViewChild('myForm') public myForm: NgForm;
   @ViewChild('dt') public dataTable: Table;
   @ViewChild('filtr') filtr: ElementRef;
+  ComponentName: string = 'AlertHeadMaster';
   mode: string = null;
   public lstMaster: any[]=[];
   public master: any = <any>{};
   filteredValuesLength:number=0;
   stlststatus: any[]=[];
+  filteritems:any[]=[];
+  isAlertHeadMaster: boolean = false;
   
   constructor(private _ConstantServices: ConstantsService,
     private _MasterServices:MasterService,
@@ -37,9 +40,17 @@ export class AlertHeadMasterComponent extends AppComponentBase implements OnInit
   ngOnInit(): void {
    this.GetAlertHeadMaster();        
   }
+  
   GetAlertHeadMaster() {
+    let importData: any = <any>{};
+    if(this.isAlertHeadMaster==true && this.filteritems !=null && this.filteritems !=undefined)
+      {       
+        importData.SearchList=this.filteritems;
+      }
+      importData.StatusType=false;      
+      importData.isExcel=false;      
     this._UtilityService.showSpinner();   
-    this.unsubscribe.add = this._MasterServices.GetAlertHeadMaster(false)
+    this.unsubscribe.add = this._MasterServices.GetAlertHeadMaster(importData)
       .subscribe({
         next:(data) => {
           this._UtilityService.hideSpinner();          
@@ -52,7 +63,7 @@ export class AlertHeadMasterComponent extends AppComponentBase implements OnInit
               this.dataTable.reset();
               this.filteredValuesLength = this.lstMaster?.length;
               }            
-          //  console.log(this.lstmaster);
+
           }
           else {
             this.lstMaster = [];            
@@ -133,4 +144,13 @@ export class AlertHeadMasterComponent extends AppComponentBase implements OnInit
   onGlobalFilter(table: Table, event: Event) {
     table.filterGlobal((event.target as HTMLInputElement).value, 'contains');
   }
+
+  ShowFilters() {
+    this.isAlertHeadMaster =!this.isAlertHeadMaster;  
+  }
+
+GetAlertHeadMasterFilter($event) {
+  this.filteritems=$event; 
+   this.GetAlertHeadMaster(); 
+ }
 }

@@ -3,23 +3,18 @@
         <div class="formheader">
             <div class="d-flex">
                 <div class="col-md-4">
-                    <label class="form-label"
-                        ><b> Started by (Name) : </b
-                        >{{ preSelectedFormData.StartedBy }}
+                    <label class="form-label"><b> Started by (Name) : </b>{{ preSelectedFormData.StartedBy }}
                     </label>
                 </div>
                 <div class="col-md-4">
-                    <label class="form-label"
-                        ><b>Designation : </b
-                        >{{ preSelectedFormData.StartedByDesignation }}
+                    <label class="form-label"><b>Designation : </b>{{ preSelectedFormData.StartedByDesignation }}
                     </label>
                 </div>
                 <div class="col-md-4">
                     <label class="form-label">
-                        <b>Date/Time : </b
-                        >{{
-                            preSelectedFormData.StartedOn
-                                | date : customDateFormat.DEF_DATE_TIME
+                        <b>Date/Time : </b>{{
+                        preSelectedFormData.StartedOn
+                        | date : customDateFormat.DEF_DATE_TIME
                         }}
                     </label>
                 </div>
@@ -27,22 +22,19 @@
             <div class="d-flex">
                 <div class="col-md-4">
                     <label class="form-label">
-                        <b>Last entered by (Name) :</b
-                        >{{ preSelectedFormData.ModifiedBy }}
+                        <b>Last entered by (Name) :</b>{{ preSelectedFormData.ModifiedBy }}
                     </label>
                 </div>
                 <div class="col-md-4">
                     <label class="form-label">
-                        <b>Designation : </b
-                        >{{ preSelectedFormData.ModifiedByDesignation }}
+                        <b>Designation : </b>{{ preSelectedFormData.ModifiedByDesignation }}
                     </label>
                 </div>
                 <div class="col-md-4">
                     <label class="form-label">
-                        <b>Date/Time : </b
-                        >{{
-                            preSelectedFormData.ModifiedOn
-                                | date : customDateFormat.DEF_DATE_TIME
+                        <b>Date/Time : </b>{{
+                        preSelectedFormData.ModifiedOn
+                        | date : customDateFormat.DEF_DATE_TIME
                         }}
                     </label>
                 </div>
@@ -54,21 +46,16 @@
                 <p>Name all parties who have assisted with information</p>
             </div>
         </div>
-        <div class="col-md-7 mt-4 mb-4">
+        <div class="col-md-7 mt-4 form-text">
             <ng-container *ngIf="this.isEditable; else ChartheadName">
-                <input
-                    pInputText
-                    type="text"
-                    name="PreAdmissionAssessmentFormsData.ChartheadName"
-                    class="form-control"
-                    [(ngModel)]="PreAdmissionAssessmentFormsData.ChartheadName"
-                />
-                <p>include relationship to the resident & contact details</p>
+                <input pInputText type="text" name="PreAdmissionAssessmentFormsData.ChartheadName" class="form-control"
+                    [(ngModel)]="PreAdmissionAssessmentFormsData.ChartheadName" />
+                <p class="mb-4">include relationship to the resident & contact details</p>
             </ng-container>
             <ng-template #ChartheadName>
                 <label>{{
                     PreAdmissionAssessmentFormsData.ChartheadName
-                }}</label>
+                    }}</label>
             </ng-template>
         </div>
         <div class="col-md-1 form-icon mt-4">
@@ -82,27 +69,22 @@
                 </p>
             </div>
         </div>
-        <div class="col-md-7 mb-4">
+        <div class="col-md-7 form-text">
             <ng-container *ngIf="this.isEditable; else PersonCapacity">
-                <p-dropdown
-                    name="PreAdmissionAssessmentFormsData.PersonCapacity"
+                <p-dropdown name="PreAdmissionAssessmentFormsData.PersonCapacity"
                     [(ngModel)]="PreAdmissionAssessmentFormsData.PersonCapacity"
-                    [options]="LstPreAdmPersonCapacityOptionsMaster"
-                    optionLabel="PreAdmPersonCapacityOptionName"
-                    optionValue="PersonCapacityOptionId"
-                    placeholder="Select"
-                    [style]="{ width: '100%' }"
-                >
+                    [options]="LstPreAdmPersonCapacityOptionsMaster" optionLabel="optionName" optionValue="optionId"
+                    placeholder="--select--" [style]="{ width: '100%' }">
                 </p-dropdown>
-                <p>
+                <p class="mb-4">
                     If person lacks capacity what powers are they being moved
                     under Section 13ZA, POA, Guardianship
                 </p>
             </ng-container>
             <ng-template #PersonCapacity>
                 <label>{{
-                    PreAdmissionAssessmentFormsData.PersonCapacity
-                }}</label>
+                    PreAdmissionAssessmentFormsData.PersonCapacityName
+                    }}</label>
             </ng-template>
         </div>
         <div class="col-md-1 form-icon mt-4">
@@ -117,21 +99,14 @@
                 </p>
             </div>
         </div>
-        <div class="col-md-7 mb-4">
+        <div class="col-md-7 form-text">
             <ng-container *ngIf="this.isEditable; else ProfessionalDocObtained">
-                <p-dropdown
-                    name="PreAdmissionAssessmentFormsData.ProfessionalDocObtained"
-                    [(ngModel)]="
+                <p-dropdown name="PreAdmissionAssessmentFormsData.ProfessionalDocObtained" [(ngModel)]="
                         PreAdmissionAssessmentFormsData.ProfessionalDocObtained
-                    "
-                    [options]="LstPreAdmProfessionalDocObtainedOptionsMaster"
-                    optionLabel="professionalDocObtainedOptionName"
-                    optionValue="ProfessionalDocObtainedOptionId"
-                    placeholder="Select"
-                    [style]="{ width: '100%' }"
-                >
+                    " [options]="LstPreAdmProfessionalDocObtainedOptionsMaster" optionLabel="optionName"
+                    optionValue="optionId" placeholder="--select--" [style]="{ width: '100%' }">
                 </p-dropdown>
-                <p>
+                <p class="mb-4">
                     If not obtained or in place, AWI certificate and
                     corresponding treatment plan, copy of Power of Attorney or
                     Guardianship order, copy of Community Treatment Order.
@@ -139,8 +114,8 @@
             </ng-container>
             <ng-template #ProfessionalDocObtained>
                 <label>{{
-                    PreAdmissionAssessmentFormsData.ProfessionalDocObtained
-                }}</label>
+                    PreAdmissionAssessmentFormsData.ProfessionalDocObtainedName
+                    }}</label>
             </ng-template>
         </div>
         <div class="col-md-1 form-icon mt-4">
@@ -151,25 +126,18 @@
                 <p>Where is the resident moving in from</p>
             </div>
         </div>
-        <div class="col-md-7 mb-4">
+        <div class="col-md-7 form-text">
             <ng-container *ngIf="this.isEditable; else ResidentMovingFrom">
-                <p-dropdown
-                    name="PreAdmissionAssessmentFormsData.ResidentMovingFrom"
-                    [(ngModel)]="
+                <p-dropdown name="PreAdmissionAssessmentFormsData.ResidentMovingFrom" [(ngModel)]="
                         PreAdmissionAssessmentFormsData.ResidentMovingFrom
-                    "
-                    [options]="LstPreAdmResidentMovingOptionsMaster"
-                    optionLabel="residentMovingOptionName"
-                    optionValue="ResidentMovingOptionId"
-                    placeholder="Select"
-                    [style]="{ width: '100%' }"
-                >
+                    " [options]="LstPreAdmResidentMovingOptionsMaster" optionLabel="optionName" optionValue="optionId"
+                    placeholder="--select--" [style]="{ width: '100%' }">
                 </p-dropdown>
             </ng-container>
             <ng-template #ResidentMovingFrom>
                 <label>{{
-                    PreAdmissionAssessmentFormsData.ResidentMovingFrom
-                }}</label>
+                    PreAdmissionAssessmentFormsData.ResidentMovingFromName
+                    }}</label>
             </ng-template>
         </div>
         <div class="col-md-1 form-icon mt-4">
@@ -180,22 +148,16 @@
                 <p>Payment / funding</p>
             </div>
         </div>
-        <div class="col-md-7 mb-4">
+        <div class="col-md-7 form-text">
             <ng-container *ngIf="this.isEditable; else Payment">
-                <p-dropdown
-                    name="PreAdmissionAssessmentFormsData.Payment"
-                    [(ngModel)]="PreAdmissionAssessmentFormsData.Payment"
-                    [options]="LstPreAdmPaymentOptionsMaster"
-                    optionLabel="paymentOptionsName"
-                    optionValue="PaymentOptionId"
-                    placeholder="Select"
-                    [style]="{ width: '100%' }"
-                >
+                <p-dropdown name="PreAdmissionAssessmentFormsData.Payment"
+                    [(ngModel)]="PreAdmissionAssessmentFormsData.Payment" [options]="LstPreAdmPaymentOptionsMaster"
+                    optionLabel="optionName" optionValue="optionId" placeholder="--select--" [style]="{ width: '100%' }">
                 </p-dropdown>
-                <p>Update resident admission details</p>
+                <p class="mb-4">Update resident admission details</p>
             </ng-container>
             <ng-template #Payment>
-                <label>{{ PreAdmissionAssessmentFormsData.Payment }}</label>
+                <label>{{ PreAdmissionAssessmentFormsData.PaymentName }}</label>
             </ng-template>
         </div>
         <div class="col-md-1 form-icon mt-4">
@@ -209,33 +171,25 @@
                 </p>
             </div>
         </div>
-        <div class="col-md-7 mb-4">
+        <div class="col-md-7 form-text">
             <ng-container *ngIf="this.isEditable; else PeronsCurrentAbilities">
-                <p-dropdown
-                    name="PreAdmissionAssessmentFormsData.PeronsCurrentAbilities"
-                    [(ngModel)]="
+                <p-dropdown name="PreAdmissionAssessmentFormsData.PeronsCurrentAbilities" [(ngModel)]="
                         PreAdmissionAssessmentFormsData.PeronsCurrentAbilities
-                    "
-                    [options]="LstPreAdmPeronsCurrentAbilitiesOptionsMaster"
-                    optionLabel="peronsCurrentAbilitiesOptionsName"
-                    optionValue="PeronsCurrentAbilitiesOptionId"
-                    placeholder="Select"
-                    [style]="{ width: '100%' }"
-                >
+                    " [options]="LstPreAdmPeronsCurrentAbilitiesOptionsMaster" optionLabel="optionName"
+                    optionValue="optionId" placeholder="--select--" [style]="{ width: '100%' }">
                 </p-dropdown>
-                <p>
+                <p class="mb-4">
                     Focus in this section on the persona abilities not their
                     disabilities - positively report that they can recognise the
-                    need to attend the toilet however requires support to attend the
-                    toilet
+                    need to attend the toilet however requires support to attend
+                    the toilet
                 </p>
             </ng-container>
             <ng-template #PeronsCurrentAbilities>
                 <label>{{
-                    PreAdmissionAssessmentFormsData.PeronsCurrentAbilities
-                }}</label>
+                    PreAdmissionAssessmentFormsData.PeronsCurrentAbilitiesName
+                    }}</label>
             </ng-template>
-            
         </div>
         <div class="col-md-1 form-icon mt-4">
             <i class="fa-solid fa-info"></i>
@@ -245,24 +199,18 @@
                 <p>Advanced care planning (ACP)</p>
             </div>
         </div>
-        <div class="col-md-7 mb-4">
+        <div class="col-md-7 form-text">
             <ng-container *ngIf="this.isEditable; else AdvancedCarePlanning">
-                <p-dropdown
-                    [(ngModel)]="
+                <p-dropdown [(ngModel)]="
                         PreAdmissionAssessmentFormsData.AdvancedCarePlanning
-                    "
-                    [options]="LstPreAdmAdvancedCarePlanningOptionsMaster"
-                    optionLabel="advancedCarePlanningOptionsName"
-                    optionValue="AdvancedCarePlanningOptionId"
-                    placeholder="Select"
-                    [style]="{ width: '100%' }"
-                >
+                    " [options]="LstPreAdmAdvancedCarePlanningOptionsMaster" optionLabel="optionName"
+                    optionValue="optionId" placeholder="--select--" [style]="{ width: '100%' }">
                 </p-dropdown>
             </ng-container>
             <ng-template #AdvancedCarePlanning>
                 <label>{{
-                    PreAdmissionAssessmentFormsData.AdvancedCarePlanning
-                }}</label>
+                    PreAdmissionAssessmentFormsData.AdvancedCarePlanningName
+                    }}</label>
             </ng-template>
         </div>
         <div class="col-md-1 form-icon mt-4">
@@ -273,21 +221,15 @@
                 <p>Medical history and medical conditions</p>
             </div>
         </div>
-        <div class="col-md-7 mb-4">
+        <div class="col-md-7 form-text">
             <ng-container *ngIf="this.isEditable; else MedicalHistoryCondition">
-                <p-dropdown
-                    [(ngModel)]="
+                <p-dropdown [(ngModel)]="
                         PreAdmissionAssessmentFormsData.MedicalHistoryCondition
-                    "
-                    name="PreAdmissionAssessmentFormsData.MedicalHistoryCondition"
-                    [options]="LstPreAdmMedicalHistoryConditionOptionsMaster"
-                    optionLabel="medicalHistoryConditionOptionsName"
-                    placeholder="Select"
-                    optionValue="MedicalHistoryConditionOptionId"
-                    [style]="{ width: '100%' }"
-                >
+                    " name="PreAdmissionAssessmentFormsData.MedicalHistoryCondition"
+                    [options]="LstPreAdmMedicalHistoryConditionOptionsMaster" optionLabel="optionName"
+                    placeholder="--select--" optionValue="optionId" [style]="{ width: '100%' }">
                 </p-dropdown>
-                <p>
+                <p class="mb-4">
                     Include any pacemakers, please at the point of pre admission
                     please request a GP summary print out from their own GP
                     which will detail all Medical history.
@@ -295,8 +237,8 @@
             </ng-container>
             <ng-template #MedicalHistoryCondition>
                 <label>{{
-                    PreAdmissionAssessmentFormsData.MedicalHistoryCondition
-                }}</label>
+                    PreAdmissionAssessmentFormsData.MedicalHistoryConditionName
+                    }}</label>
             </ng-template>
         </div>
         <div class="col-md-1 form-icon mt-4">
@@ -309,16 +251,10 @@
         </div>
         <div class="col-md-7 form-text">
             <ng-container *ngIf="this.isEditable; else SocialAndSpiritual">
-                <input
-                    pInputText
-                    type="text"
-                    required
-                    name="PreAdmissionAssessmentFormsData.SocialActivitiesInterests"
-                    class="form-control"
-                    [(ngModel)]="
+                <input pInputText type="text" required name="PreAdmissionAssessmentFormsData.SocialActivitiesInterests"
+                    class="form-control" [(ngModel)]="
                         PreAdmissionAssessmentFormsData.SocialActivitiesInterests
-                    "
-                />
+                    " />
                 <p class="mb-4">
                     Include hobbies previous and current, whos imoprtant in
                     their lives, any special days/occasions we need to be aware
@@ -328,7 +264,7 @@
             <ng-template #SocialAndSpiritual>
                 <label>{{
                     PreAdmissionAssessmentFormsData.SocialActivitiesInterests
-                }}</label>
+                    }}</label>
             </ng-template>
         </div>
         <div class="col-md-1 form-icon mt-4">
@@ -339,31 +275,22 @@
                 <p>Connecting and Communicating</p>
             </div>
         </div>
-        <div class="col-md-7 mb-4">
-            <ng-container
-                *ngIf="isEditable; else ConnectingAndCommunicatingLabel"
-            >
-                <p-dropdown
-                    name="PreAdmissionAssessmentFormsData.ConnectingAndCommunicating"
-                    [(ngModel)]="
+        <div class="col-md-7 form-text">
+            <ng-container *ngIf="isEditable; else ConnectingAndCommunicatingLabel">
+                <p-dropdown name="PreAdmissionAssessmentFormsData.ConnectingAndCommunicating" [(ngModel)]="
                         PreAdmissionAssessmentFormsData.ConnectingAndCommunicating
-                    "
-                    [options]="LstPreAdmConnectingAndCommunicatingOptionsMaster"
-                    optionLabel="connectingAndCommunicatingOptionsName"
-                    optionValue="ConnectingAndCommunicatingOptionId"
-                    placeholder="Select"
-                    [style]="{ width: '100%' }"
-                >
+                    " [options]="LstPreAdmConnectingAndCommunicatingOptionsMaster" optionLabel="optionName"
+                    optionValue="optionId" placeholder="--select--" [style]="{ width: '100%' }">
                 </p-dropdown>
-                <p>
+                <p class="mb-4">
                     Include all the applicable options below and expand if
                     required using the Other option
                 </p>
             </ng-container>
             <ng-template #ConnectingAndCommunicatingLabel>
                 <label>{{
-                    PreAdmissionAssessmentFormsData.ConnectingAndCommunicating
-                }}</label>
+                    PreAdmissionAssessmentFormsData.ConnectingAndCommunicatingName
+                    }}</label>
             </ng-template>
         </div>
         <div class="col-md-1 form-icon mt-4">
@@ -377,20 +304,14 @@
                 </p>
             </div>
         </div>
-
-        <div class="col-md-7 mb-4">
+        <div class="col-md-7 form-text">
             <ng-container *ngIf="isEditable; else PersonalSafetyLabel">
-                <p-dropdown
-                    [(ngModel)]="PreAdmissionAssessmentFormsData.PersonalSafety"
+                <p-dropdown [(ngModel)]="PreAdmissionAssessmentFormsData.PersonalSafety"
                     name="PreAdmissionAssessmentFormsData.PersonalSafety"
-                    [options]="LstPreAdmPersonalSafetyOptionsMaster"
-                    optionLabel="personalSafetyOptionsName"
-                    optionValue="PersonalSafetyOptionId"
-                    placeholder="Select"
-                    [style]="{ width: '100%' }"
-                >
+                    [options]="LstPreAdmPersonalSafetyOptionsMaster" optionLabel="optionName" optionValue="optionId"
+                    placeholder="--select--" [style]="{ width: '100%' }">
                 </p-dropdown>
-                <p>
+                <p class="mb-4">
                     Please review in a risk aware manner how can we safely
                     consider the resident enablement while considering safety is
                     there any electronic devises we can use to promote safety.
@@ -398,8 +319,8 @@
             </ng-container>
             <ng-template #PersonalSafetyLabel>
                 <label>{{
-                    PreAdmissionAssessmentFormsData.PersonalSafety
-                }}</label>
+                    PreAdmissionAssessmentFormsData.PersonalSafetyName
+                    }}</label>
             </ng-template>
         </div>
         <div class="col-md-1 form-icon mt-4">
@@ -410,19 +331,13 @@
                 <p>Leaving the Home unescorted - Herbert protocol</p>
             </div>
         </div>
-        <div class="col-md-7 mb-4">
+        <div class="col-md-7 form-text">
             <ng-container *ngIf="isEditable; else LeavingHomeUnescortedLabel">
-                <input
-                    pInputText
-                    type="text"
-                    required
-                    name="PreAdmissionAssessmentFormsData.LeavingHomeUnescorted"
-                    class="form-control"
-                    [(ngModel)]="
+                <input pInputText type="text" required name="PreAdmissionAssessmentFormsData.LeavingHomeUnescorted"
+                    class="form-control" [(ngModel)]="
                         PreAdmissionAssessmentFormsData.LeavingHomeUnescorted
-                    "
-                />
-                <p>
+                    " />
+                <p class="mb-4">
                     Please complete fully the Herbert protocol and request
                     permission for Alzheimer's Scotland Purple alert profile to
                     be developed
@@ -431,7 +346,7 @@
             <ng-template #LeavingHomeUnescortedLabel>
                 <label>{{
                     PreAdmissionAssessmentFormsData.LeavingHomeUnescorted
-                }}</label>
+                    }}</label>
             </ng-template>
         </div>
         <div class="col-md-1 form-icon mt-4">
@@ -442,31 +357,23 @@
                 <p>Does the resident experience any mental health conditions</p>
             </div>
         </div>
-        <div class="col-md-7 mb-4">
-            <ng-container
-                *ngIf="isEditable; else ResidentExpAnyMHConditionsLabel"
-            >
-                <p-dropdown
-                    [(ngModel)]="
+        <div class="col-md-7 form-text">
+            <ng-container *ngIf="isEditable; else ResidentExpAnyMHConditionsLabel">
+                <p-dropdown [(ngModel)]="
                         PreAdmissionAssessmentFormsData.ResidentExpAnyMHConditions
-                    "
-                    name="PreAdmissionAssessmentFormsData.ResidentExpAnyMHConditions"
-                    [options]="LstPreAdmResidentExpAnyMHConditionsOptionsMaster"
-                    optionLabel="residentExpAnyMHConditionsOptionsName"
-                    optionValue="ResidentExpAnyMHConditionsOptionId"
-                    placeholder="Select"
-                    [style]="{ width: '100%' }"
-                >
+                    " name="PreAdmissionAssessmentFormsData.ResidentExpAnyMHConditions"
+                    [options]="LstPreAdmResidentExpAnyMHConditionsOptionsMaster" optionLabel="optionName"
+                    optionValue="optionId" placeholder="--select--" [style]="{ width: '100%' }">
                 </p-dropdown>
-                <p>
+                <p class="mb-4">
                     If yes, has this been diagnosed by a GP (state condition)
                     and is medication prescribed
                 </p>
             </ng-container>
             <ng-template #ResidentExpAnyMHConditionsLabel>
                 <label>{{
-                    PreAdmissionAssessmentFormsData.ResidentExpAnyMHConditions
-                }}</label>
+                    PreAdmissionAssessmentFormsData.ResidentExpAnyMHConditionsName
+                    }}</label>
             </ng-template>
         </div>
         <div class="col-md-1 form-icon mt-4">
@@ -477,25 +384,19 @@
                 <p>Speech, sight and hearing</p>
             </div>
         </div>
-        <div class="col-md-7 mb-4">
+        <div class="col-md-7 form-text">
             <ng-container *ngIf="isEditable; else SpeechSightHearingLabel">
-                <p-dropdown
-                    [(ngModel)]="
+                <p-dropdown [(ngModel)]="
                         PreAdmissionAssessmentFormsData.SpeechSightHearing
-                    "
-                    name="PreAdmissionAssessmentFormsData.SpeechSightHearing"
-                    [options]="LstPreAdmSpeechSightHearingOptionsMaster"
-                    optionLabel="speechSightHearingOptionsName"
-                    optionValue="SpeechSightHearingOptionId"
-                    placeholder="Select"
-                    [style]="{ width: '100%' }"
-                >
+                    " name="PreAdmissionAssessmentFormsData.SpeechSightHearing"
+                    [options]="LstPreAdmSpeechSightHearingOptionsMaster" optionLabel="optionName" optionValue="optionId"
+                    placeholder="--select--" [style]="{ width: '100%' }">
                 </p-dropdown>
             </ng-container>
             <ng-template #SpeechSightHearingLabel>
                 <label>{{
-                    PreAdmissionAssessmentFormsData.SpeechSightHearing
-                }}</label>
+                    PreAdmissionAssessmentFormsData.SpeechSightHearingName
+                    }}</label>
             </ng-template>
         </div>
         <div class="col-md-1 form-icon mt-4">
@@ -506,21 +407,13 @@
                 <p>Speech, sight and hearing details</p>
             </div>
         </div>
-        <div class="col-md-7 mb-4">
-            <ng-container
-                *ngIf="isEditable; else SpeechSightHearingDetailsLabel"
-            >
-                <input
-                    pInputText
-                    type="text"
-                    required
-                    name="PreAdmissionAssessmentFormsData.SpeechSightHearingDetails"
-                    class="form-control"
-                    [(ngModel)]="
+        <div class="col-md-7 form-text">
+            <ng-container *ngIf="isEditable; else SpeechSightHearingDetailsLabel">
+                <input pInputText type="text" required name="PreAdmissionAssessmentFormsData.SpeechSightHearingDetails"
+                    class="form-control" [(ngModel)]="
                         PreAdmissionAssessmentFormsData.SpeechSightHearingDetails
-                    "
-                />
-                <p>
+                    " />
+                <p class="mb-4">
                     Include any diagnosed conditions, aids used and treatment /
                     therapy details
                 </p>
@@ -528,7 +421,7 @@
             <ng-template #SpeechSightHearingDetailsLabel>
                 <label>{{
                     PreAdmissionAssessmentFormsData.SpeechSightHearingDetails
-                }}</label>
+                    }}</label>
             </ng-template>
         </div>
         <div class="col-md-1 form-icon mt-4">
@@ -539,19 +432,13 @@
                 <p>Breathing and circulation</p>
             </div>
         </div>
-        <div class="col-md-7 mb-4">
+        <div class="col-md-7 form-text">
             <ng-container *ngIf="isEditable; else BreathingCirculationLabel">
-                <input
-                    pInputText
-                    type="text"
-                    required
-                    name="PreAdmissionAssessmentFormsData.BreathingCirculation"
-                    class="form-control"
-                    [(ngModel)]="
+                <input pInputText type="text" required name="PreAdmissionAssessmentFormsData.BreathingCirculation"
+                    class="form-control" [(ngModel)]="
                         PreAdmissionAssessmentFormsData.BreathingCirculation
-                    "
-                />
-                <p>
+                    " />
+                <p class="mb-4">
                     Include all health conditions affecting breathing (COPD,
                     asthma, other, aids used (oxygen etc.), smoking. If oxygen
                     prescribed include administration, day night variances and
@@ -561,7 +448,7 @@
             <ng-template #BreathingCirculationLabel>
                 <label>{{
                     PreAdmissionAssessmentFormsData.BreathingCirculation
-                }}</label>
+                    }}</label>
             </ng-template>
         </div>
         <div class="col-md-1 form-icon mt-4">
@@ -572,25 +459,19 @@
                 <p>Falls and mobility</p>
             </div>
         </div>
-        <div class="col-md-7 mb-4">
+        <div class="col-md-7 form-text">
             <ng-container *ngIf="isEditable; else FallsAndMobilityLabel">
-                <p-dropdown
-                    [(ngModel)]="
+                <p-dropdown [(ngModel)]="
                         PreAdmissionAssessmentFormsData.FallsAndMobility
-                    "
-                    name="PreAdmissionAssessmentFormsData.FallsAndMobility"
-                    [options]="LstPreAdmFallsAndMobilityOptionsMaster"
-                    optionLabel="fallsAndMobilityOptionsName"
-                    optionValue="FallsAndMobilityOptionId"
-                    placeholder="Select"
-                    [style]="{ width: '100%' }"
-                >
+                    " name="PreAdmissionAssessmentFormsData.FallsAndMobility"
+                    [options]="LstPreAdmFallsAndMobilityOptionsMaster" optionLabel="optionName" optionValue="optionId"
+                    placeholder="--select--" [style]="{ width: '100%' }">
                 </p-dropdown>
             </ng-container>
             <ng-template #FallsAndMobilityLabel>
                 <label>{{
-                    PreAdmissionAssessmentFormsData.FallsAndMobility
-                }}</label>
+                    PreAdmissionAssessmentFormsData.FallsAndMobilityName
+                    }}</label>
             </ng-template>
         </div>
         <div class="col-md-1 form-icon mt-4">
@@ -601,19 +482,13 @@
                 <p>Falls and mobility details</p>
             </div>
         </div>
-        <div class="col-md-7 mb-4">
+        <div class="col-md-7 form-text">
             <ng-container *ngIf="isEditable; else FallsAndMobilityDetailsLabel">
-                <input
-                    pInputText
-                    type="text"
-                    required
-                    name="PreAdmissionAssessmentFormsData.FallsAndMobilityDetails"
-                    class="form-control"
-                    [(ngModel)]="
+                <input pInputText type="text" required name="PreAdmissionAssessmentFormsData.FallsAndMobilityDetails"
+                    class="form-control" [(ngModel)]="
                         PreAdmissionAssessmentFormsData.FallsAndMobilityDetails
-                    "
-                />
-                <p>
+                    " />
+                <p class="mb-4">
                     Include mobility level, aids, recent falls (including
                     causes) day / night variance, medication and any referrals
                 </p>
@@ -621,7 +496,7 @@
             <ng-template #FallsAndMobilityDetailsLabel>
                 <label>{{
                     PreAdmissionAssessmentFormsData.FallsAndMobilityDetails
-                }}</label>
+                    }}</label>
             </ng-template>
         </div>
         <div class="col-md-1 form-icon mt-4">
@@ -632,21 +507,15 @@
                 <p>Pain status</p>
             </div>
         </div>
-        <div class="col-md-7 mb-4">
+        <div class="col-md-7 form-text">
             <ng-container *ngIf="isEditable; else PainStatusLabel">
-                <p-dropdown
-                    [(ngModel)]="PreAdmissionAssessmentFormsData.PainStatus"
-                    name="PreAdmissionAssessmentFormsData.PainStatus"
-                    [options]="LstPreAdmPainStatusOptionMaster"
-                    optionLabel="painStatusOptionsName"
-                    optionValue="PainStatusOptionId"
-                    placeholder="Select"
-                    [style]="{ width: '100%' }"
-                >
+                <p-dropdown [(ngModel)]="PreAdmissionAssessmentFormsData.PainStatus"
+                    name="PreAdmissionAssessmentFormsData.PainStatus" [options]="LstPreAdmPainStatusOptionMaster"
+                    optionLabel="optionName" optionValue="optionId" placeholder="--select--" [style]="{ width: '100%' }">
                 </p-dropdown>
             </ng-container>
             <ng-template #PainStatusLabel>
-                <label>{{ PreAdmissionAssessmentFormsData.PainStatus }}</label>
+                <label>{{ PreAdmissionAssessmentFormsData.PainStatusName }}</label>
             </ng-template>
         </div>
         <div class="col-md-1 form-icon mt-4">
@@ -657,19 +526,13 @@
                 <p>Pain management details</p>
             </div>
         </div>
-        <div class="col-md-7 mb-4">
+        <div class="col-md-7 form-text">
             <ng-container *ngIf="isEditable; else PainManagementDetailsLabel">
-                <input
-                    pInputText
-                    type="text"
-                    required
-                    name="PreAdmissionAssessmentFormsData.PainManagementDetails"
-                    class="form-control"
-                    [(ngModel)]="
+                <input pInputText type="text" required name="PreAdmissionAssessmentFormsData.PainManagementDetails"
+                    class="form-control" [(ngModel)]="
                         PreAdmissionAssessmentFormsData.PainManagementDetails
-                    "
-                />
-                <p>
+                    " />
+                <p class="mb-4">
                     How would we recognise the resident is experiencing pain how
                     is this assessed do we need to use abbey pain scale or a
                     visual pain assessment, Include all prescribed medications,
@@ -680,7 +543,7 @@
             <ng-template #PainManagementDetailsLabel>
                 <label>{{
                     PreAdmissionAssessmentFormsData.PainManagementDetails
-                }}</label>
+                    }}</label>
             </ng-template>
         </div>
         <div class="col-md-1 form-icon mt-4">
@@ -691,27 +554,22 @@
                 <p>Skin assessment</p>
             </div>
         </div>
-        <div class="col-md-7 mb-4">
+        <div class="col-md-7 form-text">
             <ng-container *ngIf="isEditable; else SkinAssessmentLabel">
-                <p-dropdown
-                    [(ngModel)]="PreAdmissionAssessmentFormsData.SkinAssessment"
+                <p-dropdown [(ngModel)]="PreAdmissionAssessmentFormsData.SkinAssessment"
                     name="PreAdmissionAssessmentFormsData.SkinAssessment"
-                    [options]="LstPreAdmSkinAssessmentOptionsMaster"
-                    optionLabel="skinAssessmentOptionsName"
-                    optionValue="SkinAssessmentOptionId"
-                    placeholder="Select"
-                    [style]="{ width: '100%' }"
-                >
+                    [options]="LstPreAdmSkinAssessmentOptionsMaster" optionLabel="optionName" optionValue="optionId"
+                    placeholder="--select--" [style]="{ width: '100%' }">
                 </p-dropdown>
-                <p>
+                <p class="mb-4">
                     Include any medical conditions that affect skin or could
                     increase risk of skin damage, and medication
                 </p>
             </ng-container>
             <ng-template #SkinAssessmentLabel>
                 <label>{{
-                    PreAdmissionAssessmentFormsData.SkinAssessment
-                }}</label>
+                    PreAdmissionAssessmentFormsData.SkinAssessmentName
+                    }}</label>
             </ng-template>
         </div>
         <div class="col-md-1 form-icon mt-4">
@@ -722,16 +580,10 @@
                 <p>Skin Details</p>
             </div>
         </div>
-        <div class="col-md-7 mb-4">
+        <div class="col-md-7 form-text">
             <ng-container *ngIf="isEditable; else SkinDetailsLabel">
-                <input
-                    pInputText
-                    type="text"
-                    required
-                    [(ngModel)]="PreAdmissionAssessmentFormsData.SkinDetails"
-                    name="PreAdmissionAssessmentFormsData.SkinDetails"
-                    class="form-control"
-                />
+                <input pInputText type="text" required [(ngModel)]="PreAdmissionAssessmentFormsData.SkinDetails"
+                    name="PreAdmissionAssessmentFormsData.SkinDetails" class="form-control" />
             </ng-container>
             <ng-template #SkinDetailsLabel>
                 <label>{{ PreAdmissionAssessmentFormsData.SkinDetails }}</label>
@@ -740,33 +592,24 @@
         <div class="col-md-1 form-icon mt-4">
             <i class="fa-solid fa-info"></i>
         </div>
-
         <div class="col-md-4">
             <div class="labelcontent">
                 <p>Eating and drinking assessment</p>
             </div>
         </div>
-        <div class="col-md-7 mb-4">
-            <ng-container
-                *ngIf="isEditable; else EatingDrinkingAssessmentLabel"
-            >
-                <p-dropdown
-                    [(ngModel)]="
+        <div class="col-md-7 form-text">
+            <ng-container *ngIf="isEditable; else EatingDrinkingAssessmentLabel">
+                <p-dropdown [(ngModel)]="
                         PreAdmissionAssessmentFormsData.EatingDrinkingAssessment
-                    "
-                    name="PreAdmissionAssessmentFormsData.EatingDrinkingAssessment"
-                    [options]="LstPreAdmEatingDrinkingAssessmentOptionsMaster"
-                    optionLabel="eatingDrinkingAssessmentOptionsName"
-                    optionValue="EatingDrinkingAssessmentOptionId"
-                    placeholder="Select"
-                    [style]="{ width: '100%' }"
-                >
+                    " name="PreAdmissionAssessmentFormsData.EatingDrinkingAssessment"
+                    [options]="LstPreAdmEatingDrinkingAssessmentOptionsMaster" optionLabel="optionName"
+                    optionValue="optionId" placeholder="--select--" [style]="{ width: '100%' }">
                 </p-dropdown>
             </ng-container>
             <ng-template #EatingDrinkingAssessmentLabel>
                 <label>{{
-                    PreAdmissionAssessmentFormsData.EatingDrinkingAssessment
-                }}</label>
+                    PreAdmissionAssessmentFormsData.EatingDrinkingAssessmentName
+                    }}</label>
             </ng-template>
         </div>
         <div class="col-md-1 form-icon mt-4">
@@ -777,19 +620,13 @@
                 <p>Eating and drinking details</p>
             </div>
         </div>
-        <div class="col-md-7 mb-4">
+        <div class="col-md-7 form-text">
             <ng-container *ngIf="isEditable; else EatingDrinkingDetailsLabel">
-                <input
-                    pInputText
-                    type="text"
-                    required
-                    name="PreAdmissionAssessmentFormsData.EatingDrinkingDetails"
-                    class="form-control"
-                    [(ngModel)]="
+                <input pInputText type="text" required name="PreAdmissionAssessmentFormsData.EatingDrinkingDetails"
+                    class="form-control" [(ngModel)]="
                         PreAdmissionAssessmentFormsData.EatingDrinkingDetails
-                    "
-                />
-                <p>
+                    " />
+                <p class="mb-4">
                     Include likes and dislikes, what makes a meal enjoyable,
                     what they like to eat for their meals, where they like to
                     enjoy their meals, do they need any cutlery or crockery, any
@@ -800,37 +637,29 @@
             <ng-template #EatingDrinkingDetailsLabel>
                 <label>{{
                     PreAdmissionAssessmentFormsData.EatingDrinkingDetails
-                }}</label>
+                    }}</label>
             </ng-template>
         </div>
         <div class="col-md-1 form-icon mt-4">
             <i class="fa-solid fa-info"></i>
         </div>
-
         <div class="col-md-4">
             <div class="labelcontent">
                 <p>Promotion of continence</p>
             </div>
         </div>
-        <div class="col-md-7 mb-4">
+        <div class="col-md-7 form-text">
             <ng-container *ngIf="isEditable; else PromotionOfContinenceLabel">
-                <p-dropdown
-                    name="PreAdmissionAssessmentFormsData.PromotionOfContinence"
-                    [(ngModel)]="
+                <p-dropdown name="PreAdmissionAssessmentFormsData.PromotionOfContinence" [(ngModel)]="
                         PreAdmissionAssessmentFormsData.PromotionOfContinence
-                    "
-                    [options]="LstPreAdmPromotionOfContinenceOptionsMaster"
-                    optionLabel="promotionOfContinenceOptionsName"
-                    optionValue="PromotionOfContinenceOptionId"
-                    placeholder="Select"
-                    [style]="{ width: '100%' }"
-                >
+                    " [options]="LstPreAdmPromotionOfContinenceOptionsMaster" optionLabel="optionName"
+                    optionValue="optionId" placeholder="--select--" [style]="{ width: '100%' }">
                 </p-dropdown>
             </ng-container>
             <ng-template #PromotionOfContinenceLabel>
                 <label>{{
-                    PreAdmissionAssessmentFormsData.PromotionOfContinence
-                }}</label>
+                    PreAdmissionAssessmentFormsData.PromotionOfContinenceName
+                    }}</label>
             </ng-template>
         </div>
         <div class="col-md-1 form-icon mt-4">
@@ -841,21 +670,14 @@
                 <p>Promoting Continence details</p>
             </div>
         </div>
-        <div class="col-md-7 mb-4">
-            <ng-container
-                *ngIf="isEditable; else PromotionOfContinenceDetailsLabel"
-            >
-                <input
-                    pInputText
-                    type="text"
-                    required
-                    name="PreAdmissionAssessmentFormsData.PromotionOfContinenceDetails"
-                    class="form-control"
+        <div class="col-md-7 form-text">
+            <ng-container *ngIf="isEditable; else PromotionOfContinenceDetailsLabel">
+                <input pInputText type="text" required
+                    name="PreAdmissionAssessmentFormsData.PromotionOfContinenceDetails" class="form-control"
                     [(ngModel)]="
                         PreAdmissionAssessmentFormsData.PromotionOfContinenceDetails
-                    "
-                />
-                <p>
+                    " />
+                <p class="mb-4">
                     Include specific aids used, current continence regimes in
                     place to promote continence, medication prescribed, catheter
                     type, size frequency of change date of the last change
@@ -865,7 +687,7 @@
             <ng-template #PromotionOfContinenceDetailsLabel>
                 <label>{{
                     PreAdmissionAssessmentFormsData.PromotionOfContinenceDetails
-                }}</label>
+                    }}</label>
             </ng-template>
         </div>
         <div class="col-md-1 form-icon mt-4">
@@ -876,52 +698,37 @@
                 <p>Feeling fresh and clean and promotion of self identity</p>
             </div>
         </div>
-        <div class="col-md-7 mb-4">
+        <div class="col-md-7 form-text">
             <ng-container *ngIf="isEditable; else FeelingFreshAndCleanLabel">
-                <p-dropdown
-                    [(ngModel)]="
+                <p-dropdown [(ngModel)]="
                         PreAdmissionAssessmentFormsData.FeelingFreshAndClean
-                    "
-                    [options]="LstPreAdmFeelingFreshAndCleanOptionsMaster"
-                    optionLabel="feelingFreshAndCleanOptionsName"
-                    optionValue="FeelingFreshAndCleanOptionId"
-                    name="PreAdmissionAssessmentFormsData.FeelingFreshAndClean"
-                    placeholder="Select"
-                    [style]="{ width: '100%' }"
-                >
+                    " [options]="LstPreAdmFeelingFreshAndCleanOptionsMaster" optionLabel="optionName"
+                    optionValue="optionId" name="PreAdmissionAssessmentFormsData.FeelingFreshAndClean"
+                    placeholder="--select--" [style]="{ width: '100%' }">
                 </p-dropdown>
             </ng-container>
             <ng-template #FeelingFreshAndCleanLabel>
                 <label>{{
-                    PreAdmissionAssessmentFormsData.FeelingFreshAndClean
-                }}</label>
+                    PreAdmissionAssessmentFormsData.FeelingFreshAndCleanName
+                    }}</label>
             </ng-template>
         </div>
         <div class="col-md-1 form-icon mt-4">
             <i class="fa-solid fa-info"></i>
         </div>
-
         <div class="col-md-4">
             <div class="labelcontent">
                 <p>Feeling fresh and clean detail</p>
             </div>
         </div>
-        <div class="col-md-7 mb-4">
-            <ng-container
-                *ngIf="isEditable; else FeelingFreshAndCleanDetailsLabel"
-            >
-                <input
-                    pInputText
-                    type="text"
-                    required
-                    name="PreAdmissionAssessmentFormsData.FeelingFreshAndCleanDetails"
-                    class="form-control"
-                    [(ngModel)]="
+        <div class="col-md-7 form-text">
+            <ng-container *ngIf="isEditable; else FeelingFreshAndCleanDetailsLabel">
+                <input pInputText type="text" required
+                    name="PreAdmissionAssessmentFormsData.FeelingFreshAndCleanDetails" class="form-control" [(ngModel)]="
                         PreAdmissionAssessmentFormsData.FeelingFreshAndCleanDetails
-                    "
-                />
+                    " />
 
-                <p>
+                <p class="mb-4">
                     What they do prefer baths, showers and how often. What words
                     do they use for having a wash or a freshen up, tips or
                     treats that would help keeping clean and fresh to be extra
@@ -931,37 +738,29 @@
             <ng-template #FeelingFreshAndCleanDetailsLabel>
                 <label>{{
                     PreAdmissionAssessmentFormsData.FeelingFreshAndCleanDetails
-                }}</label>
+                    }}</label>
             </ng-template>
         </div>
         <div class="col-md-1 form-icon mt-4">
             <i class="fa-solid fa-info"></i>
         </div>
-
         <div class="col-md-4">
             <div class="labelcontent">
                 <p>Sleeping and resting</p>
             </div>
         </div>
-        <div class="col-md-7 mb-4">
+        <div class="col-md-7 form-text">
             <ng-container *ngIf="isEditable; else SleepingAndRestingLabel">
-                <p-dropdown
-                    name="PreAdmissionAssessmentFormsData.SleepingAndResting"
-                    [(ngModel)]="
+                <p-dropdown name="PreAdmissionAssessmentFormsData.SleepingAndResting" [(ngModel)]="
                         PreAdmissionAssessmentFormsData.SleepingAndResting
-                    "
-                    [options]="LstPreAdmSleepingAndRestingOptionsMaster"
-                    optionLabel="sleepingAndRestiingOptionsName"
-                    optionValue="SleepingAndRestingOptionId"
-                    placeholder="Select"
-                    [style]="{ width: '100%' }"
-                >
+                    " [options]="LstPreAdmSleepingAndRestingOptionsMaster" optionLabel="optionName"
+                    optionValue="optionId" placeholder="--select--" [style]="{ width: '100%' }">
                 </p-dropdown>
             </ng-container>
             <ng-template #SleepingAndRestingLabel>
                 <label>{{
-                    PreAdmissionAssessmentFormsData.SleepingAndResting
-                }}</label>
+                    PreAdmissionAssessmentFormsData.SleepingAndRestingName
+                    }}</label>
             </ng-template>
         </div>
         <div class="col-md-1 form-icon mt-4">
@@ -972,21 +771,13 @@
                 <p>Sleeping and resting details</p>
             </div>
         </div>
-        <div class="col-md-7 mb-4">
-            <ng-container
-                *ngIf="isEditable; else SleepingAndRestingDetailsLabel"
-            >
-                <input
-                    pInputText
-                    type="text"
-                    required
-                    name="PreAdmissionAssessmentFormsData.SleepingAndRestingDetails"
-                    class="form-control"
-                    [(ngModel)]="
+        <div class="col-md-7 form-text">
+            <ng-container *ngIf="isEditable; else SleepingAndRestingDetailsLabel">
+                <input pInputText type="text" required name="PreAdmissionAssessmentFormsData.SleepingAndRestingDetails"
+                    class="form-control" [(ngModel)]="
                         PreAdmissionAssessmentFormsData.SleepingAndRestingDetails
-                    "
-                />
-                <p>
+                    " />
+                <p class="mb-4">
                     what makes a good night for the resident. Describe sleeping
                     and waking routine, medication prescribed, number of carers
                     required to assist. If bed rails are used, ensure full
@@ -997,7 +788,7 @@
             <ng-template #SleepingAndRestingDetailsLabel>
                 <label>{{
                     PreAdmissionAssessmentFormsData.SleepingAndRestingDetails
-                }}</label>
+                    }}</label>
             </ng-template>
         </div>
         <div class="col-md-1 form-icon mt-4">
@@ -1008,25 +799,18 @@
                 <p>Expressing sexuality</p>
             </div>
         </div>
-        <div class="col-md-7 mb-4">
+        <div class="col-md-7 form-text">
             <ng-container *ngIf="isEditable; else ExpressingSexualityLabel">
-                <p-dropdown
-                    name="PreAdmissionAssessmentFormsData.ExpressingSexuality"
-                    [(ngModel)]="
+                <p-dropdown name="PreAdmissionAssessmentFormsData.ExpressingSexuality" [(ngModel)]="
                         PreAdmissionAssessmentFormsData.ExpressingSexuality
-                    "
-                    [options]="LstPreAdmExpressingSexualityOptionsMaster"
-                    optionLabel="expressingSexualityOptionsName"
-                    optionValue="ExpressingSexualityOptionId"
-                    placeholder="Select"
-                    [style]="{ width: '100%' }"
-                >
+                    " [options]="LstPreAdmExpressingSexualityOptionsMaster" optionLabel="optionName"
+                    optionValue="optionId" placeholder="--select--" [style]="{ width: '100%' }">
                 </p-dropdown>
             </ng-container>
             <ng-template #ExpressingSexualityLabel>
                 <label>{{
-                    PreAdmissionAssessmentFormsData.ExpressingSexuality
-                }}</label>
+                    PreAdmissionAssessmentFormsData.ExpressingSexualityName
+                    }}</label>
             </ng-template>
         </div>
         <div class="col-md-1 form-icon mt-4">
@@ -1037,21 +821,13 @@
                 <p>Expressing sexuality details</p>
             </div>
         </div>
-        <div class="col-md-7 mb-4">
-            <ng-container
-                *ngIf="isEditable; else ExpressingSexualityDetailsLabel"
-            >
-                <input
-                    pInputText
-                    type="text"
-                    required
-                    name="PreAdmissionAssessmentFormsData.ExpressingSexualityDetails"
-                    class="form-control"
-                    [(ngModel)]="
+        <div class="col-md-7 form-text">
+            <ng-container *ngIf="isEditable; else ExpressingSexualityDetailsLabel">
+                <input pInputText type="text" required name="PreAdmissionAssessmentFormsData.ExpressingSexualityDetails"
+                    class="form-control" [(ngModel)]="
                         PreAdmissionAssessmentFormsData.ExpressingSexualityDetails
-                    "
-                />
-                <p>
+                    " />
+                <p class="mb-4">
                     Additional information (how can you support the resident
                     with sensitivity and privacy needs. How does the resident
                     express sexuality / sexual needs.) Consider behaviours and
@@ -1062,7 +838,7 @@
             <ng-template #ExpressingSexualityDetailsLabel>
                 <label>{{
                     PreAdmissionAssessmentFormsData.ExpressingSexualityDetails
-                }}</label>
+                    }}</label>
             </ng-template>
         </div>
         <div class="col-md-1 form-icon mt-4">
@@ -1077,23 +853,17 @@
                 </p>
             </div>
         </div>
-        <div class="col-md-7 mb-4">
+        <div class="col-md-7 form-text">
             <ng-container *ngIf="isEditable; else EngagementEmpowermentLabel">
-                <input
-                    pInputText
-                    type="text"
-                    required
-                    name="PreAdmissionAssessmentFormsData.EngagementEmpowerment"
-                    class="form-control"
-                    [(ngModel)]="
+                <input pInputText type="text" required name="PreAdmissionAssessmentFormsData.EngagementEmpowerment"
+                    class="form-control" [(ngModel)]="
                         PreAdmissionAssessmentFormsData.EngagementEmpowerment
-                    "
-                />
+                    " />
             </ng-container>
             <ng-template #EngagementEmpowermentLabel>
                 <label>{{
                     PreAdmissionAssessmentFormsData.EngagementEmpowerment
-                }}</label>
+                    }}</label>
             </ng-template>
         </div>
         <div class="col-md-1 form-icon mt-4">
@@ -1107,29 +877,20 @@
                 </p>
             </div>
         </div>
-        <div class="col-md-7 mb-4">
-            <ng-container
-                *ngIf="isEditable; else EpilepsySeizureManagementLabel"
-            >
-                <p-dropdown
-                    name="PreAdmissionAssessmentFormsData.EpilepsySeizureManagement"
-                    [(ngModel)]="
+        <div class="col-md-7 form-text">
+            <ng-container *ngIf="isEditable; else EpilepsySeizureManagementLabel">
+                <p-dropdown name="PreAdmissionAssessmentFormsData.EpilepsySeizureManagement" [(ngModel)]="
                         PreAdmissionAssessmentFormsData.EpilepsySeizureManagement
-                    "
-                    [options]="LstPreAdmEpilepsySeizureManagementOptionsMaster"
-                    optionValue="EpilepsySeizureManagementOptionId"
-                    optionLabel="EpilepsySeizureManagementOptionsName"
-                    placeholder="Select"
-                    [style]="{ width: '100%' }"
-                >
+                    " [options]="LstPreAdmEpilepsySeizureManagementOptionsMaster" optionValue="optionId"
+                    optionLabel="optionName" placeholder="--select--" [style]="{ width: '100%' }">
                 </p-dropdown>
             </ng-container>
             <ng-template #EpilepsySeizureManagementLabel>
                 <label>{{
-                    PreAdmissionAssessmentFormsData.EpilepsySeizureManagement
-                }}</label>
+                    PreAdmissionAssessmentFormsData.EpilepsySeizureManagementName
+                    }}</label>
             </ng-template>
-            <p></p>
+
         </div>
         <div class="col-md-1 form-icon mt-4">
             <i class="fa-solid fa-info"></i>
@@ -1142,19 +903,13 @@
                 </p>
             </div>
         </div>
-        <div class="col-md-7 mb-4">
+        <div class="col-md-7 form-text">
             <ng-container *ngIf="isEditable; else RescueMedicationsLabel">
-                <input
-                    pInputText
-                    type="text"
-                    required
-                    name="PreAdmissionAssessmentFormsData.RescueMedications"
-                    class="form-control"
-                    [(ngModel)]="
+                <input pInputText type="text" required name="PreAdmissionAssessmentFormsData.RescueMedications"
+                    class="form-control" [(ngModel)]="
                         PreAdmissionAssessmentFormsData.RescueMedications
-                    "
-                />
-                <p>
+                    " />
+                <p class="mb-4">
                     Please detail these below alongside when they are to be
                     administered, frequency and time between doses
                 </p>
@@ -1162,7 +917,7 @@
             <ng-template #RescueMedicationsLabel>
                 <label>{{
                     PreAdmissionAssessmentFormsData.RescueMedications
-                }}</label>
+                    }}</label>
             </ng-template>
         </div>
         <div class="col-md-1 form-icon mt-4">
@@ -1173,27 +928,20 @@
                 <p>Infection status</p>
             </div>
         </div>
-        <div class="col-md-7 mb-4">
+        <div class="col-md-7 form-text">
             <ng-container *ngIf="isEditable; else InfectionStatusLabel">
-                <p-dropdown
-                    name="PreAdmissionAssessmentFormsData.InfectionStatus"
-                    [(ngModel)]="
+                <p-dropdown name="PreAdmissionAssessmentFormsData.InfectionStatus" [(ngModel)]="
                         PreAdmissionAssessmentFormsData.InfectionStatus
-                    "
-                    [options]="LstPreAdmInfectionStatusOptionsMaster"
-                    optionLabel="infectionStatusOptionsName"
-                    optionValue="InfectionStatusOptionId"
-                    placeholder="Select"
-                    [style]="{ width: '100%' }"
-                >
+                    " [options]="LstPreAdmInfectionStatusOptionsMaster" optionLabel="optionName" optionValue="optionId"
+                    placeholder="--select--" [style]="{ width: '100%' }">
                 </p-dropdown>
             </ng-container>
             <ng-template #InfectionStatusLabel>
                 <label>{{
-                    PreAdmissionAssessmentFormsData.InfectionStatus
-                }}</label>
+                    PreAdmissionAssessmentFormsData.InfectionStatusName
+                    }}</label>
             </ng-template>
-            <p></p>
+            
         </div>
         <div class="col-md-1 form-icon mt-4">
             <i class="fa-solid fa-info"></i>
@@ -1203,19 +951,13 @@
                 <p>Infection details</p>
             </div>
         </div>
-        <div class="col-md-7 mb-4">
+        <div class="col-md-7 form-text">
             <ng-container *ngIf="isEditable; else InfectionDetailsLabel">
-                <input
-                    pInputText
-                    type="text"
-                    required
-                    name="PreAdmissionAssessmentFormsData.InfectionDetails"
-                    class="form-control"
-                    [(ngModel)]="
+                <input pInputText type="text" required name="PreAdmissionAssessmentFormsData.InfectionDetails"
+                    class="form-control" [(ngModel)]="
                         PreAdmissionAssessmentFormsData.InfectionDetails
-                    "
-                />
-                <p>
+                    " />
+                <p class="mb-4">
                     Detail how the person presents when they have an infection,
                     what are the soft signs of infection if these are
                     knownInclude type of infection, location, treatment
@@ -1224,7 +966,7 @@
             <ng-template #InfectionDetailsLabel>
                 <label>{{
                     PreAdmissionAssessmentFormsData.InfectionDetails
-                }}</label>
+                    }}</label>
             </ng-template>
         </div>
         <div class="col-md-1 form-icon mt-4">
@@ -1235,23 +977,17 @@
                 <p>Medication</p>
             </div>
         </div>
-        <div class="col-md-7 mb-4">
+        <div class="col-md-7 form-text">
             <ng-container *ngIf="isEditable; else MedicationDropdownLabel">
-                <p-dropdown
-                    [(ngModel)]="PreAdmissionAssessmentFormsData.Medication"
-                    name="PreAdmissionAssessmentFormsData.Medication"
-                    [options]="LstPreAdmMedicationOptionMaster"
-                    optionLabel="medicationOptionName"
-                    optionValue="MedicationOptionId"
-                    placeholder="Select"
-                    [style]="{ width: '100%' }"
-                >
+                <p-dropdown [(ngModel)]="PreAdmissionAssessmentFormsData.Medication"
+                    name="PreAdmissionAssessmentFormsData.Medication" [options]="LstPreAdmMedicationOptionMaster"
+                    optionLabel="optionName" optionValue="optionId" placeholder="--select--" [style]="{ width: '100%' }">
                 </p-dropdown>
             </ng-container>
             <ng-template #MedicationDropdownLabel>
-                <label>{{ PreAdmissionAssessmentFormsData.Medication }}</label>
+                <label>{{ PreAdmissionAssessmentFormsData.MedicationName }}</label>
             </ng-template>
-            <p></p>
+            
         </div>
         <div class="col-md-1 form-icon mt-4">
             <i class="fa-solid fa-info"></i>
@@ -1261,19 +997,13 @@
                 <p>Medication details</p>
             </div>
         </div>
-        <div class="col-md-7 mb-4">
+        <div class="col-md-7 form-text">
             <ng-container *ngIf="isEditable; else MedicationDetailsLabel">
-                <input
-                    pInputText
-                    type="text"
-                    required
-                    name="PreAdmissionAssessmentFormsData.MedicationDetails"
-                    class="form-control"
-                    [(ngModel)]="
+                <input pInputText type="text" required name="PreAdmissionAssessmentFormsData.MedicationDetails"
+                    class="form-control" [(ngModel)]="
                         PreAdmissionAssessmentFormsData.MedicationDetails
-                    "
-                />
-                <p>
+                    " />
+                <p class="mb-4">
                     refer reader to the MARs sheets for the resident most up to
                     date medications, howveer please explore how they like to
                     take their medications, high risk medications, such as
@@ -1284,7 +1014,7 @@
             <ng-template #MedicationDetailsLabel>
                 <label>{{
                     PreAdmissionAssessmentFormsData.MedicationDetails
-                }}</label>
+                    }}</label>
             </ng-template>
         </div>
         <div class="col-md-1 form-icon mt-4">
@@ -1295,26 +1025,20 @@
                 <p>First aid for epileptic seizure</p>
             </div>
         </div>
-        <div class="col-md-7 mb-4">
+        <div class="col-md-7 form-text">
             <ng-container *ngIf="isEditable; else FirstAidDropdownLabel">
-                <p-dropdown
-                    [(ngModel)]="
+                <p-dropdown [(ngModel)]="
                         PreAdmissionAssessmentFormsData.FirstAidEpilepticSeizure
-                    "
-                    name="PreAdmissionAssessmentFormsData.FirstAidEpilepticSeizure"
-                    [options]="LstPreAdmFirstAidEpilepticSeizureOptionsMaster"
-                    optionLabel="firstAidEpilepticSeizureOptionsName"
-                    optionValue="FirstAidEpilepticSeizureOptionId"
-                    placeholder="Select"
-                    [style]="{ width: '100%' }"
-                >
-                    <p>Choose all statements below</p>
+                    " name="PreAdmissionAssessmentFormsData.FirstAidEpilepticSeizure"
+                    [options]="LstPreAdmFirstAidEpilepticSeizureOptionsMaster" optionLabel="optionName"
+                    optionValue="optionId" placeholder="--select--" [style]="{ width: '100%' }">
+                    <p class="mb-4">Choose all statements below</p>
                 </p-dropdown>
             </ng-container>
             <ng-template #FirstAidDropdownLabel>
                 <label>{{
-                    PreAdmissionAssessmentFormsData.FirstAidEpilepticSeizure
-                }}</label>
+                    PreAdmissionAssessmentFormsData.FirstAidEpilepticSeizureName
+                    }}</label>
             </ng-template>
         </div>
         <div class="col-md-1 form-icon mt-4">
@@ -1328,17 +1052,11 @@
                 </p>
             </div>
         </div>
-        <div class="col-md-7 mb-4">
+        <div class="col-md-7 form-text">
             <ng-container *ngIf="isEditable; else OverallGoalLabel">
-                <input
-                    pInputText
-                    type="text"
-                    required
-                    name="PreAdmissionAssessmentFormsData.OverallGoal"
-                    class="form-control"
-                    [(ngModel)]="PreAdmissionAssessmentFormsData.OverallGoal"
-                />
-                <p>
+                <input pInputText type="text" required name="PreAdmissionAssessmentFormsData.OverallGoal"
+                    class="form-control" [(ngModel)]="PreAdmissionAssessmentFormsData.OverallGoal" />
+                <p class="mb-4">
                     For example to be safe, to minimise loneliness, to strive
                     and promote abilities, to manage their health needs better.
                 </p>
@@ -1350,41 +1068,48 @@
         <div class="col-md-1 form-icon mt-4 form-icon">
             <i class="fa-solid fa-info"></i>
         </div>
+        <div class="col-md-4">
+            <div class="labelcontent">
+                <p>Has the resident or the resident representtative been given the CCTV policy and Guidelines and
+                    understands and accepts that there is CCTV in use throughout the Care Community grounds?</p>
+            </div>
+        </div>
+        <div class="col-md-7 form-text">
+            <ng-container *ngIf="isEditable; else CCTVPolicyDropdownLabel">
+                <p-dropdown [(ngModel)]="
+                        PreAdmissionAssessmentFormsData.CCTVPolicy
+                    " name="PreAdmissionAssessmentFormsData.CCTVPolicy" [options]="LstPreAdmCCTVPolicyOptionsMaster"
+                    optionLabel="optionName" optionValue="optionId" placeholder="--select--" [style]="{ width: '100%' }">
+                </p-dropdown>
+            </ng-container>
+            <ng-template #CCTVPolicyDropdownLabel>
+                <label>{{
+                    PreAdmissionAssessmentFormsData.CCTVPolicyName
+                    }}</label>
+            </ng-template>
+        </div>
+        <div class="col-md-1 form-icon mt-4">
+            <i class="fa-solid fa-info"></i>
+        </div>
         <div class="d-flex justify-content-end">
             <ng-container *ngIf="isEditable; else savePdf">
                 <div>
                     <span class="p-ml-left mr-4">
-                        <button
-                            pButton
-                            title="New"
-                            label="Save as Unfinished"
-                            (click)="saveAsUnfinished()"
-                        ></button>
+                        <button pButton title="New" label="Save as Unfinished" (click)="saveAsUnfinished()"></button>
                         <span class="total-txt"></span>
                     </span>
                 </div>
                 <div>
                     <span class="p-ml-left mr-4">
-                        <button
-                            pButton
-                            title="New"
-                            label="Complete"
-                            (click)="completeForm()"
-                            [disabled]="
+                        <button pButton title="New" label="Complete" (click)="completeForm()" [disabled]="
                                 PreAdmissionAssessmentFormsData.IsFormCompleted
-                            "
-                        ></button>
+                            "></button>
                         <span class="total-txt"></span>
                     </span>
                 </div>
             </ng-container>
             <ng-template #savePdf>
-                <button
-                    pButton
-                    title="Save as PDF"
-                    label="Save as PDF"
-                    (click)="SaveAsPDF()"
-                ></button>
+                <button pButton title="Save as PDF" label="Save as PDF" (click)="SaveAsPDF()"></button>
             </ng-template>
         </div>
     </div>

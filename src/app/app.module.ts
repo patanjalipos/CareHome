@@ -18,11 +18,9 @@ import { MainInterceptorInterceptor } from './main-interceptor.interceptor';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthGuard } from './ui/components/auth/auth.guard';
 
-
 @NgModule({
     declarations: [
-        AppComponent, NotfoundComponent
-    ],
+        AppComponent, NotfoundComponent],
     imports: [
         AppRoutingModule,
         AppLayoutModule,

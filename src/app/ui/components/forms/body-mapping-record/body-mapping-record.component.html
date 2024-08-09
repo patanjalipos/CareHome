@@ -78,7 +78,7 @@
                 <input *ngIf="isEditable==true" pInputText type="text"  name="txtObservations"
                     [(ngModel)]="BodyMappingFormsData.Observations" class="form-control" />
                 <p *ngIf="isEditable!=true">{{BodyMappingFormsData.Observations}}</p>
-                <p class=" mb-4">Please state location and type of wound - Consider whether a Wound chart needs to be
+                <p class=" mb-4" *ngIf="isEditable==true">Please state location and type of wound - Consider whether a Wound chart needs to be
                     completed
                 </p>
             </div>
@@ -90,9 +90,9 @@
             </div>
             <div class="col-md-8 form-text">
                 <ng-container *ngIf="isEditable==true">
-                    <p-dropdown placeholder="Select" [(ngModel)]="BodyMappingFormsData.ReasonObservation" name="ddlReasonObservation"
-                        [style]="{ width: '100%' }" [options]="lstBodyMappingMaster" optionLabel="ReasonName"
-                        optionValue="BodyMappReasonMasterId">
+                    <p-dropdown placeholder="--select--" [(ngModel)]="BodyMappingFormsData.ReasonObservation" name="ddlReasonObservation"
+                        [style]="{ width: '100%' }" [options]="lstBodyMappingMaster" optionLabel="optionName"
+                        optionValue="optionId">
                     </p-dropdown>
                 </ng-container>
                 <ng-container *ngIf="isEditable!=true">

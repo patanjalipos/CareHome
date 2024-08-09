@@ -3,139 +3,311 @@
         <div class="formheader">
             <div class="d-flex">
                 <div class="col-md-4">
-                    <label class="form-label"><b> Started by (Name) :</b>
+                    <label class="form-label"
+                        ><b> Started by (Name) :</b
+                        >{{ preSelectedFormData.StartedBy }}
                     </label>
                 </div>
                 <div class="col-md-4">
-                    <label class="form-label"><b>Designation :</b> </label>
+                    <label class="form-label"
+                        ><b>Designation :</b
+                        >{{ preSelectedFormData.StartedByDesignation }}
+                    </label>
                 </div>
                 <div class="col-md-4">
-                    <label class="form-label"> <b>Date/Time : </b></label>
+                    <label class="form-label">
+                        <b>Date/Time : </b
+                        >{{
+                            preSelectedFormData.StartedOn
+                                | date : customDateFormat.DEF_DATE_TIME
+                        }}</label
+                    >
                 </div>
             </div>
             <div class="d-flex">
                 <div class="col-md-4">
                     <label class="form-label">
-                        <b>Last entered by (Name) :</b></label>
+                        <b>Last entered by (Name) :</b
+                        >{{ preSelectedFormData.ModifiedBy }}</label
+                    >
                 </div>
                 <div class="col-md-4">
-                    <label class="form-label"> <b>Designation :</b></label>
+                    <label class="form-label">
+                        <b>Designation :</b
+                        >{{ preSelectedFormData.ModifiedByDesignation }}</label
+                    >
                 </div>
                 <div class="col-md-4">
-                    <label class="form-label"> <b>Date/Time :</b> </label>
+                    <label class="form-label">
+                        <b>Date/Time :</b>
+                        {{
+                            preSelectedFormData.ModifiedOn
+                                | date : customDateFormat.DEF_DATE_TIME
+                        }}</label
+                    >
                 </div>
             </div>
         </div>
-        <div class="col-md-4 mt-4">
-            <div class="labelcontent">
-                <p>Does the resident take a vitamin D supplement?</p>
-            </div>
+
+        <div class="col-md-4 mt-4 labelcontent">
+            <p>Does the resident take a Vitamin D supplement?</p>
         </div>
-        <div class="col-md-7  mt-4">
-            <p-dropdown placeholder="Select" [style]="{ width: '100%' }">
-            </p-dropdown>
+        <div class="col-md-7 mt-4 form-text">
+            <ng-container *ngIf="isEditable; else SupplementDropdown">
+                <p-dropdown
+                    placeholder="--select--"
+                    [style]="{ width: '100%' }"
+                    [(ngModel)]="CareVitaminDSupplementationFormData.VitaminDSupplement"
+                    optionLabel="optionName"
+                    optionValue="optionId"
+                    [options]="supplementOptions"
+                >
+                </p-dropdown>
+            </ng-container>
+            <ng-template #SupplementDropdown>
+                <label>{{ CareVitaminDSupplementationFormData.VitaminDSupplementName }}</label>
+            </ng-template>
         </div>
+        
+
         <div class="col-md-1 form-icon mt-4">
             <i class="fa-solid fa-info"></i>
         </div>
+
         <div class="col-md-4">
             <div class="labelcontent">
                 <p>Does the resident have any of the following?</p>
             </div>
         </div>
         <div class="col-md-7">
-            <p-dropdown placeholder="Select" [style]="{ width: '100%' }">
-            </p-dropdown>
+            <ng-container *ngIf="isEditable; else ConditionLabel">
+                <p-dropdown 
+                    placeholder="--select--" 
+                    [style]="{ width: '100%' }" 
+                    [(ngModel)]="CareVitaminDSupplementationFormData.ResidentConditions"
+                    optionLabel="optionName"
+                    optionValue="optionId"
+                    [options]="residentConditionOptions">
+                </p-dropdown>
+            </ng-container>
+            <ng-template #ConditionLabel>
+                <label>{{ CareVitaminDSupplementationFormData.ResidentConditionsName }}</label>
+            </ng-template>
+            
         </div>
+
         <div class="col-md-1 form-icon">
             <i class="fa-solid fa-info"></i>
         </div>
+
         <div class="col-md-4">
             <div class="labelcontent">
-                <p>The resident is currently prescribed the following medications</p>
-            </div>
-        </div>
-        <div class="col-md-7 ">
-            <p-dropdown placeholder="Select" [style]="{ width: '100%' }">
-            </p-dropdown>
-        </div>
-        <div class="col-md-1 form-icon">
-            <i class="fa-solid fa-info"></i>
-        </div>
-        <div class="col-md-4">
-            <div class="labelcontent">
-                <p>Does the resident have capacity to make decision about taking the vitamin D supplement</p>
+                <p>
+                    The resident is currently prescribed the following medications
+                </p>
             </div>
         </div>
         <div class="col-md-7">
-            <p-dropdown placeholder="Select" [style]="{ width: '100%' }">
-            </p-dropdown>
+            <ng-container *ngIf="isEditable; else MedicationDropdown">
+                <p-dropdown
+                    placeholder="--select--"
+                    [style]="{ width: '100%' }"
+                    [(ngModel)]="CareVitaminDSupplementationFormData.SelectedMedication"
+                    optionLabel="optionName"
+                    optionValue="optionId"
+                    [options]="medicationOptions"
+                >
+                </p-dropdown>
+            </ng-container>
+            <ng-template #MedicationDropdown>
+                <label>{{ CareVitaminDSupplementationFormData.SelectedMedicationName }}</label>
+            </ng-template>
         </div>
+        
+
         <div class="col-md-1 form-icon">
             <i class="fa-solid fa-info"></i>
         </div>
+
+        <div class="col-md-4">
+            <div class="labelcontent">
+                <p>
+                    Does the resident have capacity to make decision about taking the vitamin D supplement
+                </p>
+            </div>
+        </div>
+        <div class="col-md-7">
+            <ng-container *ngIf="isEditable; else CapacityDropdown">
+                <p-dropdown
+                    placeholder="--select--"
+                    [style]="{ width: '100%' }"
+                    [(ngModel)]="CareVitaminDSupplementationFormData.CapacityDecision"
+                    optionLabel="optionName"
+                    optionValue="optionId"
+                    [options]="capacityOptions"
+                >
+                </p-dropdown>
+            </ng-container>
+            <ng-template #CapacityDropdown>
+                <label>{{ CareVitaminDSupplementationFormData.CapacityDecisionName }}</label>
+            </ng-template>
+        </div>
+        
+        <div class="col-md-1 form-icon">
+            <i class="fa-solid fa-info"></i>
+        </div>
+
         <div class="col-md-4">
             <div class="labelcontent">
                 <p>Personal preference</p>
             </div>
         </div>
-        <div class="col-md-7 ">
-            <p-dropdown placeholder="Select" [style]="{ width: '100%' }">
-            </p-dropdown>
+        <div class="col-md-7">
+            <ng-container *ngIf="isEditable; else PreferenceDropdown">
+                <p-dropdown
+                    placeholder="--select--"
+                    [style]="{ width: '100%' }"
+                    [(ngModel)]="CareVitaminDSupplementationFormData.PersonalPreference"
+                    optionLabel="optionName"
+                    optionValue="optionId"
+                    [options]="preferenceOptions"
+                >
+                </p-dropdown>
+            </ng-container>
+            <ng-template #PreferenceDropdown>
+                <label>{{ CareVitaminDSupplementationFormData.PersonalPreferenceName }}</label>
+            </ng-template>
         </div>
+        
+
         <div class="col-md-1 form-icon">
             <i class="fa-solid fa-info"></i>
         </div>
+
         <div class="col-md-4">
             <div class="labelcontent">
-                <p>Making an informed choice please choose all options to detail information given to resident and/or
-                    loved one</p>
-            </div>
-        </div>
-        <div class="col-md-7 ">
-            <p-dropdown placeholder="Select" [style]="{ width: '100%' }">
-            </p-dropdown>
-        </div>
-        <div class="col-md-1 form-icon">
-            <i class="fa-solid fa-info"></i>
-        </div>
-        <div class="col-md-4">
-            <div class="labelcontent">
-                <p>Decision of Vitamin D supplement adminstation</p>
-            </div>
-        </div>
-        <div class="col-md-7 ">
-            <p-dropdown placeholder="Select" [style]="{ width: '100%' }">
-            </p-dropdown>
-        </div>
-        <div class="col-md-1 form-icon">
-            <i class="fa-solid fa-info"></i>
-        </div>
-        <div class="col-md-4">
-            <div class="labelcontent">
-                <p>Please choose the below entry for all those resident that will receive the Vitamin D supplement</p>
+                <p>
+                    Making an informed choice please choose all options to detail information given to resident and/or loved one
+                </p>
             </div>
         </div>
         <div class="col-md-7">
-            <p-dropdown placeholder="Select" [style]="{ width: '100%' }">
-            </p-dropdown>
+            <ng-container *ngIf="isEditable; else InformedChoiceDropdown">
+                <p-dropdown
+                    placeholder="--select--"
+                    [style]="{ width: '100%' }"
+                    [(ngModel)]="CareVitaminDSupplementationFormData.InformedChoice"
+                    optionLabel="optionName"
+                    optionValue="optionId"
+                    [options]="informedChoiceOptions"
+                >
+                </p-dropdown>
+            </ng-container>
+            <ng-template #InformedChoiceDropdown>
+                <label>{{ CareVitaminDSupplementationFormData.InformedChoiceName }}</label>
+            </ng-template>
         </div>
+        
+
         <div class="col-md-1 form-icon">
             <i class="fa-solid fa-info"></i>
         </div>
+
+        <div class="col-md-4">
+            <div class="labelcontent">
+                <p>Decision of Vitamin D supplement administration</p>
+            </div>
+        </div>
+        <div class="col-md-7">
+            <ng-container *ngIf="isEditable; else DecisionDropdown">
+                <p-dropdown
+                    placeholder="--select--"
+                    [style]="{ width: '100%' }"
+                    [(ngModel)]="CareVitaminDSupplementationFormData.VitaminDSupplementDecision"
+                    optionLabel="optionName"
+                    optionValue="optionId"
+                    [options]="decisionOptions"
+                >
+                </p-dropdown>
+            </ng-container>
+            <ng-template #DecisionDropdown>
+                <label>{{ CareVitaminDSupplementationFormData.VitaminDSupplementDecisionName }}</label>
+            </ng-template>
+        </div>
+        
+
+        <div class="col-md-1 form-icon">
+            <i class="fa-solid fa-info"></i>
+        </div>
+
+        <div class="col-md-4">
+            <div class="labelcontent">
+                <p>
+                    Please choose the below entry for all those residents that will receive the Vitamin D supplement
+                </p>
+            </div>
+        </div>
+        <div class="col-md-7">
+            <ng-container *ngIf="isEditable; else ResidentDropdown">
+                <p-dropdown
+                    placeholder="--select--"
+                    [style]="{ width: '100%' }"
+                    [(ngModel)]="CareVitaminDSupplementationFormData.ResidentsReceivingSupplement"
+                    optionLabel="optionName"
+                    optionValue="optionId"
+                    [options]="residentOptions"
+                    [showClear]="true"
+                    [filter]="true"
+                    filterPlaceholder="Search"
+                >
+                </p-dropdown>
+            </ng-container>
+            <ng-template #ResidentDropdown>
+                <label>{{ CareVitaminDSupplementationFormData.ResidentsReceivingSupplementName }}</label>
+            </ng-template>
+        </div>
+        
+
+        <div class="col-md-1 form-icon">
+            <i class="fa-solid fa-info"></i>
+        </div>
+
         <div class="d-flex justify-content-end">
-            <div>
-                <span class="p-ml-left mr-4">
-                    <button pButton title="New" label="Save as Unfinished"></button>
-                    <span class="total-txt"></span>
-                </span>
-            </div>
-            <div>
-                <span class="p-ml-left mr-4">
-                    <button pButton title="New" label="Complete"></button>
-                    <span class="total-txt"></span>
-                </span>
-            </div>
+            <ng-container *ngIf="isEditable; else savePdf">
+                <div>
+                    <span class="p-ml-left mr-4">
+                        <button
+                            pButton
+                            title="New"
+                            label="Save as Unfinished"
+                            (click)="saveAsUnfinished()"
+                        ></button>
+                        <span class="total-txt"></span>
+                    </span>
+                </div>
+                <div>
+                    <span class="p-ml-left mr-4">
+                        <button
+                            pButton
+                            title="New"
+                            label="Complete"
+                            (click)="completeForm()"
+                            [disabled]="
+                                CareVitaminDSupplementationFormData.IsFormCompleted
+                            "
+                        ></button>
+                        <span class="total-txt"></span>
+                    </span>
+                </div>
+            </ng-container>
+            <ng-template #savePdf>
+                <button
+                    pButton
+                    title="Save as PDF"
+                    label="Save as PDF"
+                    (click)="SaveAsPDF()"
+                ></button>
+            </ng-template>
         </div>
     </div>
 </div>

@@ -1,0 +1,498 @@
+<div class="card">
+    <div class="row">
+        <div class="formheader">
+            <div class="d-flex">
+                <div class="col-md-4">
+                    <label class="form-label"><b> Started by (Name) :</b>
+                        {{preSelectedFormData.StartedBy}}</label>
+                </div>
+                <div class="col-md-4">
+                    <label class="form-label"><b>Designation :</b> {{preSelectedFormData.StartedByDesignation}}</label>
+                </div>
+                <div class="col-md-4">
+                    <label class="form-label"> <b>Date/Time : </b>{{preSelectedFormData.StartedOn | date :
+                        customDateFormat.DEF_DATE_TIME}}</label>
+                </div>
+            </div>
+            <div class="d-flex">
+                <div class="col-md-4">
+                    <label class="form-label">
+                        <b>Last entered by (Name) :</b>{{preSelectedFormData.ModifiedBy}}</label>
+                </div>
+                <div class="col-md-4">
+                    <label class="form-label"> <b>Designation :</b>{{preSelectedFormData.ModifiedByDesignation}}</label>
+                </div>
+                <div class="col-md-4">
+                    <label class="form-label"> <b>Date/Time :</b>{{preSelectedFormData.ModifiedOn | date:
+                        customDateFormat.DEF_DATE_TIME}} </label>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 mt-4 labelcontent">
+            <p>Assess residents’ ability to smoke independently</p>
+        </div>
+        <div class="col-md-7 mt-4 form-text">
+            <ng-container *ngIf="this.isEditable; else SmokeIndependentlyData">
+                <p-dropdown placeholder="--select--" [style]="{ width: '100%' }" [options]="lstSmokeIndependently"
+                    optionLabel="optionName" optionValue="optionId"
+                    name="SmokingRiskAssessmentFormData.SmokeIndependently"
+                    [(ngModel)]="SmokingRiskAssessmentFormData.SmokeIndependently">
+                </p-dropdown>
+            </ng-container>
+            <ng-template #SmokeIndependentlyData>
+                <label>{{SmokingRiskAssessmentFormData.SmokeIndependentlyName}}</label>
+            </ng-template>
+        </div>
+        <div class="col-md-1 mt-4 form-icon ">
+            <i class="fa-solid fa-info"></i>
+        </div>
+        <div class="col-md-4 labelcontent">
+            <p>Information Sources</p>
+        </div>
+        <div class="col-md-7 mt-4 form-text">
+            <ng-container *ngIf="this.isEditable; else InformationSourcesData">
+                <p-dropdown placeholder="--select--" [style]="{ width: '100%' }" [options]="lstInformationSources"
+                    optionLabel="optionName" optionValue="optionId"
+                    name="SmokingRiskAssessmentFormData.InformationSources"
+                    [(ngModel)]="SmokingRiskAssessmentFormData.InformationSources">
+                </p-dropdown>
+            </ng-container>
+            <ng-template #InformationSourcesData>
+                <label>{{SmokingRiskAssessmentFormData.InformationSourcesName}}</label>
+            </ng-template>
+        </div>
+        <div class="col-md-1 form-icon ">
+            <i class="fa-solid fa-info"></i>
+        </div>
+        <div class="col-md-4 labelcontent">
+            <p>Would you like to stop smoking</p>
+        </div>
+        <div class="col-md-7 mt-4 form-text">
+            <ng-container *ngIf="this.isEditable; else StopSmokingData">
+                <p-dropdown placeholder="--select--" [style]="{ width: '100%' }" [options]="lstStopSmoking"
+                    optionLabel="optionName" optionValue="optionId" name="SmokingRiskAssessmentFormData.StopSmoking"
+                    [(ngModel)]="SmokingRiskAssessmentFormData.StopSmoking">
+                </p-dropdown>
+            </ng-container>
+            <ng-template #StopSmokingData>
+                <label>{{SmokingRiskAssessmentFormData.StopSmokingName}}</label>
+            </ng-template>
+        </div>
+        <div class="col-md-1 form-icon ">
+            <i class="fa-solid fa-info"></i>
+        </div>
+        <div class="col-md-4 labelcontent">
+            <p>How many cigarettes do you smoke every day</p>
+        </div>
+        <div class="col-md-7 form-text">
+            <ng-container *ngIf="this.isEditable; else SmokeEveryDayData">
+                <input pInputText type="text" required name="SmokingRiskAssessmentFormData.SmokeEveryDay"
+                    [(ngModel)]="SmokingRiskAssessmentFormData.SmokeEveryDay" class="form-control" />
+            </ng-container>
+
+            <ng-template #SmokeEveryDayData>
+                <label>{{SmokingRiskAssessmentFormData.SmokeEveryDay}}</label>
+            </ng-template>
+        </div>
+        <div class="col-md-1 form-icon ">
+            <i class="fa-solid fa-info"></i>
+        </div>
+        <div class="col-md-4 labelcontent">
+            <p>When is your first cigarette of the day</p>
+        </div>
+        <div class="col-md-7 form-text">
+            <ng-container *ngIf="this.isEditable; else FirstCigaretteData">
+                <input pInputText type="text" required name="SmokingRiskAssessmentFormData.FirstCigarette"
+                    [(ngModel)]="SmokingRiskAssessmentFormData.FirstCigarette" class="form-control" />
+            </ng-container>
+
+            <ng-template #FirstCigaretteData>
+                <label>{{SmokingRiskAssessmentFormData.FirstCigarette}}</label>
+            </ng-template>
+        </div>
+        <div class="col-md-1 form-icon ">
+            <i class="fa-solid fa-info"></i>
+        </div>
+        <div class="col-md-4 labelcontent">
+            <p>Do you need assistance smoking</p>
+        </div>
+        <div class="col-md-7 form-text">
+            <ng-container *ngIf="this.isEditable; else AssistanceSmokingData">
+                <input pInputText type="text" required name="SmokingRiskAssessmentFormData.AssistanceSmoking"
+                    [(ngModel)]="SmokingRiskAssessmentFormData.AssistanceSmoking" class="form-control" />
+                <p class="mb-4">Please add assistance details</p>
+            </ng-container>
+
+            <ng-template #AssistanceSmokingData>
+                <label>{{SmokingRiskAssessmentFormData.AssistanceSmoking}}</label>
+            </ng-template>
+        </div>
+        <div class="col-md-1 form-icon ">
+            <i class="fa-solid fa-info"></i>
+        </div>
+        <div class="col-md-4 labelcontent">
+            <p>How often have you fallen asleep while smoking a cigarette</p>
+        </div>
+        <div class="col-md-7 form-text">
+            <ng-container *ngIf="this.isEditable; else WhileSmokingACigaretteData">
+                <input pInputText type="text" required name="SmokingRiskAssessmentFormData.WhileSmokingACigarette"
+                    [(ngModel)]="SmokingRiskAssessmentFormData.WhileSmokingACigarette" class="form-control" />
+                <p class="mb-4">Please indicate: Never, Number of times</p>
+            </ng-container>
+
+            <ng-template #WhileSmokingACigaretteData>
+                <label>{{SmokingRiskAssessmentFormData.WhileSmokingACigarette}}</label>
+            </ng-template>
+        </div>
+        <div class="col-md-1 form-icon ">
+            <i class="fa-solid fa-info"></i>
+        </div>
+        <div class="col-md-4 labelcontent">
+            <p>What would you do if there was an emergency in the smoking room/area</p>
+        </div>
+        <div class="col-md-7 form-text">
+            <ng-container *ngIf="this.isEditable; else SmokingAreaData">
+                <input pInputText type="text" required name="SmokingRiskAssessmentFormData.SmokingArea"
+                    [(ngModel)]="SmokingRiskAssessmentFormData.SmokingArea" class="form-control" />
+                <p class="mb-4">Resident should say unaided, that they would call for help and leave the area</p>
+            </ng-container>
+
+            <ng-template #SmokingAreaData>
+                <label>{{SmokingRiskAssessmentFormData.SmokingArea}}</label>
+            </ng-template>
+        </div>
+        <div class="col-md-1 form-icon ">
+            <i class="fa-solid fa-info"></i>
+        </div>
+        <div class="col-md-4 labelcontent">
+            <p class="mb-4">Note: If resident has fallen asleep more than once while smoking or is unable to answer What
+                would you do
+                if there was an emergency in the smoking room/area? correctly, then resident is a fire risk.</p>
+        </div>
+        <div class="col-md-7 form-text">
+            <ng-container *ngIf="this.isEditable; else FireRiskData">
+                <p-checkbox name="ChkMonthlyReview" [binary]="true" inputId="binary"
+                    [(ngModel)]="SmokingRiskAssessmentFormData.FireRisk"></p-checkbox>
+            </ng-container>
+            <ng-template #FireRiskData>
+                <label>{{SmokingRiskAssessmentFormData.FireRisk==true?'yes':'no'}}</label>
+            </ng-template>
+        </div>
+        <div class="col-md-1 form-icon ">
+            <i class="fa-solid fa-info"></i>
+        </div>
+        <div class="col-md-4 labelcontent">
+            <p>Risk Factors</p>
+        </div>
+        <div class="col-md-7 form-text">
+            <ng-container *ngIf="this.isEditable; else RiskFactorsData">
+                <p-checkbox name="ChkMonthlyReview" [binary]="true" inputId="binary"
+                    [(ngModel)]="SmokingRiskAssessmentFormData.RiskFactors"></p-checkbox>
+            </ng-container>
+            <ng-template #RiskFactorsData>
+                <label>{{SmokingRiskAssessmentFormData.RiskFactors==true?'yes':'no'}}</label>
+            </ng-template>
+        </div>
+        <div class="col-md-1 form-icon ">
+            <i class="fa-solid fa-info"></i>
+        </div>
+        <div class="col-md-4 labelcontent">
+            <p class="mb-4">Are there any physical limitations, which have implications on the resident’s ability to
+                smoke (i.e.
+                arthritis, hand injury, paralysis</p>
+        </div>
+        <div class="col-md-7 form-text">
+            <ng-container *ngIf="this.isEditable; else PhysicalLimitationsData">
+                <input pInputText type="text" required name="SmokingRiskAssessmentFormData.PhysicalLimitations"
+                    [(ngModel)]="SmokingRiskAssessmentFormData.PhysicalLimitations" class="form-control" />
+            </ng-container>
+
+            <ng-template #PhysicalLimitationsData>
+                <label>{{SmokingRiskAssessmentFormData.PhysicalLimitations}}</label>
+            </ng-template>
+        </div>
+
+        <div class="col-md-4 labelcontent">
+            <p class="mb-4">Does the resident use assistive devices that may alter his/her ability to smoke (i.e.
+                splints/neck
+                collar)</p>
+        </div>
+        <div class="col-md-7 form-text">
+            <ng-container *ngIf="this.isEditable; else AssistiveDevicesData">
+                <input pInputText type="text" required name="SmokingRiskAssessmentFormData.AssistiveDevices"
+                    [(ngModel)]="SmokingRiskAssessmentFormData.AssistiveDevices" class="form-control" />
+            </ng-container>
+
+            <ng-template #AssistiveDevicesData>
+                <label>{{SmokingRiskAssessmentFormData.AssistiveDevices}}</label>
+            </ng-template>
+        </div>
+        <div class="col-md-4 labelcontent">
+            <p>Is the resident known to engage in the following unsafe smoking practices</p>
+        </div>
+        <div class="col-md-7 mt-4 form-text">
+            <ng-container *ngIf="this.isEditable; else SmokingPracticesData">
+                <p-dropdown placeholder="--select--" [style]="{ width: '100%' }" [options]="lstSmokingPractices"
+                    optionLabel="optionName" optionValue="optionId"
+                    name="SmokingRiskAssessmentFormData.SmokingPractices"
+                    [(ngModel)]="SmokingRiskAssessmentFormData.SmokingPractices">
+                </p-dropdown>
+            </ng-container>
+            <ng-template #SmokingPracticesData>
+                <label>{{SmokingRiskAssessmentFormData.SmokingPracticesName}}</label>
+            </ng-template>
+        </div>
+        <div class="col-md-4 labelcontent">
+            <p>Is the resident known to attempt to set fires or use ignition materials unsafely</p>
+        </div>
+        <div class="col-md-7 mt-4 form-text">
+            <ng-container *ngIf="this.isEditable; else MaterialsUnsafelyData">
+                <p-dropdown placeholder="--select--" [style]="{ width: '100%' }" [options]="lstMaterialsUnsafely"
+                    optionLabel="optionName" optionValue="optionId"
+                    name="SmokingRiskAssessmentFormData.MaterialsUnsafely"
+                    [(ngModel)]="SmokingRiskAssessmentFormData.MaterialsUnsafely">
+                </p-dropdown>
+            </ng-container>
+            <ng-template #MaterialsUnsafelyData>
+                <label>{{SmokingRiskAssessmentFormData.MaterialsUnsafelyName}}</label>
+            </ng-template>
+        </div>
+        <div class="col-md-4 labelcontent">
+            <p>Does the resident have a history of falling asleep while seated</p>
+        </div>
+        <div class="col-md-7 mt-4 form-text">
+            <ng-container *ngIf="this.isEditable; else HistoryOfFallingData">
+                <p-dropdown placeholder="--select--" [style]="{ width: '100%' }" [options]="lstHistoryOfFalling"
+                    optionLabel="optionName" optionValue="optionId"
+                    name="SmokingRiskAssessmentFormData.HistoryOfFalling"
+                    [(ngModel)]="SmokingRiskAssessmentFormData.HistoryOfFalling">
+                </p-dropdown>
+            </ng-container>
+            <ng-template #HistoryOfFallingData>
+                <label>{{SmokingRiskAssessmentFormData.HistoryOfFallingName}}</label>
+            </ng-template>
+        </div>
+        <div class="col-md-4 labelcontent">
+            <p class="mb-4">Does the resident take any medication which could affect his/her ability to smoke safely
+                (e.g. cause
+                drowsiness)</p>
+        </div>
+        <div class="col-md-7 form-text">
+            <ng-container *ngIf="this.isEditable; else AnyMedicationData">
+                <input pInputText type="text" required name="SmokingRiskAssessmentFormData.AnyMedication"
+                    [(ngModel)]="SmokingRiskAssessmentFormData.AnyMedication" class="form-control" />
+            </ng-container>
+
+            <ng-template #AnyMedicationData>
+                <label>{{SmokingRiskAssessmentFormData.AnyMedicationData}}</label>
+            </ng-template>
+        </div>
+        <div class="col-md-4 labelcontent">
+            <p>Is the resident incontinent</p>
+        </div>
+        <div class="col-md-7 mt-4 form-text">
+            <ng-container *ngIf="this.isEditable; else ResidentIncontinentData">
+                <p-dropdown placeholder="--select--" [style]="{ width: '100%' }" [options]="lstResidentIncontinent"
+                    optionLabel="optionName" optionValue="optionId"
+                    name="SmokingRiskAssessmentFormData.ResidentIncontinent"
+                    [(ngModel)]="SmokingRiskAssessmentFormData.ResidentIncontinent">
+                </p-dropdown>
+            </ng-container>
+            <ng-template #ResidentIncontinentData>
+                <label>{{SmokingRiskAssessmentFormData.ResidentIncontinentName}}</label>
+            </ng-template>
+        </div>
+        <div class="col-md-4 labelcontent">
+            <p class="mb-4">If YES to any of the above: The resident is a fire risk and not safe to smoke independently.
+                If it
+                appears the resident is safe to smoke independently an observation must be done as follows</p>
+        </div>
+        <div class="col-md-7 form-text">
+            <ng-container *ngIf="this.isEditable; else SafeSmokeIndependentlyData">
+                <p-checkbox name="ChkMonthlyReview" [binary]="true" inputId="binary"
+                    [(ngModel)]="SmokingRiskAssessmentFormData.SafeSmokeIndependently"></p-checkbox>
+            </ng-container>
+            <ng-template #SafeSmokeIndependentlyData>
+                <label>{{SmokingRiskAssessmentFormData.SafeSmokeIndependently==true?'yes':'no'}}</label>
+            </ng-template>
+        </div>
+        <div class="col-md-4 labelcontent">
+            <p>Direct Observation</p>
+        </div>
+        <div class="col-md-7 form-text">
+            <ng-container *ngIf="this.isEditable; else DirectObservationData">
+                <p-checkbox name="ChkMonthlyReview" [binary]="true" inputId="binary"
+                    [(ngModel)]="SmokingRiskAssessmentFormData.DirectObservation"></p-checkbox>
+            </ng-container>
+            <ng-template #DirectObservationData>
+                <label>{{SmokingRiskAssessmentFormData.DirectObservation==true?'yes':'no'}}</label>
+            </ng-template>
+        </div>
+        <div class="col-md-4 labelcontent">
+            <p>Can the resident get to the smoking room</p>
+        </div>
+        <div class="col-md-7 mt-4 form-text">
+            <ng-container *ngIf="this.isEditable; else SmokingRoomData">
+                <p-dropdown placeholder="--select--" [style]="{ width: '100%' }" [options]="lstSmokingRoom"
+                    optionLabel="optionName" optionValue="optionId" name="SmokingRiskAssessmentFormData.SmokingRoom"
+                    [(ngModel)]="SmokingRiskAssessmentFormData.SmokingRoom">
+                </p-dropdown>
+            </ng-container>
+            <ng-template #SmokingRoomData>
+                <label>{{SmokingRiskAssessmentFormData.SmokingRoomName}}</label>
+            </ng-template>
+        </div>
+        <div class="col-md-4 labelcontent">
+            <p>Can the resident obtain cigarettes and lighter</p>
+        </div>
+        <div class="col-md-7 mt-4 form-text">
+            <ng-container *ngIf="this.isEditable; else CigarettesAndLighterData">
+                <p-dropdown placeholder="--select--" [style]="{ width: '100%' }" [options]="lstCigarettesAndLighter"
+                    optionLabel="optionName" optionValue="optionId" name="CareWishesFormsData.CigarettesAndLighter"
+                    [(ngModel)]="SmokingRiskAssessmentFormData.CigarettesAndLighter">
+                </p-dropdown>
+            </ng-container>
+            <ng-template #CigarettesAndLighterData>
+                <label>{{SmokingRiskAssessmentFormData.CigarettesAndLighterName}}</label>
+            </ng-template>
+        </div>
+        <div class="col-md-4 labelcontent">
+            <p>Can the resident access an ashtray</p>
+        </div>
+        <div class="col-md-7 mt-4 form-text">
+            <ng-container *ngIf="this.isEditable; else AccessAnAshtrayData">
+                <p-dropdown placeholder="--select--" [style]="{ width: '100%' }" [options]="lstAccessAnAshtray"
+                    optionLabel="optionName" optionValue="optionId" name="SmokingRiskAssessmentFormData.AccessAnAshtray"
+                    [(ngModel)]="SmokingRiskAssessmentFormData.AccessAnAshtray">
+                </p-dropdown>
+            </ng-container>
+            <ng-template #AccessAnAshtrayData>
+                <label>{{SmokingRiskAssessmentFormData.AccessAnAshtrayName}}</label>
+            </ng-template>
+        </div>
+        <div class="col-md-4 labelcontent">
+            <p>Can the resident light a cigarette</p>
+        </div>
+        <div class="col-md-7 mt-4 form-text">
+            <ng-container *ngIf="this.isEditable; else LightACigaretteData">
+                <p-dropdown placeholder="--select--" [style]="{ width: '100%' }" [options]="lstLightACigarette"
+                    optionLabel="optionName" optionValue="optionId" name="SmokingRiskAssessmentFormData.LightACigarette"
+                    [(ngModel)]="SmokingRiskAssessmentFormData.LightACigarette">
+                </p-dropdown>
+            </ng-container>
+            <ng-template #LightACigaretteData>
+                <label>{{SmokingRiskAssessmentFormData.LightACigaretteName}}</label>
+            </ng-template>
+        </div>
+        <div class="col-md-4 labelcontent">
+            <p>Can the resident hold a cigarette securely</p>
+        </div>
+        <div class="col-md-7 mt-4 form-text">
+            <ng-container *ngIf="this.isEditable; else CigaretteSecurelyData">
+                <p-dropdown placeholder="--select--" [style]="{ width: '100%' }" [options]="lstCigaretteSecurely"
+                    optionLabel="optionName" optionValue="optionId"
+                    name="SmokingRiskAssessmentFormData.CigaretteSecurely"
+                    [(ngModel)]="SmokingRiskAssessmentFormData.CigaretteSecurely">
+                </p-dropdown>
+            </ng-container>
+            <ng-template #CigaretteSecurelyData>
+                <label>{{SmokingRiskAssessmentFormData.CigaretteSecurelyName}}</label>
+            </ng-template>
+        </div>
+        <div class="col-md-4 labelcontent">
+            <p>Can the resident dispose of ashes in ashtray</p>
+        </div>
+        <div class="col-md-7 mt-4 form-text">
+            <ng-container *ngIf="this.isEditable; else AshesInAshtrayData">
+                <p-dropdown placeholder="--select--" [style]="{ width: '100%' }" [options]="lstAshesInAshtray"
+                    optionLabel="optionName" optionValue="optionId" name="SmokingRiskAssessmentFormData.AshesInAshtray"
+                    [(ngModel)]="SmokingRiskAssessmentFormData.AshesInAshtray">
+                </p-dropdown>
+            </ng-container>
+            <ng-template #AshesInAshtrayData>
+                <label>{{SmokingRiskAssessmentFormData.AshesInAshtrayName}}</label>
+            </ng-template>
+        </div>
+        <div class="col-md-4 labelcontent">
+            <p>Can the resident put out a cigarette</p>
+        </div>
+        <div class="col-md-7 mt-4 form-text">
+            <ng-container *ngIf="this.isEditable; else PutOutCigaretteData">
+                <p-dropdown placeholder="--select--" [style]="{ width: '100%' }" [options]="lstPutOutCigarette"
+                    optionLabel="optionName" optionValue="optionId" name="SmokingRiskAssessmentFormData.PutOutCigarette"
+                    [(ngModel)]="SmokingRiskAssessmentFormData.PutOutCigarette">
+                </p-dropdown>
+            </ng-container>
+            <ng-template #PutOutCigaretteData>
+                <label>{{SmokingRiskAssessmentFormData.PutOutCigaretteName}}</label>
+            </ng-template>
+        </div>
+        <div class="col-md-4 labelcontent">
+            <p>Is the resident able to call for emergency assistance</p>
+        </div>
+        <div class="col-md-7 mt-4 form-text">
+            <ng-container *ngIf="this.isEditable; else EmergencyAssistanceData">
+                <p-dropdown placeholder="--select--" [style]="{ width: '100%' }" [options]="lstEmergencyAssistance"
+                    optionLabel="optionName" optionValue="optionId" name="CareWishesFormsData.EmergencyAssistance"
+                    [(ngModel)]="SmokingRiskAssessmentFormData.EmergencyAssistance">
+                </p-dropdown>
+            </ng-container>
+            <ng-template #EmergencyAssistanceData>
+                <label>{{SmokingRiskAssessmentFormData.EmergencyAssistance}}</label>
+            </ng-template>
+        </div>
+        <div class="col-md-4 labelcontent">
+            <p>If NO to any of the above, resident is a fire risk and not safe to smoke independently</p>
+        </div>
+        <div class="col-md-7 form-text">
+            <ng-container *ngIf="this.isEditable; else NotSafeToSmokeData">
+                <p-checkbox name="ChkMonthlyReview" [binary]="true" inputId="binary"
+                    [(ngModel)]="SmokingRiskAssessmentFormData.NotSafeToSmoke"></p-checkbox>
+            </ng-container>
+            <ng-template #NotSafeToSmokeData>
+                <label>{{SmokingRiskAssessmentFormData.NotSafeToSmoke==true?'yes':'no'}}</label>
+            </ng-template>
+        </div>
+        <div class="col-md-4 ">
+            <div class="labelcontent">
+                <p>Date for review </p>
+            </div>
+        </div>
+        <div class="col-md-7 form-text">
+            <div class="input-group date">
+                <ng-container *ngIf="this.isEditable; else ReviewDateData">
+                    <p-calendar name="DateOfBirth" [showIcon]="true" inputId="icon" [dateFormat]="" class="iconcal"
+                        appendTo="body" #dobref="" [(ngModel)]="SmokingRiskAssessmentFormData.ReviewDate"
+                        [maxDate]=""></p-calendar>
+                    <div *ngIf="" class="alert alert-danger">
+                    </div>
+                </ng-container>
+                <ng-template #ReviewDateData>
+                    <label>{{SmokingRiskAssessmentFormData.ReviewDate | date}}</label>
+                </ng-template>
+            </div>
+
+        </div>
+        <div class="d-flex justify-content-end">
+            <ng-container *ngIf="isEditable; else savePdf">
+                <div>
+                    <span class="p-ml-left mr-4">
+                        <button pButton title="New" label="Save as Unfinished" (click)="saveAsUnfinished()"></button>
+                        <span class="total-txt"></span>
+                    </span>
+                </div>
+                <div>
+                    <span class="p-ml-left mr-4">
+                        <button pButton title="New" label="Complete" (click)="completeForm()" [disabled]="
+                                SmokingRiskAssessmentFormData.IsFormCompleted
+                            "></button>
+                        <span class="total-txt"></span>
+                    </span>
+                </div>
+            </ng-container>
+            <ng-template #savePdf>
+                <button pButton title="Save as PDF" label="Save as PDF" (click)="SaveAsPDF()"></button>
+            </ng-template>
+        </div>
+    </div>
+</div>

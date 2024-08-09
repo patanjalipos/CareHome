@@ -1,0 +1,158 @@
+<div *ngIf="mode==null"> 
+    <div class="card">
+        <p-table #dt [value]="lstMaster" responsiveLayout="scroll" styleClass="p-datatable-striped" [rowHover]="true"
+            [globalFilterFields]="[]" [scrollable]="true" scrollHeight="calc(100vh - 155px)">
+            <ng-template pTemplate="caption">
+                <div class="flex justify-content-between flex-column sm:flex-row">
+                    <span class="p-ml-left">
+                        <button pButton title="New" label="Add New" class="p-button-outlined mr-2" icon="pi pi-plus"
+                            (click)="AddNewItem()"></button>
+                        <span class="total-txt">
+                            {{lstMaster?.length>0?'Total Records:
+                            '+filteredValuesLength:''}} </span>
+                    </span>
+                    <span class="p-ml-auto">                        
+                        
+                    </span>
+                </div>
+            </ng-template>
+            <ng-template pTemplate="emptymessage" let-columns>
+                <tr>
+                    <td [attr.colspan]="columns?.length">
+                        No records found
+                    </td>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="header">
+                <tr>
+                    <th pSortableColumn="FullName">Resident <p-sortIcon field="FullName"></p-sortIcon></th>
+                    <th>Caption</th>
+                    <th>Updated</th>
+                    <th>Tags</th>
+                    <th>Action</th>
+                </tr>
+                <tr>
+                    <th>
+                        <input pInputText type="text" class="form-control mr-1 mb-0" name="txtsearchName"
+                            (change)="GetResidentDocumentsDetails()" [(ngModel)]="SearchName">
+                    </th>
+                    <th>
+                    </th>
+    
+                    <th>
+                        <div class="input-group date">
+                            <p-calendar #cal1 appendTo="body" selectionMode="range" [(ngModel)]="RegrangeDates"
+                                [ngModelOptions]="{standalone: true}" [showIcon]="true" inputId="icon"
+                                [dateFormat]="customDateFormat.CalendarFormat" class="iconcal"
+                                [readonlyInput]="true" (onSelect)="RegdateRangeChange(cal1)"
+                                (onClearClick)="GetResidentDocumentsDetails()" [showButtonBar]="true"></p-calendar>
+                        </div>
+                    </th>                    
+                    <th >
+                        <p-dropdown appendTo="body" name="groupedResidentTag1" [options]="groupedResidentTag" [(ngModel)]="SearchResidentTag" [group]="true" [filter]="true" placeholder="-Select-" [style]="{width: '100%'}" [showClear]="true" (onClear)="GetResidentDocumentsDetails()" (onChange)="GetResidentDocumentsDetails()">
+                            <ng-template let-group pTemplate="group">
+                                <div class="p-d-flex p-ai-center">
+                                    <span>{{ group.label }}</span>
+                                </div>
+                            </ng-template>
+                        </p-dropdown>
+                    </th>
+                    <th style="width:62px !important">
+                        <button pButton title="Clear" label="" class="p-button-outlined" icon="pi pi-filter-slash"
+                            (click)="ClearFilter()"></button>
+                    </th>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-dt let-i="rowIndex">
+                <tr>
+                    <td>{{dt.FullName}}</td>
+                    <td><i class="pi pi-download mr-2" (click)="DownloadFile(dt.ResidentFile)"></i> {{dt.Caption}}</td>
+                    <td>{{dt.ModifiedOn | date:customDateFormat.DEF_DATE_TIME}}</td>
+                    <td>{{dt.Tag}}</td>
+                    <td>
+                        <a title="View/Edit" (click)="GetResidentDocumentsDetailsId(dt.ResidentDocumentsDetailsId)">
+                            <i class="fa fa-eye" aria-hidden="true"></i>
+                        </a>
+                    </td>
+                </tr>
+            </ng-template>
+        </p-table>
+    </div>
+
+</div>
+<div *ngIf="mode!=null">
+    <form #myForm="ngForm">
+        <div class="card">
+            <div class="row">
+                <div class="col-md-3">
+                    <label class="form-label">Resident <span class="required">*</span></label>
+                    <p-dropdown name="ddlResident" [options]="lstResidentMaster" [(ngModel)]="master.UserId"
+                        [disabled]="mode=='Edit'" optionLabel="FullName" optionValue="UserId"
+                        [filter]="true" placeholder="-Select-" [style]="{width: '100%'}">
+                    </p-dropdown>
+                </div>
+                <div class="col-md-3">
+                    <label class="form-label">Caption <span class="required">*</span></label>
+                    <input pInputText type="text" required name="caption" [(ngModel)]="master.Caption"
+                        class="form-control" />
+
+                </div>
+                <div class="col-md-3">
+                    <label class="form-label">Select a tag <span class="required">*</span></label>
+                    <p-dropdown name="groupedResidentTag2" [options]="groupedResidentTag" [(ngModel)]="master.ResidentTagDetailsMasterId" [group]="true" [filter]="true" placeholder="-Select-" [style]="{width: '100%'}">
+                        <ng-template let-group pTemplate="group">
+                            <div class="p-d-flex p-ai-center">
+                                <span>{{ group.label }}</span>
+                            </div>
+                        </ng-template>
+                    </p-dropdown>
+                    <!-- <p-dropdown name="ddlResident" [options]="lstResidentTag" [(ngModel)]="master.ResidentTagDetailsMasterId"
+                        [disabled]="mode=='Edit'" optionLabel="ResidentTagDetailsName" optionValue="ResidentTagDetailsMasterId"
+                        [filter]="true" placeholder="-Select-" [style]="{width: '100%'}">
+                    </p-dropdown> -->
+                </div>
+                <div class="row" *ngIf="mode=='Add' || mode=='Edit'">
+                    <div class="col-md-12"
+                        *ngIf="(master.ResidentFile==null || master.ResidentFile==undefined || master.ResidentFile=='')">
+                        <label class="form-label">File</label>
+                        <p-fileUpload name="file[]" [showUploadButton]="false" accept="image/*"
+                            [multiple]="true" [maxFileSize]="1000000" (onSelect)="fileUploader($event)"
+                            (onClear)="fileUploaderReset();"
+                            (onRemove)="fileUploaderReset();"></p-fileUpload>
+                    </div>
+                </div>
+                <div class="row m-0">
+                    <div class="col-md-12 border p-2 bdr6"
+                        *ngIf="(master.ResidentFile!=null && master.ResidentFile!=undefined && master.ResidentFile!='')">
+                        <div class="wd-30">
+                        <i class="pi pi-download mr-2" (click)="DownloadFile(master.ResidentFile)"></i>
+                    </div> <div class="wd-50">
+                            <label class="form-label">Resident File</label>
+                        </div>
+                        <div class="wd-20" *ngIf="mode=='Add' || mode=='Edit'">
+                            <i title="Remove File" (click)="RemoveResidentFile()"
+                                class="fa fa-times removeicon p-button" aria-hidden="true"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <label class="form-label">Description</label>
+                    <input pInputText type="text"  name="Description" [(ngModel)]="master.Description"
+                        class="form-control" />
+
+                </div>              
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <div class="flex flex-wrap gap-2">
+                        <!-- [disabled]="!myForm.form.valid" -->
+                        <button pButton type="button" label="Submit" (click)="Save()" class="btn-primary"
+                            ></button>
+                        <button pButton type="button" label="Close" class="btn-secondary"
+                            (click)="Close()"></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

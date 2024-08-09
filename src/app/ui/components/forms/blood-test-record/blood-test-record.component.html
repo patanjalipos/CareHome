@@ -1,0 +1,178 @@
+<div class="card">
+    <div class="row">
+
+        <div class="formheader">
+            <div class="d-flex">
+                <div class="col-md-4">
+                    <label class="form-label"
+                        ><b> Started by (Name) :</b>
+                        {{ preSelectedFormData.StartedBy }}
+                    </label>
+                </div>
+                <div class="col-md-4">
+                    <label class="form-label"><b>Designation :</b> </label>
+                    {{ preSelectedFormData.StartedByDesignation }}
+                </div>
+                <div class="col-md-4">
+                    <label class="form-label"> <b>Date/Time : </b></label>
+                    {{
+                        preSelectedFormData.StartedOn
+                            | date : customDateFormat.DEF_DATE_TIME
+                    }}
+                </div>
+            </div>
+            <div class="d-flex">
+                <div class="col-md-4">
+                    <label class="form-label">
+                        <b>Last entered by (Name) :</b></label
+                    >
+                    {{ preSelectedFormData.ModifiedBy }}
+                </div>
+                <div class="col-md-4">
+                    <label class="form-label"> <b>Designation :</b></label>
+                    {{ preSelectedFormData.ModifiedByDesignation }}
+                </div>
+                <div class="col-md-4">
+                    <label class="form-label"> <b>Date/Time :</b> </label>
+                    {{
+                        preSelectedFormData.ModifiedOn
+                            | date : customDateFormat.DEF_DATE_TIME
+                    }}
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4 mt-4 labelcontent">
+            <div class="labelcontent">
+                <p>Reason for Blood Test</p>
+            </div>
+        </div>
+        <div class="col-md-8 mt-4 form-text">
+            <ng-container *ngIf="isEditable; else ReasonView">
+                <input
+                    pInputText
+                    type="text"
+                    required
+                    name="reasonForBloodTest"
+                    class="form-control"
+                    [(ngModel)]="BloodTestFormData.ReasonForBloodTest"
+                />
+            </ng-container>
+            <ng-template #ReasonView>
+                <div>{{ BloodTestFormData.ReasonForBloodTest }}</div>
+            </ng-template>
+        </div>
+
+        <div class="col-md-4">
+            <div class="labelcontent">
+                <p>Date Taken</p>
+            </div>
+        </div>
+        <div class="col-md-8">
+            <ng-container *ngIf="isEditable; else DateTakenView">
+                <div class="input-group date">
+                    <p-calendar
+                        name="DateTaken"
+                        [showIcon]="true"
+                        inputId="icon"
+                        [(ngModel)]="BloodTestFormData.DateTaken"
+                        [dateFormat]="'yy-mm-dd'"
+                        class="iconcal"
+                        [readonlyInput]="true"
+                        appendTo="body"
+                        [maxDate]=""
+                    ></p-calendar>
+                    <div *ngIf="!isEditable" class="alert alert-danger"></div>
+                </div>
+            </ng-container>
+            <ng-template #DateTakenView>
+                <div>
+                    {{
+                        BloodTestFormData.DateTaken
+                            | date : customDateFormat.DEF_DATE
+                    }}
+                </div>
+            </ng-template>
+        </div>
+
+        <div class="col-md-4 labelcontent">
+            <div class="labelcontent">
+                <p>Result</p>
+            </div>
+        </div>
+        <div class="col-md-8 form-text">
+            <ng-container *ngIf="isEditable; else ResultView">
+                <input
+                    pInputText
+                    type="text"
+                    required
+                    name="bloodTestResult"
+                    class="form-control"
+                    [(ngModel)]="BloodTestFormData.Result"
+                />
+            </ng-container>
+            <ng-template #ResultView>
+                <div>{{ BloodTestFormData.Result }}</div>
+            </ng-template>
+        </div>
+
+        <div class="col-md-4 labelcontent">
+            <div class="labelcontent">
+                <p>Actions</p>
+            </div>
+        </div>
+        <div class="col-md-8 form-text">
+            <ng-container *ngIf="isEditable; else ActionsView">
+                <input
+                    pInputText
+                    type="text"
+                    required
+                    name="bloodTestActions"
+                    class="form-control"
+                    [(ngModel)]="BloodTestFormData.Actions"
+                />
+            </ng-container>
+            <ng-template #ActionsView>
+                <div>{{ BloodTestFormData.Actions }}</div>
+                <p class="mb-4">Follow up actions required</p>
+            </ng-template>
+        </div>
+        
+
+        <div class="d-flex justify-content-end">
+            <ng-container *ngIf="isEditable; else savePdf">
+                <div>
+                    <span class="p-ml-left mr-4">
+                        <button
+                            pButton
+                            title="New"
+                            label="Save as Unfinished"
+                            (click)="saveAsUnfinished()"
+                        ></button>
+                        <span class="total-txt"></span>
+                    </span>
+                </div>
+                <div>
+                    <span class="p-ml-left mr-4">
+                        <button
+                            pButton
+                            title="New"
+                            label="Complete"
+                            (click)="completeForm()"
+                            [disabled]="BloodTestFormData.IsFormCompleted"
+                        ></button>
+                        <span class="total-txt"></span>
+                    </span>
+                </div>
+            </ng-container>
+            <ng-template #savePdf>
+                <button
+                    pButton
+                    title="Save as PDF"
+                    label="Save as PDF"
+                    (click)="SaveAsPDF()"
+                ></button>
+            </ng-template>
+        </div>
+    </div>
+</div>

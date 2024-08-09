@@ -21,6 +21,7 @@ import { TriStateCheckboxModule } from 'primeng/tristatecheckbox';
     DropdownModule,
     FormsModule,
     TriStateCheckboxModule
-  ]
+  ],
+  exports:[CarePersonalEmergencyEvacuationPlanComponent]
 })
 export class CarePersonalEmergencyEvacuationPlanModule { }

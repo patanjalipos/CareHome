@@ -10,9 +10,7 @@ import { ResidentLayoutComponent } from './layout/resident.layout.component';
             {
                 path: '', component: AppLayoutComponent,
                 children: [
-                    //{ path: '', loadChildren: () => import('./ui/components/dashboard/dashboard.module').then(m => m.DashboardModule) },
-                    // { path: 'uikit', loadChildren: () => import('./ui/components/uikit/uikit.module').then(m => m.UIkitModule) },
-                    // { path: 'utilities', loadChildren: () => import('./ui/components/utilities/utilities.module').then(m => m.UtilitiesModule) },
+                   
                     { path: '', loadChildren: () => import('./ui/components/admin-dashboard/admin-dashboard.module').then(m => m.AdminDashboardModule) },
                     { path: 'uicare', loadChildren: () => import('./ui/components/uicare/uicare.module').then(m => m.UicareModule) },
                     { path: 'master', loadChildren: () => import('./ui/components/master/master.module').then(m => m.MasterModule) },
@@ -20,10 +18,11 @@ import { ResidentLayoutComponent } from './layout/resident.layout.component';
                     { path: 'resident-list', loadChildren: () => import('./ui/components/resident-list/resident-list.module').then(m => m.ResidentListModule) }, 
                     { path: 'task-planner', loadChildren: () => import('./ui/components/task-planner/task-planner.module').then(m => m.TaskPlannerModule) }, 
                     { path: 'activity', loadChildren: () => import('./ui/components/activity/activity.module').then(m => m.ActivityModule) }, 
+                    { path: 'documentation', loadChildren: () => import('./ui/components/documentation/documentation.module').then(m => m.DocumentationModule) },
                     { path: 'report', loadChildren: () => import('./ui/components/report/report.module').then(m => m.ReportModule) },
-                    // { path: 'resident', loadChildren: () => import('./ui/components/resident/resident.module').then(m => m.ResidentModule) },
-                    // { path: 'clinical', loadChildren: () => import('./ui/components/clinical/clinical.module').then(m => m.ClinicalModule) },
-                    // { path: 'contacts', loadChildren: () => import('./ui/components/contacts/contacts.module').then(m => m.ContactsModule) }
+                    { path: 'change-password', loadChildren: () => import('./ui/components/change-password/change-password.module').then(m => m.ChangePasswordModule) },                   
+                    { path: 'my-profile', loadChildren: () => import('./ui/components/my-profile/my-profile.module').then(m => m.MyProfileModule) },  
+                 
                 ]
             },
             {

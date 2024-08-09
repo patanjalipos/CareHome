@@ -21,7 +21,11 @@ export class AlertMasterComponent extends AppComponentBase implements OnInit {
   public master: any = <any>{};
   filteredValuesLength:number=0;
   stlststatus: any[]=[];
-  
+  ComponentName: string = 'AlertMaster';
+  isAlertMaster:Boolean=false;
+  isAlertHeadMaster:Boolean=false;
+  filteritems:any[]=[];
+
   constructor(
     private _ConstantServices: ConstantsService,
     private _MasterServices:MasterService,
@@ -36,12 +40,18 @@ export class AlertMasterComponent extends AppComponentBase implements OnInit {
     ];    
   } 
   ngOnInit(): void {
-   this.GetAlertHeadMaster();
-   this.GetAlertMaster();        
+    this.GetAlertMaster(); 
+   this.GetAlertHeadMaster();         
   }
   GetAlertHeadMaster() {
+    let importData: any = <any>{};
+    if(this.isAlertHeadMaster==true && this.filteritems !=null && this.filteritems !=undefined)
+      {       
+        importData.SearchList=this.filteritems;
+      } 
+      importData.StatusType=true;      
     this._UtilityService.showSpinner();   
-    this.unsubscribe.add = this._MasterServices.GetAlertHeadMaster(true)
+    this.unsubscribe.add = this._MasterServices.GetAlertHeadMaster(importData)
       .subscribe({
         next:(data) => {
           this._UtilityService.hideSpinner();          
@@ -61,8 +71,14 @@ export class AlertMasterComponent extends AppComponentBase implements OnInit {
       });
   }   
   GetAlertMaster() {
+    let importData: any = <any>{};
+    if(this.isAlertMaster==true && this.filteritems !=null && this.filteritems !=undefined)
+      {       
+        importData.SearchList=this.filteritems;
+      }   
+        importData.StatusType=false;      
     this._UtilityService.showSpinner();   
-    this.unsubscribe.add = this._MasterServices.GetAlertMaster(false)
+    this.unsubscribe.add = this._MasterServices.GetAlertMaster(importData)
       .subscribe({
         next:(data) => {
           this._UtilityService.hideSpinner();          
@@ -75,7 +91,7 @@ export class AlertMasterComponent extends AppComponentBase implements OnInit {
               this.dataTable.reset();
               this.filteredValuesLength = this.lstMaster?.length;
               }            
-          //  console.log(this.lstmaster);
+  
           }
           else {
             this.lstMaster = [];            
@@ -157,4 +173,12 @@ export class AlertMasterComponent extends AppComponentBase implements OnInit {
   onGlobalFilter(table: Table, event: Event) {
     table.filterGlobal((event.target as HTMLInputElement).value, 'contains');
   }
+
+  ShowFilters() {
+    this.isAlertMaster =!this.isAlertMaster;
+  }
+  GetAlertMasterFilterData($event) {
+    this.filteritems=$event;   
+     this.GetAlertMaster(); 
+   }
 }

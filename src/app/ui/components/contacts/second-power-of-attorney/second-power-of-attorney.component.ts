@@ -3,6 +3,7 @@ import { ConstantsService, CustomDateFormat, UserTypes } from 'src/app/ui/servic
 import { UtilityService } from 'src/app/utility/utility.service';
 import { AppComponentBase } from 'src/app/app-component-base';
 import { MasterService } from 'src/app/ui/service/master.service';
+import { UserService } from 'src/app/ui/service/user.service';
 
 @Component({
   selector: 'app-second-power-of-attorney',
@@ -20,6 +21,7 @@ export class SecondPowerOfAttorneyComponent extends AppComponentBase implements 
   constructor(private _ConstantServices: ConstantsService,
     private _MasterServices: MasterService,
     private _UtilityService: UtilityService,
+    private _UserServices:UserService
   ) {
     super();
   }
@@ -38,7 +40,9 @@ export class SecondPowerOfAttorneyComponent extends AppComponentBase implements 
   }
 
   GetAttorneyTypeMaster() {
-    this.unsubscribe.add = this._MasterServices.GetAttorneyTypeMaster(true).subscribe({
+    let importData: any = <any>{};   
+    importData.StatusType=true;
+    this.unsubscribe.add = this._MasterServices.GetAttorneyTypeMaster(importData).subscribe({
       next: (data) => {
         if (data.actionResult.success == true) {
           var tdata = JSON.parse(data.actionResult.result);
@@ -68,7 +72,7 @@ export class SecondPowerOfAttorneyComponent extends AppComponentBase implements 
   GetContactSecondAttorneyById(admissionid) {
     this.Contact.statementtype = "Insert";
     this._UtilityService.showSpinner();   
-    this.unsubscribe.add = this._MasterServices.GetContactSecondAttorneyById(admissionid)  
+    this.unsubscribe.add = this._UserServices.GetContactSecondAttorneyById(admissionid)  
       .subscribe({
         next:(data) => {
           this._UtilityService.hideSpinner();          
@@ -76,7 +80,7 @@ export class SecondPowerOfAttorneyComponent extends AppComponentBase implements 
             var tdata = JSON.parse(data.actionResult.result);
             tdata = tdata ? tdata : [];
             this.Contact = tdata;       
-            //console.log('this.Contact', this.Contact);     
+           
             this.Contact.statementtype = "Update";
           }
         },
@@ -94,7 +98,7 @@ export class SecondPowerOfAttorneyComponent extends AppComponentBase implements 
       this.Contact.ModifiedBy = localStorage.getItem('userId');
       this.Contact.Telephone = this.Contact.Telephone?.toString() || null;     
       this._UtilityService.showSpinner();
-      this.unsubscribe.add = this._MasterServices.AddInsertUpdateContactSecondAttorney(this.Contact)
+      this.unsubscribe.add = this._UserServices.AddInsertUpdateContactSecondAttorney(this.Contact)
         .subscribe
         ({
           next: (data) => {

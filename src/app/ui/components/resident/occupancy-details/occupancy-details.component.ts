@@ -65,8 +65,10 @@ export class OccupancyDetailsComponent extends AppComponentBase implements OnIni
   }
 
   LoadHomeMaster() {
+    let importData: any = <any>{};   
+      importData.StatusType=true;
     this._UtilityService.showSpinner();
-    this.unsubscribe.add = this._MasterServices.GetHomeMaster(true)
+    this.unsubscribe.add = this._MasterServices.GetHomeMaster(importData)
       .subscribe
       ({
         next:(data) => {
@@ -75,7 +77,7 @@ export class OccupancyDetailsComponent extends AppComponentBase implements OnIni
             var tdata = JSON.parse(data.actionResult.result);
             tdata = tdata ? tdata : [];
             this.lstHomeMaster = tdata;  
-            console.log('lstHomeMaster',this.lstHomeMaster)          
+                 
           }
           else {
             this.lstHomeMaster = [];            
@@ -129,7 +131,7 @@ export class OccupancyDetailsComponent extends AppComponentBase implements OnIni
     if (this.userid != null && this.admissionid != null) {
       this.mode='edit';
       this.GetResidentOccupancyById(this.admissionid);  
-      console.log(this.userid, this.admissionid);    
+      
     }
     else
     {

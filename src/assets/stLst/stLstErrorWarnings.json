@@ -1,0 +1,120 @@
+{
+    "Warnings": {
+        "Common": {
+            "DetailMissMessage": "Details are missing"
+        },
+        "Components": {
+            "Charts": [
+                {
+                    "ChartName": "Activities Chart",
+                    "ChartId": "65b8e9b70d77d0a4c616b8e2"
+                },
+                {
+                    "ChartName": "ADL Chart",
+                    "ChartId": "6642f13bb33c8394db706069"
+                },
+                {
+                    "ChartName": "Weight Chart",
+                    "ChartId": "6642f401b33c8394db706081"
+                },
+                {
+                    "ChartName": "Behaviour Chart",
+                    "ChartId": "6642f15db33c8394db70606a"
+                },
+                {
+                    "ChartName": "Blood Pressure Chart",
+                    "ChartId": "6642f195b33c8394db70606c"
+                },
+                {
+                    "ChartName": "Blood Glucose Chart",
+                    "ChartId": "6642f174b33c8394db70606b"
+                },
+                {
+                    "ChartName": "Bowel Chart",
+                    "ChartId": "6642f1adb33c8394db70606d"
+                },
+                {
+                    "ChartName": "Enteral Feeding Chart",
+                    "ChartId": "6642f1cbb33c8394db70606e"
+                },
+                {
+                    "ChartName": "Fluid Combined Chart",
+                    "ChartId": "6642f1deb33c8394db70606f"
+                },
+                {
+                    "ChartName": "Fluid Intake Chart",
+                    "ChartId": "6642f1f2b33c8394db706070"
+                },
+                {
+                    "ChartName": "Fluid Output Chart",
+                    "ChartId": "6642f229b33c8394db706071"
+                },
+                {
+                    "ChartName": "Infection Chart",
+                    "ChartId": "6642f26cb33c8394db706074"
+                },
+                {
+                    "ChartName": "Glasgow Coma Scale Chart",
+                    "ChartId": "6642f258b33c8394db706073"
+                },
+                {
+                    "ChartName": "MUST Chart",
+                    "ChartId": "6642f27eb33c8394db706075"
+                },
+                {
+                    "ChartName": "NEWS 2 (National Early Warning Score 2) Chart",
+                    "ChartId": "6642f29cb33c8394db706076"
+                },
+                {
+                    "ChartName": "Pain Chart",
+                    "ChartId": "6642f2dfb33c8394db706077"
+                },
+                {
+                    "ChartName": "PainChek Chart",
+                    "ChartId": "6642f2fbb33c8394db706078"
+                },
+                {
+                    "ChartName": "Repositioning Chart",
+                    "ChartId": "6642f32cb33c8394db706079"
+                },
+                {
+                    "ChartName": "Restraint Chart",
+                    "ChartId": "6642f346b33c8394db70607a"
+                },
+                {
+                    "ChartName": "Seizure Chart",
+                    "ChartId": "6642f367b33c8394db70607b"
+                },
+                {
+                    "ChartName": "Sighting Chart",
+                    "ChartId": "6642f385b33c8394db70607d"
+                },
+                {
+                    "ChartName": "Urinary Chart",
+                    "ChartId": "6642f3a7b33c8394db70607e"
+                },
+                {
+                    "ChartName": "Vital Signs Chart",
+                    "ChartId": "6642f3d7b33c8394db70607f"
+                },
+                {
+                    "ChartName": "Waterlow Chart",
+                    "ChartId": "6642f3ebb33c8394db706080"
+                },
+                {
+                    "ChartName": "Weight Chart",
+                    "ChartId": "6642f401b33c8394db706081"
+                },
+                {
+                    "ChartName": "Wound Chart",
+                    "ChartId": "6642f414b33c8394db706082"
+                }
+            ]
+        }
+    },
+    "Errors": [
+        {
+            "SelectionMessage": "Please select an appropriate data"
+        }
+    ]
+}

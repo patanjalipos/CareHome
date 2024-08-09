@@ -21,6 +21,11 @@ export class IndicatorMasterComponent extends AppComponentBase implements OnInit
   public master: any = <any>{};
   filteredValuesLength:number=0;
   stlststatus: any[]=[];
+
+  ComponentName: string = 'IndicatorMaster';
+  isIndicatorMaster:Boolean=false;
+  isIndicatorGroupMaster:Boolean=false;
+  filteritems:any[]=[];
   
   constructor(private _ConstantServices: ConstantsService,
     private _MasterServices:MasterService,
@@ -39,8 +44,14 @@ export class IndicatorMasterComponent extends AppComponentBase implements OnInit
    this.GetIndicatorMaster();        
   }
   GetIndicatorGroupMaster() {
+    let importData: any = <any>{};
+    if(this.isIndicatorGroupMaster==true && this.filteritems !=null && this.filteritems !=undefined)
+      {       
+        importData.SearchList=this.filteritems;
+      } 
+      importData.StatusType=true;
     this._UtilityService.showSpinner();   
-    this.unsubscribe.add = this._MasterServices.GetIndicatorGroupMaster(true)
+    this.unsubscribe.add = this._MasterServices.GetIndicatorGroupMaster(importData)
       .subscribe({
         next:(data) => {
           this._UtilityService.hideSpinner();          
@@ -60,8 +71,15 @@ export class IndicatorMasterComponent extends AppComponentBase implements OnInit
       });
   }   
   GetIndicatorMaster() {
+    let importData: any = <any>{};
+    if(this.isIndicatorMaster==true && this.filteritems !=null && this.filteritems !=undefined)
+      {       
+        importData.SearchList=this.filteritems;
+      }   
+      importData.StatusType=false;  
+      importData.isExcel=false;  
     this._UtilityService.showSpinner();   
-    this.unsubscribe.add = this._MasterServices.GetIndicatorMaster(false)
+    this.unsubscribe.add = this._MasterServices.GetIndicatorMaster(importData)
       .subscribe({
         next:(data) => {
           this._UtilityService.hideSpinner();          
@@ -74,7 +92,7 @@ export class IndicatorMasterComponent extends AppComponentBase implements OnInit
               this.dataTable.reset();
               this.filteredValuesLength = this.lstMaster?.length;
               }            
-          //  console.log(this.lstmaster);
+         
           }
           else {
             this.lstMaster = [];            
@@ -156,4 +174,12 @@ export class IndicatorMasterComponent extends AppComponentBase implements OnInit
   onGlobalFilter(table: Table, event: Event) {
     table.filterGlobal((event.target as HTMLInputElement).value, 'contains');
   }
+
+  ShowFilters() {
+    this.isIndicatorMaster =!this.isIndicatorMaster;
+  }
+  GetIndicatorMasterFilterData($event) {
+    this.filteritems=$event;   
+     this.GetIndicatorMaster(); 
+   }
 }

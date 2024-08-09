@@ -1,0 +1,160 @@
+<div class="card">
+    <div class="row">
+        <div class="formheader">
+            <div class="d-flex">
+                <div class="col-md-4">
+                    <label class="form-label"><b> Started by (Name) :</b>
+                    </label>
+                </div>
+                <div class="col-md-4">
+                    <label class="form-label"><b>Designation :</b> </label>
+                </div>
+                <div class="col-md-4">
+                    <label class="form-label"> <b>Date/Time : </b></label>
+                </div>
+            </div>
+            <div class="d-flex">
+                <div class="col-md-4">
+                    <label class="form-label">
+                        <b>Last entered by (Name) :</b></label>
+                </div>
+                <div class="col-md-4">
+                    <label class="form-label"> <b>Designation :</b></label>
+                </div>
+                <div class="col-md-4">
+                    <label class="form-label"> <b>Date/Time :</b> </label>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 mt-4 labelcontent">
+            <p>Has the wheelchair been assessed for the resident by Westmarc or is it a home provided chair (pool chair)
+            </p>
+        </div>
+        <div class="col-md-7 mt-4 form-text">
+            <input pInputText type="text" required name="chartheadname" class="form-control" />
+            <p class="mb-4">Please incorporate the question into the answer.</p>
+        </div>
+        <div class="col-md-1 mt-4 form-icon">
+            <i class="fa-solid fa-info"></i>
+        </div>
+        <div class="col-md-4 labelcontent">
+            <p>If the wheelchair has been prescribed, who prescribed the chair and does the home have a copy of the
+                assessment</p>
+        </div>
+        <div class="col-md-7  form-text">
+            <input pInputText type="text" required name="chartheadname" class="form-control" />
+            <p class="mb-4">include serial numbers</p>
+        </div>
+        <div class="col-md-4   labelcontent">
+            <p>Is there a copy of assessment at the home</p>
+        </div>
+        <div class="col-md-7  form-text">
+            <p-dropdown placeholder="--select--" [style]="{ width: '100%' }">
+            </p-dropdown>
+        </div>
+        <div class="col-md-4 labelcontent">
+            <p>The risk to the resident using a wheelchair</p>
+        </div>
+        <div class="col-md-7  form-text">
+            <p-dropdown placeholder="--select--" [style]="{ width: '100%' }">
+            </p-dropdown>
+        </div>
+        <div class="col-md-4 labelcontent">
+            <p>Actions to reduce the risk to the resident from using a wheelchair</p>
+        </div>
+        <div class="col-md-7  form-text">
+            <input pInputText type="text" required name="chartheadname" class="form-control" />
+            <p class="mb-4">State where the resident experiences any pain, where the skin is damaged, the reason why
+                foot plates are not used</p>
+        </div>
+        <div class="col-md-4 labelcontent">
+            <p>State the moving and handling procedure for repositioning the resident back into the chair</p>
+        </div>
+        <div class="col-md-7  form-text">
+            <input pInputText type="text" required name="chartheadname" class="form-control" />
+            <p class="mb-4">Refer also to HSE.A14 for moving and handling</p>
+        </div>
+        <div class="col-md-1 form-icon">
+            <i class="fa-solid fa-info"></i>
+        </div>
+        <div class="col-md-4 labelcontent">
+            <p>The risk to the resident using a postural belt</p>
+        </div>
+        <div class="col-md-7  form-text">
+            <p-dropdown placeholder="--select--" [style]="{ width: '100%' }">
+            </p-dropdown>
+
+        </div>
+        <div class="col-md-4   labelcontent">
+            <p>Actions to manage the risk to the resident using a postural belt</p>
+        </div>
+        <div class="col-md-7  form-text">
+            <input pInputText type="text" required name="chartheadname" class="form-control" />
+            <p class="mb-4">Detail precautions required i.e. staff supervision, mandatory checks and belt fitted in
+                accordance with manufacturer's instructions</p>
+        </div>
+        <div class="col-md-4 labelcontent">
+            <p>The wheelchair features</p>
+        </div>
+        <div class="col-md-7  form-text">
+            <p-dropdown placeholder="--select--" [style]="{ width: '100%' }">
+            </p-dropdown>
+        </div>
+        <div class="col-md-4   labelcontent">
+            <p>Actions to manage the risk to the resident using additional features</p>
+        </div>
+        <div class="col-md-7  form-text">
+            <input pInputText type="text" required name="chartheadname" class="form-control" />
+        </div>
+        <div class="col-md-4 labelcontent">
+            <p>The risk of using a wheelchair</p>
+        </div>
+        <div class="col-md-7  form-text">
+            <p-dropdown placeholder="--select--" [style]="{ width: '100%' }">
+            </p-dropdown>
+        </div>
+        <div class="col-md-4 labelcontent">
+            <p>Actions to manage the risk of using a wheelchair</p>
+        </div>
+        <div class="col-md-7  form-text">
+            <input pInputText type="text" required name="chartheadname" class="form-control" />
+            <p class="mb-4">If no manufacturer's instructions available, state further action required, where the
+                battery will be charged</p>
+        </div>
+        <div class="col-md-4   labelcontent">
+            <p class="mb-4">Additional notes in relation to the assessment and any comments from discussions with the
+                resident and or
+                appropriate relatives</p>
+        </div>
+        <div class="col-md-7  form-text">
+            <input pInputText type="text" required name="chartheadname" class="form-control" />
+        </div>
+        <div class="col-md-4 ">
+            <div class="labelcontent">
+                <p>Date for review </p>
+            </div>
+        </div>
+        <div class="col-md-8  ">
+            <div class="input-group date">
+                <p-calendar name="DateOfBirth" [showIcon]="true" inputId="icon" [dateFormat]="" class="iconcal"
+                    [readonlyInput]="true" appendTo="body" [maxDate]="" #dobref=""></p-calendar>
+                <div *ngIf="" class="alert alert-danger">
+                </div>
+            </div>
+        </div>
+        <div class="d-flex justify-content-end">
+            <div>
+                <span class="p-ml-left mr-4">
+                    <button pButton title="New" label="Save as Unfinished"></button>
+                    <span class="total-txt"></span>
+                </span>
+            </div>
+            <div>
+                <span class="p-ml-left mr-4">
+                    <button pButton title="New" label="Complete"></button>
+                    <span class="total-txt"></span>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>

@@ -12,31 +12,30 @@ import { AuthServiceService } from './ui/service/auth-service.service';
 
 @Injectable()
 export class MainInterceptorInterceptor implements HttpInterceptor {
-
-  constructor(private _AuthServices:AuthServiceService) {}
-
+  constructor(private _AuthServices: AuthServiceService) { }
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
-
-    const authReq = request.clone({
-      headers: new HttpHeaders({
-        'Cache-Control':'no-cache, no-store, must-revalidate, post-check=0, pre-check=0',
-        'Pragma':'no-cache',
-        'Expires':'0',
-        'Content-Type':  'application/json',
-        'Authorization': 'Bearer ' + localStorage.getItem('token')
-      })
+    const modifiedReq = request.clone({
+      headers: request.headers
+        .set('Cache-Control', `no-cache, no-store, must-revalidate, post-check=0, pre-check=0`)
+        .set('Pragma', `no-cache`)
+        .set('Expires', `0`)
+        //vulnerable Clickjacking
+      .set('X-Frame-Options', 'SAMEORIGIN')
+      //Missing Security Headers
+      .set('X-XSS-Protection', '1; mode=block')
+      .set('Strict-Transport-Security', 'max-age=60000; includeSubDomains')
+      .set('Content-Security-Policy', "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'")
+   
     });
+    return next.handle(modifiedReq).pipe(catchError((err: any) => {
 
-    return next.handle(authReq).pipe(catchError((err: any) => {
-      //console.log('this log isn't');
       if (err instanceof HttpErrorResponse) {
-          if (err.status === 401 || err.status === 403 || err.status === 0) {
-              localStorage.clear();
-              this._AuthServices.logout();
-          }
+        if (err.status === 401 || err.status === 403 || err.status === 0) {
+          localStorage.clear();
+          this._AuthServices.logout();
+        }
       }
-
-    return new Observable<HttpEvent<any>>();
-  }));
+      return new Observable<HttpEvent<any>>();
+    }));
   }
 }

@@ -25,10 +25,11 @@ export class AdminDashboardComponent extends AppComponentBase implements OnInit 
     items!: MenuItem[];
     products!: Product[];
     chartData: any;
-    chartOptions: any; 
+    chartOptions: any;
     currentDate = new Date();
-    public lstTaskPlanner: any[]=[];  
-    public lstActivity: any[]=[];   
+    public lstTaskPlanner: any[] = [];
+    public lstActivity: any[] = [];
+    showActivityModel: boolean = false;
     constructor(
         private datepipe: DatePipe,
         private productService: ProductService,
@@ -36,10 +37,9 @@ export class AdminDashboardComponent extends AppComponentBase implements OnInit 
         private _ConstantServices: ConstantsService,
         private _MasterServices: MasterService,
         private _UtilityService: UtilityService,
-    ) 
-    {
+    ) {
         super();
-        this._ConstantServices.ActiveMenuName="Dashboard";
+        this._ConstantServices.ActiveMenuName = "Dashboard";
         this.unsubscribe.add = this.layoutService.configUpdate$.subscribe(() => {
             this.initChart();
         });
@@ -54,7 +54,7 @@ export class AdminDashboardComponent extends AppComponentBase implements OnInit 
         this.productService.getProductsSmall().then(data => this.products = data);
         this.GetTaskPlanner();
         this.GetActivity();
-        
+
     }
 
     initChart() {
@@ -120,20 +120,7 @@ export class AdminDashboardComponent extends AppComponentBase implements OnInit 
             datasets: [
                 {
                     data: [540, 325, 702, 450, 312],
-                    // backgroundColor: [
-                    //     documentStyle.getPropertyValue('--indigo-500'),
-                    //     documentStyle.getPropertyValue('--purple-500'),
-                    //     documentStyle.getPropertyValue('--teal-500'),
-                    //     documentStyle.getPropertyValue('--green-500'),
-                    //     documentStyle.getPropertyValue('--blue-500')
-                    // ],
-                    // hoverBackgroundColor: [
-                    //     documentStyle.getPropertyValue('--indigo-400'),
-                    //     documentStyle.getPropertyValue('--purple-400'),
-                    //     documentStyle.getPropertyValue('--teal-400'),
-                    //     documentStyle.getPropertyValue('--green-400'),
-                    //     documentStyle.getPropertyValue('--blue-400')
-                    // ],
+
                     backgroundColor: [
                         documentStyle.getPropertyValue('--slice-one'),
                         documentStyle.getPropertyValue('--slice-two'),
@@ -233,50 +220,57 @@ export class AdminDashboardComponent extends AppComponentBase implements OnInit 
         var startdate: any = null;
         if (this.currentDate != null && this.currentDate != undefined)
             startdate = this.datepipe.transform(this.currentDate, 'yyyy-MM-dd');
-        this._UtilityService.showSpinner();   
+        this._UtilityService.showSpinner();
         this.unsubscribe.add = this._MasterServices.GetActivity(true, startdate)
-          .subscribe({
-            next:(data) => {
-              this._UtilityService.hideSpinner();          
-              if (data.actionResult.success == true) {
-                var tdata = JSON.parse(data.actionResult.result);
-                tdata = tdata ? tdata : [];
-                this.lstActivity = tdata;                
-              }
-              else {
-                this.lstActivity = [];            
-              }
-            },
-            error: (e) => {
-              this._UtilityService.hideSpinner();
-              this._UtilityService.showErrorAlert(e.message);
-            },
-          });
-      }  
+            .subscribe({
+                next: (data) => {
+                    this._UtilityService.hideSpinner();
+                    if (data.actionResult.success == true) {
+                        var tdata = JSON.parse(data.actionResult.result);
+                        tdata = tdata ? tdata : [];
+                        this.lstActivity = tdata;
+                    }
+                    else {
+                        this.lstActivity = [];
+                    }
+                },
+                error: (e) => {
+                    this._UtilityService.hideSpinner();
+                    this._UtilityService.showErrorAlert(e.message);
+                },
+            });
+    }
 
     GetTaskPlanner() {
+        let importData: any = <any>{};
+        importData.status=0;        
         var startdate: any = null;
         if (this.currentDate != null && this.currentDate != undefined)
             startdate = this.datepipe.transform(this.currentDate, 'yyyy-MM-dd');
-        this._UtilityService.showSpinner();   
-        this.unsubscribe.add = this._MasterServices.GetTaskPlanner(0, startdate)
-          .subscribe({
-            next:(data) => {
-              this._UtilityService.hideSpinner();          
-              if (data.actionResult.success == true) {
-                var tdata = JSON.parse(data.actionResult.result);
-                tdata = tdata ? tdata : [];
-                this.lstTaskPlanner = tdata;                         
-              //  console.log(this.lstTaskPlanner);
-              }
-              else {
-                this.lstTaskPlanner = [];            
-              }
-            },
-            error: (e) => {
-              this._UtilityService.hideSpinner();
-              this._UtilityService.showErrorAlert(e.message);
-            },
-          });
-      }  
+        importData.dFrom=startdate;
+        this._UtilityService.showSpinner();
+        this.unsubscribe.add = this._MasterServices.GetTaskPlanner(importData)
+            .subscribe({
+                next: (data) => {
+                    this._UtilityService.hideSpinner();
+                    if (data.actionResult.success == true) {
+                        var tdata = JSON.parse(data.actionResult.result);
+                        tdata = tdata ? tdata : [];
+                        this.lstTaskPlanner = tdata;
+                       
+                    }
+                    else {
+                        this.lstTaskPlanner = [];
+                    }
+                },
+                error: (e) => {
+                    this._UtilityService.hideSpinner();
+                    this._UtilityService.showErrorAlert(e.message);
+                },
+            });
+    }
+
+    AddActivity() {
+        this.showActivityModel = true;
+    }
 }

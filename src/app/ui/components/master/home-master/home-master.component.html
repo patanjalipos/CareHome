@@ -18,8 +18,15 @@
                             <i class="pi pi-search"></i>
                             <input #filtr pInputText type="text" (input)="onGlobalFilter(dt, $event)"
                                 placeholder="Search..." /></span>
+                                <span class="m-3">
+                                    <button pButton title="Filters" label="Filters" class="p-button-outlined mr-2" icon="pi pi-filter" 
+                                    (click)="ShowFilters()" style="height: 40px; width: 100px;"></button>  
+                                </span>
                     </span>
                 </div>
+                <div *ngIf="isHomeMaster">
+                    <app-filteration [ComponentName]="ComponentName" (FiltrationOutputData)="GetHomeMasterFilterData($event)"></app-filteration>       
+                </div> 
             </ng-template>
             <ng-template pTemplate="emptymessage" let-columns>
                 <tr>
@@ -57,84 +64,133 @@
 <div *ngIf="mode!=null">
     <form #myForm="ngForm">
         <div class="card">
-            <div class="row">                
-                <div class="col-md-3">
-                    <label class="form-label">Home Code <span class="required">*</span></label>
-                    <input pInputText type="text" required name="homecode" [(ngModel)]="master.HomeCode"
-                        class="form-control" #homecode="ngModel" />
+            <p-accordion [multiple]="true" activeIndex="0,1">
+                <p-accordionTab header="Home Details">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <label class="form-label">Home Code <span class="required">*</span></label>
+                            <input pInputText type="text" required name="homecode" [(ngModel)]="master.HomeCode"
+                                class="form-control" #homecode="ngModel" />
+                        </div>
+                        <div class="col-md-3">
+                            <label class="form-label">Home Name <span class="required">*</span></label>
+                            <input pInputText type="text" required name="homename" [(ngModel)]="master.HomeName"
+                                class="form-control" #homename="ngModel" />
+                        </div>
+                        <div class="col-md-3">
+                            <label class="form-label">Contact No</label>
+                            <p-inputNumber name="contactnumber" [(ngModel)]="master.ContactNumber" mode="decimal"
+                                [useGrouping]="false" [maxlength]="20"></p-inputNumber>
+                        </div>
+                        <div class="col-md-3">
+                            <label class="form-label">Other Contact No</label>
+                            <p-inputNumber name="othercontactnumber" [(ngModel)]="master.OtherContactNumber"
+                                mode="decimal" [useGrouping]="false" [maxlength]="20"></p-inputNumber>
+                        </div>
+                        <div class="col-md-3">
+                            <label class="form-label">Email Address</label>
+                            <input type="text" name="email" pInputText [(ngModel)]="master.EmailId"
+                                [style]="{width: '100%'}" pattern="[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,3}$"
+                                #emailref="ngModel" />
+                            <div class="errorMessage pt-2"
+                                *ngIf="emailref.errors &&(emailref.touched || emailref.dirty)">
+                                <div>Please enter valid email id.</div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <label class="form-label">Fax</label>
+                            <p-inputNumber name="faxnumber" [(ngModel)]="master.FaxNumber" mode="decimal"
+                                [useGrouping]="false" [maxlength]="20"></p-inputNumber>
+                        </div>
+                        <div class="col-md-3">
+                            <label class="form-label">Country <span class="required">*</span></label>
+                            <p-dropdown [required]="true" name="ddlHeadName" [options]="lstCountryMaster"
+                                [(ngModel)]="master.CountryId" optionLabel="name" optionValue="code" [filter]="true"
+                                placeholder="Choose country" [style]="{width: '100%'}">
+                            </p-dropdown>
+                        </div>
+                        <div class="col-md-3">
+                            <label class="form-label">State</label>
+                            <input pInputText type="text" name="state" [(ngModel)]="master.State" class="form-control"
+                                #statename="ngModel" />
+                        </div>
+                        <div class="col-md-3">
+                            <label class="form-label">Address</label>
+                            <input pInputText type="text" name="address" [(ngModel)]="master.Address"
+                                class="form-control" #address="ngModel" />
+                        </div>
+                        <div class="col-md-3">
+                            <label class="form-label">Order No. <span class="required">*</span></label>
+                            <p-inputNumber [required]="true" name="txtOrder" [(ngModel)]="master.OrderNo"
+                                mode="decimal"></p-inputNumber>
+                        </div>
+                        <div class="col-md-3">
+                            <label class="form-label">Status<span class="required">*</span></label>
+                            <p-dropdown [required]="true" [options]="stlststatus" [(ngModel)]="master.Status"
+                                [ngModelOptions]="{standalone: true}" optionLabel="name" optionValue="code"
+                                placeholder="Select" [style]="{width: '100%'}">
+                            </p-dropdown>
+                        </div>
+                    </div>
+                </p-accordionTab>
+                <p-accordionTab header="Access Details">
+                    <h6 class="">Email Settings</h6>
+                    <hr class=" mb-3">
+                    <div class="row">
+                        <div class="field-checkbox col-md-3">
+                            <label class="form-label mr-2 mb-0">Is Email</label>
+                            <p-checkbox name="chkIsEmail" [binary]="true" [(ngModel)]="master.IsEmail"
+                                id="chkIsEmail"></p-checkbox>
+                        </div>
+                        <!--<div class="form-group col-md-3" *ngIf="master.IsEmail">
+                        <p-multiSelect name="multiEmailDrafting" appendTo="body" [options]="lstEmailDraftingType"
+                            [(ngModel)]="selectedEmailDrafting" optionLabel="DraftingType" optionValue="DraftingType"
+                            placeholder="-Select-" [style]="{width: '100%'}"></p-multiSelect>
+                    </div>-->
+                    </div>
+                    <hr>
+                    <h6 class="">Email SMTP Settings</h6>
+                    <hr class=" mb-3">
+                    <div class="row">
+                        <div class="form-group pos-rel col-md-3">
+                            <label class="form-label label-line">Host</label>
+                            <input type="text" class="form-control" [(ngModel)]="master.SmtpHost" name="SmtpHost">
 
-                </div>
-                <div class="col-md-3">
-                    <label class="form-label">Home Name <span class="required">*</span></label>
-                    <input pInputText type="text" required name="homename" [(ngModel)]="master.HomeName"
-                        class="form-control" #homename="ngModel" />
+                        </div>
+                        <div class="form-group pos-rel col-md-3">
+                            <label class="form-label label-line">Mail From</label>
+                            <input type="text" class="form-control" [(ngModel)]="master.MailFrom" name="MailFrom">
 
-                </div>
-                <div class="col-md-3">
-                    <label class="form-label">Contact No</label>
-                         <p-inputNumber name="contactnumber" [(ngModel)]="master.ContactNumber"
-                        mode="decimal" [useGrouping]="false" [maxlength]="20"></p-inputNumber>  
-                </div>
-                <div class="col-md-3">
-                    <label class="form-label">Other Contact No</label>                  
-                        <p-inputNumber name="othercontactnumber" [(ngModel)]="master.OtherContactNumber"
-                        mode="decimal" [useGrouping]="false" [maxlength]="20"></p-inputNumber>
-                </div>
-                <div class="col-md-3">
-                    <label class="form-label">Email Address</label>                    
-                        <input type="text" name="email" pInputText [(ngModel)]="master.EmailId"
-                            [style]="{width: '100%'}" pattern="[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,3}$"
-                            #emailref="ngModel" />
-                           <div class="errorMessage pt-2" *ngIf="emailref.errors &&(emailref.touched || emailref.dirty)">
-                               <div>Please enter valid email id.</div>
-                           </div>
-                </div>
-                <div class="col-md-3">
-                    <label class="form-label">Fax</label>                   
-                        <p-inputNumber name="faxnumber" [(ngModel)]="master.FaxNumber"
-                        mode="decimal" [useGrouping]="false" [maxlength]="20"></p-inputNumber>                    
-                </div>
-                <div class="col-md-3">
-                    <label class="form-label">Country <span class="required">*</span></label>
-                    <p-dropdown [required]="true" name="ddlHeadName" [options]="lstCountryMaster" [(ngModel)]="master.CountryId"
-                        optionLabel="name" optionValue="code"
-                        [filter]="true" placeholder="Choose country" [style]="{width: '100%'}">
-                    </p-dropdown>
-                </div>
-                <div class="col-md-3">
-                    <label class="form-label">State</label>
-                    <input pInputText type="text" name="state" [(ngModel)]="master.State"
-                        class="form-control" #statename="ngModel" />
-
-                </div>
-                <div class="col-md-3">
-                    <label class="form-label">Address</label>
-                    <input pInputText type="text" name="address" [(ngModel)]="master.Address"
-                        class="form-control" #address="ngModel" />
-
-                </div>
-                
-                <div class="col-md-3">
-                    <label class="form-label">Order No. <span class="required">*</span></label>
-                    <p-inputNumber [required]="true" name="txtOrder" [(ngModel)]="master.OrderNo"
-                        mode="decimal"></p-inputNumber>
-
-                </div>
-                <div class="col-md-3">
-                    <label class="form-label">Status<span class="required">*</span></label>
-                    <p-dropdown [required]="true" [options]="stlststatus" [(ngModel)]="master.Status"
-                        [ngModelOptions]="{standalone: true}" optionLabel="name" optionValue="code" placeholder="Select"
-                        [style]="{width: '100%'}">
-                    </p-dropdown>
-                </div>
-            </div>
+                        </div>
+                        <div class="form-group pos-rel col-md-3">
+                            <label class="form-label label-line">Password</label>
+                            <input type="text" class="form-control" [(ngModel)]="master.MailPassword"
+                                name="MailPassword">
+                        </div>
+                        <div class="col-md-3">
+                            <label class="form-label label-line">Port</label>
+                            <p-inputNumber name="txtPort" [(ngModel)]="master.Port" [maxlength]="3" mode="decimal"
+                                class="w-100"></p-inputNumber>
+                        </div>
+                        <div class="field-checkbox col-auto mt-2">
+                            <label class="form-label mr-2 mb-0">Is EnableSsl</label>
+                            <p-checkbox name="chkIsEnableSsl" [binary]="true" [(ngModel)]="master.IsEnableSsl"
+                                id="chkIsEnableSsl"></p-checkbox>
+                        </div>
+                        <div class="field-checkbox col-auto mt-2">
+                            <label class="form-label mr-2 mb-0">Is Attachment</label>
+                            <p-checkbox name="chkIsAttachment" [binary]="true" [(ngModel)]="master.IsAttachment"
+                                id="chkIsAttachment"></p-checkbox>
+                        </div>
+                    </div>
+                </p-accordionTab>
+            </p-accordion>
             <div class="row">
                 <div class="col-12">
                     <div class="flex flex-wrap gap-2">
                         <button pButton type="button" label="Submit" (click)="Save()" class="btn-primary"
                             [disabled]="!myForm.form.valid"></button>
-                        <button pButton type="button" label="Close" class="btn-secondary"
-                            (click)="Close()"></button>
+                        <button pButton type="button" label="Close" class="btn-primary" (click)="Close()"></button>
                     </div>
                 </div>
             </div>

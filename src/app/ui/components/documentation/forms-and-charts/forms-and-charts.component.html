@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <style>
+            .card {
+                background-color: #fff;
+                border-radius: 5px;
+                padding: 20px;
+                margin: 10px 0;
+            }
+
+            .ml-2 {
+                margin-left: 8px;
+            }
+
+            .radio-group {
+                margin-top: 20px;
+            }
+
+            .dropdown-group {
+                margin-top: 20px;
+                display: none;
+            }
+
+            .dropdown-group.show {
+                display: block;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="card">
+            <div class="labelcontent">
+                <p>
+                    View and complete resident assessments, record accidents and
+                    incidents, record information in continuous charts that
+                    allow for routine observations to be monitored on an ongoing
+                    basis of record acute incidents such as wounds and episodes
+                    such as pain management.
+                </p>
+            </div>
+
+            <div class="radio-group">
+                <div class="flex flex-wrap gap-3 justify-content-center">
+                    <div class="flex align-items-center">
+                        <p-radioButton
+                            name="option"
+                            value="Forms"
+                            [(ngModel)]="selectedOption"
+                            inputId="button1"
+                            (onClick)="onRadioSelect()"
+                        ></p-radioButton>
+                        <label for="button1" class="ml-2">Forms</label>
+                    </div>
+
+                    <div class="flex align-items-center">
+                        <p-radioButton
+                            name="option"
+                            value="Charts"
+                            [(ngModel)]="selectedOption"
+                            inputId="button2"
+                            (onClick)="onRadioSelect()"
+                        ></p-radioButton>
+                        <label for="button2" class="ml-2">Charts</label>
+                    </div>
+                </div>
+            </div>
+
+            <div *ngIf="selectedOption">
+                <div class="labelcontent">
+                    <p>Select the Resident</p>
+                </div>
+                <p-dropdown
+                    [ngClass]="{ show: selectedOption }"
+                    class="dropdown-group"
+                    [options]="lstResidents"
+                    optionLabel="FullName"
+                    optionValue="UserId"
+                    [(ngModel)]="selectedResidentUserId"
+                    placeholder="--select--"
+                    [filter]="true"
+                    [showClear]="true"
+                    (onChange)="showDashBoardComponent()"
+                ></p-dropdown>
+            </div>
+        </div>
+
+        <div
+            class="card"
+            *ngIf="isShowDashboard"
+            [style.display]="isShowDashboard ? 'block' : 'none'"
+        >
+            <ng-container *ngIf="selectedOption === 'Forms'">
+                <app-forms-dashboard
+                    [userId]="userId"
+                    [residentAdmissionInfoId]="admissionId"
+                ></app-forms-dashboard>
+            </ng-container>
+
+            <ng-container *ngIf="selectedOption === 'Charts'">
+                <app-chart
+                    [userId]="userId"
+                    [residentAdmissionInfoId]="admissionId"
+                ></app-chart>
+            </ng-container>
+        </div>
+    </body>
+</html>

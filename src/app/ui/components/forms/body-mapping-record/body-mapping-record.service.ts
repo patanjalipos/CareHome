@@ -9,35 +9,34 @@ import { environment } from 'src/environments/environment';
 export class BodyMappingRecordService {
 
   constructor(private _httpclient: HttpClient) {}
-  GetBodyMappingReasonMaster(
-    Status: any
-): Observable<any> {
-    let reqHeader = new HttpHeaders({
-        'Content-Type': 'application/json',
-        'Access-Control-Allow-Origin': environment.BaseUriAdmin,
-    });
-    let params = new HttpParams();
-    params=params.append('Status',Status);
-    return this._httpclient.get<any>(
-        environment.BaseUriAdmin +
-            'api/Admin/GetBodyMappingReasonMaster',
-        { headers: reqHeader, params: params }
-    );
-}
+//   GetBodyMappingReasonMaster(
+//     Status: any
+// ): Observable<any> {
+//     let reqHeader = new HttpHeaders({
+//         'Content-Type': 'application/json',
+//         'Access-Control-Allow-Origin': environment.BaseUriUser,
+//     });
+//     let params = new HttpParams();
+//     params=params.append('Status',Status);
+//     return this._httpclient.get<any>(
+//         environment.BaseUriUser +
+//             'api/User/GetBodyMappingReasonMaster',
+//         { headers: reqHeader, params: params }
+//     );
+// }
 InsertUpdateBodyMappingForm(
     AcuteCarePlanFormsData: any
 ): Observable<any> {
     let reqHeader = new HttpHeaders({
         'Content-Type': 'application/json',
-        'Access-Control-Allow-Origin': environment.BaseUriAdmin,
-        //'Authorization': 'Bearer ' + localStorage.getItem('token')
+        'Access-Control-Allow-Origin': environment.BaseUriUser,
+        'Authorization': 'Bearer ' + localStorage.getItem('token')
     });
     let params = new HttpParams();
     var data = JSON.stringify(AcuteCarePlanFormsData).toString();
-    console.log(data);
     return this._httpclient.post<any>(
-        environment.BaseUriAdmin +
-            'api/Admin/InsertUpdateBodyMappingForm',
+        environment.BaseUriUser +
+            'api/User/InsertUpdateBodyMappingForm',
         data,
         { headers: reqHeader, params: params }
     );
@@ -45,13 +44,13 @@ InsertUpdateBodyMappingForm(
 GetBodyMappingFormById(fromId: any) {
     let reqHeader = new HttpHeaders({
         'Content-Type': 'application/json',
-        'Access-Control-Allow-Origin': environment.BaseUriAdmin,
-        //'Authorization': 'Bearer ' + localStorage.getItem('token')
+        'Access-Control-Allow-Origin': environment.BaseUriUser,
+        'Authorization': 'Bearer ' + localStorage.getItem('token')
     });
     let params = new HttpParams();
     params = params.append('fromId', fromId);
     return this._httpclient.get<any>(
-        environment.BaseUriAdmin + 'api/Admin/GetBodyMappingFormById',
+        environment.BaseUriUser + 'api/User/GetBodyMappingFormById',
         { headers: reqHeader, params: params }
     );
 }

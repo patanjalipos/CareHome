@@ -6,6 +6,7 @@ import { MasterService } from 'src/app/ui/service/master.service';
 import { DatePipe } from '@angular/common';
 import { Options } from '@angular-slider/ngx-slider';
 import { Table } from 'primeng/table';
+import { UserService } from 'src/app/ui/service/user.service';
 
 @Component({
   selector: 'app-pain-assessment',
@@ -53,6 +54,7 @@ export class PainAssessmentComponent extends AppComponentBase implements OnInit 
     private datepipe: DatePipe,
     private _ConstantServices: ConstantsService,
     private _MasterServices: MasterService,
+    private _UserServices:UserService,
     private _UtilityService: UtilityService,) {
     super();    
   }
@@ -107,7 +109,7 @@ export class PainAssessmentComponent extends AppComponentBase implements OnInit 
     if (this.selecteddate != null && this.selecteddate != undefined)
       startdate = this.datepipe.transform(this.selecteddate, 'yyyy-MM-dd');
     this._UtilityService.showSpinner();
-    this.unsubscribe.add = this._MasterServices.GetClinicalPainAssesmentById(admissionid, startdate)
+    this.unsubscribe.add = this._UserServices.GetClinicalPainAssesmentById(admissionid, startdate)
       .subscribe({
         next: (data) => {
           this._UtilityService.hideSpinner();
@@ -132,9 +134,9 @@ export class PainAssessmentComponent extends AppComponentBase implements OnInit 
       this.Clinical.UserId = this.userid;
       this.Clinical.ResidentAdmissionInfoId = this.admissionid;
       this.Clinical.ModifiedBy = this.loginId;
-      //console.log('Clinical', this.Clinical);
+    
       this._UtilityService.showSpinner();
-      this.unsubscribe.add = this._MasterServices.AddInsertUpdatePainAssesment(this.Clinical)
+      this.unsubscribe.add = this._UserServices.AddInsertUpdatePainAssesment(this.Clinical)
         .subscribe
         ({
           next: (data) => {
@@ -165,7 +167,7 @@ export class PainAssessmentComponent extends AppComponentBase implements OnInit 
     this.Clinical.ModifiedBy = this.loginId;
     this.Clinical.ClinicalPainAssesmentId = id;
     this._UtilityService.showSpinner();
-      this.unsubscribe.add = this._MasterServices.AddInsertUpdatePainAssesment(this.Clinical)
+      this.unsubscribe.add = this._UserServices.AddInsertUpdatePainAssesment(this.Clinical)
         .subscribe
         ({
           next: (data) => {

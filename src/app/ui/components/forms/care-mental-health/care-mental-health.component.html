@@ -4,25 +4,31 @@
             <div class="d-flex">
                 <div class="col-md-4">
                     <label class="form-label"><b> Started by (Name) :</b>
-                    </label>
+                        {{ preSelectedFormData.StartedBy }}</label>
                 </div>
                 <div class="col-md-4">
-                    <label class="form-label"><b>Designation :</b> </label>
+                    <label class="form-label"><b>Designation :</b> {{ preSelectedFormData.StartedByDesignation }}</label>
                 </div>
                 <div class="col-md-4">
-                    <label class="form-label"> <b>Date/Time : </b></label>
+                    <label class="form-label"> <b>Date/Time : </b>{{
+                        preSelectedFormData.StartedOn
+                            | date : customDateFormat.DEF_DATE_TIME
+                    }}</label>
                 </div>
             </div>
             <div class="d-flex">
                 <div class="col-md-4">
                     <label class="form-label">
-                        <b>Last entered by (Name) :</b></label>
+                        <b>Last entered by (Name) :</b>{{ preSelectedFormData.ModifiedBy }}</label>
                 </div>
                 <div class="col-md-4">
-                    <label class="form-label"> <b>Designation :</b></label>
+                    <label class="form-label"> <b>Designation :</b>{{ preSelectedFormData.ModifiedByDesignation }}</label>
                 </div>
                 <div class="col-md-4">
-                    <label class="form-label"> <b>Date/Time :</b> </label>
+                    <label class="form-label"> <b>Date/Time :</b>{{
+                        preSelectedFormData.ModifiedOn
+                            | date : customDateFormat.DEF_DATE_TIME
+                    }} </label>
                 </div>
             </div>
         </div>
@@ -34,7 +40,12 @@
             </div>
         </div>
         <div class="col-md-7 form-text mt-4 mb-2">
-            <p-triStateCheckbox inputId="tricheckbox"></p-triStateCheckbox>
+            <ng-container *ngIf="this.isEditable; else MentalHealthOrCognitionStatus">
+                <p-checkbox [(ngModel)]="MentalHealthStatus" [binary]="true" inputId="binary"></p-checkbox>
+            </ng-container>
+            <ng-template #MentalHealthOrCognitionStatus>
+                <label>{{CareAssessmentMentalHealthFormsData.MentalHealthOrCognitionStatus}}</label>
+            </ng-template>
         </div>
 
         <div class="col-md-4 ">
@@ -43,8 +54,25 @@
             </div>
         </div>
         <div class="col-md-7 form-text">
-            <p-dropdown placeholder="Select" [style]="{ width: '100%' }">
-            </p-dropdown>
+            <ng-container *ngIf="isEditable; else Cognition">
+                <p-dropdown
+                    name="CognitionImpact"
+                    [(ngModel)]="
+                        CareAssessmentMentalHealthFormsData.Cognition
+                    "
+                    [options]="lstCognitionImpact"
+                    optionLabel="optionName"
+                    optionValue="optionId"
+                    placeholder="--select--"
+                    [style]="{ width: '100%' }"
+                >
+                </p-dropdown>
+            </ng-container>
+            <ng-template #Cognition>
+                <label>{{
+                    CareAssessmentMentalHealthFormsData.CognitionName
+                }}</label>
+            </ng-template>
         </div>
         <div class="col-md-1 form-icon">
             <i class="fa-solid fa-info"></i>
@@ -55,7 +83,24 @@
             </div>
         </div>
         <div class="col-md-7 form-text">
-            <input pInputText type="text" required name="chartheadname" class="form-control" />
+            <ng-container *ngIf="isEditable; else CognitionImpactOnResidentDay">
+                <input
+                    pInputText
+                    type="text"
+                    required
+                    name="CognitionImpactOnResidentDay"
+                    class="form-control"
+                    [(ngModel)]="
+                        CareAssessmentMentalHealthFormsData.CognitionImpactOnResidentDay
+                    "
+                />
+               
+            </ng-container>
+            <ng-template #CognitionImpactOnResidentDay>
+                <label>{{
+                    CareAssessmentMentalHealthFormsData.CognitionImpactOnResidentDay
+                }}</label>
+            </ng-template>
         </div>
         <div class="col-md-1 form-icon">
             <i class="fa-solid fa-info"></i>
@@ -66,9 +111,26 @@
             </div>
         </div>
         <div class="col-md-7 form-text">
-            <p-dropdown placeholder="Select" [style]="{ width: '100%' }">
-            </p-dropdown>
-            <p class="mb-4">Select all that apply</p>
+            <ng-container *ngIf="isEditable; else MentalHealthCondition">
+                <p-dropdown
+                    name="MentalHealthCondition"
+                    [(ngModel)]="
+                        CareAssessmentMentalHealthFormsData.MentalHealthCondition
+                    "
+                    [options]="lstMentalHealthCondition"
+                    optionLabel="optionName"
+                    optionValue="optionId"
+                    placeholder="--select--"
+                    [style]="{ width: '100%' }"
+                >
+                </p-dropdown>
+                <p class="mb-4">Select all that apply</p>
+            </ng-container>
+            <ng-template #MentalHealthCondition>
+                <label>{{
+                    CareAssessmentMentalHealthFormsData.MentalHealthConditionName
+                }}</label>
+            </ng-template>
         </div>
         <div class="col-md-1 form-icon">
             <i class="fa-solid fa-info"></i>
@@ -79,7 +141,24 @@
             </div>
         </div>
         <div class="col-md-7 form-text">
-            <input pInputText type="text" required name="chartheadname" class="form-control" />
+            <ng-container *ngIf="isEditable; else MentalHealthImpactOnResidentDay">
+                <input
+                    pInputText
+                    type="text"
+                    required
+                    name="MentalHealthImpactOnResidentDay"
+                    class="form-control"
+                    [(ngModel)]="
+                        CareAssessmentMentalHealthFormsData.MentalHealthImpactOnResidentDay
+                    "
+                />
+               
+            </ng-container>
+            <ng-template #MentalHealthImpactOnResidentDay>
+                <label>{{
+                    CareAssessmentMentalHealthFormsData.MentalHealthImpactOnResidentDay
+                }}</label>
+            </ng-template>
         </div>
         <div class="col-md-1 form-icon">
             <i class="fa-solid fa-info"></i>
@@ -90,8 +169,25 @@
             </div>
         </div>
         <div class="col-md-7 form-text">
-            <p-dropdown placeholder="Select" [style]="{ width: '100%' }">
-            </p-dropdown>
+            <ng-container *ngIf="isEditable; else ResidentUnderstand">
+                <p-dropdown
+                    name="ResidentUnderstand"
+                    [(ngModel)]="
+                        CareAssessmentMentalHealthFormsData.ResidentUnderstand
+                    "
+                    [options]="lstResidentUnderstand"
+                    optionLabel="optionName"
+                    optionValue="optionId"
+                    placeholder="--select--"
+                    [style]="{ width: '100%' }"
+                >
+                </p-dropdown>
+            </ng-container>
+            <ng-template #ResidentUnderstand>
+                <label>{{
+                    CareAssessmentMentalHealthFormsData.ResidentUnderstandName
+                }}</label>
+            </ng-template>
         </div>
         <div class="col-md-1 form-icon">
             <i class="fa-solid fa-info"></i>
@@ -102,8 +198,25 @@
             </div>
         </div>
         <div class="col-md-7 form-text">
-            <p-dropdown placeholder="Select" [style]="{ width: '100%' }">
-            </p-dropdown>
+            <ng-container *ngIf="isEditable; else ResidentVerbalUnderstand">
+                <p-dropdown
+                    name="ResidentVerbalUnderstand"
+                    [(ngModel)]="
+                        CareAssessmentMentalHealthFormsData.ResidentVerbalUnderstand
+                    "
+                    [options]="lstResidentVerbalUnderstand"
+                    optionLabel="optionName"
+                    optionValue="optionId"
+                    placeholder="--select--"
+                    [style]="{ width: '100%' }"
+                >
+                </p-dropdown>
+            </ng-container>
+            <ng-template #ResidentVerbalUnderstand>
+                <label>{{
+                    CareAssessmentMentalHealthFormsData.ResidentVerbalUnderstandName
+                }}</label>
+            </ng-template>
         </div>
         <div class="col-md-1 form-icon">
             <i class="fa-solid fa-info"></i>
@@ -114,9 +227,26 @@
             </div>
         </div>
         <div class="col-md-7 form-text">
-            <p-dropdown placeholder="Select" [style]="{ width: '100%' }">
-            </p-dropdown>
-            <p class="mb-4">short sentences, picture cards</p>
+            <ng-container *ngIf="isEditable; else ResidentUnderstandDetails">
+                <p-dropdown
+                    name="ResidentUnderstandDetails"
+                    [(ngModel)]="
+                        CareAssessmentMentalHealthFormsData.ResidentUnderstandDetails
+                    "
+                    [options]="lstResidentUnderstandDetails"
+                    optionLabel="optionName"
+                    optionValue="optionId"
+                    placeholder="--select--"
+                    [style]="{ width: '100%' }"
+                >
+                </p-dropdown>
+                <p class="mb-4">short sentences, picture cards</p>
+            </ng-container>
+            <ng-template #ResidentUnderstandDetails>
+                <label>{{
+                    CareAssessmentMentalHealthFormsData.ResidentUnderstandDetailsName
+                }}</label>
+            </ng-template>
         </div>
         <div class="col-md-1 form-icon">
             <i class="fa-solid fa-info"></i>
@@ -127,9 +257,26 @@
             </div>
         </div>
         <div class="col-md-7 form-text">
-            <p-dropdown placeholder="Select" [style]="{ width: '100%' }">
+            <ng-container *ngIf="isEditable; else Confusion">
+                <p-dropdown
+                    name="Confusion"
+                    [(ngModel)]="
+                        CareAssessmentMentalHealthFormsData.Confusion
+                    "
+                    [options]="lstConfusion"
+                    optionLabel="optionName"
+                    optionValue="optionId"
+                    placeholder="--select--"
+                    [style]="{ width: '100%' }"
+                >
+                </p-dropdown>
                 <p class="mb-4">related to any physical conditions</p>
-            </p-dropdown>
+            </ng-container>
+            <ng-template #Confusion>
+                <label>{{
+                    CareAssessmentMentalHealthFormsData.ConfusionName
+                }}</label>
+            </ng-template>
         </div>
         <div class="col-md-1 form-icon">
             <i class="fa-solid fa-info"></i>
@@ -140,9 +287,27 @@
             </div>
         </div>
         <div class="col-md-7 form-text">
-            <p-dropdown placeholder="Select" [style]="{ width: '100%' }">
-            </p-dropdown>
-            <p class="mb-4">Include how to support physical condition impacting on cognition</p>
+            <ng-container *ngIf="isEditable; else ActionInConfusion">
+                <p-dropdown
+                    name="ActionInConfusion"
+                    [(ngModel)]="
+                        CareAssessmentMentalHealthFormsData.ActionInConfusion
+                    "
+                    [options]="lstActionInConfusion"
+                    optionLabel="optionName"
+                    optionValue="optionId"
+                    placeholder="--select--"
+                    [style]="{ width: '100%' }"
+                >
+                </p-dropdown>
+                
+                <p class="mb-4">Include how to support physical condition impacting on cognition</p>
+            </ng-container>
+            <ng-template #ActionInConfusion>
+                <label>{{
+                    CareAssessmentMentalHealthFormsData.ActionInConfusionName
+                }}</label>
+            </ng-template>
         </div>
         <div class="col-md-1 form-icon">
             <i class="fa-solid fa-info"></i>
@@ -153,8 +318,26 @@
             </div>
         </div>
         <div class="col-md-7 form-text">
-            <p-dropdown placeholder="Select" [style]="{ width: '100%' }">
-            </p-dropdown>
+            <ng-container *ngIf="isEditable; else PersonalSafety">
+                <p-dropdown
+                    name="PersonalSafety"
+                    [(ngModel)]="
+                        CareAssessmentMentalHealthFormsData.PersonalSafety
+                    "
+                    [options]="lstPersonalSafety"
+                    optionLabel="optionName"
+                    optionValue="optionId"
+                    placeholder="--select--"
+                    [style]="{ width: '100%' }"
+                >
+                </p-dropdown>
+                
+            </ng-container>
+            <ng-template #PersonalSafety>
+                <label>{{
+                    CareAssessmentMentalHealthFormsData.PersonalSafetyName
+                }}</label>
+            </ng-template>
         </div>
         <div class="col-md-1 form-icon">
             <i class="fa-solid fa-info"></i>
@@ -165,8 +348,26 @@
             </div>
         </div>
         <div class="col-md-7 form-text">
-            <p-dropdown placeholder="Select" [style]="{ width: '100%' }">
-            </p-dropdown>
+            <ng-container *ngIf="isEditable; else LeavingHome">
+                <p-dropdown
+                    name="LeavingHome"
+                    [(ngModel)]="
+                        CareAssessmentMentalHealthFormsData.LeavingHome
+                    "
+                    [options]="lstLeavingHome"
+                    optionLabel="optionName"
+                    optionValue="optionId"
+                    placeholder="--select--"
+                    [style]="{ width: '100%' }"
+                >
+                </p-dropdown>
+                
+            </ng-container>
+            <ng-template #LeavingHome>
+                <label>{{
+                    CareAssessmentMentalHealthFormsData.LeavingHomeName
+                }}</label>
+            </ng-template>
         </div>
         <div class="col-md-1 form-icon">
             <i class="fa-solid fa-info"></i>
@@ -177,9 +378,27 @@
             </div>
         </div>
         <div class="col-md-7 form-text">
-            <p-dropdown placeholder="Select" [style]="{ width: '100%' }">
-            </p-dropdown>
-            <p class="mb-4">If answering at risk, complete missing person assessment</p>
+            <ng-container *ngIf="isEditable; else RiskForSafety">
+                <p-dropdown
+                    name="RiskForSafety"
+                    [(ngModel)]="
+                        CareAssessmentMentalHealthFormsData.RiskForSafety
+                    "
+                    [options]="lstRiskForSafety"
+                    optionLabel="optionName"
+                    optionValue="optionId"
+                    placeholder="--select--"
+                    [style]="{ width: '100%' }"
+                >
+                </p-dropdown>
+                
+                <p class="mb-4">If answering at risk, complete missing person assessment</p>
+            </ng-container>
+            <ng-template #RiskForSafety>
+                <label>{{
+                    CareAssessmentMentalHealthFormsData.RiskForSafetyName
+                }}</label>
+            </ng-template>
         </div>
         <div class="col-md-1 form-icon">
             <i class="fa-solid fa-info"></i>
@@ -190,9 +409,26 @@
             </div>
         </div>
         <div class="col-md-7 form-text">
-            <input pInputText type="text" required name="chartheadname" class="form-control" />
-            <p class="mb-4">Falls, placing self on floor, self-neglect (personal care / continence) behaviors that challenge /
-                assault others, inappropriate sexual behavior, self-harm</p>
+            <ng-container *ngIf="isEditable; else OtherRisks">
+                <input
+                    pInputText
+                    type="text"
+                    required
+                    name="OtherRisks"
+                    class="form-control"
+                    [(ngModel)]="
+                        CareAssessmentMentalHealthFormsData.OtherRisks
+                    "
+                />
+                <p class="mb-4">Falls, placing self on floor, self-neglect (personal care / continence) behaviors that challenge /
+                    assault others, inappropriate sexual behavior, self-harm</p>
+            </ng-container>
+            <ng-template #OtherRisks>
+                <label>{{
+                    CareAssessmentMentalHealthFormsData.OtherRisks
+                }}</label>
+            </ng-template>
+            
         </div>
         <div class="col-md-1 form-icon">
             <i class="fa-solid fa-info"></i>
@@ -203,8 +439,25 @@
             </div>
         </div>
         <div class="col-md-7 form-text">
-            <input pInputText type="text" required name="chartheadname" class="form-control" />
-            <p class="mb-4">E.g. CPN / other (input / referral)</p>
+            <ng-container *ngIf="isEditable; else ProfessionalInput">
+                <input
+                    pInputText
+                    type="text"
+                    required
+                    name="ProfessionalInput"
+                    class="form-control"
+                    [(ngModel)]="
+                        CareAssessmentMentalHealthFormsData.ProfessionalInput
+                    "
+                />
+                
+                <p class="mb-4">E.g. CPN / other (input / referral)</p>
+            </ng-container>
+            <ng-template #ProfessionalInput>
+                <label>{{
+                    CareAssessmentMentalHealthFormsData.ProfessionalInput
+                }}</label>
+            </ng-template>
         </div>
         <div class="col-md-1 form-icon">
             <i class="fa-solid fa-info"></i>
@@ -215,7 +468,12 @@
             </div>
         </div>
         <div class="col-md-7 form-text mb-2">
-            <p-triStateCheckbox inputId="tricheckbox"></p-triStateCheckbox>
+            <ng-container *ngIf="this.isEditable; else SexualityOrCulturalStatus">
+                <p-checkbox [(ngModel)]="SexualityStatus" [binary]="true" inputId="binary"></p-checkbox>
+            </ng-container>
+            <ng-template #SexualityOrCulturalStatus>
+                <label>{{CareAssessmentMentalHealthFormsData.SexualityOrCulturalStatus}}</label>
+            </ng-template>
         </div>
 
         <div class="col-md-4">
@@ -224,8 +482,26 @@
             </div>
         </div>
         <div class="col-md-7 form-text">
-            <p-dropdown placeholder="Select" [style]="{ width: '100%' }">
-            </p-dropdown>
+            <ng-container *ngIf="isEditable; else Sexuality">
+                <p-dropdown
+                    name="Sexuality"
+                    [(ngModel)]="
+                        CareAssessmentMentalHealthFormsData.Sexuality
+                    "
+                    [options]="lstSexuality"
+                    optionLabel="optionName"
+                    optionValue="optionId"
+                    placeholder="--select--"
+                    [style]="{ width: '100%' }"
+                >
+                </p-dropdown>
+                
+            </ng-container>
+            <ng-template #Sexuality>
+                <label>{{
+                    CareAssessmentMentalHealthFormsData.SexualityName
+                }}</label>
+            </ng-template>
         </div>
         <div class="col-md-1">
             <i class="fa-solid fa-info"></i>
@@ -237,9 +513,27 @@
             </div>
         </div>
         <div class="col-md-7 form-text">
-            <input pInputText type="text" required name="chartheadname" class="form-control" />
-            <p class="mb-4">Support required by the resident with sensitivity and privacy needs. How does the resident express
-                sexuality / sexual needs</p>
+            <ng-container *ngIf="isEditable; else Sensitivity">
+                <input
+                    pInputText
+                    type="text"
+                    required
+                    name="Sensitivity"
+                    class="form-control"
+                    [(ngModel)]="
+                        CareAssessmentMentalHealthFormsData.Sensitivity
+                    "
+                />
+                
+                <p class="mb-4">Support required by the resident with sensitivity and privacy needs. How does the resident express
+                    sexuality / sexual needs</p>
+            </ng-container>
+            <ng-template #Sensitivity>
+                <label>{{
+                    CareAssessmentMentalHealthFormsData.Sensitivity
+                }}</label>
+            </ng-template>
+            
         </div>
         <div class="col-md-1">
             <i class="fa-solid fa-info"></i>
@@ -250,8 +544,26 @@
             </div>
         </div>
         <div class="col-md-7 form-text">
-            <p-dropdown placeholder="Select" [style]="{ width: '100%' }">
-            </p-dropdown>
+            <ng-container *ngIf="isEditable; else GoalsToAchieve">
+                <p-dropdown
+                    name="GoalsToAchieve"
+                    [(ngModel)]="
+                        CareAssessmentMentalHealthFormsData.GoalsToAchieve
+                    "
+                    [options]="lstGoalsToAchieve"
+                    optionLabel="optionName"
+                    optionValue="optionId"
+                    placeholder="--select--"
+                    [style]="{ width: '100%' }"
+                >
+                </p-dropdown>
+                
+            </ng-container>
+            <ng-template #GoalsToAchieve>
+                <label>{{
+                    CareAssessmentMentalHealthFormsData.GoalsToAchieveName
+                }}</label>
+            </ng-template>
         </div>
         <div class="col-md-1">
             <i class="fa-solid fa-info"></i>
@@ -263,8 +575,26 @@
             </div>
         </div>
         <div class="col-md-7 form-text">
-            <input pInputText type="text" required name="chartheadname" class="form-control" />
-            <p class="mb-4">Specify any other risks that have not been identified above</p>
+            <ng-container *ngIf="isEditable; else OtherIdentifiedRisks">
+                <input
+                    pInputText
+                    type="text"
+                    required
+                    name="OtherIdentifiedRisks"
+                    class="form-control"
+                    [(ngModel)]="
+                        CareAssessmentMentalHealthFormsData.OtherIdentifiedRisks
+                    "
+                />
+                
+                <p class="mb-4">Specify any other risks that have not been identified above</p>
+            </ng-container>
+            <ng-template #OtherIdentifiedRisks>
+                <label>{{
+                    CareAssessmentMentalHealthFormsData.OtherIdentifiedRisks
+                }}</label>
+            </ng-template>
+            
         </div>
         <div class="col-md-1">
             <i class="fa-solid fa-info"></i>
@@ -275,7 +605,24 @@
             </div>
         </div>
         <div class="col-md-7 form-text">
-            <input pInputText type="text" required name="chartheadname" class="form-control" />
+            <ng-container *ngIf="isEditable; else ActionToManageAdditionalRisk">
+                <input
+                    pInputText
+                    type="text"
+                    required
+                    name="ActionToManageAdditionalRisk"
+                    class="form-control"
+                    [(ngModel)]="
+                        CareAssessmentMentalHealthFormsData.ActionToManageAdditionalRisk
+                    "
+                />
+                
+            </ng-container>
+            <ng-template #ActionToManageAdditionalRisk>
+                <label>{{
+                    CareAssessmentMentalHealthFormsData.ActionToManageAdditionalRisk
+                }}</label>
+            </ng-template>
         </div>
         <div class="col-md-1">
             <i class="fa-solid fa-info"></i>
@@ -287,25 +634,53 @@
         </div>
         <div class="col-md-8 mt-4 form-text ">
             <div class="input-group date">
-                <p-calendar name="DateOfBirth" [showIcon]="true" inputId="icon" [dateFormat]="" class="iconcal"
-                    [readonlyInput]="true" appendTo="body" [maxDate]="" #dobref=""></p-calendar>
-                <div *ngIf="" class="alert alert-danger">
-                </div>
+                <ng-container *ngIf="this.isEditable; else ReviewDate">
+                    <p-calendar name="ReviewDate" [showIcon]="true" inputId="icon" class="iconcal" [(ngModel)]="CareAssessmentMentalHealthFormsData.ReviewDate"
+                        [readonlyInput]="true" appendTo="body" [maxDate]="" #dobref=""></p-calendar>
+                    <div *ngIf="" class="alert alert-danger">
+                    </div>
+                </ng-container>
+                <ng-template #ReviewDate>
+                    <label>{{CareAssessmentMentalHealthFormsData.ReviewDate | date}}</label>
+                </ng-template>
             </div>
         </div>
         <div class="d-flex justify-content-end">
-            <div>
-                <span class="p-ml-left mr-4">
-                    <button pButton title="New" label="Save as Unfinished"></button>
-                    <span class="total-txt"></span>
-                </span>
-            </div>
-            <div>
-                <span class="p-ml-left mr-4">
-                    <button pButton title="New" label="Complete"></button>
-                    <span class="total-txt"></span>
-                </span>
-            </div>
+            <ng-container *ngIf="isEditable; else savePdf">
+                <div>
+                    <span class="p-ml-left mr-4">
+                        <button
+                            pButton
+                            title="New"
+                            label="Save as Unfinished"
+                            (click)="saveAsUnfinished()"
+                        ></button>
+                        <span class="total-txt"></span>
+                    </span>
+                </div>
+                <div>
+                    <span class="p-ml-left mr-4">
+                        <button
+                            pButton
+                            title="New"
+                            label="Complete"
+                            (click)="completeForm()"
+                            [disabled]="
+                                CareAssessmentMentalHealthFormsData.IsFormCompleted
+                            "
+                        ></button>
+                        <span class="total-txt"></span>
+                    </span>
+                </div>
+            </ng-container>
+            <ng-template #savePdf>
+                <button
+                    pButton
+                    title="Save as PDF"
+                    label="Save as PDF"
+                    (click)="SaveAsPDF()"
+                ></button>
+            </ng-template>
         </div>
     </div>
 </div>

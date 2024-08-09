@@ -1,0 +1,305 @@
+<div class="card">
+    <div class="row p-0">
+        <div class="col-md-12 formheader d-flex justify-content-between align-items-center">
+            <h4 class="mb-0">Repositioning Chart</h4>
+            <div>
+                <button pButton type="button" icon="pi pi-chevron-left" class="mr-2" (click)="leftBtn()"
+                    [disabled]="pageNumber==0"></button>
+                <button pButton type="button" icon="pi pi-chevron-right" class="" (click)="rightBtn()"
+                    [disabled]="rightBtnCheck"></button>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-3 mt-3 chart-box chart">
+            <div class="formheader mt-2 chart-heading">
+                <p><b>New observation</b></p>
+            </div>
+            <div class="col-md-12 mt-4">
+                <label class="form-label bold">
+                    Date/Time<span class="required"></span></label>
+
+                <ng-container>
+                    <p-calendar name="" [showIcon]="true" inputId="icon" class="iconcal" [readonlyInput]="true"
+                        appendTo="body" [maxDate]="" #dobref="" [dateFormat]="customDateFormat.CalendarFormat"
+                        [(ngModel)]="repositioningChartFormData.DateAndTime" [showTime]="true"></p-calendar>
+                </ng-container>
+            </div>
+            <div class="col-md-12">
+
+                <label class="form-label bold">Care Given <span class="required"></span></label>
+
+                <ng-container>
+                    <p-dropdown [required]="true" name="repositioningChartFormData.CareGiven"
+                        placeholder="----select----" [style]="{ width: '100%' }" [options]="stLstYesNoOptions"
+                        optionValue="optionId" optionLabel="optionValue"
+                        [(ngModel)]="repositioningChartFormData.CareGiven" (onChange)="openAndClose()">
+                    </p-dropdown>
+                    <label for="" *ngIf="careGiven" class="text-danger">This field is required</label>
+                </ng-container>
+
+            </div>
+            <div *ngIf="inputFields==false">
+                <label class="form-label bold">Reason<span class="required"></span></label>
+
+                <ng-container>
+                    <p-dropdown [required]="true" name="repositioningChartFormData.Reason" placeholder="----select----"
+                        [style]="{ width: '100%' }" [options]="stLstReason" optionValue="optionId"
+                        optionLabel="optionValue" [(ngModel)]="repositioningChartFormData.Reason">
+                    </p-dropdown>
+                    <label for="" *ngIf="reason" class="text-danger">This field is required</label>
+                </ng-container>
+            </div>
+
+            <div *ngIf="inputFields==true">
+                <h5 class="formheader">Repositioning</h5>
+                <div class="mb-4">
+                    <label class="form-label bold">Repositioning From<span class="required"></span></label>
+                    <ng-container>
+                        <p-dropdown [required]="true" name="repositioningChartFormData.RepositioningFrom"
+                            placeholder="----select----" [style]="{ width: '100%' }" [options]="stLstRepositioning"
+                            optionValue="optionId" optionLabel="optionValue"
+                            [(ngModel)]="repositioningChartFormData.RepositioningFrom">
+                        </p-dropdown>
+                    </ng-container>
+                </div>
+                <div>
+                    <label class="form-label bold">Reposition To<span class="required"></span></label>
+                    <ng-container>
+                        <p-dropdown [required]="true" name="repositioningChartFormData.RepositioningTo"
+                            placeholder="----select----" [style]="{ width: '100%' }" [options]="stLstRepositioning"
+                            optionValue="optionId" optionLabel="optionValue"
+                            [(ngModel)]="repositioningChartFormData.RepositioningTo">
+                        </p-dropdown>
+                    </ng-container>
+                </div>
+                <h5 class="formheader">Skin Condition</h5>
+                <div>
+                    <label class="form-label bold">Skin Check<span class="required"></span></label>
+                    <ng-container>
+                        <p-dropdown [required]="true" name="repositioningChartFormData.SkinCheck"
+                            placeholder="----select----" [style]="{ width: '100%' }" [options]="lstSkinCheck"
+                            optionValue="optionId" optionLabel="optionName"
+                            [(ngModel)]="repositioningChartFormData.SkinCheck">
+                        </p-dropdown>
+                    </ng-container>
+                </div>
+                <div>
+                    <label class="form-label bold">Creams<span class="required"></span></label>
+                    <ng-container>
+                        <p-dropdown [required]="true" name="repositioningChartFormData.Creams"
+                            placeholder="----select----" [style]="{ width: '100%' }" [options]="lstCreams"
+                            optionValue="optionId" optionLabel="optionName"
+                            [(ngModel)]="repositioningChartFormData.Creams">
+                        </p-dropdown>
+                    </ng-container>
+                </div>
+                <h5 class="formheader">Pressure</h5>
+                <div>
+                    <label class="form-label bold">Pressure Setting<span class="required"></span></label>
+                    <div class="col-md-12">
+                        <input type="text" pInputText name="repositioningChartFormData.PressureSetting"
+                            [required]="true" [style]="{ width: '100%' }"
+                            [(ngModel)]="repositioningChartFormData.PressureSetting" />
+                    </div>
+                </div>
+                <div>
+                    <label class="form-label bold">Pressure cushion<span class="required"></span></label>
+                    <ng-container>
+                        <p-dropdown [required]="true" name="repositioningChartFormData.PressureCushion"
+                            placeholder="----select----" [style]="{ width: '100%' }" [options]="stLstYesNoOptions"
+                            optionValue="optionId" optionLabel="optionValue"
+                            [(ngModel)]="repositioningChartFormData.PressureCushion">
+                        </p-dropdown>
+                    </ng-container>
+                </div>
+            </div>
+            <h5 class="formheader">Additional information</h5>
+            <div class="col-md-12">
+                <label class="form-label"><span class="required"></span></label>
+                <ng-container>
+                    <input type="text" pInputText name="repositioningChartFormData.AdditionalInformation"
+                        [required]="true" [style]="{ width: '100%' }"
+                        [(ngModel)]="repositioningChartFormData.AdditionalInformation" />
+                </ng-container>
+
+            </div>
+            <div class="d-flex justify-content-center mt-4 mb-4">
+                <div class="mr-4 ">
+                    <span class="p-ml-left">
+                        <button pButton title="Clear all" label="Clear all" (click)="ClearAllfeilds()"></button>
+
+                    </span>
+                </div>
+                <div>
+                    <span class="p-ml-left">
+                        <button pButton title="save" label="Save" (click)="Save()"></button>
+                    </span>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-9 mt-3">
+            <!-- Left navigation button -->
+            <p-carousel [value]="repositioningChartsLst" [numVisible]="pageSize" [numScroll]="pageSize"
+                [circular]="false" [showIndicators]="false" [showNavigators]="false"
+                [responsiveOptions]="responsiveOptions">
+                <ng-template let-chart pTemplate="item">
+                    <div class="col-md-11 chart-box p-2">
+                        <div class="formheader">
+                            <div class="col-md-12 mb-2 d-flex justify-content-between fs-4">
+                                <div class="chart-date bold">
+                                    <label>{{
+                                        chart.DateAndTime |
+                                        date:'dd-MM-yyyy' }}</label>
+                                </div>
+                                <div class="chart-date">
+                                    <label>{{
+                                        chart.DateAndTime |
+                                        date:'hh:mm' }}</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12 mb-2">
+
+                            <label class="form-label bold">Enterted By<span
+                                    class="required"></span></label>
+
+                            <div>
+                                <label
+                                    [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">{{chart.StartedBy}}</label>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="mb-2">
+                                <button *ngIf="!chart.isStrikeThrough" pButton type="button"
+                                    label="Strike Out Entry" class="p-button-link p-0"
+                                    (click)="showPopup(chart.repositioningChartId)">
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="col-md-12 mb-2">
+
+                            <label *ngIf="chart.isStrikeThrough" class="form-label bold">Strike Out Reason<span
+                                    class="required"></span></label>
+
+                            <div>
+                                <label *ngIf="chart.isStrikeThrough">{{chart.StrikeThroughRemark}}</label>
+                            </div>
+                        </div>
+
+                        <div class="col-md-12">
+
+                            <label class="form-label bold">Care Given
+                                <span class="required"></span></label>
+
+                            <div>
+                                <label [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">{{
+                                    chart.CareGiven }}</label>
+                            </div>
+
+                        </div>
+                        <div *ngIf="chart.CareGiven=='No'">
+                            <div class="col-md-12">
+                                <div class="col-md-12">
+                                    <label class="form-label bold">Reason
+                                        <span class="required"></span></label>
+                                </div>
+                                <div>
+                                    <label [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">{{
+                                        chart.Reason }}</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div *ngIf="chart.CareGiven=='Yes'" class="row">
+                            <h5 class="formheader">
+                                Repositioning</h5>
+                            <div class="mb-4">
+                                <label class="form-label bold">Repositioning
+                                    From<span class="required"></span></label>
+                                <div>
+                                    <label [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">{{
+                                        chart.RepositioningFrom }}</label>
+                                </div>
+                            </div>
+                            <div>
+                                <label class="form-label bold">Reposition
+                                    To<span class="required"></span></label>
+                                <div>
+                                    <label [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">{{
+                                        chart.RepositioningTo }}</label>
+                                </div>
+                            </div>
+                            <h5 class="formheader">
+                                Skin Condition</h5>
+                            <div>
+                                <label class="form-label bold">Skin Check<span
+                                        class="required"></span></label>
+                                <div>
+                                    <label [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">{{
+                                        chart.SkinCheckOptionName }}</label>
+                                </div>
+                            </div>
+                            <div>
+                                <label class="form-label bold">Creams<span
+                                        class="required"></span></label>
+                                <div>
+                                    <label [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">{{
+                                        chart.CreamsOptionName }}</label>
+                                </div>
+                            </div>
+                            <h5 class="formheader">
+                                Pressure</h5>
+                            <div>
+                                <label class="form-label bold">Pressure
+                                    Setting<span class="required"></span></label>
+                                <div>
+                                    <label [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">{{
+                                        chart.PressureSetting }}</label>
+                                </div>
+                            </div>
+                            <div>
+                                <label class="form-label bold">Pressure
+                                    cushion<span class="required"></span></label>
+                                <div>
+                                    <label [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">{{
+                                        chart.PressureCushion}}</label>
+                                </div>
+                            </div>
+                        </div>
+                        <h5 class="formheader">
+                            Additional information
+                        </h5>
+                        <div class="col-md-12">
+                            <label class="form-label"><span class="required"></span></label>
+                            <div>
+                                <label
+                                    [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">{{chart.AdditionalInformation}}</label>
+                            </div>
+                        </div>
+                    </div>
+                </ng-template>
+
+            </p-carousel>
+
+            <div *ngIf="isShowStrikeThroughPopup" class="card flex justify-content-center">
+                <p-dialog [closable]="true" header="Strike-Out" [(visible)]="isShowStrikeThroughPopup"
+                    [modal]="true" [breakpoints]="{ '1199px': '75vw', '575px': '90vw' }" [style]="{ width: '40vw' }"
+                    [draggable]="false" [resizable]="false">
+                    <div *ngIf="isShowStrikeThroughPopup">
+
+                        <app-strike-through-entry [StrikeThroughData]="StrikeThroughData"
+                            (StrikeThroughCheck)="Changes($event)"></app-strike-through-entry>
+                    </div>
+                </p-dialog>
+            </div>
+
+            <!-- Right navigation button -->
+
+        </div>
+
+    </div>
+
+</div>

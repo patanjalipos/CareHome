@@ -3,6 +3,7 @@ import { ConstantsService, CustomDateFormat, UserTypes } from 'src/app/ui/servic
 import { UtilityService } from 'src/app/utility/utility.service';
 import { AppComponentBase } from 'src/app/app-component-base';
 import { MasterService } from 'src/app/ui/service/master.service';
+import { UserService } from 'src/app/ui/service/user.service';
 
 @Component({
   selector: 'app-clinical-information',
@@ -16,8 +17,9 @@ export class ClinicalInformationComponent extends AppComponentBase implements On
   Clinical: any = <any>{};
   isEditable:boolean=true;
   constructor(private _ConstantServices: ConstantsService,
-    private _MasterServices: MasterService,
+    private _UserServices: UserService,
     private _UtilityService: UtilityService,
+
   ) {
     super();
 
@@ -54,7 +56,7 @@ export class ClinicalInformationComponent extends AppComponentBase implements On
   GetClinicalInformationById(admissionid) {
     this.Clinical.statementtype = "Insert";
     this._UtilityService.showSpinner();   
-    this.unsubscribe.add = this._MasterServices.GetClinicalInformationById(admissionid)  
+    this.unsubscribe.add = this._UserServices.GetClinicalInformationById(admissionid)  
       .subscribe({
         next:(data) => {
           this._UtilityService.hideSpinner();          
@@ -62,7 +64,7 @@ export class ClinicalInformationComponent extends AppComponentBase implements On
             var tdata = JSON.parse(data.actionResult.result);
             tdata = tdata ? tdata : [];
             this.Clinical = tdata;       
-            //console.log('this.Clinical', this.Clinical);     
+             
             this.Clinical.statementtype = "Update";
           }
         },
@@ -79,7 +81,7 @@ export class ClinicalInformationComponent extends AppComponentBase implements On
       this.Clinical.ResidentAdmissionInfoId = this.admissionid;
       this.Clinical.ModifiedBy = localStorage.getItem('userId');
       this._UtilityService.showSpinner();
-      this.unsubscribe.add = this._MasterServices.AddInsertUpdateClinicalInformation(this.Clinical)
+      this.unsubscribe.add = this._UserServices.AddInsertUpdateClinicalInformation(this.Clinical)
         .subscribe
         ({
           next: (data) => {

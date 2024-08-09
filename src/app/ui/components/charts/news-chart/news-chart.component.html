@@ -1,0 +1,672 @@
+<div class="card">
+    <div class="row p-0">
+        <div class="col-md-12 formheader d-flex justify-content-between align-items-center">
+            <h4 class="mb-0">News Chartt</h4>
+            <div>
+                <button pButton type="button" icon="pi pi-chevron-left" class="mr-2" (click)="leftBtn()"
+                    [disabled]="pageNumber==0"></button>
+                <button pButton type="button" icon="pi pi-chevron-right" class="" (click)="rightBtn()"
+                    [disabled]="rightBtnCheck"></button>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-3 mt-3 chart-box chart">
+            <div class="formheader mt-2 chart-heading">
+                <p><b>New observation</b></p>
+            </div>
+            <div class="col-md-12 mt-4">
+                <label class="form-label bold">
+                    Date/Time<span class="required"></span></label>
+
+                <ng-container>
+                    <p-calendar name="" [required]="true" [showIcon]="true" inputId="icon" class="iconcal"
+                        [readonlyInput]="true" appendTo="body" [maxDate]="" #dobref=""
+                        [dateFormat]="customDateFormat.CalendarFormat" [(ngModel)]="NewsChartFormData.DateAndTime"
+                        [showTime]="true" hourFormat="24"></p-calendar>
+                </ng-container>
+            </div>
+            <div class="col-md-12">
+
+                <label class="form-label bold">Care Given <span class="required"></span></label>
+
+                <ng-container>
+                    <p-dropdown [required]="true" name="NewsChartFormData.CareGiven" placeholder="----select----"
+                        [style]="{ width: '100%' }" [options]="stLstYesNoOptions" optionValue="optionId"
+                        optionLabel="optionValue" [(ngModel)]="NewsChartFormData.CareGiven" (onChange)="openAndClose()">
+                    </p-dropdown>
+                    <label for="" *ngIf="careGiven" class="text-danger">This field is required</label>
+                </ng-container>
+
+            </div>
+            <div *ngIf="inputFields==false">
+                <label class="form-label bold">Reason<span class="required"></span></label>
+
+                <ng-container>
+                    <p-dropdown [required]="true" name="NewsChartFormData.Reason" placeholder="----select----"
+                        [style]="{ width: '100%' }" [options]="stLstReason" optionValue="optionId"
+                        optionLabel="optionValue" [(ngModel)]="NewsChartFormData.Reason">
+                    </p-dropdown>
+                    <label for="" *ngIf="reason" class="text-danger">This field is required</label>
+                </ng-container>
+            </div>
+
+            <div *ngIf="inputFields" class="row">
+                <h5 class="formheader">Respiration Rate</h5>
+                <div class="col-md-12">
+                    <label class="form-label bold">Breath/min<span class="required"></span></label>
+                    <ng-container>
+                        <input type="number" pInputText name="NewsChartFormData.respirationRate" [required]="true"
+                            [style]="{ width: '100%' }" [(ngModel)]="NewsChartFormData.respirationRate"
+                            (keyup)="calcuRespirationRate()" />
+                    </ng-container>
+                </div>
+
+                <div class="col-md-12">
+                    <label class="form-label bold">Respiration Score<span class="required"></span></label>
+                    <div [ngClass]="{
+                            'bg-yellow':NewsChartFormData.respirationScore == 1,
+                            'bg-orange': NewsChartFormData.respirationScore == 2,
+                            'bg-warning': NewsChartFormData.respirationScore == 3
+                    }">
+                        <label>{{NewsChartFormData.respirationScore}}</label>
+                    </div>
+                </div>
+
+
+                <h5 class="formheader">SpO2</h5>
+                <div class="col-md-12">
+                    <label class="form-label bold">Does the resident have hypercapnic Respiratory Failear</label>
+                    <ng-container>
+                        <p-dropdown [required]="true" name="NewsChartFormData.respiratoryFailear"
+                            placeholder="----select----" [style]="{ width: '100%' }" [options]="stLstYesNoOptions"
+                            optionValue="optionId" optionLabel="optionValue"
+                            [(ngModel)]="NewsChartFormData.respiratoryFailear">
+                        </p-dropdown>
+                    </ng-container>
+                </div>
+
+                <div class="col-md-12" *ngIf="NewsChartFormData.respiratoryFailear=='Yes'">
+                    <label class="form-label bold">Air Or Oxigen</label>
+                    <ng-container>
+                        <p-dropdown [required]="true" name="NewsChartFormData.airOrOxygen" placeholder="----select----"
+                            [style]="{ width: '100%' }" [options]="lstAirOrOxygen" optionValue="optionId"
+                            optionLabel="optionName" [(ngModel)]="NewsChartFormData.airOrOxygen"
+                            (onChange)="calcuAirOxygenScore()">
+                        </p-dropdown>
+                    </ng-container>
+                </div>
+
+                <div *ngIf="NewsChartFormData.airOrOxygen=='66a878fdc3c14242d80a2648'">
+
+                    <div class="col-md-12">
+                        <label class="form-label bold">O 2 Liters per minute</label>
+                        <ng-container>
+                            <input type="number" pInputText name="NewsChartFormData.oTwoInLiters" [required]="true"
+                                [style]="{ width: '100%' }" [(ngModel)]="NewsChartFormData.oTwoInLiters" />
+                        </ng-container>
+
+                    </div>
+
+                    <div class="col-md-12">
+                        <label class="form-label bold">Device</label>
+                        <ng-container>
+                            <p-dropdown [required]="true" name="NewsChartFormData.device" placeholder="----select----"
+                                [style]="{ width: '100%' }" [options]="lstDevice" optionValue="optionId"
+                                optionLabel="optionName" [(ngModel)]="NewsChartFormData.device">
+                            </p-dropdown>
+                        </ng-container>
+                    </div>
+                </div>
+
+                <div *ngIf="NewsChartFormData.respiratoryFailear=='Yes'">
+                    <label class="form-label bold">Air Or Oxygen Score</label>
+                    <div [ngClass]="{
+                        'bg-yellow':NewsChartFormData.airOrOxygenScore == 1,
+                        'bg-orange': NewsChartFormData.airOrOxygenScore == 2,
+                        'bg-warning': NewsChartFormData.airOrOxygenScore == 3
+                }">
+                        <label>{{NewsChartFormData.airOrOxygenScore}}</label>
+                    </div>
+                </div>
+
+                <div class="col-md-12">
+                    <label class="form-label bold">Oxigen Saturation(%)</label>
+                    <ng-container>
+                        <input type="number" pInputText name="NewsChartFormData.oxigen" [required]="true"
+                            [style]="{ width: '100%' }" [(ngModel)]="NewsChartFormData.oxigen" placeholder="%"
+                            (keyup)="calcuScaleScore()" />
+                    </ng-container>
+
+                </div>
+
+                <div class="col-md-12">
+                    <label class="form-label bold">Scale 1 score<span class="required"></span></label>
+                    <div [ngClass]="{
+                        'bg-yellow':NewsChartFormData.scaleScore == 1,
+                        'bg-orange': NewsChartFormData.scaleScore == 2,
+                        'bg-warning': NewsChartFormData.scaleScore == 3
+                }">
+                        <label>{{NewsChartFormData.scaleScore}}</label>
+                    </div>
+                </div>
+
+                <h5 class="formheader">Systolic blood pressure</h5>
+                <div class="col-md-12">
+                    <label class="form-label bold">Systolic blood pressure (mmHg)</label>
+                    <ng-container>
+                        <input type="number" pInputText name="NewsChartFormData.bloodPressure" [required]="true"
+                            [style]="{ width: '100%' }" [(ngModel)]="NewsChartFormData.bloodPressure"
+                            placeholder="mm Hg" (keyup)="caluSystolicBPScore()" />
+                    </ng-container>
+                </div>
+
+
+                <div class="col-md-12">
+                    <label class="form-label bold">Systolic blood pressure score<span class="required"></span></label>
+                    <div [ngClass]="{
+                        'bg-yellow':NewsChartFormData.bloodPressureScore == 1,
+                        'bg-orange': NewsChartFormData.bloodPressureScore == 2,
+                        'bg-warning': NewsChartFormData.bloodPressureScore == 3
+                }">
+                        <label>{{NewsChartFormData.bloodPressureScore}}</label>
+                    </div>
+                </div>
+
+
+
+                <h5 class="formheader">Pules Rate</h5>
+                <div class="col-md-12">
+                    <label class="form-label bold">pules Beat/min (beats per min)</label>
+                    <ng-container>
+                        <input type="number" pInputText name="NewsChartFormData.pulesRate" [required]="true"
+                            [style]="{ width: '100%' }" [(ngModel)]="NewsChartFormData.pulesRate"
+                            placeholder="beats per min" (keyup)="calcuPulesScore()" />
+                    </ng-container>
+
+                </div>
+
+
+                <div class="col-md-12">
+                    <label class="form-label bold">Pules Score<span class="required"></span></label>
+                    <div [ngClass]="{
+                        'bg-yellow':NewsChartFormData.pulesScore == 1,
+                        'bg-orange': NewsChartFormData.pulesScore == 2,
+                        'bg-warning': NewsChartFormData.pulesScore == 3
+                }">
+                        <label>{{NewsChartFormData.pulesScore}}</label>
+                    </div>
+                </div>
+
+
+                <h5 class="formheader">Level Of consciousness</h5>
+                <div class="col-md-12">
+                    <label class="form-label bold">consciousness</label>
+                    <ng-container>
+                        <p-dropdown [required]="true" name="NewsChartFormData.consciousness"
+                            placeholder="----select----" [style]="{ width: '100%' }" [options]="lstConsciousness"
+                            optionValue="optionId" optionLabel="optionName"
+                            [(ngModel)]="NewsChartFormData.consciousness" (onChange)="calcuConsciousnessScore()">
+                        </p-dropdown>
+                    </ng-container>
+                </div>
+                <div *ngIf="NewsChartFormData.consciousness=='66a878fdc3c14242d80a2642'">
+                    <p-messages [(value)]="alertMsg" [enableService]="false"></p-messages>
+                </div>
+                <div *ngIf="NewsChartFormData.consciousness=='66a878fdc3c14242d80a2643'">
+                    <p-messages [(value)]="confuseMsg" [enableService]="false"></p-messages>
+                </div>
+                <div *ngIf="NewsChartFormData.consciousness=='66a878fdc3c14242d80a2644'">
+                    <p-messages [(value)]="verbalmsg" [enableService]="false"></p-messages>
+                </div>
+                <div *ngIf="NewsChartFormData.consciousness=='66a878fdc3c14242d80a2645'">
+                    <p-messages [(value)]="painMsg" [enableService]="false"></p-messages>
+                </div>
+                <div *ngIf="NewsChartFormData.consciousness=='66a878fdc3c14242d80a2646'">
+                    <p-messages [(value)]="unresponshiveMsg" [enableService]="false"></p-messages>
+                </div>
+
+                <div class="col-md-12">
+                    <label class="form-label bold">consciousness score<span class="required"></span></label>
+                    <div  [ngClass]="{
+                        'bg-yellow':NewsChartFormData.consciousnessScore == 1,
+                        'bg-orange': NewsChartFormData.consciousnessScore == 2,
+                        'bg-warning': NewsChartFormData.consciousnessScore == 3
+                }">
+                        <label>{{NewsChartFormData.consciousnessScore}}</label>
+                    </div>
+                </div>
+
+                <h5 class="formheader">Temprature</h5>
+                <div class="col-md-12">
+                    <label class="form-label bold">Temprature (degrees calsius)</label>
+                    <ng-container>
+                        <input type="number" pInputText name="NewsChartFormData.temprature" [required]="true"
+                            [style]="{ width: '100%' }" [(ngModel)]="NewsChartFormData.temprature"
+                            placeholder="degrees calsius" (keyup)="caluTempratureScore()" />
+                    </ng-container>
+
+                </div>
+
+
+                <div class="col-md-12">
+                    <label class="form-label bold">Temprature score<span class="required"></span></label>
+                    <div [ngClass]="{
+                        'bg-yellow':NewsChartFormData.tempratureScore == 1,
+                        'bg-orange': NewsChartFormData.tempratureScore == 2,
+                        'bg-warning': NewsChartFormData.tempratureScore == 3
+                }">
+                        <label>{{NewsChartFormData.tempratureScore}}</label>
+                    </div>
+                </div>
+
+
+                <h5 class="formheader">NEWS 2 Total</h5>
+                <div class="col-md-12">
+                    <label class="form-label bold">NEWS 2 score<span class="required"></span></label>
+                    <div [ngClass]="{
+                        'bg-yellow':NewsChartFormData.newstwoScore == 1,
+                        'bg-orange': NewsChartFormData.newstwoScore == 2,
+                        'bg-warning': NewsChartFormData.newstwoScore == 3
+                }">
+                        <label>{{NewsChartFormData.newstwoScore}}</label>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <label class="form-label bold">Clinical Risk<span class="required"></span></label>
+                    <div >
+                        <label>{{NewsChartFormData.clinicalRisk}}</label>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <label class="form-label bold">Response<span class="required"></span></label>
+                    <div>
+                        <label>{{NewsChartFormData.response}}</label>
+                    </div>
+                </div>
+
+                <div class="col-md-12">
+                    <label class="form-label bold">Monterning Frequancy</label>
+                    <div class="d-flex">
+                        <div class="col-md-5 mr-2">
+                            <input type="number" pInputText name="NewsChartFormData.monterningFrequancy"
+                                [required]="true" [(ngModel)]="NewsChartFormData.monterningFrequancy" />
+                        </div>
+                        <div class="col-md-5">
+                            <p-dropdown [required]="true" name="monterningFrequancySuffix" placeholder="----select----"
+                                [options]="stLstmonterningFrequancySuffix" optionValue="optionId"
+                                optionLabel="optionValue" [(ngModel)]="monterningFrequancySuffix"
+                                (onChange)="setValueOfMonterningFrequancy()">
+                            </p-dropdown>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <label class="form-label bold">Esclation Of care</label>
+                    <ng-container>
+                        <p-dropdown [required]="true" name="NewsChartFormData.esclationCare"
+                            placeholder="----select----" [style]="{ width: '100%' }" [options]="stLstYesNoOptions"
+                            optionValue="optionId" optionLabel="optionValue"
+                            [(ngModel)]="NewsChartFormData.esclationCare">
+                        </p-dropdown>
+                    </ng-container>
+                </div>
+
+                <div *ngIf="NewsChartFormData.esclationCare=='Yes'">
+                    <div class="col-md-12">
+                        <label class="form-label bold">What Esclation are required</label>
+                        <ng-container>
+                            <input type="text" pInputText name="NewsChartFormData.requiredEsclation" [required]="true"
+                                [style]="{ width: '100%' }" [(ngModel)]="NewsChartFormData.requiredEsclation" />
+                        </ng-container>
+                    </div>
+                </div>
+            </div>
+
+            <h5 class="formheader">Additional information</h5>
+            <div class="col-md-12">
+                <ng-container>
+                    <input type="text" pInputText name="BowelChartFormData.AdditionalInformation" [required]="true"
+                        [style]="{ width: '100%' }" [(ngModel)]="NewsChartFormData.AdditionalInformation" />
+                </ng-container>
+            </div>
+
+            <div class="d-flex justify-content-center mt-4 mb-4">
+                <div class="mr-4 ">
+                    <span class="p-ml-left">
+                        <button pButton title="Clear all" label="Clear all" (click)="ClearAllfeilds()"></button>
+
+                    </span>
+                </div>
+                <div>
+                    <span class="p-ml-left">
+                        <button pButton title="save" label="Save" (click)="Save()"></button>
+
+                    </span>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="col-md-9 mt-3">
+            <!-- Left navigation button -->
+
+
+            <p-carousel [value]="NewsChartsLst" [numVisible]="pageSize" [numScroll]="pageSize" [circular]="false"
+                [showIndicators]="false" [showNavigators]="false" [responsiveOptions]="responsiveOptions">
+                <ng-template let-chart pTemplate="item">
+                    <div class="col-md-11 chart-box p-2">
+                        <div class="formheader">
+                            <div class="col-md-12 mb-2 d-flex justify-content-between fs-4">
+                                <div class="chart-date bold">
+                                    <label>{{
+                                        chart.DateAndTime |
+                                        date:'dd-MM-yyyy' }}</label>
+                                </div>
+                                <div class="chart-date">
+                                    <label>{{
+                                        chart.DateAndTime |
+                                        date:'hh:mm' }}</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12 mb-2">
+
+                            <label class="form-label bold"
+                                >Enterted By<span
+                                    class="required"></span></label>
+
+                            <div>
+                                <label
+                                    [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">{{chart.StartedBy}}</label>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="mb-2">
+                                <button *ngIf="!chart.isStrikeThrough" pButton type="button"
+                                    label="Strike Through Entry" class="p-button-link p-0"
+                                    (click)="showPopup(chart.NewsChartId)">
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="col-md-12 mb-2">
+
+                            <label *ngIf="chart.isStrikeThrough" class="form-label bold">Strike Out Reason<span
+                                    class="required"></span></label>
+
+                            <div>
+                                <label *ngIf="chart.isStrikeThrough">{{chart.StrikeThroughRemark}}</label>
+                            </div>
+                        </div>
+
+                        <div class="col-md-12">
+
+                            <label class="form-label bold">Care Given
+                                <span class="required"></span></label>
+
+                            <div>
+                                <label [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">{{
+                                    chart.CareGiven }}</label>
+                            </div>
+
+                        </div>
+                        <div *ngIf="chart.CareGiven=='No'">
+                            <div class="col-md-12">
+                                <div class="col-md-12">
+                                    <label class="form-label bold">Reason
+                                        <span class="required"></span></label>
+                                </div>
+                                <div>
+                                    <label [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">{{
+                                        chart.Reason}}</label>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div *ngIf="chart.CareGiven=='Yes'" class="row">
+                            <h5 class="formheader">Respiration Rate</h5>
+                            <div class="col-md-12">
+                                <label class="form-label bold">Breath/min<span class="required"></span></label>
+                                <div>
+                                    <label
+                                        [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">{{chart.respirationRate}}</label>
+                                </div>
+                            </div>
+
+                            <div class="col-md-12">
+                                <label class="form-label bold">Respiration Score<span class="required"></span></label>
+                                <div>
+                                    <label
+                                        [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">{{chart.respirationScore}}</label>
+                                </div>
+                            </div>
+
+
+
+
+                            <h5 class="formheader">SpO2</h5>
+                            <div class="col-md-12">
+                                <label class="form-label bold">Does the resident have hypercapnic Respiratory
+                                    Failear</label>
+                                <div>
+                                    <label
+                                        [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">{{chart.respiratoryFailear}}</label>
+                                </div>
+                            </div>
+
+                            <div class="col-md-12" *ngIf="chart.respiratoryFailear=='Yes'">
+                                <label class="form-label bold">Air Or Oxigen</label>
+                                <div>
+                                    <label
+                                        [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">{{chart.airOrOxygenOptionName}}</label>
+                                </div>
+                            </div>
+
+                            <div *ngIf="chart.airOrOxygen=='66a878fdc3c14242d80a2648'">
+
+                                <div class="col-md-12">
+                                    <label class="form-label bold">O 2 Liters per minute</label>
+                                    <div>
+                                        <label
+                                            [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">{{chart.oTwoInLiters}}</label>
+                                    </div>
+
+                                </div>
+
+                                <div class="col-md-12">
+                                    <label class="form-label bold">Device</label>
+                                    <div>
+                                        <label
+                                            [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">{{chart.deviceOptionName}}</label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div *ngIf="chart.respiratoryFailear=='Yes'">
+                                <label class="form-label bold">Air Or Oxygen Score</label>
+                                <div>
+                                    <label
+                                        [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">{{chart.airOrOxygenScore}}</label>
+                                </div>
+                            </div>
+
+                            <div class="col-md-12">
+                                <label class="form-label bold">Oxigen Saturation(%)</label>
+                                <div>
+                                    <label
+                                        [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">{{chart.oxigen}}</label>
+                                </div>
+
+                            </div>
+
+                            <div class="col-md-12">
+                                <label class="form-label bold">Scale 1 score<span class="required"></span></label>
+                                <div>
+                                    <label
+                                        [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">{{chart.scaleScore}}</label>
+                                </div>
+                            </div>
+
+                            <h5 class="formheader">Systolic blood pressure</h5>
+                            <div class="col-md-12">
+                                <label class="form-label bold">Systolic blood pressure (mmHg)</label>
+                                <div>
+                                    <label
+                                        [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">{{chart.bloodPressure}}</label>
+                                </div>
+                            </div>
+
+
+                            <div class="col-md-12">
+                                <label class="form-label bold">Systolic blood pressure score<span
+                                        class="required"></span></label>
+                                <div>
+                                    <label
+                                        [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">{{chart.bloodPressureScore}}</label>
+                                </div>
+                            </div>
+
+
+
+                            <h5 class="formheader">Pules Rate</h5>
+                            <div class="col-md-12">
+                                <label class="form-label bold">pules Beat/min (beats per min)</label>
+                                <div>
+                                    <label
+                                        [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">{{chart.pulesRate}}</label>
+                                </div>
+
+                            </div>
+
+
+                            <div class="col-md-12">
+                                <label class="form-label bold">Pules Score<span class="required"></span></label>
+                                <div>
+                                    <label
+                                        [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">{{chart.pulesScore}}</label>
+                                </div>
+                            </div>
+
+
+                            <h5 class="formheader">Level Of consciousness</h5>
+                            <div class="col-md-12">
+                                <label class="form-label bold">consciousness</label>
+                                <div>
+                                    <label
+                                        [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">{{chart.consciousnessOptionName}}</label>
+                                </div>
+                            </div>
+
+
+                            <div class="col-md-12">
+                                <label class="form-label bold">consciousness score<span class="required"></span></label>
+                                <div>
+                                    <label
+                                        [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">{{chart.consciousnessScore}}</label>
+                                </div>
+                            </div>
+
+                            <h5 class="formheader">Temprature</h5>
+                            <div class="col-md-12">
+                                <label class="form-label bold">Temprature (degrees calsius)</label>
+                                <div>
+                                    <label
+                                        [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">{{chart.temprature}}</label>
+                                </div>
+
+                            </div>
+
+
+                            <div class="col-md-12">
+                                <label class="form-label bold">Temprature score<span class="required"></span></label>
+                                <div>
+                                    <label
+                                        [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">{{chart.tempratureScore}}</label>
+                                </div>
+                            </div>
+
+
+                            <h5 class="formheader">NEWS 2 Total</h5>
+                            <div class="col-md-12">
+                                <label class="form-label bold">NEWS 2 score<span class="required"></span></label>
+                                <div>
+                                    <label
+                                        [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">{{chart.newstwoScore}}</label>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <label class="form-label bold">Clinical Risk<span class="required"></span></label>
+                                <div>
+                                    <label
+                                        [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">{{chart.clinicalRisk}}</label>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <label class="form-label bold">Response<span class="required"></span></label>
+                                <div>
+                                    <label
+                                        [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">{{chart.response}}</label>
+                                </div>
+                            </div>
+
+                            <div class="col-md-12">
+                                <label class="form-label bold">Monterning Frequancy</label>
+
+                                <div>
+                                    <label
+                                        [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">{{chart.monterningFrequancy}}</label>
+                                </div>
+
+
+                            </div>
+                            <div class="col-md-12">
+                                <label class="form-label bold">Esclation Of care</label>
+                                <div>
+                                    <label
+                                        [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">{{chart.esclationCare}}</label>
+                                </div>
+                            </div>
+
+                            <div *ngIf="chart.esclationCare=='Yes'">
+                                <div class="col-md-12">
+                                    <label class="form-label bold">What Esclation are required</label>
+                                    <div>
+                                        <label
+                                            [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">{{chart.requiredEsclation}}</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <h5 class="formheader" [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">
+                            Additional information
+                        </h5>
+                        <div class="col-md-12">
+                            <label class="form-label"><span class="required"></span></label>
+                            <div>
+                                <label
+                                    [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">{{chart.AdditionalInformation}}</label>
+                            </div>
+                        </div>
+                    </div>
+                </ng-template>
+
+            </p-carousel>
+            <div *ngIf="isShowStrikeThroughPopup" class="card flex justify-content-center">
+                <p-dialog [closable]="true" header="Strike-Out" [(visible)]="isShowStrikeThroughPopup"
+                    [modal]="true" [breakpoints]="{ '1199px': '75vw', '575px': '90vw' }" [style]="{ width: '40vw' }"
+                    [draggable]="false" [resizable]="false">
+                    <div *ngIf="isShowStrikeThroughPopup">
+
+                        <app-strike-through-entry [StrikeThroughData]="StrikeThroughData"
+                            (StrikeThroughCheck)="Changes($event)"></app-strike-through-entry>
+                    </div>
+                </p-dialog>
+            </div>
+
+            <!-- Right navigation button -->
+
+        </div>
+    </div>
+</div>

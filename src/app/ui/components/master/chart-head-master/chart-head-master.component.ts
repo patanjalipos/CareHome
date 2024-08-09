@@ -20,6 +20,9 @@ export class ChartHeadMasterComponent extends AppComponentBase implements OnInit
   public master: any = <any>{};
   filteredValuesLength:number=0;
   stlststatus: any[]=[];
+  ComponentName: string = 'ChartHeadMaster';
+  filteritems:any[]=[];
+  isChartHeadMaster: boolean = false;
   
   constructor(private _ConstantServices: ConstantsService,
     private _MasterServices:MasterService,
@@ -37,8 +40,15 @@ export class ChartHeadMasterComponent extends AppComponentBase implements OnInit
    this.GetChartHeadMaster();        
   }
   GetChartHeadMaster() {
+    let importData: any = <any>{};
+    if(this.isChartHeadMaster==true && this.filteritems !=null && this.filteritems !=undefined)
+      {       
+        importData.SearchList=this.filteritems;
+      }
+      importData.StatusType=false;      
+      importData.isExcel=false;  
     this._UtilityService.showSpinner();   
-    this.unsubscribe.add = this._MasterServices.GetChartHeadMaster(false)
+    this.unsubscribe.add = this._MasterServices.GetChartHeadMaster(importData)
       .subscribe({
         next:(data) => {
           this._UtilityService.hideSpinner();          
@@ -51,7 +61,7 @@ export class ChartHeadMasterComponent extends AppComponentBase implements OnInit
               this.dataTable.reset();
               this.filteredValuesLength = this.lstMaster?.length;
               }            
-          //  console.log(this.lstmaster);
+     
           }
           else {
             this.lstMaster = [];            
@@ -132,4 +142,13 @@ export class ChartHeadMasterComponent extends AppComponentBase implements OnInit
   onGlobalFilter(table: Table, event: Event) {
     table.filterGlobal((event.target as HTMLInputElement).value, 'contains');
   }
+
+  ShowFilters() {
+    this.isChartHeadMaster =!this.isChartHeadMaster;  
+  }
+
+GetChartHeadMasterFilter($event) {
+  this.filteritems=$event; 
+   this.GetChartHeadMaster(); 
+ }
 }

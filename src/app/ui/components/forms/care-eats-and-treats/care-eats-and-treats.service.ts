@@ -10,148 +10,18 @@ export class CareEatsAndTreatsService {
 
   constructor(private _httpclient: HttpClient) { }
 
-
-  //#region CareAssessmentEatsAndDrinksDropDownValues
-  GetResidentStatusOfCapacity(id:any) {
-    let reqHeader = new HttpHeaders({
-      'Content-Type': 'application/json',
-      'Access-Control-Allow-Origin': environment.BaseUriAdmin,
-      //'Authorization': 'Bearer ' + localStorage.getItem('token')
-  });
-  let params = new HttpParams();
-  params = params.append('fromId', id);
-  return this._httpclient.get<any>(
-      environment.BaseUriAdmin + 'api/Admin/GetResidentStatusOfCapacity',
-      { headers: reqHeader, params: params }
-  );
-  }
-
-  GetChoking(id:any) {
-    let reqHeader = new HttpHeaders({
-      'Content-Type': 'application/json',
-      'Access-Control-Allow-Origin': environment.BaseUriAdmin,
-      //'Authorization': 'Bearer ' + localStorage.getItem('token')
-  });
-  let params = new HttpParams();
-  params = params.append('fromId', id);
-  return this._httpclient.get<any>(
-      environment.BaseUriAdmin + 'api/Admin/GetChoking',
-      { headers: reqHeader, params: params }
-  );
-  }
-
-  GetFood(id:any) {
-    let reqHeader = new HttpHeaders({
-      'Content-Type': 'application/json',
-      'Access-Control-Allow-Origin': environment.BaseUriAdmin,
-      //'Authorization': 'Bearer ' + localStorage.getItem('token')
-  });
-  let params = new HttpParams();
-  params = params.append('fromId', id);
-  return this._httpclient.get<any>(
-      environment.BaseUriAdmin + 'api/Admin/GetFood',
-      { headers: reqHeader, params: params }
-  );
-  }
-
-  GetFluids(id:any) {
-    let reqHeader = new HttpHeaders({
-      'Content-Type': 'application/json',
-      'Access-Control-Allow-Origin': environment.BaseUriAdmin,
-      //'Authorization': 'Bearer ' + localStorage.getItem('token')
-  });
-  let params = new HttpParams();
-  params = params.append('fromId', id);
-  return this._httpclient.get<any>(
-      environment.BaseUriAdmin + 'api/Admin/GetFluids',
-      { headers: reqHeader, params: params }
-  );
-  }
-
-  GetActionNeededToReduceChoking(id:any) {
-    let reqHeader = new HttpHeaders({
-      'Content-Type': 'application/json',
-      'Access-Control-Allow-Origin': environment.BaseUriAdmin,
-      //'Authorization': 'Bearer ' + localStorage.getItem('token')
-  });
-  let params = new HttpParams();
-  params = params.append('fromId', id);
-  return this._httpclient.get<any>(
-      environment.BaseUriAdmin + 'api/Admin/GetActionNeededToReduceChoking',
-      { headers: reqHeader, params: params }
-  );
-  }
-
-  GetGoalsToAchieve(id:any) {
-    let reqHeader = new HttpHeaders({
-      'Content-Type': 'application/json',
-      'Access-Control-Allow-Origin': environment.BaseUriAdmin,
-      //'Authorization': 'Bearer ' + localStorage.getItem('token')
-  });
-  let params = new HttpParams();
-  params = params.append('fromId', id);
-  return this._httpclient.get<any>(
-      environment.BaseUriAdmin + 'api/Admin/GetGoalsToAchieve',
-      { headers: reqHeader, params: params }
-  );
-  }
-
-  GetProfessionalInput(id:any) {
-    let reqHeader = new HttpHeaders({
-      'Content-Type': 'application/json',
-      'Access-Control-Allow-Origin': environment.BaseUriAdmin,
-      //'Authorization': 'Bearer ' + localStorage.getItem('token')
-  });
-  let params = new HttpParams();
-  params = params.append('fromId', id);
-  return this._httpclient.get<any>(
-      environment.BaseUriAdmin + 'api/Admin/GetProfessionalInput',
-      { headers: reqHeader, params: params }
-  );
-  }
-
-  GetRiskOfMalnutrition(id:any) {
-    let reqHeader = new HttpHeaders({
-      'Content-Type': 'application/json',
-      'Access-Control-Allow-Origin': environment.BaseUriAdmin,
-      //'Authorization': 'Bearer ' + localStorage.getItem('token')
-  });
-  let params = new HttpParams();
-  params = params.append('fromId', id);
-  return this._httpclient.get<any>(
-      environment.BaseUriAdmin + 'api/Admin/GetRiskOfMalnutrition',
-      { headers: reqHeader, params: params }
-  );
-  }
-
-  GetStrategyToManageNutrition(id:any) {
-    let reqHeader = new HttpHeaders({
-      'Content-Type': 'application/json',
-      'Access-Control-Allow-Origin': environment.BaseUriAdmin,
-      //'Authorization': 'Bearer ' + localStorage.getItem('token')
-  });
-  let params = new HttpParams();
-  params = params.append('fromId', id);
-  return this._httpclient.get<any>(
-      environment.BaseUriAdmin + 'api/Admin/GetStrategyToManageNutrition',
-      { headers: reqHeader, params: params }
-  );
-  }
-
-  //#endregion
-
   //#region CareAssessmentEatsAndDrinks Form
 
   GetCareAssessmentEatsAndDrinksDetails(fromId: any) {
     let reqHeader = new HttpHeaders({
         'Content-Type': 'application/json',
-        'Access-Control-Allow-Origin': environment.BaseUriAdmin,
-        //'Authorization': 'Bearer ' + localStorage.getItem('token')
+        'Access-Control-Allow-Origin': environment.BaseUriUser,
+        'Authorization': 'Bearer ' + localStorage.getItem('token')
     });
     let params = new HttpParams();
     params = params.append('fromId', fromId);
     return this._httpclient.get<any>(
-        environment.BaseUriAdmin + 'api/Admin/GetCareAssessmentEatsAndDrinksForm',
+        environment.BaseUriUser + 'api/User/GetCareAssessmentEatsAndDrinksForm',
         { headers: reqHeader, params: params }
     );
 }
@@ -161,15 +31,15 @@ AddInsertUpdateCareAssessmentEatsAndDrinksForm(
 ): Observable<any> {
     let reqHeader = new HttpHeaders({
         'Content-Type': 'application/json',
-        'Access-Control-Allow-Origin': environment.BaseUriAdmin,
-        //'Authorization': 'Bearer ' + localStorage.getItem('token')
+        'Access-Control-Allow-Origin': environment.BaseUriUser,
+        'Authorization': 'Bearer ' + localStorage.getItem('token')
     });
     let params = new HttpParams();
     var data = JSON.stringify(CareAssessmentEatsAndDrinksFormsData).toString();
-    console.log(data);
+   
     return this._httpclient.post<any>(
-        environment.BaseUriAdmin +
-            'api/Admin/AddInsertUpdateCareAssessmentEatsAndDrinksForm',
+        environment.BaseUriUser +
+            'api/User/AddInsertUpdateCareAssessmentEatsAndDrinksForm',
         data,
         { headers: reqHeader, params: params }
     );

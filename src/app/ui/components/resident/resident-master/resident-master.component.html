@@ -104,16 +104,11 @@
                             </div>
                             <div class="row">
                                 <div class="col-md-4">
-                                    <label class="form-label">Last Name <span class="required">*</span></label>
+                                    <label class="form-label">Last Name</label>
                                     <div *ngIf="mode=='add' || mode=='edit'">
-                                        <input type="text" pInputText type="text" required class="form-control"
+                                        <input type="text" pInputText type="text" class="form-control"
                                             name="txtLname" [(ngModel)]="ResidentMaster.LastName"
-                                            (keypress)="validateText($event)" #lNameref="ngModel">
-
-                                        <div class="col-md-auto errorMessage "
-                                            *ngIf="lNameref.errors &&(lNameref.touched || lNameref.dirty)">
-                                            <div>Last Name is required.</div>
-                                        </div>
+                                            (keypress)="validateText($event)">
                                     </div>
                                     <div class="my-2 bold" *ngIf="mode=='view'">{{ResidentMaster.LastName}}</div>
                                 </div>
@@ -147,7 +142,7 @@
                                     *ngIf="(ResidentMaster.ProfileImage==null || ResidentMaster.ProfileImage==undefined || ResidentMaster.ProfileImage=='')">
                                     <label class="form-label">Resident Photo</label>
                                     <p-fileUpload name="file[]" [showUploadButton]="false" accept="image/*"
-                                        [multiple]="true" [maxFileSize]="1000000" (onSelect)="fileUploader($event)"
+                                        [multiple]="false" [maxFileSize]="1000000" (onSelect)="fileUploader($event)"
                                         (onClear)="fileUploaderReset();"
                                         (onRemove)="fileUploaderReset();"></p-fileUpload>
                                 </div>
@@ -156,7 +151,9 @@
                                 <div class="col-md-12 border p-2 bdr6"
                                     *ngIf="(ResidentMaster.ProfileImage!=null && ResidentMaster.ProfileImage!=undefined && ResidentMaster.ProfileImage!='')">
                                     <div align="left" class="wd-30">
-                                        <img style="height: 99px;" src="{{profileSrc}}{{ResidentMaster.ProfileImage}}">
+                                        <!-- <img style="height: 99px;" src="{{profileSrc}}{{ResidentMaster.ProfileImage}}"> -->
+                                        <img [src]="ResidentMaster.ProfileImage" class="w-6 shadow-2 my-1 mx-0"
+                                        *ngIf="ResidentMaster.ProfileImage!=null && ResidentMaster.ProfileImage!=undefined && ResidentMaster.ProfileImage!=''">
                                     </div>
                                     <div class="wd-50">
                                         <label class="form-label">Resident Photo</label>
