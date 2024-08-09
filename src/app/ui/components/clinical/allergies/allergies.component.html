@@ -108,17 +108,27 @@
 
                                 </td>
                                 <td>
-                                    <a class="btn btn-secondary" *ngIf="lstExtraItemDetails[i].Mode=='add'"
+                                    <!-- <span *ngIf="mode=='view' || (item.Status !=='Active' && item.Mode=='edit') "> -->
+                                        <span>
+                                            {{item.Status}}
+                                        </span>
+                                    <a class="btn btn-secondary ml-5 mb-1" *ngIf="lstExtraItemDetails[i].Mode=='add'"
                                         href="javascript: void(0);"
                                         (click)="RemoveExtraItemDetails(lstExtraItemDetails[i].Sequence)">
                                         Delete
                                     </a>
-                                    <!-- <span *ngIf="mode=='view' || (item.Status !=='Active' && item.Mode=='edit') "> -->
-                                        <span>
-                                        {{item.Status}}
-                                    </span>
-                                    <p-dropdown
+                                    
+                                    <!-- <p-dropdown
                                         *ngIf="mode=='edit' && item.Status=='Active' && lstExtraItemDetails[i].Mode!='add'"
+                                        name="ddlStatus_{{lstExtraItemDetails[i].Sequence}}"
+                                        [options]="lstExtraItemDetails[i].StatusList"
+                                        [(ngModel)]="lstExtraItemDetails[i].Status" appendTo="body" optionLabel="name"
+                                        optionValue="code" [filter]="true"
+                                        (onChange)="onChangeStatus(lstExtraItemDetails[i].Sequence, lstExtraItemDetails[i].Status)"
+                                        [style]="{width: '100%'}">
+                                    </p-dropdown> -->
+                                    <p-dropdown
+                                        *ngIf="mode=='edit'"
                                         name="ddlStatus_{{lstExtraItemDetails[i].Sequence}}"
                                         [options]="lstExtraItemDetails[i].StatusList"
                                         [(ngModel)]="lstExtraItemDetails[i].Status" appendTo="body" optionLabel="name"
