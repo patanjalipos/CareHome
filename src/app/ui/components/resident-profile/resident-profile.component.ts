@@ -26,6 +26,13 @@ export class ResidentProfileComponent extends AppComponentBase implements OnInit
   allIndicator:string ="";
   profileUrl: string = environment.BaseURIFileServer + 'ProfileImage/';
   imageSrc: any;
+  isProgressNotesActive: boolean;
+  isCarePlan: boolean;
+  isFormActive: boolean;
+  isChartActive: boolean;
+  isActionActive: boolean;
+  isAlertActive: boolean;
+  isProfileActive: boolean=true;
 
   ProgressNote: boolean = false;
   CarePlan: boolean = false;
@@ -83,6 +90,13 @@ export class ResidentProfileComponent extends AppComponentBase implements OnInit
         rejectButtonStyleClass: "p-button-text",
         accept: () => {
           if (componentType == 'Profile') {
+            this.isProfileActive=true;
+            this.isActionActive=false;
+            this.isAlertActive=false;
+            this.isCarePlan=false;
+            this.isChartActive=false;
+            this.isProgressNotesActive=false;
+            this.isFormActive=false;
             this.Profile = true;
             this.Chart = false;
             this.CarePlan = false;
@@ -93,6 +107,13 @@ export class ResidentProfileComponent extends AppComponentBase implements OnInit
             this.value=false;
           }
           else if (componentType == 'Form') {
+            this.isProfileActive=false;
+            this.isActionActive=false;
+            this.isAlertActive=false;
+            this.isCarePlan=false;
+            this.isChartActive=false;
+            this.isProgressNotesActive=false;
+            this.isFormActive=true;
             this.Form = true;
             this.Chart = false;
             this.CarePlan = false;
@@ -102,6 +123,13 @@ export class ResidentProfileComponent extends AppComponentBase implements OnInit
             this.Alert = false;
             this.value=false;
           } else if (componentType == 'Chart') {
+            this.isProfileActive=false;
+            this.isActionActive=false;
+            this.isAlertActive=false;
+            this.isCarePlan=false;
+            this.isChartActive=true;
+            this.isProgressNotesActive=false;
+            this.isFormActive=false;
             this.Chart = true;
             this.Form = false;
             this.CarePlan = false;
@@ -111,6 +139,13 @@ export class ResidentProfileComponent extends AppComponentBase implements OnInit
             this.Profile = false;
             this.value=false;
           } else if (componentType == 'CarePlan') {
+            this.isProfileActive=false;
+            this.isActionActive=false;
+            this.isAlertActive=false;
+            this.isCarePlan=true;
+            this.isChartActive=false;
+            this.isProgressNotesActive=false;
+            this.isFormActive=false;
             this.CarePlan = true;
             this.Chart = false;
             this.Form = false;
@@ -119,6 +154,13 @@ export class ResidentProfileComponent extends AppComponentBase implements OnInit
             this.Alert = false;
             this.Profile = false;
           } else if (componentType == 'ProgressNote') {
+            this.isProfileActive=false;
+            this.isActionActive=false;
+            this.isAlertActive=false;
+            this.isCarePlan=false;
+            this.isChartActive=false;
+            this.isProgressNotesActive=true;
+            this.isFormActive=false;
             this.ProgressNote = true;
             this.Chart = false;
             this.CarePlan = false;
@@ -127,6 +169,13 @@ export class ResidentProfileComponent extends AppComponentBase implements OnInit
             this.Alert = false;
             this.Profile = false;
           } else if (componentType == 'Action') {
+            this.isProfileActive=false;
+            this.isActionActive=true;
+            this.isAlertActive=false;
+            this.isCarePlan=false;
+            this.isChartActive=false;
+            this.isProgressNotesActive=false;
+            this.isFormActive=false;
             this.Action = true;
             this.Chart = false;
             this.CarePlan = false;
@@ -135,6 +184,13 @@ export class ResidentProfileComponent extends AppComponentBase implements OnInit
             this.Alert = false;
             this.Profile = false;
           } else if (componentType == 'Alert') {
+            this.isProfileActive=false;
+            this.isActionActive=false;
+            this.isAlertActive=true;
+            this.isCarePlan=false;
+            this.isChartActive=false;
+            this.isProgressNotesActive=false;
+            this.isFormActive=false;
             this.Alert = true;
             this.Chart = false;
             this.CarePlan = false;
@@ -149,6 +205,13 @@ export class ResidentProfileComponent extends AppComponentBase implements OnInit
       });
     }else {
       if (componentType == 'Profile') {
+        this.isProfileActive=true;
+        this.isActionActive=false;
+        this.isAlertActive=false;
+        this.isCarePlan=false;
+        this.isChartActive=false;
+        this.isProgressNotesActive=false;
+        this.isFormActive=false;
         this.Profile = true;
         this.Chart = false;
         this.CarePlan = false;
@@ -159,6 +222,13 @@ export class ResidentProfileComponent extends AppComponentBase implements OnInit
         this.value=false;
       }
       else if (componentType == 'Form') {
+        this.isProfileActive=false;
+        this.isActionActive=false;
+        this.isAlertActive=false;
+        this.isCarePlan=false;
+        this.isChartActive=false;
+        this.isProgressNotesActive=false;
+        this.isFormActive=true;
         this.Form = true;
         this.Chart = false;
         this.CarePlan = false;
@@ -168,6 +238,13 @@ export class ResidentProfileComponent extends AppComponentBase implements OnInit
         this.Alert = false;
         this.value=false;
       } else if (componentType == 'Chart') {
+        this.isProfileActive=false;
+        this.isActionActive=false;
+        this.isAlertActive=false;
+        this.isCarePlan=false;
+        this.isChartActive=true;
+        this.isProgressNotesActive=false;
+        this.isFormActive=false;
         this.Chart = true;
         this.Form = false;
         this.CarePlan = false;
@@ -177,6 +254,13 @@ export class ResidentProfileComponent extends AppComponentBase implements OnInit
         this.Profile = false;
         this.value=false;
       } else if (componentType == 'CarePlan') {
+        this.isProfileActive=false;
+        this.isActionActive=false;
+        this.isAlertActive=false;
+        this.isCarePlan=true;
+        this.isChartActive=false;
+        this.isProgressNotesActive=false;
+        this.isFormActive=false;
         this.CarePlan = true;
         this.Chart = false;
         this.Form = false;
@@ -185,6 +269,13 @@ export class ResidentProfileComponent extends AppComponentBase implements OnInit
         this.Alert = false;
         this.Profile = false;
       } else if (componentType == 'ProgressNote') {
+        this.isProfileActive=false;
+        this.isActionActive=false;
+        this.isAlertActive=false;
+        this.isCarePlan=false;
+        this.isChartActive=false;
+        this.isProgressNotesActive=true;
+        this.isFormActive=false;
         this.ProgressNote = true;
         this.Chart = false;
         this.CarePlan = false;
@@ -193,6 +284,13 @@ export class ResidentProfileComponent extends AppComponentBase implements OnInit
         this.Alert = false;
         this.Profile = false;
       } else if (componentType == 'Action') {
+        this.isProfileActive=false;
+        this.isActionActive=true;;
+        this.isAlertActive=false;
+        this.isCarePlan=false;
+        this.isChartActive=false;
+        this.isProgressNotesActive=false;
+        this.isFormActive=false;
         this.Action = true;
         this.Chart = false;
         this.CarePlan = false;
@@ -201,6 +299,13 @@ export class ResidentProfileComponent extends AppComponentBase implements OnInit
         this.Alert = false;
         this.Profile = false;
       } else if (componentType == 'Alert') {
+        this.isProfileActive=false;
+        this.isActionActive=false;
+        this.isAlertActive=true;;
+        this.isCarePlan=false;
+        this.isChartActive=false;
+        this.isProgressNotesActive=false;
+        this.isFormActive=false;
         this.Alert = true;
         this.Chart = false;
         this.CarePlan = false;
@@ -211,7 +316,6 @@ export class ResidentProfileComponent extends AppComponentBase implements OnInit
       }
     }
   }
-
 
   LoadResidentDetails(userid, admissionid) {
     this._UtilityService.showSpinner();

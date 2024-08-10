@@ -76,34 +76,34 @@
    
                 <div class="col-md-12">
         
-        <div class="card profile-tab">
-            <ul class="nav nav-tabs" id="myTab" role="tablist">
-                <li class="nav-item " role="presentation" >
-                    <p-button class="nav-link" type="button" label="Profile" (click)="confirm($event,'Profile')"></p-button>
-                </li>
-                <li class="nav-item" role="presentation">
-                    <p-button class="nav-link" type="button" (click)="confirm($event,'ProgressNote')"
-                        label="Progress notes"></p-button>
-                </li>
-                <li class="nav-item" role="presentation">
-                    <p-button class="nav-link" type="button" (click)="confirm($event,'CarePlan')"
-                        label="Care plan"></p-button>
-                </li>
-                <li class="nav-item" role="presentation">
-                    <p-button class="nav-link" type="button" (click)="confirm($event,'Form')" label="Form"></p-button>
-                </li>
-                <li class="nav-item" role="presentation">
-                    <p-button class="nav-link" (click)="confirm($event,
-                        'Chart')" label="Charts"></p-button>
-                </li>
-                <li class="nav-item" role="presentation">
-                    <p-button class="nav-link" (click)="confirm($event,'Action')" label="Actions"></p-button>
-                </li>
-                <li class="nav-item" role="presentation">
-                    <p-button class="nav-link" (click)="confirm($event,'Alert')" label="Alerts (0)"></p-button>
-                </li>
-            </ul>
-        </div>
+                    <div class="card pb-0 profile-tab">
+                        <ul class="nav nav-tabs" id="myTab" role="tablist">
+                        <li class="nav-item " role="presentation">
+                        <button class="nav-link" [ngClass]="{'active': isProfileActive}"  type="button" label="" (click)="confirm($event,'Profile')">Profile</button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                        <button class="nav-link" [ngClass]="{'active': isProgressNotesActive}" type="button" (click)="confirm($event,'ProgressNote')" label="">Progress
+                                                notes</button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                        <button class="nav-link" [ngClass]="{'active': isCarePlan}" type="button" (click)="confirm($event,'CarePlan')" label="">Care
+                                                plan</button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                        <button class="nav-link" [ngClass]="{'active': isFormActive}" type="button" (click)="confirm($event,'Form')" label="">Form</button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                        <button class="nav-link" [ngClass]="{'active': isChartActive}" (click)="confirm($event,
+                                                'Chart')" label="">Charts</button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                        <button class="nav-link" [ngClass]="{'active': isActionActive}" (click)="confirm($event,'Action')" label="">Actions</button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                        <button class="nav-link" [ngClass]="{'active': isAlertActive}" (click)="confirm($event,'Alert')" label="">Alerts (0)</button>
+                        </li>
+                        </ul>
+                        </div>
 
         <div class="tab-content" id="myTabContent">
             <div aria-labelledby="profile-tab" *ngIf="Profile">
