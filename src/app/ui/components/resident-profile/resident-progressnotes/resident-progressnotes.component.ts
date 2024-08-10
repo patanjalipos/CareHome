@@ -162,6 +162,7 @@ export class ResidentProgressnotesComponent extends AppComponentBase implements 
   { 
     this.isExpanded=false;
     this.AddNote='';
+    this.isDetailedview = false;
   }
   submit()
   {
