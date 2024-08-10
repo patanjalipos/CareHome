@@ -7,6 +7,9 @@ import { FormsDashboardModule } from '../forms/forms-dashboard/forms-dashboard.m
 import { AlertModule } from './alert/alert.module';
 import { ChartModule } from '../charts/chart-dashboard/chart.module';
 import { ResidentProgressnotesModule } from "./resident-progressnotes/resident-progressnotes.module";
+import { DialogModule } from 'primeng/dialog';
+import { ButtonModule } from 'primeng/button';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
 
 
 @NgModule({
@@ -22,6 +25,9 @@ import { ResidentProgressnotesModule } from "./resident-progressnotes/resident-p
         FormsDashboardModule,
         ChartModule,
         ResidentProgressnotesModule,
+        DialogModule,
+        ButtonModule,
+        ConfirmDialogModule
   ],
 })
 export class ResidentProfileModule { }

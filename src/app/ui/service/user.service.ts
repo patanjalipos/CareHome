@@ -376,6 +376,8 @@ export class UserService {
     );
   }
 
+  //Clinical Chart Preferences 
+
   GetClinicalChartPreferencesById(admissionid: string): Observable<any> {
     let reqHeader = new HttpHeaders({
       "Content-Type": "application/json",
@@ -403,6 +405,7 @@ export class UserService {
       { headers: reqHeader, params: params }
     );
   }
+  //end region Clinical Chart Preferences
 
   GetClinicalDailyVitalById(
     admissionid: any,
