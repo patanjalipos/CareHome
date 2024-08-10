@@ -12,10 +12,10 @@
     </div>
     <div class="row">
         <div class="col-md-3 mt-3 chart-box chart">
-            <div class="formheader mt-2 chart-heading">
-                <p><b>New observation</b></p>
+            <div class="formheader mt-2 mb-2 chart-heading">
+                <p class="chart-date bold">New observation</p>
             </div>
-            <div class="col-md-12 mt-4">
+            <div class="col-md-12">
                 <label class="form-label bold">
                     Date/Time<span class="required"></span></label>
 
@@ -158,8 +158,9 @@
                 [showIndicators]="false" [showNavigators]="false" [responsiveOptions]="responsiveOptions">
                 <ng-template let-chart pTemplate="item">
                     <div class="col-md-11 chart-box p-2">
+                        <div class="boxheight">
                         <div class="formheader">
-                            <div class="col-md-12 mb-2 d-flex justify-content-between fs-4">
+                            <div class="col-md-12 d-flex justify-content-between fs-4">
                                 <div class="chart-date bold">
                                     <label>{{
                                         chart.DateAndTime |
@@ -191,7 +192,7 @@
                             </div>
                         </div>
 
-                        <div class="col-md-12 mb-2">
+                        <div class="col-md-12">
 
                             <label *ngIf="chart.isStrikeThrough" class="form-label bold">Strike Out Reason<span
                                     class="required"></span></label>
@@ -290,6 +291,7 @@
                                 </div>
                             </div>
                         </div>
+                    </div>
                         <h5 class="formheader">
                             Additional information
                         </h5>
