@@ -12,10 +12,10 @@
     </div>
     <div class="row">
         <div class="col-md-3 mt-3 chart-box chart">
-            <div class="formheader mt-2 chart-heading">
-                <p><b>New observation</b></p>
+            <div class="formheader mt-2 mb-2 chart-heading">
+                <p class="chart-date bold">New observation</p>
             </div>
-            <div class="col-md-12 mt-4">
+            <div class="col-md-12">
                 <label class="form-label bold">
                     Date/Time<span class="required"></span></label>
 
@@ -82,7 +82,7 @@
                 </ng-container>
 
             </div>
-            <div class="d-flex justify-content-center mt-4 mb-4">
+            <div class="d-flex justify-content-center mt-3 mb-3">
                 <div class="mr-4 ">
                     <span class="p-ml-left">
                         <button pButton title="Clear all" label="Clear all" (click)="ClearAllfeilds()"></button>
@@ -106,7 +106,7 @@
                 <ng-template let-chart pTemplate="item">
                     <div class="col-md-11 chart-box p-2">
                         <div class="formheader">
-                            <div class="col-md-12 mb-2 d-flex justify-content-between fs-4">
+                            <div class="col-md-12 d-flex justify-content-between fs-4">
                                 <div class="chart-date bold">
                                     <label>{{
                                         chart.DateAndTime |
@@ -119,7 +119,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-12 mb-2">
+                        <div class="col-md-12 mb-2 mt-2">
 
                             <label class="form-label bold">Enterted By<span
                                     class="required"></span></label>
@@ -172,7 +172,7 @@
                             </div>
                         </div>
 
-                        <div *ngIf="chart.CareGiven=='Yes'" class="row">
+                        <div *ngIf="chart.CareGiven=='Yes'" class="">
                             <div class="col-md-12">
                                 <h5 class="formheader">
                                     Blood Glucose

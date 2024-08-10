@@ -276,6 +276,8 @@ body {
     padding: 10px 13px;
 
 }
+.cursor { cursor: pointer;}
+.hig150 { height: 150px; overflow-y: scroll;}
 
 .btn-primary {
     background: #023C40 !important;
@@ -297,7 +299,7 @@ body {
 
 .btn-secondary {
     color: #000;
-    background-color: #fff !important;
+    background-color: #617C7E !important;
     border-color: #617C7E !important;
     height: 35px;
 }
@@ -530,7 +532,10 @@ body {
     height: 80px;
     border: 5px solid #fff;
     box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.0862745098);
-    border-radius: 5px;}
+    border-radius: 5px;
+    object-fit: cover;
+
+}
 
 .profile-box .detail-table {
     width: 100%;
@@ -1022,7 +1027,7 @@ i.iconset:hover {
 }
 
 .box-height2 {
-    height: 303px;
+    height: 295px;
 }
 
 .layout-topbar {
@@ -1588,6 +1593,7 @@ p.date-box {
     width: 60px;
     object-fit: cover;
     margin-right: 10px;
+    border-radius: 5px;
 }
 
 .p-dropdown-panel .p-dropdown-items .p-dropdown-item {
@@ -1642,3 +1648,13 @@ input::file-selector-button {
 .additional-note .card-body { display: flex; justify-content: space-between; align-items: center;}
 .addbtn { width: 150px;}
 .additional-note h6 { font-size: 16px; margin: 10px 0;}
+
+.viewtype { text-align: end; }
+.viewtype a {margin: 0 5px 5px; padding: 3px 7px; background: #e3e3e3; display: inline-block; border-radius:3px;}
+.viewtype a:active { background: #023C40; color: #fff;}
+.boxheight { min-height: 426px;}
+
+.p-autocomplete { display: block !important; }
+.p-autocomplete .p-inputtext { width: 100% !important;}
+.p-dialog .p-dialog-content, .p-dialog .p-dialog-header { padding: 1rem !important;}
+.p-dialog .p-dialog-header { padding-bottom:  0 !important;}
