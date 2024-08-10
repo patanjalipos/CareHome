@@ -200,6 +200,7 @@ export class ResidentMasterComponent
         else {
             this.LoadResidentDetails(this.selecteduserid);
         }
+        this.ResidentMaster.BirthCountryId='';
     }
 
     public onClick(elementId: string): void {

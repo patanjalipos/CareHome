@@ -2,23 +2,6 @@
 <div class="card">
     <div class="row d-flex align-items-center">
         <div class="col-md-3">
-            <label class="form-label"> From Date / To Date </label>
-            <p-calendar
-                #cal1
-                selectionMode="range"
-                [(ngModel)]="rangeDates"
-                placeholder="--select--"
-                [ngModelOptions]="{ standalone: true }"
-                [showIcon]="true"
-                inputId="icon"
-                [readonlyInput]="true"
-                [dateFormat]="customDateFormat.CalendarFormat"
-                (onSelect)="dateRangeChange(cal1)"
-                (onChange)="SearchForm()"
-                [showButtonBar]="true"
-            ></p-calendar>
-        </div>
-        <div class="col-md-3">
             <label class="form-label">
                 Select Assessment Form <span class="required">*</span></label
             >
@@ -35,6 +18,24 @@
             >
             </p-dropdown>
         </div>
+        <div class="col-md-3">
+            <label class="form-label"> From Date / To Date <span class="required">*</span></label>
+            <p-calendar
+                #cal1
+                selectionMode="range"
+                [(ngModel)]="rangeDates"
+                placeholder="--select--"
+                [ngModelOptions]="{ standalone: true }"
+                [showIcon]="true"
+                inputId="icon"
+                [readonlyInput]="true"
+                dateFormat="{{ customDateFormat?.CalendarFormat }}" 
+                (onSelect)="dateRangeChange(cal1)"
+                (onChange)="SearchForm()"
+                [showButtonBar]="true"
+            ></p-calendar>
+        </div>
+       
 
         <div class="col-md-6 d-flex mt-3">
             <span class="p-ml-left mr-4">
@@ -62,7 +63,7 @@
             #dt
             [value]="formDashboardList"
             responsiveLayout="scroll"
-            class="mt-4"
+            class="mt-2"
             styleClass="p-datatable-striped"
             [rowHover]="true"
             [globalFilterFields]="['FormName', 'ModifiedOn']"
@@ -120,6 +121,9 @@
     </div>
 </div>
 <!-- Dynamic Form Component -->
+
+<div #Forms>
+
 <app-pre-admission-assessment-forms
     [preSelectedFormData]="selectedFormData"
     (EmitUpdateForm)="EmitUpdateForm($event)"
@@ -706,3 +710,5 @@
         selectedFormMasterId == FormTypes.ProfessionalVisitCommunicationRecord
     "
 ></app-professional-visit-communication-record>
+
+</div>

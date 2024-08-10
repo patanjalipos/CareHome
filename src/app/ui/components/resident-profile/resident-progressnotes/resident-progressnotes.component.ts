@@ -9,6 +9,7 @@ import { Table } from 'primeng/table';
 import { MenuItem } from 'primeng/api/menuitem';
 import { Calendar } from 'primeng/calendar';
 import { DatePipe } from '@angular/common';
+import { ResidentProfileService } from '../resident-profile.service';
 
 @Component({
   selector: 'app-resident-progressnotes',
@@ -63,6 +64,7 @@ export class ResidentProgressnotesComponent extends AppComponentBase implements 
     private _ConstantServices: ConstantsService,
     private datePipe: DatePipe,
     private _MasterServices:MasterService,
+    private sharedStateService: ResidentProfileService,
     private _UtilityService: UtilityService,
     ) 
     { 
@@ -139,9 +141,11 @@ export class ResidentProgressnotesComponent extends AppComponentBase implements 
 
 
   ngOnInit(): void {
-    // this.AddNote.Notes = 'Progressnote';       
-     this.createdBy=localStorage.getItem('userId');
+   // this.AddNote.Notes = 'Progressnote';       
+   this.createdBy=localStorage.getItem('userId');
    this.LoadResidentProgressDetails(this.admissionid,this.dFrom, this.dTo,this.userid,this.SearchProgressnoteType);
+   this.ClearAddionalNote();
+   this.AddNote.DateOfEvent = new Date();
   }
   ngOnChanges() {  
     if(this.isProgressnoteDoc==true)
@@ -149,6 +153,9 @@ export class ResidentProgressnotesComponent extends AppComponentBase implements 
         this._ConstantServices.ActiveMenuName="Progress notes Documents";
          this.LoadResidentProgressDetails(this.admissionid,this.dFrom, this.dTo,this.userid,0);
       }
+  }
+  changeValue(){
+    this.sharedStateService.tranferValu(true);
   }
   
   Close()
@@ -225,6 +232,7 @@ onSelectDate() {
     this.calendar.overlayVisible = false;
     this.ShowAvailableDetails();
   }
+  this.changeValue();
 }
 
 ShowAvailableDetails() {

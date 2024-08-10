@@ -13,6 +13,9 @@ import { CarouselModule } from 'primeng/carousel';
 import { RadioButtonModule } from 'primeng/radiobutton';
 import { StrikeThroughEntryModule } from '../strike-through-entry/strike-through-entry.module';
 import { AccordionModule } from 'primeng/accordion';
+import { MultiSelectModule } from 'primeng/multiselect';
+import { MessagesModule } from 'primeng/messages';
+import { NgxSliderModule } from '@angular-slider/ngx-slider';
 
 @NgModule({
   declarations: [PainChartComponent],
@@ -29,7 +32,10 @@ import { AccordionModule } from 'primeng/accordion';
     CarouselModule,
     RadioButtonModule,
     StrikeThroughEntryModule,
-    AccordionModule
+    AccordionModule,
+    MultiSelectModule,
+    MessagesModule,
+    NgxSliderModule
   ],
   exports:[PainChartComponent]
 })

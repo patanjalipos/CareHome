@@ -6,6 +6,7 @@ import { MasterService } from 'src/app/ui/service/master.service';
 import { UtilityService } from 'src/app/utility/utility.service';
 import { Calendar } from 'primeng/calendar';
 import { UserService } from 'src/app/ui/service/user.service';
+import { ResidentProfileService } from '../resident-profile.service';
 
 @Component({
     selector: 'app-alert',
@@ -30,6 +31,7 @@ export class AlertComponent extends AppComponentBase implements OnInit {
         private _MasterServices: MasterService,
         private _UtilityService: UtilityService,
         private _UserServices:UserService,
+        private sharedStateService: ResidentProfileService,
         private datepipe: DatePipe) {
         super();
 
@@ -45,12 +47,16 @@ export class AlertComponent extends AppComponentBase implements OnInit {
     }
 
     dateRangeChange(calendar: Calendar) {
+        this.sharedStateService.tranferValu(true);
         if (this.rangeDates[0] !== null && this.rangeDates[1] !== null) {
             calendar.overlayVisible = false;
             //this.GetDailyVitalAlertLog();
         }
 
     }
+    changeValue(){
+        this.sharedStateService.tranferValu(true);
+      }
 
     GetAlertMaster() {
         let importData: any = <any>{};

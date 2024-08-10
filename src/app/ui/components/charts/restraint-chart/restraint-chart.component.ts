@@ -35,6 +35,7 @@ export class RestraintChartComponent extends AppComponentBase implements OnInit 
   careGiven: boolean = false;
   lstTypeOfRestraint: any[] = [];
   lstTriggersAndBehaviors: any[] = [];
+  lstRestraintDevices:any[]=[];
 
   //for carousel
   restraintChartsLst: any[] = [];
@@ -87,6 +88,8 @@ export class RestraintChartComponent extends AppComponentBase implements OnInit 
       this.StatementType = 'Update';
     } else {
       this.ResetModel();
+      this.getChartDataById(this.preSelectedChartData.chartMasterId,this.preSelectedChartData.chartId, this.preSelectedChartData.selectedStartedOn, this.preSelectedChartData.residentAdmissionInfoId, this.pageNumber, this.pageSize);
+
     }
 
   }
@@ -109,7 +112,7 @@ export class RestraintChartComponent extends AppComponentBase implements OnInit 
       this.ChartName = this.result["ChartName"];
       this._ConstantServices.ActiveMenuName = this.ChartName;
     });
-    const collectionNames = ['typeOfRestraint', 'triggersAndBehaviors'];
+    const collectionNames = ['typeOfRestraint','restraintDevices', 'triggersAndBehaviors'];
 
     forkJoin(
       collectionNames.map((collectionName) =>
@@ -121,10 +124,11 @@ export class RestraintChartComponent extends AppComponentBase implements OnInit 
       )
     ).subscribe((responses: any[]) => {
       this.lstTypeOfRestraint = responses[0];
+      this.lstRestraintDevices=responses[1];
       this.lstTriggersAndBehaviors = responses[1];
     });
 
-    this.getChartDataById(this.preSelectedChartData.chartMasterId, this.preSelectedChartData.residentAdmissionInfoId, this.pageNumber, this.pageSize);
+    // this.getChartDataById(this.preSelectedChartData.chartMasterId, this.preSelectedChartData.residentAdmissionInfoId, this.pageNumber, this.pageSize);
     this.responsiveOptions = [
       {
         breakpoint: '1199px',
@@ -170,9 +174,9 @@ export class RestraintChartComponent extends AppComponentBase implements OnInit 
   }
 
   ClearAllfeilds() {
-    if (this.preSelectedChartData.selectedChartID) {
+    if (this.preSelectedChartData.chartMasterId) {
       this.restraintChartFormData = <any>{};
-      this.restraintChartFormData.activitiesChartId =
+      this.restraintChartFormData.restraintChartId =
         this.preSelectedChartData.selectedChartID;
     }
   }
@@ -252,11 +256,11 @@ export class RestraintChartComponent extends AppComponentBase implements OnInit 
     }
   }
 
-  getChartDataById(chartId: any, residentAdmissionInfoId: any, pageNumber: number, pageSize: number) {
+  getChartDataById(chartId: any, selectedChartId: any, selectedStartedOn: any, residentAdmissionInfoId: any, pageNumber: number, pageSize: number) {
 
     this._UtilityService.showSpinner();
     this.unsubscribe.add = this._UserService
-      .GetChartDataById(chartId, residentAdmissionInfoId, pageNumber, pageSize)
+      .GetChartDataById(chartId, selectedChartId, selectedStartedOn, residentAdmissionInfoId, pageNumber, pageSize)
       .subscribe({
         next: (data) => {
           this._UtilityService.hideSpinner();
@@ -326,7 +330,8 @@ export class RestraintChartComponent extends AppComponentBase implements OnInit 
   }
 
   chartOnChange() {
-    this.getChartDataById(this.preSelectedChartData.chartMasterId, this.preSelectedChartData.residentAdmissionInfoId, this.pageNumber, this.pageSize);
+    this.getChartDataById(this.preSelectedChartData.chartMasterId,this.preSelectedChartData.chartId, this.preSelectedChartData.selectedStartedOn, this.preSelectedChartData.residentAdmissionInfoId, this.pageNumber, this.pageSize);
+
   }
 
 }

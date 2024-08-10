@@ -11,7 +11,7 @@
         </div>
     </div>
     <div class="row ">
-        <div class="col-md-3 mt-3  chart-box active-chart">
+        <div class="col-md-3 mt-3  chart-box chart">
             <div class="formheader mt-2 chart-heading">
                 <p><b>New observation</b></p>
             </div>
@@ -60,8 +60,9 @@
                         <p-dropdown [required]="true" name="BMIValue"
                             [(ngModel)]="WaterlowChartData.BMIValueOption" [options]="LstBMIValue"
                             optionLabel="optionName" optionValue="optionId" placeholder="--select--"
-                            [style]="{ width: '100%' }">
+                            [style]="{ width: '100%' }" [showClear]="true" (onChange)="ScoreCalc(1)" (onClick)="addmessages()">
                         </p-dropdown>
+                        <p-messages [(value)]="messages" [enableService]="false"></p-messages>
                     </ng-container>
                 </div>
                 <div>
@@ -72,8 +73,9 @@
                         <p-dropdown [required]="true" name="ContinenceOption"
                             [(ngModel)]="WaterlowChartData.ContinenceOption" [options]="LstContinence"
                             optionLabel="optionName" optionValue="optionId" placeholder="--select--"
-                            [style]="{ width: '100%' }">
+                            [style]="{ width: '100%' }" [showClear]="true" (onChange)="ScoreCalc(2)">
                         </p-dropdown>
+                        <p-messages [(value)]="messages1" [enableService]="false"></p-messages>
                     </ng-container>
                 </div>
                 <div class="mb-2">
@@ -84,8 +86,9 @@
                         <p-dropdown [required]="true" name="SkinTypeOption"
                             [(ngModel)]="WaterlowChartData.SkinTypeOption" [options]="LstSkinType"
                             optionLabel="optionName" optionValue="optionId" placeholder="--select--"
-                            [style]="{ width: '100%' }">
+                            [style]="{ width: '100%' }" [showClear]="true" (onChange)="ScoreCalc(3)">
                         </p-dropdown>
+                        <p-messages [(value)]="messages2" [enableService]="false"></p-messages>
                     </ng-container>
                 </div>
                 <div class="mb-2">
@@ -96,8 +99,9 @@
                         <p-dropdown [required]="true" name="MobilityOption"
                             [(ngModel)]="WaterlowChartData.MobilityOption" [options]="LstMobility"
                             optionLabel="optionName" optionValue="optionId" placeholder="--select--"
-                            [style]="{ width: '100%' }">
+                            [style]="{ width: '100%' }" [showClear]="true" (onChange)="ScoreCalc(4)">
                         </p-dropdown>
+                        <p-messages [(value)]="messages3" [enableService]="false"></p-messages>
                     </ng-container>
                 </div>
                 <div class="mb-2">
@@ -105,8 +109,8 @@
                         <label class="form-label bold">Sex</label>
                     </div>
                     <ng-container>
-                        <p-selectButton [options]="SexOption" [(ngModel)]="WaterlowChartData.Sex"
-                        optionLabel="label" optionValue="value"></p-selectButton>
+                        <p-selectButton [options]="GenderOption" [(ngModel)]="WaterlowChartData.Gender"
+                        optionLabel="label" optionValue="value" (onChange)="ScoreCalc(0)"></p-selectButton>
                     </ng-container>
                 </div>
                 <div class="mb-2">
@@ -117,7 +121,7 @@
                         <p-dropdown [required]="true" name="AgeOption"
                             [(ngModel)]="WaterlowChartData.AgeOption" [options]="LstAge"
                             optionLabel="optionName" optionValue="optionId" placeholder="--select--"
-                            [style]="{ width: '100%' }">
+                            [style]="{ width: '100%' }" [showClear]="true" (onChange)="ScoreCalc(5)">
                         </p-dropdown>
                     </ng-container>
                 </div>
@@ -129,8 +133,35 @@
                         <p-dropdown [required]="true" name="MalnutritionScreeningOption"
                             [(ngModel)]="WaterlowChartData.MalnutritionScreeningOption" [options]="LstMalnutritionScreening"
                             optionLabel="optionName" optionValue="optionId" placeholder="--select--"
-                            [style]="{ width: '100%' }">
+                            [style]="{ width: '100%' }" [showClear]="true" (onChange)="ScoreCalc(6)">
                         </p-dropdown>
+                        <p-messages [(value)]="messages4" [enableService]="false"></p-messages>
+                    </ng-container>
+                </div>
+                <div class="mb-2" *ngIf="MalnutritionConfirmCheck">
+                    <div class="labelcontent">
+                        <label class="form-label bold">Weight Loss Score</label>
+                    </div>
+                    <ng-container>
+                        <p-dropdown [required]="true" name="WeightLossScoreOption"
+                            [(ngModel)]="WaterlowChartData.WeightLossScoreOption" [options]="LstWeightLossScore"
+                            optionLabel="optionName" optionValue="optionId" placeholder="--select--"
+                            [style]="{ width: '100%' }" [showClear]="true" (onChange)="ScoreCalc(7)">
+                        </p-dropdown>
+                        <p-messages [(value)]="messages5" [enableService]="false"></p-messages>
+                    </ng-container>
+                </div>
+                <div class="mb-2" *ngIf="MalnutritionDeclineCheck">
+                    <div class="labelcontent">
+                        <label class="form-label bold">Lack of Appetite</label>
+                    </div>
+                    <ng-container>
+                        <p-dropdown [required]="true" name="LackOfAppetiteOption"
+                            [(ngModel)]="WaterlowChartData.LackOfAppetiteOption" [options]="LstLackOfAppetite"
+                            optionLabel="label" optionValue="value" placeholder="--select--"
+                            [style]="{ width: '100%' }" [showClear]="true" (onChange)="ScoreCalc(8)">
+                        </p-dropdown>
+                        <p-messages [(value)]="messages6" [enableService]="false"></p-messages>
                     </ng-container>
                 </div>
                 <div class="mb-2">
@@ -139,7 +170,7 @@
                     </div>
                     <ng-container>
                         <label>{{NutritionScoreValue}}</label>
-                        <p-messages [(value)]="messages" [enableService]="false"></p-messages>
+                        <p-messages [(value)]="messages7" [enableService]="false"></p-messages>
                     </ng-container>
                 </div>
                 <h5 class="formheader">Special Risks</h5>
@@ -151,7 +182,7 @@
                         <p-dropdown [required]="true" name="SpecialRisksTissueOption"
                             [(ngModel)]="WaterlowChartData.SpecialRisksTissueOption"
                             [options]="LstSpecialRisksTissue" optionLabel="optionName" optionValue="optionId"
-                            placeholder="--select--" [style]="{ width: '100%' }">
+                            placeholder="--select--" [style]="{ width: '100%' }" [showClear]="true" (onChange)="ScoreCalc(9)">
                         </p-dropdown>
                     </ng-container>
                 </div>
@@ -163,8 +194,22 @@
                         <p-dropdown [required]="true" name="SpecialRisksNeurologicalOption"
                             [(ngModel)]="WaterlowChartData.SpecialRisksNeurologicalOption"
                             [options]="LstSpecialRisksNeurological" optionLabel="optionName" optionValue="optionId"
-                            placeholder="--select--" [style]="{ width: '100%' }">
+                            placeholder="--select--" [style]="{ width: '100%' }" [showClear]="true" (onChange)="ScoreCalc(10)">
                         </p-dropdown>
+                    </ng-container>
+                </div>
+                <div *ngIf="ScoreDropdownCheck">
+                    <div class="labelcontent">
+                        <label class="form-label bold">Score</label>
+                    </div>
+                    <ng-container>
+                        <p-dropdown [required]="true" name="ScoreOption"
+                            [(ngModel)]="WaterlowChartData.ScoreOption"
+                            [options]="LstScore" optionLabel="label" optionValue="value"
+                            placeholder="--select--" [style]="{ width: '100%' }" [showClear]="true" (onChange)="ScoreCalc(10)">
+                        </p-dropdown>
+                        <p-messages [(value)]="messages8" [enableService]="false"></p-messages>
+
                     </ng-container>
                 </div>
                 <div>
@@ -175,7 +220,7 @@
                         <p-dropdown [required]="true" name="SpecialRisksMajorSurgeryOrTraumaOption"
                             [(ngModel)]="WaterlowChartData.SpecialRisksMajorSurgeryOrTraumaOption" [options]="LstSpecialRisksMajorSurgeryOrTrauma"
                             optionLabel="optionName" optionValue="optionId" placeholder="--select--"
-                            [style]="{ width: '100%' }">
+                            [style]="{ width: '100%' }" [showClear]="true" (onChange)="ScoreCalc(11)">
                         </p-dropdown>
                     </ng-container>
                 </div>
@@ -184,10 +229,22 @@
                         <label class="form-label bold">Special Risks Medication</label>
                     </div>
                     <ng-container>
-                        <p-dropdown [required]="true" name="SpecialRisksMedicationOption"
+                        <p-multiSelect display="chip" [required]="true" name="WaterlowChartData.SpecialRisksMedicationOption"
                             [(ngModel)]="WaterlowChartData.SpecialRisksMedicationOption" [options]="LstSpecialRisksMedication"
                             optionLabel="optionName" optionValue="optionId" placeholder="--select--"
-                            [style]="{ width: '100%' }">
+                            [style]="{ width: '100%' }" (onChange)="ScoreCalc(12)">
+                        </p-multiSelect>
+                    </ng-container>
+                </div>
+                <div *ngIf="MedicationValueCheck">
+                    <div class="labelcontent">
+                        <label class="form-label bold">Special Risks - Medication Score</label>
+                    </div>
+                    <ng-container>
+                        <p-dropdown [required]="true" name="SpecialRisksMedicationScoreOption"
+                            [(ngModel)]="WaterlowChartData.SpecialRisksMedicationScoreOption" [options]="LstSpecialRisksMedicationScore"
+                            optionLabel="label" optionValue="value" placeholder="--select--"
+                            [style]="{ width: '100%' }" [showClear]="true" (onChange)="ScoreCalc(12)">
                         </p-dropdown>
                     </ng-container>
                 </div>
@@ -206,7 +263,10 @@
                         <label class="form-label bold">This is classified as</label>
                     </div>
                     <ng-container>
-                        <label class="success">{{ClassificationValue}}</label>
+                        <label [ngClass]="{
+                            'text-success': WaterlowScoreValue>=0 && WaterlowScoreValue <=9,
+                            'text-danger': WaterlowScoreValue>=10
+                        }">{{ClassificationValue}}</label>
 
                     </ng-container>
                 </div>
@@ -247,19 +307,17 @@
                         <div class="formheader p-2 mb-3">
                             <div class="col-md-12 mb-2 d-flex justify-content-between fs-4 ">
                                 <div class="chart-date">
-                                    <label class="bold"
-                                        [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">{{
+                                    <label class="bold">{{
                                         chart.DateAndTime | date:'dd-MM-yyyy'}}</label>
                                 </div>
                                 <div class="chart-date">
-                                    <label [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">{{
+                                    <label>{{
                                         chart.DateAndTime | date:'hh:mm'}}</label>
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-12 mb-2">
-                            <label class="form-label bold"
-                                [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">Enterted By<span
+                            <label class="form-label bold">Enterted By<span
                                     class="required"></span></label>
                             <div>
                                 <label
@@ -267,13 +325,13 @@
                             </div>
                         </div>
                         <div class="mb-2">
-                            <button pButton *ngIf="!chart.isStrikeThrough" type="button" label="Strike Through Entry"
+                            <button pButton *ngIf="!chart.isStrikeThrough" type="button" label="Strike Out Entry"
                                 class="p-button-link p-0" (click)="showPopup(chart.WaterlowChartId)">
                             </button>
                         </div>
                         <div class="mb-2">
 
-                            <label *ngIf="chart.isStrikeThrough" class="form-label bold">Strike Through Reason<span
+                            <label *ngIf="chart.isStrikeThrough" class="form-label bold">Strike Out Reason<span
                                     class="required"></span></label>
 
                             <div>
@@ -281,8 +339,7 @@
                             </div>
                         </div>
                         <div class=" mb-3">
-                            <label class="form-label bold"
-                                [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">Care Given <span
+                            <label class="form-label bold">Care Given <span
                                     class="required"></span></label>
                             <div>
                                 <label [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">{{
@@ -292,8 +349,7 @@
                         <div *ngIf="chart.CareGivenOptions=='No'">
                             <div>
                                 <div class="col-md-12">
-                                    <label class="form-label bold"
-                                        [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">Reason
+                                    <label class="form-label bold">Reason
                                         <span class="required"></span></label>
                                 </div>
                                 <div>
@@ -303,12 +359,11 @@
                             </div>
                         </div>
                         <div *ngIf="chart.CareGivenOptions=='Yes'" class="row">
-                            <h5 class="formheader" [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">
+                            <h5 class="formheader">
                                 Nutrition</h5>
                             <div class="col-md-12 mb-5">
                                 <div class="labelcontent">
-                                    <label class="form-label bold"
-                                        [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">Build/Weight for Height(BMI)</label>
+                                    <label class="form-label bold">Build/Weight for Height(BMI)</label>
                                 </div>
                                 <div>
                                     <label [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">{{
@@ -317,8 +372,7 @@
                             </div>
                             <div class="col-md-12 mb-5">
                                 <div class="labelcontent">
-                                    <label class="form-label bold"
-                                        [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">Continence</label>
+                                    <label class="form-label bold">Continence</label>
                                 </div>
                                 <div>
                                     <label [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">{{
@@ -327,8 +381,7 @@
                             </div>
                             <div class="col-md-12 mb-5">
                                 <div class="labelcontent">
-                                    <label class="form-label bold"
-                                        [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">Skin Type</label>
+                                    <label class="form-label bold">Skin Type</label>
                                 </div>
                                 <div>
                                     <label [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">{{
@@ -337,8 +390,7 @@
                             </div>
                             <div class="col-md-12 mb-5">
                                 <div class="labelcontent">
-                                    <label class="form-label bold"
-                                        [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">Mobility</label>
+                                    <label class="form-label bold">Mobility</label>
                                 </div>
                                 <div>
                                     <label [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">{{
@@ -347,8 +399,7 @@
                             </div>
                             <div class="col-md-12 mb-5">
                                 <div class="labelcontent">
-                                    <label class="form-label bold"
-                                        [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">Sex</label>
+                                    <label class="form-label bold">Sex</label>
                                 </div>
                                 <div>
                                     <label [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">{{
@@ -357,8 +408,7 @@
                             </div>
                             <div class="col-md-12 mb-5">
                                 <div class="labelcontent">
-                                    <label class="form-label bold"
-                                        [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">Age</label>
+                                    <label class="form-label bold">Age</label>
                                 </div>
                                 <div>
                                     <label [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">{{
@@ -367,30 +417,45 @@
                             </div>
                             <div class="col-md-12 mb-5">
                                 <div class="labelcontent">
-                                    <label class="form-label bold"
-                                        [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">Malnutrition Screening</label>
+                                    <label class="form-label bold">Malnutrition Screening</label>
                                 </div>
                                 <div>
                                     <label [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">{{
                                         chart.MalnutritionScreeningOptionName }}</label>
                                 </div>
                             </div>
+                            <div class="col-md-12 mb-5" *ngIf="chart.MalnutritionScreeningOptionName == 'Yes(0)'">
+                                <div class="labelcontent">
+                                    <label class="form-label bold">Weight Loss Score</label>
+                                </div>
+                                <div>
+                                    <label [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">{{
+                                        chart.WeightLossScoreOptionName }}</label>
+                                </div>
+                            </div>
+                            <div class="col-md-12 mb-5" *ngIf="chart.MalnutritionScreeningOptionName != 'Yes(0)'">
+                                <div class="labelcontent">
+                                    <label class="form-label bold">Lack of Appetite</label>
+                                </div>
+                                <div>
+                                    <label [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">{{
+                                        chart.LackOfAppetiteOption }}</label>
+                                </div>
+                            </div>
                             <div class="col-md-12 mb-5">
                                 <div class="labelcontent">
-                                    <label class="form-label bold"
-                                        [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">Nutrition Score</label>
+                                    <label class="form-label bold">Nutrition Score</label>
                                 </div>
                                 <div>
                                     <label [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">{{
                                         chart.NutritionScore }}</label>
                                 </div>
                             </div>
-                            <h5 class="formheader" [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">
+                            <h5 class="formheader">
                                 Special Risks</h5>
                             <div class="col-md-12 mb-5">
                                 <div class="labelcontent">
-                                    <label class="form-label bold"
-                                        [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">Special Risks Tissue</label>
+                                    <label class="form-label bold">Special Risks Tissue</label>
                                 </div>
                                 <div>
                                     <label [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">{{
@@ -399,18 +464,25 @@
                             </div>
                             <div class="col-md-12 mb-5">
                                 <div class="labelcontent">
-                                    <label class="form-label bold"
-                                        [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">Special Risks Neurological</label>
+                                    <label class="form-label bold">Special Risks Neurological</label>
                                 </div>
                                 <div>
                                     <label [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">{{
                                         chart.SpecialRisksNeurologicalOptionName }}</label>
                                 </div>
                             </div>
+                            <div class="col-md-12 mb-5" *ngIf="chart.SpecialRisksNeurologicalOptionName">
+                                <div class="labelcontent">
+                                    <label class="form-label bold">Score</label>
+                                </div>
+                                <div>
+                                    <label [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">{{
+                                        chart.ScoreOption }}</label>
+                                </div>
+                            </div>
                             <div class="col-md-12 mb-2">
                                 <div class="labelcontent">
-                                    <label class="form-label bold"
-                                        [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">Special Risks Major Surgery or Trauma</label>
+                                    <label class="form-label bold">Special Risks Major Surgery or Trauma</label>
                                 </div>
                                 <div>
                                     <label [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">{{
@@ -419,20 +491,27 @@
                             </div>
                             <div class="col-md-12 mb-2">
                                 <div class="labelcontent">
-                                    <label class="form-label bold"
-                                        [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">Special Risks Medication</label>
+                                    <label class="form-label bold">Special Risks Medication</label>
                                 </div>
                                 <div>
                                     <label [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">{{
                                         chart.SpecialRisksMedicationOptionName }}</label>
                                 </div>
                             </div>
-                            <h5 class="formheader" [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">
+                            <div class="col-md-12 mb-2" *ngIf="chart.SpecialRisksMedicationOptionName">
+                                <div class="labelcontent">
+                                    <label class="form-label bold">Special Risks - Medication Score</label>
+                                </div>
+                                <div>
+                                    <label [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">{{
+                                        chart.SpecialRisksMedicationScoreOption }}</label>
+                                </div>
+                            </div>
+                            <h5 class="formheader">
                                 Score</h5>
                             <div class="col-md-12 mb-5">
                                 <div class="labelcontent">
-                                    <label class="form-label bold"
-                                        [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">The Water Low Score is</label>
+                                    <label class="form-label bold">The Water Low Score is</label>
                                 </div>
                                 <div>
                                     <label [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">{{
@@ -441,17 +520,18 @@
                             </div>
                             <div class="col-md-12 mb-5">
                                 <div class="labelcontent">
-                                    <label class="form-label bold"
-                                        [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">This is classified as</label>
+                                    <label class="form-label bold">This is classified as</label>
                                 </div>
                                 <div>
-                                    <label [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">{{
+                                    <label [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough,
+                                    'text-success': chart.WaterlowScore>=0 && chart.WaterlowScore <=9,
+                                    'text-danger': chart.WaterlowScore>=10}">{{
                                         chart.Classification }}</label>
                                 </div>
                             </div>
                         </div>
 
-                        <h5 class="formheader" [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">
+                        <h5 class="formheader">
                             Additional information</h5>
                         <div class="col-md-12">
                             <div>
@@ -464,7 +544,7 @@
             </p-carousel>
 
             <div *ngIf="isShowStrikeThroughPopup" class="card flex justify-content-center">
-                <p-dialog [closable]="true" header="Strike-Through" [(visible)]="isShowStrikeThroughPopup"
+                <p-dialog [closable]="true" header="Strike-Out" [(visible)]="isShowStrikeThroughPopup"
                     [modal]="true" [breakpoints]="{ '1199px': '75vw', '575px': '90vw' }" [style]="{ width: '40vw' }"
                     [draggable]="false" [resizable]="false">
                     <div *ngIf="isShowStrikeThroughPopup">

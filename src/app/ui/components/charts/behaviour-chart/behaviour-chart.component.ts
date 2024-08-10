@@ -87,10 +87,13 @@ export class BehaviourChartComponent
             this.StatementType = 'Update';
         } else {
             this.ResetModel();
+            this.getChartDataById(this.preSelectedChartData.chartMasterId,this.preSelectedChartData.chartId, this.preSelectedChartData.selectedStartedOn, this.preSelectedChartData.residentAdmissionInfoId, this.pageNumber, this.pageSize);
+
         }
     }
 
     ngOnInit(): void {
+      
         this.userId = this.preSelectedChartData.userId;
         this.residentAdmissionInfoId =
             this.preSelectedChartData.residentAdmissionInfoId;
@@ -133,8 +136,8 @@ export class BehaviourChartComponent
         } else {
             this.ResetModel();
         }
-
-        this.getChartDataById(this.preSelectedChartData.chartMasterId, this.preSelectedChartData.residentAdmissionInfoId, this.pageNumber, this.pageSize);
+        this.BehaviourChartData.DateAndTime = new Date();
+        // this.getChartDataById(this.preSelectedChartData.chartMasterId, this.preSelectedChartData.residentAdmissionInfoId, this.pageNumber, this.pageSize);
     }
 
     openAndClose() {
@@ -200,9 +203,9 @@ export class BehaviourChartComponent
     }
 
     ClearAllfeilds() {
-        if (this.preSelectedChartData.selectedChartID) {
+        if (this.preSelectedChartData.chartMasterId) {
             this.BehaviourChartData = <any>{};
-            this.BehaviourChartData.activitiesChartId =
+            this.BehaviourChartData.BehaviourChartId =
                 this.preSelectedChartData.selectedChartID;
         }
     }
@@ -314,14 +317,15 @@ export class BehaviourChartComponent
     }
 
     chartOnChange() {
-        this.getChartDataById(this.preSelectedChartData.chartMasterId, this.preSelectedChartData.residentAdmissionInfoId, this.pageNumber, this.pageSize);
+        this.getChartDataById(this.preSelectedChartData.chartMasterId,this.preSelectedChartData.chartId, this.preSelectedChartData.selectedStartedOn, this.preSelectedChartData.residentAdmissionInfoId, this.pageNumber, this.pageSize);
+
     }
 
-    getChartDataById(chartId: any, residentAdmissionInfoId: any, pageNumber: number, pageSize: number) {
+    getChartDataById(chartId: any, selectedChartId: any, selectedStartedOn: any, residentAdmissionInfoId: any, pageNumber: number, pageSize: number) {
 
         this._UtilityService.showSpinner();
         this.unsubscribe.add = this._UserService
-            .GetChartDataById(chartId, residentAdmissionInfoId, pageNumber, pageSize)
+            .GetChartDataById(chartId, selectedChartId, selectedStartedOn, residentAdmissionInfoId, pageNumber, pageSize)
             .subscribe({
                 next: (data) => {
                     this._UtilityService.hideSpinner();

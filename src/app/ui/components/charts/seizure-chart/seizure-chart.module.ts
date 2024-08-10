@@ -13,6 +13,7 @@ import { InputTextareaModule } from 'primeng/inputtextarea';
 import { StrikeThroughEntryModule } from '../strike-through-entry/strike-through-entry.module';
 import { SelectButtonModule } from 'primeng/selectbutton';
 import { MultiSelectModule } from 'primeng/multiselect';
+import { MessagesModule } from 'primeng/messages';
 
 
 @NgModule({
@@ -29,7 +30,8 @@ import { MultiSelectModule } from 'primeng/multiselect';
     DialogModule,
     StrikeThroughEntryModule,
     SelectButtonModule,
-    MultiSelectModule
+    MultiSelectModule,
+    MessagesModule
   ],
   exports:[SeizureChartComponent]
 })

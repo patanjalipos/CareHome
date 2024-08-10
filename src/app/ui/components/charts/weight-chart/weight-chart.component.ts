@@ -8,6 +8,7 @@ import { UtilityService } from 'src/app/utility/utility.service';
 import { Observable, catchError, forkJoin, map, of } from 'rxjs';
 import { WeightChartService } from './weight-chart.service';
 import { ActivatedRoute } from '@angular/router';
+import { Message } from 'primeng/api';
 
 @Component({
   selector: 'app-weight-chart',
@@ -31,6 +32,7 @@ export class WeightChartComponent extends AppComponentBase implements OnInit {
     ZeroValueCheck: boolean = false;
     BMIValueCHeck: boolean = false;
     ButtonCheck: boolean = true;
+    messages: Message[] | undefined;
 
     LstScaleTypes: any[] = [];
 
@@ -82,10 +84,15 @@ export class WeightChartComponent extends AppComponentBase implements OnInit {
         this.StatementType = 'Update';
     } else {
         this.ResetModel();
+        this.getChartDataById(this.preSelectedChartData.chartMasterId,this.preSelectedChartData.chartId, this.preSelectedChartData.selectedStartedOn, this.preSelectedChartData.residentAdmissionInfoId, this.pageNumber, this.pageSize);
+
     }
 }
 
   ngOnInit(): void {
+    this.messages = [
+        { severity: 'secondary', detail: 'BMI = Weight (kg)/ Height (m)2' }
+    ];
     this.userId = this.preSelectedChartData.userId;
         this.residentAdmissionInfoId =
             this.preSelectedChartData.residentAdmissionInfoId;
@@ -103,7 +110,7 @@ export class WeightChartComponent extends AppComponentBase implements OnInit {
             this._ConstantServices.ActiveMenuName = this.ChartName;
         });
 
-        this.getChartDataById(this.preSelectedChartData.chartMasterId, this.preSelectedChartData.residentAdmissionInfoId, this.pageNumber, this.pageSize);
+        // this.getChartDataById(this.preSelectedChartData.chartMasterId, this.preSelectedChartData.residentAdmissionInfoId, this.pageNumber, this.pageSize);
         this.responsiveOptions = [
             {
                 breakpoint: '1199px',
@@ -212,9 +219,9 @@ GetWeightChartDetails(chartId: string) {
 }
 
 ClearAllfeilds() {
-  if (this.preSelectedChartData.selectedChartID) {
+  if (this.preSelectedChartData.chartMasterId) {
       this.WeightChartData = <any>{};
-      this.WeightChartData.activitiesChartId =
+      this.WeightChartData.WeightChartId =
           this.preSelectedChartData.selectedChartID;
   }
 }
@@ -327,14 +334,15 @@ rightBtn() {
 }
 
 chartOnChange() {
-  this.getChartDataById(this.preSelectedChartData.chartMasterId, this.preSelectedChartData.residentAdmissionInfoId, this.pageNumber, this.pageSize);
+    this.getChartDataById(this.preSelectedChartData.chartMasterId,this.preSelectedChartData.chartId, this.preSelectedChartData.selectedStartedOn, this.preSelectedChartData.residentAdmissionInfoId, this.pageNumber, this.pageSize);
+
 }
 
-getChartDataById(chartId: any, residentAdmissionInfoId: any, pageNumber: number, pageSize: number) {
+getChartDataById(chartId: any, selectedChartId: any, selectedStartedOn: any, residentAdmissionInfoId: any, pageNumber: number, pageSize: number) {
 
   this._UtilityService.showSpinner();
   this.unsubscribe.add = this._UserService
-      .GetChartDataById(chartId, residentAdmissionInfoId, pageNumber, pageSize)
+      .GetChartDataById(chartId, selectedChartId, selectedStartedOn, residentAdmissionInfoId, pageNumber, pageSize)
       .subscribe({
           next: (data) => {
               this._UtilityService.hideSpinner();
@@ -397,7 +405,11 @@ CalculateBMI(value: number) {
             this.ZeroValueCheck = false;
             this.ButtonCheck = false;
             this.BMIValueCHeck = true;
-            this.WeightChartData.BMI = this.WeightChartData.Weight/(Math.pow(this.WeightChartData.Height,2));
+            this.WeightChartData.BMI = this.WeightChartData.Weight/(Math.pow(this.WeightChartData.Height/100,2));
+            this.WeightChartData.BMI = parseFloat(this.WeightChartData.BMI).toFixed(4);
+            this.messages = [
+                { severity: 'secondary', detail: 'BMI = Weight (kg)/ Height (m)2' }
+            ];
             }
     }
 }

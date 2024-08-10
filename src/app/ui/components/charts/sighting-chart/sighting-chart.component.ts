@@ -67,6 +67,8 @@ export class SightingChartComponent extends AppComponentBase implements OnInit {
         this.StatementType = 'Update';
     } else {
         this.ResetModel();
+        this.getChartDataById(this.preSelectedChartData.chartMasterId,this.preSelectedChartData.chartId, this.preSelectedChartData.selectedStartedOn, this.preSelectedChartData.residentAdmissionInfoId, this.pageNumber, this.pageSize);
+
     }
 }
 
@@ -89,7 +91,7 @@ export class SightingChartComponent extends AppComponentBase implements OnInit {
             this._ConstantServices.ActiveMenuName = this.ChartName;
         });
 
-        this.getChartDataById(this.preSelectedChartData.chartMasterId, this.preSelectedChartData.residentAdmissionInfoId, this.pageNumber, this.pageSize);
+        // this.getChartDataById(this.preSelectedChartData.chartMasterId, this.preSelectedChartData.residentAdmissionInfoId, this.pageNumber, this.pageSize);
         this.responsiveOptions = [
             {
                 breakpoint: '1199px',
@@ -143,6 +145,19 @@ export class SightingChartComponent extends AppComponentBase implements OnInit {
     } else {
         this.inputFieldsCheck = false;
     }
+}
+
+ChangeState() {
+    this.LstResidentState.forEach(ele => {
+        if(ele.optionId == this.SightingChartData.ResidentStateOption) {
+            if(ele.optionName == 'Other') {
+                this.SightingChartData.OtherCheck = true;
+            }
+            else {
+                this.SightingChartData.OtherCheck = false;
+            }
+        }
+    });
 }
 
 GetChartDropDownMasterList(
@@ -199,9 +214,9 @@ GetSightingChartDetails(chartId: string) {
 }
 
 ClearAllfeilds() {
-  if (this.preSelectedChartData.selectedChartID) {
+  if (this.preSelectedChartData.chartMasterId) {
       this.SightingChartData = <any>{};
-      this.SightingChartData.activitiesChartId =
+      this.SightingChartData.SightingChartId =
           this.preSelectedChartData.selectedChartID;
   }
 }
@@ -315,14 +330,15 @@ rightBtn() {
 }
 
 chartOnChange() {
-  this.getChartDataById(this.preSelectedChartData.chartMasterId, this.preSelectedChartData.residentAdmissionInfoId, this.pageNumber, this.pageSize);
+    this.getChartDataById(this.preSelectedChartData.chartMasterId,this.preSelectedChartData.chartId, this.preSelectedChartData.selectedStartedOn, this.preSelectedChartData.residentAdmissionInfoId, this.pageNumber, this.pageSize);
+
 }
 
-getChartDataById(chartId: any, residentAdmissionInfoId: any, pageNumber: number, pageSize: number) {
+getChartDataById(chartId: any, selectedChartId: any, selectedStartedOn: any, residentAdmissionInfoId: any, pageNumber: number, pageSize: number) {
 
   this._UtilityService.showSpinner();
   this.unsubscribe.add = this._UserService
-      .GetChartDataById(chartId, residentAdmissionInfoId, pageNumber, pageSize)
+      .GetChartDataById(chartId, selectedChartId, selectedStartedOn, residentAdmissionInfoId, pageNumber, pageSize)
       .subscribe({
           next: (data) => {
               this._UtilityService.hideSpinner();

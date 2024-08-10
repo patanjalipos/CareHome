@@ -9,6 +9,7 @@ import { DatePipe } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
 import { Observable, catchError, forkJoin, map, of } from 'rxjs';
 import { FluidCombinedChartService } from './fluid-combined-chart.service';
+import { log } from 'console';
 @Component({
   selector: 'app-fluid-combined-chart',
   templateUrl: './fluid-combined-chart.component.html',
@@ -32,6 +33,15 @@ export class FluidCombinedChartComponent extends AppComponentBase implements OnI
   reason: boolean = false;
   careGiven: boolean = false;
   lstFluidChart: any[] = [];
+  lstFluidInputType: any[] = [];
+  lstFluidOutputType:any[]=[];
+  lstContinenceLevel:any[]=[];
+  lstFluidOutputMethod:any[]=[];
+  lstPadChangeReason:any[]=[];
+  lstCatheterChecks:any[]=[];
+  lstPadFluidOutput:any[]=[];
+  rangeOptionApproximation: any[] = [];
+  rangeOptionThickener:any[]=[];
 
 
   //for carousel
@@ -82,6 +92,8 @@ export class FluidCombinedChartComponent extends AppComponentBase implements OnI
       this.StatementType = 'Update';
     } else {
       this.ResetModel();
+      this.getChartDataById(this.preSelectedChartData.chartMasterId,this.preSelectedChartData.chartId, this.preSelectedChartData.selectedStartedOn, this.preSelectedChartData.residentAdmissionInfoId, this.pageNumber, this.pageSize);
+
     }
 
   }
@@ -92,6 +104,15 @@ export class FluidCombinedChartComponent extends AppComponentBase implements OnI
     this.residentAdmissionInfoId =
       this.preSelectedChartData.residentAdmissionInfoId;
 
+    this.rangeOptionApproximation = [
+      { label: 'Yes', value: 'Yes' },
+      { label: 'No', value: 'No' }
+    ];
+    
+    this.rangeOptionThickener = [
+      { label: 'Yes', value: 'Yes' },
+      { label: 'No', value: 'No' }
+    ];
     this.optionService.getstLstYesNoOptions().subscribe((data) => {
       this.stLstYesNoOptions = data;
     });
@@ -100,7 +121,7 @@ export class FluidCombinedChartComponent extends AppComponentBase implements OnI
       this.stLstReason = data;
     });
 
-    this.getChartDataById(this.preSelectedChartData.chartMasterId, this.preSelectedChartData.residentAdmissionInfoId, this.pageNumber, this.pageSize);
+    // this.getChartDataById(this.preSelectedChartData.chartMasterId, this.preSelectedChartData.residentAdmissionInfoId, this.pageNumber, this.pageSize);
     this.responsiveOptions = [
       {
         breakpoint: '1199px',
@@ -124,7 +145,7 @@ export class FluidCombinedChartComponent extends AppComponentBase implements OnI
       this.ChartName = this.result["ChartName"];
       this._ConstantServices.ActiveMenuName = this.ChartName;
     });
-    const collectionNames = ['fluidChart'];
+    const collectionNames = ['fluidChart', 'fluidInputType','fluidOutputType','continenceLevel','fluidOutputMethod','catheterChecks','padChangeReason','padFluidOutput'];
 
     forkJoin(
       collectionNames.map((collectionName) =>
@@ -136,11 +157,18 @@ export class FluidCombinedChartComponent extends AppComponentBase implements OnI
       )
     ).subscribe((responses: any[]) => {
       this.lstFluidChart = responses[0];
+      this.lstFluidInputType = responses[1];
+      this.lstFluidOutputType=responses[2];
+      this.lstContinenceLevel=responses[3];
+      this.lstFluidOutputMethod=responses[4];
+      this.lstCatheterChecks=responses[5];
+      this.lstPadChangeReason=responses[6];
+      this.lstPadFluidOutput=responses[7];
     });
   }
 
   ClearAllfeilds() {
-    if (this.preSelectedChartData.selectedChartID) {
+    if (this.preSelectedChartData.chartMasterId) {
       this.fluidCombinedChartFormData = <any>{};
       this.fluidCombinedChartFormData.fluidCombinedChartId =
         this.preSelectedChartData.selectedChartID;
@@ -248,11 +276,11 @@ export class FluidCombinedChartComponent extends AppComponentBase implements OnI
     }
   }
 
-  getChartDataById(chartId: any, residentAdmissionInfoId: any, pageNumber: number, pageSize: number) {
+  getChartDataById(chartId: any, selectedChartId: any, selectedStartedOn: any, residentAdmissionInfoId: any, pageNumber: number, pageSize: number) {
 
     this._UtilityService.showSpinner();
     this.unsubscribe.add = this._UserService
-      .GetChartDataById(chartId, residentAdmissionInfoId, pageNumber, pageSize)
+      .GetChartDataById(chartId, selectedChartId, selectedStartedOn, residentAdmissionInfoId, pageNumber, pageSize)
       .subscribe({
         next: (data) => {
           this._UtilityService.hideSpinner();
@@ -320,7 +348,8 @@ export class FluidCombinedChartComponent extends AppComponentBase implements OnI
   }
 
   chartOnChange() {
-    this.getChartDataById(this.preSelectedChartData.chartMasterId, this.preSelectedChartData.residentAdmissionInfoId, this.pageNumber, this.pageSize);
+    this.getChartDataById(this.preSelectedChartData.chartMasterId,this.preSelectedChartData.chartId, this.preSelectedChartData.selectedStartedOn, this.preSelectedChartData.residentAdmissionInfoId, this.pageNumber, this.pageSize);
+
   }
 
 

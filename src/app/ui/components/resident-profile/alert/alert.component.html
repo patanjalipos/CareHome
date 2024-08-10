@@ -13,20 +13,20 @@
                 Alert Type </label>
             <p-dropdown [(ngModel)]="selectedAlertMasterId" [options]="lstAlertMaster" optionLabel="AlertName"
                 optionValue="AlertMasterId" placeholder="--select--" [style]="{ width: '100%' }" [filter]="true"
-                [showClear]="true">
+                [showClear]="true" (onChange)="changeValue()">
             </p-dropdown>
         </div>
         <div class="col-md-3">
             <label class="form-label">
                 Alert Status </label>
             <p-dropdown [(ngModel)]="selectedStatusId" [options]="stlstStatus" optionLabel="name" optionValue="code"
-                placeholder="--select--" [style]="{ width: '100%' }" [filter]="true" [showClear]="true">
+                placeholder="--select--" [style]="{ width: '100%' }" [filter]="true" [showClear]="true" (onChange)="changeValue()">
             </p-dropdown>
         </div>
         <div class="col-md-2 mt-3">
             <button pButton title="Search" (click)="GetDailyVitalAlertLog()" label="Search"></button>
         </div>
-        <p-table #dt [value]="AlertList" responsiveLayout="scroll" class="mt-4" styleClass="p-datatable-striped"
+        <p-table #dt [value]="AlertList" responsiveLayout="scroll" class="mt-2" styleClass="p-datatable-striped"
             [rowHover]="true" [globalFilterFields]="['AlertName', 'FullName','Status']" [scrollable]="true"
             scrollHeight="calc(100vh - 155px)">
             <ng-template pTemplate="emptymessage" let-columns>
