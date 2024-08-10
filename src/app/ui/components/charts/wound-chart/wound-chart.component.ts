@@ -93,6 +93,7 @@ export class WoundChartComponent extends AppComponentBase implements OnInit {
   BodyPartsName: any[] = [];
   bodyDialogCount: number = 0;
   UpdatedPartsCheck: any[] = [];
+  SelectedOrRemovalCheck: boolean = false;
 
   constructor(
     private optionService: OptionService,
@@ -320,7 +321,7 @@ export class WoundChartComponent extends AppComponentBase implements OnInit {
           if (data.actionResult.success) {
             var tdata = JSON.parse(data.actionResult.result) || [];
             this.woundChartsLst = tdata;
-
+            this.BodyPartsName = [];
             this.woundChartsLst.forEach(chart => {
               if (chart.woundImage) {
                 const imageFormat = this._UtilityService.getFileExtension(chart.woundImage);
@@ -332,15 +333,17 @@ export class WoundChartComponent extends AppComponentBase implements OnInit {
                 chart.productImage = `data:image/${imageFormat};base64,${chart.productImage}`;
               }
 
-              if (chart.selectedBodyParts && chart.BodyMapStatus) {
-                this.lastRecordData = chart.selectedBodyParts[0];
-                this.lastRecordBodyStatus = chart.BodyMapStatus[0];
-                chart.selectedBodyParts.forEach(part => this.BodyPartsName.push(part.name));
-              } else {
-                this.BodyPartsName = [];
-                this.lastRecordBodyStatus = null;
-              }
             });
+            if (this.woundChartsLst[0].selectedBodyParts && this.woundChartsLst[0].BodyMapStatus) {
+              this.lastRecordData = this.woundChartsLst[0].selectedBodyParts;
+              this.lastRecordBodyStatus = this.woundChartsLst[0].BodyMapStatus;
+              for (let i = 0; i < this.woundChartsLst[0].selectedBodyParts.length; i++) {
+                this.BodyPartsName.push(this.woundChartsLst[0].selectedBodyParts[i].name)
+              }
+            } else {
+              this.BodyPartsName = [];
+              this.lastRecordBodyStatus = null;
+            }
 
             if (this.woundChartsLst.length < 3 || ((this.woundChartsLst.length * (this.pageNumber + 1)) >= this.woundChartsLst[0].countRecords)) {
               this.rightBtnCheck = true;
@@ -467,16 +470,17 @@ export class WoundChartComponent extends AppComponentBase implements OnInit {
     this.isReadOnly = isReadOnly;
     this.bodyMapData = {
       preselectedBodyParts: preselectedBodyParts,
-      status: bodyMapStatus,
+      status: isReadOnly == true ? bodyMapStatus : (isReadOnly == false && this.woundChartFormData.bodyMapStatus == null) ? bodyMapStatus : this.woundChartFormData.bodyMapStatus,
       count: this.bodyDialogCount,
-      lastSelectedBodyPart: this.woundChartFormData,
+      lastSelectedBodyPart: this.lastRecordData,
       UpdatedParts: this.UpdatedPartsCheck.length == 0 ? [] : this.UpdatedPartsCheck,
-      buttoncheck: isReadOnly
+      buttoncheck: isReadOnly,
+      SelectionRemovalCheck: this.SelectedOrRemovalCheck
     }
   }
 
   onSelectedBodyParts(bodyMapData: any) {
-
+    this.SelectedOrRemovalCheck = bodyMapData.selectOrRemoveCheck;
     this.woundChartFormData.selectedBodyParts = [...bodyMapData.selectedBodyParts];
     this.UpdatedPartsCheck = [];
     this.UpdatedPartsCheck.push(...bodyMapData.selectedBodyParts);
