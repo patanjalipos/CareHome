@@ -17,7 +17,7 @@
                 <p><b>Status: {{lastRecordBodyStatus}}</b></p>
             </div>
             <div>
-                <button pButton type="button" label="Show Body Pain" class="p-button-link p-0"
+                <button pButton type="button" label="Show Body Wound" class="p-button-link p-0"
                     (click)="ShowBodyMapPopUp(isReadOnly=true,lastRecordData,lastRecordBodyStatus)"></button>
             </div>
         </div>
@@ -330,18 +330,17 @@
 
             <div class="col-md-12 mb-3">
                 <div class="formheader">
-                    <label class="form-label bold"><span class="required"></span>Body Pain Locations</label>
+                    <label class="form-label bold"><span class="required"></span>Body Wound Locations</label>
                 </div>
                 <div class="">
-                    <button pButton type="button" label="Add Body Pain" class="p-button-link p-0"
-                        (click)="ShowBodyMapPopUp(false)"></button>
+                    <button pButton type="button" label="Add Body Wound" class="p-button-link p-0"
+                        (click)="ShowBodyMapPopUp(false,lastRecordData,lastRecordBodyStatus)"></button>
                 </div>
             </div>
             <div class="d-flex justify-content-center mt-4 mb-4">
                 <div class="mr-4 ">
                     <span class="p-ml-left">
                         <button pButton title="Clear all" label="Clear all" (click)="ClearAllfeilds()"></button>
-
                     </span>
                 </div>
                 <div>
