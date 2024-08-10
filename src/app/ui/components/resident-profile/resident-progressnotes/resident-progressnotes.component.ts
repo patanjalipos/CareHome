@@ -56,6 +56,10 @@ export class ResidentProgressnotesComponent extends AppComponentBase implements 
   lstprogressnotetypes:any[]=[];
   AdditionProgressNoteID:string="";
 
+  isDetailedview: boolean = false;
+  isTableview: boolean = true; 
+  showProgressNote:boolean=false;
+  lstshowProgressNote: any[]=[];
   constructor(
     private _ConstantServices: ConstantsService,
     private datePipe: DatePipe,
@@ -146,8 +150,7 @@ export class ResidentProgressnotesComponent extends AppComponentBase implements 
   ngOnChanges() {  
     if(this.isProgressnoteDoc==true)
       {    
-        this._ConstantServices.ActiveMenuName="Progress notes Documents";        
-        // console.log(this.PNDocUserId);
+        this._ConstantServices.ActiveMenuName="Progress notes Documents";
          this.LoadResidentProgressDetails(this.admissionid,this.dFrom, this.dTo,this.userid,0);
       }
   }
@@ -277,8 +280,10 @@ LoadResidentProgressDetails(admissionid,dFrom: string, dTo: string,userid,formTy
           var tdata = JSON.parse(data.actionResult.result);
           tdata = tdata ? tdata : [];
          this.lstResidentProgressNote = tdata;
-        //  console.log(this.lstResidentProgressNote);
-        //  this.TotalRecords = tdata.length;
+         if(this.showProgressNote==true)    
+        {
+          this.ShowProgressNote(this.filteritems[0].ResidentProgressNotesId);
+        }
         }
         else {
           this.TotalRecords = 0;
@@ -340,6 +345,21 @@ ClearAddionalNote()
 {
   this.AdditionalProgressNote='';
   this.showAdditionalNote=false;
+}
+
+ShowDetailview(event: Event): void {
+  event.preventDefault(); 
+  this.isDetailedview = !this.isDetailedview;
+}
+ShowTableview(event: Event): void {
+  event.preventDefault(); 
+  this.isTableview = !this.isTableview;
+}
+
+ShowProgressNote(id){
+  this.showProgressNote=true;
+  this.filteritems = this.lstResidentProgressNote.filter(e => e.ResidentProgressNotesId == id);
+  this.lstshowProgressNote=this.filteritems;
 }
 
 }
