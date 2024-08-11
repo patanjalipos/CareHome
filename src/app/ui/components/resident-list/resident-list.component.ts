@@ -37,6 +37,7 @@ export class ResidentListComponent extends AppComponentBase implements OnInit {
   ngOnInit(): void {
     this.LoadResidentList();
   }
+
   toggleTieredMenu(menu, event, userid, admissionid) {
     this.items = [];    
     this.items = [
@@ -77,6 +78,7 @@ export class ResidentListComponent extends AppComponentBase implements OnInit {
      },
    ];
    //console.log('items', this.items);
+   this.items[0].command();
    menu.toggle(event);
  }
 
