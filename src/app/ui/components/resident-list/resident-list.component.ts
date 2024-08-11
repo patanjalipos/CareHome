@@ -25,7 +25,8 @@ export class ResidentListComponent extends AppComponentBase implements OnInit {
   lstResidentMaster: any[]=[];
   filteredValuesLength:number=0;
   profileUrl:string= environment.BaseURIFileServer + 'ProfileImage/';
-  imageSrc:any;
+  imageSrc: any;
+  public RedirectToProfile: any;
   constructor( 
     private _ConstantServices: ConstantsService,
     private _MasterServices:MasterService,
@@ -37,6 +38,7 @@ export class ResidentListComponent extends AppComponentBase implements OnInit {
   ngOnInit(): void {
     this.LoadResidentList();
   }
+
   toggleTieredMenu(menu, event, userid, admissionid) {
     this.items = [];    
     this.items = [
@@ -77,9 +79,13 @@ export class ResidentListComponent extends AppComponentBase implements OnInit {
      },
    ];
    //console.log('items', this.items);
+   //this.items[0].command();
    menu.toggle(event);
  }
-
+  ViewProfile(userid, admissionid) {
+    const params = btoa(`id=${userid}&admissionid=${admissionid}`);
+    this.RedirectToProfile = "#/profile?q=" + params;
+ }
  LoadResidentList() {
   var HomeMasterId = "";
   if (this.s_userTypeId != UserTypes.SuperAdmin) {
