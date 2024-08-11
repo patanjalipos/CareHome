@@ -273,9 +273,11 @@ body {
 .p-button {
     border-color: #023C40 !important;
     height: 35px !important;
-    padding: 11px;
+    padding: 10px 13px;
 
 }
+.cursor { cursor: pointer;}
+.hig150 { height: 150px; overflow-y: scroll;}
 
 .btn-primary {
     background: #023C40 !important;
@@ -297,7 +299,7 @@ body {
 
 .btn-secondary {
     color: #000;
-    background-color: #fff !important;
+    background-color: #617C7E !important;
     border-color: #617C7E !important;
     height: 35px;
 }
@@ -507,19 +509,32 @@ body {
 
 .profile-box {
     position: relative;
-    padding: 10px;
-    background: #F6F9F9;
+    display: flex;
+    padding: 15px;
 }
 
-.profile-box h1 {
-    font-size: 22px;
+.detail-table h1 {
+    font-size: 17px;
     font-weight: 600;
-    text-align: center;
-    margin-top: 5px;
+    text-align: left;
+    margin-bottom: 0;
 }
+.detail-table .table { margin-left: 15px !important; margin-bottom: 0 !important;}
+.detail-table .table>:not(caption)>*>* { padding:0 !important;}
+.allbox  { min-height: 110px}
+
+.allbox h5 { font-size: 16px !important; margin-bottom: 0 !important;}
 
 .profile-img {
     text-align: center;
+}
+.profile-img img { width: 80px;
+    height: 80px;
+    border: 5px solid #fff;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.0862745098);
+    border-radius: 5px;
+    object-fit: cover;
+
 }
 
 .profile-box .detail-table {
@@ -528,16 +543,21 @@ body {
 }
 
 .profile-box .detail-table .table tr {
-    line-height: 36px;
+    line-height: 24px;
 }
+.profile-tab { padding: 0 !important;}
 
 .p-dropdown,
 .form-control,
+.p-multiselect,
 .p-inputnumber-input {
     height: 35px;
     border-radius: 6px;
     margin-bottom: 10px;
 }
+
+.p-multiselect .p-multiselect-label {
+    padding: 0.5rem 0.5rem;}
 
 p-inputnumber,
 .p-inputnumber {
@@ -1007,7 +1027,7 @@ i.iconset:hover {
 }
 
 .box-height2 {
-    height: 303px;
+    height: 295px;
 }
 
 .layout-topbar {
@@ -1449,7 +1469,7 @@ p.date-box {
 .formheader {
     background-color: #e1e7e7;
     color: #000;
-    padding: 10px 10px;
+    padding: 6px 10px;
     border-radius: 5px;
 }
 
@@ -1573,6 +1593,7 @@ p.date-box {
     width: 60px;
     object-fit: cover;
     margin-right: 10px;
+    border-radius: 5px;
 }
 
 .p-dropdown-panel .p-dropdown-items .p-dropdown-item {
@@ -1606,12 +1627,13 @@ input::file-selector-button {
     font-weight: 500;
     border-radius: 5px 5px 5px 5px !important;
     background-color: #023C40;
+}    
+.chart-date {
+    font-size: 17px;
 }
 
 @media screen and (min-width: 1360px) and (max-width:1366px) {
-    .chart-date {
-        font-size: 17px;
-    }
+
 }
 .p-message .p-message-wrapper {padding:0px !important;}
 .p-message .p-message-icon {font-size: 1.5rem;margin-right:0px;}
@@ -1619,3 +1641,20 @@ input::file-selector-button {
 .p-message-close{display: block !important}
 .p-message .p-message-detail{margin: 0px;}
 .p-message {border: 1px solid #cfe4e5;; padding: 4px;}
+
+.additional-note { border: 1px solid #e3e3e3; position: relative; border-radius: 10px; margin-bottom: 15px;}
+.additional-note h3 { font-size: 18px;}
+.additional-note h3 small { font-size: 14px; font-weight: 400;}
+.additional-note .card-body { display: flex; justify-content: space-between; align-items: center;}
+.addbtn { width: 150px;}
+.additional-note h6 { font-size: 16px; margin: 10px 0;}
+
+.viewtype { text-align: end; }
+.viewtype a {margin: 0 5px 5px; padding: 3px 7px; background: #e3e3e3; display: inline-block; border-radius:3px;}
+.viewtype a:active { background: #023C40; color: #fff;}
+.boxheight { min-height: 426px;}
+
+.p-autocomplete { display: block !important; }
+.p-autocomplete .p-inputtext { width: 100% !important;}
+.p-dialog .p-dialog-content, .p-dialog .p-dialog-header { padding: 1rem !important;}
+.p-dialog .p-dialog-header { padding-bottom:  0 !important;}

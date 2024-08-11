@@ -25,6 +25,12 @@ export class AuthServiceService {
     window.addEventListener('keydown', () => this.resetLogoutTimer());
     this.startLogoutTimer();
   }
+  stopUserActivityTracking() {
+    window.removeEventListener('mousemove', this.resetLogoutTimer.bind(this));
+    window.removeEventListener('click', this.resetLogoutTimer.bind(this));
+    window.removeEventListener('keydown', this.resetLogoutTimer.bind(this));
+    clearTimeout(this.logoutTimer);
+  }
   resetLogoutTimer() {
     clearTimeout(this.logoutTimer);
     this.startLogoutTimer();

@@ -1,5 +1,5 @@
 <div *ngIf="mode==null">
-    <div class="card">
+    <div class="">
         <p-table #dt [value]="lstMaster" responsiveLayout="scroll" styleClass="p-datatable-striped" [rowHover]="true"
             [globalFilterFields]="['activityname','activitydescription']" [scrollable]="true" scrollHeight="calc(100vh - 155px)">
             <ng-template pTemplate="caption">
@@ -60,7 +60,7 @@
 </div>
 <div *ngIf="mode!=null">
     <form #myForm="ngForm">
-        <div class="card">
+        <div class="">
             <div class="row" *ngIf="s_userTypeId===UserTypes.SuperAdmin">
                 <div class="col-md-4">                  
                         <label class="form-label">Home <span class="required">*</span></label>
@@ -99,7 +99,7 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-12">
+                <div class="col-md-12">
                     <div class="flex flex-wrap gap-2">
                         <button pButton type="button" label="Submit" (click)="Save()" class="btn-primary"
                             [disabled]="!myForm.form.valid"></button>

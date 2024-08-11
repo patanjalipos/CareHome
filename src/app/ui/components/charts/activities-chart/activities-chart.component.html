@@ -12,22 +12,20 @@
     </div>
     <div class="row">
         <div class="col-md-3 mt-3 chart-box chart">
-            <div class="formheader mt-2 chart-heading">
-                <p><b>New observation</b></p>
+            <div class="formheader mt-2 mb-2 chart-heading">
+                <p class="chart-date bold">New observation</p>
             </div>
-            <div class="col-md-12 mt-4">
+            <div class="col-md-12">
                 <label class="form-label bold">
                     Date/Time<span class="required"></span></label>
 
                 <ng-container>
                     <p-calendar name="ActivitiesChartFormData.DateAndTime" [showIcon]="true" inputId="icon"
                         class="iconcal" [readonlyInput]="true" appendTo="body" [maxDate]="" #dobref=""
-                        [dateFormat]="customDateFormat.CalendarFormat" [(ngModel)]="ActivitiesChartFormData.DateAndTime"
-                        [showTime]="true" hourFormat="24"></p-calendar>
+                        [dateFormat]="customDateFormat.CalendarFormat" [(ngModel)]="ActivitiesChartFormData.DateAndTime" [showTime]="true" hourFormat="24"></p-calendar>
                 </ng-container>
             </div>
             <div class="col-md-12">
-
                 <label class="form-label bold">Care Given <span class="required">*</span></label>
 
                 <ng-container>
@@ -48,8 +46,7 @@
 
                 <ng-container>
                     <p-dropdown [ngClass]="{'ng-dirty ng-invalid':ReasonCheck}" [required]="true"
-                        name="ActivitiesChartFormData.Reason" placeholder="----select----" [style]="{ width: '100%' }"
-                        [options]="stLstReason" optionValue="optionId" optionLabel="optionValue"
+                        name="ActivitiesChartFormData.Reason" placeholder="----select----" [style]="{ width: '100%' }" [options]="stLstReason" optionValue="optionId" optionLabel="optionValue"
                         [(ngModel)]="ActivitiesChartFormData.Reason">
                     </p-dropdown>
                     <span class="required" *ngIf="ActivitiesChartFormData.Reason==null && ReasonCheck == true">This
@@ -57,7 +54,7 @@
                 </ng-container>
             </div>
 
-            <div *ngIf="inputFields" class="row">
+            <div *ngIf="inputFields" class="">
                 <div class="col-md-12">
                     <label class="form-label bold">Activity <span class="required"></span></label>
                     <ng-container>
@@ -126,7 +123,7 @@
 
                 </div>
             </div>
-            <h5 class="formheader">Additional information</h5>
+            <h5 class="formheader mt-0">Additional information</h5>
             <div class="col-md-12">
                 <label class="form-label"><span class="required"></span></label>
                 <ng-container>
@@ -158,8 +155,9 @@
                 [showIndicators]="false" [showNavigators]="false" [responsiveOptions]="responsiveOptions">
                 <ng-template let-chart pTemplate="item">
                     <div class="col-md-11 chart-box p-2">
+                        <div class="boxheight">
                         <div class="formheader">
-                            <div class="col-md-12 mb-2 d-flex justify-content-between fs-4">
+                            <div class="col-md-12 d-flex justify-content-between fs-4">
                                 <div class="chart-date bold">
                                     <label>{{
                                         chart.DateAndTime |
@@ -172,7 +170,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-12 mb-2">
+                        <div class="col-md-12 mb-2 mt-2">
 
                             <label class="form-label bold">Enterted By<span
                                     class="required"></span></label>
@@ -191,7 +189,7 @@
                             </div>
                         </div>
 
-                        <div class="col-md-12 mb-2">
+                        <div class="col-md-12">
 
                             <label *ngIf="chart.isStrikeThrough" class="form-label bold">Strike Out Reason<span
                                     class="required"></span></label>
@@ -290,6 +288,7 @@
                                 </div>
                             </div>
                         </div>
+                    </div>
                         <h5 class="formheader">
                             Additional information
                         </h5>

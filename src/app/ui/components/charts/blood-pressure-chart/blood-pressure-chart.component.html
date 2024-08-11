@@ -2,20 +2,20 @@
     <div class="row p-0">
         <div class="col-md-12 formheader d-flex justify-content-between align-items-center">
             <h4 class="mb-0">Blood Pressure Chart</h4>
-            <div><button pButton type="button" icon="pi pi-chevron-left" class="mr-2" (click)="leftBtn()"
+            <div>
+                <button pButton type="button" icon="pi pi-chevron-left" class="mr-2" (click)="leftBtn()"
                     [disabled]="pageNumber==0"></button>
                 <button pButton type="button" icon="pi pi-chevron-right" class="" (click)="rightBtn()"
                     [disabled]="rightBtnCheck"></button>
             </div>
-
         </div>
     </div>
     <div class="row">
         <div class="col-md-3 mt-3 chart-box chart">
-            <div class="formheader mt-2 chart-heading">
-                <p><b>New observation</b></p>
+            <div class="formheader mt-2 mb-2 hart-heading">
+                <p class="chart-date bold">New observation</p>
             </div>
-            <div class="col-md-12 mt-4">
+            <div class="col-md-12">
                 <label class="form-label bold">
                     Date/Time<span class="required"></span></label>
 
@@ -50,7 +50,7 @@
                     <span class="required" *ngIf="bloodPressureChartFormData.Reason==null && ReasonCheck == true">This field is required!</span>
                 </ng-container>
             </div>
-            <div *ngIf="inputFields" class="row">
+            <div *ngIf="inputFields" class="">
                 <h5 class="formheader">Blood Pressure</h5>
                 <div class="col-md-12">
                     <div class="labelcontent">
@@ -63,9 +63,8 @@
                 </div>
 
                 <div class="col-md-12">
-                    <div class="col-md-12">
                         <label class="form-label bold">Diastolic(mm Hg)<span class="required"></span></label>
-                    </div>
+                    
                     <ng-container>
                         <input type="number" pInputText [style]="{ width: '100%' }"
                             [(ngModel)]="bloodPressureChartFormData.Diastolic" placeholder="mm Hg" />
@@ -94,7 +93,7 @@
                 </ng-container>
             </div>
 
-            <div class="d-flex justify-content-center mt-4">
+            <div class="d-flex justify-content-center mt-3 mb-3">
                 <div class="mr-4">
                     <span class="p-ml-left">
                         <button pButton title="Clear all" label="Clear all" (click)="ClearAllfeilds()"></button>
@@ -116,8 +115,8 @@
                 [responsiveOptions]="responsiveOptions">
                 <ng-template let-chart pTemplate="item">
                     <div class="col-md-11 chart-box p-2">
-                        <div class="formheader p-2 mb-3">
-                            <div class="col-md-12 mb-2 d-flex justify-content-between fs-4 ">
+                        <div class="formheader">
+                            <div class="col-md-12 d-flex justify-content-between fs-4 ">
                                 <div class="chart-date">
                                     <label class="bold">{{
                                         chart.DateAndTime | date:'dd-MM-yyyy'}}</label>
@@ -129,7 +128,7 @@
 
                             </div>
                         </div>
-                        <div class="col-md-12 mb-2">
+                        <div class="col-md-12 mb-2 mt-2">
 
                             <label class="form-label bold">Enterted By<span
                                     class="required"></span></label>
@@ -183,7 +182,7 @@
                             </div>
                         </div>
 
-                        <div *ngIf="chart.CareGiven=='Yes'" class="row">
+                        <div *ngIf="chart.CareGiven=='Yes'" class="">
                             <h5 class="formheader">Blood Pressure</h5>
                             <div class="col-md-12 mb-4">
                                 <div class="labelcontent">
