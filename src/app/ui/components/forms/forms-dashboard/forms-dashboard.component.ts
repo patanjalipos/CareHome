@@ -37,7 +37,8 @@ export class FormsDashboardComponent
 
     @ViewChild('Forms',{static : false}) childRef : ElementRef;
     @ViewChild('formContainer', { read: ViewContainerRef }) formRef : ViewContainerRef;
- 
+    @Input() isViewForms: boolean;
+    @Input() lstResidents: any[];
     
     public lstMaster: any[] = [];
     public formDashboardList: any[] = [];
@@ -50,6 +51,10 @@ export class FormsDashboardComponent
     rangeDates: Date[] | undefined;
     FormTypes = FormTypes;
     ShowChildComponent: boolean = false;
+    
+    selectedOption: string;
+    selectedResidentUserId: any;
+    filteritems: any[] = [];
 
     constructor(
         private _ConstantServices: ConstantsService,
@@ -61,10 +66,14 @@ export class FormsDashboardComponent
         private sharedStateService: ResidentProfileService
     ) {
         super();
-        this._ConstantServices.ActiveMenuName = 'Form Dashboard';
+       // this._ConstantServices.ActiveMenuName = 'Form Dashboard';
     }
 
     ngOnInit() {
+        if(!this.isViewForms)
+            {
+                this._ConstantServices.ActiveMenuName = 'Form Dashboard';
+            }
         this.GetformMaster();
         this.ResetModel();
     }
@@ -119,7 +128,12 @@ export class FormsDashboardComponent
                 dTo = this.datepipe.transform(this.rangeDates[1], 'yyyy-MM-dd');
             }
         }
+        if(this.isViewForms && !this.selectedResidentUserId)
+            {
+                this._UtilityService.showErrorAlert('Select Resident');
+                this.selectedFormMasterId='';
 
+            }
         // Call the API
         this._UserServices
             .GetFormDasboardList(
@@ -174,6 +188,9 @@ export class FormsDashboardComponent
                 this.childRef.nativeElement.scrollIntoView({ behavior: 'smooth' });
             },200);
         } 
+        else if (this.isViewForms && !this.selectedResidentUserId) {
+            this._UtilityService.showErrorAlert('Select Resident');
+        }   
         else{
             this._UtilityService.showErrorAlert('Kindly select an Assessment Form');
         }
@@ -189,8 +206,31 @@ export class FormsDashboardComponent
         this.selectedFormMasterId = null;
         this.selectedFormId = null;
         this.selectedFormData = null;
+        if(this.isViewForms==true)
+            {
+                this.selectedResidentUserId = '';
+                this.lstMaster=null;
+            }
     }
     EmitUpdateForm(event) {
         this.SearchForm();
     }
+
+    onResidentChange(event: any) {
+        this.selectedResidentUserId = event.value;
+    
+        this.filteritems = this.lstResidents.filter(
+          (x) => x.UserId === this.selectedResidentUserId
+        );
+    
+        setTimeout(() => {
+            if (this.filteritems.length > 0) {
+                this.residentAdmissionInfoId = this.filteritems[0].ResidentAdmissionInfoId;
+                this.userId = this.filteritems[0].UserId;               
+                this.GetformMaster();  
+                this.selectedFormMasterId = null;     
+                this.formDashboardList=[];       
+              }
+            }, 0);
+          }
 }
