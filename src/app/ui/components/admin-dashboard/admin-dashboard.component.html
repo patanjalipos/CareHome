@@ -186,7 +186,7 @@
    </div>
 </div>
 <p-dialog header="Activity" [(visible)]="showActivityModel" [modal]="true" [style]="{width: '70vw'}"
-   [maximizable]="true">
+   [maximizable]="true" (onHide)="onHideActivity()">
    <div *ngIf="showActivityModel">
       <app-activity></app-activity>
    </div>

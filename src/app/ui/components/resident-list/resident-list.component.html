@@ -40,7 +40,11 @@
         </ng-template>
         <ng-template pTemplate="body" let-dt let-i="rowIndex">
             <tr>
-                <td>{{dt.AdmissionNumber}}</td>
+                <td> 
+                    <a [href]="RedirectToProfile" (click)="ViewProfile(dt.UserId, dt.ResidentAdmissionInfoId)">
+                        {{dt.AdmissionNumber}}
+                    </a>
+                </td>
                 <td>
                    <!-- <img [src]="profileUrl+ (dt.ProfileImage==''? 'no-picture.png': dt.ProfileImage)"
                         class="table-image mr-2">--><img [src]="dt.imageSrc" class="resident-picture"
