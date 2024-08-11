@@ -1,6 +1,21 @@
 <div class="card">
     <div class="row d-flex align-items-center">
-        
+        <div  class="col-md-2" *ngIf="isViewcharts">
+            <label class="form-label">
+                Select the Resident <span class="required">*</span></label>           
+            <p-dropdown
+                [ngClass]="{ show: selectedOption }"
+                class="dropdown-group"
+                [options]="lstResidents"
+                optionLabel="FullName"
+                optionValue="UserId"
+                [(ngModel)]="selectedResidentUserId"
+                placeholder="--select--"
+                [filter]="true"
+                [showClear]="true"      
+                (onChange)="onResidentChange($event)"          
+            ></p-dropdown>
+        </div>
         <div class="col-md-3">
             <label class="form-label">
                 Select Chart  <span class="required">*</span></label>

@@ -56,8 +56,8 @@ export class ResidentProgressnotesComponent extends AppComponentBase implements 
   lstprogressnotetypes:any[]=[];
   AdditionProgressNoteID:string="";
 
-  isDetailedview: boolean = false;
-  isTableview: boolean = true; 
+  isDetailedview: boolean = true;
+  isTableview: boolean = false; 
   showProgressNote:boolean=false;
   lstshowProgressNote: any[]=[];
   constructor(
@@ -162,7 +162,7 @@ export class ResidentProgressnotesComponent extends AppComponentBase implements 
   { 
     this.isExpanded=false;
     this.AddNote='';
-    this.isDetailedview = false;
+    this.isDetailedview = true;
   }
   submit()
   {
@@ -350,11 +350,13 @@ ClearAddionalNote()
 
 ShowDetailview(event: Event): void {
   event.preventDefault(); 
-  this.isDetailedview = !this.isDetailedview;
+  this.isDetailedview = true;
+  this.isTableview = false;
 }
 ShowTableview(event: Event): void {
   event.preventDefault(); 
-  this.isTableview = !this.isTableview;
+  this.isTableview = true;
+  this.isDetailedview = false;
 }
 
 ShowProgressNote(id){
