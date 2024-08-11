@@ -12,6 +12,9 @@ export class AppComponent implements OnInit {
 
     ngOnInit() {
         this.primengConfig.ripple = true;
-        this._AuthServices.startUserActivityTracking();
+        //this._AuthServices.startUserActivityTracking();
+    }
+    ngOnDestroy() {
+        //this._AuthServices.stopUserActivityTracking();
     }
 }

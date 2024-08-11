@@ -1,94 +1,109 @@
-<div class="row">
-    <div class="col-md-3">
-        <div class="card">
-            <div class="profile-box">
-                <div class="profile-img">
-                    <!-- <img [src]="profileUrl+ (ResidentMaster.ProfileImage==''? 'no-picture.png': ResidentMaster.ProfileImage)"
-                       class="w-6 shadow-2 my-1 mx-0"> -->
-                    <img [src]="imageSrc" class="w-6 shadow-2 my-1 mx-0" *ngIf="
-                            imageSrc != null &&
-                            imageSrc != undefined &&
-                            imageSrc != ''
-                        " />
-
-                </div>
-                <h1>{{ ResidentMaster.FullName }}</h1>
-                <div class="detail-table">
-                    <table class="table">
-                        <tr>
-                            <td>Age</td>
-                            <td>:</td>
-                            <td>
-                                {{ calculateAge(ResidentMaster.DateOfBirth) }}y
-                                ({{
-                                ResidentMaster.DateOfBirth
-                                | date : customDateFormat.DEF_DATE
-                                }})
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Gender</td>
-                            <td>:</td>
-                            <td>{{ ResidentMaster.Gender }}</td>
-                        </tr>
-                        <tr>
-                            <td>Room</td>
-                            <td>:</td>
-                            <td>{{ ResidentMaster.RoomNumber }}</td>
-                        </tr>
-                        <tr>
-                            <td>Status</td>
-                            <td>:</td>
-                            <td>
-                                {{
-                                admissionStatus[
-                                ResidentMaster.AdmissionStatus
-                                ]
-                                }}
-                            </td>
-                        </tr>
-                    </table>
+<div class="row mb-3">
+   
+    <div class="col-md-6">
+            <div class="card p-0">
+                <div class="profile-box">
+                    <div class="profile-img">
+                        <!-- <img [src]="profileUrl+ (ResidentMaster.ProfileImage==''? 'no-picture.png': ResidentMaster.ProfileImage)"
+                           class="w-6 shadow-2 my-1 mx-0"> -->
+                        <img [src]="imageSrc" class="mx-0" width="200" *ngIf="
+                                imageSrc != null &&
+                                imageSrc != undefined &&
+                                imageSrc != ''" />
+    
+                    </div>
+                    <div class="detail-table">
+                        <table class="table">
+                            <tr>
+                                <td colspan="6">
+                                    <h1>{{ ResidentMaster.FullName }}</h1></td>
+                            </tr>
+                            <tr>
+                                <td>Age</td>
+                                <td>:</td>
+                                <td>
+                                    {{ calculateAge(ResidentMaster.DateOfBirth) }}y
+                                    ({{
+                                    ResidentMaster.DateOfBirth
+                                    | date : customDateFormat.DEF_DATE
+                                    }})
+                                </td>
+                                <td>Gender</td>
+                                <td>:</td>
+                                <td>{{ ResidentMaster.Gender }}</td>
+                            </tr>
+                            <tr>
+                            </tr>
+                            <tr>
+                                <td>Room</td>
+                                <td>:</td>
+                                <td>{{ ResidentMaster.RoomNumber }}</td>
+                                <td>Status</td>
+                                <td>:</td>
+                                <td>
+                                    {{
+                                    admissionStatus[
+                                    ResidentMaster.AdmissionStatus
+                                    ]
+                                    }}
+                                </td>
+                            </tr>
+                            <tr>
+                            </tr>
+                        </table>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="card">
-            <h5>Allergies</h5>
-            {{ allergies }}
-        </div>
-        <div class="card">
-            <h5>Resident Indicators</h5>
-            {{ allIndicator }}
-        </div>
-    </div>
-    <div class="col-md-9">
-        <div class="card pb-0 profile-tab">
-            <ul class="nav nav-tabs" id="myTab" role="tablist">
-                <li class="nav-item " role="presentation" >
-                    <p-button class="nav-link" type="button" label="Profile" (click)="confirm($event,'Profile')"></p-button>
-                </li>
-                <li class="nav-item" role="presentation">
-                    <p-button class="nav-link" type="button" (click)="confirm($event,'ProgressNote')"
-                        label="Progress notes"></p-button>
-                </li>
-                <li class="nav-item" role="presentation">
-                    <p-button class="nav-link" type="button" (click)="confirm($event,'CarePlan')"
-                        label="Care plan"></p-button>
-                </li>
-                <li class="nav-item" role="presentation">
-                    <p-button class="nav-link" type="button" (click)="confirm($event,'Form')" label="Form"></p-button>
-                </li>
-                <li class="nav-item" role="presentation">
-                    <p-button class="nav-link" (click)="confirm($event,
-                        'Chart')" label="Charts"></p-button>
-                </li>
-                <li class="nav-item" role="presentation">
-                    <p-button class="nav-link" (click)="confirm($event,'Action')" label="Actions"></p-button>
-                </li>
-                <li class="nav-item" role="presentation">
-                    <p-button class="nav-link" (click)="confirm($event,'Alert')" label="Alerts (0)"></p-button>
-                </li>
-            </ul>
-        </div>
+            </div>
+            
+    <div class="col-md-3">
+            <div class="card allbox">
+                <h5>Allergies</h5>
+                {{ allergies }}
+            </div>
+            </div>
+            
+    <div class="col-md-3">
+            <div class="card allbox">
+                <h5>Resident Indicators</h5>
+                {{ allIndicator }}
+            </div>
+            </div>
+            </div>
+
+
+            <div class="row">
+   
+                <div class="col-md-12">
+        
+                    <div class="card pb-0 profile-tab">
+                        <ul class="nav nav-tabs" id="myTab" role="tablist">
+                        <li class="nav-item " role="presentation">
+                        <button class="nav-link" [ngClass]="{'active': isProfileActive}"  type="button" label="" (click)="confirm($event,'Profile')">Profile</button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                        <button class="nav-link" [ngClass]="{'active': isProgressNotesActive}" type="button" (click)="confirm($event,'ProgressNote')" label="">Progress
+                                                notes</button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                        <button class="nav-link" [ngClass]="{'active': isCarePlan}" type="button" (click)="confirm($event,'CarePlan')" label="">Care
+                                                plan</button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                        <button class="nav-link" [ngClass]="{'active': isFormActive}" type="button" (click)="confirm($event,'Form')" label="">Form</button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                        <button class="nav-link" [ngClass]="{'active': isChartActive}" (click)="confirm($event,
+                                                'Chart')" label="">Charts</button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                        <button class="nav-link" [ngClass]="{'active': isActionActive}" (click)="confirm($event,'Action')" label="">Actions</button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                        <button class="nav-link" [ngClass]="{'active': isAlertActive}" (click)="confirm($event,'Alert')" label="">Alerts (0)</button>
+                        </li>
+                        </ul>
+                        </div>
 
         <div class="tab-content" id="myTabContent">
             <div aria-labelledby="profile-tab" *ngIf="Profile">
@@ -111,9 +126,7 @@
             <div *ngIf="Chart">
                 <app-chart [userId]="selecteduserid" [residentAdmissionInfoId]="selectedadmissionid"></app-chart>
             </div>
-            <div>
-                ...
-            </div>
+          
             <div *ngIf="Alert">
                 <app-alert [userid]="selecteduserid" [admissionid]="selectedadmissionid"
                     [residentadmissiondetails]="ResidentMaster"></app-alert>
