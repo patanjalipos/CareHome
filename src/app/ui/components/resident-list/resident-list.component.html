@@ -1,6 +1,6 @@
 <div class="card">
     <p-table #dt [value]="lstResidentMaster" responsiveLayout="scroll" styleClass="p-datatable-striped"
-        [rowHover]="true" [globalFilterFields]="['AdmissionNumber','FullName','RoomNumber']"
+        [rowHover]="true" selectionMode="single" (onRowSelect)="toggleTieredMenu(null, $event, $event.data.UserId, $event.data.ResidentAdmissionInfoId)" [globalFilterFields]="['AdmissionNumber','FullName','RoomNumber']"
         [scrollable]="true" scrollHeight="calc(100vh - 155px)">
         <ng-template pTemplate="caption">
             <div class="flex justify-content-between flex-column sm:flex-row">
@@ -39,7 +39,7 @@
             </tr>
         </ng-template>
         <ng-template pTemplate="body" let-dt let-i="rowIndex">
-            <tr>
+            <tr [pSelectableRow]="dt">
                 <td>{{dt.AdmissionNumber}}</td>
                 <td>
                    <!-- <img [src]="profileUrl+ (dt.ProfileImage==''? 'no-picture.png': dt.ProfileImage)"
