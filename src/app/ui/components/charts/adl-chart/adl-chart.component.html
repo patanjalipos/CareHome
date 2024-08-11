@@ -12,10 +12,10 @@
     </div>
     <div class="row ">
         <div class="col-md-3 mt-3  chart-box chart ">
-            <div class="formheader mt-2 chart-heading">
-                <p><b>New observation</b></p>
+            <div class="formheader mt-2 mb-2 chart-heading">
+                <p class="chart-date bold">New observation</p>
             </div>
-            <div class="mt-4">
+            <div class="col-md-12">
                 <label class="form-label bold">
                     Date/Time<span class="required"></span></label>
 
@@ -25,8 +25,8 @@
                         [(ngModel)]="ADLChartData.DateAndTime" [showTime]="true" hourFormat="24"></p-calendar>
                 </ng-container>
             </div>
-            <div>
-                <label class="form-label formheader bold">Care Given <span class="required">*</span></label>
+                <div class="col-md-12">
+                    <label class="form-label bold">Care Given <span class="required">*</span></label>
 
                 <ng-container>
                     <p-dropdown [ngClass]="{'ng-dirty ng-invalid':CareGivenCheck}" [required]="true" name="ADLChartData.CareGiven" placeholder="----select----"
@@ -50,7 +50,7 @@
             </div>
 
 
-            <div *ngIf="inputFieldsCheck" class="row">
+            <div *ngIf="inputFieldsCheck" class="">
                 <h5 class="formheader">Mobility</h5>
                 <div>
                     <div class="labelcontent">
@@ -215,14 +215,14 @@
                 </div>
             </div>
 
-            <h5 class="formheader">Additional information</h5>
+            <h5 class="formheader mt-3">Additional information</h5>
             <div>
                 <ng-container>
                     <textarea pInputTextarea name="AdditionalInfo" [(ngModel)]="ADLChartData.AdditionalInfo"
                         [required]="true" [style]="{ width: '100%' }"></textarea>
                 </ng-container>
             </div>
-            <div class="d-flex justify-content-center mt-4" *ngIf="this.isEditable == true">
+            <div class="d-flex justify-content-center mt-2 mb-2" *ngIf="this.isEditable == true">
                 <div class="mr-4">
                     <span class="p-ml-left ">
                         <button pButton title="New" label="Clear all" (click)="ClearAllfeilds()"></button>
@@ -248,14 +248,14 @@
                 <ng-template let-chart pTemplate="item">
                     <div class="col-md-11 chart-box p-2">
                         <div class="formheader p-2 mb-3">
-                            <div class="col-md-12 mb-2 d-flex justify-content-between fs-4 ">
+                            <div class="col-md-12 d-flex justify-content-between fs-4 ">
                                 <div class="chart-date">
                                     <label class="bold">{{
                                         chart.DateAndTime | date:'dd-MM-yyyy'}}</label>
                                 </div>
                                 <div class="chart-date">
                                     <label>{{
-                                        chart.DateAndTime | date:'hh:mm'}}</label>
+                                        chart.DateAndTime | date:'HH:mm'}}</label>
                                 </div>
                             </div>
                         </div>
@@ -301,7 +301,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div *ngIf="chart.CareGivenOptions=='Yes'" class="row">
+                        <div *ngIf="chart.CareGivenOptions=='Yes'">
                             <h5 class="formheader">
                                 Mobility</h5>
                             <div class="col-md-12 mb-5">
@@ -346,7 +346,7 @@
                                         chart.HygieneAssistanceRequiredOptionName }}</label>
                                 </div>
                             </div>
-                            <div class="col-md-12 mb-5" *ngIf="chart.WaterTemperature">
+                            <div class="col-md-12 mb-5">
                                 <div class="labelcontent">
                                     <label class="form-label bold">Water Temperature(°C)</label>
                                 </div>
