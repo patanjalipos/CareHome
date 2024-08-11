@@ -1,8 +1,8 @@
 <div class="card">
-    <div class="vi">
-        <a href="#" (click)="ShowDetailview($event)">Detailed View</a>     
+    <div class="viewtype">
+        <a href="#" (click)="ShowDetailview($event)"><i class="fas fa-list-ol"></i></a>     
         <span>|</span>
-        <a href="#" (click)="ShowTableview($event)">Table View</a>
+        <a href="#" (click)="ShowTableview($event)"><i class="fas fa-table"></i></a>
       </div>
     <div class="row note mt-1">
         <!-- Add progress Note -->
@@ -177,39 +177,34 @@
 
 <!-- show Progress Note (POPUP)-->
 <p-dialog [modal]="true" header="Progress Note" [(visible)]="showProgressNote" [style]="{width: '60vw'}">
-    <div *ngFor="let dt of lstshowProgressNote" class="card">                    
+    <div *ngFor="let dt of lstshowProgressNote" class="additional-note">                    
         <div class="card-body">                   
-        <div style="position: relative; width: 100%;top:0;">
-            <p class="card-text">
-                <b style="font-size: 20px;">{{ dt.FullName }}</b> wrote on  
-                {{ (dt.DateofEvent | date:'yyyy') == '0001' ? '' : (dt.DateofEvent | date:'dd MMM yyyy HH:mm') }}
-                </p>  
-        </div>                      
-      
-        <div *ngIf="!isProgressnoteDoc">
-            <button pButton class="mt-5" type="button" style="float:right;position:absolute; top: 0; right: 0; margin: 10px;"
-                (click)="ShowAddNote(dt.ResidentProgressNotesId)">Addtional Note</button>
-        </div>   
-        <div>                            
-            <p class="card-text">
-               <br>                           
-              {{ dt.NoteDescription}} 
-            </p>
+            <div class="card-text">
+                <h3>{{ dt.FullName }} <small>{{ (dt.DateofEvent | date:'yyyy') == '0001' ? '' : (dt.DateofEvent | date:'dd MMM yyyy HH:mm') }}</small></h3>
+               
+                                         
+            <p>{{ dt.NoteDescription}} </p>
+                
+       <h6>Additional Note : </h6>
+       <div class="mt-2" *ngFor="let additionalNote of dt.AdditionalNotes; let j = index">
+           <p>                             
+              {{ j + 1 }}. <b>{{additionalNote.CreatedByName}}</b>
+              <br>
+               {{ additionalNote.AdditionalNote }}    
+               <br>                      
+           Date of Event : {{(additionalNote.AdditionalDateofEvent | date:'yyyy')=='0001'?'':
+           additionalNote.AdditionalDateofEvent |
+             date:customDateFormat.DEF_DATE_TIME}} 
+           </p>
        </div>
-       <u><h6 class="mt-2" style="color:#023c40;font-weight: bold;padding-left: 20px;">Additional Note : </h6></u> 
-         <div class="mt-2" *ngFor="let additionalNote of dt.AdditionalNotes; let j = index" style="padding-left: 20px;">
-             <p class="card-text" >                             
-                {{ j + 1 }}. <b>{{additionalNote.CreatedByName}}</b>
-                <br>
-                 {{ additionalNote.AdditionalNote }}    
-                 <br>                      
-             Date of Event : {{(additionalNote.AdditionalDateofEvent | date:'yyyy')=='0001'?'':
-             additionalNote.AdditionalDateofEvent |
-               date:customDateFormat.DEF_DATE_TIME}} 
-             </p>
-         </div>
-        
-        </div>
-       
-      </div>
+    
+     
+       </div>
+    
+       <div *ngIf="!isProgressnoteDoc">
+        <button pButton (click)="ShowAddNote(dt.ResidentProgressNotesId)">Addtional Note</button>
+    </div>
+    </div>
+    </div>
+     
 </p-dialog>
