@@ -8,6 +8,7 @@ import { UserService } from '../../service/user.service';
 import { FallRiskAssessmentModule } from '../clinical/fall-risk-assessment/fall-risk-assessment.module';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { Router } from '@angular/router';
+import { ResidentProfileService } from './resident-profile.service';
 
 @Component({
   selector: 'app-resident-profile',
@@ -22,8 +23,16 @@ export class ResidentProfileComponent extends AppComponentBase implements OnInit
   healthcareMode: string = "view";
   public ResidentMaster: any = <any>{};
   allergies: string = "";
+  allIndicator:string ="";
   profileUrl: string = environment.BaseURIFileServer + 'ProfileImage/';
   imageSrc: any;
+  isProgressNotesActive: boolean;
+  isCarePlan: boolean;
+  isFormActive: boolean;
+  isChartActive: boolean;
+  isActionActive: boolean;
+  isAlertActive: boolean;
+  isProfileActive: boolean=true;
 
   ProgressNote: boolean = false;
   CarePlan: boolean = false;
@@ -31,10 +40,9 @@ export class ResidentProfileComponent extends AppComponentBase implements OnInit
   Chart: boolean = false;
   Alert: boolean = false;
   Action: boolean = false;
-  Profile: boolean = false;
+  Profile: boolean = true;
   visible: boolean = false;
-
-
+  value: boolean = false;
   constructor(
     private route: ActivatedRoute,
     private _ConstantServices: ConstantsService,
@@ -43,6 +51,7 @@ export class ResidentProfileComponent extends AppComponentBase implements OnInit
     private _UtilityService: UtilityService,
     private confirmationService: ConfirmationService,
     private router: Router,
+    private sharedStateService: ResidentProfileService,
     private messageService: MessageService
   ) {
     super();
@@ -62,186 +71,252 @@ export class ResidentProfileComponent extends AppComponentBase implements OnInit
     this.Profile = true;
     if (this.selecteduserid != null)
       this.LoadResidentDetails(this.selecteduserid, this.selectedadmissionid);
-  }
 
-  confirm(event: Event, componentType: string) {
-    this.confirmationService.confirm({
-      target: event.target as EventTarget,
-      message: 'Are you sure you want to leave this page?',
-      header: 'Confirmation',
-      icon: 'pi pi-exclamation-triangle',
-      acceptIcon: "none",
-      rejectIcon: "none",
-      rejectButtonStyleClass: "p-button-text",
-      accept: () => {
-        if (componentType == 'Form') {
-          this.Form = true;
-          this.Chart = false;
-          this.CarePlan = false;
-          this.ProgressNote = false;
-          this.Action = false;
-          this.Profile = false;
-          this.Alert = false;
-        } else if (componentType == 'Chart') {
-          this.Chart = true;
-          this.Form = false;
-          this.CarePlan = false;
-          this.ProgressNote = false;
-          this.Action = false;
-          this.Alert = false;
-          this.Profile = false;
-        } else if (componentType == 'CarePlan') {
-          this.CarePlan = true;
-          this.Chart = false;
-          this.Form = false;
-          this.ProgressNote = false;
-          this.Action = false;
-          this.Alert = false;
-          this.Profile = false;
-        } else if (componentType == 'ProgressNote') {
-          this.ProgressNote = true;
-          this.Chart = false;
-          this.CarePlan = false;
-          this.Form = false;
-          this.Action = false;
-          this.Alert = false;
-          this.Profile = false;
-        } else if (componentType == 'Action') {
-          this.Action = true;
-          this.Chart = false;
-          this.CarePlan = false;
-          this.ProgressNote = false;
-          this.Form = false;
-          this.Alert = false;
-          this.Profile = false;
-        } else if (componentType == 'Alert') {
-          this.Alert = true;
-          this.Chart = false;
-          this.CarePlan = false;
-          this.ProgressNote = false;
-          this.Action = false;
-          this.Form = false;
-          this.Profile = false;
-        }
-      },
-      reject: () => {
-
-        console.log(componentType);
-        console.log(this.Profile + " " + this.Chart + " " + this.Form);
-        if (this.Form==true) {
-          this.Form = true;
-          this.Chart = false;
-          this.CarePlan = false;
-          this.ProgressNote = false;
-          this.Action = false;
-          this.Profile = false;
-          this.Alert = false;
-        } else if (this.Chart==true) {
-          this.Chart = true;
-          this.Form = false;
-          this.CarePlan = false;
-          this.ProgressNote = false;
-          this.Action = false;
-          this.Alert = false;
-          this.Profile = false;
-        } else if (componentType == 'CarePlan') {
-          this.CarePlan = true;
-          this.Chart = false;
-          this.Form = false;
-          this.ProgressNote = false;
-          this.Action = false;
-          this.Alert = false;
-          this.Profile = false;
-        } else if (componentType == 'ProgressNote') {
-          this.ProgressNote = true;
-          this.Chart = false;
-          this.CarePlan = false;
-          this.Form = false;
-          this.Action = false;
-          this.Alert = false;
-          this.Profile = false;
-        } else if (componentType == 'Action') {
-          this.Action = true;
-          this.Chart = false;
-          this.CarePlan = false;
-          this.ProgressNote = false;
-          this.Form = false;
-          this.Alert = false;
-          this.Profile = false;
-        } else if (componentType == 'Alert') {
-          this.Alert = true;
-          this.Chart = false;
-          this.CarePlan = false;
-          this.ProgressNote = false;
-          this.Action = false;
-          this.Form = false;
-          this.Profile = false;
-        }
-      }
+    this.sharedStateService.value.subscribe(data => {
+      this.value = data;
     });
   }
 
-
-  showProgressNote() {
-    if (this.Chart || this.Form || this.Action || this.Alert || this.CarePlan) {
-      // confirm("Are you sure To leave this page..");
-      this.visible = true;
-
-    } else {
-      this.Profile = false;
-      this.ProgressNote = true;
+  confirm(event: Event, componentType: string) {
+    if (this.value == true) {
+      console.log(this.value);
+      this.confirmationService.confirm({
+        target: event.target as EventTarget,
+        message: 'Are you sure you want to leave this page?',
+        header: 'Alert',
+        icon: 'pi pi-exclamation-triangle',
+        acceptIcon: "none",
+        rejectIcon: "none",
+        rejectButtonStyleClass: "p-button-text",
+        accept: () => {
+          if (componentType == 'Profile') {
+            this.isProfileActive=true;
+            this.isActionActive=false;
+            this.isAlertActive=false;
+            this.isCarePlan=false;
+            this.isChartActive=false;
+            this.isProgressNotesActive=false;
+            this.isFormActive=false;
+            this.Profile = true;
+            this.Chart = false;
+            this.CarePlan = false;
+            this.ProgressNote = false;
+            this.Action = false;
+            this.Form = false;
+            this.Alert = false;
+            this.value=false;
+          }
+          else if (componentType == 'Form') {
+            this.isProfileActive=false;
+            this.isActionActive=false;
+            this.isAlertActive=false;
+            this.isCarePlan=false;
+            this.isChartActive=false;
+            this.isProgressNotesActive=false;
+            this.isFormActive=true;
+            this.Form = true;
+            this.Chart = false;
+            this.CarePlan = false;
+            this.ProgressNote = false;
+            this.Action = false;
+            this.Profile = false;
+            this.Alert = false;
+            this.value=false;
+          } else if (componentType == 'Chart') {
+            this.isProfileActive=false;
+            this.isActionActive=false;
+            this.isAlertActive=false;
+            this.isCarePlan=false;
+            this.isChartActive=true;
+            this.isProgressNotesActive=false;
+            this.isFormActive=false;
+            this.Chart = true;
+            this.Form = false;
+            this.CarePlan = false;
+            this.ProgressNote = false;
+            this.Action = false;
+            this.Alert = false;
+            this.Profile = false;
+            this.value=false;
+          } else if (componentType == 'CarePlan') {
+            this.isProfileActive=false;
+            this.isActionActive=false;
+            this.isAlertActive=false;
+            this.isCarePlan=true;
+            this.isChartActive=false;
+            this.isProgressNotesActive=false;
+            this.isFormActive=false;
+            this.CarePlan = true;
+            this.Chart = false;
+            this.Form = false;
+            this.ProgressNote = false;
+            this.Action = false;
+            this.Alert = false;
+            this.Profile = false;
+          } else if (componentType == 'ProgressNote') {
+            this.isProfileActive=false;
+            this.isActionActive=false;
+            this.isAlertActive=false;
+            this.isCarePlan=false;
+            this.isChartActive=false;
+            this.isProgressNotesActive=true;
+            this.isFormActive=false;
+            this.ProgressNote = true;
+            this.Chart = false;
+            this.CarePlan = false;
+            this.Form = false;
+            this.Action = false;
+            this.Alert = false;
+            this.Profile = false;
+          } else if (componentType == 'Action') {
+            this.isProfileActive=false;
+            this.isActionActive=true;
+            this.isAlertActive=false;
+            this.isCarePlan=false;
+            this.isChartActive=false;
+            this.isProgressNotesActive=false;
+            this.isFormActive=false;
+            this.Action = true;
+            this.Chart = false;
+            this.CarePlan = false;
+            this.ProgressNote = false;
+            this.Form = false;
+            this.Alert = false;
+            this.Profile = false;
+          } else if (componentType == 'Alert') {
+            this.isProfileActive=false;
+            this.isActionActive=false;
+            this.isAlertActive=true;
+            this.isCarePlan=false;
+            this.isChartActive=false;
+            this.isProgressNotesActive=false;
+            this.isFormActive=false;
+            this.Alert = true;
+            this.Chart = false;
+            this.CarePlan = false;
+            this.ProgressNote = false;
+            this.Action = false;
+            this.Form = false;
+            this.Profile = false;
+          }
+        },
+        reject: () => {
+        }
+      });
+    }else {
+      if (componentType == 'Profile') {
+        this.isProfileActive=true;
+        this.isActionActive=false;
+        this.isAlertActive=false;
+        this.isCarePlan=false;
+        this.isChartActive=false;
+        this.isProgressNotesActive=false;
+        this.isFormActive=false;
+        this.Profile = true;
+        this.Chart = false;
+        this.CarePlan = false;
+        this.ProgressNote = false;
+        this.Action = false;
+        this.Form = false;
+        this.Alert = false;
+        this.value=false;
+      }
+      else if (componentType == 'Form') {
+        this.isProfileActive=false;
+        this.isActionActive=false;
+        this.isAlertActive=false;
+        this.isCarePlan=false;
+        this.isChartActive=false;
+        this.isProgressNotesActive=false;
+        this.isFormActive=true;
+        this.Form = true;
+        this.Chart = false;
+        this.CarePlan = false;
+        this.ProgressNote = false;
+        this.Action = false;
+        this.Profile = false;
+        this.Alert = false;
+        this.value=false;
+      } else if (componentType == 'Chart') {
+        this.isProfileActive=false;
+        this.isActionActive=false;
+        this.isAlertActive=false;
+        this.isCarePlan=false;
+        this.isChartActive=true;
+        this.isProgressNotesActive=false;
+        this.isFormActive=false;
+        this.Chart = true;
+        this.Form = false;
+        this.CarePlan = false;
+        this.ProgressNote = false;
+        this.Action = false;
+        this.Alert = false;
+        this.Profile = false;
+        this.value=false;
+      } else if (componentType == 'CarePlan') {
+        this.isProfileActive=false;
+        this.isActionActive=false;
+        this.isAlertActive=false;
+        this.isCarePlan=true;
+        this.isChartActive=false;
+        this.isProgressNotesActive=false;
+        this.isFormActive=false;
+        this.CarePlan = true;
+        this.Chart = false;
+        this.Form = false;
+        this.ProgressNote = false;
+        this.Action = false;
+        this.Alert = false;
+        this.Profile = false;
+      } else if (componentType == 'ProgressNote') {
+        this.isProfileActive=false;
+        this.isActionActive=false;
+        this.isAlertActive=false;
+        this.isCarePlan=false;
+        this.isChartActive=false;
+        this.isProgressNotesActive=true;
+        this.isFormActive=false;
+        this.ProgressNote = true;
+        this.Chart = false;
+        this.CarePlan = false;
+        this.Form = false;
+        this.Action = false;
+        this.Alert = false;
+        this.Profile = false;
+      } else if (componentType == 'Action') {
+        this.isProfileActive=false;
+        this.isActionActive=true;;
+        this.isAlertActive=false;
+        this.isCarePlan=false;
+        this.isChartActive=false;
+        this.isProgressNotesActive=false;
+        this.isFormActive=false;
+        this.Action = true;
+        this.Chart = false;
+        this.CarePlan = false;
+        this.ProgressNote = false;
+        this.Form = false;
+        this.Alert = false;
+        this.Profile = false;
+      } else if (componentType == 'Alert') {
+        this.isProfileActive=false;
+        this.isActionActive=false;
+        this.isAlertActive=true;;
+        this.isCarePlan=false;
+        this.isChartActive=false;
+        this.isProgressNotesActive=false;
+        this.isFormActive=false;
+        this.Alert = true;
+        this.Chart = false;
+        this.CarePlan = false;
+        this.ProgressNote = false;
+        this.Action = false;
+        this.Form = false;
+        this.Profile = false;
+      }
     }
   }
 
-  showChart() {
-    if (this.ProgressNote || this.Form || this.Action || this.Alert || this.CarePlan) {
-      this.showDiscardPopup();
-    } else {
-      this.Profile = false;
-      this.Chart = true;
-    }
-  }
-  showForm() {
-    if (this.Chart || this.CarePlan || this.Action || this.Alert || this.ProgressNote) {
-      // confirm("Are you sure To leave this page..");
-      this.showDiscardPopup();
-    } else {
-      this.Profile = false;
-      this.Form = true;
-    }
-  }
-  showAlert() {
-    if (this.Chart || this.Form || this.Action || this.CarePlan || this.ProgressNote) {
-      //confirm("Are you sure To leave this page..");
-      this.showDiscardPopup();
-
-    } else {
-      this.Profile = false;
-      this.Alert = true;
-    }
-  }
-  showCarePlan() {
-    if (this.Chart || this.Form || this.Action || this.Alert || this.ProgressNote) {
-      // confirm("Are you sure To leave this page..");
-      this.showDiscardPopup();
-    } else {
-      this.Profile = false;
-      this.CarePlan = true;
-    }
-  }
-  showAction() {
-    if (this.Chart || this.Form || this.CarePlan || this.Alert || this.ProgressNote) {
-      // confirm("Are you sure To leave this page..");
-      this.showDiscardPopup();
-    } else {
-      this.Profile = false;
-      this.Action = true;
-    }
-  }
-
-  showDiscardPopup() {
-    this.visible = true;
-  }
   LoadResidentDetails(userid, admissionid) {
     this._UtilityService.showSpinner();
     this.unsubscribe.add = this._UserServices.GetResidentDetailsById(userid, admissionid)
@@ -250,6 +325,8 @@ export class ResidentProfileComponent extends AppComponentBase implements OnInit
         next: (data) => {
           this._UtilityService.hideSpinner();
           if (data.actionResult.success == true) {
+            console.log(data);
+            
             var tdata = JSON.parse(data.actionResult.result);
             tdata = tdata ? tdata : [];
             this.ResidentMaster = tdata;
@@ -266,6 +343,15 @@ export class ResidentProfileComponent extends AppComponentBase implements OnInit
               this.allergies = tdata2.AllergyNotes;
               if (tdata2.Allergen) {
                 this.allergies = ((this.allergies != '' && this.allergies != null && this.allergies != undefined) ? (this.allergies + ', ') : this.allergies) + tdata2.Allergen;
+              }
+
+            }
+
+            if (data.actionResult.result3 != null && data.actionResult.result3 != undefined && data.actionResult.result3?.length > 0) {
+              var tdata3 = JSON.parse(data.actionResult.result3);
+              this.allIndicator = tdata3.AllIndicator;
+              if (tdata3.allIndicator) {
+                this.allIndicator = ((this.allIndicator != '' && this.allIndicator != null && this.allIndicator != undefined) ? (this.allIndicator + ', ') : this.allIndicator) + tdata2.allIndicator;
               }
 
             }

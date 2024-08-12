@@ -273,4 +273,8 @@ export class AdminDashboardComponent extends AppComponentBase implements OnInit 
     AddActivity() {
         this.showActivityModel = true;
     }
+
+    onHideActivity(){
+        this.GetActivity();
+    }
 }

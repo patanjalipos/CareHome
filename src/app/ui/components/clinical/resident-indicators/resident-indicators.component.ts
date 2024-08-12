@@ -64,7 +64,7 @@ export class ResidentIndicatorsComponent extends AppComponentBase implements OnI
             var tdata = JSON.parse(data.actionResult.result);
             tdata = tdata ? tdata : [];
             this.lstResidentIndicatorGroups = tdata;  
-            this.lstResidentIndicatorGroups.unshift({"IndicatorGroupMasterId":"","GroupName":"All"});  
+            this.lstResidentIndicatorGroups.unshift({"IndicatorGroupMasterId":"","GroupName":"All"}); 
           }
           else {
             this.lstResidentIndicatorGroups = [];            

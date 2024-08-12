@@ -9,6 +9,7 @@ import { Table } from 'primeng/table';
 import { MenuItem } from 'primeng/api/menuitem';
 import { Calendar } from 'primeng/calendar';
 import { DatePipe } from '@angular/common';
+import { ResidentProfileService } from '../resident-profile.service';
 
 @Component({
   selector: 'app-resident-progressnotes',
@@ -55,10 +56,15 @@ export class ResidentProgressnotesComponent extends AppComponentBase implements 
   lstprogressnotetypes:any[]=[];
   AdditionProgressNoteID:string="";
 
+  isDetailedview: boolean = true;
+  isTableview: boolean = false; 
+  showProgressNote:boolean=false;
+  lstshowProgressNote: any[]=[];
   constructor(
     private _ConstantServices: ConstantsService,
     private datePipe: DatePipe,
     private _MasterServices:MasterService,
+    private sharedStateService: ResidentProfileService,
     private _UtilityService: UtilityService,
     ) 
     { 
@@ -135,25 +141,28 @@ export class ResidentProgressnotesComponent extends AppComponentBase implements 
 
 
   ngOnInit(): void {
-    // this.AddNote.Notes = 'Progressnote';       
-     this.createdBy=localStorage.getItem('userId');
+   // this.AddNote.Notes = 'Progressnote';       
+   this.createdBy=localStorage.getItem('userId');
    this.LoadResidentProgressDetails(this.admissionid,this.dFrom, this.dTo,this.userid,this.SearchProgressnoteType);
    this.ClearAddionalNote();
-
+   this.AddNote.DateOfEvent = new Date();
   }
   ngOnChanges() {  
     if(this.isProgressnoteDoc==true)
       {    
-        this._ConstantServices.ActiveMenuName="Progress notes Documents";        
-        // console.log(this.PNDocUserId);
+        this._ConstantServices.ActiveMenuName="Progress notes Documents";
          this.LoadResidentProgressDetails(this.admissionid,this.dFrom, this.dTo,this.userid,0);
       }
+  }
+  changeValue(){
+    this.sharedStateService.tranferValu(true);
   }
   
   Close()
   { 
     this.isExpanded=false;
     this.AddNote='';
+    this.isDetailedview = true;
   }
   submit()
   {
@@ -224,6 +233,7 @@ onSelectDate() {
     this.calendar.overlayVisible = false;
     this.ShowAvailableDetails();
   }
+  this.changeValue();
 }
 
 ShowAvailableDetails() {
@@ -271,8 +281,10 @@ LoadResidentProgressDetails(admissionid,dFrom: string, dTo: string,userid,formTy
           var tdata = JSON.parse(data.actionResult.result);
           tdata = tdata ? tdata : [];
          this.lstResidentProgressNote = tdata;
-        //  console.log(this.lstResidentProgressNote);
-        //  this.TotalRecords = tdata.length;
+         if(this.showProgressNote==true)    
+        {
+          this.ShowProgressNote(this.filteritems[0].ResidentProgressNotesId);
+        }
         }
         else {
           this.TotalRecords = 0;
@@ -334,6 +346,23 @@ ClearAddionalNote()
 {
   this.AdditionalProgressNote='';
   this.showAdditionalNote=false;
+}
+
+ShowDetailview(event: Event): void {
+  event.preventDefault(); 
+  this.isDetailedview = true;
+  this.isTableview = false;
+}
+ShowTableview(event: Event): void {
+  event.preventDefault(); 
+  this.isTableview = true;
+  this.isDetailedview = false;
+}
+
+ShowProgressNote(id){
+  this.showProgressNote=true;
+  this.filteritems = this.lstResidentProgressNote.filter(e => e.ResidentProgressNotesId == id);
+  this.lstshowProgressNote=this.filteritems;
 }
 
 }

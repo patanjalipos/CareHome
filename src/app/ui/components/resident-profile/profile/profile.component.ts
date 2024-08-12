@@ -4,6 +4,7 @@ import { MasterService } from 'src/app/ui/service/master.service';
 import { UtilityService } from 'src/app/utility/utility.service';
 import { AppComponentBase } from 'src/app/app-component-base';
 import { UserService } from 'src/app/ui/service/user.service';
+import { ResidentProfileService } from '../resident-profile.service';
 
 @Component({
   selector: 'app-profile',
@@ -26,6 +27,7 @@ export class ProfileComponent extends AppComponentBase implements OnInit {
   constructor(private _ConstantServices: ConstantsService,
     private _MasterServices:MasterService,
     private _UserServices:UserService,
+    private sharedStateService: ResidentProfileService,
     private _UtilityService: UtilityService) { 
       super();
     }
@@ -49,7 +51,9 @@ export class ProfileComponent extends AppComponentBase implements OnInit {
 
       }
     }
-
+    changeValue(){
+      this.sharedStateService.tranferValu(true);
+    }
     GetClinicalIndicatorById(admissionid) {
       this._UtilityService.showSpinner();   
       this.unsubscribe.add = this._UserServices.GetClinicalIndicatorById(admissionid,true)  
