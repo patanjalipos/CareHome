@@ -275,6 +275,7 @@ constructor(
     {
       this._UtilityService.showWarningAlert("Resident admission details are missing.");
     }
+    this.close();
   }
   close()
   {
