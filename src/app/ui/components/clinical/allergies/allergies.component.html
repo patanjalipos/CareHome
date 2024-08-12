@@ -109,14 +109,9 @@
                                 </td>
                                 <td>
                                     <!-- <span *ngIf="mode=='view' || (item.Status !=='Active' && item.Mode=='edit') "> -->
-                                        <span>
+                                        <span class="d-block">
                                             {{item.Status}}
                                         </span>
-                                    <a class="btn btn-secondary ml-5 mb-1" *ngIf="lstExtraItemDetails[i].Mode=='add'"
-                                        href="javascript: void(0);"
-                                        (click)="RemoveExtraItemDetails(lstExtraItemDetails[i].Sequence)">
-                                        Delete
-                                    </a>
                                     
                                     <!-- <p-dropdown
                                         *ngIf="mode=='edit' && item.Status=='Active' && lstExtraItemDetails[i].Mode!='add'"
@@ -127,8 +122,11 @@
                                         (onChange)="onChangeStatus(lstExtraItemDetails[i].Sequence, lstExtraItemDetails[i].Status)"
                                         [style]="{width: '100%'}">
                                     </p-dropdown> -->
-                                    <p-dropdown
-                                        *ngIf="mode=='edit'"
+                                    <span class="float-left">
+                                    <p-dropdown  class="float-start"
+                                    [ngClass]="{'w-75': item.Mode === 'add',
+                                                'w-100' : item.Mode === 'Edit' }"
+                                        *ngIf="mode==='edit' || mode === 'add'"
                                         name="ddlStatus_{{lstExtraItemDetails[i].Sequence}}"
                                         [options]="lstExtraItemDetails[i].StatusList"
                                         [(ngModel)]="lstExtraItemDetails[i].Status" appendTo="body" optionLabel="name"
@@ -136,6 +134,12 @@
                                         (onChange)="onChangeStatus(lstExtraItemDetails[i].Sequence, lstExtraItemDetails[i].Status)"
                                         [style]="{width: '100%'}">
                                     </p-dropdown>
+                                    <a class="btn btn-primary float-end" *ngIf="lstExtraItemDetails[i].Mode=='add'"
+                                        href="javascript: void(0);"
+                                        (click)="RemoveExtraItemDetails(lstExtraItemDetails[i].Sequence)">
+                                        <i class="far fa-trash-alt"></i>
+                                    </a>
+                                </span>
                                 </td>
                                 <td *ngIf="showcolumn=='Created'">
                                     <span *ngIf="lstExtraItemDetails[i].Mode!='add'">
