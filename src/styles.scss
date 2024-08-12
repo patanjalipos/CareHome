@@ -908,7 +908,7 @@ i.iconset:hover {
     border-color: #617C7E;
     color: #ffffff;
 }
-
+.p-dropdown { display: flex !important;}
 .p-dropdown:not(.p-disabled):hover {
     border-color: #617C7E;
 }
@@ -1189,7 +1189,7 @@ i.iconset:hover {
 .recent p {
     padding: 15px 10px;
     font-size: 15px;
-    line-height: 16px;
+    line-height: 19px;
     margin-bottom: 0;
 }
 
@@ -1217,8 +1217,9 @@ i.iconset:hover {
 }
 
 .task p span b {
-    font-weight: 600;
+    font-weight: 500;
     text-align: right;
+    color: #00000095;
 }
 
 .recent-box {
@@ -1234,7 +1235,7 @@ i.iconset:hover {
 
 p.date-box {
     font-weight: 600;
-    border-right: 2px solid #617c7e;
+    border-right: 1px solid #c7c7c7;
 }
 
 .bg-change {
