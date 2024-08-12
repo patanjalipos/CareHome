@@ -1,4 +1,4 @@
-import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Table } from 'primeng/table';
 import { ConstantsService, CustomDateFormat, UserTypes } from 'src/app/ui/service/constants.service';
@@ -14,6 +14,8 @@ export class ActivityComponent extends AppComponentBase implements OnInit {
   @ViewChild('myForm') public myForm: NgForm;
   @ViewChild('dt') public dataTable: Table;
   @ViewChild('filtr') filtr: ElementRef;
+  @Output() dataEmitter: EventEmitter<object> = new EventEmitter<object>();
+
   UserTypes = UserTypes;
   customDateFormat = CustomDateFormat;
   s_userTypeId: any = localStorage.getItem('userTypeId');
@@ -26,6 +28,7 @@ export class ActivityComponent extends AppComponentBase implements OnInit {
   stlststatus: any[]=[];  
   results: any[]=[];
   disabled:boolean=false;
+  isAPICall:boolean=false;
   constructor(
     private _ConstantServices: ConstantsService,
     private _MasterServices:MasterService,
@@ -81,7 +84,7 @@ export class ActivityComponent extends AppComponentBase implements OnInit {
             var tdata = JSON.parse(data.actionResult.result);
             tdata = tdata ? tdata : [];
             this.lstMaster = tdata;
-        
+            this.dataEmitter.emit(tdata);
             if (this.filtr !== undefined) {
               this.filtr.nativeElement.value = "";
               this.dataTable.reset();
@@ -138,6 +141,7 @@ export class ActivityComponent extends AppComponentBase implements OnInit {
           if (data.actionResult.success == true) {
             this._UtilityService.showSuccessAlert(data.actionResult.errMsg);
             this.GetActivity();
+            // this.isAPICall=true;
             this.mode = null;
           }
           else {
