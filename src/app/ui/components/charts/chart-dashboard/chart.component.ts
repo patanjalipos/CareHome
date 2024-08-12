@@ -24,6 +24,8 @@ export class ChartComponent extends AppComponentBase implements OnInit {
     @Input() userId: any = null;
     @Input() residentAdmissionInfoId: any = null;
     @Input() homeMasterId: any = null;
+    @Input() isViewcharts: boolean;
+    @Input() lstResidents: any[];
     customDateFormat = CustomDateFormat;
 
     public lstMaster: any[] = [];
@@ -37,6 +39,10 @@ export class ChartComponent extends AppComponentBase implements OnInit {
     ChartTypes = ChartTypes;
     ShowChildComponent: boolean = false;
 
+    selectedOption: string;
+    selectedResidentUserId: any;
+    filteritems: any[] = [];
+   
     constructor(
         private _ConstantServices: ConstantsService,
         private _MasterServices: MasterService,
@@ -47,10 +53,14 @@ export class ChartComponent extends AppComponentBase implements OnInit {
         private sharedStateService: ResidentProfileService
     ) {
         super();
-        this._ConstantServices.ActiveMenuName = 'Chart Dashboard';
+       // this._ConstantServices.ActiveMenuName = 'Chart Dashboard';
     }
 
     ngOnInit(): void {
+        if(!this.isViewcharts)
+            {
+              this._ConstantServices.ActiveMenuName = "Chart Dashboard";
+            }
         this.ResetModel();
         this.GetChartMaster();
         this.ResetModel();
@@ -143,7 +153,11 @@ export class ChartComponent extends AppComponentBase implements OnInit {
             setTimeout(() => {
                 this.childref.nativeElement.scrollIntoView({ behavior: 'smooth' });
             }, 200);
-        } else this._UtilityService.showErrorAlert('Select Chart Type');
+        }
+        else if (this.isViewcharts && !this.selectedResidentUserId) {
+            this._UtilityService.showErrorAlert('Select Resident');
+        }          
+        else this._UtilityService.showErrorAlert('Select Chart Type');
     }
 
     ShowModel() {
@@ -182,8 +196,31 @@ export class ChartComponent extends AppComponentBase implements OnInit {
         this.selectedChartMasterId = null;
         this.selectedChartId = null;
         this.selectedChartData = null;
+        if(this.isViewcharts==true)
+        {
+            this.selectedResidentUserId = '';
+            this.lstMaster=null;
+        }
     }
     EmitUpdateForm(event) {
         this.SearchChart();
     }
+
+      onResidentChange(event: any) {
+        this.selectedResidentUserId = event.value;
+    
+        this.filteritems = this.lstResidents.filter(
+          (x) => x.UserId === this.selectedResidentUserId
+        );
+    
+        setTimeout(() => {
+            if (this.filteritems.length > 0) {
+                this.residentAdmissionInfoId = this.filteritems[0].ResidentAdmissionInfoId;
+                this.userId = this.filteritems[0].UserId;
+                this.chartDashboardList=[];     
+                this.selectedChartMasterId = null; 
+                this.GetChartMaster();                          
+              }
+            }, 0);
+          }
 }
