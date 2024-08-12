@@ -153,6 +153,7 @@ export class ResidentProfileComponent extends AppComponentBase implements OnInit
             this.Action = false;
             this.Alert = false;
             this.Profile = false;
+            this.value=false;
           } else if (componentType == 'ProgressNote') {
             this.isProfileActive=false;
             this.isActionActive=false;
@@ -168,6 +169,7 @@ export class ResidentProfileComponent extends AppComponentBase implements OnInit
             this.Action = false;
             this.Alert = false;
             this.Profile = false;
+            this.value=false;
           } else if (componentType == 'Action') {
             this.isProfileActive=false;
             this.isActionActive=true;
@@ -183,6 +185,7 @@ export class ResidentProfileComponent extends AppComponentBase implements OnInit
             this.Form = false;
             this.Alert = false;
             this.Profile = false;
+            this.value=false;
           } else if (componentType == 'Alert') {
             this.isProfileActive=false;
             this.isActionActive=false;
@@ -198,6 +201,7 @@ export class ResidentProfileComponent extends AppComponentBase implements OnInit
             this.Action = false;
             this.Form = false;
             this.Profile = false;
+            this.value=false;
           }
         },
         reject: () => {
@@ -268,6 +272,7 @@ export class ResidentProfileComponent extends AppComponentBase implements OnInit
         this.Action = false;
         this.Alert = false;
         this.Profile = false;
+        this.value=false;
       } else if (componentType == 'ProgressNote') {
         this.isProfileActive=false;
         this.isActionActive=false;
@@ -283,6 +288,7 @@ export class ResidentProfileComponent extends AppComponentBase implements OnInit
         this.Action = false;
         this.Alert = false;
         this.Profile = false;
+        this.value=false;
       } else if (componentType == 'Action') {
         this.isProfileActive=false;
         this.isActionActive=true;;
@@ -298,6 +304,7 @@ export class ResidentProfileComponent extends AppComponentBase implements OnInit
         this.Form = false;
         this.Alert = false;
         this.Profile = false;
+        this.value=false;
       } else if (componentType == 'Alert') {
         this.isProfileActive=false;
         this.isActionActive=false;
@@ -313,6 +320,7 @@ export class ResidentProfileComponent extends AppComponentBase implements OnInit
         this.Action = false;
         this.Form = false;
         this.Profile = false;
+        this.value=false;
       }
     }
   }
