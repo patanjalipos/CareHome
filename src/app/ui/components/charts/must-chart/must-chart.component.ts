@@ -44,7 +44,6 @@ export class MustChartComponent extends AppComponentBase implements OnInit {
   lstBMIOption: any[] = [];
   acuteDisease: boolean = false;
   openStepSection: boolean = false;
-  message: Message[];
   weightmsg: Message[];
   residentAmputeemsg: Message[];
   heightmsg: Message[];
@@ -81,6 +80,12 @@ export class MustChartComponent extends AppComponentBase implements OnInit {
   stLstErrorAndWarning: any;
   result: any;
   ChartName: any;
+  LowMessageA: Message[];
+  LowMessageB: Message[];
+  MediumMessageA: Message[];
+  MediumMessageB: Message[];
+  HighMessageA: Message[];
+  HighMessageB: Message[];
 
   constructor(
     private optionService: OptionService,
@@ -116,7 +121,7 @@ export class MustChartComponent extends AppComponentBase implements OnInit {
       this.StatementType = 'Update';
     } else {
       this.ResetModel();
-      this.getChartDataById(this.preSelectedChartData.chartMasterId,this.preSelectedChartData.chartId, this.preSelectedChartData.selectedStartedOn, this.preSelectedChartData.residentAdmissionInfoId, this.pageNumber, this.pageSize);
+      this.getChartDataById(this.preSelectedChartData.chartMasterId, this.preSelectedChartData.chartId, this.preSelectedChartData.selectedStartedOn, this.preSelectedChartData.residentAdmissionInfoId, this.pageNumber, this.pageSize);
 
     }
 
@@ -141,9 +146,25 @@ export class MustChartComponent extends AppComponentBase implements OnInit {
       this._ConstantServices.ActiveMenuName = this.ChartName;
     });
 
-    this.message = [
-      { severity: 'secondary', summary: 'All Risk Categories', detail: 'Treat underlying condition and provide help and advice on food choices, eating and drinking when necessary Record malnutrition risk category. Record need for category diets and follow local policy' }
+    this.LowMessageA = [
+      { severity: 'secondary', summary: 'All Risk Categories', detail: 'Treate underlying conditional and provide help and advice on food choices , eating and drinking when necessary  record malnutrition risk category . Record need for special diets and follow local policy' }
     ];
+    this.LowMessageB = [
+      { severity: 'secondary', summary: 'Obesity', detail: 'Record presence of obesity for those with underlying conditions , these are generally conditions, these are generally controlled before treatment of obesity.' }
+    ];
+
+    this.MediumMessageA = [
+      { severity: 'secondary', summary: 'All Risk Categories', detail: 'Treat underlying condition and provide help and advice on food choices, eating and drinking when necessary Record malnutrition risk category. Record need for category diets and        follow local policy' }
+    ]; this.MediumMessageB = [
+      { severity: 'secondary', summary: 'Obesity', detail: 'record presence of obesity for those with underlying conditions , these are generally controlled before treatment of obesity.' }
+    ];
+
+    this.HighMessageA = [
+      { severity: 'secondary', summary: 'All Risk Categories', detail: 'Treat underlying condition and provide help and advice on food choices, eating and drinking when necessary Record malnutrition risk category. Record need for category diets and follow local policy' }
+    ]; this.HighMessageB = [
+      { severity: 'secondary', summary: 'Obesity', detail: 'Record presence of obesity for those with underlying conditions , these are generally controlled before treatment of obesity.' }
+    ];
+
     this.weightmsg = [
       { severity: 'secondary', detail: 'Use clinical scales where possible. Ensure scales are set to 0 without the resident standing on it.weight the resident in light clothing and without shoes.' }
     ];
@@ -384,7 +405,7 @@ export class MustChartComponent extends AppComponentBase implements OnInit {
   }
 
   chartOnChange() {
-    this.getChartDataById(this.preSelectedChartData.chartMasterId,this.preSelectedChartData.chartId, this.preSelectedChartData.selectedStartedOn, this.preSelectedChartData.residentAdmissionInfoId, this.pageNumber, this.pageSize);
+    this.getChartDataById(this.preSelectedChartData.chartMasterId, this.preSelectedChartData.chartId, this.preSelectedChartData.selectedStartedOn, this.preSelectedChartData.residentAdmissionInfoId, this.pageNumber, this.pageSize);
 
   }
 
