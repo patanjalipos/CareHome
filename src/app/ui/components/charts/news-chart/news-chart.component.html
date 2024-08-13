@@ -1,7 +1,7 @@
 <div class="card">
     <div class="row p-0">
         <div class="col-md-12 formheader d-flex justify-content-between align-items-center">
-            <h4 class="mb-0">News Chartt</h4>
+            <h4 class="mb-0">News Chart</h4>
             <div>
                 <button pButton type="button" icon="pi pi-chevron-left" class="mr-2" (click)="leftBtn()"
                     [disabled]="pageNumber==0"></button>
@@ -76,7 +76,7 @@
 
                 <h5 class="formheader">SpO2</h5>
                 <div class="col-md-12">
-                    <label class="form-label bold">Does the resident have hypercapnic Respiratory Failear</label>
+                    <label class="form-label bold">Does the resident have hypercapnic Respiratory failure</label>
                     <ng-container>
                         <p-dropdown [required]="true" name="NewsChartFormData.respiratoryFailear"
                             placeholder="----select----" [style]="{ width: '100%' }" [options]="stLstYesNoOptions"
@@ -286,7 +286,7 @@
                 </div>
 
                 <div class="col-md-12">
-                    <label class="form-label bold">Monterning Frequancy</label>
+                    <label class="form-label bold">Monitoring frequency</label>
                     <div class="d-flex">
                         <div class="col-md-5 mr-2">
                             <input type="number" pInputText name="NewsChartFormData.monterningFrequancy"
@@ -449,7 +449,7 @@
                             <h5 class="formheader">SpO2</h5>
                             <div class="col-md-12">
                                 <label class="form-label bold">Does the resident have hypercapnic Respiratory
-                                    Failear</label>
+                                    failure</label>
                                 <div>
                                     <label
                                         [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">{{chart.respiratoryFailear}}</label>
@@ -570,7 +570,7 @@
 
                             <h5 class="formheader">Temprature</h5>
                             <div class="col-md-12">
-                                <label class="form-label bold">Temprature (degrees calsius)</label>
+                                <label class="form-label bold">Temperature (degrees calsius)</label>
                                 <div>
                                     <label
                                         [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">{{chart.temprature}}</label>
@@ -580,7 +580,7 @@
 
 
                             <div class="col-md-12">
-                                <label class="form-label bold">Temprature score<span class="required"></span></label>
+                                <label class="form-label bold">Temperature score<span class="required"></span></label>
                                 <div>
                                     <label
                                         [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">{{chart.tempratureScore}}</label>
@@ -612,7 +612,7 @@
                             </div>
 
                             <div class="col-md-12">
-                                <label class="form-label bold">Monterning Frequancy</label>
+                                <label class="form-label bold">Monitoring frequency</label>
 
                                 <div>
                                     <label
