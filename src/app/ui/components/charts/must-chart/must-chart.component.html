@@ -166,7 +166,7 @@
 
                 <div *ngIf="mustChartFormData.oedema=='Yes'">
                     <div>
-                        <label class="form-label bold">Mid Upper Arm circurmference(MUAC) (Cm)<span
+                        <label class="form-label bold">Mid Upper Arm circumference(MUAC) (Cm)<span
                                 class="required"></span></label>
 
                         <div class="col-md-12">
@@ -184,7 +184,7 @@
                 </div>
 
                 <div *ngIf="mustChartFormData.oedema=='No'||openStepSection">
-                    <h5 class="formheader">Stap 2 - Weight Loss Score</h5>
+                    <h5 class="formheader">Step 2 - Weight Loss Score</h5>
 
                     <div>
                         <label class="form-label bold">Method for determining weight loss ?<span
@@ -221,7 +221,7 @@
                         </div>
                     </div>
                     <div class="mb-4">
-                        <label class="form-label bold">Unplaned weight loss (Kg)<span class="required"></span></label>
+                        <label class="form-label bold">Unplanned weight loss (Kg)<span class="required"></span></label>
                         <div>
                             <label for="weightLossInKG">{{mustChartFormData.weightLossInKG}}</label>
                         </div>
@@ -320,7 +320,8 @@
                             <label>LOW RISK Routine clinical care. Repeat Must screening : care homes -monthly or
                                 (earlier if concerned) Hospital -weekly. Community annually for special
                                 groups,e.g.>75yrs</label>
-                            <p-messages [(value)]="message" [enableService]="false"></p-messages>
+                            <p-messages [(value)]="LowMessageA" [enableService]="false"></p-messages>
+                            <p-messages [(value)]="LowMessageB" [enableService]="false"></p-messages>
                         </div>
                         <div *ngIf="mustChartFormData.riskCategory=='Medium'">
                             <label>MEDIUM RISK observe dietary intake for 3 days (using food chart). If adequate-little
@@ -328,15 +329,17 @@
                                 every 2 to 3 months in the community . If inadequate – clinical concern , follow local
                                 policy, set goals improve and increase overall nutritional intake , monitor and review
                                 care plan regularly . </label>
-                            <p-messages [(value)]="message" [enableService]="false"></p-messages>
+                            <p-messages [(value)]="MediumMessageA" [enableService]="false"></p-messages>
+                            <p-messages [(value)]="MediumMessageB" [enableService]="false"></p-messages>
                         </div>
                         <div *ngIf="mustChartFormData.riskCategory=='High'">
-                            <label>HIGH RISK treat refer to dietitian , nutritional support team or implement local
+                            <label>HIGH RISK treat refer to dietician , nutritional support team or implement local
                                 policy . Set goals improve and increase overall nutritional intake monitor and review
-                                care plan monthely in care homes and community , weekly in hospital . * Unless
+                                care plan monthly in care homes and community , weekly in hospital . * Unless
                                 detrimental or no benefit is expected form nutritional support e.g imminent death
                                 .</label>
-                            <p-messages [(value)]="message" [enableService]="false"></p-messages>
+                            <p-messages [(value)]="HighMessageA" [enableService]="false"></p-messages>
+                            <p-messages [(value)]="HighMessageB" [enableService]="false"></p-messages>
                         </div>
                     </div>
                 </div>
@@ -390,8 +393,7 @@
                         </div>
                         <div class="col-md-12 mb-2">
 
-                            <label class="form-label bold">Enterted By<span
-                                    class="required"></span></label>
+                            <label class="form-label bold">Enterted By<span class="required"></span></label>
 
                             <div>
                                 <label
@@ -400,9 +402,8 @@
                         </div>
                         <div>
                             <div class="mb-2">
-                                <button *ngIf="!chart.isStrikeThrough" pButton type="button"
-                                    label="Strike Out Entry" class="p-button-link p-0"
-                                    (click)="showPopup(chart.mustChartId)">
+                                <button *ngIf="!chart.isStrikeThrough" pButton type="button" label="Strike Out Entry"
+                                    class="p-button-link p-0" (click)="showPopup(chart.mustChartId)">
                                 </button>
                             </div>
                         </div>
@@ -445,8 +446,7 @@
                                 Step 1 - BMI Score
                             </h5>
                             <div class="col-md-12">
-                                <label class="form-label bold">Weight<span
-                                        class="required"></span></label>
+                                <label class="form-label bold">Weight<span class="required"></span></label>
 
                                 <div>
                                     <label
@@ -476,8 +476,7 @@
 
                             <div *ngIf="chart.residentAmputee=='Yes'">
                                 <div class="col-md-12">
-                                    <label class="form-label bold">Arm<span
-                                            class="required"></span></label>
+                                    <label class="form-label bold">Arm<span class="required"></span></label>
 
                                     <div>
                                         <label
@@ -485,8 +484,7 @@
                                     </div>
                                 </div>
                                 <div class="col-md-12">
-                                    <label class="form-label bold">Leg<span
-                                            class="required"></span></label>
+                                    <label class="form-label bold">Leg<span class="required"></span></label>
 
                                     <div>
                                         <label
@@ -505,8 +503,7 @@
                             </div>
 
                             <div class="col-md-12">
-                                <label class="form-label bold">Height (Cm)<span
-                                        class="required"></span></label>
+                                <label class="form-label bold">Height (Cm)<span class="required"></span></label>
 
                                 <div>
                                     <label
@@ -535,8 +532,7 @@
                             </div>
 
                             <div class="col-md-12">
-                                <label class="form-label bold">BMI Score<span
-                                        class="required"></span></label>
+                                <label class="form-label bold">BMI Score<span class="required"></span></label>
 
                                 <div>
                                     <label
@@ -602,7 +598,7 @@
                                 </div>
 
                                 <div class="col-md-12">
-                                    <label class="form-label bold">Unplaned
+                                    <label class="form-label bold">Unplanned
                                         weight loss (Kg)<span class="required"></span></label>
 
                                     <div>
@@ -683,8 +679,7 @@
                                             Subjective criteria
                                         </h5>
                                         <div class="col-md-12">
-                                            <label class="form-label bold">BMI<span
-                                                    class="required"></span></label>
+                                            <label class="form-label bold">BMI<span class="required"></span></label>
 
                                             <div>
                                                 <label
@@ -735,11 +730,11 @@
                                                     care plan regularly . </label>
                                             </div>
                                             <div *ngIf="chart.riskCategory=='High'">
-                                                <label>HIGH RISK treat refer to dietitian , nutritional support team or
+                                                <label>HIGH RISK treat refer to dietician , nutritional support team or
                                                     implement local
                                                     policy . Set goals improve and increase overall nutritional intake
                                                     monitor and review
-                                                    care plan monthely in care homes and community , weekly in hospital
+                                                    care plan monthly in care homes and community , weekly in hospital
                                                     . * Unless
                                                     detrimental or no benefit is expected form nutritional support e.g
                                                     imminent death
@@ -766,8 +761,8 @@
             </p-carousel>
 
             <div *ngIf="isShowStrikeThroughPopup" class="card flex justify-content-center">
-                <p-dialog [closable]="true" header="Strike-Out" [(visible)]="isShowStrikeThroughPopup"
-                    [modal]="true" [breakpoints]="{ '1199px': '75vw', '575px': '90vw' }" [style]="{ width: '40vw' }"
+                <p-dialog [closable]="true" header="Strike-Out" [(visible)]="isShowStrikeThroughPopup" [modal]="true"
+                    [breakpoints]="{ '1199px': '75vw', '575px': '90vw' }" [style]="{ width: '40vw' }"
                     [draggable]="false" [resizable]="false">
                     <div *ngIf="isShowStrikeThroughPopup">
 

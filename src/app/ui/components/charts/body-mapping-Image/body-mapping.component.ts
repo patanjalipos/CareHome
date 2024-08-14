@@ -31,7 +31,7 @@ export class BodyMappingComponent implements OnInit {
     SelectOrRemoveCheck: boolean = false;
 
     constructor() { }
-    ngOnInit(): void {debugger
+    ngOnInit(): void {
         if (this.preSelectedBodyMapData && this.preSelectedBodyMapData.buttoncheck == true) {
             this.selectedParts = [...this.preSelectedBodyMapData.preselectedBodyParts];
             this.selectedStatus = this.preSelectedBodyMapData.status
