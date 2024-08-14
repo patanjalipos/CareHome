@@ -83,12 +83,29 @@
                 </div>
 
                 <div *ngIf="BowelChartFormData.Consistency=='1'">
-                    <!-- <img src="assets/images/Type1.png"> -->
+                    <p-messages [(value)]="messages1" [enableService]="false"></p-messages>
+                </div>
+                <div *ngIf="BowelChartFormData.Consistency=='2'">
+                    <p-messages [(value)]="messages2" [enableService]="false"></p-messages>
+                </div>
+                <div *ngIf="BowelChartFormData.Consistency=='3'">
+                    <p-messages [(value)]="messages3" [enableService]="false"></p-messages>
+                </div>
+                <div *ngIf="BowelChartFormData.Consistency=='4'">
+                    <p-messages [(value)]="messages4" [enableService]="false"></p-messages>
+                </div>
+                <div *ngIf="BowelChartFormData.Consistency=='5'">
+                    <p-messages [(value)]="messages5" [enableService]="false"></p-messages>
+                </div>
+                <div *ngIf="BowelChartFormData.Consistency=='6'">
+                    <p-messages [(value)]="messages6" [enableService]="false"></p-messages>
+                </div>
+                <div *ngIf="BowelChartFormData.Consistency=='7'">
+                    <p-messages [(value)]="messages7" [enableService]="false"></p-messages>
                 </div>
 
                 <div class="col-md-12">
                     <label class="form-label bold">Amount<span class="required"></span></label>
-
                     <ng-container>
                         <p-dropdown [required]="true" name="BowelChartFormData.Amount" placeholder="--select--"
                             [style]="{ width: '100%' }" [(ngModel)]="BowelChartFormData.Amount" [options]="lstAmount"
@@ -161,8 +178,7 @@
                         </div>
                         <div class="col-md-12 mb-2">
 
-                            <label class="form-label bold">Enterted By<span
-                                    class="required"></span></label>
+                            <label class="form-label bold">Enterted By<span class="required"></span></label>
 
                             <div>
                                 <label
@@ -171,9 +187,8 @@
                         </div>
                         <div>
                             <div class="mb-2">
-                                <button *ngIf="!chart.isStrikeThrough" pButton type="button"
-                                    label="Strike Out Entry" class="p-button-link p-0"
-                                    (click)="showPopup(chart.bowelChartId)">
+                                <button *ngIf="!chart.isStrikeThrough" pButton type="button" label="Strike Out Entry"
+                                    class="p-button-link p-0" (click)="showPopup(chart.bowelChartId)">
                                 </button>
                             </div>
                         </div>
@@ -224,8 +239,7 @@
                             </div>
 
                             <div class="col-md-12">
-                                <label class="form-label bold">Continence<span
-                                        class="required"></span></label>
+                                <label class="form-label bold">Continence<span class="required"></span></label>
 
                                 <div>
                                     <label [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">{{
@@ -235,8 +249,7 @@
                             </div>
 
                             <div class="col-md-12">
-                                <label class="form-label bold">Consistency<span
-                                        class="required"></span></label>
+                                <label class="form-label bold">Consistency<span class="required"></span></label>
 
                                 <div>
                                     <label [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">{{
@@ -246,8 +259,7 @@
                             </div>
 
                             <div class="col-md-12">
-                                <label class="form-label bold">Amount<span
-                                        class="required"></span></label>
+                                <label class="form-label bold">Amount<span class="required"></span></label>
 
                                 <div>
                                     <label
@@ -278,8 +290,8 @@
 
             </p-carousel>
             <div *ngIf="isShowStrikeThroughPopup" class="card flex justify-content-center">
-                <p-dialog [closable]="true" header="Strike-Out" [(visible)]="isShowStrikeThroughPopup"
-                    [modal]="true" [breakpoints]="{ '1199px': '75vw', '575px': '90vw' }" [style]="{ width: '40vw' }"
+                <p-dialog [closable]="true" header="Strike-Out" [(visible)]="isShowStrikeThroughPopup" [modal]="true"
+                    [breakpoints]="{ '1199px': '75vw', '575px': '90vw' }" [style]="{ width: '40vw' }"
                     [draggable]="false" [resizable]="false">
                     <div *ngIf="isShowStrikeThroughPopup">
 
