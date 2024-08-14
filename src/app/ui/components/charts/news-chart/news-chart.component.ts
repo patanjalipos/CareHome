@@ -181,7 +181,7 @@ export class NewsChartComponent extends AppComponentBase implements OnInit {
       { severity: 'secondary', detail: 'The Person only responds to pain simulation.' }
     ]
     this.unresponshiveMsg = [
-      { severity: 'secondary', detail: 'The Person completely unresposive.' }
+      { severity: 'secondary', detail: 'The Person completely unresponsive.' }
     ]
   }
 

@@ -166,19 +166,19 @@ export class MustChartComponent extends AppComponentBase implements OnInit {
     ];
 
     this.weightmsg = [
-      { severity: 'secondary', detail: 'Use clinical scales where possible. Ensure scales are set to 0 without the resident standing on it.weight the resident in light clothing and without shoes.' }
+      { severity: 'secondary', detail: 'Use clinical scales where possible. Ensure scales are set to 0 without the resident standing on it. Weigh the resident in light clothing and without shoes.' }
     ];
     this.residentAmputeemsg = [
       { severity: 'secondary', detail: 'If the resident has had an amputation, the type of amputation will affect their BMI calculation as an adjust.' }
     ]
     this.heightmsg = [
-      { severity: 'secondary', detail: 'Use a height stick where possible. Make sure it is correctly positioned against the wall. ask the resident to remove shoes and to stand upright,feet,flat,heels against the height stick or wall looking straight ahead lower the head plate untill it gently touches the top of the head.' }
+      { severity: 'secondary', detail: 'Use a height stick where possible. Make sure it is correctly positioned against the wall. Ask the resident to remove shoes and to stand upright, feet, flat, heels against the height stick or wall looking straight ahead. Lower the head plate untill it gently touches the top of the head.' }
     ]
     this.weightAtThisTimeMsg = [
       { severity: 'secondary', detail: 'Find the residents highest weight within the last 6 months.' }
     ]
     this.acuteDiseaseMsg = [
-      { severity: 'secondary', detail: 'Almost all patients in the community will not be acutely ill. This effect is unlikely to apply outside of a hospital setting. see "MUST" Explanatory Booklet for further infomation.' }
+      { severity: 'secondary', detail: 'Almost all patients in the community will not be acutely ill. This effect is unlikely to apply outside of a hospital setting. See "MUST" Explanatory Booklet for further infomation.' }
     ]
 
     const collectionNames = ['heightMeasured', 'weightMeasured', 'armoption', 'legoption', 'weightLoss', 'bmiOption', 'weightLossOption'];

@@ -61,7 +61,7 @@
                     Enquiry About the presence of Pain
                 </h5>
                 <div class="col-md-12">
-                    <label class="form-label bold">Can the Resident Communicate Pain Successfully
+                    <label class="form-label bold">Can the Resident Communicate Pain Successfully?
                         <span class="required"></span></label>
 
                     <ng-container *ngIf="this.isEditable; else communicationData">
@@ -109,7 +109,7 @@
                     </div>
 
                     <div class="col-md-12">
-                        <label class="form-label bold">Facial expresion <span class="required"></span></label>
+                        <label class="form-label bold">Facial expression <span class="required"></span></label>
                         <ng-container *ngIf="this.isEditable; else FacialExpresionData">
                             <p-selectButton [options]="rangeOption" [(ngModel)]="painChartFormData.FacialExpresion"
                                 optionLabel="label" optionValue="value" (onChange)="PainScoreCalc(2)"></p-selectButton>
@@ -514,7 +514,7 @@
                             <div class="col-md-12">
                                 <div class="col-md-12">
                                     <label class="form-label bold">Can the Resident Communicate Pain
-                                        Successfully
+                                        Successfully?
                                         <span class="required"></span></label>
                                 </div>
                                 <div>
@@ -558,7 +558,7 @@
 
                                 <div class="col-md-12">
                                     <div class="col-md-12">
-                                        <label class="form-label bold">Facial expresion
+                                        <label class="form-label bold">Facial expression
                                             <span class="required"></span></label>
                                     </div>
 
