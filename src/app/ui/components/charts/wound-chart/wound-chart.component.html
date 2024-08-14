@@ -65,7 +65,9 @@
                 <div class="col-md-12">
                     <label class="form-label bold">Where was the wound acquired?
                         <span class="required"></span></label>
-                    <label class="form-label">Aquirend in facility</label>
+                        <div>
+                            <label class="form-label">Acquired in facility</label>
+                        </div>
                     <div>
                         <label class="form-label bold">Observation Type
                             <span class="required"></span></label>
@@ -138,7 +140,7 @@
                         </ng-container>
                     </div>
                     <div class="col-md-12 mb-3">
-                        <label class="form-label bold">Odure</label>
+                        <label class="form-label bold">Odour</label>
                         <ng-container>
                             <p-selectButton [options]="odureOptions" [(ngModel)]="woundChartFormData.odure"
                                 optionLabel="label" optionValue="value"></p-selectButton>
@@ -202,7 +204,7 @@
 
                     <div class="col-md-12 mb-3">
                         <div>
-                            <label class="form-label bold">Fectors affecting healing
+                            <label class="form-label bold">Factors affecting healing
                                 <span class="required"></span></label>
                         </div>
                         <ng-container>
@@ -376,7 +378,7 @@
                         </div>
                         <div class="col-md-12 mb-2 mt-2">
 
-                            <label class="form-label bold">Enterted By<span class="required"></span></label>
+                            <label class="form-label bold">Entered By<span class="required"></span></label>
 
                             <div>
                                 <label
@@ -431,7 +433,7 @@
                             <div class="col-md-12">
                                 <label class="form-label bold">Where was the wound acquired?
                                     <span class="required"></span></label>
-                                <label class="form-label">Aquirend in facility</label>
+                                <label class="form-label">Acquired in facility</label>
                                 <div>
                                     <label class="form-label bold">Observation Type
                                         <span class="required"></span></label>
@@ -505,7 +507,7 @@
                                     </div>
                                 </div>
                                 <div class="col-md-12 mb-3">
-                                    <label class="form-label bold">Odure</label>
+                                    <label class="form-label bold">Odour</label>
                                     <div>
                                         <label [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">{{
                                             chart.odure
@@ -562,7 +564,7 @@
 
                                 <div class="col-md-12 mb-3">
                                     <div>
-                                        <label class="form-label bold">Fectors affecting healing
+                                        <label class="form-label bold">Factors affecting healing
                                             <span class="required"></span></label>
                                     </div>
                                     <div>
@@ -693,7 +695,7 @@
 
 
                         <h5 class="formheader">
-                            Body-Pain Locations</h5>
+                            Body-Wound Locations</h5>
                         <div class="col-md-12">
                             <div *ngIf="chart.selectedBodyParts">
                                 <div>

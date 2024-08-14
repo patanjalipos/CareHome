@@ -123,8 +123,10 @@
                                         [style]="{width: '100%'}">
                                     </p-dropdown> -->
                                     <span class="float-left">
-                                    <p-dropdown  class="float-start w-100"
-                                        *ngIf="mode=='edit'"
+                                    <p-dropdown  class="float-start"
+                                    [ngClass]="{'w-75': item.Mode === 'add',
+                                                'w-100' : item.Mode === 'Edit' }"
+                                        *ngIf="mode==='edit' || mode === 'add'"
                                         name="ddlStatus_{{lstExtraItemDetails[i].Sequence}}"
                                         [options]="lstExtraItemDetails[i].StatusList"
                                         [(ngModel)]="lstExtraItemDetails[i].Status" appendTo="body" optionLabel="name"

@@ -166,7 +166,7 @@
 
                 <div *ngIf="mustChartFormData.oedema=='Yes'">
                     <div>
-                        <label class="form-label bold">Mid Upper Arm circurmference(MUAC) (Cm)<span
+                        <label class="form-label bold">Mid Upper Arm circumference(MUAC) (Cm)<span
                                 class="required"></span></label>
 
                         <div class="col-md-12">
@@ -184,7 +184,7 @@
                 </div>
 
                 <div *ngIf="mustChartFormData.oedema=='No'||openStepSection">
-                    <h5 class="formheader">Stap 2 - Weight Loss Score</h5>
+                    <h5 class="formheader">Step 2 - Weight Loss Score</h5>
 
                     <div>
                         <label class="form-label bold">Method for determining weight loss ?<span
@@ -221,7 +221,7 @@
                         </div>
                     </div>
                     <div class="mb-4">
-                        <label class="form-label bold">Unplaned weight loss (Kg)<span class="required"></span></label>
+                        <label class="form-label bold">Unplanned weight loss (Kg)<span class="required"></span></label>
                         <div>
                             <label for="weightLossInKG">{{mustChartFormData.weightLossInKG}}</label>
                         </div>
@@ -331,9 +331,9 @@
                             <p-messages [(value)]="message" [enableService]="false"></p-messages>
                         </div>
                         <div *ngIf="mustChartFormData.riskCategory=='High'">
-                            <label>HIGH RISK treat refer to dietitian , nutritional support team or implement local
+                            <label>HIGH RISK treat refer to dietician , nutritional support team or implement local
                                 policy . Set goals improve and increase overall nutritional intake monitor and review
-                                care plan monthely in care homes and community , weekly in hospital . * Unless
+                                care plan monthly in care homes and community , weekly in hospital . * Unless
                                 detrimental or no benefit is expected form nutritional support e.g imminent death
                                 .</label>
                             <p-messages [(value)]="message" [enableService]="false"></p-messages>
@@ -602,7 +602,7 @@
                                 </div>
 
                                 <div class="col-md-12">
-                                    <label class="form-label bold">Unplaned
+                                    <label class="form-label bold">Unplanned
                                         weight loss (Kg)<span class="required"></span></label>
 
                                     <div>
@@ -735,11 +735,11 @@
                                                     care plan regularly . </label>
                                             </div>
                                             <div *ngIf="chart.riskCategory=='High'">
-                                                <label>HIGH RISK treat refer to dietitian , nutritional support team or
+                                                <label>HIGH RISK treat refer to dietician , nutritional support team or
                                                     implement local
                                                     policy . Set goals improve and increase overall nutritional intake
                                                     monitor and review
-                                                    care plan monthely in care homes and community , weekly in hospital
+                                                    care plan monthly in care homes and community , weekly in hospital
                                                     . * Unless
                                                     detrimental or no benefit is expected form nutritional support e.g
                                                     imminent death

@@ -53,7 +53,7 @@
                         <label for="" class="form-label label-line">Types of Progress notes</label>
                         <p-multiSelect name="ddlFormTypes" display="chip" [(ngModel)]="SearchProgressnoteType"
                             [filter]="false" [options]="lstprogressnotetypes" optionLabel="name" optionValue="code"
-                            (ngModelChange)="onSelectFormType()" placeholder="Please Select Progressnotes Type"
+                            (ngModelChange)="onSelectFormType()" placeholder="Please Select Progress notes Type"
                             [style]="{width: '100%'}" #usertyperef="" (onChange)="changeValue()">
                         </p-multiSelect>
                     </div>
