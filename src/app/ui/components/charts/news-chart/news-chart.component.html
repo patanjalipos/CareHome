@@ -54,7 +54,7 @@
             <div *ngIf="inputFields" class="row">
                 <h5 class="formheader">Respiration Rate</h5>
                 <div class="col-md-12">
-                    <label class="form-label bold">Breath/min<span class="required"></span></label>
+                    <label class="form-label bold">Breaths/min<span class="required"></span></label>
                     <ng-container>
                         <input type="number" pInputText name="NewsChartFormData.respirationRate" [required]="true"
                             [style]="{ width: '100%' }" [(ngModel)]="NewsChartFormData.respirationRate"
@@ -87,7 +87,7 @@
                 </div>
 
                 <div class="col-md-12" *ngIf="NewsChartFormData.respiratoryFailear=='Yes'">
-                    <label class="form-label bold">Air Or Oxigen</label>
+                    <label class="form-label bold">Air Or Oxygen</label>
                     <ng-container>
                         <p-dropdown [required]="true" name="NewsChartFormData.airOrOxygen" placeholder="----select----"
                             [style]="{ width: '100%' }" [options]="lstAirOrOxygen" optionValue="optionId"
@@ -100,7 +100,7 @@
                 <div *ngIf="NewsChartFormData.airOrOxygen=='66a878fdc3c14242d80a2648'">
 
                     <div class="col-md-12">
-                        <label class="form-label bold">O 2 Liters per minute</label>
+                        <label class="form-label bold">0 - 2 Liters per minute</label>
                         <ng-container>
                             <input type="number" pInputText name="NewsChartFormData.oTwoInLiters" [required]="true"
                                 [style]="{ width: '100%' }" [(ngModel)]="NewsChartFormData.oTwoInLiters" />
@@ -131,7 +131,7 @@
                 </div>
 
                 <div class="col-md-12">
-                    <label class="form-label bold">Oxigen Saturation(%)</label>
+                    <label class="form-label bold">Oxygen Saturation(%)</label>
                     <ng-container>
                         <input type="number" pInputText name="NewsChartFormData.oxigen" [required]="true"
                             [style]="{ width: '100%' }" [(ngModel)]="NewsChartFormData.oxigen" placeholder="%"
@@ -175,9 +175,9 @@
 
 
 
-                <h5 class="formheader">Pules Rate</h5>
+                <h5 class="formheader">Pulse Rate</h5>
                 <div class="col-md-12">
-                    <label class="form-label bold">pules Beat/min (beats per min)</label>
+                    <label class="form-label bold">Pulse beats/min (beats per min)</label>
                     <ng-container>
                         <input type="number" pInputText name="NewsChartFormData.pulesRate" [required]="true"
                             [style]="{ width: '100%' }" [(ngModel)]="NewsChartFormData.pulesRate"
@@ -188,7 +188,7 @@
 
 
                 <div class="col-md-12">
-                    <label class="form-label bold">Pules Score<span class="required"></span></label>
+                    <label class="form-label bold">Pulse Score<span class="required"></span></label>
                     <div [ngClass]="{
                         'bg-yellow':NewsChartFormData.pulesScore == 1,
                         'bg-orange': NewsChartFormData.pulesScore == 2,
@@ -237,9 +237,9 @@
                     </div>
                 </div>
 
-                <h5 class="formheader">Temprature</h5>
+                <h5 class="formheader">Temperature</h5>
                 <div class="col-md-12">
-                    <label class="form-label bold">Temprature (degrees calsius)</label>
+                    <label class="form-label bold">Temperature (°C)</label>
                     <ng-container>
                         <input type="number" pInputText name="NewsChartFormData.temprature" [required]="true"
                             [style]="{ width: '100%' }" [(ngModel)]="NewsChartFormData.temprature"
@@ -250,7 +250,7 @@
 
 
                 <div class="col-md-12">
-                    <label class="form-label bold">Temprature score<span class="required"></span></label>
+                    <label class="form-label bold">Temperature score<span class="required"></span></label>
                     <div [ngClass]="{
                         'bg-yellow':NewsChartFormData.tempratureScore == 1,
                         'bg-orange': NewsChartFormData.tempratureScore == 2,
@@ -302,7 +302,7 @@
                     </div>
                 </div>
                 <div class="col-md-12">
-                    <label class="form-label bold">Esclation Of care</label>
+                    <label class="form-label bold">Escalation Of care</label>
                     <ng-container>
                         <p-dropdown [required]="true" name="NewsChartFormData.esclationCare"
                             placeholder="----select----" [style]="{ width: '100%' }" [options]="stLstYesNoOptions"
@@ -314,7 +314,7 @@
 
                 <div *ngIf="NewsChartFormData.esclationCare=='Yes'">
                     <div class="col-md-12">
-                        <label class="form-label bold">What Esclation are required</label>
+                        <label class="form-label bold">What Escalation are required</label>
                         <ng-container>
                             <input type="text" pInputText name="NewsChartFormData.requiredEsclation" [required]="true"
                                 [style]="{ width: '100%' }" [(ngModel)]="NewsChartFormData.requiredEsclation" />

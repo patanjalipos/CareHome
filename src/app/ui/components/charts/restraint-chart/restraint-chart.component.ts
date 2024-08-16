@@ -125,7 +125,7 @@ export class RestraintChartComponent extends AppComponentBase implements OnInit 
     ).subscribe((responses: any[]) => {
       this.lstTypeOfRestraint = responses[0];
       this.lstRestraintDevices=responses[1];
-      this.lstTriggersAndBehaviors = responses[1];
+      this.lstTriggersAndBehaviors = responses[2];
     });
 
     // this.getChartDataById(this.preSelectedChartData.chartMasterId, this.preSelectedChartData.residentAdmissionInfoId, this.pageNumber, this.pageSize);
