@@ -41,19 +41,19 @@
                     <th>Alert Status</th>
                     <th>Recorded Time</th>
                     <th>Recorded By</th>
-                    <!-- <th>Actions</th> -->
+                    <th>Actions</th>
                 </tr>
             </ng-template>
             <ng-template pTemplate="body" let-dt>
                 <tr>
                     <td>{{dt.AlertName}}</td>
-                    <td>{{dt.Value}}</td>
+                    <td>{{dt.value}}</td>
                     <td>{{dt.Status}}</td>
-                    <td>{{dt.CreatedOn | date:customDateFormat.DEF_DATE_TIME}}</td>
+                    <td>{{dt.createdOn | date:customDateFormat.DEF_DATE_TIME}}</td>
                     <td>
                         {{dt.FullName}}
                     </td>
-                    <!-- <td>
+                    <td>
                         <a title="View">
                             <i class="fa fa-eye" aria-hidden="true"></i>
                         </a>
@@ -61,7 +61,7 @@
                         <a title="Edit">
                             <i class="fa fa-pencil" aria-hidden="true"></i>
                         </a>
-                    </td> -->
+                    </td>
                 </tr>
             </ng-template>
         </p-table>
