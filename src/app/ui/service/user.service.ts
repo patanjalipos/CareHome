@@ -1,5 +1,6 @@
 import { HttpClient, HttpHeaders, HttpParams } from "@angular/common/http";
 import { Injectable } from "@angular/core";
+import { parseJSON } from "date-fns";
 import { Observable } from "rxjs";
 import { environment } from "src/environments/environment";
 
@@ -7,7 +8,7 @@ import { environment } from "src/environments/environment";
   providedIn: "root",
 })
 export class UserService {
-  constructor(private _httpclient: HttpClient) {}
+  constructor(private _httpclient: HttpClient) { }
 
   GetResidentDocumentsDetails(obj: any = <any>{}): Observable<any> {
     let reqHeader = new HttpHeaders({
@@ -154,7 +155,7 @@ export class UserService {
   }
 
 
-  GetChartDataById(selectedChartID, chartId, selectedStartedOn, residentAdmissionInfoId,pageNumber,pageSize){
+  GetChartDataById(selectedChartID, chartId, selectedStartedOn, residentAdmissionInfoId, pageNumber, pageSize) {
     let reqHeader = new HttpHeaders({
       'Content-Type': 'application/json',
       'Access-Control-Allow-Origin': environment.BaseUriUser,
@@ -168,8 +169,8 @@ export class UserService {
     params = params.append('pageNumber', pageNumber);
     params = params.append('pageSize', pageSize);
     return this._httpclient.get<any>(
-        environment.BaseUriUser + 'api/User/GetChartDetails',
-        { headers: reqHeader, params: params }
+      environment.BaseUriUser + 'api/User/GetChartDetails',
+      { headers: reqHeader, params: params }
     );
   }
 
@@ -342,7 +343,7 @@ export class UserService {
     var data = JSON.stringify(obj).toString();
     return this._httpclient.post<any>(
       environment.BaseUriUser +
-        "api/User/AddInsertUpdateClinicalBaselineHealthInfo",
+      "api/User/AddInsertUpdateClinicalBaselineHealthInfo",
       data,
       { headers: reqHeader, params: params }
     );
@@ -472,6 +473,21 @@ export class UserService {
     params = params.append("status", status);
     return this._httpclient.get<any>(
       environment.BaseUriUser + "api/User/GetDailyVitalAlertLog",
+      { headers: reqHeader, params: params }
+    );
+  }
+
+  GetAllAlert(importData,residentAdmissionInfoId) {
+    let reqHeader = new HttpHeaders({
+      "Content-Type": "application/json",
+      "Access-Control-Allow-Origin": environment.BaseUriUser,
+      Authorization: "Bearer " + localStorage.getItem("token"),
+    });
+    let params = new HttpParams();
+    params = params.append("residentAdmissionInfoId", residentAdmissionInfoId);
+    var data = JSON.stringify(importData).toString();
+    return this._httpclient.post<any>(
+      environment.BaseUriUser + "api/User/GetAllAlert", data,
       { headers: reqHeader, params: params }
     );
   }
@@ -619,7 +635,7 @@ export class UserService {
     var data = JSON.stringify(obj).toString();
     return this._httpclient.post<any>(
       environment.BaseUriUser +
-        "api/User/AddInsertUpdateContactResponsiblePerson",
+      "api/User/AddInsertUpdateContactResponsiblePerson",
       data,
       { headers: reqHeader, params: params }
     );
@@ -796,7 +812,7 @@ export class UserService {
 
     return this._httpclient.post<any>(
       environment.BaseUriUser +
-        "api/User/AddInsertUpdateAccidentNearOrMissRecordForm",
+      "api/User/AddInsertUpdateAccidentNearOrMissRecordForm",
       data,
       { headers: reqHeader, params: params }
     );

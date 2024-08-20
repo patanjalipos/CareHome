@@ -7,6 +7,7 @@ import { UtilityService } from 'src/app/utility/utility.service';
 import { Calendar } from 'primeng/calendar';
 import { UserService } from 'src/app/ui/service/user.service';
 import { ResidentProfileService } from '../resident-profile.service';
+import { log } from 'console';
 
 @Component({
     selector: 'app-alert',
@@ -20,17 +21,18 @@ export class AlertComponent extends AppComponentBase implements OnInit {
     @Input() residentadmissiondetails: any = <any>{};
 
     customDateFormat = CustomDateFormat;
-    selectedAlertMasterId: string = '';
+    selectedAlertMasterId: string = null;
     selectedStatusId: number = null;
     public lstAlertMaster: any[] = [];
     public stlstStatus: any[] = [];
     public AlertList: any[] = [];
     rangeDates: Date[] = [];
+    SearchList1: any[] = [];
     constructor(
         private _ConstantServices: ConstantsService,
         private _MasterServices: MasterService,
         private _UtilityService: UtilityService,
-        private _UserServices:UserService,
+        private _UserServices: UserService,
         private sharedStateService: ResidentProfileService,
         private datepipe: DatePipe) {
         super();
@@ -38,12 +40,14 @@ export class AlertComponent extends AppComponentBase implements OnInit {
         this.stlstStatus = [{ name: 'Active', code: 1 },
         { name: 'Inactive', code: 0 }
         ]
-        this.rangeDates=[new Date(), new Date()];
+        this.rangeDates = [new Date(), new Date()];
+
+
     }
 
     ngOnInit(): void {
         this.GetAlertMaster();
-        this.GetDailyVitalAlertLog();
+        this.GetAllAlert();
     }
 
     dateRangeChange(calendar: Calendar) {
@@ -54,13 +58,13 @@ export class AlertComponent extends AppComponentBase implements OnInit {
         }
 
     }
-    changeValue(){
+    changeValue() {
         this.sharedStateService.tranferValu(true);
-      }
+    }
 
     GetAlertMaster() {
         let importData: any = <any>{};
-        importData.StatusType=true;      
+        importData.StatusType = true;
         this._UtilityService.showSpinner();
         this.unsubscribe.add = this._MasterServices
             .GetAlertMaster(importData)
@@ -104,7 +108,7 @@ export class AlertComponent extends AppComponentBase implements OnInit {
                         var tdata = JSON.parse(data.actionResult.result);
                         tdata = tdata ? tdata : [];
                         this.AlertList = tdata;
-                    } 
+                    }
                     else {
                         this.AlertList = [];
                     }
@@ -114,5 +118,60 @@ export class AlertComponent extends AppComponentBase implements OnInit {
                     this._UtilityService.showErrorAlert(e.message);
                 },
             });
+    }
+
+
+
+
+    GetAllAlert() {
+        let importData: any = <any>{};
+        let dFrom = null;
+        var dTo = null;
+        this.SearchList1 = [];
+        var residentAdmissionInfoId = this.admissionid
+        if (this.rangeDates != null) {
+            if (this.rangeDates[0] != null) {
+                dFrom = this.datepipe.transform(this.rangeDates[0], "yyyy-MM-dd");
+                importData.dFrom = dFrom;
+            }
+            if (this.rangeDates[1] != null) {
+                dTo = this.datepipe.transform(this.rangeDates[1], "yyyy-MM-dd");
+                importData.dTo = dTo;
+            }
+        }
+        if (this.selectedAlertMasterId != null && this.selectedAlertMasterId != '') {
+            this.SearchList1.push({ 'SearchBy': 'AlertType', 'SearchVal': this.selectedAlertMasterId });
+        }
+        if (this.selectedStatusId != null) {
+            this.SearchList1.push({ 'SearchBy': 'Status', 'SearchVal': this.selectedStatusId.toString() });
+        }
+        importData.SearchList = this.SearchList1;
+
+
+        this._UtilityService.showSpinner();
+        this.unsubscribe.add = this._UserServices
+            .GetAllAlert(importData, residentAdmissionInfoId)
+            .subscribe({
+                next: (data) => {
+                    console.log(residentAdmissionInfoId);
+                    this._UtilityService.hideSpinner();
+                    if (data.actionResult.success == true) {
+                        var tdata = JSON.parse(data.actionResult.result);
+                        tdata = tdata ? tdata : [];
+                        this.AlertList = tdata;
+                        console.log("===>dsaf");
+                        console.log(this.AlertList);
+                    }
+                    else {
+                        this.AlertList = [];
+                    }
+                },
+                error: (e) => {
+                    this._UtilityService.hideSpinner();
+                    this._UtilityService.showErrorAlert(e.message);
+                },
+            });
+        importData = {};
+
     }
 }
