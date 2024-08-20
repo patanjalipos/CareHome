@@ -424,7 +424,7 @@ export class UserService {
       { headers: reqHeader, params: params }
     );
   }
-  AddInsertUpdateDailyVital(obj: any, loginId: any): Observable<any> {
+  AddInsertUpdateDailyVital(obj: any, loginId: any, alertCheck:any = false): Observable<any> {
     let reqHeader = new HttpHeaders({
       "Content-Type": "application/json",
       "Access-Control-Allow-Origin": environment.BaseUriUser,
@@ -433,8 +433,26 @@ export class UserService {
     let params = new HttpParams();
     var data = JSON.stringify(obj).toString();
     params = params.append("loginid", loginId);
+    params = params.append("alertCheck", alertCheck);
     return this._httpclient.post<any>(
       environment.BaseUriUser + "api/User/AddInsertUpdateDailyVital",
+      data,
+      { headers: reqHeader, params: params }
+    );
+  }
+
+  InsertDailyVitalAlertLog(obj: any): Observable<any> {
+    let reqHeader = new HttpHeaders({
+      "Content-Type": "application/json",
+      "Access-Control-Allow-Origin": environment.BaseUriUser,
+      Authorization: "Bearer " + localStorage.getItem("token"),
+    });
+    let params = new HttpParams();
+    var data = JSON.stringify(obj).toString();
+    console.log('DATA',data);
+    
+    return this._httpclient.post<any>(
+      environment.BaseUriUser + "api/User/InsertDailyVitalAlertLog",
       data,
       { headers: reqHeader, params: params }
     );
