@@ -13,6 +13,8 @@ import { BloodPressureChartService } from './blood-pressure-chart.service';
 import { UserService } from 'src/app/ui/service/user.service';
 import { AppComponentBase } from 'src/app/app-component-base';
 import {
+    AlertStatus,
+    AlertTypes,
     ChartTypes,
     ConstantsService,
     CustomDateFormat,
@@ -46,6 +48,10 @@ export class BloodPressureChartComponent
     StatementType: string = null;
     CareGivenCheck:boolean = false;
     ReasonCheck: boolean = false;
+
+    //Alert Checks properties
+    Clinical: any = <any>{};
+    AlertCheck: boolean = false;
 
     //for carousel
     bloodPressureChartsLst: any[] = [];
@@ -111,7 +117,8 @@ export class BloodPressureChartComponent
             this._ConstantServices.ActiveMenuName = this.ChartName;
         });
         this.bloodPressureChartFormData.DateAndTime = new Date()
-        // this.getChartDataById(this.preSelectedChartData.chartMasterId, this.preSelectedChartData.residentAdmissionInfoId, this.pageNumber, this.pageSize);
+      this.GetClinicalBaselineHealthInfoById(this.residentAdmissionInfoId);
+      // this.getChartDataById(this.preSelectedChartData.chartMasterId, this.preSelectedChartData.residentAdmissionInfoId, this.pageNumber, this.pageSize);
     }
 
     openAndClose() {
@@ -158,6 +165,66 @@ export class BloodPressureChartComponent
                 this.preSelectedChartData.selectedChartID;
         }
     }
+
+    GetClinicalBaselineHealthInfoById(admissionid) {
+        this._UtilityService.showSpinner();
+        this.unsubscribe.add = this._UserService.GetClinicalBaselineHealthInfoById(admissionid)
+          .subscribe({
+            next: (data) => {
+              this._UtilityService.hideSpinner();
+              if (data.actionResult.success == true) {
+                var tdata = JSON.parse(data.actionResult.result);
+                tdata = tdata ? tdata : [];
+                this.Clinical = tdata;
+              }
+            },
+            error: (e) => {
+              this._UtilityService.hideSpinner();
+              this._UtilityService.showErrorAlert(e.message);
+            },
+          });
+      }
+
+      SaveAlert() {
+        
+        var value = this.bloodPressureChartFormData.Systolic.toString() + '/' + this.bloodPressureChartFormData.Diastolic.toString();
+        var ChartAlert = {
+            alertMasterId: AlertTypes.BloodPressureAlert,
+            chartId: this.bloodPressureChartFormData.bloodPressureChartId,
+            chartMasterId: this.preSelectedChartData.chartMasterId,
+            userId: this.bloodPressureChartFormData.userId,
+            residentAdmissionInfoId: this.bloodPressureChartFormData.ResidentAdmissionInfoId,
+            dateAndTime: this.bloodPressureChartFormData.DateAndTime,
+            status: AlertStatus.Active,
+            value: value,
+            createdBy: this.loginId,
+            modifiedBy: this.loginId
+        }
+        debugger
+        this.unsubscribe.add = this._UserService.InsertDailyVitalAlertLog(ChartAlert)
+        .subscribe
+        ({
+          next: (data) => {
+            
+            if (data.actionResult.success == true)
+              this._UtilityService.showSuccessAlert(data.actionResult.errMsg);
+            else
+              this._UtilityService.showWarningAlert(data.actionResult.errMsg);
+          },
+          error: (e) => {
+            this._UtilityService.showErrorAlert(e.message);
+          },
+        });
+      }
+
+      CompareAlert() {
+        if((!(this.bloodPressureChartFormData.Systolic >= this.Clinical.MinSBP && this.bloodPressureChartFormData.Systolic <= this.Clinical.MaxSBP)) && (!(this.bloodPressureChartFormData.Diastolic >= this.Clinical.MinDBP && this.bloodPressureChartFormData.Diastolic <= this.Clinical.MaxDBP))) {
+            return true;
+        }
+        else {
+            return false;
+        }
+      }
 
     Save() {
         if(this.bloodPressureChartFormData.CareGiven == null) {
@@ -245,6 +312,12 @@ export class BloodPressureChartComponent
         } else {
             this._UtilityService.showWarningAlert(this.ChartName + " " + this.stLstErrorAndWarning.Warnings.Common.DetailMissMessage);
         }
+        
+            this.CompareAlert();
+
+            if(this.CompareAlert()) {
+                this.SaveAlert();
+            }
     }
 
     ResetModel() {

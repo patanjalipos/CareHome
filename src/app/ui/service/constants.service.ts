@@ -34,6 +34,26 @@ export enum UserTypes {
    
 }
 
+export enum AlertTypes {
+    BloodGlucoseAlert = '6642ece9b33c8394db70605e',
+    BloodPressureAlert = '6642ef39b33c8394db706066',
+    BowelsAlert = '6642ef10b33c8394db706065',
+    FluidIntakeAlert = '65b8e9a00d77d0a4c616b8e0',
+    HighTemperatureAlert = '6642ed2eb33c8394db70605f',
+    MUSTAlert = '6642ee9eb33c8394db706061',
+    NEWS2Alert = '6642eeb5b33c8394db706062',
+    OxygenSaturationAlert = '6642eecdb33c8394db706063',
+    PressureUlcerAlert = '6642eee0b33c8394db706064',
+    PulseAlert = '6642ef50b33c8394db706067',
+    WaterlowAlert = '6642ee86b33c8394db706060',
+    WeightAlert = '6642ef7bb33c8394db706068'
+}
+
+export enum AlertStatus {
+    Active = 1,
+    Actioned = 0
+}
+
 export enum ChartTypes {
     ActivitiesChart = '65b8e9b70d77d0a4c616b8e2',
     ADLChart = '6642f13bb33c8394db706069',
