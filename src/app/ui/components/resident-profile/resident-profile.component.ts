@@ -34,6 +34,8 @@ export class ResidentProfileComponent extends AppComponentBase implements OnInit
   isAlertActive: boolean;
   isProfileActive: boolean=true;
 
+  alertCount: number = 0;
+
   ProgressNote: boolean = false;
   CarePlan: boolean = false;
   Form: boolean = false;
@@ -71,6 +73,7 @@ export class ResidentProfileComponent extends AppComponentBase implements OnInit
     this.Profile = true;
     if (this.selecteduserid != null)
       this.LoadResidentDetails(this.selecteduserid, this.selectedadmissionid);
+    // this.GetChartAlertDetails(this.selectedadmissionid);
 
     this.sharedStateService.value.subscribe(data => {
       this.value = data;
@@ -325,6 +328,27 @@ export class ResidentProfileComponent extends AppComponentBase implements OnInit
     }
   }
 
+//   GetChartAlertDetails(residentAdmissionInfoId: string) {
+//     this._UtilityService.showSpinner();
+//     this.unsubscribe.add = this._UserServices
+//         .GetChartAlertById(residentAdmissionInfoId)
+//         .subscribe({
+//             next: (data) => {
+//                 this._UtilityService.hideSpinner();
+//                 if (data.actionResult.success == true) {
+//                   this.alertCount = data.actionResult.result;
+//                 } else {
+//                     this.alertCount = 0;
+//                 }
+//             },
+//             error: (e) => {
+//                 this._UtilityService.hideSpinner();
+//                 this._UtilityService.showErrorAlert(e.message);
+//             },
+//         });
+// }
+
+
   LoadResidentDetails(userid, admissionid) {
     this._UtilityService.showSpinner();
     this.unsubscribe.add = this._UserServices.GetResidentDetailsById(userid, admissionid)
@@ -333,8 +357,8 @@ export class ResidentProfileComponent extends AppComponentBase implements OnInit
         next: (data) => {
           this._UtilityService.hideSpinner();
           if (data.actionResult.success == true) {
-            console.log(data);
-            
+
+            this.alertCount = data.actionResult.value;
             var tdata = JSON.parse(data.actionResult.result);
             tdata = tdata ? tdata : [];
             this.ResidentMaster = tdata;
@@ -396,6 +420,10 @@ export class ResidentProfileComponent extends AppComponentBase implements OnInit
     }
     else
       return 0;
+  }
+
+  EmitUpdateChart(event) {
+    this.alertCount = event;
   }
 
 }

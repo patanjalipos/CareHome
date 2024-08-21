@@ -28,7 +28,7 @@
         </div>
         <p-table #dt [value]="AlertList" responsiveLayout="scroll" class="mt-2" styleClass="p-datatable-striped"
             [rowHover]="true" [globalFilterFields]="['AlertName', 'FullName','Status']" [scrollable]="true"
-            scrollHeight="calc(100vh - 155px)">
+            scrollHeight="calc(100vh - 155px)" [paginator]="true" [rows]="5">
             <ng-template pTemplate="emptymessage" let-columns>
                 <tr>
                     <td [attr.colspan]="columns?.length">No records found</td>
