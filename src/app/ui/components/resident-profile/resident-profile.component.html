@@ -129,7 +129,7 @@
           
             <div *ngIf="Alert">
                 <app-alert [userid]="selecteduserid" [admissionid]="selectedadmissionid"
-                    [residentadmissiondetails]="ResidentMaster"></app-alert>
+                    [residentadmissiondetails]="ResidentMaster" (EmitUpdateAlert)="EmitUpdateChart($event)"></app-alert>
             </div>
 
             <div *ngIf="Action">

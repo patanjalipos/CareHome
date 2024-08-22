@@ -13,6 +13,9 @@ import { CalendarModule } from "primeng/calendar";
 import { CheckboxModule } from 'primeng/checkbox';
 import { FormsModule } from '@angular/forms';
 import { DropdownModule } from 'primeng/dropdown';
+import { ButtonModule } from 'primeng/button';
+import { DialogModule } from 'primeng/dialog';
+import { ActionTakenPopupModule } from "../action-taken-popup/action-taken-popup.module";
 
 @NgModule({
   declarations: [
@@ -27,7 +30,10 @@ import { DropdownModule } from 'primeng/dropdown';
     DropdownModule,
     CheckboxModule,
     TableModule,
-  ],
+    ButtonModule,
+    DialogModule,
+    ActionTakenPopupModule
+],
   exports:[AlertComponent]
 })
 export class AlertModule { }

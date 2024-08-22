@@ -11,6 +11,8 @@ import { DialogModule } from 'primeng/dialog';
 import { ButtonModule } from 'primeng/button';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { ActionsModule } from './actions/actions.module';
+import { ActionTakenPopupComponent } from './action-taken-popup/action-taken-popup.component';
+import { ActionTakenPopupModule } from './action-taken-popup/action-taken-popup.module';
 
 
 @NgModule({
@@ -29,7 +31,8 @@ import { ActionsModule } from './actions/actions.module';
         DialogModule,
         ButtonModule,
         ConfirmDialogModule,
-        ActionsModule
+        ActionsModule,
+        ActionTakenPopupModule
   ],
 })
 export class ResidentProfileModule { }

@@ -473,6 +473,26 @@ export class UserService {
   //   );
   // }
 
+    //#region AlertActionTaken
+
+    AlertActionTaken(AlertActionTakenData: any): Observable<any> {
+      let reqHeader = new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': environment.BaseUriUser,
+        'Authorization': 'Bearer ' + localStorage.getItem('token')
+      });
+      let params = new HttpParams();
+      var data = JSON.stringify(AlertActionTakenData).toString();
+      return this._httpclient.post<any>(
+        environment.BaseUriUser +
+        'api/User/AlertActionTaken',
+        data,
+        { headers: reqHeader, params: params }
+      );
+    }
+  
+    //#endregion
+
   GetDailyVitalAlertLog(userid, firstdate, enddate, name, status) {
     let reqHeader = new HttpHeaders({
       "Content-Type": "application/json",

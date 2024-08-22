@@ -1,5 +1,5 @@
 import { DatePipe } from '@angular/common';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { AppComponentBase } from 'src/app/app-component-base';
 import { ConstantsService, CustomDateFormat } from 'src/app/ui/service/constants.service';
 import { MasterService } from 'src/app/ui/service/master.service';
@@ -19,6 +19,7 @@ export class AlertComponent extends AppComponentBase implements OnInit {
     @Input() userid: any = null;
     @Input() admissionid: any = null;
     @Input() residentadmissiondetails: any = <any>{};
+    @Output() EmitUpdateAlert: EventEmitter<any> = new EventEmitter<any>();
 
     customDateFormat = CustomDateFormat;
     selectedAlertMasterId: string = null;
@@ -28,6 +29,14 @@ export class AlertComponent extends AppComponentBase implements OnInit {
     public AlertList: any[] = [];
     rangeDates: Date[] = [];
     SearchList1: any[] = [];
+
+    ActionTakenData: any = <any>{};
+    isShowActionTakenPopup: boolean = false;
+    loginId: any;
+
+
+
+
     constructor(
         private _ConstantServices: ConstantsService,
         private _MasterServices: MasterService,
@@ -41,7 +50,8 @@ export class AlertComponent extends AppComponentBase implements OnInit {
         { name: 'Inactive', code: 0 }
         ]
         this.rangeDates = [new Date(), new Date()];
-
+        
+        this.loginId = localStorage.getItem('userId');
 
     }
 
@@ -159,8 +169,6 @@ export class AlertComponent extends AppComponentBase implements OnInit {
                         var tdata = JSON.parse(data.actionResult.result);
                         tdata = tdata ? tdata : [];
                         this.AlertList = tdata;
-                        console.log("===>dsaf");
-                        console.log(this.AlertList);
                     }
                     else {
                         this.AlertList = [];
@@ -173,5 +181,30 @@ export class AlertComponent extends AppComponentBase implements OnInit {
             });
         importData = {};
 
+    }
+
+    showPopup(alertId, alert) {
+        this.ActionTakenData = {
+            dailyVitalsAlertId: alertId,
+            actionRemarks: alert.actionRemarks,
+            actionBy: this.loginId,
+            isActionTaken: false,
+            residentAdmissionInfoId: this.admissionid
+        };
+        this.isShowActionTakenPopup = true;
+    }
+
+    Changes(value: boolean) {
+        this.isShowActionTakenPopup = value;
+        this.alertOnChange();
+    }
+
+    alertOnChange() {
+        this.GetAllAlert();
+    }
+
+    AlertChanges(value: number) {
+        this.EmitUpdateAlert.emit(value);
+        this.GetAllAlert();
     }
 }
