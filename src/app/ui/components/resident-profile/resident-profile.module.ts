@@ -10,6 +10,9 @@ import { ResidentProgressnotesModule } from "./resident-progressnotes/resident-p
 import { DialogModule } from 'primeng/dialog';
 import { ButtonModule } from 'primeng/button';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { ActionsModule } from './actions/actions.module';
+import { ActionTakenPopupComponent } from './action-taken-popup/action-taken-popup.component';
+import { ActionTakenPopupModule } from './action-taken-popup/action-taken-popup.module';
 
 
 @NgModule({
@@ -27,7 +30,9 @@ import { ConfirmDialogModule } from 'primeng/confirmdialog';
         ResidentProgressnotesModule,
         DialogModule,
         ButtonModule,
-        ConfirmDialogModule
+        ConfirmDialogModule,
+        ActionsModule,
+        ActionTakenPopupModule
   ],
 })
 export class ResidentProfileModule { }

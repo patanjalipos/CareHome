@@ -100,7 +100,7 @@
                         <button class="nav-link" [ngClass]="{'active': isActionActive}" (click)="confirm($event,'Action')" label="">Actions</button>
                         </li>
                         <li class="nav-item" role="presentation">
-                        <button class="nav-link" [ngClass]="{'active': isAlertActive}" (click)="confirm($event,'Alert')" label="">Alerts</button>
+                        <button class="nav-link" [ngClass]="{'active': isAlertActive}" (click)="confirm($event,'Alert')" label="">Alerts({{alertCount}})</button>
                         </li>
                         </ul>
                         </div>
@@ -124,12 +124,16 @@
                     [residentAdmissionInfoId]="selectedadmissionid"></app-forms-dashboard>
             </div>
             <div *ngIf="Chart">
-                <app-chart [userId]="selecteduserid" [residentAdmissionInfoId]="selectedadmissionid"></app-chart>
+                <app-chart [userId]="selecteduserid" [residentAdmissionInfoId]="selectedadmissionid" (EmitUpdateChart)="EmitUpdateChart($event)"></app-chart>
             </div>
           
             <div *ngIf="Alert">
                 <app-alert [userid]="selecteduserid" [admissionid]="selectedadmissionid"
-                    [residentadmissiondetails]="ResidentMaster"></app-alert>
+                    [residentadmissiondetails]="ResidentMaster" (EmitUpdateAlert)="EmitUpdateChart($event)"></app-alert>
+            </div>
+
+            <div *ngIf="Action">
+                <app-actions [userid]="selecteduserid" [admissionid]="selectedadmissionid"></app-actions>
             </div>
         </div>
     </div>

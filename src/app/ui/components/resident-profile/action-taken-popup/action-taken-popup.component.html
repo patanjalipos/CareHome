@@ -1,0 +1,11 @@
+<div>
+    <div class="col-md-6 my-5">
+        <label class="form-label bold">Please enter action taken<span class="required">*</span></label>
+        <input type="text" pInputText name="ActionRemark" [required]="true" [style]="{ width: '100%' }"
+            [(ngModel)]="ActionTakenData.actionRemarks" />
+    </div>
+    <div class="flex justify-content-end gap-2">
+        <p-button class="col-md-9" label="Keep this alert visible" severity="secondary" (click)="AlertActionTakenCheck(false)"></p-button>
+        <p-button class="" label="Acknowledge and action" (click)="AlertActionTakenCheck(true)"></p-button>
+    </div>
+</div>
