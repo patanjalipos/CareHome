@@ -22,6 +22,7 @@ import {
 import { ActivatedRoute } from '@angular/router';
 import { DatePipe } from '@angular/common';
 import { StrikeThroughEntryComponent } from '../strike-through-entry/strike-through-entry.component';
+import { async } from 'rxjs';
 
 @Component({
     selector: 'app-blood-pressure-chart',
@@ -34,6 +35,7 @@ export class BloodPressureChartComponent
     @ViewChild('child') child: StrikeThroughEntryComponent;
     @Input() preSelectedChartData: any = <any>{};
     @Output() EmitUpdateForm: EventEmitter<any> = new EventEmitter<any>();
+    @Output() EmitUpdateAlert: EventEmitter<any> = new EventEmitter<any>();
 
     customDateFormat = CustomDateFormat;
     bloodPressureChartFormData: any = <any>{};
@@ -46,7 +48,7 @@ export class BloodPressureChartComponent
     residentAdmissionInfoId: any;
     userId: any;
     StatementType: string = null;
-    CareGivenCheck:boolean = false;
+    CareGivenCheck: boolean = false;
     ReasonCheck: boolean = false;
 
     //Alert Checks properties
@@ -61,10 +63,13 @@ export class BloodPressureChartComponent
     rightBtnCheck: boolean = false;
     isShowStrikeThroughPopup: boolean = false;
     StrikeThroughData: any = <any>{};
-    stLstReason:any[]=[];
+    stLstReason: any[] = [];
     stLstErrorAndWarning: any = <any>{};
-    result:any = <any>{};
-    ChartName:string;
+    result: any = <any>{};
+    ChartName: string;
+
+    // chartId: string = '';
+    alertCount: number = 0;
 
     constructor(
         private optionService: OptionService,
@@ -78,7 +83,7 @@ export class BloodPressureChartComponent
         super();
         this.loginId = localStorage.getItem('userId');
     }
-    
+
 
     ngOnChanges(changes: SimpleChanges): void {
         this.isEditable = this.preSelectedChartData.isEditable;
@@ -90,7 +95,7 @@ export class BloodPressureChartComponent
             this.StatementType = 'Update';
         } else {
             this.ResetModel();
-            this.getChartDataById(this.preSelectedChartData.chartMasterId,this.preSelectedChartData.chartId, this.preSelectedChartData.selectedStartedOn, this.preSelectedChartData.residentAdmissionInfoId, this.pageNumber, this.pageSize);
+            this.getChartDataById(this.preSelectedChartData.chartMasterId, this.preSelectedChartData.chartId, this.preSelectedChartData.selectedStartedOn, this.preSelectedChartData.residentAdmissionInfoId, this.pageNumber, this.pageSize);
 
         }
     }
@@ -116,9 +121,9 @@ export class BloodPressureChartComponent
             this.ChartName = this.result["ChartName"];
             this._ConstantServices.ActiveMenuName = this.ChartName;
         });
-        this.bloodPressureChartFormData.DateAndTime = new Date()
-      this.GetClinicalBaselineHealthInfoById(this.residentAdmissionInfoId);
-      // this.getChartDataById(this.preSelectedChartData.chartMasterId, this.preSelectedChartData.residentAdmissionInfoId, this.pageNumber, this.pageSize);
+        this.bloodPressureChartFormData.DateAndTime = new Date();
+        // this.GetClinicalBaselineHealthInfoById(this.residentAdmissionInfoId);
+        // this.getChartDataById(this.preSelectedChartData.chartMasterId, this.preSelectedChartData.residentAdmissionInfoId, this.pageNumber, this.pageSize);
     }
 
     openAndClose() {
@@ -166,77 +171,81 @@ export class BloodPressureChartComponent
         }
     }
 
-    GetClinicalBaselineHealthInfoById(admissionid) {
-        this._UtilityService.showSpinner();
-        this.unsubscribe.add = this._UserService.GetClinicalBaselineHealthInfoById(admissionid)
-          .subscribe({
-            next: (data) => {
-              this._UtilityService.hideSpinner();
-              if (data.actionResult.success == true) {
-                var tdata = JSON.parse(data.actionResult.result);
-                tdata = tdata ? tdata : [];
-                this.Clinical = tdata;
-              }
-            },
-            error: (e) => {
-              this._UtilityService.hideSpinner();
-              this._UtilityService.showErrorAlert(e.message);
-            },
-          });
-      }
+    // GetClinicalBaselineHealthInfoById(admissionid) {
+    //     this._UtilityService.showSpinner();
+    //     this.unsubscribe.add = this._UserService.GetClinicalBaselineHealthInfoById(admissionid)
+    //         .subscribe({
+    //             next: (data) => {
+    //                 this._UtilityService.hideSpinner();
+    //                 if (data.actionResult.success == true) {
+    //                     var tdata = JSON.parse(data.actionResult.result);
+    //                     tdata = tdata ? tdata : [];
+    //                     this.Clinical = tdata;
+    //                 }
+    //             },
+    //             error: (e) => {
+    //                 this._UtilityService.hideSpinner();
+    //                 this._UtilityService.showErrorAlert(e.message);
+    //             },
+    //         });
+    // }
 
-      SaveAlert() {
-        
-        var value = this.bloodPressureChartFormData.Systolic.toString() + '/' + this.bloodPressureChartFormData.Diastolic.toString();
-        var ChartAlert = {
-            alertMasterId: AlertTypes.BloodPressureAlert,
-            chartId: this.bloodPressureChartFormData.bloodPressureChartId,
-            chartMasterId: this.preSelectedChartData.chartMasterId,
-            userId: this.bloodPressureChartFormData.userId,
-            residentAdmissionInfoId: this.bloodPressureChartFormData.ResidentAdmissionInfoId,
-            dateAndTime: this.bloodPressureChartFormData.DateAndTime,
-            status: AlertStatus.Active,
-            value: value,
-            createdBy: this.loginId,
-            modifiedBy: this.loginId
-        }
-        debugger
-        this.unsubscribe.add = this._UserService.InsertDailyVitalAlertLog(ChartAlert)
-        .subscribe
-        ({
-          next: (data) => {
-            
-            if (data.actionResult.success == true)
-              this._UtilityService.showSuccessAlert(data.actionResult.errMsg);
-            else
-              this._UtilityService.showWarningAlert(data.actionResult.errMsg);
-          },
-          error: (e) => {
-            this._UtilityService.showErrorAlert(e.message);
-          },
-        });
-      }
+    // SaveAlert(chartId: any) {
+    //     var value = this.bloodPressureChartFormData.Systolic.toString() + '/' + this.bloodPressureChartFormData.Diastolic.toString();
+    //     var ChartAlert = {
+    //         alertMasterId: AlertTypes.BloodPressureAlert,
+    //         chartId: chartId,
+    //         chartMasterId: this.preSelectedChartData.chartMasterId,
+    //         userId: this.bloodPressureChartFormData.userId,
+    //         residentAdmissionInfoId: this.bloodPressureChartFormData.ResidentAdmissionInfoId,
+    //         dateAndTime: this.bloodPressureChartFormData.DateAndTime,
+    //         status: AlertStatus.Active,
+    //         value: value,
+    //         createdBy: this.loginId,
+    //         modifiedBy: this.loginId
+    //     }
+    //     debugger
+    //    this.unsubscribe.add = this._UserService
+    //         .InsertDailyVitalAlertLog(ChartAlert)
+    //         .subscribe({
+    //             next: (data) => {
+                    
+    //                 this.alertCount = parseInt(data.actionResult.stringVal);
+    //                 this.EmitUpdateForm.emit(this.alertCount);
+    //                 this._UtilityService.hideSpinner();
+    //                 if (data.actionResult.success == true) {
+    //                     this._UtilityService.showSuccessAlert(data.actionResult.errMsg);
+    //                 } else {
+    //                     this._UtilityService.showWarningAlert(data.actionResult.errMsg);
+    //                 }
+    //             },
+    //             error: (e) => {
+    //                 this._UtilityService.hideSpinner();
+    //                 this._UtilityService.showErrorAlert(e.message);
+    //             },
+    //         });
+    // }
 
-      CompareAlert() {
-        if((!(this.bloodPressureChartFormData.Systolic >= this.Clinical.MinSBP && this.bloodPressureChartFormData.Systolic <= this.Clinical.MaxSBP)) && (!(this.bloodPressureChartFormData.Diastolic >= this.Clinical.MinDBP && this.bloodPressureChartFormData.Diastolic <= this.Clinical.MaxDBP))) {
-            return true;
-        }
-        else {
-            return false;
-        }
-      }
+    // CompareAlert() {
+    //     if ((!(this.bloodPressureChartFormData.Systolic >= this.Clinical.MinSBP && this.bloodPressureChartFormData.Systolic <= this.Clinical.MaxSBP)) && (!(this.bloodPressureChartFormData.Diastolic >= this.Clinical.MinDBP && this.bloodPressureChartFormData.Diastolic <= this.Clinical.MaxDBP))) {
+    //         return true;
+    //     }
+    //     else {
+    //         return false;
+    //     }
+    // }
 
     Save() {
-        if(this.bloodPressureChartFormData.CareGiven == null) {
+        if (this.bloodPressureChartFormData.CareGiven == null) {
             this.CareGivenCheck = true;
         }
-        else if(this.bloodPressureChartFormData.CareGiven != null) {
+        else if (this.bloodPressureChartFormData.CareGiven != null) {
             this.CareGivenCheck = false;
-            if(this.bloodPressureChartFormData.CareGiven == 'Yes') {
+            if (this.bloodPressureChartFormData.CareGiven == 'Yes') {
                 this.ReasonCheck = false;
             }
-            else{
-                if(this.bloodPressureChartFormData.Reason == null) {
+            else {
+                if (this.bloodPressureChartFormData.Reason == null) {
                     this.ReasonCheck = true;
                 }
                 else {
@@ -285,16 +294,28 @@ export class BloodPressureChartComponent
             const objectBody: any = {
                 StatementType: this.StatementType,
                 bloodPressureChartData: this.bloodPressureChartFormData,
+                alertMasterId: AlertTypes.BloodPressureAlert,
+                chartMasterId: ChartTypes.BloodPressureChart
             };
-
             this._UtilityService.showSpinner();
             this.unsubscribe.add = this._BloodPressureChartService
                 .AddInsertUpdateBloodPressureChartForm(objectBody)
                 .subscribe({
                     next: (data) => {
+
+                        // this.chartId = data.actionResult.stringVal;
+                        this.alertCount = data.actionResult.value;
                         this._UtilityService.hideSpinner();
                         if (data.actionResult.success == true) {
                             this.EmitUpdateForm.emit(true);
+                            this.EmitUpdateAlert.emit(this.alertCount);
+
+                            // this.CompareAlert();
+
+                            // if (this.CompareAlert()) {
+                            //     this.SaveAlert(this.chartId);
+                            // }
+
                             this.ResetModel();
                             this._UtilityService.showSuccessAlert(
                                 data.actionResult.errMsg
@@ -309,15 +330,11 @@ export class BloodPressureChartComponent
                         this._UtilityService.showErrorAlert(e.message);
                     },
                 });
+
         } else {
             this._UtilityService.showWarningAlert(this.ChartName + " " + this.stLstErrorAndWarning.Warnings.Common.DetailMissMessage);
         }
-        
-            this.CompareAlert();
 
-            if(this.CompareAlert()) {
-                this.SaveAlert();
-            }
     }
 
     ResetModel() {
@@ -339,7 +356,7 @@ export class BloodPressureChartComponent
     }
 
     chartOnChange() {
-        this.getChartDataById(this.preSelectedChartData.chartMasterId,this.preSelectedChartData.chartId, this.preSelectedChartData.selectedStartedOn, this.preSelectedChartData.residentAdmissionInfoId, this.pageNumber, this.pageSize);
+        this.getChartDataById(this.preSelectedChartData.chartMasterId, this.preSelectedChartData.chartId, this.preSelectedChartData.selectedStartedOn, this.preSelectedChartData.residentAdmissionInfoId, this.pageNumber, this.pageSize);
 
     }
 
