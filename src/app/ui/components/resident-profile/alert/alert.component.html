@@ -46,18 +46,26 @@
             </ng-template>
             <ng-template pTemplate="body" let-dt>
                 <tr>
-                    <td>{{dt.AlertName}}</td>
-                    <td> 
-                    <div>
-                            <label class="text-danger">{{dt.value}}</label> <br>
-                            <label>Systolic Range (mmHg) = {{dt.MinSystolic}} - {{dt.MaxSystolic}}</label> <br>
-                            <label>Diastolic Range (mmHg) = {{dt.MinDiastolic}} - {{dt.MaxDiastolic}}</label>
+                    <td>
+                        <div>
+                           <label class="bold text-danger fs-5"> {{dt.AlertName}} </label>
+                           <label> A blood pressure observation was recorded outside the baseline range. </label> 
+                        </div>
+
+                    </td>
+                    <td>
+                        <div>
+                            <label class="text-danger">{{dt.value}}</label> (Systolic/Diastolic) <br>
+                            <label class="bold">Systolic Range (mmHg) = {{dt.MinSystolic}} - {{dt.MaxSystolic}}</label>
+                            <br>
+                            <label class="bold">Diastolic Range (mmHg) = {{dt.MinDiastolic}} -
+                                {{dt.MaxDiastolic}}</label>
                         </div>
                     </td>
-                    <td> 
+                    <td>
                         <div>
-                                <label>{{dt.createdOn | date:customDateFormat.DEF_DATE_TIME}}</label> <br>
-                                <label>Observed By -- {{dt.CreatedBy}} </label>
+                            <label>{{dt.createdOn | date:customDateFormat.DEF_DATE_TIME}}</label> <br>
+                            <label>Observed By -- {{dt.CreatedBy}} </label>
                         </div>
                     </td>
                     <td>
@@ -65,7 +73,7 @@
                         <div>
 
                             <p-button *ngIf="!dt.isActionTaken"
-                            (click)="showPopup(dt.dailyVitalsAlertId,dt)">Action</p-button>
+                                (click)="showPopup(dt.dailyVitalsAlertId,dt)">Action</p-button>
 
                             <div *ngIf="dt.isActionTaken">
                                 <label>Actioned By -- {{dt.ActionBy}} </label> <br>
@@ -73,15 +81,15 @@
                             </div>
 
                             <hr *ngIf="dt.actionRemarks != null" style="border: 1px solid black;">
-                            
+
                             <div *ngIf="dt.actionRemarks != null">
                                 <label class="bold">{{dt.actionRemarks}}</label>
                             </div>
-                        
+
                         </div>
 
-                        
-                        
+
+
                         <!-- <a title="View">
                             <i class="fa fa-eye" aria-hidden="true"></i>
                         </a>
@@ -95,13 +103,13 @@
         </p-table>
 
         <div *ngIf="isShowActionTakenPopup" class="card flex justify-content-center">
-            <p-dialog [closable]="true" header="Action this alert" [(visible)]="isShowActionTakenPopup"
-                [modal]="true" [breakpoints]="{ '1199px': '75vw', '575px': '90vw' }" [style]="{ width: '40vw' }"
-                [draggable]="false" [resizable]="false">
+            <p-dialog [closable]="true" header="Action this alert" [(visible)]="isShowActionTakenPopup" [modal]="true"
+                [breakpoints]="{ '1199px': '75vw', '575px': '90vw' }" [style]="{ width: '40vw' }" [draggable]="false"
+                [resizable]="false">
                 <div *ngIf="isShowActionTakenPopup">
 
-                    <app-action-taken-popup [ActionTakenData]="ActionTakenData"
-                        (ActionTakenCheck)="Changes($event)" (EmitUpdateAlert)="AlertChanges($event)"></app-action-taken-popup>
+                    <app-action-taken-popup [ActionTakenData]="ActionTakenData" (ActionTakenCheck)="Changes($event)"
+                        (EmitUpdateAlert)="AlertChanges($event)"></app-action-taken-popup>
                 </div>
             </p-dialog>
         </div>
