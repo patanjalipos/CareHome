@@ -16,6 +16,7 @@ import { ResidentLayoutComponent } from './layout/resident.layout.component';
                     { path: 'master', loadChildren: () => import('./ui/components/master/master.module').then(m => m.MasterModule) },
                     { path: 'forms', loadChildren: () => import('./ui/components/forms/forms.module').then(m => m.FormsModule) },
                     { path: 'resident-list', loadChildren: () => import('./ui/components/resident-list/resident-list.module').then(m => m.ResidentListModule) }, 
+                    { path: 'alert-list', loadChildren: () => import('./ui/components/alert-list/alert-list.module').then(m => m.AlertListModule) }, 
                     { path: 'task-planner', loadChildren: () => import('./ui/components/task-planner/task-planner.module').then(m => m.TaskPlannerModule) }, 
                     { path: 'activity', loadChildren: () => import('./ui/components/activity/activity.module').then(m => m.ActivityModule) }, 
                     { path: 'documentation', loadChildren: () => import('./ui/components/documentation/documentation.module').then(m => m.DocumentationModule) },
