@@ -31,15 +31,15 @@
     ],
     "MenuMaster": [
         {
-             "optionId": "UserType",
-             "optionValue": "User Type"
+            "optionId": "UserType",
+            "optionValue": "User Type"
         },
         {
             "optionId": "MenuName",
             "optionValue": "Menu Name"
         }
     ],
-    "AlertHeadMaster": [        
+    "AlertHeadMaster": [
         {
             "optionId": "AlertHeadName",
             "optionValue": "Alert Head Name"
@@ -59,7 +59,7 @@
             "optionValue": "Chart Name"
         }
     ],
-    "ChartHeadMaster": [        
+    "ChartHeadMaster": [
         {
             "optionId": "ChartHeadName",
             "optionValue": "Chart Head Name"
@@ -69,7 +69,7 @@
             "optionValue": "Order No"
         }
     ],
-    "IndicatorGroupMaster": [        
+    "IndicatorGroupMaster": [
         {
             "optionId": "GroupName",
             "optionValue": "Group Name"
@@ -79,61 +79,61 @@
             "optionValue": "Order No"
         }
     ],
-    "IndicatorMaster": [        
+    "IndicatorMaster": [
         {
             "optionId": "IndicatorGroupName",
             "optionValue": "Indicator Group Name"
-        },      
+        },
         {
             "optionId": "IndicatorName",
             "optionValue": "Indicator Name"
         }
     ],
-    "AttorneyTypeMaster": [        
+    "AttorneyTypeMaster": [
         {
             "optionId": "TypeName",
             "optionValue": "Type Name"
-        },      
+        },
         {
             "optionId": "OrderNo",
             "optionValue": "Order No"
         }
     ],
-    "FormMaster": [        
+    "FormMaster": [
         {
             "optionId": "FormName",
             "optionValue": "Form Name"
-        },      
+        },
         {
             "optionId": "Sequence",
             "optionValue": "Sequence"
         }
     ],
-    "FallRiskMaster": [  
+    "FallRiskMaster": [
         {
             "optionId": "FallRiskName",
             "optionValue": "Fall Risk Name"
-        },      
+        },
         {
             "optionId": "RiskPoint",
             "optionValue": "Risk Point"
         }
     ],
-    "HomeMaster": [  
+    "HomeMaster": [
         {
             "optionId": "HomeCode",
             "optionValue": "Home Code"
-        },      
+        },
         {
             "optionId": "HomeName",
             "optionValue": "Home Name"
         }
     ],
-    "LocationMaster": [  
+    "LocationMaster": [
         {
             "optionId": "Facility",
             "optionValue": "Facility"
-        },      
+        },
         {
             "optionId": "Location",
             "optionValue": "Location"
