@@ -1,0 +1,59 @@
+<div class="card">
+    <p-table #dt [value]="AlertList" responsiveLayout="scroll" styleClass="p-datatable-striped" [rowHover]="true"
+        [globalFilterFields]="['AlertName','ResidentName']" [scrollable]="true"
+        scrollHeight="calc(100vh - 155px)">
+        <ng-template pTemplate="caption">
+            <div class="flex justify-content-between flex-column sm:flex-row">
+                <span class="p-ml-left">
+                    <span class="total-txt">
+                        {{AlertList?.length>0?'Total Records:
+                        '+AlertList.length:''}} </span>
+                </span>
+                <span class="p-ml-auto">
+                    <button pButton title="Export Data" label=" " class="p-button-outlined mr-2"
+                        icon="pi pi-download" (click)="exportToItemExcel();"></button>
+                    <span class="p-input-icon-left">
+                        <i class="pi pi-search"></i>
+                        <input #filtr pInputText type="text" (input)="onGlobalFilter(dt, $event)"
+                            placeholder="Search..." /></span>
+                </span> 
+            </div>
+        </ng-template>
+        <ng-template pTemplate="emptymessage" let-columns>
+            <tr>
+                <td [attr.colspan]="columns?.length">
+                    No records found
+                </td>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="header">
+            <tr>
+                <th>Resident Name</th>
+                <th>Alert Name</th>
+                <th>Observation</th>
+                <th>Recorded Date/Time</th>
+                <th>Actions</th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-dt let-i="rowIndex">
+            <tr>
+                <td>{{dt.ResidentName}}</td>
+                <td>{{dt.AlertName}}</td>
+                <td>
+                    <div>
+                        <label class="text-danger">{{dt.value}}</label> <br>
+                        <label>Systolic Range (mmHg) = {{dt.MinSystolic}} - {{dt.MaxSystolic}}</label> <br>
+                        <label>Diastolic Range (mmHg) = {{dt.MinDiastolic}} - {{dt.MaxDiastolic}}</label>
+                    </div>
+                </td>
+                <td>
+                    <div>
+                        <label>{{dt.createdOn | date:customDateFormat.DEF_DATE_TIME}}</label> <br>
+                        <label>Observed By -- {{dt.CreatedBy}} </label>
+                    </div>
+                </td>
+                <td></td>
+            </tr>
+        </ng-template>
+    </p-table>
+</div>
