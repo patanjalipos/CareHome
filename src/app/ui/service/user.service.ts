@@ -511,7 +511,7 @@ export class UserService {
     );
   }
 
-  GetAllAlert(importData,residentAdmissionInfoId) {
+  GetAllAlert(importData: any, residentAdmissionInfoId: any) {
     let reqHeader = new HttpHeaders({
       "Content-Type": "application/json",
       "Access-Control-Allow-Origin": environment.BaseUriUser,
