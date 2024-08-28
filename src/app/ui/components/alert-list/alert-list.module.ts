@@ -8,6 +8,9 @@ import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
 import { TableModule } from 'primeng/table';
 import { TieredMenuModule } from 'primeng/tieredmenu';
+import { FilterationModule } from "../filteration/filteration.module";
+import { DialogModule } from 'primeng/dialog';
+import { ActionTakenPopupModule } from "../resident-profile/action-taken-popup/action-taken-popup.module";
 
 
 @NgModule({
@@ -22,6 +25,9 @@ import { TieredMenuModule } from 'primeng/tieredmenu';
     InputTextModule,
     TieredMenuModule,
     ButtonModule,
-  ],
+    FilterationModule,
+    DialogModule,
+    ActionTakenPopupModule
+],
 })
 export class AlertListModule { }
