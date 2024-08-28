@@ -61,6 +61,7 @@
                             Diastolic Range (mmHg) = {{dt.MinDiastolic}} -
                                 {{dt.MaxDiastolic}}</label>
                             <label class="bold" *ngIf="dt.alertMasterId == alertTypes.WeightAlert">Baseline Value Range = {{dt.MinWeight}} - {{dt.MaxWeight}}</label>
+                            <label class="bold" *ngIf="dt.alertMasterId == alertTypes.BloodGlucoseAlert">Baseline Value Range = {{dt.MinWeight}} - {{dt.MaxWeight}}</label>
                         </div>
                     </td>
                     <td>
