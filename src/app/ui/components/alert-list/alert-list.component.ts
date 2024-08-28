@@ -137,4 +137,29 @@ export class AlertListComponent extends AppComponentBase implements OnInit {
     this.GetAllAlert();
   }
 
+
+  calculateAge(birthday): number {
+    if (birthday != undefined) {
+      var curdate = new Date();
+      var dob = new Date(birthday);
+      var ageyear = curdate.getFullYear() - dob.getFullYear();
+      var agemonth = curdate.getMonth() - dob.getMonth();
+      var ageday = curdate.getDate() - dob.getDate();
+      if (agemonth <= 0) {
+        ageyear--;
+        agemonth = (12 + agemonth);
+      }
+      if (curdate.getDate() < dob.getDate()) {
+        agemonth--;
+        ageday = 30 + ageday;
+      } if (agemonth == 12) {
+        ageyear = ageyear + 1;
+        agemonth = 0;
+      }
+      return ageyear;
+    }
+    else
+      return 0;
+  }
+
 }
