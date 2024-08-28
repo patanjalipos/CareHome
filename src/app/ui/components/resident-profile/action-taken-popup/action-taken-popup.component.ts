@@ -14,11 +14,21 @@ export class ActionTakenPopupComponent extends AppComponentBase implements OnIni
   @Output() ActionTakenCheck:EventEmitter<boolean> = new EventEmitter<boolean>();
   @Output() EmitUpdateAlert: EventEmitter<any> = new EventEmitter<any>();
 
+  imageSrc: any;
+  
   constructor(private _UtilityService: UtilityService, private _UserService: UserService) {
     super();
-   }
-
+  }
+  
   ngOnInit(): void {
+
+    if (this.ActionTakenData.residentDetails.ProfileImage != undefined && this.ActionTakenData.residentDetails.ProfileImage != null && this.ActionTakenData.residentDetails.ProfileImage != '') {
+      var imageFormat = this._UtilityService.getFileExtension(this.ActionTakenData.residentDetails.ProfileImage);
+      this.imageSrc = "data:image/" + imageFormat + ";base64," + this.ActionTakenData.residentDetails.ProfileImage;
+    }
+    else {
+      this.imageSrc = "";
+    }
   }
 
   AlertActionTakenCheck(actionCheck: boolean) {
@@ -33,7 +43,6 @@ export class ActionTakenPopupComponent extends AppComponentBase implements OnIni
                 this._UtilityService.hideSpinner();
                 if (data.actionResult.success == true) {
                   this.ActionTakenCheck.emit(false);
-                  console.log('DATA',data);
                   
                   this.EmitUpdateAlert.emit(data.actionResult.value);
                     // this.ResetModel();
@@ -51,4 +60,29 @@ export class ActionTakenPopupComponent extends AppComponentBase implements OnIni
             },
         });
    } 
+
+   calculateAge(birthday): number {
+    if (birthday != undefined) {
+      var curdate = new Date();
+      var dob = new Date(birthday);
+      var ageyear = curdate.getFullYear() - dob.getFullYear();
+      var agemonth = curdate.getMonth() - dob.getMonth();
+      var ageday = curdate.getDate() - dob.getDate();
+      if (agemonth <= 0) {
+        ageyear--;
+        agemonth = (12 + agemonth);
+      }
+      if (curdate.getDate() < dob.getDate()) {
+        agemonth--;
+        ageday = 30 + ageday;
+      } if (agemonth == 12) {
+        ageyear = ageyear + 1;
+        agemonth = 0;
+      }
+      return ageyear;
+    }
+    else
+      return 0;
+  }
+
 }

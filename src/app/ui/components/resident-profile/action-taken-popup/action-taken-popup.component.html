@@ -1,11 +1,53 @@
 <div>
-    <div class="col-md-6 my-5">
-        <label class="form-label bold">Please enter action taken<span class="required">*</span></label>
-        <input type="text" pInputText name="ActionRemark" [required]="true" [style]="{ width: '100%' }"
-            [(ngModel)]="ActionTakenData.actionRemarks" />
+
+    <hr style="border: 1px solid black; margin: 0px;">
+    <div class="row">
+        <div class="col-md-5 my-5">
+            <label class="bold text-danger fs-5">{{ActionTakenData.alertData.AlertName}}</label>
+            <p> A blood pressure observation was recorded outside the baseline range. </p>
+            <br>
+            <label class="bold">Observation - <span class="text-danger">{{ActionTakenData.alertData.value}} </span>(Systolic/Diastolic)</label>
+            <br>
+            <label class="bold">Baseline Value Ranges :-</label>
+            <div>
+                <label>Systolic Range (mmHg) = <span class="bold">{{ActionTakenData.alertData.MinSystolic}} - {{ActionTakenData.alertData.MaxSystolic}}</span></label>
+                <label>Diastolic Range (mmHg) = <span class="bold">{{ActionTakenData.alertData.MinDiastolic}} - {{ActionTakenData.alertData.MaxDiastolic}}</span></label>
+            </div>
+        </div>
+        <div class="col-md-4 d-flex my-5">
+            <div class="profile-img">
+                <img [src]="imageSrc" class="mr-2" width="200" *ngIf="
+                        imageSrc != null &&
+                        imageSrc != undefined &&
+                        imageSrc != ''" />
+
+            </div>
+            <div>
+
+                <label class="bold fs-5">{{ActionTakenData.residentDetails.Title}}.
+                    {{ActionTakenData.residentDetails.FullName}}</label>
+
+                <label>{{ calculateAge(ActionTakenData.residentDetails.DateOfBirth) }}yrs
+                    ({{ActionTakenData.residentDetails.DateOfBirth | date}}) </label>
+
+                <label>Room No - {{ActionTakenData.residentDetails.RoomNumber}}</label>
+            </div>
+
+
+        </div>
+        <div class="col-md-3 my-5">
+            <label>{{ActionTakenData.alertData.createdOn | date : 'dd-MM-yyyy HH:mm'}}</label>
+            <label>Observation By {{ActionTakenData.alertData.CreatedBy}} </label>
+        </div>
     </div>
-    <div class="flex justify-content-end gap-2">
-        <p-button class="col-md-9" label="Keep this alert visible" severity="secondary" (click)="AlertActionTakenCheck(false)"></p-button>
+    <div class="col-md-12 my-5">
+        <label class="form-label bold">Please enter action taken<span class="required">*</span></label>
+        <textarea pInputTextarea rows="4" class="form-control" name="ActionRemark" [required]="true" [style]="{ height: '100px !important' }"
+            [(ngModel)]="ActionTakenData.actionRemarks"></textarea>
+    </div>
+    <div class=" col-md-12 flex justify-content-between gap-2">
+        <p-button class="" label="Keep this alert visible" severity="secondary"
+            (click)="AlertActionTakenCheck(false)"></p-button>
         <p-button class="" label="Acknowledge and action" (click)="AlertActionTakenCheck(true)"></p-button>
     </div>
 </div>
