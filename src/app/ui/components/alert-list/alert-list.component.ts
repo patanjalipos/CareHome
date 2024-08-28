@@ -5,6 +5,7 @@ import { UtilityService } from 'src/app/utility/utility.service';
 import { AppComponentBase } from 'src/app/app-component-base';
 import { UserService } from '../../service/user.service';
 import { Table } from 'primeng/table';
+import { log } from 'console';
 
 @Component({
   selector: 'app-alert-list',
@@ -14,7 +15,7 @@ import { Table } from 'primeng/table';
 export class AlertListComponent extends AppComponentBase implements OnInit {
 
   @Output() EmitUpdateAlert: EventEmitter<any> = new EventEmitter<any>();
-  
+
   customDateFormat = CustomDateFormat;
   public AlertList: any[] = [];
   filteredValuesLength: number = 0;
@@ -26,6 +27,8 @@ export class AlertListComponent extends AppComponentBase implements OnInit {
   ActionTakenData: any = <any>{};
   isShowActionTakenPopup: boolean = false;
   loginId: any;
+  alertCount: any;
+  ResidentMaster: any;
 
   constructor(
     private _ConstantServices: ConstantsService,
@@ -39,6 +42,7 @@ export class AlertListComponent extends AppComponentBase implements OnInit {
 
   ngOnInit(): void {
     this.GetAllAlert();
+
   }
 
 
@@ -60,7 +64,7 @@ export class AlertListComponent extends AppComponentBase implements OnInit {
     console.log(importData);
     this._UtilityService.showSpinner();
     this.unsubscribe.add = this._UserServices
-      .GetAllAlert(importData,null)
+      .GetAllAlert(importData, null)
       .subscribe({
         next: (data) => {
           this._UtilityService.hideSpinner();
@@ -74,6 +78,9 @@ export class AlertListComponent extends AppComponentBase implements OnInit {
                 chart.ProfileImage = `data:image/${imageFormat};base64,${chart.ProfileImage}`;
               }
             });
+
+            console.log("===");
+
             console.log(this.AlertList);
           }
           else {
@@ -112,15 +119,56 @@ export class AlertListComponent extends AppComponentBase implements OnInit {
   }
 
   showPopup(alertId, alert) {
+    this.LoadResidentDetails(alert.userId, alert.residentAdmissionInfoId);
+    setTimeout(() => this.insertData(alertId, alert),900);
+    
+  }
+  
+  
+
+  insertData(alertId, alert) {
     this.ActionTakenData = {
       dailyVitalsAlertId: alertId,
       actionRemarks: alert.actionRemarks,
       actionBy: this.loginId,
       isActionTaken: false,
-      // residentAdmissionInfoId: this.admissionid
+      residentAdmissionInfoId: alert.residentAdmissionInfoId,
+      residentDetails: this.ResidentMaster,
+      alertData: alert
     };
+    console.log("Adfasfdasdf");
+    console.log(this.ActionTakenData);
     this.isShowActionTakenPopup = true;
   }
+
+
+  LoadResidentDetails(userid, admissionid) {
+    this._UtilityService.showSpinner();
+    this.unsubscribe.add = this._UserServices.GetResidentDetailsById(userid, admissionid)
+      .subscribe
+      ({
+        next: (data) => {
+          this._UtilityService.hideSpinner();
+          if (data.actionResult.success == true) {
+
+            this.alertCount = data.actionResult.value;
+            var tdata = JSON.parse(data.actionResult.result);
+            tdata = tdata ? tdata : [];
+            this.ResidentMaster = tdata;
+          }
+          console.log("resident data");
+          console.log(this.ResidentMaster);
+          
+          
+
+        },
+        error: (e) => {
+          this._UtilityService.hideSpinner();
+          this._UtilityService.showErrorAlert(e.message);
+        },
+      });
+  }
+
 
 
   Changes(value: boolean) {
@@ -129,7 +177,7 @@ export class AlertListComponent extends AppComponentBase implements OnInit {
   }
 
   alertOnChange() {
-      this.GetAllAlert();
+    this.GetAllAlert();
   }
 
   AlertChanges(value: number) {

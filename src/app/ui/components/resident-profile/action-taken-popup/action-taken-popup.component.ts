@@ -21,7 +21,9 @@ export class ActionTakenPopupComponent extends AppComponentBase implements OnIni
   }
   
   ngOnInit(): void {
-
+    console.log("main data");
+    console.log(this.ActionTakenData);
+    
     if (this.ActionTakenData.residentDetails.ProfileImage != undefined && this.ActionTakenData.residentDetails.ProfileImage != null && this.ActionTakenData.residentDetails.ProfileImage != '') {
       var imageFormat = this._UtilityService.getFileExtension(this.ActionTakenData.residentDetails.ProfileImage);
       this.imageSrc = "data:image/" + imageFormat + ";base64," + this.ActionTakenData.residentDetails.ProfileImage;
@@ -84,5 +86,5 @@ export class ActionTakenPopupComponent extends AppComponentBase implements OnIni
     else
       return 0;
   }
-
 }
+
