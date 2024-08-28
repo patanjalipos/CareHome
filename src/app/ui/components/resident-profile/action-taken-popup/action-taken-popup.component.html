@@ -10,6 +10,10 @@
                 </span>(Systolic/Diastolic)</label>
                 <label class="bold" *ngIf="ActionTakenData.alertData.AlertName=='Blood glucose alert'">Observation - <span class="text-danger">{{ActionTakenData.alertData.value}}
                 </span></label>
+            <p> {{headline}} </p>
+            <br>
+            <label class="bold">Observation - <span class="text-danger">{{ActionTakenData.alertData.value}} </span>{{ActionTakenData.alertUnit}}</label>
+
             <br>
             <label class="bold">Baseline Value Ranges :-</label>
             <div *ngIf="ActionTakenData.alertData.AlertName=='Blood pressure alert'">

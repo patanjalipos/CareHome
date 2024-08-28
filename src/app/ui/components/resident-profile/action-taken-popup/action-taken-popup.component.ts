@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { AppComponentBase } from 'src/app/app-component-base';
+import { AlertHeadlines, AlertTypes } from 'src/app/ui/service/constants.service';
 import { UserService } from 'src/app/ui/service/user.service';
 import { UtilityService } from 'src/app/utility/utility.service';
 
@@ -15,14 +16,13 @@ export class ActionTakenPopupComponent extends AppComponentBase implements OnIni
   @Output() EmitUpdateAlert: EventEmitter<any> = new EventEmitter<any>();
 
   imageSrc: any;
+  headline: string = '';
   
   constructor(private _UtilityService: UtilityService, private _UserService: UserService) {
     super();
   }
   
   ngOnInit(): void {
-    console.log("main data");
-    console.log(this.ActionTakenData);
     
     if (this.ActionTakenData.residentDetails.ProfileImage != undefined && this.ActionTakenData.residentDetails.ProfileImage != null && this.ActionTakenData.residentDetails.ProfileImage != '') {
       var imageFormat = this._UtilityService.getFileExtension(this.ActionTakenData.residentDetails.ProfileImage);
@@ -30,6 +30,18 @@ export class ActionTakenPopupComponent extends AppComponentBase implements OnIni
     }
     else {
       this.imageSrc = "";
+    }
+    
+    if(this.ActionTakenData.alertData.alertMasterId != null) {
+      if(this.ActionTakenData.alertData.alertMasterId == AlertTypes.BloodPressureAlert) {
+        this.headline = AlertHeadlines.BloodPressureHeadline;
+      }
+      else if(this.ActionTakenData.alertData.alertMasterId == AlertTypes.WeightAlert) {
+        this.headline = AlertHeadlines.WeightHeadline;
+      }
+      else if(this.ActionTakenData.alertData.alertMasterId == AlertTypes.BloodGlucoseAlert) {
+        this.headline = AlertHeadlines.BloodGlucoseHeadline;
+      }
     }
   }
 

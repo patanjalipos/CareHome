@@ -49,24 +49,18 @@
                     <td>
                         <div>
                            <label class="bold text-danger fs-5"> {{dt.AlertName}} </label>
-                           <label *ngIf="dt.AlertName=='Blood pressure alert'"> A blood pressure observation was recorded outside the baseline range. </label> 
-                           <label *ngIf="dt.AlertName=='Blood glucose alert'"> A blood glucose observation was recorded outside the baseline range. </label> 
+                           <label> {{GetHeadline(dt.alertMasterId)}} </label> 
                         </div>
 
                     </td>
                     <td *ngIf="dt.AlertName=='Blood pressure alert'">
                         <div>
-                            <label class="text-danger">{{dt.value}}</label> (Systolic/Diastolic) <br>
-                            <label class="bold">Systolic Range (mmHg) = {{dt.MinSystolic}} - {{dt.MaxSystolic}}</label>
+                            <label class="text-danger">{{dt.value}}</label> {{alertUnit}} <br>
+                            <label class="bold" *ngIf="dt.alertMasterId == alertTypes.BloodPressureAlert">Baseline Value Ranges :-- <br> Systolic Range (mmHg) = {{dt.MinSystolic}} - {{dt.MaxSystolic}}
                             <br>
-                            <label class="bold">Diastolic Range (mmHg) = {{dt.MinDiastolic}} -
+                            Diastolic Range (mmHg) = {{dt.MinDiastolic}} -
                                 {{dt.MaxDiastolic}}</label>
-                        </div>
-                    </td>
-                    <td *ngIf="dt.AlertName=='Blood glucose alert'">
-                        <div>
-                            <label class="text-danger">{{dt.value}}</label><br>
-                            <label class="bold">Glucose Range (mmol/L) = {{dt.MinGlucose}} - {{dt.MaxGlucose}}</label>
+                            <label class="bold" *ngIf="dt.alertMasterId == alertTypes.WeightAlert">Baseline Value Range = {{dt.MinWeight}} - {{dt.MaxWeight}}</label>
                         </div>
                     </td>
                     <td>
