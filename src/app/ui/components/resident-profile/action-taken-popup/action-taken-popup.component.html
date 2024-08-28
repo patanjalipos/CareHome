@@ -4,9 +4,9 @@
     <div class="row">
         <div class="col-md-5 my-5">
             <label class="bold text-danger fs-5">{{ActionTakenData.alertData.AlertName}}</label>
-            <p> A blood pressure observation was recorded outside the baseline range. </p>
+            <p> {{headline}} </p>
             <br>
-            <label class="bold">Observation - <span class="text-danger">{{ActionTakenData.alertData.value}} </span>(Systolic/Diastolic)</label>
+            <label class="bold">Observation - <span class="text-danger">{{ActionTakenData.alertData.value}} </span>{{ActionTakenData.alertUnit}}</label>
             <br>
             <label class="bold">Baseline Value Ranges :-</label>
             <div>

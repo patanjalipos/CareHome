@@ -236,3 +236,18 @@ export enum ResidentSelection {
     AllresidentAssigned= 'All Resident assigned to me',
     selectedresidentsonly = 'Selected Residents Only',
 }
+
+export enum AlertHeadlines {
+    BloodPressureHeadline = 'A blood pressure observation was recorded outside the baseline range.',
+    WeightHeadline = 'A weight observation was recorded outside the baseline range.',
+    BloodGlucoseHeadline = 'A blood glucose level observation was recorded outside the baseline range.'
+}
+
+export enum AlertUnit {
+    BPUnit = 'mmHg (Systolic/Diastolic)',
+    WeightUnit = 'Kg',
+    PulseUnit = 'Beat per minute',
+    BGUnit = 'mmol/L',
+    FluidUnit = 'mls',
+    OxygenUnit = '%'
+}

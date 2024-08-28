@@ -151,7 +151,7 @@
     ">
 </app-pain-chart>
 
-<app-weight-chart [preSelectedChartData]="selectedChartData" (EmitUpdateForm)="EmitUpdateForm($event)" *ngIf="
+<app-weight-chart [preSelectedChartData]="selectedChartData" (EmitUpdateForm)="EmitUpdateForm($event)" (EmitUpdateAlert)="EmitUpdateAlert($event)" *ngIf="
         ShowChildComponent == true &&
         selectedChartMasterId == ChartTypes.WeightChart
     ">
