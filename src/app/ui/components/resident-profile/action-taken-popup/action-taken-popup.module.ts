@@ -7,6 +7,7 @@ import { DialogModule } from 'primeng/dialog';
 import { InputTextModule } from 'primeng/inputtext';
 import { FormsModule } from '@angular/forms';
 import { ActionTakenPopupComponent } from './action-taken-popup.component';
+import { InputTextareaModule } from 'primeng/inputtextarea';
 
 
 @NgModule({
@@ -17,7 +18,8 @@ import { ActionTakenPopupComponent } from './action-taken-popup.component';
     FormsModule,
     DialogModule,
     InputTextModule,
-    ButtonModule
+    ButtonModule,
+    InputTextareaModule
   ],
   exports:[ActionTakenPopupComponent]
 })

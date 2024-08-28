@@ -189,9 +189,13 @@ export class AlertComponent extends AppComponentBase implements OnInit {
             actionRemarks: alert.actionRemarks,
             actionBy: this.loginId,
             isActionTaken: false,
-            residentAdmissionInfoId: this.admissionid
+            residentAdmissionInfoId: this.admissionid,
+            residentDetails: this.residentadmissiondetails,
+            alertData: alert
         };
         this.isShowActionTakenPopup = true;
+        console.log('RESIDENT DETAILS',this.ActionTakenData);
+        
     }
 
     Changes(value: boolean) {
