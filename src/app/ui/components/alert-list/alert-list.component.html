@@ -57,10 +57,7 @@
                 <td>
                     <div>
                         <label class="bold text-danger fs-5"> {{dt.AlertName}} </label>
-                        <label *ngIf="dt.AlertName=='Blood pressure alert'"> A blood pressure observation was recorded
-                            outside the baseline range. </label>
-                        <label *ngIf="dt.AlertName=='Blood glucose alert'"> A blood glucose observation was recorded
-                            outside the baseline range. </label>
+                        <label> {{GetHeadline(dt.alertMasterId)}} </label> 
                     </div>
 
                 </td>
