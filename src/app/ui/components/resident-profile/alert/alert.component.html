@@ -53,7 +53,7 @@
                         </div>
 
                     </td>
-                    <td>
+                    <td *ngIf="dt.AlertName=='Blood pressure alert'">
                         <div>
                             <label class="text-danger">{{dt.value}}</label> {{alertUnit}} <br>
                             <label class="bold" *ngIf="dt.alertMasterId == alertTypes.BloodPressureAlert">Baseline Value Ranges :-- <br> Systolic Range (mmHg) = {{dt.MinSystolic}} - {{dt.MaxSystolic}}

@@ -1,9 +1,15 @@
 <div>
-
     <hr style="border: 1px solid black; margin: 0px;">
     <div class="row">
         <div class="col-md-5 my-5">
             <label class="bold text-danger fs-5">{{ActionTakenData.alertData.AlertName}}</label>
+            <p *ngIf="ActionTakenData.alertData.AlertName=='Blood pressure alert'"> A blood pressure observation was recorded outside the baseline range. </p>
+            <p *ngIf="ActionTakenData.alertData.AlertName=='Blood glucose alert'"> A blood glucose observation was recorded outside the baseline range. </p>
+            <br>
+            <label class="bold" *ngIf="ActionTakenData.alertData.AlertName=='Blood pressure alert'">Observation - <span class="text-danger">{{ActionTakenData.alertData.value}}
+                </span>(Systolic/Diastolic)</label>
+                <label class="bold" *ngIf="ActionTakenData.alertData.AlertName=='Blood glucose alert'">Observation - <span class="text-danger">{{ActionTakenData.alertData.value}}
+                </span></label>
             <p> {{headline}} </p>
             <br>
             <label class="bold">Observation</label> = <span class="text-danger"> {{ActionTakenData.alertData.value}}

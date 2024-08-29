@@ -1,6 +1,7 @@
 <div class="card">
     <p-table #dt [value]="AlertList" responsiveLayout="scroll" styleClass="p-datatable-striped" [rowHover]="true"
-        [globalFilterFields]="['AlertName','ResidentName']" [scrollable]="true" scrollHeight="calc(100vh - 155px)" [paginator]="true" [rows]="5">
+        [globalFilterFields]="['AlertName','ResidentName']" [scrollable]="true" scrollHeight="calc(100vh - 155px)"
+        [paginator]="true" [rows]="5">
         <ng-template pTemplate="caption">
             <div class="flex justify-content-between flex-column sm:flex-row">
                 <span class="p-ml-left">
@@ -49,15 +50,33 @@
             <tr>
                 <td>
                     <img [src]="dt.ProfileImage" class="w-4 mx-2">
-                    <p class="bold">{{dt.ResidentName}}<br>{{dt.DOB|date:'dd-MM-yyyy'}}<br>({{ calculateAge(dt.DOB)}}y)</p>
-                 
+                    <p class="bold">{{dt.ResidentName}}<br>{{dt.DOB|date:'dd-MM-yyyy'}}<br>({{ calculateAge(dt.DOB)}}y)
+                    </p>
+
                 </td>
-                <td>{{dt.AlertName}}</td>
                 <td>
                     <div>
-                        <label class="text-danger">{{dt.value}}</label> <br>
-                        <label>Systolic Range (mmHg) = {{dt.MinSystolic}} - {{dt.MaxSystolic}}</label> <br>
-                        <label>Diastolic Range (mmHg) = {{dt.MinDiastolic}} - {{dt.MaxDiastolic}}</label>
+                        <label class="bold text-danger fs-5"> {{dt.AlertName}} </label>
+                        <label *ngIf="dt.AlertName=='Blood pressure alert'"> A blood pressure observation was recorded
+                            outside the baseline range. </label>
+                        <label *ngIf="dt.AlertName=='Blood glucose alert'"> A blood glucose observation was recorded
+                            outside the baseline range. </label>
+                    </div>
+
+                </td>
+                <td *ngIf="dt.AlertName=='Blood pressure alert'">
+                    <div>
+                        <label class="text-danger">{{dt.value}}</label> (Systolic/Diastolic) <br>
+                        <label class="bold">Systolic Range (mmHg) = {{dt.MinSystolic}} - {{dt.MaxSystolic}}</label>
+                        <br>
+                        <label class="bold">Diastolic Range (mmHg) = {{dt.MinDiastolic}} -
+                            {{dt.MaxDiastolic}}</label>
+                    </div>
+                </td>
+                <td *ngIf="dt.AlertName=='Blood glucose alert'">
+                    <div>
+                        <label class="text-danger">{{dt.value}}</label><br>
+                        <label class="bold">Glucose Range (mmol/L) = {{dt.MinGlucose}} - {{dt.MaxGlucose}}</label>
                     </div>
                 </td>
                 <td>
