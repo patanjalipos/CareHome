@@ -53,15 +53,15 @@
                         </div>
 
                     </td>
-                    <td *ngIf="dt.AlertName=='Blood pressure alert'">
+                    <td>
                         <div>
                             <label class="text-danger">{{dt.value}}</label> {{alertUnit}} <br>
                             <label class="bold" *ngIf="dt.alertMasterId == alertTypes.BloodPressureAlert">Baseline Value Ranges :-- <br> Systolic Range (mmHg) = {{dt.MinSystolic}} - {{dt.MaxSystolic}}
                             <br>
                             Diastolic Range (mmHg) = {{dt.MinDiastolic}} -
                                 {{dt.MaxDiastolic}}</label>
-                            <label class="bold" *ngIf="dt.alertMasterId == alertTypes.WeightAlert">Baseline Value Range = {{dt.MinWeight}} - {{dt.MaxWeight}}</label>
-                            <label class="bold" *ngIf="dt.alertMasterId == alertTypes.BloodGlucoseAlert">Baseline Value Range = {{dt.MinWeight}} - {{dt.MaxWeight}}</label>
+                            <label class="bold" *ngIf="dt.alertMasterId == alertTypes.WeightAlert">Baseline Value Range = {{dt.MinWeight}} - {{dt.MaxWeight}} (Kg)</label>
+                            <label class="bold" *ngIf="dt.alertMasterId == alertTypes.BloodGlucoseAlert">Baseline Value Range = {{dt.MinGlucose}} - {{dt.MaxGlucose}} (mmol/L)</label>
                         </div>
                     </td>
                     <td>
