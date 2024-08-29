@@ -3,30 +3,24 @@
     <div class="row">
         <div class="col-md-5 my-5">
             <label class="bold text-danger fs-5">{{ActionTakenData.alertData.AlertName}}</label>
-            <p *ngIf="ActionTakenData.alertData.AlertName=='Blood pressure alert'"> A blood pressure observation was recorded outside the baseline range. </p>
-            <p *ngIf="ActionTakenData.alertData.AlertName=='Blood glucose alert'"> A blood glucose observation was recorded outside the baseline range. </p>
+            <p> {{headline}} </p>
             <br>
             <label class="bold" *ngIf="ActionTakenData.alertData.AlertName=='Blood pressure alert'">Observation - <span class="text-danger">{{ActionTakenData.alertData.value}}
                 </span>(Systolic/Diastolic)</label>
                 <label class="bold" *ngIf="ActionTakenData.alertData.AlertName=='Blood glucose alert'">Observation - <span class="text-danger">{{ActionTakenData.alertData.value}}
                 </span></label>
-            <p> {{headline}} </p>
             <br>
-            <label class="bold">Observation</label> = <span class="text-danger"> {{ActionTakenData.alertData.value}}
-                </span>{{GetUnit(ActionTakenData.alertData.alertMasterId)}}
-            <br>
-            <label *ngIf="ActionTakenData.alertData.alertMasterId == alertTypes.BloodPressureAlert"> <span class="bold">Baseline Value Ranges :- </span>
-                
-                    <label class="bold">Systolic Range (mmHg) = <span>{{ActionTakenData.alertData.MinSystolic}} -
-                            {{ActionTakenData.alertData.MaxSystolic}}</span></label>
-                    <label class="bold">Diastolic Range (mmHg) = <span>{{ActionTakenData.alertData.MinDiastolic}} -
-                            {{ActionTakenData.alertData.MaxDiastolic}}</span></label>
-                
-            </label>
-            <label class="bold" *ngIf="ActionTakenData.alertData.alertMasterId != alertTypes.BloodPressureAlert">
-                Baseline Value Range = </label> <span *ngIf="ActionTakenData.alertData.alertMasterId == alertTypes.WeightAlert">  {{ActionTakenData.alertData.MinWeight}} - {{ActionTakenData.alertData.MaxWeight}}</span>
-                <span *ngIf="ActionTakenData.alertData.alertMasterId == alertTypes.BloodGlucoseAlert">  {{ActionTakenData.alertData.MinGlucose}} - {{ActionTakenData.alertData.MaxGlucose}}</span>
-             
+            <label class="bold">Baseline Value Ranges :-</label>
+            <div *ngIf="ActionTakenData.alertData.AlertName=='Blood pressure alert'">
+                <label>Systolic Range (mmHg) = <span class="bold">{{ActionTakenData.alertData.MinSystolic}} -
+                        {{ActionTakenData.alertData.MaxSystolic}}</span></label>
+                <label>Diastolic Range (mmHg) = <span class="bold">{{ActionTakenData.alertData.MinDiastolic}} -
+                        {{ActionTakenData.alertData.MaxDiastolic}}</span></label>
+            </div>
+            <div *ngIf="ActionTakenData.alertData.AlertName=='Blood glucose alert'">
+                <label>Glucose Range (mmol/L) = <span class="bold">{{ActionTakenData.alertData.MinGlucose}} -
+                        {{ActionTakenData.alertData.MaxGlucose}}</span></label>
+            </div>
         </div>
         <div class="col-md-4 d-flex my-5">
             <div class="profile-img">

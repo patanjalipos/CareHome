@@ -1,5 +1,5 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { ConstantsService, CustomDateFormat } from '../../service/constants.service';
+import { AlertHeadlines, AlertTypes, AlertUnit, ConstantsService, CustomDateFormat } from '../../service/constants.service';
 import { MasterService } from '../../service/master.service';
 import { UtilityService } from 'src/app/utility/utility.service';
 import { AppComponentBase } from 'src/app/app-component-base';
@@ -29,6 +29,10 @@ export class AlertListComponent extends AppComponentBase implements OnInit {
   loginId: any;
   alertCount: any;
   ResidentMaster: any;
+
+  alertHeadline: string = '';
+  alertUnit: string = '';
+  alertTypes = AlertTypes;
 
   constructor(
     private _ConstantServices: ConstantsService,
@@ -209,5 +213,29 @@ export class AlertListComponent extends AppComponentBase implements OnInit {
     else
       return 0;
   }
+
+
+  GetHeadline(alertMasterId: any) {
+    if(alertMasterId == AlertTypes.BloodPressureAlert) {
+        this.alertUnit = AlertUnit.BPUnit;
+        this.alertHeadline = AlertHeadlines.BloodPressureHeadline;
+        return AlertHeadlines.BloodPressureHeadline;
+    }
+    else if(alertMasterId == AlertTypes.WeightAlert) {
+        this.alertUnit = AlertUnit.WeightUnit;
+        this.alertHeadline = AlertHeadlines.WeightHeadline;
+        return AlertHeadlines.WeightHeadline;
+    }
+    else if(alertMasterId == AlertTypes.BloodGlucoseAlert) {
+        this.alertUnit = AlertUnit.BGUnit;
+        this.alertHeadline = AlertHeadlines.BloodGlucoseHeadline;
+        return AlertHeadlines.BloodGlucoseHeadline;
+    }
+    else {
+        this.alertUnit = '';
+        this.alertHeadline = '';
+        return '';
+    }
+}
 
 }
