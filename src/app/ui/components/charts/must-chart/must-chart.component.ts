@@ -1,7 +1,7 @@
 import { DatePipe } from '@angular/common';
 import { Component, EventEmitter, Input, OnInit, Output, SimpleChanges } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { ChartTypes, ConstantsService, CustomDateFormat } from 'src/app/ui/service/constants.service';
+import { AlertTypes, ChartTypes, ConstantsService, CustomDateFormat } from 'src/app/ui/service/constants.service';
 import { OptionService } from 'src/app/ui/service/option.service';
 import { UserService } from 'src/app/ui/service/user.service';
 import { UtilityService } from 'src/app/utility/utility.service';
@@ -20,6 +20,7 @@ export class MustChartComponent extends AppComponentBase implements OnInit {
 
   @Input() preSelectedChartData: any = <any>{};
   @Output() EmitUpdateForm: EventEmitter<any> = new EventEmitter<any>();
+  @Output() EmitUpdateAlert: EventEmitter<any> = new EventEmitter<any>();
 
   customDateFormat = CustomDateFormat;
   loginId: string;
@@ -86,6 +87,8 @@ export class MustChartComponent extends AppComponentBase implements OnInit {
   MediumMessageB: Message[];
   HighMessageA: Message[];
   HighMessageB: Message[];
+
+  alertCount: number = 0;
 
   constructor(
     private optionService: OptionService,
@@ -302,6 +305,8 @@ export class MustChartComponent extends AppComponentBase implements OnInit {
       const objectBody: any = {
         StatementType: this.StatementType,
         mustChart: this.mustChartFormData,
+        alertMasterId: AlertTypes.MUSTAlert,
+        chartMasterId: ChartTypes.MUSTChart
       };
 
       this._UtilityService.showSpinner();
@@ -310,8 +315,10 @@ export class MustChartComponent extends AppComponentBase implements OnInit {
         .subscribe({
           next: (data) => {
             this._UtilityService.hideSpinner();
+            this.alertCount = data.actionResult.value;
             if (data.actionResult.success == true) {
               this.EmitUpdateForm.emit(true);
+              this.EmitUpdateAlert.emit(this.alertCount);
               this.ResetModel();
               this._UtilityService.showSuccessAlert(
                 data.actionResult.errMsg

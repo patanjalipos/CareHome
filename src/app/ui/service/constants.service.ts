@@ -240,7 +240,7 @@ export enum ResidentSelection {
 export enum AlertHeadlines {
     BloodPressureHeadline = 'A blood pressure observation was recorded outside the baseline range.',
     WeightHeadline = 'A weight observation was recorded outside the baseline range.',
-    BloodGlucoseHeadline = 'A blood glucose level observation was recorded outside the baseline range.'
+    BloodGlucoseHeadline = 'A blood glucose level observation was recorded outside the baseline range.',
 }
 
 export enum AlertUnit {
