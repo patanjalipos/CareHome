@@ -57,23 +57,43 @@
                 <td>
                     <div>
                         <label class="bold text-danger fs-5"> {{dt.AlertName}} </label>
-                        <label> {{GetHeadline(dt.alertMasterId)}} </label> 
+                        <label> {{GetHeadline(dt.alertMasterId)}} </label>
                     </div>
 
                 </td>
                 <td *ngIf="dt.AlertName=='Blood pressure alert'">
                     <div>
-                        <label class="text-danger">{{dt.value}}</label> (Systolic/Diastolic) <br>
-                        <label class="bold">Systolic Range (mmHg) = {{dt.MinSystolic}} - {{dt.MaxSystolic}}</label>
-                        <br>
-                        <label class="bold">Diastolic Range (mmHg) = {{dt.MinDiastolic}} -
+                        <label class="text-danger">{{dt.value}}</label> {{alertUnit}} <br>
+                        <label class="bold" *ngIf="dt.alertMasterId == alertTypes.BloodPressureAlert">Baseline Value
+                            Ranges :-- <br> Systolic Range (mmHg) = {{dt.MinSystolic}} - {{dt.MaxSystolic}}
+                            <br>
+                            Diastolic Range (mmHg) = {{dt.MinDiastolic}} -
                             {{dt.MaxDiastolic}}</label>
+                        <label class="bold" *ngIf="dt.alertMasterId == alertTypes.WeightAlert">Baseline Value Range =
+                            {{dt.MinWeight}} - {{dt.MaxWeight}}</label>
+                        <label class="bold" *ngIf="dt.alertMasterId == alertTypes.BloodGlucoseAlert">Baseline Value
+                            Range = {{dt.MinWeight}} - {{dt.MaxWeight}}</label>
+                    </div>
+                </td>
+                <td *ngIf="dt.isPulseNewsAlert==true&&dt.isOxygenNewsAlert==false">
+                    <div>
+                        <label class="text-danger">{{dt.value}}</label> {{GetUnit(dt.alertMasterId)}} <br>
+                        <label class="bold" *ngIf="dt.alertMasterId == alertTypes.NEWS2Alert">Baseline Value Range =
+                            {{dt.MinPulse}} - {{dt.MaxPulse}}</label>
+                    </div>
+                </td>
+                <td *ngIf="dt.isOxygenNewsAlert==true&&dt.isPulseNewsAlert==false">
+                    <div>
+                        <label class="text-danger">{{dt.value}}</label>{{GetUnit(dt.alertMasterId)}} <br>
+                        <label class="bold" *ngIf="dt.alertMasterId == alertTypes.NEWS2Alert">Baseline Value Range =
+                            {{dt.MinOxygen}} - {{dt.MaxOxygen}}</label>
                     </div>
                 </td>
                 <td *ngIf="dt.AlertName=='Blood glucose alert'">
                     <div>
-                        <label class="text-danger">{{dt.value}}</label><br>
-                        <label class="bold">Glucose Range (mmol/L) = {{dt.MinGlucose}} - {{dt.MaxGlucose}}</label>
+                        <label class="text-danger">{{dt.value}}</label> {{alertUnit}} <br>
+                        <label class="bold" *ngIf="dt.alertMasterId == alertTypes.BloodGlucoseAlert">Baseline Value Range =
+                            {{dt.MinGlucose}} - {{dt.MaxGlucose}}</label>
                     </div>
                 </td>
                 <td>

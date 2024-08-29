@@ -65,7 +65,6 @@ export class AlertListComponent extends AppComponentBase implements OnInit {
         }
       });
     }
-    console.log(importData);
     this._UtilityService.showSpinner();
     this.unsubscribe.add = this._UserServices
       .GetAllAlert(importData, null)
@@ -76,16 +75,16 @@ export class AlertListComponent extends AppComponentBase implements OnInit {
             var tdata = JSON.parse(data.actionResult.result);
             tdata = tdata ? tdata : [];
             this.AlertList = tdata;
+            console.log("asfdsfsfd");
+
+            console.log(this.AlertList);
+
             this.AlertList.forEach(chart => {
               if (chart.ProfileImage) {
                 const imageFormat = this._UtilityService.getFileExtension(chart.ProfileImage);
                 chart.ProfileImage = `data:image/${imageFormat};base64,${chart.ProfileImage}`;
               }
             });
-
-            console.log("===");
-
-            console.log(this.AlertList);
           }
           else {
             this.AlertList = [];
@@ -124,11 +123,11 @@ export class AlertListComponent extends AppComponentBase implements OnInit {
 
   showPopup(alertId, alert) {
     this.LoadResidentDetails(alert.userId, alert.residentAdmissionInfoId);
-    setTimeout(() => this.insertData(alertId, alert),900);
-    
+    setTimeout(() => this.insertData(alertId, alert), 900);
+
   }
-  
-  
+
+
 
   insertData(alertId, alert) {
     this.ActionTakenData = {
@@ -140,8 +139,6 @@ export class AlertListComponent extends AppComponentBase implements OnInit {
       residentDetails: this.ResidentMaster,
       alertData: alert
     };
-    console.log("Adfasfdasdf");
-    console.log(this.ActionTakenData);
     this.isShowActionTakenPopup = true;
   }
 
@@ -160,11 +157,6 @@ export class AlertListComponent extends AppComponentBase implements OnInit {
             tdata = tdata ? tdata : [];
             this.ResidentMaster = tdata;
           }
-          console.log("resident data");
-          console.log(this.ResidentMaster);
-          
-          
-
         },
         error: (e) => {
           this._UtilityService.hideSpinner();
@@ -214,28 +206,78 @@ export class AlertListComponent extends AppComponentBase implements OnInit {
       return 0;
   }
 
+  counter: number = 0;
+  GetHeadline(alertMasterId: any): any {
+    if (alertMasterId === AlertTypes.BloodPressureAlert) {
+      this.alertHeadline = AlertHeadlines.BloodPressureHeadline;
+      return this.alertHeadline;
 
-  GetHeadline(alertMasterId: any) {
-    if(alertMasterId == AlertTypes.BloodPressureAlert) {
-        this.alertUnit = AlertUnit.BPUnit;
-        this.alertHeadline = AlertHeadlines.BloodPressureHeadline;
-        return AlertHeadlines.BloodPressureHeadline;
+    } else if (alertMasterId === AlertTypes.WeightAlert) {
+
+      this.alertHeadline = AlertHeadlines.WeightHeadline;
+      return this.alertHeadline;
+
+    } else if (alertMasterId === AlertTypes.BloodGlucoseAlert) {
+
+      this.alertHeadline = AlertHeadlines.BloodGlucoseHeadline;
+      return this.alertHeadline;
+
+    } else if (alertMasterId === AlertTypes.NEWS2Alert) {
+
+      if (this.AlertList[this.counter].isOxygenNewsAlert === true) {
+
+        this.alertHeadline = AlertHeadlines.NewsOxygenAlertHeadline;
+        this.counter++;
+        return this.alertHeadline;
+      } else if (this.AlertList[this.counter].isPulseNewsAlert === true) {
+
+        this.alertHeadline = AlertHeadlines.NewsPulseAlertHeadline;
+        this.counter++;
+        return this.alertHeadline;
+      }
+
+
+    } else {
+      this.alertUnit = '';
+      this.alertHeadline = '';
+      return '';
     }
-    else if(alertMasterId == AlertTypes.WeightAlert) {
-        this.alertUnit = AlertUnit.WeightUnit;
-        this.alertHeadline = AlertHeadlines.WeightHeadline;
-        return AlertHeadlines.WeightHeadline;
+
+  }
+
+  GetUnit(alertMasterId: any):any {
+    if (alertMasterId == AlertTypes.BloodPressureAlert) {
+      this.alertUnit = AlertUnit.BPUnit;
+      return AlertUnit.BPUnit;
     }
-    else if(alertMasterId == AlertTypes.BloodGlucoseAlert) {
-        this.alertUnit = AlertUnit.BGUnit;
-        this.alertHeadline = AlertHeadlines.BloodGlucoseHeadline;
-        return AlertHeadlines.BloodGlucoseHeadline;
+    else if (alertMasterId == AlertTypes.WeightAlert) {
+      this.alertUnit = AlertUnit.WeightUnit;
+      return AlertUnit.WeightUnit;
+    }
+    else if (alertMasterId == AlertTypes.BloodGlucoseAlert) {
+      this.alertUnit = AlertUnit.BGUnit;
+      return AlertUnit.BGUnit;
+    }
+    else if (alertMasterId === AlertTypes.NEWS2Alert) {
+
+      if (this.AlertList[this.counter].isOxygenNewsAlert === true) {
+
+        this.alertUnit = AlertUnit.OxygenUnit;
+        return this.alertUnit;
+     
+      } else if (this.AlertList[this.counter].isPulseNewsAlert === true) {
+
+        this.alertUnit = AlertUnit.PulseUnit;
+        this.counter++;
+        return this.alertUnit;
+      }
+   
     }
     else {
-        this.alertUnit = '';
-        this.alertHeadline = '';
-        return '';
+      this.alertUnit = '';
+      return '';
     }
-}
+  }
+
 
 }
