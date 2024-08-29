@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { AppComponentBase } from 'src/app/app-component-base';
-import { AlertHeadlines, AlertTypes } from 'src/app/ui/service/constants.service';
+import { AlertHeadlines, AlertTypes, AlertUnit } from 'src/app/ui/service/constants.service';
 import { UserService } from 'src/app/ui/service/user.service';
 import { UtilityService } from 'src/app/utility/utility.service';
 
@@ -17,6 +17,9 @@ export class ActionTakenPopupComponent extends AppComponentBase implements OnIni
 
   imageSrc: any;
   headline: string = '';
+  alertHeadline: string = '';
+  alertUnit: string = '';
+  alertTypes = AlertTypes;
   
   constructor(private _UtilityService: UtilityService, private _UserService: UserService) {
     super();
@@ -98,5 +101,25 @@ export class ActionTakenPopupComponent extends AppComponentBase implements OnIni
     else
       return 0;
   }
+
+  GetUnit(alertMasterId: any) {
+    if(alertMasterId == AlertTypes.BloodPressureAlert) {
+        this.alertUnit = AlertUnit.BPUnit;
+        return AlertUnit.BPUnit;
+    }
+    else if(alertMasterId == AlertTypes.WeightAlert) {
+        this.alertUnit = AlertUnit.WeightUnit;
+        return AlertUnit.WeightUnit;
+    }
+    else if(alertMasterId == AlertTypes.BloodGlucoseAlert) {
+        this.alertUnit = AlertUnit.BGUnit;
+        return AlertUnit.BGUnit;
+    }
+    else {
+        this.alertUnit = '';
+        return '';
+    }
+}
+
 }
 
