@@ -220,16 +220,7 @@ export class AlertListComponent extends AppComponentBase implements OnInit {
       this.alertHeadline = AlertHeadlines.BloodGlucoseHeadline;
       this.counter++;
       return AlertHeadlines.BloodGlucoseHeadline;
-    } else if (alertMasterId == AlertTypes.WaterlowAlert) {
-      this.alertHeadline = AlertHeadlines.WaterLowHeadline;
-      this.counter++;
-      return AlertHeadlines.WaterLowHeadline;
-    } else if (alertMasterId == AlertTypes.MUSTAlert) {
-      this.alertHeadline = AlertHeadlines.MustHeadline;
-      this.counter++;
-      return AlertHeadlines.WaterLowHeadline;
-    } 
-    else if (alertMasterId == AlertTypes.NEWS2Alert) {
+    } else if (alertMasterId == AlertTypes.NEWS2Alert) {
       if (this.AlertList[this.counter].isOxygenNewsAlert == true) {
         this.alertHeadline = AlertHeadlines.NewsOxygenAlertHeadline;
         this.counter++;
@@ -264,10 +255,6 @@ export class AlertListComponent extends AppComponentBase implements OnInit {
       this.alertUnit = AlertUnit.BGUnit;
       this.counter1++;
       return AlertUnit.BGUnit;
-    } else if (alertMasterId == AlertTypes.WaterlowAlert) {
-      this.alertUnit = AlertUnit.WaterUnit;
-      this.counter1++;
-      return AlertUnit.WaterUnit;
     }
     else if (alertMasterId == AlertTypes.NEWS2Alert) {
       if (this.AlertList[this.counter1].isOxygenNewsAlert == true) {
