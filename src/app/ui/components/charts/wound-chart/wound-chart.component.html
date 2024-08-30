@@ -65,9 +65,9 @@
                 <div class="col-md-12">
                     <label class="form-label bold">Where was the wound acquired?
                         <span class="required"></span></label>
-                        <div>
-                            <label class="form-label">Acquired in facility</label>
-                        </div>
+                    <div>
+                        <label class="form-label">Acquired in facility</label>
+                    </div>
                     <div>
                         <label class="form-label bold">Observation Type
                             <span class="required"></span></label>
@@ -125,7 +125,19 @@
                                 optionLabel="label" optionValue="value"></p-selectButton>
                         </ng-container>
                     </div>
-
+                    <div class="col-md-12 mb-3">
+                        <div>
+                            <label class="form-label bold">Pressure ulcer classification
+                                <span class="required"></span></label>
+                        </div>
+                        <ng-container>
+                            <p-dropdown [required]="true" name="woundChartFormData.ulcerClassification"
+                                placeholder="----select----" [style]="{ width: '100%' }"
+                                [options]="lstUlcerClassification" optionValue="optionId" optionLabel="optionName"
+                                [(ngModel)]="woundChartFormData.ulcerClassification">
+                            </p-dropdown>
+                        </ng-container>
+                    </div>
                     <div class="col-md-12 mb-3">
                         <div>
                             <label class="form-label bold">Wound colour
@@ -496,6 +508,15 @@
                                 </div>
 
                                 <div class="col-md-12 mb-3">
+                                    <label class="form-label bold">Pressure ulcer classification</label>
+                                    <div>
+                                        <label [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">{{
+                                            chart.ulcerClassificationOptionName
+                                            }}</label>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-12 mb-3">
                                     <div>
                                         <label class="form-label bold">Wound colour
                                             <span class="required"></span></label>
@@ -716,7 +737,7 @@
                             </div>
                         </div>
 
-                        
+
                     </div>
                 </ng-template>
 
