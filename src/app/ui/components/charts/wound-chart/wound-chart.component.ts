@@ -36,6 +36,7 @@ export class WoundChartComponent extends AppComponentBase implements OnInit {
   lstEdgeAppearance: any[] = [];
   lstSurroundingEdges: any[] = [];
   lstFectorAffectingHealing: any[] = [];
+  lstUlcerClassification:any[]=[];
   lastRecordData: any[] = [];
   lastRecordBodyStatus: string | null = null;
 
@@ -152,7 +153,7 @@ export class WoundChartComponent extends AppComponentBase implements OnInit {
       this.ChartName = this.result["ChartName"];
       this._ConstantServices.ActiveMenuName = this.ChartName;
     });
-    const collectionNames = ['ObservationType', 'woundColour', 'exudateType', 'exudateAmount', 'edgeAppearance', 'surroundingEdges', 'fectorAffectingHealing'];
+    const collectionNames = ['ObservationType', 'woundColour', 'exudateType', 'exudateAmount', 'edgeAppearance', 'surroundingEdges', 'fectorAffectingHealing','ulcerClassification'];
 
     forkJoin(
       collectionNames.map((collectionName) =>
@@ -170,6 +171,7 @@ export class WoundChartComponent extends AppComponentBase implements OnInit {
       this.lstEdgeAppearance = responses[4];
       this.lstSurroundingEdges = responses[5];
       this.lstFectorAffectingHealing = responses[6];
+      this.lstUlcerClassification=responses[7];
 
     });
     //this.getChartDataById(this.preSelectedChartData.chartMasterId, this.preSelectedChartData.residentAdmissionInfoId, this.pageNumber, this.pageSize);

@@ -1,6 +1,7 @@
 <div class="card">
     <p-table #dt [value]="AlertList" responsiveLayout="scroll" styleClass="p-datatable-striped" [rowHover]="true"
-        [globalFilterFields]="['AlertName','ResidentName']" [scrollable]="true" scrollHeight="calc(100vh - 155px)">
+        [globalFilterFields]="['AlertName','ResidentName']" [scrollable]="true" scrollHeight="calc(100vh - 155px)"
+        [paginator]="true" [rows]="5">
         <ng-template pTemplate="caption">
             <div class="flex justify-content-between flex-column sm:flex-row">
                 <span class="p-ml-left">
@@ -49,15 +50,56 @@
             <tr>
                 <td>
                     <img [src]="dt.ProfileImage" class="w-4 mx-2">
-                    <p class="bold">{{dt.ResidentName}}<br>{{dt.DOB|date:'dd-mm-yyyy'}}<br>{{dt.RoomNumber}}</p>
-                 
+                    <p class="bold">{{dt.ResidentName}}<br>{{dt.DOB|date:'dd-MM-yyyy'}}<br>({{ calculateAge(dt.DOB)}}y)
+                    </p>
+
                 </td>
-                <td>{{dt.AlertName}}</td>
                 <td>
                     <div>
-                        <label class="text-danger">{{dt.value}}</label> <br>
-                        <label>Systolic Range (mmHg) = {{dt.MinSystolic}} - {{dt.MaxSystolic}}</label> <br>
-                        <label>Diastolic Range (mmHg) = {{dt.MinDiastolic}} - {{dt.MaxDiastolic}}</label>
+                        <label class="bold text-danger fs-5"> {{dt.AlertName}} </label>
+                        <label
+                            *ngIf="dt.alertMasterId != alertTypes.MUSTAlert&&dt.alertMasterid!=alertTypes.WaterlowAlert">
+                            {{GetHeadline(dt.alertMasterId)}}
+                        </label>
+                        <label *ngIf="dt.alertMasterId == alertTypes.MUSTAlert">On {{dt.createdOn |
+                            date:customDateFormat.DEF_DATE}},<span class="bold">
+                                {{dt.FullName}}</span> has had a MUST Score recorded of <span
+                                class="bold">{{dt.value}}</span> which indicates they are at <span *ngIf="dt.value == 1"
+                                class="text-warning">medium risk</span><span *ngIf="dt.value >= 2"
+                                class="text-danger">high risk</span> of malnutrition.</label>
+
+                        <label *ngIf="dt.alertMasterId == alertTypes.WaterlowAlert">On {{dt.createdOn |
+                            date:customDateFormat.DEF_DATE}}, Rosina has had a Waterlow Score recorded of <span
+                                class="bold">{{dt.value}}</span> and is deemed as being at
+                            <span *ngIf="dt.value>=10&&dt.value<=14">At risk</span>
+                            <span *ngIf="dt.value>=15&&dt.value<=19">High risk</span>
+                            <span *ngIf="dt.value>=20">Very High risk</span>
+                            of developing
+                            a pressure ulcer.</label>
+                    </div>
+                </td>
+                <td>
+                    <div>
+                        <label class="text-danger">{{dt.value}}</label> {{GetAlertUnit(dt.alertMasterId)}} <br>
+                        <label class="bold" *ngIf="dt.alertMasterId == alertTypes.BloodPressureAlert">Baseline Value
+                            Ranges :-- <br> Systolic Range (mmHg) = {{dt.MinSystolic}} - {{dt.MaxSystolic}}
+                            <br>
+                            Diastolic Range (mmHg) = {{dt.MinDiastolic}} -
+                            {{dt.MaxDiastolic}}</label>
+                        <label class="bold" *ngIf="dt.alertMasterId == alertTypes.WeightAlert">Baseline Value Range =
+                            {{dt.MinWeight}} - {{dt.MaxWeight}} (Kg)</label>
+                        <label class="bold" *ngIf="dt.alertMasterId == alertTypes.BloodGlucoseAlert">Baseline Value
+                            Range = {{dt.MinGlucose}} - {{dt.MaxGlucose}} (mmol/L)</label>
+                        <label class="bold" *ngIf="dt.alertMasterId == alertTypes.MUSTAlert">Baseline Value :--
+                            <br>MUST Score = 0 (No Risk)
+                            <br>MUST Score = 1 (Medium Risk)
+                            <br>MUST Score >= 2 (High Risk)
+                        </label>
+                        <label class="bold" *ngIf="dt.alertMasterId == alertTypes.WaterlowAlert">Baseline Value :--
+                            <br>Water Score >10 (At Risk)
+                            <br>Water Score > 15 (High Risk)
+                            <br>Water Score > 20 (Very High Risk)
+                        </label>
                     </div>
                 </td>
                 <td>

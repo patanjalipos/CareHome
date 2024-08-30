@@ -1,18 +1,69 @@
 <div>
-
     <hr style="border: 1px solid black; margin: 0px;">
     <div class="row">
         <div class="col-md-5 my-5">
             <label class="bold text-danger fs-5">{{ActionTakenData.alertData.AlertName}}</label>
-            <p> A blood pressure observation was recorded outside the baseline range. </p>
+            <p
+                *ngIf="ActionTakenData.alertData.alertMasterId != alertTypes.MUSTAlert||ActionTakenData.alertData.alertmasterId!=alertTypes.WaterlowAlert">
+                {{GetHeadline(ActionTakenData.alertData.alertMasterId)}}</p>
+            <p *ngIf="ActionTakenData.alertData.alertMasterId == alertTypes.MUSTAlert">On
+                {{ActionTakenData.alertData.createdOn | date:'dd-MM-yyyy'}}, <span
+                    class="bold">{{ActionTakenData.residentDetails.FullName}}</span> has had a MUST Score recorded of
+                <span class="bold">{{ActionTakenData.alertData.value}}</span> which indicates they are at <span
+                    class="text-warning" *ngIf="ActionTakenData.alertData.value == 1">medium risk</span><span
+                    class="text-danger" *ngIf="ActionTakenData.alertData.value >= 2">high risk</span> of malnutrition.
+            </p>
+
+            <p *ngIf="ActionTakenData.alertData.alertMasterId == alertTypes.WaterlowAlert">On
+                {{ActionTakenData.createdOn |
+                date:'dd-MM-yyyy'}}, Rosina has had a Waterlow Score recorded of <span
+                    class="bold">{{ActionTakenData.alertData.value}}</span>
+                and is deemed as being at
+                <span *ngIf="ActionTakenData.alertData.value>=10&&ActionTakenData.alertData.value<=14">At risk</span>
+                <span *ngIf="ActionTakenData.alertData.value>=15&&ActionTakenData.alertData.value<=19">High risk</span>
+                <span *ngIf="ActionTakenData.alertData.value>=20">Very High risk</span>
+                of developing
+                a pressure ulcer.
+            </p>
             <br>
-            <label class="bold">Observation - <span class="text-danger">{{ActionTakenData.alertData.value}} </span>(Systolic/Diastolic)</label>
+            <label class="bold">Observation</label> = <span class="text-danger">{{ActionTakenData.alertData.value}}
+            </span>{{GetUnit(ActionTakenData.alertData.alertMasterId)}}
+
+
             <br>
-            <label class="bold">Baseline Value Ranges :-</label>
-            <div>
-                <label>Systolic Range (mmHg) = <span class="bold">{{ActionTakenData.alertData.MinSystolic}} - {{ActionTakenData.alertData.MaxSystolic}}</span></label>
-                <label>Diastolic Range (mmHg) = <span class="bold">{{ActionTakenData.alertData.MinDiastolic}} - {{ActionTakenData.alertData.MaxDiastolic}}</span></label>
-            </div>
+            <label *ngIf="ActionTakenData.alertData.alertMasterId == alertTypes.BloodPressureAlert"><span
+                    class="bold">Baseline Value Ranges :- </span>
+
+                <label>Systolic Range (mmHg) = <span class="bold">{{ActionTakenData.alertData.MinSystolic}} -
+                        {{ActionTakenData.alertData.MaxSystolic}}</span></label>
+                <label>Diastolic Range (mmHg) = <span class="bold">{{ActionTakenData.alertData.MinDiastolic}} -
+                        {{ActionTakenData.alertData.MaxDiastolic}}</span></label>
+            </label>
+
+            <label
+                *ngIf="(!(ActionTakenData.alertData.alertMasterId == alertTypes.BloodPressureAlert || ActionTakenData.alertData.alertMasterId == alertTypes.MUSTAlert || ActionTakenData.alertData.alertMasterId == alertTypes.WaterlowAlert))">Baseline
+                Value Range = </label>
+            <span *ngIf="ActionTakenData.alertData.alertMasterId == alertTypes.WeightAlert">
+                {{ActionTakenData.alertData.MinWeight}} - {{ActionTakenData.alertData.MaxWeight}} (Kg)</span>
+            <span *ngIf="ActionTakenData.alertData.alertMasterId == alertTypes.BloodGlucoseAlert">
+                {{ActionTakenData.alertData.MinGlucose}} - {{ActionTakenData.alertData.MaxGlucose}} (mmol/L)</span>
+            <span class="bold" *ngIf="ActionTakenData.alertData.alertMasterId == alertTypes.MUSTAlert">Baseline Value
+                :--
+                <br>MUST Score = <span class="bold">0 (No Risk)</span>
+                <br>MUST Score = <span class="bold">1 (Medium Risk)</span>
+                <br>MUST Score >= <span class="bold">2 (High Risk)</span>
+            </span>
+            <span class="bold" *ngIf="ActionTakenData.alertData.alertMasterId == alertTypes.WaterlowAlert">Baseline
+                Value :--
+                <br>Water Score > <span class="bold">10 (At Risk)</span>
+                <br>Water Score > <span class="bold">15 (High Risk)</span>
+                <br>Water Score > <span class="bold">20 (Very High Risk)</span>
+            </span>
+
+
+
+
+
         </div>
         <div class="col-md-4 d-flex my-5">
             <div class="profile-img">
@@ -42,8 +93,8 @@
     </div>
     <div class="col-md-12 my-5">
         <label class="form-label bold">Please enter action taken<span class="required">*</span></label>
-        <textarea pInputTextarea rows="4" class="form-control" name="ActionRemark" [required]="true" [style]="{ height: '100px !important' }"
-            [(ngModel)]="ActionTakenData.actionRemarks"></textarea>
+        <textarea pInputTextarea rows="4" class="form-control" name="ActionRemark" [required]="true"
+            [style]="{ height: '100px !important' }" [(ngModel)]="ActionTakenData.actionRemarks"></textarea>
     </div>
     <div class=" col-md-12 flex justify-content-between gap-2">
         <p-button class="" label="Keep this alert visible" severity="secondary"

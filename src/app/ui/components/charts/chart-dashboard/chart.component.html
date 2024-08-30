@@ -224,7 +224,7 @@ selectedChartMasterId == ChartTypes.RestraintChart
 ">
 </app-restraint-chart>
 
-<app-must-chart [preSelectedChartData]="selectedChartData" (EmitUpdateForm)="EmitUpdateForm($event)" *ngIf="
+<app-must-chart [preSelectedChartData]="selectedChartData" (EmitUpdateForm)="EmitUpdateForm($event)" (EmitUpdateAlert)="EmitUpdateAlert($event)" *ngIf="
 ShowChildComponent == true &&
 selectedChartMasterId == ChartTypes.MUSTChart
 ">

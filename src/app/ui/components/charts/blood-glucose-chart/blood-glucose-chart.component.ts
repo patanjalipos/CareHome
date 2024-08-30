@@ -5,7 +5,7 @@ import { UserService } from 'src/app/ui/service/user.service';
 import { UtilityService } from 'src/app/utility/utility.service';
 import { BloodGlucoseChartService } from './blood-glucose-chart.service';
 import { DatePipe } from '@angular/common';
-import { ChartTypes, ConstantsService, CustomDateFormat } from 'src/app/ui/service/constants.service';
+import { AlertTypes, ChartTypes, ConstantsService, CustomDateFormat } from 'src/app/ui/service/constants.service';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
@@ -182,6 +182,8 @@ export class BloodGlucoseChartComponent extends AppComponentBase implements OnIn
       const objectBody: any = {
         StatementType: this.StatementType,
         bloodGlucoseChart: this.bloodGlucoseChartFormData,
+        alertMasterId: AlertTypes.BloodGlucoseAlert,
+        chartMasterId: ChartTypes.BloodGlucoseChart
       };
 
       this._UtilityService.showSpinner();

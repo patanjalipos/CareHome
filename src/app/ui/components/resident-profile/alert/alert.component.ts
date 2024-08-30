@@ -1,7 +1,7 @@
 import { DatePipe } from '@angular/common';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { AppComponentBase } from 'src/app/app-component-base';
-import { ConstantsService, CustomDateFormat } from 'src/app/ui/service/constants.service';
+import { AlertHeadlines, AlertTypes, AlertUnit, ConstantsService, CustomDateFormat } from 'src/app/ui/service/constants.service';
 import { MasterService } from 'src/app/ui/service/master.service';
 import { UtilityService } from 'src/app/utility/utility.service';
 import { Calendar } from 'primeng/calendar';
@@ -34,8 +34,9 @@ export class AlertComponent extends AppComponentBase implements OnInit {
     isShowActionTakenPopup: boolean = false;
     loginId: any;
 
-
-
+    alertHeadline: string = '';
+    alertUnit: string = '';
+    alertTypes = AlertTypes;
 
     constructor(
         private _ConstantServices: ConstantsService,
@@ -50,14 +51,14 @@ export class AlertComponent extends AppComponentBase implements OnInit {
         { name: 'Inactive', code: 0 }
         ]
         this.rangeDates = [new Date(), new Date()];
-        
-        this.loginId = localStorage.getItem('userId');
 
+        this.loginId = localStorage.getItem('userId');
     }
 
     ngOnInit(): void {
         this.GetAlertMaster();
         this.GetAllAlert();
+
     }
 
     dateRangeChange(calendar: Calendar) {
@@ -191,11 +192,12 @@ export class AlertComponent extends AppComponentBase implements OnInit {
             isActionTaken: false,
             residentAdmissionInfoId: this.admissionid,
             residentDetails: this.residentadmissiondetails,
-            alertData: alert
+            alertData: alert,
+            alertUnit: this.alertUnit,
+            alertHeadline: this.alertHeadline
         };
         this.isShowActionTakenPopup = true;
-        console.log('RESIDENT DETAILS',this.ActionTakenData);
-        
+        console.log('RESIDENT DETAILS', this.ActionTakenData);
     }
 
     Changes(value: boolean) {
@@ -211,4 +213,61 @@ export class AlertComponent extends AppComponentBase implements OnInit {
         this.EmitUpdateAlert.emit(value);
         this.GetAllAlert();
     }
+
+    GetHeadline(alertMasterId: any) {
+        if (alertMasterId == AlertTypes.BloodPressureAlert) {
+            this.alertHeadline = AlertHeadlines.BloodPressureHeadline;
+            return AlertHeadlines.BloodPressureHeadline;
+        }
+        else if (alertMasterId == AlertTypes.WeightAlert) {
+            this.alertHeadline = AlertHeadlines.WeightHeadline;
+            return AlertHeadlines.WeightHeadline;
+        }
+        else if (alertMasterId == AlertTypes.BloodGlucoseAlert) {
+            this.alertHeadline = AlertHeadlines.BloodGlucoseHeadline;
+            return AlertHeadlines.BloodGlucoseHeadline;
+        }
+        else {
+            this.alertHeadline = '';
+            return '';
+        }
+    }
+
+    counter1: number = 0;
+    GetAlertUnit(alertMasterId: any): any {
+        if (alertMasterId == AlertTypes.BloodPressureAlert) {
+            this.alertUnit = AlertUnit.BPUnit;
+            this.counter1++;
+            return AlertUnit.BPUnit;
+        }
+        else if (alertMasterId == AlertTypes.WeightAlert) {
+            this.alertUnit = AlertUnit.WeightUnit;
+            this.counter1++;
+            return AlertUnit.WeightUnit;
+        }
+        else if (alertMasterId == AlertTypes.BloodGlucoseAlert) {
+            this.alertUnit = AlertUnit.BGUnit;
+            this.counter1++;
+            return AlertUnit.BGUnit;
+        }
+        else if (alertMasterId == AlertTypes.NEWS2Alert) {
+            if (this.AlertList[this.counter1].isOxygenNewsAlert == true) {
+                this.alertUnit = AlertUnit.OxygenUnit;
+                this.counter1++;
+                return AlertUnit.OxygenUnit;
+
+            } if (this.AlertList[this.counter1].isPulseNewsAlert == true) {
+                this.alertUnit = AlertUnit.PulseUnit;
+                this.counter1++;
+                return AlertUnit.PulseUnit;
+            }
+
+        }
+        else {
+            this.alertUnit = '';
+            this.counter1++;
+            return '';
+        }
+    }
+
 }

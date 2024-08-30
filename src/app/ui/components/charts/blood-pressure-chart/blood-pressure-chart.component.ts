@@ -13,7 +13,6 @@ import { BloodPressureChartService } from './blood-pressure-chart.service';
 import { UserService } from 'src/app/ui/service/user.service';
 import { AppComponentBase } from 'src/app/app-component-base';
 import {
-    AlertStatus,
     AlertTypes,
     ChartTypes,
     ConstantsService,
@@ -22,7 +21,6 @@ import {
 import { ActivatedRoute } from '@angular/router';
 import { DatePipe } from '@angular/common';
 import { StrikeThroughEntryComponent } from '../strike-through-entry/strike-through-entry.component';
-import { async } from 'rxjs';
 
 @Component({
     selector: 'app-blood-pressure-chart',
