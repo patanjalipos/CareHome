@@ -216,23 +216,38 @@ export class AlertComponent extends AppComponentBase implements OnInit {
 
     GetHeadline(alertMasterId: any) {
         if(alertMasterId == AlertTypes.BloodPressureAlert) {
-            this.alertUnit = AlertUnit.BPUnit;
             this.alertHeadline = AlertHeadlines.BloodPressureHeadline;
             return AlertHeadlines.BloodPressureHeadline;
         }
         else if(alertMasterId == AlertTypes.WeightAlert) {
-            this.alertUnit = AlertUnit.WeightUnit;
             this.alertHeadline = AlertHeadlines.WeightHeadline;
             return AlertHeadlines.WeightHeadline;
         }
         else if(alertMasterId == AlertTypes.BloodGlucoseAlert) {
-            this.alertUnit = AlertUnit.BGUnit;
             this.alertHeadline = AlertHeadlines.BloodGlucoseHeadline;
             return AlertHeadlines.BloodGlucoseHeadline;
         }
         else {
-            this.alertUnit = '';
             this.alertHeadline = '';
+            return '';
+        }
+    }
+
+    GetAlertUnit(alertMasterId: any) {
+        if(alertMasterId == AlertTypes.BloodPressureAlert) {
+            this.alertUnit = AlertUnit.BPUnit;
+            return AlertUnit.BPUnit;
+        }
+        else if(alertMasterId == AlertTypes.WeightAlert) {
+            this.alertUnit = AlertUnit.WeightUnit;
+            return AlertUnit.WeightUnit;
+        }
+        else if(alertMasterId == AlertTypes.BloodGlucoseAlert) {
+            this.alertUnit = AlertUnit.BGUnit;
+            return AlertUnit.BGUnit;
+        }
+        else {
+            this.alertUnit = '';
             return '';
         }
     }

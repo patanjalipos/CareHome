@@ -49,19 +49,25 @@
                     <td>
                         <div>
                            <label class="bold text-danger fs-5"> {{dt.AlertName}} </label>
-                           <label> {{GetHeadline(dt.alertMasterId)}} </label> 
+                           <label *ngIf="dt.alertMasterId != alertTypes.MUSTAlert"> {{GetHeadline(dt.alertMasterId)}} </label> 
+                           <label *ngIf="dt.alertMasterId == alertTypes.MUSTAlert">On {{dt.createdOn | date:customDateFormat.DEF_DATE}},<span class="bold"> {{residentadmissiondetails.FullName}}</span> has had a MUST Score recorded of <span class="bold">{{dt.value}}</span> which indicates they are at <span *ngIf="dt.value == 1" class="text-warning">medium risk</span><span *ngIf="dt.value >= 2" class="text-danger">high risk</span> of malnutrition.</label>
                         </div>
 
                     </td>
                     <td>
                         <div>
-                            <label class="text-danger">{{dt.value}}</label> {{alertUnit}} <br>
+                            <label class="text-danger">{{dt.value}}</label> {{GetAlertUnit(dt.alertMasterId)}} <br>
                             <label class="bold" *ngIf="dt.alertMasterId == alertTypes.BloodPressureAlert">Baseline Value Ranges :-- <br> Systolic Range (mmHg) = {{dt.MinSystolic}} - {{dt.MaxSystolic}}
                             <br>
                             Diastolic Range (mmHg) = {{dt.MinDiastolic}} -
                                 {{dt.MaxDiastolic}}</label>
                             <label class="bold" *ngIf="dt.alertMasterId == alertTypes.WeightAlert">Baseline Value Range = {{dt.MinWeight}} - {{dt.MaxWeight}} (Kg)</label>
                             <label class="bold" *ngIf="dt.alertMasterId == alertTypes.BloodGlucoseAlert">Baseline Value Range = {{dt.MinGlucose}} - {{dt.MaxGlucose}} (mmol/L)</label>
+                            <label class="bold" *ngIf="dt.alertMasterId == alertTypes.MUSTAlert">Baseline Value :--
+                                <br>MUST Score = 0 (No Risk)
+                                <br>MUST Score = 1 (Medium Risk)
+                                <br>MUST Score >= 2 (High Risk)
+                            </label>
                         </div>
                     </td>
                     <td>
