@@ -4,7 +4,7 @@ import { Injectable } from '@angular/core';
     providedIn: 'root',
 })
 export class ConstantsService {
-    constructor() {}
+    constructor() { }
     public IsLocal: boolean = false;
     public IsShowNavBar: boolean = true;
     public ActiveMenuName: string = '';
@@ -31,7 +31,7 @@ export enum UserTypes {
     SuperAdmin = '611b6d811003138c9d40a8b7',
     Admin = '607546c500f6f4c43c5d54a0',
     Resident = '6075474600f6f4c43c5d54a1',
-   
+
 }
 
 export enum AlertTypes {
@@ -191,8 +191,7 @@ export enum CustomDateFormat {
     TIME = 'HH:mm',
 }
 
-export enum UserEnteredNote
-{
+export enum UserEnteredNote {
     UserEnteredNotes = 1,
 }
 export enum progressNoteFilters1 {
@@ -220,29 +219,31 @@ export enum progressNoteFilters {
     CareplanCharges = 7,
     ResidentTransfer = 8,
     ResidentIndicators = 9,
-    Occupancynotes = 10,    
+    Occupancynotes = 10,
     ResidentDeparture = 11,
 }
 export enum EnteredNotes {
-    OnlyDoctorenterednotes= 'Only Doctor-entered notes',
+    OnlyDoctorenterednotes = 'Only Doctor-entered notes',
     OnlySpecifiedUser = 'Only a specified user',
 }
 export enum TimeFrameNotes {
-    SinceFirstAdmission= 'Since First Admission',
+    SinceFirstAdmission = 'Since First Admission',
     InthePrevious = 'In the Previous',
     Specifyatimeframe = 'Specify a time frame',
 }
 export enum ResidentSelection {
-    AllresidentAssigned= 'All Resident assigned to me',
+    AllresidentAssigned = 'All Resident assigned to me',
     selectedresidentsonly = 'Selected Residents Only',
 }
 
 export enum AlertHeadlines {
     BloodPressureHeadline = 'A blood pressure observation was recorded outside the baseline range.',
     WeightHeadline = 'A weight observation was recorded outside the baseline range.',
+    MustHeadline='On 13-08-2024, Alexander has had a MUST Score recorded of 2 which indicates they are at high risk of malnutrition.',
     BloodGlucoseHeadline = 'A blood glucose level observation was recorded outside the baseline range.',
-    NewsPulseAlertHeadline='A pulse observation was recorded outside the baseline range. ',
-    NewsOxygenAlertHeadline="On 14-08-2024, Beryl's oxygen saturation has been recorded at 94% which is outside of their oxygen saturation baseline."
+    WaterLowHeadline = 'On 11-08-2024, Rosina has had a Waterlow Score recorded of 27 and is deemed as being at very high risk of developing a pressure ulcer.',
+    NewsPulseAlertHeadline = 'A pulse observation was recorded outside the baseline range. ',
+    NewsOxygenAlertHeadline = "On 14-08-2024, Beryl's oxygen saturation has been recorded at 94% which is outside of their oxygen saturation baseline."
 }
 
 export enum AlertUnit {
@@ -251,5 +252,6 @@ export enum AlertUnit {
     PulseUnit = 'Beat per minute',
     BGUnit = 'mmol/L',
     FluidUnit = 'mls',
-    OxygenUnit = '%'
+    OxygenUnit = '%',
+    WaterUnit = 'mis'
 }
