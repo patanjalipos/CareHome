@@ -11,8 +11,8 @@ import { UtilityService } from 'src/app/utility/utility.service';
 })
 export class ActionTakenPopupComponent extends AppComponentBase implements OnInit {
 
-  @Input() ActionTakenData:any = <any>{};
-  @Output() ActionTakenCheck:EventEmitter<boolean> = new EventEmitter<boolean>();
+  @Input() ActionTakenData: any = <any>{};
+  @Output() ActionTakenCheck: EventEmitter<boolean> = new EventEmitter<boolean>();
   @Output() EmitUpdateAlert: EventEmitter<any> = new EventEmitter<any>();
 
   imageSrc: any;
@@ -20,13 +20,13 @@ export class ActionTakenPopupComponent extends AppComponentBase implements OnIni
   alertHeadline: string = '';
   alertUnit: string = '';
   alertTypes = AlertTypes;
-  
+
   constructor(private _UtilityService: UtilityService, private _UserService: UserService) {
     super();
   }
-  
+
   ngOnInit(): void {
-    
+
     if (this.ActionTakenData.residentDetails.ProfileImage != undefined && this.ActionTakenData.residentDetails.ProfileImage != null && this.ActionTakenData.residentDetails.ProfileImage != '') {
       var imageFormat = this._UtilityService.getFileExtension(this.ActionTakenData.residentDetails.ProfileImage);
       this.imageSrc = "data:image/" + imageFormat + ";base64," + this.ActionTakenData.residentDetails.ProfileImage;
@@ -34,15 +34,15 @@ export class ActionTakenPopupComponent extends AppComponentBase implements OnIni
     else {
       this.imageSrc = "";
     }
-    
-    if(this.ActionTakenData.alertData.alertMasterId != null) {
-      if(this.ActionTakenData.alertData.alertMasterId == AlertTypes.BloodPressureAlert) {
+
+    if (this.ActionTakenData.alertData.alertMasterId != null) {
+      if (this.ActionTakenData.alertData.alertMasterId == AlertTypes.BloodPressureAlert) {
         this.headline = AlertHeadlines.BloodPressureHeadline;
       }
-      else if(this.ActionTakenData.alertData.alertMasterId == AlertTypes.WeightAlert) {
+      else if (this.ActionTakenData.alertData.alertMasterId == AlertTypes.WeightAlert) {
         this.headline = AlertHeadlines.WeightHeadline;
       }
-      else if(this.ActionTakenData.alertData.alertMasterId == AlertTypes.BloodGlucoseAlert) {
+      else if (this.ActionTakenData.alertData.alertMasterId == AlertTypes.BloodGlucoseAlert) {
         this.headline = AlertHeadlines.BloodGlucoseHeadline;
       }
     }
@@ -54,31 +54,31 @@ export class ActionTakenPopupComponent extends AppComponentBase implements OnIni
     const objectBody: any = this.ActionTakenData
     this._UtilityService.showSpinner();
     this.unsubscribe.add = this._UserService
-        .AlertActionTaken(objectBody)
-        .subscribe({
-            next: (data) => {
-                this._UtilityService.hideSpinner();
-                if (data.actionResult.success == true) {
-                  this.ActionTakenCheck.emit(false);
-                  
-                  this.EmitUpdateAlert.emit(data.actionResult.value);
-                    // this.ResetModel();
-                    this._UtilityService.showSuccessAlert(
-                        data.actionResult.errMsg
-                    );
-                } else
-                    this._UtilityService.showWarningAlert(
-                        data.actionResult.errMsg
-                    );
-            },
-            error: (e) => {
-                this._UtilityService.hideSpinner();
-                this._UtilityService.showErrorAlert(e.message);
-            },
-        });
-   } 
+      .AlertActionTaken(objectBody)
+      .subscribe({
+        next: (data) => {
+          this._UtilityService.hideSpinner();
+          if (data.actionResult.success == true) {
+            this.ActionTakenCheck.emit(false);
 
-   calculateAge(birthday): number {
+            this.EmitUpdateAlert.emit(data.actionResult.value);
+            // this.ResetModel();
+            this._UtilityService.showSuccessAlert(
+              data.actionResult.errMsg
+            );
+          } else
+            this._UtilityService.showWarningAlert(
+              data.actionResult.errMsg
+            );
+        },
+        error: (e) => {
+          this._UtilityService.hideSpinner();
+          this._UtilityService.showErrorAlert(e.message);
+        },
+      });
+  }
+
+  calculateAge(birthday): number {
     if (birthday != undefined) {
       var curdate = new Date();
       var dob = new Date(birthday);
@@ -102,24 +102,6 @@ export class ActionTakenPopupComponent extends AppComponentBase implements OnIni
       return 0;
   }
 
-  GetUnit(alertMasterId: any) {
-    if(alertMasterId == AlertTypes.BloodPressureAlert) {
-        this.alertUnit = AlertUnit.BPUnit;
-        return AlertUnit.BPUnit;
-    }
-    else if(alertMasterId == AlertTypes.WeightAlert) {
-        this.alertUnit = AlertUnit.WeightUnit;
-        return AlertUnit.WeightUnit;
-    }
-    else if(alertMasterId == AlertTypes.BloodGlucoseAlert) {
-        this.alertUnit = AlertUnit.BGUnit;
-        return AlertUnit.BGUnit;
-    }
-    else {
-        this.alertUnit = '';
-        return '';
-    }
-}
 
 }
 
