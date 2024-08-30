@@ -208,73 +208,83 @@ export class AlertListComponent extends AppComponentBase implements OnInit {
 
   counter: number = 0;
   GetHeadline(alertMasterId: any): any {
-    if (alertMasterId === AlertTypes.BloodPressureAlert) {
+    if (alertMasterId == AlertTypes.BloodPressureAlert) {
       this.alertHeadline = AlertHeadlines.BloodPressureHeadline;
-      return this.alertHeadline;
-
-    } else if (alertMasterId === AlertTypes.WeightAlert) {
-
+      this.counter++;
+      return AlertHeadlines.BloodPressureHeadline;
+    } else if (alertMasterId == AlertTypes.WeightAlert) {
       this.alertHeadline = AlertHeadlines.WeightHeadline;
-      return this.alertHeadline;
-
-    } else if (alertMasterId === AlertTypes.BloodGlucoseAlert) {
-
+      this.counter++;
+      return AlertHeadlines.WeightHeadline;
+    } else if (alertMasterId == AlertTypes.BloodGlucoseAlert) {
       this.alertHeadline = AlertHeadlines.BloodGlucoseHeadline;
-      return this.alertHeadline;
-
-    } else if (alertMasterId === AlertTypes.NEWS2Alert) {
-
-      if (this.AlertList[this.counter].isOxygenNewsAlert === true) {
-
+      this.counter++;
+      return AlertHeadlines.BloodGlucoseHeadline;
+    } else if (alertMasterId == AlertTypes.WaterlowAlert) {
+      this.alertHeadline = AlertHeadlines.WaterLowHeadline;
+      this.counter++;
+      return AlertHeadlines.WaterLowHeadline;
+    } else if (alertMasterId == AlertTypes.MUSTAlert) {
+      this.alertHeadline = AlertHeadlines.MustHeadline;
+      this.counter++;
+      return AlertHeadlines.WaterLowHeadline;
+    } 
+    else if (alertMasterId == AlertTypes.NEWS2Alert) {
+      if (this.AlertList[this.counter].isOxygenNewsAlert == true) {
         this.alertHeadline = AlertHeadlines.NewsOxygenAlertHeadline;
         this.counter++;
-        return this.alertHeadline;
-      } else if (this.AlertList[this.counter].isPulseNewsAlert === true) {
-
+        return AlertHeadlines.NewsOxygenAlertHeadline;
+      } if (this.AlertList[this.counter].isPulseNewsAlert == true) {
         this.alertHeadline = AlertHeadlines.NewsPulseAlertHeadline;
         this.counter++;
-        return this.alertHeadline;
+        return AlertHeadlines.NewsPulseAlertHeadline;
       }
-
-
     } else {
       this.alertUnit = '';
       this.alertHeadline = '';
+      this.counter++;
       return '';
     }
 
   }
 
-  GetUnit(alertMasterId: any):any {
+  counter1: number = 0;
+  GetUnit(alertMasterId: any): any {
     if (alertMasterId == AlertTypes.BloodPressureAlert) {
       this.alertUnit = AlertUnit.BPUnit;
+      this.counter1++;
       return AlertUnit.BPUnit;
     }
     else if (alertMasterId == AlertTypes.WeightAlert) {
       this.alertUnit = AlertUnit.WeightUnit;
+      this.counter1++;
       return AlertUnit.WeightUnit;
     }
     else if (alertMasterId == AlertTypes.BloodGlucoseAlert) {
       this.alertUnit = AlertUnit.BGUnit;
+      this.counter1++;
       return AlertUnit.BGUnit;
+    } else if (alertMasterId == AlertTypes.WaterlowAlert) {
+      this.alertUnit = AlertUnit.WaterUnit;
+      this.counter1++;
+      return AlertUnit.WaterUnit;
     }
-    else if (alertMasterId === AlertTypes.NEWS2Alert) {
-
-      if (this.AlertList[this.counter].isOxygenNewsAlert === true) {
-
+    else if (alertMasterId == AlertTypes.NEWS2Alert) {
+      if (this.AlertList[this.counter1].isOxygenNewsAlert == true) {
         this.alertUnit = AlertUnit.OxygenUnit;
-        return this.alertUnit;
-     
-      } else if (this.AlertList[this.counter].isPulseNewsAlert === true) {
+        this.counter1++;
+        return AlertUnit.OxygenUnit;
 
+      } if (this.AlertList[this.counter1].isPulseNewsAlert == true) {
         this.alertUnit = AlertUnit.PulseUnit;
-        this.counter++;
-        return this.alertUnit;
+        this.counter1++;
+        return AlertUnit.PulseUnit;
       }
-   
+
     }
     else {
       this.alertUnit = '';
+      this.counter1++;
       return '';
     }
   }
