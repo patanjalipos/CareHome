@@ -240,7 +240,7 @@ export class AlertListComponent extends AppComponentBase implements OnInit {
   }
 
   counter1: number = 0;
-  GetUnit(alertMasterId: any): any {
+  GetAlertUnit(alertMasterId: any): any {
     if (alertMasterId == AlertTypes.BloodPressureAlert) {
       this.alertUnit = AlertUnit.BPUnit;
       this.counter1++;
