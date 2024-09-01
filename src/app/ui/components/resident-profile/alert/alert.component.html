@@ -44,14 +44,14 @@
                     <th>Actions</th>
                 </tr>
             </ng-template>
-            <ng-template pTemplate="body" let-dt>
+            <ng-template pTemplate="body" let-dt let-i="rowIndex">
                 <tr>
                     <td>
                         <div>
                             <label class="bold text-danger fs-5"> {{dt.AlertName}} </label>
                             <label
-                                *ngIf="dt.alertMasterId != alertTypes.MUSTAlert&&dt.alertMasterid!=alertTypes.WaterlowAlert">
-                                {{GetHeadline(dt.alertMasterId)}}
+                                *ngIf="dt.alertMasterId != alertTypes.MUSTAlert&&dt.alertMasterid!=alertTypes.WaterlowAlert&&dt.alertMasterId!=alertTypes.FluidIntakeAlert">
+                                {{GetHeadline(dt.alertMasterId,i)}}
                             </label>
                             <label *ngIf="dt.alertMasterId == alertTypes.MUSTAlert">On {{dt.createdOn |
                                 date:customDateFormat.DEF_DATE}},<span class="bold">
@@ -68,11 +68,23 @@
                                 <span *ngIf="dt.value>=20">Very High risk</span>
                                 of developing
                                 a pressure ulcer.</label>
+
+                            <label *ngIf="dt.alertMasterId == alertTypes.FluidIntakeAlert">On {{dt.createdOn |
+                                date:customDateFormat.DEF_DATE}}, the fluid consumption recorded did not meet the
+                                minimum
+                                healthy baseline range. The recorded fluid consumption was 900.00mls and the minimum
+                                healthy
+                                baseline range was 1000.00mls. </label>
+
+                            <label *ngIf="dt.isOxygenNewsAlert==true">On {{dt.createdOn |
+                                date:customDateFormat.DEF_DATE}}, Beryl's oxygen saturation has been recorded at 94%
+                                which
+                                is outside of their oxygen saturation baseline.</label>
                         </div>
                     </td>
                     <td>
                         <div>
-                            <label class="text-danger">{{dt.value}}</label> {{GetAlertUnit(dt.alertMasterId)}} <br>
+                            <label class="text-danger">{{dt.value}}</label> {{GetAlertUnit(dt.alertMasterId,i)}} <br>
                             <label class="bold" *ngIf="dt.alertMasterId == alertTypes.BloodPressureAlert">Baseline Value
                                 Ranges :-- <br> Systolic Range (mmHg) = {{dt.MinSystolic}} - {{dt.MaxSystolic}}
                                 <br>
@@ -93,6 +105,17 @@
                                 <br>Water Score > 15 (High Risk)
                                 <br>Water Score > 20 (Very High Risk)
                             </label>
+                            <label class="bold" *ngIf="dt.alertMasterId == alertTypes.FluidIntakeAlert">Baseline Value
+                                Range = {{dt.MinFluid}} - {{dt.MaxFluid}} (mis)</label>
+
+                            <label class="bold" *ngIf="dt.isOxygenNewsAlert == true">Baseline Value
+                                Range = {{dt.MinOxygen}} - {{dt.MaxOxygen}} (%)</label>
+
+                            <label class="bold" *ngIf="dt.isPulseNewsAlert == true">Baseline Value
+                                Range = {{dt.MinPulse}} - {{dt.MaxPulse}} (beats per min)</label>
+
+                            <label class="bold" *ngIf="dt.isTemperatureNewsAlert == true">Baseline Value
+                                Range = {{dt.MaxTemperature}} - {{dt.MaxTemperature}} (degree)</label>
                         </div>
                     </td>
                     <td>

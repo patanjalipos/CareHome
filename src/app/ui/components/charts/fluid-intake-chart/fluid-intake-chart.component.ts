@@ -1,6 +1,6 @@
 import { DatePipe } from '@angular/common';
 import { Component, EventEmitter, Input, OnInit, Output, SimpleChanges } from '@angular/core';
-import { ChartTypes, ConstantsService, CustomDateFormat } from 'src/app/ui/service/constants.service';
+import { AlertTypes, ChartTypes, ConstantsService, CustomDateFormat } from 'src/app/ui/service/constants.service';
 import { OptionService } from 'src/app/ui/service/option.service';
 import { UserService } from 'src/app/ui/service/user.service';
 import { UtilityService } from 'src/app/utility/utility.service';
@@ -208,6 +208,8 @@ export class FluidIntakeChartComponent extends AppComponentBase implements OnIni
       const objectBody: any = {
         StatementType: this.StatementType,
         fluidIntakeChart: this.FluidIntakeChartFormData,
+        alertMasterId: AlertTypes.FluidIntakeAlert,
+        chartMasterId: ChartTypes.FluidIntakeChart
       };
 
       this._UtilityService.showSpinner();
