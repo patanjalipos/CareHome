@@ -117,11 +117,8 @@ export class ActionTakenPopupComponent extends AppComponentBase implements OnIni
       this.counter++;
       return AlertHeadlines.BloodGlucoseHeadline;
     }else if (alertMasterId == AlertTypes.NEWS2Alert) {
-      if (this.ActionTakenData[this.counter].isOxygenNewsAlert == true) {
-        this.alertHeadline = AlertHeadlines.NewsOxygenAlertHeadline;
-        this.counter++;
-        return AlertHeadlines.NewsOxygenAlertHeadline;
-      } if (this.ActionTakenData[this.counter].isPulseNewsAlert == true) {
+     
+       if (this.ActionTakenData[this.counter].isPulseNewsAlert == true) {
         this.alertHeadline = AlertHeadlines.NewsPulseAlertHeadline;
         this.counter++;
         return AlertHeadlines.NewsPulseAlertHeadline;
@@ -154,6 +151,11 @@ export class ActionTakenPopupComponent extends AppComponentBase implements OnIni
       this.counter1++;
       return AlertUnit.BGUnit;
     } 
+    else if (alertMasterId == AlertTypes.FluidIntakeAlert) {
+      this.alertUnit = AlertUnit.FluidUnit;
+      this.counter1++;
+      return AlertUnit.FluidUnit;
+  }
     else if (alertMasterId == AlertTypes.NEWS2Alert) {
       if (this.ActionTakenData[this.counter1].isOxygenNewsAlert == true) {
         this.alertUnit = AlertUnit.OxygenUnit;
