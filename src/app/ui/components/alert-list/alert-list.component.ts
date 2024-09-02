@@ -75,10 +75,6 @@ export class AlertListComponent extends AppComponentBase implements OnInit {
             var tdata = JSON.parse(data.actionResult.result);
             tdata = tdata ? tdata : [];
             this.AlertList = tdata;
-            console.log("asfdsfsfd");
-
-            console.log(this.AlertList);
-
             this.AlertList.forEach(chart => {
               if (chart.ProfileImage) {
                 const imageFormat = this._UtilityService.getFileExtension(chart.ProfileImage);
@@ -206,75 +202,60 @@ export class AlertListComponent extends AppComponentBase implements OnInit {
       return 0;
   }
 
-  counter: number = 0;
-  GetHeadline(alertMasterId: any): any {
+  GetHeadline(alertMasterId: any, index: number): any {
+    if (index < 0 || index >= this.AlertList.length) {
+      return '';
+    }
+
     if (alertMasterId == AlertTypes.BloodPressureAlert) {
-      this.alertHeadline = AlertHeadlines.BloodPressureHeadline;
-      this.counter++;
       return AlertHeadlines.BloodPressureHeadline;
     } else if (alertMasterId == AlertTypes.WeightAlert) {
-      this.alertHeadline = AlertHeadlines.WeightHeadline;
-      this.counter++;
       return AlertHeadlines.WeightHeadline;
     } else if (alertMasterId == AlertTypes.BloodGlucoseAlert) {
-      this.alertHeadline = AlertHeadlines.BloodGlucoseHeadline;
-      this.counter++;
       return AlertHeadlines.BloodGlucoseHeadline;
     } else if (alertMasterId == AlertTypes.NEWS2Alert) {
-      if (this.AlertList[this.counter].isOxygenNewsAlert == true) {
-        this.alertHeadline = AlertHeadlines.NewsOxygenAlertHeadline;
-        this.counter++;
-        return AlertHeadlines.NewsOxygenAlertHeadline;
-      } if (this.AlertList[this.counter].isPulseNewsAlert == true) {
-        this.alertHeadline = AlertHeadlines.NewsPulseAlertHeadline;
-        this.counter++;
+      const alert = this.AlertList[index];
+      if (alert.isPulseNewsAlert) {
         return AlertHeadlines.NewsPulseAlertHeadline;
+      }
+      if (alert.isTemperatureNewsAlert) {
+        return AlertHeadlines.NewsTemperatureHeadline;
+      }
+    } else {
+      return '';
+    }
+  }
+
+  GetAlertUnit(alertMasterId: any, index: number): any {
+    if (index < 0 || index >= this.AlertList.length) {
+      return '';
+    }
+
+    if (alertMasterId == AlertTypes.BloodPressureAlert) {
+      return AlertUnit.BPUnit;
+    } else if (alertMasterId == AlertTypes.WeightAlert) {
+      return AlertUnit.WeightUnit;
+    } else if (alertMasterId == AlertTypes.BloodGlucoseAlert) {
+      return AlertUnit.BGUnit;
+    } else if (alertMasterId == AlertTypes.FluidIntakeAlert) {
+      return AlertUnit.FluidUnit;
+    } else if (alertMasterId == AlertTypes.NEWS2Alert) {
+      const alert = this.AlertList[index];
+      if (alert.isOxygenNewsAlert) {
+        return AlertUnit.OxygenUnit;
+      }
+      if (alert.isPulseNewsAlert) {
+        return AlertUnit.PulseUnit;
+      }
+      if (alert.isTemperatureNewsAlert) {
+        return AlertUnit.TemperatureUnit;
       }
     } else {
       this.alertUnit = '';
-      this.alertHeadline = '';
-      this.counter++;
-      return '';
-    }
-
-  }
-
-  counter1: number = 0;
-  GetAlertUnit(alertMasterId: any): any {
-    if (alertMasterId == AlertTypes.BloodPressureAlert) {
-      this.alertUnit = AlertUnit.BPUnit;
-      this.counter1++;
-      return AlertUnit.BPUnit;
-    }
-    else if (alertMasterId == AlertTypes.WeightAlert) {
-      this.alertUnit = AlertUnit.WeightUnit;
-      this.counter1++;
-      return AlertUnit.WeightUnit;
-    }
-    else if (alertMasterId == AlertTypes.BloodGlucoseAlert) {
-      this.alertUnit = AlertUnit.BGUnit;
-      this.counter1++;
-      return AlertUnit.BGUnit;
-    }
-    else if (alertMasterId == AlertTypes.NEWS2Alert) {
-      if (this.AlertList[this.counter1].isOxygenNewsAlert == true) {
-        this.alertUnit = AlertUnit.OxygenUnit;
-        this.counter1++;
-        return AlertUnit.OxygenUnit;
-
-      } if (this.AlertList[this.counter1].isPulseNewsAlert == true) {
-        this.alertUnit = AlertUnit.PulseUnit;
-        this.counter1++;
-        return AlertUnit.PulseUnit;
-      }
-
-    }
-    else {
-      this.alertUnit = '';
-      this.counter1++;
       return '';
     }
   }
+
 
 
 }

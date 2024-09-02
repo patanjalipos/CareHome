@@ -241,7 +241,7 @@ export enum AlertHeadlines {
     WeightHeadline = 'A weight observation was recorded outside the baseline range.',
     BloodGlucoseHeadline = 'A blood glucose level observation was recorded outside the baseline range.',
     NewsPulseAlertHeadline = 'A pulse observation was recorded outside the baseline range. ',
-    NewsOxygenAlertHeadline = "On 14-08-2024, Beryl's oxygen saturation has been recorded at 94% which is outside of their oxygen saturation baseline."
+    NewsTemperatureHeadline='A high temperature observation was recorded above the facility baseline.'
 }
 
 export enum AlertUnit {
@@ -249,7 +249,8 @@ export enum AlertUnit {
     WeightUnit = 'Kg',
     PulseUnit = 'Beat per minute',
     BGUnit = 'mmol/L',
-    FluidUnit = 'mls',
+    FluidUnit = 'mis',
     OxygenUnit = '%',
-    WaterUnit = 'mis'
+    WaterUnit = 'mis',
+    TemperatureUnit='degree'
 }
