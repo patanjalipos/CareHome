@@ -164,7 +164,6 @@ export class AlertComponent extends AppComponentBase implements OnInit {
             .GetAllAlert(importData, residentAdmissionInfoId)
             .subscribe({
                 next: (data) => {
-                    console.log(residentAdmissionInfoId);
                     this._UtilityService.hideSpinner();
                     if (data.actionResult.success == true) {
                         var tdata = JSON.parse(data.actionResult.result);
@@ -197,7 +196,6 @@ export class AlertComponent extends AppComponentBase implements OnInit {
             alertHeadline: this.alertHeadline
         };
         this.isShowActionTakenPopup = true;
-        console.log('RESIDENT DETAILS', this.ActionTakenData);
     }
 
     Changes(value: boolean) {
