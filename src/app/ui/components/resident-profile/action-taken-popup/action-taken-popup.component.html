@@ -34,6 +34,12 @@
                 healthy
                 baseline range was 1000.00mls.
             </p>
+
+            <p *ngIf="ActionTakenData.alertData.isOxygenNewsAlert==true">On {{ActionTakenData.alertData.createdOn |
+                date:'dd-MM-yyyy'}}, Beryl's oxygen saturation has been recorded at 94%
+                which
+                is outside of their oxygen saturation baseline.</p>
+                
             <br>
             <label class="bold">Observation</label> = <span class="text-danger">{{ActionTakenData.alertData.value}}
             </span>{{GetUnit(ActionTakenData.alertData.alertMasterId)}}
@@ -66,8 +72,20 @@
                 <br>Water Score > <span class="bold">15 (High Risk)</span>
                 <br>Water Score > <span class="bold">20 (Very High Risk)</span>
             </span>
-            <label class="bold" *ngIf="ActionTakenData.alertData.alertMasterId == alertTypes.FluidIntakeAlert">Baseline Value
+            <label class="bold" *ngIf="ActionTakenData.alertData.alertMasterId == alertTypes.FluidIntakeAlert">Baseline
+                Value
                 Range = {{ActionTakenData.alertData.MinFluid}} - {{ActionTakenData.alertData.MaxFluid}} (mis)</label>
+
+            <label class="bold" *ngIf="ActionTakenData.alertData.isOxygenNewsAlert == true">Baseline Value
+                Range = {{ActionTakenData.alertData.MinOxygen}} - {{ActionTakenData.alertData.MaxOxygen}} (%)</label>
+
+            <label class="bold" *ngIf="ActionTakenData.alertData.isPulseNewsAlert == true">Baseline Value
+                Range = {{ActionTakenData.alertData.MinPulse}} - {{ActionTakenData.alertData.MaxPulse}} (beats per
+                min)</label>
+
+            <label class="bold" *ngIf="ActionTakenData.alertData.isTemperatureNewsAlert == true">Baseline Value
+                Range = {{ActionTakenData.alertData.MaxTemperature}} - {{ActionTakenData.alertData.MaxTemperature}}
+                (degree)</label>
         </div>
         <div class="col-md-4 d-flex my-5">
             <div class="profile-img">

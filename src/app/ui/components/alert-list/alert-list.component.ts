@@ -75,10 +75,6 @@ export class AlertListComponent extends AppComponentBase implements OnInit {
             var tdata = JSON.parse(data.actionResult.result);
             tdata = tdata ? tdata : [];
             this.AlertList = tdata;
-            console.log("asfdsfsfd");
-
-            console.log(this.AlertList);
-
             this.AlertList.forEach(chart => {
               if (chart.ProfileImage) {
                 const imageFormat = this._UtilityService.getFileExtension(chart.ProfileImage);

@@ -46,6 +46,7 @@ export class ActionTakenPopupComponent extends AppComponentBase implements OnIni
         this.headline = AlertHeadlines.BloodGlucoseHeadline;
       }
     }
+
   }
 
   AlertActionTakenCheck(actionCheck: boolean) {
@@ -102,76 +103,58 @@ export class ActionTakenPopupComponent extends AppComponentBase implements OnIni
       return 0;
   }
 
-  counter: number = 0;
+
   GetHeadline(alertMasterId: any): any {
     if (alertMasterId == AlertTypes.BloodPressureAlert) {
-      this.alertHeadline = AlertHeadlines.BloodPressureHeadline;
-      this.counter++;
       return AlertHeadlines.BloodPressureHeadline;
     } else if (alertMasterId == AlertTypes.WeightAlert) {
-      this.alertHeadline = AlertHeadlines.WeightHeadline;
-      this.counter++;
       return AlertHeadlines.WeightHeadline;
     } else if (alertMasterId == AlertTypes.BloodGlucoseAlert) {
-      this.alertHeadline = AlertHeadlines.BloodGlucoseHeadline;
-      this.counter++;
       return AlertHeadlines.BloodGlucoseHeadline;
-    }else if (alertMasterId == AlertTypes.NEWS2Alert) {
-     
-       if (this.ActionTakenData[this.counter].isPulseNewsAlert == true) {
-        this.alertHeadline = AlertHeadlines.NewsPulseAlertHeadline;
-        this.counter++;
+    } else if (alertMasterId == AlertTypes.NEWS2Alert) {
+      if (this.ActionTakenData.alertData.isPulseNewsAlert == true) {
         return AlertHeadlines.NewsPulseAlertHeadline;
+      }
+      if (this.ActionTakenData.alertData.isTemperatureNewsAlert == true) {
+        return AlertHeadlines.NewsTemperatureHeadline;
       }
     } else {
       this.alertUnit = '';
       this.alertHeadline = '';
-      this.counter++;
+
       return '';
     }
 
   }
 
 
-
-  counter1: number = 0;
   GetUnit(alertMasterId: any): any {
     if (alertMasterId == AlertTypes.BloodPressureAlert) {
-      this.alertUnit = AlertUnit.BPUnit;
-      this.counter1++;
       return AlertUnit.BPUnit;
     }
     else if (alertMasterId == AlertTypes.WeightAlert) {
-      this.alertUnit = AlertUnit.WeightUnit;
-      this.counter1++;
       return AlertUnit.WeightUnit;
     }
     else if (alertMasterId == AlertTypes.BloodGlucoseAlert) {
-      this.alertUnit = AlertUnit.BGUnit;
-      this.counter1++;
       return AlertUnit.BGUnit;
-    } 
+    }
     else if (alertMasterId == AlertTypes.FluidIntakeAlert) {
-      this.alertUnit = AlertUnit.FluidUnit;
-      this.counter1++;
       return AlertUnit.FluidUnit;
-  }
+    }
     else if (alertMasterId == AlertTypes.NEWS2Alert) {
-      if (this.ActionTakenData[this.counter1].isOxygenNewsAlert == true) {
-        this.alertUnit = AlertUnit.OxygenUnit;
-        this.counter1++;
+      if (this.ActionTakenData.alertData.isOxygenNewsAlert == true) {
         return AlertUnit.OxygenUnit;
 
-      } if (this.ActionTakenData[this.counter1].isPulseNewsAlert == true) {
-        this.alertUnit = AlertUnit.PulseUnit;
-        this.counter1++;
+      }
+      if (this.ActionTakenData.alertData.isPulseNewsAlert == true) {
         return AlertUnit.PulseUnit;
       }
-
+      if (this.ActionTakenData.alertData.isTemperatureNewsAlert == true) {
+        return AlertUnit.TemperatureUnit;
+      }
     }
     else {
       this.alertUnit = '';
-      this.counter1++;
       return '';
     }
   }
