@@ -63,7 +63,7 @@
                         </label>
                         <label *ngIf="dt.alertMasterId == alertTypes.MUSTAlert">On {{dt.createdOn |
                             date:customDateFormat.DEF_DATE}},<span class="bold">
-                                {{dt.FullName}}</span> has had a MUST Score recorded of <span
+                                {{dt.ResidentName}}</span> has had a MUST Score recorded of <span
                                 class="bold">{{dt.value}}</span> which indicates they are at <span *ngIf="dt.value == 1"
                                 class="text-warning">medium risk</span><span *ngIf="dt.value >= 2"
                                 class="text-danger">high risk</span> of malnutrition.</label>
@@ -83,13 +83,23 @@
                             baseline range was 1000.00mls. </label>
 
                         <label *ngIf="dt.isOxygenNewsAlert==true">On {{dt.createdOn |
-                            date:customDateFormat.DEF_DATE}}, Beryl's oxygen saturation has been recorded at 94% which
+                            date:customDateFormat.DEF_DATE}}, {{dt.ResidentName}} oxygen saturation has been recorded at
+                            94% which
                             is outside of their oxygen saturation baseline.</label>
+
+                        <label *ngIf="dt.alertMasterId==alertTypes.PressureUlcerAlert">On {{dt.createdOn |
+                            date:customDateFormat.DEF_DATE}},<span>{{dt.ResidentName}}</span> has had a Wound Chart
+                            recorded for
+                            a pressure ulcer in the following location - Right foot (back of). The pressure ulcer's
+                            classification has been recorded as <span
+                                class="bold">{{dt.ulcerClassificationOptionName}}</span>.</label>
                     </div>
                 </td>
                 <td>
                     <div>
-                        <label class="text-danger">{{dt.value}}</label> {{GetAlertUnit(dt.alertMasterId,i)}} <br>
+                        <label class="text-danger"
+                            *ngIf="dt.alertMasterId!=alertTypes.PressureUlcerAlert">{{dt.value}}</label>
+                        {{GetAlertUnit(dt.alertMasterId,i)}} <br>
                         <label class="bold" *ngIf="dt.alertMasterId == alertTypes.BloodPressureAlert">Baseline Value
                             Ranges :-- <br> Systolic Range (mmHg) = {{dt.MinSystolic}} - {{dt.MaxSystolic}}
                             <br>
@@ -120,6 +130,8 @@
 
                         <label class="bold" *ngIf="dt.isTemperatureNewsAlert == true">Baseline Value
                             Range = {{dt.MaxTemperature}} - {{dt.MaxTemperature}} (degree)</label>
+                        <label class="text-danger"
+                            *ngIf="dt.alertMasterId==alertTypes.PressureUlcerAlert">{{dt.ulcerClassificationOptionName}}</label>
                     </div>
                 </td>
                 <td>
