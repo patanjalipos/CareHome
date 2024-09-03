@@ -81,6 +81,8 @@ export class AlertListComponent extends AppComponentBase implements OnInit {
                 chart.ProfileImage = `data:image/${imageFormat};base64,${chart.ProfileImage}`;
               }
             });
+            console.log(this.AlertList);
+            
           }
           else {
             this.AlertList = [];
