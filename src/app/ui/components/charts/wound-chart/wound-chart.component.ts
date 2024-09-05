@@ -1,7 +1,7 @@
 import { DatePipe } from '@angular/common';
 import { Component, EventEmitter, Input, OnInit, Output, SimpleChanges } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { ChartTypes, ConstantsService, CustomDateFormat } from 'src/app/ui/service/constants.service';
+import { AlertTypes, ChartTypes, ConstantsService, CustomDateFormat } from 'src/app/ui/service/constants.service';
 import { OptionService } from 'src/app/ui/service/option.service';
 import { UserService } from 'src/app/ui/service/user.service';
 import { UtilityService } from 'src/app/utility/utility.service';
@@ -282,8 +282,9 @@ export class WoundChartComponent extends AppComponentBase implements OnInit {
       const objectBody: any = {
         StatementType: this.StatementType,
         woundChart: this.woundChartFormData,
+        alertMasterId: AlertTypes.PressureUlcerAlert,
+        chartMasterId: ChartTypes.WoundChart
       };
-      console.log(objectBody);
 
       this._UtilityService.showSpinner();
       this.unsubscribe.add = this._woundChartServices

@@ -8,7 +8,14 @@ import { Calendar } from 'primeng/calendar';
 import { UserService } from 'src/app/ui/service/user.service';
 import { ResidentProfileService } from '../resident-profile.service';
 import { log } from 'console';
+import { Router } from '@angular/router';
 
+interface BodyPart {
+    name: string;
+    top: number;
+    left: number;
+  }
+  
 @Component({
     selector: 'app-alert',
     templateUrl: './alert.component.html',
@@ -38,19 +45,22 @@ export class AlertComponent extends AppComponentBase implements OnInit {
     alertUnit: string = '';
     alertTypes = AlertTypes;
 
+    reloadInterval: any;
+
     constructor(
         private _ConstantServices: ConstantsService,
         private _MasterServices: MasterService,
         private _UtilityService: UtilityService,
         private _UserServices: UserService,
         private sharedStateService: ResidentProfileService,
-        private datepipe: DatePipe) {
+        private datepipe: DatePipe,
+        private router: Router) {
         super();
 
         this.stlstStatus = [{ name: 'Active', code: 1 },
         { name: 'Inactive', code: 0 }
         ]
-        this.rangeDates = [new Date(), new Date()];
+        // this.rangeDates = [new Date(), new Date()];
 
         this.loginId = localStorage.getItem('userId');
     }
@@ -58,8 +68,14 @@ export class AlertComponent extends AppComponentBase implements OnInit {
     ngOnInit(): void {
         this.GetAlertMaster();
         this.GetAllAlert();
-
+        this.startAutoReload();
     }
+
+    override ngOnDestroy(): void {
+        if (this.reloadInterval) {
+          clearInterval(this.reloadInterval);
+        }
+      }
 
     dateRangeChange(calendar: Calendar) {
         this.sharedStateService.tranferValu(true);
@@ -69,6 +85,72 @@ export class AlertComponent extends AppComponentBase implements OnInit {
         }
 
     }
+
+    //For reloading of component within specific time interval, i.e, in this case it is executing every 1 minute
+
+    // startAutoReload(): void {
+    //     this.reloadInterval = setInterval(() => {
+    //       this.reloadComponent();
+    //     }, 1 * 60 * 1000); // 1 minutes in milliseconds
+    //   }
+
+    // startAutoReload(): void {
+    //     const now = new Date();
+    //     const nextMidnight = new Date();
+      
+    //     // Set the time to midnight
+    //     nextMidnight.setHours(24, 0, 0, 0);
+      
+    //     // Calculate the time difference in milliseconds
+    //     const timeUntilMidnight = nextMidnight.getTime() - now.getTime();
+      
+    //     // Set a timeout to reload the component at midnight
+    //     setTimeout(() => {
+    //       this.reloadComponent();
+      
+    //       // Set an interval to reload the component every 24 hours thereafter
+    //       this.reloadInterval = setInterval(() => {
+    //         this.reloadComponent();
+    //       }, 24 * 60 * 60 * 1000); // 24 hours in milliseconds
+    //     }, timeUntilMidnight);
+    //   }
+
+    //For reloading of component within specific time interval, i.e, in this case it is executing every midnight(00:30:00)
+
+    startAutoReload(): void {
+        const now = new Date();
+        const nextReload = new Date();
+    
+        // Set the time to 00:30:00
+        nextReload.setHours(0, 30, 0, 0);
+    
+        // If it's already past 00:30:00, schedule it for the next day
+        if (now.getTime() > nextReload.getTime()) {
+            nextReload.setDate(nextReload.getDate() + 1);
+        }
+    
+        // Calculate the time difference in milliseconds
+        const timeUntilReload = nextReload.getTime() - now.getTime();
+    
+        // Set a timeout to reload the component at the specified time
+        setTimeout(() => {
+            this.reloadComponent();
+    
+            // Set an interval to reload the component every 24 hours thereafter
+            this.reloadInterval = setInterval(() => {
+                this.reloadComponent();
+            }, 24 * 60 * 60 * 1000); // 24 hours in milliseconds
+        }, timeUntilReload);
+    }
+    
+      
+
+      reloadComponent(): void {
+        this.router.navigateByUrl('/resident-list', { skipLocationChange: true }).then(() => {
+            this.router.navigate([this.router.url]);
+          });
+      }
+
     changeValue() {
         this.sharedStateService.tranferValu(true);
     }
@@ -212,10 +294,7 @@ export class AlertComponent extends AppComponentBase implements OnInit {
         this.GetAllAlert();
     }
 
-    GetHeadline(alertMasterId: any, index: number): any {
-        if (index < 0 || index >= this.AlertList.length) {
-            return '';
-        }
+    GetHeadline(alertMasterId: any): any {
 
         if (alertMasterId == AlertTypes.BloodPressureAlert) {
             return AlertHeadlines.BloodPressureHeadline;
@@ -224,23 +303,15 @@ export class AlertComponent extends AppComponentBase implements OnInit {
         } else if (alertMasterId == AlertTypes.BloodGlucoseAlert) {
             return AlertHeadlines.BloodGlucoseHeadline;
         } else if (alertMasterId == AlertTypes.NEWS2Alert) {
-            const alert = this.AlertList[index];
-            if (alert.isPulseNewsAlert) {
-                return AlertHeadlines.NewsPulseAlertHeadline;
-            }
-            if (alert.isTemperatureNewsAlert) {
-                return AlertHeadlines.NewsTemperatureHeadline;
-            }
+            return AlertHeadlines.NewsPulseAlertHeadline;
+        } else if (alertMasterId == AlertTypes.HighTemperatureAlert) {
+            return AlertHeadlines.TemperatureAlertHeadline;
         } else {
             return '';
         }
     }
 
-    GetAlertUnit(alertMasterId: any, index: number): any {
-        if (index < 0 || index >= this.AlertList.length) {
-            return '';
-        }
-
+    GetAlertUnit(alertMasterId: any): any {
         if (alertMasterId == AlertTypes.BloodPressureAlert) {
             return AlertUnit.BPUnit;
         } else if (alertMasterId == AlertTypes.WeightAlert) {
@@ -250,21 +321,22 @@ export class AlertComponent extends AppComponentBase implements OnInit {
         } else if (alertMasterId == AlertTypes.FluidIntakeAlert) {
             return AlertUnit.FluidUnit;
         } else if (alertMasterId == AlertTypes.NEWS2Alert) {
-            const alert = this.AlertList[index];
-            if (alert.isOxygenNewsAlert) {
-                return AlertUnit.OxygenUnit;
-            }
-            if (alert.isPulseNewsAlert) {
-                return AlertUnit.PulseUnit;
-            }
-            if (alert.isTemperatureNewsAlert) {
-                return AlertUnit.TemperatureUnit;
-            }
+            return AlertUnit.PulseUnit;
+        } else if (alertMasterId == AlertTypes.OxygenSaturationAlert) {
+            return AlertUnit.OxygenUnit;
+        } else if (alertMasterId == AlertTypes.HighTemperatureAlert) {
+            return AlertUnit.TemperatureUnit;
         } else {
             this.alertUnit = '';
             return '';
         }
     }
 
+    extractBodyPainLocations(bodyParts: BodyPart[]): string {
+        if (bodyParts) {
+          return bodyParts.map(part => part.name).join(', ');
+        }
+        else return null;
+      }
 
 }

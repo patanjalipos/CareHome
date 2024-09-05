@@ -39,10 +39,26 @@
                 date:'dd-MM-yyyy'}}, Beryl's oxygen saturation has been recorded at 94%
                 which
                 is outside of their oxygen saturation baseline.</p>
-                
+
+            <p *ngIf="ActionTakenData.alertData.isPressureUlcerStageAlert==true">On
+                {{ActionTakenData.alertData.createdOn |
+                date:'dd-MM-yyyy'}},<span>{{ActionTakenData.alertData.ResidentName}}</span> has had a Wound Chart
+                recorded for
+                a pressure ulcer in the following location - Right foot (back of). The pressure ulcer's
+                classification has been recorded as <span
+                    class="bold">{{ActionTakenData.alertData.ulcerClassificationOptionName}}</span>.</p>
+
+            <p *ngIf="ActionTakenData.alertData.isBodyPartAlert==true">On A new pressure ulcer location was recorded</p>
+
+
             <br>
-            <label class="bold">Observation</label> = <span class="text-danger">{{ActionTakenData.alertData.value}}
-            </span>{{GetUnit(ActionTakenData.alertData.alertMasterId)}}
+            <label class="bold">Observation</label> = <span class="text-danger"
+                *ngIf="ActionTakenData.alertData.alertMasterId!=alertTypes.PressureUlcerAlert">{{ActionTakenData.alertData.value}}
+            </span>{{GetAlertUnit(ActionTakenData.alertData.alertMasterId)}}
+            <span class="text-danger"
+                *ngIf="ActionTakenData.alertData.isPressureUlcerStageAlert==true">{{ActionTakenData.alertData.ulcerClassificationOptionName}}</span>
+            <span class="text-danger" *ngIf="ActionTakenData.alertData.isBodyPartAlert==true">
+                {{extractBodyPainLocations(ActionTakenData.alertData.selectedBodyParts)}}</span>
             <br>
             <label *ngIf="ActionTakenData.alertData.alertMasterId == alertTypes.BloodPressureAlert"><span
                     class="bold">Baseline Value Ranges :- </span>
