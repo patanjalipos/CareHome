@@ -8,6 +8,7 @@ import { Calendar } from 'primeng/calendar';
 import { UserService } from 'src/app/ui/service/user.service';
 import { ResidentProfileService } from '../resident-profile.service';
 import { log } from 'console';
+import { Router } from '@angular/router';
 
 interface BodyPart {
     name: string;
@@ -44,19 +45,22 @@ export class AlertComponent extends AppComponentBase implements OnInit {
     alertUnit: string = '';
     alertTypes = AlertTypes;
 
+    reloadInterval: any;
+
     constructor(
         private _ConstantServices: ConstantsService,
         private _MasterServices: MasterService,
         private _UtilityService: UtilityService,
         private _UserServices: UserService,
         private sharedStateService: ResidentProfileService,
-        private datepipe: DatePipe) {
+        private datepipe: DatePipe,
+        private router: Router) {
         super();
 
         this.stlstStatus = [{ name: 'Active', code: 1 },
         { name: 'Inactive', code: 0 }
         ]
-        this.rangeDates = [new Date(), new Date()];
+        // this.rangeDates = [new Date(), new Date()];
 
         this.loginId = localStorage.getItem('userId');
     }
@@ -64,8 +68,14 @@ export class AlertComponent extends AppComponentBase implements OnInit {
     ngOnInit(): void {
         this.GetAlertMaster();
         this.GetAllAlert();
-
+        this.startAutoReload();
     }
+
+    override ngOnDestroy(): void {
+        if (this.reloadInterval) {
+          clearInterval(this.reloadInterval);
+        }
+      }
 
     dateRangeChange(calendar: Calendar) {
         this.sharedStateService.tranferValu(true);
@@ -75,6 +85,72 @@ export class AlertComponent extends AppComponentBase implements OnInit {
         }
 
     }
+
+    //For reloading of component within specific time interval, i.e, in this case it is executing every 1 minute
+
+    // startAutoReload(): void {
+    //     this.reloadInterval = setInterval(() => {
+    //       this.reloadComponent();
+    //     }, 1 * 60 * 1000); // 1 minutes in milliseconds
+    //   }
+
+    // startAutoReload(): void {
+    //     const now = new Date();
+    //     const nextMidnight = new Date();
+      
+    //     // Set the time to midnight
+    //     nextMidnight.setHours(24, 0, 0, 0);
+      
+    //     // Calculate the time difference in milliseconds
+    //     const timeUntilMidnight = nextMidnight.getTime() - now.getTime();
+      
+    //     // Set a timeout to reload the component at midnight
+    //     setTimeout(() => {
+    //       this.reloadComponent();
+      
+    //       // Set an interval to reload the component every 24 hours thereafter
+    //       this.reloadInterval = setInterval(() => {
+    //         this.reloadComponent();
+    //       }, 24 * 60 * 60 * 1000); // 24 hours in milliseconds
+    //     }, timeUntilMidnight);
+    //   }
+
+    //For reloading of component within specific time interval, i.e, in this case it is executing every midnight(00:30:00)
+
+    startAutoReload(): void {
+        const now = new Date();
+        const nextReload = new Date();
+    
+        // Set the time to 00:30:00
+        nextReload.setHours(0, 30, 0, 0);
+    
+        // If it's already past 00:30:00, schedule it for the next day
+        if (now.getTime() > nextReload.getTime()) {
+            nextReload.setDate(nextReload.getDate() + 1);
+        }
+    
+        // Calculate the time difference in milliseconds
+        const timeUntilReload = nextReload.getTime() - now.getTime();
+    
+        // Set a timeout to reload the component at the specified time
+        setTimeout(() => {
+            this.reloadComponent();
+    
+            // Set an interval to reload the component every 24 hours thereafter
+            this.reloadInterval = setInterval(() => {
+                this.reloadComponent();
+            }, 24 * 60 * 60 * 1000); // 24 hours in milliseconds
+        }, timeUntilReload);
+    }
+    
+      
+
+      reloadComponent(): void {
+        this.router.navigateByUrl('/resident-list', { skipLocationChange: true }).then(() => {
+            this.router.navigate([this.router.url]);
+          });
+      }
+
     changeValue() {
         this.sharedStateService.tranferValu(true);
     }
