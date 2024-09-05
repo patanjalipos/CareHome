@@ -7,11 +7,18 @@ import { UserService } from '../../service/user.service';
 import { Table } from 'primeng/table';
 import { log } from 'console';
 
+interface BodyPart {
+  name: string;
+  top: number;
+  left: number;
+}
+
 @Component({
   selector: 'app-alert-list',
   templateUrl: './alert-list.component.html',
   styleUrls: ['./alert-list.component.scss']
 })
+
 export class AlertListComponent extends AppComponentBase implements OnInit {
 
   @Output() EmitUpdateAlert: EventEmitter<any> = new EventEmitter<any>();
@@ -82,7 +89,7 @@ export class AlertListComponent extends AppComponentBase implements OnInit {
               }
             });
             console.log(this.AlertList);
-            
+
           }
           else {
             this.AlertList = [];
@@ -204,11 +211,8 @@ export class AlertListComponent extends AppComponentBase implements OnInit {
       return 0;
   }
 
-  GetHeadline(alertMasterId: any, index: number): any {
-    if (index < 0 || index >= this.AlertList.length) {
-      return '';
-    }
-
+  GetHeadline(alertMasterId: any): any {
+   
     if (alertMasterId == AlertTypes.BloodPressureAlert) {
       return AlertHeadlines.BloodPressureHeadline;
     } else if (alertMasterId == AlertTypes.WeightAlert) {
@@ -216,23 +220,15 @@ export class AlertListComponent extends AppComponentBase implements OnInit {
     } else if (alertMasterId == AlertTypes.BloodGlucoseAlert) {
       return AlertHeadlines.BloodGlucoseHeadline;
     } else if (alertMasterId == AlertTypes.NEWS2Alert) {
-      const alert = this.AlertList[index];
-      if (alert.isPulseNewsAlert) {
-        return AlertHeadlines.NewsPulseAlertHeadline;
-      }
-      if (alert.isTemperatureNewsAlert) {
-        return AlertHeadlines.NewsTemperatureHeadline;
-      }
+      return AlertHeadlines.NewsPulseAlertHeadline;
+    } else if (alertMasterId == AlertTypes.HighTemperatureAlert) {
+      return AlertHeadlines.TemperatureAlertHeadline;
     } else {
       return '';
     }
   }
 
-  GetAlertUnit(alertMasterId: any, index: number): any {
-    if (index < 0 || index >= this.AlertList.length) {
-      return '';
-    }
-
+  GetAlertUnit(alertMasterId: any): any {
     if (alertMasterId == AlertTypes.BloodPressureAlert) {
       return AlertUnit.BPUnit;
     } else if (alertMasterId == AlertTypes.WeightAlert) {
@@ -242,20 +238,23 @@ export class AlertListComponent extends AppComponentBase implements OnInit {
     } else if (alertMasterId == AlertTypes.FluidIntakeAlert) {
       return AlertUnit.FluidUnit;
     } else if (alertMasterId == AlertTypes.NEWS2Alert) {
-      const alert = this.AlertList[index];
-      if (alert.isOxygenNewsAlert) {
-        return AlertUnit.OxygenUnit;
-      }
-      if (alert.isPulseNewsAlert) {
-        return AlertUnit.PulseUnit;
-      }
-      if (alert.isTemperatureNewsAlert) {
-        return AlertUnit.TemperatureUnit;
-      }
+      return AlertUnit.PulseUnit;
+    } else if (alertMasterId == AlertTypes.OxygenSaturationAlert) {
+      return AlertUnit.OxygenUnit;
+    } else if (alertMasterId == AlertTypes.HighTemperatureAlert) {
+      return AlertUnit.TemperatureUnit;
     } else {
       this.alertUnit = '';
       return '';
     }
+  }
+
+
+  extractBodyPainLocations(bodyParts: BodyPart[]): string {
+    if (bodyParts) {
+      return bodyParts.map(part => part.name).join(', ');
+    }
+    else return null;
   }
 
 

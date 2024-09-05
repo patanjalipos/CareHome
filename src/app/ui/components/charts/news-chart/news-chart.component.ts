@@ -268,8 +268,8 @@ export class NewsChartComponent extends AppComponentBase implements OnInit {
         newsChart: this.NewsChartFormData,
         alertMasterId: AlertTypes.NEWS2Alert,
         chartMasterId: ChartTypes.NEWS2Chart
-
       };
+
 
       this._UtilityService.showSpinner();
       this.unsubscribe.add = this._newsChartServices
