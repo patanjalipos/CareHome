@@ -28,6 +28,7 @@ export class BodyMappingComponent implements OnInit {
     selectedPartsCheck: BodyPart[] = [];
     lstStatusOptions: any = ['InActive', 'Active'];
     selectedStatus: string | null = null;
+    SelectOrRemoveCheck: boolean = false;
 
     constructor() { }
     ngOnInit(): void {
@@ -36,30 +37,33 @@ export class BodyMappingComponent implements OnInit {
             this.selectedStatus = this.preSelectedBodyMapData.status
         }
         else if (this.preSelectedBodyMapData.count >= 0 && this.preSelectedBodyMapData.buttoncheck == false) {
-                if(this.preSelectedBodyMapData.UpdatedParts.length == 0) {
-                this.selectedParts = [...this.preSelectedBodyMapData.lastSelectedBodyPart.selectedBodyParts];
-                }
-                else {
-                    this.selectedParts = [...this.preSelectedBodyMapData.UpdatedParts];
-                }
-                this.selectedParts = [...new Set(this.selectedParts)];
-                this.selectedStatus = this.preSelectedBodyMapData.lastSelectedBodyPart.BodyMapStatus;
+            if (this.preSelectedBodyMapData.UpdatedParts.length == 0 && this.preSelectedBodyMapData.SelectionRemovalCheck == false) {
+                this.selectedParts = [...this.preSelectedBodyMapData.lastSelectedBodyPart];
             }
+            else {
+                this.selectedParts = [...this.preSelectedBodyMapData.UpdatedParts];
+            }
+            this.selectedParts = [...new Set(this.selectedParts)];
+            this.selectedStatus = this.preSelectedBodyMapData.status;
         }
-    
+        this.emitData();
+    }
+
 
     // Emit the selected parts and Status
     emitData() {
         if (!this.isReadOnly) {
             this.bodyMapData = {
                 selectedBodyParts: this.selectedParts,
-                bodyMapStatus: this.selectedStatus != null ? this.selectedStatus : this.lstStatusOptions[0]
+                bodyMapStatus: this.selectedStatus != null ? this.selectedStatus : this.lstStatusOptions[0],
+                selectOrRemoveCheck: this.SelectOrRemoveCheck
             };
             this.bodyData.emit(this.bodyMapData);
         }
-    }               
+    }
 
     removePart(part: { name: string; top: number; left: number }) {
+        this.SelectOrRemoveCheck = true;
         this.selectedParts = this.selectedParts.filter((p) => p !== part);
         this.selectedPartsCheck = this.selectedPartsCheck.filter((p) => p !== part);
         // Emit the selected parts
@@ -67,7 +71,7 @@ export class BodyMappingComponent implements OnInit {
     }
 
     selectBodyPart(event: MouseEvent, partName: string): void {
-        
+        this.SelectOrRemoveCheck = true;
         const existingPart = this.selectedParts.find(
             (part) => part.name === partName
         );

@@ -61,7 +61,7 @@
                     Enquiry About the presence of Pain
                 </h5>
                 <div class="col-md-12">
-                    <label class="form-label bold">Can the Resident Communicate Pain Successfully
+                    <label class="form-label bold">Can the Resident Communicate Pain Successfully?
                         <span class="required"></span></label>
 
                     <ng-container *ngIf="this.isEditable; else communicationData">
@@ -109,7 +109,7 @@
                     </div>
 
                     <div class="col-md-12">
-                        <label class="form-label bold">Facial expresion <span class="required"></span></label>
+                        <label class="form-label bold">Facial expression <span class="required"></span></label>
                         <ng-container *ngIf="this.isEditable; else FacialExpresionData">
                             <p-selectButton [options]="rangeOption" [(ngModel)]="painChartFormData.FacialExpresion"
                                 optionLabel="label" optionValue="value" (onChange)="PainScoreCalc(2)"></p-selectButton>
@@ -408,29 +408,20 @@
                         <div class="formheader p-2 mb-3">
                             <div class="col-md-12 mb-2 d-flex justify-content-between fs-4">
                                 <div class="chart-date">
-                                    <label class="bold" [ngClass]="{
-                                            'text-decoration-line-through':
-                                                chart.isStrikeThrough
-                                        }">{{
+                                    <label class="bold">{{
                                         chart.DateAndTime
                                         | date : "dd-MM-yyyy"
                                         }}</label>
                                 </div>
                                 <div class="chart-date">
-                                    <label [ngClass]="{
-                                            'text-decoration-line-through':
-                                                chart.isStrikeThrough
-                                        }">{{
-                                        chart.DateAndTime | date : "hh:mm"
+                                    <label>{{
+                                        chart.DateAndTime | date : "HH:mm"
                                         }}</label>
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-12 mb-2">
-                            <label class="form-label bold" [ngClass]="{
-                                    'text-decoration-line-through':
-                                        chart.isStrikeThrough
-                                }">Enterted By<span class="required"></span></label>
+                            <label class="form-label bold">Enterted By<span class="required"></span></label>
 
                             <div>
                                 <label [ngClass]="{
@@ -442,11 +433,22 @@
                         <div>
                             <div class="mb-2">
                                 <button *ngIf="!chart.isStrikeThrough" pButton type="button"
-                                    label="Strike Through Entry" class="p-button-link p-0" (click)="
+                                    label="Strike Out Entry" class="p-button-link p-0" (click)="
                                         showPopup(chart.painChartId, chart)
                                     "></button>
                             </div>
                         </div>
+
+                        <div class="col-md-12 mb-2">
+
+                            <label *ngIf="chart.isStrikeThrough" class="form-label bold">Strike Out Reason<span
+                                    class="required"></span></label>
+
+                            <div>
+                                <label *ngIf="chart.isStrikeThrough">{{chart.StrikeThroughRemark}}</label>
+                            </div>
+                        </div>
+
                         <div class="mb-2">
                             <button pButton type="button" label="Evaluate intervention" class="p-button py-2 px-2"
                                 (click)="
@@ -458,10 +460,7 @@
                                 "></button>
                         </div>
                         <div class="col-md-12 mb-4" *ngIf="chart.isEvaluate">
-                            <label class="form-label bold" [ngClass]="{
-                                    'text-decoration-line-through':
-                                        chart.isStrikeThrough
-                                }">
+                            <label class="form-label bold">
                                 <span class="required"></span>Select the
                                 effectiveness of the intervention taken</label>
 
@@ -473,10 +472,7 @@
                             </div>
                         </div>
                         <div class="col-md-12 mb-4" *ngIf="chart.isEvaluate">
-                            <label class="form-label bold" [ngClass]="{
-                                    'text-decoration-line-through':
-                                        chart.isStrikeThrough
-                                }">Notes<span class="required"></span></label>
+                            <label class="form-label bold">Notes<span class="required"></span></label>
 
                             <div>
                                 <label [ngClass]="{
@@ -486,10 +482,7 @@
                             </div>
                         </div>
                         <div class="col-md-12 mb-4">
-                            <label class="form-label bold" [ngClass]="{
-                                    'text-decoration-line-through':
-                                        chart.isStrikeThrough
-                                }">Care Given <span class="required"></span></label>
+                            <label class="form-label bold">Care Given <span class="required"></span></label>
 
                             <div>
                                 <label [ngClass]="{
@@ -502,10 +495,7 @@
                         <div *ngIf="chart.CareGiven == 'No'">
                             <div class="col-md-12">
                                 <div class="col-md-12">
-                                    <label class="form-label bold" [ngClass]="{
-                                            'text-decoration-line-through':
-                                                chart.isStrikeThrough
-                                        }">Reason <span class="required"></span></label>
+                                    <label class="form-label bold">Reason <span class="required"></span></label>
                                 </div>
                                 <div>
                                     <label [ngClass]="{
@@ -517,20 +507,14 @@
                         </div>
                         <div *ngIf="chart.CareGiven == 'Yes'" class="row">
                             <div class="formheader bold">
-                                <h5 [ngClass]="{
-                                        'text-decoration-line-through':
-                                            chart.isStrikeThrough
-                                    }">
+                                <h5>
                                     Enquiry About the presence of Pain
                                 </h5>
                             </div>
                             <div class="col-md-12">
                                 <div class="col-md-12">
-                                    <label class="form-label bold" [ngClass]="{
-                                            'text-decoration-line-through':
-                                                chart.isStrikeThrough
-                                        }">Can the Resident Communicate Pain
-                                        Successfully
+                                    <label class="form-label bold">Can the Resident Communicate Pain
+                                        Successfully?
                                         <span class="required"></span></label>
                                 </div>
                                 <div>
@@ -542,10 +526,7 @@
                             </div>
                             <div class="col-md-12" *ngIf="chart.CommunicatePain == 'Yes'">
                                 <div class="col-md-12">
-                                    <label class="form-label bold" [ngClass]="{
-                                            'text-decoration-line-through':
-                                                chart.isStrikeThrough
-                                        }">Pain Rating - Numeric Scale
+                                    <label class="form-label bold">Pain Rating - Numeric Scale
                                         <span class="required"></span></label>
                                 </div>
                                 <div>
@@ -557,20 +538,14 @@
                             </div>
                             <div *ngIf="chart.CommunicatePain != 'Yes'">
                                 <div class="formheader bold">
-                                    <h5 [ngClass]="{
-                                        'text-decoration-line-through':
-                                            chart.isStrikeThrough
-                                    }">
+                                    <h5>
                                         Abbey Pain Scale
                                     </h5>
                                 </div>
 
                                 <div class="col-md-12">
                                     <div class="col-md-12">
-                                        <label class="form-label bold" [ngClass]="{
-                                            'text-decoration-line-through':
-                                                chart.isStrikeThrough
-                                        }">Vocalisation
+                                        <label class="form-label bold">Vocalisation
                                             <span class="required"></span></label>
                                     </div>
                                     <div>
@@ -583,10 +558,7 @@
 
                                 <div class="col-md-12">
                                     <div class="col-md-12">
-                                        <label class="form-label bold" [ngClass]="{
-                                            'text-decoration-line-through':
-                                                chart.isStrikeThrough
-                                        }">Facial expresion
+                                        <label class="form-label bold">Facial expression
                                             <span class="required"></span></label>
                                     </div>
 
@@ -600,10 +572,7 @@
 
                                 <div class="col-md-12">
                                     <div class="col-md-12">
-                                        <label class="form-label bold" [ngClass]="{
-                                            'text-decoration-line-through':
-                                                chart.isStrikeThrough
-                                        }">Change in Body Language
+                                        <label class="form-label bold">Change in Body Language
                                             <span class="required"></span></label>
                                     </div>
 
@@ -617,10 +586,7 @@
 
                                 <div class="col-md-12">
                                     <div class="col-md-12">
-                                        <label class="form-label bold" [ngClass]="{
-                                            'text-decoration-line-through':
-                                                chart.isStrikeThrough
-                                        }">Behavioural Changes
+                                        <label class="form-label bold">Behavioural Changes
                                             <span class="required"></span></label>
                                     </div>
 
@@ -633,10 +599,7 @@
                                 </div>
                                 <div class="col-md-12">
                                     <div class="col-md-12">
-                                        <label class="form-label bold" [ngClass]="{
-                                            'text-decoration-line-through':
-                                                chart.isStrikeThrough
-                                        }">Physiological Change
+                                        <label class="form-label bold">Physiological Change
                                             <span class="required"></span></label>
                                     </div>
 
@@ -649,10 +612,7 @@
                                 </div>
                                 <div class="col-md-12">
                                     <div class="col-md-12">
-                                        <label class="form-label bold" [ngClass]="{
-                                            'text-decoration-line-through':
-                                                chart.isStrikeThrough
-                                        }">Physical Change
+                                        <label class="form-label bold">Physical Change
                                             <span class="required"></span></label>
                                     </div>
 
@@ -665,10 +625,7 @@
                                 </div>
                                 <div class="col-md-12">
                                     <div class="col-md-12">
-                                        <label class="form-label bold" [ngClass]="{
-                                            'text-decoration-line-through':
-                                                chart.isStrikeThrough
-                                        }">Total Pain Score
+                                        <label class="form-label bold">Total Pain Score
                                             <span class="required"></span></label>
                                     </div>
 
@@ -681,10 +638,7 @@
                                 </div>
                                 <div class="col-md-12">
                                     <div class="col-md-12">
-                                        <label class="form-label bold" [ngClass]="{
-                                            'text-decoration-line-through':
-                                                chart.isStrikeThrough
-                                        }">Pain Category
+                                        <label class="form-label bold">Pain Category
                                             <span class="required"></span></label>
                                     </div>
 
@@ -702,19 +656,13 @@
                             </div>
 
                             <div class="formheader bold">
-                                <h5 [ngClass]="{
-                                        'text-decoration-line-through':
-                                            chart.isStrikeThrough
-                                    }">
+                                <h5>
                                     Description Of Pain
                                 </h5>
                             </div>
                             <div class="col-md-12">
                                 <div class="col-md-12">
-                                    <label class="form-label bold" [ngClass]="{
-                                            'text-decoration-line-through':
-                                                chart.isStrikeThrough
-                                        }">Type of pain<span class="required"></span></label>
+                                    <label class="form-label bold">Type of pain<span class="required"></span></label>
                                 </div>
 
                                 <div>
@@ -727,11 +675,7 @@
 
                             <div class="col-md-12">
                                 <div class="col-md-12">
-                                    <label class="form-label bold">Emotional Response To Pain<span class="required"
-                                            [ngClass]="{
-                                                'text-decoration-line-through':
-                                                    chart.isStrikeThrough
-                                            }"></span></label>
+                                    <label class="form-label bold">Emotional Response To Pain<span class="required"></span></label>
                                 </div>
 
                                 <div>
@@ -746,10 +690,7 @@
 
                             <div class="col-md-12">
                                 <div class="col-md-12">
-                                    <label class="form-label bold" [ngClass]="{
-                                            'text-decoration-line-through':
-                                                chart.isStrikeThrough
-                                        }">Impact<span class="required"></span></label>
+                                    <label class="form-label bold">Impact<span class="required"></span></label>
                                 </div>
 
                                 <div>
@@ -762,10 +703,7 @@
 
                             <div class="col-md-12">
                                 <div class="col-md-12">
-                                    <label class="form-label bold" [ngClass]="{
-                                            'text-decoration-line-through':
-                                                chart.isStrikeThrough
-                                        }"><span class="required"></span>Duration
+                                    <label class="form-label bold"><span class="required"></span>Duration
                                         of Pain</label>
                                 </div>
 
@@ -779,10 +717,7 @@
 
                             <div class="col-md-12">
                                 <div class="col-md-12">
-                                    <label class="form-label bold" [ngClass]="{
-                                            'text-decoration-line-through':
-                                                chart.isStrikeThrough
-                                        }"><span class="required"></span>Interval</label>
+                                    <label class="form-label bold"><span class="required"></span>Interval</label>
                                 </div>
 
                                 <div>
@@ -795,10 +730,7 @@
 
                             <div class="col-md-12">
                                 <div class="col-md-12">
-                                    <label class="form-label bold" [ngClass]="{
-                                            'text-decoration-line-through':
-                                                chart.isStrikeThrough
-                                        }"><span class="required"></span>Factors
+                                    <label class="form-label bold"><span class="required"></span>Factors
                                         Affecting Pain</label>
                                 </div>
 
@@ -811,20 +743,14 @@
                             </div>
 
                             <div class="formheader bold mt-3">
-                                <h5 [ngClass]="{
-                                        'text-decoration-line-through':
-                                            chart.isStrikeThrough
-                                    }">
+                                <h5>
                                     Interventions
                                 </h5>
                             </div>
 
                             <div class="col-md-12">
                                 <div class="col-md-12">
-                                    <label class="form-label bold" [ngClass]="{
-                                            'text-decoration-line-through':
-                                                chart.isStrikeThrough
-                                        }">Interventions<span class="required"></span></label>
+                                    <label class="form-label bold">Interventions<span class="required"></span></label>
                                 </div>
 
                                 <div>
@@ -839,10 +765,7 @@
 
                             <div class="col-md-12">
                                 <div class="col-md-12">
-                                    <label class="form-label bold" [ngClass]="{
-                                            'text-decoration-line-through':
-                                                chart.isStrikeThrough
-                                        }">Referrals<span class="required"></span></label>
+                                    <label class="form-label bold">Referrals<span class="required"></span></label>
                                 </div>
 
                                 <div>
@@ -855,10 +778,7 @@
 
                             <div class="col-md-12 mt-4">
                                 <div class="col-md-12">
-                                    <label class="form-label bold" [ngClass]="{
-                                            'text-decoration-line-through':
-                                                chart.isStrikeThrough
-                                        }">Next Review Date<span class="required"></span></label>
+                                    <label class="form-label bold">Next Review Date<span class="required"></span></label>
                                 </div>
 
                                 <div>
@@ -873,7 +793,7 @@
                             </div>
                         </div>
 
-                        <h5 class="formheader" [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">
+                        <h5 class="formheader">
                             Additional information</h5>
                         <div class="col-md-12">
                             <div>
@@ -882,7 +802,7 @@
                             </div>
                         </div>
 
-                        <h5 class="formheader" [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}">
+                        <h5 class="formheader">
                             Body-Pain Locations</h5>
                         <div class="col-md-12">
                             <div *ngIf="chart.selectedBodyParts">
@@ -898,7 +818,7 @@
                             </div>
                             <div *ngIf="chart.selectedBodyParts == null">
                                 <div>
-                                    <label [ngClass]="{'text-decoration-line-through':chart.isStrikeThrough}"> Not
+                                    <label> Not
                                         Applicable </label>
                                 </div>
                             </div>
@@ -908,7 +828,7 @@
                 </ng-template>
             </p-carousel>
             <div *ngIf="isShowStrikeThroughPopup" class="card flex justify-content-center">
-                <p-dialog [closable]="true" header="Strike-Through" [(visible)]="isShowStrikeThroughPopup"
+                <p-dialog [closable]="true" header="Strike-Out" [(visible)]="isShowStrikeThroughPopup"
                     [modal]="true" [breakpoints]="{ '1199px': '75vw', '575px': '90vw' }" [style]="{ width: '40vw' }"
                     [draggable]="false" [resizable]="false">
                     <div *ngIf="isShowStrikeThroughPopup">

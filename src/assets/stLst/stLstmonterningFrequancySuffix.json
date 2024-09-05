@@ -1,0 +1,18 @@
+[
+    {
+        "optionId": "Hours",
+        "optionValue": "Hours"
+    },
+    {
+        "optionId": "Days",
+        "optionValue": "Days"
+    },
+    {
+        "optionId": "Weeks",
+        "optionValue": "Weeks"
+    },
+    {
+        "optionId": "Months",
+        "optionValue": "Months"
+    }
+]

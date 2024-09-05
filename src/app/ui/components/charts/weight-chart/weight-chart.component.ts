@@ -1,7 +1,7 @@
 import { DatePipe } from '@angular/common';
 import { Component, EventEmitter, Input, OnInit, Output, SimpleChanges } from '@angular/core';
 import { AppComponentBase } from 'src/app/app-component-base';
-import { ChartTypes, ConstantsService, CustomDateFormat } from 'src/app/ui/service/constants.service';
+import { AlertTypes, ChartTypes, ConstantsService, CustomDateFormat } from 'src/app/ui/service/constants.service';
 import { OptionService } from 'src/app/ui/service/option.service';
 import { UserService } from 'src/app/ui/service/user.service';
 import { UtilityService } from 'src/app/utility/utility.service';
@@ -18,6 +18,7 @@ import { Message } from 'primeng/api';
 export class WeightChartComponent extends AppComponentBase implements OnInit {
   @Input() preSelectedChartData: any = <any>{};
   @Output() EmitUpdateForm: EventEmitter<any> = new EventEmitter<any>();
+  @Output() EmitUpdateAlert: EventEmitter<any> = new EventEmitter<any>();
 
     inputFieldsCheck: boolean;
     customDateFormat = CustomDateFormat;
@@ -52,6 +53,9 @@ export class WeightChartComponent extends AppComponentBase implements OnInit {
     result:any = <any>{};
     ChartName:string;
 
+    // for counting alerts
+    alertCount: number = 0;
+
   constructor(private _OptionService: OptionService,
     private _ConstantServices: ConstantsService,
     private _UtilityService: UtilityService,
@@ -84,6 +88,8 @@ export class WeightChartComponent extends AppComponentBase implements OnInit {
         this.StatementType = 'Update';
     } else {
         this.ResetModel();
+        this.getChartDataById(this.preSelectedChartData.chartMasterId,this.preSelectedChartData.chartId, this.preSelectedChartData.selectedStartedOn, this.preSelectedChartData.residentAdmissionInfoId, this.pageNumber, this.pageSize);
+
     }
 }
 
@@ -108,7 +114,7 @@ export class WeightChartComponent extends AppComponentBase implements OnInit {
             this._ConstantServices.ActiveMenuName = this.ChartName;
         });
 
-        this.getChartDataById(this.preSelectedChartData.chartMasterId, this.preSelectedChartData.residentAdmissionInfoId, this.pageNumber, this.pageSize);
+        // this.getChartDataById(this.preSelectedChartData.chartMasterId, this.preSelectedChartData.residentAdmissionInfoId, this.pageNumber, this.pageSize);
         this.responsiveOptions = [
             {
                 breakpoint: '1199px',
@@ -280,6 +286,8 @@ Save() {
       const objectBody: any = {
           StatementType: this.StatementType,
           WeightChartDetail: this.WeightChartData,
+          alertMasterId: AlertTypes.WeightAlert,
+          chartMasterId: ChartTypes.WeightChart
       };
       
       this._UtilityService.showSpinner();
@@ -288,8 +296,10 @@ Save() {
           .subscribe({
               next: (data) => {
                   this._UtilityService.hideSpinner();
+                  this.alertCount = data.actionResult.value;
                   if (data.actionResult.success == true) {
                       this.EmitUpdateForm.emit(true);
+                      this.EmitUpdateAlert.emit(this.alertCount);
                       //   this.ResetModel();
                       this._UtilityService.showSuccessAlert(
                           data.actionResult.errMsg
@@ -332,14 +342,15 @@ rightBtn() {
 }
 
 chartOnChange() {
-  this.getChartDataById(this.preSelectedChartData.chartMasterId, this.preSelectedChartData.residentAdmissionInfoId, this.pageNumber, this.pageSize);
+    this.getChartDataById(this.preSelectedChartData.chartMasterId,this.preSelectedChartData.chartId, this.preSelectedChartData.selectedStartedOn, this.preSelectedChartData.residentAdmissionInfoId, this.pageNumber, this.pageSize);
+
 }
 
-getChartDataById(chartId: any, residentAdmissionInfoId: any, pageNumber: number, pageSize: number) {
+getChartDataById(chartId: any, selectedChartId: any, selectedStartedOn: any, residentAdmissionInfoId: any, pageNumber: number, pageSize: number) {
 
   this._UtilityService.showSpinner();
   this.unsubscribe.add = this._UserService
-      .GetChartDataById(chartId, residentAdmissionInfoId, pageNumber, pageSize)
+      .GetChartDataById(chartId, selectedChartId, selectedStartedOn, residentAdmissionInfoId, pageNumber, pageSize)
       .subscribe({
           next: (data) => {
               this._UtilityService.hideSpinner();

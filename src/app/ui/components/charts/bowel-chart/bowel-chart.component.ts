@@ -8,6 +8,7 @@ import { OptionService } from 'src/app/ui/service/option.service';
 import { UserService } from 'src/app/ui/service/user.service';
 import { UtilityService } from 'src/app/utility/utility.service';
 import { BowelChartService } from './bowel-chart.service';
+import { Message } from 'primeng/api';
 
 @Component({
   selector: 'app-bowel-chart',
@@ -65,6 +66,13 @@ export class BowelChartComponent extends AppComponentBase implements OnInit {
   stLstErrorAndWarning: any;
   result: any;
   ChartName: any;
+  messages1: Message[];
+  messages2: Message[];
+  messages3: Message[];
+  messages4: Message[];
+  messages5: Message[];
+  messages6: Message[];
+  messages7: Message[];
 
 
 
@@ -102,6 +110,8 @@ export class BowelChartComponent extends AppComponentBase implements OnInit {
       this.StatementType = 'Update';
     } else {
       this.ResetModel();
+      this.getChartDataById(this.preSelectedChartData.chartMasterId, this.preSelectedChartData.chartId, this.preSelectedChartData.selectedStartedOn, this.preSelectedChartData.residentAdmissionInfoId, this.pageNumber, this.pageSize);
+
     }
 
   }
@@ -145,7 +155,7 @@ export class BowelChartComponent extends AppComponentBase implements OnInit {
       this.lstInterventions = responses[2];
     });
 
-    this.getChartDataById(this.preSelectedChartData.chartMasterId, this.preSelectedChartData.residentAdmissionInfoId, this.pageNumber, this.pageSize);
+    // this.getChartDataById(this.preSelectedChartData.chartMasterId, this.preSelectedChartData.residentAdmissionInfoId, this.pageNumber, this.pageSize);
     this.responsiveOptions = [
       {
         breakpoint: '1199px',
@@ -163,6 +173,14 @@ export class BowelChartComponent extends AppComponentBase implements OnInit {
         numScroll: 1
       }
     ];
+
+    this.messages1 = [{ severity: 'secondary', detail: 'Separate hard lumps, like nuts hard to pass' }];
+    this.messages2 = [{ severity: 'secondary', detail: 'Sausage shaped but lumpy' }];
+    this.messages3 = [{ severity: 'secondary', detail: 'Like a sausage but with craks out its surface' }];
+    this.messages4 = [{ severity: 'secondary', detail: 'Like a sausage or snake smooth and soft' }];
+    this.messages5 = [{ severity: 'secondary', detail: 'Soft blobs with clear cut edages passed easily' }];
+    this.messages6 = [{ severity: 'secondary', detail: 'Fluffy pieces with ragged edages mushy stool' }];
+    this.messages7 = [{ severity: 'secondary', detail: 'Watery no lumpy pieces entirely liquid' }];
   }
 
 
@@ -293,14 +311,15 @@ export class BowelChartComponent extends AppComponentBase implements OnInit {
   }
 
   chartOnChange() {
-    this.getChartDataById(this.preSelectedChartData.chartMasterId, this.preSelectedChartData.residentAdmissionInfoId, this.pageNumber, this.pageSize);
+    this.getChartDataById(this.preSelectedChartData.chartMasterId, this.preSelectedChartData.chartId, this.preSelectedChartData.selectedStartedOn, this.preSelectedChartData.residentAdmissionInfoId, this.pageNumber, this.pageSize);
+
   }
 
-  getChartDataById(chartId: any, residentAdmissionInfoId: any, pageNumber: number, pageSize: number) {
+  getChartDataById(chartId: any, selectedChartId: any, selectedStartedOn: any, residentAdmissionInfoId: any, pageNumber: number, pageSize: number) {
 
     this._UtilityService.showSpinner();
     this.unsubscribe.add = this._UserService
-      .GetChartDataById(chartId, residentAdmissionInfoId, pageNumber, pageSize)
+      .GetChartDataById(chartId, selectedChartId, selectedStartedOn, residentAdmissionInfoId, pageNumber, pageSize)
       .subscribe({
         next: (data) => {
           this._UtilityService.hideSpinner();

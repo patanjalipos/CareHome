@@ -12,6 +12,7 @@ import { StrikeThroughEntryModule } from '../strike-through-entry/strike-through
 import { DialogModule } from 'primeng/dialog';
 import { ButtonModule } from 'primeng/button';
 import { SelectButtonModule } from 'primeng/selectbutton';
+import { MessagesModule } from 'primeng/messages';
 @NgModule({
     declarations: [BowelChartComponent],
     imports: [
@@ -26,7 +27,8 @@ import { SelectButtonModule } from 'primeng/selectbutton';
         StrikeThroughEntryModule,
         DialogModule,
         ButtonModule,
-        SelectButtonModule
+        SelectButtonModule,
+        MessagesModule
     ],
     exports: [BowelChartComponent],
 })

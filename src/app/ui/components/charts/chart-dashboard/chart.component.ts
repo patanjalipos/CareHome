@@ -1,5 +1,5 @@
 import { DatePipe } from '@angular/common';
-import { Component, Input, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, Input, OnInit, ViewChild, ElementRef, OnDestroy, EventEmitter, Output } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Calendar } from 'primeng/calendar';
 import { AppComponentBase } from 'src/app/app-component-base';
@@ -11,6 +11,7 @@ import {
 import { MasterService } from 'src/app/ui/service/master.service';
 import { UserService } from 'src/app/ui/service/user.service';
 import { UtilityService } from 'src/app/utility/utility.service';
+import { ResidentProfileService } from '../../resident-profile/resident-profile.service';
 
 @Component({
     selector: 'app-chart',
@@ -18,11 +19,14 @@ import { UtilityService } from 'src/app/utility/utility.service';
     styleUrls: ['./chart.component.scss'],
 })
 export class ChartComponent extends AppComponentBase implements OnInit {
-    @ViewChild('Charts',{ static: false }) childref: ElementRef;
+    @ViewChild('Charts', { static: false }) childref: ElementRef;
     @Input() mode: string = 'view';
     @Input() userId: any = null;
     @Input() residentAdmissionInfoId: any = null;
     @Input() homeMasterId: any = null;
+    @Input() isViewcharts: boolean;
+    @Input() lstResidents: any[];
+    @Output() EmitUpdateChart: EventEmitter<any> = new EventEmitter<any>();
     customDateFormat = CustomDateFormat;
 
     public lstMaster: any[] = [];
@@ -36,23 +40,38 @@ export class ChartComponent extends AppComponentBase implements OnInit {
     ChartTypes = ChartTypes;
     ShowChildComponent: boolean = false;
 
+    selectedOption: string;
+    selectedResidentUserId: any;
+    filteritems: any[] = [];
+
+    alertCount: number = 0;
+   
     constructor(
         private _ConstantServices: ConstantsService,
         private _MasterServices: MasterService,
         private _UtilityService: UtilityService,
         private route: ActivatedRoute,
         private datepipe: DatePipe,
-        private _UserServices: UserService
+        private _UserServices: UserService,
+        private sharedStateService: ResidentProfileService
     ) {
         super();
-        this._ConstantServices.ActiveMenuName = 'Chart Dashboard';
+       // this._ConstantServices.ActiveMenuName = 'Chart Dashboard';
     }
 
     ngOnInit(): void {
+        if(!this.isViewcharts)
+            {
+              this._ConstantServices.ActiveMenuName = "Chart Dashboard";
+            }
+        this.ResetModel();
         this.GetChartMaster();
+        this.ResetModel();
     }
 
-    SearchChart() {debugger
+    SearchChart() {
+        //this.sharedStateService.setValue(true);
+        this.sharedStateService.tranferValu(true);
         this.ShowChildComponent = false;
         this._UtilityService.showSpinner();
         const residentAdmissionInfoId = this.residentAdmissionInfoId;
@@ -109,13 +128,18 @@ export class ChartComponent extends AppComponentBase implements OnInit {
 
     OpenChart(
         selectedChartMasterId: string,
+        selectedChartId: string = null,
+        StartedOn: any,
         selectedChartdata: any = <any>{},
         isEditable = true
     ) {
         if (selectedChartMasterId != null) {
+            this.ShowChildComponent = false;
             this.selectedChartMasterId = selectedChartMasterId;
             this.selectedChartData = {
                 chartMasterId: selectedChartMasterId,
+                chartId: selectedChartId,
+                selectedStartedOn: StartedOn,
                 selectedChartID: selectedChartdata.ChartId,
                 userId: this.userId,
                 residentAdmissionInfoId: this.residentAdmissionInfoId,
@@ -131,8 +155,12 @@ export class ChartComponent extends AppComponentBase implements OnInit {
             this.ShowModel();
             setTimeout(() => {
                 this.childref.nativeElement.scrollIntoView({ behavior: 'smooth' });
-            },200);
-        } else this._UtilityService.showErrorAlert('Select Chart Type');
+            }, 200);
+        }
+        else if (this.isViewcharts && !this.selectedResidentUserId) {
+            this._UtilityService.showErrorAlert('Select Resident');
+        }          
+        else this._UtilityService.showErrorAlert('Select Chart Type');
     }
 
     ShowModel() {
@@ -140,10 +168,11 @@ export class ChartComponent extends AppComponentBase implements OnInit {
     }
 
     GetChartMaster() {
-     let importData: any = <any>{};   
-      importData.StatusType=true;
+        let importData: any = <any>{};
+        importData.StatusType = true;
         this._UtilityService.showSpinner();
-        this.unsubscribe.add = this._MasterServices.GetChartMaster(importData)
+        
+        this.unsubscribe.add = this._UserServices.GetClinicalChartPreferencesById(this.residentAdmissionInfoId)
             .subscribe({
                 next: (data) => {
                     this._UtilityService.hideSpinner();
@@ -151,6 +180,8 @@ export class ChartComponent extends AppComponentBase implements OnInit {
                         var tdata = JSON.parse(data.actionResult.result);
                         tdata = tdata ? tdata : [];
                         this.lstMaster = tdata;
+                        this.lstMaster = this.lstMaster.filter(e => e.Isenable == true);
+                        
                     } else {
                         this.lstMaster = [];
                     }
@@ -168,8 +199,36 @@ export class ChartComponent extends AppComponentBase implements OnInit {
         this.selectedChartMasterId = null;
         this.selectedChartId = null;
         this.selectedChartData = null;
+        if(this.isViewcharts==true)
+        {
+            this.selectedResidentUserId = '';
+            this.lstMaster=null;
+        }
     }
     EmitUpdateForm(event) {
         this.SearchChart();
     }
+
+    EmitUpdateAlert(event) {
+        this.alertCount = event;
+        this.EmitUpdateChart.emit(this.alertCount);
+    }
+
+      onResidentChange(event: any) {
+        this.selectedResidentUserId = event.value;
+    
+        this.filteritems = this.lstResidents.filter(
+          (x) => x.UserId === this.selectedResidentUserId
+        );
+    
+        setTimeout(() => {
+            if (this.filteritems.length > 0) {
+                this.residentAdmissionInfoId = this.filteritems[0].ResidentAdmissionInfoId;
+                this.userId = this.filteritems[0].UserId;
+                this.chartDashboardList=[];     
+                this.selectedChartMasterId = null; 
+                this.GetChartMaster();                          
+              }
+            }, 0);
+          }
 }

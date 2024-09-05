@@ -5,7 +5,8 @@
                 From Date / To Date </label>
             <p-calendar #cal1 selectionMode="range" [(ngModel)]="rangeDates" placeholder="--select--"
                 [ngModelOptions]="{standalone: true}" [showIcon]="true" inputId="icon" [readonlyInput]="true"
-                [dateFormat]="customDateFormat.CalendarFormat" (onSelect)="dateRangeChange(cal1)" [showButtonBar]="true"></p-calendar>
+                [dateFormat]="customDateFormat.CalendarFormat" (onSelect)="dateRangeChange(cal1)"
+                [showButtonBar]="true"></p-calendar>
             <!-- (onClearClick)="GetDailyVitalAlertLog()"  -->
         </div>
         <div class="col-md-3">
@@ -13,22 +14,23 @@
                 Alert Type </label>
             <p-dropdown [(ngModel)]="selectedAlertMasterId" [options]="lstAlertMaster" optionLabel="AlertName"
                 optionValue="AlertMasterId" placeholder="--select--" [style]="{ width: '100%' }" [filter]="true"
-                [showClear]="true">
+                [showClear]="true" (onChange)="changeValue()">
             </p-dropdown>
         </div>
         <div class="col-md-3">
             <label class="form-label">
                 Alert Status </label>
             <p-dropdown [(ngModel)]="selectedStatusId" [options]="stlstStatus" optionLabel="name" optionValue="code"
-                placeholder="--select--" [style]="{ width: '100%' }" [filter]="true" [showClear]="true">
+                placeholder="--select--" [style]="{ width: '100%' }" [filter]="true" [showClear]="true"
+                (onChange)="changeValue()">
             </p-dropdown>
         </div>
         <div class="col-md-2 mt-3">
-            <button pButton title="Search" (click)="GetDailyVitalAlertLog()" label="Search"></button>
+            <button pButton title="Search" (click)="GetAllAlert()" label="Search"></button>
         </div>
         <p-table #dt [value]="AlertList" responsiveLayout="scroll" class="mt-2" styleClass="p-datatable-striped"
             [rowHover]="true" [globalFilterFields]="['AlertName', 'FullName','Status']" [scrollable]="true"
-            scrollHeight="calc(100vh - 155px)">
+            scrollHeight="calc(100vh - 155px)" [paginator]="true" [rows]="5">
             <ng-template pTemplate="emptymessage" let-columns>
                 <tr>
                     <td [attr.colspan]="columns?.length">No records found</td>
@@ -37,33 +39,140 @@
             <ng-template pTemplate="header">
                 <tr>
                     <th pSortableColumn="">Alert Name</th>
-                    <th>Value</th>
-                    <th>Alert Status</th>
-                    <th>Recorded Time</th>
-                    <th>Recorded By</th>
-                    <!-- <th>Actions</th> -->
+                    <th>Observation</th>
+                    <th>Recorded Date/Time</th>
+                    <th>Actions</th>
                 </tr>
             </ng-template>
-            <ng-template pTemplate="body" let-dt>
+            <ng-template pTemplate="body" let-dt let-i="rowIndex">
                 <tr>
-                    <td>{{dt.AlertName}}</td>
-                    <td>{{dt.Value}}</td>
-                    <td>{{dt.Status}}</td>
-                    <td>{{dt.CreatedOn | date:customDateFormat.DEF_DATE_TIME}}</td>
                     <td>
-                        {{dt.FullName}}
+                        <div>
+                            <label class="bold text-danger fs-5"> {{dt.AlertName}} </label>
+                            <label
+                                *ngIf="dt.alertMasterId != alertTypes.MUSTAlert&&dt.alertMasterid!=alertTypes.WaterlowAlert&&dt.alertMasterId!=alertTypes.FluidIntakeAlert&&dt.isOxygenNewsAlert!=true&&dt.isBodyPartAlert!=true">
+                                {{GetHeadline(dt.alertMasterId)}}
+                            </label>
+                            <label *ngIf="dt.alertMasterId == alertTypes.MUSTAlert">On {{dt.createdOn |
+                                date:customDateFormat.DEF_DATE}},<span class="bold">
+                                    {{dt.ResidentName}}</span> has had a MUST Score recorded of <span
+                                    class="bold">{{dt.value}}</span> which indicates they are at <span
+                                    *ngIf="dt.value == 1" class="text-warning">medium risk</span><span
+                                    *ngIf="dt.value >= 2" class="text-danger">high risk</span> of malnutrition.</label>
+
+                            <label *ngIf="dt.alertMasterId == alertTypes.WaterlowAlert">On {{dt.createdOn |
+                                date:customDateFormat.DEF_DATE}}, Rosina has had a Waterlow Score recorded of <span
+                                    class="bold">{{dt.value}}</span> and is deemed as being at
+                                <span *ngIf="dt.value>=10&&dt.value<=14">At risk</span>
+                                <span *ngIf="dt.value>=15&&dt.value<=19">High risk</span>
+                                <span *ngIf="dt.value>=20">Very High risk</span>
+                                of developing
+                                a pressure ulcer.</label>
+
+                            <label *ngIf="dt.alertMasterId == alertTypes.FluidIntakeAlert">On {{dt.createdOn |
+                                date:customDateFormat.DEF_DATE}}, the fluid consumption recorded did not meet the
+                                minimum
+                                healthy baseline range. The recorded fluid consumption was 900.00mls and the minimum
+                                healthy
+                                baseline range was 1000.00mls. </label>
+
+                            <label *ngIf="dt.isOxygenNewsAlert==true">On {{dt.createdOn |
+                                date:customDateFormat.DEF_DATE}}, {{dt.ResidentName}} oxygen saturation has been
+                                recorded at
+                                94% which
+                                is outside of their oxygen saturation baseline.</label>
+
+                            <label *ngIf="dt.isPressureUlcerStageAlert==true">On {{dt.createdOn |
+                                date:customDateFormat.DEF_DATE}},<span>{{dt.ResidentName}}</span> has had a Wound Chart
+                                recorded for
+                                a pressure ulcer in the following location - Right foot (back of). The pressure ulcer's
+                                classification has been recorded as <span
+                                    class="bold">{{dt.ulcerClassificationOptionName}}</span>.</label>
+
+                            <label *ngIf="dt.isBodyPartAlert==true">On A new pressure ulcer location was
+                                recorded</label>
+                        </div>
                     </td>
-                    <!-- <td>
-                        <a title="View">
-                            <i class="fa fa-eye" aria-hidden="true"></i>
-                        </a>
-                        <span style="margin-left: 10px"></span>
-                        <a title="Edit">
-                            <i class="fa fa-pencil" aria-hidden="true"></i>
-                        </a>
-                    </td> -->
+                    <td>
+                        <div>
+                            <label class="text-danger"
+                                *ngIf="dt.alertMasterId!=alertTypes.PressureUlcerAlert">{{dt.value}}</label>
+                            {{GetAlertUnit(dt.alertMasterId)}} <br>
+                            <label class="bold" *ngIf="dt.alertMasterId == alertTypes.BloodPressureAlert">Baseline Value
+                                Ranges :-- <br> Systolic Range (mmHg) = {{dt.MinSystolic}} - {{dt.MaxSystolic}}
+                                <br>
+                                Diastolic Range (mmHg) = {{dt.MinDiastolic}} -
+                                {{dt.MaxDiastolic}}</label>
+                            <label class="bold" *ngIf="dt.alertMasterId == alertTypes.WeightAlert">Baseline Value Range
+                                =
+                                {{dt.MinWeight}} - {{dt.MaxWeight}} (Kg)</label>
+                            <label class="bold" *ngIf="dt.alertMasterId == alertTypes.BloodGlucoseAlert">Baseline Value
+                                Range = {{dt.MinGlucose}} - {{dt.MaxGlucose}} (mmol/L)</label>
+                            <label class="bold" *ngIf="dt.alertMasterId == alertTypes.MUSTAlert">Baseline Value :--
+                                <br>MUST Score = 0 (No Risk)
+                                <br>MUST Score = 1 (Medium Risk)
+                                <br>MUST Score >= 2 (High Risk)
+                            </label>
+                            <label class="bold" *ngIf="dt.alertMasterId == alertTypes.WaterlowAlert">Baseline Value :--
+                                <br>Water Score >10 (At Risk)
+                                <br>Water Score > 15 (High Risk)
+                                <br>Water Score > 20 (Very High Risk)
+                            </label>
+                            <label class="bold" *ngIf="dt.alertMasterId == alertTypes.FluidIntakeAlert">Baseline Value
+                                Range = {{dt.MinFluid}} - {{dt.MaxFluid}} (mis)</label>
+
+                            <label class="bold" *ngIf="dt.isOxygenNewsAlert == true">Baseline Value
+                                Range = {{dt.MinOxygen}} - {{dt.MaxOxygen}} (%)</label>
+
+                            <label class="bold" *ngIf="dt.isPulseNewsAlert == true">Baseline Value
+                                Range = {{dt.MinPulse}} - {{dt.MaxPulse}} (beats per min)</label>
+
+                            <label class="bold" *ngIf="dt.isTemperatureNewsAlert == true">Baseline Value
+                                Range = {{dt.MaxTemperature}} - {{dt.MaxTemperature}} (degree)</label>
+                            <label class="text-danger"
+                                *ngIf="dt.isPressureUlcerStageAlert==true">{{dt.ulcerClassificationOptionName}}</label>
+                            <label class="text-danger" *ngIf="dt.isBodyPartAlert==true">
+                                {{extractBodyPainLocations(dt.selectedBodyParts)}}</label>
+                        </div>
+                    </td>
+                    <td>
+                        <div>
+                            <label>{{dt.createdOn | date:customDateFormat.DEF_DATE_TIME}}</label> <br>
+                            <label>Observed By -- {{dt.CreatedBy}} </label>
+                        </div>
+                    </td>
+                    <td>
+                        <div>
+                            <p-button *ngIf="!dt.isActionTaken"
+                                (click)="showPopup(dt.dailyVitalsAlertId,dt)">Action</p-button>
+
+                            <div *ngIf="dt.isActionTaken">
+                                <label>Actioned By -- {{dt.ActionBy}} </label> <br>
+                                <label>Actioned On -- {{dt.actionOn | date:customDateFormat.DEF_DATE_TIME}}</label> <br>
+                            </div>
+
+                            <hr *ngIf="dt.actionRemarks != null" style="border: 1px solid black;">
+
+                            <div *ngIf="dt.actionRemarks != null">
+                                <label class="bold">{{dt.actionRemarks}}</label>
+                            </div>
+                        </div>
+                    </td>
                 </tr>
             </ng-template>
         </p-table>
+
+        <div *ngIf="isShowActionTakenPopup" class="card flex justify-content-center">
+            <p-dialog [closable]="true" header="Action this alert" [(visible)]="isShowActionTakenPopup" [modal]="true"
+                [breakpoints]="{ '1199px': '75vw', '575px': '90vw' }" [style]="{ width: '40vw' }" [draggable]="false"
+                [resizable]="false">
+                <div *ngIf="isShowActionTakenPopup">
+
+                    <app-action-taken-popup [ActionTakenData]="ActionTakenData" (ActionTakenCheck)="Changes($event)"
+                        (EmitUpdateAlert)="AlertChanges($event)"></app-action-taken-popup>
+                </div>
+            </p-dialog>
+        </div>
+
     </div>
 </div>

@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output, SimpleChanges } from '@angular/core';
 import { AppComponentBase } from 'src/app/app-component-base';
-import { ChartTypes, ConstantsService, CustomDateFormat } from 'src/app/ui/service/constants.service';
+import { AlertTypes, ChartTypes, ConstantsService, CustomDateFormat } from 'src/app/ui/service/constants.service';
 import { WaterlowChartService } from './waterlow-chart.service';
 import { DatePipe } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
@@ -141,6 +141,8 @@ export class WaterlowChartComponent extends AppComponentBase implements OnInit {
             this.StatementType = 'Update';
         } else {
             this.ResetModel();
+        this.getChartDataById(this.preSelectedChartData.chartMasterId,this.preSelectedChartData.chartId, this.preSelectedChartData.selectedStartedOn, this.preSelectedChartData.residentAdmissionInfoId, this.pageNumber, this.pageSize);
+
         }
     }
 
@@ -167,7 +169,7 @@ export class WaterlowChartComponent extends AppComponentBase implements OnInit {
             this._ConstantServices.ActiveMenuName = this.ChartName;
         });
 
-        this.getChartDataById(this.preSelectedChartData.chartMasterId, this.preSelectedChartData.residentAdmissionInfoId, this.pageNumber, this.pageSize);
+        // this.getChartDataById(this.preSelectedChartData.chartMasterId, this.preSelectedChartData.residentAdmissionInfoId, this.pageNumber, this.pageSize);
         this.responsiveOptions = [
             {
                 breakpoint: '1199px',
@@ -842,6 +844,8 @@ export class WaterlowChartComponent extends AppComponentBase implements OnInit {
             const objectBody: any = {
                 StatementType: this.StatementType,
                 WaterlowChartDetail: this.WaterlowChartData,
+                alertMasterId: AlertTypes.WaterlowAlert,
+                chartMasterId: ChartTypes.WaterlowChart
             };
             console.log("Saved Data", this.WaterlowChartData);
 
@@ -896,14 +900,15 @@ export class WaterlowChartComponent extends AppComponentBase implements OnInit {
     }
 
     chartOnChange() {
-        this.getChartDataById(this.preSelectedChartData.chartMasterId, this.preSelectedChartData.residentAdmissionInfoId, this.pageNumber, this.pageSize);
+        this.getChartDataById(this.preSelectedChartData.chartMasterId,this.preSelectedChartData.chartId, this.preSelectedChartData.selectedStartedOn, this.preSelectedChartData.residentAdmissionInfoId, this.pageNumber, this.pageSize);
+
     }
 
-    getChartDataById(chartId: any, residentAdmissionInfoId: any, pageNumber: number, pageSize: number) {
+    getChartDataById(chartId: any, selectedChartId: any, selectedStartedOn: any, residentAdmissionInfoId: any, pageNumber: number, pageSize: number) {
 
         this._UtilityService.showSpinner();
         this.unsubscribe.add = this._UserService
-            .GetChartDataById(chartId, residentAdmissionInfoId, pageNumber, pageSize)
+            .GetChartDataById(chartId, selectedChartId, selectedStartedOn, residentAdmissionInfoId, pageNumber, pageSize)
             .subscribe({
                 next: (data) => {
                     this._UtilityService.hideSpinner();

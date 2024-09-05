@@ -1,6 +1,22 @@
 <!-- Search Filter Card -->
 <div class="card">
     <div class="row d-flex align-items-center">
+        <div  class="col-md-3" *ngIf="isViewForms">
+            <label class="form-label">
+                Select the Resident <span class="required">*</span></label>           
+            <p-dropdown
+                [ngClass]="{ show: selectedOption }"
+                class="dropdown-group"
+                [options]="lstResidents"
+                optionLabel="FullName"
+                optionValue="UserId"
+                [(ngModel)]="selectedResidentUserId"
+                placeholder="--select--"
+                [filter]="true"
+                [showClear]="true"  
+                (onChange)="onResidentChange($event)"                  
+            ></p-dropdown>
+        </div>
         <div class="col-md-3">
             <label class="form-label">
                 Select Assessment Form <span class="required">*</span></label
@@ -29,7 +45,7 @@
                 [showIcon]="true"
                 inputId="icon"
                 [readonlyInput]="true"
-                [dateFormat]="customDateFormat.CalendarFormat"
+                dateFormat="{{ customDateFormat?.CalendarFormat }}" 
                 (onSelect)="dateRangeChange(cal1)"
                 (onChange)="SearchForm()"
                 [showButtonBar]="true"
@@ -37,7 +53,7 @@
         </div>
        
 
-        <div class="col-md-6 d-flex mt-3">
+        <div class="col-md-3 d-flex mt-2 pt-1">
             <span class="p-ml-left mr-4">
                 <button
                     pButton
@@ -63,7 +79,7 @@
             #dt
             [value]="formDashboardList"
             responsiveLayout="scroll"
-            class="mt-2"
+            class="mt-3"
             styleClass="p-datatable-striped"
             [rowHover]="true"
             [globalFilterFields]="['FormName', 'ModifiedOn']"

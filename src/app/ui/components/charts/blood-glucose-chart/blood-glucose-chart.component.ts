@@ -5,7 +5,7 @@ import { UserService } from 'src/app/ui/service/user.service';
 import { UtilityService } from 'src/app/utility/utility.service';
 import { BloodGlucoseChartService } from './blood-glucose-chart.service';
 import { DatePipe } from '@angular/common';
-import { ChartTypes, ConstantsService, CustomDateFormat } from 'src/app/ui/service/constants.service';
+import { AlertTypes, ChartTypes, ConstantsService, CustomDateFormat } from 'src/app/ui/service/constants.service';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
@@ -85,6 +85,7 @@ export class BloodGlucoseChartComponent extends AppComponentBase implements OnIn
       this.StatementType = 'Update';
     } else {
       this.ResetModel();
+      this.getChartDataById(this.preSelectedChartData.chartMasterId,this.preSelectedChartData.chartId, this.preSelectedChartData.selectedStartedOn, this.preSelectedChartData.residentAdmissionInfoId, this.pageNumber, this.pageSize);
     }
 
   }
@@ -107,7 +108,7 @@ export class BloodGlucoseChartComponent extends AppComponentBase implements OnIn
       this.ChartName = this.result["ChartName"];
       this._ConstantServices.ActiveMenuName = this.ChartName;
     });
-    this.getChartDataById(this.preSelectedChartData.chartMasterId, this.preSelectedChartData.residentAdmissionInfoId, this.pageNumber, this.pageSize);
+    // this.getChartDataById(this.preSelectedChartData.chartMasterId, this.preSelectedChartData.residentAdmissionInfoId, this.pageNumber, this.pageSize);
     this.responsiveOptions = [
       {
         breakpoint: '1199px',
@@ -181,6 +182,8 @@ export class BloodGlucoseChartComponent extends AppComponentBase implements OnIn
       const objectBody: any = {
         StatementType: this.StatementType,
         bloodGlucoseChart: this.bloodGlucoseChartFormData,
+        alertMasterId: AlertTypes.BloodGlucoseAlert,
+        chartMasterId: ChartTypes.BloodGlucoseChart
       };
 
       this._UtilityService.showSpinner();
@@ -210,11 +213,11 @@ export class BloodGlucoseChartComponent extends AppComponentBase implements OnIn
     }
   }
 
-  getChartDataById(chartId: any, residentAdmissionInfoId: any, pageNumber: number, pageSize: number) {
+  getChartDataById(chartId: any, selectedChartId: any, selectedStartedOn: any, residentAdmissionInfoId: any, pageNumber: number, pageSize: number) {
 
     this._UtilityService.showSpinner();
     this.unsubscribe.add = this._UserService
-      .GetChartDataById(chartId, residentAdmissionInfoId, pageNumber, pageSize)
+      .GetChartDataById(chartId, selectedChartId, selectedStartedOn, residentAdmissionInfoId, pageNumber, pageSize)
       .subscribe({
         next: (data) => {
           this._UtilityService.hideSpinner();
@@ -284,7 +287,7 @@ export class BloodGlucoseChartComponent extends AppComponentBase implements OnIn
   }
 
   chartOnChange() {
-    this.getChartDataById(this.preSelectedChartData.chartMasterId, this.preSelectedChartData.residentAdmissionInfoId, this.pageNumber, this.pageSize);
+    this.getChartDataById(this.preSelectedChartData.chartMasterId,this.preSelectedChartData.chartId, this.preSelectedChartData.selectedStartedOn, this.preSelectedChartData.residentAdmissionInfoId, this.pageNumber, this.pageSize);
   }
 
 }

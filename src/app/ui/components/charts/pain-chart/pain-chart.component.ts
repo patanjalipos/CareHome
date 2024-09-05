@@ -152,6 +152,7 @@ export class PainChartComponent extends AppComponentBase implements OnInit {
     isReadOnly: boolean = false;
     bodyMapData: any;
     selectedBodyParts: string[] = null;
+    SelectedOrRemovalCheck: boolean = false;
 
     constructor(
         private optionService: OptionService,
@@ -173,7 +174,7 @@ export class PainChartComponent extends AppComponentBase implements OnInit {
         this.isReadOnly = isReadOnly;
         this.bodyMapData = {
             preselectedBodyParts: preselectedBodyParts,
-            status: bodyMapStatus,
+            status: isReadOnly == true ? bodyMapStatus : (isReadOnly == false && this.painChartFormData.bodyMapStatus == null) ? bodyMapStatus : this.painChartFormData.bodyMapStatus,
             count: this.bodyDialogCount,
             lastSelectedBodyPart: this.painChartRecordData,
             UpdatedParts: this.UpdatedPartsCheck.length == 0 ? [] : this.UpdatedPartsCheck,
@@ -182,7 +183,7 @@ export class PainChartComponent extends AppComponentBase implements OnInit {
     }
 
     onSelectedBodyParts(bodyMapData: any) {
-
+        this.SelectedOrRemovalCheck = bodyMapData.selectOrRemoveCheck;
         this.painChartFormData.selectedBodyParts = [...bodyMapData.selectedBodyParts];
         this.UpdatedPartsCheck = [];
         this.UpdatedPartsCheck.push(...bodyMapData.selectedBodyParts);
@@ -204,6 +205,8 @@ export class PainChartComponent extends AppComponentBase implements OnInit {
             this.StatementType = 'Update';
         } else {
             this.ResetModel();
+        this.getChartDataById(this.preSelectedChartData.chartMasterId,this.preSelectedChartData.chartId, this.preSelectedChartData.selectedStartedOn, this.preSelectedChartData.residentAdmissionInfoId, this.pageNumber, this.pageSize);
+
         }
     }
 
@@ -442,6 +445,11 @@ export class PainChartComponent extends AppComponentBase implements OnInit {
             this.painChartFormData.PainScore = this.PainScore;
             this.painChartFormData.PainCategory = this.PainCategory;
 
+            if (this.isReadOnly == null) {
+                this.painChartFormData.selectedBodyParts = this.lastRecordData;
+                this.painChartFormData.BodyMapStatus = this.lastRecordBodyStatus;
+              }
+
             const objectBody: any = {
                 StatementType: this.StatementType,
                 painChartData: this.painChartFormData,
@@ -587,13 +595,14 @@ export class PainChartComponent extends AppComponentBase implements OnInit {
     }
 
     chartOnChange() {
-        this.getChartDataById(this.preSelectedChartData.chartMasterId, this.preSelectedChartData.residentAdmissionInfoId, this.pageNumber, this.pageSize);
+        this.getChartDataById(this.preSelectedChartData.chartMasterId,this.preSelectedChartData.chartId, this.preSelectedChartData.selectedStartedOn, this.preSelectedChartData.residentAdmissionInfoId, this.pageNumber, this.pageSize);
+
     }
 
-    getChartDataById(chartId: any, residentAdmissionInfoId: any, pageNumber: number, pageSize: number) {
+    getChartDataById(chartId: any, selectedChartId: any, selectedStartedOn: any, residentAdmissionInfoId: any, pageNumber: number, pageSize: number) {
         this._UtilityService.showSpinner();
         this.unsubscribe.add = this._UserService
-            .GetChartDataById(chartId, residentAdmissionInfoId, pageNumber, pageSize)
+            .GetChartDataById(chartId, selectedChartId, selectedStartedOn, residentAdmissionInfoId, pageNumber, pageSize)
             .subscribe({
                 next: (data) => {
                     this._UtilityService.hideSpinner();
@@ -601,15 +610,16 @@ export class PainChartComponent extends AppComponentBase implements OnInit {
                         var tdata = JSON.parse(data.actionResult.result);
                         tdata = tdata ? tdata : [];
                         this.PainChartLst = tdata;
+                        this.BodyPartsName = [];
                         if (this.PainChartLst[0].selectedBodyParts != null && this.PainChartLst[0].BodyMapStatus != null) {
                             this.lastRecordData = this.PainChartLst[0].selectedBodyParts;
                             this.lastRecordBodyStatus = this.PainChartLst[0].BodyMapStatus;
                             for (let i = 0; i < this.PainChartLst[0].selectedBodyParts.length; i++) {
                                 this.BodyPartsName.push(this.PainChartLst[0].selectedBodyParts[i].name)
                             }
-                            console.log(this.BodyPartsName);
                         }
                         else {
+                            this.lastRecordData = [];
                             this.BodyPartsName = [];
                             this.lastRecordBodyStatus = null;
                         }

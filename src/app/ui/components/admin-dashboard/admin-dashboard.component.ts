@@ -30,6 +30,7 @@ export class AdminDashboardComponent extends AppComponentBase implements OnInit 
     public lstTaskPlanner: any[] = [];
     public lstActivity: any[] = [];
     showActivityModel: boolean = false;
+    receivedData: boolean;
     constructor(
         private datepipe: DatePipe,
         private productService: ProductService,
@@ -257,7 +258,6 @@ export class AdminDashboardComponent extends AppComponentBase implements OnInit 
                         var tdata = JSON.parse(data.actionResult.result);
                         tdata = tdata ? tdata : [];
                         this.lstTaskPlanner = tdata;
-                       
                     }
                     else {
                         this.lstTaskPlanner = [];
@@ -272,5 +272,9 @@ export class AdminDashboardComponent extends AppComponentBase implements OnInit 
 
     AddActivity() {
         this.showActivityModel = true;
+    }
+
+    GetActivityDetails(isActivity: any) {
+       this.lstActivity=isActivity;
     }
 }

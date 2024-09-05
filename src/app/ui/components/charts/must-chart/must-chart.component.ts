@@ -1,7 +1,7 @@
 import { DatePipe } from '@angular/common';
 import { Component, EventEmitter, Input, OnInit, Output, SimpleChanges } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { ChartTypes, ConstantsService, CustomDateFormat } from 'src/app/ui/service/constants.service';
+import { AlertTypes, ChartTypes, ConstantsService, CustomDateFormat } from 'src/app/ui/service/constants.service';
 import { OptionService } from 'src/app/ui/service/option.service';
 import { UserService } from 'src/app/ui/service/user.service';
 import { UtilityService } from 'src/app/utility/utility.service';
@@ -20,6 +20,7 @@ export class MustChartComponent extends AppComponentBase implements OnInit {
 
   @Input() preSelectedChartData: any = <any>{};
   @Output() EmitUpdateForm: EventEmitter<any> = new EventEmitter<any>();
+  @Output() EmitUpdateAlert: EventEmitter<any> = new EventEmitter<any>();
 
   customDateFormat = CustomDateFormat;
   loginId: string;
@@ -44,7 +45,6 @@ export class MustChartComponent extends AppComponentBase implements OnInit {
   lstBMIOption: any[] = [];
   acuteDisease: boolean = false;
   openStepSection: boolean = false;
-  message: Message[];
   weightmsg: Message[];
   residentAmputeemsg: Message[];
   heightmsg: Message[];
@@ -81,6 +81,14 @@ export class MustChartComponent extends AppComponentBase implements OnInit {
   stLstErrorAndWarning: any;
   result: any;
   ChartName: any;
+  LowMessageA: Message[];
+  LowMessageB: Message[];
+  MediumMessageA: Message[];
+  MediumMessageB: Message[];
+  HighMessageA: Message[];
+  HighMessageB: Message[];
+
+  alertCount: number = 0;
 
   constructor(
     private optionService: OptionService,
@@ -116,6 +124,8 @@ export class MustChartComponent extends AppComponentBase implements OnInit {
       this.StatementType = 'Update';
     } else {
       this.ResetModel();
+      this.getChartDataById(this.preSelectedChartData.chartMasterId, this.preSelectedChartData.chartId, this.preSelectedChartData.selectedStartedOn, this.preSelectedChartData.residentAdmissionInfoId, this.pageNumber, this.pageSize);
+
     }
 
   }
@@ -139,23 +149,39 @@ export class MustChartComponent extends AppComponentBase implements OnInit {
       this._ConstantServices.ActiveMenuName = this.ChartName;
     });
 
-    this.message = [
-      { severity: 'secondary', summary: 'All Risk Categories', detail: 'Treat underlying condition and provide help and advice on food choices, eating and drinking when necessary Record malnutrition risk category. Record need for category diets and follow local policy' }
+    this.LowMessageA = [
+      { severity: 'secondary', summary: 'All Risk Categories', detail: 'Treate underlying conditional and provide help and advice on food choices , eating and drinking when necessary  record malnutrition risk category . Record need for special diets and follow local policy' }
     ];
+    this.LowMessageB = [
+      { severity: 'secondary', summary: 'Obesity', detail: 'Record presence of obesity for those with underlying conditions , these are generally conditions, these are generally controlled before treatment of obesity.' }
+    ];
+
+    this.MediumMessageA = [
+      { severity: 'secondary', summary: 'All Risk Categories', detail: 'Treat underlying condition and provide help and advice on food choices, eating and drinking when necessary Record malnutrition risk category. Record need for category diets and        follow local policy' }
+    ]; this.MediumMessageB = [
+      { severity: 'secondary', summary: 'Obesity', detail: 'record presence of obesity for those with underlying conditions , these are generally controlled before treatment of obesity.' }
+    ];
+
+    this.HighMessageA = [
+      { severity: 'secondary', summary: 'All Risk Categories', detail: 'Treat underlying condition and provide help and advice on food choices, eating and drinking when necessary Record malnutrition risk category. Record need for category diets and follow local policy' }
+    ]; this.HighMessageB = [
+      { severity: 'secondary', summary: 'Obesity', detail: 'Record presence of obesity for those with underlying conditions , these are generally controlled before treatment of obesity.' }
+    ];
+
     this.weightmsg = [
-      { severity: 'secondary', detail: 'Use clinical scales where possible. Ensure scales are set to 0 without the resident standing on it.weight the resident in light clothing and without shoes.' }
+      { severity: 'secondary', detail: 'Use clinical scales where possible. Ensure scales are set to 0 without the resident standing on it. Weigh the resident in light clothing and without shoes.' }
     ];
     this.residentAmputeemsg = [
       { severity: 'secondary', detail: 'If the resident has had an amputation, the type of amputation will affect their BMI calculation as an adjust.' }
     ]
     this.heightmsg = [
-      { severity: 'secondary', detail: 'Use a height stick where possible. Make sure it is correctly positioned against the wall. ask the resident to remove shoes and to stand upright,feet,flat,heels against the height stick or wall looking straight ahead lower the head plate untill it gently touches the top of the head.' }
+      { severity: 'secondary', detail: 'Use a height stick where possible. Make sure it is correctly positioned against the wall. Ask the resident to remove shoes and to stand upright, feet, flat, heels against the height stick or wall looking straight ahead. Lower the head plate untill it gently touches the top of the head.' }
     ]
     this.weightAtThisTimeMsg = [
       { severity: 'secondary', detail: 'Find the residents highest weight within the last 6 months.' }
     ]
     this.acuteDiseaseMsg = [
-      { severity: 'secondary', detail: 'Almost all patients in the community will not be acutely ill. This effect is unlikely to apply outside of a hospital setting. see "MUST" Explanatory Booklet for further infomation.' }
+      { severity: 'secondary', detail: 'Almost all patients in the community will not be acutely ill. This effect is unlikely to apply outside of a hospital setting. See "MUST" Explanatory Booklet for further infomation.' }
     ]
 
     const collectionNames = ['heightMeasured', 'weightMeasured', 'armoption', 'legoption', 'weightLoss', 'bmiOption', 'weightLossOption'];
@@ -178,7 +204,7 @@ export class MustChartComponent extends AppComponentBase implements OnInit {
       this.lstWeightLossOption = responses[6];
     });
 
-    this.getChartDataById(this.preSelectedChartData.chartMasterId, this.preSelectedChartData.residentAdmissionInfoId, this.pageNumber, this.pageSize);
+    // this.getChartDataById(this.preSelectedChartData.chartMasterId, this.preSelectedChartData.residentAdmissionInfoId, this.pageNumber, this.pageSize);
     this.responsiveOptions = [
       {
         breakpoint: '1199px',
@@ -279,6 +305,8 @@ export class MustChartComponent extends AppComponentBase implements OnInit {
       const objectBody: any = {
         StatementType: this.StatementType,
         mustChart: this.mustChartFormData,
+        alertMasterId: AlertTypes.MUSTAlert,
+        chartMasterId: ChartTypes.MUSTChart
       };
 
       this._UtilityService.showSpinner();
@@ -287,8 +315,10 @@ export class MustChartComponent extends AppComponentBase implements OnInit {
         .subscribe({
           next: (data) => {
             this._UtilityService.hideSpinner();
+            this.alertCount = data.actionResult.value;
             if (data.actionResult.success == true) {
               this.EmitUpdateForm.emit(true);
+              this.EmitUpdateAlert.emit(this.alertCount);
               this.ResetModel();
               this._UtilityService.showSuccessAlert(
                 data.actionResult.errMsg
@@ -308,11 +338,11 @@ export class MustChartComponent extends AppComponentBase implements OnInit {
     }
   }
 
-  getChartDataById(chartId: any, residentAdmissionInfoId: any, pageNumber: number, pageSize: number) {
+  getChartDataById(chartId: any, selectedChartId: any, selectedStartedOn: any, residentAdmissionInfoId: any, pageNumber: number, pageSize: number) {
 
     this._UtilityService.showSpinner();
     this.unsubscribe.add = this._UserService
-      .GetChartDataById(chartId, residentAdmissionInfoId, pageNumber, pageSize)
+      .GetChartDataById(chartId, selectedChartId, selectedStartedOn, residentAdmissionInfoId, pageNumber, pageSize)
       .subscribe({
         next: (data) => {
           this._UtilityService.hideSpinner();
@@ -382,7 +412,8 @@ export class MustChartComponent extends AppComponentBase implements OnInit {
   }
 
   chartOnChange() {
-    this.getChartDataById(this.preSelectedChartData.chartMasterId, this.preSelectedChartData.residentAdmissionInfoId, this.pageNumber, this.pageSize);
+    this.getChartDataById(this.preSelectedChartData.chartMasterId, this.preSelectedChartData.chartId, this.preSelectedChartData.selectedStartedOn, this.preSelectedChartData.residentAdmissionInfoId, this.pageNumber, this.pageSize);
+
   }
 
   onOption(event) {
