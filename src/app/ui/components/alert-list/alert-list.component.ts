@@ -74,7 +74,7 @@ export class AlertListComponent extends AppComponentBase implements OnInit {
     }
     this._UtilityService.showSpinner();
     this.unsubscribe.add = this._UserServices
-      .GetAllAlert(importData, null)
+      .GetAllAlert(importData,'')
       .subscribe({
         next: (data) => {
           this._UtilityService.hideSpinner();
