@@ -241,7 +241,7 @@ export enum AlertHeadlines {
     WeightHeadline = 'A weight observation was recorded outside the baseline range.',
     BloodGlucoseHeadline = 'A blood glucose level observation was recorded outside the baseline range.',
     NewsPulseAlertHeadline = 'A pulse observation was recorded outside the baseline range. ',
-    NewsTemperatureHeadline='A high temperature observation was recorded above the facility baseline.'
+    TemperatureAlertHeadline='A high temperature observation was recorded above the facility baseline.'
 }
 
 export enum AlertUnit {

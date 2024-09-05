@@ -9,6 +9,12 @@ import { UserService } from 'src/app/ui/service/user.service';
 import { ResidentProfileService } from '../resident-profile.service';
 import { log } from 'console';
 
+interface BodyPart {
+    name: string;
+    top: number;
+    left: number;
+  }
+  
 @Component({
     selector: 'app-alert',
     templateUrl: './alert.component.html',
@@ -212,10 +218,7 @@ export class AlertComponent extends AppComponentBase implements OnInit {
         this.GetAllAlert();
     }
 
-    GetHeadline(alertMasterId: any, index: number): any {
-        if (index < 0 || index >= this.AlertList.length) {
-            return '';
-        }
+    GetHeadline(alertMasterId: any): any {
 
         if (alertMasterId == AlertTypes.BloodPressureAlert) {
             return AlertHeadlines.BloodPressureHeadline;
@@ -224,23 +227,15 @@ export class AlertComponent extends AppComponentBase implements OnInit {
         } else if (alertMasterId == AlertTypes.BloodGlucoseAlert) {
             return AlertHeadlines.BloodGlucoseHeadline;
         } else if (alertMasterId == AlertTypes.NEWS2Alert) {
-            const alert = this.AlertList[index];
-            if (alert.isPulseNewsAlert) {
-                return AlertHeadlines.NewsPulseAlertHeadline;
-            }
-            if (alert.isTemperatureNewsAlert) {
-                return AlertHeadlines.NewsTemperatureHeadline;
-            }
+            return AlertHeadlines.NewsPulseAlertHeadline;
+        } else if (alertMasterId == AlertTypes.HighTemperatureAlert) {
+            return AlertHeadlines.TemperatureAlertHeadline;
         } else {
             return '';
         }
     }
 
-    GetAlertUnit(alertMasterId: any, index: number): any {
-        if (index < 0 || index >= this.AlertList.length) {
-            return '';
-        }
-
+    GetAlertUnit(alertMasterId: any): any {
         if (alertMasterId == AlertTypes.BloodPressureAlert) {
             return AlertUnit.BPUnit;
         } else if (alertMasterId == AlertTypes.WeightAlert) {
@@ -250,21 +245,22 @@ export class AlertComponent extends AppComponentBase implements OnInit {
         } else if (alertMasterId == AlertTypes.FluidIntakeAlert) {
             return AlertUnit.FluidUnit;
         } else if (alertMasterId == AlertTypes.NEWS2Alert) {
-            const alert = this.AlertList[index];
-            if (alert.isOxygenNewsAlert) {
-                return AlertUnit.OxygenUnit;
-            }
-            if (alert.isPulseNewsAlert) {
-                return AlertUnit.PulseUnit;
-            }
-            if (alert.isTemperatureNewsAlert) {
-                return AlertUnit.TemperatureUnit;
-            }
+            return AlertUnit.PulseUnit;
+        } else if (alertMasterId == AlertTypes.OxygenSaturationAlert) {
+            return AlertUnit.OxygenUnit;
+        } else if (alertMasterId == AlertTypes.HighTemperatureAlert) {
+            return AlertUnit.TemperatureUnit;
         } else {
             this.alertUnit = '';
             return '';
         }
     }
 
+    extractBodyPainLocations(bodyParts: BodyPart[]): string {
+        if (bodyParts) {
+          return bodyParts.map(part => part.name).join(', ');
+        }
+        else return null;
+      }
 
 }
