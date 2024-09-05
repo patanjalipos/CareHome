@@ -4,6 +4,12 @@ import { AlertHeadlines, AlertTypes, AlertUnit } from 'src/app/ui/service/consta
 import { UserService } from 'src/app/ui/service/user.service';
 import { UtilityService } from 'src/app/utility/utility.service';
 
+
+interface BodyPart {
+  name: string;
+  top: number;
+  left: number;
+}
 @Component({
   selector: 'app-action-taken-popup',
   templateUrl: './action-taken-popup.component.html',
@@ -105,6 +111,7 @@ export class ActionTakenPopupComponent extends AppComponentBase implements OnIni
 
 
   GetHeadline(alertMasterId: any): any {
+   
     if (alertMasterId == AlertTypes.BloodPressureAlert) {
       return AlertHeadlines.BloodPressureHeadline;
     } else if (alertMasterId == AlertTypes.WeightAlert) {
@@ -112,52 +119,41 @@ export class ActionTakenPopupComponent extends AppComponentBase implements OnIni
     } else if (alertMasterId == AlertTypes.BloodGlucoseAlert) {
       return AlertHeadlines.BloodGlucoseHeadline;
     } else if (alertMasterId == AlertTypes.NEWS2Alert) {
-      if (this.ActionTakenData.alertData.isPulseNewsAlert == true) {
-        return AlertHeadlines.NewsPulseAlertHeadline;
-      }
-      if (this.ActionTakenData.alertData.isTemperatureNewsAlert == true) {
-        return AlertHeadlines.NewsTemperatureHeadline;
-      }
+      return AlertHeadlines.NewsPulseAlertHeadline;
+    } else if (alertMasterId == AlertTypes.HighTemperatureAlert) {
+      return AlertHeadlines.TemperatureAlertHeadline;
     } else {
-      this.alertUnit = '';
-      this.alertHeadline = '';
-
       return '';
     }
-
   }
 
-
-  GetUnit(alertMasterId: any): any {
+  GetAlertUnit(alertMasterId: any): any {
     if (alertMasterId == AlertTypes.BloodPressureAlert) {
       return AlertUnit.BPUnit;
-    }
-    else if (alertMasterId == AlertTypes.WeightAlert) {
+    } else if (alertMasterId == AlertTypes.WeightAlert) {
       return AlertUnit.WeightUnit;
-    }
-    else if (alertMasterId == AlertTypes.BloodGlucoseAlert) {
+    } else if (alertMasterId == AlertTypes.BloodGlucoseAlert) {
       return AlertUnit.BGUnit;
-    }
-    else if (alertMasterId == AlertTypes.FluidIntakeAlert) {
+    } else if (alertMasterId == AlertTypes.FluidIntakeAlert) {
       return AlertUnit.FluidUnit;
-    }
-    else if (alertMasterId == AlertTypes.NEWS2Alert) {
-      if (this.ActionTakenData.alertData.isOxygenNewsAlert == true) {
-        return AlertUnit.OxygenUnit;
-
-      }
-      if (this.ActionTakenData.alertData.isPulseNewsAlert == true) {
-        return AlertUnit.PulseUnit;
-      }
-      if (this.ActionTakenData.alertData.isTemperatureNewsAlert == true) {
-        return AlertUnit.TemperatureUnit;
-      }
-    }
-    else {
+    } else if (alertMasterId == AlertTypes.NEWS2Alert) {
+      return AlertUnit.PulseUnit;
+    } else if (alertMasterId == AlertTypes.OxygenSaturationAlert) {
+      return AlertUnit.OxygenUnit;
+    } else if (alertMasterId == AlertTypes.HighTemperatureAlert) {
+      return AlertUnit.TemperatureUnit;
+    } else {
       this.alertUnit = '';
       return '';
     }
   }
 
+
+  extractBodyPainLocations(bodyParts: BodyPart[]): string {
+    if (bodyParts) {
+      return bodyParts.map(part => part.name).join(', ');
+    }
+    else return null;
+  }
 }
 

@@ -58,8 +58,8 @@
                     <div>
                         <label class="bold text-danger fs-5"> {{dt.AlertName}} </label>
                         <label
-                            *ngIf="dt.alertMasterId != alertTypes.MUSTAlert&&dt.alertMasterid!=alertTypes.WaterlowAlert&&dt.alertMasterId!=alertTypes.FluidIntakeAlert&&dt.isOxygenNewsAlert!=true">
-                            {{GetHeadline(dt.alertMasterId,i)}}
+                            *ngIf="dt.alertMasterId != alertTypes.MUSTAlert&&dt.alertMasterid!=alertTypes.WaterlowAlert&&dt.alertMasterId!=alertTypes.FluidIntakeAlert&&dt.isOxygenNewsAlert!=true&&dt.isBodyPartAlert!=true">
+                            {{GetHeadline(dt.alertMasterId)}}
                         </label>
                         <label *ngIf="dt.alertMasterId == alertTypes.MUSTAlert">On {{dt.createdOn |
                             date:customDateFormat.DEF_DATE}},<span class="bold">
@@ -87,19 +87,21 @@
                             94% which
                             is outside of their oxygen saturation baseline.</label>
 
-                        <label *ngIf="dt.alertMasterId==alertTypes.PressureUlcerAlert">On {{dt.createdOn |
+                        <label *ngIf="dt.isPressureUlcerStageAlert==true">On {{dt.createdOn |
                             date:customDateFormat.DEF_DATE}},<span>{{dt.ResidentName}}</span> has had a Wound Chart
                             recorded for
                             a pressure ulcer in the following location - Right foot (back of). The pressure ulcer's
                             classification has been recorded as <span
                                 class="bold">{{dt.ulcerClassificationOptionName}}</span>.</label>
+
+                        <label *ngIf="dt.isBodyPartAlert==true">On A new pressure ulcer location was recorded</label>
                     </div>
                 </td>
                 <td>
                     <div>
                         <label class="text-danger"
                             *ngIf="dt.alertMasterId!=alertTypes.PressureUlcerAlert">{{dt.value}}</label>
-                        {{GetAlertUnit(dt.alertMasterId,i)}} <br>
+                        {{GetAlertUnit(dt.alertMasterId)}} <br>
                         <label class="bold" *ngIf="dt.alertMasterId == alertTypes.BloodPressureAlert">Baseline Value
                             Ranges :-- <br> Systolic Range (mmHg) = {{dt.MinSystolic}} - {{dt.MaxSystolic}}
                             <br>
@@ -131,7 +133,8 @@
                         <label class="bold" *ngIf="dt.isTemperatureNewsAlert == true">Baseline Value
                             Range = {{dt.MaxTemperature}} - {{dt.MaxTemperature}} (degree)</label>
                         <label class="text-danger"
-                            *ngIf="dt.alertMasterId==alertTypes.PressureUlcerAlert">{{dt.ulcerClassificationOptionName}}</label>
+                            *ngIf="dt.isPressureUlcerStageAlert==true">{{dt.ulcerClassificationOptionName}}</label>
+                        <label class="text-danger" *ngIf="dt.isBodyPartAlert==true"> {{extractBodyPainLocations(dt.selectedBodyParts)}}</label>
                     </div>
                 </td>
                 <td>
