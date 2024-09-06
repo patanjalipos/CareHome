@@ -6,6 +6,7 @@ import { ConstantsService, CustomDateFormat, FormTypes } from 'src/app/ui/servic
 import { UtilityService } from 'src/app/utility/utility.service';
 import { CareSkinAssessmentService } from './care-skin-assessment.service';
 import { UserService } from 'src/app/ui/service/user.service';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-care-skin-assessment',
@@ -46,7 +47,7 @@ export class CareSkinAssessmentComponent extends AppComponentBase implements OnI
   lstSafeguardReferral: any[] = [];
 
 
-  constructor(private _ConstantServices: ConstantsService, private route: ActivatedRoute, private _UtilityService: UtilityService, private _UserServices: UserService, private _CareSkin: CareSkinAssessmentService) {
+  constructor(private _ConstantServices: ConstantsService, private route: ActivatedRoute, private _UtilityService: UtilityService, private _UserServices: UserService, private _CareSkin: CareSkinAssessmentService, private datePipe: DatePipe) {
     super();
     this._ConstantServices.ActiveMenuName = "Care Skin Assessment Form";
     this.loginId = localStorage.getItem('userId');
@@ -149,6 +150,7 @@ export class CareSkinAssessmentComponent extends AppComponentBase implements OnI
             tdata = tdata ? tdata : {};
          
             this.CareSkinAssessmentFormsData = tdata;
+            this.CareSkinAssessmentFormsData.NextReviewDate = new Date(this.CareSkinAssessmentFormsData.NextReviewDate);
             
           } else {
             this.CareSkinAssessmentFormsData = {};
@@ -203,6 +205,8 @@ export class CareSkinAssessmentComponent extends AppComponentBase implements OnI
         this.residentAdmissionInfoId;
       this.CareSkinAssessmentFormsData.StartedBy = this.loginId;
       this.CareSkinAssessmentFormsData.LastEnteredBy = this.loginId;
+
+      this.CareSkinAssessmentFormsData.NextReviewDate = new Date(this.datePipe.transform(this.CareSkinAssessmentFormsData.NextReviewDate, 'yyyy-MM-dd'));
 
 
       const objectBody: any = {
