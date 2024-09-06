@@ -6,6 +6,7 @@ import { UtilityService } from 'src/app/utility/utility.service';
 import { CareFeelingFreshAndCleanService } from './care-feeling-fresh-and-clean.service';
 import { Observable, catchError, forkJoin, map, of } from 'rxjs';
 import { UserService } from 'src/app/ui/service/user.service';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-care-feeling-fresh-and-clean',
@@ -42,7 +43,7 @@ export class CareFeelingFreshAndCleanComponent extends AppComponentBase implemen
   lstStrategyToManageHygiene: any[] = []
   lstActionToManageAdditionalRisk: any[] = []
 
-  constructor(private _ConstantServices: ConstantsService, private route: ActivatedRoute, private _UtilityService: UtilityService, private _CareFreshAndClean: CareFeelingFreshAndCleanService, private _UserServices: UserService) {
+  constructor(private _ConstantServices: ConstantsService, private route: ActivatedRoute, private _UtilityService: UtilityService, private _CareFreshAndClean: CareFeelingFreshAndCleanService, private _UserServices: UserService, private datePipe: DatePipe) {
 
     super();
     this._ConstantServices.ActiveMenuName = "Care Assessment Fresh And Clean Form";
@@ -134,7 +135,7 @@ export class CareFeelingFreshAndCleanComponent extends AppComponentBase implemen
             var tdata = JSON.parse(data.actionResult.result);
             tdata = tdata ? tdata : {};
             this.CareAssessmentFreshAndCleanFormsData = tdata;
-          
+            this.CareAssessmentFreshAndCleanFormsData.NextReviewDate = new Date(this.CareAssessmentFreshAndCleanFormsData.NextReviewDate);
           } else {
             this.CareAssessmentFreshAndCleanFormsData = {};
           }
@@ -189,6 +190,8 @@ export class CareFeelingFreshAndCleanComponent extends AppComponentBase implemen
         this.residentAdmissionInfoId;
       this.CareAssessmentFreshAndCleanFormsData.StartedBy = this.loginId;
       this.CareAssessmentFreshAndCleanFormsData.LastEnteredBy = this.loginId;
+
+      this.CareAssessmentFreshAndCleanFormsData.NextReviewDate = new Date(this.datePipe.transform(this.CareAssessmentFreshAndCleanFormsData.NextReviewDate, 'yyyy-MM-dd'));
 
       const objectBody: any = {
         StatementType: this.StatementType,

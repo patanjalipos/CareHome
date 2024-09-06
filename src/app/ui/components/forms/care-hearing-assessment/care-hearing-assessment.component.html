@@ -301,12 +301,12 @@
                 Enter review
                 date below.</p>
         </div>
-        <div class="col-md-4 mt-4">
+        <div class="col-md-4">
             <div class="labelcontent">
                 <p>Next review date</p>
             </div>
         </div>
-        <div class="col-md-4 mt-4 form-text ">
+        <div class="col-md-2 form-text">
             <ng-container *ngIf="this.isEditable; else NextReviewDateData">
                 <p-calendar name="ReviewDate" [showIcon]="true" inputId="icon" class="iconcal" [readonlyInput]="true"
                     appendTo="body" [maxDate]="" #dobref=""
