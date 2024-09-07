@@ -24,6 +24,7 @@ export class AlertListComponent extends AppComponentBase implements OnInit {
   @Output() EmitUpdateAlert: EventEmitter<any> = new EventEmitter<any>();
 
   customDateFormat = CustomDateFormat;
+  public importData: any = <any>{};
   public AlertList: any[] = [];
   filteredValuesLength: number = 0;
   isAlertList: Boolean = false;
@@ -58,23 +59,22 @@ export class AlertListComponent extends AppComponentBase implements OnInit {
 
 
   GetAllAlert() {
-    let importData: any = <any>{};
-
+    this.importData = {};
     if (this.filteritems != null && this.filteritems.length != 0) {
-      importData.SearchList = this.filteritems;
+      this.importData.SearchList = this.filteritems;
 
       this.filteritems.forEach(item => {
         if (item.SearchBy == 'DFrom') {
-          importData.dFrom = item.SearchVal;
+          this.importData.dFrom = item.SearchVal;
         }
         if (item.SearchBy == 'DTo') {
-          importData.dTo = item.SearchVal;
+          this.importData.dTo = item.SearchVal;
         }
       });
     }
     this._UtilityService.showSpinner();
     this.unsubscribe.add = this._UserServices
-      .GetAllAlert(importData, null)
+      .GetAllAlert(this.importData,'')
       .subscribe({
         next: (data) => {
           this._UtilityService.hideSpinner();
@@ -100,16 +100,18 @@ export class AlertListComponent extends AppComponentBase implements OnInit {
           this._UtilityService.showErrorAlert(e.message);
         },
       });
-    importData = {};
-
   }
 
   //Export
   exportToItemExcel() {
-    let importData: any = <any>{};
-    importData.reportname = "alertList";
-    importData.filename = "alertList";
-    this._MasterServices.downloadReport(importData);
+    this.importData.reportname = "alertList";
+    this.importData.filename = "alertList";
+    this.importData.isExcel=true;
+    console.log("last data");
+    
+    console.log(this.importData);
+    
+    this._MasterServices.downloadReport(this.importData);
   }
 
   //Filter
