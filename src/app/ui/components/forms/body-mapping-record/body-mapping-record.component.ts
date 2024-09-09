@@ -59,6 +59,7 @@ export class BodyMappingRecordComponent extends AppComponentBase implements OnIn
         forkJoin(collectionNames.map((collectionName) => this.getDropdownMasterLists(FormTypes.BodyMappingRecord, collectionName, 1))).subscribe((responses: any[]) => {
             this.lstBodyMappingMaster = responses[0];
         });
+        this.BodyMappingFormsData.DateTimeObservation=new Date();
         // this.GetBodyMappingReasonMaster();
     }
 

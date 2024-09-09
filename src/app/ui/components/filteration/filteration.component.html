@@ -230,6 +230,23 @@
     </ng-container>
 
 
+    <!-- action filter -->
+    <ng-container *ngIf="ComponentName=='Action'">
+      <div class="col-md-2">
+        <p-calendar #cal1 selectionMode="range" [ngModelOptions]="{standalone: true}" placeholder="From Date / To Date"
+          [showIcon]="true" inputId="icon" [readonlyInput]="true" [dateFormat]="customDateFormat.CalendarFormat"
+          [showButtonBar]="true" [(ngModel)]="SearchByDate" (onSelect)="dateRangeChange(cal1)"></p-calendar>
+      </div>
+    </ng-container>
+    <ng-container *ngIf="ComponentName=='Action'">
+      <div class="col-md-2" *ngIf="SearchmoreFiletrs && hasItem(SearchmoreFiletrs,'Status')">
+        <p-dropdown name="ddlMenuStatus" [options]="lststatus" [style]="{width: '100%'}" optionLabel="name"
+          optionValue="code" placeholder="Status" [(ngModel)]="SearchByStatus">
+        </p-dropdown>
+      </div>
+    </ng-container>
+
+
     <!-- More Filters -->
     <div class="form-group  pos-rel col-md-2"
       *ngIf="ComponentName === 'TaskPlanner' || ComponentName === 'AlertMaster' || ComponentName ==='AlertList'|| ComponentName === 'UserMaster' ||

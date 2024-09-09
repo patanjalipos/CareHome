@@ -61,6 +61,8 @@ export class GpDoctorVisitCommunicationRecordComponent extends AppComponentBase 
       this.lstFamilyComRelayMaster = responses[0];
     });
     //this.GetFamilyRelayMaster();
+    this.GPDoctorVisitCommDetails.DateOfGPCommunication=new Date();
+    this.GPDoctorVisitCommDetails.TimeOfGPCommunication=new Date();
   }
   ngOnChanges(changes: SimpleChanges): void {
     this.isEditable = this.preSelectedFormData.isEditable;

@@ -120,6 +120,7 @@ export class AccidentIncidentNearMissRecordComponent
         } else {
             this.ResetModel();
         }
+        this.AccidentNearMissRecordFormsData.DateOfAccident = new Date();
     }
 
     getFormattedTime(time: Date) {
