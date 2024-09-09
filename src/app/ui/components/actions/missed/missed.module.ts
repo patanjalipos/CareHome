@@ -9,6 +9,7 @@ import { DropdownModule } from 'primeng/dropdown';
 import { InputTextModule } from 'primeng/inputtext';
 import { TableModule } from 'primeng/table';
 import { MissedComponent } from './missed.component';
+import { FilterationModule } from "../../filteration/filteration.module";
 
 
 @NgModule({
@@ -24,7 +25,8 @@ import { MissedComponent } from './missed.component';
     CheckboxModule,
     TableModule,
     ButtonModule,
-  ],
+    FilterationModule
+],
   exports:[
     MissedComponent
   ]

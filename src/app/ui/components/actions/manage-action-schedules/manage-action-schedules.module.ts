@@ -9,6 +9,7 @@ import { CheckboxModule } from 'primeng/checkbox';
 import { DropdownModule } from 'primeng/dropdown';
 import { InputTextModule } from 'primeng/inputtext';
 import { TableModule } from 'primeng/table';
+import { FilterationModule } from "../../filteration/filteration.module";
 
 
 @NgModule({
@@ -24,7 +25,8 @@ import { TableModule } from 'primeng/table';
     CheckboxModule,
     TableModule,
     ButtonModule,
-  ],exports:[
+    FilterationModule
+],exports:[
     ManageActionSchedulesComponent
   ]
 })
