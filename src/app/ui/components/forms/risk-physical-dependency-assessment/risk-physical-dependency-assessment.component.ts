@@ -17,6 +17,7 @@ import {
 import { UtilityService } from 'src/app/utility/utility.service';
 import { RiskPhysicalDependencyAssessmentService } from './risk-physical-dependency-assessment.service';
 import { UserService } from 'src/app/ui/service/user.service';
+import { DatePipe } from '@angular/common';
 
 @Component({
     selector: 'app-risk-physical-dependency-assessment',
@@ -70,7 +71,8 @@ export class RiskPhysicalDependencyAssessmentComponent
         private route: ActivatedRoute,
         private _UtilityService: UtilityService,
         private _UserService: UserService,
-        private _FormService: RiskPhysicalDependencyAssessmentService
+        private _FormService: RiskPhysicalDependencyAssessmentService,
+        private datePipe: DatePipe
     ) {
         super();
         this._ConstantServices.ActiveMenuName =
@@ -213,6 +215,7 @@ export class RiskPhysicalDependencyAssessmentComponent
                         var tdata = JSON.parse(data.actionResult.result);
                         tdata = tdata ? tdata : {};
                         this.RiskPhysicalDependencyAssessmentFormData = tdata;
+                        this.RiskPhysicalDependencyAssessmentFormData.NextReviewDate = new Date(this.RiskPhysicalDependencyAssessmentFormData.NextReviewDate);
                     } else {
                         this.RiskPhysicalDependencyAssessmentFormData = {};
                     }
@@ -237,6 +240,8 @@ export class RiskPhysicalDependencyAssessmentComponent
                 this.loginId;
             this.RiskPhysicalDependencyAssessmentFormData.ModifiedBy =
                 this.loginId;
+
+                this.RiskPhysicalDependencyAssessmentFormData.NextReviewDate = new Date(this.datePipe.transform(this.RiskPhysicalDependencyAssessmentFormData.NextReviewDate, 'yyyy-MM-dd'));
 
             const objectBody: any = {
                 StatementType: this.StatementType,

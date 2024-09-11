@@ -7,6 +7,7 @@ import { UtilityService } from 'src/app/utility/utility.service';
 import { CareEatsAndTreatsService } from './care-eats-and-treats.service';
 import { Observable, catchError, forkJoin, map, of } from 'rxjs';
 import { UserService } from 'src/app/ui/service/user.service';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-care-eats-and-treats',
@@ -38,7 +39,7 @@ export class CareEatsAndTreatsComponent extends AppComponentBase implements OnIn
   lstRiskOfMalnutrition:any[] = []
 
 
-  constructor(private _ConstantServices: ConstantsService,private route: ActivatedRoute,private _DataService: DataService,private _CareEatsAndDrinks: CareEatsAndTreatsService,private _UtilityService: UtilityService,private _UserServices: UserService) {
+  constructor(private _ConstantServices: ConstantsService,private route: ActivatedRoute,private _DataService: DataService,private _CareEatsAndDrinks: CareEatsAndTreatsService,private _UtilityService: UtilityService,private _UserServices: UserService, private datePipe: DatePipe) {
 
     super();
     this._ConstantServices.ActiveMenuName = "Care Assessment Eats And Treats Form";
@@ -117,7 +118,7 @@ export class CareEatsAndTreatsComponent extends AppComponentBase implements OnIn
                     var tdata = JSON.parse(data.actionResult.result);
                     tdata = tdata ? tdata : {};
                     this.CareAssessmentEatsAndDrinksFormsData = tdata;
-                   
+                    this.CareAssessmentEatsAndDrinksFormsData.NextReviewDate = new Date(this.CareAssessmentEatsAndDrinksFormsData.NextReviewDate);
                 } else {
                     this.CareAssessmentEatsAndDrinksFormsData = {};
                 }
@@ -171,6 +172,8 @@ if (this.userId != null && this.residentAdmissionInfoId != null && this.loginId!
         this.residentAdmissionInfoId;
     this.CareAssessmentEatsAndDrinksFormsData.StartedBy = this.loginId;
     this.CareAssessmentEatsAndDrinksFormsData.LastEnteredBy = this.loginId;
+
+    this.CareAssessmentEatsAndDrinksFormsData.NextReviewDate = new Date(this.datePipe.transform(this.CareAssessmentEatsAndDrinksFormsData.NextReviewDate, 'yyyy-MM-dd'));
     
         const objectBody: any = {
           StatementType: this.StatementType,

@@ -17,6 +17,7 @@ import {
 import { UtilityService } from 'src/app/utility/utility.service';
 import { CareOralAndDentalService } from './care-oral-and-dental.service';
 import { UserService } from 'src/app/ui/service/user.service';
+import { DatePipe } from '@angular/common';
 
 @Component({
     selector: 'app-care-oral-and-dental',
@@ -59,7 +60,8 @@ export class CareOralAndDentalComponent
         private route: ActivatedRoute,
         private _UtilityService: UtilityService,
         private _UserService: UserService,
-        private _FormService: CareOralAndDentalService
+        private _FormService: CareOralAndDentalService,
+        private datePipe: DatePipe
     ) {
         super();
         this._ConstantServices.ActiveMenuName =
@@ -178,6 +180,7 @@ export class CareOralAndDentalComponent
                         var tdata = JSON.parse(data.actionResult.result);
                         tdata = tdata ? tdata : {};
                         this.CareOralAndDentalFormData = tdata;
+                        this.CareOralAndDentalFormData.NextReviewDate = new Date(this.CareOralAndDentalFormData.NextReviewDate);
                     } else {
                         this.CareOralAndDentalFormData = {};
                     }
@@ -200,6 +203,8 @@ export class CareOralAndDentalComponent
                 this.residentAdmissionInfoId;
             this.CareOralAndDentalFormData.StartedBy = this.loginId;
             this.CareOralAndDentalFormData.ModifiedBy = this.loginId;
+
+            this.CareOralAndDentalFormData.NextReviewDate = new Date(this.datePipe.transform(this.CareOralAndDentalFormData.NextReviewDate, 'yyyy-MM-dd'));
 
             const objectBody: any = {
                 StatementType: this.StatementType,

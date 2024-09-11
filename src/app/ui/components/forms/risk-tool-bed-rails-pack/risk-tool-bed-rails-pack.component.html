@@ -331,12 +331,12 @@
                 <label>{{RiskToolFormsData.MonthlyReview==true?'yes':'no'}}</label>
             </ng-template>
         </div>
-        <div class="col-md-4">
+        <div class="col-md-4 my-3">
             <div class="labelcontent">
                 <p>Next review date</p>
             </div>
         </div>
-        <div class="col-md-7">
+        <div class="col-md-7 my-3">
             <div class="input-group date">
                 <ng-container *ngIf="this.isEditable; else ReviewDate">
                     <p-calendar name="RiskToolFormsData.ReviewDate" [showIcon]="true" inputId="icon" class="iconcal" [(ngModel)]="RiskToolFormsData.ReviewDate"

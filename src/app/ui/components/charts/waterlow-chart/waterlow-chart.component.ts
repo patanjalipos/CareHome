@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output, SimpleChanges } from '@angular/core';
 import { AppComponentBase } from 'src/app/app-component-base';
-import { ChartTypes, ConstantsService, CustomDateFormat } from 'src/app/ui/service/constants.service';
+import { AlertTypes, ChartTypes, ConstantsService, CustomDateFormat } from 'src/app/ui/service/constants.service';
 import { WaterlowChartService } from './waterlow-chart.service';
 import { DatePipe } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
@@ -844,6 +844,8 @@ export class WaterlowChartComponent extends AppComponentBase implements OnInit {
             const objectBody: any = {
                 StatementType: this.StatementType,
                 WaterlowChartDetail: this.WaterlowChartData,
+                alertMasterId: AlertTypes.WaterlowAlert,
+                chartMasterId: ChartTypes.WaterlowChart
             };
             console.log("Saved Data", this.WaterlowChartData);
 

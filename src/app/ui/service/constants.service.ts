@@ -4,7 +4,7 @@ import { Injectable } from '@angular/core';
     providedIn: 'root',
 })
 export class ConstantsService {
-    constructor() {}
+    constructor() { }
     public IsLocal: boolean = false;
     public IsShowNavBar: boolean = true;
     public ActiveMenuName: string = '';
@@ -31,7 +31,27 @@ export enum UserTypes {
     SuperAdmin = '611b6d811003138c9d40a8b7',
     Admin = '607546c500f6f4c43c5d54a0',
     Resident = '6075474600f6f4c43c5d54a1',
-   
+
+}
+
+export enum AlertTypes {
+    BloodGlucoseAlert = '6642ece9b33c8394db70605e',
+    BloodPressureAlert = '6642ef39b33c8394db706066',
+    BowelsAlert = '6642ef10b33c8394db706065',
+    FluidIntakeAlert = '65b8e9a00d77d0a4c616b8e0',
+    HighTemperatureAlert = '6642ed2eb33c8394db70605f',
+    MUSTAlert = '6642ee9eb33c8394db706061',
+    NEWS2Alert = '6642eeb5b33c8394db706062',
+    OxygenSaturationAlert = '6642eecdb33c8394db706063',
+    PressureUlcerAlert = '6642eee0b33c8394db706064',
+    PulseAlert = '6642ef50b33c8394db706067',
+    WaterlowAlert = '6642ee86b33c8394db706060',
+    WeightAlert = '6642ef7bb33c8394db706068'
+}
+
+export enum AlertStatus {
+    Active = 1,
+    Actioned = 0
 }
 
 export enum ChartTypes {
@@ -171,8 +191,7 @@ export enum CustomDateFormat {
     TIME = 'HH:mm',
 }
 
-export enum UserEnteredNote
-{
+export enum UserEnteredNote {
     UserEnteredNotes = 1,
 }
 export enum progressNoteFilters1 {
@@ -200,19 +219,38 @@ export enum progressNoteFilters {
     CareplanCharges = 7,
     ResidentTransfer = 8,
     ResidentIndicators = 9,
-    Occupancynotes = 10,    
+    Occupancynotes = 10,
     ResidentDeparture = 11,
 }
 export enum EnteredNotes {
-    OnlyDoctorenterednotes= 'Only Doctor-entered notes',
+    OnlyDoctorenterednotes = 'Only Doctor-entered notes',
     OnlySpecifiedUser = 'Only a specified user',
 }
 export enum TimeFrameNotes {
-    SinceFirstAdmission= 'Since First Admission',
+    SinceFirstAdmission = 'Since First Admission',
     InthePrevious = 'In the Previous',
     Specifyatimeframe = 'Specify a time frame',
 }
 export enum ResidentSelection {
-    AllresidentAssigned= 'All Resident assigned to me',
+    AllresidentAssigned = 'All Resident assigned to me',
     selectedresidentsonly = 'Selected Residents Only',
+}
+
+export enum AlertHeadlines {
+    BloodPressureHeadline = 'A blood pressure observation was recorded outside the baseline range.',
+    WeightHeadline = 'A weight observation was recorded outside the baseline range.',
+    BloodGlucoseHeadline = 'A blood glucose level observation was recorded outside the baseline range.',
+    NewsPulseAlertHeadline = 'A pulse observation was recorded outside the baseline range. ',
+    TemperatureAlertHeadline='A high temperature observation was recorded above the facility baseline.'
+}
+
+export enum AlertUnit {
+    BPUnit = 'mmHg (Systolic/Diastolic)',
+    WeightUnit = 'Kg',
+    PulseUnit = 'Beat per minute',
+    BGUnit = 'mmol/L',
+    FluidUnit = 'mis',
+    OxygenUnit = '%',
+    WaterUnit = 'mis',
+    TemperatureUnit='degree'
 }

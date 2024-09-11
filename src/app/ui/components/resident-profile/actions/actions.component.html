@@ -1,0 +1,50 @@
+<div class="card">
+    <div class="row d-flex align-items-center">
+
+        <div class="my-2 d-flex">
+            <label class="set-margin">Currently Showing: <span class="bold">{{actionPage}}</span></label>
+            <button class="mx-1" pButton title="Missed" (click)="actionPageChange(1)" label="Missed"></button>
+            <button class="mx-1" pButton title="Current" label="Current" (click)="actionPageChange(2)"></button>
+            <button class="mx-1" pButton title="Upcoming" label="Upcoming" (click)="actionPageChange(3)"></button>
+            <button class="mx-1" pButton title="Completed" label="Completed" (click)="actionPageChange(4)"></button>
+            <button class="custom-margin" pButton title="Create a new action schedule"
+                label="Create a new action schedule"></button>
+        </div>
+
+        <p-table #dt [value]="data" responsiveLayout="scroll" class="mt-2" styleClass="p-datatable-striped"
+            [rowHover]="true" [scrollable]="true" scrollHeight="calc(100vh - 155px)" [paginator]="true" [rows]="5">
+            <ng-template pTemplate="emptymessage" let-columns>
+                <tr>
+                    <td [attr.colspan]="columns?.length">No records found</td>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="header">
+                <tr>
+                    <th pSortableColumn="">Action</th>
+                    <th>Assigned User</th>
+                    <th>Due Date</th>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-dt let-i="rowIndex">
+                <tr>
+                    <td>{{dt.action}}</td>
+                    <td>{{dt.assignedUser}}</td>
+                    <td>{{dt.dueDate}}</td>
+                </tr>
+            </ng-template>
+        </p-table>
+
+        <!-- <div *ngIf="" class="card flex justify-content-center">
+            <p-dialog [closable]="true" header="Action this alert" [(visible)]="isShowActionTakenPopup" [modal]="true"
+                [breakpoints]="{ '1199px': '75vw', '575px': '90vw' }" [style]="{ width: '40vw' }" [draggable]="false"
+                [resizable]="false">
+                <div *ngIf="isShowActionTakenPopup">
+
+                    <app-action-taken-popup [ActionTakenData]="ActionTakenData" (ActionTakenCheck)="Changes($event)"
+                        (EmitUpdateAlert)="AlertChanges($event)"></app-action-taken-popup>
+                </div>
+            </p-dialog>
+        </div> -->
+
+    </div>
+</div>

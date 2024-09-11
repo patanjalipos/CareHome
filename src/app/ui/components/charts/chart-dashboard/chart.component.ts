@@ -1,5 +1,5 @@
 import { DatePipe } from '@angular/common';
-import { Component, Input, OnInit, ViewChild, ElementRef, OnDestroy } from '@angular/core';
+import { Component, Input, OnInit, ViewChild, ElementRef, OnDestroy, EventEmitter, Output } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Calendar } from 'primeng/calendar';
 import { AppComponentBase } from 'src/app/app-component-base';
@@ -26,6 +26,7 @@ export class ChartComponent extends AppComponentBase implements OnInit {
     @Input() homeMasterId: any = null;
     @Input() isViewcharts: boolean;
     @Input() lstResidents: any[];
+    @Output() EmitUpdateChart: EventEmitter<any> = new EventEmitter<any>();
     customDateFormat = CustomDateFormat;
 
     public lstMaster: any[] = [];
@@ -42,6 +43,8 @@ export class ChartComponent extends AppComponentBase implements OnInit {
     selectedOption: string;
     selectedResidentUserId: any;
     filteritems: any[] = [];
+
+    alertCount: number = 0;
    
     constructor(
         private _ConstantServices: ConstantsService,
@@ -204,6 +207,11 @@ export class ChartComponent extends AppComponentBase implements OnInit {
     }
     EmitUpdateForm(event) {
         this.SearchChart();
+    }
+
+    EmitUpdateAlert(event) {
+        this.alertCount = event;
+        this.EmitUpdateChart.emit(this.alertCount);
     }
 
       onResidentChange(event: any) {

@@ -1,7 +1,7 @@
 import { DatePipe } from '@angular/common';
 import { Component, EventEmitter, Input, OnInit, Output, SimpleChanges } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { ChartTypes, ConstantsService, CustomDateFormat } from 'src/app/ui/service/constants.service';
+import { AlertTypes, ChartTypes, ConstantsService, CustomDateFormat } from 'src/app/ui/service/constants.service';
 import { OptionService } from 'src/app/ui/service/option.service';
 import { UserService } from 'src/app/ui/service/user.service';
 import { UtilityService } from 'src/app/utility/utility.service';
@@ -36,6 +36,7 @@ export class WoundChartComponent extends AppComponentBase implements OnInit {
   lstEdgeAppearance: any[] = [];
   lstSurroundingEdges: any[] = [];
   lstFectorAffectingHealing: any[] = [];
+  lstUlcerClassification:any[]=[];
   lastRecordData: any[] = [];
   lastRecordBodyStatus: string | null = null;
 
@@ -152,7 +153,7 @@ export class WoundChartComponent extends AppComponentBase implements OnInit {
       this.ChartName = this.result["ChartName"];
       this._ConstantServices.ActiveMenuName = this.ChartName;
     });
-    const collectionNames = ['ObservationType', 'woundColour', 'exudateType', 'exudateAmount', 'edgeAppearance', 'surroundingEdges', 'fectorAffectingHealing'];
+    const collectionNames = ['ObservationType', 'woundColour', 'exudateType', 'exudateAmount', 'edgeAppearance', 'surroundingEdges', 'fectorAffectingHealing','ulcerClassification'];
 
     forkJoin(
       collectionNames.map((collectionName) =>
@@ -170,6 +171,7 @@ export class WoundChartComponent extends AppComponentBase implements OnInit {
       this.lstEdgeAppearance = responses[4];
       this.lstSurroundingEdges = responses[5];
       this.lstFectorAffectingHealing = responses[6];
+      this.lstUlcerClassification=responses[7];
 
     });
     //this.getChartDataById(this.preSelectedChartData.chartMasterId, this.preSelectedChartData.residentAdmissionInfoId, this.pageNumber, this.pageSize);
@@ -280,8 +282,9 @@ export class WoundChartComponent extends AppComponentBase implements OnInit {
       const objectBody: any = {
         StatementType: this.StatementType,
         woundChart: this.woundChartFormData,
+        alertMasterId: AlertTypes.PressureUlcerAlert,
+        chartMasterId: ChartTypes.WoundChart
       };
-      console.log(objectBody);
 
       this._UtilityService.showSpinner();
       this.unsubscribe.add = this._woundChartServices

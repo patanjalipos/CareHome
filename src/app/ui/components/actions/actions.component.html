@@ -1,0 +1,59 @@
+<div class="row">
+    <div class="col-md-12">
+        <div class="card pb-0 profile-tab">
+            <ul class="nav nav-tabs" id="myTab" role="tablist">
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" type="button" [ngClass]="{'active': isMissed}"
+                        (click)="showComponent('Missed')">Missed</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" type="button" [ngClass]="{'active': isCurrent}"
+                        (click)="showComponent('Current')">Current
+                        notes</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" type="button" [ngClass]="{'active': isUpcomming}"
+                        (click)="showComponent('Upcomming')">Upcomming</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" type="button" [ngClass]="{'active': isCompleted}"
+                        (click)="showComponent('Completed')">Completed</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" type="button" [ngClass]="{'active': isAlert}"
+                        (click)="showComponent('Alert')">Alert</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" type="button" [ngClass]="{'active': isManageActionSchedules}"
+                        (click)="showComponent('Manage action schedules')">Manage action schedules</button>
+                </li>
+            </ul>
+        </div>
+
+        <div class="tab-content" id="myTabContent">
+            <div *ngIf="isMissed">
+                <app-missed></app-missed>
+            </div>
+
+            <div *ngIf="isCurrent">
+                <app-current></app-current>
+            </div>
+
+            <div *ngIf="isUpcomming">
+                <app-up-comming></app-up-comming>
+            </div>
+
+            <div *ngIf="isCompleted">
+                <app-completed></app-completed>
+            </div>
+
+            <div *ngIf="isAlert">
+                <app-alert></app-alert>
+            </div>
+
+            <div *ngIf="isManageActionSchedules">
+                <app-manage-action-schedules></app-manage-action-schedules>
+            </div>
+        </div>
+    </div>
+</div>
