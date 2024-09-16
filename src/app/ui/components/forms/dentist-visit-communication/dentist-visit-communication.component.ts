@@ -106,6 +106,7 @@ export class DentistVisitCommunicationComponent
         } else {
             this.ResetModel();
         }
+        this.DentistVisitCommunicationFormData.DateOfDentistVisit=new Date();
     }
 
     SaveAsPDF() {}

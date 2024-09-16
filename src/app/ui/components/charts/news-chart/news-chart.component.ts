@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output, SimpleChanges } from '@angular/core';
 import { AppComponentBase } from 'src/app/app-component-base';
-import { ChartTypes, ConstantsService, CustomDateFormat } from 'src/app/ui/service/constants.service';
+import { AlertTypes, ChartTypes, ConstantsService, CustomDateFormat } from 'src/app/ui/service/constants.service';
 import { OptionService } from 'src/app/ui/service/option.service';
 import { UtilityService } from 'src/app/utility/utility.service';
 import { BowelChartService } from '../bowel-chart/bowel-chart.service';
@@ -102,7 +102,7 @@ export class NewsChartComponent extends AppComponentBase implements OnInit {
       this.StatementType = 'Update';
     } else {
       this.ResetModel();
-      this.getChartDataById(this.preSelectedChartData.chartMasterId,this.preSelectedChartData.chartId, this.preSelectedChartData.selectedStartedOn, this.preSelectedChartData.residentAdmissionInfoId, this.pageNumber, this.pageSize);
+      this.getChartDataById(this.preSelectedChartData.chartMasterId, this.preSelectedChartData.chartId, this.preSelectedChartData.selectedStartedOn, this.preSelectedChartData.residentAdmissionInfoId, this.pageNumber, this.pageSize);
 
     }
 
@@ -266,7 +266,10 @@ export class NewsChartComponent extends AppComponentBase implements OnInit {
       const objectBody: any = {
         StatementType: this.StatementType,
         newsChart: this.NewsChartFormData,
+        alertMasterId: AlertTypes.NEWS2Alert,
+        chartMasterId: ChartTypes.NEWS2Chart
       };
+
 
       this._UtilityService.showSpinner();
       this.unsubscribe.add = this._newsChartServices
@@ -312,7 +315,7 @@ export class NewsChartComponent extends AppComponentBase implements OnInit {
   }
 
   chartOnChange() {
-    this.getChartDataById(this.preSelectedChartData.chartMasterId,this.preSelectedChartData.chartId, this.preSelectedChartData.selectedStartedOn, this.preSelectedChartData.residentAdmissionInfoId, this.pageNumber, this.pageSize);
+    this.getChartDataById(this.preSelectedChartData.chartMasterId, this.preSelectedChartData.chartId, this.preSelectedChartData.selectedStartedOn, this.preSelectedChartData.residentAdmissionInfoId, this.pageNumber, this.pageSize);
 
   }
 
@@ -376,8 +379,8 @@ export class NewsChartComponent extends AppComponentBase implements OnInit {
 
     this.calcuClinicalRisk();
   }
-  msgForResponse(){
-    this.NewsChartFormData.response="Urgent or Emergency Response Consider sepsis.";
+  msgForResponse() {
+    this.NewsChartFormData.response = "Urgent or Emergency Response Consider sepsis.";
   }
   calcuClinicalRisk() {
     let data = this.NewsChartFormData.newstwoScore;
@@ -459,7 +462,7 @@ export class NewsChartComponent extends AppComponentBase implements OnInit {
 
     let data = this.NewsChartFormData.pulesRate;
 
-    if (data > 0 && data <=40) {
+    if (data > 0 && data <= 40) {
       this.NewsChartFormData.pulesScore = 3;
     } else if (data > 41 && data <= 50) {
       this.NewsChartFormData.pulesScore = 1;
@@ -505,7 +508,6 @@ export class NewsChartComponent extends AppComponentBase implements OnInit {
 
   setValueOfMonterningFrequancy() {
     this.NewsChartFormData.monterningFrequancy = this.NewsChartFormData.monterningFrequancy + this.monterningFrequancySuffix;
-    alert(this.NewsChartFormData.monterningFrequancy);
   }
 
 }

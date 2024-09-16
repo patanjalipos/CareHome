@@ -153,6 +153,22 @@
         <div class="col-md-1 form-icon ">
             <i class="fa-solid fa-info"></i>
         </div>
+
+        <div class="col-md-4">
+            <div class="labelcontent">
+                <p>Next review date<span class="required">*</span> </p>
+            </div>
+        </div>
+        <div class="col-md-8 form-text">
+            <div class="input-group date">
+                <p-calendar [required]="true" [showTime]="true" name="txtNextReviewDate" [showIcon]="true" inputId="icon"
+                    [dateFormat]="" class="iconcal" [readonlyInput]="true" appendTo="body" [maxDate]=""
+                    #dobref=""></p-calendar>
+                <div *ngIf="" class="alert alert-danger">
+                </div>
+            </div>
+        </div>
+
         <div class="d-flex justify-content-end">
             <div>
                 <span class="p-ml-left mr-4">

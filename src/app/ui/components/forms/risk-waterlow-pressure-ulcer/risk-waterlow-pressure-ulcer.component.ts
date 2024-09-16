@@ -6,6 +6,7 @@ import { ConstantsService, CustomDateFormat, FormTypes } from 'src/app/ui/servic
 import { UtilityService } from 'src/app/utility/utility.service';
 import { RiskWaterlowPressureUlcerService } from './risk-waterlow-pressure-ulcer.service';
 import { UserService } from 'src/app/ui/service/user.service';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-risk-waterlow-pressure-ulcer',
@@ -37,7 +38,7 @@ export class RiskWaterlowPressureUlcerComponent extends AppComponentBase impleme
   lstMajorMedication: any[] = []
   lstUlcerRiskRating: any[] = []
 
-  constructor(private _ConstantServices: ConstantsService, private route: ActivatedRoute, private _UtilityService: UtilityService, private _UserServices: UserService, private _RiskAssWaterlow: RiskWaterlowPressureUlcerService) {
+  constructor(private _ConstantServices: ConstantsService, private route: ActivatedRoute, private _UtilityService: UtilityService, private _UserServices: UserService, private _RiskAssWaterlow: RiskWaterlowPressureUlcerService, private datePipe: DatePipe) {
 
     super();
 
@@ -120,6 +121,7 @@ export class RiskWaterlowPressureUlcerComponent extends AppComponentBase impleme
             var tdata = JSON.parse(data.actionResult.result);
             tdata = tdata ? tdata : {};
             this.RiskAssessmentWaterFlowPressureFormsData = tdata;
+            this.RiskAssessmentWaterFlowPressureFormsData.NextReviewDate = new Date(this.RiskAssessmentWaterFlowPressureFormsData.NextReviewDate);
 
           } else {
             this.RiskAssessmentWaterFlowPressureFormsData = {};
@@ -172,6 +174,8 @@ export class RiskWaterlowPressureUlcerComponent extends AppComponentBase impleme
         this.residentAdmissionInfoId;
       this.RiskAssessmentWaterFlowPressureFormsData.StartedBy = this.loginId;
       this.RiskAssessmentWaterFlowPressureFormsData.LastEnteredBy = this.loginId;
+
+      this.RiskAssessmentWaterFlowPressureFormsData.NextReviewDate = new Date(this.datePipe.transform(this.RiskAssessmentWaterFlowPressureFormsData.NextReviewDate, 'yyyy-MM-dd'));
 
       const objectBody: any = {
         StatementType: this.StatementType,

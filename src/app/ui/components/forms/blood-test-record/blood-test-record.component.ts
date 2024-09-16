@@ -91,6 +91,7 @@ export class BloodTestRecordComponent
         } else {
             this.ResetModel();
         }
+        this.BloodTestFormData.DateTaken = new Date();
     }
 
     SaveAsPDF() {}

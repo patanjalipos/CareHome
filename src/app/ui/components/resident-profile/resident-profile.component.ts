@@ -82,7 +82,6 @@ export class ResidentProfileComponent extends AppComponentBase implements OnInit
 
   confirm(event: Event, componentType: string) {
     if (this.value == true) {
-      console.log(this.value);
       this.confirmationService.confirm({
         target: event.target as EventTarget,
         message: 'Are you sure you want to leave this page?',

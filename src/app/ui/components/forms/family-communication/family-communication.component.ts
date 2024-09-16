@@ -76,6 +76,7 @@ export class FamilyCommunicationComponent extends AppComponentBase implements On
         } else {
             this.ResetModel();
         }
+        this.FamilyCommFormsData.DateTimeObservation=new Date();
     }
     ngOnChanges(changes: SimpleChanges): void {
         this.isEditable = this.preSelectedFormData.isEditable;

@@ -15,13 +15,13 @@ import { UserService } from 'src/app/ui/service/user.service';
 })
 export class ProfessionalVisitCommunicationRecordComponent extends AppComponentBase implements OnInit {
 
-  @Input() preSelectedFormData: any=<any>{};
+  @Input() preSelectedFormData: any = <any>{};
   @Output() EmitUpdateForm: EventEmitter<any> = new EventEmitter<any>();
 
   customDateFormat = CustomDateFormat;
   isEditable: boolean;
-  ProfVisitFormsData:any = <any>{};
-  residentAdmissionInfoId:any;
+  ProfVisitFormsData: any = <any>{};
+  residentAdmissionInfoId: any;
   loginId: any;
   userId: any;
   StatementType: string = null;
@@ -29,27 +29,28 @@ export class ProfessionalVisitCommunicationRecordComponent extends AppComponentB
   lstCommRelay: any[] = [];
   lstHealthcareType: any[] = [];
 
-  constructor(private _ConstantServices: ConstantsService,private route: ActivatedRoute,private _UtilityService: UtilityService,private _UserServices: UserService,private datePipe: DatePipe,private _ProfVisit: ProfessionalVisitCommunicationRecordService) {
+  constructor(private _ConstantServices: ConstantsService, private route: ActivatedRoute, private _UtilityService: UtilityService, private _UserServices: UserService, private datePipe: DatePipe, private _ProfVisit: ProfessionalVisitCommunicationRecordService) {
 
     super();
 
     this._ConstantServices.ActiveMenuName = "Professional Visit Communication Record Form";
     this.loginId = localStorage.getItem('userId');
-   }
+  }
 
-   ngOnChanges(changes: SimpleChanges): void {
+  ngOnChanges(changes: SimpleChanges): void {
     this.isEditable = this.preSelectedFormData.isEditable;
-    
+
     if (this.preSelectedFormData.selectedFormID != null) {
       this.ProfVisitFormsData = <any>{};
-        this.GetProfessionalVisitDetails(
-            this.preSelectedFormData.selectedFormID
-        );
-        this.StatementType = 'Update';
+      this.GetProfessionalVisitDetails(
+        this.preSelectedFormData.selectedFormID
+      );
+      this.StatementType = 'Update';
     }
     else {
       this.ResetModel();
     }
+
   }
 
   ngOnInit(): void {
@@ -60,140 +61,141 @@ export class ProfessionalVisitCommunicationRecordComponent extends AppComponentB
     const collectionNames = [
       'CommRelay',
       'HealthcareType'
-  ];
+    ];
 
-  forkJoin(collectionNames.map((collectionName) => this.getDropdownMasterLists(FormTypes.ProfessionalVisitCommunicationRecord,collectionName,1))).subscribe((responses: any[]) => {
-    this.lstCommRelay = responses[0];
-    this.lstHealthcareType = responses[1];
-});
+    forkJoin(collectionNames.map((collectionName) => this.getDropdownMasterLists(FormTypes.ProfessionalVisitCommunicationRecord, collectionName, 1))).subscribe((responses: any[]) => {
+      this.lstCommRelay = responses[0];
+      this.lstHealthcareType = responses[1];
+    });
 
-this.isEditable = this.preSelectedFormData.isEditable;
-  
+    this.isEditable = this.preSelectedFormData.isEditable;
+
     if (this.preSelectedFormData.selectedFormID != null) {
       this.ProfVisitFormsData = <any>{};
-        this.GetProfessionalVisitDetails(
-            this.preSelectedFormData.selectedFormID
-        );
-        this.StatementType = 'Update';
+      this.GetProfessionalVisitDetails(
+        this.preSelectedFormData.selectedFormID
+      );
+      this.StatementType = 'Update';
     }
     else {
       this.ResetModel();
-  }
+    }
+    this.ProfVisitFormsData.HealthcareVisitDate=new Date();
   }
 
-  SaveAsPDF() {}
+  SaveAsPDF() { }
 
   GetProfessionalVisitDetails(formId: string) {
     this._UtilityService.showSpinner();
     this.unsubscribe.add = this._ProfVisit
-        .GetProfessionalVisitDetails(formId)
-        .subscribe({
-            next: (data) => {
-                this._UtilityService.hideSpinner();
-                if (data.actionResult.success == true) {
-                    var tdata = JSON.parse(data.actionResult.result);
-                    tdata = tdata ? tdata : {};
-                  
-                    this.ProfVisitFormsData = tdata;
-                    this.ProfVisitFormsData.HealthcareVisitDate = this.datePipe.transform(this.ProfVisitFormsData.HealthcareVisitDate,'MM/dd/yyyy');
-                   
-                    
-                } else {
-                    this.ProfVisitFormsData = {};
-                }
-            },
-            error: (e) => {
-                this._UtilityService.hideSpinner();
-                this._UtilityService.showErrorAlert(e.message);
-            },
-        });
-}
-
-getDropdownMasterLists(formMasterId: string, dropdownName: string,status:number): Observable<any> {
-  this._UtilityService.showSpinner();
-  return this._UserServices.GetDropDownMasterList(formMasterId,dropdownName, status).pipe(
-      map((response) => {
+      .GetProfessionalVisitDetails(formId)
+      .subscribe({
+        next: (data) => {
           this._UtilityService.hideSpinner();
-          if (response.actionResult.success) {
-              return JSON.parse(response.actionResult.result);
+          if (data.actionResult.success == true) {
+            var tdata = JSON.parse(data.actionResult.result);
+            tdata = tdata ? tdata : {};
+
+            this.ProfVisitFormsData = tdata;
+            this.ProfVisitFormsData.HealthcareVisitDate = this.datePipe.transform(this.ProfVisitFormsData.HealthcareVisitDate, 'MM/dd/yyyy');
+
+
           } else {
-              return [];
+            this.ProfVisitFormsData = {};
           }
+        },
+        error: (e) => {
+          this._UtilityService.hideSpinner();
+          this._UtilityService.showErrorAlert(e.message);
+        },
+      });
+  }
+
+  getDropdownMasterLists(formMasterId: string, dropdownName: string, status: number): Observable<any> {
+    this._UtilityService.showSpinner();
+    return this._UserServices.GetDropDownMasterList(formMasterId, dropdownName, status).pipe(
+      map((response) => {
+        this._UtilityService.hideSpinner();
+        if (response.actionResult.success) {
+          return JSON.parse(response.actionResult.result);
+        } else {
+          return [];
+        }
       }),
       catchError((error) => {
-          this._UtilityService.hideSpinner();
-          this._UtilityService.showErrorAlert(error.message);
-     
-          return of([]); // Returning empty array in case of error
+        this._UtilityService.hideSpinner();
+        this._UtilityService.showErrorAlert(error.message);
+
+        return of([]); // Returning empty array in case of error
       })
-  );
-}
+    );
+  }
 
-saveAsUnfinished() {
+  saveAsUnfinished() {
 
-  this.ProfVisitFormsData.isFormCompleted = false;
-  this.Save();
-}
+    this.ProfVisitFormsData.isFormCompleted = false;
+    this.Save();
+  }
 
-completeForm() {
-  this.ProfVisitFormsData.isFormCompleted = true;
-  this.Save();
-}
+  completeForm() {
+    this.ProfVisitFormsData.isFormCompleted = true;
+    this.Save();
+  }
 
-Save() {
-  debugger
-if (this.userId != null && this.residentAdmissionInfoId != null && this.loginId!=null) {
-    
-    this.ProfVisitFormsData.userId = this.userId;
-    this.ProfVisitFormsData.residentAdmissionInfoId =
+  Save() {
+    debugger
+    if (this.userId != null && this.residentAdmissionInfoId != null && this.loginId != null) {
+
+      this.ProfVisitFormsData.userId = this.userId;
+      this.ProfVisitFormsData.residentAdmissionInfoId =
         this.residentAdmissionInfoId;
-    this.ProfVisitFormsData.StartedBy = this.loginId;
-    this.ProfVisitFormsData.LastEnteredBy = this.loginId;
-    this.ProfVisitFormsData.HealthcareVisitDate = this.datePipe.transform(this.ProfVisitFormsData.HealthcareVisitDate,'yyyy-MM-dd');
-    
-        const objectBody: any = {
-          StatementType: this.StatementType,
-          professionalVisitForm: this.ProfVisitFormsData
-      };
-      
+      this.ProfVisitFormsData.StartedBy = this.loginId;
+      this.ProfVisitFormsData.LastEnteredBy = this.loginId;
+      this.ProfVisitFormsData.HealthcareVisitDate = this.datePipe.transform(this.ProfVisitFormsData.HealthcareVisitDate, 'yyyy-MM-dd');
 
-    this._UtilityService.showSpinner();
-    this.unsubscribe.add = this._ProfVisit
+      const objectBody: any = {
+        StatementType: this.StatementType,
+        professionalVisitForm: this.ProfVisitFormsData
+      };
+
+
+      this._UtilityService.showSpinner();
+      this.unsubscribe.add = this._ProfVisit
         .InsertUpdateProfessionalVisitForm(
-            objectBody
+          objectBody
         )
         .subscribe({
-            next: (data) => {
-                this._UtilityService.hideSpinner();
-                if (data.actionResult.success == true){
-                    this.EmitUpdateForm.emit(true);
-                //   this.ResetModel();
-                    this._UtilityService.showSuccessAlert(
-                        data.actionResult.errMsg
-                    );
-                  }
-                else
-                    this._UtilityService.showWarningAlert(
-                        data.actionResult.errMsg
-                    );
-            },
-            error: (e) => {
-                this._UtilityService.hideSpinner();
-                this._UtilityService.showErrorAlert(e.message);
-            },
+          next: (data) => {
+            this._UtilityService.hideSpinner();
+            if (data.actionResult.success == true) {
+              this.EmitUpdateForm.emit(true);
+              //   this.ResetModel();
+              this._UtilityService.showSuccessAlert(
+                data.actionResult.errMsg
+              );
+            }
+            else
+              this._UtilityService.showWarningAlert(
+                data.actionResult.errMsg
+              );
+          },
+          error: (e) => {
+            this._UtilityService.hideSpinner();
+            this._UtilityService.showErrorAlert(e.message);
+          },
         });
-} else {
-    this._UtilityService.showWarningAlert(
+    } else {
+      this._UtilityService.showWarningAlert(
         'Professional Visit Communication Record details are missing.'
-    );
-}
-}
+      );
+    }
+  }
 
 
-ResetModel() {
-  this.isEditable = true;
-  this.ProfVisitFormsData = <any>{};
-  this.StatementType = 'Insert';
-}
+  ResetModel() {
+    this.isEditable = true;
+    this.ProfVisitFormsData = <any>{};
+    this.StatementType = 'Insert';
+  }
 
 }
