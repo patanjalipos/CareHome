@@ -74,7 +74,7 @@ export class AlertListComponent extends AppComponentBase implements OnInit {
     }
     this._UtilityService.showSpinner();
     this.unsubscribe.add = this._UserServices
-      .GetAllAlert(this.importData,'')
+      .GetAllAlert(this.importData, '')
       .subscribe({
         next: (data) => {
           this._UtilityService.hideSpinner();
@@ -106,11 +106,11 @@ export class AlertListComponent extends AppComponentBase implements OnInit {
   exportToItemExcel() {
     this.importData.reportname = "alertList";
     this.importData.filename = "alertList";
-    this.importData.isExcel=true;
+    this.importData.isExcel = true;
     console.log("last data");
-    
+
     console.log(this.importData);
-    
+
     this._MasterServices.downloadReport(this.importData);
   }
 
@@ -214,7 +214,7 @@ export class AlertListComponent extends AppComponentBase implements OnInit {
   }
 
   GetHeadline(alertMasterId: any): any {
-   
+
     if (alertMasterId == AlertTypes.BloodPressureAlert) {
       return AlertHeadlines.BloodPressureHeadline;
     } else if (alertMasterId == AlertTypes.WeightAlert) {

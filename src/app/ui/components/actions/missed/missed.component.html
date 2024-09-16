@@ -1,0 +1,51 @@
+<div class="card">
+    <div class="row d-flex align-items-center">
+        <p-table>
+            <ng-template pTemplate="caption">
+                <div class="flex justify-content-between flex-column sm:flex-row">
+                    <span class="p-ml-left">
+                        <!-- <span class="total-txt">
+                            {{AlertList?.length>0?'Total Records:
+                            '+AlertList.length:''}} </span> -->
+                    </span>
+                    <span class="p-ml-auto">
+                        <button pButton title="Export Data" label=" " class="p-button-outlined mr-2"
+                            icon="pi pi-download" (click)="exportToItemExcel();"></button>
+                        <!-- <span class="p-input-icon-left">
+                            <i class="pi pi-search"></i>
+                            <input #filtr pInputText type="text" (input)="onGlobalFilter(dt, $event)"
+                                placeholder="Search..." /></span> -->
+
+                        <span class="m-3">
+                            <button pButton title="Filters" label="Filters" class="p-button-outlined mr-2"
+                                icon="pi pi-filter" (click)="ShowFilters()"
+                                style="height: 40px; width: 100px;"></button>
+                        </span>   
+                    </span>
+                </div>
+
+                <div *ngIf="isAction">
+                    <app-filteration [ComponentName]="ComponentName"
+                        (FiltrationOutputData)="GetAlertListFilterData($event)"></app-filteration>
+                </div>
+
+            </ng-template>
+            <ng-template pTemplate="emptymessage" let-columns>
+                <tr>
+                    <td [attr.colspan]="columns?.length">No records found</td>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="header">
+                <tr>
+                    <th pSortableColumn="">Alert Name</th>
+                    <th>Observation</th>
+                    <th>Recorded Date/Time</th>
+                    <th>Actions</th>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-dt let-i="rowIndex">
+
+            </ng-template>
+        </p-table>
+    </div>
+</div>
