@@ -7,13 +7,14 @@
                         {{ preSelectedFormData.StartedBy }}</label>
                 </div>
                 <div class="col-md-4">
-                    <label class="form-label"><b>Designation :</b> {{ preSelectedFormData.StartedByDesignation }}</label>
+                    <label class="form-label"><b>Designation :</b> {{ preSelectedFormData.StartedByDesignation
+                        }}</label>
                 </div>
                 <div class="col-md-4">
                     <label class="form-label"> <b>Date/Time : </b>{{
                         preSelectedFormData.StartedOn
-                            | date : customDateFormat.DEF_DATE_TIME
-                    }}</label>
+                        | date : customDateFormat.DEF_DATE_TIME
+                        }}</label>
                 </div>
             </div>
             <div class="d-flex">
@@ -22,13 +23,14 @@
                         <b>Last entered by (Name) :</b>{{ preSelectedFormData.ModifiedBy }}</label>
                 </div>
                 <div class="col-md-4">
-                    <label class="form-label"> <b>Designation :</b>{{ preSelectedFormData.ModifiedByDesignation }}</label>
+                    <label class="form-label"> <b>Designation :</b>{{ preSelectedFormData.ModifiedByDesignation
+                        }}</label>
                 </div>
                 <div class="col-md-4">
                     <label class="form-label"> <b>Date/Time :</b> {{
                         preSelectedFormData.ModifiedOn
-                            | date : customDateFormat.DEF_DATE_TIME
-                    }}</label>
+                        | date : customDateFormat.DEF_DATE_TIME
+                        }}</label>
                 </div>
             </div>
         </div>
@@ -39,23 +41,16 @@
         </div>
         <div class="col-md-7 mt-4">
             <ng-container *ngIf="isEditable; else ContactReason">
-                <p-dropdown
-                    name="ContactReason"
-                    [(ngModel)]="
-                        HealthcareSupportFormsData.ContactReason
-                    "
-                    [options]="lstContactReason"
-                    optionLabel="optionName"
-                    optionValue="optionId"
-                    placeholder="--select--"
-                    [style]="{ width: '100%' }"
-                >
+                <p-dropdown name="ContactReason" [(ngModel)]="
+                        HealthcareSupportFormsData.contactReason
+                    " [options]="lstContactReason" optionLabel="optionName" optionValue="optionId"
+                    placeholder="--select--" [style]="{ width: '100%' }">
                 </p-dropdown>
             </ng-container>
             <ng-template #ContactReason>
                 <label>{{
-                    HealthcareSupportFormsData.ContactReasonName
-                }}</label>
+                    HealthcareSupportFormsData.contactReasonName
+                    }}</label>
             </ng-template>
         </div>
         <div class="col-md-1 mt-4 form-icon ">
@@ -70,26 +65,20 @@
         </div>
         <div class="col-md-7">
             <ng-container *ngIf="isEditable; else ConcernDetails">
-                <input
-                    pInputText
-                    type="text"
-                    required
-                    name="ConcernDetails"
-                    class="form-control"
-                    [(ngModel)]="
-                        HealthcareSupportFormsData.ConcernDetails
-                    "
-                />
+                <input pInputText type="text" required name="ConcernDetails" class="form-control" [(ngModel)]="
+                        HealthcareSupportFormsData.concernDetails
+                    " />
                 <p class="mb-4">Begin your statement below with....I am contacting OOH service as I am concerned
-                    about.....(state what your observations are or what the person has told you, for example: fallen/very
+                    about.....(state what your observations are or what the person has told you, for example:
+                    fallen/very
                     distressed/breathing not right/catheter has come out etc)</p>
             </ng-container>
             <ng-template #ConcernDetails>
                 <label>{{
-                    HealthcareSupportFormsData.ConcernDetails
-                }}</label>
+                    HealthcareSupportFormsData.concernDetails
+                    }}</label>
             </ng-template>
-            
+
         </div>
         <div class="col-md-1 form-icon ">
             <i class="fa-solid fa-info"></i>
@@ -101,25 +90,19 @@
         </div>
         <div class="col-md-7">
             <ng-container *ngIf="isEditable; else PersonBackground">
-                <input
-                    pInputText
-                    type="text"
-                    required
-                    name="PersonBackground"
-                    class="form-control"
-                    [(ngModel)]="
-                        HealthcareSupportFormsData.PersonBackground
-                    "
-                />
-                <p class="mb-4">How long have you known them, how long have they been in the care home, what is their ACP -
+                <input pInputText type="text" required name="PersonBackground" class="form-control" [(ngModel)]="
+                        HealthcareSupportFormsData.personBackground
+                    " />
+                <p class="mb-4">How long have you known them, how long have they been in the care home, what is their
+                    ACP -
                     preferred place of care is?</p>
             </ng-container>
             <ng-template #PersonBackground>
                 <label>{{
-                    HealthcareSupportFormsData.PersonBackground
-                }}</label>
+                    HealthcareSupportFormsData.personBackground
+                    }}</label>
             </ng-template>
-            
+
         </div>
         <div class="col-md-1 form-icon ">
             <i class="fa-solid fa-info"></i>
@@ -131,27 +114,20 @@
         </div>
         <div class="col-md-7">
             <ng-container *ngIf="isEditable; else HealthSign">
-                <p-dropdown
-                    name="HealthSign"
-                    [(ngModel)]="
-                        HealthcareSupportFormsData.HealthSign
-                    "
-                    [options]="lstHealthSign"
-                    optionLabel="optionName"
-                    optionValue="optionId"
-                    placeholder="--select--"
-                    [style]="{ width: '100%' }"
-                >
+                <p-dropdown name="HealthSign" [(ngModel)]="
+                        HealthcareSupportFormsData.healthSign
+                    " [options]="lstHealthSign" optionLabel="optionName" optionValue="optionId"
+                    placeholder="--select--" [style]="{ width: '100%' }">
                 </p-dropdown>
                 <p class="mb-4">What are the soft signs that the resident displays when they are brewing an infection or
                     becoming unwell</p>
             </ng-container>
             <ng-template #HealthSign>
                 <label>{{
-                    HealthcareSupportFormsData.HealthSignName
-                }}</label>
+                    HealthcareSupportFormsData.healthSignName
+                    }}</label>
             </ng-template>
-            
+
         </div>
         <div class="col-md-1 form-icon ">
             <i class="fa-solid fa-info"></i>
@@ -163,25 +139,19 @@
         </div>
         <div class="col-md-7">
             <ng-container *ngIf="isEditable; else BaselineObservations">
-                <input
-                    pInputText
-                    type="text"
-                    required
-                    name="BaselineObservations"
-                    class="form-control"
-                    [(ngModel)]="
-                        HealthcareSupportFormsData.BaselineObservations
-                    "
-                />
-                <p class="mb-4">If the resident has COPD for exmaple what is their normal oxygen saturation or presentation
+                <input pInputText type="text" required name="BaselineObservations" class="form-control" [(ngModel)]="
+                        HealthcareSupportFormsData.baselineObservations
+                    " />
+                <p class="mb-4">If the resident has COPD for exmaple what is their normal oxygen saturation or
+                    presentation
                     - what is the residents baseline.</p>
             </ng-container>
             <ng-template #BaselineObservations>
                 <label>{{
-                    HealthcareSupportFormsData.BaselineObservations
-                }}</label>
+                    HealthcareSupportFormsData.baselineObservations
+                    }}</label>
             </ng-template>
-            
+
         </div>
         <div class="col-md-1 form-icon ">
             <i class="fa-solid fa-info"></i>
@@ -193,25 +163,19 @@
         </div>
         <div class="col-md-7">
             <ng-container *ngIf="isEditable; else Symptoms">
-                <input
-                    pInputText
-                    type="text"
-                    required
-                    name="Symptoms"
-                    class="form-control"
-                    [(ngModel)]="
-                        HealthcareSupportFormsData.Symptoms
-                    "
-                />
-                <p class="mb-4">Include the question in your response and consider the following: what has changed for them
+                <input pInputText type="text" required name="Symptoms" class="form-control" [(ngModel)]="
+                        HealthcareSupportFormsData.symptoms
+                    " />
+                <p class="mb-4">Include the question in your response and consider the following: what has changed for
+                    them
                     in the last 24hours? include behaviour, mobility, pain, food and fluid intake and output,</p>
             </ng-container>
             <ng-template #Symptoms>
                 <label>{{
-                    HealthcareSupportFormsData.Symptoms
-                }}</label>
+                    HealthcareSupportFormsData.symptoms
+                    }}</label>
             </ng-template>
-            
+
         </div>
         <div class="col-md-1 form-icon ">
             <i class="fa-solid fa-info"></i>
@@ -223,25 +187,18 @@
         </div>
         <div class="col-md-7">
             <ng-container *ngIf="isEditable; else ClinicalObservations">
-                <input
-                    pInputText
-                    type="text"
-                    required
-                    name="ClinicalObservations"
-                    class="form-control"
-                    [(ngModel)]="
-                        HealthcareSupportFormsData.ClinicalObservations
-                    "
-                />
+                <input pInputText type="text" required name="ClinicalObservations" class="form-control" [(ngModel)]="
+                        HealthcareSupportFormsData.clinicalObservations
+                    " />
                 <p class="mb-4">Include: Date and time of ob's being taken, TEMP, BP, PULSE, OXYGEN SATURATION,
                     RESPIRATIONS, BLOOD GLUCOSE and overall NEWS score</p>
             </ng-container>
             <ng-template #ClinicalObservations>
                 <label>{{
-                    HealthcareSupportFormsData.ClinicalObservations
-                }}</label>
+                    HealthcareSupportFormsData.clinicalObservations
+                    }}</label>
             </ng-template>
-            
+
         </div>
         <div class="col-md-1 form-icon ">
             <i class="fa-solid fa-info"></i>
@@ -254,25 +211,18 @@
         </div>
         <div class="col-md-7">
             <ng-container *ngIf="isEditable; else InformationSummary">
-                <input
-                    pInputText
-                    type="text"
-                    required
-                    name="InformationSummary"
-                    class="form-control"
-                    [(ngModel)]="
-                        HealthcareSupportFormsData.InformationSummary
-                    "
-                />
+                <input pInputText type="text" required name="InformationSummary" class="form-control" [(ngModel)]="
+                        HealthcareSupportFormsData.informationSummary
+                    " />
                 <p class="mb-4">Detail any ACP or ReSPECT documentation which is currently in place with regards to
                     escalation to hospital, interventions etc</p>
             </ng-container>
             <ng-template #InformationSummary>
                 <label>{{
-                    HealthcareSupportFormsData.InformationSummary
-                }}</label>
+                    HealthcareSupportFormsData.informationSummary
+                    }}</label>
             </ng-template>
-            
+
         </div>
         <div class="col-md-1 form-icon ">
             <i class="fa-solid fa-info"></i>
@@ -284,25 +234,19 @@
         </div>
         <div class="col-md-7">
             <ng-container *ngIf="isEditable; else PersonReviewCheck">
-                <input
-                    pInputText
-                    type="text"
-                    required
-                    name="PersonReviewCheck"
-                    class="form-control"
-                    [(ngModel)]="
-                        HealthcareSupportFormsData.PersonReviewCheck
-                    "
-                />
-                <p class="mb-4">Please put as much detail as possible into this part about GP involvement or previous OOH
+                <input pInputText type="text" required name="PersonReviewCheck" class="form-control" [(ngModel)]="
+                        HealthcareSupportFormsData.personReviewCheck
+                    " />
+                <p class="mb-4">Please put as much detail as possible into this part about GP involvement or previous
+                    OOH
                     input in relation to the recent care of this person</p>
             </ng-container>
             <ng-template #PersonReviewCheck>
                 <label>{{
-                    HealthcareSupportFormsData.PersonReviewCheck
-                }}</label>
+                    HealthcareSupportFormsData.personReviewCheck
+                    }}</label>
             </ng-template>
-            
+
         </div>
         <div class="col-md-1 form-icon ">
             <i class="fa-solid fa-info"></i>
@@ -315,25 +259,18 @@
         </div>
         <div class="col-md-7">
             <ng-container *ngIf="isEditable; else MedicalHistory">
-                <input
-                    pInputText
-                    type="text"
-                    required
-                    name="MedicalHistory"
-                    class="form-control"
-                    [(ngModel)]="
-                        HealthcareSupportFormsData.MedicalHistory
-                    "
-                />
+                <input pInputText type="text" required name="MedicalHistory" class="form-control" [(ngModel)]="
+                        HealthcareSupportFormsData.medicalHistory
+                    " />
                 <p class="mb-4">Please include the question in the response - include any stress and distress in new
                     surroundings or people.</p>
             </ng-container>
             <ng-template #MedicalHistory>
                 <label>{{
-                    HealthcareSupportFormsData.MedicalHistory
-                }}</label>
+                    HealthcareSupportFormsData.medicalHistory
+                    }}</label>
             </ng-template>
-            
+
         </div>
         <div class="col-md-1 form-icon ">
             <i class="fa-solid fa-info"></i>
@@ -345,26 +282,19 @@
         </div>
         <div class="col-md-7">
             <ng-container *ngIf="isEditable; else Medications">
-                <input
-                    pInputText
-                    type="text"
-                    required
-                    name="Medications"
-                    class="form-control"
-                    [(ngModel)]="
-                        HealthcareSupportFormsData.Medications
-                    "
-                />
+                <input pInputText type="text" required name="Medications" class="form-control" [(ngModel)]="
+                        HealthcareSupportFormsData.medications
+                    " />
                 <p class="mb-4">Include statement the resident currently takes the following medications..... name of
                     medication, dose, frequency, any covert pathways/how the medication is administered in place or any
                     recent omissions/errors etc</p>
             </ng-container>
             <ng-template #Medications>
                 <label>{{
-                    HealthcareSupportFormsData.Medications
-                }}</label>
+                    HealthcareSupportFormsData.medications
+                    }}</label>
             </ng-template>
-            
+
         </div>
         <div class="col-md-1 form-icon ">
             <i class="fa-solid fa-info"></i>
@@ -376,27 +306,20 @@
         </div>
         <div class="col-md-7">
             <ng-container *ngIf="isEditable; else PersonCheck">
-                <p-dropdown
-                    name="PersonCheck"
-                    [(ngModel)]="
-                        HealthcareSupportFormsData.PersonCheck
-                    "
-                    [options]="lstPersonCheck"
-                    optionLabel="optionName"
-                    optionValue="optionId"
-                    placeholder="--select--"
-                    [style]="{ width: '100%' }"
-                >
+                <p-dropdown name="PersonCheck" [(ngModel)]="
+                        HealthcareSupportFormsData.personCheck
+                    " [options]="lstPersonCheck" optionLabel="optionName" optionValue="optionId"
+                    placeholder="--select--" [style]="{ width: '100%' }">
                 </p-dropdown>
                 <p class="mb-4">Please include name and contact details of POA/Guardian in the other box and any details
                     that are relevant within treatment plan and their awareness of the situation</p>
             </ng-container>
             <ng-template #PersonCheck>
                 <label>{{
-                    HealthcareSupportFormsData.PersonCheckName
-                }}</label>
+                    HealthcareSupportFormsData.personCheckName
+                    }}</label>
             </ng-template>
-            
+
         </div>
         <div class="col-md-1 form-icon ">
             <i class="fa-solid fa-info"></i>
@@ -408,26 +331,21 @@
         </div>
         <div class="col-md-7">
             <ng-container *ngIf="isEditable; else Support">
-                <input
-                    pInputText
-                    type="text"
+                <input pInputText type="text" required name="Support" class="form-control" [(ngModel)]="
+                        HealthcareSupportFormsData.support
+                    " />
+                <p class="mb-4">Please include the question in your response, what do you, or the person needing
+                    support,
+                    think is needed? Is advice needed now or can this wait for GP/CHLN input tomorrow/monitoring
                     required
-                    name="Support"
-                    class="form-control"
-                    [(ngModel)]="
-                        HealthcareSupportFormsData.Support
-                    "
-                />
-                <p class="mb-4">Please include the question in your response, what do you, or the person needing support,
-                    think is needed? Is advice needed now or can this wait for GP/CHLN input tomorrow/monitoring required
                 </p>
             </ng-container>
             <ng-template #Support>
                 <label>{{
-                    HealthcareSupportFormsData.Support
-                }}</label>
+                    HealthcareSupportFormsData.support
+                    }}</label>
             </ng-template>
-            
+
         </div>
         <div class="col-md-1 form-icon ">
             <i class="fa-solid fa-info"></i>
@@ -439,26 +357,19 @@
         </div>
         <div class="col-md-7">
             <ng-container *ngIf="isEditable; else VisitOutcome">
-                <input
-                    pInputText
-                    type="text"
-                    required
-                    name="VisitOutcome"
-                    class="form-control"
-                    [(ngModel)]="
-                        HealthcareSupportFormsData.VisitOutcome
-                    "
-                />
+                <input pInputText type="text" required name="VisitOutcome" class="form-control" [(ngModel)]="
+                        HealthcareSupportFormsData.visitOutcome
+                    " />
                 <p class="mb-4">Include in your answer the name/role/date and time of the person attending and advice or
                     action taken.
                 </p>
             </ng-container>
             <ng-template #VisitOutcome>
                 <label>{{
-                    HealthcareSupportFormsData.VisitOutcome
-                }}</label>
+                    HealthcareSupportFormsData.visitOutcome
+                    }}</label>
             </ng-template>
-            
+
         </div>
         <div class="col-md-1 form-icon ">
             <i class="fa-solid fa-info"></i>
@@ -467,37 +378,21 @@
             <ng-container *ngIf="isEditable; else savePdf">
                 <div>
                     <span class="p-ml-left mr-4">
-                        <button
-                            pButton
-                            title="New"
-                            label="Save as Unfinished"
-                            (click)="saveAsUnfinished()"
-                        ></button>
+                        <button pButton title="New" label="Save as Unfinished" (click)="saveAsUnfinished()"></button>
                         <span class="total-txt"></span>
                     </span>
                 </div>
                 <div>
                     <span class="p-ml-left mr-4">
-                        <button
-                            pButton
-                            title="New"
-                            label="Complete"
-                            (click)="completeForm()"
-                            [disabled]="
-                                HealthcareSupportFormsData.IsFormCompleted
-                            "
-                        ></button>
+                        <button pButton title="New" label="Complete" (click)="completeForm()" [disabled]="
+                                HealthcareSupportFormsData.isFormCompleted
+                            "></button>
                         <span class="total-txt"></span>
                     </span>
                 </div>
             </ng-container>
             <ng-template #savePdf>
-                <button
-                    pButton
-                    title="Save as PDF"
-                    label="Save as PDF"
-                    (click)="SaveAsPDF()"
-                ></button>
+                <button pButton title="Save as PDF" label="Save as PDF" (click)="SaveAsPDF()"></button>
             </ng-template>
         </div>
     </div>

@@ -47,13 +47,13 @@
             <div class="col-md-8 mt-4 form-text">
                 <div class="input-group date" *ngIf="isEditable==true">
                     <p-calendar [required]="true" [showTime]="true" name="txtDateTimeOfObservation"
-                        [(ngModel)]="FamilyCommFormsData.DateTimeObservation" [showIcon]="true" inputId="icon"
+                        [(ngModel)]="FamilyCommFormsData.dateTimeObservation" [showIcon]="true" inputId="icon"
                         [dateFormat]="" class="iconcal" [readonlyInput]="true" appendTo="body" [maxDate]=""
                         #dobref=""></p-calendar>
                     <div *ngIf="" class="alert alert-danger">
                     </div>
                 </div>
-                <p *ngIf="isEditable!=true">{{FamilyCommFormsData.DateTimeObservation | date
+                <p *ngIf="isEditable!=true">{{FamilyCommFormsData.dateTimeObservation | date
                     :customDateFormat.DEF_DATE_TIME}}</p>
             </div>
             <div class="col-md-4">
@@ -64,9 +64,15 @@
 
             <div class="col-md-8 form-text ">
                 <div class="d-flex align-items-center">
-                    <input pInputText type="text" required name="chartheadname" class="form-control mr-4"
-                        [style]="{ width: '35%' }">
-                    <p class="mb-4">Use 24 hour clock</p>
+                    <ng-container *ngIf="isEditable==true">
+                        <input pInputText type="text" required name="chartheadname"
+                            [(ngModel)]="FamilyCommFormsData.timeOfObservation" class="form-control mr-4"
+                            [style]="{ width: '35%' }">
+                        <p class="mb-4">Use 24 hour clock</p>
+                    </ng-container>
+                    <ng-container *ngIf="isEditable!=true">
+                        <p>{{FamilyCommFormsData.timeOfObservation}}</p>
+                    </ng-container>
                 </div>
             </div>
             <div class="col-md-4">
@@ -77,13 +83,13 @@
             </div>
             <div class="col-md-8 form-text">
                 <ng-container *ngIf="isEditable==true">
-                    <p-dropdown placeholder="--select--" [(ngModel)]="FamilyCommFormsData.CommRelay" name="ddlCommRelay"
+                    <p-dropdown placeholder="--select--" [(ngModel)]="FamilyCommFormsData.commRelay" name="ddlCommRelay"
                         [style]="{ width: '100%' }" [options]="lstFamilyComRelayMaster" optionLabel="optionName"
                         optionValue="optionId">
                     </p-dropdown>
                 </ng-container>
                 <ng-container *ngIf="isEditable!=true">
-                    <p>{{FamilyCommFormsData.RelayName}}</p>
+                    <p>{{FamilyCommFormsData.relayName}}</p>
                 </ng-container>
             </div>
             <div class="col-md-4">
@@ -93,8 +99,8 @@
             </div>
             <div class="col-md-8 form-text">
                 <input *ngIf="isEditable==true" pInputText type="text" name="txtCommWith"
-                    [(ngModel)]="FamilyCommFormsData.CoomWith" class="form-control" />
-                <p *ngIf="isEditable!=true">{{FamilyCommFormsData.CoomWith}}</p>
+                    [(ngModel)]="FamilyCommFormsData.coomWith" class="form-control" />
+                <p *ngIf="isEditable!=true">{{FamilyCommFormsData.coomWith}}</p>
                 <p class="mb-4" *ngIf="isEditable==true">Please include full name(s) and designation(s)</p>
             </div>
             <div class="col-md-4">
@@ -104,13 +110,13 @@
             </div>
             <div class="col-md-8 form-text">
                 <ng-container *ngIf="isEditable==true">
-                    <p-dropdown placeholder="--select--" [(ngModel)]="FamilyCommFormsData.CommReason" name="ddlReasonName"
-                        [style]="{ width: '100%' }" [options]="lstFamilyComReasonMaster" optionLabel="optionName"
-                        optionValue="optionId">
+                    <p-dropdown placeholder="--select--" [(ngModel)]="FamilyCommFormsData.commReason"
+                        name="ddlReasonName" [style]="{ width: '100%' }" [options]="lstFamilyComReasonMaster"
+                        optionLabel="optionName" optionValue="optionId">
                     </p-dropdown>
                 </ng-container>
                 <ng-container *ngIf="isEditable!=true">
-                    <p>{{FamilyCommFormsData.ReasonName}}</p>
+                    <p>{{FamilyCommFormsData.reasonName}}</p>
                 </ng-container>
             </div>
             <div class="col-md-4">
@@ -120,8 +126,8 @@
             </div>
             <div class="col-md-8 form-text">
                 <input *ngIf="isEditable==true" pInputText type="text" name="txtDetailsComm"
-                    [(ngModel)]="FamilyCommFormsData.Details" class="form-control" />
-                <p *ngIf="isEditable!=true">{{FamilyCommFormsData.Details}}</p>
+                    [(ngModel)]="FamilyCommFormsData.details" class="form-control" />
+                <p *ngIf="isEditable!=true">{{FamilyCommFormsData.details}}</p>
                 <p class="mb-4" *ngIf="isEditable==true">Give full details of what was discussed</p>
             </div>
             <div class="col-md-4">
@@ -131,8 +137,8 @@
             </div>
             <div class="col-md-8">
                 <input *ngIf="isEditable==true" pInputText type="text" name="txtOutComeComm"
-                    [(ngModel)]="FamilyCommFormsData.OutComeComm" class="form-control" />
-                <p *ngIf="isEditable!=true">{{FamilyCommFormsData.OutComeComm}}</p>
+                    [(ngModel)]="FamilyCommFormsData.outComeComm" class="form-control" />
+                <p *ngIf="isEditable!=true">{{FamilyCommFormsData.outComeComm}}</p>
             </div>
             <div class="col-md-4">
                 <div class="labelcontent">
@@ -141,8 +147,8 @@
             </div>
             <div class="col-md-8">
                 <input *ngIf="isEditable==true" pInputText type="text" name="txtFollowupComm"
-                    [(ngModel)]="FamilyCommFormsData.FollowupComm" class="form-control" />
-                <p *ngIf="isEditable!=true">{{FamilyCommFormsData.FollowupComm}}</p>
+                    [(ngModel)]="FamilyCommFormsData.followupComm" class="form-control" />
+                <p *ngIf="isEditable!=true">{{FamilyCommFormsData.followupComm}}</p>
             </div>
             <div class="d-flex justify-content-end">
                 <div>

@@ -23,7 +23,7 @@ export class CareWishesForFutureComponent extends AppComponentBase implements On
   residentAdmissionInfoId: any;
   loginId: any;
   userId: any;
-  StatementType: string = null;
+  statementType: string = null;
 
 
   lstCapacityInRelation: any[] = [];
@@ -51,13 +51,13 @@ export class CareWishesForFutureComponent extends AppComponentBase implements On
 
   ngOnChanges(changes: SimpleChanges): void {
     this.isEditable = this.preSelectedFormData.isEditable;
-    
+
     if (this.preSelectedFormData.selectedFormID != null) {
       this.CareWishesFormsData = <any>{};
       this.GetCareWishesDetails(
         this.preSelectedFormData.selectedFormID
       );
-      this.StatementType = 'Update';
+      this.statementType = 'Update';
     }
     else {
       this.ResetModel();
@@ -95,7 +95,7 @@ export class CareWishesForFutureComponent extends AppComponentBase implements On
       this.GetCareWishesDetails(
         this.preSelectedFormData.selectedFormID
       );
-      this.StatementType = 'Update';
+      this.statementType = 'Update';
     }
     else {
       this.ResetModel();
@@ -103,7 +103,6 @@ export class CareWishesForFutureComponent extends AppComponentBase implements On
   }
 
   GetCareWishesDetails(formId: string) {
-   debugger
     this._UtilityService.showSpinner();
     this.unsubscribe.add = this._CareWishes
       .GetCareWishesForFutureDetails(formId)
@@ -114,11 +113,13 @@ export class CareWishesForFutureComponent extends AppComponentBase implements On
             var tdata = JSON.parse(data.actionResult.result);
             tdata = tdata ? tdata : {};
             this.CareWishesFormsData = tdata;
-            this.CareWishesFormsData.DateOfComplete = this.datePipe.transform(this.CareWishesFormsData.DateOfComplete,'MM/dd/yyyy')
+            this.CareWishesFormsData.dateOfComplete = this.datePipe.transform(this.CareWishesFormsData.dateOfComplete, 'MM/dd/yyyy')
 
           } else {
             this.CareWishesFormsData = {};
           }
+          console.log(this.CareWishesFormsData);
+          
         },
         error: (e) => {
           this._UtilityService.hideSpinner();
@@ -163,12 +164,12 @@ export class CareWishesForFutureComponent extends AppComponentBase implements On
       this.CareWishesFormsData.userId = this.userId;
       this.CareWishesFormsData.residentAdmissionInfoId =
         this.residentAdmissionInfoId;
-      this.CareWishesFormsData.StartedBy = this.loginId;
-      this.CareWishesFormsData.LastEnteredBy = this.loginId;
-      this.CareWishesFormsData.DateOfComplete = this.datePipe.transform(this.CareWishesFormsData.DateOfComplete,'yyyy-MM-dd');
+      this.CareWishesFormsData.startedBy = this.loginId;
+      this.CareWishesFormsData.lastEnteredBy = this.loginId;
+      this.CareWishesFormsData.dateOfComplete = this.datePipe.transform(this.CareWishesFormsData.dateOfComplete, 'yyyy-MM-dd');
 
       const objectBody: any = {
-        StatementType: this.StatementType,
+        statementType: this.statementType,
         careWishesForFutureForm: this.CareWishesFormsData,
       };
 
@@ -207,10 +208,10 @@ export class CareWishesForFutureComponent extends AppComponentBase implements On
   ResetModel() {
     this.isEditable = true;
     this.CareWishesFormsData = <any>{};
-    this.StatementType = 'Insert';
+    this.statementType = 'Insert';
   }
 
-  SaveAsPDF() {}
+  SaveAsPDF() { }
 
 }
 

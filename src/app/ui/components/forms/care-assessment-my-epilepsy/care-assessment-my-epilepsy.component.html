@@ -10,7 +10,8 @@
                     <label class="form-label"><b>Designation :</b>{{preSelectedFormData.StartedByDesignation}} </label>
                 </div>
                 <div class="col-md-4">
-                    <label class="form-label"> <b>Date/Time : </b>{{preSelectedFormData.StartedOn | date : customDateFormat.DEF_DATE_TIME}}</label>
+                    <label class="form-label"> <b>Date/Time : </b>{{preSelectedFormData.StartedOn | date :
+                        customDateFormat.DEF_DATE_TIME}}</label>
                 </div>
             </div>
             <div class="d-flex">
@@ -22,7 +23,8 @@
                     <label class="form-label"> <b>Designation :</b>{{preSelectedFormData.ModifiedByDesignation}}</label>
                 </div>
                 <div class="col-md-4">
-                    <label class="form-label"> <b>Date/Time :</b> {{preSelectedFormData.ModifiedOn | date: customDateFormat.DEF_DATE_TIME}}</label>
+                    <label class="form-label"> <b>Date/Time :</b> {{preSelectedFormData.ModifiedOn | date:
+                        customDateFormat.DEF_DATE_TIME}}</label>
                 </div>
             </div>
         </div>
@@ -31,11 +33,13 @@
         </div>
         <div class="col-md-7 mt-4">
             <ng-container *ngIf="this.isEditable; else EpilepsyType">
-                <p-dropdown [required]="true" [options]="lstEpilepsyType"   optionLabel="optionName" [(ngModel)]="EpilepsySupportFormsData.EpilepsyType" name="EpilepsyType" optionValue="optionId" placeholder="--select--" [style]="{ width: '100%' }">
+                <p-dropdown [required]="true" [options]="lstEpilepsyType" optionLabel="optionName"
+                    [(ngModel)]="EpilepsySupportFormsData.epilepsyType" name="EpilepsyType" optionValue="optionId"
+                    placeholder="--select--" [style]="{ width: '100%' }">
                 </p-dropdown>
             </ng-container>
             <ng-template #EpilepsyType>
-                <label>{{EpilepsySupportFormsData.EpilepsyTypeName}}</label>
+                <label>{{EpilepsySupportFormsData.epilepsyTypeName}}</label>
             </ng-template>
         </div>
         <div class="col-md-1 mt-4  form-icon">
@@ -46,11 +50,13 @@
         </div>
         <div class="col-md-7">
             <ng-container *ngIf="this.isEditable; else Seizures">
-                <p-dropdown [required]="true" [options]="lstSeizures"   optionLabel="optionName" [(ngModel)]="EpilepsySupportFormsData.Seizures" name="Seizures" optionValue="optionId" placeholder="--select--" [style]="{ width: '100%' }">
+                <p-dropdown [required]="true" [options]="lstSeizures" optionLabel="optionName"
+                    [(ngModel)]="EpilepsySupportFormsData.seizures" name="Seizures" optionValue="optionId"
+                    placeholder="--select--" [style]="{ width: '100%' }">
                 </p-dropdown>
             </ng-container>
             <ng-template #Seizures>
-                <label>{{EpilepsySupportFormsData.SeizuresName}}</label>
+                <label>{{EpilepsySupportFormsData.seizuresName}}</label>
             </ng-template>
         </div>
         <div class="col-md-1 form-icon">
@@ -61,11 +67,11 @@
         </div>
         <div class="col-md-7">
             <ng-container *ngIf="this.isEditable; else SeizuresReason">
-                <input pInputText type="text" [(ngModel)]="EpilepsySupportFormsData.SeizuresReason" required name="SeizuresReason" class="form-control mr-4"
-                    [style]="{ width: '35%' }">
+                <input pInputText type="text" [(ngModel)]="EpilepsySupportFormsData.seizuresReason" required
+                    name="SeizuresReason" class="form-control mr-4" [style]="{ width: '35%' }">
             </ng-container>
             <ng-template #SeizuresReason>
-                <label>{{EpilepsySupportFormsData.SeizuresReason}}</label>
+                <label>{{EpilepsySupportFormsData.seizuresReason}}</label>
             </ng-template>
         </div>
         <div class="col-md-1 form-icon">
@@ -76,12 +82,14 @@
         </div>
         <div class="col-md-7">
             <ng-container *ngIf="this.isEditable; else TonicClonicSeizures">
-                <p-dropdown [required]="true" [options]="lstTonicClonicSeizures"   optionLabel="optionName" [(ngModel)]="EpilepsySupportFormsData.TonicClonicSeizures" name="TonicClonicSeizures" optionValue="optionId" placeholder="--select--" [style]="{ width: '100%' }">
+                <p-dropdown [required]="true" [options]="lstTonicClonicSeizures" optionLabel="optionName"
+                    [(ngModel)]="EpilepsySupportFormsData.tonicClonicSeizures" name="TonicClonicSeizures"
+                    optionValue="optionId" placeholder="--select--" [style]="{ width: '100%' }">
                 </p-dropdown>
                 <p class="mb-4">Select all of the below for inclusion in the support plan</p>
             </ng-container>
             <ng-template #TonicClonicSeizures>
-                <label>{{EpilepsySupportFormsData.TonicClonicSeizuresName}}</label>
+                <label>{{EpilepsySupportFormsData.tonicClonicSeizuresName}}</label>
             </ng-template>
         </div>
         <div class="col-md-1 form-icon">
@@ -92,11 +100,13 @@
         </div>
         <div class="col-md-7">
             <ng-container *ngIf="this.isEditable; else FocalSeizuresCheck">
-                <p-dropdown [required]="true" [options]="lstFocalSeizuresCheck"   optionLabel="optionName" [(ngModel)]="EpilepsySupportFormsData.FocalSeizuresCheck" name="FocalSeizuresCheck" optionValue="optionId" placeholder="--select--" [style]="{ width: '100%' }">
+                <p-dropdown [required]="true" [options]="lstFocalSeizuresCheck" optionLabel="optionName"
+                    [(ngModel)]="EpilepsySupportFormsData.focalSeizuresCheck" name="FocalSeizuresCheck"
+                    optionValue="optionId" placeholder="--select--" [style]="{ width: '100%' }">
                 </p-dropdown>
             </ng-container>
             <ng-template #FocalSeizuresCheck>
-                <label>{{EpilepsySupportFormsData.FocalSeizuresCheckName}}</label>
+                <label>{{EpilepsySupportFormsData.focalSeizuresCheckName}}</label>
             </ng-template>
         </div>
         <div class="col-md-1 form-icon">
@@ -107,12 +117,14 @@
         </div>
         <div class="col-md-7">
             <ng-container *ngIf="this.isEditable; else TestCheck">
-                <p-dropdown [required]="true" [options]="lstTestCheck"   optionLabel="optionName" [(ngModel)]="EpilepsySupportFormsData.TestCheck" name="TestCheck" optionValue="optionId" placeholder="--select--" [style]="{ width: '100%' }">
+                <p-dropdown [required]="true" [options]="lstTestCheck" optionLabel="optionName"
+                    [(ngModel)]="EpilepsySupportFormsData.testCheck" name="TestCheck" optionValue="optionId"
+                    placeholder="--select--" [style]="{ width: '100%' }">
                 </p-dropdown>
                 <p class="mb-4">Please chose from options below and include dates if available in the other text box</p>
             </ng-container>
             <ng-template #TestCheck>
-                <label>{{EpilepsySupportFormsData.TestCheckName}}</label>
+                <label>{{EpilepsySupportFormsData.testCheckName}}</label>
             </ng-template>
         </div>
         <div class="col-md-1 form-icon">
@@ -123,11 +135,13 @@
         </div>
         <div class="col-md-7">
             <ng-container *ngIf="this.isEditable; else EpilepsyTreatment">
-                <p-dropdown [required]="true" [options]="lstEpilepsyTreatment"   optionLabel="optionName" [(ngModel)]="EpilepsySupportFormsData.EpilepsyTreatment" name="EpilepsyTreatment" optionValue="optionId" placeholder="--select--" [style]="{ width: '100%' }">
+                <p-dropdown [required]="true" [options]="lstEpilepsyTreatment" optionLabel="optionName"
+                    [(ngModel)]="EpilepsySupportFormsData.epilepsyTreatment" name="EpilepsyTreatment"
+                    optionValue="optionId" placeholder="--select--" [style]="{ width: '100%' }">
                 </p-dropdown>
             </ng-container>
             <ng-template #EpilepsyTreatment>
-                <label>{{EpilepsySupportFormsData.EpilepsyTreatmentName}}</label>
+                <label>{{EpilepsySupportFormsData.epilepsyTreatmentName}}</label>
             </ng-template>
         </div>
         <div class="col-md-1 form-icon">
@@ -138,11 +152,11 @@
         </div>
         <div class="col-md-7">
             <ng-container *ngIf="this.isEditable; else EpilepsyMedication">
-                <input pInputText type="text" [(ngModel)]="EpilepsySupportFormsData.EpilepsyMedication" required name="EpilepsyMedication" class="form-control mr-4"
-                    [style]="{ width: '35%' }">
+                <input pInputText type="text" [(ngModel)]="EpilepsySupportFormsData.epilepsyMedication" required
+                    name="EpilepsyMedication" class="form-control mr-4" [style]="{ width: '35%' }">
             </ng-container>
             <ng-template #EpilepsyMedication>
-                <label>{{EpilepsySupportFormsData.EpilepsyMedication}}</label>
+                <label>{{EpilepsySupportFormsData.epilepsyMedication}}</label>
             </ng-template>
         </div>
         <div class="col-md-1 form-icon">
@@ -153,11 +167,11 @@
         </div>
         <div class="col-md-7">
             <ng-container *ngIf="this.isEditable; else OtherHealthCondition">
-                <input pInputText type="text" [(ngModel)]="EpilepsySupportFormsData.OtherHealthCondition" required name="OtherHealthCondition" class="form-control mr-4"
-                    [style]="{ width: '35%' }">
+                <input pInputText type="text" [(ngModel)]="EpilepsySupportFormsData.otherHealthCondition" required
+                    name="OtherHealthCondition" class="form-control mr-4" [style]="{ width: '35%' }">
             </ng-container>
             <ng-template #OtherHealthCondition>
-                <label>{{EpilepsySupportFormsData.OtherHealthCondition}}</label>
+                <label>{{EpilepsySupportFormsData.otherHealthCondition}}</label>
             </ng-template>
         </div>
         <div class="col-md-1 form-icon">
@@ -168,15 +182,16 @@
         </div>
         <div class="col-md-7">
             <ng-container *ngIf="this.isEditable; else SeizureCheck">
-                <input pInputText type="text" [(ngModel)]="EpilepsySupportFormsData.SeizureCheck" required name="SeizureCheck" class="form-control mr-4"
-                    [style]="{ width: '35%' }">
-                    <p class="mb-4">If the resident is unable to tell us are we able to get the information from others around
-                        them or the GP</p>
+                <input pInputText type="text" [(ngModel)]="EpilepsySupportFormsData.seizureCheck" required
+                    name="SeizureCheck" class="form-control mr-4" [style]="{ width: '35%' }">
+                <p class="mb-4">If the resident is unable to tell us are we able to get the information from others
+                    around
+                    them or the GP</p>
             </ng-container>
             <ng-template #SeizureCheck>
-                <label>{{EpilepsySupportFormsData.SeizureCheck}}</label>
+                <label>{{EpilepsySupportFormsData.seizureCheck}}</label>
             </ng-template>
-            
+
         </div>
         <div class="col-md-1 form-icon">
             <i class="fa-solid fa-info"></i>
@@ -186,15 +201,16 @@
         </div>
         <div class="col-md-7">
             <ng-container *ngIf="this.isEditable; else SeizureDuration">
-                <input pInputText type="text" [(ngModel)]="EpilepsySupportFormsData.SeizureDuration" required name="SeizureDuration" class="form-control mr-4"
-                    [style]="{ width: '35%' }">
-                    <p class="mb-4">If the resident is unable to tell us are we able to get the information from others around
-                        them or the GP, please do not leave this area blank if it is not known please write this</p>
+                <input pInputText type="text" [(ngModel)]="EpilepsySupportFormsData.seizureDuration" required
+                    name="SeizureDuration" class="form-control mr-4" [style]="{ width: '35%' }">
+                <p class="mb-4">If the resident is unable to tell us are we able to get the information from others
+                    around
+                    them or the GP, please do not leave this area blank if it is not known please write this</p>
             </ng-container>
             <ng-template #SeizureDuration>
-                <label>{{EpilepsySupportFormsData.SeizureDuration}}</label>
+                <label>{{EpilepsySupportFormsData.seizureDuration}}</label>
             </ng-template>
-            
+
         </div>
         <div class="col-md-1 form-icon">
             <i class="fa-solid fa-info"></i>
@@ -205,15 +221,16 @@
         </div>
         <div class="col-md-7">
             <ng-container *ngIf="this.isEditable; else RecoveryDuration">
-                <input pInputText type="text" [(ngModel)]="EpilepsySupportFormsData.RecoveryDuration" required name="RecoveryDuration" class="form-control mr-4"
-                    [style]="{ width: '35%' }">
-                    <p class="mb-4">Please include the question in your answer. If the resident is unable to tell us are we able
-                        to get the information from others around them or the GP</p>
+                <input pInputText type="text" [(ngModel)]="EpilepsySupportFormsData.recoveryDuration" required
+                    name="RecoveryDuration" class="form-control mr-4" [style]="{ width: '35%' }">
+                <p class="mb-4">Please include the question in your answer. If the resident is unable to tell us are we
+                    able
+                    to get the information from others around them or the GP</p>
             </ng-container>
             <ng-template #RecoveryDuration>
-                <label>{{EpilepsySupportFormsData.RecoveryDuration}}</label>
+                <label>{{EpilepsySupportFormsData.recoveryDuration}}</label>
             </ng-template>
-            
+
         </div>
         <div class="col-md-1 form-icon">
             <i class="fa-solid fa-info"></i>
@@ -223,11 +240,13 @@
         </div>
         <div class="col-md-7">
             <ng-container *ngIf="this.isEditable; else EmergencyMedication">
-                <p-dropdown [required]="true" [options]="lstEmergencyMedication"   optionLabel="optionName" [(ngModel)]="EpilepsySupportFormsData.EmergencyMedication" name="EmergencyMedication" optionValue="optionId" placeholder="--select--" [style]="{ width: '100%' }">
+                <p-dropdown [required]="true" [options]="lstEmergencyMedication" optionLabel="optionName"
+                    [(ngModel)]="EpilepsySupportFormsData.emergencyMedication" name="EmergencyMedication"
+                    optionValue="optionId" placeholder="--select--" [style]="{ width: '100%' }">
                 </p-dropdown>
             </ng-container>
             <ng-template #EmergencyMedication>
-                <label>{{EpilepsySupportFormsData.EmergencyMedicationName}}</label>
+                <label>{{EpilepsySupportFormsData.emergencyMedicationName}}</label>
             </ng-template>
         </div>
         <div class="col-md-1 form-icon">
@@ -238,48 +257,34 @@
         </div>
         <div class="col-md-7">
             <ng-container *ngIf="this.isEditable; else SeizuresAffect">
-                <p-dropdown [required]="true" [options]="lstSeizuresAffect"   optionLabel="optionName" [(ngModel)]="EpilepsySupportFormsData.SeizuresAffect" name="SeizuresAffect" optionValue="optionId" placeholder="--select--" [style]="{ width: '100%' }">
+                <p-dropdown [required]="true" [options]="lstSeizuresAffect" optionLabel="optionName"
+                    [(ngModel)]="EpilepsySupportFormsData.seizuresAffect" name="SeizuresAffect" optionValue="optionId"
+                    placeholder="--select--" [style]="{ width: '100%' }">
                 </p-dropdown>
             </ng-container>
             <ng-template #SeizuresAffect>
-                <label>{{EpilepsySupportFormsData.SeizuresAffectName}}</label>
+                <label>{{EpilepsySupportFormsData.seizuresAffectName}}</label>
             </ng-template>
         </div>
         <div class="d-flex justify-content-end">
             <ng-container *ngIf="isEditable; else savePdf">
                 <div>
                     <span class="p-ml-left mr-4">
-                        <button
-                            pButton
-                            title="New"
-                            label="Save as Unfinished"
-                            (click)="saveAsUnfinished()"
-                        ></button>
+                        <button pButton title="New" label="Save as Unfinished" (click)="saveAsUnfinished()"></button>
                         <span class="total-txt"></span>
                     </span>
                 </div>
                 <div>
                     <span class="p-ml-left mr-4">
-                        <button
-                            pButton
-                            title="New"
-                            label="Complete"
-                            (click)="completeForm()"
-                            [disabled]="
+                        <button pButton title="New" label="Complete" (click)="completeForm()" [disabled]="
                                 EpilepsySupportFormsData.IsFormCompleted
-                            "
-                        ></button>
+                            "></button>
                         <span class="total-txt"></span>
                     </span>
                 </div>
             </ng-container>
             <ng-template #savePdf>
-                <button
-                    pButton
-                    title="Save as PDF"
-                    label="Save as PDF"
-                    (click)="SaveAsPDF()"
-                ></button>
+                <button pButton title="Save as PDF" label="Save as PDF" (click)="SaveAsPDF()"></button>
             </ng-template>
         </div>
     </div>

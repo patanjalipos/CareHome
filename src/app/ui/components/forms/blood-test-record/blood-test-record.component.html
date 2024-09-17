@@ -55,11 +55,11 @@
                     required
                     name="reasonForBloodTest"
                     class="form-control"
-                    [(ngModel)]="BloodTestFormData.ReasonForBloodTest"
+                    [(ngModel)]="BloodTestFormData.reasonForBloodTest"
                 />
             </ng-container>
             <ng-template #ReasonView>
-                <div>{{ BloodTestFormData.ReasonForBloodTest }}</div>
+                <div>{{ BloodTestFormData.reasonForBloodTest }}</div>
             </ng-template>
         </div>
 
@@ -75,7 +75,7 @@
                         name="DateTaken"
                         [showIcon]="true"
                         inputId="icon"
-                        [(ngModel)]="BloodTestFormData.DateTaken"
+                        [(ngModel)]="BloodTestFormData.dateTaken"
                         [dateFormat]="'dd-mm-yy'"
                         class="iconcal"
                         [readonlyInput]="true"
@@ -88,7 +88,7 @@
             <ng-template #DateTakenView>
                 <div>
                     {{
-                        BloodTestFormData.DateTaken
+                        BloodTestFormData.dateTaken
                             | date : customDateFormat.DEF_DATE
                     }}
                 </div>
@@ -108,11 +108,11 @@
                     required
                     name="bloodTestResult"
                     class="form-control"
-                    [(ngModel)]="BloodTestFormData.Result"
+                    [(ngModel)]="BloodTestFormData.result"
                 />
             </ng-container>
             <ng-template #ResultView>
-                <div>{{ BloodTestFormData.Result }}</div>
+                <div>{{ BloodTestFormData.result }}</div>
             </ng-template>
         </div>
 
@@ -129,11 +129,11 @@
                     required
                     name="bloodTestActions"
                     class="form-control"
-                    [(ngModel)]="BloodTestFormData.Actions"
+                    [(ngModel)]="BloodTestFormData.actions"
                 />
             </ng-container>
             <ng-template #ActionsView>
-                <div>{{ BloodTestFormData.Actions }}</div>
+                <div>{{ BloodTestFormData.actions }}</div>
                 <p class="mb-4">Follow up actions required</p>
             </ng-template>
         </div>

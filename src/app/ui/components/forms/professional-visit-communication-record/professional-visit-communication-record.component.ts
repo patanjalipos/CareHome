@@ -24,7 +24,7 @@ export class ProfessionalVisitCommunicationRecordComponent extends AppComponentB
   residentAdmissionInfoId: any;
   loginId: any;
   userId: any;
-  StatementType: string = null;
+  statementType: string = null;
 
   lstCommRelay: any[] = [];
   lstHealthcareType: any[] = [];
@@ -45,7 +45,7 @@ export class ProfessionalVisitCommunicationRecordComponent extends AppComponentB
       this.GetProfessionalVisitDetails(
         this.preSelectedFormData.selectedFormID
       );
-      this.StatementType = 'Update';
+      this.statementType = 'Update';
     }
     else {
       this.ResetModel();
@@ -75,12 +75,12 @@ export class ProfessionalVisitCommunicationRecordComponent extends AppComponentB
       this.GetProfessionalVisitDetails(
         this.preSelectedFormData.selectedFormID
       );
-      this.StatementType = 'Update';
+      this.statementType = 'Update';
     }
     else {
       this.ResetModel();
     }
-    this.ProfVisitFormsData.HealthcareVisitDate=new Date();
+    this.ProfVisitFormsData.healthcareVisitDate = new Date();
   }
 
   SaveAsPDF() { }
@@ -97,7 +97,7 @@ export class ProfessionalVisitCommunicationRecordComponent extends AppComponentB
             tdata = tdata ? tdata : {};
 
             this.ProfVisitFormsData = tdata;
-            this.ProfVisitFormsData.HealthcareVisitDate = this.datePipe.transform(this.ProfVisitFormsData.HealthcareVisitDate, 'MM/dd/yyyy');
+            this.ProfVisitFormsData.healthcareVisitDate = this.datePipe.transform(this.ProfVisitFormsData.healthcareVisitDate, 'MM/dd/yyyy');
 
 
           } else {
@@ -149,12 +149,12 @@ export class ProfessionalVisitCommunicationRecordComponent extends AppComponentB
       this.ProfVisitFormsData.userId = this.userId;
       this.ProfVisitFormsData.residentAdmissionInfoId =
         this.residentAdmissionInfoId;
-      this.ProfVisitFormsData.StartedBy = this.loginId;
-      this.ProfVisitFormsData.LastEnteredBy = this.loginId;
-      this.ProfVisitFormsData.HealthcareVisitDate = this.datePipe.transform(this.ProfVisitFormsData.HealthcareVisitDate, 'yyyy-MM-dd');
+      this.ProfVisitFormsData.startedBy = this.loginId;
+      this.ProfVisitFormsData.lastEnteredBy = this.loginId;
+      this.ProfVisitFormsData.healthcareVisitDate = this.datePipe.transform(this.ProfVisitFormsData.healthcareVisitDate, 'yyyy-MM-dd');
 
       const objectBody: any = {
-        StatementType: this.StatementType,
+        statementType: this.statementType,
         professionalVisitForm: this.ProfVisitFormsData
       };
 
@@ -195,7 +195,7 @@ export class ProfessionalVisitCommunicationRecordComponent extends AppComponentB
   ResetModel() {
     this.isEditable = true;
     this.ProfVisitFormsData = <any>{};
-    this.StatementType = 'Insert';
+    this.statementType = 'Insert';
   }
 
 }
