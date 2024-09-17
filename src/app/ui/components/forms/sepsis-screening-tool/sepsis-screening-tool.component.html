@@ -7,13 +7,14 @@
                         {{ preSelectedFormData.StartedBy }}</label>
                 </div>
                 <div class="col-md-4">
-                    <label class="form-label"><b>Designation :</b> {{ preSelectedFormData.StartedByDesignation }}</label>
+                    <label class="form-label"><b>Designation :</b> {{ preSelectedFormData.StartedByDesignation
+                        }}</label>
                 </div>
                 <div class="col-md-4">
                     <label class="form-label"> <b>Date/Time : </b>{{
                         preSelectedFormData.StartedOn
-                            | date : customDateFormat.DEF_DATE_TIME
-                    }}</label>
+                        | date : customDateFormat.DEF_DATE_TIME
+                        }}</label>
                 </div>
             </div>
             <div class="d-flex">
@@ -22,13 +23,14 @@
                         <b>Last entered by (Name) :</b>{{ preSelectedFormData.ModifiedBy }}</label>
                 </div>
                 <div class="col-md-4">
-                    <label class="form-label"> <b>Designation :</b>{{ preSelectedFormData.ModifiedByDesignation }}</label>
+                    <label class="form-label"> <b>Designation :</b>{{ preSelectedFormData.ModifiedByDesignation
+                        }}</label>
                 </div>
                 <div class="col-md-4">
                     <label class="form-label"> <b>Date/Time :</b> {{
                         preSelectedFormData.ModifiedOn
-                            | date : customDateFormat.DEF_DATE_TIME
-                    }}</label>
+                        | date : customDateFormat.DEF_DATE_TIME
+                        }}</label>
                 </div>
             </div>
         </div>
@@ -39,24 +41,17 @@
         </div>
         <div class="col-md-7 mt-4">
             <ng-container *ngIf="isEditable; else RiskFactors">
-                <p-dropdown
-                    name="RiskFactors"
-                    [(ngModel)]="
-                        SepsisScreeningFormsData.RiskFactors
-                    "
-                    [options]="lstRiskFactors"
-                    optionLabel="optionName"
-                    optionValue="optionId"
-                    placeholder="--select--"
-                    [style]="{ width: '100%' }"
-                >
+                <p-dropdown name="RiskFactors" [(ngModel)]="
+                        SepsisScreeningFormsData.riskFactors
+                    " [options]="lstRiskFactors" optionLabel="optionName" optionValue="optionId"
+                    placeholder="--select--" [style]="{ width: '100%' }">
                 </p-dropdown>
                 <P class="mb-4">Please choose that are applicable</P>
             </ng-container>
             <ng-template #RiskFactors>
                 <label>{{
-                    SepsisScreeningFormsData.RiskFactorsName
-                }}</label>
+                    SepsisScreeningFormsData.riskFactorsName
+                    }}</label>
             </ng-template>
         </div>
         <div class="col-md-1 mt-4 form-icon ">
@@ -69,27 +64,20 @@
         </div>
         <div class="col-md-7">
             <ng-container *ngIf="isEditable; else InfectionCheck">
-                <p-dropdown
-                    name="InfectionCheck"
-                    [(ngModel)]="
-                        SepsisScreeningFormsData.InfectionCheck
-                    "
-                    [options]="lstInfectionCheck"
-                    optionLabel="optionName"
-                    optionValue="optionId"
-                    placeholder="--select--"
-                    [style]="{ width: '100%' }"
-                >
+                <p-dropdown name="InfectionCheck" [(ngModel)]="
+                        SepsisScreeningFormsData.infectionCheck
+                    " [options]="lstInfectionCheck" optionLabel="optionName" optionValue="optionId"
+                    placeholder="--select--" [style]="{ width: '100%' }">
                 </p-dropdown>
                 <p class="mb-4">Choose all applicable, If answer is No infection present, it is unlikely to be sepsis
                     consider another diagnosis and continue to escalate and observe person</p>
             </ng-container>
             <ng-template #InfectionCheck>
                 <label>{{
-                    SepsisScreeningFormsData.InfectionCheckName
-                }}</label>
+                    SepsisScreeningFormsData.infectionCheckName
+                    }}</label>
             </ng-template>
-            
+
         </div>
         <div class="col-md-4">
             <div class="labelcontent">
@@ -98,27 +86,20 @@
         </div>
         <div class="col-md-7">
             <ng-container *ngIf="isEditable; else RedFlagsCheck">
-                <p-dropdown
-                    name="RedFlagsCheck"
-                    [(ngModel)]="
-                        SepsisScreeningFormsData.RedFlagsCheck
-                    "
-                    [options]="lstRedFlagsCheck"
-                    optionLabel="optionName"
-                    optionValue="optionId"
-                    placeholder="--select--"
-                    [style]="{ width: '100%' }"
-                >
+                <p-dropdown name="RedFlagsCheck" [(ngModel)]="
+                        SepsisScreeningFormsData.redFlagsCheck
+                    " [options]="lstRedFlagsCheck" optionLabel="optionName" optionValue="optionId"
+                    placeholder="--select--" [style]="{ width: '100%' }">
                 </p-dropdown>
                 <p class="mb-4">Choose all that are applicable - IF ANY OF THESE PRESENT - RED SEPSIS FLAG - ESCALATE to
                     allow for consideration in implementing Sepsis 6</p>
             </ng-container>
             <ng-template #RedFlagsCheck>
                 <label>{{
-                    SepsisScreeningFormsData.RedFlagsCheckName
-                }}</label>
+                    SepsisScreeningFormsData.redFlagsCheckName
+                    }}</label>
             </ng-template>
-            
+
         </div>
         <div class="col-md-1 form-icon ">
             <i class="fa-solid fa-info"></i>
@@ -130,27 +111,21 @@
         </div>
         <div class="col-md-7">
             <ng-container *ngIf="isEditable; else AmberFlags">
-                <p-dropdown
-                    name="AmberFlags"
-                    [(ngModel)]="
-                        SepsisScreeningFormsData.AmberFlags
-                    "
-                    [options]="lstAmberFlags"
-                    optionLabel="optionName"
-                    optionValue="optionId"
-                    placeholder="--select--"
-                    [style]="{ width: '100%' }"
-                >
+                <p-dropdown name="AmberFlags" [(ngModel)]="
+                        SepsisScreeningFormsData.amberFlags
+                    " [options]="lstAmberFlags" optionLabel="optionName" optionValue="optionId"
+                    placeholder="--select--" [style]="{ width: '100%' }">
                 </p-dropdown>
-                <p class="mb-4">Choose all that are applicable - IF ANY OF THESE PRESENT ESCALATE AND CONTINUE TO CONTINUE
+                <p class="mb-4">Choose all that are applicable - IF ANY OF THESE PRESENT ESCALATE AND CONTINUE TO
+                    CONTINUE
                     NEWS2 COMPLETION (consider possible Bloods and commencement of Antibiotics)</p>
             </ng-container>
             <ng-template #AmberFlags>
                 <label>{{
-                    SepsisScreeningFormsData.AmberFlagsName
-                }}</label>
+                    SepsisScreeningFormsData.amberFlagsName
+                    }}</label>
             </ng-template>
-            
+
         </div>
         <div class="col-md-4">
             <div class="labelcontent">
@@ -159,23 +134,16 @@
         </div>
         <div class="col-md-7">
             <ng-container *ngIf="isEditable; else AssessmentOutcome">
-                <p-dropdown
-                    name="AssessmentOutcome"
-                    [(ngModel)]="
-                        SepsisScreeningFormsData.AssessmentOutcome
-                    "
-                    [options]="lstAssessmentOutcome"
-                    optionLabel="optionName"
-                    optionValue="optionId"
-                    placeholder="--select--"
-                    [style]="{ width: '100%' }"
-                >
+                <p-dropdown name="AssessmentOutcome" [(ngModel)]="
+                        SepsisScreeningFormsData.assessmentOutcome
+                    " [options]="lstAssessmentOutcome" optionLabel="optionName" optionValue="optionId"
+                    placeholder="--select--" [style]="{ width: '100%' }">
                 </p-dropdown>
             </ng-container>
             <ng-template #AssessmentOutcome>
                 <label>{{
-                    SepsisScreeningFormsData.AssessmentOutcomeName
-                }}</label>
+                    SepsisScreeningFormsData.assessmentOutcomeName
+                    }}</label>
             </ng-template>
         </div>
         <div class="col-md-1 form-icon ">
@@ -185,37 +153,21 @@
             <ng-container *ngIf="isEditable; else savePdf">
                 <div>
                     <span class="p-ml-left mr-4">
-                        <button
-                            pButton
-                            title="New"
-                            label="Save as Unfinished"
-                            (click)="saveAsUnfinished()"
-                        ></button>
+                        <button pButton title="New" label="Save as Unfinished" (click)="saveAsUnfinished()"></button>
                         <span class="total-txt"></span>
                     </span>
                 </div>
                 <div>
                     <span class="p-ml-left mr-4">
-                        <button
-                            pButton
-                            title="New"
-                            label="Complete"
-                            (click)="completeForm()"
-                            [disabled]="
-                                SepsisScreeningFormsData.IsFormCompleted
-                            "
-                        ></button>
+                        <button pButton title="New" label="Complete" (click)="completeForm()" [disabled]="
+                                SepsisScreeningFormsData.isFormCompleted
+                            "></button>
                         <span class="total-txt"></span>
                     </span>
                 </div>
             </ng-container>
             <ng-template #savePdf>
-                <button
-                    pButton
-                    title="Save as PDF"
-                    label="Save as PDF"
-                    (click)="SaveAsPDF()"
-                ></button>
+                <button pButton title="Save as PDF" label="Save as PDF" (click)="SaveAsPDF()"></button>
             </ng-template>
         </div>
     </div>

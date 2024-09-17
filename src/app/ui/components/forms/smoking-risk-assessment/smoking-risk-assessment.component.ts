@@ -22,7 +22,7 @@ export class SmokingRiskAssessmentComponent extends AppComponentBase implements 
   residentAdmissionInfoId: any;
   loginId: any;
   userId: any;
-  StatementType: string = null;
+  statementType: string = null;
 
   SmokingRiskAssessmentFormData: any = <any>{};
 
@@ -67,7 +67,7 @@ export class SmokingRiskAssessmentComponent extends AppComponentBase implements 
       this.GetSmokingRiskAssessmentDetails(
         this.preSelectedFormData.selectedFormID
       );
-      this.StatementType = 'Update';
+      this.statementType = 'Update';
     }
     else {
       this.ResetModel();
@@ -122,7 +122,7 @@ export class SmokingRiskAssessmentComponent extends AppComponentBase implements 
       this.GetSmokingRiskAssessmentDetails(
         this.preSelectedFormData.selectedFormID
       );
-      this.StatementType = 'Update';
+      this.statementType = 'Update';
     }
     else {
       this.ResetModel();
@@ -164,7 +164,7 @@ export class SmokingRiskAssessmentComponent extends AppComponentBase implements 
 
           
             this.SmokingRiskAssessmentFormData = tdata;
-            this.SmokingRiskAssessmentFormData.ReviewDate = this.datePipe.transform(this.SmokingRiskAssessmentFormData.ReviewDate, 'MM/dd/yyyy')
+            this.SmokingRiskAssessmentFormData.reviewDate = this.datePipe.transform(this.SmokingRiskAssessmentFormData.reviewDate, 'MM/dd/yyyy')
 
           } else {
             this.SmokingRiskAssessmentFormData = {};
@@ -196,12 +196,12 @@ export class SmokingRiskAssessmentComponent extends AppComponentBase implements 
       this.SmokingRiskAssessmentFormData.userId = this.userId;
       this.SmokingRiskAssessmentFormData.residentAdmissionInfoId =
         this.residentAdmissionInfoId;
-      this.SmokingRiskAssessmentFormData.StartedBy = this.loginId;
-      this.SmokingRiskAssessmentFormData.LastEnteredBy = this.loginId;
-      this.SmokingRiskAssessmentFormData.ReviewDate = this.datePipe.transform(this.SmokingRiskAssessmentFormData.ReviewDate, 'yyyy-MM-dd');
+      this.SmokingRiskAssessmentFormData.startedBy = this.loginId;
+      this.SmokingRiskAssessmentFormData.lastEnteredBy = this.loginId;
+      this.SmokingRiskAssessmentFormData.reviewDate = this.datePipe.transform(this.SmokingRiskAssessmentFormData.reviewDate, 'yyyy-MM-dd');
 
       const objectBody: any = {
-        StatementType: this.StatementType,
+        statementType: this.statementType,
         smokingRiskAssessmentForm: this.SmokingRiskAssessmentFormData,
       };
 
@@ -240,7 +240,7 @@ export class SmokingRiskAssessmentComponent extends AppComponentBase implements 
   ResetModel() {
     this.isEditable = true;
     this.SmokingRiskAssessmentFormData = <any>{};
-    this.StatementType = 'Insert';
+    this.statementType = 'Insert';
   }
 
   SaveAsPDF() { }

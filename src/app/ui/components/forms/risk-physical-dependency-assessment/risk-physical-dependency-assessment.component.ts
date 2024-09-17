@@ -36,7 +36,7 @@ export class RiskPhysicalDependencyAssessmentComponent
     //Form which is selected to edit or view
     isEditable: boolean;
     //Need to be passed from form Dashboard
-    StatementType: string = null;
+    statementType: string = null;
 
     //Patient Details
     userId: any;
@@ -88,7 +88,7 @@ export class RiskPhysicalDependencyAssessmentComponent
             this.GetSelectedFormDetails(
                 this.preSelectedFormData.selectedFormID
             );
-            this.StatementType = 'Update';
+            this.statementType = 'Update';
         } else {
             this.ResetModel();
         }
@@ -160,7 +160,7 @@ export class RiskPhysicalDependencyAssessmentComponent
                 this.preSelectedFormData.selectedFormID
             );
 
-            this.StatementType = 'Update';
+            this.statementType = 'Update';
         } else {
             this.ResetModel();
         }
@@ -215,7 +215,7 @@ export class RiskPhysicalDependencyAssessmentComponent
                         var tdata = JSON.parse(data.actionResult.result);
                         tdata = tdata ? tdata : {};
                         this.RiskPhysicalDependencyAssessmentFormData = tdata;
-                        this.RiskPhysicalDependencyAssessmentFormData.NextReviewDate = new Date(this.RiskPhysicalDependencyAssessmentFormData.NextReviewDate);
+                        this.RiskPhysicalDependencyAssessmentFormData.nextReviewDate = new Date(this.RiskPhysicalDependencyAssessmentFormData.nextReviewDate);
                     } else {
                         this.RiskPhysicalDependencyAssessmentFormData = {};
                     }
@@ -233,19 +233,19 @@ export class RiskPhysicalDependencyAssessmentComponent
             this.residentAdmissionInfoId != null &&
             this.loginId != null
         ) {
-            this.RiskPhysicalDependencyAssessmentFormData.UserId = this.userId;
-            this.RiskPhysicalDependencyAssessmentFormData.ResidentAdmissionInfoId =
+            this.RiskPhysicalDependencyAssessmentFormData.userId = this.userId;
+            this.RiskPhysicalDependencyAssessmentFormData.residentAdmissionInfoId =
                 this.residentAdmissionInfoId;
-            this.RiskPhysicalDependencyAssessmentFormData.StartedBy =
+            this.RiskPhysicalDependencyAssessmentFormData.startedBy =
                 this.loginId;
-            this.RiskPhysicalDependencyAssessmentFormData.ModifiedBy =
+            this.RiskPhysicalDependencyAssessmentFormData.modifiedBy =
                 this.loginId;
 
-                this.RiskPhysicalDependencyAssessmentFormData.NextReviewDate = new Date(this.datePipe.transform(this.RiskPhysicalDependencyAssessmentFormData.NextReviewDate, 'yyyy-MM-dd'));
+                this.RiskPhysicalDependencyAssessmentFormData.nextReviewDate = new Date(this.datePipe.transform(this.RiskPhysicalDependencyAssessmentFormData.nextReviewDate, 'yyyy-MM-dd'));
 
             const objectBody: any = {
-                StatementType: this.StatementType,
-                RiskPhysicalDependencyAssessmentForm:
+                statementType: this.statementType,
+                riskPhysicalDependencyAssessmentForm:
                     this.RiskPhysicalDependencyAssessmentFormData,
             };
 
@@ -280,6 +280,6 @@ export class RiskPhysicalDependencyAssessmentComponent
     ResetModel() {
         this.isEditable = true;
         this.RiskPhysicalDependencyAssessmentFormData = <any>{};
-        this.StatementType = 'Insert';
+        this.statementType = 'Insert';
     }
 }

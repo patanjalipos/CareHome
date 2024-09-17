@@ -17,6 +17,7 @@ import {
 import { UtilityService } from 'src/app/utility/utility.service';
 import { CarePersonalEmergencyEvacuationPlanService } from './care-personal-emergency-evacuation-plan.service';
 import { UserService } from 'src/app/ui/service/user.service';
+import { DatePipe } from '@angular/common';
 
 @Component({
     selector: 'app-care-personal-emergency-evacuation-plan',
@@ -35,7 +36,7 @@ export class CarePersonalEmergencyEvacuationPlanComponent
     //Form which is selected to edit or view
     isEditable: boolean;
     //Need to be passed from form Dashboard
-    StatementType: string = null;
+    statementType: string = null;
 
     //Patient Details
     userId: any;
@@ -57,6 +58,7 @@ export class CarePersonalEmergencyEvacuationPlanComponent
         private route: ActivatedRoute,
         private _UtilityService: UtilityService,
         private _UserService: UserService,
+        private datePipe: DatePipe,
         private _FormService: CarePersonalEmergencyEvacuationPlanService
     ) {
         super();
@@ -72,7 +74,7 @@ export class CarePersonalEmergencyEvacuationPlanComponent
             this.GetSelectedFormDetails(
                 this.preSelectedFormData.selectedFormID
             );
-            this.StatementType = 'Update';
+            this.statementType = 'Update';
         } else {
             this.ResetModel();
         }
@@ -118,7 +120,7 @@ export class CarePersonalEmergencyEvacuationPlanComponent
                 this.preSelectedFormData.selectedFormID
             );
 
-            this.StatementType = 'Update';
+            this.statementType = 'Update';
         } else {
             this.ResetModel();
         }
@@ -127,12 +129,12 @@ export class CarePersonalEmergencyEvacuationPlanComponent
     SaveAsPDF() { }
 
     saveAsUnfinished() {
-        this.PersonalEmergencyFormData.IsFormCompleted = false;
+        this.PersonalEmergencyFormData.isFormCompleted = false;
         this.Save();
     }
 
     completeForm() {
-        this.PersonalEmergencyFormData.IsFormCompleted = true;
+        this.PersonalEmergencyFormData.isFormCompleted = true;
         this.Save();
     }
 
@@ -155,7 +157,7 @@ export class CarePersonalEmergencyEvacuationPlanComponent
                 catchError((error) => {
                     this._UtilityService.hideSpinner();
                     this._UtilityService.showErrorAlert(error.message);
-                   
+
                     return of([]); // Returning empty array in case of error
                 })
             );
@@ -172,6 +174,7 @@ export class CarePersonalEmergencyEvacuationPlanComponent
                         var tdata = JSON.parse(data.actionResult.result);
                         tdata = tdata ? tdata : {};
                         this.PersonalEmergencyFormData = tdata;
+                        this.PersonalEmergencyFormData.nextReviewDate = this.datePipe.transform(this.PersonalEmergencyFormData.nextReviewDate,'MM/dd/yyyy');
                     } else {
                         this.PersonalEmergencyFormData = {};
                     }
@@ -189,15 +192,16 @@ export class CarePersonalEmergencyEvacuationPlanComponent
             this.residentAdmissionInfoId != null &&
             this.loginId != null
         ) {
-            this.PersonalEmergencyFormData.UserId = this.userId;
-            this.PersonalEmergencyFormData.ResidentAdmissionInfoId =
+            this.PersonalEmergencyFormData.userId = this.userId;
+            this.PersonalEmergencyFormData.residentAdmissionInfoId =
                 this.residentAdmissionInfoId;
-            this.PersonalEmergencyFormData.StartedBy = this.loginId;
-            this.PersonalEmergencyFormData.ModifiedBy = this.loginId;
+            this.PersonalEmergencyFormData.startedBy = this.loginId;
+            this.PersonalEmergencyFormData.modifiedBy = this.loginId;
+            this.PersonalEmergencyFormData.nextReviewDate = this.datePipe.transform(this.PersonalEmergencyFormData.nextReviewDate,'yyyy-MM-dd');
 
             const objectBody: any = {
-                StatementType: this.StatementType,
-                PersonalEmergencyForm: this.PersonalEmergencyFormData,
+                statementType: this.statementType,
+                personalEmergencyForm: this.PersonalEmergencyFormData,
             };
 
             this._UtilityService.showSpinner();
@@ -231,6 +235,6 @@ export class CarePersonalEmergencyEvacuationPlanComponent
     ResetModel() {
         this.isEditable = true;
         this.PersonalEmergencyFormData = <any>{};
-        this.StatementType = 'Insert';
+        this.statementType = 'Insert';
     }
 }

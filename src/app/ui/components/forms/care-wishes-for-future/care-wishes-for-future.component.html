@@ -35,12 +35,12 @@
         <div class="col-md-7 mt-4 form-text">
             <ng-container *ngIf="this.isEditable; else CapacityInRelationData">
                 <p-dropdown placeholder="--select--" [style]="{ width: '100%' }" [options]="lstCapacityInRelation"
-                    optionLabel="optionName" optionValue="optionId" name="CareWishesFormsData.CapacityInRelation"
-                    [(ngModel)]="CareWishesFormsData.CapacityInRelation">
+                    optionLabel="optionName" optionValue="optionId" name="CareWishesFormsData.capacityInRelation"
+                    [(ngModel)]="CareWishesFormsData.capacityInRelation">
                 </p-dropdown>
             </ng-container>
             <ng-template #CapacityInRelationData>
-                <label>{{CareWishesFormsData.CapacityInRelationName}}</label>
+                <label>{{CareWishesFormsData.capacityInRelationName}}</label>
             </ng-template>
         </div>
         <div class="col-md-1 mt-4 form-icon ">
@@ -53,10 +53,10 @@
             <ng-container *ngIf="this.isEditable; else WishesData">
                 <p-dropdown placeholder="--select--" [style]="{ width: '100%' }" [options]="lstWishes"
                     optionLabel="optionName" optionValue="optionId"
-                    [(ngModel)]="CareWishesFormsData.Wishes"></p-dropdown>
+                    [(ngModel)]="CareWishesFormsData.wishes"></p-dropdown>
             </ng-container>
             <ng-template #WishesData>
-                <label>{{CareWishesFormsData.WishesName}}</label>
+                <label>{{CareWishesFormsData.wishesName}}</label>
             </ng-template>
         </div>
         <div class="col-md-1 form-icon ">
@@ -68,12 +68,12 @@
         <div class="col-md-7 form-text">
             <ng-container *ngIf="this.isEditable; else PersonNameData">
                 <input pInputText type="text" required name="CareWishesFormsData.PersonName"
-                    [(ngModel)]="CareWishesFormsData.PersonName" class="form-control" />
+                    [(ngModel)]="CareWishesFormsData.personName" class="form-control" />
                 <p class="mb-4">If so, please provide name and contact details</p>
             </ng-container>
 
             <ng-template #PersonNameData>
-                <label>{{CareWishesFormsData.PersonName}}</label>
+                <label>{{CareWishesFormsData.personName}}</label>
             </ng-template>
         </div>
         <div class="col-md-1 form-icon ">
@@ -84,12 +84,12 @@
         </div>
         <div class="col-md-7 form-text">
             <ng-container *ngIf="this.isEditable; else IllnessesAndDiagnosisData">
-                <input pInputText type="text" required name="CareWishesFormsData.IllnessesAndDiagnosis"
-                    [(ngModel)]="CareWishesFormsData.IllnessesAndDiagnosis" class="form-control" />
+                <input pInputText type="text" required name="CareWishesFormsData.illnessesAndDiagnosis"
+                    [(ngModel)]="CareWishesFormsData.illnessesAndDiagnosis" class="form-control" />
                 <p class="mb-4">Please provide relevant details e.g. illnesses / prognosis</p>
             </ng-container>
             <ng-template #IllnessesAndDiagnosisData>
-                <label>{{CareWishesFormsData.IllnessesAndDiagnosis}}</label>
+                <label>{{CareWishesFormsData.illnessesAndDiagnosis}}</label>
             </ng-template>
         </div>
         <div class="col-md-1 form-icon ">
@@ -100,12 +100,12 @@
         </div>
         <div class="col-md-7 form-text">
             <ng-container *ngIf="this.isEditable; else RelativeNameData">
-                <input pInputText type="text" required class="form-control" name="CareWishesFormsData.RelativeName"
-                    [(ngModel)]="CareWishesFormsData.RelativeName" />
+                <input pInputText type="text" required class="form-control" name="CareWishesFormsData.relativeName"
+                    [(ngModel)]="CareWishesFormsData.relativeName" />
                 <p class="mb-4">Please provide any relevant details, such as who is aware, names and relationships</p>
             </ng-container>
             <ng-template #RelativeNameData>
-                <label>{{CareWishesFormsData.RelativeName}}</label>
+                <label>{{CareWishesFormsData.relativeName}}</label>
             </ng-template>
 
         </div>
@@ -118,13 +118,13 @@
         </div>
         <div class="col-md-7 form-text">
             <ng-container *ngIf="this.isEditable; else DesiresData">
-                <input pInputText type="text" required name="CareWishesFormsData.Desires"
-                    [(ngModel)]="CareWishesFormsData.Desires" class="form-control" />
+                <input pInputText type="text" required name="CareWishesFormsData.desires"
+                    [(ngModel)]="CareWishesFormsData.desires" class="form-control" />
                 <p class="mb-4">Please include any relevant details, such as how you can help to fulfil this, e.g.
                     contacting relatives or others</p>
             </ng-container>
             <ng-template #DesiresData>
-                <label>{{CareWishesFormsData.Desires}}</label>
+                <label>{{CareWishesFormsData.desires}}</label>
             </ng-template>
         </div>
         <div class="col-md-1 form-icon ">
@@ -135,13 +135,13 @@
         </div>
         <div class="col-md-7 form-text">
             <ng-container *ngIf="this.isEditable; else NameAndRelationshipData">
-                <input pInputText type="text" required name="CareWishesFormsData.NameAndRelationship"
-                    [(ngModel)]="CareWishesFormsData.NameAndRelationship" class="form-control" />
+                <input pInputText type="text" required name="CareWishesFormsData.nameAndRelationship"
+                    [(ngModel)]="CareWishesFormsData.nameAndRelationship" class="form-control" />
                 <p class="mb-4">Please provide relevant details, e.g. names and relationships</p>
 
             </ng-container>
             <ng-template #NameAndRelationshipData>
-                <label>{{CareWishesFormsData.NameAndRelationship}}</label>
+                <label>{{CareWishesFormsData.nameAndRelationship}}</label>
             </ng-template>
         </div>
         <div class="col-md-1 form-icon ">
@@ -153,12 +153,12 @@
         </div>
         <div class="col-md-7 form-text">
             <ng-container *ngIf="this.isEditable; else DecisionsMakerData">
-                <input pInputText type="text" required name="CareWishesFormsData.DecisionsMaker"
-                    [(ngModel)]="CareWishesFormsData.DecisionsMaker" class="form-control" />
+                <input pInputText type="text" required name="CareWishesFormsData.decisionsMaker"
+                    [(ngModel)]="CareWishesFormsData.decisionsMaker" class="form-control" />
                 <p class="mb-4">Please provide relevant details, e.g. names and relationships</p>
             </ng-container>
             <ng-template #DecisionsMakerData>
-                <label>{{CareWishesFormsData.DecisionsMaker}}</label>
+                <label>{{CareWishesFormsData.decisionsMaker}}</label>
             </ng-template>
         </div>
         <div class="col-md-1 form-icon ">
@@ -169,12 +169,12 @@
         </div>
         <div class="col-md-7 form-text">
             <ng-container *ngIf="this.isEditable; else TraitsData">
-                <input pInputText type="text" required name="CareWishesFormsData.Traits"
-                    [(ngModel)]="CareWishesFormsData.Traits" class="form-control" />
+                <input pInputText type="text" required name="CareWishesFormsData.traits"
+                    [(ngModel)]="CareWishesFormsData.traits" class="form-control" />
                 <p class="mb-4">Please provide relevant details, sense of humour, kindness, a particular trait.</p>
             </ng-container>
             <ng-template #TraitsData>
-                <label>{{CareWishesFormsData.Traits}}</label>
+                <label>{{CareWishesFormsData.traits}}</label>
             </ng-template>
         </div>
         <div class="col-md-1 form-icon ">
@@ -185,14 +185,14 @@
         </div>
         <div class="col-md-7 form-text">
             <ng-container *ngIf="this.isEditable; else FuneralPlaneData">
-                <input pInputText type="text" required name="CareWishesFormsData.FuneralPlane"
-                    [(ngModel)]="CareWishesFormsData.FuneralPlane" class="form-control" />
+                <input pInputText type="text" required name="CareWishesFormsData.funeralPlane"
+                    [(ngModel)]="CareWishesFormsData.funeralPlane" class="form-control" />
                 <p class="mb-4">Please provide a copy of the funeral plan (if applicable), or state where this is held
                     (name
                     and contact details)</p>
             </ng-container>
             <ng-template #FuneralPlaneData>
-                <label>{{CareWishesFormsData.FuneralPlane}}</label>
+                <label>{{CareWishesFormsData.funeralPlane}}</label>
             </ng-template>
         </div>
         <div class="col-md-1 form-icon ">
@@ -204,12 +204,12 @@
         </div>
         <div class="col-md-7 form-text">
             <ng-container *ngIf="this.isEditable; else PreferredUndertakerData">
-                <input pInputText type="text" required name="CareWishesFormsData.PreferredUndertaker"
-                    [(ngModel)]="CareWishesFormsData.PreferredUndertaker" class="form-control" />
+                <input pInputText type="text" required name="CareWishesFormsData.preferredUndertaker"
+                    [(ngModel)]="CareWishesFormsData.preferredUndertaker" class="form-control" />
                 <p class="mb-4">If the resident does not have a preferred undertaker, please detail any preferences,</p>
             </ng-container>
             <ng-template #PreferredUndertakerData>
-                <label>{{CareWishesFormsData.PreferredUndertaker}}</label>
+                <label>{{CareWishesFormsData.preferredUndertaker}}</label>
             </ng-template>
         </div>
         <div class="col-md-1 form-icon ">
@@ -222,10 +222,10 @@
             <ng-container *ngIf="this.isEditable; else BuriedOrCrematedData">
                 <p-dropdown placeholder="--select--" [style]="{ width: '100%' }" [options]="lstBuriedOrCremated"
                     optionLabel="optionName" optionValue="optionId"
-                    [(ngModel)]="CareWishesFormsData.BuriedOrCremated"></p-dropdown>
+                    [(ngModel)]="CareWishesFormsData.buriedOrCremated"></p-dropdown>
             </ng-container>
             <ng-template #BuriedOrCrematedData>
-                <label>{{CareWishesFormsData.BuriedOrCrematedName}}</label>
+                <label>{{CareWishesFormsData.buriedOrCrematedName}}</label>
             </ng-template>
         </div>
         <div class="col-md-1 form-icon ">
@@ -236,12 +236,12 @@
         </div>
         <div class="col-md-7 form-text">
             <ng-container *ngIf="this.isEditable; else DetailForOrganDonationData">
-                <input pInputText type="text" required name="CareWishesFormsData.DetailForOrganDonation"
-                    [(ngModel)]="CareWishesFormsData.DetailForOrganDonation" class="form-control" />
+                <input pInputText type="text" required name="CareWishesFormsData.detailForOrganDonation"
+                    [(ngModel)]="CareWishesFormsData.detailForOrganDonation" class="form-control" />
                 <p class="mb-4">Please provide details and attach relevant information</p>
             </ng-container>
             <ng-template #DetailForOrganDonationData>
-                <label>{{CareWishesFormsData.DetailForOrganDonation}}</label>
+                <label>{{CareWishesFormsData.detailForOrganDonation}}</label>
             </ng-template>
         </div>
         <div class="col-md-1 form-icon ">
@@ -252,13 +252,13 @@
         </div>
         <div class="col-md-7 form-text">
             <ng-container *ngIf="this.isEditable; else SolicitorData">
-                <input pInputText type="text" required name="CareWishesFormsData.Solicitor"
-                    [(ngModel)]="CareWishesFormsData.Solicitor" class="form-control" />
+                <input pInputText type="text" required name="CareWishesFormsData.solicitor"
+                    [(ngModel)]="CareWishesFormsData.solicitor" class="form-control" />
                 <p class="mb-4">Please provide relevant details e.g. if consent provided, record details of solicitor's
                     name, practice and contact number</p>
             </ng-container>
             <ng-template #SolicitorData>
-                <label>{{CareWishesFormsData.Solicitor}}</label>
+                <label>{{CareWishesFormsData.solicitor}}</label>
             </ng-template>
 
         </div>
@@ -270,13 +270,13 @@
         </div>
         <div class="col-md-7 form-text">
             <ng-container *ngIf="this.isEditable; else RelativeNameForHospitalData">
-                <input pInputText type="text" required name="CareWishesFormsData.RelativeNameForHospital"
-                    [(ngModel)]="CareWishesFormsData.RelativeNameForHospital" class="form-control" />
+                <input pInputText type="text" required name="CareWishesFormsData.relativeNameForHospital"
+                    [(ngModel)]="CareWishesFormsData.relativeNameForHospital" class="form-control" />
                 <p class="mb-4">Please provide relevant details e.g. appropriateness of going to hospital for acute
                     illnesses / Treatment Escalation Plan may be in place, review ReSPECT/ACP</p>
             </ng-container>
             <ng-template #RelativeNameForHospitalData>
-                <label>{{CareWishesFormsData.RelativeNameForHospital}}</label>
+                <label>{{CareWishesFormsData.relativeNameForHospital}}</label>
             </ng-template>
 
         </div>
@@ -288,12 +288,12 @@
         </div>
         <div class="col-md-7 form-text">
             <ng-container *ngIf="this.isEditable; else PreferenceForDieData">
-                <input pInputText type="text" required name="CareWishesFormsData.PreferenceForDie"
-                    [(ngModel)]="CareWishesFormsData.PreferenceForDie" class="form-control" />
+                <input pInputText type="text" required name="CareWishesFormsData.preferenceForDie"
+                    [(ngModel)]="CareWishesFormsData.preferenceForDie" class="form-control" />
                 <p class="mb-4">Please provide relevant details e.g. where and how we can support this</p>
             </ng-container>
             <ng-template #PreferenceForDieData>
-                <label>{{CareWishesFormsData.PreferenceForDie}}</label>
+                <label>{{CareWishesFormsData.preferenceForDie}}</label>
             </ng-template>
         </div>
         <div class="col-md-1 form-icon ">
@@ -304,12 +304,12 @@
         </div>
         <div class="col-md-7 form-text">
             <ng-container *ngIf="this.isEditable; else FriendDetailForCareData">
-                <input pInputText type="text" required name="CareWishesFormsData.FriendDetailForCare"
-                    [(ngModel)]="CareWishesFormsData.FriendDetailForCare" class="form-control" />
+                <input pInputText type="text" required name="CareWishesFormsData.friendDetailForCare"
+                    [(ngModel)]="CareWishesFormsData.friendDetailForCare" class="form-control" />
                 <p class="mb-4">Please provide relevant details e.g. names and contact details</p>
             </ng-container>
             <ng-template #FriendDetailForCareData>
-                <label>{{CareWishesFormsData.FriendDetailForCare}}</label>
+                <label>{{CareWishesFormsData.friendDetailForCare}}</label>
             </ng-template>
         </div>
         <div class="col-md-1 form-icon ">
@@ -320,14 +320,14 @@
         </div>
         <div class="col-md-7 form-text">
             <ng-container *ngIf="this.isEditable; else ReligiousDetailsData">
-                <input pInputText type="text" required name="CareWishesFormsData.ReligiousDetails"
-                    [(ngModel)]="CareWishesFormsData.ReligiousDetails" class="form-control" />
+                <input pInputText type="text" required name="CareWishesFormsData.religiousDetails"
+                    [(ngModel)]="CareWishesFormsData.religiousDetails" class="form-control" />
                 <p class="mb-4">Please provide details e.g. to see a priest / last rights. How you can support the
                     resident,
                     has a priest been contacted etc. Please also provide names and contact details where appropriate</p>
             </ng-container>
             <ng-template #ReligiousDetailsData>
-                <label>{{CareWishesFormsData.ReligiousDetails}}</label>
+                <label>{{CareWishesFormsData.religiousDetails}}</label>
             </ng-template>
         </div>
         <div class="col-md-1 form-icon ">
@@ -338,15 +338,15 @@
         </div>
         <div class="col-md-7 form-text">
             <ng-container *ngIf="this.isEditable; else AnythingConcernedData">
-                <input pInputText type="text" required name="CareWishesFormsData.AnythingConcerned"
-                    [(ngModel)]="CareWishesFormsData.AnythingConcerned" class="form-control" />
+                <input pInputText type="text" required name="CareWishesFormsData.anythingConcerned"
+                    [(ngModel)]="CareWishesFormsData.anythingConcerned" class="form-control" />
                 <p class="mb-4">Please provide details of what this is e.g. frightened of dying, may be in pain. How can
                     you
                     support and help to try and alleviate fears - would / could a counsellor / other professional help
                 </p>
             </ng-container>
             <ng-template #AnythingConcernedData>
-                <label>{{CareWishesFormsData.AnythingConcerned}}</label>
+                <label>{{CareWishesFormsData.anythingConcerned}}</label>
             </ng-template>
         </div>
         <div class="col-md-1 form-icon ">
@@ -357,12 +357,12 @@
         </div>
         <div class="col-md-7 form-text">
             <ng-container *ngIf="this.isEditable; else NameWhoPresentResidentEndLifeData">
-                <input pInputText type="text" required name="CareWishesFormsData.NameWhoPresentResidentEndLife"
-                    [(ngModel)]="CareWishesFormsData.NameWhoPresentResidentEndLife" class="form-control" />
+                <input pInputText type="text" required name="CareWishesFormsData.nameWhoPresentResidentEndLife"
+                    [(ngModel)]="CareWishesFormsData.nameWhoPresentResidentEndLife" class="form-control" />
                 <p class="mb-4">Please provide names and contact details</p>
             </ng-container>
             <ng-template #NameWhoPresentResidentEndLifeData>
-                <label>{{CareWishesFormsData.NameWhoPresentResidentEndLife}}</label>
+                <label>{{CareWishesFormsData.nameWhoPresentResidentEndLife}}</label>
             </ng-template>
         </div>
         <div class="col-md-1 form-icon ">
@@ -373,13 +373,13 @@
         </div>
         <div class="col-md-7 form-text">
             <ng-container *ngIf="this.isEditable; else DetailWhoLiveLocallyData">
-                <input pInputText type="text" required name="CareWishesFormsData.DetailWhoLiveLocally"
-                    [(ngModel)]="CareWishesFormsData.DetailWhoLiveLocally" class="form-control" />
+                <input pInputText type="text" required name="CareWishesFormsData.detailWhoLiveLocally"
+                    [(ngModel)]="CareWishesFormsData.detailWhoLiveLocally" class="form-control" />
                 <p class="mb-4">Please provide relevant details and supply information about local hotels and B&Bs to
                     friends / relatives if necessary</p>
             </ng-container>
             <ng-template #DetailWhoLiveLocallyData>
-                <label>{{CareWishesFormsData.DetailWhoLiveLocally}}</label>
+                <label>{{CareWishesFormsData.detailWhoLiveLocally}}</label>
             </ng-template>
         </div>
         <div class="col-md-1 form-icon ">
@@ -390,13 +390,13 @@
         </div>
         <div class="col-md-7 form-text">
             <ng-container *ngIf="this.isEditable; else AnythingSpecificForResidentSurroundingData">
-                <input pInputText type="text" required name="CareWishesFormsData.AnythingSpecificForResidentSurrounding"
-                    [(ngModel)]="CareWishesFormsData.AnythingSpecificForResidentSurrounding" class="form-control" />
+                <input pInputText type="text" required name="CareWishesFormsData.anythingSpecificForResidentSurrounding"
+                    [(ngModel)]="CareWishesFormsData.anythingSpecificForResidentSurrounding" class="form-control" />
                 <p class="mb-4">Please provide relevant details e.g. fresh flowers, music, lighting, photographs, aroma,
                     other (please state)</p>
             </ng-container>
             <ng-template #AnythingSpecificForResidentSurroundingData>
-                <label>{{CareWishesFormsData.AnythingSpecificForResidentSurrounding}}</label>
+                <label>{{CareWishesFormsData.anythingSpecificForResidentSurrounding}}</label>
             </ng-template>
         </div>
         <div class="col-md-1 form-icon ">
@@ -409,13 +409,13 @@
         <div class="col-md-7 form-text">
             <ng-container *ngIf="this.isEditable; else WishesForLastStageOfLifeData">
                 <input pInputText type="text" required name="CareWishesFormsData.WishesForLastStageOfLife"
-                    [(ngModel)]="CareWishesFormsData.WishesForLastStageOfLife" class="form-control" />
+                    [(ngModel)]="CareWishesFormsData.wishesForLastStageOfLife" class="form-control" />
                 <p class="mb-4">Please provide details of the actions which will be carried out by staff when the time
                     is
                     reached that the resident is actively dying.</p>
             </ng-container>
             <ng-template #WishesForLastStageOfLifeData>
-                <label>{{CareWishesFormsData.WishesForLastStageOfLife}}</label>
+                <label>{{CareWishesFormsData.wishesForLastStageOfLife}}</label>
             </ng-template>
         </div>
         <div class="col-md-1 form-icon ">
@@ -426,12 +426,12 @@
         </div>
         <div class="col-md-7 form-text">
             <ng-container *ngIf="this.isEditable; else PersonNameWhoTakeInfoAfterDieData">
-                <input pInputText type="text" required name="CareWishesFormsData.PersonNameWhoTakeInfoAfterDie"
-                    [(ngModel)]="CareWishesFormsData.PersonNameWhoTakeInfoAfterDie" class="form-control" />
+                <input pInputText type="text" required name="CareWishesFormsData.personNameWhoTakeInfoAfterDie"
+                    [(ngModel)]="CareWishesFormsData.personNameWhoTakeInfoAfterDie" class="form-control" />
                 <p class="mb-4">Please provide relevant details e.g. names and contact details</p>
             </ng-container>
             <ng-template #PersonNameWhoTakeInfoAfterDieData>
-                <label>{{CareWishesFormsData.PersonNameWhoTakeInfoAfterDie}}</label>
+                <label>{{CareWishesFormsData.personNameWhoTakeInfoAfterDie}}</label>
             </ng-template>
         </div>
         <div class="col-md-1 form-icon ">
@@ -442,13 +442,13 @@
         </div>
         <div class="col-md-7 form-text">
             <ng-container *ngIf="this.isEditable; else DetailForFearsData">
-                <input pInputText type="text" required name="CareWishesFormsData.DetailForFears"
-                    [(ngModel)]="CareWishesFormsData.DetailForFears" class="form-control" />
+                <input pInputText type="text" required name="CareWishesFormsData.detailForFears"
+                    [(ngModel)]="CareWishesFormsData.detailForFears" class="form-control" />
                 <p class="mb-4">Please provide relevant details e.g. what fears exist and how you could offer support
                 </p>
             </ng-container>
             <ng-template #DetailForFearsData>
-                <label>{{CareWishesFormsData.DetailForFears}}</label>
+                <label>{{CareWishesFormsData.detailForFears}}</label>
             </ng-template>
         </div>
         <div class="col-md-1 form-icon ">
@@ -460,12 +460,12 @@
         </div>
         <div class="col-md-7 form-text">
             <ng-container *ngIf="this.isEditable; else AnyRelativeWishesData">
-                <input pInputText type="text" requiredname="CareWishesFormsData.AnyRelativeWishes"
-                    [(ngModel)]="CareWishesFormsData.AnyRelativeWishes" class="form-control" />
+                <input pInputText type="text" requiredname="CareWishesFormsData.anyRelativeWishes"
+                    [(ngModel)]="CareWishesFormsData.anyRelativeWishes" class="form-control" />
                 <p class="mb-4">Please provide details e.g. what these are and how you could offer support</p>
             </ng-container>
             <ng-template #AnyRelativeWishesData>
-                <label>{{CareWishesFormsData.AnyRelativeWishes}}</label>
+                <label>{{CareWishesFormsData.anyRelativeWishes}}</label>
             </ng-template>
         </div>
         <div class="col-md-1 form-icon ">
@@ -478,10 +478,10 @@
             <ng-container *ngIf="this.isEditable; else GoalsData">
                 <p-dropdown placeholder="--select--" [style]="{ width: '100%' }" [options]="lstGoals"
                     optionLabel="optionName" optionValue="optionId"
-                    [(ngModel)]="CareWishesFormsData.Goals"></p-dropdown>
+                    [(ngModel)]="CareWishesFormsData.goals"></p-dropdown>
             </ng-container>
             <ng-template #GoalsData>
-                <label>{{CareWishesFormsData.GoalsName}}</label>
+                <label>{{CareWishesFormsData.goalsName}}</label>
             </ng-template>
         </div>
         <div class="col-md-1 form-icon ">
@@ -493,10 +493,10 @@
         <div class="col-md-7 form-text">
             <ng-container *ngIf="this.isEditable; else PersonalGoalData">
                 <input pInputText type="text" required name="chartheadname" class="form-control"
-                    [(ngModel)]="CareWishesFormsData.PersonalGoal" />
+                    [(ngModel)]="CareWishesFormsData.personalGoal" />
             </ng-container>
             <ng-template #PersonalGoalData>
-                <label>{{CareWishesFormsData.PersonalGoal}}</label>
+                <label>{{CareWishesFormsData.personalGoal}}</label>
             </ng-template>
 
         </div>
@@ -508,10 +508,11 @@
         </div>
         <div class="col-md-7 form-text">
             <ng-container *ngIf="this.isEditable; else RequiresPalliativeCareData">
-                <p-checkbox name="ChkMonthlyReview" [binary]="true" inputId="binary" [(ngModel)]="CareWishesFormsData.RequiresPalliativeCare"></p-checkbox>
+                <p-checkbox name="ChkMonthlyReview" [binary]="true" inputId="binary"
+                    [(ngModel)]="CareWishesFormsData.requiresPalliativeCare"></p-checkbox>
             </ng-container>
             <ng-template #RequiresPalliativeCareData>
-                <label>{{CareWishesFormsData.RequiresPalliativeCare==true?'yes':'no'}}</label>
+                <label>{{CareWishesFormsData.requiresPalliativeCare==true?'yes':'no'}}</label>
             </ng-template>
 
         </div>
@@ -522,10 +523,10 @@
             <ng-container *ngIf="this.isEditable; else PalliativeEndOfLifeData">
                 <p-dropdown placeholder="--select--" [style]="{ width: '100%' }" [options]="lstPalliativeEndOfLife"
                     optionLabel="optionName" optionValue="optionId"
-                    [(ngModel)]="CareWishesFormsData.PalliativeEndOfLife"></p-dropdown>
+                    [(ngModel)]="CareWishesFormsData.palliativeEndOfLife"></p-dropdown>
             </ng-container>
             <ng-template #PalliativeEndOfLifeData>
-                <label>{{CareWishesFormsData.PalliativeEndOfLifeName}}</label>
+                <label>{{CareWishesFormsData.palliativeEndOfLifeName}}</label>
             </ng-template>
 
         </div>
@@ -537,14 +538,14 @@
         </div>
         <div class="col-md-7 form-text">
             <ng-container *ngIf="this.isEditable; else MadicalSupportData">
-                <input pInputText type="text" required name="CareWishesFormsData.MadicalSupport"
-                    [(ngModel)]="CareWishesFormsData.MadicalSupport" class="form-control" />
+                <input pInputText type="text" required name="CareWishesFormsData.madicalSupport"
+                    [(ngModel)]="CareWishesFormsData.madicalSupport" class="form-control" />
                 <p class="mb-4">Consider who will be involved and how they will assist e.g. DN intervention and support,
                     GP
                     intervention and support, Specialist Palliative Team</p>
             </ng-container>
             <ng-template #MadicalSupportData>
-                <label>{{CareWishesFormsData.MadicalSupport}}</label>
+                <label>{{CareWishesFormsData.madicalSupport}}</label>
             </ng-template>
         </div>
         <div class="col-md-1 form-icon ">
@@ -555,14 +556,14 @@
         </div>
         <div class="col-md-7 form-text">
             <ng-container *ngIf="this.isEditable; else MadicionNameData">
-                <input pInputText type="text" required name="CareWishesFormsData.MadicionName"
-                    [(ngModel)]="CareWishesFormsData.MadicionName" class="form-control" />
+                <input pInputText type="text" required name="CareWishesFormsData.madicionName"
+                    [(ngModel)]="CareWishesFormsData.madicionName" class="form-control" />
                 <p class="mb-4">Consider how, e.g. just in case medication, symptom control - pain scales /
                     observations.
                     When people have advanced illness, they sometimes experience a range of symptoms.</p>
             </ng-container>
             <ng-template #MadicionNameData>
-                <label>{{CareWishesFormsData.MadicionName}}</label>
+                <label>{{CareWishesFormsData.madicionName}}</label>
             </ng-template>
         </div>
         <div class="col-md-1 form-icon ">
@@ -574,14 +575,14 @@
         </div>
         <div class="col-md-7 form-text">
             <ng-container *ngIf="this.isEditable; else OralCareData">
-                <input pInputText type="text" required name="CareWishesFormsData.OralCare"
-                    [(ngModel)]="CareWishesFormsData.OralCare" class="form-control" />
+                <input pInputText type="text" required name="CareWishesFormsData.oralCare"
+                    [(ngModel)]="CareWishesFormsData.oralCare" class="form-control" />
                 <p class="mb-4">Consider how, e.g. nutrition and hydration - mouth swab, moisture. Food fluid monitoring
                     (if
                     appropriate - liaise with GP)</p>
             </ng-container>
             <ng-template #OralCareData>
-                <label>{{CareWishesFormsData.OralCare}}</label>
+                <label>{{CareWishesFormsData.oralCare}}</label>
             </ng-template>
         </div>
         <div class="col-md-1 form-icon ">
@@ -592,14 +593,14 @@
         </div>
         <div class="col-md-7 form-text">
             <ng-container *ngIf="this.isEditable; else EatingAndDrinkingData">
-                <input pInputText type="text" required name="CareWishesFormsData.EatingAndDrinking"
-                    [(ngModel)]="CareWishesFormsData.EatingAndDrinking" class="form-control" />
+                <input pInputText type="text" required name="CareWishesFormsData.eatingAndDrinking"
+                    [(ngModel)]="CareWishesFormsData.eatingAndDrinking" class="form-control" />
                 <p class="mb-4">How will you support nutrition and hydration. Food fluid monitoring (if appropriate -
                     liaise
                     with GP)</p>
             </ng-container>
             <ng-template #EatingAndDrinkingData>
-                <label>{{CareWishesFormsData.EatingAndDrinking}}</label>
+                <label>{{CareWishesFormsData.eatingAndDrinking}}</label>
             </ng-template>
         </div>
         <div class="col-md-1 form-icon ">
@@ -610,12 +611,12 @@
         </div>
         <div class="col-md-7 form-text">
             <ng-container *ngIf="this.isEditable; else SkinCareData">
-                <input pInputText type="text" required name="CareWishesFormsData.SkinCare"
-                    [(ngModel)]="CareWishesFormsData.SkinCare" class="form-control" />
+                <input pInputText type="text" required name="CareWishesFormsData.skinCare"
+                    [(ngModel)]="CareWishesFormsData.skinCare" class="form-control" />
                 <p class="mb-4">Consider how, e.g. creaming regime</p>
             </ng-container>
             <ng-template #SkinCareData>
-                <label>{{CareWishesFormsData.SkinCare}}</label>
+                <label>{{CareWishesFormsData.skinCare}}</label>
             </ng-template>
         </div>
         <div class="col-md-1 form-icon ">
@@ -626,12 +627,12 @@
         </div>
         <div class="col-md-7 form-text">
             <ng-container *ngIf="this.isEditable; else PressureReliefData">
-                <input pInputText type="text" required name="CareWishesFormsData.PressureRelief"
-                    [(ngModel)]="CareWishesFormsData.PressureRelief" class="form-control" />
+                <input pInputText type="text" required name="CareWishesFormsData.pressureRelief"
+                    [(ngModel)]="CareWishesFormsData.pressureRelief" class="form-control" />
                 <p class="mb-4">Consider how, e.g. pressure relieving equipment / re-positioning</p>
             </ng-container>
             <ng-template #PressureReliefData>
-                <label>{{CareWishesFormsData.PressureRelief}}</label>
+                <label>{{CareWishesFormsData.pressureRelief}}</label>
             </ng-template>
         </div>
         <div class="col-md-1 form-icon ">
@@ -642,11 +643,11 @@
         </div>
         <div class="col-md-7 form-text">
             <ng-container *ngIf="this.isEditable; else PersonalHygieneData">
-                <input pInputText type="text" required name="CareWishesFormsData.PersonalHygiene"
-                    [(ngModel)]="CareWishesFormsData.PersonalHygiene" class="form-control" />
+                <input pInputText type="text" required name="CareWishesFormsData.personalHygiene"
+                    [(ngModel)]="CareWishesFormsData.personalHygiene" class="form-control" />
             </ng-container>
             <ng-template #PersonalHygieneData>
-                <label>{{CareWishesFormsData.PersonalHygiene}}</label>
+                <label>{{CareWishesFormsData.personalHygiene}}</label>
             </ng-template>
         </div>
         <div class="col-md-1 form-icon ">
@@ -657,12 +658,12 @@
         </div>
         <div class="col-md-7 form-text">
             <ng-container *ngIf="this.isEditable; else EmotionalSupportData">
-                <input pInputText type="text" required name="CareWishesFormsData.EmotionalSupport"
-                    [(ngModel)]="CareWishesFormsData.EmotionalSupport" class="form-control" />
+                <input pInputText type="text" required name="CareWishesFormsData.emotionalSupport"
+                    [(ngModel)]="CareWishesFormsData.emotionalSupport" class="form-control" />
                 <p class="mb-4">Consider how, e.g. being present, talking, appropriate touch with comforts</p>
             </ng-container>
             <ng-template #EmotionalSupportData>
-                <label>{{CareWishesFormsData.EmotionalSupport}}</label>
+                <label>{{CareWishesFormsData.emotionalSupport}}</label>
             </ng-template>
         </div>
         <div class="col-md-1 form-icon">
@@ -673,15 +674,15 @@
         </div>
         <div class="col-md-7 form-text">
             <ng-container *ngIf="this.isEditable; else CloseObservationsData">
-                <input pInputText type="text" required name="CareWishesFormsData.CloseObservations"
-                    [(ngModel)]="CareWishesFormsData.CloseObservations" class="form-control" />
+                <input pInputText type="text" required name="CareWishesFormsData.closeObservations"
+                    [(ngModel)]="CareWishesFormsData.closeObservations" class="form-control" />
                 <p class="mb-4">Consider how, e.g. record 30 minute observations (DoLs). Consider if there are any
                     restrictions in place / increase in risks such as falls, what measures have been put in place. MAC
                     and
                     Best Interest Assessment may be required</p>
             </ng-container>
             <ng-template #CloseObservationsData>
-                <label>{{CareWishesFormsData.CloseObservations}}</label>
+                <label>{{CareWishesFormsData.closeObservations}}</label>
             </ng-template>
         </div>
         <div class="col-md-1 form-icon ">
@@ -692,11 +693,11 @@
         </div>
         <div class="col-md-7 form-text">
             <ng-container *ngIf="this.isEditable; else AdditionalInformationData">
-                <input pInputText type="text" required name="CareWishesFormsData.AdditionalInformation"
-                    [(ngModel)]="CareWishesFormsData.AdditionalInformation" class="form-control" />
+                <input pInputText type="text" required name="CareWishesFormsData.additionalInformation"
+                    [(ngModel)]="CareWishesFormsData.additionalInformation" class="form-control" />
             </ng-container>
             <ng-template #AdditionalInformationData>
-                <label>{{CareWishesFormsData.AdditionalInformation}}</label>
+                <label>{{CareWishesFormsData.additionalInformation}}</label>
             </ng-template>
 
         </div>
@@ -710,11 +711,11 @@
             <ng-container *ngIf="this.isEditable; else AnyRestrictiveMeasuresData">
                 <p-dropdown placeholder="--select--" [style]="{ width: '100%' }" [options]="lstAnyRestrictiveMeasures"
                     optionLabel="optionName" optionValue="optionId"
-                    [(ngModel)]="CareWishesFormsData.AnyRestrictiveMeasures"></p-dropdown>
+                    [(ngModel)]="CareWishesFormsData.anyRestrictiveMeasures"></p-dropdown>
                 <p class="mb-4">E.g. crash mat (increase in falls)</p>
             </ng-container>
             <ng-template #AnyRestrictiveMeasuresData>
-                <label>{{CareWishesFormsData.AnyRestrictiveMeasuresName}}</label>
+                <label>{{CareWishesFormsData.anyRestrictiveMeasuresName}}</label>
             </ng-template>
         </div>
         <div class="col-md-4 labelcontent">
@@ -724,13 +725,13 @@
             <div class="input-group date">
                 <ng-container *ngIf="this.isEditable; else DateOfCompleteData">
                     <p-calendar name="DateOfBirth" [showIcon]="true" inputId="icon" [dateFormat]="" class="iconcal"
-                        appendTo="body" #dobref="" [(ngModel)]="CareWishesFormsData.DateOfComplete"
+                        appendTo="body" #dobref="" [(ngModel)]="CareWishesFormsData.dateOfComplete"
                         [maxDate]=""></p-calendar>
                     <div *ngIf="" class="alert alert-danger">
                     </div>
                 </ng-container>
                 <ng-template #DateOfCompleteData>
-                    <label>{{CareWishesFormsData.DateOfComplete | date}}</label>
+                    <label>{{CareWishesFormsData.dateOfComplete | date}}</label>
                 </ng-template>
             </div>
             <p class="mb-4">Ensure copy held with care plan</p>
@@ -742,11 +743,11 @@
             <ng-container *ngIf="this.isEditable; else ClinicalFrailtyScaleData">
                 <p-dropdown placeholder="--select--" [style]="{ width: '100%' }" [options]="lstClinicalFrailtyScale"
                     optionLabel="optionName" optionValue="optionId"
-                    [(ngModel)]="CareWishesFormsData.ClinicalFrailtyScale"></p-dropdown>
+                    [(ngModel)]="CareWishesFormsData.clinicalFrailtyScale"></p-dropdown>
                 <p class="mb-4">Please chose which profile best describe the person we are assessing -</p>
             </ng-container>
             <ng-template #ClinicalFrailtyScaleData>
-                <label>{{CareWishesFormsData.ClinicalFrailtyScaleName}}</label>
+                <label>{{CareWishesFormsData.clinicalFrailtyScaleName}}</label>
             </ng-template>
         </div>
         <div class="col-md-1 form-icon ">
@@ -757,37 +758,21 @@
             <ng-container *ngIf="isEditable; else savePdf">
                 <div>
                     <span class="p-ml-left mr-4">
-                        <button
-                            pButton
-                            title="New"
-                            label="Save as Unfinished"
-                            (click)="saveAsUnfinished()"
-                        ></button>
+                        <button pButton title="New" label="Save as Unfinished" (click)="saveAsUnfinished()"></button>
                         <span class="total-txt"></span>
                     </span>
                 </div>
                 <div>
                     <span class="p-ml-left mr-4">
-                        <button
-                            pButton
-                            title="New"
-                            label="Complete"
-                            (click)="completeForm()"
-                            [disabled]="
-                                CareWishesFormsData.IsFormCompleted
-                            "
-                        ></button>
+                        <button pButton title="New" label="Complete" (click)="completeForm()" [disabled]="
+                                CareWishesFormsData.isFormCompleted
+                            "></button>
                         <span class="total-txt"></span>
                     </span>
                 </div>
             </ng-container>
             <ng-template #savePdf>
-                <button
-                    pButton
-                    title="Save as PDF"
-                    label="Save as PDF"
-                    (click)="SaveAsPDF()"
-                ></button>
+                <button pButton title="Save as PDF" label="Save as PDF" (click)="SaveAsPDF()"></button>
             </ng-template>
         </div>
     </div>

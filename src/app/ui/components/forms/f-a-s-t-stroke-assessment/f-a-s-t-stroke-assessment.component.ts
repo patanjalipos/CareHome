@@ -25,8 +25,7 @@ import { UserService } from 'src/app/ui/service/user.service';
 })
 export class FASTStrokeAssessmentComponent
     extends AppComponentBase
-    implements OnInit
-{
+    implements OnInit {
     @Input() preSelectedFormData: any = <any>{};
     @Output() EmitUpdateForm: EventEmitter<any> = new EventEmitter<any>();
 
@@ -36,7 +35,7 @@ export class FASTStrokeAssessmentComponent
     //Form which is selected to edit or view
     isEditable: boolean;
     //Need to be passed from form Dashboard
-    StatementType: string = null;
+    statementType: string = null;
 
     //Patient Details
     userId: any;
@@ -67,7 +66,7 @@ export class FASTStrokeAssessmentComponent
             this.GetSelectedFormDetails(
                 this.preSelectedFormData.selectedFormID
             );
-            this.StatementType = 'Update';
+            this.statementType = 'Update';
         } else {
             this.ResetModel();
         }
@@ -101,21 +100,21 @@ export class FASTStrokeAssessmentComponent
                 this.preSelectedFormData.selectedFormID
             );
 
-            this.StatementType = 'Update';
+            this.statementType = 'Update';
         } else {
             this.ResetModel();
         }
     }
 
-    SaveAsPDF() {}
+    SaveAsPDF() { }
 
     saveAsUnfinished() {
-        this.FASTStrokeAssessmentFormData.IsFormCompleted = false;
+        this.FASTStrokeAssessmentFormData.isFormCompleted = false;
         this.Save();
     }
 
     completeForm() {
-        this.FASTStrokeAssessmentFormData.IsFormCompleted = true;
+        this.FASTStrokeAssessmentFormData.isFormCompleted = true;
         this.Save();
     }
 
@@ -138,7 +137,7 @@ export class FASTStrokeAssessmentComponent
                 catchError((error) => {
                     this._UtilityService.hideSpinner();
                     this._UtilityService.showErrorAlert(error.message);
-                
+
                     return of([]); // Returning empty array in case of error
                 })
             );
@@ -172,15 +171,15 @@ export class FASTStrokeAssessmentComponent
             this.residentAdmissionInfoId != null &&
             this.loginId != null
         ) {
-            this.FASTStrokeAssessmentFormData.UserId = this.userId;
-            this.FASTStrokeAssessmentFormData.ResidentAdmissionInfoId =
+            this.FASTStrokeAssessmentFormData.userId = this.userId;
+            this.FASTStrokeAssessmentFormData.residentAdmissionInfoId =
                 this.residentAdmissionInfoId;
-            this.FASTStrokeAssessmentFormData.StartedBy = this.loginId;
-            this.FASTStrokeAssessmentFormData.ModifiedBy = this.loginId;
+            this.FASTStrokeAssessmentFormData.startedBy = this.loginId;
+            this.FASTStrokeAssessmentFormData.modifiedBy = this.loginId;
 
             const objectBody: any = {
-                StatementType: this.StatementType,
-                FASTStrokeAssessmentForm: this.FASTStrokeAssessmentFormData,
+                statementType: this.statementType,
+                fastStrokeAssessmentForm: this.FASTStrokeAssessmentFormData,
             };
 
             this._UtilityService.showSpinner();
@@ -214,6 +213,6 @@ export class FASTStrokeAssessmentComponent
     ResetModel() {
         this.isEditable = true;
         this.FASTStrokeAssessmentFormData = <any>{};
-        this.StatementType = 'Insert';
+        this.statementType = 'Insert';
     }
 }
