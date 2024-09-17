@@ -22,7 +22,7 @@ export class CareAssessmentMyEpilepsyComponent extends AppComponentBase implemen
   residentAdmissionInfoId:any;
   loginId: any;
   userId: any;
-  StatementType: string = null;
+  statementType: string = null;
 
   lstEpilepsyType  : any[] = [];
   lstSeizures: any[] = [];
@@ -49,7 +49,7 @@ export class CareAssessmentMyEpilepsyComponent extends AppComponentBase implemen
         this.GetEpilepsySupportDetails(
             this.preSelectedFormData.selectedFormID
         );
-        this.StatementType = 'Update';
+        this.statementType = 'Update';
     }
     else {
       this.ResetModel();
@@ -90,7 +90,7 @@ this.isEditable = this.preSelectedFormData.isEditable;
         this.GetEpilepsySupportDetails(
             this.preSelectedFormData.selectedFormID
         );
-        this.StatementType = 'Update';
+        this.statementType = 'Update';
     }
     else {
       this.ResetModel();
@@ -160,11 +160,11 @@ if (this.userId != null && this.residentAdmissionInfoId != null && this.loginId!
     this.EpilepsySupportFormsData.userId = this.userId;
     this.EpilepsySupportFormsData.residentAdmissionInfoId =
         this.residentAdmissionInfoId;
-    this.EpilepsySupportFormsData.StartedBy = this.loginId;
-    this.EpilepsySupportFormsData.LastEnteredBy = this.loginId;
+    this.EpilepsySupportFormsData.startedBy = this.loginId;
+    this.EpilepsySupportFormsData.lastEnteredBy = this.loginId;
     
         const objectBody: any = {
-          StatementType: this.StatementType,
+          statementType: this.statementType,
           careAssEpilepsySupportForm: this.EpilepsySupportFormsData
       };
       
@@ -204,7 +204,7 @@ if (this.userId != null && this.residentAdmissionInfoId != null && this.loginId!
 ResetModel() {
   this.isEditable = true;
   this.EpilepsySupportFormsData = <any>{};
-  this.StatementType = 'Insert';
+  this.statementType = 'Insert';
 }
 
 }

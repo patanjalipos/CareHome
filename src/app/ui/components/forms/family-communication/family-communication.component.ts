@@ -23,7 +23,7 @@ export class FamilyCommunicationComponent extends AppComponentBase implements On
     //Form which is selected to edit or view
 
     isEditable: boolean; //Need to be passed from form Dashboard
-    StatementType: string = null;
+    statementType: string = null;
 
     //Patient Details
     userId: any;
@@ -72,11 +72,11 @@ export class FamilyCommunicationComponent extends AppComponentBase implements On
                 this.preSelectedFormData.selectedFormID
             );
 
-            this.StatementType = 'Update';
+            this.statementType = 'Update';
         } else {
             this.ResetModel();
         }
-        this.FamilyCommFormsData.DateTimeObservation=new Date();
+        this.FamilyCommFormsData.dateTimeObservation = new Date();
     }
     ngOnChanges(changes: SimpleChanges): void {
         this.isEditable = this.preSelectedFormData.isEditable;
@@ -87,7 +87,7 @@ export class FamilyCommunicationComponent extends AppComponentBase implements On
                 this.preSelectedFormData.selectedFormID
             );
 
-            this.StatementType = 'Update';
+            this.statementType = 'Update';
         } else {
             this.ResetModel();
         }
@@ -107,7 +107,7 @@ export class FamilyCommunicationComponent extends AppComponentBase implements On
             catchError((error) => {
                 this._UtilityService.hideSpinner();
                 this._UtilityService.showErrorAlert(error.message);
-        
+
                 return of([]); // Returning empty array in case of error
             })
         );
@@ -115,9 +115,9 @@ export class FamilyCommunicationComponent extends AppComponentBase implements On
     ResetModel() {
         this.isEditable = true;
         this.FamilyCommFormsData = <any>{};
-        this.StatementType = 'Insert';
+        this.statementType = 'Insert';
     }
-   
+
     GetFamilyCommFormByid(formId: string) {
         this._UtilityService.showSpinner();
         this.unsubscribe.add = this._UserServices
@@ -129,7 +129,7 @@ export class FamilyCommunicationComponent extends AppComponentBase implements On
                         var tdata = JSON.parse(data.actionResult.result);
                         tdata = tdata ? tdata : {};
                         this.FamilyCommFormsData = tdata;
-                        this.FamilyCommFormsData.DateTimeObservation = new Date(this.FamilyCommFormsData.DateTimeObservation);
+                        this.FamilyCommFormsData.dateTimeObservation = new Date(this.FamilyCommFormsData.dateTimeObservation);
                     } else {
                         this.FamilyCommFormsData = {};
                     }
@@ -147,13 +147,13 @@ export class FamilyCommunicationComponent extends AppComponentBase implements On
     Save() {
         if (this.userId != null && this.residentAdmissionInfoId != null) {
             this.FamilyCommFormsData.userId = this.userId;
-            this.FamilyCommFormsData.StartedBy = localStorage.getItem('userId');
-            this.FamilyCommFormsData.LastEnteredBy = localStorage.getItem('userId');
+            this.FamilyCommFormsData.startedBy = localStorage.getItem('userId');
+            this.FamilyCommFormsData.lastEnteredBy = localStorage.getItem('userId');
             this.FamilyCommFormsData.residentAdmissionInfoId = this.residentAdmissionInfoId;
-            this.FamilyCommFormsData.DateTimeObservation = new Date(this.datepipe.transform(this.FamilyCommFormsData.DateTimeObservation, 'yyyy-MM-dd hh:MM:ss'));
+            this.FamilyCommFormsData.dateTimeObservation = new Date(this.datepipe.transform(this.FamilyCommFormsData.dateTimeObservation, 'yyyy-MM-dd hh:MM:ss'));
             const objectBody: any = {
-                StatementType: this.StatementType,
-                FamilyCommForm: this.FamilyCommFormsData,
+                statementType: this.statementType,
+                familyCommForm: this.FamilyCommFormsData,
             };
             this._UtilityService.showSpinner();
             this.unsubscribe.add = this._UserServices

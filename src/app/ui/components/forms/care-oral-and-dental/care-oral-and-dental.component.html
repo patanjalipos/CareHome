@@ -48,12 +48,12 @@
         <div class="col-md-7 mt-4 form-text">
             <ng-container *ngIf="isEditable; else OralCareAssessmentLabel">
                 <p-dropdown placeholder="--select--" [style]="{ width: '100%' }"
-                    [(ngModel)]="CareOralAndDentalFormData.OralCareAssessment" [options]="oralCareAssessmentOptions"
+                    [(ngModel)]="CareOralAndDentalFormData.oralCareAssessment" [options]="oralCareAssessmentOptions"
                     optionLabel="optionName" optionValue="optionId"></p-dropdown>
             </ng-container>
             <ng-template #OralCareAssessmentLabel>
                 <label>{{
-                    CareOralAndDentalFormData.OralCareAssessmentName
+                    CareOralAndDentalFormData.oralCareAssessmentName
                     }}</label>
             </ng-template>
         </div>
@@ -69,10 +69,10 @@
         <div class="col-md-7 mt-4 form-text">
             <ng-container *ngIf="isEditable; else OralCareDecisionLabel">
                 <input pInputText type="text" required name="oralCareDecision" class="form-control"
-                    [(ngModel)]="CareOralAndDentalFormData.OralCareDecision" />
+                    [(ngModel)]="CareOralAndDentalFormData.oralCareDecision" />
             </ng-container>
             <ng-template #OralCareDecisionLabel>
-                <label>{{ CareOralAndDentalFormData.OralCareDecision }}</label>
+                <label>{{ CareOralAndDentalFormData.oralCareDecision }}</label>
             </ng-template>
         </div>
 
@@ -87,13 +87,13 @@
         <div class="col-md-7 mt-4 form-text">
             <ng-container *ngIf="isEditable; else TeethDenturesConditionLabel">
                 <p-dropdown placeholder="--select--" [style]="{ width: '100%' }" [(ngModel)]="
-                        CareOralAndDentalFormData.TeethDenturesCondition
+                        CareOralAndDentalFormData.teethDenturesCondition
                     " [options]="teethDenturesConditionOptions" optionLabel="optionName"
                     optionValue="optionId"></p-dropdown>
             </ng-container>
             <ng-template #TeethDenturesConditionLabel>
                 <label>{{
-                    CareOralAndDentalFormData.TeethDenturesConditionName
+                    CareOralAndDentalFormData.teethDenturesConditionName
                     }}</label>
             </ng-template>
         </div>
@@ -109,11 +109,11 @@
         <div class="col-md-7 mt-4 form-text">
             <ng-container *ngIf="isEditable; else GumConditionLabel">
                 <p-dropdown placeholder="--select--" [style]="{ width: '100%' }"
-                    [(ngModel)]="CareOralAndDentalFormData.GumCondition" [options]="gumConditionOptions"
+                    [(ngModel)]="CareOralAndDentalFormData.gumCondition" [options]="gumConditionOptions"
                     optionLabel="optionName" optionValue="optionId"></p-dropdown>
             </ng-container>
             <ng-template #GumConditionLabel>
-                <label>{{ CareOralAndDentalFormData.GumConditionName }}</label>
+                <label>{{ CareOralAndDentalFormData.gumConditionName }}</label>
             </ng-template>
         </div>
 
@@ -128,11 +128,11 @@
         <div class="col-md-7 mt-4 form-text">
             <ng-container *ngIf="isEditable; else TongueConditionLabel">
                 <p-dropdown placeholder="--select--" [style]="{ width: '100%' }"
-                    [(ngModel)]="CareOralAndDentalFormData.TongueCondition" [options]="tongueConditionOptions"
+                    [(ngModel)]="CareOralAndDentalFormData.tongueCondition" [options]="tongueConditionOptions"
                     optionLabel="optionName" optionValue="optionId"></p-dropdown>
             </ng-container>
             <ng-template #TongueConditionLabel>
-                <label>{{ CareOralAndDentalFormData.TongueConditionName }}</label>
+                <label>{{ CareOralAndDentalFormData.tongueConditionName }}</label>
             </ng-template>
         </div>
 
@@ -147,11 +147,11 @@
         <div class="col-md-7 mt-4 form-text">
             <ng-container *ngIf="isEditable; else EngravingLabel">
                 <p-dropdown placeholder="--select--" [style]="{ width: '100%' }"
-                    [(ngModel)]="CareOralAndDentalFormData.Engraving" [options]="engravingOptions"
+                    [(ngModel)]="CareOralAndDentalFormData.engraving" [options]="engravingOptions"
                     optionLabel="optionName" optionValue="optionId"></p-dropdown>
             </ng-container>
             <ng-template #EngravingLabel>
-                <label>{{ CareOralAndDentalFormData.EngravingName }}</label>
+                <label>{{ CareOralAndDentalFormData.engravingName }}</label>
             </ng-template>
         </div>
 
@@ -166,7 +166,7 @@
         <div class="col-md-7 mt-4 form-text">
             <ng-container *ngIf="isEditable; else AssistanceRequiredLabel">
                 <input pInputText type="text" required name="assistanceRequired" class="form-control"
-                    [(ngModel)]="CareOralAndDentalFormData.AssistanceRequired" />
+                    [(ngModel)]="CareOralAndDentalFormData.assistanceRequired" />
                 <p class="mb-4">
                     Detail assistance and if they have their own teeth, dentures
                     or a mixture of both, think about what the resident can
@@ -177,7 +177,7 @@
             </ng-container>
             <ng-template #AssistanceRequiredLabel>
                 <label>{{
-                    CareOralAndDentalFormData.AssistanceRequired
+                    CareOralAndDentalFormData.assistanceRequired
                     }}</label>
             </ng-template>
         </div>
@@ -193,13 +193,13 @@
         <div class="col-md-7 mt-4 form-text">
             <ng-container *ngIf="isEditable; else DentistRegistrationLabel">
                 <p-dropdown placeholder="--select--" [style]="{ width: '100%' }" [(ngModel)]="
-                        CareOralAndDentalFormData.ResidentRegisteredWithDentist
+                        CareOralAndDentalFormData.residentRegisteredWithDentist
                     " [options]="dentistRegistrationOptions" optionLabel="optionName"
                     optionValue="optionId"></p-dropdown>
             </ng-container>
             <ng-template #DentistRegistrationLabel>
                 <label>{{
-                    CareOralAndDentalFormData.ResidentRegisteredWithDentistName
+                    CareOralAndDentalFormData.residentRegisteredWithDentistName
                     }}</label>
             </ng-template>
         </div>
@@ -212,12 +212,17 @@
             <p>Date of last dental appointment</p>
         </div>
         <div class="col-md-7 mt-4 form-text">
-            <input pInputText type="text" required name="chartheadname" class="form-control" />
-            <p class="mb-4">
-                Please include date in the following format: DD/MM/YYYY. Does
-                the resident need a dentist appointment arranging if so, how
-                will you support them to arrange this
-            </p>
+            <ng-container *ngIf="isEditable; else dateOfAppointmnet">
+                <input pInputText type="text" required name="chartheadname" class="form-control" />
+                <p class="mb-4">
+                    Please include date in the following format: DD/MM/YYYY. Does
+                    the resident need a dentist appointment arranging if so, how
+                    will you support them to arrange this
+                </p>
+            </ng-container>
+            <ng-template #dateOfAppointmnet>
+                <label></label>
+            </ng-template>
         </div>
 
         <div class="col-md-1 form-icon">
@@ -231,12 +236,12 @@
         <div class="col-md-7 mt-4 form-text">
             <ng-container *ngIf="isEditable; else DietForOralConditionLabel">
                 <p-dropdown placeholder="--select--" [style]="{ width: '100%' }"
-                    [(ngModel)]="CareOralAndDentalFormData.DietForOralCondition" [options]="dietForOralConditionOptions"
+                    [(ngModel)]="CareOralAndDentalFormData.dietForOralCondition" [options]="dietForOralConditionOptions"
                     optionLabel="optionName" optionValue="optionId"></p-dropdown>
             </ng-container>
             <ng-template #DietForOralConditionLabel>
                 <label>{{
-                    CareOralAndDentalFormData.DietForOralConditionName
+                    CareOralAndDentalFormData.dietForOralConditionName
                     }}</label>
             </ng-template>
         </div>
@@ -252,11 +257,11 @@
         <div class="col-md-7 mt-4 form-text">
             <ng-container *ngIf="isEditable; else OralCareManagementLabel">
                 <input pInputText type="text" required name="oralCareManagement" class="form-control"
-                    [(ngModel)]="CareOralAndDentalFormData.OralCareManagement" />
+                    [(ngModel)]="CareOralAndDentalFormData.oralCareManagement" />
             </ng-container>
             <ng-template #OralCareManagementLabel>
                 <label>{{
-                    CareOralAndDentalFormData.OralCareManagement
+                    CareOralAndDentalFormData.oralCareManagement
                     }}</label>
             </ng-template>
         </div>
@@ -272,11 +277,11 @@
         <div class="col-md-7 mt-4 form-text">
             <ng-container *ngIf="isEditable; else ResidentGoalsLabel">
                 <p-dropdown placeholder="--select--" [style]="{ width: '100%' }"
-                    [(ngModel)]="CareOralAndDentalFormData.ResidentGoals" [options]="residentGoalsOptions"
+                    [(ngModel)]="CareOralAndDentalFormData.residentGoals" [options]="residentGoalsOptions"
                     optionLabel="optionName" optionValue="optionId"></p-dropdown>
             </ng-container>
             <ng-template #ResidentGoalsLabel>
-                <label>{{ CareOralAndDentalFormData.ResidentGoalsName }}</label>
+                <label>{{ CareOralAndDentalFormData.residentGoalsName }}</label>
             </ng-template>
         </div>
 
@@ -291,11 +296,11 @@
         <div class="col-md-7 mt-4 form-text">
             <ng-container *ngIf="isEditable; else ResidentSpecificGoalLabel">
                 <input pInputText type="text" required name="residentSpecificGoal" class="form-control"
-                    [(ngModel)]="CareOralAndDentalFormData.ResidentSpecificGoal" />
+                    [(ngModel)]="CareOralAndDentalFormData.residentSpecificGoal" />
             </ng-container>
             <ng-template #ResidentSpecificGoalLabel>
                 <label>{{
-                    CareOralAndDentalFormData.ResidentSpecificGoal
+                    CareOralAndDentalFormData.residentSpecificGoal
                     }}</label>
             </ng-template>
         </div>
@@ -311,7 +316,7 @@
         <div class="col-md-7 mt-4 form-text">
             <ng-container *ngIf="isEditable; else AdditionalInformationLabel">
                 <input pInputText type="text" required name="additionalInformation" class="form-control" [(ngModel)]="
-                        CareOralAndDentalFormData.AdditionalInformation
+                        CareOralAndDentalFormData.additionalInformation
                     " />
                 <p class="mb-4">
                     Consider medication that may have oral side effects, consult
@@ -321,7 +326,7 @@
             </ng-container>
             <ng-template #AdditionalInformationLabel>
                 <label>{{
-                    CareOralAndDentalFormData.AdditionalInformation
+                    CareOralAndDentalFormData.additionalInformation
                     }}</label>
             </ng-template>
         </div>
@@ -337,7 +342,7 @@
         <div class="col-md-7 mt-4 form-text">
             <ng-container *ngIf="isEditable; else OtherOralHygieneRisksLabel">
                 <input pInputText type="text" required name="otherOralHygieneRisks" class="form-control" [(ngModel)]="
-                        CareOralAndDentalFormData.OtherOralHygieneRisks
+                        CareOralAndDentalFormData.otherOralHygieneRisks
                     " />
                 <p class="mb-4">
                     Specify any other risks that have not been identified above
@@ -345,7 +350,7 @@
             </ng-container>
             <ng-template #OtherOralHygieneRisksLabel>
                 <label>{{
-                    CareOralAndDentalFormData.OtherOralHygieneRisks
+                    CareOralAndDentalFormData.otherOralHygieneRisks
                     }}</label>
             </ng-template>
         </div>
@@ -362,12 +367,12 @@
             <ng-container *ngIf="isEditable; else AdditionalRiskManagementActionLabel">
                 <input pInputText type="text" required name="additionalRiskManagementAction" class="form-control"
                     [(ngModel)]="
-                        CareOralAndDentalFormData.AdditionalRiskManagementAction
+                        CareOralAndDentalFormData.additionalRiskManagementAction
                     " />
             </ng-container>
             <ng-template #AdditionalRiskManagementActionLabel>
                 <label>{{
-                    CareOralAndDentalFormData.AdditionalRiskManagementAction
+                    CareOralAndDentalFormData.additionalRiskManagementAction
                     }}</label>
             </ng-template>
         </div>
@@ -383,7 +388,7 @@
         <div class="col-md-7 mt-4 form-text">
             <ng-container *ngIf="isEditable; else ReviewInfo">
                 <p-checkbox name="ChkMonthlyReview" [binary]="true" inputId="binary"
-                    [(ngModel)]="CareOralAndDentalFormData.MonthlyReviewChecked"></p-checkbox>
+                    [(ngModel)]="CareOralAndDentalFormData.monthlyReviewChecked"></p-checkbox>
                 <p class="mb-4">
                     This form should be reviewed EVERY MONTH or before if there
                     are significant changes.
@@ -404,13 +409,14 @@
         <div class="col-md-8 form-text">
             <div class="input-group date" *ngIf="isEditable==true">
                 <p-calendar [required]="true" [showTime]="true" name="txtNextReviewDate"
-                    [(ngModel)]="CareOralAndDentalFormData.NextReviewDate" [showIcon]="true" inputId="icon"
+                    [(ngModel)]="CareOralAndDentalFormData.nextReviewDate" [showIcon]="true" inputId="icon"
                     [dateFormat]="" class="iconcal" [readonlyInput]="true" appendTo="body" [maxDate]=""
                     #dobref=""></p-calendar>
                 <div *ngIf="" class="alert alert-danger">
                 </div>
             </div>
-            <p *ngIf="isEditable!=true">{{CareOralAndDentalFormData.NextReviewDate | date :customDateFormat.DEF_DATE_TIME}}</p>
+            <p *ngIf="isEditable!=true">{{CareOralAndDentalFormData.nextReviewDate | date
+                :customDateFormat.DEF_DATE_TIME}}</p>
 
         </div>
 
@@ -425,7 +431,7 @@
                 <div>
                     <span class="p-ml-left mr-4">
                         <button pButton title="New" label="Complete" (click)="completeForm()" [disabled]="
-                                CareOralAndDentalFormData.IsFormCompleted
+                                CareOralAndDentalFormData.isFormCompleted
                             "></button>
                         <span class="total-txt"></span>
                     </span>

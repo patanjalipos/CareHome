@@ -3,48 +3,37 @@
         <div class="formheader">
             <div class="d-flex">
                 <div class="col-md-4">
-                    <label class="form-label"
-                        ><b> Started by (Name) :</b
-                        >{{ preSelectedFormData.StartedBy }}
+                    <label class="form-label"><b> Started by (Name) :</b>{{ preSelectedFormData.StartedBy }}
                     </label>
                 </div>
                 <div class="col-md-4">
-                    <label class="form-label"
-                        ><b>Designation :</b
-                        >{{ preSelectedFormData.StartedByDesignation }}
+                    <label class="form-label"><b>Designation :</b>{{ preSelectedFormData.StartedByDesignation }}
                     </label>
                 </div>
                 <div class="col-md-4">
                     <label class="form-label">
-                        <b>Date/Time : </b
-                        >{{
-                            preSelectedFormData.StartedOn
-                                | date : customDateFormat.DEF_DATE_TIME
-                        }}</label
-                    >
+                        <b>Date/Time : </b>{{
+                        preSelectedFormData.StartedOn
+                        | date : customDateFormat.DEF_DATE_TIME
+                        }}</label>
                 </div>
             </div>
             <div class="d-flex">
                 <div class="col-md-4">
                     <label class="form-label">
-                        <b>Last entered by (Name) :</b
-                        >{{ preSelectedFormData.ModifiedBy }}</label
-                    >
+                        <b>Last entered by (Name) :</b>{{ preSelectedFormData.ModifiedBy }}</label>
                 </div>
                 <div class="col-md-4">
                     <label class="form-label">
-                        <b>Designation :</b
-                        >{{ preSelectedFormData.ModifiedByDesignation }}</label
-                    >
+                        <b>Designation :</b>{{ preSelectedFormData.ModifiedByDesignation }}</label>
                 </div>
                 <div class="col-md-4">
                     <label class="form-label">
                         <b>Date/Time :</b>
                         {{
-                            preSelectedFormData.ModifiedOn
-                                | date : customDateFormat.DEF_DATE_TIME
-                        }}</label
-                    >
+                        preSelectedFormData.ModifiedOn
+                        | date : customDateFormat.DEF_DATE_TIME
+                        }}</label>
                 </div>
             </div>
         </div>
@@ -57,24 +46,13 @@
         <div class="col-md-8 mt-4">
             <ng-container *ngIf="isEditable; else DateOfDentistVisit">
                 <div class="input-group date">
-                    <p-calendar
-                        name="DateOfDentistVisit"
-                        [showIcon]="true"
-                        inputId="icon"
-                        dateFormat="dd-mm-yy"
-                        class="iconcal"
-                        [readonlyInput]="true"
-                        appendTo="body"
-                        [(ngModel)]="
-                            DentistVisitCommunicationFormData.DateOfDentistVisit
-                        "
-                    ></p-calendar>
-                    <div
-                        *ngIf="
-                            !DentistVisitCommunicationFormData.DateOfDentistVisit
-                        "
-                        class="alert alert-danger"
-                    >
+                    <p-calendar name="DateOfDentistVisit" [showIcon]="true" inputId="icon" dateFormat="dd-mm-yy"
+                        class="iconcal" [readonlyInput]="true" appendTo="body" [(ngModel)]="
+                            DentistVisitCommunicationFormData.dateOfDentistVisit
+                        "></p-calendar>
+                    <div *ngIf="
+                            !DentistVisitCommunicationFormData.dateOfDentistVisit
+                        " class="alert alert-danger">
                         Please select a date.
                     </div>
                 </div>
@@ -82,8 +60,8 @@
             <ng-template #DateOfDentistVisit>
                 <div>
                     {{
-                        DentistVisitCommunicationFormData.DateOfDentistVisit
-                            | date : customDateFormat.DEF_DATE
+                    DentistVisitCommunicationFormData.dateOfDentistVisit
+                    | date : customDateFormat.DEF_DATE
                     }}
                 </div>
             </ng-template>
@@ -97,23 +75,16 @@
         <div class="col-md-8 form-text">
             <ng-container *ngIf="isEditable; else TimeOfDentistVisit">
                 <div class="d-flex align-items-center">
-                    <input
-                        pInputText
-                        type="time"
-                        required
-                        name="timeOfDentistVisit"
-                        class="form-control mr-4"
-                        [style]="{ width: '35%' }"
-                        [(ngModel)]="
-                            DentistVisitCommunicationFormData.TimeOfDentistVisit
-                        "
-                    />
+                    <input pInputText type="time" required name="timeOfDentistVisit" class="form-control mr-4"
+                        [style]="{ width: '35%' }" [(ngModel)]="
+                            DentistVisitCommunicationFormData.timeOfDentistVisit
+                        " />
                     <p>Use 24 hour clock</p>
                 </div>
             </ng-container>
             <ng-template #TimeOfDentistVisit>
                 <div>
-                    {{ DentistVisitCommunicationFormData.TimeOfDentistVisit }}
+                    {{ DentistVisitCommunicationFormData.timeOfDentistVisit }}
                 </div>
             </ng-template>
         </div>
@@ -125,21 +96,14 @@
         </div>
         <div class="col-md-8 form-text">
             <ng-container *ngIf="isEditable; else DurationOfDentistVisit">
-                <input
-                    pInputText
-                    type="text"
-                    required
-                    name="durationOfDentistVisit"
-                    class="form-control"
-                    [(ngModel)]="
-                        DentistVisitCommunicationFormData.DurationOfDentistVisit
-                    "
-                />
+                <input pInputText type="text" required name="durationOfDentistVisit" class="form-control" [(ngModel)]="
+                        DentistVisitCommunicationFormData.durationOfDentistVisit
+                    " />
             </ng-container>
             <ng-template #DurationOfDentistVisit>
                 <div>
                     {{
-                        DentistVisitCommunicationFormData.DurationOfDentistVisit
+                    DentistVisitCommunicationFormData.durationOfDentistVisit
                     }}
                 </div>
             </ng-template>
@@ -152,20 +116,14 @@
         </div>
         <div class="col-md-8 form-text">
             <ng-container *ngIf="isEditable; else DentistNamesView">
-                <input
-                    pInputText
-                    type="text"
-                    required
-                    name="dentistNames"
-                    class="form-control"
-                    [(ngModel)]="DentistVisitCommunicationFormData.DentistNames"
-                />
+                <input pInputText type="text" required name="dentistNames" class="form-control"
+                    [(ngModel)]="DentistVisitCommunicationFormData.dentistNames" />
                 <p class="mb-4">
                     Please include full name(s) and designation(s)
                 </p>
             </ng-container>
             <ng-template #DentistNamesView>
-                <div>{{ DentistVisitCommunicationFormData.DentistNames }}</div>
+                <div>{{ DentistVisitCommunicationFormData.dentistNames }}</div>
             </ng-template>
         </div>
 
@@ -176,25 +134,16 @@
         </div>
         <div class="col-md-8 form-text">
             <ng-container *ngIf="isEditable; else CommunicationRelayedView">
-                <p-dropdown
-                    placeholder="--select--"
-                    [style]="{ width: '100%' }"
-                    [(ngModel)]="
-                        DentistVisitCommunicationFormData.CommunicationRelayMethod
-                    "
-                    optionLabel="optionName"
-                    optionValue="optionId"
-                    [options]="communicationRelayOptions"
-                    [showClear]="true"
-                    [filter]="true"
-                    filterPlaceholder="Search Options"
-                >
+                <p-dropdown placeholder="--select--" [style]="{ width: '100%' }" [(ngModel)]="
+                        DentistVisitCommunicationFormData.communicationRelayMethod
+                    " optionLabel="optionName" optionValue="optionId" [options]="communicationRelayOptions"
+                    [showClear]="true" [filter]="true" filterPlaceholder="Search Options">
                 </p-dropdown>
             </ng-container>
             <ng-template #CommunicationRelayedView>
                 <div>
                     {{
-                        DentistVisitCommunicationFormData.CommunicationRelayMethodName
+                    DentistVisitCommunicationFormData.communicationRelayMethodName
                     }}
                 </div>
             </ng-template>
@@ -207,21 +156,15 @@
         </div>
         <div class="col-md-8 form-text">
             <ng-container *ngIf="isEditable; else ReasonView">
-                <input
-                    pInputText
-                    type="text"
-                    required
-                    name="reasonForVisitCommunication"
-                    class="form-control"
+                <input pInputText type="text" required name="reasonForVisitCommunication" class="form-control"
                     [(ngModel)]="
-                        DentistVisitCommunicationFormData.ReasonForVisitCommunication
-                    "
-                />
+                        DentistVisitCommunicationFormData.reasonForVisitCommunication
+                    " />
             </ng-container>
             <ng-template #ReasonView>
                 <div>
                     {{
-                        DentistVisitCommunicationFormData.ReasonForVisitCommunication
+                    DentistVisitCommunicationFormData.reasonForVisitCommunication
                     }}
                 </div>
             </ng-template>
@@ -234,21 +177,15 @@
         </div>
         <div class="col-md-8 form-text">
             <ng-container *ngIf="isEditable; else OutcomeView">
-                <input
-                    pInputText
-                    type="text"
-                    required
-                    name="outcomeOfVisitCommunication"
-                    class="form-control"
+                <input pInputText type="text" required name="outcomeOfVisitCommunication" class="form-control"
                     [(ngModel)]="
-                        DentistVisitCommunicationFormData.OutcomeOfVisitCommunication
-                    "
-                />
+                        DentistVisitCommunicationFormData.outcomeOfVisitCommunication
+                    " />
             </ng-container>
             <ng-template #OutcomeView>
                 <div>
                     {{
-                        DentistVisitCommunicationFormData.OutcomeOfVisitCommunication
+                    DentistVisitCommunicationFormData.outcomeOfVisitCommunication
                     }}
                 </div>
             </ng-template>
@@ -261,20 +198,13 @@
         </div>
         <div class="col-md-8 form-text">
             <ng-container *ngIf="isEditable; else DentistFollowUpView">
-                <input
-                    pInputText
-                    type="text"
-                    required
-                    name="dentistFollowUp"
-                    class="form-control"
-                    [(ngModel)]="
-                        DentistVisitCommunicationFormData.DentistFollowUp
-                    "
-                />
+                <input pInputText type="text" required name="dentistFollowUp" class="form-control" [(ngModel)]="
+                        DentistVisitCommunicationFormData.dentistFollowUp
+                    " />
             </ng-container>
             <ng-template #DentistFollowUpView>
                 <div>
-                    {{ DentistVisitCommunicationFormData.DentistFollowUp }}
+                    {{ DentistVisitCommunicationFormData.dentistFollowUp }}
                 </div>
             </ng-template>
         </div>
@@ -286,20 +216,13 @@
         </div>
         <div class="col-md-8 form-text">
             <ng-container *ngIf="isEditable; else CareHomeFollowUpView">
-                <input
-                    pInputText
-                    type="text"
-                    required
-                    name="careHomeFollowUp"
-                    class="form-control"
-                    [(ngModel)]="
-                        DentistVisitCommunicationFormData.CareHomeFollowUp
-                    "
-                />
+                <input pInputText type="text" required name="careHomeFollowUp" class="form-control" [(ngModel)]="
+                        DentistVisitCommunicationFormData.careHomeFollowUp
+                    " />
             </ng-container>
             <ng-template #CareHomeFollowUpView>
                 <div>
-                    {{ DentistVisitCommunicationFormData.CareHomeFollowUp }}
+                    {{ DentistVisitCommunicationFormData.careHomeFollowUp }}
                 </div>
             </ng-template>
         </div>
@@ -308,37 +231,21 @@
             <ng-container *ngIf="isEditable; else savePdf">
                 <div>
                     <span class="p-ml-left mr-4">
-                        <button
-                            pButton
-                            title="New"
-                            label="Save as Unfinished"
-                            (click)="saveAsUnfinished()"
-                        ></button>
+                        <button pButton title="New" label="Save as Unfinished" (click)="saveAsUnfinished()"></button>
                         <span class="total-txt"></span>
                     </span>
                 </div>
                 <div>
                     <span class="p-ml-left mr-4">
-                        <button
-                            pButton
-                            title="New"
-                            label="Complete"
-                            (click)="completeForm()"
-                            [disabled]="
-                                DentistVisitCommunicationFormData.IsFormCompleted
-                            "
-                        ></button>
+                        <button pButton title="New" label="Complete" (click)="completeForm()" [disabled]="
+                                DentistVisitCommunicationFormData.isFormCompleted
+                            "></button>
                         <span class="total-txt"></span>
                     </span>
                 </div>
             </ng-container>
             <ng-template #savePdf>
-                <button
-                    pButton
-                    title="Save as PDF"
-                    label="Save as PDF"
-                    (click)="SaveAsPDF()"
-                ></button>
+                <button pButton title="Save as PDF" label="Save as PDF" (click)="SaveAsPDF()"></button>
             </ng-template>
         </div>
     </div>

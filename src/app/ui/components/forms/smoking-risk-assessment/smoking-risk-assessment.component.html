@@ -36,11 +36,11 @@
                 <p-dropdown placeholder="--select--" [style]="{ width: '100%' }" [options]="lstSmokeIndependently"
                     optionLabel="optionName" optionValue="optionId"
                     name="SmokingRiskAssessmentFormData.SmokeIndependently"
-                    [(ngModel)]="SmokingRiskAssessmentFormData.SmokeIndependently">
+                    [(ngModel)]="SmokingRiskAssessmentFormData.smokeIndependently">
                 </p-dropdown>
             </ng-container>
             <ng-template #SmokeIndependentlyData>
-                <label>{{SmokingRiskAssessmentFormData.SmokeIndependentlyName}}</label>
+                <label>{{SmokingRiskAssessmentFormData.smokeIndependentlyName}}</label>
             </ng-template>
         </div>
         <div class="col-md-1 mt-4 form-icon ">
@@ -54,11 +54,11 @@
                 <p-dropdown placeholder="--select--" [style]="{ width: '100%' }" [options]="lstInformationSources"
                     optionLabel="optionName" optionValue="optionId"
                     name="SmokingRiskAssessmentFormData.InformationSources"
-                    [(ngModel)]="SmokingRiskAssessmentFormData.InformationSources">
+                    [(ngModel)]="SmokingRiskAssessmentFormData.informationSources">
                 </p-dropdown>
             </ng-container>
             <ng-template #InformationSourcesData>
-                <label>{{SmokingRiskAssessmentFormData.InformationSourcesName}}</label>
+                <label>{{SmokingRiskAssessmentFormData.informationSourcesName}}</label>
             </ng-template>
         </div>
         <div class="col-md-1 form-icon ">
@@ -71,11 +71,11 @@
             <ng-container *ngIf="this.isEditable; else StopSmokingData">
                 <p-dropdown placeholder="--select--" [style]="{ width: '100%' }" [options]="lstStopSmoking"
                     optionLabel="optionName" optionValue="optionId" name="SmokingRiskAssessmentFormData.StopSmoking"
-                    [(ngModel)]="SmokingRiskAssessmentFormData.StopSmoking">
+                    [(ngModel)]="SmokingRiskAssessmentFormData.stopSmoking">
                 </p-dropdown>
             </ng-container>
             <ng-template #StopSmokingData>
-                <label>{{SmokingRiskAssessmentFormData.StopSmokingName}}</label>
+                <label>{{SmokingRiskAssessmentFormData.stopSmokingName}}</label>
             </ng-template>
         </div>
         <div class="col-md-1 form-icon ">
@@ -87,11 +87,11 @@
         <div class="col-md-7 form-text">
             <ng-container *ngIf="this.isEditable; else SmokeEveryDayData">
                 <input pInputText type="text" required name="SmokingRiskAssessmentFormData.SmokeEveryDay"
-                    [(ngModel)]="SmokingRiskAssessmentFormData.SmokeEveryDay" class="form-control" />
+                    [(ngModel)]="SmokingRiskAssessmentFormData.smokeEveryDay" class="form-control" />
             </ng-container>
 
             <ng-template #SmokeEveryDayData>
-                <label>{{SmokingRiskAssessmentFormData.SmokeEveryDay}}</label>
+                <label>{{SmokingRiskAssessmentFormData.smokeEveryDay}}</label>
             </ng-template>
         </div>
         <div class="col-md-1 form-icon ">
@@ -103,11 +103,11 @@
         <div class="col-md-7 form-text">
             <ng-container *ngIf="this.isEditable; else FirstCigaretteData">
                 <input pInputText type="text" required name="SmokingRiskAssessmentFormData.FirstCigarette"
-                    [(ngModel)]="SmokingRiskAssessmentFormData.FirstCigarette" class="form-control" />
+                    [(ngModel)]="SmokingRiskAssessmentFormData.firstCigarette" class="form-control" />
             </ng-container>
 
             <ng-template #FirstCigaretteData>
-                <label>{{SmokingRiskAssessmentFormData.FirstCigarette}}</label>
+                <label>{{SmokingRiskAssessmentFormData.firstCigarette}}</label>
             </ng-template>
         </div>
         <div class="col-md-1 form-icon ">
@@ -119,12 +119,12 @@
         <div class="col-md-7 form-text">
             <ng-container *ngIf="this.isEditable; else AssistanceSmokingData">
                 <input pInputText type="text" required name="SmokingRiskAssessmentFormData.AssistanceSmoking"
-                    [(ngModel)]="SmokingRiskAssessmentFormData.AssistanceSmoking" class="form-control" />
+                    [(ngModel)]="SmokingRiskAssessmentFormData.assistanceSmoking" class="form-control" />
                 <p class="mb-4">Please add assistance details</p>
             </ng-container>
 
             <ng-template #AssistanceSmokingData>
-                <label>{{SmokingRiskAssessmentFormData.AssistanceSmoking}}</label>
+                <label>{{SmokingRiskAssessmentFormData.assistanceSmoking}}</label>
             </ng-template>
         </div>
         <div class="col-md-1 form-icon ">
@@ -136,12 +136,12 @@
         <div class="col-md-7 form-text">
             <ng-container *ngIf="this.isEditable; else WhileSmokingACigaretteData">
                 <input pInputText type="text" required name="SmokingRiskAssessmentFormData.WhileSmokingACigarette"
-                    [(ngModel)]="SmokingRiskAssessmentFormData.WhileSmokingACigarette" class="form-control" />
+                    [(ngModel)]="SmokingRiskAssessmentFormData.whileSmokingACigarette" class="form-control" />
                 <p class="mb-4">Please indicate: Never, Number of times</p>
             </ng-container>
 
             <ng-template #WhileSmokingACigaretteData>
-                <label>{{SmokingRiskAssessmentFormData.WhileSmokingACigarette}}</label>
+                <label>{{SmokingRiskAssessmentFormData.whileSmokingACigarette}}</label>
             </ng-template>
         </div>
         <div class="col-md-1 form-icon ">
@@ -153,12 +153,12 @@
         <div class="col-md-7 form-text">
             <ng-container *ngIf="this.isEditable; else SmokingAreaData">
                 <input pInputText type="text" required name="SmokingRiskAssessmentFormData.SmokingArea"
-                    [(ngModel)]="SmokingRiskAssessmentFormData.SmokingArea" class="form-control" />
+                    [(ngModel)]="SmokingRiskAssessmentFormData.smokingArea" class="form-control" />
                 <p class="mb-4">Resident should say unaided, that they would call for help and leave the area</p>
             </ng-container>
 
             <ng-template #SmokingAreaData>
-                <label>{{SmokingRiskAssessmentFormData.SmokingArea}}</label>
+                <label>{{SmokingRiskAssessmentFormData.smokingArea}}</label>
             </ng-template>
         </div>
         <div class="col-md-1 form-icon ">
@@ -172,10 +172,10 @@
         <div class="col-md-7 form-text">
             <ng-container *ngIf="this.isEditable; else FireRiskData">
                 <p-checkbox name="ChkMonthlyReview" [binary]="true" inputId="binary"
-                    [(ngModel)]="SmokingRiskAssessmentFormData.FireRisk"></p-checkbox>
+                    [(ngModel)]="SmokingRiskAssessmentFormData.fireRisk"></p-checkbox>
             </ng-container>
             <ng-template #FireRiskData>
-                <label>{{SmokingRiskAssessmentFormData.FireRisk==true?'yes':'no'}}</label>
+                <label>{{SmokingRiskAssessmentFormData.fireRisk==true?'yes':'no'}}</label>
             </ng-template>
         </div>
         <div class="col-md-1 form-icon ">
@@ -187,10 +187,10 @@
         <div class="col-md-7 form-text">
             <ng-container *ngIf="this.isEditable; else RiskFactorsData">
                 <p-checkbox name="ChkMonthlyReview" [binary]="true" inputId="binary"
-                    [(ngModel)]="SmokingRiskAssessmentFormData.RiskFactors"></p-checkbox>
+                    [(ngModel)]="SmokingRiskAssessmentFormData.riskFactors"></p-checkbox>
             </ng-container>
             <ng-template #RiskFactorsData>
-                <label>{{SmokingRiskAssessmentFormData.RiskFactors==true?'yes':'no'}}</label>
+                <label>{{SmokingRiskAssessmentFormData.riskFactors==true?'yes':'no'}}</label>
             </ng-template>
         </div>
         <div class="col-md-1 form-icon ">
@@ -204,11 +204,11 @@
         <div class="col-md-7 form-text">
             <ng-container *ngIf="this.isEditable; else PhysicalLimitationsData">
                 <input pInputText type="text" required name="SmokingRiskAssessmentFormData.PhysicalLimitations"
-                    [(ngModel)]="SmokingRiskAssessmentFormData.PhysicalLimitations" class="form-control" />
+                    [(ngModel)]="SmokingRiskAssessmentFormData.physicalLimitations" class="form-control" />
             </ng-container>
 
             <ng-template #PhysicalLimitationsData>
-                <label>{{SmokingRiskAssessmentFormData.PhysicalLimitations}}</label>
+                <label>{{SmokingRiskAssessmentFormData.physicalLimitations}}</label>
             </ng-template>
         </div>
 
@@ -220,11 +220,11 @@
         <div class="col-md-7 form-text">
             <ng-container *ngIf="this.isEditable; else AssistiveDevicesData">
                 <input pInputText type="text" required name="SmokingRiskAssessmentFormData.AssistiveDevices"
-                    [(ngModel)]="SmokingRiskAssessmentFormData.AssistiveDevices" class="form-control" />
+                    [(ngModel)]="SmokingRiskAssessmentFormData.assistiveDevices" class="form-control" />
             </ng-container>
 
             <ng-template #AssistiveDevicesData>
-                <label>{{SmokingRiskAssessmentFormData.AssistiveDevices}}</label>
+                <label>{{SmokingRiskAssessmentFormData.assistiveDevices}}</label>
             </ng-template>
         </div>
         <div class="col-md-4 labelcontent">
@@ -235,11 +235,11 @@
                 <p-dropdown placeholder="--select--" [style]="{ width: '100%' }" [options]="lstSmokingPractices"
                     optionLabel="optionName" optionValue="optionId"
                     name="SmokingRiskAssessmentFormData.SmokingPractices"
-                    [(ngModel)]="SmokingRiskAssessmentFormData.SmokingPractices">
+                    [(ngModel)]="SmokingRiskAssessmentFormData.smokingPractices">
                 </p-dropdown>
             </ng-container>
             <ng-template #SmokingPracticesData>
-                <label>{{SmokingRiskAssessmentFormData.SmokingPracticesName}}</label>
+                <label>{{SmokingRiskAssessmentFormData.smokingPracticesName}}</label>
             </ng-template>
         </div>
         <div class="col-md-4 labelcontent">
@@ -250,11 +250,11 @@
                 <p-dropdown placeholder="--select--" [style]="{ width: '100%' }" [options]="lstMaterialsUnsafely"
                     optionLabel="optionName" optionValue="optionId"
                     name="SmokingRiskAssessmentFormData.MaterialsUnsafely"
-                    [(ngModel)]="SmokingRiskAssessmentFormData.MaterialsUnsafely">
+                    [(ngModel)]="SmokingRiskAssessmentFormData.materialsUnsafely">
                 </p-dropdown>
             </ng-container>
             <ng-template #MaterialsUnsafelyData>
-                <label>{{SmokingRiskAssessmentFormData.MaterialsUnsafelyName}}</label>
+                <label>{{SmokingRiskAssessmentFormData.materialsUnsafelyName}}</label>
             </ng-template>
         </div>
         <div class="col-md-4 labelcontent">
@@ -265,11 +265,11 @@
                 <p-dropdown placeholder="--select--" [style]="{ width: '100%' }" [options]="lstHistoryOfFalling"
                     optionLabel="optionName" optionValue="optionId"
                     name="SmokingRiskAssessmentFormData.HistoryOfFalling"
-                    [(ngModel)]="SmokingRiskAssessmentFormData.HistoryOfFalling">
+                    [(ngModel)]="SmokingRiskAssessmentFormData.historyOfFalling">
                 </p-dropdown>
             </ng-container>
             <ng-template #HistoryOfFallingData>
-                <label>{{SmokingRiskAssessmentFormData.HistoryOfFallingName}}</label>
+                <label>{{SmokingRiskAssessmentFormData.historyOfFallingName}}</label>
             </ng-template>
         </div>
         <div class="col-md-4 labelcontent">
@@ -280,11 +280,11 @@
         <div class="col-md-7 form-text">
             <ng-container *ngIf="this.isEditable; else AnyMedicationData">
                 <input pInputText type="text" required name="SmokingRiskAssessmentFormData.AnyMedication"
-                    [(ngModel)]="SmokingRiskAssessmentFormData.AnyMedication" class="form-control" />
+                    [(ngModel)]="SmokingRiskAssessmentFormData.anyMedication" class="form-control" />
             </ng-container>
 
             <ng-template #AnyMedicationData>
-                <label>{{SmokingRiskAssessmentFormData.AnyMedicationData}}</label>
+                <label>{{SmokingRiskAssessmentFormData.anyMedicationData}}</label>
             </ng-template>
         </div>
         <div class="col-md-4 labelcontent">
@@ -295,11 +295,11 @@
                 <p-dropdown placeholder="--select--" [style]="{ width: '100%' }" [options]="lstResidentIncontinent"
                     optionLabel="optionName" optionValue="optionId"
                     name="SmokingRiskAssessmentFormData.ResidentIncontinent"
-                    [(ngModel)]="SmokingRiskAssessmentFormData.ResidentIncontinent">
+                    [(ngModel)]="SmokingRiskAssessmentFormData.residentIncontinent">
                 </p-dropdown>
             </ng-container>
             <ng-template #ResidentIncontinentData>
-                <label>{{SmokingRiskAssessmentFormData.ResidentIncontinentName}}</label>
+                <label>{{SmokingRiskAssessmentFormData.residentIncontinentName}}</label>
             </ng-template>
         </div>
         <div class="col-md-4 labelcontent">
@@ -310,10 +310,10 @@
         <div class="col-md-7 form-text">
             <ng-container *ngIf="this.isEditable; else SafeSmokeIndependentlyData">
                 <p-checkbox name="ChkMonthlyReview" [binary]="true" inputId="binary"
-                    [(ngModel)]="SmokingRiskAssessmentFormData.SafeSmokeIndependently"></p-checkbox>
+                    [(ngModel)]="SmokingRiskAssessmentFormData.safeSmokeIndependently"></p-checkbox>
             </ng-container>
             <ng-template #SafeSmokeIndependentlyData>
-                <label>{{SmokingRiskAssessmentFormData.SafeSmokeIndependently==true?'yes':'no'}}</label>
+                <label>{{SmokingRiskAssessmentFormData.safeSmokeIndependently==true?'yes':'no'}}</label>
             </ng-template>
         </div>
         <div class="col-md-4 labelcontent">
@@ -322,10 +322,10 @@
         <div class="col-md-7 form-text">
             <ng-container *ngIf="this.isEditable; else DirectObservationData">
                 <p-checkbox name="ChkMonthlyReview" [binary]="true" inputId="binary"
-                    [(ngModel)]="SmokingRiskAssessmentFormData.DirectObservation"></p-checkbox>
+                    [(ngModel)]="SmokingRiskAssessmentFormData.directObservation"></p-checkbox>
             </ng-container>
             <ng-template #DirectObservationData>
-                <label>{{SmokingRiskAssessmentFormData.DirectObservation==true?'yes':'no'}}</label>
+                <label>{{SmokingRiskAssessmentFormData.directObservation==true?'yes':'no'}}</label>
             </ng-template>
         </div>
         <div class="col-md-4 labelcontent">
@@ -335,11 +335,11 @@
             <ng-container *ngIf="this.isEditable; else SmokingRoomData">
                 <p-dropdown placeholder="--select--" [style]="{ width: '100%' }" [options]="lstSmokingRoom"
                     optionLabel="optionName" optionValue="optionId" name="SmokingRiskAssessmentFormData.SmokingRoom"
-                    [(ngModel)]="SmokingRiskAssessmentFormData.SmokingRoom">
+                    [(ngModel)]="SmokingRiskAssessmentFormData.smokingRoom">
                 </p-dropdown>
             </ng-container>
             <ng-template #SmokingRoomData>
-                <label>{{SmokingRiskAssessmentFormData.SmokingRoomName}}</label>
+                <label>{{SmokingRiskAssessmentFormData.smokingRoomName}}</label>
             </ng-template>
         </div>
         <div class="col-md-4 labelcontent">
@@ -349,11 +349,11 @@
             <ng-container *ngIf="this.isEditable; else CigarettesAndLighterData">
                 <p-dropdown placeholder="--select--" [style]="{ width: '100%' }" [options]="lstCigarettesAndLighter"
                     optionLabel="optionName" optionValue="optionId" name="CareWishesFormsData.CigarettesAndLighter"
-                    [(ngModel)]="SmokingRiskAssessmentFormData.CigarettesAndLighter">
+                    [(ngModel)]="SmokingRiskAssessmentFormData.cigarettesAndLighter">
                 </p-dropdown>
             </ng-container>
             <ng-template #CigarettesAndLighterData>
-                <label>{{SmokingRiskAssessmentFormData.CigarettesAndLighterName}}</label>
+                <label>{{SmokingRiskAssessmentFormData.cigarettesAndLighterName}}</label>
             </ng-template>
         </div>
         <div class="col-md-4 labelcontent">
@@ -363,11 +363,11 @@
             <ng-container *ngIf="this.isEditable; else AccessAnAshtrayData">
                 <p-dropdown placeholder="--select--" [style]="{ width: '100%' }" [options]="lstAccessAnAshtray"
                     optionLabel="optionName" optionValue="optionId" name="SmokingRiskAssessmentFormData.AccessAnAshtray"
-                    [(ngModel)]="SmokingRiskAssessmentFormData.AccessAnAshtray">
+                    [(ngModel)]="SmokingRiskAssessmentFormData.accessAnAshtray">
                 </p-dropdown>
             </ng-container>
             <ng-template #AccessAnAshtrayData>
-                <label>{{SmokingRiskAssessmentFormData.AccessAnAshtrayName}}</label>
+                <label>{{SmokingRiskAssessmentFormData.accessAnAshtrayName}}</label>
             </ng-template>
         </div>
         <div class="col-md-4 labelcontent">
@@ -377,11 +377,11 @@
             <ng-container *ngIf="this.isEditable; else LightACigaretteData">
                 <p-dropdown placeholder="--select--" [style]="{ width: '100%' }" [options]="lstLightACigarette"
                     optionLabel="optionName" optionValue="optionId" name="SmokingRiskAssessmentFormData.LightACigarette"
-                    [(ngModel)]="SmokingRiskAssessmentFormData.LightACigarette">
+                    [(ngModel)]="SmokingRiskAssessmentFormData.lightACigarette">
                 </p-dropdown>
             </ng-container>
             <ng-template #LightACigaretteData>
-                <label>{{SmokingRiskAssessmentFormData.LightACigaretteName}}</label>
+                <label>{{SmokingRiskAssessmentFormData.lightACigaretteName}}</label>
             </ng-template>
         </div>
         <div class="col-md-4 labelcontent">
@@ -392,11 +392,11 @@
                 <p-dropdown placeholder="--select--" [style]="{ width: '100%' }" [options]="lstCigaretteSecurely"
                     optionLabel="optionName" optionValue="optionId"
                     name="SmokingRiskAssessmentFormData.CigaretteSecurely"
-                    [(ngModel)]="SmokingRiskAssessmentFormData.CigaretteSecurely">
+                    [(ngModel)]="SmokingRiskAssessmentFormData.cigaretteSecurely">
                 </p-dropdown>
             </ng-container>
             <ng-template #CigaretteSecurelyData>
-                <label>{{SmokingRiskAssessmentFormData.CigaretteSecurelyName}}</label>
+                <label>{{SmokingRiskAssessmentFormData.cigaretteSecurelyName}}</label>
             </ng-template>
         </div>
         <div class="col-md-4 labelcontent">
@@ -406,11 +406,11 @@
             <ng-container *ngIf="this.isEditable; else AshesInAshtrayData">
                 <p-dropdown placeholder="--select--" [style]="{ width: '100%' }" [options]="lstAshesInAshtray"
                     optionLabel="optionName" optionValue="optionId" name="SmokingRiskAssessmentFormData.AshesInAshtray"
-                    [(ngModel)]="SmokingRiskAssessmentFormData.AshesInAshtray">
+                    [(ngModel)]="SmokingRiskAssessmentFormData.ashesInAshtray">
                 </p-dropdown>
             </ng-container>
             <ng-template #AshesInAshtrayData>
-                <label>{{SmokingRiskAssessmentFormData.AshesInAshtrayName}}</label>
+                <label>{{SmokingRiskAssessmentFormData.ashesInAshtrayName}}</label>
             </ng-template>
         </div>
         <div class="col-md-4 labelcontent">
@@ -420,11 +420,11 @@
             <ng-container *ngIf="this.isEditable; else PutOutCigaretteData">
                 <p-dropdown placeholder="--select--" [style]="{ width: '100%' }" [options]="lstPutOutCigarette"
                     optionLabel="optionName" optionValue="optionId" name="SmokingRiskAssessmentFormData.PutOutCigarette"
-                    [(ngModel)]="SmokingRiskAssessmentFormData.PutOutCigarette">
+                    [(ngModel)]="SmokingRiskAssessmentFormData.putOutCigarette">
                 </p-dropdown>
             </ng-container>
             <ng-template #PutOutCigaretteData>
-                <label>{{SmokingRiskAssessmentFormData.PutOutCigaretteName}}</label>
+                <label>{{SmokingRiskAssessmentFormData.putOutCigaretteName}}</label>
             </ng-template>
         </div>
         <div class="col-md-4 labelcontent">
@@ -434,11 +434,11 @@
             <ng-container *ngIf="this.isEditable; else EmergencyAssistanceData">
                 <p-dropdown placeholder="--select--" [style]="{ width: '100%' }" [options]="lstEmergencyAssistance"
                     optionLabel="optionName" optionValue="optionId" name="CareWishesFormsData.EmergencyAssistance"
-                    [(ngModel)]="SmokingRiskAssessmentFormData.EmergencyAssistance">
+                    [(ngModel)]="SmokingRiskAssessmentFormData.emergencyAssistance">
                 </p-dropdown>
             </ng-container>
             <ng-template #EmergencyAssistanceData>
-                <label>{{SmokingRiskAssessmentFormData.EmergencyAssistance}}</label>
+                <label>{{SmokingRiskAssessmentFormData.emergencyAssistance}}</label>
             </ng-template>
         </div>
         <div class="col-md-4 labelcontent">
@@ -447,10 +447,10 @@
         <div class="col-md-7 form-text">
             <ng-container *ngIf="this.isEditable; else NotSafeToSmokeData">
                 <p-checkbox name="ChkMonthlyReview" [binary]="true" inputId="binary"
-                    [(ngModel)]="SmokingRiskAssessmentFormData.NotSafeToSmoke"></p-checkbox>
+                    [(ngModel)]="SmokingRiskAssessmentFormData.notSafeToSmoke"></p-checkbox>
             </ng-container>
             <ng-template #NotSafeToSmokeData>
-                <label>{{SmokingRiskAssessmentFormData.NotSafeToSmoke==true?'yes':'no'}}</label>
+                <label>{{SmokingRiskAssessmentFormData.notSafeToSmoke==true?'yes':'no'}}</label>
             </ng-template>
         </div>
         <div class="col-md-4 ">
@@ -462,13 +462,13 @@
             <div class="input-group date">
                 <ng-container *ngIf="this.isEditable; else ReviewDateData">
                     <p-calendar name="DateOfBirth" [showIcon]="true" inputId="icon" [dateFormat]="" class="iconcal"
-                        appendTo="body" #dobref="" [(ngModel)]="SmokingRiskAssessmentFormData.ReviewDate"
+                        appendTo="body" #dobref="" [(ngModel)]="SmokingRiskAssessmentFormData.reviewDate"
                         [maxDate]=""></p-calendar>
                     <div *ngIf="" class="alert alert-danger">
                     </div>
                 </ng-container>
                 <ng-template #ReviewDateData>
-                    <label>{{SmokingRiskAssessmentFormData.ReviewDate | date}}</label>
+                    <label>{{SmokingRiskAssessmentFormData.reviewDate | date}}</label>
                 </ng-template>
             </div>
 
@@ -484,7 +484,7 @@
                 <div>
                     <span class="p-ml-left mr-4">
                         <button pButton title="New" label="Complete" (click)="completeForm()" [disabled]="
-                                SmokingRiskAssessmentFormData.IsFormCompleted
+                                SmokingRiskAssessmentFormData.isFormCompleted
                             "></button>
                         <span class="total-txt"></span>
                     </span>

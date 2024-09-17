@@ -34,7 +34,7 @@ export class CareResidentContactsListComponent
     //Form which is selected to edit or view
     isEditable: boolean;
     //Need to be passed from form Dashboard
-    StatementType: string = null;
+    statementType: string = null;
 
     //Patient Details
     userId: any;
@@ -62,7 +62,7 @@ export class CareResidentContactsListComponent
             this.GetSelectedFormDetails(
                 this.preSelectedFormData.selectedFormID
             );
-            this.StatementType = 'Update';
+            this.statementType = 'Update';
         } else {
             this.ResetModel();
         }
@@ -80,7 +80,7 @@ export class CareResidentContactsListComponent
                 this.preSelectedFormData.selectedFormID
             );
 
-            this.StatementType = 'Update';
+            this.statementType = 'Update';
         } else {
             this.ResetModel();
         }
@@ -126,15 +126,15 @@ export class CareResidentContactsListComponent
             this.residentAdmissionInfoId != null &&
             this.loginId != null
         ) {
-            this.ResidentContactsListFormData.UserId = this.userId;
-            this.ResidentContactsListFormData.ResidentAdmissionInfoId =
+            this.ResidentContactsListFormData.userId = this.userId;
+            this.ResidentContactsListFormData.residentAdmissionInfoId =
                 this.residentAdmissionInfoId;
-            this.ResidentContactsListFormData.StartedBy = this.loginId;
-            this.ResidentContactsListFormData.ModifiedBy = this.loginId;
+            this.ResidentContactsListFormData.startedBy = this.loginId;
+            this.ResidentContactsListFormData.modifiedBy = this.loginId;
 
             const objectBody: any = {
-                StatementType: this.StatementType,
-                ResidentContactsListForm: this.ResidentContactsListFormData,
+                statementType: this.statementType,
+                residentContactsListForm: this.ResidentContactsListFormData,
             };
 
             this._UtilityService.showSpinner();
@@ -168,6 +168,6 @@ export class CareResidentContactsListComponent
     ResetModel() {
         this.isEditable = true;
         this.ResidentContactsListFormData = <any>{};
-        this.StatementType = 'Insert';
+        this.statementType = 'Insert';
     }
 }
