@@ -13,6 +13,8 @@ import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { ActionsModule } from './actions/actions.module';
 import { ActionTakenPopupComponent } from './action-taken-popup/action-taken-popup.component';
 import { ActionTakenPopupModule } from './action-taken-popup/action-taken-popup.module';
+import { ActionTabListPopupComponent } from './action-tab-list-popup/action-tab-list-popup.component';
+import { ActionTabListPopupModule } from './action-tab-list-popup/action-tab-list-popup.module';
 
 
 @NgModule({
@@ -32,7 +34,8 @@ import { ActionTakenPopupModule } from './action-taken-popup/action-taken-popup.
         ButtonModule,
         ConfirmDialogModule,
         ActionsModule,
-        ActionTakenPopupModule
+        ActionTakenPopupModule,
+        ActionTabListPopupModule
   ],
 })
 export class ResidentProfileModule { }
