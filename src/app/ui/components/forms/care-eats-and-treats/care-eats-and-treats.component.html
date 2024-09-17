@@ -37,13 +37,13 @@
         <div class="col-md-7 mt-4">
             <ng-container *ngIf="this.isEditable; else ResidentStatusOfCapacity">
                 <p-dropdown [required]="true" [options]="lstResidentStatusOfCapacity" optionLabel="optionName"
-                    [(ngModel)]="CareAssessmentEatsAndDrinksFormsData.ResidentStatusOfCapacity"
-                    name="CareAssessmentEatsAndDrinksFormsData.ResidentStatusOfCapacity" optionValue="optionId"
+                    [(ngModel)]="CareAssessmentEatsAndDrinksFormsData.residentStatusOfCapacity"
+                    name="CareAssessmentEatsAndDrinksFormsData.residentStatusOfCapacity" optionValue="optionId"
                     placeholder="--select--" [style]="{ width: '100%' }">
                 </p-dropdown>
             </ng-container>
             <ng-template #ResidentStatusOfCapacity>
-                <label>{{CareAssessmentEatsAndDrinksFormsData.ResidentStatusOfCapacityName}}</label>
+                <label>{{CareAssessmentEatsAndDrinksFormsData.residentStatusOfCapacityName}}</label>
             </ng-template>
         </div>
         <div class="col-md-1 form-icon mt-4">
@@ -57,8 +57,8 @@
         </div>
         <div class="col-md-7 form-text">
             <ng-container *ngIf="this.isEditable; else SpecificDecisionDetail">
-                <input pInputText type="text" [(ngModel)]="CareAssessmentEatsAndDrinksFormsData.SpecificDecisionDetail"
-                    required name="CareAssessmentEatsAndDrinksFormsData.SpecificDecisionDetail"
+                <input pInputText type="text" [(ngModel)]="CareAssessmentEatsAndDrinksFormsData.specificDecisionDetail"
+                    required name="CareAssessmentEatsAndDrinksFormsData.specificDecisionDetail"
                     class="form-control mr-4" [style]="{ width: '100%' }">
                 <p class=" mb-4">Think about stroke, dyspepsia, diabetic, diverticulitis, coeliac etc. Only answer if
                     the
@@ -66,7 +66,7 @@
                     capacity</p>
             </ng-container>
             <ng-template #SpecificDecisionDetail>
-                <label>{{CareAssessmentEatsAndDrinksFormsData.SpecificDecisionDetail}}</label>
+                <label>{{CareAssessmentEatsAndDrinksFormsData.specificDecisionDetail}}</label>
             </ng-template>
 
         </div>
@@ -80,13 +80,13 @@
         </div>
         <div class="col-md-7 form-text">
             <ng-container *ngIf="this.isEditable; else MedicalHistory">
-                <input pInputText type="text" [(ngModel)]="CareAssessmentEatsAndDrinksFormsData.MedicalHistory" required
-                    name="CareAssessmentEatsAndDrinksFormsData.MedicalHistory" class="form-control mr-4"
+                <input pInputText type="text" [(ngModel)]="CareAssessmentEatsAndDrinksFormsData.medicalHistory" required
+                    name="CareAssessmentEatsAndDrinksFormsData.medicalHistory" class="form-control mr-4"
                     [style]="{ width: '100%' }">
                 <p class=" mb-4">Think about Stroke, Parkinson, Dyspepsia, Diabetic, Diverticulitis, Coeliac etc</p>
             </ng-container>
             <ng-template #MedicalHistory>
-                <label>{{CareAssessmentEatsAndDrinksFormsData.MedicalHistory}}</label>
+                <label>{{CareAssessmentEatsAndDrinksFormsData.medicalHistory}}</label>
             </ng-template>
         </div>
         <div class="col-md-1 form-icon">
@@ -100,14 +100,14 @@
         </div>
         <div class="col-md-7 form-text">
             <ng-container *ngIf="this.isEditable; else FoodAllergies">
-                <input pInputText type="text" [(ngModel)]="CareAssessmentEatsAndDrinksFormsData.FoodAllergies" required
-                    name="CareAssessmentEatsAndDrinksFormsData.FoodAllergies" class="form-control mr-4"
+                <input pInputText type="text" [(ngModel)]="CareAssessmentEatsAndDrinksFormsData.foodAllergies" required
+                    name="CareAssessmentEatsAndDrinksFormsData.foodAllergies" class="form-control mr-4"
                     [style]="{ width: '100%' }">
                 <p class=" mb-4">
                     Consider Nuts, include reaction if known</p>
             </ng-container>
             <ng-template #FoodAllergies>
-                <label>{{CareAssessmentEatsAndDrinksFormsData.FoodAllergies}}</label>
+                <label>{{CareAssessmentEatsAndDrinksFormsData.foodAllergies}}</label>
             </ng-template>
         </div>
         <div class="col-md-1 form-icon">
@@ -121,14 +121,14 @@
         </div>
         <div class="col-md-7 form-text">
             <ng-container *ngIf="this.isEditable; else FoodsToBeAvoided">
-                <input pInputText type="text" [(ngModel)]="CareAssessmentEatsAndDrinksFormsData.FoodsToBeAvoided"
-                    required name="CareAssessmentEatsAndDrinksFormsData.FoodsToBeAvoided" class="form-control mr-4"
+                <input pInputText type="text" [(ngModel)]="CareAssessmentEatsAndDrinksFormsData.foodsToBeAvoided"
+                    required name="CareAssessmentEatsAndDrinksFormsData.foodsToBeAvoided" class="form-control mr-4"
                     [style]="{ width: '100%' }">
                 <p class=" mb-4">
                     Think about anticoagulant / statins</p>
             </ng-container>
             <ng-template #FoodsToBeAvoided>
-                <label>{{CareAssessmentEatsAndDrinksFormsData.FoodsToBeAvoided}}</label>
+                <label>{{CareAssessmentEatsAndDrinksFormsData.foodsToBeAvoided}}</label>
             </ng-template>
 
         </div>
@@ -144,13 +144,13 @@
         <div class="col-md-7 form-text">
             <ng-container *ngIf="this.isEditable; else Choking">
                 <p-dropdown [required]="true" [options]="lstChoking" optionLabel="optionName"
-                    [(ngModel)]="CareAssessmentEatsAndDrinksFormsData.Choking"
-                    name="CareAssessmentEatsAndDrinksFormsData.Choking" optionValue="optionId" placeholder="--select--"
+                    [(ngModel)]="CareAssessmentEatsAndDrinksFormsData.choking"
+                    name="CareAssessmentEatsAndDrinksFormsData.choking" optionValue="optionId" placeholder="--select--"
                     [style]="{ width: '100%' }">
                 </p-dropdown>
             </ng-container>
             <ng-template #Choking>
-                <label>{{CareAssessmentEatsAndDrinksFormsData.ChokingName}}</label>
+                <label>{{CareAssessmentEatsAndDrinksFormsData.chokingName}}</label>
             </ng-template>
             <p class=" mb-4" *ngIf="isEditable==true">
                 Where items are selected this indicates a choking risk</p>
@@ -167,13 +167,13 @@
         <div class="col-md-7 form-text">
             <ng-container *ngIf="this.isEditable; else ActionNeededToReduceChoking">
                 <p-dropdown [required]="true" [options]="lstActionNeededToReduceChoking" optionLabel="optionName"
-                    [(ngModel)]="CareAssessmentEatsAndDrinksFormsData.ActionNeededToReduceChoking"
-                    name="CareAssessmentEatsAndDrinksFormsData.ActionNeededToReduceChoking" optionValue="optionId"
+                    [(ngModel)]="CareAssessmentEatsAndDrinksFormsData.actionNeededToReduceChoking"
+                    name="CareAssessmentEatsAndDrinksFormsData.actionNeededToReduceChoking" optionValue="optionId"
                     placeholder="--select--" [style]="{ width: '100%' }">
                 </p-dropdown>
             </ng-container>
             <ng-template #ActionNeededToReduceChoking>
-                <label>{{CareAssessmentEatsAndDrinksFormsData.ActionNeededToReduceChokingName}}</label>
+                <label>{{CareAssessmentEatsAndDrinksFormsData.actionNeededToReduceChokingName}}</label>
             </ng-template>
             <p class=" mb-4" *ngIf="isEditable==true">Include contact with health professionals referrals and outcomes
             </p>
@@ -189,11 +189,11 @@
         </div>
         <div class="col-md-7 form-text">
             <ng-container *ngIf="this.isEditable; else FoodAndFluid">
-                <p-checkbox class="mb-4" [(ngModel)]="CareAssessmentEatsAndDrinksFormsData.FoodAndFluid" [binary]="true"
+                <p-checkbox class="mb-4" [(ngModel)]="CareAssessmentEatsAndDrinksFormsData.foodAndFluid" [binary]="true"
                     inputId="binary"></p-checkbox>
             </ng-container>
             <ng-template #FoodAndFluid>
-                <label>{{CareAssessmentEatsAndDrinksFormsData.FoodAndFluid==true?'yes':'no'}}</label>
+                <label>{{CareAssessmentEatsAndDrinksFormsData.foodAndFluid==true?'yes':'no'}}</label>
             </ng-template>
         </div>
         <div class="col-md-4">
@@ -207,12 +207,12 @@
             <ng-container *ngIf="this.isEditable; else Food">
                 <p-dropdown [required]="true" [options]="lstFood" optionLabel="optionName"
                     [(ngModel)]="CareAssessmentEatsAndDrinksFormsData.Food"
-                    name="CareAssessmentEatsAndDrinksFormsData.Food" optionValue="optionId" placeholder="--select--"
+                    name="CareAssessmentEatsAndDrinksFormsData.food" optionValue="optionId" placeholder="--select--"
                     [style]="{ width: '100%' }">
                 </p-dropdown>
             </ng-container>
             <ng-template #Food>
-                <label>{{CareAssessmentEatsAndDrinksFormsData.FoodName}}</label>
+                <label>{{CareAssessmentEatsAndDrinksFormsData.foodName}}</label>
             </ng-template>
             <p class=" mb-4" *ngIf="isEditable==true">
                 Select Other to add additional comments
@@ -232,13 +232,13 @@
         <div class="col-md-7 form-text">
             <ng-container *ngIf="this.isEditable; else Fluids">
                 <p-dropdown [required]="true" [options]="lstFluids" optionLabel="optionName"
-                    [(ngModel)]="CareAssessmentEatsAndDrinksFormsData.Fluids"
-                    name="CareAssessmentEatsAndDrinksFormsData.Fluids" optionValue="optionId" placeholder="--select--"
+                    [(ngModel)]="CareAssessmentEatsAndDrinksFormsData.fluids"
+                    name="CareAssessmentEatsAndDrinksFormsData.fluids" optionValue="optionId" placeholder="--select--"
                     [style]="{ width: '100%' }">
                 </p-dropdown>
             </ng-container>
             <ng-template #Fluids>
-                <label>{{CareAssessmentEatsAndDrinksFormsData.FluidsName}}</label>
+                <label>{{CareAssessmentEatsAndDrinksFormsData.fluidsName}}</label>
             </ng-template>
             <p class=" mb-4" *ngIf="isEditable==true">
                 Select Other to add additional comments
@@ -257,8 +257,8 @@
         <div class="col-md-7 form-text">
             <ng-container *ngIf="this.isEditable; else EatingAndDrinkingAssistance">
                 <input pInputText type="text"
-                    [(ngModel)]="CareAssessmentEatsAndDrinksFormsData.EatingAndDrinkingAssistance" required
-                    name="CareAssessmentEatsAndDrinksFormsData.EatingAndDrinkingAssistance" class="form-control mr-4"
+                    [(ngModel)]="CareAssessmentEatsAndDrinksFormsData.eatingAndDrinkingAssistance" required
+                    name="CareAssessmentEatsAndDrinksFormsData.eatingAndDrinkingAssistance" class="form-control mr-4"
                     [style]="{ width: '100%' }">
                 <p class=" mb-4">E.g. diabetic / low fat / low salt / specific religious beliefs, high fibre, high
                     protein,
@@ -267,7 +267,7 @@
                     fluid balance required & realistic</p>
             </ng-container>
             <ng-template #EatingAndDrinkingAssistance>
-                <label>{{CareAssessmentEatsAndDrinksFormsData.EatingAndDrinkingAssistance}}</label>
+                <label>{{CareAssessmentEatsAndDrinksFormsData.eatingAndDrinkingAssistance}}</label>
             </ng-template>
 
         </div>
@@ -281,8 +281,8 @@
         </div>
         <div class="col-md-7 form-text">
             <ng-container *ngIf="this.isEditable; else SupplementsRequire">
-                <input pInputText type="text" [(ngModel)]="CareAssessmentEatsAndDrinksFormsData.SupplementsRequire"
-                    required name="CareAssessmentEatsAndDrinksFormsData.SupplementsRequire" class="form-control mr-4"
+                <input pInputText type="text" [(ngModel)]="CareAssessmentEatsAndDrinksFormsData.supplementsRequire"
+                    required name="CareAssessmentEatsAndDrinksFormsData.supplementsRequire" class="form-control mr-4"
                     [style]="{ width: '100%' }">
                 <p class=" mb-4">Forticreme/fortified milkshakes, frequency. Day / Night variances vitamins, name
                     thickener
@@ -290,7 +290,7 @@
                     PEG Feed, Bolus or overnight feed regime.</p>
             </ng-container>
             <ng-template #SupplementsRequire>
-                <label>{{CareAssessmentEatsAndDrinksFormsData.SupplementsRequire}}</label>
+                <label>{{CareAssessmentEatsAndDrinksFormsData.supplementsRequire}}</label>
             </ng-template>
 
         </div>
@@ -305,13 +305,13 @@
         <div class="col-md-7 form-text">
             <ng-container *ngIf="this.isEditable; else ProfessionalInput">
                 <p-dropdown [required]="true" [options]="lstProfessionalInput" optionLabel="optionName"
-                    [(ngModel)]="CareAssessmentEatsAndDrinksFormsData.ProfessionalInput"
-                    name="CareAssessmentEatsAndDrinksFormsData.ProfessionalInput" optionValue="optionId"
+                    [(ngModel)]="CareAssessmentEatsAndDrinksFormsData.professionalInput"
+                    name="CareAssessmentEatsAndDrinksFormsData.professionalInput" optionValue="optionId"
                     placeholder="--select--" [style]="{ width: '100%' }">
                 </p-dropdown>
             </ng-container>
             <ng-template #ProfessionalInput>
-                <label>{{CareAssessmentEatsAndDrinksFormsData.ProfessionalInputName}}</label>
+                <label>{{CareAssessmentEatsAndDrinksFormsData.professionalInputName}}</label>
             </ng-template>
         </div>
         <div class="col-md-1 form-icon">
@@ -325,13 +325,13 @@
         <div class="col-md-7 form-text">
             <ng-container *ngIf="this.isEditable; else ProfessionalAdviceDetail">
                 <input pInputText type="text"
-                    [(ngModel)]="CareAssessmentEatsAndDrinksFormsData.ProfessionalAdviceDetail" required
-                    name="CareAssessmentEatsAndDrinksFormsData.ProfessionalAdviceDetail" class="form-control mr-4"
+                    [(ngModel)]="CareAssessmentEatsAndDrinksFormsData.professionalAdviceDetail" required
+                    name="CareAssessmentEatsAndDrinksFormsData.professionalAdviceDetail" class="form-control mr-4"
                     [style]="{ width: '100%' }">
                 <p class=" mb-4">See SALT protocols</p>
             </ng-container>
             <ng-template #ProfessionalAdviceDetail>
-                <label>{{CareAssessmentEatsAndDrinksFormsData.ProfessionalAdviceDetail}}</label>
+                <label>{{CareAssessmentEatsAndDrinksFormsData.professionalAdviceDetail}}</label>
             </ng-template>
         </div>
         <div class="col-md-1 form-icon">
@@ -345,13 +345,13 @@
         <div class="col-md-7 form-text">
             <ng-container *ngIf="this.isEditable; else GoalsToAchieve">
                 <p-dropdown [required]="true" [options]="lstGoalsToAchieve" optionLabel="optionName"
-                    [(ngModel)]="CareAssessmentEatsAndDrinksFormsData.GoalsToAchieve"
-                    name="CareAssessmentEatsAndDrinksFormsData.GoalsToAchieve" optionValue="optionId"
+                    [(ngModel)]="CareAssessmentEatsAndDrinksFormsData.goalsToAchieve"
+                    name="CareAssessmentEatsAndDrinksFormsData.goalsToAchieve" optionValue="optionId"
                     placeholder="--select--" [style]="{ width: '100%' }">
                 </p-dropdown>
             </ng-container>
             <ng-template #GoalsToAchieve>
-                <label>{{CareAssessmentEatsAndDrinksFormsData.GoalsToAchieveName}}</label>
+                <label>{{CareAssessmentEatsAndDrinksFormsData.goalsToAchieveName}}</label>
             </ng-template>
         </div>
         <div class="col-md-1 form-icon">
@@ -364,12 +364,12 @@
         </div>
         <div class="col-md-7 form-text">
             <ng-container *ngIf="this.isEditable; else PersonalGoal">
-                <input pInputText type="text" [(ngModel)]="CareAssessmentEatsAndDrinksFormsData.PersonalGoal" required
-                    name="CareAssessmentEatsAndDrinksFormsData.PersonalGoal" class="form-control mr-4"
+                <input pInputText type="text" [(ngModel)]="CareAssessmentEatsAndDrinksFormsData.personalGoal" required
+                    name="CareAssessmentEatsAndDrinksFormsData.personalGoal" class="form-control mr-4"
                     [style]="{ width: '100%' }">
             </ng-container>
             <ng-template #PersonalGoal>
-                <label>{{CareAssessmentEatsAndDrinksFormsData.PersonalGoal}}</label>
+                <label>{{CareAssessmentEatsAndDrinksFormsData.personalGoal}}</label>
             </ng-template>
         </div>
         <div class="col-md-1 form-icon">
@@ -383,13 +383,13 @@
         <div class="col-md-7">
             <ng-container *ngIf="this.isEditable; else StrategyToManageNutrition">
                 <p-dropdown [required]="true" [options]="lstStrategyToManageNutrition" optionLabel="optionName"
-                    [(ngModel)]="CareAssessmentEatsAndDrinksFormsData.StrategyToManageNutrition"
-                    name="CareAssessmentEatsAndDrinksFormsData.StrategyToManageNutrition" optionValue="optionId"
+                    [(ngModel)]="CareAssessmentEatsAndDrinksFormsData.strategyToManageNutrition"
+                    name="CareAssessmentEatsAndDrinksFormsData.strategyToManageNutrition" optionValue="optionId"
                     placeholder="--select--" [style]="{ width: '100%' }">
                 </p-dropdown>
             </ng-container>
             <ng-template #StrategyToManageNutrition>
-                <label>{{CareAssessmentEatsAndDrinksFormsData.StrategyToManageNutritionName}}</label>
+                <label>{{CareAssessmentEatsAndDrinksFormsData.strategyToManageNutritionName}}</label>
             </ng-template>
         </div>
         <div class="col-md-1 form-icon">
@@ -403,13 +403,13 @@
         <div class="col-md-7 form-text">
             <ng-container *ngIf="this.isEditable; else RiskOfMalnutrition">
                 <p-dropdown [required]="true" [options]="lstRiskOfMalnutrition" optionLabel="optionName"
-                    [(ngModel)]="CareAssessmentEatsAndDrinksFormsData.RiskOfMalnutrition"
-                    name="CareAssessmentEatsAndDrinksFormsData.RiskOfMalnutrition" optionValue="optionId"
+                    [(ngModel)]="CareAssessmentEatsAndDrinksFormsData.riskOfMalnutrition"
+                    name="CareAssessmentEatsAndDrinksFormsData.riskOfMalnutrition" optionValue="optionId"
                     placeholder="--select--" [style]="{ width: '100%' }">
                 </p-dropdown>
             </ng-container>
             <ng-template #RiskOfMalnutrition>
-                <label>{{CareAssessmentEatsAndDrinksFormsData.RiskOfMalnutritionName}}</label>
+                <label>{{CareAssessmentEatsAndDrinksFormsData.riskOfMalnutritionName}}</label>
             </ng-template>
         </div>
         <div class="col-md-1 form-icon">
@@ -423,12 +423,12 @@
         <div class="col-md-7">
             <ng-container *ngIf="this.isEditable; else AdditionalActionsRequired">
                 <input pInputText type="text"
-                    [(ngModel)]="CareAssessmentEatsAndDrinksFormsData.AdditionalActionsRequired" required
-                    name="CareAssessmentEatsAndDrinksFormsData.AdditionalActionsRequired" class="form-control mr-4"
+                    [(ngModel)]="CareAssessmentEatsAndDrinksFormsData.additionalActionsRequired" required
+                    name="CareAssessmentEatsAndDrinksFormsData.additionalActionsRequired" class="form-control mr-4"
                     [style]="{ width: '100%' }">
             </ng-container>
             <ng-template #AdditionalActionsRequired>
-                <label>{{CareAssessmentEatsAndDrinksFormsData.AdditionalActionsRequired}}</label>
+                <label>{{CareAssessmentEatsAndDrinksFormsData.additionalActionsRequired}}</label>
             </ng-template>
         </div>
         <div class="col-md-1 form-icon">
@@ -441,13 +441,13 @@
         </div>
         <div class="col-md-7">
             <ng-container *ngIf="this.isEditable; else OtherIdentifiedRisks">
-                <input pInputText type="text" [(ngModel)]="CareAssessmentEatsAndDrinksFormsData.OtherIdentifiedRisks"
-                    required name="CareAssessmentEatsAndDrinksFormsData.OtherIdentifiedRisks" class="form-control mr-4"
+                <input pInputText type="text" [(ngModel)]="CareAssessmentEatsAndDrinksFormsData.otherIdentifiedRisks"
+                    required name="CareAssessmentEatsAndDrinksFormsData.otherIdentifiedRisks" class="form-control mr-4"
                     [style]="{ width: '100%' }">
                 <p class=" mb-4">Specify any other risks that have not been identified above</p>
             </ng-container>
             <ng-template #OtherIdentifiedRisks>
-                <label>{{CareAssessmentEatsAndDrinksFormsData.OtherIdentifiedRisks}}</label>
+                <label>{{CareAssessmentEatsAndDrinksFormsData.otherIdentifiedRisks}}</label>
             </ng-template>
         </div>
         <div class="col-md-1 form-icon">
@@ -461,12 +461,12 @@
         <div class="col-md-7">
             <ng-container *ngIf="this.isEditable; else ActionToManageAdditionalRisk">
                 <input pInputText type="text"
-                    [(ngModel)]="CareAssessmentEatsAndDrinksFormsData.ActionToManageAdditionalRisk" required
-                    name="CareAssessmentEatsAndDrinksFormsData.ActionToManageAdditionalRisk" class="form-control mr-4"
+                    [(ngModel)]="CareAssessmentEatsAndDrinksFormsData.actionToManageAdditionalRisk" required
+                    name="CareAssessmentEatsAndDrinksFormsData.actionToManageAdditionalRisk" class="form-control mr-4"
                     [style]="{ width: '100%' }">
             </ng-container>
             <ng-template #ActionToManageAdditionalRisk>
-                <label>{{CareAssessmentEatsAndDrinksFormsData.ActionToManageAdditionalRisk}}</label>
+                <label>{{CareAssessmentEatsAndDrinksFormsData.actionToManageAdditionalRisk}}</label>
             </ng-template>
         </div>
         <div class="col-md-1 form-icon">
@@ -479,11 +479,11 @@
         </div>
         <div class="col-md-7">
             <ng-container *ngIf="this.isEditable; else WeightChartStatus">
-                <p-checkbox class="mb-4" [(ngModel)]="CareAssessmentEatsAndDrinksFormsData.WeightChartStatus" [binary]="true"
-                    inputId="binary"></p-checkbox>
+                <p-checkbox class="mb-4" [(ngModel)]="CareAssessmentEatsAndDrinksFormsData.weightChartStatus"
+                    [binary]="true" inputId="binary"></p-checkbox>
             </ng-container>
             <ng-template #WeightChartStatus>
-                <label>{{CareAssessmentEatsAndDrinksFormsData.WeightChartStatus==true?'yes':'no'}}</label>
+                <label>{{CareAssessmentEatsAndDrinksFormsData.weightChartStatus==true?'yes':'no'}}</label>
             </ng-template>
         </div>
 
@@ -494,8 +494,8 @@
         </div>
         <div class="col-md-7 form-text">
             <ng-container *ngIf="this.isEditable; else AdditionalInformation">
-                <input pInputText type="text" [(ngModel)]="CareAssessmentEatsAndDrinksFormsData.AdditionalInformation"
-                    required name="CareAssessmentEatsAndDrinksFormsData.AdditionalInformation" class="form-control mr-4"
+                <input pInputText type="text" [(ngModel)]="CareAssessmentEatsAndDrinksFormsData.additionalInformation"
+                    required name="CareAssessmentEatsAndDrinksFormsData.additionalInformation" class="form-control mr-4"
                     [style]="{ width: '100%' }">
                 <p class=" mb-4">Include where the resident likes their meals, who they like to sit by and food
                     preferences.
@@ -504,7 +504,7 @@
                 </p>
             </ng-container>
             <ng-template #AdditionalInformation>
-                <label>{{CareAssessmentEatsAndDrinksFormsData.AdditionalInformation}}</label>
+                <label>{{CareAssessmentEatsAndDrinksFormsData.additionalInformation}}</label>
             </ng-template>
 
         </div>
@@ -518,11 +518,11 @@
         </div>
         <div class="col-md-7 form-text">
             <ng-container *ngIf="this.isEditable; else AssessmentReview">
-                <p-checkbox class="mb-4" [(ngModel)]="CareAssessmentEatsAndDrinksFormsData.AssessmentReview" [binary]="true"
-                    inputId="binary"></p-checkbox>
+                <p-checkbox class="mb-4" [(ngModel)]="CareAssessmentEatsAndDrinksFormsData.assessmentReview"
+                    [binary]="true" inputId="binary"></p-checkbox>
             </ng-container>
             <ng-template #AssessmentReview>
-                <label>{{CareAssessmentEatsAndDrinksFormsData.AssessmentReview==true?'yes':'no'}}</label>
+                <label>{{CareAssessmentEatsAndDrinksFormsData.assessmentReview==true?'yes':'no'}}</label>
             </ng-template>
             <p class=" mb-4" *ngIf="isEditable==true">This form should be reviewed EVERY MONTH or before if there are
                 significant changes. Enter
@@ -537,50 +537,35 @@
         <div class="col-md-8 form-text">
             <div class="input-group date" *ngIf="isEditable==true">
                 <p-calendar [required]="true" [showTime]="true" name="txtNextReviewDate"
-                    [(ngModel)]="CareAssessmentEatsAndDrinksFormsData.NextReviewDate" [showIcon]="true" inputId="icon"
+                    [(ngModel)]="CareAssessmentEatsAndDrinksFormsData.nextReviewDate" [showIcon]="true" inputId="icon"
                     [dateFormat]="" class="iconcal" [readonlyInput]="true" appendTo="body" [maxDate]=""
                     #dobref=""></p-calendar>
                 <div *ngIf="" class="alert alert-danger">
                 </div>
             </div>
-            <p *ngIf="isEditable!=true">{{CareAssessmentEatsAndDrinksFormsData.NextReviewDate | date :customDateFormat.DEF_DATE_TIME}}</p>
+            <p *ngIf="isEditable!=true">{{CareAssessmentEatsAndDrinksFormsData.nextReviewDate | date
+                :customDateFormat.DEF_DATE_TIME}}</p>
 
         </div>
         <div class="d-flex justify-content-end">
             <ng-container *ngIf="isEditable; else savePdf">
                 <div>
                     <span class="p-ml-left mr-4">
-                        <button
-                            pButton
-                            title="New"
-                            label="Save as Unfinished"
-                            (click)="saveAsUnfinished()"
-                        ></button>
+                        <button pButton title="New" label="Save as Unfinished" (click)="saveAsUnfinished()"></button>
                         <span class="total-txt"></span>
                     </span>
                 </div>
                 <div>
                     <span class="p-ml-left mr-4">
-                        <button
-                            pButton
-                            title="New"
-                            label="Complete"
-                            (click)="completeForm()"
-                            [disabled]="
-                                CareAssessmentEatsAndDrinksFormsData.IsFormCompleted
-                            "
-                        ></button>
+                        <button pButton title="New" label="Complete" (click)="completeForm()" [disabled]="
+                                CareAssessmentEatsAndDrinksFormsData.isFormCompleted
+                            "></button>
                         <span class="total-txt"></span>
                     </span>
                 </div>
             </ng-container>
             <ng-template #savePdf>
-                <button
-                    pButton
-                    title="Save as PDF"
-                    label="Save as PDF"
-                    (click)="SaveAsPDF()"
-                ></button>
+                <button pButton title="Save as PDF" label="Save as PDF" (click)="SaveAsPDF()"></button>
             </ng-template>
         </div>
     </div>

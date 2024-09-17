@@ -15,6 +15,7 @@ export class CareContinencePromotionService {
         const reqHeader = new HttpHeaders({
             'Content-Type': 'application/json',
             'Access-Control-Allow-Origin': environment.BaseUriUser,
+            'Authorization': 'Bearer ' + localStorage.getItem('token')
         });
         let params = new HttpParams();
         params = params.append('fromId', selectedFormID);

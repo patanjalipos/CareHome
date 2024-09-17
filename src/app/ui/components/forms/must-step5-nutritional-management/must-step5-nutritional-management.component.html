@@ -7,13 +7,14 @@
                         {{ preSelectedFormData.StartedBy }}</label>
                 </div>
                 <div class="col-md-4 ">
-                    <label class="form-label"><b>Designation :</b>{{ preSelectedFormData.StartedByDesignation }} </label>
+                    <label class="form-label"><b>Designation :</b>{{ preSelectedFormData.StartedByDesignation }}
+                    </label>
                 </div>
                 <div class="col-md-4">
                     <label class="form-label"> <b>Date/Time : </b>{{
                         preSelectedFormData.StartedOn
-                            | date : customDateFormat.DEF_DATE_TIME
-                    }}</label>
+                        | date : customDateFormat.DEF_DATE_TIME
+                        }}</label>
                 </div>
             </div>
             <div class="d-flex">
@@ -22,13 +23,14 @@
                         <b>Last entered by (Name) :</b>{{ preSelectedFormData.ModifiedBy }}</label>
                 </div>
                 <div class="col-md-4">
-                    <label class="form-label"> <b>Designation :</b>{{ preSelectedFormData.ModifiedByDesignation }}</label>
+                    <label class="form-label"> <b>Designation :</b>{{ preSelectedFormData.ModifiedByDesignation
+                        }}</label>
                 </div>
                 <div class="col-md-4">
                     <label class="form-label"> <b>Date/Time :</b> {{
                         preSelectedFormData.ModifiedOn
-                            | date : customDateFormat.DEF_DATE_TIME
-                    }}</label>
+                        | date : customDateFormat.DEF_DATE_TIME
+                        }}</label>
                 </div>
             </div>
         </div>
@@ -39,24 +41,17 @@
         </div>
         <div class="col-md-7  mt-4">
             <ng-container *ngIf="isEditable; else CurrentWeight">
-                <input
-                    pInputText
-                    type="text"
-                    required
-                    name="CurrentWeight"
-                    class="form-control"
-                    [(ngModel)]="
-                        NutritionalManagementFormsData.CurrentWeight
-                    "
-                />
+                <input pInputText type="text" required name="CurrentWeight" class="form-control" [(ngModel)]="
+                        NutritionalManagementFormsData.currentWeight
+                    " />
                 <p class="mb-4">Please include the statement Julie's current weight is.......</p>
             </ng-container>
             <ng-template #CurrentWeight>
                 <label>{{
-                    NutritionalManagementFormsData.CurrentWeight
-                }}</label>
+                    NutritionalManagementFormsData.currentWeight
+                    }}</label>
             </ng-template>
-           
+
         </div>
         <div class="col-md-1 mb-4 mt-4 form-icon">
             <i class="fa-solid fa-info"></i>
@@ -68,26 +63,20 @@
         </div>
         <div class="col-md-7">
             <ng-container *ngIf="isEditable; else CurrentScore">
-                <input
-                    pInputText
-                    type="text"
-                    required
-                    name="CurrentScore"
-                    class="form-control"
-                    [(ngModel)]="
-                        NutritionalManagementFormsData.CurrentScore
-                    "
-                />
-                <p class="mb-4">Please detail the following statement Julie's current MUST score is.... they are scoring for
+                <input pInputText type="text" required name="CurrentScore" class="form-control" [(ngModel)]="
+                        NutritionalManagementFormsData.currentScore
+                    " />
+                <p class="mb-4">Please detail the following statement Julie's current MUST score is.... they are scoring
+                    for
                     BMI of ....
                     and/or weight loss of ......in the last 6mths</p>
             </ng-container>
             <ng-template #CurrentScore>
                 <label>{{
-                    NutritionalManagementFormsData.CurrentScore
-                }}</label>
+                    NutritionalManagementFormsData.currentScore
+                    }}</label>
             </ng-template>
-            
+
         </div>
         <div class="col-md-1  form-icon">
             <i class="fa-solid fa-info"></i>
@@ -99,25 +88,18 @@
         </div>
         <div class="col-md-7">
             <ng-container *ngIf="isEditable; else HighestWeight">
-                <input
-                    pInputText
-                    type="text"
-                    required
-                    name="HighestWeight"
-                    class="form-control"
-                    [(ngModel)]="
-                        NutritionalManagementFormsData.HighestWeight
-                    "
-                />
+                <input pInputText type="text" required name="HighestWeight" class="form-control" [(ngModel)]="
+                        NutritionalManagementFormsData.highestWeight
+                    " />
                 <p class="mb-4">Please include this question in your response, Julie highest weight in the last 6mths
                     is......</p>
             </ng-container>
             <ng-template #HighestWeight>
                 <label>{{
-                    NutritionalManagementFormsData.HighestWeight
-                }}</label>
+                    NutritionalManagementFormsData.highestWeight
+                    }}</label>
             </ng-template>
-            
+
         </div>
         <div class="col-md-1  form-icon">
             <i class="fa-solid fa-info"></i>
@@ -129,27 +111,21 @@
         </div>
         <div class="col-md-7">
             <ng-container *ngIf="isEditable; else NutritionalProblems">
-                <p-dropdown
-                    name="NutritionalProblems"
-                    [(ngModel)]="
-                        NutritionalManagementFormsData.NutritionalProblems
-                    "
-                    [options]="lstNutritionalProblems"
-                    optionLabel="optionName"
-                    optionValue="optionId"
-                    placeholder="--select--"
-                    [style]="{ width: '100%' }"
-                >
+                <p-dropdown name="NutritionalProblems" [(ngModel)]="
+                        NutritionalManagementFormsData.nutritionalProblems
+                    " [options]="lstNutritionalProblems" optionLabel="optionName" optionValue="optionId"
+                    placeholder="--select--" [style]="{ width: '100%' }">
                 </p-dropdown>
-                <p>Indicate factors affecting the resident ability to east and drink or nutritional status. Choose all that
+                <p>Indicate factors affecting the resident ability to east and drink or nutritional status. Choose all
+                    that
                     are applicable and detail further details in the next question</p>
             </ng-container>
             <ng-template #NutritionalProblems>
                 <label>{{
-                    NutritionalManagementFormsData.NutritionalProblemsName
-                }}</label>
+                    NutritionalManagementFormsData.nutritionalProblemsName
+                    }}</label>
             </ng-template>
-            
+
         </div>
         <div class="col-md-1  form-icon">
             <i class="fa-solid fa-info"></i>
@@ -161,26 +137,21 @@
         </div>
         <div class="col-md-7">
             <ng-container *ngIf="isEditable; else NutritionalProblemsDetails">
-                <input
-                    pInputText
-                    type="text"
-                    required
-                    name="NutritionalProblemsDetails"
-                    class="form-control"
+                <input pInputText type="text" required name="NutritionalProblemsDetails" class="form-control"
                     [(ngModel)]="
-                        NutritionalManagementFormsData.NutritionalProblemsDetails
-                    "
-                />
-                <p class="mb-4">If you have chosen any problem above please give further details on how we are managing that
+                        NutritionalManagementFormsData.nutritionalProblemsDetails
+                    " />
+                <p class="mb-4">If you have chosen any problem above please give further details on how we are managing
+                    that
                     problem, for
                     example referral to Speech and language, dentist etc</p>
             </ng-container>
             <ng-template #NutritionalProblemsDetails>
                 <label>{{
-                    NutritionalManagementFormsData.NutritionalProblemsDetails
-                }}</label>
+                    NutritionalManagementFormsData.nutritionalProblemsDetails
+                    }}</label>
             </ng-template>
-            
+
         </div>
         <div class="col-md-1  form-icon">
             <i class="fa-solid fa-info"></i>
@@ -192,26 +163,19 @@
         </div>
         <div class="col-md-7">
             <ng-container *ngIf="isEditable; else NutritionalAims">
-                <p-dropdown
-                    name="NutritionalAims"
-                    [(ngModel)]="
-                        NutritionalManagementFormsData.NutritionalAims
-                    "
-                    [options]="lstNutritionalAims"
-                    optionLabel="optionName"
-                    optionValue="optionId"
-                    placeholder="--select--"
-                    [style]="{ width: '100%' }"
-                >
+                <p-dropdown name="NutritionalAims" [(ngModel)]="
+                        NutritionalManagementFormsData.nutritionalAims
+                    " [options]="lstNutritionalAims" optionLabel="optionName" optionValue="optionId"
+                    placeholder="--select--" [style]="{ width: '100%' }">
                 </p-dropdown>
                 <p class="mb-4">tick those appropriate to the person</p>
             </ng-container>
             <ng-template #NutritionalAims>
                 <label>{{
-                    NutritionalManagementFormsData.NutritionalAimsName
-                }}</label>
+                    NutritionalManagementFormsData.nutritionalAimsName
+                    }}</label>
             </ng-template>
-            
+
         </div>
         <div class="col-md-1  form-icon">
             <i class="fa-solid fa-info"></i>
@@ -223,17 +187,10 @@
         </div>
         <div class="col-md-7">
             <ng-container *ngIf="isEditable; else Interventions">
-                <p-dropdown
-                    name="Interventions"
-                    [(ngModel)]="
-                        NutritionalManagementFormsData.Interventions
-                    "
-                    [options]="lstInterventions"
-                    optionLabel="optionName"
-                    optionValue="optionId"
-                    placeholder="--select--"
-                    [style]="{ width: '100%' }"
-                >
+                <p-dropdown name="Interventions" [(ngModel)]="
+                        NutritionalManagementFormsData.interventions
+                    " [options]="lstInterventions" optionLabel="optionName" optionValue="optionId"
+                    placeholder="--select--" [style]="{ width: '100%' }">
                 </p-dropdown>
                 <p class="mb-4">Please always choose the first 4 options and then choose a minimum of 3-4 of the Dietary
                     interventions.
@@ -241,10 +198,10 @@
             </ng-container>
             <ng-template #Interventions>
                 <label>{{
-                    NutritionalManagementFormsData.InterventionsName
-                }}</label>
+                    NutritionalManagementFormsData.interventionsName
+                    }}</label>
             </ng-template>
-            
+
         </div>
         <div class="col-md-1  form-icon">
             <i class="fa-solid fa-info"></i>
@@ -257,13 +214,14 @@
         <div class="col-md-7">
             <div class="input-group date">
                 <ng-container *ngIf="this.isEditable; else ReviewDate">
-                    <p-calendar name="ReviewDate" [showIcon]="true" inputId="icon" class="iconcal" [(ngModel)]="NutritionalManagementFormsData.ReviewDate"
-                        [readonlyInput]="true" appendTo="body" [maxDate]="" #dobref=""></p-calendar>
+                    <p-calendar name="ReviewDate" [showIcon]="true" inputId="icon" class="iconcal"
+                        [(ngModel)]="NutritionalManagementFormsData.reviewDate" [readonlyInput]="true" appendTo="body"
+                        [maxDate]="" #dobref=""></p-calendar>
                     <div *ngIf="" class="alert alert-danger">
                     </div>
                 </ng-container>
                 <ng-template #ReviewDate>
-                    <label>{{NutritionalManagementFormsData.ReviewDate | date}}</label>
+                    <label>{{NutritionalManagementFormsData.reviewDate | date}}</label>
                 </ng-template>
             </div>
 
@@ -272,37 +230,21 @@
             <ng-container *ngIf="isEditable; else savePdf">
                 <div>
                     <span class="p-ml-left mr-4">
-                        <button
-                            pButton
-                            title="New"
-                            label="Save as Unfinished"
-                            (click)="saveAsUnfinished()"
-                        ></button>
+                        <button pButton title="New" label="Save as Unfinished" (click)="saveAsUnfinished()"></button>
                         <span class="total-txt"></span>
                     </span>
                 </div>
                 <div>
                     <span class="p-ml-left mr-4">
-                        <button
-                            pButton
-                            title="New"
-                            label="Complete"
-                            (click)="completeForm()"
-                            [disabled]="
-                                NutritionalManagementFormsData.IsFormCompleted
-                            "
-                        ></button>
+                        <button pButton title="New" label="Complete" (click)="completeForm()" [disabled]="
+                                NutritionalManagementFormsData.isFormCompleted
+                            "></button>
                         <span class="total-txt"></span>
                     </span>
                 </div>
             </ng-container>
             <ng-template #savePdf>
-                <button
-                    pButton
-                    title="Save as PDF"
-                    label="Save as PDF"
-                    (click)="SaveAsPDF()"
-                ></button>
+                <button pButton title="Save as PDF" label="Save as PDF" (click)="SaveAsPDF()"></button>
             </ng-template>
         </div>
     </div>

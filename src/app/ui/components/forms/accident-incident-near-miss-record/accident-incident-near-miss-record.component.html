@@ -36,14 +36,14 @@
         <div class="col-md-8 mt-4 form-text">
             <div class="input-group date">
                 <ng-container *ngIf="this.isEditable; else DateOfAccident">
-                    <p-calendar name="AccidentNearMissRecordFormsData.DateOfAccident" [showIcon]="true" inputId="icon"
-                        class="iconcal" [(ngModel)]="AccidentNearMissRecordFormsData.DateOfAccident"
+                    <p-calendar name="AccidentNearMissRecordFormsData.dateOfAccident" [showIcon]="true" inputId="icon"
+                        class="iconcal" [(ngModel)]="AccidentNearMissRecordFormsData.dateOfAccident"
                         [readonlyInput]="true" appendTo="body" [maxDate]="" #dobref=""></p-calendar>
                     <div *ngIf="" class="alert alert-danger">
                     </div>
                 </ng-container>
                 <ng-template #DateOfAccident>
-                    <label>{{AccidentNearMissRecordFormsData.DateOfAccident | date}}</label>
+                    <label>{{AccidentNearMissRecordFormsData.dateOfAccident}}</label>
                 </ng-template>
             </div>
         </div>
@@ -55,13 +55,13 @@
         </div>
         <div class="col-md-8 form-text">
             <ng-container *ngIf="this.isEditable; else TimeOfAccident">
-                <input pInputText type="time" [(ngModel)]="AccidentNearMissRecordFormsData.TimeOfAccident" required
+                <input pInputText type="time" [(ngModel)]="AccidentNearMissRecordFormsData.timeOfAccident" required
                     name="AccidentNearMissRecordFormsData.TimeOfAccident" class="form-control mr-4"
                     [style]="{ width: '35%' }">
                 <p class="mb-4">Use 24 hour clock</p>
             </ng-container>
             <ng-template #TimeOfAccident>
-                <label>{{AccidentNearMissRecordFormsData.TimeOfAccident}}</label>
+                <label>{{AccidentNearMissRecordFormsData.timeOfAccident}}</label>
             </ng-template>
         </div>
         <div class="col-md-4 ">
@@ -71,14 +71,14 @@
         </div>
         <div class="col-md-8 form-text">
             <ng-container *ngIf="this.isEditable; else UniqueReferenceId">
-                <input pInputText type="text" [(ngModel)]="AccidentNearMissRecordFormsData.UniqueReferenceId" required
-                    name="AccidentNearMissRecordFormsData.UniqueReferenceId" class="form-control mr-4"
+                <input pInputText type="text" [(ngModel)]="AccidentNearMissRecordFormsData.uniqueReferenceId" required
+                    name="AccidentNearMissRecordFormsData.uniqueReferenceId" class="form-control mr-4"
                     [style]="{ width: '35%' }">
                 <p class="mb-4">Allowed text entry format :"-0123456789"eg:-"75.2"</p>
                 <p class=" mb-4"> Add Reference number example: Incident Date 05/08/2022 at 09:30 Entry = 0508220930</p>
             </ng-container>
             <ng-template #UniqueReferenceId>
-                <label>{{AccidentNearMissRecordFormsData.UniqueReferenceId}}</label>
+                <label>{{AccidentNearMissRecordFormsData.uniqueReferenceId}}</label>
             </ng-template>
         </div>
         <div class="col-md-4">
@@ -89,11 +89,11 @@
         </div>
         <div class="col-md-8 form-text">
             <ng-container *ngIf="this.isEditable; else AccidentStatus">
-                <p-checkbox class="mb-4" [(ngModel)]="AccidentNearMissRecordFormsData.AccidentStatus" [binary]="true"
+                <p-checkbox class="mb-4" [(ngModel)]="AccidentNearMissRecordFormsData.accidentStatus" [binary]="true"
                     inputId="binary"></p-checkbox>
             </ng-container>
             <ng-template #AccidentStatus>
-                <label>{{AccidentNearMissRecordFormsData.AccidentStatus==true?'yes':'no'}}</label>
+                <label>{{AccidentNearMissRecordFormsData.accidentStatus==true?'yes':'no'}}</label>
             </ng-template>
         </div>
 
@@ -106,13 +106,13 @@
         <div class="col-md-8 form-text ">
             <ng-container *ngIf="this.isEditable; else LocationOfAccident">
                 <p-dropdown [required]="true" [options]="lstlocationaccident" optionLabel="optionName"
-                    [(ngModel)]="AccidentNearMissRecordFormsData.LocationOfAccident"
-                    name="AccidentNearMissRecordFormsData.LocationOfAccident" optionValue="optionId"
+                    [(ngModel)]="AccidentNearMissRecordFormsData.locationOfAccident"
+                    name="AccidentNearMissRecordFormsData.locationOfAccident" optionValue="optionId"
                     placeholder="--select--" [style]="{ width: '100%' }">
                 </p-dropdown>
             </ng-container>
             <ng-template #LocationOfAccident>
-                <label>{{AccidentNearMissRecordFormsData.LocationOfAccidentName}}</label>
+                <label>{{AccidentNearMissRecordFormsData.locationOfAccidentName}}</label>
             </ng-template>
         </div>
         <div class="col-md-4">
@@ -124,13 +124,13 @@
         <div class="col-md-8  form-text">
             <ng-container *ngIf="this.isEditable; else AccidentFloorPlace">
                 <p-dropdown [required]="true" [options]="lstAccidentPlace" optionLabel="optionName"
-                    [(ngModel)]="AccidentNearMissRecordFormsData.AccidentFloorPlace"
-                    name="AccidentNearMissRecordFormsData.AccidentFloorPlace" optionValue="optionId"
+                    [(ngModel)]="AccidentNearMissRecordFormsData.accidentFloorPlace"
+                    name="AccidentNearMissRecordFormsData.accidentFloorPlace" optionValue="optionId"
                     placeholder="--select--" [style]="{ width: '100%' }">
                 </p-dropdown>
             </ng-container>
             <ng-template #AccidentFloorPlace>
-                {{AccidentNearMissRecordFormsData.AccidentFloorPlaceName}}
+                {{AccidentNearMissRecordFormsData.accidentFloorPlaceName}}
             </ng-template>
         </div>
         <div class="col-md-4">
@@ -142,13 +142,13 @@
         <div class="col-md-8 form-text">
             <ng-container *ngIf="this.isEditable; else AccidentType">
                 <p-dropdown [required]="true" [options]="lstAccidentType" optionLabel="optionName"
-                    [(ngModel)]="AccidentNearMissRecordFormsData.AccidentType"
-                    name="AccidentNearMissRecordFormsData.AccidentType" optionValue="optionId" placeholder="--select--"
+                    [(ngModel)]="AccidentNearMissRecordFormsData.accidentType"
+                    name="AccidentNearMissRecordFormsData.accidentType" optionValue="optionId" placeholder="--select--"
                     [style]="{ width: '100%' }">
                 </p-dropdown>
             </ng-container>
             <ng-template #AccidentType>
-                <label>{{AccidentNearMissRecordFormsData.AccidentTypeName}}</label>
+                <label>{{AccidentNearMissRecordFormsData.accidentTypeName}}</label>
             </ng-template>
         </div>
         <div class="col-md-4">
@@ -159,12 +159,12 @@
         </div>
         <div class="col-md-8 form-text">
             <ng-container *ngIf="this.isEditable; else AccidentDesc">
-                <input pInputText type="text" [(ngModel)]="AccidentNearMissRecordFormsData.AccidentDesc" required
-                    name="AccidentNearMissRecordFormsData.AccidentDesc" class="form-control" />
+                <input pInputText type="text" [(ngModel)]="AccidentNearMissRecordFormsData.accidentDesc" required
+                    name="AccidentNearMissRecordFormsData.accidentDesc" class="form-control" />
                 <p class="mb-4">Remain factual and include any contributory factors</p>
             </ng-container>
             <ng-template #AccidentDesc>
-                <label>{{AccidentNearMissRecordFormsData.AccidentDesc}}</label>
+                <label>{{AccidentNearMissRecordFormsData.accidentDesc}}</label>
             </ng-template>
         </div>
         <div class="col-md-4">
@@ -175,8 +175,8 @@
         </div>
         <div class="col-md-8 form-text">
             <ng-container *ngIf="this.isEditable; else SituationDescBeforeAccident">
-                <input pInputText type="text" [(ngModel)]="AccidentNearMissRecordFormsData.SituationDescBeforeAccident"
-                    required name="AccidentNearMissRecordFormsData.SituationDescBeforeAccident" class="form-control" />
+                <input pInputText type="text" [(ngModel)]="AccidentNearMissRecordFormsData.situationDescBeforeAccident"
+                    required name="AccidentNearMissRecordFormsData.situationDescBeforeAccident" class="form-control" />
                 <p class="mb-4">What happened immediately before. Location. Did the person complain of dizziness,
                     light-headedness,
                     altered vision. Do they usually have assistance to walk or transfer. How is this support given. Give
@@ -185,7 +185,7 @@
                 </p>
             </ng-container>
             <ng-template #SituationDescBeforeAccident>
-                <label>{{AccidentNearMissRecordFormsData.SituationDescBeforeAccident}}</label>
+                <label>{{AccidentNearMissRecordFormsData.situationDescBeforeAccident}}</label>
             </ng-template>
         </div>
         <div class="col-md-4">
@@ -197,13 +197,13 @@
         <div class="col-md-8 form-text">
             <ng-container *ngIf="this.isEditable; else DirectionOfPersonFallWithBodyPartHit">
                 <input pInputText type="text"
-                    [(ngModel)]="AccidentNearMissRecordFormsData.DirectionOfPersonFallWithBodyPartHit" required
-                    name="AccidentNearMissRecordFormsData.DirectionOfPersonFallWithBodyPartHit" class="form-control" />
+                    [(ngModel)]="AccidentNearMissRecordFormsData.directionOfPersonFallWithBodyPartHit" required
+                    name="AccidentNearMissRecordFormsData.directionOfPersonFallWithBodyPartHit" class="form-control" />
                 <p class="mb-4">Please detail the location of the injury with as much detail as possible
                 </p>
             </ng-container>
             <ng-template #DirectionOfPersonFallWithBodyPartHit>
-                <label>{{AccidentNearMissRecordFormsData.DirectionOfPersonFallWithBodyPartHit}}</label>
+                <label>{{AccidentNearMissRecordFormsData.directionOfPersonFallWithBodyPartHit}}</label>
             </ng-template>
         </div>
         <div class="col-md-4">
@@ -214,13 +214,13 @@
         <div class="col-md-8 form-text">
             <ng-container *ngIf="this.isEditable; else InjuriesSustained">
                 <p-dropdown [required]="true" [options]="lstInjurySustained" optionLabel="optionName"
-                    [(ngModel)]="AccidentNearMissRecordFormsData.InjuriesSustained"
-                    name="AccidentNearMissRecordFormsData.InjuriesSustained" optionValue="optionId"
+                    [(ngModel)]="AccidentNearMissRecordFormsData.injuriesSustained"
+                    name="AccidentNearMissRecordFormsData.injuriesSustained" optionValue="optionId"
                     placeholder="--select--" [style]="{ width: '100%' }">
                 </p-dropdown>
             </ng-container>
             <ng-template #InjuriesSustained>
-                <label>{{AccidentNearMissRecordFormsData.InjuriesSustainedName}}</label>
+                <label>{{AccidentNearMissRecordFormsData.injuriesSustainedName}}</label>
             </ng-template>
         </div>
         <div class="col-md-4">
@@ -232,11 +232,11 @@
         <div class="col-md-8 form-text">
             <ng-container *ngIf="this.isEditable; else TreatmentDescWithNameOfPerson">
                 <input pInputText type="text"
-                    [(ngModel)]="AccidentNearMissRecordFormsData.TreatmentDescWithNameOfPerson" required
-                    name="AccidentNearMissRecordFormsData.TreatmentDescWithNameOfPerson" class="form-control" />
+                    [(ngModel)]="AccidentNearMissRecordFormsData.treatmentDescWithNameOfPerson" required
+                    name="AccidentNearMissRecordFormsData.treatmentDescWithNameOfPerson" class="form-control" />
             </ng-container>
             <ng-template #TreatmentDescWithNameOfPerson>
-                <label>{{AccidentNearMissRecordFormsData.TreatmentDescWithNameOfPerson}}</label>
+                <label>{{AccidentNearMissRecordFormsData.treatmentDescWithNameOfPerson}}</label>
             </ng-template>
         </div>
         <div class="col-md-4">
@@ -248,12 +248,12 @@
         <div class="col-md-8 form-text">
             <ng-container *ngIf="this.isEditable; else JobRole">
                 <p-dropdown [required]="true" [options]="lstJobRole" optionLabel="optionName"
-                    [(ngModel)]="AccidentNearMissRecordFormsData.JobRole" name="AccidentNearMissRecordFormsData.JobRole"
+                    [(ngModel)]="AccidentNearMissRecordFormsData.jobRole" name="AccidentNearMissRecordFormsData.jobRole"
                     optionValue="optionId" placeholder="--select--" [style]="{ width: '100%' }">
                 </p-dropdown>
             </ng-container>
             <ng-template #JobRole>
-                <label>{{AccidentNearMissRecordFormsData.JobRoleName}}</label>
+                <label>{{AccidentNearMissRecordFormsData.jobRoleName}}</label>
             </ng-template>
         </div>
         <div class="col-md-4">
@@ -264,13 +264,13 @@
         </div>
         <div class="col-md-8 form-text">
             <ng-container *ngIf="this.isEditable; else Equipment">
-                <input pInputText type="text" [(ngModel)]="AccidentNearMissRecordFormsData.Equipment" required
-                    name="AccidentNearMissRecordFormsData.Equipment" class="form-control" />
+                <input pInputText type="text" [(ngModel)]="AccidentNearMissRecordFormsData.equipment" required
+                    name="AccidentNearMissRecordFormsData.equipment" class="form-control" />
                 <p class="mb-4">Please detail any equipment involved in the accident/incident - where/what etc
                 </p>
             </ng-container>
             <ng-template #Equipment>
-                <label>{{AccidentNearMissRecordFormsData.Equipment}}</label>
+                <label>{{AccidentNearMissRecordFormsData.equipment}}</label>
             </ng-template>
         </div>
         <div class="col-md-4">
@@ -281,12 +281,12 @@
         </div>
         <div class="col-md-8 form-text">
             <ng-container *ngIf="this.isEditable; else AssessedBy">
-                <input pInputText type="text" [(ngModel)]="AccidentNearMissRecordFormsData.AssessedBy" required
-                    name="AccidentNearMissRecordFormsData.AssessedBy" class="form-control" />
+                <input pInputText type="text" [(ngModel)]="AccidentNearMissRecordFormsData.assessedBy" required
+                    name="AccidentNearMissRecordFormsData.assessedBy" class="form-control" />
                 <p class="mb-4">State Name, time, date</p>
             </ng-container>
             <ng-template #AssessedBy>
-                <label>{{AccidentNearMissRecordFormsData.AssessedBy}}</label>
+                <label>{{AccidentNearMissRecordFormsData.assessedBy}}</label>
             </ng-template>
         </div>
         <div class="col-md-4">
@@ -297,14 +297,14 @@
         <div class="col-md-8 form-text">
             <ng-container *ngIf="this.isEditable; else EmergencyServices">
                 <p-dropdown [required]="true" [options]="lstEmergencyServices" optionLabel="optionName"
-                    [(ngModel)]="AccidentNearMissRecordFormsData.EmergencyServices"
-                    name="AccidentNearMissRecordFormsData.EmergencyServices" optionValue="optionId"
+                    [(ngModel)]="AccidentNearMissRecordFormsData.emergencyServices"
+                    name="AccidentNearMissRecordFormsData.emergencyServices" optionValue="optionId"
                     placeholder="--select--" [style]="{ width: '100%' }">
                 </p-dropdown>
             </ng-container>
             <ng-template #EmergencyServices>
                 <label>
-                    {{AccidentNearMissRecordFormsData.EmergencyServicesName}}
+                    {{AccidentNearMissRecordFormsData.emergencyServicesName}}
                 </label>
             </ng-template>
         </div>
@@ -315,14 +315,15 @@
         </div>
         <div class="col-md-8 form-text ">
             <ng-container *ngIf="this.isEditable; else EmergencyServicesContacted ">
-                <input pInputText type="text" required name="chartheadname" class="form-control" [(ngModel)]="AccidentNearMissRecordFormsData.EmergencyServicesContacted" />
+                <input pInputText type="text" required name="chartheadname" class="form-control"
+                    [(ngModel)]="AccidentNearMissRecordFormsData.emergencyServicesContacted" />
                 <p>please detail who contacted the emergency services and when, note any crime
                     number given</p>
             </ng-container>
 
             <ng-template #EmergencyServicesContacted>
                 <label>
-                    {{AccidentNearMissRecordFormsData.EmergencyServicesContacted}}
+                    {{AccidentNearMissRecordFormsData.emergencyServicesContacted}}
                 </label>
             </ng-template>
         </div>
@@ -333,15 +334,15 @@
         </div>
         <div class="col-md-8 form-text">
             <ng-container *ngIf="this.isEditable; else OtherProfessionalsContacted">
-                <input pInputText type="text" [(ngModel)]="AccidentNearMissRecordFormsData.OtherProfessionalsContacted"
-                    required name="AccidentNearMissRecordFormsData.OtherProfessionalsContacted" class="form-control" />
+                <input pInputText type="text" [(ngModel)]="AccidentNearMissRecordFormsData.otherProfessionalsContacted"
+                    required name="AccidentNearMissRecordFormsData.otherProfessionalsContacted" class="form-control" />
                 <p class="mb-4">Please include any referrals made to professionals such as District Nurse, GP, Advanced
                     Nurse
                     Practitioner
                 </p>
             </ng-container>
             <ng-template #OtherProfessionalsContacted>
-                <label>{{AccidentNearMissRecordFormsData.OtherProfessionalsContacted}}</label>
+                <label>{{AccidentNearMissRecordFormsData.otherProfessionalsContacted}}</label>
             </ng-template>
         </div>
         <div class="col-md-4">
@@ -352,13 +353,13 @@
         </div>
         <div class="col-md-8 form-text">
             <ng-container *ngIf="this.isEditable; else InjuredPersonObservation">
-                <input pInputText type="text" [(ngModel)]="AccidentNearMissRecordFormsData.InjuredPersonObservation"
-                    required name="AccidentNearMissRecordFormsData.InjuredPersonObservation" class="form-control" />
+                <input pInputText type="text" [(ngModel)]="AccidentNearMissRecordFormsData.injuredPersonObservation"
+                    required name="AccidentNearMissRecordFormsData.injuredPersonObservation" class="form-control" />
                 <p class="mb-4">Include Date and times, e.g. was the person checked regularly throughout the night
                 </p>
             </ng-container>
             <ng-template #InjuredPersonObservation>
-                <label>{{AccidentNearMissRecordFormsData.InjuredPersonObservation}}</label>
+                <label>{{AccidentNearMissRecordFormsData.injuredPersonObservation}}</label>
             </ng-template>
         </div>
         <div class="col-md-4">
@@ -368,12 +369,12 @@
         </div>
         <div class="col-md-8 form-text ">
             <ng-container *ngIf="this.isEditable; else WitnessName">
-                <input pInputText type="text" [(ngModel)]="AccidentNearMissRecordFormsData.WitnessName" required
-                    name="AccidentNearMissRecordFormsData.WitnessName" class="form-control" />
+                <input pInputText type="text" [(ngModel)]="AccidentNearMissRecordFormsData.witnessName" required
+                    name="AccidentNearMissRecordFormsData.witnessName" class="form-control" />
                 <p class="mb-4">Personal / company address, telephone number</p>
             </ng-container>
             <ng-template #WitnessName>
-                <label>{{AccidentNearMissRecordFormsData.WitnessName}}</label>
+                <label>{{AccidentNearMissRecordFormsData.witnessName}}</label>
             </ng-template>
         </div>
         <div class="col-md-4">
@@ -384,13 +385,13 @@
         </div>
         <div class="col-md-8 form-text">
             <ng-container *ngIf="this.isEditable; else ServiceManagerDetails">
-                <input pInputText type="text" [(ngModel)]="AccidentNearMissRecordFormsData.ServiceManagerDetails"
-                    required name="AccidentNearMissRecordFormsData.ServiceManagerDetails" class="form-control" />
+                <input pInputText type="text" [(ngModel)]="AccidentNearMissRecordFormsData.serviceManagerDetails"
+                    required name="AccidentNearMissRecordFormsData.serviceManagerDetails" class="form-control" />
                 <p class="mb-4">Contact name, date & time
                 </p>
             </ng-container>
             <ng-template #ServiceManagerDetails>
-                <label>{{AccidentNearMissRecordFormsData.ServiceManagerDetails}}</label>
+                <label>{{AccidentNearMissRecordFormsData.serviceManagerDetails}}</label>
             </ng-template>
         </div>
         <div class="col-md-4">
@@ -400,13 +401,13 @@
         </div>
         <div class="col-md-8 form-text">
             <ng-container *ngIf="this.isEditable; else RelativeInformed">
-                <input pInputText type="text" [(ngModel)]="AccidentNearMissRecordFormsData.RelativeInformed" required
-                    name="AccidentNearMissRecordFormsData.RelativeInformed" class="form-control" />
+                <input pInputText type="text" [(ngModel)]="AccidentNearMissRecordFormsData.relativeInformed" required
+                    name="AccidentNearMissRecordFormsData.relativeInformed" class="form-control" />
                 <p class="mb-4">Contact name, date & time
                 </p>
             </ng-container>
             <ng-template #RelativeInformed>
-                <label>{{AccidentNearMissRecordFormsData.RelativeInformed}}</label>
+                <label>{{AccidentNearMissRecordFormsData.relativeInformed}}</label>
             </ng-template>
         </div>
         <div class="col-md-4">
@@ -417,12 +418,12 @@
         </div>
         <div class="col-md-8 form-text">
             <ng-container *ngIf="this.isEditable; else OtherContacts">
-                <input pInputText type="text" [(ngModel)]="AccidentNearMissRecordFormsData.OtherContacts" required
-                    name="AccidentNearMissRecordFormsData.OtherContacts" class="form-control" />
+                <input pInputText type="text" [(ngModel)]="AccidentNearMissRecordFormsData.otherContacts" required
+                    name="AccidentNearMissRecordFormsData.otherContacts" class="form-control" />
                 <p class="mb-4">include date & time</p>
             </ng-container>
             <ng-template #OtherContacts>
-                <label>{{AccidentNearMissRecordFormsData.OtherContacts}}</label>
+                <label>{{AccidentNearMissRecordFormsData.otherContacts}}</label>
             </ng-template>
         </div>
         <div class="col-md-4 implabel">
@@ -431,12 +432,12 @@
             </div>
         </div>
         <div class="col-md-8 form-text mb-2">
-            <ng-container *ngIf="this.isEditable; else FallsRiskAssessmentStatus">
-                <p-checkbox [(ngModel)]="AccidentNearMissRecordFormsData.FallsRiskAssessmentStatus" [binary]="true"
+            <ng-container *ngIf="this.isEditable; else fallsRiskAssessmentStatus">
+                <p-checkbox [(ngModel)]="AccidentNearMissRecordFormsData.fallsRiskAssessmentStatus" [binary]="true"
                     inputId="binary"></p-checkbox>
             </ng-container>
-            <ng-template #FallsRiskAssessmentStatus>
-                <label>{{AccidentNearMissRecordFormsData.FallsRiskAssessmentStatus==true?'yes':'no'}}</label>
+            <ng-template #fallsRiskAssessmentStatus>
+                <label>{{AccidentNearMissRecordFormsData.fallsRiskAssessmentStatus==true?'yes':'no'}}</label>
             </ng-template>
         </div>
 
@@ -447,16 +448,16 @@
             </div>
         </div>
         <div class="col-md-8 form-text">
-            <ng-container *ngIf="this.isEditable; else QualifiedAssessor">
+            <ng-container *ngIf="this.isEditable; else qualifiedAssessor">
                 <p-dropdown [required]="true" [options]="lstQualifiedAssessor" optionLabel="optionName"
-                    [(ngModel)]="AccidentNearMissRecordFormsData.QualifiedAssessor"
-                    name="AccidentNearMissRecordFormsData.QualifiedAssessor" optionValue="optionId"
+                    [(ngModel)]="AccidentNearMissRecordFormsData.qualifiedAssessor"
+                    name="AccidentNearMissRecordFormsData.qualifiedAssessor" optionValue="optionId"
                     placeholder="--select--" [style]="{ width: '100%' }">
                 </p-dropdown>
             </ng-container>
-            <ng-template #QualifiedAssessor>
+            <ng-template #qualifiedAssessor>
                 <label>
-                    {{AccidentNearMissRecordFormsData.QualifiedAssessorName}}
+                    {{AccidentNearMissRecordFormsData.qualifiedAssessorName}}
                 </label>
             </ng-template>
         </div>
@@ -467,16 +468,16 @@
             </div>
         </div>
         <div class="col-md-8 form-text">
-            <ng-container *ngIf="this.isEditable; else SecondarySurvay">
+            <ng-container *ngIf="this.isEditable; else secondarySurvay">
                 <p-dropdown [required]="true" [options]="lstSecondarySurvay" optionLabel="optionName"
-                    [(ngModel)]="AccidentNearMissRecordFormsData.SecondarySurvay"
+                    [(ngModel)]="AccidentNearMissRecordFormsData.secondarySurvay"
                     name="AccidentNearMissRecordFormsData.SecondarySurvay" optionValue="optionId"
                     placeholder="--select--" [style]="{ width: '100%' }">
                 </p-dropdown>
             </ng-container>
-            <ng-template #SecondarySurvay>
+            <ng-template #secondarySurvay>
                 <label>
-                    {{AccidentNearMissRecordFormsData.SecondarySurvayName}}
+                    {{AccidentNearMissRecordFormsData.secondarySurvayName}}
                 </label>
             </ng-template>
         </div>

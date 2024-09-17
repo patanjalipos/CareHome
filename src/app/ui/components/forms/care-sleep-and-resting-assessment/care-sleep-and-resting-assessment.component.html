@@ -10,7 +10,8 @@
                     <label class="form-label"><b>Designation :</b>{{preSelectedFormData.StartedByDesignation}} </label>
                 </div>
                 <div class="col-md-4">
-                    <label class="form-label"> <b>Date/Time : </b>{{preSelectedFormData.StartedOn | date : customDateFormat.DEF_DATE_TIME}}</label>
+                    <label class="form-label"> <b>Date/Time : </b>{{preSelectedFormData.StartedOn | date :
+                        customDateFormat.DEF_DATE_TIME}}</label>
                 </div>
             </div>
             <div class="d-flex">
@@ -22,7 +23,8 @@
                     <label class="form-label"> <b>Designation :</b>{{preSelectedFormData.ModifiedByDesignation}}</label>
                 </div>
                 <div class="col-md-4">
-                    <label class="form-label"> <b>Date/Time :</b> {{preSelectedFormData.ModifiedOn | date: customDateFormat.DEF_DATE_TIME}}</label>
+                    <label class="form-label"> <b>Date/Time :</b> {{preSelectedFormData.ModifiedOn | date:
+                        customDateFormat.DEF_DATE_TIME}}</label>
                 </div>
             </div>
         </div>
@@ -34,11 +36,14 @@
         </div>
         <div class="col-md-7 mt-4">
             <ng-container *ngIf="this.isEditable; else Capacity">
-                <p-dropdown [required]="true" [options]="lstCapacity"   optionLabel="optionName" [(ngModel)]="CareAssessmentSleepAndRestFormsData.Capacity" name="CareAssessmentSleepAndRestFormsData.Capacity" optionValue="optionId" placeholder="--select--" [style]="{ width: '100%' }">
+                <p-dropdown [required]="true" [options]="lstCapacity" optionLabel="optionName"
+                    [(ngModel)]="CareAssessmentSleepAndRestFormsData.capacity"
+                    name="CareAssessmentSleepAndRestFormsData.Capacity" optionValue="optionId" placeholder="--select--"
+                    [style]="{ width: '100%' }">
                 </p-dropdown>
             </ng-container>
             <ng-template #Capacity>
-                <label>{{CareAssessmentSleepAndRestFormsData.CapacityName}}</label>
+                <label>{{CareAssessmentSleepAndRestFormsData.capacityName}}</label>
             </ng-template>
         </div>
         <div class="col-md-1 form-icon mt-4">
@@ -51,16 +56,18 @@
         </div>
         <div class="col-md-7 form-text">
             <ng-container *ngIf="this.isEditable; else SpecificDecisionDetails">
-                <input pInputText type="text" [(ngModel)]="CareAssessmentSleepAndRestFormsData.SpecificDecisionDetails" required name="CareAssessmentSleepAndRestFormsData.SpecificDecisionDetails" class="form-control mr-4"
-                    [style]="{ width: '100%' }">
-                    <p class="mb-4">Only answer if the resident lacks capacity, If the resident is using equipment to aid sleep
-                        consider
-                        consent form, R/A / MCA / BID / DOLs Include sleeping system (position, equipment)</p>
+                <input pInputText type="text" [(ngModel)]="CareAssessmentSleepAndRestFormsData.specificDecisionDetails"
+                    required name="CareAssessmentSleepAndRestFormsData.SpecificDecisionDetails"
+                    class="form-control mr-4" [style]="{ width: '100%' }">
+                <p class="mb-4">Only answer if the resident lacks capacity, If the resident is using equipment to aid
+                    sleep
+                    consider
+                    consent form, R/A / MCA / BID / DOLs Include sleeping system (position, equipment)</p>
             </ng-container>
             <ng-template #SpecificDecisionDetails>
-                <label>{{CareAssessmentSleepAndRestFormsData.SpecificDecisionDetails}}</label>
+                <label>{{CareAssessmentSleepAndRestFormsData.specificDecisionDetails}}</label>
             </ng-template>
-            
+
         </div>
         <div class="col-md-1 form-icon">
             <i class="fa-solid fa-info"></i>
@@ -72,11 +79,14 @@
         </div>
         <div class="col-md-7">
             <ng-container *ngIf="this.isEditable; else TroubleSleeping">
-                <p-dropdown [required]="true" [options]="lstTroubleSleeping"   optionLabel="optionName" [(ngModel)]="CareAssessmentSleepAndRestFormsData.TroubleSleeping" name="CareAssessmentSleepAndRestFormsData.TroubleSleeping" optionValue="optionId" placeholder="--select--" [style]="{ width: '100%' }">
+                <p-dropdown [required]="true" [options]="lstTroubleSleeping" optionLabel="optionName"
+                    [(ngModel)]="CareAssessmentSleepAndRestFormsData.troubleSleeping"
+                    name="CareAssessmentSleepAndRestFormsData.TroubleSleeping" optionValue="optionId"
+                    placeholder="--select--" [style]="{ width: '100%' }">
                 </p-dropdown>
             </ng-container>
             <ng-template #TroubleSleeping>
-                <label>{{CareAssessmentSleepAndRestFormsData.TroubleSleepingName}}</label>
+                <label>{{CareAssessmentSleepAndRestFormsData.troubleSleepingName}}</label>
             </ng-template>
         </div>
         <div class="col-md-1 form-icon">
@@ -89,11 +99,14 @@
         </div>
         <div class="col-md-7">
             <ng-container *ngIf="this.isEditable; else SleepAssistance">
-                <p-dropdown [required]="true" [options]="lstSleepAssistance"   optionLabel="optionName" [(ngModel)]="CareAssessmentSleepAndRestFormsData.SleepAssistance" name="CareAssessmentSleepAndRestFormsData.SleepAssistance" optionValue="optionId" placeholder="--select--" [style]="{ width: '100%' }">
+                <p-dropdown [required]="true" [options]="lstSleepAssistance" optionLabel="optionName"
+                    [(ngModel)]="CareAssessmentSleepAndRestFormsData.sleepAssistance"
+                    name="CareAssessmentSleepAndRestFormsData.SleepAssistance" optionValue="optionId"
+                    placeholder="--select--" [style]="{ width: '100%' }">
                 </p-dropdown>
             </ng-container>
             <ng-template #SleepAssistance>
-                <label>{{CareAssessmentSleepAndRestFormsData.SleepAssistanceName}}</label>
+                <label>{{CareAssessmentSleepAndRestFormsData.sleepAssistanceName}}</label>
             </ng-template>
         </div>
         <div class="col-md-1 form-icon">
@@ -106,12 +119,15 @@
         </div>
         <div class="col-md-7 form-text">
             <ng-container *ngIf="this.isEditable; else SleepBackAssistance">
-                <p-dropdown [required]="true" [options]="lstSleepBackAssistance"   optionLabel="optionName" [(ngModel)]="CareAssessmentSleepAndRestFormsData.SleepBackAssistance" name="CareAssessmentSleepAndRestFormsData.SleepBackAssistance" optionValue="optionId" placeholder="--select--" [style]="{ width: '100%' }">
+                <p-dropdown [required]="true" [options]="lstSleepBackAssistance" optionLabel="optionName"
+                    [(ngModel)]="CareAssessmentSleepAndRestFormsData.sleepBackAssistance"
+                    name="CareAssessmentSleepAndRestFormsData.SleepBackAssistance" optionValue="optionId"
+                    placeholder="--select--" [style]="{ width: '100%' }">
                 </p-dropdown>
                 <p class="mb-4">i.e. if disturbed</p>
             </ng-container>
             <ng-template #SleepBackAssistance>
-                <label>{{CareAssessmentSleepAndRestFormsData.SleepBackAssistanceName}}</label>
+                <label>{{CareAssessmentSleepAndRestFormsData.sleepBackAssistanceName}}</label>
             </ng-template>
         </div>
         <div class="col-md-1 form-icon">
@@ -124,11 +140,14 @@
         </div>
         <div class="col-md-7">
             <ng-container *ngIf="this.isEditable; else NightAssistance">
-                <p-dropdown [required]="true" [options]="lstNightAssistance"   optionLabel="optionName" [(ngModel)]="CareAssessmentSleepAndRestFormsData.NightAssistance" name="CareAssessmentSleepAndRestFormsData.NightAssistance" optionValue="optionId" placeholder="--select--" [style]="{ width: '100%' }">
+                <p-dropdown [required]="true" [options]="lstNightAssistance" optionLabel="optionName"
+                    [(ngModel)]="CareAssessmentSleepAndRestFormsData.nightAssistance"
+                    name="CareAssessmentSleepAndRestFormsData.NightAssistance" optionValue="optionId"
+                    placeholder="--select--" [style]="{ width: '100%' }">
                 </p-dropdown>
             </ng-container>
             <ng-template #NightAssistance>
-                <label>{{CareAssessmentSleepAndRestFormsData.NightAssistanceName}}</label>
+                <label>{{CareAssessmentSleepAndRestFormsData.nightAssistanceName}}</label>
             </ng-template>
         </div>
         <div class="col-md-1 form-icon">
@@ -141,11 +160,12 @@
         </div>
         <div class="col-md-7 form-text">
             <ng-container *ngIf="this.isEditable; else PatternRepositioning">
-                <input pInputText type="text" [(ngModel)]="CareAssessmentSleepAndRestFormsData.PatternRepositioning" required name="CareAssessmentSleepAndRestFormsData.PatternRepositioning" class="form-control mr-4"
+                <input pInputText type="text" [(ngModel)]="CareAssessmentSleepAndRestFormsData.patternRepositioning"
+                    required name="CareAssessmentSleepAndRestFormsData.PatternRepositioning" class="form-control mr-4"
                     [style]="{ width: '100%' }">
             </ng-container>
             <ng-template #PatternRepositioning>
-                <label>{{CareAssessmentSleepAndRestFormsData.PatternRepositioning}}</label>
+                <label>{{CareAssessmentSleepAndRestFormsData.patternRepositioning}}</label>
             </ng-template>
         </div>
         <div class="col-md-1 form-icon">
@@ -158,14 +178,15 @@
         </div>
         <div class="col-md-7 form-text">
             <ng-container *ngIf="this.isEditable; else PreBedtimeRoutine">
-                <input pInputText type="text" [(ngModel)]="CareAssessmentSleepAndRestFormsData.PreBedtimeRoutine" required name="CareAssessmentSleepAndRestFormsData.PreBedtimeRoutine" class="form-control mr-4"
+                <input pInputText type="text" [(ngModel)]="CareAssessmentSleepAndRestFormsData.preBedtimeRoutine"
+                    required name="CareAssessmentSleepAndRestFormsData.PreBedtimeRoutine" class="form-control mr-4"
                     [style]="{ width: '100%' }">
-                    <p class="mb-4">Preferred bedtime, TV, chat, read etc.</p>
-                </ng-container>
-                <ng-template #PreBedtimeRoutine>
-                    <label>{{CareAssessmentSleepAndRestFormsData.PreBedtimeRoutine}}</label>
-                </ng-template>
-                
+                <p class="mb-4">Preferred bedtime, TV, chat, read etc.</p>
+            </ng-container>
+            <ng-template #PreBedtimeRoutine>
+                <label>{{CareAssessmentSleepAndRestFormsData.preBedtimeRoutine}}</label>
+            </ng-template>
+
         </div>
         <div class="col-md-1 form-icon">
             <i class="fa-solid fa-info"></i>
@@ -177,16 +198,17 @@
         </div>
         <div class="col-md-7 form-text">
             <ng-container *ngIf="this.isEditable; else Naps">
-                <input pInputText type="text" [(ngModel)]="CareAssessmentSleepAndRestFormsData.Naps" required name="CareAssessmentSleepAndRestFormsData.Naps" class="form-control mr-4"
+                <input pInputText type="text" [(ngModel)]="CareAssessmentSleepAndRestFormsData.naps" required
+                    name="CareAssessmentSleepAndRestFormsData.Naps" class="form-control mr-4"
                     [style]="{ width: '100%' }">
-                    <p class="mb-4">Describe afternoon routine / pattern. Include professional advice e.g. lies on bed in
-                        afternoon to
-                        relieve pressure</p>
-                </ng-container>
-                <ng-template #Naps>
-                    <label>{{CareAssessmentSleepAndRestFormsData.Naps}}</label>
-                </ng-template>
-           
+                <p class="mb-4">Describe afternoon routine / pattern. Include professional advice e.g. lies on bed in
+                    afternoon to
+                    relieve pressure</p>
+            </ng-container>
+            <ng-template #Naps>
+                <label>{{CareAssessmentSleepAndRestFormsData.naps}}</label>
+            </ng-template>
+
         </div>
         <div class="col-md-1 form-icon">
             <i class="fa-solid fa-info"></i>
@@ -198,14 +220,15 @@
         </div>
         <div class="col-md-7 form-text">
             <ng-container *ngIf="this.isEditable; else MorningRoutine">
-                <input pInputText type="text" [(ngModel)]="CareAssessmentSleepAndRestFormsData.MorningRoutine" required name="CareAssessmentSleepAndRestFormsData.MorningRoutine" class="form-control mr-4"
+                <input pInputText type="text" [(ngModel)]="CareAssessmentSleepAndRestFormsData.morningRoutine" required
+                    name="CareAssessmentSleepAndRestFormsData.MorningRoutine" class="form-control mr-4"
                     [style]="{ width: '100%' }">
-                    <p class="mb-4">Preferred time to get up, tea in bed, chat, watch TV, read</p>
-                </ng-container>
-                <ng-template #MorningRoutine>
-                    <label>{{CareAssessmentSleepAndRestFormsData.MorningRoutine}}</label>
-                </ng-template>
-            
+                <p class="mb-4">Preferred time to get up, tea in bed, chat, watch TV, read</p>
+            </ng-container>
+            <ng-template #MorningRoutine>
+                <label>{{CareAssessmentSleepAndRestFormsData.morningRoutine}}</label>
+            </ng-template>
+
         </div>
         <div class="col-md-1 form-icon">
             <i class="fa-solid fa-info"></i>
@@ -217,11 +240,14 @@
         </div>
         <div class="col-md-7">
             <ng-container *ngIf="this.isEditable; else GoalsToAchieve">
-                <p-dropdown [required]="true" [options]="lstGoalsToAchieve"   optionLabel="optionName" [(ngModel)]="CareAssessmentSleepAndRestFormsData.GoalsToAchieve" name="CareAssessmentSleepAndRestFormsData.GoalsToAchieve" optionValue="optionId" placeholder="--select--" [style]="{ width: '100%' }">
+                <p-dropdown [required]="true" [options]="lstGoalsToAchieve" optionLabel="optionName"
+                    [(ngModel)]="CareAssessmentSleepAndRestFormsData.goalsToAchieve"
+                    name="CareAssessmentSleepAndRestFormsData.GoalsToAchieve" optionValue="optionId"
+                    placeholder="--select--" [style]="{ width: '100%' }">
                 </p-dropdown>
             </ng-container>
             <ng-template #GoalsToAchieve>
-                <label>{{CareAssessmentSleepAndRestFormsData.GoalsToAchieveName}}</label>
+                <label>{{CareAssessmentSleepAndRestFormsData.goalsToAchieveName}}</label>
             </ng-template>
         </div>
         <div class="col-md-1 form-icon">
@@ -234,12 +260,13 @@
         </div>
         <div class="col-md-7">
             <ng-container *ngIf="this.isEditable; else PersonalSpecificGoal">
-                <input pInputText type="text" [(ngModel)]="CareAssessmentSleepAndRestFormsData.PersonalSpecificGoal" required name="CareAssessmentSleepAndRestFormsData.PersonalSpecificGoal" class="form-control mr-4"
+                <input pInputText type="text" [(ngModel)]="CareAssessmentSleepAndRestFormsData.personalSpecificGoal"
+                    required name="CareAssessmentSleepAndRestFormsData.PersonalSpecificGoal" class="form-control mr-4"
                     [style]="{ width: '100%' }">
-                </ng-container>
-                <ng-template #PersonalSpecificGoal>
-                    <label>{{CareAssessmentSleepAndRestFormsData.PersonalSpecificGoal}}</label>
-                </ng-template>
+            </ng-container>
+            <ng-template #PersonalSpecificGoal>
+                <label>{{CareAssessmentSleepAndRestFormsData.personalSpecificGoal}}</label>
+            </ng-template>
         </div>
         <div class="col-md-1 form-icon">
             <i class="fa-solid fa-info"></i>
@@ -251,11 +278,14 @@
         </div>
         <div class="col-md-7">
             <ng-container *ngIf="this.isEditable; else StrategyToManageCheck">
-                <p-dropdown [required]="true" [options]="lstStrategyToManageCheck"   optionLabel="optionName" [(ngModel)]="CareAssessmentSleepAndRestFormsData.StrategyToManageCheck" name="CareAssessmentSleepAndRestFormsData.StrategyToManageCheck" optionValue="optionId" placeholder="--select--" [style]="{ width: '100%' }">
+                <p-dropdown [required]="true" [options]="lstStrategyToManageCheck" optionLabel="optionName"
+                    [(ngModel)]="CareAssessmentSleepAndRestFormsData.strategyToManageCheck"
+                    name="CareAssessmentSleepAndRestFormsData.StrategyToManageCheck" optionValue="optionId"
+                    placeholder="--select--" [style]="{ width: '100%' }">
                 </p-dropdown>
             </ng-container>
             <ng-template #StrategyToManageCheck>
-                <label>{{CareAssessmentSleepAndRestFormsData.StrategyToManageCheckName}}</label>
+                <label>{{CareAssessmentSleepAndRestFormsData.strategyToManageCheckName}}</label>
             </ng-template>
         </div>
         <div class="col-md-1 form-icon">
@@ -268,12 +298,13 @@
         </div>
         <div class="col-md-7">
             <ng-container *ngIf="this.isEditable; else AdditionalInfo">
-                <input pInputText type="text" [(ngModel)]="CareAssessmentSleepAndRestFormsData.AdditionalInfo" required name="CareAssessmentSleepAndRestFormsData.AdditionalInfo" class="form-control mr-4"
+                <input pInputText type="text" [(ngModel)]="CareAssessmentSleepAndRestFormsData.additionalInfo" required
+                    name="CareAssessmentSleepAndRestFormsData.AdditionalInfo" class="form-control mr-4"
                     [style]="{ width: '100%' }">
-                </ng-container>
-                <ng-template #AdditionalInfo>
-                    <label>{{CareAssessmentSleepAndRestFormsData.AdditionalInfo}}</label>
-                </ng-template>
+            </ng-container>
+            <ng-template #AdditionalInfo>
+                <label>{{CareAssessmentSleepAndRestFormsData.additionalInfo}}</label>
+            </ng-template>
         </div>
         <div class="col-md-1 form-icon">
             <i class="fa-solid fa-info"></i>
@@ -285,13 +316,14 @@
         </div>
         <div class="col-md-7 form-text">
             <ng-container *ngIf="this.isEditable; else OtherIdentifiedRisks">
-                <input pInputText type="text" [(ngModel)]="CareAssessmentSleepAndRestFormsData.OtherIdentifiedRisks" required name="CareAssessmentSleepAndRestFormsData.OtherIdentifiedRisks" class="form-control mr-4"
+                <input pInputText type="text" [(ngModel)]="CareAssessmentSleepAndRestFormsData.otherIdentifiedRisks"
+                    required name="CareAssessmentSleepAndRestFormsData.OtherIdentifiedRisks" class="form-control mr-4"
                     [style]="{ width: '100%' }">
-                    <p class="mb-4">Specify any other risks that have not been identified above</p>
-                </ng-container>
-                <ng-template #OtherIdentifiedRisks>
-                    <label>{{CareAssessmentSleepAndRestFormsData.OtherIdentifiedRisks}}</label>
-                </ng-template>
+                <p class="mb-4">Specify any other risks that have not been identified above</p>
+            </ng-container>
+            <ng-template #OtherIdentifiedRisks>
+                <label>{{CareAssessmentSleepAndRestFormsData.otherIdentifiedRisks}}</label>
+            </ng-template>
         </div>
         <div class="col-md-1 form-icon">
             <i class="fa-solid fa-info"></i>
@@ -304,12 +336,14 @@
 
         <div class="col-md-7 form-text">
             <ng-container *ngIf="this.isEditable; else ActionToManageAdditionalRisk">
-                <input pInputText type="text" [(ngModel)]="CareAssessmentSleepAndRestFormsData.ActionToManageAdditionalRisk" required name="CareAssessmentSleepAndRestFormsData.ActionToManageAdditionalRisk" class="form-control "
+                <input pInputText type="text"
+                    [(ngModel)]="CareAssessmentSleepAndRestFormsData.actionToManageAdditionalRisk" required
+                    name="CareAssessmentSleepAndRestFormsData.ActionToManageAdditionalRisk" class="form-control "
                     [style]="{ width: '100%' }">
-                </ng-container>
-                <ng-template #ActionToManageAdditionalRisk>
-                    <label>{{CareAssessmentSleepAndRestFormsData.ActionToManageAdditionalRisk}}</label>
-                </ng-template>
+            </ng-container>
+            <ng-template #ActionToManageAdditionalRisk>
+                <label>{{CareAssessmentSleepAndRestFormsData.actionToManageAdditionalRisk}}</label>
+            </ng-template>
         </div>
         <div class="col-md-1 form-icon">
             <i class="fa-solid fa-info"></i>
@@ -322,12 +356,14 @@
 
         <div class="col-md-7 form-text">
             <ng-container *ngIf="this.isEditable; else MonthlyReview">
-                <p-checkbox class="mb-4" [(ngModel)]="CareAssessmentSleepAndRestFormsData.MonthlyReview" [binary]="true" inputId="binary"></p-checkbox>
-                <p class="mb-4">This form should be reviewed EVERY MONTH or before if there are significant changes. Enter review date
+                <p-checkbox class="mb-4" [(ngModel)]="CareAssessmentSleepAndRestFormsData.monthlyReview" [binary]="true"
+                    inputId="binary"></p-checkbox>
+                <p class="mb-4">This form should be reviewed EVERY MONTH or before if there are significant changes.
+                    Enter review date
                     below.</p>
             </ng-container>
             <ng-template #MonthlyReview>
-                <label>{{CareAssessmentSleepAndRestFormsData.MonthlyReview==true?'yes':'no'}}</label>
+                <label>{{CareAssessmentSleepAndRestFormsData.monthlyReview==true?'yes':'no'}}</label>
             </ng-template>
 
         </div>
@@ -339,13 +375,14 @@
         <div class="col-md-7">
             <div class="input-group date">
                 <ng-container *ngIf="this.isEditable; else ReviewDate">
-                    <p-calendar name="CareAssessmentSleepAndRestFormsData.ReviewDate" [showIcon]="true" inputId="icon" class="iconcal" [(ngModel)]="CareAssessmentSleepAndRestFormsData.ReviewDate"
+                    <p-calendar name="CareAssessmentSleepAndRestFormsData.reviewDate" [showIcon]="true" inputId="icon"
+                        class="iconcal" [(ngModel)]="CareAssessmentSleepAndRestFormsData.reviewDate"
                         [readonlyInput]="true" appendTo="body" [maxDate]="" #dobref=""></p-calendar>
                     <div *ngIf="" class="alert alert-danger">
                     </div>
                 </ng-container>
                 <ng-template #ReviewDate>
-                    <label>{{CareAssessmentSleepAndRestFormsData.ReviewDate | date}}</label>
+                    <label>{{CareAssessmentSleepAndRestFormsData.reviewDate | date}}</label>
                 </ng-template>
             </div>
         </div>
@@ -353,37 +390,21 @@
             <ng-container *ngIf="isEditable; else savePdf">
                 <div>
                     <span class="p-ml-left mr-4">
-                        <button
-                            pButton
-                            title="New"
-                            label="Save as Unfinished"
-                            (click)="saveAsUnfinished()"
-                        ></button>
+                        <button pButton title="New" label="Save as Unfinished" (click)="saveAsUnfinished()"></button>
                         <span class="total-txt"></span>
                     </span>
                 </div>
                 <div>
                     <span class="p-ml-left mr-4">
-                        <button
-                            pButton
-                            title="New"
-                            label="Complete"
-                            (click)="completeForm()"
-                            [disabled]="
-                                CareAssessmentSleepAndRestFormsData.IsFormCompleted
-                            "
-                        ></button>
+                        <button pButton title="New" label="Complete" (click)="completeForm()" [disabled]="
+                                CareAssessmentSleepAndRestFormsData.isFormCompleted
+                            "></button>
                         <span class="total-txt"></span>
                     </span>
                 </div>
             </ng-container>
             <ng-template #savePdf>
-                <button
-                    pButton
-                    title="Save as PDF"
-                    label="Save as PDF"
-                    (click)="SaveAsPDF()"
-                ></button>
+                <button pButton title="Save as PDF" label="Save as PDF" (click)="SaveAsPDF()"></button>
             </ng-template>
         </div>
     </div>

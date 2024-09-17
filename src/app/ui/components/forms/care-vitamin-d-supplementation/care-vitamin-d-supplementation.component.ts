@@ -25,8 +25,7 @@ import { UserService } from 'src/app/ui/service/user.service';
 })
 export class CareVitaminDSupplementationComponent
     extends AppComponentBase
-    implements OnInit
-{
+    implements OnInit {
     @Input() preSelectedFormData: any = <any>{};
     @Output() EmitUpdateForm: EventEmitter<any> = new EventEmitter<any>();
 
@@ -36,7 +35,7 @@ export class CareVitaminDSupplementationComponent
     //Form which is selected to edit or view
     isEditable: boolean;
     //Need to be passed from form Dashboard
-    StatementType: string = null;
+    statementType: string = null;
 
     //Patient Details
     userId: any;
@@ -75,7 +74,7 @@ export class CareVitaminDSupplementationComponent
             this.GetSelectedFormDetails(
                 this.preSelectedFormData.selectedFormID
             );
-            this.StatementType = 'Update';
+            this.statementType = 'Update';
         } else {
             this.ResetModel();
         }
@@ -125,21 +124,21 @@ export class CareVitaminDSupplementationComponent
                 this.preSelectedFormData.selectedFormID
             );
 
-            this.StatementType = 'Update';
+            this.statementType = 'Update';
         } else {
             this.ResetModel();
         }
     }
 
-    SaveAsPDF() {}
+    SaveAsPDF() { }
 
     saveAsUnfinished() {
-        this.CareVitaminDSupplementationFormData.IsFormCompleted = false;
+        this.CareVitaminDSupplementationFormData.isFormCompleted = false;
         this.Save();
     }
 
     completeForm() {
-        this.CareVitaminDSupplementationFormData.IsFormCompleted = true;
+        this.CareVitaminDSupplementationFormData.isFormCompleted = true;
         this.Save();
     }
 
@@ -162,7 +161,7 @@ export class CareVitaminDSupplementationComponent
                 catchError((error) => {
                     this._UtilityService.hideSpinner();
                     this._UtilityService.showErrorAlert(error.message);
-                  
+
                     return of([]); // Returning empty array in case of error
                 })
             );
@@ -196,15 +195,15 @@ export class CareVitaminDSupplementationComponent
             this.residentAdmissionInfoId != null &&
             this.loginId != null
         ) {
-            this.CareVitaminDSupplementationFormData.UserId = this.userId;
-            this.CareVitaminDSupplementationFormData.ResidentAdmissionInfoId =
+            this.CareVitaminDSupplementationFormData.userId = this.userId;
+            this.CareVitaminDSupplementationFormData.residentAdmissionInfoId =
                 this.residentAdmissionInfoId;
-            this.CareVitaminDSupplementationFormData.StartedBy = this.loginId;
-            this.CareVitaminDSupplementationFormData.ModifiedBy = this.loginId;
+            this.CareVitaminDSupplementationFormData.startedBy = this.loginId;
+            this.CareVitaminDSupplementationFormData.modifiedBy = this.loginId;
 
             const objectBody: any = {
-                StatementType: this.StatementType,
-                CareVitaminDSupplementationForm:
+                statementType: this.statementType,
+                careVitaminDSupplementationForm:
                     this.CareVitaminDSupplementationFormData,
             };
 
@@ -239,6 +238,6 @@ export class CareVitaminDSupplementationComponent
     ResetModel() {
         this.isEditable = true;
         this.CareVitaminDSupplementationFormData = <any>{};
-        this.StatementType = 'Insert';
+        this.statementType = 'Insert';
     }
 }
