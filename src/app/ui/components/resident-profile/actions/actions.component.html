@@ -11,7 +11,7 @@
                 label="Create a new action schedule"></button>
         </div>
 
-        <p-table #dt [value]="data" responsiveLayout="scroll" class="mt-2" styleClass="p-datatable-striped"
+        <p-table #dt [value]="BodyMappingActionData" responsiveLayout="scroll" class="mt-2" styleClass="p-datatable-striped"
             [rowHover]="true" [scrollable]="true" scrollHeight="calc(100vh - 155px)" [paginator]="true" [rows]="5">
             <ng-template pTemplate="emptymessage" let-columns>
                 <tr>
@@ -21,30 +21,62 @@
             <ng-template pTemplate="header">
                 <tr>
                     <th pSortableColumn="">Action</th>
-                    <th>Assigned User</th>
+                    <th *ngIf="actionPage == 'Completed'">Completed By</th>
+                    <th *ngIf="actionPage == 'Completed'">Completed Date</th>
+                    <th *ngIf="actionPage == 'Completed'">Reason for not required</th>
+                    <th *ngIf="actionPage == 'Completed'">Completed after due date reason</th>
+                    <th *ngIf="actionPage != 'Completed'">Assigned User</th>
                     <th>Due Date</th>
+                    <th *ngIf="actionPage != 'Completed' && actionPage != 'Upcoming'"></th>
+                    <th *ngIf="actionPage == 'Completed'">Status</th>
                 </tr>
             </ng-template>
             <ng-template pTemplate="body" let-dt let-i="rowIndex">
                 <tr>
-                    <td>{{dt.action}}</td>
-                    <td>{{dt.assignedUser}}</td>
-                    <td>{{dt.dueDate}}</td>
+                    <td><a type="button" class="text-primary" (click)="openForm(dt)">{{dt.ActionName}}</a></td>
+
+                    <!-- <td *ngIf="actionPage == 'Completed'">{{dt.NotRequiredReason || dt.CompletionAfterDueDateReason ? dt.AssignedUserName : dt.LastEnteredByName}}</td> -->
+                    <td *ngIf="actionPage == 'Completed'">
+                        {{ (dt.NotRequiredReason || dt.CompletionAfterDueDateReason) && dt.AssignedUserName ? dt.AssignedUserName : dt.LastEnteredByName }}
+                    </td>
+
+                    <td *ngIf="actionPage == 'Completed'">{{dt.CompletionDate | date}}</td>
+
+                    <td *ngIf="actionPage == 'Completed'">{{dt.NotRequiredReason}}</td>
+
+                    <td *ngIf="actionPage == 'Completed'">{{dt.CompletionAfterDueDateReason}}</td>
+
+                    <td *ngIf="actionPage != 'Completed'">{{dt.AssignedUserName}}</td>
+
+                    <td>{{dt.Date | date}}</td>
+
+                    <td *ngIf="actionPage != 'Completed' && actionPage != 'Upcoming'"><i *ngIf="dt.PrioritiseStatus" class="fa-regular fa-flag ms-5 fa-2x" style="color: red;"></i></td>
+
+                    <td class="bold" [ngClass]="{
+                        'text-info':dt.NotRequiredReason != null,
+                        'text-success':dt.NotRequiredReason == null
+                    }" *ngIf="actionPage == 'Completed'">
+                        {{ dt.NotRequiredReason != null ? 'Not Required' : 'Completed' }}
+                    </td>
+
                 </tr>
             </ng-template>
         </p-table>
 
-        <!-- <div *ngIf="" class="card flex justify-content-center">
-            <p-dialog [closable]="true" header="Action this alert" [(visible)]="isShowActionTakenPopup" [modal]="true"
+        <app-body-mapping-record (EmitUpdateForm)="EmitUpdateForm($event)" [preSelectedFormData]="selectedFormData" *ngIf="
+        ShowChildComponent == true &&
+        selectedFormMasterId == FormTypes.BodyMappingRecord
+    "></app-body-mapping-record>
+        <div *ngIf="isShowActionTakenPopup" class="card flex justify-content-center">
+            <p-dialog [closable]="false" [header]="dialogHeader" [(visible)]="isShowActionTakenPopup" [modal]="true"
                 [breakpoints]="{ '1199px': '75vw', '575px': '90vw' }" [style]="{ width: '40vw' }" [draggable]="false"
                 [resizable]="false">
                 <div *ngIf="isShowActionTakenPopup">
 
-                    <app-action-taken-popup [ActionTakenData]="ActionTakenData" (ActionTakenCheck)="Changes($event)"
-                        (EmitUpdateAlert)="AlertChanges($event)"></app-action-taken-popup>
+                    <app-action-tab-list-popup (EmitUpdatePopup)="PopupStatus($event)" (EmitEditPopup)="EditPopup($event)" [ActionTakenData]="selectedFormData"></app-action-tab-list-popup>
                 </div>
             </p-dialog>
-        </div> -->
+        </div>
 
     </div>
 </div>

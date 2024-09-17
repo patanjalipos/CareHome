@@ -9,6 +9,8 @@ import { ButtonModule } from 'primeng/button';
 import { DialogModule } from 'primeng/dialog';
 import { TableModule } from 'primeng/table';
 import { ActionTakenPopupModule } from '../action-taken-popup/action-taken-popup.module';
+import { BodyMappingRecordModule } from "../../forms/body-mapping-record/body-mapping-record.module";
+import { ActionTabListPopupModule } from "../action-tab-list-popup/action-tab-list-popup.module";
 
 
 @NgModule({
@@ -21,8 +23,10 @@ import { ActionTakenPopupModule } from '../action-taken-popup/action-taken-popup
     TableModule,
     ButtonModule,
     DialogModule,
-    ActionTakenPopupModule
-  ],
+    ActionTakenPopupModule,
+    BodyMappingRecordModule,
+    ActionTabListPopupModule
+],
   exports:[ActionsComponent]
 })
 export class ActionsModule { }
