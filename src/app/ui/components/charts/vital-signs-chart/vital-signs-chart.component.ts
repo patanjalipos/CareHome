@@ -190,7 +190,7 @@ GetVitalSignsChartDetails(chartId: string) {
           next: (data) => {
               this._UtilityService.hideSpinner();
               if (data.actionResult.success == true) {
-                  var tdata = JSON.parse(data.actionResult.result);
+                var tdata = data.actionResult.result;
                   tdata = tdata ? tdata : {};
                   this.VitalSignsChartData = tdata;
                   this.openAndClose();
@@ -339,7 +339,7 @@ getChartDataById(chartId: any, selectedChartId: any, selectedStartedOn: any, res
           next: (data) => {
               this._UtilityService.hideSpinner();
               if (data.actionResult.success == true) {
-                  var tdata = JSON.parse(data.actionResult.result);
+                var tdata = data.actionResult.result;
                   tdata = tdata ? tdata : [];
                   this.VitalSignsChartLst = tdata;
                   if (this.VitalSignsChartLst.length < 3 || (((this.VitalSignsChartLst.length) * (this.pageNumber + 1)) >= this.VitalSignsChartLst[0].countRecords)) {

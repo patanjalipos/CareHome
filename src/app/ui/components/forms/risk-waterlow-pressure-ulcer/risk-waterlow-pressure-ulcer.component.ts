@@ -118,7 +118,7 @@ export class RiskWaterlowPressureUlcerComponent extends AppComponentBase impleme
         next: (data) => {
           this._UtilityService.hideSpinner();
           if (data.actionResult.success == true) {
-            var tdata = JSON.parse(data.actionResult.result);
+          var tdata = data.actionResult.result;
             tdata = tdata ? tdata : {};
             this.RiskAssessmentWaterFlowPressureFormsData = tdata;
             this.RiskAssessmentWaterFlowPressureFormsData.nextReviewDate = new Date(this.RiskAssessmentWaterFlowPressureFormsData.nextReviewDate);

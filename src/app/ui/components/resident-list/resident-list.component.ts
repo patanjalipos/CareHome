@@ -97,7 +97,7 @@ export class ResidentListComponent extends AppComponentBase implements OnInit {
       next:(data) => {
         this._UtilityService.hideSpinner();          
         if (data.actionResult.success == true) {
-          var tdata = JSON.parse(data.actionResult.result);
+        var tdata = data.actionResult.result;
           tdata = tdata ? tdata : [];
         //  this.lstResidentMaster = tdata;          
               this.lstResidentMaster = tdata.map(resident => {

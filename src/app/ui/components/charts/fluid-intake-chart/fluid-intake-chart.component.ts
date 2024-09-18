@@ -247,7 +247,7 @@ export class FluidIntakeChartComponent extends AppComponentBase implements OnIni
         next: (data) => {
           this._UtilityService.hideSpinner();
           if (data.actionResult.success == true) {
-            var tdata = JSON.parse(data.actionResult.result);
+          var tdata = data.actionResult.result;
             tdata = tdata ? tdata : [];
             this.FluidIntakeChartsLst = tdata;
             if (this.FluidIntakeChartsLst.length < 3 || (((this.FluidIntakeChartsLst.length) * (this.pageNumber + 1)) >= this.FluidIntakeChartsLst[0].countRecords)) {

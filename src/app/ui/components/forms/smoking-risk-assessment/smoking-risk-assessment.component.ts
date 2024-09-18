@@ -159,7 +159,7 @@ export class SmokingRiskAssessmentComponent extends AppComponentBase implements 
         next: (data) => {
           this._UtilityService.hideSpinner();
           if (data.actionResult.success == true) {
-            var tdata = JSON.parse(data.actionResult.result);
+          var tdata = data.actionResult.result;
             tdata = tdata ? tdata : {};
 
           

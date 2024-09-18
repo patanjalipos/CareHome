@@ -105,7 +105,7 @@ export class GpDoctorVisitCommunicationRecordComponent extends AppComponentBase 
         next: (data) => {
           this._UtilityService.hideSpinner();
           if (data.actionResult.success == true) {
-            var tdata = JSON.parse(data.actionResult.result);
+          var tdata = data.actionResult.result;
             tdata = tdata ? tdata : {};
             this.GPDoctorVisitCommDetails = tdata;
             this.GPDoctorVisitCommDetails.dateOfGPCommunication = new Date(this.GPDoctorVisitCommDetails.dateOfGPCommunication);
