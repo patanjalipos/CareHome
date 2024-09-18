@@ -1,18 +1,27 @@
-<div class="row mt-4">
-    <div class="col-md-9">
-        <button pButton type="button" label="Summary Care plan" class="mr-2"
-            (click)="showData('SummaryCarePlan')"></button>
-        <button pButton type="button" label="Extended Care plan" class="mr-2"
-            (click)="showData('ExtendedCarePlan')"></button>
-        <button pButton type="button" label="Evaluate" class="mr-2" (click)="showData('Evaluate')"></button>
-    </div>
-    <div class="col-md-3">
+<div class="bg-white mt-3 p-2 col-md-12 d-flex justify-content-between">
+
+    <ul class="nav nav-tabs" id="myTab" role="tablist">
+        <li class="nav-item" role="presentation">
+            <button type="button" class="nav-link" [ngClass]="{'active': isSummaryCarePlan}"
+                (click)="showData('SummaryCarePlan')">Summary Care plan</button>
+        </li>
+        <li class="nav-item" role="presentation">
+            <button type="button" class="nav-link" [ngClass]="{'active': isExtendedCarePlan}"
+                (click)="showData('ExtendedCarePlan')">Extended Care
+                plan</button>
+        </li>
+        <li class="nav-item" role="presentation">
+            <button type="button" class="nav-link" [ngClass]="{'active': isEvaluate}"
+                (click)="showData('Evaluate')">Evaluate</button>
+        </li>
+
+    </ul>
+
+    <div class="col-md-2">
         <button pButton type="button" label="Download" class="btn mr-2"></button>
         <button pButton type="button" label="Print View" class="btn"></button>
     </div>
 </div>
-
-
 
 <div *ngIf="isEvaluate">
     <div class="row mt-5">
@@ -21,10 +30,15 @@
         </div>
     </div>
     <p-accordion [multiple]="true">
-        <p-accordionTab header="Evaluate Care Plan">
-            <p>
-                Lorem ipsum dolor sit amet...
-            </p>
+        <p-accordionTab>
+            <p-header class="w-100">
+                <div class="acc-tab">
+                    <span>Evaluate Care Plan</span>
+                    <div *ngIf="isEvaluate">
+                        <button pButton type="button" label="Evaluate" class="btn mr-2"></button>
+                    </div>
+                </div>
+            </p-header>
         </p-accordionTab>
     </p-accordion>
 </div>
@@ -112,61 +126,120 @@
 
     <div class="row note mt-1" *ngIf="isExtendedCarePlan||isEvaluate">
         <p-accordion [multiple]="true">
-            <p-accordionTab header="My Infection Prevention and Control Support Plan">
-                <p>
-                    Lorem ipsum dolor sit amet...
-                </p>
+            <p-accordionTab>
+                <p-header class="w-100">
+                    <div class="acc-tab">
+                        <span>My Infection Prevention and control Support Plan</span>
+                        <div *ngIf="isEvaluate">
+                            <button pButton type="button" label="Evaluate" class="btn mr-2"></button>
+                        </div>
+                    </div>
+                </p-header>
             </p-accordionTab>
-            <p-accordionTab header="My Maintaining a Safe Environment Support Plan">
-                <p>
-                    Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium...
-                </p>
+
+            <p-accordionTab>
+                <p-header class="w-100">
+                    <div class="acc-tab">
+                        <span>My Maintaining a Safe Environment Support Plan</span>
+                        <div *ngIf="isEvaluate">
+                            <button pButton type="button" label="Evaluate" (click)="showPopup()" class="btn mr-2"></button>
+                        </div>
+                    </div>
+                </p-header>
             </p-accordionTab>
-            <p-accordionTab header="My Medication, Healthcare, Treatment and Management Support Plan">
-                <p>
-                    At vero eos et accusamus et iusto odio dignissimos...
-                </p>
+            <p-accordionTab>
+                <p-header class="w-100">
+                    <div class="acc-tab">
+                        <span>My Medication, Healthcare, Treatment and Management Support Plan</span>
+                        <div *ngIf="isEvaluate">
+                            <button pButton type="button" label="Evaluate" class="btn mr-2"></button>
+                        </div>
+                    </div>
+                </p-header>
             </p-accordionTab>
-            <p-accordionTab header="My on the move and falls Risk Awareness Support Plan">
-                <p>
-                    At vero eos et accusamus et iusto odio dignissimos...
-                </p>
+            <p-accordionTab>
+                <p-header class="w-100">
+                    <div class="acc-tab">
+                        <span>My on the move and falls Risk Awareness Support Plan</span>
+                        <div *ngIf="isEvaluate">
+                            <button pButton type="button" label="Evaluate" class="btn mr-2"></button>
+                        </div>
+                    </div>
+                </p-header>
             </p-accordionTab>
-            <p-accordionTab header="My Communicatin Support Plan">
-                <p>
-                    At vero eos et accusamus et iusto odio dignissimos...
-                </p>
+            <p-accordionTab>
+                <p-header class="w-100">
+                    <div class="acc-tab">
+                        <span>My Communicatin Support Plan</span>
+                        <div *ngIf="isEvaluate">
+                            <button pButton type="button" label="Evaluate" class="btn mr-2"></button>
+                        </div>
+                    </div>
+                </p-header>
             </p-accordionTab>
-            <p-accordionTab header="My Personal care and Projection of self image,oral care,foot Support Plan">
-                <p>
-                    At vero eos et accusamus et iusto odio dignissimos...
-                </p>
+            <p-accordionTab>
+
+                <p-header class="w-100">
+                    <div class="acc-tab">
+                        <span>My Personal care and Projection of self image,oral care,foot Support Plan</span>
+                        <div *ngIf="isEvaluate">
+                            <button pButton type="button" label="Evaluate" class="btn mr-2"></button>
+                        </div>
+                    </div>
+                </p-header>
             </p-accordionTab>
-            <p-accordionTab header="My Skin care Support Plan">
-                <p>
-                    At vero eos et accusamus et iusto odio dignissimos...
-                </p>
+            <p-accordionTab>
+                <p-header class="w-100">
+                    <div class="acc-tab">
+                        <span>My Skin care Support Plan</span>
+                        <div *ngIf="isEvaluate">
+                            <button pButton type="button" label="Evaluate" class="btn mr-2"></button>
+                        </div>
+                    </div>
+                </p-header>
             </p-accordionTab>
-            <p-accordionTab header="My Nutrition and Hydration Support Plan">
-                <p>
-                    At vero eos et accusamus et iusto odio dignissimos...
-                </p>
+            <p-accordionTab>
+                <p-header class="w-100">
+                    <div class="acc-tab">
+                        <span>My Nutrition and Hydration Support Plan</span>
+                        <div *ngIf="isEvaluate">
+                            <button pButton type="button" label="Evaluate" class="btn mr-2"></button>
+                        </div>
+                    </div>
+                </p-header>
             </p-accordionTab>
-            <p-accordionTab header="My Mental health and well being support plan">
-                <p>
-                    At vero eos et accusamus et iusto odio dignissimos...
-                </p>
+            <p-accordionTab>
+                <p-header class="w-100">
+                    <div class="acc-tab">
+                        <span>My Mental health and well being support plan</span>
+                        <div *ngIf="isEvaluate">
+                            <button pButton type="button" label="Evaluate" class="btn mr-2"></button>
+                        </div>
+                    </div>
+                </p-header>
             </p-accordionTab>
-            <p-accordionTab header="My Activities and intersts,community inclusion and cultural support plan">
-                <p>
-                    At vero eos et accusamus et iusto odio dignissimos...
-                </p>
+            <p-accordionTab>
+                <p-header class="w-100">
+                    <div class="acc-tab">
+                        <span>My Activities and intersts,community inclusion and cultural support plan</span>
+                        <div *ngIf="isEvaluate">
+                            <button pButton type="button" label="Evaluate" class="btn mr-2"></button>
+                        </div>
+                    </div>
+                </p-header>
             </p-accordionTab>
-            <p-accordionTab header="Care plan detail">
-                <p>
-                    At vero eos et accusamus et iusto odio dignissimos...
-                </p>
+            <p-accordionTab>
+                <p-header class="w-100">
+                    <div class="acc-tab">
+                        <span>Care plan detail</span>
+                        <div *ngIf="isEvaluate">
+                            <button pButton type="button" label="Evaluate" class="btn mr-2"></button>
+                        </div>
+                    </div>
+                </p-header>
             </p-accordionTab>
         </p-accordion>
     </div>
 </div>
+
+<!-- <app-care-plan-popup></app-care-plan-popup> -->
