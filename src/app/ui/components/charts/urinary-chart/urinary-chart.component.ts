@@ -181,7 +181,7 @@ GetUrinaryChartDetails(chartId: string) {
           next: (data) => {
               this._UtilityService.hideSpinner();
               if (data.actionResult.success == true) {
-                  var tdata = JSON.parse(data.actionResult.result);
+                var tdata = data.actionResult.result;
                   tdata = tdata ? tdata : {};
                   this.UrinaryChartData = tdata;
                   this.openAndClose();
@@ -331,7 +331,7 @@ getChartDataById(chartId: any, selectedChartId: any, selectedStartedOn: any, res
           next: (data) => {
               this._UtilityService.hideSpinner();
               if (data.actionResult.success == true) {
-                  var tdata = JSON.parse(data.actionResult.result);
+                var tdata = data.actionResult.result;
                   tdata = tdata ? tdata : [];
                   this.UrinaryChartLst = tdata;
                   if (this.UrinaryChartLst.length < 3 || (((this.UrinaryChartLst.length) * (this.pageNumber + 1)) >= this.UrinaryChartLst[0].countRecords)) {

@@ -255,7 +255,7 @@ export class PreAdmissionAssessmentFormsComponent
                 next: (data) => {
                     this._UtilityService.hideSpinner();
                     if (data.actionResult.success == true) {
-                        var tdata = JSON.parse(data.actionResult.result);
+                      var tdata = data.actionResult.result;
                         tdata = tdata ? tdata : {};
                         this.PreAdmissionAssessmentFormsData = tdata;
                     } else {

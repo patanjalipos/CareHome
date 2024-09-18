@@ -113,7 +113,7 @@ export class BloodTestRecordComponent
                 next: (data) => {
                     this._UtilityService.hideSpinner();
                     if (data.actionResult.success == true) {
-                        var tdata = JSON.parse(data.actionResult.result);
+                      var tdata = data.actionResult.result;
                         tdata = tdata ? tdata : {};
                         this.BloodTestFormData = tdata;
                         this.BloodTestFormData.dateTaken = this._datePipe.transform(this.BloodTestFormData.dateTaken,'yyyy-MM-dd');

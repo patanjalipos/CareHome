@@ -203,7 +203,7 @@ GetWeightChartDetails(chartId: string) {
           next: (data) => {
               this._UtilityService.hideSpinner();
               if (data.actionResult.success == true) {
-                  var tdata = JSON.parse(data.actionResult.result);
+                var tdata = data.actionResult.result;
                   tdata = tdata ? tdata : {};
                   this.WeightChartData = tdata;
                   this.openAndClose();
@@ -355,7 +355,7 @@ getChartDataById(chartId: any, selectedChartId: any, selectedStartedOn: any, res
           next: (data) => {
               this._UtilityService.hideSpinner();
               if (data.actionResult.success == true) {
-                  var tdata = JSON.parse(data.actionResult.result);
+                var tdata = data.actionResult.result;
                   tdata = tdata ? tdata : [];
                   this.WeightChartsLst = tdata;
                   if (this.WeightChartsLst.length < 3 || (((this.WeightChartsLst.length) * (this.pageNumber + 1)) >= this.WeightChartsLst[0].countRecords)) {

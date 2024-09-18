@@ -177,7 +177,7 @@ export class CareOralAndDentalComponent
                 next: (data) => {
                     this._UtilityService.hideSpinner();
                     if (data.actionResult.success == true) {
-                        var tdata = JSON.parse(data.actionResult.result);
+                      var tdata = data.actionResult.result;
                         tdata = tdata ? tdata : {};
                         this.CareOralAndDentalFormData = tdata;
                         this.CareOralAndDentalFormData.nextReviewDate = new Date(this.CareOralAndDentalFormData.nextReviewDate);

@@ -345,7 +345,7 @@ export class GlasgowComaScaleChartComponent extends AppComponentBase implements 
         next: (data) => {
           this._UtilityService.hideSpinner();
           if (data.actionResult.success == true) {
-            var tdata = JSON.parse(data.actionResult.result);
+          var tdata = data.actionResult.result;
             tdata = tdata ? tdata : [];
             this.glasgowComaScaleChartLst = tdata;
             if (this.glasgowComaScaleChartLst.length < 3 || (((this.glasgowComaScaleChartLst.length) * (this.pageNumber + 1)) >= this.glasgowComaScaleChartLst[0].countRecords)) {

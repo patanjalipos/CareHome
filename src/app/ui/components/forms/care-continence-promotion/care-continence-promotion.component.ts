@@ -147,7 +147,7 @@ export class CareContinencePromotionComponent
                 next: (data) => {
                     this._UtilityService.hideSpinner();
                     if (data.actionResult.success == true) {
-                        var tdata = JSON.parse(data.actionResult.result);
+                      var tdata = data.actionResult.result;
                         tdata = tdata ? tdata : {};
                         this.CareContinencePromotionFormsData = tdata;
                         this.CareContinencePromotionFormsData.nextReviewDate = new Date(this.datePipe.transform(this.CareContinencePromotionFormsData.nextReviewDate, 'yyyy-MM-dd'));

@@ -358,7 +358,7 @@ export class ResidentProfileComponent extends AppComponentBase implements OnInit
           if (data.actionResult.success == true) {
 
             this.alertCount = data.actionResult.value;
-            var tdata = JSON.parse(data.actionResult.result);
+          var tdata = data.actionResult.result;
             tdata = tdata ? tdata : [];
             this.ResidentMaster = tdata;
             if (this.ResidentMaster.ProfileImage != undefined && this.ResidentMaster.ProfileImage != null && this.ResidentMaster.ProfileImage != '') {

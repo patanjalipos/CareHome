@@ -115,7 +115,7 @@ export class CareEatsAndTreatsComponent extends AppComponentBase implements OnIn
             next: (data) => {
                 this._UtilityService.hideSpinner();
                 if (data.actionResult.success == true) {
-                    var tdata = JSON.parse(data.actionResult.result);
+                  var tdata = data.actionResult.result;
                     tdata = tdata ? tdata : {};
                     this.CareAssessmentEatsAndDrinksFormsData = tdata;
                     this.CareAssessmentEatsAndDrinksFormsData.nextReviewDate = new Date(this.CareAssessmentEatsAndDrinksFormsData.nextReviewDate);

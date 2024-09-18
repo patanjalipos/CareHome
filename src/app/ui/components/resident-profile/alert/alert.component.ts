@@ -165,7 +165,7 @@ export class AlertComponent extends AppComponentBase implements OnInit {
                 next: (data) => {
                     this._UtilityService.hideSpinner();
                     if (data.actionResult.success == true) {
-                        var tdata = JSON.parse(data.actionResult.result);
+                      var tdata = data.actionResult.result;
                         //console.log(tdata);
                         tdata = tdata ? tdata : [];
                         this.lstAlertMaster = tdata;
@@ -198,7 +198,7 @@ export class AlertComponent extends AppComponentBase implements OnInit {
                 next: (data) => {
                     this._UtilityService.hideSpinner();
                     if (data.actionResult.success == true) {
-                        var tdata = JSON.parse(data.actionResult.result);
+                      var tdata = data.actionResult.result;
                         tdata = tdata ? tdata : [];
                         this.AlertList = tdata;
                     }
@@ -248,7 +248,7 @@ export class AlertComponent extends AppComponentBase implements OnInit {
                 next: (data) => {
                     this._UtilityService.hideSpinner();
                     if (data.actionResult.success == true) {
-                        var tdata = JSON.parse(data.actionResult.result);
+                      var tdata = data.actionResult.result;
                         tdata = tdata ? tdata : [];
                         this.AlertList = tdata;
                     }

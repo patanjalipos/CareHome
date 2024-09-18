@@ -182,7 +182,7 @@ export class BehaviourChartComponent
                 next: (data) => {
                     this._UtilityService.hideSpinner();
                     if (data.actionResult.success == true) {
-                        var tdata = JSON.parse(data.actionResult.result);
+                      var tdata = data.actionResult.result;
                         tdata = tdata ? tdata : {};
                         this.BehaviourChartData = tdata;
                         this.openAndClose();
@@ -330,7 +330,7 @@ export class BehaviourChartComponent
                 next: (data) => {
                     this._UtilityService.hideSpinner();
                     if (data.actionResult.success == true) {
-                        var tdata = JSON.parse(data.actionResult.result);
+                      var tdata = data.actionResult.result;
                         tdata = tdata ? tdata : [];
                         this.behaviourChartsLst = tdata;
                         if (this.behaviourChartsLst.length < 3 || (((this.behaviourChartsLst.length) * (this.pageNumber + 1)) >= this.behaviourChartsLst[0].countRecords)) {

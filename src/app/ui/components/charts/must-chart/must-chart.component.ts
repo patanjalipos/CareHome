@@ -347,7 +347,7 @@ export class MustChartComponent extends AppComponentBase implements OnInit {
         next: (data) => {
           this._UtilityService.hideSpinner();
           if (data.actionResult.success == true) {
-            var tdata = JSON.parse(data.actionResult.result);
+          var tdata = data.actionResult.result;
             tdata = tdata ? tdata : [];
             this.mustChartsLst = tdata;
             if (this.mustChartsLst.length < 3 || (((this.mustChartsLst.length) * (this.pageNumber + 1)) >= this.mustChartFormData[0].countRecords)) {

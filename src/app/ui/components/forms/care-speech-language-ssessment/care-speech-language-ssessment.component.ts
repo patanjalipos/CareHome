@@ -167,7 +167,7 @@ export class CareSpeechLanguageSsessmentComponent
                 next: (data) => {
                     this._UtilityService.hideSpinner();
                     if (data.actionResult.success == true) {
-                        var tdata = JSON.parse(data.actionResult.result);
+                      var tdata = data.actionResult.result;
                         tdata = tdata ? tdata : {};
                         this.CareSpeechLanguageFormData = tdata;
                         this.CareSpeechLanguageFormData.nextReviewDate = new Date(this.datePipe.transform(this.CareSpeechLanguageFormData.nextReviewDate));

@@ -69,7 +69,7 @@ export class EmailTemplateComponent extends AppComponentBase implements OnInit {
         next:(data) => {
           this._UtilityService.hideSpinner();          
           if (data.actionResult.success == true) {
-            var tdata = JSON.parse(data.actionResult.result);
+          var tdata = data.actionResult.result;
             tdata = tdata ? tdata : [];
             this.lstEmailTemplate = tdata;            
           }
@@ -88,7 +88,7 @@ export class EmailTemplateComponent extends AppComponentBase implements OnInit {
       .subscribe({
         next:(data) => {
           if (data.actionResult.success == true) {
-            var tdata = JSON.parse(data.actionResult.result);
+          var tdata = data.actionResult.result;
             tdata = tdata ? tdata : [];
             this.commonEmailDrafting = tdata;
             this.mode = "update";            
