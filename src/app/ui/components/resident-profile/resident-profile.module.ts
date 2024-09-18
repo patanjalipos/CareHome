@@ -18,6 +18,7 @@ import { ActionTabListPopupModule } from './action-tab-list-popup/action-tab-lis
 import { CarePlanModule } from './care-plan/care-plan.module';
 
 
+
 @NgModule({
     declarations: [
         ResidentProfileComponent,
@@ -38,7 +39,8 @@ import { CarePlanModule } from './care-plan/care-plan.module';
         ConfirmDialogModule,
         ActionsModule,
         ActionTakenPopupModule,
-        ActionTabListPopupModule
+        ActionTabListPopupModule,
+        
   ],
 })
 export class ResidentProfileModule { }

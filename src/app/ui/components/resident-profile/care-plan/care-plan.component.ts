@@ -15,9 +15,10 @@ export class CarePlanComponent implements OnInit {
   @Input() userid: any = null;
   @Input() isProgressnoteDoc: boolean = false;
 
-  isSummaryCarePlan: boolean;
+  isSummaryCarePlan: boolean=true;
   isExtendedCarePlan: boolean;
   isEvaluate: boolean;
+  isShowPopup:boolean;
 
   constructor() { }
 
@@ -40,6 +41,10 @@ export class CarePlanComponent implements OnInit {
       this.isEvaluate = true;
       this.isSummaryCarePlan = false;
     }
+  }
+
+  showPopup(){
+    this.isShowPopup=true;
   }
 
 }
