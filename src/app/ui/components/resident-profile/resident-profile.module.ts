@@ -13,11 +13,13 @@ import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { ActionsModule } from './actions/actions.module';
 import { ActionTakenPopupComponent } from './action-taken-popup/action-taken-popup.component';
 import { ActionTakenPopupModule } from './action-taken-popup/action-taken-popup.module';
+import { CarePlanModule } from './care-plan/care-plan.module';
 
 
 @NgModule({
     declarations: [
-        ResidentProfileComponent
+        ResidentProfileComponent,
+       
     ],
     exports: [ResidentProfileComponent],
     imports: [
@@ -25,6 +27,7 @@ import { ActionTakenPopupModule } from './action-taken-popup/action-taken-popup.
         ResidentProfileRoutingModule,
         ProfileModule,
         AlertModule,
+        CarePlanModule,
         FormsDashboardModule,
         ChartModule,
         ResidentProgressnotesModule,

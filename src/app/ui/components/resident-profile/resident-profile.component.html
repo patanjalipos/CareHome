@@ -123,8 +123,7 @@
                     [userid]="selecteduserid"></app-resident-progressnotes>
             </div>
             <div aria-labelledby="care-tab" *ngIf="CarePlan">
-                ..
-
+                <app-care-plan [admissionid]="selectedadmissionid" [userid]="selecteduserid"></app-care-plan>
             </div>
             <div *ngIf="Form">
                 <app-forms-dashboard [userId]="selecteduserid"
