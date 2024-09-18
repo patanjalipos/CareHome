@@ -3,10 +3,10 @@
 
         <div class="my-2 d-flex">
             <label class="set-margin">Currently Showing: <span class="bold">{{actionPage}}</span></label>
-            <button class="mx-1" pButton title="Missed" (click)="actionPageChange(1)" label="Missed"></button>
-            <button class="mx-1" pButton title="Current" label="Current" (click)="actionPageChange(2)"></button>
-            <button class="mx-1" pButton title="Upcoming" label="Upcoming" (click)="actionPageChange(3)"></button>
-            <button class="mx-1" pButton title="Completed" label="Completed" (click)="actionPageChange(4)"></button>
+            <button class="mx-1" pButton title="Missed" label="Missed" (click)="actionPageChange(1)" [disabled]="actionPage == 'Missed'"></button>
+            <button class="mx-1" pButton title="Current" label="Current" (click)="actionPageChange(2)" [disabled]="actionPage == 'Current'"></button>
+            <button class="mx-1" pButton title="Upcoming" label="Upcoming" (click)="actionPageChange(3)" [disabled]="actionPage == 'Upcoming'"></button>
+            <button class="mx-1" pButton title="Completed" label="Completed" (click)="actionPageChange(4)" [disabled]="actionPage == 'Completed'"></button>
             <button class="custom-margin" pButton title="Create a new action schedule"
                 label="Create a new action schedule"></button>
         </div>
