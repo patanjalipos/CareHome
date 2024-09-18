@@ -52,6 +52,14 @@ export class BodyMappingRecordComponent extends AppComponentBase implements OnIn
         this.residentAdmissionInfoId =
             this.preSelectedFormData.residentAdmissionInfoId;
         this.isEditable = this.preSelectedFormData.isEditable;
+
+        if(this.preSelectedFormData.Date != null) {
+            this.BodyMappingFormsData.DateTimeObservation = new Date(this.preSelectedFormData.Date);
+        }
+        else {
+        this.BodyMappingFormsData.DateTimeObservation=new Date();
+        }
+
         const collectionNames = [
             'ReasonObservation'
         ];
@@ -59,7 +67,6 @@ export class BodyMappingRecordComponent extends AppComponentBase implements OnIn
         forkJoin(collectionNames.map((collectionName) => this.getDropdownMasterLists(FormTypes.BodyMappingRecord, collectionName, 1))).subscribe((responses: any[]) => {
             this.lstBodyMappingMaster = responses[0];
         });
-        this.BodyMappingFormsData.DateTimeObservation=new Date();
         // this.GetBodyMappingReasonMaster();
     }
 
@@ -122,6 +129,7 @@ export class BodyMappingRecordComponent extends AppComponentBase implements OnIn
                 },
             });
     }
+
     ResetModel() {
         this.isEditable = true;
         this.BodyMappingFormsData = <any>{};
