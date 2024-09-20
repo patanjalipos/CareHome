@@ -67,7 +67,7 @@ export class MenuItemMasterComponent extends AppComponentBase implements OnInit{
         next:(data) => {
           this._UtilityService.hideSpinner();          
           if (data.actionResult.success == true) {
-            var tdata = JSON.parse(data.actionResult.result);
+          var tdata = data.actionResult.result;
             tdata = tdata ? tdata : [];
             this.lstMenuItemMaster = tdata;
             this.lstParentMenuItemMaster=tdata;
@@ -97,7 +97,7 @@ export class MenuItemMasterComponent extends AppComponentBase implements OnInit{
           this._UtilityService.hideSpinner();
           
           if (data.actionResult.success == true) {
-            var tdata = JSON.parse(data.actionResult.result);
+          var tdata = data.actionResult.result;
             tdata = tdata ? tdata : [];
             this.lstUserTypeMaster = tdata;            
           }
@@ -120,7 +120,7 @@ export class MenuItemMasterComponent extends AppComponentBase implements OnInit{
         next:(data) => {
           this._UtilityService.hideSpinner();          
           if (data.actionResult.success == true) {
-            var tdata = JSON.parse(data.actionResult.result);
+          var tdata = data.actionResult.result;
             tdata = tdata ? tdata : [];
             this.MenuItemMaster = tdata;
             if(data.actionResult.result2!=null && data.actionResult.result2!=undefined && data.actionResult.result2?.length>0)
@@ -143,7 +143,7 @@ export class MenuItemMasterComponent extends AppComponentBase implements OnInit{
       });
   }
   Save() {
-    if (this.MenuItemMaster?.SubMenu == "Y" && (this.MenuItemMaster?.ParentMenuId == null || this.MenuItemMaster?.ParentMenuId == undefined  || this.MenuItemMaster?.ParentMenuId == '')) {
+    if (this.MenuItemMaster?.subMenu == "Y" && (this.MenuItemMaster?.parentMenuId == null || this.MenuItemMaster?.parentMenuId == undefined  || this.MenuItemMaster?.parentMenuId == '')) {
       this._UtilityService.showWarningAlert("Please select parent menu");
       return;
     }
@@ -159,7 +159,7 @@ export class MenuItemMasterComponent extends AppComponentBase implements OnInit{
     else
       this.MenuItemMaster.statementtype = "Update";
       if (this.MenuItemMaster.SubMenu == 'N')
-      this.MenuItemMaster.ParentMenuId = null;
+      this.MenuItemMaster.parentMenuId = null;
     this._UtilityService.showSpinner();
     this.unsubscribe.add = this._MasterServices.AddUpdateMenuItemMaster(this.MenuItemMaster)
       .subscribe({
@@ -188,7 +188,7 @@ export class MenuItemMasterComponent extends AppComponentBase implements OnInit{
   ResetModel() {
     this.selectedUserType=[];
     this.MenuItemMaster = <any>{};
-    this.MenuItemMaster.Status = 1;
+    this.MenuItemMaster.status = 1;
     this.lstParentMenuItemMaster=JSON.parse(JSON.stringify(this.lstMenuItemMaster));
   }
   CloseModal() {

@@ -132,7 +132,7 @@ export class CareFeelingFreshAndCleanComponent extends AppComponentBase implemen
         next: (data) => {
           this._UtilityService.hideSpinner();
           if (data.actionResult.success == true) {
-            var tdata = JSON.parse(data.actionResult.result);
+          var tdata = data.actionResult.result;
             tdata = tdata ? tdata : {};
             this.CareAssessmentFreshAndCleanFormsData = tdata;
             this.CareAssessmentFreshAndCleanFormsData.nextReviewDate = new Date(this.CareAssessmentFreshAndCleanFormsData.nextReviewDate);

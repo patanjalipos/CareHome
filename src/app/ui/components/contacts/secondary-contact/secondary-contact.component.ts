@@ -43,7 +43,7 @@ export class SecondaryContactComponent extends AppComponentBase implements OnIni
     this.unsubscribe.add = this._MasterServices.GetCountryMaster().subscribe({
       next: (data) => {
         if (data.actionResult.success == true) {
-          var tdata = JSON.parse(data.actionResult.result);
+        var tdata = data.actionResult.result;
           tdata = tdata ? tdata : [];
           this.lstCountryMaster = tdata;
         }
@@ -73,7 +73,7 @@ export class SecondaryContactComponent extends AppComponentBase implements OnIni
         next: (data) => {
           this._UtilityService.hideSpinner();
           if (data.actionResult.success == true) {
-            var tdata = JSON.parse(data.actionResult.result);
+          var tdata = data.actionResult.result;
             tdata = tdata ? tdata : [];
             this.Contact = tdata;
          

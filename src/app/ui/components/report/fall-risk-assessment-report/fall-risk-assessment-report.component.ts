@@ -34,7 +34,7 @@ export class FallRiskAssessmentReportComponent extends AppComponentBase implemen
     await lastValueFrom(categories$).then((data) => {
       this._UtilityService.hideSpinner();
       if (data.actionResult.success == true) {
-        var tdata = JSON.parse(data.actionResult.result);
+      var tdata = data.actionResult.result;
         tdata = tdata ? tdata : [];
         this.lstReport = tdata;
         if (this.filtr !== undefined) {
@@ -77,7 +77,7 @@ export class FallRiskAssessmentReportComponent extends AppComponentBase implemen
         next:(data) => {
           this._UtilityService.hideSpinner();          
           if (data.actionResult.success == true) {
-            var tdata = JSON.parse(data.actionResult.result);
+          var tdata = data.actionResult.result;
             tdata = tdata ? tdata : [];
             this.lstReport = tdata;
             if (this.filtr !== undefined) {

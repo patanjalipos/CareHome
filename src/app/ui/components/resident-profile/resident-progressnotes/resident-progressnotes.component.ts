@@ -278,7 +278,7 @@ LoadResidentProgressDetails(admissionid,dFrom: string, dTo: string,userid,formTy
         this._UtilityService.hideSpinner();
         if (data.actionResult.success == true) 
         {
-          var tdata = JSON.parse(data.actionResult.result);
+        var tdata = data.actionResult.result;
           tdata = tdata ? tdata : [];
          this.lstResidentProgressNote = tdata;
          if(this.showProgressNote==true)    

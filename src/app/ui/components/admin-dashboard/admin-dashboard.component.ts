@@ -227,7 +227,7 @@ export class AdminDashboardComponent extends AppComponentBase implements OnInit 
                 next: (data) => {
                     this._UtilityService.hideSpinner();
                     if (data.actionResult.success == true) {
-                        var tdata = JSON.parse(data.actionResult.result);
+                      var tdata = data.actionResult.result;
                         tdata = tdata ? tdata : [];
                         this.lstActivity = tdata;
                     }
@@ -255,7 +255,7 @@ export class AdminDashboardComponent extends AppComponentBase implements OnInit 
                 next: (data) => {
                     this._UtilityService.hideSpinner();
                     if (data.actionResult.success == true) {
-                        var tdata = JSON.parse(data.actionResult.result);
+                      var tdata = data.actionResult.result;
                         tdata = tdata ? tdata : [];
                         this.lstTaskPlanner = tdata;
                     }

@@ -74,7 +74,7 @@ export class OccupancyDetailsComponent extends AppComponentBase implements OnIni
         next:(data) => {
           this._UtilityService.hideSpinner();
           if (data.actionResult.success == true) {
-            var tdata = JSON.parse(data.actionResult.result);
+          var tdata = data.actionResult.result;
             tdata = tdata ? tdata : [];
             this.lstHomeMaster = tdata;  
                  
@@ -110,7 +110,7 @@ export class OccupancyDetailsComponent extends AppComponentBase implements OnIni
         next:(data) => {
           this._UtilityService.hideSpinner();
           if (data.actionResult.success == true) {
-            var tdata = JSON.parse(data.actionResult.result);
+          var tdata = data.actionResult.result;
             tdata = tdata ? tdata : [];
             this.lstLocationMaster = tdata;  
             //console.log('lstLocationMaster',this.lstLocationMaster)          
@@ -146,7 +146,7 @@ export class OccupancyDetailsComponent extends AppComponentBase implements OnIni
         next:(data) => {
           this._UtilityService.hideSpinner();          
           if (data.actionResult.success == true) {
-            var tdata = JSON.parse(data.actionResult.result);
+          var tdata = data.actionResult.result;
             tdata = tdata ? tdata : [];
             this.ResidentMaster = tdata; 
             if(this.ResidentMaster?.LastAdmissionDate!=null && this.ResidentMaster?.LastAdmissionDate!=undefined)

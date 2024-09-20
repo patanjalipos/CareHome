@@ -73,7 +73,7 @@ export class ProgressnotesDocumentsComponent extends AppComponentBase implements
         next: (data) => {
           this._UtilityService.hideSpinner();
           if (data.actionResult.success == true) {
-            var tdata = JSON.parse(data.actionResult.result);
+          var tdata = data.actionResult.result;
             tdata = tdata ? tdata : [];
             // this.lstHomeMaster = [{ HomeName: '--All--', HomeMasterId: null }, ...tdata];
             this.lstHomeMaster = tdata;
@@ -109,7 +109,7 @@ export class ProgressnotesDocumentsComponent extends AppComponentBase implements
         next: (data) => {
           this._UtilityService.hideSpinner();
           if (data.actionResult.success == true) {
-            var tdata = JSON.parse(data.actionResult.result);
+          var tdata = data.actionResult.result;
             tdata = tdata ? tdata : [];
             this.lstlocationMaster = tdata;
             // this.lstlocationMaster = [{ LocationName: 'All', LocationMasterId: null }, ...tdata];
@@ -140,7 +140,7 @@ export class ProgressnotesDocumentsComponent extends AppComponentBase implements
         next: (data) => {
           this._UtilityService.hideSpinner();
           if (data.actionResult.success == true) {
-            var tdata = JSON.parse(data.actionResult.result);
+          var tdata = data.actionResult.result;
             tdata = tdata ? tdata : [];
             this.lstResidentMaster = tdata.map(resident => {
               if (resident.ProfileImage) {

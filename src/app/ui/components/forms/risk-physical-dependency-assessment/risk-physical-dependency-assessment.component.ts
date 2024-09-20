@@ -212,7 +212,7 @@ export class RiskPhysicalDependencyAssessmentComponent
                 next: (data) => {
                     this._UtilityService.hideSpinner();
                     if (data.actionResult.success == true) {
-                        var tdata = JSON.parse(data.actionResult.result);
+                      var tdata = data.actionResult.result;
                         tdata = tdata ? tdata : {};
                         this.RiskPhysicalDependencyAssessmentFormData = tdata;
                         this.RiskPhysicalDependencyAssessmentFormData.nextReviewDate = new Date(this.RiskPhysicalDependencyAssessmentFormData.nextReviewDate);

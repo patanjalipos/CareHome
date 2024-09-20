@@ -25,8 +25,8 @@
                 [(ngModel)]="selectedFormMasterId"
                 [required]="true"
                 [options]="lstMaster"
-                optionLabel="FormName"
-                optionValue="FormMasterId"
+                optionLabel="formName"
+                optionValue="formMasterId"
                 placeholder="--select--"
                 [style]="{ width: '100%' }"
                 [filter]="true"
@@ -82,7 +82,7 @@
             class="mt-3"
             styleClass="p-datatable-striped"
             [rowHover]="true"
-            [globalFilterFields]="['FormName', 'ModifiedOn']"
+            [globalFilterFields]="['formName', 'ModifiedOn']"
             [scrollable]="true"
             scrollHeight="calc(100vh - 155px)"
         >
@@ -93,7 +93,7 @@
             </ng-template>
             <ng-template pTemplate="header">
                 <tr>
-                    <th pSortableColumn="FormName">Assessment Form</th>
+                    <th pSortableColumn="formName">Assessment Form</th>
                     <th>Updated By</th>
                     <th>Designation</th>
                     <th>Status</th>
@@ -103,22 +103,22 @@
             </ng-template>
             <ng-template pTemplate="body" let-dt let-i="rowIndex">
                 <tr>
-                    <td>{{ dt.FormName }}</td>
-                    <td>{{ dt.ModifiedBy }}</td>
-                    <td>{{ dt.ModifiedByDesignation }}</td>
+                    <td>{{ dt.formName }}</td>
+                    <td>{{ dt.modifiedBy }}</td>
+                    <td>{{ dt.modifiedByDesignation }}</td>
                     <td>
-                        {{ dt.IsCompleted == 1 ? "Completed" : "Incomplete" }}
+                        {{ dt.isCompleted == 1 ? "Completed" : "Incomplete" }}
                     </td>
                     <td>
                         {{
-                            dt.ModifiedOn
+                            dt.modifiedOn
                                 | date : customDateFormat.DEF_DATE_TIME
                         }}
                     </td>
                     <td>
                         <a
                             title="View"
-                            (click)="OpenForm(dt.FormMasterId, dt, false)"
+                            (click)="OpenForm(dt.formMasterId, dt, false)"
                         >
                             <i class="fa fa-eye" aria-hidden="true"></i>
                         </a>
@@ -126,7 +126,7 @@
                         <!-- Adjust the margin-left as needed -->
                         <a
                             title="Edit"
-                            (click)="OpenForm(dt.FormMasterId, dt, true)"
+                            (click)="OpenForm(dt.formMasterId, dt, true)"
                         >
                             <i class="fa fa-pencil" aria-hidden="true"></i>
                         </a>

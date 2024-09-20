@@ -110,7 +110,7 @@ export class CareWishesForFutureComponent extends AppComponentBase implements On
         next: (data) => {
           this._UtilityService.hideSpinner();
           if (data.actionResult.success == true) {
-            var tdata = JSON.parse(data.actionResult.result);
+          var tdata = data.actionResult.result;
             tdata = tdata ? tdata : {};
             this.CareWishesFormsData = tdata;
             this.CareWishesFormsData.dateOfComplete = this.datePipe.transform(this.CareWishesFormsData.dateOfComplete, 'MM/dd/yyyy')

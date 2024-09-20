@@ -146,7 +146,7 @@ export class CareBreathingAndCirculationAssessmentComponent extends AppComponent
                 next: (data) => {
                     this._UtilityService.hideSpinner();
                     if (data.actionResult.success == true) {
-                        var tdata = JSON.parse(data.actionResult.result);
+                      var tdata = data.actionResult.result;
                         tdata = tdata ? tdata : {};
                         this.careBreathAssFormsData = tdata;
                         this.careBreathAssFormsData.nextReviewDate = new Date(this.careBreathAssFormsData.nextReviewDate);
