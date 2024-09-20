@@ -35,7 +35,7 @@
                 <div class="acc-tab">
                     <span>Evaluate Care Plan</span>
                     <div *ngIf="isEvaluate">
-                        <button pButton type="button" label="Evaluate" class="btn mr-2"></button>
+                        <button pButton type="button" label="Evaluate" class="btn mr-2" (click)="$event.stopPropagation(); showPopup()"></button>
                     </div>
                 </div>
             </p-header>
@@ -131,7 +131,8 @@
                     <div class="acc-tab">
                         <span>My Infection Prevention and control Support Plan</span>
                         <div *ngIf="isEvaluate">
-                            <button pButton type="button" label="Evaluate" class="btn mr-2"></button>
+                            <button pButton type="button" label="Evaluate"
+                                (click)="$event.stopPropagation(); showPopup()" class="btn mr-2"></button>
                         </div>
                     </div>
                 </p-header>
@@ -142,7 +143,8 @@
                     <div class="acc-tab">
                         <span>My Maintaining a Safe Environment Support Plan</span>
                         <div *ngIf="isEvaluate">
-                            <button pButton type="button" label="Evaluate" (click)="showPopup()" class="btn mr-2"></button>
+                            <button pButton type="button" label="Evaluate"
+                                (click)="$event.stopPropagation(); showPopup()" class="btn mr-2"></button>
                         </div>
                     </div>
                 </p-header>
@@ -152,7 +154,8 @@
                     <div class="acc-tab">
                         <span>My Medication, Healthcare, Treatment and Management Support Plan</span>
                         <div *ngIf="isEvaluate">
-                            <button pButton type="button" label="Evaluate" class="btn mr-2"></button>
+                            <button pButton type="button" label="Evaluate" class="btn mr-2"
+                                (click)="$event.stopPropagation(); showPopup()"></button>
                         </div>
                     </div>
                 </p-header>
@@ -162,7 +165,8 @@
                     <div class="acc-tab">
                         <span>My on the move and falls Risk Awareness Support Plan</span>
                         <div *ngIf="isEvaluate">
-                            <button pButton type="button" label="Evaluate" class="btn mr-2"></button>
+                            <button pButton type="button" label="Evaluate" class="btn mr-2"
+                                (click)="$event.stopPropagation(); showPopup()"></button>
                         </div>
                     </div>
                 </p-header>
@@ -172,7 +176,8 @@
                     <div class="acc-tab">
                         <span>My Communicatin Support Plan</span>
                         <div *ngIf="isEvaluate">
-                            <button pButton type="button" label="Evaluate" class="btn mr-2"></button>
+                            <button pButton type="button" label="Evaluate" class="btn mr-2"
+                                (click)="$event.stopPropagation(); showPopup()"></button>
                         </div>
                     </div>
                 </p-header>
@@ -183,7 +188,8 @@
                     <div class="acc-tab">
                         <span>My Personal care and Projection of self image,oral care,foot Support Plan</span>
                         <div *ngIf="isEvaluate">
-                            <button pButton type="button" label="Evaluate" class="btn mr-2"></button>
+                            <button pButton type="button" label="Evaluate" class="btn mr-2"
+                                (click)="$event.stopPropagation(); showPopup()"></button>
                         </div>
                     </div>
                 </p-header>
@@ -193,7 +199,8 @@
                     <div class="acc-tab">
                         <span>My Skin care Support Plan</span>
                         <div *ngIf="isEvaluate">
-                            <button pButton type="button" label="Evaluate" class="btn mr-2"></button>
+                            <button pButton type="button" label="Evaluate" class="btn mr-2"
+                                (click)="$event.stopPropagation(); showPopup()"></button>
                         </div>
                     </div>
                 </p-header>
@@ -203,7 +210,8 @@
                     <div class="acc-tab">
                         <span>My Nutrition and Hydration Support Plan</span>
                         <div *ngIf="isEvaluate">
-                            <button pButton type="button" label="Evaluate" class="btn mr-2"></button>
+                            <button pButton type="button" label="Evaluate" class="btn mr-2"
+                                (click)="$event.stopPropagation(); showPopup()"></button>
                         </div>
                     </div>
                 </p-header>
@@ -213,7 +221,8 @@
                     <div class="acc-tab">
                         <span>My Mental health and well being support plan</span>
                         <div *ngIf="isEvaluate">
-                            <button pButton type="button" label="Evaluate" class="btn mr-2"></button>
+                            <button pButton type="button" label="Evaluate" class="btn mr-2"
+                                (click)="$event.stopPropagation(); showPopup()"></button>
                         </div>
                     </div>
                 </p-header>
@@ -223,7 +232,8 @@
                     <div class="acc-tab">
                         <span>My Activities and intersts,community inclusion and cultural support plan</span>
                         <div *ngIf="isEvaluate">
-                            <button pButton type="button" label="Evaluate" class="btn mr-2"></button>
+                            <button pButton type="button" label="Evaluate" class="btn mr-2"
+                                (click)="$event.stopPropagation(); showPopup()"></button>
                         </div>
                     </div>
                 </p-header>
@@ -233,7 +243,8 @@
                     <div class="acc-tab">
                         <span>Care plan detail</span>
                         <div *ngIf="isEvaluate">
-                            <button pButton type="button" label="Evaluate" class="btn mr-2"></button>
+                            <button pButton type="button" label="Evaluate" class="btn mr-2"
+                                (click)="$event.stopPropagation(); showPopup()"></button>
                         </div>
                     </div>
                 </p-header>
@@ -242,4 +253,8 @@
     </div>
 </div>
 
-<!-- <app-care-plan-popup></app-care-plan-popup> -->
+<div *ngIf="isShowPopup">
+    <p-dialog header=" Add evalucation note" [modal]="true" [draggable]="false" [style]="{ width: '55rem'}" [(visible)]="isShowPopup">
+        <app-care-plan-popup></app-care-plan-popup>
+    </p-dialog>
+</div>
