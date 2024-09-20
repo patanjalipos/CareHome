@@ -58,8 +58,8 @@
                     }}</label>
             </ng-template>
         </div>
-        <div class="col-md-1 form-icon mt-4">
-            <i class="fa-solid fa-info"></i>
+        <div class="col-md-1 form-icon mt-4 wrap">
+            <div class="tool" data-tip="hello"> <i class="fa-solid fa-info"></i></div>
         </div>
         <div class="col-md-4">
             <div class="labelcontent">
@@ -152,7 +152,8 @@
             <ng-container *ngIf="this.isEditable; else Payment">
                 <p-dropdown name="PreAdmissionAssessmentFormsData.Payment"
                     [(ngModel)]="PreAdmissionAssessmentFormsData.Payment" [options]="LstPreAdmPaymentOptionsMaster"
-                    optionLabel="optionName" optionValue="optionId" placeholder="--select--" [style]="{ width: '100%' }">
+                    optionLabel="optionName" optionValue="optionId" placeholder="--select--"
+                    [style]="{ width: '100%' }">
                 </p-dropdown>
                 <p class="mb-4">Update resident admission details</p>
             </ng-container>
@@ -511,7 +512,8 @@
             <ng-container *ngIf="isEditable; else PainStatusLabel">
                 <p-dropdown [(ngModel)]="PreAdmissionAssessmentFormsData.PainStatus"
                     name="PreAdmissionAssessmentFormsData.PainStatus" [options]="LstPreAdmPainStatusOptionMaster"
-                    optionLabel="optionName" optionValue="optionId" placeholder="--select--" [style]="{ width: '100%' }">
+                    optionLabel="optionName" optionValue="optionId" placeholder="--select--"
+                    [style]="{ width: '100%' }">
                 </p-dropdown>
             </ng-container>
             <ng-template #PainStatusLabel>
@@ -941,7 +943,7 @@
                     PreAdmissionAssessmentFormsData.InfectionStatusName
                     }}</label>
             </ng-template>
-            
+
         </div>
         <div class="col-md-1 form-icon mt-4">
             <i class="fa-solid fa-info"></i>
@@ -981,13 +983,14 @@
             <ng-container *ngIf="isEditable; else MedicationDropdownLabel">
                 <p-dropdown [(ngModel)]="PreAdmissionAssessmentFormsData.Medication"
                     name="PreAdmissionAssessmentFormsData.Medication" [options]="LstPreAdmMedicationOptionMaster"
-                    optionLabel="optionName" optionValue="optionId" placeholder="--select--" [style]="{ width: '100%' }">
+                    optionLabel="optionName" optionValue="optionId" placeholder="--select--"
+                    [style]="{ width: '100%' }">
                 </p-dropdown>
             </ng-container>
             <ng-template #MedicationDropdownLabel>
                 <label>{{ PreAdmissionAssessmentFormsData.MedicationName }}</label>
             </ng-template>
-            
+
         </div>
         <div class="col-md-1 form-icon mt-4">
             <i class="fa-solid fa-info"></i>
@@ -1079,7 +1082,8 @@
                 <p-dropdown [(ngModel)]="
                         PreAdmissionAssessmentFormsData.CCTVPolicy
                     " name="PreAdmissionAssessmentFormsData.CCTVPolicy" [options]="LstPreAdmCCTVPolicyOptionsMaster"
-                    optionLabel="optionName" optionValue="optionId" placeholder="--select--" [style]="{ width: '100%' }">
+                    optionLabel="optionName" optionValue="optionId" placeholder="--select--"
+                    [style]="{ width: '100%' }">
                 </p-dropdown>
             </ng-container>
             <ng-template #CCTVPolicyDropdownLabel>
