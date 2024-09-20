@@ -128,7 +128,7 @@ getDropdownMasterLists(formMasterId: string, dropdownName: string,status:number)
       map((response) => {
           this._UtilityService.hideSpinner();
           if (response.actionResult.success) {
-              return JSON.parse(response.actionResult.result);
+              return response.actionResult.result;
           } else {
               return [];
           }

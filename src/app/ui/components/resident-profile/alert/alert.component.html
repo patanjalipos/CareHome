@@ -138,7 +138,7 @@
                     <td>
                         <div>
                             <label>{{dt.createdOn | date:customDateFormat.DEF_DATE_TIME}}</label> <br>
-                            <label>Observed By -- {{dt.CreatedBy}} </label>
+                            <label>Observed By -- {{dt.CreatedByName}} </label>
                         </div>
                     </td>
                     <td>
@@ -147,7 +147,7 @@
                                 (click)="showPopup(dt.dailyVitalsAlertId,dt)">Action</p-button>
 
                             <div *ngIf="dt.isActionTaken">
-                                <label>Actioned By -- {{dt.ActionBy}} </label> <br>
+                                <label>Actioned By -- {{dt.ActionByName}} </label> <br>
                                 <label>Actioned On -- {{dt.actionOn | date:customDateFormat.DEF_DATE_TIME}}</label> <br>
                             </div>
 
