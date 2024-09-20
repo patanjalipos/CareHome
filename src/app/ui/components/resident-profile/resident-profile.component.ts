@@ -370,7 +370,7 @@ export class ResidentProfileComponent extends AppComponentBase implements OnInit
               this.imageSrc = "";
             }
             if (data.actionResult.result2 != null && data.actionResult.result2 != undefined && data.actionResult.result2?.length > 0) {
-              var tdata2 = JSON.parse(data.actionResult.result2);
+              var tdata2 = data.actionResult.result2;
               this.allergies = tdata2.AllergyNotes;
               if (tdata2.Allergen) {
                 this.allergies = ((this.allergies != '' && this.allergies != null && this.allergies != undefined) ? (this.allergies + ', ') : this.allergies) + tdata2.Allergen;

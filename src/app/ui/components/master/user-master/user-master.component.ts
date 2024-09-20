@@ -175,8 +175,6 @@ export class UserMasterComponent extends AppComponentBase implements OnInit {
           var tdata = data.actionResult.result;
             tdata = tdata ? tdata : [];
             this.lstUserMaster = tdata;
-            console.log(this.lstUserMaster);
-            
 
             if (this.filtr !== undefined) {
               this.filtr.nativeElement.value = "";
@@ -198,11 +196,11 @@ export class UserMasterComponent extends AppComponentBase implements OnInit {
     this.mode = "add";
     this.RegistrationMainModel = <any>{};
     this.RegistrationMainModel.statementtype = "Insert";
-    this.RegistrationMainModel.dateOfBirth = new Date("01/01/2001 00:00:00");
+    this.RegistrationMainModel.DateOfBirth = new Date("01/01/2001 00:00:00");
     if (UserTypes.SuperAdmin !== this.s_userTypeId) {
-      this.RegistrationMainModel.homeMasterId = localStorage.getItem('HomeMasterId');
+      this.RegistrationMainModel.HomeMasterId = localStorage.getItem('HomeMasterId');
     }
-    this.RegistrationMainModel.status = 1;
+    this.RegistrationMainModel.Status = 1;
   }
   LoadUserDetails(userId) {
     this.lstFacilityResident = [];
@@ -218,22 +216,22 @@ export class UserMasterComponent extends AppComponentBase implements OnInit {
             tdata = tdata ? tdata : [];
             this.RegistrationMainModel = tdata;
 
-            if (this.RegistrationMainModel?.dateOfBirth != null && this.RegistrationMainModel?.dateOfBirth != undefined) {
-              var newDate = new Date(this.RegistrationMainModel.dateOfBirth);
-              this.RegistrationMainModel.dateOfBirth = newDate;
+            if (this.RegistrationMainModel?.DateOfBirth != null && this.RegistrationMainModel?.DateOfBirth != undefined) {
+              var newDate = new Date(this.RegistrationMainModel.DateOfBirth);
+              this.RegistrationMainModel.DateOfBirth = newDate;
             }
-            this.RegistrationMainModel.dateOfBirth = new Date(this.RegistrationMainModel.dateOfBirth); 
-            if(this.RegistrationMainModel?.profileImage!=null && this.RegistrationMainModel?.profileImage!=undefined)
+            this.RegistrationMainModel.DateOfBirth = new Date(this.RegistrationMainModel.DateOfBirth); 
+            if(this.RegistrationMainModel?.ProfileImage!=null && this.RegistrationMainModel?.ProfileImage!=undefined)
               {
-               // const imageFormat = this.RegistrationMainModel.profileImage.endsWith(".jpg") || this.RegistrationMainModel.profileImage.endsWith(".jpeg") ? "jpeg" : "png";
-               var imageFormat=this._UtilityService.getFileExtension(this.RegistrationMainModel.profileImage);
-               this.imageSrc = "data:image/" + imageFormat + ";base64," + this.RegistrationMainModel.profileImage;               
+               // const imageFormat = this.RegistrationMainModel.ProfileImage.endsWith(".jpg") || this.RegistrationMainModel.ProfileImage.endsWith(".jpeg") ? "jpeg" : "png";
+               var imageFormat=this._UtilityService.getFileExtension(this.RegistrationMainModel.ProfileImage);
+               this.imageSrc = "data:image/" + imageFormat + ";base64," + this.RegistrationMainModel.ProfileImage;               
                
               }          
             this.mode = "update"; 
             this.onChangeUserType();
             this.LoadMenuItemAccessforActionItem();
-            this.RegistrationMainModel.password = this._EncryptDecryptService.decryptUsingAES256(this.RegistrationMainModel.password);
+            this.RegistrationMainModel.Password = this._EncryptDecryptService.decryptUsingAES256(this.RegistrationMainModel.Password);
             if (this.RegistrationMainModel?.UserFacilityResident != null && this.RegistrationMainModel?.UserFacilityResident != undefined) {
               if (this.RegistrationMainModel?.UserFacilityResident?.length > 0) {
                 var UserFacilityResident = this.RegistrationMainModel?.UserFacilityResident;
@@ -254,7 +252,7 @@ export class UserMasterComponent extends AppComponentBase implements OnInit {
             this.RegistrationMainModel.statementtype = "Update";
 
             if (data.actionResult.result2?.length > 0) {
-              var tdata1 = JSON.parse(data.actionResult.result2);
+              var tdata1 = data.actionResult.result2;
               tdata1 = tdata1 ? tdata1 : [];
               if (tdata1?.length > 0)
                 this.lstFacilityResident = tdata1;
@@ -310,7 +308,7 @@ export class UserMasterComponent extends AppComponentBase implements OnInit {
   ClearProfile()
   {
    this.imageSrc=null;
-   this.RegistrationMainModel.profileImage=null;
+   this.RegistrationMainModel.ProfileImage=null;
   }
   
   Submit()
@@ -472,7 +470,7 @@ export class UserMasterComponent extends AppComponentBase implements OnInit {
     if (lstSelectedFacilty?.length > 0) {
       lstSelectedFacilty.forEach(x => {
         var jsonObject = {
-          "homeMasterId": x.HomeMasterId,
+          "HomeMasterId": x.HomeMasterId,
           "IsEnableFacility": x.IsEnableFacility,
           "IsResidentAutoAssignment": x.IsResidentAutoAssignment,
           "lstResident": x.SelectedResidentList
@@ -484,12 +482,12 @@ export class UserMasterComponent extends AppComponentBase implements OnInit {
     this.RegistrationMainModel.CreatedBy = localStorage.getItem('userId');  
     this.RegistrationMainModel.ModifiedBy = localStorage.getItem('userId');  
     this.RegistrationMainModel.lstFacilityMapping=this.lstFacilityResident;
-    this.RegistrationMainModel.profileImage=this.imageSrc;
-    if(this.RegistrationMainModel.password!=null && this.RegistrationMainModel.password!=undefined && this.RegistrationMainModel.password!="")
-    this.RegistrationMainModel.password = this._EncryptDecryptService.encryptUsingAES256(this.RegistrationMainModel.password);
-    this.RegistrationMainModel.fax = this.RegistrationMainModel.fax?.toString() || null;
-    this.RegistrationMainModel.emergencyContactTelephone = this.RegistrationMainModel.emergencyContactTelephone?.toString() || null;
-    this.RegistrationMainModel.emergencyContactMobile = this.RegistrationMainModel.emergencyContactMobile?.toString() || null;
+    this.RegistrationMainModel.ProfileImage=this.imageSrc;
+    if(this.RegistrationMainModel.Password!=null && this.RegistrationMainModel.Password!=undefined && this.RegistrationMainModel.Password!="")
+    this.RegistrationMainModel.Password = this._EncryptDecryptService.encryptUsingAES256(this.RegistrationMainModel.Password);
+    this.RegistrationMainModel.Fax = this.RegistrationMainModel.Fax?.toString() || null;
+    this.RegistrationMainModel.EmergencyContactTelephone = this.RegistrationMainModel.EmergencyContactTelephone?.toString() || null;
+    this.RegistrationMainModel.EmergencyContactMobile = this.RegistrationMainModel.EmergencyContactMobile?.toString() || null;
     //console.log('this.RegistrationMainModel',this.RegistrationMainModel);
     this._UtilityService.showSpinner();
     this.unsubscribe.add = this._MasterServices.AddInsertUpdateUserMaster(this.RegistrationMainModel)
@@ -582,8 +580,6 @@ export class UserMasterComponent extends AppComponentBase implements OnInit {
           var tdata = data.actionResult.result;
             tdata = tdata ? tdata : [];
             this.lstHomeMaster = tdata;
-            console.log(this.lstHomeMaster);
-            
             this.lstHomeMaster.map(m => {
               m.IsEnableFacility = false;
               m.IsResidentAutoAssignment= false;
@@ -646,7 +642,7 @@ export class UserMasterComponent extends AppComponentBase implements OnInit {
   //
 
   onNodeSelectMenuAccess(event) {
-    // console.log("NodeSelect Menu Access I Access", this.lstActionItemAccess);
+    //console.log("NodeSelect Menu Access I Access", this.lstActionItemAccess);
     // var OldData=JSON.parse(JSON.stringify(this.lstActionItemAccess));
     var OldData = JSON.parse(JSON.stringify(this.lstActionItemAccess));
 
@@ -796,7 +792,7 @@ export class UserMasterComponent extends AppComponentBase implements OnInit {
     this.selectedNodes2 = [];
     this.MenuitemMaster = [];
     this._UtilityService.showSpinner();
-    this._MasterServices.GetUserMenuItemAccessByModuleId(this.RegistrationMainModel.userTypeId, this.RegistrationMainModel.userId)
+    this._MasterServices.GetUserMenuItemAccessByModuleId(this.RegistrationMainModel.UserTypeId, this.RegistrationMainModel.UserId)
       .subscribe
       (
         data => {
