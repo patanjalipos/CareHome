@@ -15,16 +15,16 @@ import { UserService } from 'src/app/ui/service/user.service';
 
 export class DeliriumRiskAndRiskReductionComponent extends AppComponentBase implements OnInit {
 
-  @Input() preSelectedFormData: any=<any>{};
+  @Input() preSelectedFormData: any = <any>{};
   @Output() EmitUpdateForm: EventEmitter<any> = new EventEmitter<any>();
 
   customDateFormat = CustomDateFormat;
   isEditable: boolean;
-  DeliriumRiskFormsData:any = <any>{};
-  residentAdmissionInfoId:any;
+  DeliriumRiskFormsData: any = <any>{};
+  residentAdmissionInfoId: any;
   loginId: any;
   userId: any;
-  StatementType: string = null;
+  statementType: string = null;
 
   lstDeliriumRiskCheck: any[] = [];
   lstDisorientationPrevention: any[] = [];
@@ -34,26 +34,26 @@ export class DeliriumRiskAndRiskReductionComponent extends AppComponentBase impl
   lstDeliriumPreventionPlan: any[] = [];
   lstDeliriumDueToSensoryImpairmentPrevention: any[] = [];
   lstDeliriumDueToSleepDisturbancePrevention: any[] = [];
-  
-  constructor(private _ConstantServices: ConstantsService,private route: ActivatedRoute,private _UtilityService: UtilityService,private _UserServices: UserService, private _DeliriumRisk: DeliriumRiskAndRiskReductionService) {
+
+  constructor(private _ConstantServices: ConstantsService, private route: ActivatedRoute, private _UtilityService: UtilityService, private _UserServices: UserService, private _DeliriumRisk: DeliriumRiskAndRiskReductionService) {
 
     super();
 
     this._ConstantServices.ActiveMenuName = "Delirium Risk And Risk Reduction Form";
     this.loginId = localStorage.getItem('userId');
-   }
+  }
 
-  
+
 
   ngOnChanges(changes: SimpleChanges): void {
     this.isEditable = this.preSelectedFormData.isEditable;
-    
+
     if (this.preSelectedFormData.selectedFormID != null) {
       this.DeliriumRiskFormsData = <any>{};
-        this.GetDeliriumRiskDetails(
-            this.preSelectedFormData.selectedFormID
-        );
-        this.StatementType = 'Update';
+      this.GetDeliriumRiskDetails(
+        this.preSelectedFormData.selectedFormID
+      );
+      this.statementType = 'Update';
     }
     else {
       this.ResetModel();
@@ -64,7 +64,7 @@ export class DeliriumRiskAndRiskReductionComponent extends AppComponentBase impl
 
     this.userId = this.preSelectedFormData.userId;
     this.residentAdmissionInfoId = this.preSelectedFormData.residentAdmissionInfoId;
-    
+
     const collectionNames = [
       'DeliriumRiskCheck',
       'DisorientationPrevention',
@@ -74,145 +74,145 @@ export class DeliriumRiskAndRiskReductionComponent extends AppComponentBase impl
       'DeliriumPreventionPlan',
       'DeliriumDueToSensoryImpairmentPrevention',
       'DeliriumDueToSleepDisturbancePrevention'
-  ];
+    ];
 
-  forkJoin(collectionNames.map((collectionName) => this.getDropdownMasterLists(FormTypes.Deliriumrisk,collectionName,1))).subscribe((responses: any[]) => {
-    this.lstDeliriumRiskCheck = responses[0];
-    this.lstDisorientationPrevention = responses[1];
-    this.lstDeliriumDueToHydrationPrevention = responses[2];
-    this.lstDeliriumDueToSurgeryPrevention = responses[3];
-    this.lstDeliriumDueToInfectionPrevention = responses[4];
-    this.lstDeliriumPreventionPlan = responses[5];
-    this.lstDeliriumDueToSensoryImpairmentPrevention = responses[6];
-    this.lstDeliriumDueToSleepDisturbancePrevention = responses[7];
-});
+    forkJoin(collectionNames.map((collectionName) => this.getDropdownMasterLists(FormTypes.Deliriumrisk, collectionName, 1))).subscribe((responses: any[]) => {
+      this.lstDeliriumRiskCheck = responses[0];
+      this.lstDisorientationPrevention = responses[1];
+      this.lstDeliriumDueToHydrationPrevention = responses[2];
+      this.lstDeliriumDueToSurgeryPrevention = responses[3];
+      this.lstDeliriumDueToInfectionPrevention = responses[4];
+      this.lstDeliriumPreventionPlan = responses[5];
+      this.lstDeliriumDueToSensoryImpairmentPrevention = responses[6];
+      this.lstDeliriumDueToSleepDisturbancePrevention = responses[7];
+    });
 
-this.isEditable = this.preSelectedFormData.isEditable;
-  
+    this.isEditable = this.preSelectedFormData.isEditable;
+
     if (this.preSelectedFormData.selectedFormID != null) {
       this.DeliriumRiskFormsData = <any>{};
-        this.GetDeliriumRiskDetails(
-            this.preSelectedFormData.selectedFormID
-        );
-        this.StatementType = 'Update';
+      this.GetDeliriumRiskDetails(
+        this.preSelectedFormData.selectedFormID
+      );
+      this.statementType = 'Update';
     }
     else {
       this.ResetModel();
-  }
+    }
   }
 
-  SaveAsPDF() {}
+  SaveAsPDF() { }
 
   GetDeliriumRiskDetails(formId: string) {
     this._UtilityService.showSpinner();
     this.unsubscribe.add = this._DeliriumRisk
-        .GetDeliriumRiskDetails(formId)
-        .subscribe({
-            next: (data) => {
-                this._UtilityService.hideSpinner();
-                if (data.actionResult.success == true) {
-                    var tdata = JSON.parse(data.actionResult.result);
-                    tdata = tdata ? tdata : {};
-                
-                    this.DeliriumRiskFormsData = tdata;
-                 
-                    
-                } else {
-                    this.DeliriumRiskFormsData = {};
-                }
-            },
-            error: (e) => {
-                this._UtilityService.hideSpinner();
-                this._UtilityService.showErrorAlert(e.message);
-            },
-        });
-}
-
-getDropdownMasterLists(formMasterId: string, dropdownName: string,status:number): Observable<any> {
-  this._UtilityService.showSpinner();
-  return this._UserServices.GetDropDownMasterList(formMasterId,dropdownName, status).pipe(
-      map((response) => {
+      .GetDeliriumRiskDetails(formId)
+      .subscribe({
+        next: (data) => {
           this._UtilityService.hideSpinner();
-          if (response.actionResult.success) {
-              return JSON.parse(response.actionResult.result);
+          if (data.actionResult.success == true) {
+          var tdata = data.actionResult.result;
+            tdata = tdata ? tdata : {};
+
+            this.DeliriumRiskFormsData = tdata;
+
+
           } else {
-              return [];
+            this.DeliriumRiskFormsData = {};
           }
+        },
+        error: (e) => {
+          this._UtilityService.hideSpinner();
+          this._UtilityService.showErrorAlert(e.message);
+        },
+      });
+  }
+
+  getDropdownMasterLists(formMasterId: string, dropdownName: string, status: number): Observable<any> {
+    this._UtilityService.showSpinner();
+    return this._UserServices.GetDropDownMasterList(formMasterId, dropdownName, status).pipe(
+      map((response) => {
+        this._UtilityService.hideSpinner();
+        if (response.actionResult.success) {
+          return JSON.parse(response.actionResult.result);
+        } else {
+          return [];
+        }
       }),
       catchError((error) => {
-          this._UtilityService.hideSpinner();
-          this._UtilityService.showErrorAlert(error.message);
-        
-          return of([]); // Returning empty array in case of error
+        this._UtilityService.hideSpinner();
+        this._UtilityService.showErrorAlert(error.message);
+
+        return of([]); // Returning empty array in case of error
       })
-  );
-}
+    );
+  }
 
-saveAsUnfinished() {
+  saveAsUnfinished() {
 
-  this.DeliriumRiskFormsData.isFormCompleted = false;
-  this.Save();
-}
+    this.DeliriumRiskFormsData.isFormCompleted = false;
+    this.Save();
+  }
 
-completeForm() {
-  this.DeliriumRiskFormsData.isFormCompleted = true;
-  this.Save();
-}
+  completeForm() {
+    this.DeliriumRiskFormsData.isFormCompleted = true;
+    this.Save();
+  }
 
-Save() {
-if (this.userId != null && this.residentAdmissionInfoId != null && this.loginId!=null) {
-    
-    this.DeliriumRiskFormsData.userId = this.userId;
-    this.DeliriumRiskFormsData.residentAdmissionInfoId =
+  Save() {
+    if (this.userId != null && this.residentAdmissionInfoId != null && this.loginId != null) {
+
+      this.DeliriumRiskFormsData.userId = this.userId;
+      this.DeliriumRiskFormsData.residentAdmissionInfoId =
         this.residentAdmissionInfoId;
-    this.DeliriumRiskFormsData.StartedBy = this.loginId;
-    this.DeliriumRiskFormsData.LastEnteredBy = this.loginId;
-    
-        const objectBody: any = {
-          StatementType: this.StatementType,
-          deliriumRiskForm: this.DeliriumRiskFormsData
+      this.DeliriumRiskFormsData.startedBy = this.loginId;
+      this.DeliriumRiskFormsData.lastEnteredBy = this.loginId;
+
+      const objectBody: any = {
+        statementType: this.statementType,
+        deliriumRiskForm: this.DeliriumRiskFormsData
       };
-      
 
-  
 
-    this._UtilityService.showSpinner();
-    this.unsubscribe.add = this._DeliriumRisk
+
+
+      this._UtilityService.showSpinner();
+      this.unsubscribe.add = this._DeliriumRisk
         .InsertUpdateDeliriumRiskForm(
-            objectBody
+          objectBody
         )
         .subscribe({
-            next: (data) => {
-                this._UtilityService.hideSpinner();
-                if (data.actionResult.success == true){
-                    this.EmitUpdateForm.emit(true);
-                //   this.ResetModel();
-                    this._UtilityService.showSuccessAlert(
-                        data.actionResult.errMsg
-                    );
-                  }
-                else
-                    this._UtilityService.showWarningAlert(
-                        data.actionResult.errMsg
-                    );
-            },
-            error: (e) => {
-                this._UtilityService.hideSpinner();
-                this._UtilityService.showErrorAlert(e.message);
-            },
+          next: (data) => {
+            this._UtilityService.hideSpinner();
+            if (data.actionResult.success == true) {
+              this.EmitUpdateForm.emit(true);
+              //   this.ResetModel();
+              this._UtilityService.showSuccessAlert(
+                data.actionResult.errMsg
+              );
+            }
+            else
+              this._UtilityService.showWarningAlert(
+                data.actionResult.errMsg
+              );
+          },
+          error: (e) => {
+            this._UtilityService.hideSpinner();
+            this._UtilityService.showErrorAlert(e.message);
+          },
         });
-} else {
-    this._UtilityService.showWarningAlert(
+    } else {
+      this._UtilityService.showWarningAlert(
         'Delirium Risk And Risk Reduction details are missing.'
-    );
-}
-}
+      );
+    }
+  }
 
 
-ResetModel() {
-  this.isEditable = true;
-  this.DeliriumRiskFormsData = <any>{};
-  this.StatementType = 'Insert';
-}
+  ResetModel() {
+    this.isEditable = true;
+    this.DeliriumRiskFormsData = <any>{};
+    this.statementType = 'Insert';
+  }
 
 }

@@ -14,8 +14,8 @@
     </div>
     <ng-container *ngIf="SearchmoreFiletrs && hasItem(SearchmoreFiletrs,'UserType')&& ComponentName === 'UserMaster'">
       <div class="form-group pos-rel col-auto">
-        <p-dropdown name="ddlUserType" [options]="lstUserType" [(ngModel)]="SearchUserType" optionLabel="UserTypeName"
-          optionValue="UserTypeId" [filter]="true" placeholder="User Type" [style]="{width: '100%'}"
+        <p-dropdown name="ddlUserType" [options]="lstUserType" [(ngModel)]="SearchUserType" optionLabel="userTypeName"
+          optionValue="userTypeId" [filter]="true" placeholder="User Type" [style]="{width: '100%'}"
           #usertyperef="ngModel">
         </p-dropdown>
       </div>
@@ -88,7 +88,7 @@
     <div class="form-group pos-rel col-auto" *ngIf="ComponentName === 'MenuMaster'">
       <ng-container *ngIf="SearchmoreFiletrs && hasItem(SearchmoreFiletrs,'UserType')">
         <p-dropdown name="ddlUserType" [options]="lstUserType" [(ngModel)]="SearchMenuUserType"
-          optionLabel="UserTypeName" optionValue="UserTypeId" [filter]="true"
+          optionLabel="userTypeName" optionValue="userTypeId" [filter]="true"
           [placeholder]="MasterData?.[0]?.optionValue" [style]="{width: '100%'}" #usertyperef="ngModel">
         </p-dropdown>
       </ng-container>
@@ -214,8 +214,8 @@
 
     <ng-container *ngIf="ComponentName=='AlertList'">
       <div class="col-md-2" *ngIf="SearchmoreFiletrs && hasItem(SearchmoreFiletrs,'AlertName')">
-        <p-dropdown [(ngModel)]="SearchByAlertName" [options]="lstAlertMaster" optionLabel="AlertName"
-          optionValue="AlertMasterId" placeholder="Alern Name" [style]="{ width: '100%' }" [filter]="true"
+        <p-dropdown [(ngModel)]="SearchByAlertName" [options]="lstAlertMaster" optionLabel="alertName"
+          optionValue="alertMasterId" placeholder="Alern Name" [style]="{ width: '100%' }" [filter]="true"
           [showClear]="true">
         </p-dropdown>
       </div>

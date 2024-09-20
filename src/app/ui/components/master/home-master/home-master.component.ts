@@ -51,7 +51,7 @@ export class HomeMasterComponent extends AppComponentBase implements OnInit {
       next: (data) => {
         this._UtilityService.hideSpinner();      
           if (data.actionResult.success == true) {
-          var tdata = JSON.parse(data.actionResult.result);
+        var tdata = data.actionResult.result;
           tdata = tdata ? tdata : [];
           this.lstCountryMaster = tdata;
         }
@@ -76,7 +76,7 @@ export class HomeMasterComponent extends AppComponentBase implements OnInit {
         next:(data) => {
           this._UtilityService.hideSpinner();          
           if (data.actionResult.success == true) {
-            var tdata = JSON.parse(data.actionResult.result);
+          var tdata = data.actionResult.result;
             tdata = tdata ? tdata : [];
             this.lstMaster = tdata;
             if (this.filtr !== undefined) {
@@ -105,7 +105,7 @@ export class HomeMasterComponent extends AppComponentBase implements OnInit {
         next:(data) => {
           this._UtilityService.hideSpinner();          
           if (data.actionResult.success == true) {
-            var tdata = JSON.parse(data.actionResult.result);
+          var tdata = data.actionResult.result;
             tdata = tdata ? tdata : [];
             this.master = tdata;
             }

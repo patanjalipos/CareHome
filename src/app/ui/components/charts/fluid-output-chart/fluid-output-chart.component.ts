@@ -260,7 +260,7 @@ export class FluidOutputChartComponent extends AppComponentBase implements OnIni
         next: (data) => {
           this._UtilityService.hideSpinner();
           if (data.actionResult.success == true) {
-            var tdata = JSON.parse(data.actionResult.result);
+          var tdata = data.actionResult.result;
             tdata = tdata ? tdata : [];
             this.fluidOutputChartsLst = tdata;
             if (this.fluidOutputChartsLst.length < 3 || (((this.fluidOutputChartsLst.length) * (this.pageNumber + 1)) >= this.fluidOutputChartsLst[0].countRecords)) {

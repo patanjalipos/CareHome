@@ -324,7 +324,7 @@ export class BowelChartComponent extends AppComponentBase implements OnInit {
         next: (data) => {
           this._UtilityService.hideSpinner();
           if (data.actionResult.success == true) {
-            var tdata = JSON.parse(data.actionResult.result);
+          var tdata = data.actionResult.result;
             tdata = tdata ? tdata : [];
             this.BowelChartsLst = tdata;
             if (this.BowelChartsLst.length < 3 || (((this.BowelChartsLst.length) * (this.pageNumber + 1)) >= this.BowelChartsLst[0].countRecords)) {

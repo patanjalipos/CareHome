@@ -121,7 +121,7 @@ export class FilterationComponent extends AppComponentBase implements OnInit {
         next: (data) => {
           this._UtilityService.hideSpinner();
           if (data.actionResult.success == true) {
-            var tdata = JSON.parse(data.actionResult.result);
+          var tdata = data.actionResult.result;
             tdata = tdata ? tdata : [];
             this.lstUserType = tdata;
 
@@ -255,7 +255,7 @@ export class FilterationComponent extends AppComponentBase implements OnInit {
     }
     //Form  Master
     if (this.searchFormName != null && this.searchFormName != undefined && this.searchFormName != '') {
-      SearchList1.push({ 'SearchBy': 'FormName', 'SearchVal': this.searchFormName.trim() });
+      SearchList1.push({ 'SearchBy': 'formName', 'SearchVal': this.searchFormName.trim() });
     }
     if (this.searchSequence != null && this.searchSequence != undefined && this.searchSequence != '') {
       SearchList1.push({ 'SearchBy': 'Sequence', 'SearchVal': this.searchSequence.trim() });
@@ -319,7 +319,7 @@ GetAlertMaster() {
           next: (data) => {
               this._UtilityService.hideSpinner();
               if (data.actionResult.success == true) {
-                  var tdata = JSON.parse(data.actionResult.result);
+                var tdata = data.actionResult.result;
                   //console.log(tdata);
                   tdata = tdata ? tdata : [];
                   this.lstAlertMaster = tdata;

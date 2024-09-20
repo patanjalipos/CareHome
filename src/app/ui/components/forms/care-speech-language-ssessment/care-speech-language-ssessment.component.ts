@@ -17,6 +17,7 @@ import {
 import { UtilityService } from 'src/app/utility/utility.service';
 import { CareSpeechLanguageSsessmentService } from './care-speech-language-ssessment.service';
 import { UserService } from 'src/app/ui/service/user.service';
+import { DatePipe } from '@angular/common';
 
 @Component({
     selector: 'app-care-speech-language-ssessment',
@@ -36,7 +37,7 @@ export class CareSpeechLanguageSsessmentComponent
     //Form which is selected to edit or view
     isEditable: boolean;
     //Need to be passed from form Dashboard
-    StatementType: string = null;
+    statementType: string = null;
 
     //Patient Details
     userId: any;
@@ -56,7 +57,8 @@ export class CareSpeechLanguageSsessmentComponent
         private route: ActivatedRoute,
         private _UtilityService: UtilityService,
         private _UserService: UserService,
-        private _FormService: CareSpeechLanguageSsessmentService
+        private _FormService: CareSpeechLanguageSsessmentService,
+        private datePipe: DatePipe
     ) {
         super();
         this._ConstantServices.ActiveMenuName =
@@ -72,7 +74,7 @@ export class CareSpeechLanguageSsessmentComponent
             this.GetSelectedFormDetails(
                 this.preSelectedFormData.selectedFormID
             );
-            this.StatementType = 'Update';
+            this.statementType = 'Update';
         } else {
             this.ResetModel();
         }
@@ -114,7 +116,7 @@ export class CareSpeechLanguageSsessmentComponent
                 this.preSelectedFormData.selectedFormID
             );
 
-            this.StatementType = 'Update';
+            this.statementType = 'Update';
         } else {
             this.ResetModel();
         }
@@ -123,12 +125,12 @@ export class CareSpeechLanguageSsessmentComponent
     SaveAsPDF() { }
 
     saveAsUnfinished() {
-        this.CareSpeechLanguageFormData.IsFormCompleted = false;
+        this.CareSpeechLanguageFormData.isFormCompleted = false;
         this.Save();
     }
 
     completeForm() {
-        this.CareSpeechLanguageFormData.IsFormCompleted = true;
+        this.CareSpeechLanguageFormData.isFormCompleted = true;
         this.Save();
     }
 
@@ -151,7 +153,7 @@ export class CareSpeechLanguageSsessmentComponent
                 catchError((error) => {
                     this._UtilityService.hideSpinner();
                     this._UtilityService.showErrorAlert(error.message);
-              
+
                     return of([]); // Returning empty array in case of error
                 })
             );
@@ -165,9 +167,10 @@ export class CareSpeechLanguageSsessmentComponent
                 next: (data) => {
                     this._UtilityService.hideSpinner();
                     if (data.actionResult.success == true) {
-                        var tdata = JSON.parse(data.actionResult.result);
+                      var tdata = data.actionResult.result;
                         tdata = tdata ? tdata : {};
                         this.CareSpeechLanguageFormData = tdata;
+                        this.CareSpeechLanguageFormData.nextReviewDate = new Date(this.datePipe.transform(this.CareSpeechLanguageFormData.nextReviewDate));
                     } else {
                         this.CareSpeechLanguageFormData = {};
                     }
@@ -185,14 +188,15 @@ export class CareSpeechLanguageSsessmentComponent
             this.residentAdmissionInfoId != null &&
             this.loginId != null
         ) {
-            this.CareSpeechLanguageFormData.UserId = this.userId;
-            this.CareSpeechLanguageFormData.ResidentAdmissionInfoId =
+            this.CareSpeechLanguageFormData.userId = this.userId;
+            this.CareSpeechLanguageFormData.residentAdmissionInfoId =
                 this.residentAdmissionInfoId;
-            this.CareSpeechLanguageFormData.StartedBy = this.loginId;
-            this.CareSpeechLanguageFormData.ModifiedBy = this.loginId;
+            this.CareSpeechLanguageFormData.startedBy = this.loginId;
+            this.CareSpeechLanguageFormData.modifiedBy = this.loginId;
+            this.CareSpeechLanguageFormData.nextReviewDate = new Date(this.datePipe.transform(this.CareSpeechLanguageFormData.nextReviewDate, 'yyyy-MM-dd'));
 
             const objectBody: any = {
-                StatementType: this.StatementType,
+                statementType: this.statementType,
                 CareSpeechLanguageForm: this.CareSpeechLanguageFormData,
             };
 
@@ -227,6 +231,6 @@ export class CareSpeechLanguageSsessmentComponent
     ResetModel() {
         this.isEditable = true;
         this.CareSpeechLanguageFormData = <any>{};
-        this.StatementType = 'Insert';
+        this.statementType = 'Insert';
     }
 }

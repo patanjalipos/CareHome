@@ -25,8 +25,7 @@ import { UserService } from 'src/app/ui/service/user.service';
 })
 export class ConnectingAndCommunicatingComponent
     extends AppComponentBase
-    implements OnInit
-{
+    implements OnInit {
     @Input() preSelectedFormData: any = <any>{};
     @Output() EmitUpdateForm: EventEmitter<any> = new EventEmitter<any>();
 
@@ -36,7 +35,7 @@ export class ConnectingAndCommunicatingComponent
     //Form which is selected to edit or view
     isEditable: boolean;
     //Need to be passed from form Dashboard
-    StatementType: string = null;
+    statementType: string = null;
 
     //Patient Details
     userId: any;
@@ -74,7 +73,7 @@ export class ConnectingAndCommunicatingComponent
             this.GetSelectedFormDetails(
                 this.preSelectedFormData.selectedFormID
             );
-            this.StatementType = 'Update';
+            this.statementType = 'Update';
         } else {
             this.ResetModel();
         }
@@ -122,21 +121,21 @@ export class ConnectingAndCommunicatingComponent
                 this.preSelectedFormData.selectedFormID
             );
 
-            this.StatementType = 'Update';
+            this.statementType = 'Update';
         } else {
             this.ResetModel();
         }
     }
 
-    SaveAsPDF() {}
+    SaveAsPDF() { }
 
     saveAsUnfinished() {
-        this.ConnectingAndCommunicatingFormData.IsFormCompleted = false;
+        this.ConnectingAndCommunicatingFormData.isFormCompleted = false;
         this.Save();
     }
 
     completeForm() {
-        this.ConnectingAndCommunicatingFormData.IsFormCompleted = true;
+        this.ConnectingAndCommunicatingFormData.isFormCompleted = true;
         this.Save();
     }
 
@@ -159,7 +158,7 @@ export class ConnectingAndCommunicatingComponent
                 catchError((error) => {
                     this._UtilityService.hideSpinner();
                     this._UtilityService.showErrorAlert(error.message);
-                  
+
                     return of([]); // Returning empty array in case of error
                 })
             );
@@ -173,7 +172,7 @@ export class ConnectingAndCommunicatingComponent
                 next: (data) => {
                     this._UtilityService.hideSpinner();
                     if (data.actionResult.success == true) {
-                        var tdata = JSON.parse(data.actionResult.result);
+                      var tdata = data.actionResult.result;
                         tdata = tdata ? tdata : {};
                         this.ConnectingAndCommunicatingFormData = tdata;
                     } else {
@@ -193,15 +192,15 @@ export class ConnectingAndCommunicatingComponent
             this.residentAdmissionInfoId != null &&
             this.loginId != null
         ) {
-            this.ConnectingAndCommunicatingFormData.UserId = this.userId;
-            this.ConnectingAndCommunicatingFormData.ResidentAdmissionInfoId =
+            this.ConnectingAndCommunicatingFormData.userId = this.userId;
+            this.ConnectingAndCommunicatingFormData.residentAdmissionInfoId =
                 this.residentAdmissionInfoId;
-            this.ConnectingAndCommunicatingFormData.StartedBy = this.loginId;
-            this.ConnectingAndCommunicatingFormData.ModifiedBy = this.loginId;
+            this.ConnectingAndCommunicatingFormData.startedBy = this.loginId;
+            this.ConnectingAndCommunicatingFormData.modifiedBy = this.loginId;
 
             const objectBody: any = {
-                StatementType: this.StatementType,
-                ConnectingAndCommunicatingForm:
+                statementType: this.statementType,
+                connectingAndCommunicatingForm:
                     this.ConnectingAndCommunicatingFormData,
             };
 
@@ -236,6 +235,6 @@ export class ConnectingAndCommunicatingComponent
     ResetModel() {
         this.isEditable = true;
         this.ConnectingAndCommunicatingFormData = <any>{};
-        this.StatementType = 'Insert';
+        this.statementType = 'Insert';
     }
 }

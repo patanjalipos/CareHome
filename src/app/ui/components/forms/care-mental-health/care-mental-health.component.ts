@@ -24,7 +24,7 @@ export class CareMentalHealthComponent extends AppComponentBase implements OnIni
     residentAdmissionInfoId: any;
     loginId: any;
     userId: any;
-    StatementType: string = null;
+    statementType: string = null;
     MentalHealthStatus: boolean
     SexualityStatus: boolean
 
@@ -58,7 +58,7 @@ export class CareMentalHealthComponent extends AppComponentBase implements OnIni
             this.GetCareAssessmentMentalHealthDetails(
                 this.preSelectedFormData.selectedFormID
             );
-            this.StatementType = 'Update';
+            this.statementType = 'Update';
         }
         else {
             this.ResetModel();
@@ -108,7 +108,7 @@ export class CareMentalHealthComponent extends AppComponentBase implements OnIni
             this.GetCareAssessmentMentalHealthDetails(
                 this.preSelectedFormData.selectedFormID
             );
-            this.StatementType = 'Update';
+            this.statementType = 'Update';
         }
         else {
             this.ResetModel();
@@ -125,25 +125,25 @@ export class CareMentalHealthComponent extends AppComponentBase implements OnIni
                 next: (data) => {
                     this._UtilityService.hideSpinner();
                     if (data.actionResult.success == true) {
-                        var tdata = JSON.parse(data.actionResult.result);
+                      var tdata = data.actionResult.result;
                         tdata = tdata ? tdata : {};
-                       
+
                         this.CareAssessmentMentalHealthFormsData = tdata;
-                       
-                        this.CareAssessmentMentalHealthFormsData.ReviewDate = this.datePipe.transform(this.CareAssessmentMentalHealthFormsData.ReviewDate, 'MM/dd/yyyy')
-                        if (this.CareAssessmentMentalHealthFormsData.MentalHealthOrCognitionStatus == 'Mental Health') {
+
+                        this.CareAssessmentMentalHealthFormsData.reviewDate = this.datePipe.transform(this.CareAssessmentMentalHealthFormsData.reviewDate, 'MM/dd/yyyy')
+                        if (this.CareAssessmentMentalHealthFormsData.mentalHealthOrCognitionStatus == 'Mental Health') {
                             this.MentalHealthStatus = true
                         }
-                        if (this.CareAssessmentMentalHealthFormsData.MentalHealthOrCognitionStatus == 'Cognition') {
+                        if (this.CareAssessmentMentalHealthFormsData.mentalHealthOrCognitionStatus == 'Cognition') {
                             this.MentalHealthStatus = !true
                         }
-                        if (this.CareAssessmentMentalHealthFormsData.SexualityOrCulturalStatus == 'Sexuality') {
+                        if (this.CareAssessmentMentalHealthFormsData.sexualityOrCulturalStatus == 'Sexuality') {
                             this.SexualityStatus = true
                         }
-                        if (this.CareAssessmentMentalHealthFormsData.SexualityOrCulturalStatus == 'Cultural') {
+                        if (this.CareAssessmentMentalHealthFormsData.sexualityOrCulturalStatus == 'Cultural') {
                             this.SexualityStatus = !true
                         }
-                    
+
 
                     } else {
                         this.CareAssessmentMentalHealthFormsData = {};
@@ -170,7 +170,7 @@ export class CareMentalHealthComponent extends AppComponentBase implements OnIni
             catchError((error) => {
                 this._UtilityService.hideSpinner();
                 this._UtilityService.showErrorAlert(error.message);
-             
+
                 return of([]); // Returning empty array in case of error
             })
         );
@@ -196,33 +196,33 @@ export class CareMentalHealthComponent extends AppComponentBase implements OnIni
             this.CareAssessmentMentalHealthFormsData.userId = this.userId;
             this.CareAssessmentMentalHealthFormsData.residentAdmissionInfoId =
                 this.residentAdmissionInfoId;
-            this.CareAssessmentMentalHealthFormsData.StartedBy = this.loginId;
-            this.CareAssessmentMentalHealthFormsData.LastEnteredBy = this.loginId;
-            this.CareAssessmentMentalHealthFormsData.ReviewDate = this.datePipe.transform(this.CareAssessmentMentalHealthFormsData.ReviewDate, 'yyyy-MM-dd')
+            this.CareAssessmentMentalHealthFormsData.startedBy = this.loginId;
+            this.CareAssessmentMentalHealthFormsData.lastEnteredBy = this.loginId;
+            this.CareAssessmentMentalHealthFormsData.reviewDate = this.datePipe.transform(this.CareAssessmentMentalHealthFormsData.reviewDate, 'yyyy-MM-dd')
 
             if (this.MentalHealthStatus == true) {
 
-                this.CareAssessmentMentalHealthFormsData.MentalHealthOrCognitionStatus = 'Mental Health';
+                this.CareAssessmentMentalHealthFormsData.mentalHealthOrCognitionStatus = 'Mental Health';
             }
             if (this.MentalHealthStatus == false) {
-                this.CareAssessmentMentalHealthFormsData.MentalHealthOrCognitionStatus = 'Cognition';
+                this.CareAssessmentMentalHealthFormsData.mentalHealthOrCognitionStatus = 'Cognition';
             }
 
             if (this.SexualityStatus == true) {
-                this.CareAssessmentMentalHealthFormsData.SexualityOrCulturalStatus = 'Sexuality';
+                this.CareAssessmentMentalHealthFormsData.sexualityOrCulturalStatus = 'Sexuality';
             }
             if (this.SexualityStatus != true) {
-                this.CareAssessmentMentalHealthFormsData.SexualityOrCulturalStatus = 'Cultural';
+                this.CareAssessmentMentalHealthFormsData.sexualityOrCulturalStatus = 'Cultural';
             }
 
 
             const objectBody: any = {
-                StatementType: this.StatementType,
+                statementType: this.statementType,
                 careAssessmentMentalHealthForm: this.CareAssessmentMentalHealthFormsData,
             };
 
 
-          
+
 
             this._UtilityService.showSpinner();
             this.unsubscribe.add = this._CareMentalHealth
@@ -260,7 +260,7 @@ export class CareMentalHealthComponent extends AppComponentBase implements OnIni
     ResetModel() {
         this.isEditable = true;
         this.CareAssessmentMentalHealthFormsData = <any>{};
-        this.StatementType = 'Insert';
+        this.statementType = 'Insert';
     }
 
 

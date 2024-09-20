@@ -23,7 +23,7 @@ export class CareHearingAssessmentComponent extends AppComponentBase implements 
   residentAdmissionInfoId: any;
   loginId: any;
   userId: any;
-  StatementType: string = null;
+  statementType: string = null;
 
   lstHearingDiagnosisCheck: any[] = []
   lstCurrentHearingDiagnosis: any[] = []
@@ -48,7 +48,7 @@ export class CareHearingAssessmentComponent extends AppComponentBase implements 
       this.GetCareAssessmentHearingDetails(
         this.preSelectedFormData.selectedFormID
       );
-      this.StatementType = 'Update';
+      this.statementType = 'Update';
     }
     else {
       this.ResetModel();
@@ -87,7 +87,7 @@ export class CareHearingAssessmentComponent extends AppComponentBase implements 
       this.GetCareAssessmentHearingDetails(
         this.preSelectedFormData.selectedFormID
       );
-      this.StatementType = 'Update';
+      this.statementType = 'Update';
     }
     else {
       this.ResetModel();
@@ -102,13 +102,13 @@ export class CareHearingAssessmentComponent extends AppComponentBase implements 
         next: (data) => {
           this._UtilityService.hideSpinner();
           if (data.actionResult.success == true) {
-            var tdata = JSON.parse(data.actionResult.result);
+          var tdata = data.actionResult.result;
             tdata = tdata ? tdata : {};
-      
+
             this.CareAssessmentHearingFormsData = tdata;
-           
-            this.CareAssessmentHearingFormsData.NextReviewDate=  this.datePipe.transform(
-              this.CareAssessmentHearingFormsData.NextReviewDate,
+
+            this.CareAssessmentHearingFormsData.nextReviewDate = this.datePipe.transform(
+              this.CareAssessmentHearingFormsData.nextReviewDate,
               'MM/dd/yyyy'
             );;
 
@@ -141,17 +141,16 @@ export class CareHearingAssessmentComponent extends AppComponentBase implements 
       catchError((error) => {
         this._UtilityService.hideSpinner();
         this._UtilityService.showErrorAlert(error.message);
-      
+
         return of([]); // Returning empty array in case of error
       })
     );
   }
 
 
-  
+
 
   saveAsUnfinished() {
-
     this.CareAssessmentHearingFormsData.isFormCompleted = false;
     this.Save();
   }
@@ -167,12 +166,14 @@ export class CareHearingAssessmentComponent extends AppComponentBase implements 
       this.CareAssessmentHearingFormsData.userId = this.userId;
       this.CareAssessmentHearingFormsData.residentAdmissionInfoId =
         this.residentAdmissionInfoId;
-      this.CareAssessmentHearingFormsData.StartedBy = this.loginId;
-      this.CareAssessmentHearingFormsData.LastEnteredBy = this.loginId;
+      this.CareAssessmentHearingFormsData.startedBy = this.loginId;
+      this.CareAssessmentHearingFormsData.lastEnteredBy = this.loginId;
+      this.CareAssessmentHearingFormsData.nextReviewDate = new Date(this.datePipe.transform(this.CareAssessmentHearingFormsData.nextReviewDate, 'yyyy-MM-dd'));
       const objectBody: any = {
-        StatementType: this.StatementType,
+        statementType: this.statementType,
         careAssessmentHearingForm: this.CareAssessmentHearingFormsData,
       };
+console.log(objectBody);
 
       this._UtilityService.showSpinner();
       this.unsubscribe.add = this._CareHearing
@@ -210,7 +211,7 @@ export class CareHearingAssessmentComponent extends AppComponentBase implements 
   ResetModel() {
     this.isEditable = true;
     this.CareAssessmentHearingFormsData = <any>{};
-    this.StatementType = 'Insert';
+    this.statementType = 'Insert';
   }
 
 }

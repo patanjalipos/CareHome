@@ -25,8 +25,7 @@ import { UserService } from 'src/app/ui/service/user.service';
 })
 export class DentistVisitCommunicationComponent
     extends AppComponentBase
-    implements OnInit
-{
+    implements OnInit {
     @Input() preSelectedFormData: any = <any>{};
     @Output() EmitUpdateForm: EventEmitter<any> = new EventEmitter<any>();
 
@@ -36,7 +35,7 @@ export class DentistVisitCommunicationComponent
     //Form which is selected to edit or view
     isEditable: boolean;
     //Need to be passed from form Dashboard
-    StatementType: string = null;
+    statementType: string = null;
 
     //Patient Details
     userId: any;
@@ -68,7 +67,7 @@ export class DentistVisitCommunicationComponent
             this.GetSelectedFormDetails(
                 this.preSelectedFormData.selectedFormID
             );
-            this.StatementType = 'Update';
+            this.statementType = 'Update';
         } else {
             this.ResetModel();
         }
@@ -102,22 +101,22 @@ export class DentistVisitCommunicationComponent
                 this.preSelectedFormData.selectedFormID
             );
 
-            this.StatementType = 'Update';
+            this.statementType = 'Update';
         } else {
             this.ResetModel();
         }
-        this.DentistVisitCommunicationFormData.DateOfDentistVisit=new Date();
+        this.DentistVisitCommunicationFormData.dateOfDentistVisit = new Date();
     }
 
-    SaveAsPDF() {}
+    SaveAsPDF() { }
 
     saveAsUnfinished() {
-        this.DentistVisitCommunicationFormData.IsFormCompleted = false;
+        this.DentistVisitCommunicationFormData.isFormCompleted = false;
         this.Save();
     }
 
     completeForm() {
-        this.DentistVisitCommunicationFormData.IsFormCompleted = true;
+        this.DentistVisitCommunicationFormData.isFormCompleted = true;
         this.Save();
     }
 
@@ -140,7 +139,7 @@ export class DentistVisitCommunicationComponent
                 catchError((error) => {
                     this._UtilityService.hideSpinner();
                     this._UtilityService.showErrorAlert(error.message);
-               
+
                     return of([]); // Returning empty array in case of error
                 })
             );
@@ -154,9 +153,10 @@ export class DentistVisitCommunicationComponent
                 next: (data) => {
                     this._UtilityService.hideSpinner();
                     if (data.actionResult.success == true) {
-                        var tdata = JSON.parse(data.actionResult.result);
+                      var tdata = data.actionResult.result;
                         tdata = tdata ? tdata : {};
                         this.DentistVisitCommunicationFormData = tdata;
+                        this.DentistVisitCommunicationFormData.dateOfDentistVisit = new Date(this.DentistVisitCommunicationFormData.dateOfDentistVisit);
                     } else {
                         this.DentistVisitCommunicationFormData = {};
                     }
@@ -174,15 +174,16 @@ export class DentistVisitCommunicationComponent
             this.residentAdmissionInfoId != null &&
             this.loginId != null
         ) {
-            this.DentistVisitCommunicationFormData.UserId = this.userId;
-            this.DentistVisitCommunicationFormData.ResidentAdmissionInfoId =
+            this.DentistVisitCommunicationFormData.userId = this.userId;
+            this.DentistVisitCommunicationFormData.residentAdmissionInfoId =
                 this.residentAdmissionInfoId;
-            this.DentistVisitCommunicationFormData.StartedBy = this.loginId;
-            this.DentistVisitCommunicationFormData.ModifiedBy = this.loginId;
+            this.DentistVisitCommunicationFormData.startedBy = this.loginId;
+            this.DentistVisitCommunicationFormData.modifiedBy = this.loginId;
+            this.DentistVisitCommunicationFormData.dateOfDentistVisit = new Date(this.DentistVisitCommunicationFormData.dateOfDentistVisit);
 
             const objectBody: any = {
-                StatementType: this.StatementType,
-                DentistVisitCommunicationForm:
+                statementType: this.statementType,
+                dentistVisitCommunicationForm:
                     this.DentistVisitCommunicationFormData,
             };
 
@@ -217,6 +218,6 @@ export class DentistVisitCommunicationComponent
     ResetModel() {
         this.isEditable = true;
         this.DentistVisitCommunicationFormData = <any>{};
-        this.StatementType = 'Insert';
+        this.statementType = 'Insert';
     }
 }

@@ -95,7 +95,7 @@
                 </li>
                 <li class="nav-item" role="presentation">
                     <button class="nav-link" [ngClass]="{'active': isFormActive}" type="button"
-                        (click)="confirm($event,'Form')" label="">Form</button>
+                        (click)="confirm($event,'Form')" label="">Forms</button>
                 </li>
                 <li class="nav-item" role="presentation">
                     <button class="nav-link" [ngClass]="{'active': isChartActive}" (click)="confirm($event,
@@ -123,8 +123,7 @@
                     [userid]="selecteduserid"></app-resident-progressnotes>
             </div>
             <div aria-labelledby="care-tab" *ngIf="CarePlan">
-                ..
-
+                <app-care-plan [admissionid]="selectedadmissionid" [userid]="selecteduserid"></app-care-plan>
             </div>
             <div *ngIf="Form">
                 <app-forms-dashboard [userId]="selecteduserid"
@@ -141,7 +140,7 @@
             </div>
 
             <div *ngIf="Action">
-                <app-actions [userid]="selecteduserid" [admissionid]="selectedadmissionid"></app-actions>
+                <app-actions [userid]="selecteduserid" [admissionid]="selectedadmissionid" [residentadmissiondetails]="ResidentMaster"></app-actions>
             </div>
         </div>
     </div>

@@ -56,7 +56,7 @@ export class ResidentHealthcareDetailsComponent extends AppComponentBase impleme
         next:(data) => {
           this._UtilityService.hideSpinner();          
           if (data.actionResult.success == true) {
-            var tdata = JSON.parse(data.actionResult.result);
+          var tdata = data.actionResult.result;
             tdata = tdata ? tdata : [];
             this.ResidentMaster = tdata;            
             this.ResidentMaster.StatementType = "Update";

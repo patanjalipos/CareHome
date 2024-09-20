@@ -23,7 +23,7 @@ export class CareSkinAssessmentComponent extends AppComponentBase implements OnI
   residentAdmissionInfoId: any;
   loginId: any;
   userId: any;
-  StatementType: string = null;
+  statementType: string = null;
 
   lstSkinIntegrityDecisions: any[] = [];
   lstSkinAgeingEffects: any[] = [];
@@ -62,8 +62,8 @@ export class CareSkinAssessmentComponent extends AppComponentBase implements OnI
       this.GetCareSkinAssessmentDetails(
         this.preSelectedFormData.selectedFormID
       );
-      this.StatementType = 'Update';
-      
+      this.statementType = 'Update';
+
     }
     else {
       this.ResetModel();
@@ -129,7 +129,7 @@ export class CareSkinAssessmentComponent extends AppComponentBase implements OnI
       this.GetCareSkinAssessmentDetails(
         this.preSelectedFormData.selectedFormID
       );
-      this.StatementType = 'Update';
+      this.statementType = 'Update';
     }
     else {
       this.ResetModel();
@@ -146,12 +146,12 @@ export class CareSkinAssessmentComponent extends AppComponentBase implements OnI
         next: (data) => {
           this._UtilityService.hideSpinner();
           if (data.actionResult.success == true) {
-            var tdata = JSON.parse(data.actionResult.result);
+          var tdata = data.actionResult.result;
             tdata = tdata ? tdata : {};
-         
+
             this.CareSkinAssessmentFormsData = tdata;
-            this.CareSkinAssessmentFormsData.NextReviewDate = new Date(this.CareSkinAssessmentFormsData.NextReviewDate);
-            
+            this.CareSkinAssessmentFormsData.nextReviewDate = new Date(this.CareSkinAssessmentFormsData.nextReviewDate);
+
           } else {
             this.CareSkinAssessmentFormsData = {};
           }
@@ -178,7 +178,7 @@ export class CareSkinAssessmentComponent extends AppComponentBase implements OnI
       catchError((error) => {
         this._UtilityService.hideSpinner();
         this._UtilityService.showErrorAlert(error.message);
-     
+
         return of([]); // Returning empty array in case of error
       })
     );
@@ -203,19 +203,19 @@ export class CareSkinAssessmentComponent extends AppComponentBase implements OnI
       this.CareSkinAssessmentFormsData.userId = this.userId;
       this.CareSkinAssessmentFormsData.residentAdmissionInfoId =
         this.residentAdmissionInfoId;
-      this.CareSkinAssessmentFormsData.StartedBy = this.loginId;
-      this.CareSkinAssessmentFormsData.LastEnteredBy = this.loginId;
+      this.CareSkinAssessmentFormsData.startedBy = this.loginId;
+      this.CareSkinAssessmentFormsData.lastEnteredBy = this.loginId;
 
-      this.CareSkinAssessmentFormsData.NextReviewDate = new Date(this.datePipe.transform(this.CareSkinAssessmentFormsData.NextReviewDate, 'yyyy-MM-dd'));
+      this.CareSkinAssessmentFormsData.nextReviewDate = new Date(this.datePipe.transform(this.CareSkinAssessmentFormsData.nextReviewDate, 'yyyy-MM-dd'));
 
 
       const objectBody: any = {
-        StatementType: this.StatementType,
+        statementType: this.statementType,
         careSkinAssessmentForm: this.CareSkinAssessmentFormsData,
       };
 
 
-   
+
 
       this._UtilityService.showSpinner();
       this.unsubscribe.add = this._CareSkin
@@ -253,7 +253,7 @@ export class CareSkinAssessmentComponent extends AppComponentBase implements OnI
   ResetModel() {
     this.isEditable = true;
     this.CareSkinAssessmentFormsData = <any>{};
-    this.StatementType = 'Insert';
+    this.statementType = 'Insert';
   }
 
 

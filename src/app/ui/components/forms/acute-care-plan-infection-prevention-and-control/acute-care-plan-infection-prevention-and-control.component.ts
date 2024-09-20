@@ -18,7 +18,7 @@ export class AcuteCarePlanInfectionPreventionAndControlComponent extends AppComp
     //Form which is selected to edit or view
 
     isEditable: boolean; //Need to be passed from form Dashboard
-    StatementType: string = null;
+    statementType: string = null;
 
     //Patient Details
     userId: any;
@@ -52,7 +52,7 @@ export class AcuteCarePlanInfectionPreventionAndControlComponent extends AppComp
                 this.preSelectedFormData.selectedFormID
             );
 
-            this.StatementType = 'Update';
+            this.statementType = 'Update';
         } else {
             this.ResetModel();
         }
@@ -82,7 +82,7 @@ export class AcuteCarePlanInfectionPreventionAndControlComponent extends AppComp
                 this.preSelectedFormData.selectedFormID
             );
 
-            this.StatementType = 'Update';
+            this.statementType = 'Update';
         } else {
             this.ResetModel();
         }
@@ -91,7 +91,7 @@ export class AcuteCarePlanInfectionPreventionAndControlComponent extends AppComp
     ResetModel() {
         this.isEditable = true;
         this.AcuteCarePlanInfectionFormsData = <any>{};
-        this.StatementType = 'Insert';
+        this.statementType = 'Insert';
     }
 
     SaveAsPDF() { }
@@ -124,7 +124,7 @@ export class AcuteCarePlanInfectionPreventionAndControlComponent extends AppComp
                 next: (data) => {
                     this._UtilityService.hideSpinner();
                     if (data.actionResult.success == true) {
-                        var tdata = JSON.parse(data.actionResult.result);
+                      var tdata = data.actionResult.result;
                         tdata = tdata ? tdata : {};
                         this.AcuteCarePlanInfectionFormsData = tdata;
                       
@@ -152,8 +152,8 @@ export class AcuteCarePlanInfectionPreventionAndControlComponent extends AppComp
             this.AcuteCarePlanInfectionFormsData.residentAdmissionInfoId = this.residentAdmissionInfoId;
 
             const objectBody: any = {
-                StatementType: this.StatementType,
-                AcuteCareForm: this.AcuteCarePlanInfectionFormsData,
+                statementType: this.statementType,
+                acuteCareForm: this.AcuteCarePlanInfectionFormsData,
             };
             this._UtilityService.showSpinner();
             this.unsubscribe.add = this._UserServices

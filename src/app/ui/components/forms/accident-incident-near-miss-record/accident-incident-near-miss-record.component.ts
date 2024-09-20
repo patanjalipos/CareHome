@@ -37,7 +37,7 @@ export class AccidentIncidentNearMissRecordComponent
     uniqueReferenceId: any;
     loginId: any;
     userId: any;
-    StatementType: string = null;
+    statementType: string = null;
     checked: boolean = false;
 
     lstlocationaccident: any[] = [];
@@ -69,7 +69,7 @@ export class AccidentIncidentNearMissRecordComponent
             this.GetAccidentNearMissRecordDetails(
                 this.preSelectedFormData.selectedFormID
             );
-            this.StatementType = 'Update';
+            this.statementType = 'Update';
         } else {
             this.ResetModel();
         }
@@ -116,11 +116,11 @@ export class AccidentIncidentNearMissRecordComponent
             this.GetAccidentNearMissRecordDetails(
                 this.preSelectedFormData.selectedFormID
             );
-            this.StatementType = 'Update';
+            this.statementType = 'Update';
         } else {
             this.ResetModel();
         }
-        this.AccidentNearMissRecordFormsData.DateOfAccident = new Date();
+        this.AccidentNearMissRecordFormsData.dateOfAccident = new Date();
     }
 
     getFormattedTime(time: Date) {
@@ -165,22 +165,22 @@ export class AccidentIncidentNearMissRecordComponent
                 next: (data) => {
                     this._UtilityService.hideSpinner();
                     if (data.actionResult.success == true) {
-                        var tdata = JSON.parse(data.actionResult.result);
+                      var tdata = data.actionResult.result;
                         tdata = tdata ? tdata : {};
 
                         this.AccidentNearMissRecordFormsData = tdata;
-                        this.AccidentNearMissRecordFormsData.DateOfAccident =
+                        this.AccidentNearMissRecordFormsData.dateOfAccident =
                             this.datePipe.transform(
                                 this.AccidentNearMissRecordFormsData
-                                    .DateOfAccident,
-                                'MM/dd/yyyy'
+                                    .dateOfAccident,
+                                'MM-dd-yyyy'
                             );
-                        this.AccidentNearMissRecordFormsData.EmergencyServicesContacted =
-                            this.datePipe.transform(
-                                this.AccidentNearMissRecordFormsData
-                                    .EmergencyServicesContacted,
-                                'MM/dd/yyyy'
-                            );
+                        // this.AccidentNearMissRecordFormsData.emergencyServicesContacted =
+                        //     this.datePipe.transform(
+                        //         this.AccidentNearMissRecordFormsData
+                        //             .emergencyServicesContacted,
+                        //         'mm-dd-yyyy'
+                        //     );
 
                     } else {
                         this.AccidentNearMissRecordFormsData = {};
@@ -203,7 +203,6 @@ export class AccidentIncidentNearMissRecordComponent
     }
 
     Save() {
-        debugger;
         if (
             this.userId != null &&
             this.residentAdmissionInfoId != null &&
@@ -212,11 +211,11 @@ export class AccidentIncidentNearMissRecordComponent
             this.AccidentNearMissRecordFormsData.userId = this.userId;
             this.AccidentNearMissRecordFormsData.residentAdmissionInfoId =
                 this.residentAdmissionInfoId;
-            this.AccidentNearMissRecordFormsData.StartedBy = this.loginId;
-            this.AccidentNearMissRecordFormsData.LastEnteredBy = this.loginId;
-            this.AccidentNearMissRecordFormsData.DateOfAccident =
+            this.AccidentNearMissRecordFormsData.startedBy = this.loginId;
+            this.AccidentNearMissRecordFormsData.lastEnteredBy = this.loginId;
+            this.AccidentNearMissRecordFormsData.dateOfAccident =
                 this.datePipe.transform(
-                    this.AccidentNearMissRecordFormsData.DateOfAccident,
+                    this.AccidentNearMissRecordFormsData.dateOfAccident,
                     'yyyy-MM-dd'
                 );
             // this.AccidentNearMissRecordFormsData.EmergencyServicesContacted =
@@ -226,14 +225,12 @@ export class AccidentIncidentNearMissRecordComponent
             //         'yyyy-MM-dd'
             //     );
             const objectBody: any = {
-                StatementType: this.StatementType,
+                statementType: this.statementType,
                 accidentNearMissRecordForm:
                     this.AccidentNearMissRecordFormsData,
             };
-
-console.log(objectBody);
-
-
+            console.log(objectBody);
+            
             this._UtilityService.showSpinner();
             this.unsubscribe.add = this._UserServices
                 .AddInsertUpdateAccidentNearMissRecordForm(objectBody)
@@ -266,6 +263,6 @@ console.log(objectBody);
     ResetModel() {
         this.isEditable = true;
         this.AccidentNearMissRecordFormsData = <any>{};
-        this.StatementType = 'Insert';
+        this.statementType = 'Insert';
     }
 }
