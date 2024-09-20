@@ -129,7 +129,7 @@ export class FASTStrokeAssessmentComponent
                 map((response) => {
                     this._UtilityService.hideSpinner();
                     if (response.actionResult.success) {
-                        return JSON.parse(response.actionResult.result);
+                        return response.actionResult.result;
                     } else {
                         return [];
                     }
