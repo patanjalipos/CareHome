@@ -63,7 +63,7 @@ export class TaskPlannerComponent extends AppComponentBase implements OnInit {
         next:(data) => {
           this._UtilityService.hideSpinner();
           if (data.actionResult.success == true) {
-            var tdata = JSON.parse(data.actionResult.result);
+          var tdata = data.actionResult.result;
             tdata = tdata ? tdata : [];
             this.lstHomeMaster = tdata;  
           }
@@ -90,7 +90,7 @@ export class TaskPlannerComponent extends AppComponentBase implements OnInit {
         data => {
           //this._UtilityService.hideSpinner();
           if (data.actionResult.success == true) {
-            var tdata = JSON.parse(data.actionResult.result);
+          var tdata = data.actionResult.result;
             tdata = tdata ? tdata : [];
             this.results = tdata;
           }
@@ -113,7 +113,7 @@ export class TaskPlannerComponent extends AppComponentBase implements OnInit {
         next:(data) => {
           this._UtilityService.hideSpinner();          
           if (data.actionResult.success == true) {
-            var tdata = JSON.parse(data.actionResult.result);
+          var tdata = data.actionResult.result;
             tdata = tdata ? tdata : [];
             this.lstMaster = tdata;
             if (this.filtr !== undefined) {
@@ -142,7 +142,7 @@ export class TaskPlannerComponent extends AppComponentBase implements OnInit {
         next:(data) => {
           this._UtilityService.hideSpinner();          
           if (data.actionResult.success == true) {
-            var tdata = JSON.parse(data.actionResult.result);
+          var tdata = data.actionResult.result;
             tdata = tdata ? tdata : [];
             this.master = tdata;
             if(this.master?.StartTime!=null && this.master?.StartTime!=undefined)

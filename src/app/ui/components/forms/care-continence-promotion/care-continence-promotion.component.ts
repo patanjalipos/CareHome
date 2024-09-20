@@ -17,6 +17,7 @@ import { UtilityService } from 'src/app/utility/utility.service';
 import { CareContinencePromotionService } from './care-continence-promotion.service';
 import { Observable, catchError, forkJoin, map, of } from 'rxjs';
 import { UserService } from 'src/app/ui/service/user.service';
+import { DatePipe } from '@angular/common';
 
 @Component({
     selector: 'app-care-continence-promotion',
@@ -44,7 +45,7 @@ export class CareContinencePromotionComponent
     //Form which is selected to edit or view
     isEditable: boolean;
     //Need to be passed from form Dashboard
-    StatementType: string = null;
+    statementType: string = null;
 
     //Patient Details
     userId: any;
@@ -61,6 +62,7 @@ export class CareContinencePromotionComponent
         private route: ActivatedRoute,
         private _UtilityService: UtilityService,
         private _UserServices: UserService,
+        private datePipe: DatePipe,
         private _FormService: CareContinencePromotionService,
     ) {
         super();
@@ -77,7 +79,7 @@ export class CareContinencePromotionComponent
             this.GetSelectedFormDetails(
                 this.preSelectedFormData.selectedFormID
             );
-            this.StatementType = 'Update';
+            this.statementType = 'Update';
         } else {
             this.ResetModel();
         }
@@ -131,7 +133,7 @@ export class CareContinencePromotionComponent
                 this.preSelectedFormData.selectedFormID
             );
 
-            this.StatementType = 'Update';
+            this.statementType = 'Update';
         } else {
             this.ResetModel();
         }
@@ -145,9 +147,10 @@ export class CareContinencePromotionComponent
                 next: (data) => {
                     this._UtilityService.hideSpinner();
                     if (data.actionResult.success == true) {
-                        var tdata = JSON.parse(data.actionResult.result);
+                      var tdata = data.actionResult.result;
                         tdata = tdata ? tdata : {};
                         this.CareContinencePromotionFormsData = tdata;
+                        this.CareContinencePromotionFormsData.nextReviewDate = new Date(this.datePipe.transform(this.CareContinencePromotionFormsData.nextReviewDate, 'yyyy-MM-dd'));
                     } else {
                         this.CareContinencePromotionFormsData = {};
                     }
@@ -173,7 +176,7 @@ export class CareContinencePromotionComponent
             catchError((error) => {
                 this._UtilityService.hideSpinner();
                 this._UtilityService.showErrorAlert(error.message);
-           
+
                 return of([]); // Returning empty array in case of error
             })
         );
@@ -182,12 +185,12 @@ export class CareContinencePromotionComponent
     SaveAsPDF() { }
 
     saveAsUnfinished() {
-        this.CareContinencePromotionFormsData.IsFormCompleted = false;
+        this.CareContinencePromotionFormsData.isFormCompleted = false;
         this.Save();
     }
 
     completeForm() {
-        this.CareContinencePromotionFormsData.IsFormCompleted = true;
+        this.CareContinencePromotionFormsData.isFormCompleted = true;
         this.Save();
     }
 
@@ -197,15 +200,16 @@ export class CareContinencePromotionComponent
             this.residentAdmissionInfoId != null &&
             this.loginId != null
         ) {
-            this.CareContinencePromotionFormsData.UserId = this.userId;
-            this.CareContinencePromotionFormsData.ResidentAdmissionInfoId =
+            this.CareContinencePromotionFormsData.userId = this.userId;
+            this.CareContinencePromotionFormsData.residentAdmissionInfoId =
                 this.residentAdmissionInfoId;
-            this.CareContinencePromotionFormsData.StartedBy = this.loginId;
-            this.CareContinencePromotionFormsData.ModifiedBy = this.loginId;
+            this.CareContinencePromotionFormsData.startedBy = this.loginId;
+            this.CareContinencePromotionFormsData.modifiedBy = this.loginId;
+            this.CareContinencePromotionFormsData.nextReviewDate = new Date(this.datePipe.transform(this.CareContinencePromotionFormsData.nextReviewDate));
 
             const objectBody: any = {
-                StatementType: this.StatementType,
-                CareContinencePromotionForm:
+                statementType: this.statementType,
+                careContinencePromotionForm:
                     this.CareContinencePromotionFormsData,
             };
             this._UtilityService.showSpinner();
@@ -239,6 +243,6 @@ export class CareContinencePromotionComponent
     ResetModel() {
         this.isEditable = true;
         this.CareContinencePromotionFormsData = <any>{};
-        this.StatementType = 'Insert';
+        this.statementType = 'Insert';
     }
 }

@@ -216,7 +216,7 @@ export class ResidentMasterComponent
                 next: (data) => {
                     this._UtilityService.hideSpinner();
                     if (data.actionResult.success == true) {
-                        var tdata = JSON.parse(data.actionResult.result);
+                      var tdata = data.actionResult.result;
                         tdata = tdata ? tdata : [];
                         this.lstHomeMaster = tdata;
                     } else {
@@ -235,7 +235,7 @@ export class ResidentMasterComponent
             .subscribe({
                 next: (data) => {
                     if (data.actionResult.success == true) {
-                        var tdata = JSON.parse(data.actionResult.result);
+                      var tdata = data.actionResult.result;
                         tdata = tdata ? tdata : [];
                         this.lstCountryMaster = tdata;
                     }
@@ -268,7 +268,7 @@ export class ResidentMasterComponent
                 next: (data) => {
                     this._UtilityService.hideSpinner();
                     if (data.actionResult.success == true) {
-                        var tdata = JSON.parse(data.actionResult.result);
+                      var tdata = data.actionResult.result;
                         tdata = tdata ? tdata : [];
                         this.ResidentMaster = tdata;
                         if (

@@ -328,7 +328,7 @@ export class NewsChartComponent extends AppComponentBase implements OnInit {
         next: (data) => {
           this._UtilityService.hideSpinner();
           if (data.actionResult.success == true) {
-            var tdata = JSON.parse(data.actionResult.result);
+          var tdata = data.actionResult.result;
             tdata = tdata ? tdata : [];
             this.NewsChartsLst = tdata;
             if (this.NewsChartsLst.length < 3 || (((this.NewsChartsLst.length) * (this.pageNumber + 1)) >= this.NewsChartsLst[0].countRecords)) {

@@ -70,7 +70,7 @@ export class FallRiskAssessmentComponent extends AppComponentBase implements OnI
         next: (data) => {
           this._UtilityService.hideSpinner();
           if (data.actionResult.success == true) {
-            var tdata = JSON.parse(data.actionResult.result);
+          var tdata = data.actionResult.result;
             tdata = tdata ? tdata : [];
             this.lstFallRiskAssessment = tdata;
           }

@@ -59,7 +59,7 @@ export class ActivityComponent extends AppComponentBase implements OnInit {
         next:(data) => {
           this._UtilityService.hideSpinner();
           if (data.actionResult.success == true) {
-            var tdata = JSON.parse(data.actionResult.result);
+          var tdata = data.actionResult.result;
             tdata = tdata ? tdata : [];
             this.lstHomeMaster = tdata;  
           }
@@ -81,7 +81,7 @@ export class ActivityComponent extends AppComponentBase implements OnInit {
         next:(data) => {
           this._UtilityService.hideSpinner();          
           if (data.actionResult.success == true) {
-            var tdata = JSON.parse(data.actionResult.result);
+          var tdata = data.actionResult.result;
             tdata = tdata ? tdata : [];
             this.lstMaster = tdata;
             this.dataEmitter.emit(tdata);
@@ -111,7 +111,7 @@ export class ActivityComponent extends AppComponentBase implements OnInit {
         next:(data) => {
           this._UtilityService.hideSpinner();          
           if (data.actionResult.success == true) {
-            var tdata = JSON.parse(data.actionResult.result);
+          var tdata = data.actionResult.result;
             tdata = tdata ? tdata : [];
             this.master = tdata;
             if(this.master?.ActivityTime!=null && this.master?.ActivityTime!=undefined)

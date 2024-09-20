@@ -195,7 +195,7 @@ export class ActivitiesChartComponent
                 next: (data) => {
                     this._UtilityService.hideSpinner();
                     if (data.actionResult.success == true) {
-                        var tdata = JSON.parse(data.actionResult.result);
+                      var tdata = data.actionResult.result;
                         tdata = tdata ? tdata : [];
                         this.ActivityChartsLst = tdata;
                         if (this.ActivityChartsLst.length < 3 || (((this.ActivityChartsLst.length) * (this.pageNumber + 1)) >= this.ActivityChartsLst[0].countRecords)) {
@@ -223,7 +223,7 @@ export class ActivitiesChartComponent
                 next: (data) => {
                     this._UtilityService.hideSpinner();
                     if (data.actionResult.success == true) {
-                        var tdata = JSON.parse(data.actionResult.result);
+                      var tdata = data.actionResult.result;
                         tdata = tdata ? tdata : {};
                         this.ActivitiesChartFormData = tdata;
                         this.ActivitiesChartFormData.DateAndTime =

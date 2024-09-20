@@ -38,7 +38,7 @@ export class BloodTestRecordComponent
     //Form which is selected to edit or view
     isEditable: boolean;
     //Need to be passed from form Dashboard
-    StatementType: string = null;
+    statementType: string = null;
 
     //Patient Details
     userId: any;
@@ -68,14 +68,13 @@ export class BloodTestRecordComponent
             this.GetSelectedFormDetails(
                 this.preSelectedFormData.selectedFormID
             );
-            this.StatementType = 'Update';
+            this.statementType = 'Update';
         } else {
             this.ResetModel();
         }
     }
 
     ngOnInit(): void {
-
         this.userId = this.preSelectedFormData.userId;
         this.residentAdmissionInfoId = this.preSelectedFormData.residentAdmissionInfoId;
 
@@ -87,22 +86,22 @@ export class BloodTestRecordComponent
                 this.preSelectedFormData.selectedFormID
             );
 
-            this.StatementType = 'Update';
+            this.statementType = 'Update';
         } else {
             this.ResetModel();
         }
-        this.BloodTestFormData.DateTaken = new Date();
+        this.BloodTestFormData.dateTaken = new Date();
     }
 
     SaveAsPDF() {}
 
     saveAsUnfinished() {
-        this.BloodTestFormData.IsFormCompleted = false;
+        this.BloodTestFormData.isFormCompleted = false;
         this.Save();
     }
 
     completeForm() {
-        this.BloodTestFormData.IsFormCompleted = true;
+        this.BloodTestFormData.isFormCompleted = true;
         this.Save();
     }
 
@@ -114,10 +113,10 @@ export class BloodTestRecordComponent
                 next: (data) => {
                     this._UtilityService.hideSpinner();
                     if (data.actionResult.success == true) {
-                        var tdata = JSON.parse(data.actionResult.result);
+                      var tdata = data.actionResult.result;
                         tdata = tdata ? tdata : {};
                         this.BloodTestFormData = tdata;
-                        this.BloodTestFormData.DateTaken = this._datePipe.transform(this.BloodTestFormData.DateTaken,'yyyy-MM-dd');
+                        this.BloodTestFormData.dateTaken = this._datePipe.transform(this.BloodTestFormData.dateTaken,'yyyy-MM-dd');
                     } else {
                         this.BloodTestFormData = {};
                     }
@@ -135,17 +134,17 @@ export class BloodTestRecordComponent
             this.residentAdmissionInfoId != null &&
             this.loginId != null
         ) {
-            this.BloodTestFormData.UserId = this.userId;
-            this.BloodTestFormData.ResidentAdmissionInfoId =
+            this.BloodTestFormData.userId = this.userId;
+            this.BloodTestFormData.residentAdmissionInfoId =
                 this.residentAdmissionInfoId;
-            this.BloodTestFormData.StartedBy =
+            this.BloodTestFormData.startedBy =
                 this.loginId;
-            this.BloodTestFormData.ModifiedBy =
+            this.BloodTestFormData.modifiedBy =
                 this.loginId;
 
             const objectBody: any = {
-                StatementType: this.StatementType,
-                BloodTestForm:
+                statementType: this.statementType,
+                bloodTestForm:
                     this.BloodTestFormData,
             };
 
@@ -180,6 +179,6 @@ export class BloodTestRecordComponent
     ResetModel() {
         this.isEditable = true;
         this.BloodTestFormData = <any>{};
-        this.StatementType = 'Insert';
+        this.statementType = 'Insert';
     }
 }

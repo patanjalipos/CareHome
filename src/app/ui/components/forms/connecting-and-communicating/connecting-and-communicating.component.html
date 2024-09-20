@@ -3,48 +3,37 @@
         <div class="formheader">
             <div class="d-flex">
                 <div class="col-md-4">
-                    <label class="form-label"
-                        ><b> Started by (Name) :</b
-                        >{{ preSelectedFormData.StartedBy }}
+                    <label class="form-label"><b> Started by (Name) :</b>{{ preSelectedFormData.StartedBy }}
                     </label>
                 </div>
                 <div class="col-md-4">
-                    <label class="form-label"
-                        ><b>Designation :</b
-                        >{{ preSelectedFormData.StartedByDesignation }}
+                    <label class="form-label"><b>Designation :</b>{{ preSelectedFormData.StartedByDesignation }}
                     </label>
                 </div>
                 <div class="col-md-4">
                     <label class="form-label">
-                        <b>Date/Time : </b
-                        >{{
-                            preSelectedFormData.StartedOn
-                                | date : customDateFormat.DEF_DATE_TIME
-                        }}</label
-                    >
+                        <b>Date/Time : </b>{{
+                        preSelectedFormData.StartedOn
+                        | date : customDateFormat.DEF_DATE_TIME
+                        }}</label>
                 </div>
             </div>
             <div class="d-flex">
                 <div class="col-md-4">
                     <label class="form-label">
-                        <b>Last entered by (Name) :</b
-                        >{{ preSelectedFormData.ModifiedBy }}</label
-                    >
+                        <b>Last entered by (Name) :</b>{{ preSelectedFormData.ModifiedBy }}</label>
                 </div>
                 <div class="col-md-4">
                     <label class="form-label">
-                        <b>Designation :</b
-                        >{{ preSelectedFormData.ModifiedByDesignation }}</label
-                    >
+                        <b>Designation :</b>{{ preSelectedFormData.ModifiedByDesignation }}</label>
                 </div>
                 <div class="col-md-4">
                     <label class="form-label">
                         <b>Date/Time :</b>
                         {{
-                            preSelectedFormData.ModifiedOn
-                                | date : customDateFormat.DEF_DATE_TIME
-                        }}</label
-                    >
+                        preSelectedFormData.ModifiedOn
+                        | date : customDateFormat.DEF_DATE_TIME
+                        }}</label>
                 </div>
             </div>
         </div>
@@ -56,25 +45,16 @@
         </div>
         <div class="col-md-7 mt-4">
             <ng-container *ngIf="isEditable; else LanguageDropdown">
-                <p-dropdown
-                    placeholder="--select--"
-                    [style]="{ width: '100%' }"
-                    [(ngModel)]="
-                        ConnectingAndCommunicatingFormData.ResidentsFirstLanguage
-                    "
-                    optionLabel="optionName"
-                    optionValue="optionId"
-                    [options]="languageOptions"
-                    [showClear]="true"
-                    [filter]="true"
-                    filterPlaceholder="Search languages"
-                >
+                <p-dropdown placeholder="--select--" [style]="{ width: '100%' }" [(ngModel)]="
+                        ConnectingAndCommunicatingFormData.residentsFirstLanguage
+                    " optionLabel="optionName" optionValue="optionId" [options]="languageOptions" [showClear]="true"
+                    [filter]="true" filterPlaceholder="Search languages">
                 </p-dropdown>
             </ng-container>
             <ng-template #LanguageDropdown>
                 <label>{{
-                    ConnectingAndCommunicatingFormData.ResidentsFirstLanguageName
-                }}</label>
+                    ConnectingAndCommunicatingFormData.residentsFirstLanguageName
+                    }}</label>
             </ng-template>
         </div>
 
@@ -93,19 +73,10 @@
         </div>
         <div class="col-md-7 form-text">
             <ng-container *ngIf="isEditable; else CommunicationDropdown">
-                <p-dropdown
-                    placeholder="--select--"
-                    [style]="{ width: '100%' }"
-                    [(ngModel)]="
-                        ConnectingAndCommunicatingFormData.ConnectionPreferences
-                    "
-                    optionLabel="optionName"
-                    optionValue="optionId"
-                    [options]="communicationOptions"
-                    [showClear]="true"
-                    [filter]="true"
-                    filterPlaceholder="Search preferences"
-                >
+                <p-dropdown placeholder="--select--" [style]="{ width: '100%' }" [(ngModel)]="
+                        ConnectingAndCommunicatingFormData.connectionPreferences
+                    " optionLabel="optionName" optionValue="optionId" [options]="communicationOptions"
+                    [showClear]="true" [filter]="true" filterPlaceholder="Search preferences">
                 </p-dropdown>
                 <p class="mb-4">
                     Include tips and tricks such as tone of voice, speed we are
@@ -116,8 +87,8 @@
             </ng-container>
             <ng-template #CommunicationDropdown>
                 <label>{{
-                    ConnectingAndCommunicatingFormData.ConnectionPreferencesName
-                }}</label>
+                    ConnectingAndCommunicatingFormData.connectionPreferencesName
+                    }}</label>
             </ng-template>
         </div>
 
@@ -135,16 +106,9 @@
         </div>
         <div class="col-md-7 form-text">
             <ng-container *ngIf="isEditable; else GesturesInput">
-                <input
-                    pInputText
-                    type="text"
-                    required
-                    name="physicalGestures"
-                    class="form-control"
-                    [(ngModel)]="
-                        ConnectingAndCommunicatingFormData.PhysicalGestures
-                    "
-                />
+                <input pInputText type="text" required name="physicalGestures" class="form-control" [(ngModel)]="
+                        ConnectingAndCommunicatingFormData.physicalGestures
+                    " />
                 <p class="mb-4">
                     Include lack of eye contact, looking aware, screwing up face
                     or blushing if the person isn't understanding what is being
@@ -154,8 +118,8 @@
             </ng-container>
             <ng-template #GesturesInput>
                 <label>{{
-                    ConnectingAndCommunicatingFormData.PhysicalGestures
-                }}</label>
+                    ConnectingAndCommunicatingFormData.physicalGestures
+                    }}</label>
             </ng-template>
         </div>
 
@@ -173,16 +137,9 @@
         </div>
         <div class="col-md-7 form-text">
             <ng-container *ngIf="isEditable; else HumourInput">
-                <input
-                    pInputText
-                    type="text"
-                    required
-                    name="humourPreferences"
-                    class="form-control"
-                    [(ngModel)]="
-                        ConnectingAndCommunicatingFormData.HumourPreferences
-                    "
-                />
+                <input pInputText type="text" required name="humourPreferences" class="form-control" [(ngModel)]="
+                        ConnectingAndCommunicatingFormData.humourPreferences
+                    " />
                 <p class="mb-4">
                     Gain the information from the person, their loved ones or
                     previous assessments. Include whether it is particular
@@ -193,8 +150,8 @@
             </ng-container>
             <ng-template #HumourInput>
                 <label>{{
-                    ConnectingAndCommunicatingFormData.HumourPreferences
-                }}</label>
+                    ConnectingAndCommunicatingFormData.humourPreferences
+                    }}</label>
             </ng-template>
         </div>
 
@@ -212,16 +169,9 @@
         </div>
         <div class="col-md-7 form-text">
             <ng-container *ngIf="isEditable; else AffectionInput">
-                <input
-                    pInputText
-                    type="text"
-                    required
-                    name="physicalAffection"
-                    class="form-control"
-                    [(ngModel)]="
-                        ConnectingAndCommunicatingFormData.PhysicalAffectionPreferences
-                    "
-                />
+                <input pInputText type="text" required name="physicalAffection" class="form-control" [(ngModel)]="
+                        ConnectingAndCommunicatingFormData.physicalAffectionPreferences
+                    " />
                 <p class="mb-4">
                     Include kiss on the cheek or hand, hugs, arm around your
                     shoulder, holding hands, playing with your hair, a shoulder
@@ -231,8 +181,8 @@
             </ng-container>
             <ng-template #AffectionInput>
                 <label>{{
-                    ConnectingAndCommunicatingFormData.PhysicalAffectionPreferences
-                }}</label>
+                    ConnectingAndCommunicatingFormData.physicalAffectionPreferences
+                    }}</label>
             </ng-template>
         </div>
 
@@ -250,16 +200,9 @@
         </div>
         <div class="col-md-7 form-text">
             <ng-container *ngIf="isEditable; else RelationshipInput">
-                <input
-                    pInputText
-                    type="text"
-                    required
-                    name="partnerRelationship"
-                    class="form-control"
-                    [(ngModel)]="
-                        ConnectingAndCommunicatingFormData.PartnerRelationship
-                    "
-                />
+                <input pInputText type="text" required name="partnerRelationship" class="form-control" [(ngModel)]="
+                        ConnectingAndCommunicatingFormData.partnerRelationship
+                    " />
                 <p class="mb-4">
                     Allow the person to express anything they wish around
                     personal relationships they would like us to know and
@@ -268,8 +211,8 @@
             </ng-container>
             <ng-template #RelationshipInput>
                 <label>{{
-                    ConnectingAndCommunicatingFormData.PartnerRelationship
-                }}</label>
+                    ConnectingAndCommunicatingFormData.partnerRelationship
+                    }}</label>
             </ng-template>
         </div>
 
@@ -287,16 +230,9 @@
         </div>
         <div class="col-md-7 form-text">
             <ng-container *ngIf="isEditable; else IntimacyInput">
-                <input
-                    pInputText
-                    type="text"
-                    required
-                    name="intimacyNeeds"
-                    class="form-control"
-                    [(ngModel)]="
-                        ConnectingAndCommunicatingFormData.IntimacyNeeds
-                    "
-                />
+                <input pInputText type="text" required name="intimacyNeeds" class="form-control" [(ngModel)]="
+                        ConnectingAndCommunicatingFormData.intimacyNeeds
+                    " />
                 <p class="mb-4">
                     It is really important that this question is asked
                     sensitively and if the person is unable to tell us that we
@@ -306,8 +242,8 @@
             </ng-container>
             <ng-template #IntimacyInput>
                 <label>{{
-                    ConnectingAndCommunicatingFormData.IntimacyNeeds
-                }}</label>
+                    ConnectingAndCommunicatingFormData.intimacyNeeds
+                    }}</label>
             </ng-template>
         </div>
 
@@ -325,25 +261,16 @@
         </div>
         <div class="col-md-7 form-text">
             <ng-container *ngIf="isEditable; else CommunicationImpactDropdown">
-                <p-dropdown
-                    placeholder="--select--"
-                    [style]="{ width: '100%' }"
-                    [(ngModel)]="
-                        ConnectingAndCommunicatingFormData.CommunicationImpact
-                    "
-                    optionLabel="optionName"
-                    optionValue="optionId"
-                    [options]="communicationImpactOptions"
-                    [showClear]="true"
-                    [filter]="true"
-                    filterPlaceholder="Search impacts"
-                >
+                <p-dropdown placeholder="--select--" [style]="{ width: '100%' }" [(ngModel)]="
+                        ConnectingAndCommunicatingFormData.communicationImpact
+                    " optionLabel="optionName" optionValue="optionId" [options]="communicationImpactOptions"
+                    [showClear]="true" [filter]="true" filterPlaceholder="Search impacts">
                 </p-dropdown>
             </ng-container>
             <ng-template #CommunicationImpactDropdown>
                 <label>{{
-                    ConnectingAndCommunicatingFormData.CommunicationImpactName
-                }}</label>
+                    ConnectingAndCommunicatingFormData.communicationImpactName
+                    }}</label>
             </ng-template>
         </div>
 
@@ -361,25 +288,16 @@
         </div>
         <div class="col-md-7 form-text">
             <ng-container *ngIf="isEditable; else CommunicationAidsDropdown">
-                <p-dropdown
-                    placeholder="--select--"
-                    [style]="{ width: '100%' }"
-                    [(ngModel)]="
-                        ConnectingAndCommunicatingFormData.CommunicationAids
-                    "
-                    optionLabel="optionName"
-                    optionValue="optionId"
-                    [options]="communicationAidsOptions"
-                    [showClear]="true"
-                    [filter]="true"
-                    filterPlaceholder="Search aids"
-                >
+                <p-dropdown placeholder="--select--" [style]="{ width: '100%' }" [(ngModel)]="
+                        ConnectingAndCommunicatingFormData.communicationAids
+                    " optionLabel="optionName" optionValue="optionId" [options]="communicationAidsOptions"
+                    [showClear]="true" [filter]="true" filterPlaceholder="Search aids">
                 </p-dropdown>
             </ng-container>
             <ng-template #CommunicationAidsDropdown>
                 <label>{{
-                    ConnectingAndCommunicatingFormData.CommunicationAidsName
-                }}</label>
+                    ConnectingAndCommunicatingFormData.communicationAidsName
+                    }}</label>
             </ng-template>
         </div>
 
@@ -397,25 +315,16 @@
         </div>
         <div class="col-md-7">
             <ng-container *ngIf="isEditable; else HearingAidsCareDropdown">
-                <p-dropdown
-                    placeholder="--select--"
-                    [style]="{ width: '100%' }"
-                    [(ngModel)]="
-                        ConnectingAndCommunicatingFormData.HearingAidsCare
-                    "
-                    optionLabel="optionName"
-                    optionValue="optionId"
-                    [options]="hearingAidsCareOptions"
-                    [showClear]="true"
-                    [filter]="true"
-                    filterPlaceholder="Search options"
-                >
+                <p-dropdown placeholder="--select--" [style]="{ width: '100%' }" [(ngModel)]="
+                        ConnectingAndCommunicatingFormData.hearingAidsCare
+                    " optionLabel="optionName" optionValue="optionId" [options]="hearingAidsCareOptions"
+                    [showClear]="true" [filter]="true" filterPlaceholder="Search options">
                 </p-dropdown>
             </ng-container>
             <ng-template #HearingAidsCareDropdown>
                 <label>{{
-                    ConnectingAndCommunicatingFormData.HearingAidsCareName
-                }}</label>
+                    ConnectingAndCommunicatingFormData.hearingAidsCareName
+                    }}</label>
             </ng-template>
         </div>
 
@@ -433,25 +342,16 @@
         </div>
         <div class="col-md-7">
             <ng-container *ngIf="isEditable; else HearingAidCareTipsDropdown">
-                <p-dropdown
-                    placeholder="--select--"
-                    [style]="{ width: '100%' }"
-                    [(ngModel)]="
-                        ConnectingAndCommunicatingFormData.HearingAidCareTips
-                    "
-                    optionLabel="optionName"
-                    optionValue="optionId"
-                    [options]="hearingAidCareTipsOptions"
-                    [showClear]="true"
-                    [filter]="true"
-                    filterPlaceholder="Search options"
-                >
+                <p-dropdown placeholder="--select--" [style]="{ width: '100%' }" [(ngModel)]="
+                        ConnectingAndCommunicatingFormData.hearingAidCareTips
+                    " optionLabel="optionName" optionValue="optionId" [options]="hearingAidCareTipsOptions"
+                    [showClear]="true" [filter]="true" filterPlaceholder="Search options">
                 </p-dropdown>
             </ng-container>
             <ng-template #HearingAidCareTipsDropdown>
                 <label>{{
-                    ConnectingAndCommunicatingFormData.HearingAidCareTipsName
-                }}</label>
+                    ConnectingAndCommunicatingFormData.hearingAidCareTipsName
+                    }}</label>
             </ng-template>
         </div>
 
@@ -466,25 +366,16 @@
         </div>
         <div class="col-md-7">
             <ng-container *ngIf="isEditable; else SightImpairmentDropdown">
-                <p-dropdown
-                    placeholder="--select--"
-                    [style]="{ width: '100%' }"
-                    [(ngModel)]="
-                        ConnectingAndCommunicatingFormData.SightImpairment
-                    "
-                    optionLabel="optionName"
-                    optionValue="optionId"
-                    [options]="sightImpairmentOptions"
-                    [showClear]="true"
-                    [filter]="true"
-                    filterPlaceholder="Search options"
-                >
+                <p-dropdown placeholder="--select--" [style]="{ width: '100%' }" [(ngModel)]="
+                        ConnectingAndCommunicatingFormData.sightImpairment
+                    " optionLabel="optionName" optionValue="optionId" [options]="sightImpairmentOptions"
+                    [showClear]="true" [filter]="true" filterPlaceholder="Search options">
                 </p-dropdown>
             </ng-container>
             <ng-template #SightImpairmentDropdown>
                 <label>{{
-                    ConnectingAndCommunicatingFormData.SightImpairmentName
-                }}</label>
+                    ConnectingAndCommunicatingFormData.sightImpairmentName
+                    }}</label>
             </ng-template>
         </div>
 
@@ -496,37 +387,21 @@
             <ng-container *ngIf="isEditable; else savePdf">
                 <div>
                     <span class="p-ml-left mr-4">
-                        <button
-                            pButton
-                            title="New"
-                            label="Save as Unfinished"
-                            (click)="saveAsUnfinished()"
-                        ></button>
+                        <button pButton title="New" label="Save as Unfinished" (click)="saveAsUnfinished()"></button>
                         <span class="total-txt"></span>
                     </span>
                 </div>
                 <div>
                     <span class="p-ml-left mr-4">
-                        <button
-                            pButton
-                            title="New"
-                            label="Complete"
-                            (click)="completeForm()"
-                            [disabled]="
-                                ConnectingAndCommunicatingFormData.IsFormCompleted
-                            "
-                        ></button>
+                        <button pButton title="New" label="Complete" (click)="completeForm()" [disabled]="
+                                ConnectingAndCommunicatingFormData.isFormCompleted
+                            "></button>
                         <span class="total-txt"></span>
                     </span>
                 </div>
             </ng-container>
             <ng-template #savePdf>
-                <button
-                    pButton
-                    title="Save as PDF"
-                    label="Save as PDF"
-                    (click)="SaveAsPDF()"
-                ></button>
+                <button pButton title="Save as PDF" label="Save as PDF" (click)="SaveAsPDF()"></button>
             </ng-template>
         </div>
     </div>

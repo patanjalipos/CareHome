@@ -236,7 +236,7 @@ GetSeizureChartDetails(chartId: string) {
           next: (data) => {
               this._UtilityService.hideSpinner();
               if (data.actionResult.success == true) {
-                  var tdata = JSON.parse(data.actionResult.result);
+                var tdata = data.actionResult.result;
                   tdata = tdata ? tdata : {};
                   this.SeizureChartData = tdata;
                   this.openAndClose();
@@ -385,7 +385,7 @@ getChartDataById(chartId: any, selectedChartId: any, selectedStartedOn: any, res
           next: (data) => {
               this._UtilityService.hideSpinner();
               if (data.actionResult.success == true) {
-                  var tdata = JSON.parse(data.actionResult.result);
+                var tdata = data.actionResult.result;
                   tdata = tdata ? tdata : [];
                   this.SeizureChartLst = tdata;
                   if (this.SeizureChartLst.length < 3 || (((this.SeizureChartLst.length) * (this.pageNumber + 1)) >= this.SeizureChartLst[0].countRecords)) {
