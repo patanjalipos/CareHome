@@ -188,7 +188,7 @@ constructor(
             this.Clinical.statementtype = "Update";
             if(data.actionResult.result2!=null && data.actionResult.result2!=undefined && data.actionResult.result2?.length>0)
             {
-              var tdata2 = JSON.parse(data.actionResult.result2);
+              var tdata2 =data.actionResult.result2;
               tdata2 = tdata2 ? tdata2 : [];              
               this.lstExtraItemDetails=tdata2; 
               this.lstExtraItemDetails.forEach((d, index) => { 

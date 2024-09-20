@@ -252,7 +252,7 @@ export class UserMasterComponent extends AppComponentBase implements OnInit {
             this.RegistrationMainModel.statementtype = "Update";
 
             if (data.actionResult.result2?.length > 0) {
-              var tdata1 = JSON.parse(data.actionResult.result2);
+              var tdata1 = data.actionResult.result2;
               tdata1 = tdata1 ? tdata1 : [];
               if (tdata1?.length > 0)
                 this.lstFacilityResident = tdata1;

@@ -17,6 +17,7 @@ import { UtilityService } from 'src/app/utility/utility.service';
 import { PreAdmissionAssessmentFormsService } from './pre-admission-assessment-forms.service';
 import { Observable, catchError, forkJoin, map, of } from 'rxjs';
 import { UserService } from 'src/app/ui/service/user.service';
+import { log } from 'console';
 
 @Component({
     selector: 'app-pre-admission-assessment-forms',
@@ -147,6 +148,10 @@ export class PreAdmissionAssessmentFormsComponent
         } else {
             this.ResetModel();
         }
+        console.log("drop down value");
+        console.log(this.LstPreAdmMedicationOptionMaster);
+        
+        
     }
     ngOnChanges(changes: SimpleChanges): void {
         this.isEditable = this.preSelectedFormData.isEditable;
