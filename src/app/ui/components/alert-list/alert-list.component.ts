@@ -77,6 +77,7 @@ export class AlertListComponent extends AppComponentBase implements OnInit {
       .GetAllAlert(this.importData, '')
       .subscribe({
         next: (data) => {
+          console.log(data);
           this._UtilityService.hideSpinner();
           if (data.actionResult.success == true) {
           var tdata = data.actionResult.result;
