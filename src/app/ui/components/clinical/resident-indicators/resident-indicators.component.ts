@@ -92,15 +92,15 @@ export class ResidentIndicatorsComponent extends AppComponentBase implements OnI
   {    
     if(this.status!==null)
     {
-      this.lstResidentIndicators=JSON.parse(JSON.stringify(this.lstResidentIndicatorsFilter.filter(e => e.Isenable == this.status || e.Isvisible == this.status))); 
+      this.lstResidentIndicators=(this.lstResidentIndicatorsFilter.filter(e => e.Isenable == this.status || e.Isvisible == this.status)); 
     }
     else
     {
-      this.lstResidentIndicators=JSON.parse(JSON.stringify(this.lstResidentIndicatorsFilter)); 
+      this.lstResidentIndicators=(this.lstResidentIndicatorsFilter); 
     }
     if(this.grouphead!=='')
     {
-      this.lstResidentIndicators=JSON.parse(JSON.stringify(this.lstResidentIndicators.filter(e => e.IndicatorGroupMasterId == this.grouphead))); 
+      this.lstResidentIndicators=(this.lstResidentIndicators.filter(e => e.IndicatorGroupMasterId == this.grouphead)); 
     }
   }
   OnEnabled(id)

@@ -322,7 +322,7 @@ export class WoundChartComponent extends AppComponentBase implements OnInit {
         next: (data) => {
           this._UtilityService.hideSpinner();
           if (data.actionResult.success) {
-            var tdata = JSON.parse(data.actionResult.result) || [];
+            var tdata = data.actionResult.result || [];
             this.woundChartsLst = tdata;
             this.BodyPartsName = [];
             this.woundChartsLst.forEach(chart => {
