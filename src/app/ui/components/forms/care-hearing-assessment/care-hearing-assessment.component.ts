@@ -133,7 +133,7 @@ export class CareHearingAssessmentComponent extends AppComponentBase implements 
         this._UtilityService.hideSpinner();
 
         if (response.actionResult.success) {
-          return JSON.parse(response.actionResult.result);
+          return response.actionResult.result;
         } else {
           return [];
         }
