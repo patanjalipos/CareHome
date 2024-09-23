@@ -86,15 +86,15 @@ constructor(
   {
     if(this.status=='All')
     {
-      this.lstExtraItemDetails=JSON.parse(JSON.stringify(this.lstExtraItemDetailsFilter)); 
+      this.lstExtraItemDetails=this.lstExtraItemDetailsFilter; 
     }
     else if(this.status=='Active')
     {
-      this.lstExtraItemDetails=JSON.parse(JSON.stringify(this.lstExtraItemDetailsFilter.filter(e => e.status == this.status))); 
+      this.lstExtraItemDetails=this.lstExtraItemDetailsFilter.filter(e => e.status == this.status); 
     }
     else
     {
-      this.lstExtraItemDetails=JSON.parse(JSON.stringify(this.lstExtraItemDetailsFilter.filter(e => e.status !== "Active"))); 
+      this.lstExtraItemDetails=this.lstExtraItemDetailsFilter.filter(e => e.status !== "Active"); 
     }
   }
   AddNewAllergy()
@@ -196,7 +196,7 @@ constructor(
                   }) 
         
               this.extraItemRowCounter=this.lstExtraItemDetails?.length;    
-              this.lstExtraItemDetailsFilter=JSON.parse(JSON.stringify(this.lstExtraItemDetails)); 
+              this.lstExtraItemDetailsFilter=this.lstExtraItemDetails; 
               this.isDisabled=this.lstExtraItemDetailsFilter.filter(e => e.Status === "Active")?.length>0?true:false;
               var lstExtraItemDetailsSelected = this.lstExtraItemDetailsFilter.filter(e => e.Status === "Active");
               this.allergies="";

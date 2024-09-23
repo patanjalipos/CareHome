@@ -125,7 +125,7 @@ export class MenuItemMasterComponent extends AppComponentBase implements OnInit{
             this.MenuItemMaster = tdata;
             if(data.actionResult.result2!=null && data.actionResult.result2!=undefined && data.actionResult.result2?.length>0)
             {
-              var tdata2 = JSON.parse(data.actionResult.result2);
+              var tdata2 = data.actionResult.result2;
               tdata2 = tdata2 ? tdata2 : [];
               var checkedItemArray: any[] = [];
               for (var i = 0; i < tdata2?.length; i++) {
@@ -133,7 +133,7 @@ export class MenuItemMasterComponent extends AppComponentBase implements OnInit{
               } 
               this.selectedUserType=checkedItemArray;                                      
             }
-            this.lstParentMenuItemMaster=JSON.parse(JSON.stringify(this.lstMenuItemMaster.filter(f=>f.MenuItemId!=MenuItemId)));
+            this.lstParentMenuItemMaster=this.lstMenuItemMaster.filter(f=>f.MenuItemId!=MenuItemId);
           }
         },
         error: (e) => {
@@ -189,7 +189,7 @@ export class MenuItemMasterComponent extends AppComponentBase implements OnInit{
     this.selectedUserType=[];
     this.MenuItemMaster = <any>{};
     this.MenuItemMaster.Status = 1;
-    this.lstParentMenuItemMaster=JSON.parse(JSON.stringify(this.lstMenuItemMaster));
+    this.lstParentMenuItemMaster=(this.lstMenuItemMaster);
   }
   CloseModal() {
     this.mode = null;
