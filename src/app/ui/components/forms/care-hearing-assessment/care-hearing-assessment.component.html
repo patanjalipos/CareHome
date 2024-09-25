@@ -33,7 +33,7 @@
                 <p>Does the resident have a current hearing diagnosis</p>
             </div>
         </div>
-        <div class="col-md-7 mt-4 form-text">
+        <div class="col-md-6 mt-4 form-text">
             <ng-container *ngIf="this.isEditable; else HearingDiagnosisCheck">
 
                 <p-dropdown [required]="true" [options]="lstHearingDiagnosisCheck" optionLabel="optionName"
@@ -50,17 +50,22 @@
                 Hearing Test
                 question, enter a Review date and Complete the form</p>
         </div>
-        <div class="col-md-1 form-icon mt-4">
-            <i class="fa-solid fa-info"></i>
+        <div class="col-md-2 form-icon mt-4 d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext"> Mapped to : <b>Observation </b><br> Care domain : <b>My Communication Support
+                        plan</b> <br> Sub domain : <b>How i express myself , understand the world around me and make my
+                        needs known
+                    </b>
+                </span>
+            </div>
         </div>
         <div class="col-md-4">
             <div class="labelcontent">
                 <p>Current hearing diagnosis</p>
             </div>
         </div>
-        <div class="col-md-7">
+        <div class="col-md-6">
             <ng-container *ngIf="this.isEditable; else CurrentHearingDiagnosis">
-
                 <p-dropdown [required]="true" [options]="lstCurrentHearingDiagnosis" optionLabel="optionName"
                     [(ngModel)]="CareAssessmentHearingFormsData.currentHearingDiagnosis"
                     name="CareAssessmentFreshAndCleanFormsData.currentHearingDiagnosis" optionValue="optionId"
@@ -71,15 +76,25 @@
                 <label>{{CareAssessmentHearingFormsData.currentHearingDiagnosisName}}</label>
             </ng-template>
         </div>
-        <div class="col-md-1 form-icon">
-            <i class="fa-solid fa-info"></i>
+        <div class="col-md-2 form-icon mt-4 d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext"> Mapped to : <b>Observation </b><br> Care domain : <b>My Communication Support
+                        plan</b> <br> Sub domain : <b>How i express myself , understand the world around me and make my
+                        needs known
+                    </b>
+                    <hr> Mapped to : <b>Intervention </b><br> Care domain : <b>My Communication Support
+                        plan</b> <br> Sub domain : <b>How i express myself , understand the world around me and make my
+                        needs known
+                    </b>
+                </span>
+            </div>
         </div>
         <div class="col-md-4">
             <div class="labelcontent">
                 <p> Specific hearing impairments and how this impacts the resident on a daily basis</p>
             </div>
         </div>
-        <div class="col-md-7 form-text">
+        <div class="col-md-6 form-text">
             <ng-container *ngIf="this.isEditable; else HearingImpairments">
 
                 <input pInputText type="text" [(ngModel)]="CareAssessmentHearingFormsData.hearingImpairments" required
@@ -94,8 +109,18 @@
             </ng-template>
 
         </div>
-        <div class="col-md-1 form-icon">
-            <i class="fa-solid fa-info"></i>
+        <div class="col-md-2 form-icon mt-4 d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext"> Mapped to : <b>Observation </b><br> Care domain : <b>My Communication Support
+                        plan</b> <br> Sub domain : <b>How i express myself , understand the world around me and make my
+                        needs known
+                    </b>
+                    <hr> Mapped to : <b>Intervention </b><br> Care domain : <b>My Communication Support
+                        plan</b> <br> Sub domain : <b>How i express myself , understand the world around me and make my
+                        needs known
+                    </b>
+                </span>
+            </div>
         </div>
 
         <div class="col-md-4">
@@ -103,7 +128,7 @@
                 <p>Hearing interventions</p>
             </div>
         </div>
-        <div class="col-md-7">
+        <div class="col-md-6">
             <ng-container *ngIf="this.isEditable; else HearingInterventions">
                 <p-dropdown [required]="true" [options]="lstHearingInterventions" optionLabel="optionName"
                     [(ngModel)]="CareAssessmentHearingFormsData.hearingInterventions"
@@ -115,15 +140,21 @@
                 <label>{{CareAssessmentHearingFormsData.hearingInterventionsName}}</label>
             </ng-template>
         </div>
-        <div class="col-md-1 form-icon">
-            <i class="fa-solid fa-info"></i>
+        <div class="col-md-2 form-icon mt-4 d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext"> Mapped to : <b>Intrvention</b><br> Care domain : <b>My Communication Support
+                        plan</b> <br> Sub domain : <b>How i express myself , understand the world around me and make my
+                        needs known
+                    </b>
+                </span>
+            </div>
         </div>
         <div class="col-md-4">
             <div class="labelcontent">
                 <p>Hearing aids</p>
             </div>
         </div>
-        <div class="col-md-7">
+        <div class="col-md-6">
             <ng-container *ngIf="this.isEditable; else HearingAids">
                 <p-dropdown [required]="true" [options]="lstHearingAids" optionLabel="optionName"
                     [(ngModel)]="CareAssessmentHearingFormsData.hearingAids"
@@ -135,15 +166,25 @@
                 <label>{{CareAssessmentHearingFormsData.hearingAidsName}}</label>
             </ng-template>
         </div>
-        <div class="col-md-1 form-icon">
-            <i class="fa-solid fa-info"></i>
+        <div class="col-md-2 form-icon mt-4 d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext"> Mapped to : <b>Observation </b><br> Care domain : <b>My Communication Support
+                        plan</b> <br> Sub domain : <b>How i express myself , understand the world around me and make my
+                        needs known
+                    </b>
+                    <hr> Mapped to : <b>Intervention </b><br> Care domain : <b>My Communication Support
+                        plan</b> <br> Sub domain : <b>How i express myself , understand the world around me and make my
+                        needs known
+                    </b>
+                </span>
+            </div>
         </div>
         <div class="col-md-4">
             <div class="labelcontent">
                 <p>Assistance with aids</p>
             </div>
         </div>
-        <div class="col-md-7">
+        <div class="col-md-6">
             <ng-container *ngIf="this.isEditable; else AidsAssistance">
 
                 <p-dropdown [required]="true" [options]="lstAidsAssistance" optionLabel="optionName"
@@ -156,15 +197,21 @@
                 <label>{{CareAssessmentHearingFormsData.aidsAssistanceName}}</label>
             </ng-template>
         </div>
-        <div class="col-md-1 form-icon">
-            <i class="fa-solid fa-info"></i>
+        <div class="col-md-2 form-icon mt-4 d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext"> Mapped to : <b>Intrvention</b><br> Care domain : <b>My Communication Support
+                        plan</b> <br> Sub domain : <b>How i express myself , understand the world around me and make my
+                        needs known
+                    </b>
+                </span>
+            </div>
         </div>
         <div class="col-md-4">
             <div class="labelcontent">
                 <p>Care of hearing aids</p>
             </div>
         </div>
-        <div class="col-md-7 form-text">
+        <div class="col-md-6 form-text">
             <ng-container *ngIf="this.isEditable; else HearingAidsCare">
 
                 <input pInputText type="text" [(ngModel)]="CareAssessmentHearingFormsData.hearingAidsCare" required
@@ -180,15 +227,21 @@
             </ng-template>
 
         </div>
-        <div class="col-md-1 form-icon">
-            <i class="fa-solid fa-info"></i>
+        <div class="col-md-2 form-icon mt-4 d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext"> Mapped to : <b>Intrvention</b><br> Care domain : <b>My Communication Support
+                        plan</b> <br> Sub domain : <b>How i express myself , understand the world around me and make my
+                        needs known
+                    </b>
+                </span>
+            </div>
         </div>
         <div class="col-md-4">
             <div class="labelcontent">
                 <p>Does the resident have goals relating to hearing</p>
             </div>
         </div>
-        <div class="col-md-7">
+        <div class="col-md-6">
             <ng-container *ngIf="this.isEditable; else GoalsToHearing">
                 <p-dropdown [required]="true" [options]="lstGoalsToHearing" optionLabel="optionName"
                     [(ngModel)]="CareAssessmentHearingFormsData.goalsToHearing"
@@ -200,15 +253,22 @@
                 <label>{{CareAssessmentHearingFormsData.goalsToHearingName}}</label>
             </ng-template>
         </div>
-        <div class="col-md-1 form-icon">
-            <i class="fa-solid fa-info"></i>
+        <div class="col-md-2 form-icon mt-4 d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext"> Mapped to : <b>Agreed outcome</b><br> Care domain : <b>My Communication
+                        Support
+                        plan</b> <br> Sub domain : <b>How i express myself , understand the world around me and make my
+                        needs known
+                    </b>
+                </span>
+            </div>
         </div>
         <div class="col-md-4">
             <div class="labelcontent">
                 <p>Does the resident have any specific goals they would like to achieve</p>
             </div>
         </div>
-        <div class="col-md-7 ">
+        <div class="col-md-6 ">
             <ng-container *ngIf="this.isEditable; else GoalsToAchieveHearing">
                 <input pInputText type="text" [(ngModel)]="CareAssessmentHearingFormsData.goalsToAchieveHearing"
                     required name="CareAssessmentHearingFormsData.goalsToAchieveHearing" class="form-control mr-4"
@@ -219,15 +279,22 @@
                 <label>{{CareAssessmentHearingFormsData.goalsToAchieveHearing}}</label>
             </ng-template>
         </div>
-        <div class="col-md-1 form-icon">
-            <i class="fa-solid fa-info"></i>
+        <div class="col-md-2 form-icon mt-4 d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext"> Mapped to : <b>Agreed outcome</b><br> Care domain : <b>My Communication
+                        Support
+                        plan</b> <br> Sub domain : <b>How i express myself , understand the world around me and make my
+                        needs known
+                    </b>
+                </span>
+            </div>
         </div>
         <div class="col-md-4">
             <div class="labelcontent">
                 <p>Last hearing appointment</p>
             </div>
         </div>
-        <div class="col-md-7 form-text">
+        <div class="col-md-6 form-text">
             <ng-container *ngIf="this.isEditable; else LastHearingAppointment">
                 <input pInputText type="text" [(ngModel)]="CareAssessmentHearingFormsData.lastHearingAppointment"
                     required name="CareAssessmentHearingFormsData.lastHearingAppointment" class="form-control mr-4"
@@ -242,15 +309,25 @@
             </ng-template>
 
         </div>
-        <div class="col-md-1 form-icon">
-            <i class="fa-solid fa-info"></i>
+        <div class="col-md-2 form-icon mt-4 d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext"> Mapped to : <b>Observation </b><br> Care domain : <b>My Communication Support
+                        plan</b> <br> Sub domain : <b>How i express myself , understand the world around me and make my
+                        needs known
+                    </b>
+                    <hr> Mapped to : <b>Intervention </b><br> Care domain : <b>My Communication Support
+                        plan</b> <br> Sub domain : <b>How i express myself , understand the world around me and make my
+                        needs known
+                    </b>
+                </span>
+            </div>
         </div>
         <div class="col-md-4">
             <div class="labelcontent">
                 <p>Are there any other identified risks relating to hearing</p>
             </div>
         </div>
-        <div class="col-md-7 form-text">
+        <div class="col-md-6 form-text">
             <ng-container *ngIf="this.isEditable; else IdentifiedRisksToHearing">
                 <input pInputText type="text" [(ngModel)]="CareAssessmentHearingFormsData.identifiedRisksToHearing"
                     required name="CareAssessmentHearingFormsData.identifiedRisksToHearing" class="form-control mr-4"
@@ -262,15 +339,25 @@
             </ng-template>
 
         </div>
-        <div class="col-md-1 form-icon">
-            <i class="fa-solid fa-info"></i>
+        <div class="col-md-2 form-icon mt-4 d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext"> Mapped to : <b>Observation </b><br> Care domain : <b>My Communication Support
+                        plan</b> <br> Sub domain : <b>How i express myself , understand the world around me and make my
+                        needs known
+                    </b>
+                    <hr> Mapped to : <b>Intervention </b><br> Care domain : <b>My Communication Support
+                        plan</b> <br> Sub domain : <b>How i express myself , understand the world around me and make my
+                        needs known
+                    </b>
+                </span>
+            </div>
         </div>
         <div class="col-md-4">
             <div class="labelcontent">
                 <p>Action to manage additional risk identified</p>
             </div>
         </div>
-        <div class="col-md-7">
+        <div class="col-md-6">
             <ng-container *ngIf="this.isEditable; else ManageAdditionalRisk">
                 <input pInputText type="text" [(ngModel)]="CareAssessmentHearingFormsData.manageAdditionalRisk" required
                     name="CareAssessmentHearingFormsData.manageAdditionalRisk" class="form-control mr-4"
@@ -280,15 +367,21 @@
                 <label>{{CareAssessmentHearingFormsData.manageAdditionalRisk}}</label>
             </ng-template>
         </div>
-        <div class="col-md-1 form-icon">
-            <i class="fa-solid fa-info"></i>
+        <div class="col-md-2 form-icon mt-4 d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext"> Mapped to : <b>intervention</b><br> Care domain : <b>My Communication Support
+                        plan</b> <br> Sub domain : <b>How i express myself , understand the world around me and make my
+                        needs known
+                    </b>
+                </span>
+            </div>
         </div>
         <div class="col-md-4">
             <div class="labelcontent implabel">
                 <p> ASSESSMENT REVIEW</p>
             </div>
         </div>
-        <div class="col-md-7 form-text">
+        <div class="col-md-6 form-text">
             <ng-container *ngIf="this.isEditable; else AssessmentReview">
                 <p-checkbox class="mb-4" [(ngModel)]="CareAssessmentHearingFormsData.assessmentReview" [binary]="true"
                     inputId="binary"></p-checkbox>

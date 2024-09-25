@@ -37,13 +37,12 @@
                 </div>
             </div>
         </div>
-
         <div class="col-md-4 mt-4">
             <div class="labelcontent">
                 <p>What is the resident's first language</p>
             </div>
         </div>
-        <div class="col-md-7 mt-4">
+        <div class="col-md-6 mt-4">
             <ng-container *ngIf="isEditable; else LanguageDropdown">
                 <p-dropdown placeholder="--select--" [style]="{ width: '100%' }" [(ngModel)]="
                         ConnectingAndCommunicatingFormData.residentsFirstLanguage
@@ -58,8 +57,13 @@
             </ng-template>
         </div>
 
-        <div class="col-md-1 form-icon mt-4">
-            <i class="fa-solid fa-info"></i>
+        <div class="col-md-2 form-icon mt-4 d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext"> Mapped to : <b>Observation</b><br> Care domain : <b>
+                        My Communication Support Plan</b><br> Sub domain : <b>How I express myself, understand the world
+                        arround me and make my needs known </b>
+                </span>
+            </div>
         </div>
 
         <div class="col-md-4">
@@ -71,7 +75,7 @@
                 </p>
             </div>
         </div>
-        <div class="col-md-7 form-text">
+        <div class="col-md-6 form-text">
             <ng-container *ngIf="isEditable; else CommunicationDropdown">
                 <p-dropdown placeholder="--select--" [style]="{ width: '100%' }" [(ngModel)]="
                         ConnectingAndCommunicatingFormData.connectionPreferences
@@ -92,8 +96,14 @@
             </ng-template>
         </div>
 
-        <div class="col-md-1 form-icon">
-            <i class="fa-solid fa-info"></i>
+        <div class="col-md-2 form-icon mt-4 d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext"> Mapped to : <b>Intervention</b><br> Care domain : <b>
+                        My Communication Support Plan </b><br> Sub domain : <b>How I express myself, understand the
+                        world
+                        arround me and make my needs known </b>
+                </span>
+            </div>
         </div>
 
         <div class="col-md-4">
@@ -104,7 +114,7 @@
                 </p>
             </div>
         </div>
-        <div class="col-md-7 form-text">
+        <div class="col-md-6 form-text">
             <ng-container *ngIf="isEditable; else GesturesInput">
                 <input pInputText type="text" required name="physicalGestures" class="form-control" [(ngModel)]="
                         ConnectingAndCommunicatingFormData.physicalGestures
@@ -123,8 +133,13 @@
             </ng-template>
         </div>
 
-        <div class="col-md-1 form-icon">
-            <i class="fa-solid fa-info"></i>
+        <div class="col-md-2 form-icon mt-4 d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext"> Mapped to : <b>Intervention</b><br> Care domain : <b>My Communication Support
+                        Plan
+                    </b><br> Sub domain : <b>personal Centered Informatiion </b>
+                </span>
+            </div>
         </div>
 
         <div class="col-md-4">
@@ -135,7 +150,7 @@
                 </p>
             </div>
         </div>
-        <div class="col-md-7 form-text">
+        <div class="col-md-6 form-text">
             <ng-container *ngIf="isEditable; else HumourInput">
                 <input pInputText type="text" required name="humourPreferences" class="form-control" [(ngModel)]="
                         ConnectingAndCommunicatingFormData.humourPreferences
@@ -155,8 +170,16 @@
             </ng-template>
         </div>
 
-        <div class="col-md-1 form-icon">
-            <i class="fa-solid fa-info"></i>
+        <div class="col-md-2 form-icon mt-4 d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext">
+                    Mapped to : <b> Observation</b> Care domain : <b> My Communication Support Plan </b> Sub  domain : <b>person Centerd Information </b><hr>
+                    Mapped to : <b>Intervention</b><br> Care domain : <b>
+                        My Communication Support Plan </b><br> Sub domain : <b>How I express myself, understand the
+                        world
+                        arround me and make my needs known </b>
+                </span>
+            </div>
         </div>
 
         <div class="col-md-4">
@@ -167,7 +190,7 @@
                 </p>
             </div>
         </div>
-        <div class="col-md-7 form-text">
+        <div class="col-md-6 form-text">
             <ng-container *ngIf="isEditable; else AffectionInput">
                 <input pInputText type="text" required name="physicalAffection" class="form-control" [(ngModel)]="
                         ConnectingAndCommunicatingFormData.physicalAffectionPreferences
@@ -186,10 +209,16 @@
             </ng-template>
         </div>
 
-        <div class="col-md-1 form-icon">
-            <i class="fa-solid fa-info"></i>
+        <div class="col-md-2 form-icon mt-4 d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext"> Mapped to : <b>Observation</b><br> Care domain : <b>
+                        My Communication Support Plan</b><br> Sub domain : <b>How I express myself , understand the
+                        world around me and make my need known </b>
+                    <hr> Mapped to : <b>Intervention </b><br> Care domain : <b>
+                        My Mental Health and Well being support plan </b><br> Sub domain : <b>Well being</b>
+                </span>
+            </div>
         </div>
-
         <div class="col-md-4">
             <div class="labelcontent">
                 <p>
@@ -198,7 +227,7 @@
                 </p>
             </div>
         </div>
-        <div class="col-md-7 form-text">
+        <div class="col-md-6 form-text">
             <ng-container *ngIf="isEditable; else RelationshipInput">
                 <input pInputText type="text" required name="partnerRelationship" class="form-control" [(ngModel)]="
                         ConnectingAndCommunicatingFormData.partnerRelationship
@@ -216,8 +245,14 @@
             </ng-template>
         </div>
 
-        <div class="col-md-1 form-icon">
-            <i class="fa-solid fa-info"></i>
+        <div class="col-md-2 form-icon mt-4 d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext"> Mapped to : <b>Observation </b><br> Care domain : <b>
+                        My Mental Health and Well being Support plan </b><br> Sub domain : <b>Well being</b>
+                    <hr> Mapped to : <b>Intervention</b><br> Care domain : <b>
+                        My Mental Health and Well being Support plan </b><br> Sub domain : <b>Sexuality & Cultural</b>
+                </span>
+            </div>
         </div>
 
         <div class="col-md-4">
@@ -228,7 +263,7 @@
                 </p>
             </div>
         </div>
-        <div class="col-md-7 form-text">
+        <div class="col-md-6 form-text">
             <ng-container *ngIf="isEditable; else IntimacyInput">
                 <input pInputText type="text" required name="intimacyNeeds" class="form-control" [(ngModel)]="
                         ConnectingAndCommunicatingFormData.intimacyNeeds
@@ -247,8 +282,13 @@
             </ng-template>
         </div>
 
-        <div class="col-md-1 form-icon">
-            <i class="fa-solid fa-info"></i>
+        <div class="col-md-2 form-icon mt-4 d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext"> Mapped to : <b>Intervention</b><br> Care domain : <b>My mental Health and
+                        Well Being Support Plan
+                    </b><br> Sub domain : <b>Sexuality & Cultural</b>
+                </span>
+            </div>
         </div>
 
         <div class="col-md-4">
@@ -259,7 +299,7 @@
                 </p>
             </div>
         </div>
-        <div class="col-md-7 form-text">
+        <div class="col-md-6 form-text">
             <ng-container *ngIf="isEditable; else CommunicationImpactDropdown">
                 <p-dropdown placeholder="--select--" [style]="{ width: '100%' }" [(ngModel)]="
                         ConnectingAndCommunicatingFormData.communicationImpact
@@ -274,8 +314,14 @@
             </ng-template>
         </div>
 
-        <div class="col-md-1 form-icon">
-            <i class="fa-solid fa-info"></i>
+        <div class="col-md-2 form-icon mt-4 d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext"> Mapped to : <b>Observation</b><br> Care domain : <b>
+                        My Communication Support plan </b><br> Sub domain : <b>Person Centered Information </b>
+                    <hr> Mapped to : <b>Intervention </b> Care domain : <b>My Communication Support Plan </b> Sub domain
+                    : <b>How I Express myself , understand the world around me and make my needs knowns</b>
+                </span>
+            </div>
         </div>
 
         <div class="col-md-4">
@@ -286,7 +332,7 @@
                 </p>
             </div>
         </div>
-        <div class="col-md-7 form-text">
+        <div class="col-md-6 form-text">
             <ng-container *ngIf="isEditable; else CommunicationAidsDropdown">
                 <p-dropdown placeholder="--select--" [style]="{ width: '100%' }" [(ngModel)]="
                         ConnectingAndCommunicatingFormData.communicationAids
@@ -301,8 +347,13 @@
             </ng-template>
         </div>
 
-        <div class="col-md-1 form-icon">
-            <i class="fa-solid fa-info"></i>
+        <div class="col-md-2 form-icon mt-4 d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext"> Mapped to : <b>Intervention </b> Care domain : <b>My Communication Support
+                        Plan </b> Sub domain
+                    : <b>How I Express myself , understand the world around me and make my needs knowns</b>
+                </span>
+            </div>
         </div>
 
         <div class="col-md-4">
@@ -313,7 +364,7 @@
                 </p>
             </div>
         </div>
-        <div class="col-md-7">
+        <div class="col-md-6">
             <ng-container *ngIf="isEditable; else HearingAidsCareDropdown">
                 <p-dropdown placeholder="--select--" [style]="{ width: '100%' }" [(ngModel)]="
                         ConnectingAndCommunicatingFormData.hearingAidsCare
@@ -328,10 +379,14 @@
             </ng-template>
         </div>
 
-        <div class="col-md-1 form-icon">
-            <i class="fa-solid fa-info"></i>
+        <div class="col-md-2 form-icon mt-4 d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext"> Mapped to : <b>Intervention </b> Care domain : <b>My Communication Support
+                        Plan </b> Sub domain
+                    : <b>How I Express myself , understand the world around me and make my needs knowns</b>
+                </span>
+            </div>
         </div>
-
         <div class="col-md-4">
             <div class="labelcontent">
                 <p>
@@ -340,7 +395,7 @@
                 </p>
             </div>
         </div>
-        <div class="col-md-7">
+        <div class="col-md-6">
             <ng-container *ngIf="isEditable; else HearingAidCareTipsDropdown">
                 <p-dropdown placeholder="--select--" [style]="{ width: '100%' }" [(ngModel)]="
                         ConnectingAndCommunicatingFormData.hearingAidCareTips
@@ -355,16 +410,20 @@
             </ng-template>
         </div>
 
-        <div class="col-md-1 form-icon">
-            <i class="fa-solid fa-info"></i>
+        <div class="col-md-2 form-icon mt-4 d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext"> Mapped to : <b>Intervention </b> Care domain : <b>My Communication Support
+                        Plan </b> Sub domain
+                    : <b>How I Express myself , understand the world around me and make my needs knowns</b>
+                </span>
+            </div>
         </div>
-
         <div class="col-md-4">
             <div class="labelcontent">
                 <p>Does the resident have a sight impairment</p>
             </div>
         </div>
-        <div class="col-md-7">
+        <div class="col-md-6">
             <ng-container *ngIf="isEditable; else SightImpairmentDropdown">
                 <p-dropdown placeholder="--select--" [style]="{ width: '100%' }" [(ngModel)]="
                         ConnectingAndCommunicatingFormData.sightImpairment
@@ -379,8 +438,13 @@
             </ng-template>
         </div>
 
-        <div class="col-md-1 form-icon">
-            <i class="fa-solid fa-info"></i>
+        <div class="col-md-2 form-icon mt-4 d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext"> Mapped to : <b>Intervention </b> Care domain : <b>My Communication Support
+                        Plan </b> Sub domain
+                    : <b>How I Express myself , understand the world around me and make my needs knowns</b>
+                </span>
+            </div>
         </div>
 
         <div class="d-flex justify-content-end">

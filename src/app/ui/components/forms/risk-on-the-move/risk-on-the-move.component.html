@@ -10,7 +10,8 @@
                     <label class="form-label"><b>Designation :</b> {{preSelectedFormData.StartedByDesignation}}</label>
                 </div>
                 <div class="col-md-4">
-                    <label class="form-label"> <b>Date/Time : </b>{{preSelectedFormData.StartedOn | date : customDateFormat.DEF_DATE_TIME}}</label>
+                    <label class="form-label"> <b>Date/Time : </b>{{preSelectedFormData.StartedOn | date :
+                        customDateFormat.DEF_DATE_TIME}}</label>
                 </div>
             </div>
             <div class="d-flex">
@@ -22,7 +23,8 @@
                     <label class="form-label"> <b>Designation :</b>{{preSelectedFormData.ModifiedByDesignation}}</label>
                 </div>
                 <div class="col-md-4">
-                    <label class="form-label"> <b>Date/Time :</b> {{preSelectedFormData.ModifiedOn | date: customDateFormat.DEF_DATE_TIME}}</label>
+                    <label class="form-label"> <b>Date/Time :</b> {{preSelectedFormData.ModifiedOn | date:
+                        customDateFormat.DEF_DATE_TIME}}</label>
                 </div>
             </div>
         </div>
@@ -31,26 +33,36 @@
                 <p>Ability to weight bear</p>
             </div>
         </div>
-        <div class="col-md-7 mt-4 ">
+        <div class="col-md-6 mt-4 ">
             <ng-container *ngIf="this.isEditable; else BearWeight">
-                <p-dropdown [required]="true" [options]="lstBearWeight"   optionLabel="optionName" [(ngModel)]="RiskAssOnTheMoveFormsData.BearWeight" name="RiskAssOnTheMoveFormsData.BearWeight" optionValue="optionId" placeholder="--select--" [style]="{ width: '100%' }">
+                <p-dropdown [required]="true" [options]="lstBearWeight" optionLabel="optionName"
+                    [(ngModel)]="RiskAssOnTheMoveFormsData.BearWeight" name="RiskAssOnTheMoveFormsData.BearWeight"
+                    optionValue="optionId" placeholder="--select--" [style]="{ width: '100%' }">
                 </p-dropdown>
             </ng-container>
             <ng-template #BearWeight>
                 <label>{{RiskAssOnTheMoveFormsData.BearWeightName}}</label>
             </ng-template>
         </div>
-        <div class="col-md-1 form-icon mt-4">
-            <i class="fa-solid fa-info"></i>
+        <div class="col-md-2 form-icon mt-4 d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext"> Mapped to : <b>Intervention
+                    </b><br> Care domain : <b>My On the move and Falls Risk Awareness Support Plan </b>
+                    <br> Sub domain : <b>mobility
+                    </b>
+                </span>
+            </div>
         </div>
         <div class="col-md-4 ">
             <div class="labelcontent">
                 <p>Pain or fatigue</p>
             </div>
         </div>
-        <div class="col-md-7 form-text ">
+        <div class="col-md-6 form-text ">
             <ng-container *ngIf="this.isEditable; else Pain">
-                <p-dropdown [required]="true" [options]="lstPain"   optionLabel="optionName" [(ngModel)]="RiskAssOnTheMoveFormsData.Pain" name="RiskAssOnTheMoveFormsData.Pain" optionValue="optionId" placeholder="--select--" [style]="{ width: '100%' }">
+                <p-dropdown [required]="true" [options]="lstPain" optionLabel="optionName"
+                    [(ngModel)]="RiskAssOnTheMoveFormsData.Pain" name="RiskAssOnTheMoveFormsData.Pain"
+                    optionValue="optionId" placeholder="--select--" [style]="{ width: '100%' }">
                 </p-dropdown>
                 <p class="mb-4">Please</p>
             </ng-container>
@@ -58,8 +70,18 @@
                 <label>{{RiskAssOnTheMoveFormsData.PainName}}</label>
             </ng-template>
         </div>
-        <div class="col-md-1 form-icon ">
-            <i class="fa-solid fa-info"></i>
+        <div class="col-md-2 form-icon  d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext"> Mapped to : <b>Observation
+                    </b><br> Care domain : <b>My On the move and Falls Risk Awareness Support Plan </b>
+                    <br> Sub domain : <b>mobility
+                    </b>
+                    <hr>Mapped to : <b>Intervention
+                    </b><br> Care domain : <b>My On the move and Falls Risk Awareness Support Plan </b>
+                    <br> Sub domain : <b>Falls
+                    </b>
+                </span>
+            </div>
         </div>
         <div class="col-md-4 ">
             <div class="labelcontent">
@@ -67,34 +89,52 @@
             </div>
 
         </div>
-        <div class="col-md-7">
+        <div class="col-md-6">
             <ng-container *ngIf="this.isEditable; else PhysicalConstraints">
-                <p-dropdown [required]="true" [options]="lstPhysicalConstraints"   optionLabel="optionName" [(ngModel)]="RiskAssOnTheMoveFormsData.PhysicalConstraints" name="RiskAssOnTheMoveFormsData.PhysicalConstraints" optionValue="optionId" placeholder="--select--" [style]="{ width: '100%' }">
+                <p-dropdown [required]="true" [options]="lstPhysicalConstraints" optionLabel="optionName"
+                    [(ngModel)]="RiskAssOnTheMoveFormsData.PhysicalConstraints"
+                    name="RiskAssOnTheMoveFormsData.PhysicalConstraints" optionValue="optionId" placeholder="--select--"
+                    [style]="{ width: '100%' }">
                 </p-dropdown>
             </ng-container>
             <ng-template #PhysicalConstraints>
                 <label>{{RiskAssOnTheMoveFormsData.PhysicalConstraintsName}}</label>
             </ng-template>
         </div>
-        <div class="col-md-1 form-icon ">
-            <i class="fa-solid fa-info"></i>
+        <div class="col-md-2 form-icon d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext"> Mapped to : <b>Observation
+                    </b><br> Care domain : <b>My On the move and Falls Risk Awareness Support Plan </b>
+                    <br> Sub domain : <b>mobility
+                    </b>
+                </span>
+            </div>
         </div>
         <div class="col-md-4 ">
             <div class="labelcontent">
                 <p>How does the person express how they are feeling during safer people movements</p>
             </div>
         </div>
-        <div class="col-md-7">
+        <div class="col-md-6">
             <ng-container *ngIf="this.isEditable; else PersonFeelings">
-                <p-dropdown [required]="true" [options]="lstPersonFeelings"   optionLabel="optionName" [(ngModel)]="RiskAssOnTheMoveFormsData.PersonFeelings" name="RiskAssOnTheMoveFormsData.PersonFeelings" optionValue="optionId" placeholder="--select--" [style]="{ width: '100%' }">
+                <p-dropdown [required]="true" [options]="lstPersonFeelings" optionLabel="optionName"
+                    [(ngModel)]="RiskAssOnTheMoveFormsData.PersonFeelings"
+                    name="RiskAssOnTheMoveFormsData.PersonFeelings" optionValue="optionId" placeholder="--select--"
+                    [style]="{ width: '100%' }">
                 </p-dropdown>
             </ng-container>
             <ng-template #PersonFeelings>
                 <label>{{RiskAssOnTheMoveFormsData.PersonFeelingsName}}</label>
             </ng-template>
         </div>
-        <div class="col-md-1 form-icon ">
-            <i class="fa-solid fa-info"></i>
+        <div class="col-md-2 form-icon d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext"> Mapped to : <b>Observation
+                    </b><br> Care domain : <b>My On the move and Falls Risk Awareness Support Plan </b>
+                    <br> Sub domain : <b>mobility
+                    </b>
+                </span>
+            </div>
         </div>
         <div class="col-md-4">
             <div class="labelcontent">
@@ -102,17 +142,25 @@
             </div>
 
         </div>
-        <div class="col-md-7">
+        <div class="col-md-6">
             <ng-container *ngIf="this.isEditable; else Manoeuvre">
-                <p-dropdown [required]="true" [options]="lstManoeuvre"   optionLabel="optionName" [(ngModel)]="RiskAssOnTheMoveFormsData.Manoeuvre" name="RiskAssOnTheMoveFormsData.Manoeuvre" optionValue="optionId" placeholder="--select--" [style]="{ width: '100%' }">
+                <p-dropdown [required]="true" [options]="lstManoeuvre" optionLabel="optionName"
+                    [(ngModel)]="RiskAssOnTheMoveFormsData.Manoeuvre" name="RiskAssOnTheMoveFormsData.Manoeuvre"
+                    optionValue="optionId" placeholder="--select--" [style]="{ width: '100%' }">
                 </p-dropdown>
             </ng-container>
             <ng-template #Manoeuvre>
                 <label>{{RiskAssOnTheMoveFormsData.ManoeuvreName}}</label>
             </ng-template>
         </div>
-        <div class="col-md-1 form-icon ">
-            <i class="fa-solid fa-info"></i>
+        <div class="col-md-2 form-icon d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext"> Mapped to : <b>Observation
+                    </b><br> Care domain : <b>My Maintaining a Safe Environment Support Plan </b>
+                    <hr> Mapped to : <b>Intervention</b> Care domain :<b>My on the move and Falls Risk Awareness Support
+                        Plan </b> sub domain : <b> Falls</b>
+                </span>
+            </div>
         </div>
         <div class="col-md-4 ">
             <div class="labelcontent">
@@ -120,17 +168,25 @@
             </div>
 
         </div>
-        <div class="col-md-7 ">
+        <div class="col-md-6 ">
             <ng-container *ngIf="this.isEditable; else Stand">
-                <p-dropdown [required]="true" [options]="lstStand"   optionLabel="optionName" [(ngModel)]="RiskAssOnTheMoveFormsData.Stand" name="RiskAssOnTheMoveFormsData.Stand" optionValue="optionId" placeholder="--select--" [style]="{ width: '100%' }">
+                <p-dropdown [required]="true" [options]="lstStand" optionLabel="optionName"
+                    [(ngModel)]="RiskAssOnTheMoveFormsData.Stand" name="RiskAssOnTheMoveFormsData.Stand"
+                    optionValue="optionId" placeholder="--select--" [style]="{ width: '100%' }">
                 </p-dropdown>
             </ng-container>
             <ng-template #Stand>
                 <label>{{RiskAssOnTheMoveFormsData.StandName}}</label>
             </ng-template>
         </div>
-        <div class="col-md-1 form-icon ">
-            <i class="fa-solid fa-info"></i>
+        <div class="col-md-2 form-icon d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext"> Mapped to : <b>Observation
+                    </b><br> Care domain : <b>My On the move and Falls Risk Awareness Support Plan </b>
+                    <br> Sub domain : <b>mobility
+                    </b>
+                </span>
+            </div>
         </div>
         <div class="col-md-4 ">
             <div class="labelcontent">
@@ -138,34 +194,50 @@
             </div>
 
         </div>
-        <div class="col-md-7 ">
+        <div class="col-md-6 ">
             <ng-container *ngIf="this.isEditable; else PersonalCare">
-                <p-dropdown [required]="true" [options]="lstPersonalCare"   optionLabel="optionName" [(ngModel)]="RiskAssOnTheMoveFormsData.PersonalCare" name="RiskAssOnTheMoveFormsData.PersonalCare" optionValue="optionId" placeholder="--select--" [style]="{ width: '100%' }">
+                <p-dropdown [required]="true" [options]="lstPersonalCare" optionLabel="optionName"
+                    [(ngModel)]="RiskAssOnTheMoveFormsData.PersonalCare" name="RiskAssOnTheMoveFormsData.PersonalCare"
+                    optionValue="optionId" placeholder="--select--" [style]="{ width: '100%' }">
                 </p-dropdown>
             </ng-container>
             <ng-template #PersonalCare>
                 <label>{{RiskAssOnTheMoveFormsData.PersonalCareName}}</label>
             </ng-template>
         </div>
-        <div class="col-md-1 form-icon ">
-            <i class="fa-solid fa-info"></i>
+        <div class="col-md-2 form-icon d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext"> Mapped to : <b>Observation
+                    </b><br> Care domain : <b>My On the move and Falls Risk Awareness Support Plan </b>
+                    <br> Sub domain : <b>mobility
+                    </b>
+                </span>
+            </div>
         </div>
         <div class="col-md-4 ">
             <div class="labelcontent">
                 <p>Moving and handling risk score / level</p>
             </div>
         </div>
-        <div class="col-md-7">
+        <div class="col-md-6">
             <ng-container *ngIf="this.isEditable; else RiskScore">
-                <p-dropdown [required]="true" [options]="lstRiskScore"   optionLabel="optionName" [(ngModel)]="RiskAssOnTheMoveFormsData.RiskScore" name="RiskAssOnTheMoveFormsData.RiskScore" optionValue="optionId" placeholder="--select--" [style]="{ width: '100%' }">
+                <p-dropdown [required]="true" [options]="lstRiskScore" optionLabel="optionName"
+                    [(ngModel)]="RiskAssOnTheMoveFormsData.RiskScore" name="RiskAssOnTheMoveFormsData.RiskScore"
+                    optionValue="optionId" placeholder="--select--" [style]="{ width: '100%' }">
                 </p-dropdown>
             </ng-container>
             <ng-template #RiskScore>
                 <label>{{RiskAssOnTheMoveFormsData.RiskScoreName}}</label>
             </ng-template>
         </div>
-        <div class="col-md-1 form-icon ">
-            <i class="fa-solid fa-info"></i>
+        <div class="col-md-2 form-icon d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext"> Mapped to : <b>Observation
+                    </b><br> Care domain : <b>My On the move and Falls Risk Awareness Support Plan </b>
+                    <br> Sub domain : <b>Risk Score
+                    </b>
+                </span>
+            </div>
         </div>
         <div class="col-md-4 ">
             <div class="labelcontent">
@@ -173,53 +245,76 @@
                 </p>
             </div>
         </div>
-        <div class="col-md-7 form-text ">
+        <div class="col-md-6 form-text ">
             <ng-container *ngIf="this.isEditable; else AdditionalFactors">
-                <input pInputText type="text" [(ngModel)]="RiskAssOnTheMoveFormsData.AdditionalFactors" required name="RiskAssOnTheMoveFormsData.AdditionalFactors" class="form-control mr-4"
+                <input pInputText type="text" [(ngModel)]="RiskAssOnTheMoveFormsData.AdditionalFactors" required
+                    name="RiskAssOnTheMoveFormsData.AdditionalFactors" class="form-control mr-4"
                     [style]="{ width: '100%' }">
-                    <p class="mb-4">Consider skin, pain level, infusion (drip), catheter, enteral (PEG), other</p>
+                <p class="mb-4">Consider skin, pain level, infusion (drip), catheter, enteral (PEG), other</p>
             </ng-container>
             <ng-template #AdditionalFactors>
                 <label>{{RiskAssOnTheMoveFormsData.AdditionalFactors}}</label>
             </ng-template>
-            
+
         </div>
-        <div class="col-md-1 form-icon ">
-            <i class="fa-solid fa-info"></i>
+        <div class="col-md-2 form-icon d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext"> Mapped to : <b>Observation
+                    </b><br> Care domain : <b>My On the move and Falls Risk Awareness Support Plan </b>
+                    <br> Sub domain : <b>Risk Score
+                    </b>
+                </span>
+            </div>
         </div>
         <div class="col-md-4 ">
             <div class="labelcontent">
                 <p>Is the resident able to walk / mobilise</p>
             </div>
         </div>
-        <div class="col-md-7 ">
+        <div class="col-md-6 ">
             <ng-container *ngIf="this.isEditable; else WalkCheck">
-                <p-dropdown [required]="true" [options]="lstWalkCheck"   optionLabel="optionName" [(ngModel)]="RiskAssOnTheMoveFormsData.WalkCheck" name="RiskAssOnTheMoveFormsData.WalkCheck" optionValue="optionId" placeholder="--select--" [style]="{ width: '100%' }">
+                <p-dropdown [required]="true" [options]="lstWalkCheck" optionLabel="optionName"
+                    [(ngModel)]="RiskAssOnTheMoveFormsData.WalkCheck" name="RiskAssOnTheMoveFormsData.WalkCheck"
+                    optionValue="optionId" placeholder="--select--" [style]="{ width: '100%' }">
                 </p-dropdown>
             </ng-container>
             <ng-template #WalkCheck>
                 <label>{{RiskAssOnTheMoveFormsData.WalkCheckName}}</label>
             </ng-template>
         </div>
-        <div class="col-md-1 form-icon ">
-            <i class="fa-solid fa-info"></i>
+        <div class="col-md-2 form-icon d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext"> Mapped to : <b>Observation
+                    </b><br> Care domain : <b>My On the move and Falls Risk Awareness Support Plan </b>
+                    <br> Sub domain : <b>Risk Score
+                    </b>
+                </span>
+            </div>
         </div>
         <div class="col-md-4 ">
             <div class="labelcontent">
                 <p>Is the resident able to put / place feet on the floor</p>
             </div>
         </div>
-        <div class="col-md-7">
+        <div class="col-md-6">
             <ng-container *ngIf="this.isEditable; else FeetCheck">
-                <p-dropdown [required]="true" [options]="lstFeetCheck"   optionLabel="optionName" [(ngModel)]="RiskAssOnTheMoveFormsData.FeetCheck" name="RiskAssOnTheMoveFormsData.FeetCheck" optionValue="optionId" placeholder="--select--" [style]="{ width: '100%' }">
+                <p-dropdown [required]="true" [options]="lstFeetCheck" optionLabel="optionName"
+                    [(ngModel)]="RiskAssOnTheMoveFormsData.FeetCheck" name="RiskAssOnTheMoveFormsData.FeetCheck"
+                    optionValue="optionId" placeholder="--select--" [style]="{ width: '100%' }">
                 </p-dropdown>
             </ng-container>
             <ng-template #FeetCheck>
                 <label>{{RiskAssOnTheMoveFormsData.FeetCheckName}}</label>
             </ng-template>
         </div>
-        <div class="col-md-1 form-icon ">
-            <i class="fa-solid fa-info"></i>
+        <div class="col-md-2 form-icon d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext"> Mapped to : <b>Observation
+                    </b><br> Care domain : <b>My On the move and Falls Risk Awareness Support Plan </b>
+                    <br> Sub domain : <b>Risk Score
+                    </b>
+                </span>
+            </div>
         </div>
         <div class="col-md-4 ">
             <div class="labelcontent">
@@ -227,17 +322,25 @@
             </div>
 
         </div>
-        <div class="col-md-7 ">
+        <div class="col-md-6 ">
             <ng-container *ngIf="this.isEditable; else StandCheck">
-                <p-dropdown [required]="true" [options]="lstStandCheck"   optionLabel="optionName" [(ngModel)]="RiskAssOnTheMoveFormsData.StandCheck" name="RiskAssOnTheMoveFormsData.StandCheck" optionValue="optionId" placeholder="--select--" [style]="{ width: '100%' }">
+                <p-dropdown [required]="true" [options]="lstStandCheck" optionLabel="optionName"
+                    [(ngModel)]="RiskAssOnTheMoveFormsData.StandCheck" name="RiskAssOnTheMoveFormsData.StandCheck"
+                    optionValue="optionId" placeholder="--select--" [style]="{ width: '100%' }">
                 </p-dropdown>
             </ng-container>
             <ng-template #StandCheck>
                 <label>{{RiskAssOnTheMoveFormsData.StandCheckName}}</label>
             </ng-template>
         </div>
-        <div class="col-md-1 form-icon ">
-            <i class="fa-solid fa-info"></i>
+        <div class="col-md-2 form-icon d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext"> Mapped to : <b>Observation
+                    </b><br> Care domain : <b>My On the move and Falls Risk Awareness Support Plan </b>
+                    <br> Sub domain : <b>Risk Score
+                    </b>
+                </span>
+            </div>
         </div>
         <div class="col-md-4 ">
             <div class="labelcontent">
@@ -245,17 +348,25 @@
             </div>
 
         </div>
-        <div class="col-md-7 ">
+        <div class="col-md-6">
             <ng-container *ngIf="this.isEditable; else Transfer">
-                <p-dropdown [required]="true" [options]="lstTransfer"   optionLabel="optionName" [(ngModel)]="RiskAssOnTheMoveFormsData.Transfer" name="RiskAssOnTheMoveFormsData.Transfer" optionValue="optionId" placeholder="--select--" [style]="{ width: '100%' }">
+                <p-dropdown [required]="true" [options]="lstTransfer" optionLabel="optionName"
+                    [(ngModel)]="RiskAssOnTheMoveFormsData.Transfer" name="RiskAssOnTheMoveFormsData.Transfer"
+                    optionValue="optionId" placeholder="--select--" [style]="{ width: '100%' }">
                 </p-dropdown>
             </ng-container>
             <ng-template #Transfer>
                 <label>{{RiskAssOnTheMoveFormsData.TransferName}}</label>
             </ng-template>
         </div>
-        <div class="col-md-1 form-icon ">
-            <i class="fa-solid fa-info"></i>
+        <div class="col-md-2 form-icon d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext"> Mapped to : <b>Observation
+                    </b><br> Care domain : <b>My On the move and Falls Risk Awareness Support Plan </b>
+                    <br> Sub domain : <b>Risk Score
+                    </b>
+                </span>
+            </div>
         </div>
         <div class="col-md-4 ">
             <div class="labelcontent">
@@ -263,17 +374,25 @@
             </div>
 
         </div>
-        <div class="col-md-7 ">
+        <div class="col-md-6 ">
             <ng-container *ngIf="this.isEditable; else Dressing">
-                <p-dropdown [required]="true" [options]="lstDressing"   optionLabel="optionName" [(ngModel)]="RiskAssOnTheMoveFormsData.Dressing" name="RiskAssOnTheMoveFormsData.Dressing" optionValue="optionId" placeholder="--select--" [style]="{ width: '100%' }">
+                <p-dropdown [required]="true" [options]="lstDressing" optionLabel="optionName"
+                    [(ngModel)]="RiskAssOnTheMoveFormsData.Dressing" name="RiskAssOnTheMoveFormsData.Dressing"
+                    optionValue="optionId" placeholder="--select--" [style]="{ width: '100%' }">
                 </p-dropdown>
             </ng-container>
             <ng-template #Dressing>
                 <label>{{RiskAssOnTheMoveFormsData.DressingName}}</label>
             </ng-template>
         </div>
-        <div class="col-md-1 form-icon ">
-            <i class="fa-solid fa-info"></i>
+        <div class="col-md-2 form-icon d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext"> Mapped to : <b>Observation
+                    </b><br> Care domain : <b>My On the move and Falls Risk Awareness Support Plan </b>
+                    <br> Sub domain : <b>Risk Score
+                    </b>
+                </span>
+            </div>
         </div>
         <div class="col-md-4 ">
             <div class="labelcontent">
@@ -281,17 +400,25 @@
             </div>
 
         </div>
-        <div class="col-md-7 ">
+        <div class="col-md-6 ">
             <ng-container *ngIf="this.isEditable; else MovingCheck">
-                <p-dropdown [required]="true" [options]="lstMovingCheck"   optionLabel="optionName" [(ngModel)]="RiskAssOnTheMoveFormsData.MovingCheck" name="RiskAssOnTheMoveFormsData.MovingCheck" optionValue="optionId" placeholder="--select--" [style]="{ width: '100%' }">
+                <p-dropdown [required]="true" [options]="lstMovingCheck" optionLabel="optionName"
+                    [(ngModel)]="RiskAssOnTheMoveFormsData.MovingCheck" name="RiskAssOnTheMoveFormsData.MovingCheck"
+                    optionValue="optionId" placeholder="--select--" [style]="{ width: '100%' }">
                 </p-dropdown>
             </ng-container>
             <ng-template #MovingCheck>
                 <label>{{RiskAssOnTheMoveFormsData.MovingCheckName}}</label>
             </ng-template>
         </div>
-        <div class="col-md-1 form-icon ">
-            <i class="fa-solid fa-info"></i>
+        <div class="col-md-2 form-icon d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext"> Mapped to : <b>Observation
+                    </b><br> Care domain : <b>My On the move and Falls Risk Awareness Support Plan </b>
+                    <br> Sub domain : <b>Risk Score
+                    </b>
+                </span>
+            </div>
         </div>
         <div class="col-md-4 ">
             <div class="labelcontent">
@@ -299,17 +426,25 @@
             </div>
 
         </div>
-        <div class="col-md-7 ">
+        <div class="col-md-6 ">
             <ng-container *ngIf="this.isEditable; else SitbackCheck">
-                <p-dropdown [required]="true" [options]="lstSitbackCheck"   optionLabel="optionName" [(ngModel)]="RiskAssOnTheMoveFormsData.SitbackCheck" name="RiskAssOnTheMoveFormsData.SitbackCheck" optionValue="optionId" placeholder="--select--" [style]="{ width: '100%' }">
+                <p-dropdown [required]="true" [options]="lstSitbackCheck" optionLabel="optionName"
+                    [(ngModel)]="RiskAssOnTheMoveFormsData.SitbackCheck" name="RiskAssOnTheMoveFormsData.SitbackCheck"
+                    optionValue="optionId" placeholder="--select--" [style]="{ width: '100%' }">
                 </p-dropdown>
             </ng-container>
             <ng-template #SitbackCheck>
                 <label>{{RiskAssOnTheMoveFormsData.SitbackCheckName}}</label>
             </ng-template>
         </div>
-        <div class="col-md-1 form-icon ">
-            <i class="fa-solid fa-info"></i>
+        <div class="col-md-2 form-icon d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext"> Mapped to : <b>Observation
+                    </b><br> Care domain : <b>My On the move and Falls Risk Awareness Support Plan </b>
+                    <br> Sub domain : <b>Risk Score
+                    </b>
+                </span>
+            </div>
         </div>
         <div class="col-md-4 ">
             <div class="labelcontent">
@@ -317,17 +452,25 @@
             </div>
 
         </div>
-        <div class="col-md-7 ">
+        <div class="col-md-6 ">
             <ng-container *ngIf="this.isEditable; else BathHelp">
-                <p-dropdown [required]="true" [options]="lstBathHelp"   optionLabel="optionName" [(ngModel)]="RiskAssOnTheMoveFormsData.BathHelp" name="RiskAssOnTheMoveFormsData.BathHelp" optionValue="optionId" placeholder="--select--" [style]="{ width: '100%' }">
+                <p-dropdown [required]="true" [options]="lstBathHelp" optionLabel="optionName"
+                    [(ngModel)]="RiskAssOnTheMoveFormsData.BathHelp" name="RiskAssOnTheMoveFormsData.BathHelp"
+                    optionValue="optionId" placeholder="--select--" [style]="{ width: '100%' }">
                 </p-dropdown>
             </ng-container>
             <ng-template #BathHelp>
                 <label>{{RiskAssOnTheMoveFormsData.BathHelpName}}</label>
             </ng-template>
         </div>
-        <div class="col-md-1 form-icon ">
-            <i class="fa-solid fa-info"></i>
+        <div class="col-md-2 form-icon d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext"> Mapped to : <b>Observation
+                    </b><br> Care domain : <b>My On the move and Falls Risk Awareness Support Plan </b>
+                    <br> Sub domain : <b>Risk Score
+                    </b>
+                </span>
+            </div>
         </div>
         <div class="col-md-4 ">
             <div class="labelcontent">
@@ -335,17 +478,25 @@
             </div>
 
         </div>
-        <div class="col-md-7 ">
+        <div class="col-md-6 ">
             <ng-container *ngIf="this.isEditable; else ShowerCheck">
-                <p-dropdown [required]="true" [options]="lstShowerCheck"   optionLabel="optionName" [(ngModel)]="RiskAssOnTheMoveFormsData.ShowerCheck" name="RiskAssOnTheMoveFormsData.ShowerCheck" optionValue="optionId" placeholder="--select--" [style]="{ width: '100%' }">
+                <p-dropdown [required]="true" [options]="lstShowerCheck" optionLabel="optionName"
+                    [(ngModel)]="RiskAssOnTheMoveFormsData.ShowerCheck" name="RiskAssOnTheMoveFormsData.ShowerCheck"
+                    optionValue="optionId" placeholder="--select--" [style]="{ width: '100%' }">
                 </p-dropdown>
             </ng-container>
             <ng-template #ShowerCheck>
                 <label>{{RiskAssOnTheMoveFormsData.ShowerCheckName}}</label>
             </ng-template>
         </div>
-        <div class="col-md-1 form-icon ">
-            <i class="fa-solid fa-info"></i>
+        <div class="col-md-2 form-icon d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext"> Mapped to : <b>Observation
+                    </b><br> Care domain : <b>My On the move and Falls Risk Awareness Support Plan </b>
+                    <br> Sub domain : <b>Risk Score
+                    </b>
+                </span>
+            </div>
         </div>
         <div class="col-md-4 ">
             <div class="labelcontent">
@@ -353,34 +504,50 @@
             </div>
 
         </div>
-        <div class="col-md-7 ">
+        <div class="col-md-6 ">
             <ng-container *ngIf="this.isEditable; else VehicleCheck">
-                <p-dropdown [required]="true" [options]="lstVehicleCheck"   optionLabel="optionName" [(ngModel)]="RiskAssOnTheMoveFormsData.VehicleCheck" name="RiskAssOnTheMoveFormsData.VehicleCheck" optionValue="optionId" placeholder="--select--" [style]="{ width: '100%' }">
+                <p-dropdown [required]="true" [options]="lstVehicleCheck" optionLabel="optionName"
+                    [(ngModel)]="RiskAssOnTheMoveFormsData.VehicleCheck" name="RiskAssOnTheMoveFormsData.VehicleCheck"
+                    optionValue="optionId" placeholder="--select--" [style]="{ width: '100%' }">
                 </p-dropdown>
             </ng-container>
             <ng-template #VehicleCheck>
                 <label>{{RiskAssOnTheMoveFormsData.VehicleCheckName}}</label>
             </ng-template>
         </div>
-        <div class="col-md-1 form-icon ">
-            <i class="fa-solid fa-info"></i>
+        <div class="col-md-2 form-icon d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext"> Mapped to : <b>Observation
+                    </b><br> Care domain : <b>My On the move and Falls Risk Awareness Support Plan </b>
+                    <br> Sub domain : <b>Risk Score
+                    </b>
+                </span>
+            </div>
         </div>
         <div class="col-md-4 ">
             <div class="labelcontent">
                 <p>Manage stairs</p>
             </div>
         </div>
-        <div class="col-md-7 ">
+        <div class="col-md-6 ">
             <ng-container *ngIf="this.isEditable; else StairsManage">
-                <p-dropdown [required]="true" [options]="lstStairsManage"   optionLabel="optionName" [(ngModel)]="RiskAssOnTheMoveFormsData.StairsManage" name="RiskAssOnTheMoveFormsData.StairsManage" optionValue="optionId" placeholder="--select--" [style]="{ width: '100%' }">
+                <p-dropdown [required]="true" [options]="lstStairsManage" optionLabel="optionName"
+                    [(ngModel)]="RiskAssOnTheMoveFormsData.StairsManage" name="RiskAssOnTheMoveFormsData.StairsManage"
+                    optionValue="optionId" placeholder="--select--" [style]="{ width: '100%' }">
                 </p-dropdown>
             </ng-container>
             <ng-template #StairsManage>
                 <label>{{RiskAssOnTheMoveFormsData.StairsManageName}}</label>
             </ng-template>
         </div>
-        <div class="col-md-1 form-icon ">
-            <i class="fa-solid fa-info"></i>
+        <div class="col-md-2 form-icon d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext"> Mapped to : <b>Observation
+                    </b><br> Care domain : <b>My On the move and Falls Risk Awareness Support Plan </b>
+                    <br> Sub domain : <b>Risk Score
+                    </b>
+                </span>
+            </div>
         </div>
         <div class="col-md-4 ">
             <div class="labelcontent">
@@ -388,48 +555,65 @@
             </div>
 
         </div>
-        <div class="col-md-7 ">
+        <div class="col-md-6 ">
             <ng-container *ngIf="this.isEditable; else FloorCheck">
-                <p-dropdown [required]="true" [options]="lstFloorCheck"   optionLabel="optionName" [(ngModel)]="RiskAssOnTheMoveFormsData.FloorCheck" name="RiskAssOnTheMoveFormsData.FloorCheck" optionValue="optionId" placeholder="--select--" [style]="{ width: '100%' }">
+                <p-dropdown [required]="true" [options]="lstFloorCheck" optionLabel="optionName"
+                    [(ngModel)]="RiskAssOnTheMoveFormsData.FloorCheck" name="RiskAssOnTheMoveFormsData.FloorCheck"
+                    optionValue="optionId" placeholder="--select--" [style]="{ width: '100%' }">
                 </p-dropdown>
             </ng-container>
             <ng-template #FloorCheck>
                 <label>{{RiskAssOnTheMoveFormsData.FloorCheckName}}</label>
             </ng-template>
         </div>
-        <div class="col-md-1 form-icon ">
-            <i class="fa-solid fa-info"></i>
+        <div class="col-md-2 form-icon d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext"> Mapped to : <b>Observation
+                    </b><br> Care domain : <b>My On the move and Falls Risk Awareness Support Plan </b>
+                    <br> Sub domain : <b>Risk Score
+                    </b>
+                </span>
+            </div>
         </div>
-
         <div class="col-md-4 ">
             <div class="labelcontent">
                 <p>Hoisting requirements</p>
             </div>
         </div>
-        <div class="col-md-7 form-text">
+        <div class="col-md-6 form-text">
             <ng-container *ngIf="this.isEditable; else HoistingRequire">
-                <input pInputText type="text" [(ngModel)]="RiskAssOnTheMoveFormsData.HoistingRequire" required name="RiskAssOnTheMoveFormsData.HoistingRequire" class="form-control mr-4"
+                <input pInputText type="text" [(ngModel)]="RiskAssOnTheMoveFormsData.HoistingRequire" required
+                    name="RiskAssOnTheMoveFormsData.HoistingRequire" class="form-control mr-4"
                     [style]="{ width: '100%' }">
-                    <p class="mb-4">Describe hoist / sling type and size, le.g.strap positions, loop attachments and colours. Describe
-                        different slings depending on the purpose of the transfer e.g. toilet, bath. Consider the suitability
-                        for emergency lifting cushion, good day/bad day</p>
+                <p class="mb-4">Describe hoist / sling type and size, le.g.strap positions, loop attachments and
+                    colours. Describe
+                    different slings depending on the purpose of the transfer e.g. toilet, bath. Consider the
+                    suitability
+                    for emergency lifting cushion, good day/bad day</p>
             </ng-container>
             <ng-template #HoistingRequire>
                 <label>{{RiskAssOnTheMoveFormsData.HoistingRequire}}</label>
             </ng-template>
-            
         </div>
-        <div class="col-md-1 form-icon ">
-            <i class="fa-solid fa-info"></i>
+        <div class="col-md-2 form-icon d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext"> Mapped to : <b>Intervention
+                    </b><br> Care domain : <b>My On the move and Falls Risk Awareness Support Plan </b>
+                    <br> Sub domain : <b>Risk Score
+                    </b>
+                </span>
+            </div>
         </div>
         <div class="col-md-4 ">
             <div class="labelcontent">
                 <p>Other equipment</p>
             </div>
         </div>
-        <div class="col-md-7 form-text ">
+        <div class="col-md-6 form-text ">
             <ng-container *ngIf="this.isEditable; else Equipment">
-                <p-dropdown [required]="true" [options]="lstEquipment"   optionLabel="optionName" [(ngModel)]="RiskAssOnTheMoveFormsData.Equipment" name="RiskAssOnTheMoveFormsData.Equipment" optionValue="optionId" placeholder="--select--" [style]="{ width: '100%' }">
+                <p-dropdown [required]="true" [options]="lstEquipment" optionLabel="optionName"
+                    [(ngModel)]="RiskAssOnTheMoveFormsData.Equipment" name="RiskAssOnTheMoveFormsData.Equipment"
+                    optionValue="optionId" placeholder="--select--" [style]="{ width: '100%' }">
                 </p-dropdown>
                 <p class="mb-4">Please select all relevant statements</p>
             </ng-container>
@@ -437,58 +621,84 @@
                 <label>{{RiskAssOnTheMoveFormsData.EquipmentName}}</label>
             </ng-template>
         </div>
-        <div class="col-md-1 form-icon ">
-            <i class="fa-solid fa-info"></i>
+        <div class="col-md-2 form-icon  d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext"> Mapped to : <b>Observation
+                    </b><br> Care domain : <b>My On the move and Falls Risk Awareness Support Plan </b>
+                    <br> Sub domain : <b>Risk assessment for bed Rails & Wheelchairs
+                    </b>
+                    <hr>Mapped to : <b>Intervention
+                    </b><br> Care domain : <b>My On the move and Falls Risk Awareness Support Plan </b>
+                    <br> Sub domain : <b>Mobility
+                    </b>
+                </span>
+            </div>
         </div>
         <div class="col-md-4 ">
             <div class="labelcontent">
                 <p>Detail the procedures to be followed by team</p>
             </div>
         </div>
-        <div class="col-md-7 form-text">
+        <div class="col-md-6 form-text">
             <ng-container *ngIf="this.isEditable; else ProceduresDetails">
-                <input pInputText type="text" [(ngModel)]="RiskAssOnTheMoveFormsData.ProceduresDetails" required name="RiskAssOnTheMoveFormsData.ProceduresDetails" class="form-control mr-4"
+                <input pInputText type="text" [(ngModel)]="RiskAssOnTheMoveFormsData.ProceduresDetails" required
+                    name="RiskAssOnTheMoveFormsData.ProceduresDetails" class="form-control mr-4"
                     [style]="{ width: '100%' }">
-                    <p class="mb-4">Include any settings on all equipment - (include how to effectively communicate, gain consent and promote
-                        inclusion and abilities)</p>
+                <p class="mb-4">Include any settings on all equipment - (include how to effectively communicate, gain
+                    consent and promote
+                    inclusion and abilities)</p>
             </ng-container>
             <ng-template #ProceduresDetails>
                 <label>{{RiskAssOnTheMoveFormsData.ProceduresDetails}}</label>
             </ng-template>
         </div>
-        <div class="col-md-1 form-icon ">
-            <i class="fa-solid fa-info"></i>
+        <div class="col-md-2 form-icon d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext"> Mapped to : <b>Intervention
+                    </b><br> Care domain : <b>My On the move and Falls Risk Awareness Support Plan </b>
+                    <br> Sub domain : <b>Mobility
+                    </b>
+                </span>
+            </div>
         </div>
         <div class="col-md-4 ">
             <div class="labelcontent">
                 <p>Please detail if the resident experiences variability in their abilities to mobilse</p>
             </div>
         </div>
-        <div class="col-md-7 form-text">
+        <div class="col-md-6 form-text">
             <ng-container *ngIf="this.isEditable; else VariabilityDetails">
-                <input pInputText type="text" [(ngModel)]="RiskAssOnTheMoveFormsData.VariabilityDetails" required name="RiskAssOnTheMoveFormsData.VariabilityDetails" class="form-control mr-4"
+                <input pInputText type="text" [(ngModel)]="RiskAssOnTheMoveFormsData.VariabilityDetails" required
+                    name="RiskAssOnTheMoveFormsData.VariabilityDetails" class="form-control mr-4"
                     [style]="{ width: '100%' }">
-                    <p class="mb-4">Ensure it includes how staff would assess if they were having a good day and how to know
-                        what a
-                        challenging day looks like and what measures to take</p>
+                <p class="mb-4">Ensure it includes how staff would assess if they were having a good day and how to know
+                    what a
+                    challenging day looks like and what measures to take</p>
             </ng-container>
             <ng-template #VariabilityDetails>
                 <label>{{RiskAssOnTheMoveFormsData.VariabilityDetails}}</label>
             </ng-template>
-            
+
         </div>
-        <div class="col-md-1 form-icon ">
-            <i class="fa-solid fa-info"></i>
+        <div class="col-md-2 form-icon d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext"> Mapped to : <b>Observation
+                    </b><br> Care domain : <b>My On the move and Falls Risk Awareness Support Plan </b>
+                    <br> Sub domain : <b>Mobility
+                    </b>
+                </span>
+            </div>
         </div>
         <div class="col-md-4 ">
             <div class="labelcontent">
                 <p>How do we assess the persons pain</p>
             </div>
-
         </div>
-        <div class="col-md-7 form-text">
+        <div class="col-md-6 form-text">
             <ng-container *ngIf="this.isEditable; else AssessPain">
-                <p-dropdown [required]="true" [options]="lstAssessPain"   optionLabel="optionName" [(ngModel)]="RiskAssOnTheMoveFormsData.AssessPain" name="RiskAssOnTheMoveFormsData.AssessPain" optionValue="optionId" placeholder="--select--" [style]="{ width: '100%' }">
+                <p-dropdown [required]="true" [options]="lstAssessPain" optionLabel="optionName"
+                    [(ngModel)]="RiskAssOnTheMoveFormsData.AssessPain" name="RiskAssOnTheMoveFormsData.AssessPain"
+                    optionValue="optionId" placeholder="--select--" [style]="{ width: '100%' }">
                 </p-dropdown>
                 <p class="mb-4">Please choose</p>
             </ng-container>
@@ -496,8 +706,18 @@
                 <label>{{RiskAssOnTheMoveFormsData.AssessPainName}}</label>
             </ng-template>
         </div>
-        <div class="col-md-1 form-icon ">
-            <i class="fa-solid fa-info"></i>
+        <div class="col-md-2 form-icon  d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext"> Mapped to : <b>Observation
+                    </b><br> Care domain : <b>My On the move and Falls Risk Awareness Support Plan </b>
+                    <br> Sub domain : <b>Mobility
+                    </b>
+                    <hr>Mapped to : <b>Intervention
+                    </b><br> Care domain : <b>My Medication , Healthcare , Treatments and Management Support Plan</b>
+                    <br> Sub domain : <b>Pain
+                    </b>
+                </span>
+            </div>
         </div>
         <div class="col-md-4 ">
             <div class="labelcontent">
@@ -505,121 +725,150 @@
             </div>
 
         </div>
-        <div class="col-md-7 form-text">
+        <div class="col-md-6 form-text">
             <ng-container *ngIf="this.isEditable; else EquipmentInPlaceCheck">
-                <input pInputText type="text" [(ngModel)]="RiskAssOnTheMoveFormsData.EquipmentInPlaceCheck" required name="RiskAssOnTheMoveFormsData.EquipmentInPlaceCheck" class="form-control mr-4"
+                <input pInputText type="text" [(ngModel)]="RiskAssOnTheMoveFormsData.EquipmentInPlaceCheck" required
+                    name="RiskAssOnTheMoveFormsData.EquipmentInPlaceCheck" class="form-control mr-4"
                     [style]="{ width: '100%' }">
-                    <p class="mb-4">If no, what actions have been taken to obtain it and how will the risk be managed until it
-                        arrives</p>
+                <p class="mb-4">If no, what actions have been taken to obtain it and how will the risk be managed until
+                    it
+                    arrives</p>
             </ng-container>
             <ng-template #EquipmentInPlaceCheck>
                 <label>{{RiskAssOnTheMoveFormsData.EquipmentInPlaceCheck}}</label>
             </ng-template>
-            
-        </div>
-        <div class="col-md-1 form-icon ">
-            <i class="fa-solid fa-info"></i>
-        </div>
 
-
+        </div>
+        <div class="col-md-2 form-icon d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext"> Mapped to : <b>Observation
+                    </b><br> Care domain : <b>My On the move and Falls Risk Awareness Support Plan </b>
+                    <br> Sub domain : <b>Mobility
+                    </b>
+                </span>
+            </div>
+        </div>
         <div class="col-md-4 ">
             <div class="labelcontent">
                 <p>Are there ways of keeping active or exercising that the resident enjoys?</p>
             </div>
 
         </div>
-        <div class="col-md-7 form-text">
+        <div class="col-md-6 form-text">
             <ng-container *ngIf="this.isEditable; else Exercises">
-                <input pInputText type="text" [(ngModel)]="RiskAssOnTheMoveFormsData.Exercises" required name="RiskAssOnTheMoveFormsData.Exercises" class="form-control mr-4"
-                    [style]="{ width: '100%' }">
-                    <p class="mb-4">Please ensure that we capture resident abilities and how we enable them to use these
-                        abilities, include
-                        social activities that encourage movement and the impact on health and wellbeing</p>
+                <input pInputText type="text" [(ngModel)]="RiskAssOnTheMoveFormsData.Exercises" required
+                    name="RiskAssOnTheMoveFormsData.Exercises" class="form-control mr-4" [style]="{ width: '100%' }">
+                <p class="mb-4">Please ensure that we capture resident abilities and how we enable them to use these
+                    abilities, include
+                    social activities that encourage movement and the impact on health and wellbeing</p>
             </ng-container>
             <ng-template #Exercises>
                 <label>{{RiskAssOnTheMoveFormsData.Exercises}}</label>
             </ng-template>
-            
-        </div>
-        <div class="col-md-1 form-icon ">
-            <i class="fa-solid fa-info"></i>
-        </div>
 
-
+        </div>
+        <div class="col-md-2 form-icon d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext"> Mapped to : <b>Intervention
+                    </b><br> Care domain : <b>My On the move and Falls Risk Awareness Support Plan </b>
+                    <br> Sub domain : <b>Person Centered Information
+                    </b>
+                </span>
+            </div>
+        </div>
         <div class="col-md-4 ">
             <div class="labelcontent implabel">
                 <p>Does the resident like to be on the move alot indoors, is there anything that can help this to be
                     more enjoyable for them</p>
             </div>
         </div>
-        <div class="col-md-7 form-text">
+        <div class="col-md-6 form-text">
             <ng-container *ngIf="this.isEditable; else IndoorMoveCheck">
-                <input pInputText type="text" [(ngModel)]="RiskAssOnTheMoveFormsData.IndoorMoveCheck" required name="RiskAssOnTheMoveFormsData.IndoorMoveCheck" class="form-control mr-4"
+                <input pInputText type="text" [(ngModel)]="RiskAssOnTheMoveFormsData.IndoorMoveCheck" required
+                    name="RiskAssOnTheMoveFormsData.IndoorMoveCheck" class="form-control mr-4"
                     [style]="{ width: '100%' }">
-                    <p class="mb-4">This is about points of interest for the resident destination points, places they can walk
-                        to the use of
-                        signage to promote independence in accessing places they wish to promote orientation etc</p>
+                <p class="mb-4">This is about points of interest for the resident destination points, places they can
+                    walk
+                    to the use of
+                    signage to promote independence in accessing places they wish to promote orientation etc</p>
             </ng-container>
             <ng-template #IndoorMoveCheck>
                 <label>{{RiskAssOnTheMoveFormsData.IndoorMoveCheck}}</label>
             </ng-template>
-            
         </div>
-        <div class="col-md-1 form-icon ">
-            <i class="fa-solid fa-info"></i>
+        <div class="col-md-2 form-icon d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext"> Mapped to : <b>Intervention
+                    </b><br> Care domain : <b>My On the move and Falls Risk Awareness Support Plan </b>
+                    <br> Sub domain : <b>Person Centered Information
+                    </b>
+                </span>
+            </div>
         </div>
         <div class="col-md-4 ">
             <div class="labelcontent">
                 <p>What are the hazards in relation to staff</p>
             </div>
         </div>
-        <div class="col-md-7 form-text">
+        <div class="col-md-6 form-text">
             <ng-container *ngIf="this.isEditable; else StaffHazards">
-                <input pInputText type="text" [(ngModel)]="RiskAssOnTheMoveFormsData.StaffHazards" required name="RiskAssOnTheMoveFormsData.StaffHazards" class="form-control mr-4"
-                    [style]="{ width: '100%' }">
-                    <p class="mb-4">Consider slip, trip hazards, oxygen cables, sufficient space to move hoist, training,
-                        lighting. summarise
-                        any behaviours that may impact interaction and actions to alleviate any stress and distress</p>
+                <input pInputText type="text" [(ngModel)]="RiskAssOnTheMoveFormsData.StaffHazards" required
+                    name="RiskAssOnTheMoveFormsData.StaffHazards" class="form-control mr-4" [style]="{ width: '100%' }">
+                <p class="mb-4">Consider slip, trip hazards, oxygen cables, sufficient space to move hoist, training,
+                    lighting. summarise
+                    any behaviours that may impact interaction and actions to alleviate any stress and distress</p>
             </ng-container>
             <ng-template #StaffHazards>
                 <label>{{RiskAssOnTheMoveFormsData.StaffHazards}}</label>
             </ng-template>
-            
         </div>
-        <div class="col-md-1 form-icon ">
-            <i class="fa-solid fa-info"></i>
+        <div class="col-md-2 form-icon d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext"> Mapped to : <b>Observation
+                    </b><br> Care domain : <b>My On the move and Falls Risk Awareness Support Plan </b>
+                    <br> Sub domain : <b>Risk Scores
+                    </b>
+                </span>
+            </div>
         </div>
         <div class="col-md-4">
             <div class="labelcontent">
                 <p>What type of weather do you like, and not like to be outside in?</p>
             </div>
         </div>
-        <div class="col-md-7 form-text">
+        <div class="col-md-6 form-text">
             <ng-container *ngIf="this.isEditable; else Weather">
-                <input pInputText type="text" [(ngModel)]="RiskAssOnTheMoveFormsData.Weather" required name="RiskAssOnTheMoveFormsData.Weather" class="form-control mr-4"
-                    [style]="{ width: '100%' }">
-                    <p class="mb-4">Discuss with resident their preferences, Include if required previous occupation of the
-                        resident, were
-                        they always outdoors as part of their profession and therefore enjoys being outdoors in all weathers</p>
+                <input pInputText type="text" [(ngModel)]="RiskAssOnTheMoveFormsData.Weather" required
+                    name="RiskAssOnTheMoveFormsData.Weather" class="form-control mr-4" [style]="{ width: '100%' }">
+                <p class="mb-4">Discuss with resident their preferences, Include if required previous occupation of the
+                    resident, were
+                    they always outdoors as part of their profession and therefore enjoys being outdoors in all weathers
+                </p>
             </ng-container>
             <ng-template #Weather>
                 <label>{{RiskAssOnTheMoveFormsData.Weather}}</label>
             </ng-template>
-            
         </div>
-        <div class="col-md-1 form-icon ">
-            <i class="fa-solid fa-info"></i>
+        <div class="col-md-2 form-icon d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext"> Mapped to : <b>Intervention
+                    </b><br> Care domain : <b>My On the move and Falls Risk Awareness Support Plan </b>
+                    <br> Sub domain : <b>Person Centered Information
+                    </b>
+                </span>
+            </div>
         </div>
         <div class="col-md-4">
             <div class="labelcontent">
                 <p>Next review date</p>
             </div>
         </div>
-        <div class="col-md-7">
+        <div class="col-md-6">
             <div class="input-group date">
                 <ng-container *ngIf="this.isEditable; else ReviewDate">
-                    <p-calendar name="RiskAssOnTheMoveFormsData.ReviewDate" [showIcon]="true" inputId="icon" class="iconcal" [(ngModel)]="RiskAssOnTheMoveFormsData.ReviewDate"
-                        [readonlyInput]="true" appendTo="body" [maxDate]="" #dobref=""></p-calendar>
+                    <p-calendar name="RiskAssOnTheMoveFormsData.ReviewDate" [showIcon]="true" inputId="icon"
+                        class="iconcal" [(ngModel)]="RiskAssOnTheMoveFormsData.ReviewDate" [readonlyInput]="true"
+                        appendTo="body" [maxDate]="" #dobref=""></p-calendar>
                     <div *ngIf="" class="alert alert-danger">
                     </div>
                 </ng-container>
@@ -627,43 +876,26 @@
                     <label>{{RiskAssOnTheMoveFormsData.ReviewDate | date}}</label>
                 </ng-template>
             </div>
-
         </div>
         <div class="d-flex justify-content-end">
             <ng-container *ngIf="isEditable; else savePdf">
                 <div>
                     <span class="p-ml-left mr-4">
-                        <button
-                            pButton
-                            title="New"
-                            label="Save as Unfinished"
-                            (click)="saveAsUnfinished()"
-                        ></button>
+                        <button pButton title="New" label="Save as Unfinished" (click)="saveAsUnfinished()"></button>
                         <span class="total-txt"></span>
                     </span>
                 </div>
                 <div>
                     <span class="p-ml-left mr-4">
-                        <button
-                            pButton
-                            title="New"
-                            label="Complete"
-                            (click)="completeForm()"
-                            [disabled]="
+                        <button pButton title="New" label="Complete" (click)="completeForm()" [disabled]="
                                 RiskAssOnTheMoveFormsData.IsFormCompleted
-                            "
-                        ></button>
+                            "></button>
                         <span class="total-txt"></span>
                     </span>
                 </div>
             </ng-container>
             <ng-template #savePdf>
-                <button
-                    pButton
-                    title="Save as PDF"
-                    label="Save as PDF"
-                    (click)="SaveAsPDF()"
-                ></button>
+                <button pButton title="Save as PDF" label="Save as PDF" (click)="SaveAsPDF()"></button>
             </ng-template>
         </div>
     </div>

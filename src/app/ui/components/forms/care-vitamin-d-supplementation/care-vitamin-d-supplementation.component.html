@@ -37,11 +37,10 @@
                 </div>
             </div>
         </div>
-
         <div class="col-md-4 mt-4 labelcontent">
             <p>Does the resident take a Vitamin D supplement?</p>
         </div>
-        <div class="col-md-7 mt-4 form-text">
+        <div class="col-md-6 mt-4 form-text">
             <ng-container *ngIf="isEditable; else SupplementDropdown">
                 <p-dropdown placeholder="--select--" [style]="{ width: '100%' }"
                     [(ngModel)]="CareVitaminDSupplementationFormData.vitaminDSupplement" optionLabel="optionName"
@@ -52,10 +51,13 @@
                 <label>{{ CareVitaminDSupplementationFormData.vitaminDSupplementName }}</label>
             </ng-template>
         </div>
-
-
-        <div class="col-md-1 form-icon mt-4">
-            <i class="fa-solid fa-info"></i>
+        <div class="col-md-2 form-icon mt-4 d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext"> Mapped to : <b>Observation
+                    </b><br> Care domain : <b>My medication, Healthcare, treatments and Management Support Plan </b>
+                    <br> Sub domain : <b>Risks</b>
+                </span>
+            </div>
         </div>
 
         <div class="col-md-4">
@@ -63,7 +65,7 @@
                 <p>Does the resident have any of the following?</p>
             </div>
         </div>
-        <div class="col-md-7">
+        <div class="col-md-6">
             <ng-container *ngIf="isEditable; else ConditionLabel">
                 <p-dropdown placeholder="--select--" [style]="{ width: '100%' }"
                     [(ngModel)]="CareVitaminDSupplementationFormData.residentConditions" optionLabel="optionName"
@@ -76,8 +78,13 @@
 
         </div>
 
-        <div class="col-md-1 form-icon">
-            <i class="fa-solid fa-info"></i>
+        <div class="col-md-2 form-icon  d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext"> Mapped to : <b>Observation
+                    </b><br> Care domain : <b>My medication, Healthcare, treatments and Management Support Plan </b>
+                    <br> Sub domain : <b>Risks</b>
+                </span>
+            </div>
         </div>
 
         <div class="col-md-4">
@@ -87,7 +94,7 @@
                 </p>
             </div>
         </div>
-        <div class="col-md-7">
+        <div class="col-md-6">
             <ng-container *ngIf="isEditable; else MedicationDropdown">
                 <p-dropdown placeholder="--select--" [style]="{ width: '100%' }"
                     [(ngModel)]="CareVitaminDSupplementationFormData.selectedMedication" optionLabel="optionName"
@@ -98,10 +105,16 @@
                 <label>{{ CareVitaminDSupplementationFormData.selectedMedicationName }}</label>
             </ng-template>
         </div>
-
-
-        <div class="col-md-1 form-icon">
-            <i class="fa-solid fa-info"></i>
+        <div class="col-md-2 form-icon  d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext"> Mapped to : <b>Observation
+                    </b><br> Care domain : <b>My medication, Healthcare, treatments and Management Support Plan </b>
+                    <br> Sub domain : <b>Medication</b>
+                    <hr> Mapped to : <b>Intervention
+                    </b><br> Care domain : <b>My medication, Healthcare, treatments and Management Support Plan </b>
+                    <br> Sub domain : <b>Medication</b>
+                </span>
+            </div>
         </div>
 
         <div class="col-md-4">
@@ -111,7 +124,7 @@
                 </p>
             </div>
         </div>
-        <div class="col-md-7">
+        <div class="col-md-6">
             <ng-container *ngIf="isEditable; else CapacityDropdown">
                 <p-dropdown placeholder="--select--" [style]="{ width: '100%' }"
                     [(ngModel)]="CareVitaminDSupplementationFormData.capacityDecision" optionLabel="optionName"
@@ -123,8 +136,13 @@
             </ng-template>
         </div>
 
-        <div class="col-md-1 form-icon">
-            <i class="fa-solid fa-info"></i>
+        <div class="col-md-2 form-icon  d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext"> Mapped to : <b>Observation
+                    </b><br> Care domain : <b>My medication, Healthcare, treatments and Management Support Plan </b>
+                    <br> Sub domain : <b>Capacity</b>
+                </span>
+            </div>
         </div>
 
         <div class="col-md-4">
@@ -132,7 +150,7 @@
                 <p>Personal preference</p>
             </div>
         </div>
-        <div class="col-md-7">
+        <div class="col-md-6">
             <ng-container *ngIf="isEditable; else PreferenceDropdown">
                 <p-dropdown placeholder="--select--" [style]="{ width: '100%' }"
                     [(ngModel)]="CareVitaminDSupplementationFormData.personalPreference" optionLabel="optionName"
@@ -143,10 +161,13 @@
                 <label>{{ CareVitaminDSupplementationFormData.personalPreferenceName }}</label>
             </ng-template>
         </div>
-
-
-        <div class="col-md-1 form-icon">
-            <i class="fa-solid fa-info"></i>
+        <div class="col-md-2 form-icon  d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext"> Mapped to : <b>Observation
+                    </b><br> Care domain : <b>My medication, Healthcare, treatments and Management Support Plan </b>
+                    <br> Sub domain : <b>Medication</b>
+                </span>
+            </div>
         </div>
 
         <div class="col-md-4">
@@ -157,7 +178,7 @@
                 </p>
             </div>
         </div>
-        <div class="col-md-7">
+        <div class="col-md-6">
             <ng-container *ngIf="isEditable; else InformedChoiceDropdown">
                 <p-dropdown placeholder="--select--" [style]="{ width: '100%' }"
                     [(ngModel)]="CareVitaminDSupplementationFormData.informedChoice" optionLabel="optionName"
@@ -169,9 +190,13 @@
             </ng-template>
         </div>
 
-
-        <div class="col-md-1 form-icon">
-            <i class="fa-solid fa-info"></i>
+        <div class="col-md-2 form-icon  d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext"> Mapped to : <b>Observation
+                    </b><br> Care domain : <b>My medication, Healthcare, treatments and Management Support Plan </b>
+                    <br> Sub domain : <b>Medication</b>
+                </span>
+            </div>
         </div>
 
         <div class="col-md-4">
@@ -179,7 +204,7 @@
                 <p>Decision of Vitamin D supplement administration</p>
             </div>
         </div>
-        <div class="col-md-7">
+        <div class="col-md-6">
             <ng-container *ngIf="isEditable; else DecisionDropdown">
                 <p-dropdown placeholder="--select--" [style]="{ width: '100%' }"
                     [(ngModel)]="CareVitaminDSupplementationFormData.vitaminDSupplementDecision"
@@ -192,8 +217,13 @@
         </div>
 
 
-        <div class="col-md-1 form-icon">
-            <i class="fa-solid fa-info"></i>
+        <div class="col-md-2 form-icon  d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext"> Mapped to : <b>Intervention
+                    </b><br> Care domain : <b>My medication, Healthcare, treatments and Management Support Plan </b>
+                    <br> Sub domain : <b>Medication</b>
+                </span>
+            </div>
         </div>
 
         <div class="col-md-4">
@@ -203,7 +233,7 @@
                 </p>
             </div>
         </div>
-        <div class="col-md-7">
+        <div class="col-md-6">
             <ng-container *ngIf="isEditable; else ResidentDropdown">
                 <p-dropdown placeholder="--select--" [style]="{ width: '100%' }"
                     [(ngModel)]="CareVitaminDSupplementationFormData.residentsReceivingSupplement"
@@ -217,8 +247,13 @@
         </div>
 
 
-        <div class="col-md-1 form-icon">
-            <i class="fa-solid fa-info"></i>
+        <div class="col-md-2 form-icon  d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext"> Mapped to : <b>Intervention
+                    </b><br> Care domain : <b>My medication, Healthcare, treatments and Management Support Plan </b>
+                    <br> Sub domain : <b>Medication</b>
+                </span>
+            </div>
         </div>
 
         <div class="d-flex justify-content-end">

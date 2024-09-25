@@ -33,7 +33,7 @@
                 <p>How important is your appearance to you?</p>
             </div>
         </div>
-        <div class="col-md-7 form-text mt-4">
+        <div class="col-md-6 form-text mt-4">
             <ng-container *ngIf="this.isEditable; else Appearance">
                 <p-dropdown [required]="true" [options]="lstAppearance" optionLabel="optionName"
                     [(ngModel)]="CareAssessmentFreshAndCleanFormsData.appearance"
@@ -49,15 +49,20 @@
                 detail as
                 possible</p>
         </div>
-        <div class="col-md-1 form-icon mt-4">
-            <i class="fa-solid fa-info"></i>
+        <div class="col-md-2 form-icon mt-4 d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext"> Mapped to : <b>Intervention </b> <br>Care domain : <b>My Personal Care and
+                        Projection of self image, Oral Care, Foot Support Plan </b><br> Sub domain : <b>Person Centered
+                        Information</b>
+                </span>
+            </div>
         </div>
         <div class="col-md-4">
             <div class="labelcontent">
                 <p>Capacity </p>
             </div>
         </div>
-        <div class="col-md-7 form-text">
+        <div class="col-md-6 form-text">
             <ng-container *ngIf="this.isEditable; else Capacity">
                 <p-dropdown [required]="true" [options]="lstCapacity" optionLabel="optionName"
                     [(ngModel)]="CareAssessmentFreshAndCleanFormsData.capacity"
@@ -70,8 +75,16 @@
             </ng-template>
             <p class=" mb-4" *ngIf="isEditable==true">Please choose one of the options below</p>
         </div>
-        <div class="col-md-1 form-icon">
-            <i class="fa-solid fa-info"></i>
+        <div class="col-md-2 form-icon mt-4 d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext"> Mapped to : <b>  Observation </b> <br> Care domain : <b>My Personal Care and
+                        Projection of self image, Oral Care, Foot Support Plan </b> <br> Sub domain : <b>Capacity </b>
+                    <hr>
+                    Mapped to : <b>  Intervention</b> <br> Care domain : <b>My Personal Care and Projection of self
+                        image,
+                        Oral Care, Foot Support Plan </b> <br>Sub domain : <b>Capacity </b>
+                </span>
+            </div>
         </div>
 
         <div class="col-md-4">
@@ -79,7 +92,7 @@
                 <p>Detail specific decision relating to the residents personal hygiene and projection of self</p>
             </div>
         </div>
-        <div class="col-md-7 form-text">
+        <div class="col-md-6 form-text">
             <ng-container *ngIf="this.isEditable; else SpecificDecisionDetailOfPersonalHygiene">
                 <input pInputText type="text"
                     [(ngModel)]="CareAssessmentFreshAndCleanFormsData.specificDecisionDetailOfPersonalHygiene" required
@@ -95,8 +108,16 @@
             </ng-template>
 
         </div>
-        <div class="col-md-1 form-icon">
-            <i class="fa-solid fa-info"></i>
+        <div class="col-md-2 form-icon mt-4 d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext"> Mapped to : <b>  Observation <br></b> Care domain : <b>My Personal Care and
+                        Projection of self image, Oral Care, Foot Support Plan <br></b> Sub domain : <b>Capacity </b>
+                    <hr>
+                    Mapped to : <b>  Intervention</b><br> Care domain : <b>My Personal Care and Projection of self
+                        image,
+                        Oral Care, Foot Support Plan </b><br> Sub domain : <b>Capacity </b>
+                </span>
+            </div>
         </div>
 
         <div class="col-md-4">
@@ -104,7 +125,7 @@
                 <p>Hygiene preference</p>
             </div>
         </div>
-        <div class="col-md-7 form-text">
+        <div class="col-md-6 form-text">
             <ng-container *ngIf="this.isEditable; else HygienePreference">
                 <p-dropdown [required]="true" [options]="lstHygienePreference" optionLabel="optionName"
                     [(ngModel)]="CareAssessmentFreshAndCleanFormsData.hygienePreference"
@@ -116,8 +137,17 @@
                 <label>{{CareAssessmentFreshAndCleanFormsData.hygienePreferenceName}}</label>
             </ng-template>
         </div>
-        <div class="col-md-1 form-icon">
-            <i class="fa-solid fa-info"></i>
+        <div class="col-md-2 form-icon mt-4 d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext"> Mapped to : <b>  Observation </b><br> Care domain : <b>My Personal Care and
+                        Projection of self image, Oral Care, Foot Support Plan </b><br> Sub domain : <b>Personal Care
+                    </b>
+                    <hr>
+                    Mapped to : <b>  Intervention</b> <br>Care domain : <b>My Personal Care and Projection of self
+                        image,
+                        Oral Care, Foot Support Plan </b> <br>Sub domain : <b>Personal Care </b>
+                </span>
+            </div>
         </div>
 
         <div class="col-md-4">
@@ -125,7 +155,7 @@
                 <p>Assistance for Hygiene</p>
             </div>
         </div>
-        <div class="col-md-7 form-text">
+        <div class="col-md-6 form-text">
             <ng-container *ngIf="this.isEditable; else HygieneAssistance">
                 <input pInputText type="text" [(ngModel)]="CareAssessmentFreshAndCleanFormsData.hygieneAssistance"
                     required name="CareAssessmentFreshAndCleanFormsData.hygieneAssistance" class="form-control mr-4"
@@ -141,8 +171,13 @@
             </ng-template>
 
         </div>
-        <div class="col-md-1 form-icon">
-            <i class="fa-solid fa-info"></i>
+        <div class="col-md-2 form-icon mt-4 d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext"> Mapped to : <b> Intervetion </b> <br> Care domain : <b>My Personal Care and
+                        Projection of self image, Oral Care, Foot Support Plan </b><br> Sub domain : <b>Dressing/
+                        Undressing/jewelery
+                    </b></span>
+            </div>
         </div>
 
         <div class="col-md-4">
@@ -150,7 +185,7 @@
                 <p>Dressing preferences</p>
             </div>
         </div>
-        <div class="col-md-7 form-text">
+        <div class="col-md-6 form-text">
             <ng-container *ngIf="this.isEditable; else DressingPreference">
                 <p-dropdown [required]="true" [options]="lstDressingPreference" optionLabel="optionName"
                     [(ngModel)]="CareAssessmentFreshAndCleanFormsData.dressingPreference"
@@ -162,8 +197,13 @@
                 <label>{{CareAssessmentFreshAndCleanFormsData.dressingPreferenceName}}</label>
             </ng-template>
         </div>
-        <div class="col-md-1 form-icon">
-            <i class="fa-solid fa-info"></i>
+        <div class="col-md-2 form-icon mt-4 d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext"> Mapped to : <b> Intervention </b><br> Care domain : <b>My Personal Care and
+                        Projection of self image, Oral Care, Foot Support Plan </b><br> Sub domain : <b>Dressing/
+                        Undressing/jewelery
+                    </b></span>
+            </div>
         </div>
 
         <div class="col-md-4">
@@ -171,7 +211,7 @@
                 <p>Dressing and undressing</p>
             </div>
         </div>
-        <div class="col-md-7 form-text">
+        <div class="col-md-6 form-text">
             <ng-container *ngIf="this.isEditable; else DressingAndUndressing">
                 <p-dropdown [required]="true" [options]="lstDressingAndUndressing" optionLabel="optionName"
                     [(ngModel)]="CareAssessmentFreshAndCleanFormsData.dressingAndUndressing"
@@ -183,8 +223,13 @@
                 <label>{{CareAssessmentFreshAndCleanFormsData.dressingAndUndressingName}}</label>
             </ng-template>
         </div>
-        <div class="col-md-1 form-icon">
-            <i class="fa-solid fa-info"></i>
+        <div class="col-md-2 form-icon mt-4 d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext"> Mapped to : <b> Intervention </b><br> Care domain : <b>My Personal Care and
+                        Projection of self image, Oral Care, Foot Support Plan </b><br> Sub domain : <b>Dressing/
+                        Undressing/jewelery
+                    </b></span>
+            </div>
         </div>
 
         <div class="col-md-4">
@@ -192,7 +237,7 @@
                 <p>Assistance required for Dressing/Undressing</p>
             </div>
         </div>
-        <div class="col-md-7 form-text">
+        <div class="col-md-6 form-text">
             <ng-container *ngIf="this.isEditable; else DressingAndUndressingAssistance">
                 <input pInputText type="text"
                     [(ngModel)]="CareAssessmentFreshAndCleanFormsData.dressingAndUndressingAssistance" required
@@ -207,17 +252,21 @@
             </ng-template>
 
         </div>
-        <div class="col-md-1 form-icon">
-            <i class="fa-solid fa-info"></i>
+        <div class="col-md-2 form-icon mt-4 d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext"> Mapped to : <b> Intervention </b> <br>Care domain : <b>My Personal Care and
+                        Projection of self image, Oral Care, Foot Support Plan </b><br> Sub domain : <b>Dressing/
+                        Undressing/jewelery
+                    </b></span>
+            </div>
         </div>
-
         <div class="col-md-4">
             <div class="labelcontent">
                 <p>How do we effectively support you to promote the projection of your self identity through your
                     clothing choices and presentation?</p>
             </div>
         </div>
-        <div class="col-md-7 form-text">
+        <div class="col-md-6 form-text">
             <ng-container *ngIf="this.isEditable; else SupportThroughPresentation">
                 <input pInputText type="text"
                     [(ngModel)]="CareAssessmentFreshAndCleanFormsData.supportThroughPresentation" required
@@ -233,15 +282,20 @@
             </ng-template>
 
         </div>
-        <div class="col-md-1 form-icon">
-            <i class="fa-solid fa-info"></i>
+        <div class="col-md-2 form-icon mt-4 d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext"> Mapped to : <b> Intervention </b><br> Care domain : <b>My Personal Care and
+                        Projection of self image, Oral Care, Foot Support Plan </b><br> Sub domain : <b>Dressing/
+                        Undressing/jewelery
+                    </b></span>
+            </div>
         </div>
         <div class="col-md-4">
             <div class="labelcontent">
                 <p>Grooming</p>
             </div>
         </div>
-        <div class="col-md-7 form-text">
+        <div class="col-md-6 form-text">
             <ng-container *ngIf="this.isEditable; else Grooming">
                 <p-dropdown [required]="true" [options]="lstGrooming" optionLabel="optionName"
                     [(ngModel)]="CareAssessmentFreshAndCleanFormsData.grooming"
@@ -253,15 +307,28 @@
                 <label>{{CareAssessmentFreshAndCleanFormsData.groomingName}}</label>
             </ng-template>
         </div>
-        <div class="col-md-1 form-icon">
-            <i class="fa-solid fa-info"></i>
+        <div class="col-md-2 form-icon mt-4 d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i> <span class="tooltiptext"> Mapped to : <b>
+                        Observation </b><br> Care domain : <b>My Personal Care and
+                        Projection of self image, Oral Care, Foot Support Plan </b><br> Sub domain : <b>grooming/and
+                        mekup
+                        care
+                    </b>
+                    <hr> Mapped to : <b>
+                        Intervation </b> <br> Care domain : <b>My Personal Care and
+                        Projection of self image, Oral Care, Foot Support Plan </b><br> Sub domain : <b>grooming/and
+                        mekup
+                        care
+                    </b>
+                </span>
+            </div>
         </div>
         <div class="col-md-4">
             <div class="labelcontent">
                 <p>Assistance required for grooming</p>
             </div>
         </div>
-        <div class="col-md-7 form-text">
+        <div class="col-md-6 form-text">
             <ng-container *ngIf="this.isEditable; else GroomingAssistance">
                 <input pInputText type="text" [(ngModel)]="CareAssessmentFreshAndCleanFormsData.groomingAssistance"
                     required name="CareAssessmentFreshAndCleanFormsData.groomingAssistance" class="form-control mr-4"
@@ -276,19 +343,24 @@
             <ng-template #GroomingAssistance>
                 <label>{{CareAssessmentFreshAndCleanFormsData.groomingAssistance}}</label>
             </ng-template>
-
         </div>
-        <div class="col-md-1 form-icon">
-            <i class="fa-solid fa-info"></i>
+        <div class="col-md-2 form-icon mt-4 d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext"> Mapped to : <b>
+                        Observation </b><br> Care domain : <b>My Personal Care and
+                        Projection of self image, Oral Care, Foot Support Plan </b><br> Sub domain : <b>grooming/and
+                        mekup
+                        care
+                    </b></span>
+            </div>
         </div>
-
         <div class="col-md-4">
             <div class="labelcontent">
                 <p>Is there anything that makes getting your hair done feel like a real treat, have you any routine for
                     looking after your hair between hair appoitnments</p>
             </div>
         </div>
-        <div class="col-md-7 form-text">
+        <div class="col-md-6 form-text">
             <ng-container *ngIf="this.isEditable; else HairRoutine">
                 <p-dropdown [required]="true" [options]="lstHairRoutine" optionLabel="optionName"
                     [(ngModel)]="CareAssessmentFreshAndCleanFormsData.hairRoutine"
@@ -303,8 +375,18 @@
                 information within the
                 other section</P>
         </div>
-        <div class="col-md-1 form-icon">
-            <i class="fa-solid fa-info"></i>
+        <div class="col-md-2 form-icon mt-4 d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext"> Mapped to : <b>
+                        Observation </b><br> Care domain : <b>My Personal Care and
+                        Projection of self image, Oral Care, Foot Support Plan </b><br> Sub domain : <b> Hair care
+                    </b>
+                    <hr>Mapped to : <b>
+                        Intervention</b><br> Care domain : <b>My Personal Care and
+                        Projection of self image, Oral Care, Foot Support Plan </b><br> Sub domain : <b> Hair care
+                    </b>
+                </span>
+            </div>
         </div>
 
         <div class="col-md-4">
@@ -312,7 +394,7 @@
                 <p>Assistance required for hair care</p>
             </div>
         </div>
-        <div class="col-md-7 form-text">
+        <div class="col-md-6 form-text">
             <ng-container *ngIf="this.isEditable; else HairCareAssistance">
                 <input pInputText type="text" [(ngModel)]="CareAssessmentFreshAndCleanFormsData.hairCareAssistance"
                     required name="CareAssessmentFreshAndCleanFormsData.hairCareAssistance" class="form-control mr-4"
@@ -323,8 +405,14 @@
                 <label>{{CareAssessmentFreshAndCleanFormsData.HairCareAssistance}}</label>
             </ng-template>
         </div>
-        <div class="col-md-1 form-icon">
-            <i class="fa-solid fa-info"></i>
+        <div class="col-md-2 form-icon mt-4 d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext"> Mapped to : <b>
+                        Intervention </b><br> Care domain : <b>My Personal Care and
+                        Projection of self image, Oral Care, Foot Support Plan </b><br> Sub domain : <b> Hair care
+                    </b>
+                </span>
+            </div>
         </div>
 
         <div class="col-md-4">
@@ -332,7 +420,7 @@
                 <p>Eye care</p>
             </div>
         </div>
-        <div class="col-md-7 form-text">
+        <div class="col-md-6 form-text">
             <ng-container *ngIf="this.isEditable; else EyeCare">
                 <p-dropdown [required]="true" [options]="lstEyeCare" optionLabel="optionName"
                     [(ngModel)]="CareAssessmentFreshAndCleanFormsData.eyeCare"
@@ -344,8 +432,18 @@
                 <label>{{CareAssessmentFreshAndCleanFormsData.eyeCareName}}</label>
             </ng-template>
         </div>
-        <div class="col-md-1 form-icon">
-            <i class="fa-solid fa-info"></i>
+        <div class="col-md-2 form-icon mt-4 d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext"> Mapped to : <b>
+                        Observation </b><br> Care domain : <b>My Personal Care and
+                        Projection of self image, Oral Care, Foot Support Plan </b><br> Sub domain : <b> Eye care
+                    </b>
+                    <hr>Mapped to : <b>
+                        Intervention</b> <br>Care domain : <b>My Personal Care and
+                        Projection of self image, Oral Care, Foot Support Plan </b><br> Sub domain : <b>Eye care
+                    </b>
+                </span>
+            </div>
         </div>
 
         <div class="col-md-4">
@@ -353,7 +451,7 @@
                 <p>Assistance required for eye care</p>
             </div>
         </div>
-        <div class="col-md-7 form-text">
+        <div class="col-md-6 form-text">
             <ng-container *ngIf="this.isEditable; else EyeCareAssistance">
                 <input pInputText type="text" [(ngModel)]="CareAssessmentFreshAndCleanFormsData.eyeCareAssistance"
                     required name="CareAssessmentFreshAndCleanFormsData.eyeCareAssistance" class="form-control mr-4"
@@ -364,8 +462,14 @@
                 <label>{{CareAssessmentFreshAndCleanFormsData.eyeCareAssistance}}</label>
             </ng-template>
         </div>
-        <div class="col-md-1 form-icon">
-            <i class="fa-solid fa-info"></i>
+        <div class="col-md-2 form-icon mt-4 d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext"> Mapped to : <b>
+                        Observation </b><br> Care domain : <b>My Personal Care and
+                        Projection of self image, Oral Care, Foot Support Plan </b><br> Sub domain : <b> Eye care
+                    </b> </span>
+
+            </div>
         </div>
 
         <div class="col-md-4">
@@ -373,7 +477,7 @@
                 <p>Nail care</p>
             </div>
         </div>
-        <div class="col-md-7 form-text">
+        <div class="col-md-6 form-text">
             <ng-container *ngIf="this.isEditable; else NailCare">
                 <p-dropdown [required]="true" [options]="lstNailCare" optionLabel="optionName"
                     [(ngModel)]="CareAssessmentFreshAndCleanFormsData.nailCare"
@@ -387,8 +491,19 @@
             <P class=" mb-4" *ngIf="isEditable==true">Is there anything the person would like us to know about their
                 finger and toe nail care</P>
         </div>
-        <div class="col-md-1 form-icon">
-            <i class="fa-solid fa-info"></i>
+        <div class="col-md-2 form-icon mt-4 d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext"> Mapped to : <b>
+                        Observation </b><br> Care domain : <b>My Personal Care and
+                        Projection of self image, Oral Care, Foot Support Plan </b><br> Sub domain : <b> Hand & Foot
+                        care
+                    </b>
+                    <hr>Mapped to : <b>
+                        Intervention</b><br> Care domain : <b>My Personal Care and
+                        Projection of self image, Oral Care, Foot Support Plan </b><br> Sub domain : <b>Hand & Foot care
+                    </b>
+                </span>
+            </div>
         </div>
 
         <div class="col-md-4">
@@ -396,7 +511,7 @@
                 <p>Assistance required for nail care</p>
             </div>
         </div>
-        <div class="col-md-7 form-text">
+        <div class="col-md-6 form-text">
             <ng-container *ngIf="this.isEditable; else NailCareAssistance">
                 <input pInputText type="text" [(ngModel)]="CareAssessmentFreshAndCleanFormsData.nailCareAssistance"
                     required name="CareAssessmentFreshAndCleanFormsData.nailCareAssistance" class="form-control mr-4"
@@ -410,8 +525,14 @@
             </ng-template>
 
         </div>
-        <div class="col-md-1 form-icon">
-            <i class="fa-solid fa-info"></i>
+        <div class="col-md-2 form-icon mt-4 d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext"> Mapped to : <b>
+                        Observation </b> <br>Care domain : <b>My Personal Care and
+                        Projection of self image, Oral Care, Foot Support Plan </b><br> Sub domain : <b> Hand & Foot
+                        care
+                    </b></span>
+            </div>
         </div>
 
         <div class="col-md-4">
@@ -419,7 +540,7 @@
                 <p>Hands and feet</p>
             </div>
         </div>
-        <div class="col-md-7 form-text">
+        <div class="col-md-6 form-text">
             <ng-container *ngIf="this.isEditable; else HandsAndFeet">
                 <input pInputText type="text" [(ngModel)]="CareAssessmentFreshAndCleanFormsData.handsAndFeet" required
                     name="CareAssessmentFreshAndCleanFormsData.handsAndFeet" class="form-control mr-4"
@@ -434,15 +555,26 @@
             </ng-template>
 
         </div>
-        <div class="col-md-1 form-icon">
-            <i class="fa-solid fa-info"></i>
+        <div class="col-md-2 form-icon mt-4 d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext"> Mapped to : <b>
+                        Observation </b> <br>Care domain : <b>My Personal Care and
+                        Projection of self image, Oral Care, Foot Support Plan </b><br> Sub domain : <b> Hand & Foot
+                        care
+                    </b>
+                    <hr>Mapped to : <b>
+                        Intervention</b><br> Care domain : <b>My Personal Care and
+                        Projection of self image, Oral Care, Foot Support Plan </b><br> Sub domain : <b>Hand & Foot care
+                    </b>
+                </span>
+            </div>
         </div>
         <div class="col-md-4">
             <div class="labelcontent">
                 <p>Assistance required for hands and feet</p>
             </div>
         </div>
-        <div class="col-md-7 form-text">
+        <div class="col-md-6 form-text">
             <ng-container *ngIf="this.isEditable; else HandsAndFeetAssistance">
                 <input pInputText type="text" [(ngModel)]="CareAssessmentFreshAndCleanFormsData.handsAndFeetAssistance"
                     required name="CareAssessmentFreshAndCleanFormsData.handsAndFeetAssistance"
@@ -454,8 +586,14 @@
             </ng-template>
 
         </div>
-        <div class="col-md-1 form-icon">
-            <i class="fa-solid fa-info"></i>
+        <div class="col-md-2 form-icon mt-4 d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext">Mapped to : <b>
+                        Intervention</b><br> Care domain : <b>My Personal Care and
+                        Projection of self image, Oral Care, Foot Support Plan </b><br> Sub domain : <b>Hand & Foot care
+                    </b>
+                </span>
+            </div>
         </div>
 
         <div class="col-md-4">
@@ -463,7 +601,7 @@
                 <p>Make up</p>
             </div>
         </div>
-        <div class="col-md-7 form-text">
+        <div class="col-md-6 form-text">
             <ng-container *ngIf="this.isEditable; else Makeup">
                 <p-dropdown [required]="true" [options]="lstMakeup" optionLabel="optionName"
                     [(ngModel)]="CareAssessmentFreshAndCleanFormsData.makeup"
@@ -475,8 +613,22 @@
                 <label>{{CareAssessmentFreshAndCleanFormsData.makeupName}}</label>
             </ng-template>
         </div>
-        <div class="col-md-1 form-icon">
-            <i class="fa-solid fa-info"></i>
+        <div class="col-md-2 form-icon mt-4 d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext"> Mapped to : <b>
+                        Observation </b><br> Care domain : <b>My Personal Care and
+                        Projection of self image, Oral Care, Foot Support Plan </b><br> Sub domain : <b>grooming/and
+                        mekup
+                        care
+                    </b>
+                    <hr> Mapped to : <b>
+                        Intervation </b><br> Care domain : <b>My Personal Care and
+                        Projection of self image, Oral Care, Foot Support Plan </b><br> Sub domain : <b>grooming/and
+                        mekup
+                        care
+                    </b>
+                </span>
+            </div>
         </div>
 
         <div class="col-md-4">
@@ -484,7 +636,7 @@
                 <p>Assistance required for make up</p>
             </div>
         </div>
-        <div class="col-md-7 form-text">
+        <div class="col-md-6 form-text">
             <ng-container *ngIf="this.isEditable; else MakeupAssistance">
                 <input pInputText type="text" [(ngModel)]="CareAssessmentFreshAndCleanFormsData.makeupAssistance"
                     required name="CareAssessmentFreshAndCleanFormsData.makeupAssistance" class="form-control mr-4"
@@ -499,15 +651,22 @@
             </ng-template>
 
         </div>
-        <div class="col-md-1 form-icon">
-            <i class="fa-solid fa-info"></i>
+        <div class="col-md-2 form-icon mt-4 d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext"> Mapped to : <b>
+                        Intervation </b><br> Care domain : <b>My Personal Care and
+                        Projection of self image, Oral Care, Foot Support Plan </b><br> Sub domain : <b>grooming/and
+                        mekup
+                        care</b>
+                </span>
+            </div>
         </div>
         <div class="col-md-4">
             <div class="labelcontent">
                 <p>Jewellery</p>
             </div>
         </div>
-        <div class="col-md-7 form-text">
+        <div class="col-md-6 form-text">
             <ng-container *ngIf="this.isEditable; else Jewellery">
                 <p-dropdown [required]="true" [options]="lstJewellery" optionLabel="optionName"
                     [(ngModel)]="CareAssessmentFreshAndCleanFormsData.jewellery"
@@ -519,15 +678,25 @@
                 <label>{{CareAssessmentFreshAndCleanFormsData.jewelleryName}}</label>
             </ng-template>
         </div>
-        <div class="col-md-1 form-icon">
-            <i class="fa-solid fa-info"></i>
+        <div class="col-md-2 form-icon mt-4 d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext"> Mapped to : <b> Observation</b><br> Care domain : <b>My Personal Care and
+                        Projection of self image, Oral Care, Foot Support Plan </b> <br>Sub domain : <b>Dressing/
+                        Undressing/jewelery
+                    </b>
+                    <hr> Mapped to : <b> Intervetion </b><br> Care domain : <b>My Personal Care and
+                        Projection of self image, Oral Care, Foot Support Plan </b><br> Sub domain : <b>Dressing/
+                        Undressing/jewelery
+                    </b>
+                </span>
+            </div>
         </div>
         <div class="col-md-4">
             <div class="labelcontent">
                 <p>Assistance required for jewellery</p>
             </div>
         </div>
-        <div class="col-md-7 form-text">
+        <div class="col-md-6 form-text">
             <ng-container *ngIf="this.isEditable; else JewelleryAssistance">
                 <input pInputText type="text" [(ngModel)]="CareAssessmentFreshAndCleanFormsData.jewelleryAssistance"
                     required name="CareAssessmentFreshAndCleanFormsData.jewelleryAssistance" class="form-control mr-4"
@@ -540,15 +709,21 @@
             </ng-template>
 
         </div>
-        <div class="col-md-1 form-icon">
-            <i class="fa-solid fa-info"></i>
+        <div class="col-md-2 form-icon mt-4 d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext"> Mapped to : <b> Intervetion </b> <br>Care domain : <b>My Personal Care and
+                        Projection of self image, Oral Care, Foot Support Plan </b><br> Sub domain : <b>Dressing/
+                        Undressing/jewelery
+                    </b>
+                </span>
+            </div>
         </div>
         <div class="col-md-4">
             <div class="labelcontent">
                 <p>Fragrance and / or deodorant</p>
             </div>
         </div>
-        <div class="col-md-7 form-text">
+        <div class="col-md-6 form-text">
             <ng-container *ngIf="this.isEditable; else Fragrance">
                 <p-dropdown [required]="true" [options]="lstFragrance" optionLabel="optionName"
                     [(ngModel)]="CareAssessmentFreshAndCleanFormsData.fragrance"
@@ -560,15 +735,23 @@
                 <label>{{CareAssessmentFreshAndCleanFormsData.fragranceName}}</label>
             </ng-template>
         </div>
-        <div class="col-md-1 form-icon">
-            <i class="fa-solid fa-info"></i>
+        <div class="col-md-2 form-icon mt-4 d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext"> Mapped to : <b>Observation </b><br> Care domain : <b>My Personal Care and
+                        Projection of self image, Oral Care, Foot Support Plan </b><br> Sub domain : <b>Personal Care
+                    </b>
+                    <hr> Mapped to : <b> Intervetion </b><br> Care domain : <b>My Personal Care and
+                        Projection of self image, Oral Care, Foot Support Plan </b><br> Sub domain : <b>Personal Care
+                    </b>
+                </span>
+            </div>
         </div>
         <div class="col-md-4">
             <div class="labelcontent">
                 <p>Assistance required for fragrance and or deodorant</p>
             </div>
         </div>
-        <div class="col-md-7 form-text">
+        <div class="col-md-6 form-text">
             <ng-container *ngIf="this.isEditable; else FragranceAssistance">
                 <input pInputText type="text" [(ngModel)]="CareAssessmentFreshAndCleanFormsData.fragranceAssistance"
                     required name="CareAssessmentFreshAndCleanFormsData.fragranceAssistance" class="form-control mr-4"
@@ -578,15 +761,20 @@
                 <label>{{CareAssessmentFreshAndCleanFormsData.fragranceAssistance}}</label>
             </ng-template>
         </div>
-        <div class="col-md-1 form-icon">
-            <i class="fa-solid fa-info"></i>
+        <div class="col-md-2 form-icon mt-4 d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext"> Mapped to : <b> Intervetion </b><br> Care domain : <b>My Personal Care and
+                        Projection of self image, Oral Care, Foot Support Plan </b><br> Sub domain : <b>Personal Care
+                    </b>
+                </span>
+            </div>
         </div>
         <div class="col-md-4">
             <div class="labelcontent">
                 <p>Hand, face and / or body creams</p>
             </div>
         </div>
-        <div class="col-md-7 form-text">
+        <div class="col-md-6 form-text">
             <ng-container *ngIf="this.isEditable; else FaceAndBodyCreams">
                 <p-dropdown [required]="true" [options]="lstFaceAndBodyCreams" optionLabel="optionName"
                     [(ngModel)]="CareAssessmentFreshAndCleanFormsData.faceAndBodyCreams"
@@ -598,15 +786,25 @@
                 <label>{{CareAssessmentFreshAndCleanFormsData.faceAndBodyCreamsName}}</label>
             </ng-template>
         </div>
-        <div class="col-md-1 form-icon">
-            <i class="fa-solid fa-info"></i>
+        <div class="col-md-2 form-icon mt-4 d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext"> <span class="tooltiptext"> Mapped to : <b>Observation </b><br> Care domain :
+                        <b>My Personal Care and
+                            Projection of self image, Oral Care, Foot Support Plan </b><br> Sub domain : <b>Cream
+                        </b>
+                        <hr> Mapped to : <b> Intervetion </b><br> Care domain : <b>My Personal Care and
+                            Projection of self image, Oral Care, Foot Support Plan </b><br> Sub domain : <b>Cream
+                        </b>
+                    </span>
+                </span>
+            </div>
         </div>
         <div class="col-md-4">
             <div class="labelcontent">
                 <p>Assistance required for hand, face and / or body creams</p>
             </div>
         </div>
-        <div class="col-md-7">
+        <div class="col-md-6">
             <ng-container *ngIf="this.isEditable; else FaceAndBodyCreamsAssistance">
                 <input pInputText type="text"
                     [(ngModel)]="CareAssessmentFreshAndCleanFormsData.faceAndBodyCreamsAssistance" required
@@ -617,8 +815,13 @@
                 <label>{{CareAssessmentFreshAndCleanFormsData.faceAndBodyCreamsAssistance}}</label>
             </ng-template>
         </div>
-        <div class="col-md-1 form-icon">
-            <i class="fa-solid fa-info"></i>
+        <div class="col-md-2 form-icon mt-4 d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext"> Mapped to : <b> Intervetion </b><br> Care domain : <b>My Personal Care and
+                        Projection of self image, Oral Care, Foot Support Plan </b><br> Sub domain : <b>Cream
+                    </b>
+                </span>
+            </div>
         </div>
 
         <div class="col-md-4">
@@ -626,7 +829,7 @@
                 <p>Goals the resident wishes to achieve</p>
             </div>
         </div>
-        <div class="col-md-7">
+        <div class="col-md-6">
             <ng-container *ngIf="this.isEditable; else GoalsToAchieveFreshAndClean">
                 <p-dropdown [required]="true" [options]="lstGoalsToAchieveFreshAndClean" optionLabel="optionName"
                     [(ngModel)]="CareAssessmentFreshAndCleanFormsData.goalsToAchieveFreshAndClean"
@@ -638,8 +841,12 @@
                 <label>{{CareAssessmentFreshAndCleanFormsData.goalsToAchieveFreshAndCleanName}}</label>
             </ng-template>
         </div>
-        <div class="col-md-1 form-icon">
-            <i class="fa-solid fa-info"></i>
+        <div class="col-md-2 form-icon mt-4 d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext"> Mapped to : <b>Agreed Outcome </b><br> Care domain : <b>My Personal Care and
+                        Projection of self image, Oral Care, Foot Support Plan </b><br> Sub domain : <b>Cream
+                    </b></span>
+            </div>
         </div>
 
         <div class="col-md-4">
@@ -647,7 +854,7 @@
                 <p>Strategies to manage the residents personal hygiene</p>
             </div>
         </div>
-        <div class="col-md-7">
+        <div class="col-md-6">
             <ng-container *ngIf="this.isEditable; else StrategyToManageHygiene">
                 <p-dropdown [required]="true" [options]="lstStrategyToManageHygiene" optionLabel="optionName"
                     [(ngModel)]="CareAssessmentFreshAndCleanFormsData.strategyToManageHygiene"
@@ -659,15 +866,23 @@
                 <label>{{CareAssessmentFreshAndCleanFormsData.strategyToManageHygieneName}}</label>
             </ng-template>
         </div>
-        <div class="col-md-1 form-icon">
-            <i class="fa-solid fa-info"></i>
+        <div class="col-md-2 form-icon mt-4 d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext"> Mapped to : <b>Observation </b> <br>Care domain : <b>My Personal Care and
+                        Projection of self image, Oral Care, Foot Support Plan </b><br> Sub domain : <b>personal care
+                    </b>
+                    <hr>Mapped to : <b>Intervention </b><br> Care domain : <b>My Personal Care and
+                        Projection of self image, Oral Care, Foot Support Plan </b><br> Sub domain : <b>personal care
+                    </b>
+                </span>
+            </div>
         </div>
         <div class="col-md-4">
             <div class="labelcontent">
                 <p>Are there any other identified risks relating to personal hygiene</p>
             </div>
         </div>
-        <div class="col-md-7 form-text">
+        <div class="col-md-6 form-text">
             <ng-container *ngIf="this.isEditable; else IdentifiedRisksToHygiene">
                 <input pInputText type="text"
                     [(ngModel)]="CareAssessmentFreshAndCleanFormsData.identifiedRisksToHygiene" required
@@ -680,8 +895,16 @@
             </ng-template>
 
         </div>
-        <div class="col-md-1 form-icon">
-            <i class="fa-solid fa-info"></i>
+        <div class="col-md-2 form-icon mt-4 d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext"> Mapped to : <b>Observation </b><br> Care domain : <b>My Personal Care and
+                        Projection of self image, Oral Care, Foot Support Plan </b><br> Sub domain : <b>Risks
+                    </b>
+                    <hr>Mapped to : <b>Intervention </b><br> Care domain : <b>My Personal Care and
+                        Projection of self image, Oral Care, Foot Support Plan </b><br> Sub domain : <b>Risks
+                    </b>
+                </span>
+            </div>
         </div>
 
         <div class="col-md-4">
@@ -689,7 +912,7 @@
                 <p>Action to manage additional risk identified</p>
             </div>
         </div>
-        <div class="col-md-7 form-text">
+        <div class="col-md-6 form-text">
             <ng-container *ngIf="this.isEditable; else ActionToManageAdditionalRisk">
                 <input pInputText type="text"
                     [(ngModel)]="CareAssessmentFreshAndCleanFormsData.actionToManageAdditionalRisk" required
@@ -701,15 +924,20 @@
                 <label>{{CareAssessmentFreshAndCleanFormsData.actionToManageAdditionalRisk}}</label>
             </ng-template>
         </div>
-        <div class="col-md-1 form-icon">
-            <i class="fa-solid fa-info"></i>
+        <div class="col-md-2 form-icon mt-4 d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext"> Mapped to : <b>Observation </b><br> Care domain : <b>My Personal Care and
+                        Projection of self image, Oral Care, Foot Support Plan </b> <br> Sub domain : <b>Risks
+                    </b>
+                </span>
+            </div>
         </div>
         <div class="col-md-4">
             <div class="labelcontent implabel">
                 <p>MONTHLY REVIEW (or before)</p>
             </div>
         </div>
-        <div class="col-md-7 form-text">
+        <div class="col-md-6 form-text">
             <ng-container *ngIf="this.isEditable; else MonthlyReview">
                 <p-checkbox class="mb-4" [(ngModel)]="CareAssessmentFreshAndCleanFormsData.monthlyReview"
                     [binary]="true" inputId="binary"></p-checkbox>
@@ -728,7 +956,7 @@
                 <p>Special Occasions</p>
             </div>
         </div>
-        <div class="col-md-7 form-text">
+        <div class="col-md-6 form-text">
             <ng-container *ngIf="this.isEditable; else SpecialOccasion">
                 <input pInputText type="text" [(ngModel)]="CareAssessmentFreshAndCleanFormsData.specialOccasion"
                     required name="CareAssessmentFreshAndCleanFormsData.specialOccasion" class="form-control mr-4"
@@ -743,8 +971,13 @@
             </ng-template>
 
         </div>
-        <div class="col-md-1 form-icon">
-            <i class="fa-solid fa-info"></i>
+        <div class="col-md-2 form-icon mt-4 d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext"> Mapped to : <b>Observation</b> <br> Care domain : <b>My Personal Care and
+                        Projection of self image, Oral Care, Foot Support Plan </b><br> Sub domain : <b>Dressing/
+                        Undressing/jewelery
+                    </b></span>
+            </div>
         </div>
 
         <div class="col-md-4">

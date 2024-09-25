@@ -33,7 +33,7 @@
                 <p>Is the person at risk of Delirium</p>
             </div>
         </div>
-        <div class="col-md-7 form-text mt-4">
+        <div class="col-md-6 form-text mt-4">
             <ng-container *ngIf="this.isEditable; else DeliriumRiskCheck">
                 <p-dropdown [required]="true" [options]="lstDeliriumRiskCheck" optionLabel="optionName"
                     [(ngModel)]="DeliriumRiskFormsData.deliriumRiskCheck" name="DeliriumRiskFormsData.DeliriumRiskCheck"
@@ -45,8 +45,13 @@
                 <label>{{DeliriumRiskFormsData.deliriumRiskCheckName}}</label>
             </ng-template>
         </div>
-        <div class="col-md-1 form-icon mt-4 mb-4">
-            <i class="fa-solid fa-info"></i>
+        <div class="col-md-2 form-icon mt-4 d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext"> Mapped to : <b>Intervention
+                    </b><br> Care domain : <b>My medication, Healthcare, Treatments and Management Support Plan </b>
+                    <br> Sub domain : <b>Delirium</b>
+                </span>
+            </div>
         </div>
         <div class="col-md-4 mb-4">
             <div class="labelcontent">
@@ -54,7 +59,7 @@
                     inclusion in preventative measures</p>
             </div>
         </div>
-        <div class="col-md-7 ">
+        <div class="col-md-6 ">
             <ng-container *ngIf="this.isEditable; else DisorientationPrevention">
                 <p-dropdown [required]="true" [options]="lstDisorientationPrevention" optionLabel="optionName"
                     [(ngModel)]="DeliriumRiskFormsData.disorientationPrevention"
@@ -66,8 +71,13 @@
                 <label>{{DeliriumRiskFormsData.disorientationPreventionName}}</label>
             </ng-template>
         </div>
-        <div class="col-md-1 form-icon mb-4">
-            <i class="fa-solid fa-info"></i>
+        <div class="col-md-2 form-icon  d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext"> Mapped to : <b>Intervention
+                    </b><br> Care domain : <b>My medication, Healthcare, Treatments and Management Support Plan </b>
+                    <br> Sub domain : <b>Delirium</b>
+                </span>
+            </div>
         </div>
         <div class="col-md-4 mb-4">
             <div class="labelcontent">
@@ -75,7 +85,7 @@
                     the below statements</p>
             </div>
         </div>
-        <div class="col-md-7">
+        <div class="col-md-6">
             <ng-container *ngIf="this.isEditable; else DeliriumDueToHydrationPrevention">
                 <p-dropdown [required]="true" [options]="lstDeliriumDueToHydrationPrevention" optionLabel="optionName"
                     [(ngModel)]="DeliriumRiskFormsData.deliriumDueToHydrationPrevention"
@@ -87,8 +97,14 @@
                 <label>{{DeliriumRiskFormsData.deliriumDueToHydrationPreventionName}}</label>
             </ng-template>
         </div>
-        <div class="col-md-1 form-icon mb-4">
-            <i class="fa-solid fa-info"></i>
+        <div class="col-md-2 form-icon  d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext"> Mapped to : <b>Intervention
+                    </b><br> Care domain : <b>My medication, Healthcare, Treatments and Management Support Plan </b>
+                    <br> Sub domain : <b>Delirium</b>
+
+                </span>
+            </div>
         </div>
         <div class="col-md-4 mb-4">
             <div class="labelcontent">
@@ -96,7 +112,7 @@
                     mobility select all the applicable statement's below</p>
             </div>
         </div>
-        <div class="col-md-7">
+        <div class="col-md-6">
             <ng-container *ngIf="this.isEditable; else DeliriumDueToSurgeryPrevention">
                 <p-dropdown [required]="true" [options]="lstDeliriumDueToSurgeryPrevention" optionLabel="optionName"
                     [(ngModel)]="DeliriumRiskFormsData.deliriumDueToSurgeryPrevention"
@@ -108,8 +124,14 @@
                 <label>{{DeliriumRiskFormsData.deliriumDueToSurgeryPreventionName}}</label>
             </ng-template>
         </div>
-        <div class="col-md-1 mb-4 form-icon">
-            <i class="fa-solid fa-info"></i>
+        <div class="col-md-2 form-icon  d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext"> Mapped to : <b>Intervention
+                    </b><br> Care domain : <b>My medication, Healthcare, Treatments and Management Support Plan </b>
+                    <br> Sub domain : <b>Delirium</b>
+
+                </span>
+            </div>
         </div>
         <div class="col-md-4 mb-4">
             <div class="labelcontent">
@@ -117,7 +139,7 @@
                     below to reduce that risk</p>
             </div>
         </div>
-        <div class="col-md-7">
+        <div class="col-md-6">
             <ng-container *ngIf="this.isEditable; else DeliriumDueToInfectionPrevention">
                 <p-dropdown [required]="true" [options]="lstDeliriumDueToInfectionPrevention" optionLabel="optionName"
                     [(ngModel)]="DeliriumRiskFormsData.deliriumDueToInfectionPrevention"
@@ -129,8 +151,14 @@
                 <label>{{DeliriumRiskFormsData.deliriumDueToInfectionPreventionName}}</label>
             </ng-template>
         </div>
-        <div class="col-md-1 mb-4 form-icon">
-            <i class="fa-solid fa-info"></i>
+        <div class="col-md-2 form-icon  d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext"> Mapped to : <b>Intervention
+                    </b><br> Care domain : <b>My medication, Healthcare, Treatments and Management Support Plan </b>
+                    <br> Sub domain : <b>Delirium</b>
+
+                </span>
+            </div>
         </div>
         <div class="col-md-4 mb-4">
             <div class="labelcontent">
@@ -138,7 +166,7 @@
                     their delirium prevention plan</p>
             </div>
         </div>
-        <div class="col-md-7">
+        <div class="col-md-6">
             <ng-container *ngIf="this.isEditable; else DeliriumPreventionPlan">
                 <p-dropdown [required]="true" [options]="lstDeliriumPreventionPlan" optionLabel="optionName"
                     [(ngModel)]="DeliriumRiskFormsData.deliriumPreventionPlan"
@@ -150,8 +178,14 @@
                 <label>{{DeliriumRiskFormsData.deliriumPreventionPlanName}}</label>
             </ng-template>
         </div>
-        <div class="col-md-1 mb-4 form-icon">
-            <i class="fa-solid fa-info"></i>
+        <div class="col-md-2 form-icon  d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext"> Mapped to : <b>Intervention
+                    </b><br> Care domain : <b>My medication, Healthcare, Treatments and Management Support Plan </b>
+                    <br> Sub domain : <b>Delirium</b>
+
+                </span>
+            </div>
         </div>
         <div class="col-md-4  mb-4">
             <div class="labelcontent">
@@ -159,7 +193,7 @@
                     delirium</p>
             </div>
         </div>
-        <div class="col-md-7">
+        <div class="col-md-6">
             <ng-container *ngIf="this.isEditable; else DeliriumDueToSensoryImpairmentPrevention">
                 <p-dropdown [required]="true" [options]="lstDeliriumDueToSensoryImpairmentPrevention"
                     optionLabel="optionName"
@@ -172,8 +206,14 @@
                 <label>{{DeliriumRiskFormsData.deliriumDueToSensoryImpairmentPreventionName}}</label>
             </ng-template>
         </div>
-        <div class="col-md-1 mb-4 form-icon">
-            <i class="fa-solid fa-info"></i>
+        <div class="col-md-2 form-icon  d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext"> Mapped to : <b>Intervention
+                    </b><br> Care domain : <b>My medication, Healthcare, Treatments and Management Support Plan </b>
+                    <br> Sub domain : <b>Delirium</b>
+
+                </span>
+            </div>
         </div>
         <div class="col-md-4 mb-4">
             <div class="labelcontent">
@@ -181,7 +221,7 @@
                     interventions to reduce risk</p>
             </div>
         </div>
-        <div class="col-md-7">
+        <div class="col-md-6">
             <ng-container *ngIf="this.isEditable; else DeliriumDueToSleepDisturbancePrevention">
                 <p-dropdown [required]="true" [options]="lstDeliriumDueToSleepDisturbancePrevention"
                     optionLabel="optionName" [(ngModel)]="DeliriumRiskFormsData.deliriumDueToSleepDisturbancePrevention"
@@ -193,8 +233,14 @@
                 <label>{{DeliriumRiskFormsData.deliriumDueToSleepDisturbancePreventionName}}</label>
             </ng-template>
         </div>
-        <div class="col-md-1 mb-4 form-icon">
-            <i class="fa-solid fa-info"></i>
+        <div class="col-md-2 form-icon  d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext"> Mapped to : <b>Intervention
+                    </b><br> Care domain : <b>My medication, Healthcare, Treatments and Management Support Plan </b>
+                    <br> Sub domain : <b>Delirium</b>
+
+                </span>
+            </div>
         </div>
         <div class="d-flex justify-content-end">
             <ng-container *ngIf="isEditable; else savePdf">

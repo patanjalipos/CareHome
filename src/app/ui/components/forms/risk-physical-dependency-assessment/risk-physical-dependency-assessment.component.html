@@ -43,7 +43,7 @@
                 <p>Communication</p>
             </div>
         </div>
-        <div class="col-md-7 mt-4">
+        <div class="col-md-6 mt-4">
             <ng-container *ngIf="isEditable; else CommunicationLabel">
                 <p-dropdown placeholder="--select--" [style]="{ width: '100%' }"
                     [(ngModel)]="RiskPhysicalDependencyAssessmentFormData.communication" optionLabel="optionName"
@@ -60,7 +60,7 @@
                 <p>Breathing</p>
             </div>
         </div>
-        <div class="col-md-7">
+        <div class="col-md-6">
             <ng-container *ngIf="isEditable; else BreathingLabel">
                 <p-dropdown placeholder="--select--" [style]="{ width: '100%' }"
                     [(ngModel)]="RiskPhysicalDependencyAssessmentFormData.breathing" optionLabel="optionName"
@@ -76,7 +76,7 @@
                 <p>Circulation (heart and vascular)</p>
             </div>
         </div>
-        <div class="col-md-7">
+        <div class="col-md-6">
             <ng-container *ngIf="isEditable; else CirculationLabel">
                 <p-dropdown placeholder="--select--" [style]="{ width: '100%' }"
                     [(ngModel)]="RiskPhysicalDependencyAssessmentFormData.circulation" optionLabel="optionName"
@@ -93,7 +93,7 @@
                 <p>Assistance to eat</p>
             </div>
         </div>
-        <div class="col-md-7">
+        <div class="col-md-6">
             <ng-container *ngIf="isEditable; else EatAssistanceLabel">
                 <p-dropdown placeholder="--select--" [style]="{ width: '100%' }"
                     [(ngModel)]="RiskPhysicalDependencyAssessmentFormData.assistanceToEat" optionLabel="optionName"
@@ -110,7 +110,7 @@
                 <p>Elimination</p>
             </div>
         </div>
-        <div class="col-md-7">
+        <div class="col-md-6">
             <ng-container *ngIf="isEditable; else EliminationLabel">
                 <p-dropdown placeholder="--select--" [style]="{ width: '100%' }"
                     [(ngModel)]="RiskPhysicalDependencyAssessmentFormData.elimination" optionLabel="optionName"
@@ -120,10 +120,16 @@
                 <label>{{ RiskPhysicalDependencyAssessmentFormData.eliminationName }}</label>
             </ng-template>
         </div>
-
-
-        <div class="col-md-1 form-icon">
-            <i class="fa-solid fa-info"></i>
+        <div class="col-md-2 form-icon mt-4 d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext"> Mapped to : <b> Observation </b> <br> Care domain : <b>My continence
+                        Promotion Support Plan </b> <br>
+                    Sub domain : <b>person Centered Information</b>
+                    <hr>
+                    Mapped to : <b>Intervention</b> <br> Care domain : <b>My Continence promotion Support plan </b> <br>
+                    Sub domain : <b>person Centered Information</b>
+                </span>
+            </div>
         </div>
 
         <div class="col-md-4">
@@ -131,7 +137,7 @@
                 <p>Mobility</p>
             </div>
         </div>
-        <div class="col-md-7">
+        <div class="col-md-6">
             <ng-container *ngIf="isEditable; else MobilityLabel">
                 <p-dropdown placeholder="--select--" [style]="{ width: '100%' }"
                     [(ngModel)]="RiskPhysicalDependencyAssessmentFormData.mobility" optionLabel="optionName"
@@ -148,7 +154,7 @@
                 <p>Washing and dressing (hygiene)</p>
             </div>
         </div>
-        <div class="col-md-7 mt-4">
+        <div class="col-md-6 mt-4">
             <ng-container *ngIf="isEditable; else WashingDressingLabel">
                 <p-dropdown name="WashingAndDressing" placeholder="--select--" [style]="{ width: '100%' }"
                     [(ngModel)]="RiskPhysicalDependencyAssessmentFormData.washingAndDressing" optionLabel="optionName"
@@ -166,7 +172,7 @@
                 <p>Oral care</p>
             </div>
         </div>
-        <div class="col-md-7">
+        <div class="col-md-6">
             <ng-container *ngIf="isEditable; else OralCareLabel">
                 <p-dropdown placeholder="--select--" [style]="{ width: '100%' }"
                     [(ngModel)]="RiskPhysicalDependencyAssessmentFormData.oralCare" optionLabel="optionName"
@@ -184,7 +190,7 @@
                 <p>Skin (tissue viability)</p>
             </div>
         </div>
-        <div class="col-md-7">
+        <div class="col-md-6">
             <ng-container *ngIf="isEditable; else SkinLabel">
                 <p-dropdown placeholder="--select--" [style]="{ width: '100%' }"
                     [(ngModel)]="RiskPhysicalDependencyAssessmentFormData.skinViability" optionLabel="optionName"
@@ -202,7 +208,7 @@
                 <p>Pain and discomfort</p>
             </div>
         </div>
-        <div class="col-md-7">
+        <div class="col-md-6">
             <ng-container *ngIf="isEditable; else PainLabel">
                 <p-dropdown placeholder="--select--" [style]="{ width: '100%' }"
                     [(ngModel)]="RiskPhysicalDependencyAssessmentFormData.painDiscomfort" optionLabel="optionName"
@@ -220,7 +226,7 @@
                 <p>Hearing</p>
             </div>
         </div>
-        <div class="col-md-7">
+        <div class="col-md-6">
             <ng-container *ngIf="isEditable; else HearingLabel">
                 <p-dropdown placeholder="--select--" [style]="{ width: '100%' }"
                     [(ngModel)]="RiskPhysicalDependencyAssessmentFormData.hearing" optionLabel="optionName"
@@ -238,7 +244,7 @@
                 <p>Sight</p>
             </div>
         </div>
-        <div class="col-md-7">
+        <div class="col-md-6">
             <ng-container *ngIf="isEditable; else SightLabel">
                 <p-dropdown placeholder="--select--" [style]="{ width: '100%' }"
                     [(ngModel)]="RiskPhysicalDependencyAssessmentFormData.sight" optionLabel="optionName"
@@ -255,7 +261,7 @@
                 <p>Sleeping and rest</p>
             </div>
         </div>
-        <div class="col-md-7">
+        <div class="col-md-6">
             <ng-container *ngIf="isEditable; else SleepRestLabel">
                 <p-dropdown placeholder="--select--" [style]="{ width: '100%' }"
                     [(ngModel)]="RiskPhysicalDependencyAssessmentFormData.sleepingRest" optionLabel="optionName"
@@ -273,7 +279,7 @@
                 <p>Palliative care</p>
             </div>
         </div>
-        <div class="col-md-7">
+        <div class="col-md-6">
             <ng-container *ngIf="isEditable; else PalliativeCareLabel">
                 <p-dropdown placeholder="--select--" [style]="{ width: '100%' }"
                     [(ngModel)]="RiskPhysicalDependencyAssessmentFormData.palliativeCare" optionLabel="optionName"
@@ -291,7 +297,7 @@
                 <p>Behaviours</p>
             </div>
         </div>
-        <div class="col-md-7">
+        <div class="col-md-6">
             <ng-container *ngIf="isEditable; else BehavioursLabel">
                 <p-dropdown placeholder="--select--" [style]="{ width: '100%' }"
                     [(ngModel)]="RiskPhysicalDependencyAssessmentFormData.behaviours" optionLabel="optionName"
@@ -309,7 +315,7 @@
                 <p>Awareness, understanding and memory (Cognition)</p>
             </div>
         </div>
-        <div class="col-md-7">
+        <div class="col-md-6">
             <ng-container *ngIf="isEditable; else CognitionLabel">
                 <p-dropdown placeholder="--select--" [style]="{ width: '100%' }"
                     [(ngModel)]="RiskPhysicalDependencyAssessmentFormData.cognition" optionLabel="optionName"
@@ -327,7 +333,7 @@
                 <p>Management - Indirect Care</p>
             </div>
         </div>
-        <div class="col-md-7">
+        <div class="col-md-6">
             <ng-container *ngIf="isEditable; else IndirectCareLabel">
                 <p-dropdown placeholder="--select--" [style]="{ width: '100%' }"
                     [(ngModel)]="RiskPhysicalDependencyAssessmentFormData.indirectCare" optionLabel="optionName"
@@ -344,7 +350,7 @@
                 <p>Activities and Engagement</p>
             </div>
         </div>
-        <div class="col-md-7">
+        <div class="col-md-6">
             <ng-container *ngIf="isEditable; else EngagementLabel">
                 <p-dropdown placeholder="--select--" [style]="{ width: '100%' }"
                     [(ngModel)]="RiskPhysicalDependencyAssessmentFormData.activitiesEngagement" optionLabel="optionName"
@@ -361,7 +367,7 @@
                 <p>Dependency Score and Level</p>
             </div>
         </div>
-        <div class="col-md-7">
+        <div class="col-md-6">
             <ng-container *ngIf="isEditable; else DependencyLabel">
                 <p-dropdown placeholder="--select--" [style]="{ width: '100%' }"
                     [(ngModel)]="RiskPhysicalDependencyAssessmentFormData.dependencyScoreLevel" optionLabel="optionName"
@@ -373,10 +379,19 @@
             </ng-template>
         </div>
 
-
-        <div class="col-md-1 form-icon">
-            <i class="fa-solid fa-info"></i>
+        <div class="col-md-2 form-icon mt-4 d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext"> Mapped to : <b> Observation </b> <br> Care domain : <b>My Medication ,
+                        Healthcare, Treatment and Management Support Plan </b> <br>
+                    Sub domain : <b>Capacity </b>
+                    <hr>
+                    Mapped to : <b>Intervention</b> <br> Care domain : <b>My Mental Health and Well being Support plan
+                    </b> <br>
+                    Sub domain : <b>Well Being </b>
+                </span>
+            </div>
         </div>
+
 
         <div class="col-md-4">
             <div class="labelcontent">
