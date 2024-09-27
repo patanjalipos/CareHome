@@ -39,7 +39,7 @@
                 <p>What is the resident current weight</p>
             </div>
         </div>
-        <div class="col-md-7  mt-4">
+        <div class="col-md-6  mt-4">
             <ng-container *ngIf="isEditable; else CurrentWeight">
                 <input pInputText type="text" required name="CurrentWeight" class="form-control" [(ngModel)]="
                         NutritionalManagementFormsData.currentWeight
@@ -53,15 +53,19 @@
             </ng-template>
 
         </div>
-        <div class="col-md-1 mb-4 mt-4 form-icon">
-            <i class="fa-solid fa-info"></i>
+        <div class="col-md-2 form-icon mt-4  d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext"> Mapped to : <b>Intervention
+                    </b><br> Care domain : <b>My sleeep and Resting Support tool </b>
+                </span>
+            </div>
         </div>
         <div class="col-md-4">
             <div class="labelcontent">
                 <p>What is the persons current MUST score?</p>
             </div>
         </div>
-        <div class="col-md-7">
+        <div class="col-md-6">
             <ng-container *ngIf="isEditable; else CurrentScore">
                 <input pInputText type="text" required name="CurrentScore" class="form-control" [(ngModel)]="
                         NutritionalManagementFormsData.currentScore
@@ -78,15 +82,20 @@
             </ng-template>
 
         </div>
-        <div class="col-md-1  form-icon">
-            <i class="fa-solid fa-info"></i>
+        <div class="col-md-2 form-icon  d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext"> Mapped to : <b>Observation
+                    </b><br> Care domain : <b>My Nutrition and Hydration Support Plan </b>
+                    <br> Sub domain : <b>My Nutrition & Hydration Plan</b>
+                </span>
+            </div>
         </div>
         <div class="col-md-4">
             <div class="labelcontent">
                 <p>What is the persons highest weight in the last 6mths?</p>
             </div>
         </div>
-        <div class="col-md-7">
+        <div class="col-md-6">
             <ng-container *ngIf="isEditable; else HighestWeight">
                 <input pInputText type="text" required name="HighestWeight" class="form-control" [(ngModel)]="
                         NutritionalManagementFormsData.highestWeight
@@ -101,15 +110,20 @@
             </ng-template>
 
         </div>
-        <div class="col-md-1  form-icon">
-            <i class="fa-solid fa-info"></i>
+        <div class="col-md-2 form-icon  d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext"> Mapped to : <b>Observation
+                    </b><br> Care domain : <b>My Nutrition and Hydration Support Plan </b>
+                    <br> Sub domain : <b>My Nutrition & Hydration Plan</b>
+                </span>
+            </div>
         </div>
         <div class="col-md-4">
             <div class="labelcontent">
                 <p>Problems affecting Nutritional status -</p>
             </div>
         </div>
-        <div class="col-md-7">
+        <div class="col-md-6">
             <ng-container *ngIf="isEditable; else NutritionalProblems">
                 <p-dropdown name="NutritionalProblems" [(ngModel)]="
                         NutritionalManagementFormsData.nutritionalProblems
@@ -127,15 +141,20 @@
             </ng-template>
 
         </div>
-        <div class="col-md-1  form-icon">
-            <i class="fa-solid fa-info"></i>
+        <div class="col-md-2 form-icon  d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext"> Mapped to : <b>Observation
+                    </b><br> Care domain : <b>My Nutrition and Hydration Support Plan </b>
+                    <br> Sub domain : <b>My Nutrition & Hydration Plan</b>
+                </span>
+            </div>
         </div>
         <div class="col-md-4">
             <div class="labelcontent">
                 <p>Further details of highlighted problems affecting persons nutritional status</p>
             </div>
         </div>
-        <div class="col-md-7">
+        <div class="col-md-6">
             <ng-container *ngIf="isEditable; else NutritionalProblemsDetails">
                 <input pInputText type="text" required name="NutritionalProblemsDetails" class="form-control"
                     [(ngModel)]="
@@ -153,15 +172,20 @@
             </ng-template>
 
         </div>
-        <div class="col-md-1  form-icon">
-            <i class="fa-solid fa-info"></i>
+        <div class="col-md-2 form-icon  d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext"> Mapped to : <b>Observation
+                    </b><br> Care domain : <b>My Nutrition and Hydration Support Plan </b>
+                    <br> Sub domain : <b>My Nutrition & Hydration Plan</b>
+                </span>
+            </div>
         </div>
         <div class="col-md-4">
             <div class="labelcontent">
                 <p>Establish nutritional aims</p>
             </div>
         </div>
-        <div class="col-md-7">
+        <div class="col-md-6">
             <ng-container *ngIf="isEditable; else NutritionalAims">
                 <p-dropdown name="NutritionalAims" [(ngModel)]="
                         NutritionalManagementFormsData.nutritionalAims
@@ -177,15 +201,20 @@
             </ng-template>
 
         </div>
-        <div class="col-md-1  form-icon">
-            <i class="fa-solid fa-info"></i>
+        <div class="col-md-2 form-icon  d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext"> Mapped to : <b>Agreed outcome
+                    </b><br> Care domain : <b>My Nutrition and Hydration Support Plan </b>
+                    <br> Sub domain : <b>My Nutrition & Hydration Plan</b>
+                </span>
+            </div>
         </div>
         <div class="col-md-4">
             <div class="labelcontent">
                 <p>Choose all interventions being implemented</p>
             </div>
         </div>
-        <div class="col-md-7">
+        <div class="col-md-6">
             <ng-container *ngIf="isEditable; else Interventions">
                 <p-dropdown name="Interventions" [(ngModel)]="
                         NutritionalManagementFormsData.interventions
@@ -203,15 +232,20 @@
             </ng-template>
 
         </div>
-        <div class="col-md-1  form-icon">
-            <i class="fa-solid fa-info"></i>
+        <div class="col-md-2 form-icon  d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext"> Mapped to : <b>Intervention
+                    </b><br> Care domain : <b>My Nutrition and Hydration Support Plan </b>
+                    <br> Sub domain : <b>My Nutrition & Hydration Plan</b>
+                </span>
+            </div>
         </div>
         <div class="col-md-4">
             <div class="labelcontent">
                 <p>Next review date</p>
             </div>
         </div>
-        <div class="col-md-7">
+        <div class="col-md-6">
             <div class="input-group date">
                 <ng-container *ngIf="this.isEditable; else ReviewDate">
                     <p-calendar name="ReviewDate" [showIcon]="true" inputId="icon" class="iconcal"

@@ -41,7 +41,7 @@
         <div class="col-md-4 mt-4 labelcontent">
             <p>Contact names for reviews</p>
         </div>
-        <div class="col-md-7 mt-4 form-text">
+        <div class="col-md-6 mt-4 form-text">
             <ng-container *ngIf="isEditable; else ContactNamesLabel">
                 <input pInputText type="text" required name="ContactNames" class="form-control"
                     [(ngModel)]="ResidentContactsListFormData.contactNames" />
@@ -57,14 +57,20 @@
             </ng-template>
         </div>
 
-        <div class="col-md-1 mt-4 form-icon">
-            <i class="fa-solid fa-info"></i>
+        <div class="col-md-2 form-icon mt-4  d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext"> Mapped to : <b>Observation
+                    </b><br> Care domain : <b> Contact Details of People Involved in my care </b>
+                    <hr> Mapped to : <b>Intervention
+                    </b><br> Care domain : <b> Contact Details of People Involved in my care </b>
+                </span>
+            </div>
         </div>
 
         <div class="col-md-4 labelcontent">
             <p>Social worker / care manager contact details</p>
         </div>
-        <div class="col-md-7 form-text">
+        <div class="col-md-6 form-text">
             <ng-container *ngIf="isEditable; else SocialWorkerLabel">
                 <input pInputText type="text" required name="SocialWorkerContact" class="form-control" [(ngModel)]="
                         ResidentContactsListFormData.socialWorkerContact
@@ -80,14 +86,20 @@
             </ng-template>
         </div>
 
-        <div class="col-md-1 form-icon">
-            <i class="fa-solid fa-info"></i>
+        <div class="col-md-2 form-icon  d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext"> Mapped to : <b>Observation
+                    </b><br> Care domain : <b> Contact Details of People Involved in my care </b>
+                    <hr> Mapped to : <b>Intervention
+                    </b><br> Care domain : <b> Contact Details of People Involved in my care </b>
+                </span>
+            </div>
         </div>
 
         <div class="col-md-4 labelcontent">
             <p>Mental Health / CPN contact details</p>
         </div>
-        <div class="col-md-7 form-text">
+        <div class="col-md-6 form-text">
             <ng-container *ngIf="isEditable; else MentalHealthCPNLabel">
                 <input pInputText type="text" required name="MentalHealthCPNContact" class="form-control" [(ngModel)]="
                         ResidentContactsListFormData.mentalHealthCPNContact
@@ -103,14 +115,20 @@
             </ng-template>
         </div>
 
-        <div class="col-md-1 form-icon">
-            <i class="fa-solid fa-info"></i>
+        <div class="col-md-2 form-icon  d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext"> Mapped to : <b>Observation
+                    </b><br> Care domain : <b> Contact Details of People Involved in my care </b>
+                    <hr> Mapped to : <b>Intervention
+                    </b><br> Care domain : <b> Contact Details of People Involved in my care </b>
+                </span>
+            </div>
         </div>
 
         <div class="col-md-4 labelcontent">
             <p>Dentist contact details</p>
         </div>
-        <div class="col-md-7 form-text">
+        <div class="col-md-6 form-text">
             <ng-container *ngIf="isEditable; else DentistContactLabel">
                 <input pInputText type="text" required name="DentistContact" class="form-control" [(ngModel)]="
                         ResidentContactsListFormData.dentistContact
@@ -125,15 +143,20 @@
                     }}</label>
             </ng-template>
         </div>
-
-        <div class="col-md-1 form-icon">
-            <i class="fa-solid fa-info"></i>
+        <div class="col-md-2 form-icon  d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext"> Mapped to : <b>Observation
+                    </b><br> Care domain : <b> Contact Details of People Involved in my care </b>
+                    <hr> Mapped to : <b>Intervention
+                    </b><br> Care domain : <b> Contact Details of People Involved in my care </b>
+                </span>
+            </div>
         </div>
 
         <div class="col-md-4 labelcontent">
             <p>Audiologist contact details</p>
         </div>
-        <div class="col-md-7 form-text">
+        <div class="col-md-6 form-text">
             <ng-container *ngIf="isEditable; else AudiologistContactLabel">
                 <input pInputText type="text" required name="AudiologistContact" class="form-control" [(ngModel)]="
                         ResidentContactsListFormData.audiologistContact
@@ -149,14 +172,20 @@
             </ng-template>
         </div>
 
-        <div class="col-md-1 form-icon">
-            <i class="fa-solid fa-info"></i>
+        <div class="col-md-2 form-icon  d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext"> Mapped to : <b>Observation
+                    </b><br> Care domain : <b> Contact Details of People Involved in my care </b>
+                    <hr> Mapped to : <b>Intervention
+                    </b><br> Care domain : <b> Contact Details of People Involved in my care </b>
+                </span>
+            </div>
         </div>
 
         <div class="col-md-4 labelcontent">
             <p>Optician contact details</p>
         </div>
-        <div class="col-md-7 form-text">
+        <div class="col-md-6 form-text">
             <ng-container *ngIf="isEditable; else OpticianContactLabel">
                 <input pInputText type="text" required name="OpticianContact" class="form-control" [(ngModel)]="
                         ResidentContactsListFormData.opticianContact
@@ -172,14 +201,20 @@
             </ng-template>
         </div>
 
-        <div class="col-md-1 form-icon">
-            <i class="fa-solid fa-info"></i>
+        <div class="col-md-2 form-icon  d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext"> Mapped to : <b>Observation
+                    </b><br> Care domain : <b> Contact Details of People Involved in my care </b>
+                    <hr> Mapped to : <b>Intervention
+                    </b><br> Care domain : <b> Contact Details of People Involved in my care </b>
+                </span>
+            </div>
         </div>
 
         <div class="col-md-4 labelcontent">
             <p>Chiropodist contact details</p>
         </div>
-        <div class="col-md-7 form-text">
+        <div class="col-md-6 form-text">
             <ng-container *ngIf="isEditable; else ChiropodistContactLabel">
                 <input pInputText type="text" required name="ChiropodistContact" class="form-control" [(ngModel)]="
                         ResidentContactsListFormData.chiropodistContact
@@ -194,15 +229,20 @@
                     }}</label>
             </ng-template>
         </div>
-
-        <div class="col-md-1 form-icon">
-            <i class="fa-solid fa-info"></i>
+        <div class="col-md-2 form-icon  d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext"> Mapped to : <b>Observation
+                    </b><br> Care domain : <b> Contact Details of People Involved in my care </b>
+                    <hr> Mapped to : <b>Intervention
+                    </b><br> Care domain : <b> Contact Details of People Involved in my care </b>
+                </span>
+            </div>
         </div>
 
         <div class="col-md-4 labelcontent">
             <p>Religious contact details (priest etc.)</p>
         </div>
-        <div class="col-md-7 form-text">
+        <div class="col-md-6 form-text">
             <ng-container *ngIf="isEditable; else ReligiousContactLabel">
                 <input pInputText type="text" required name="ReligiousContact" class="form-control" [(ngModel)]="
                         ResidentContactsListFormData.religiousContact
@@ -218,14 +258,20 @@
             </ng-template>
         </div>
 
-        <div class="col-md-1 form-icon">
-            <i class="fa-solid fa-info"></i>
+        <div class="col-md-2 form-icon  d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext"> Mapped to : <b>Observation
+                    </b><br> Care domain : <b> Contact Details of People Involved in my care </b>
+                    <hr> Mapped to : <b>Intervention
+                    </b><br> Care domain : <b> Contact Details of People Involved in my care </b>
+                </span>
+            </div>
         </div>
 
         <div class="col-md-4 labelcontent">
             <p>Solicitor contact details</p>
         </div>
-        <div class="col-md-7 form-text">
+        <div class="col-md-6 form-text">
             <ng-container *ngIf="isEditable; else SolicitorContactLabel">
                 <input pInputText type="text" required name="SolicitorContact" class="form-control" [(ngModel)]="
                         ResidentContactsListFormData.solicitorContact
@@ -241,14 +287,20 @@
             </ng-template>
         </div>
 
-        <div class="col-md-1 form-icon">
-            <i class="fa-solid fa-info"></i>
+        <div class="col-md-2 form-icon  d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext"> Mapped to : <b>Observation
+                    </b><br> Care domain : <b> Contact Details of People Involved in my care </b>
+                    <hr> Mapped to : <b>Intervention
+                    </b><br> Care domain : <b> Contact Details of People Involved in my care </b>
+                </span>
+            </div>
         </div>
 
         <div class="col-md-4 labelcontent">
             <p>Mental Welfare Officer contact details</p>
         </div>
-        <div class="col-md-7 form-text">
+        <div class="col-md-6 form-text">
             <ng-container *ngIf="isEditable; else MentalWelfareOfficerLabel">
                 <input pInputText type="text" required name="MentalWelfareOfficerContact" class="form-control"
                     [(ngModel)]="
@@ -265,10 +317,15 @@
             </ng-template>
         </div>
 
-        <div class="col-md-1 form-icon">
-            <i class="fa-solid fa-info"></i>
+        <div class="col-md-2 form-icon  d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext"> Mapped to : <b>Observation
+                    </b><br> Care domain : <b> Contact Details of People Involved in my care </b>
+                    <hr> Mapped to : <b>Intervention
+                    </b><br> Care domain : <b> Contact Details of People Involved in my care </b>
+                </span>
+            </div>
         </div>
-
         <div class="d-flex justify-content-end">
             <ng-container *ngIf="isEditable; else savePdf">
                 <div>

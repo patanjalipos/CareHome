@@ -43,7 +43,7 @@
                 <p>Speech and comprehension impairment</p>
             </div>
         </div>
-        <div class="col-md-7 mt-4">
+        <div class="col-md-6 mt-4">
             <ng-container *ngIf="isEditable; else SpeechLabel">
                 <p-dropdown placeholder="--select--" [style]="{ width: '100%' }" [(ngModel)]="
                         CareSpeechLanguageFormData.speechComprehensionImpairment
@@ -57,8 +57,14 @@
             </ng-template>
         </div>
 
-        <div class="col-md-1 mt-4 form-icon">
-            <i class="fa-solid fa-info"></i>
+        <div class="col-md-2 form-icon mt-4  d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext"> Mapped to : <b>Observation
+                    </b><br> Care domain : <b>My Communication Support Plan </b>
+                    <br> Sub domain : <b>How i express myself , understand the world around me and make my needs known
+                    </b>
+                </span>
+            </div>
         </div>
 
         <div class="col-md-4">
@@ -66,7 +72,7 @@
                 <p>Non-verbal communication</p>
             </div>
         </div>
-        <div class="col-md-7">
+        <div class="col-md-6">
             <ng-container *ngIf="isEditable; else NonVerbalLabel">
                 <p-dropdown placeholder="--select--" [style]="{ width: '100%' }" [(ngModel)]="
                         CareSpeechLanguageFormData.nonVerbalCommunication
@@ -80,8 +86,17 @@
             </ng-template>
         </div>
 
-        <div class="col-md-1 form-icon">
-            <i class="fa-solid fa-info"></i>
+        <div class="col-md-2 form-icon   d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext"> Mapped to : <b>Observation
+                    </b><br> Care domain : <b>My Communication Support Plan </b>
+                    <br> Sub domain : <b>Person Centerd Information </b>
+                    <hr>
+                    Mapped to : <b>Intervention
+                    </b><br> Care domain : <b>My Communication Support Plan </b>
+
+                </span>
+            </div>
         </div>
 
         <div class="col-md-4">
@@ -89,7 +104,7 @@
                 <p>Effect of speech / language impairment</p>
             </div>
         </div>
-        <div class="col-md-7">
+        <div class="col-md-6">
             <ng-container *ngIf="isEditable; else SpeechEffectLabel">
                 <p-dropdown placeholder="--select--" [style]="{ width: '100%' }" [(ngModel)]="
                         CareSpeechLanguageFormData.speechLanguageImpairmentEffect
@@ -103,16 +118,22 @@
             </ng-template>
         </div>
 
-        <div class="col-md-1 form-icon">
-            <i class="fa-solid fa-info"></i>
+        <div class="col-md-2 form-icon   d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext"> Mapped to : <b>Observation
+                    </b><br> Care domain : <b>My Communication Support Plan </b>
+                    <br> Sub domain : <b>Person Centerd Information </b>
+                </span>
+            </div>
         </div>
 
         <div class="col-md-4">
             <div class="labelcontent">
-                <p>Interventions</p>
+                <p>Interventions to promote the residents ability to communicate - what do we do to promote our
+                    understanding</p>
             </div>
         </div>
-        <div class="col-md-7 form-text">
+        <div class="col-md-6 form-text">
             <ng-container *ngIf="isEditable; else InterventionsLabel">
                 <input pInputText type="text" required name="Interventions" class="form-control"
                     [(ngModel)]="CareSpeechLanguageFormData.interventions" />
@@ -126,8 +147,12 @@
             </ng-template>
         </div>
 
-        <div class="col-md-1 form-icon">
-            <i class="fa-solid fa-info"></i>
+        <div class="col-md-2 form-icon   d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext"> Mapped to : <b>Intervention
+                    </b><br> Care domain : <b>My Communication Support Plan </b>
+                </span>
+            </div>
         </div>
 
         <div class="col-md-4">
@@ -135,7 +160,7 @@
                 <p>Does the resident have goals for speech and language</p>
             </div>
         </div>
-        <div class="col-md-7">
+        <div class="col-md-6">
             <ng-container *ngIf="isEditable; else GoalsSpeechLanguageLabel">
                 <p-dropdown placeholder="--select--" [style]="{ width: '100%' }" [(ngModel)]="
                         CareSpeechLanguageFormData.goalsForSpeechLanguage
@@ -149,8 +174,12 @@
             </ng-template>
         </div>
 
-        <div class="col-md-1 form-icon">
-            <i class="fa-solid fa-info"></i>
+        <div class="col-md-2 form-icon   d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext"> Mapped to : <b>Agreed outcome
+                    </b><br> Care domain : <b>My Communication Support Plan </b>
+                </span>
+            </div>
         </div>
 
         <div class="col-md-4">
@@ -158,7 +187,7 @@
                 <p>Professional Input / referral</p>
             </div>
         </div>
-        <div class="col-md-7 form-text">
+        <div class="col-md-6 form-text">
             <ng-container *ngIf="isEditable; else ProfessionalInputLabel">
                 <input pInputText type="text" required name="ProfessionalInputReferral" class="form-control"
                     [(ngModel)]="
@@ -175,9 +204,12 @@
                     }}</label>
             </ng-template>
         </div>
-
-        <div class="col-md-1 form-icon">
-            <i class="fa-solid fa-info"></i>
+        <div class="col-md-2 form-icon   d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext"> Mapped to : <b>Agreed outcome
+                    </b><br> Care domain : <b>My Communication Support Plan </b>
+                </span>
+            </div>
         </div>
 
         <div class="col-md-4">
@@ -188,7 +220,7 @@
                 </p>
             </div>
         </div>
-        <div class="col-md-7 form-text">
+        <div class="col-md-6 form-text">
             <ng-container *ngIf="isEditable; else OtherSpeechLanguageRisksInput">
                 <input pInputText type="text" required name="OtherSpeechLanguageRisks" class="form-control" [(ngModel)]="
                         CareSpeechLanguageFormData.otherSpeechLanguageRisks
@@ -204,8 +236,15 @@
             </ng-template>
         </div>
 
-        <div class="col-md-1 form-icon">
-            <i class="fa-solid fa-info"></i>
+        <div class="col-md-2 form-icon   d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext"> Mapped to : <b>Obseveton
+                    </b><br> Care domain : <b>My Communication Support Plan </b>
+                    <hr>
+                    Mapped to : <b>Intervention
+                    </b><br> Care domain : <b>My Communication Support Plan </b>
+                </span>
+            </div>
         </div>
 
         <div class="col-md-4">
@@ -213,7 +252,7 @@
                 <p>Action to manage additional risk identified</p>
             </div>
         </div>
-        <div class="col-md-7 form-text">
+        <div class="col-md-6 form-text">
             <ng-container *ngIf="isEditable; else ActionToManageAdditionalRiskInput">
                 <input pInputText type="text" required name="ActionToManageAdditionalRisk" class="form-control"
                     [(ngModel)]="CareSpeechLanguageFormData.actionToManageAdditionalRisk" />
@@ -222,16 +261,19 @@
                 <label>{{ CareSpeechLanguageFormData.actionToManageAdditionalRisk }}</label>
             </ng-template>
         </div>
-
-
-        <div class="col-md-1 form-icon">
-            <i class="fa-solid fa-info"></i>
+        <div class="col-md-2 form-icon   d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext">
+                    Mapped to : <b>Intervention
+                    </b><br> Care domain : <b>My Communication Support Plan </b>
+                </span>
+            </div>
         </div>
 
         <div class="col-md-4 labelcontent">
             <p>3 MONTHLY REVIEW (or before)</p>
         </div>
-        <div class="col-md-7 form-text mb-4">
+        <div class="col-md-6 form-text mb-4">
             <ng-container *ngIf="isEditable; else MonthlyReviewLabel">
                 <p-checkbox name="ChkMonthlyReview" [binary]="true" inputId="binary"
                     [(ngModel)]="CareSpeechLanguageFormData.monthlyReview"></p-checkbox>
@@ -248,7 +290,7 @@
                 <p>Next review date</p>
             </div>
         </div>
-        <div class="col-md-7">
+        <div class="col-md-6">
             <div class="input-group date">
                 <ng-container *ngIf="isEditable; else NextReviewDateLabel">
                     <p-calendar name="nextReviewDate" [showIcon]="true" inputId="icon" [dateFormat]="" class="iconcal"

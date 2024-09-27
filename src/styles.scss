@@ -1685,7 +1685,7 @@ input::file-selector-button {
     z-index: 1;
     bottom: 125%;
     left: 50%;
-    margin-left: -60px;
+    margin-left: -131px;
     opacity: 0;
     transition: opacity 0.3s;
     line-height: 15px;
@@ -1707,3 +1707,4 @@ input::file-selector-button {
     opacity: 1;
 }
 .tooltiptext b{ font-weight: 500;}
+.tooltiptext hr{margin: 6px;}

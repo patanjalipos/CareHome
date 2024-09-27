@@ -33,7 +33,7 @@
                 <p>How would you describe what 'feeling well' means for you?</p>
             </div>
         </div>
-        <div class="col-md-7 mt-4 form-text">
+        <div class="col-md-6 mt-4 form-text">
             <ng-container *ngIf="this.isEditable; else FeelingWellData">
                 <input pInputText type="text" required name="PromotingWellbeingAtHomeFormData.FeelingWell"
                     [(ngModel)]="PromotingWellbeingAtHomeFormData.FeelingWell" class="form-control" />
@@ -47,8 +47,13 @@
                 <label>{{PromotingWellbeingAtHomeFormData.FeelingWell}}</label>
             </ng-template>
         </div>
-        <div class="col-md-1 mt-4 form-icon">
-            <i class="fa-solid fa-info"></i>
+        <div class="col-md-2 form-icon mt-4  d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext"> Mapped to : <b>Intervention
+                    </b><br> Care domain : <b>My mental health and Well being Support plan </b> <br>
+                    Sub domain : <b> Well being </b>
+                </span>
+            </div>
         </div>
 
         <div class="col-md-4 mt-4">
@@ -56,7 +61,7 @@
                 <p>What helps your sense of well-being?</p>
             </div>
         </div>
-        <div class="col-md-7 form-text">
+        <div class="col-md-6 form-text">
             <ng-container *ngIf="this.isEditable; else SenseofWellBeingData">
                 <input pInputText type="text" required name="PromotingWellbeingAtHomeFormData.SenseofWellBeing"
                     class="form-control" [(ngModel)]="PromotingWellbeingAtHomeFormData.SenseofWellBeing" />
@@ -65,15 +70,20 @@
                 <label>{{PromotingWellbeingAtHomeFormData.SenseofWellBeing}}</label>
             </ng-template>
         </div>
-        <div class="col-md-1 form-icon">
-            <i class="fa-solid fa-info"></i>
+        <div class="col-md-2 form-icon mt-4  d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext"> Mapped to : <b>Intervention
+                    </b><br> Care domain : <b>My mental health and Well being Support plan </b> <br>
+                    Sub domain : <b> Well being </b>
+                </span>
+            </div>
         </div>
         <div class="col-md-4 mt-4">
             <div class="labelcontent">
                 <p>How do you tend to show that you are feeling 1. Content 2. Pleased</p>
             </div>
         </div>
-        <div class="col-md-7 form-text">
+        <div class="col-md-6 form-text">
             <ng-container *ngIf="this.isEditable; else FeelingData">
                 <input pInputText type="text" required name="PromotingWellbeingAtHomeFormData.Feeling"
                     [(ngModel)]="PromotingWellbeingAtHomeFormData.Feeling" class="form-control" />
@@ -83,15 +93,20 @@
                 <label>{{PromotingWellbeingAtHomeFormData.Feeling}}</label>
             </ng-template>
         </div>
-        <div class="col-md-1 form-icon">
-            <i class="fa-solid fa-info"></i>
+        <div class="col-md-2 form-icon mt-4  d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext"> Mapped to : <b>Intervention
+                    </b><br> Care domain : <b>My mental health and Well being Support plan </b> <br>
+                    Sub domain : <b> Well being </b>
+                </span>
+            </div>
         </div>
         <div class="col-md-4 mt-4">
             <div class="labelcontent">
                 <p>Are there certain things that help you feel these emotions 1. Content 2. Pleased</p>
             </div>
         </div>
-        <div class="col-md-7 form-text">
+        <div class="col-md-6 form-text">
             <ng-container *ngIf="this.isEditable; else EmotionsData">
                 <input pInputText type="text" required name="PromotingWellbeingAtHomeFormData.Emotions"
                     [(ngModel)]="PromotingWellbeingAtHomeFormData.Emotions" class="form-control" />
@@ -102,15 +117,20 @@
                 <label>{{PromotingWellbeingAtHomeFormData.Emotions}}</label>
             </ng-template>
         </div>
-        <div class="col-md-1 form-icon">
-            <i class="fa-solid fa-info"></i>
+        <div class="col-md-2 form-icon mt-4  d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext"> Mapped to : <b>Intervention
+                    </b><br> Care domain : <b>My mental health and Well being Support plan </b> <br>
+                    Sub domain : <b> Well being </b>
+                </span>
+            </div>
         </div>
         <div class="col-md-4 mt-4">
             <div class="labelcontent">
                 <p>How do you tend to show that you are feeling 1. Fed up, 2. Anxious, 3. Frustrated</p>
             </div>
         </div>
-        <div class="col-md-7 form-text">
+        <div class="col-md-6 form-text">
             <ng-container *ngIf="this.isEditable; else BadFeelingData">
                 <input pInputText type="text" required name="PromotingWellbeingAtHomeFormData.BadFeeling"
                     [(ngModel)]="PromotingWellbeingAtHomeFormData.BadFeeling" class="form-control" />
@@ -123,15 +143,20 @@
                 <label>{{PromotingWellbeingAtHomeFormData.BadFeeling}}</label>
             </ng-template>
         </div>
-        <div class="col-md-1 form-icon">
-            <i class="fa-solid fa-info"></i>
+        <div class="col-md-2 form-icon mt-4  d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext"> Mapped to : <b>Intervention
+                    </b><br> Care domain : <b>My mental health and Well being Support plan </b> <br>
+                    Sub domain : <b> Well being </b>
+                </span>
+            </div>
         </div>
         <div class="col-md-4 mt-4">
             <div class="labelcontent">
                 <p>Is there any way you would like us to respond if you are feeling any of these negative emotions?</p>
             </div>
         </div>
-        <div class="col-md-7 form-text">
+        <div class="col-md-6 form-text">
             <ng-container *ngIf="this.isEditable; else NegativeEmotionsData">
                 <input pInputText type="text" required name="PromotingWellbeingAtHomeFormData.NegativeEmotions"
                     [(ngModel)]="PromotingWellbeingAtHomeFormData.NegativeEmotions" class="form-control" />
@@ -144,15 +169,20 @@
                 <label>{{PromotingWellbeingAtHomeFormData.NegativeEmotions}}</label>
             </ng-template>
         </div>
-        <div class="col-md-1 form-icon">
-            <i class="fa-solid fa-info"></i>
+        <div class="col-md-2 form-icon  d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext"> Mapped to : <b>Intervention
+                    </b><br> Care domain : <b>My mental health and Well being Support plan </b> <br>
+                    Sub domain : <b> Well being </b>
+                </span>
+            </div>
         </div>
         <div class="col-md-4 mt-4">
             <div class="labelcontent">
                 <p>In case you feel poorly or are in pain what's the best thing we could do if you're feeling unwell</p>
             </div>
         </div>
-        <div class="col-md-7 form-text">
+        <div class="col-md-6 form-text">
             <ng-container *ngIf="this.isEditable; else FeelingUnwellData">
                 <input pInputText type="text" required name="PromotingWellbeingAtHomeFormData.FeelingUnwell"
                     [(ngModel)]="PromotingWellbeingAtHomeFormData.FeelingUnwell" class="form-control" />
@@ -164,15 +194,20 @@
                 <label>{{PromotingWellbeingAtHomeFormData.FeelingWell}}</label>
             </ng-template>
         </div>
-        <div class="col-md-1 form-icon">
-            <i class="fa-solid fa-info"></i>
+        <div class="col-md-2 form-icon  d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext"> Mapped to : <b>Intervention
+                    </b><br> Care domain : <b>My mental health and Well being Support plan </b> <br>
+                    Sub domain : <b> Well being </b>
+                </span>
+            </div>
         </div>
         <div class="col-md-4 mt-4">
             <div class="labelcontent">
                 <p>Are there certain situations or times of the year that tend to affect your emotions?</p>
             </div>
         </div>
-        <div class="col-md-7 form-text">
+        <div class="col-md-6 form-text">
             <ng-container *ngIf="this.isEditable; else AffectYourEmotionsData">
                 <input pInputText type="text" required name="PromotingWellbeingAtHomeFormData.AffectYourEmotions"
                     [(ngModel)]="PromotingWellbeingAtHomeFormData.AffectYourEmotions" class="form-control" />
@@ -185,15 +220,20 @@
                 <label>{{PromotingWellbeingAtHomeFormData.AffectYourEmotions}}</label>
             </ng-template>
         </div>
-        <div class="col-md-1 form-icon">
-            <i class="fa-solid fa-info"></i>
+        <div class="col-md-2 form-icon  d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext"> Mapped to : <b>Intervention
+                    </b><br> Care domain : <b>My mental health and Well being Support plan </b> <br>
+                    Sub domain : <b> Well being </b>
+                </span>
+            </div>
         </div>
         <div class="col-md-4 mt-4">
             <div class="labelcontent">
                 <p>What motivates you in your day to day life?</p>
             </div>
         </div>
-        <div class="col-md-7 form-text">
+        <div class="col-md-6 form-text">
             <ng-container *ngIf="this.isEditable; else DayToDayLifeData">
                 <input pInputText type="text" required name="PromotingWellbeingAtHomeFormData.DayToDayLife"
                     [(ngModel)]="PromotingWellbeingAtHomeFormData.DayToDayLife" class="form-control" />
@@ -203,15 +243,20 @@
                 <label>{{PromotingWellbeingAtHomeFormData.DayToDayLife}}</label>
             </ng-template>
         </div>
-        <div class="col-md-1 form-icon">
-            <i class="fa-solid fa-info"></i>
+        <div class="col-md-2 form-icon  d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext"> Mapped to : <b>Intervention
+                    </b><br> Care domain : <b>My mental health and Well being Support plan </b> <br>
+                    Sub domain : <b> Well being </b>
+                </span>
+            </div>
         </div>
         <div class="col-md-4 mt-4">
             <div class="labelcontent">
                 <p> <span class="required">*</span>What small touches help you feel at home?</p>
             </div>
         </div>
-        <div class="col-md-7 form-text">
+        <div class="col-md-6 form-text">
             <ng-container *ngIf="this.isEditable; else FeelAtHomeData">
                 <input pInputText type="text" required name="PromotingWellbeingAtHomeFormData.FeelAtHome"
                     [(ngModel)]="PromotingWellbeingAtHomeFormData.FeelAtHome" class="form-control" />
@@ -221,8 +266,13 @@
             </ng-template>
 
         </div>
-        <div class="col-md-1 form-icon">
-            <i class="fa-solid fa-info"></i>
+        <div class="col-md-2 form-icon  d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext"> Mapped to : <b>Intervention
+                    </b><br> Care domain : <b>My mental health and Well being Support plan </b> <br>
+                    Sub domain : <b> Well being </b>
+                </span>
+            </div>
         </div>
         <div class="col-md-4 mt-4">
             <div class="labelcontent">
@@ -230,7 +280,7 @@
                     belongings that you have with you?</p>
             </div>
         </div>
-        <div class="col-md-7 form-text">
+        <div class="col-md-6 form-text">
             <ng-container *ngIf="this.isEditable; else AboutAnyOfYourBelongingsData">
                 <input pInputText type="text" required name="PromotingWellbeingAtHomeFormData.AboutAnyOfYourBelongings"
                     [(ngModel)]="PromotingWellbeingAtHomeFormData.AboutAnyOfYourBelongings" class="form-control" />
@@ -240,8 +290,13 @@
                 <label>{{PromotingWellbeingAtHomeFormData.AboutAnyOfYourBelongings}}</label>
             </ng-template>
         </div>
-        <div class="col-md-1 form-icon">
-            <i class="fa-solid fa-info"></i>
+        <div class="col-md-2 form-icon  d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext"> Mapped to : <b>Intervention
+                    </b><br> Care domain : <b>My mental health and Well being Support plan </b> <br>
+                    Sub domain : <b> Well being </b>
+                </span>
+            </div>
         </div>
         <div class="col-md-4 mt-4">
             <div class="labelcontent">
@@ -250,7 +305,7 @@
                     you?</p>
             </div>
         </div>
-        <div class="col-md-7 form-text">
+        <div class="col-md-6 form-text">
             <ng-container *ngIf="this.isEditable; else SocialInclusionData">
                 <input pInputText type="text" required name="PromotingWellbeingAtHomeFormData.SocialInclusion"
                     [(ngModel)]="PromotingWellbeingAtHomeFormData.SocialInclusion" class="form-control" />
@@ -260,8 +315,13 @@
                 <label>{{PromotingWellbeingAtHomeFormData.SocialInclusion}}</label>
             </ng-template>
         </div>
-        <div class="col-md-1 form-icon">
-            <i class="fa-solid fa-info"></i>
+        <div class="col-md-2 form-icon  d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext"> Mapped to : <b>Intervention
+                    </b><br> Care domain : <b>My mental health and Well being Support plan </b> <br>
+                    Sub domain : <b>Persone Centerd Information </b>
+                </span>
+            </div>
         </div>
         <div class="col-md-4 mt-4">
             <div class="labelcontent">
@@ -270,7 +330,7 @@
                     feel about this?</p>
             </div>
         </div>
-        <div class="col-md-7 form-text">
+        <div class="col-md-6 form-text">
             <ng-container *ngIf="this.isEditable; else FeelUneasyData">
                 <input pInputText type="text" required name="PromotingWellbeingAtHomeFormData.FeelUneasy"
                     [(ngModel)]="PromotingWellbeingAtHomeFormData.FeelUneasy" class="form-control" />
@@ -280,8 +340,13 @@
                 <label>{{PromotingWellbeingAtHomeFormData.FeelUneasy}}</label>
             </ng-template>
         </div>
-        <div class="col-md-1 form-icon">
-            <i class="fa-solid fa-info"></i>
+        <div class="col-md-2 form-icon  d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext"> Mapped to : <b>Intervention
+                    </b><br> Care domain : <b>My mental health and Well being Support plan </b> <br>
+                    Sub domain : <b> Persone Centerd Information </b>
+                </span>
+            </div>
         </div>
         <div class="col-md-4 mt-4">
             <div class="labelcontent">
@@ -289,7 +354,7 @@
                     to look and feel?</p>
             </div>
         </div>
-        <div class="col-md-7 form-text">
+        <div class="col-md-6 form-text">
             <ng-container *ngIf="this.isEditable; else PersonaliseYourRoomData">
                 <input pInputText type="text" required name="PromotingWellbeingAtHomeFormData.PersonaliseYourRoom"
                     [(ngModel)]="PromotingWellbeingAtHomeFormData.PersonaliseYourRoom" class="form-control" />
@@ -301,8 +366,13 @@
                 <label>{{PromotingWellbeingAtHomeFormData.PersonaliseYourRoom}}</label>
             </ng-template>
         </div>
-        <div class="col-md-1 form-icon">
-            <i class="fa-solid fa-info"></i>
+        <div class="col-md-2 form-icon  d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext"> Mapped to : <b>Intervention
+                    </b><br> Care domain : <b>My mental health and Well being Support plan </b> <br>
+                    Sub domain : <b> Persone Centerd Information </b>
+                </span>
+            </div>
         </div>
         <div class="col-md-4">
             <div class="labelcontent">
@@ -310,7 +380,7 @@
                     your bedroom?</p>
             </div>
         </div>
-        <div class="col-md-7 form-text">
+        <div class="col-md-6 form-text">
             <ng-container *ngIf="this.isEditable; else ShowOurRespectData">
                 <input pInputText type="text" required name="PromotingWellbeingAtHomeFormData.ShowOurRespect"
                     [(ngModel)]="PromotingWellbeingAtHomeFormData.ShowOurRespect" class="form-control" />
@@ -322,8 +392,13 @@
                 <label>{{PromotingWellbeingAtHomeFormData.ShowOurRespect}}</label>
             </ng-template>
         </div>
-        <div class="col-md-1 form-icon">
-            <i class="fa-solid fa-info"></i>
+        <div class="col-md-2 form-icon  d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext"> Mapped to : <b>Intervention
+                    </b><br> Care domain : <b>My mental health and Well being Support plan </b> <br>
+                    Sub domain : <b> Persone Centerd Information </b>
+                </span>
+            </div>
         </div>
         <div class="d-flex justify-content-end">
             <ng-container *ngIf="isEditable; else savePdf">
