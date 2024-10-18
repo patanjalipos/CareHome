@@ -33,7 +33,7 @@
                 <p>Weight loss recently (check MUST chart)</p>
             </div>
         </div>
-        <div class="col-md-7 mt-4">
+        <div class="col-md-6 mt-4">
             <ng-container *ngIf="this.isEditable; else WeightLoss">
                 <p-dropdown [required]="true" [options]="lstWeightLoss" optionLabel="optionName"
                     [(ngModel)]="RiskAssessmentWaterFlowPressureFormsData.weightLoss"
@@ -50,7 +50,7 @@
                 <p>Appetite</p>
             </div>
         </div>
-        <div class="col-md-7 ">
+        <div class="col-md-6 ">
             <ng-container *ngIf="this.isEditable; else Appetite">
                 <p-dropdown [required]="true" [options]="lstAppetite" optionLabel="optionName"
                     [(ngModel)]="RiskAssessmentWaterFlowPressureFormsData.appetite"
@@ -69,7 +69,7 @@
 
             </div>
         </div>
-        <div class="col-md-7 form-text">
+        <div class="col-md-6 form-text">
             <ng-container *ngIf="this.isEditable; else BMI">
                 <p-dropdown [required]="true" [options]="lstBMI" optionLabel="optionName"
                     [(ngModel)]="RiskAssessmentWaterFlowPressureFormsData.bMI"
@@ -87,7 +87,7 @@
                 <p>Skin type visual risk areas</p>
             </div>
         </div>
-        <div class="col-md-7 ">
+        <div class="col-md-6 ">
             <ng-container *ngIf="this.isEditable; else SkinRiskAreas">
                 <p-dropdown [required]="true" [options]="lstSkinRiskAreas" optionLabel="optionName"
                     [(ngModel)]="RiskAssessmentWaterFlowPressureFormsData.skinRiskAreas"
@@ -106,7 +106,7 @@
 
             </div>
         </div>
-        <div class="col-md-7 ">
+        <div class="col-md-6 ">
             <ng-container *ngIf="this.isEditable; else SexOrAge">
                 <p-dropdown [required]="true" [options]="lstSexOrAge" optionLabel="optionName"
                     [(ngModel)]="RiskAssessmentWaterFlowPressureFormsData.sexOrAge"
@@ -124,7 +124,7 @@
 
             </div>
         </div>
-        <div class="col-md-7 ">
+        <div class="col-md-6 ">
             <ng-container *ngIf="this.isEditable; else SpecialRisks">
                 <p-dropdown [required]="true" [options]="lstSpecialRisks" optionLabel="optionName"
                     [(ngModel)]="RiskAssessmentWaterFlowPressureFormsData.specialRisks"
@@ -141,7 +141,7 @@
                 <p>Continence</p>
             </div>
         </div>
-        <div class="col-md-7 ">
+        <div class="col-md-6 ">
             <ng-container *ngIf="this.isEditable; else Continence">
                 <p-dropdown [required]="true" [options]="lstContinence" optionLabel="optionName"
                     [(ngModel)]="RiskAssessmentWaterFlowPressureFormsData.continence"
@@ -158,7 +158,7 @@
                 <p>Mobility</p>
             </div>
         </div>
-        <div class="col-md-7 ">
+        <div class="col-md-6 ">
             <ng-container *ngIf="this.isEditable; else Mobility">
                 <p-dropdown [required]="true" [options]="lstMobility" optionLabel="optionName"
                     [(ngModel)]="RiskAssessmentWaterFlowPressureFormsData.mobility"
@@ -175,7 +175,7 @@
                 <p>Neurological deficit</p>
             </div>
         </div>
-        <div class="col-md-7 form-text">
+        <div class="col-md-6 form-text">
             <ng-container *ngIf="this.isEditable; else NeurologicalDeficit">
                 <p-dropdown [required]="true" [options]="lstNeurologicalDeficit" optionLabel="optionName"
                     [(ngModel)]="RiskAssessmentWaterFlowPressureFormsData.neurologicalDeficit"
@@ -193,7 +193,7 @@
                 <p>Major surgery / trauma / medication</p>
             </div>
         </div>
-        <div class="col-md-7 form-text">
+        <div class="col-md-6 form-text">
             <ng-container *ngIf="this.isEditable; else MajorMedication">
                 <p-dropdown [required]="true" [options]="lstMajorMedication" optionLabel="optionName"
                     [(ngModel)]="RiskAssessmentWaterFlowPressureFormsData.majorMedication"
@@ -211,7 +211,7 @@
                 <p>Pressure ulcer risk rating</p>
             </div>
         </div>
-        <div class="col-md-7 ">
+        <div class="col-md-6 ">
             <ng-container *ngIf="this.isEditable; else UlcerRiskRating">
                 <p-dropdown [required]="true" [options]="lstUlcerRiskRating" optionLabel="optionName"
                     [(ngModel)]="RiskAssessmentWaterFlowPressureFormsData.ulcerRiskRating"
@@ -223,15 +223,21 @@
                 <label>{{RiskAssessmentWaterFlowPressureFormsData.ulcerRiskRatingName}}</label>
             </ng-template>
         </div>
-        <div class="col-md-1 form-icon">
-            <i class="fa-solid fa-info"></i>
+        <div class="col-md-2 form-icon mt-4 d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext"> Mapped to : <b>Intervention</b> <br> Care domain : <b>My Skin Care Support
+                        Plan </b> <br>
+                    Sub domain : <b>Risk Score </b>
+
+                </span>
+            </div>
         </div>
         <div class="col-md-4">
             <div class="labelcontent">
                 <p>If a pressure mattress is being used please state, the make and the settings</p>
             </div>
         </div>
-        <div class="col-md-7 form-text">
+        <div class="col-md-6 form-text">
             <ng-container *ngIf="this.isEditable; else PressureMattressDetails">
                 <input pInputText type="text"
                     [(ngModel)]="RiskAssessmentWaterFlowPressureFormsData.pressureMattressDetails" required
@@ -243,8 +249,14 @@
                 <label>{{RiskAssessmentWaterFlowPressureFormsData.pressureMattressDetails}}</label>
             </ng-template>
         </div>
-        <div class="col-md-1 form-icon">
-            <i class="fa-solid fa-info"></i>
+        <div class="col-md-2 form-icon mt-4 d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext"> Mapped to : <b>Intervention</b> <br> Care domain : <b>My Skin Care Support
+                        Plan </b> <br>
+                    Sub domain : <b>My skin Care plan </b>
+
+                </span>
+            </div>
         </div>
         <div class="col-md-4">
             <div class="labelcontent">
@@ -252,7 +264,7 @@
                     to promote skin integrity</p>
             </div>
         </div>
-        <div class="col-md-7 form-text">
+        <div class="col-md-6 form-text">
             <ng-container *ngIf="this.isEditable; else PositionalChangesDetails">
                 <input pInputText type="text"
                     [(ngModel)]="RiskAssessmentWaterFlowPressureFormsData.positionalChangesDetails" required
@@ -267,15 +279,21 @@
                 <label>{{RiskAssessmentWaterFlowPressureFormsData.positionalChangesDetails}}</label>
             </ng-template>
         </div>
-        <div class="col-md-1 form-icon">
-            <i class="fa-solid fa-info"></i>
+        <div class="col-md-2 form-icon mt-4 d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext"> Mapped to : <b>Intervention</b> <br> Care domain : <b>My Skin Care Support
+                        Plan </b> <br>
+                    Sub domain : <b>My skin Care plan </b>
+
+                </span>
+            </div>
         </div>
         <div class="col-md-4">
             <div class="labelcontent">
                 <p>Provide appropriate pain control relevant to skin</p>
             </div>
         </div>
-        <div class="col-md-7 form-text">
+        <div class="col-md-6 form-text">
             <ng-container *ngIf="this.isEditable; else PainControl">
                 <input pInputText type="text" [(ngModel)]="RiskAssessmentWaterFlowPressureFormsData.painControl"
                     required name="CareAssessmentFreshAndCleanFormsData.painControl" class="form-control mr-4"
@@ -290,15 +308,21 @@
             </ng-template>
 
         </div>
-        <div class="col-md-1 form-icon">
-            <i class="fa-solid fa-info"></i>
+        <div class="col-md-2 form-icon mt-4 d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext"> Mapped to : <b>Observation</b> <br> Care domain : <b>My Skin Care Support
+                        Plan </b> <br>
+                    Sub domain : <b>My skin Care plan </b>
+
+                </span>
+            </div>
         </div>
         <div class="col-md-4">
             <div class="labelcontent">
                 <p>Dietary requirements relating to the promotion of the residents skin integrity</p>
             </div>
         </div>
-        <div class="col-md-7 form-text">
+        <div class="col-md-6 form-text">
             <ng-container *ngIf="this.isEditable; else DietaryRequirements">
                 <input pInputText type="text" [(ngModel)]="RiskAssessmentWaterFlowPressureFormsData.dietaryRequirements"
                     required name="CareAssessmentFreshAndCleanFormsData.dietaryRequirements" class="form-control mr-4"
@@ -313,8 +337,16 @@
             </ng-template>
 
         </div>
-        <div class="col-md-1 form-icon">
-            <i class="fa-solid fa-info"></i>
+        <div class="col-md-2 form-icon mt-4 d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext"> Mapped to : <b>Observation</b> <br> Care domain : <b>My Skin Care Support
+                        Plan </b> <br>
+                    Sub domain : <b>My skin Care plan </b>
+                    <hr> Mapped to : <b>Intervention</b> <br> Care domain : <b>My Skin Care Support Plan </b> <br>
+                    Sub domain : <b>My skin Care plan </b>
+
+                </span>
+            </div>
         </div>
         <div class="col-md-4">
             <div class="labelcontent">
@@ -322,7 +354,7 @@
 
             </div>
         </div>
-        <div class="col-md-7 form-text">
+        <div class="col-md-6 form-text">
             <ng-container *ngIf="this.isEditable; else SkinCareEquipment">
                 <input pInputText type="text" [(ngModel)]="RiskAssessmentWaterFlowPressureFormsData.skinCareEquipment"
                     required name="CareAssessmentFreshAndCleanFormsData.skinCareEquipment" class="form-control mr-4"
@@ -337,8 +369,14 @@
             </ng-template>
 
         </div>
-        <div class="col-md-1 form-icon">
-            <i class="fa-solid fa-info"></i>
+        <div class="col-md-2 form-icon mt-4 d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext"> Mapped to : <b>Intervention</b> <br> Care domain : <b>My Skin Care Support
+                        Plan </b> <br>
+                    Sub domain : <b>My skin Care plan </b>
+
+                </span>
+            </div>
         </div>
 
         <div class="col-md-4">

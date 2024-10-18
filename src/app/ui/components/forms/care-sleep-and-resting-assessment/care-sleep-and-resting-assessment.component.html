@@ -34,7 +34,7 @@
                     rest</p>
             </div>
         </div>
-        <div class="col-md-7 mt-4">
+        <div class="col-md-6 mt-4">
             <ng-container *ngIf="this.isEditable; else Capacity">
                 <p-dropdown [required]="true" [options]="lstCapacity" optionLabel="optionName"
                     [(ngModel)]="CareAssessmentSleepAndRestFormsData.capacity"
@@ -46,15 +46,19 @@
                 <label>{{CareAssessmentSleepAndRestFormsData.capacityName}}</label>
             </ng-template>
         </div>
-        <div class="col-md-1 form-icon mt-4">
-            <i class="fa-solid fa-info"></i>
+        <div class="col-md-2 form-icon mt-4 d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext"> Mapped to : <b>Intervention </b><br> Care domain : <b>My Sleep and Resting
+                        Support Plan</b> <br> Sub domain : <b>Capacity</b>
+                </span>
+            </div>
         </div>
         <div class="col-md-4 ">
             <div class="labelcontent">
                 <p>Detail specific decision relating to the resident's sleep and rest</p>
             </div>
         </div>
-        <div class="col-md-7 form-text">
+        <div class="col-md-6 form-text">
             <ng-container *ngIf="this.isEditable; else SpecificDecisionDetails">
                 <input pInputText type="text" [(ngModel)]="CareAssessmentSleepAndRestFormsData.specificDecisionDetails"
                     required name="CareAssessmentSleepAndRestFormsData.SpecificDecisionDetails"
@@ -69,15 +73,19 @@
             </ng-template>
 
         </div>
-        <div class="col-md-1 form-icon">
-            <i class="fa-solid fa-info"></i>
+        <div class="col-md-2 form-icon mt-4 d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext"> Mapped to : <b>Intervention </b><br> Care domain : <b>My Sleep and Resting
+                        Support Plan</b> <br> Sub domain : <b>Capacity</b>
+                </span>
+            </div>
         </div>
         <div class="col-md-4 ">
             <div class="labelcontent">
                 <p>Trouble sleeping</p>
             </div>
         </div>
-        <div class="col-md-7">
+        <div class="col-md-6">
             <ng-container *ngIf="this.isEditable; else TroubleSleeping">
                 <p-dropdown [required]="true" [options]="lstTroubleSleeping" optionLabel="optionName"
                     [(ngModel)]="CareAssessmentSleepAndRestFormsData.troubleSleeping"
@@ -89,15 +97,21 @@
                 <label>{{CareAssessmentSleepAndRestFormsData.troubleSleepingName}}</label>
             </ng-template>
         </div>
-        <div class="col-md-1 form-icon">
-            <i class="fa-solid fa-info"></i>
+        <div class="col-md-2 form-icon mt-4 d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext"> Mapped to : <b>Intervention </b><br> Care domain : <b>My Sleep and Resting
+                        Support Plan</b> <br> Sub domain : <b>My Sleep and resting Care Plan </b>
+                    <hr>Mapped to : <b>Intervention </b><br> Care domain : <b>My Sleep and Resting Support Plan</b> <br>
+                    Sub domain : <b>My Sleep and resting Care Plan </b>
+                </span>
+            </div>
         </div>
         <div class="col-md-4 ">
             <div class="labelcontent">
                 <p>Assistance to settle / sleep</p>
             </div>
         </div>
-        <div class="col-md-7">
+        <div class="col-md-6">
             <ng-container *ngIf="this.isEditable; else SleepAssistance">
                 <p-dropdown [required]="true" [options]="lstSleepAssistance" optionLabel="optionName"
                     [(ngModel)]="CareAssessmentSleepAndRestFormsData.sleepAssistance"
@@ -109,15 +123,21 @@
                 <label>{{CareAssessmentSleepAndRestFormsData.sleepAssistanceName}}</label>
             </ng-template>
         </div>
-        <div class="col-md-1 form-icon">
-            <i class="fa-solid fa-info"></i>
+        <div class="col-md-2 form-icon mt-4 d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext"> Mapped to : <b>Intervention </b><br> Care domain : <b>My Sleep and Resting
+                        Support Plan</b> <br> Sub domain : <b>My Sleep and resting Care Plan</b>
+                    <hr>Mapped to : <b>Intervention </b><br> Care domain : <b>My Sleep and Resting Support Plan</b> <br>
+                    Sub domain : <b>My Sleep and resting Care Plan</b>
+                </span>
+            </div>
         </div>
         <div class="col-md-4 ">
             <div class="labelcontent">
                 <p>Assistance to settle back to sleep</p>
             </div>
         </div>
-        <div class="col-md-7 form-text">
+        <div class="col-md-6 form-text">
             <ng-container *ngIf="this.isEditable; else SleepBackAssistance">
                 <p-dropdown [required]="true" [options]="lstSleepBackAssistance" optionLabel="optionName"
                     [(ngModel)]="CareAssessmentSleepAndRestFormsData.sleepBackAssistance"
@@ -130,15 +150,21 @@
                 <label>{{CareAssessmentSleepAndRestFormsData.sleepBackAssistanceName}}</label>
             </ng-template>
         </div>
-        <div class="col-md-1 form-icon">
-            <i class="fa-solid fa-info"></i>
+        <div class="col-md-2 form-icon mt-4 d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext"> Mapped to : <b>Intervention </b><br> Care domain : <b>My Sleep and Resting
+                        Support Plan</b> <br> Sub domain : <b>My Sleep and resting Care Plan</b>
+                    <hr>Mapped to : <b>Intervention </b><br> Care domain : <b>My Sleep and Resting Support Plan</b> <br>
+                    Sub domain : <b>My Sleep and resting Care Plan</b>
+                </span>
+            </div>
         </div>
         <div class="col-md-4 ">
             <div class="labelcontent">
                 <p>Assistance during the night</p>
             </div>
         </div>
-        <div class="col-md-7">
+        <div class="col-md-6">
             <ng-container *ngIf="this.isEditable; else NightAssistance">
                 <p-dropdown [required]="true" [options]="lstNightAssistance" optionLabel="optionName"
                     [(ngModel)]="CareAssessmentSleepAndRestFormsData.nightAssistance"
@@ -150,15 +176,21 @@
                 <label>{{CareAssessmentSleepAndRestFormsData.nightAssistanceName}}</label>
             </ng-template>
         </div>
-        <div class="col-md-1 form-icon">
-            <i class="fa-solid fa-info"></i>
+        <div class="col-md-2 form-icon mt-4 d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext"> Mapped to : <b>Intervention </b><br> Care domain : <b>My Sleep and Resting
+                        Support Plan</b> <br> Sub domain : <b>My Sleep and resting Care Plan</b>
+                    <hr>Mapped to : <b>Intervention </b><br> Care domain : <b>My Sleep and Resting Support Plan</b> <br>
+                    Sub domain : <b>My Sleep and resting Care Plan</b>
+                </span>
+            </div>
         </div>
         <div class="col-md-4 ">
             <div class="labelcontent">
                 <p>Repositioning pattern and frequency</p>
             </div>
         </div>
-        <div class="col-md-7 form-text">
+        <div class="col-md-6 form-text">
             <ng-container *ngIf="this.isEditable; else PatternRepositioning">
                 <input pInputText type="text" [(ngModel)]="CareAssessmentSleepAndRestFormsData.patternRepositioning"
                     required name="CareAssessmentSleepAndRestFormsData.PatternRepositioning" class="form-control mr-4"
@@ -168,15 +200,19 @@
                 <label>{{CareAssessmentSleepAndRestFormsData.patternRepositioning}}</label>
             </ng-template>
         </div>
-        <div class="col-md-1 form-icon">
-            <i class="fa-solid fa-info"></i>
+        <div class="col-md-2 form-icon mt-4 d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext"> Mapped to : <b>Intervention </b><br> Care domain : <b>My Sleep and Resting
+                        Support Plan</b> <br> Sub domain : <b>My Sleep and resting Care Plan</b>
+                </span>
+            </div>
         </div>
         <div class="col-md-4 ">
             <div class="labelcontent">
                 <p>What is the residents pre bedtime routine</p>
             </div>
         </div>
-        <div class="col-md-7 form-text">
+        <div class="col-md-6 form-text">
             <ng-container *ngIf="this.isEditable; else PreBedtimeRoutine">
                 <input pInputText type="text" [(ngModel)]="CareAssessmentSleepAndRestFormsData.preBedtimeRoutine"
                     required name="CareAssessmentSleepAndRestFormsData.PreBedtimeRoutine" class="form-control mr-4"
@@ -188,15 +224,21 @@
             </ng-template>
 
         </div>
-        <div class="col-md-1 form-icon">
-            <i class="fa-solid fa-info"></i>
+        <div class="col-md-2 form-icon mt-4 d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext"> Mapped to : <b>Intervention </b><br> Care domain : <b>My Sleep and Resting
+                        Support Plan</b> <br> Sub domain : <b>My Sleep and resting Care Plan</b>
+                    <hr>Mapped to : <b>Intervention </b><br> Care domain : <b>My Sleep and Resting Support Plan</b> <br>
+                    Sub domain : <b>My Sleep and resting Care Plan</b>
+                </span>
+            </div>
         </div>
         <div class="col-md-4">
             <div class="labelcontent">
                 <p>Naps / rest during day</p>
             </div>
         </div>
-        <div class="col-md-7 form-text">
+        <div class="col-md-6 form-text">
             <ng-container *ngIf="this.isEditable; else Naps">
                 <input pInputText type="text" [(ngModel)]="CareAssessmentSleepAndRestFormsData.naps" required
                     name="CareAssessmentSleepAndRestFormsData.Naps" class="form-control mr-4"
@@ -210,15 +252,21 @@
             </ng-template>
 
         </div>
-        <div class="col-md-1 form-icon">
-            <i class="fa-solid fa-info"></i>
+        <div class="col-md-2 form-icon mt-4 d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext"> Mapped to : <b>Intervention </b><br> Care domain : <b>My Sleep and Resting
+                        Support Plan</b> <br> Sub domain : <b>My Sleep and resting Care Plan</b>
+                    <hr>Mapped to : <b>Intervention </b><br> Care domain : <b>My Sleep and Resting Support Plan</b> <br>
+                    Sub domain : <b>My Sleep and resting Care Plan</b>
+                </span>
+            </div>
         </div>
         <div class="col-md-4 ">
             <div class="labelcontent">
                 <p>Preferred morning / waking routine</p>
             </div>
         </div>
-        <div class="col-md-7 form-text">
+        <div class="col-md-6 form-text">
             <ng-container *ngIf="this.isEditable; else MorningRoutine">
                 <input pInputText type="text" [(ngModel)]="CareAssessmentSleepAndRestFormsData.morningRoutine" required
                     name="CareAssessmentSleepAndRestFormsData.MorningRoutine" class="form-control mr-4"
@@ -230,15 +278,21 @@
             </ng-template>
 
         </div>
-        <div class="col-md-1 form-icon">
-            <i class="fa-solid fa-info"></i>
+        <div class="col-md-2 form-icon mt-4 d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext"> Mapped to : <b>Intervention </b><br> Care domain : <b>My Sleep and Resting
+                        Support Plan</b> <br> Sub domain : <b>My Sleep and resting Care Plan</b>
+                    <hr>Mapped to : <b>Intervention </b><br> Care domain : <b>My Sleep and Resting Support Plan</b> <br>
+                    Sub domain : <b>My Sleep and resting Care Plan</b>
+                </span>
+            </div>
         </div>
         <div class="col-md-4 ">
             <div class="labelcontent">
                 <p>Goals the resident wishes to achieve</p>
             </div>
         </div>
-        <div class="col-md-7">
+        <div class="col-md-6">
             <ng-container *ngIf="this.isEditable; else GoalsToAchieve">
                 <p-dropdown [required]="true" [options]="lstGoalsToAchieve" optionLabel="optionName"
                     [(ngModel)]="CareAssessmentSleepAndRestFormsData.goalsToAchieve"
@@ -250,15 +304,20 @@
                 <label>{{CareAssessmentSleepAndRestFormsData.goalsToAchieveName}}</label>
             </ng-template>
         </div>
-        <div class="col-md-1 form-icon">
-            <i class="fa-solid fa-info"></i>
+        <div class="col-md-2 form-icon mt-4 d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext"> Mapped to : <b>Agreed outcome </b><br> Care domain : <b>My Sleep and Resting
+                        Support Plan</b> <br> Sub domain : <b>My Sleep and resting Care Plan</b>
+
+                </span>
+            </div>
         </div>
         <div class="col-md-4 ">
             <div class="labelcontent">
                 <p>Does the resident have a specific goal personal to them</p>
             </div>
         </div>
-        <div class="col-md-7">
+        <div class="col-md-6">
             <ng-container *ngIf="this.isEditable; else PersonalSpecificGoal">
                 <input pInputText type="text" [(ngModel)]="CareAssessmentSleepAndRestFormsData.personalSpecificGoal"
                     required name="CareAssessmentSleepAndRestFormsData.PersonalSpecificGoal" class="form-control mr-4"
@@ -268,15 +327,20 @@
                 <label>{{CareAssessmentSleepAndRestFormsData.personalSpecificGoal}}</label>
             </ng-template>
         </div>
-        <div class="col-md-1 form-icon">
-            <i class="fa-solid fa-info"></i>
+        <div class="col-md-2 form-icon mt-4 d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext"> Mapped to : <b>Agreed outcome </b><br> Care domain : <b>My Sleep and Resting
+                        Support Plan</b> <br> Sub domain : <b>My Sleep and resting Care Plan</b>
+
+                </span>
+            </div>
         </div>
         <div class="col-md-4 ">
             <div class="labelcontent">
                 <p>Strategies to manage checking the resident</p>
             </div>
         </div>
-        <div class="col-md-7">
+        <div class="col-md-6">
             <ng-container *ngIf="this.isEditable; else StrategyToManageCheck">
                 <p-dropdown [required]="true" [options]="lstStrategyToManageCheck" optionLabel="optionName"
                     [(ngModel)]="CareAssessmentSleepAndRestFormsData.strategyToManageCheck"
@@ -288,15 +352,21 @@
                 <label>{{CareAssessmentSleepAndRestFormsData.strategyToManageCheckName}}</label>
             </ng-template>
         </div>
-        <div class="col-md-1 form-icon">
-            <i class="fa-solid fa-info"></i>
+        <div class="col-md-2 form-icon mt-4 d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext"> Mapped to : <b>Observation </b><br> Care domain : <b>My Sleep and Resting
+                        Support Plan</b> <br> Sub domain : <b>My Sleep and Resting Care Plan</b>
+                    <hr>Mapped to : <b>Intervention </b><br> Care domain : <b>My Sleep and Resting Support Plan</b> <br>
+                    Sub domain : <b>My Sleep and Resting Care Plan</b>
+                </span>
+            </div>
         </div>
         <div class="col-md-4 ">
             <div class="labelcontent">
                 <p>Additional information</p>
             </div>
         </div>
-        <div class="col-md-7">
+        <div class="col-md-6">
             <ng-container *ngIf="this.isEditable; else AdditionalInfo">
                 <input pInputText type="text" [(ngModel)]="CareAssessmentSleepAndRestFormsData.additionalInfo" required
                     name="CareAssessmentSleepAndRestFormsData.AdditionalInfo" class="form-control mr-4"
@@ -306,15 +376,21 @@
                 <label>{{CareAssessmentSleepAndRestFormsData.additionalInfo}}</label>
             </ng-template>
         </div>
-        <div class="col-md-1 form-icon">
-            <i class="fa-solid fa-info"></i>
+        <div class="col-md-2 form-icon mt-4 d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext"> Mapped to : <b>Observation </b><br> Care domain : <b>My Sleep and Resting
+                        Support Plan</b> <br> Sub domain : <b>My Sleep and Resting Care Plan</b>
+                    <hr>Mapped to : <b>Intervention </b><br> Care domain : <b>My Sleep and Resting Support Plan</b> <br>
+                    Sub domain : <b>My Sleep and Resting Care Plan</b>
+                </span>
+            </div>
         </div>
         <div class="col-md-4 ">
             <div class="labelcontent">
                 <p>Are there any other identified risks relating to sleep & res</p>
             </div>
         </div>
-        <div class="col-md-7 form-text">
+        <div class="col-md-6 form-text">
             <ng-container *ngIf="this.isEditable; else OtherIdentifiedRisks">
                 <input pInputText type="text" [(ngModel)]="CareAssessmentSleepAndRestFormsData.otherIdentifiedRisks"
                     required name="CareAssessmentSleepAndRestFormsData.OtherIdentifiedRisks" class="form-control mr-4"
@@ -325,8 +401,14 @@
                 <label>{{CareAssessmentSleepAndRestFormsData.otherIdentifiedRisks}}</label>
             </ng-template>
         </div>
-        <div class="col-md-1 form-icon">
-            <i class="fa-solid fa-info"></i>
+        <div class="col-md-2 form-icon mt-4 d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext"> Mapped to : <b>Observation </b><br> Care domain : <b>My Sleep and Resting
+                        Support Plan</b> <br> Sub domain : <b>My Sleep and Resting Care Plan</b>
+                    <hr>Mapped to : <b>Intervention </b><br> Care domain : <b>My Sleep and Resting Support Plan</b> <br>
+                    Sub domain : <b>My Sleep and Resting Care Plan</b>
+                </span>
+            </div>
         </div>
         <div class="col-md-4 ">
             <div class="labelcontent">
@@ -334,7 +416,7 @@
             </div>
         </div>
 
-        <div class="col-md-7 form-text">
+        <div class="col-md-6 form-text">
             <ng-container *ngIf="this.isEditable; else ActionToManageAdditionalRisk">
                 <input pInputText type="text"
                     [(ngModel)]="CareAssessmentSleepAndRestFormsData.actionToManageAdditionalRisk" required
@@ -345,8 +427,14 @@
                 <label>{{CareAssessmentSleepAndRestFormsData.actionToManageAdditionalRisk}}</label>
             </ng-template>
         </div>
-        <div class="col-md-1 form-icon">
-            <i class="fa-solid fa-info"></i>
+        <div class="col-md-2 form-icon mt-4 d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext"> Mapped to : <b>Intervention
+                    </b><br> Care domain : <b>My Sleep and Resting
+                        Support Plan</b> <br> Sub domain : <b>My Sleep and Resting Care Plan</b>
+
+                </span>
+            </div>
         </div>
         <div class="col-md-4 ">
             <div class="labelcontent implabel">
@@ -354,7 +442,7 @@
             </div>
         </div>
 
-        <div class="col-md-7 form-text">
+        <div class="col-md-6 form-text">
             <ng-container *ngIf="this.isEditable; else MonthlyReview">
                 <p-checkbox class="mb-4" [(ngModel)]="CareAssessmentSleepAndRestFormsData.monthlyReview" [binary]="true"
                     inputId="binary"></p-checkbox>
@@ -372,7 +460,7 @@
                 <p>Next review date</p>
             </div>
         </div>
-        <div class="col-md-7">
+        <div class="col-md-6">
             <div class="input-group date">
                 <ng-container *ngIf="this.isEditable; else ReviewDate">
                     <p-calendar name="CareAssessmentSleepAndRestFormsData.reviewDate" [showIcon]="true" inputId="icon"

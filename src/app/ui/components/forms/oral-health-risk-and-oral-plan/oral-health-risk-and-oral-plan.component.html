@@ -33,7 +33,7 @@
                 <p>What support does the person need to attend to their oral care</p>
             </div>
         </div>
-        <div class="col-md-7 mt-4">
+        <div class="col-md-6 mt-4">
             <ng-container *ngIf="this.isEditable; else OralCareSupport">
                 <p-dropdown [required]="true" [options]="lstOralCareSupport" optionLabel="optionName"
                     [(ngModel)]="OralHealthRiskFormsData.oralCareSupport" name="OralHealthRiskFormsData.OralCareSupport"
@@ -44,15 +44,25 @@
                 <label>{{OralHealthRiskFormsData.oralCareSupportName}}</label>
             </ng-template>
         </div>
-        <div class="col-md-1 mt-4 form-icon ">
-            <i class="fa-solid fa-info"></i>
+        <div class="col-md-2 form-icon mt-4  d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext"> Mapped to : <b>Intervention
+                    </b><br> Care domain : <b>My Personal Care and Projection of Self Image , Oral Care, Foot Support
+                        Plan </b>
+                    <br> Sub domain : <b>Oral Care</b>
+                    <hr>Mapped to : <b>Observation
+                    </b><br> Care domain : <b>My Personal Care and Projection of Self Image , Oral Care, Foot Support
+                        Plan </b>
+                    <br> Sub domain : <b>Oral Care</b>
+                </span>
+            </div>
         </div>
         <div class="col-md-4">
             <div class="labelcontent">
                 <p>Does the resident have any of their own natural teeth?</p>
             </div>
         </div>
-        <div class="col-md-7">
+        <div class="col-md-6">
             <ng-container *ngIf="this.isEditable; else TeethCheck">
                 <p-dropdown [required]="true" [options]="lstTeethCheck" optionLabel="optionName"
                     [(ngModel)]="OralHealthRiskFormsData.teethCheck" name="OralHealthRiskFormsData.TeethCheck"
@@ -63,8 +73,14 @@
                 <label>{{OralHealthRiskFormsData.teethCheckName}}</label>
             </ng-template>
         </div>
-        <div class="col-md-1 form-icon ">
-            <i class="fa-solid fa-info"></i>
+        <div class="col-md-2 form-icon  d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext"> Mapped to : <b>Observation
+                    </b><br> Care domain : <b>My Personal Care and Projection of Self Image , Oral Care, Foot Support
+                        Plan </b>
+                    <br> Sub domain : <b>Oral Care</b>
+                </span>
+            </div>
         </div>
 
         <div class="col-md-4">
@@ -72,7 +88,7 @@
                 <p>Does the person wear dentures?</p>
             </div>
         </div>
-        <div class="col-md-7">
+        <div class="col-md-6">
             <ng-container *ngIf="this.isEditable; else DenturesCheck">
                 <p-dropdown [required]="true" [options]="lstDenturesCheck" optionLabel="optionName"
                     [(ngModel)]="OralHealthRiskFormsData.denturesCheck" name="OralHealthRiskFormsData.denturesCheck"
@@ -83,15 +99,21 @@
                 <label>{{OralHealthRiskFormsData.denturesCheckName}}</label>
             </ng-template>
         </div>
-        <div class="col-md-1 form-icon ">
-            <i class="fa-solid fa-info"></i>
+        <div class="col-md-2 form-icon  d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext"> Mapped to : <b>Observation
+                    </b><br> Care domain : <b>My Personal Care and Projection of Self Image , Oral Care, Foot Support
+                        Plan </b>
+                    <br> Sub domain : <b>Oral Care</b>
+                </span>
+            </div>
         </div>
         <div class="col-md-4">
             <div class="labelcontent">
                 <p>Are the dentures labelled</p>
             </div>
         </div>
-        <div class="col-md-7">
+        <div class="col-md-6">
             <ng-container *ngIf="this.isEditable; else DenturesLabelCheck">
                 <p-dropdown [required]="true" [options]="lstDenturesLabelCheck" optionLabel="optionName"
                     [(ngModel)]="OralHealthRiskFormsData.denturesLabelCheck"
@@ -103,15 +125,21 @@
                 <label>{{OralHealthRiskFormsData.denturesLabelCheckName}}</label>
             </ng-template>
         </div>
-        <div class="col-md-1 form-icon ">
-            <i class="fa-solid fa-info"></i>
+        <div class="col-md-2 form-icon  d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext"> Mapped to : <b>Observation
+                    </b><br> Care domain : <b>My Personal Care and Projection of Self Image , Oral Care, Foot Support
+                        Plan </b>
+                    <br> Sub domain : <b>Oral Care</b>
+                </span>
+            </div>
         </div>
         <div class="col-md-4">
             <div class="labelcontent">
                 <p>Does the person needs help to clean their oral care teeth/dentures</p>
             </div>
         </div>
-        <div class="col-md-7">
+        <div class="col-md-6">
             <ng-container *ngIf="this.isEditable; else TeethHelp">
                 <p-dropdown [required]="true" [options]="lstTeethHelp" optionLabel="optionName"
                     [(ngModel)]="OralHealthRiskFormsData.teethHelp" name="OralHealthRiskFormsData.TeethHelp"
@@ -122,15 +150,21 @@
                 <label>{{OralHealthRiskFormsData.teethHelpName}}</label>
             </ng-template>
         </div>
-        <div class="col-md-1 form-icon ">
-            <i class="fa-solid fa-info"></i>
+        <div class="col-md-2 form-icon  d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext"> Mapped to : <b>Intervention
+                    </b><br> Care domain : <b>My Personal Care and Projection of Self Image , Oral Care, Foot Support
+                        Plan </b>
+                    <br> Sub domain : <b>Oral Care</b>
+                </span>
+            </div>
         </div>
         <div class="col-md-4">
             <div class="labelcontent">
                 <p>Does the resident experience any of the following?</p>
             </div>
         </div>
-        <div class="col-md-7">
+        <div class="col-md-6">
             <ng-container *ngIf="this.isEditable; else HealthCheck">
                 <p-dropdown [required]="true" [options]="lstHealthCheck" optionLabel="optionName"
                     [(ngModel)]="OralHealthRiskFormsData.healthCheck" name="OralHealthRiskFormsData.HealthCheck"
@@ -141,15 +175,21 @@
                 <label>{{OralHealthRiskFormsData.healthCheckName}}</label>
             </ng-template>
         </div>
-        <div class="col-md-1 form-icon ">
-            <i class="fa-solid fa-info"></i>
+        <div class="col-md-2 form-icon  d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext"> Mapped to : <b>Observation
+                    </b><br> Care domain : <b>My Personal Care and Projection of Self Image , Oral Care, Foot Support
+                        Plan </b>
+                    <br> Sub domain : <b>Oral Care</b>
+                </span>
+            </div>
         </div>
         <div class="col-md-4">
             <div class="labelcontent">
                 <p>what is the date of the last known dental treatment?</p>
             </div>
         </div>
-        <div class="col-md-7">
+        <div class="col-md-6">
             <ng-container *ngIf="this.isEditable; else DentalTreatment">
                 <p-dropdown [required]="true" [options]="lstDentalTreatment" optionLabel="optionName"
                     [(ngModel)]="OralHealthRiskFormsData.dentalTreatment" name="OralHealthRiskFormsData.DentalTreatment"
@@ -160,15 +200,21 @@
                 <label>{{OralHealthRiskFormsData.dentalTreatmentName}}</label>
             </ng-template>
         </div>
-        <div class="col-md-1 form-icon ">
-            <i class="fa-solid fa-info"></i>
+        <div class="col-md-2 form-icon  d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext"> Mapped to : <b>Observation
+                    </b><br> Care domain : <b>My Personal Care and Projection of Self Image , Oral Care, Foot Support
+                        Plan </b>
+                    <br> Sub domain : <b>Oral Care</b>
+                </span>
+            </div>
         </div>
         <div class="col-md-4">
             <div class="labelcontent">
                 <p>Is the resident taking medication?</p>
             </div>
         </div>
-        <div class="col-md-7">
+        <div class="col-md-6">
             <ng-container *ngIf="this.isEditable; else MedicationCheck">
                 <p-dropdown [required]="true" [options]="lstMedicationCheck" optionLabel="optionName"
                     [(ngModel)]="OralHealthRiskFormsData.medicationCheck" name="OralHealthRiskFormsData.MedicationCheck"
@@ -179,15 +225,21 @@
                 <label>{{OralHealthRiskFormsData.medicationCheckName}}</label>
             </ng-template>
         </div>
-        <div class="col-md-1 form-icon ">
-            <i class="fa-solid fa-info"></i>
+        <div class="col-md-2 form-icon  d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext"> Mapped to : <b>Observation
+                    </b><br> Care domain : <b>My Personal Care and Projection of Self Image , Oral Care, Foot Support
+                        Plan </b>
+                    <br> Sub domain : <b>Oral Care</b>
+                </span>
+            </div>
         </div>
         <div class="col-md-4">
             <div class="labelcontent">
                 <p>Does the resident experience a dry mouth</p>
             </div>
         </div>
-        <div class="col-md-7">
+        <div class="col-md-6">
             <ng-container *ngIf="this.isEditable; else DryMouthCheck">
                 <p-dropdown [required]="true" [options]="lstDryMouthCheck" optionLabel="optionName"
                     [(ngModel)]="OralHealthRiskFormsData.dryMouthCheck" name="OralHealthRiskFormsData.DryMouthCheck"
@@ -198,15 +250,21 @@
                 <label>{{OralHealthRiskFormsData.dryMouthCheckName}}</label>
             </ng-template>
         </div>
-        <div class="col-md-1 form-icon ">
-            <i class="fa-solid fa-info"></i>
+        <div class="col-md-2 form-icon  d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext"> Mapped to : <b>Observation
+                    </b><br> Care domain : <b>My Personal Care and Projection of Self Image , Oral Care, Foot Support
+                        Plan </b>
+                    <br> Sub domain : <b>Oral Care</b>
+                </span>
+            </div>
         </div>
         <div class="col-md-4">
             <div class="labelcontent">
                 <p>Actions to take if Resident does experience dry mouth</p>
             </div>
         </div>
-        <div class="col-md-7">
+        <div class="col-md-6">
             <ng-container *ngIf="this.isEditable; else DryMouthAction">
                 <p-dropdown [required]="true" [options]="lstDryMouthAction" optionLabel="optionName"
                     [(ngModel)]="OralHealthRiskFormsData.dryMouthAction" name="OralHealthRiskFormsData.DryMouthAction"
@@ -217,15 +275,21 @@
                 <label>{{OralHealthRiskFormsData.dryMouthActionName}}</label>
             </ng-template>
         </div>
-        <div class="col-md-1 form-icon ">
-            <i class="fa-solid fa-info"></i>
+        <div class="col-md-2 form-icon  d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext"> Mapped to : <b>Intervention
+                    </b><br> Care domain : <b>My Personal Care and Projection of Self Image , Oral Care, Foot Support
+                        Plan </b>
+                    <br> Sub domain : <b>Oral Care</b>
+                </span>
+            </div>
         </div>
         <div class="col-md-4">
             <div class="labelcontent">
                 <p>Does the resident smoke</p>
             </div>
         </div>
-        <div class="col-md-7">
+        <div class="col-md-6">
             <ng-container *ngIf="this.isEditable; else SmokeCheck">
                 <p-dropdown [required]="true" [options]="lstSmokeCheck" optionLabel="optionName"
                     [(ngModel)]="OralHealthRiskFormsData.smokeCheck" name="OralHealthRiskFormsData.SmokeCheck"
@@ -237,15 +301,21 @@
                 <label>{{OralHealthRiskFormsData.smokeCheckName}}</label>
             </ng-template>
         </div>
-        <div class="col-md-1 form-icon ">
-            <i class="fa-solid fa-info"></i>
+        <div class="col-md-2 form-icon  d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext"> Mapped to : <b>Observation
+                    </b><br> Care domain : <b>My Personal Care and Projection of Self Image , Oral Care, Foot Support
+                        Plan </b>
+                    <br> Sub domain : <b>Oral Care</b>
+                </span>
+            </div>
         </div>
         <div class="col-md-4">
             <div class="labelcontent">
                 <p>If further investigation required, please refer to dentist.</p>
             </div>
         </div>
-        <div class="col-md-7">
+        <div class="col-md-6">
             <ng-container *ngIf="this.isEditable; else DentistReferCheck">
                 <p-dropdown [required]="true" [options]="lstDentistReferCheck" optionLabel="optionName"
                     [(ngModel)]="OralHealthRiskFormsData.dentistReferCheck"
@@ -262,8 +332,14 @@
             </ng-template>
 
         </div>
-        <div class="col-md-1 form-icon ">
-            <i class="fa-solid fa-info"></i>
+        <div class="col-md-2 form-icon  d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext"> Mapped to : <b>Observation
+                    </b><br> Care domain : <b>My Personal Care and Projection of Self Image , Oral Care, Foot Support
+                        Plan </b>
+                    <br> Sub domain : <b>Oral Care</b>
+                </span>
+            </div>
         </div>
         <div class="col-md-4">
             <div class="labelcontent">
@@ -271,7 +347,7 @@
                 </p>
             </div>
         </div>
-        <div class="col-md-7 mb-4">
+        <div class="col-md-6 mb-4">
             <ng-container *ngIf="this.isEditable; else OralHygieneMeasures">
                 <p-dropdown [required]="true" [options]="lstOralHygieneMeasures" optionLabel="optionName"
                     [(ngModel)]="OralHealthRiskFormsData.oralHygieneMeasures"
@@ -283,15 +359,21 @@
                 <label>{{OralHealthRiskFormsData.oralHygieneMeasuresName}}</label>
             </ng-template>
         </div>
-        <div class="col-md-1 form-icon ">
-            <i class="fa-solid fa-info"></i>
+        <div class="col-md-2 form-icon  d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext"> Mapped to : <b>Intervention
+                    </b><br> Care domain : <b>My Personal Care and Projection of Self Image , Oral Care, Foot Support
+                        Plan </b>
+                    <br> Sub domain : <b>Oral Care</b>
+                </span>
+            </div>
         </div>
         <div class="col-md-4">
             <div class="labelcontent">
                 <p>What is the residents preferred outcome in relation to their oral care?</p>
             </div>
         </div>
-        <div class="col-md-7 ">
+        <div class="col-md-6 ">
             <ng-container *ngIf="this.isEditable; else OralCareOutcomes">
                 <p-dropdown [required]="true" [options]="lstOralCareOutcomes" optionLabel="optionName"
                     [(ngModel)]="OralHealthRiskFormsData.oralCareOutcomes"
@@ -303,8 +385,14 @@
                 <label>{{OralHealthRiskFormsData.oralCareOutcomesName}}</label>
             </ng-template>
         </div>
-        <div class="col-md-1 form-icon ">
-            <i class="fa-solid fa-info"></i>
+        <div class="col-md-2 form-icon  d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext"> Mapped to : <b>Agreed outcome
+                    </b><br> Care domain : <b>My Personal Care and Projection of Self Image , Oral Care, Foot Support
+                        Plan </b>
+                    <br> Sub domain : <b>Oral Care</b>
+                </span>
+            </div>
         </div>
         <div class="d-flex justify-content-end">
             <ng-container *ngIf="isEditable; else savePdf">

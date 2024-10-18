@@ -37,7 +37,7 @@
         <div class="col-md-4 mt-4 labelcontent">
             <p>How is the resident to be included in making decisions relating to skin integrity</p>
         </div>
-        <div class="col-md-7 mt-4 form-text">
+        <div class="col-md-6 mt-4 form-text">
             <ng-container *ngIf="isEditable; else SkinIntegrityDecisions">
                 <p-dropdown name="SkinIntegrityDecisions" [(ngModel)]="
                         CareSkinAssessmentFormsData.skinIntegrityDecisions
@@ -52,13 +52,19 @@
                     }}</label>
             </ng-template>
         </div>
-        <div class="col-md-1 mt-4 form-icon">
-            <i class="fa-solid fa-info"></i>
+        <div class="col-md-2 form-icon mt-4  d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext"> Mapped to : <b>Observation
+                    </b><br> Care domain : <b>My Skin Care Support Plan</b><br> Sub domain : <b>Capacity</b>
+                    <hr>Mapped to : <b>Intervention
+                    </b><br> Care domain : <b>My Skin Care Support Plan</b><br> Sub domain : <b>Capacity</b>
+                </span>
+            </div>
         </div>
         <div class="col-md-4 labelcontent">
             <p>The effects of ageing on the skin</p>
         </div>
-        <div class="col-md-7 form-text">
+        <div class="col-md-6 form-text">
             <ng-container *ngIf="isEditable; else SkinAgeingEffects">
                 <p-dropdown name="SkinAgeingEffects" [(ngModel)]="
                         CareSkinAssessmentFormsData.skinAgeingEffects
@@ -74,13 +80,17 @@
             </ng-template>
 
         </div>
-        <div class="col-md-1 form-icon">
-            <i class="fa-solid fa-info"></i>
+        <div class="col-md-2 form-icon d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext"> Mapped to : <b>Observation
+                    </b><br> Care domain : <b>My Skin Care Support Plan</b><br> Sub domain : <b> My Skin Care Plan</b>
+                </span>
+            </div>
         </div>
         <div class="col-md-4 labelcontent">
             <p>Detail specific decision relating to skin care</p>
         </div>
-        <div class="col-md-7 form-text">
+        <div class="col-md-6 form-text">
             <ng-container *ngIf="isEditable; else SkinCareDecisionDetail">
                 <input pInputText type="text" required name="SkinCareDecisionDetail" class="form-control" [(ngModel)]="
                         CareSkinAssessmentFormsData.skinCareDecisionDetail
@@ -96,13 +106,16 @@
             </ng-template>
 
         </div>
-        <div class="col-md-1 form-icon">
-            <i class="fa-solid fa-info"></i>
+        <div class="col-md-2 form-icon d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext"> Mapped to : <b>Intervention
+                    </b><br> Care domain : <b>My Skin Care Support Plan</b><br> Sub domain : <b>Capacity</b></span>
+            </div>
         </div>
         <div class="col-md-4 labelcontent">
             <p>Has the resident had any past history of skin related issues</p>
         </div>
-        <div class="col-md-7 form-text">
+        <div class="col-md-6 form-text">
             <ng-container *ngIf="isEditable; else SkinIssueHistory">
                 <input pInputText type="text" required name="SkinIssueHistory" class="form-control" [(ngModel)]="
                         CareSkinAssessmentFormsData.skinIssueHistory
@@ -117,13 +130,17 @@
             </ng-template>
 
         </div>
-        <div class="col-md-1 form-icon">
-            <i class="fa-solid fa-info"></i>
+        <div class="col-md-2 form-icon d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext"> Mapped to : <b>Observation
+                    </b><br> Care domain : <b>My Skin Care Support Plan</b><br> Sub domain : <b>My Skin Care Plan
+                    </b></span>
+            </div>
         </div>
         <div class="col-md-4 labelcontent">
             <p>Health status</p>
         </div>
-        <div class="col-md-7 form-text">
+        <div class="col-md-6 form-text">
             <ng-container *ngIf="isEditable; else HealthStatus">
                 <p-dropdown name="HealthStatus" [(ngModel)]="
                         CareSkinAssessmentFormsData.healthStatus
@@ -139,13 +156,17 @@
             </ng-template>
 
         </div>
-        <div class="col-md-1 form-icon">
-            <i class="fa-solid fa-info"></i>
+        <div class="col-md-2 form-icon d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext"> Mapped to : <b>Observation
+                    </b><br> Care domain : <b>My Skin Care Support Plan</b><br> Sub domain : <b>My skin Care
+                        Plan</b></span>
+            </div>
         </div>
         <div class="col-md-4 labelcontent">
             <p>Other / comments</p>
         </div>
-        <div class="col-md-7 form-text">
+        <div class="col-md-6 form-text">
             <ng-container *ngIf="isEditable; else Comments">
                 <input pInputText type="text" required name="Comments" class="form-control" [(ngModel)]="
                         CareSkinAssessmentFormsData.comments
@@ -159,13 +180,21 @@
             </ng-template>
 
         </div>
-        <div class="col-md-1 form-icon">
-            <i class="fa-solid fa-info"></i>
+        <div class="col-md-2 form-icon d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext"> Mapped to : <b>Observation
+                    </b><br> Care domain : <b>My Skin Care Support Plan</b><br> Sub domain : <b>My Skin care Plan
+                    </b>
+                    <hr> Mapped to : <b>Intervenion
+                    </b><br> Care domain : <b>My Skin Care Support Plan</b><br> Sub domain : <b>My Skin care Plan
+                    </b>
+                </span>
+            </div>
         </div>
         <div class="col-md-4 labelcontent">
             <p>Dry skin</p>
         </div>
-        <div class="col-md-7 form-text">
+        <div class="col-md-6 form-text">
             <ng-container *ngIf="isEditable; else DrySkin">
                 <p-dropdown name="DrySkin" [(ngModel)]="
                         CareSkinAssessmentFormsData.drySkin
@@ -180,13 +209,17 @@
                     }}</label>
             </ng-template>
         </div>
-        <div class="col-md-1 form-icon">
-            <i class="fa-solid fa-info"></i>
+        <div class="col-md-2 form-icon d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext"> Mapped to : <b>Observation
+                    </b><br> Care domain : <b>My Skin Care Support Plan</b><br> Sub domain :<b>My Skin Care Plan </b>
+                </span>
+            </div>
         </div>
         <div class="col-md-4 labelcontent">
             <p>How will the dry skin be managed please select all the applicable options below:</p>
         </div>
-        <div class="col-md-7 form-text">
+        <div class="col-md-6 form-text">
             <ng-container *ngIf="isEditable; else DrySkinManage">
                 <p-dropdown name="DrySkinManage" [(ngModel)]="
                         CareSkinAssessmentFormsData.drySkinManage
@@ -201,13 +234,17 @@
                     }}</label>
             </ng-template>
         </div>
-        <div class="col-md-1 form-icon">
-            <i class="fa-solid fa-info"></i>
+        <div class="col-md-2 form-icon d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext"> Mapped to : <b>Intervenion
+                    </b><br> Care domain : <b>My Skin Care Support Plan</b><br> Sub domain :<b>My Skin Care Plan </b>
+                </span>
+            </div>
         </div>
         <div class="col-md-4 labelcontent">
             <p>Tissue-paper skin</p>
         </div>
-        <div class="col-md-7 form-text">
+        <div class="col-md-6 form-text">
             <ng-container *ngIf="isEditable; else TissuePaperSkin">
                 <p-dropdown name="TissuePaperSkin" [(ngModel)]="
                         CareSkinAssessmentFormsData.tissuePaperSkin
@@ -223,13 +260,17 @@
                     }}</label>
             </ng-template>
         </div>
-        <div class="col-md-1 form-icon">
-            <i class="fa-solid fa-info"></i>
+        <div class="col-md-2 form-icon d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext"> Mapped to : <b>Observation
+                    </b><br> Care domain : <b>My Skin Care Support Plan</b><br> Sub domain : <b>My Skin Care Plan </b>
+                </span>
+            </div>
         </div>
         <div class="col-md-4 labelcontent">
             <p>What measures do we require to implement for the risk fo skin tears</p>
         </div>
-        <div class="col-md-7 form-text">
+        <div class="col-md-6 form-text">
             <ng-container *ngIf="isEditable; else MeasuresForSkinTears">
                 <p-dropdown name="MeasuresForSkinTears" [(ngModel)]="
                         CareSkinAssessmentFormsData.measuresForSkinTears
@@ -243,13 +284,17 @@
                     }}</label>
             </ng-template>
         </div>
-        <div class="col-md-1 form-icon">
-            <i class="fa-solid fa-info"></i>
+        <div class="col-md-2 form-icon d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext"> Mapped to : <b>Intervention
+                    </b><br> Care domain : <b>My Skin Care Support Plan</b><br> Sub domain : <b>My skin Care
+                        Plan</b></span>
+            </div>
         </div>
         <div class="col-md-4 labelcontent">
             <p>Excoriation areas</p>
         </div>
-        <div class="col-md-7 form-text">
+        <div class="col-md-6 form-text">
             <ng-container *ngIf="isEditable; else Excoriation">
                 <p-dropdown name="Excoriation" [(ngModel)]="
                         CareSkinAssessmentFormsData.excoriation
@@ -264,13 +309,17 @@
                     }}</label>
             </ng-template>
         </div>
-        <div class="col-md-1 form-icon">
-            <i class="fa-solid fa-info"></i>
+        <div class="col-md-2 form-icon d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext"> Mapped to : <b>Observation
+                    </b><br> Care domain : <b>My Skin Care Support Plan</b><br> Sub domain : <b>My Skin Care Plan
+                    </b></span>
+            </div>
         </div>
         <div class="col-md-4 labelcontent">
             <p>Reddened areas</p>
         </div>
-        <div class="col-md-7 form-text">
+        <div class="col-md-6 form-text">
             <ng-container *ngIf="isEditable; else Reddened">
                 <p-dropdown name="Reddened" [(ngModel)]="
                         CareSkinAssessmentFormsData.reddened
@@ -286,13 +335,17 @@
             </ng-template>
 
         </div>
-        <div class="col-md-1 form-icon">
-            <i class="fa-solid fa-info"></i>
+        <div class="col-md-2 form-icon d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext"> Mapped to : <b>Observation
+                    </b><br> Care domain : <b>My Skin Care Support Plan</b><br> Sub domain : <b> my Skin Care Plan </b>
+                </span>
+            </div>
         </div>
         <div class="col-md-4 labelcontent">
             <p>Rash</p>
         </div>
-        <div class="col-md-7 form-text">
+        <div class="col-md-6 form-text">
             <ng-container *ngIf="isEditable; else Rash">
                 <p-dropdown name="Rash" [(ngModel)]="
                         CareSkinAssessmentFormsData.rash
@@ -308,13 +361,17 @@
             </ng-template>
 
         </div>
-        <div class="col-md-1 form-icon">
-            <i class="fa-solid fa-info"></i>
+        <div class="col-md-2 form-icon d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext"> Mapped to : <b>Observation
+                    </b><br> Care domain : <b>My Skin Care Support Plan</b><br> Sub domain : <b>My Skin Care Plan </b>
+                </span>
+            </div>
         </div>
         <div class="col-md-4 labelcontent">
             <p>Bruises</p>
         </div>
-        <div class="col-md-7 form-text">
+        <div class="col-md-6 form-text">
             <ng-container *ngIf="isEditable; else Bruises">
                 <p-dropdown name="Bruises" [(ngModel)]="
                         CareSkinAssessmentFormsData.bruises
@@ -330,13 +387,17 @@
             </ng-template>
 
         </div>
-        <div class="col-md-1 form-icon">
-            <i class="fa-solid fa-info"></i>
+        <div class="col-md-2 form-icon d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext"> Mapped to : <b>Observation
+                    </b><br> Care domain : <b>My Skin Care Support Plan</b><br> Sub domain : <b>My Skin Care Plan </b>
+                </span>
+            </div>
         </div>
         <div class="col-md-4 labelcontent">
             <p>Hair / scalp</p>
         </div>
-        <div class="col-md-7 form-text">
+        <div class="col-md-6 form-text">
             <ng-container *ngIf="isEditable; else HairScalp">
                 <p-dropdown name="HairScalp" [(ngModel)]="
                         CareSkinAssessmentFormsData.hairScalp
@@ -350,13 +411,17 @@
                     }}</label>
             </ng-template>
         </div>
-        <div class="col-md-1 form-icon">
-            <i class="fa-solid fa-info"></i>
+        <div class="col-md-2 form-icon d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext"> Mapped to : <b>Observation
+                    </b><br> Care domain : <b>My Skin Care Support Plan</b><br> Sub domain : <b>My Skin Care Plan </b>
+                </span>
+            </div>
         </div>
         <div class="col-md-4 labelcontent">
             <p>Fingernails</p>
         </div>
-        <div class="col-md-7 form-text">
+        <div class="col-md-6 form-text">
             <ng-container *ngIf="isEditable; else Fingernails">
                 <p-dropdown name="Fingernails" [(ngModel)]="
                         CareSkinAssessmentFormsData.fingernails
@@ -370,13 +435,17 @@
                     }}</label>
             </ng-template>
         </div>
-        <div class="col-md-1 form-icon">
-            <i class="fa-solid fa-info"></i>
+        <div class="col-md-2 form-icon d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext"> Mapped to : <b>Observation
+                    </b><br> Care domain : <b>My Skin Care Support Plan</b><br> Sub domain : <b>My Skin Care Plan </b>
+                </span>
+            </div>
         </div>
         <div class="col-md-4 labelcontent">
             <p>Toenails</p>
         </div>
-        <div class="col-md-7 form-text">
+        <div class="col-md-6 form-text">
             <ng-container *ngIf="isEditable; else Toenails">
                 <p-dropdown name="Toenails" [(ngModel)]="
                         CareSkinAssessmentFormsData.toenails
@@ -390,13 +459,17 @@
                     }}</label>
             </ng-template>
         </div>
-        <div class="col-md-1 form-icon">
-            <i class="fa-solid fa-info"></i>
+        <div class="col-md-2 form-icon d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext"> Mapped to : <b>Observation
+                    </b><br> Care domain : <b>My Skin Care Support Plan</b><br> Sub domain :<b>My Skin Care Plan </b>
+                </span>
+            </div>
         </div>
         <div class="col-md-4 labelcontent">
             <p>Is there any prescribed treatment</p>
         </div>
-        <div class="col-md-7 form-text">
+        <div class="col-md-6 form-text">
             <ng-container *ngIf="isEditable; else PrescribedTreatment">
                 <input pInputText type="text" required name="PrescribedTreatment" class="form-control" [(ngModel)]="
                         CareSkinAssessmentFormsData.prescribedTreatment
@@ -412,13 +485,17 @@
             </ng-template>
 
         </div>
-        <div class="col-md-1 form-icon">
-            <i class="fa-solid fa-info"></i>
+        <div class="col-md-2 form-icon d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext"> Mapped to : <b>Intervention
+                    </b><br> Care domain : <b>My Skin Care Support Plan</b><br> Sub domain : <b>My Skin Care Plan </b>
+                </span>
+            </div>
         </div>
         <div class="col-md-4 labelcontent">
             <p>Does the resident have any wounds</p>
         </div>
-        <div class="col-md-7 form-text">
+        <div class="col-md-6 form-text">
             <ng-container *ngIf="isEditable; else Wounds">
                 <input pInputText type="text" required name="Wounds" class="form-control" [(ngModel)]="
                         CareSkinAssessmentFormsData.wounds
@@ -434,13 +511,17 @@
             </ng-template>
 
         </div>
-        <div class="col-md-1 form-icon">
-            <i class="fa-solid fa-info"></i>
+        <div class="col-md-2 form-icon d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext"> Mapped to : <b>Observation
+                    </b><br> Care domain : <b>My Skin Care Support Plan</b><br> Sub domain : <b>My Skin Care Plan </b>
+                </span>
+            </div>
         </div>
         <div class="col-md-4 labelcontent implabel">
             <p>Has a wound chart been commenced for all wounds</p>
         </div>
-        <div class="col-md-7 form-text">
+        <div class="col-md-6 form-text">
             <ng-container *ngIf="isEditable; else WoundChart">
                 <p-dropdown name="WoundChart" [(ngModel)]="
                         CareSkinAssessmentFormsData.woundChart
@@ -455,14 +536,18 @@
                     }}</label>
             </ng-template>
         </div>
-        <div class="col-md-1 form-icon">
-            <i class="fa-solid fa-info"></i>
+        <div class="col-md-2 form-icon d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext"> Mapped to : <b>Intervention
+                    </b><br> Care domain : <b>My Skin Care Support Plan</b><br> Sub domain : <b>My Skin Care Plan </b>
+                </span>
+            </div>
         </div>
 
         <div class="col-md-4 labelcontent">
             <p> Potential causes of wounds</p>
         </div>
-        <div class="col-md-7 form-text">
+        <div class="col-md-6 form-text">
             <ng-container *ngIf="isEditable; else WoundsCauses">
                 <p-dropdown name="WoundsCauses" [(ngModel)]="
                         CareSkinAssessmentFormsData.woundsCauses
@@ -476,13 +561,17 @@
                     }}</label>
             </ng-template>
         </div>
-        <div class="col-md-1 form-icon">
-            <i class="fa-solid fa-info"></i>
+        <div class="col-md-2 form-icon d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext"> Mapped to : <b>Intervention
+                    </b><br> Care domain : <b>My Skin Care Support Plan</b><br> Sub domain :<b>My Skin Care Plan </b>
+                </span>
+            </div>
         </div>
         <div class="col-md-4 labelcontent">
             <p>How can skin integrity be promoted in older adults</p>
         </div>
-        <div class="col-md-7 form-text">
+        <div class="col-md-6 form-text">
             <ng-container *ngIf="isEditable; else SkinIntegrityPromotion">
                 <p-dropdown name="SkinIntegrityPromotion" [(ngModel)]="
                         CareSkinAssessmentFormsData.skinIntegrityPromotion
@@ -496,13 +585,17 @@
                     }}</label>
             </ng-template>
         </div>
-        <div class="col-md-1 form-icon">
-            <i class="fa-solid fa-info"></i>
+        <div class="col-md-2 form-icon d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext"> Mapped to : <b>Intervention
+                    </b><br> Care domain : <b>My Skin Care Support Plan</b><br> Sub domain : <b>My Skin Care Plan
+                    </b></span>
+            </div>
         </div>
         <div class="col-md-4 labelcontent">
             <p>Skin care management strategies (SSKIN)</p>
         </div>
-        <div class="col-md-7 form-text">
+        <div class="col-md-6 form-text">
             <ng-container *ngIf="isEditable; else SkinCareStrategies">
                 <p-dropdown name="SkinCareStrategies" [(ngModel)]="
                         CareSkinAssessmentFormsData.skinCareStrategies
@@ -518,15 +611,18 @@
                     CareSkinAssessmentFormsData.skinCareStrategiesName
                     }}</label>
             </ng-template>
-
         </div>
-        <div class="col-md-1 form-icon">
-            <i class="fa-solid fa-info"></i>
+        <div class="col-md-2 form-icon d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext"> Mapped to : <b>Intervention
+                    </b><br> Care domain : <b>My Skin Care Support Plan</b><br> Sub domain : <b>My Skin Care Plan </b>
+                </span>
+            </div>
         </div>
         <div class="col-md-4 labelcontent">
             <p>Goals the resident wishes to achieve</p>
         </div>
-        <div class="col-md-7 form-text">
+        <div class="col-md-6 form-text">
             <ng-container *ngIf="isEditable; else GoalsToAchieve">
                 <p-dropdown name="GoalsToAchieve" [(ngModel)]="
                         CareSkinAssessmentFormsData.goalsToAchieve
@@ -540,13 +636,17 @@
                     }}</label>
             </ng-template>
         </div>
-        <div class="col-md-1 form-icon">
-            <i class="fa-solid fa-info"></i>
+        <div class="col-md-2 form-icon d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext"> Mapped to : <b>Agreed outcome
+                    </b><br> Care domain : <b>My Skin Care Support Plan</b><br> Sub domain : <b>My Skin Care Plan </b>
+                </span>
+            </div>
         </div>
         <div class="col-md-4 labelcontent">
             <p>Does the resident have any specific goals personal to them</p>
         </div>
-        <div class="col-md-7 form-text">
+        <div class="col-md-6 form-text">
             <ng-container *ngIf="isEditable; else PersonalGoals">
                 <input pInputText type="text" required name="PersonalGoals" class="form-control" [(ngModel)]="
                         CareSkinAssessmentFormsData.personalGoals
@@ -558,13 +658,17 @@
                     }}</label>
             </ng-template>
         </div>
-        <div class="col-md-1 form-icon">
-            <i class="fa-solid fa-info"></i>
+        <div class="col-md-2 form-icon d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext"> Mapped to : <b>Agreed Outcome
+                    </b><br> Care domain : <b>My Skin Care Support Plan</b><br> Sub domain : <b>My Skin Care Plan </b>
+                </span>
+            </div>
         </div>
         <div class="col-md-4 labelcontent">
             <p>Is a safeguarding referral required</p>
         </div>
-        <div class="col-md-7 form-text">
+        <div class="col-md-6 form-text">
             <ng-container *ngIf="isEditable; else SafeguardReferral">
                 <p-dropdown name="SafeguardReferral" [(ngModel)]="
                         CareSkinAssessmentFormsData.safeguardReferral
@@ -579,13 +683,17 @@
                     }}</label>
             </ng-template>
         </div>
-        <div class="col-md-1 form-icon">
-            <i class="fa-solid fa-info"></i>
+        <div class="col-md-2 form-icon d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext"> Mapped to : <b>Intervention
+                    </b><br> Care domain : <b>My Skin Care Support Plan</b><br> Sub domain : <b>My Skin Care Plan
+                    </b></span>
+            </div>
         </div>
         <div class="col-md-4 labelcontent">
             <p>Are there any other identified risks relating to skin integrity</p>
         </div>
-        <div class="col-md-7 form-text">
+        <div class="col-md-6 form-text">
             <ng-container *ngIf="isEditable; else IdentifiedRisksToSkin">
                 <input pInputText type="text" required name="IdentifiedRisksToSkin" class="form-control" [(ngModel)]="
                         CareSkinAssessmentFormsData.identifiedRisksToSkin
@@ -598,13 +706,17 @@
                     }}</label>
             </ng-template>
         </div>
-        <div class="col-md-1 form-icon">
-            <i class="fa-solid fa-info"></i>
+        <div class="col-md-2 form-icon d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext"> Mapped to : <b>Observation
+                    </b><br> Care domain : <b>My Skin Care Support Plan</b><br> Sub domain : <b>My Skin Care Plan
+                    </b></span>
+            </div>
         </div>
         <div class="col-md-4 labelcontent">
             <p>Action to manage additional identified risk/s</p>
         </div>
-        <div class="col-md-7 form-text">
+        <div class="col-md-6 form-text">
             <ng-container *ngIf="isEditable; else ActionToManageAdditionalRisk">
                 <input pInputText type="text" required name="ActionToManageAdditionalRisk" class="form-control"
                     [(ngModel)]="
@@ -617,13 +729,17 @@
                     }}</label>
             </ng-template>
         </div>
-        <div class="col-md-1 form-icon">
-            <i class="fa-solid fa-info"></i>
+        <div class="col-md-2 form-icon d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext"> Mapped to : <b>Intervention
+                    </b><br> Care domain : <b>My Skin Care Support Plan</b><br> Sub domain :<b>My Skin Care Plan </b>
+                </span>
+            </div>
         </div>
         <div class="col-md-4 labelcontent form-text">
             <p>MONTHLY REVIEW (or before)</p>
         </div>
-        <div class="col-md-7 form-text">
+        <div class="col-md-6 form-text">
             <ng-container *ngIf="this.isEditable; else MonthlyReview">
                 <p-checkbox [(ngModel)]="CareSkinAssessmentFormsData.monthlyReview" [binary]="true"
                     inputId="binary"></p-checkbox>
@@ -632,11 +748,6 @@
                 <label>{{CareSkinAssessmentFormsData.monthlyReview==true?'yes':'no'}}</label>
             </ng-template>
         </div>
-
-        <div class="col-md-1 form-icon">
-            <i class="fa-solid fa-info"></i>
-        </div>
-
         <div class="col-md-4">
             <div class="labelcontent">
                 <p>Next review date<span class="required">*</span> </p>

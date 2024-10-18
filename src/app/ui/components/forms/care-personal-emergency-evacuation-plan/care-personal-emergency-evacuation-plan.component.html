@@ -43,7 +43,7 @@
                 <p>On which floor of the building is the resident located</p>
             </div>
         </div>
-        <div class="col-md-7 form-text mt-4">
+        <div class="col-md-6 form-text mt-4">
             <ng-container *ngIf="isEditable; else FloorLabel">
                 <p-dropdown name="ResidentFloor" placeholder="--select--" [style]="{ width: '100%' }"
                     [(ngModel)]="PersonalEmergencyFormData.residentFloor" optionLabel="optionName"
@@ -55,8 +55,13 @@
             </ng-template>
         </div>
 
-        <div class="col-md-1 form-icon mt-4">
-            <i class="fa-solid fa-info"></i>
+        <div class="col-md-2 form-icon mt-4 d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext"> Mapped to : <b>observention</b><br> Care domain : <b>My Maintaining a Safe
+                        Environment
+                        Support Plan </b><br> Sub domain : <b>Personal Emergency Evacuation Plan </b>
+                </span>
+            </div>
         </div>
 
         <div class="col-md-4">
@@ -64,7 +69,7 @@
                 <p>Give details of suite and room number</p>
             </div>
         </div>
-        <div class="col-md-7 form-text">
+        <div class="col-md-6 form-text">
             <ng-container *ngIf="isEditable; else RoomNumberLabel">
                 <input pInputText type="text" required name="SuiteAndRoomNumber" class="form-control"
                     [(ngModel)]="PersonalEmergencyFormData.suiteAndRoomNumber" />
@@ -76,8 +81,14 @@
             </ng-template>
         </div>
 
-        <div class="col-md-1 form-icon">
-            <i class="fa-solid fa-info"></i>
+
+        <div class="col-md-2 form-icon mt-4 d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext"> Mapped to : <b>observention</b><br> Care domain : <b>My Maintaining a Safe
+                        Environment
+                        Support Plan </b><br> Sub domain : <b>Personal Emergency Evacuation Plan </b>
+                </span>
+            </div>
         </div>
 
         <div class="col-md-4">
@@ -85,7 +96,7 @@
                 <p>What is the resident's current mobility level</p>
             </div>
         </div>
-        <div class="col-md-7 form-text">
+        <div class="col-md-6 form-text">
             <ng-container *ngIf="isEditable; else MobilityLabel">
                 <p-dropdown name="ResidentMobilityLevel" placeholder="--select--" [style]="{ width: '100%' }"
                     [(ngModel)]="
@@ -100,8 +111,14 @@
             </ng-template>
         </div>
 
-        <div class="col-md-1 form-icon">
-            <i class="fa-solid fa-info"></i>
+
+        <div class="col-md-2 form-icon mt-4 d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext"> Mapped to : <b>observention</b><br> Care domain : <b>My Maintaining a Safe
+                        Environment
+                        Support Plan </b><br> Sub domain : <b>Risk Score For Evacuation </b>
+                </span>
+            </div>
         </div>
 
         <div class="col-md-4">
@@ -111,7 +128,7 @@
                 </p>
             </div>
         </div>
-        <div class="col-md-7 form-text">
+        <div class="col-md-6 form-text">
             <ng-container *ngIf="isEditable; else RiskFactorsLabel">
                 <p-dropdown name="AdditionalRiskFactors" placeholder="--select--" [style]="{ width: '100%' }"
                     [(ngModel)]="
@@ -126,8 +143,14 @@
             </ng-template>
         </div>
 
-        <div class="col-md-1 form-icon">
-            <i class="fa-solid fa-info"></i>
+
+        <div class="col-md-2 form-icon mt-4 d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext"> Mapped to : <b>observention</b><br> Care domain : <b>My Maintaining a Safe
+                        Environment
+                        Support Plan </b><br> Sub domain : <b>personal Centered Information </b>
+                </span>
+            </div>
         </div>
 
         <div class="col-md-4">
@@ -135,7 +158,7 @@
                 <p>Cognition / comprehension</p>
             </div>
         </div>
-        <div class="col-md-7 form-text">
+        <div class="col-md-6 form-text">
             <ng-container *ngIf="isEditable; else CognitionLabel">
                 <p-dropdown name="CognitionComprehension" placeholder="--select--" [style]="{ width: '100%' }"
                     [(ngModel)]="
@@ -149,8 +172,14 @@
             </ng-template>
         </div>
 
-        <div class="col-md-1 form-icon">
-            <i class="fa-solid fa-info"></i>
+
+        <div class="col-md-2 form-icon mt-4 d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext"> Mapped to : <b>observention</b><br> Care domain : <b>My Maintaining a Safe
+                        Environment
+                        Support Plan </b><br> Sub domain : <b>Personal Emergency Evacuation Plan </b>
+                </span>
+            </div>
         </div>
 
         <div class="col-md-4">
@@ -158,7 +187,7 @@
                 <p>Total score</p>
             </div>
         </div>
-        <div class="col-md-7 form-text">
+        <div class="col-md-6 form-text">
             <ng-container *ngIf="isEditable; else TotalScoreLabel">
                 <p-dropdown name="TotalScore" placeholder="--select--" [style]="{ width: '100%' }"
                     [(ngModel)]="PersonalEmergencyFormData.totalScore" optionLabel="optionName" optionValue="optionId"
@@ -173,8 +202,14 @@
             </ng-template>
         </div>
 
-        <div class="col-md-1 form-icon">
-            <i class="fa-solid fa-info"></i>
+
+        <div class="col-md-2 form-icon mt-4 d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext"> Mapped to : <b>observention</b><br> Care domain : <b>My Maintaining a Safe
+                        Environment
+                        Support Plan </b><br> Sub domain : <b>Risk Score For Evacuation </b>
+                </span>
+            </div>
         </div>
 
         <div class="col-md-4">
@@ -182,7 +217,7 @@
                 <p>How many staff will be needed to evacuate the resident</p>
             </div>
         </div>
-        <div class="col-md-7 form-text">
+        <div class="col-md-6 form-text">
             <ng-container *ngIf="isEditable; else StaffNeededLabel">
                 <p-dropdown name="StaffNeeded" placeholder="--select--" [style]="{ width: '100%' }"
                     [(ngModel)]="PersonalEmergencyFormData.staffNeeded" optionLabel="optionName" optionValue="optionId"
@@ -197,8 +232,14 @@
             </ng-template>
         </div>
 
-        <div class="col-md-1 form-icon">
-            <i class="fa-solid fa-info"></i>
+
+        <div class="col-md-2 form-icon mt-4 d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext"> Mapped to : <b>observention</b><br> Care domain : <b>My Maintaining a Safe
+                        Environment
+                        Support Plan <br></b> Sub domain : <b>Personal Emergency Evacuation Plan </b>
+                </span>
+            </div>
         </div>
 
         <div class="col-md-4">
@@ -206,7 +247,7 @@
                 <p>Horizontal evacuation method</p>
             </div>
         </div>
-        <div class="col-md-7 form-text">
+        <div class="col-md-6 form-text">
             <ng-container *ngIf="isEditable; else HorizontalEvacuationLabel">
                 <input pInputText type="text" required name="HorizontalEvacuationMethod" class="form-control"
                     [(ngModel)]="
@@ -224,8 +265,14 @@
             </ng-template>
         </div>
 
-        <div class="col-md-1 form-icon">
-            <i class="fa-solid fa-info"></i>
+
+        <div class="col-md-2 form-icon mt-4 d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext"> Mapped to : <b>observention</b><br> Care domain : <b>My Maintaining a Safe
+                        Environment
+                        Support Plan </b><br> Sub domain : <b>Personal Emergency Evacuation Plan </b>
+                </span>
+            </div>
         </div>
 
         <div class="col-md-4">
@@ -233,7 +280,7 @@
                 <p>Vertical evacuation method</p>
             </div>
         </div>
-        <div class="col-md-7 form-text">
+        <div class="col-md-6 form-text">
             <ng-container *ngIf="isEditable; else VerticalEvacuationLabel">
                 <input pInputText type="text" required name="VerticalEvacuationMethod" class="form-control" [(ngModel)]="
                         PersonalEmergencyFormData.verticalEvacuationMethod
@@ -250,8 +297,14 @@
             </ng-template>
         </div>
 
-        <div class="col-md-1 form-icon">
-            <i class="fa-solid fa-info"></i>
+
+        <div class="col-md-2 form-icon mt-4 d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext"> Mapped to : <b>observention</b><br> Care domain : <b>My Maintaining a Safe
+                        Environment
+                        Support Plan </b><br> Sub domain : <b>Personal Emergency Evacuation Plan </b>
+                </span>
+            </div>
         </div>
 
         <div class="col-md-4">
@@ -261,7 +314,7 @@
                 </p>
             </div>
         </div>
-        <div class="col-md-7 form-text">
+        <div class="col-md-6 form-text">
             <ng-container *ngIf="isEditable; else HazardRiskLabel">
                 <input pInputText type="text" required name="HazardRisk" class="form-control"
                     [(ngModel)]="PersonalEmergencyFormData.hazardRisk" />
@@ -271,8 +324,14 @@
             </ng-template>
         </div>
 
-        <div class="col-md-1 form-icon">
-            <i class="fa-solid fa-info"></i>
+
+        <div class="col-md-2 form-icon mt-4 d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext"> Mapped to : <b>observention</b> <br>Care domain : <b>My Maintaining a Safe
+                        Environment
+                        Support Plan </b><br> Sub domain : <b>Personal Emergency Evacuation Plan </b>
+                </span>
+            </div>
         </div>
 
         <div class="col-md-4">
@@ -280,7 +339,7 @@
                 <p>What are the hazards in relation to the risk to others</p>
             </div>
         </div>
-        <div class="col-md-7 form-text">
+        <div class="col-md-6 form-text">
             <ng-container *ngIf="isEditable; else HazardRiskOthersLabel">
                 <input pInputText type="text" required name="HazardRiskOthers" class="form-control"
                     [(ngModel)]="PersonalEmergencyFormData.hazardRiskOthers" />
@@ -289,8 +348,14 @@
                 <label>{{ PersonalEmergencyFormData.hazardRiskOthers }}</label>
             </ng-template>
         </div>
-        <div class="col-md-1 form-icon">
-            <i class="fa-solid fa-info"></i>
+
+        <div class="col-md-2 form-icon mt-4 d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext"> Mapped to : <b>observention</b><br> Care domain : <b>My Maintaining a Safe
+                        Environment
+                        Support Plan </b><br> Sub domain : <b>Personal Emergency Evacuation Plan </b>
+                </span>
+            </div>
         </div>
 
         <div class="col-md-4">
@@ -298,7 +363,7 @@
                 <p>Control measures</p>
             </div>
         </div>
-        <div class="col-md-7 form-text">
+        <div class="col-md-6 form-text">
             <ng-container *ngIf="isEditable; else ControlMeasuresLabel">
                 <input pInputText type="text" required name="ControlMeasures" class="form-control"
                     [(ngModel)]="PersonalEmergencyFormData.controlMeasures" />
@@ -307,8 +372,14 @@
                 <label>{{ PersonalEmergencyFormData.controlMeasures }}</label>
             </ng-template>
         </div>
-        <div class="col-md-1 form-icon">
-            <i class="fa-solid fa-info"></i>
+
+        <div class="col-md-2 form-icon mt-4 d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext"> Mapped to : <b>observention</b><br> Care domain : <b>My Maintaining a Safe
+                        Environment
+                        Support Plan </b><br> Sub domain : <b>Personal Emergency Evacuation Plan </b>
+                </span>
+            </div>
         </div>
 
         <div class="col-md-4">
@@ -316,7 +387,7 @@
                 <p>Next review date</p>
             </div>
         </div>
-        <div class="col-md-7 form-text">
+        <div class="col-md-6 form-text">
             <div class="input-group date">
                 <ng-container *ngIf="isEditable; else NextReviewDateLabel">
                     <p-calendar name="NextReviewDate" [showIcon]="true" inputId="icon" [dateFormat]="" class="iconcal"

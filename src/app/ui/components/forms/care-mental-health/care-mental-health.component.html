@@ -41,7 +41,7 @@
 
             </div>
         </div>
-        <div class="col-md-7 form-text mt-4 mb-2">
+        <div class="col-md-6 form-text mt-4 mb-2">
             <ng-container *ngIf="this.isEditable; else MentalHealthOrCognitionStatus">
                 <p-checkbox [(ngModel)]="MentalHealthStatus" [binary]="true" inputId="binary"></p-checkbox>
             </ng-container>
@@ -55,7 +55,7 @@
                 <p>What has impacted their cognition?</p>
             </div>
         </div>
-        <div class="col-md-7 form-text">
+        <div class="col-md-6 form-text">
             <ng-container *ngIf="isEditable; else Cognition">
                 <p-dropdown name="CognitionImpact" [(ngModel)]="
                         CareAssessmentMentalHealthFormsData.cognition
@@ -69,15 +69,19 @@
                     }}</label>
             </ng-template>
         </div>
-        <div class="col-md-1 form-icon">
-            <i class="fa-solid fa-info"></i>
+        <div class="col-md-2 form-icon mt-4 d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext"> Mapped to : <b>Observation</b><br> Care domain : <b>My Mental Health ans
+                        Well Being Support Plan </b> <br> Sub domain : <b>Mental Health & Cognition</b>
+                </span>
+            </div>
         </div>
         <div class="col-md-4">
             <div class="labelcontent">
                 <p>How does this make the resident feel, how does it impact their day</p>
             </div>
         </div>
-        <div class="col-md-7 form-text">
+        <div class="col-md-6 form-text">
             <ng-container *ngIf="isEditable; else CognitionImpactOnResidentDay">
                 <input pInputText type="text" required name="CognitionImpactOnResidentDay" class="form-control"
                     [(ngModel)]="
@@ -91,15 +95,19 @@
                     }}</label>
             </ng-template>
         </div>
-        <div class="col-md-1 form-icon">
-            <i class="fa-solid fa-info"></i>
+        <div class="col-md-2 form-icon mt-4 d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext"> Mapped to : <b>Observation</b><br> Care domain : <b>My Mental Health ans
+                        Well Being Support Plan </b> <br> Sub domain : <b>Mental Health & Cognition</b>
+                </span>
+            </div>
         </div>
         <div class="col-md-4">
             <div class="labelcontent">
                 <p>Does the resident have any other mental health condition or symptoms</p>
             </div>
         </div>
-        <div class="col-md-7 form-text">
+        <div class="col-md-6 form-text">
             <ng-container *ngIf="isEditable; else MentalHealthCondition">
                 <p-dropdown name="MentalHealthCondition" [(ngModel)]="
                         CareAssessmentMentalHealthFormsData.mentalHealthCondition
@@ -114,15 +122,19 @@
                     }}</label>
             </ng-template>
         </div>
-        <div class="col-md-1 form-icon">
-            <i class="fa-solid fa-info"></i>
+        <div class="col-md-2 form-icon mt-4 d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext"> Mapped to : <b>Intervation</b><br> Care domain : <b>My Mental Health ans
+                        Well Being Support Plan </b> <br> Sub domain : <b>Mental Health & Cognition</b>
+                </span>
+            </div>
         </div>
         <div class="col-md-4">
             <div class="labelcontent">
                 <p>How does this make the resident feel and how does it impact their day</p>
             </div>
         </div>
-        <div class="col-md-7 form-text">
+        <div class="col-md-6 form-text">
             <ng-container *ngIf="isEditable; else MentalHealthImpactOnResidentDay">
                 <input pInputText type="text" required name="MentalHealthImpactOnResidentDay" class="form-control"
                     [(ngModel)]="
@@ -136,15 +148,21 @@
                     }}</label>
             </ng-template>
         </div>
-        <div class="col-md-1 form-icon">
-            <i class="fa-solid fa-info"></i>
+        <div class="col-md-2 form-icon mt-4 d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext"> Mapped to : <b>Observation</b><br> Care domain : <b>My Mental Health ans
+                        Well Being Support Plan </b> <br> Sub domain : <b>Mental Health & Cognition</b>
+                    <hr> Mapped to : <b>Intervention</b><br> Care domain : <b>My Mental Health ans
+                        Well Being Support Plan </b> <br> Sub domain : <b>Mental Health & Cognition</b>
+                </span>
+            </div>
         </div>
         <div class="col-md-4">
             <div class="labelcontent">
                 <p>Does the resident understand others</p>
             </div>
         </div>
-        <div class="col-md-7 form-text">
+        <div class="col-md-6 form-text">
             <ng-container *ngIf="isEditable; else ResidentUnderstand">
                 <p-dropdown name="ResidentUnderstand" [(ngModel)]="
                         CareAssessmentMentalHealthFormsData.residentUnderstand
@@ -158,15 +176,19 @@
                     }}</label>
             </ng-template>
         </div>
-        <div class="col-md-1 form-icon">
-            <i class="fa-solid fa-info"></i>
+        <div class="col-md-2 form-icon mt-4 d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext"> Mapped to : <b>Observation</b><br> Care domain : <b>My Mental Health ans
+                        Well Being Support Plan </b> <br> Sub domain : <b>Mental Health & Cognition</b>
+                </span>
+            </div>
         </div>
         <div class="col-md-4">
             <div class="labelcontent">
                 <p>Is the resident able to verbally make him / herself understood</p>
             </div>
         </div>
-        <div class="col-md-7 form-text">
+        <div class="col-md-6 form-text">
             <ng-container *ngIf="isEditable; else ResidentVerbalUnderstand">
                 <p-dropdown name="ResidentVerbalUnderstand" [(ngModel)]="
                         CareAssessmentMentalHealthFormsData.residentVerbalUnderstand
@@ -180,15 +202,21 @@
                     }}</label>
             </ng-template>
         </div>
-        <div class="col-md-1 form-icon">
-            <i class="fa-solid fa-info"></i>
+        <div class="col-md-2 form-icon mt-4 d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext"> Mapped to : <b>Observation</b><br> Care domain : <b>My Mental Health ans
+                        Well Being Support Plan </b> <br> Sub domain : <b>Mental Health & Cognition</b>
+                    <hr> Mapped to : <b>Intervention</b><br> Care domain : <b>My Mental Health ans
+                        Well Being Support Plan </b> <br> Sub domain : <b>Mental Health & Cognition</b>
+                </span>
+            </div>
         </div>
         <div class="col-md-4">
             <div class="labelcontent">
                 <p>Detail how the resident makes themself understood</p>
             </div>
         </div>
-        <div class="col-md-7 form-text">
+        <div class="col-md-6 form-text">
             <ng-container *ngIf="isEditable; else ResidentUnderstandDetails">
                 <p-dropdown name="ResidentUnderstandDetails" [(ngModel)]="
                         CareAssessmentMentalHealthFormsData.residentUnderstandDetails
@@ -203,15 +231,21 @@
                     }}</label>
             </ng-template>
         </div>
-        <div class="col-md-1 form-icon">
-            <i class="fa-solid fa-info"></i>
+        <div class="col-md-2 form-icon mt-4 d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext"> Mapped to : <b>Observation</b><br> Care domain : <b>My Mental Health ans
+                        Well Being Support Plan </b> <br> Sub domain : <b>Mental Health & Cognition</b>
+                    <hr> Mapped to : <b>Intervention</b><br> Care domain : <b>My Mental Health ans
+                        Well Being Support Plan </b> <br> Sub domain : <b>Mental Health & Cognition</b>
+                </span>
+            </div>
         </div>
         <div class="col-md-4">
             <div class="labelcontent">
                 <p>Any history of increased states of confusion or delirium</p>
             </div>
         </div>
-        <div class="col-md-7 form-text">
+        <div class="col-md-6 form-text">
             <ng-container *ngIf="isEditable; else Confusion">
                 <p-dropdown name="Confusion" [(ngModel)]="
                         CareAssessmentMentalHealthFormsData.confusion
@@ -226,15 +260,21 @@
                     }}</label>
             </ng-template>
         </div>
-        <div class="col-md-1 form-icon">
-            <i class="fa-solid fa-info"></i>
+        <div class="col-md-2 form-icon mt-4 d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext"> Mapped to : <b>Observation</b><br> Care domain : <b>My Mental Health ans
+                        Well Being Support Plan </b> <br> Sub domain : <b>Mental Health & Cognition</b>
+                    <hr> Mapped to : <b>Intervention</b><br> Care domain : <b>My Mental Health ans
+                        Well Being Support Plan </b> <br> Sub domain : <b>Mental Health & Cognition</b>
+                </span>
+            </div>
         </div>
         <div class="col-md-4">
             <div class="labelcontent">
                 <p>Action to be taken in the event of increased confusion</p>
             </div>
         </div>
-        <div class="col-md-7 form-text">
+        <div class="col-md-6 form-text">
             <ng-container *ngIf="isEditable; else ActionInConfusion">
                 <p-dropdown name="ActionInConfusion" [(ngModel)]="
                         CareAssessmentMentalHealthFormsData.actionInConfusion
@@ -250,15 +290,19 @@
                     }}</label>
             </ng-template>
         </div>
-        <div class="col-md-1 form-icon">
-            <i class="fa-solid fa-info"></i>
+        <div class="col-md-2 form-icon mt-4 d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext"> Mapped to : <b>Intervation</b><br> Care domain : <b>My Mental Health ans
+                        Well Being Support Plan </b> <br> Sub domain : <b>Mental Health & Cognition</b>
+                </span>
+            </div>
         </div>
         <div class="col-md-4">
             <div class="labelcontent">
                 <p>Personal Safety Section</p>
             </div>
         </div>
-        <div class="col-md-7 form-text">
+        <div class="col-md-6 form-text">
             <ng-container *ngIf="isEditable; else PersonalSafety">
                 <p-dropdown name="PersonalSafety" [(ngModel)]="
                         CareAssessmentMentalHealthFormsData.personalSafety
@@ -273,15 +317,19 @@
                     }}</label>
             </ng-template>
         </div>
-        <div class="col-md-1 form-icon">
-            <i class="fa-solid fa-info"></i>
+        <div class="col-md-2 form-icon mt-4 d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext"> Mapped to : <b>Observation</b><br> Care domain : <b>My Mental Health ans
+                        Well Being Support Plan </b> <br> Sub domain : <b>Personal Safety</b>
+                </span>
+            </div>
         </div>
         <div class="col-md-4">
             <div class="labelcontent">
                 <p>Personal safety - probability of resident leaving the home unnoticed</p>
             </div>
         </div>
-        <div class="col-md-7 form-text">
+        <div class="col-md-6 form-text">
             <ng-container *ngIf="isEditable; else LeavingHome">
                 <p-dropdown name="LeavingHome" [(ngModel)]="
                         CareAssessmentMentalHealthFormsData.leavingHome
@@ -296,15 +344,19 @@
                     }}</label>
             </ng-template>
         </div>
-        <div class="col-md-1 form-icon">
-            <i class="fa-solid fa-info"></i>
+        <div class="col-md-2 form-icon mt-4 d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext"> Mapped to : <b>Observation</b><br> Care domain : <b>My Mental Health ans
+                        Well Being Support Plan </b> <br> Sub domain : <b>Personal Safety</b>
+                </span>
+            </div>
         </div>
         <div class="col-md-4">
             <div class="labelcontent">
                 <p>Risk level for personal safety</p>
             </div>
         </div>
-        <div class="col-md-7 form-text">
+        <div class="col-md-6 form-text">
             <ng-container *ngIf="isEditable; else RiskForSafety">
                 <p-dropdown name="RiskForSafety" [(ngModel)]="
                         CareAssessmentMentalHealthFormsData.riskForSafety
@@ -320,15 +372,21 @@
                     }}</label>
             </ng-template>
         </div>
-        <div class="col-md-1 form-icon">
-            <i class="fa-solid fa-info"></i>
+        <div class="col-md-2 form-icon mt-4 d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext"> Mapped to : <b>Observation</b><br> Care domain : <b>My Mental Health ans
+                        Well Being Support Plan </b> <br> Sub domain : <b>Personal Safety</b>
+                    <hr> Mapped to : <b>Intervention</b><br> Care domain : <b>My Mental Health ans
+                        Well Being Support Plan </b> <br> Sub domain : <b>Personal Safety</b>
+                </span>
+            </div>
         </div>
         <div class="col-md-4">
             <div class="labelcontent">
                 <p>Other personal safety / risks to consider</p>
             </div>
         </div>
-        <div class="col-md-7 form-text">
+        <div class="col-md-6 form-text">
             <ng-container *ngIf="isEditable; else OtherRisks">
                 <input pInputText type="text" required name="OtherRisks" class="form-control" [(ngModel)]="
                         CareAssessmentMentalHealthFormsData.otherRisks
@@ -344,15 +402,19 @@
             </ng-template>
 
         </div>
-        <div class="col-md-1 form-icon">
-            <i class="fa-solid fa-info"></i>
+        <div class="col-md-2 form-icon mt-4 d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext"> Mapped to : <b>Observation</b><br> Care domain : <b>My Mental Health ans
+                        Well Being Support Plan </b> <br> Sub domain : <b>Personal Safety</b>
+                </span>
+            </div>
         </div>
         <div class="col-md-4">
             <div class="labelcontent">
                 <p>Professional input / referral</p>
             </div>
         </div>
-        <div class="col-md-7 form-text">
+        <div class="col-md-6 form-text">
             <ng-container *ngIf="isEditable; else ProfessionalInput">
                 <input pInputText type="text" required name="ProfessionalInput" class="form-control" [(ngModel)]="
                         CareAssessmentMentalHealthFormsData.professionalInput
@@ -366,15 +428,21 @@
                     }}</label>
             </ng-template>
         </div>
-        <div class="col-md-1 form-icon">
-            <i class="fa-solid fa-info"></i>
+        <div class="col-md-2 form-icon mt-4 d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext"> Mapped to : <b>Observation</b><br> Care domain : <b>My Mental Health ans
+                        Well Being Support Plan </b> <br> Sub domain : <b>Mental Health & Cognition</b>
+                    <hr> Mapped to : <b>Intervention</b><br> Care domain : <b>My Mental Health ans
+                        Well Being Support Plan </b> <br> Sub domain : <b>Mental Health & Cognition</b>
+                </span>
+            </div>
         </div>
         <div class="col-md-4">
             <div class="labelcontent">
                 <p>Sexuality/Cultural Section</p>
             </div>
         </div>
-        <div class="col-md-7 form-text mb-2">
+        <div class="col-md-6 form-text mb-2">
             <ng-container *ngIf="this.isEditable; else SexualityOrCulturalStatus">
                 <p-checkbox [(ngModel)]="SexualityStatus" [binary]="true" inputId="binary"></p-checkbox>
             </ng-container>
@@ -388,7 +456,7 @@
                 <p>Sexuality</p>
             </div>
         </div>
-        <div class="col-md-7 form-text">
+        <div class="col-md-6 form-text">
             <ng-container *ngIf="isEditable; else Sexuality">
                 <p-dropdown name="Sexuality" [(ngModel)]="
                         CareAssessmentMentalHealthFormsData.sexuality
@@ -403,8 +471,14 @@
                     }}</label>
             </ng-template>
         </div>
-        <div class="col-md-1">
-            <i class="fa-solid fa-info"></i>
+        <div class="col-md-2 form-icon mt-4 d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext"> Mapped to : <b>Observation</b><br> Care domain : <b>My Mental Health ans
+                        Well Being Support Plan </b> <br> Sub domain : <b>Sexuality and Cultural</b>
+                    <hr> Mapped to : <b>Intervention</b><br> Care domain : <b>My Mental Health ans
+                        Well Being Support Plan </b> <br> Sub domain : <b>Sexuality and Cultural</b>
+                </span>
+            </div>
         </div>
 
         <div class="col-md-4">
@@ -412,7 +486,7 @@
                 <p>Sensitivity / privacy</p>
             </div>
         </div>
-        <div class="col-md-7 form-text">
+        <div class="col-md-6 form-text">
             <ng-container *ngIf="isEditable; else Sensitivity">
                 <input pInputText type="text" required name="Sensitivity" class="form-control" [(ngModel)]="
                         CareAssessmentMentalHealthFormsData.sensitivity
@@ -429,15 +503,21 @@
             </ng-template>
 
         </div>
-        <div class="col-md-1">
-            <i class="fa-solid fa-info"></i>
+        <div class="col-md-2 form-icon mt-4 d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext"> Mapped to : <b>Observation</b><br> Care domain : <b>My Mental Health ans
+                        Well Being Support Plan </b> <br> Sub domain : <b>Sexuality and Cultural</b>
+                    <hr> Mapped to : <b>Intervention</b><br> Care domain : <b>My Mental Health ans
+                        Well Being Support Plan </b> <br> Sub domain : <b>Sexuality and Cultural</b>
+                </span>
+            </div>
         </div>
         <div class="col-md-4">
             <div class="labelcontent">
                 <p>Goals the resident wishes to achieve</p>
             </div>
         </div>
-        <div class="col-md-7 form-text">
+        <div class="col-md-6 form-text">
             <ng-container *ngIf="isEditable; else GoalsToAchieve">
                 <p-dropdown name="GoalsToAchieve" [(ngModel)]="
                         CareAssessmentMentalHealthFormsData.goalsToAchieve
@@ -452,8 +532,12 @@
                     }}</label>
             </ng-template>
         </div>
-        <div class="col-md-1">
-            <i class="fa-solid fa-info"></i>
+        <div class="col-md-2 form-icon mt-4 d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext"> Mapped to : <b>Agreed outcome</b><br> Care domain : <b>My Mental Health ans
+                        Well Being Support Plan </b> <br> Sub domain : <b>Mental Health & Congnition</b>
+                </span>
+            </div>
         </div>
         <div class="col-md-4">
             <div class="labelcontent">
@@ -461,7 +545,7 @@
                     sexuality</p>
             </div>
         </div>
-        <div class="col-md-7 form-text">
+        <div class="col-md-6 form-text">
             <ng-container *ngIf="isEditable; else OtherIdentifiedRisks">
                 <input pInputText type="text" required name="OtherIdentifiedRisks" class="form-control" [(ngModel)]="
                         CareAssessmentMentalHealthFormsData.otherIdentifiedRisks
@@ -476,15 +560,19 @@
             </ng-template>
 
         </div>
-        <div class="col-md-1">
-            <i class="fa-solid fa-info"></i>
+        <div class="col-md-2 form-icon mt-4 d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext"> Mapped to : <b>Observation </b><br> Care domain : <b>My Mental Health ans
+                        Well Being Support Plan </b> <br> Sub domain : <b>Well being</b>
+                </span>
+            </div>
         </div>
         <div class="col-md-4">
             <div class="labelcontent">
                 <p>Action to manage additional identified risk/s</p>
             </div>
         </div>
-        <div class="col-md-7 form-text">
+        <div class="col-md-6 form-text">
             <ng-container *ngIf="isEditable; else ActionToManageAdditionalRisk">
                 <input pInputText type="text" required name="ActionToManageAdditionalRisk" class="form-control"
                     [(ngModel)]="
@@ -498,8 +586,12 @@
                     }}</label>
             </ng-template>
         </div>
-        <div class="col-md-1">
-            <i class="fa-solid fa-info"></i>
+        <div class="col-md-2 form-icon mt-4 d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext"> Mapped to : <b>Intervention </b><br> Care domain : <b>My Mental Health ans
+                        Well Being Support Plan </b> <br> Sub domain : <b>Well being</b>
+                </span>
+            </div>
         </div>
         <div class="col-md-4 mt-4">
             <div class="labelcontent">

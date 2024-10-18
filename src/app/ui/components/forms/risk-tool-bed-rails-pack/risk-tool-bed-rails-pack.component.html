@@ -10,7 +10,8 @@
                     <label class="form-label"><b>Designation :</b> {{preSelectedFormData.StartedByDesignation}}</label>
                 </div>
                 <div class="col-md-4">
-                    <label class="form-label"> <b>Date/Time : </b>{{preSelectedFormData.StartedOn | date : customDateFormat.DEF_DATE_TIME}}</label>
+                    <label class="form-label"> <b>Date/Time : </b>{{preSelectedFormData.StartedOn | date :
+                        customDateFormat.DEF_DATE_TIME}}</label>
                 </div>
             </div>
             <div class="d-flex">
@@ -22,7 +23,8 @@
                     <label class="form-label"> <b>Designation :</b>{{preSelectedFormData.ModifiedByDesignation}}</label>
                 </div>
                 <div class="col-md-4">
-                    <label class="form-label"> <b>Date/Time :</b> {{preSelectedFormData.ModifiedOn | date: customDateFormat.DEF_DATE_TIME}}</label>
+                    <label class="form-label"> <b>Date/Time :</b> {{preSelectedFormData.ModifiedOn | date:
+                        customDateFormat.DEF_DATE_TIME}}</label>
                 </div>
             </div>
         </div>
@@ -31,24 +33,27 @@
                 <p>What are the alternatives to bed rails that have been considered and or tried</p>
             </div>
         </div>
-        <div class="col-md-7 mt-4">
+        <div class="col-md-6 mt-4">
             <ng-container *ngIf="this.isEditable; else BedRailsAlt">
-                <input pInputText type="text" [(ngModel)]="RiskToolFormsData.BedRailsAlt" required name="RiskToolFormsData.BedRailsAlt" class="form-control mr-4"  [style]="{ width: '35%' }">
+                <input pInputText type="text" [(ngModel)]="RiskToolFormsData.BedRailsAlt" required
+                    name="RiskToolFormsData.BedRailsAlt" class="form-control mr-4" [style]="{ width: '35%' }">
                 <p class="mb-4">Such as low bed, safety matts and bed sensors (DEMCOM)</p>
             </ng-container>
             <ng-template #BedRailsAlt>
                 <label>{{RiskToolFormsData.BedRailsAlt}}</label>
             </ng-template>
-            
+
         </div>
         <div class="col-md-4">
             <div class="labelcontent">
                 <p>The risk of not using bed rails</p>
             </div>
         </div>
-        <div class="col-md-7">
+        <div class="col-md-6">
             <ng-container *ngIf="this.isEditable; else BedRailsNotUseRisk">
-                <p-dropdown [required]="true" [options]="lstBedRailsNotUseRisk"   optionLabel="optionName" [(ngModel)]="RiskToolFormsData.BedRailsNotUseRisk" name="RiskToolFormsData.BedRailsNotUseRisk" optionValue="optionId" placeholder="--select--" [style]="{ width: '100%' }">
+                <p-dropdown [required]="true" [options]="lstBedRailsNotUseRisk" optionLabel="optionName"
+                    [(ngModel)]="RiskToolFormsData.BedRailsNotUseRisk" name="RiskToolFormsData.BedRailsNotUseRisk"
+                    optionValue="optionId" placeholder="--select--" [style]="{ width: '100%' }">
                 </p-dropdown>
                 <p class="mb-4">Please select all appropriate options</p>
             </ng-container>
@@ -61,16 +66,18 @@
                 <p>Total number of identified risks from NOT using bedrails</p>
             </div>
         </div>
-        <div class="col-md-7">
+        <div class="col-md-6">
             <div class="d-flex align-items-center">
                 <ng-container *ngIf="this.isEditable; else BedRailsNotUseRisksNumber">
-                    <input pInputText type="text" [(ngModel)]="RiskToolFormsData.BedRailsNotUseRisksNumber" required name="RiskToolFormsData.BedRailsNotUseRisksNumber" class="form-control mr-4"  [style]="{ width: '35%' }">
-                    <p class="mb-4">Allowed text entry format: "-.0123456789" eg:"-75.2"</p>
+                    <input pInputText type="text" [(ngModel)]="RiskToolFormsData.BedRailsNotUseRisksNumber" required
+                        name="RiskToolFormsData.BedRailsNotUseRisksNumber" class="form-control mr-4"
+                        [style]="{ width: '35%' }">
+                    <p class="mb-4">Allowed text entry format: "-.0123456689" eg:"-65.2"</p>
                 </ng-container>
                 <ng-template #BedRailsNotUseRisksNumber>
                     <label>{{RiskToolFormsData.BedRailsNotUseRisksNumber}}</label>
                 </ng-template>
-                
+
             </div>
         </div>
         <div class="col-md-4">
@@ -78,32 +85,36 @@
                 <p>The risk of using bed rails</p>
             </div>
         </div>
-        <div class="col-md-7">
+        <div class="col-md-6">
             <ng-container *ngIf="this.isEditable; else BedRailsUseRisk">
-                <p-dropdown [required]="true" [options]="lstBedRailsUseRisk"   optionLabel="optionName" [(ngModel)]="RiskToolFormsData.BedRailsUseRisk" name="RiskToolFormsData.BedRailsUseRisk" optionValue="optionId" placeholder="--select--" [style]="{ width: '100%' }">
+                <p-dropdown [required]="true" [options]="lstBedRailsUseRisk" optionLabel="optionName"
+                    [(ngModel)]="RiskToolFormsData.BedRailsUseRisk" name="RiskToolFormsData.BedRailsUseRisk"
+                    optionValue="optionId" placeholder="--select--" [style]="{ width: '100%' }">
                 </p-dropdown>
                 <p class="mb-4">Please select all appropriate options</p>
             </ng-container>
             <ng-template #BedRailsUseRisk>
                 <label>{{RiskToolFormsData.BedRailsUseRiskName}}</label>
             </ng-template>
-            
+
         </div>
         <div class="col-md-4">
             <div class="labelcontent">
                 <p>Total number of options relating to USING bed rails</p>
             </div>
         </div>
-        <div class="col-md-7">
+        <div class="col-md-6">
             <div class="d-flex align-items-center">
                 <ng-container *ngIf="this.isEditable; else BedRailsUseOptions">
-                    <input pInputText type="text" [(ngModel)]="RiskToolFormsData.BedRailsUseOptions" required name="RiskToolFormsData.BedRailsUseOptions" class="form-control mr-4"  [style]="{ width: '35%' }">
-                    <p class="mb-4">Allowed text entry format: "-.0123456789" eg:"-75.2"</p>
+                    <input pInputText type="text" [(ngModel)]="RiskToolFormsData.BedRailsUseOptions" required
+                        name="RiskToolFormsData.BedRailsUseOptions" class="form-control mr-4"
+                        [style]="{ width: '35%' }">
+                    <p class="mb-4">Allowed text entry format: "-.0123456689" eg:"-65.2"</p>
                 </ng-container>
                 <ng-template #BedRailsUseOptions>
                     <label>{{RiskToolFormsData.BedRailsUseOptions}}</label>
                 </ng-template>
-                
+
             </div>
         </div>
         <div class="col-md-4">
@@ -112,28 +123,37 @@
                 </p>
             </div>
         </div>
-        <div class="col-md-7">
+        <div class="col-md-6">
             <ng-container *ngIf="this.isEditable; else BedRailUseExceedsBedRailNotUse">
-                <p-dropdown [required]="true" [options]="lstBedRailUseExceedsBedRailNotUse"   optionLabel="optionName" [(ngModel)]="RiskToolFormsData.BedRailUseExceedsBedRailNotUse" name="RiskToolFormsData.BedRailUseExceedsBedRailNotUse" optionValue="optionId" placeholder="--select--" [style]="{ width: '100%' }">
+                <p-dropdown [required]="true" [options]="lstBedRailUseExceedsBedRailNotUse" optionLabel="optionName"
+                    [(ngModel)]="RiskToolFormsData.BedRailUseExceedsBedRailNotUse"
+                    name="RiskToolFormsData.BedRailUseExceedsBedRailNotUse" optionValue="optionId"
+                    placeholder="--select--" [style]="{ width: '100%' }">
                 </p-dropdown>
                 <p class="mb-4">Based on the risk assessment is the resident safe for the use of bed rails</p>
             </ng-container>
             <ng-template #BedRailUseExceedsBedRailNotUse>
                 <label>{{RiskToolFormsData.BedRailUseExceedsBedRailNotUseName}}</label>
             </ng-template>
-            
+
         </div>
-        <div class="col-md-1 form-icon ">
-            <i class="fa-solid fa-info"></i>
+        <div class="col-md-2 form-icon  d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext"> Mapped to : <b>Intervention
+                    </b><br> Care domain : <b>My sleeep and Resting Support tool </b>
+                </span>
+            </div>
         </div>
         <div class="col-md-4">
             <div class="labelcontent">
                 <p>On what ground do you suspect there might be a reason to question the residents capacity</p>
             </div>
         </div>
-        <div class="col-md-7">
+        <div class="col-md-6">
             <ng-container *ngIf="this.isEditable; else CapacityReason">
-                <p-dropdown [required]="true" [options]="lstCapacityReason"   optionLabel="optionName" [(ngModel)]="RiskToolFormsData.CapacityReason" name="RiskToolFormsData.CapacityReason" optionValue="optionId" placeholder="--select--" [style]="{ width: '100%' }">
+                <p-dropdown [required]="true" [options]="lstCapacityReason" optionLabel="optionName"
+                    [(ngModel)]="RiskToolFormsData.CapacityReason" name="RiskToolFormsData.CapacityReason"
+                    optionValue="optionId" placeholder="--select--" [style]="{ width: '100%' }">
                 </p-dropdown>
             </ng-container>
             <ng-template #CapacityReason>
@@ -146,9 +166,11 @@
                 </p>
             </div>
         </div>
-        <div class="col-md-7">
+        <div class="col-md-6">
             <ng-container *ngIf="this.isEditable; else MindImpairment">
-                <p-dropdown [required]="true" [options]="lstMindImpairment"   optionLabel="optionName" [(ngModel)]="RiskToolFormsData.MindImpairment" name="RiskToolFormsData.MindImpairment" optionValue="optionId" placeholder="--select--" [style]="{ width: '100%' }">
+                <p-dropdown [required]="true" [options]="lstMindImpairment" optionLabel="optionName"
+                    [(ngModel)]="RiskToolFormsData.MindImpairment" name="RiskToolFormsData.MindImpairment"
+                    optionValue="optionId" placeholder="--select--" [style]="{ width: '100%' }">
                 </p-dropdown>
             </ng-container>
             <ng-template #MindImpairment>
@@ -160,16 +182,17 @@
                 <p>Describe type of impairment or disturbance in the functioning of the brain or the mind</p>
             </div>
         </div>
-        <div class="col-md-7">
+        <div class="col-md-6">
             <ng-container *ngIf="this.isEditable; else MindImpairmentType">
-                <input pInputText type="text" [(ngModel)]="RiskToolFormsData.MindImpairmentType" required name="RiskToolFormsData.MindImpairmentType" class="form-control mr-4"  [style]="{ width: '35%' }">
+                <input pInputText type="text" [(ngModel)]="RiskToolFormsData.MindImpairmentType" required
+                    name="RiskToolFormsData.MindImpairmentType" class="form-control mr-4" [style]="{ width: '35%' }">
                 <p class="mb-4">Neurological disorders, learning disabilities, Mental disorder, Dementia, Stroke, Head
                     Injury, Delirium, Unconsciousness, Substance misuse, or other</p>
             </ng-container>
             <ng-template #MindImpairmentType>
                 <label>{{RiskToolFormsData.MindImpairmentType}}</label>
             </ng-template>
-            
+
         </div>
         <div class="col-md-4">
             <div class="labelcontent">
@@ -177,9 +200,12 @@
                     decision</p>
             </div>
         </div>
-        <div class="col-md-7">
+        <div class="col-md-6">
             <ng-container *ngIf="this.isEditable; else DecisionLackDueToDisturb">
-                <p-dropdown [required]="true" [options]="lstDecisionLackDueToDisturb"   optionLabel="optionName" [(ngModel)]="RiskToolFormsData.DecisionLackDueToDisturb" name="RiskToolFormsData.DecisionLackDueToDisturb" optionValue="optionId" placeholder="--select--" [style]="{ width: '100%' }">
+                <p-dropdown [required]="true" [options]="lstDecisionLackDueToDisturb" optionLabel="optionName"
+                    [(ngModel)]="RiskToolFormsData.DecisionLackDueToDisturb"
+                    name="RiskToolFormsData.DecisionLackDueToDisturb" optionValue="optionId" placeholder="--select--"
+                    [style]="{ width: '100%' }">
                 </p-dropdown>
             </ng-container>
             <ng-template #DecisionLackDueToDisturb>
@@ -191,58 +217,71 @@
                 <p>Describe the setting in which you have assessed the resident's capacity</p>
             </div>
         </div>
-        <div class="col-md-7">
+        <div class="col-md-6">
             <ng-container *ngIf="this.isEditable; else SettingDetails">
-                <input pInputText type="text" [(ngModel)]="RiskToolFormsData.SettingDetails" required name="RiskToolFormsData.SettingDetails" class="form-control mr-4"  [style]="{ width: '35%' }">
-                <p class="mb-4">Communication (signing, verbal, gesturing), who was present, environment, questions asked,
-                    resident body language, how did the resident demonstrate they understood and appreciated consequences of
+                <input pInputText type="text" [(ngModel)]="RiskToolFormsData.SettingDetails" required
+                    name="RiskToolFormsData.SettingDetails" class="form-control mr-4" [style]="{ width: '35%' }">
+                <p class="mb-4">Communication (signing, verbal, gesturing), who was present, environment, questions
+                    asked,
+                    resident body language, how did the resident demonstrate they understood and appreciated
+                    consequences of
                     the decision</p>
             </ng-container>
             <ng-template #SettingDetails>
                 <label>{{RiskToolFormsData.SettingDetails}}</label>
             </ng-template>
-            
+
         </div>
         <div class="col-md-4">
             <div class="labelcontent">
                 <p>Has a second opinion been sought</p>
             </div>
         </div>
-        <div class="col-md-7">
+        <div class="col-md-6">
             <ng-container *ngIf="this.isEditable; else SecondOpinionCheck">
-                <input pInputText type="text" [(ngModel)]="RiskToolFormsData.SecondOpinionCheck" required name="RiskToolFormsData.SecondOpinionCheck" class="form-control mr-4"  [style]="{ width: '35%' }">
+                <input pInputText type="text" [(ngModel)]="RiskToolFormsData.SecondOpinionCheck" required
+                    name="RiskToolFormsData.SecondOpinionCheck" class="form-control mr-4" [style]="{ width: '35%' }">
                 <p class="mb-4">If so, record who and when</p>
             </ng-container>
             <ng-template #SecondOpinionCheck>
                 <label>{{RiskToolFormsData.SecondOpinionCheck}}</label>
             </ng-template>
-            
+
         </div>
         <div class="col-md-4">
             <div class="labelcontent">
                 <p>Does the resident have capacity to make an informed decision in relation to the use of bed rails</p>
             </div>
         </div>
-        <div class="col-md-7">
+        <div class="col-md-6">
             <ng-container *ngIf="this.isEditable; else BedRailsUseDecision">
-                <p-dropdown [required]="true" [options]="lstBedRailsUseDecision"   optionLabel="optionName" [(ngModel)]="RiskToolFormsData.BedRailsUseDecision" name="RiskToolFormsData.BedRailsUseDecision" optionValue="optionId" placeholder="--select--" [style]="{ width: '100%' }">
+                <p-dropdown [required]="true" [options]="lstBedRailsUseDecision" optionLabel="optionName"
+                    [(ngModel)]="RiskToolFormsData.BedRailsUseDecision" name="RiskToolFormsData.BedRailsUseDecision"
+                    optionValue="optionId" placeholder="--select--" [style]="{ width: '100%' }">
                 </p-dropdown>
             </ng-container>
             <ng-template #BedRailsUseDecision>
                 <label>{{RiskToolFormsData.BedRailsUseDecisionName}}</label>
             </ng-template>
         </div>
-        <div class="col-md-1 form-icon ">
-            <i class="fa-solid fa-info"></i>
+        <div class="col-md-2 form-icon  d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext"> Mapped to : <b>Observetion
+                    </b><br> Care domain : <b>My sleeep and Resting Support tool </b> <br>
+                    Sub domain : <b>Capicity </b>
+                </span>
+            </div>
         </div>
         <div class="col-md-4">
             <div class="labelcontent">
                 <p>Other consideration</p>
             </div>
         </div>
-        <div class="col-md-7">
+        <div class="col-md-6">
             <ng-container *ngIf="this.isEditable; else Consideration">
-                <p-dropdown [required]="true" [options]="lstConsideration"   optionLabel="optionName" [(ngModel)]="RiskToolFormsData.Consideration" name="RiskToolFormsData.Consideration" optionValue="optionId" placeholder="--select--" [style]="{ width: '100%' }">
+                <p-dropdown [required]="true" [options]="lstConsideration" optionLabel="optionName"
+                    [(ngModel)]="RiskToolFormsData.Consideration" name="RiskToolFormsData.Consideration"
+                    optionValue="optionId" placeholder="--select--" [style]="{ width: '100%' }">
                 </p-dropdown>
             </ng-container>
             <ng-template #Consideration>
@@ -255,9 +294,11 @@
                 </p>
             </div>
         </div>
-        <div class="col-md-7">
+        <div class="col-md-6">
             <ng-container *ngIf="this.isEditable; else NotUseConsiderationAction">
-                <input pInputText type="text" [(ngModel)]="RiskToolFormsData.NotUseConsiderationAction" required name="RiskToolFormsData.NotUseConsiderationAction" class="form-control mr-4"  [style]="{ width: '35%' }">
+                <input pInputText type="text" [(ngModel)]="RiskToolFormsData.NotUseConsiderationAction" required
+                    name="RiskToolFormsData.NotUseConsiderationAction" class="form-control mr-4"
+                    [style]="{ width: '35%' }">
             </ng-container>
             <ng-template #NotUseConsiderationAction>
                 <label>{{RiskToolFormsData.NotUseConsiderationAction}}</label>
@@ -268,23 +309,26 @@
                 <p>Have you consulted with and considered the views of the following people</p>
             </div>
         </div>
-        <div class="col-md-7">
+        <div class="col-md-6">
             <ng-container *ngIf="this.isEditable; else ConsultedStatus">
-                <p-dropdown [required]="true" [options]="lstConsultedStatus"   optionLabel="optionName" [(ngModel)]="RiskToolFormsData.ConsultedStatus" name="RiskToolFormsData.ConsultedStatus" optionValue="optionId" placeholder="--select--" [style]="{ width: '100%' }">
+                <p-dropdown [required]="true" [options]="lstConsultedStatus" optionLabel="optionName"
+                    [(ngModel)]="RiskToolFormsData.ConsultedStatus" name="RiskToolFormsData.ConsultedStatus"
+                    optionValue="optionId" placeholder="--select--" [style]="{ width: '100%' }">
                 </p-dropdown>
             </ng-container>
             <ng-template #ConsultedStatus>
                 <label>{{RiskToolFormsData.ConsultedStatusName}}</label>
-            </ng-template> 
+            </ng-template>
         </div>
         <div class="col-md-4">
             <div class="labelcontent">
                 <p>Describe who has been contacted, when and their views</p>
             </div>
         </div>
-        <div class="col-md-7">
+        <div class="col-md-6">
             <ng-container *ngIf="this.isEditable; else ContactDetails">
-                <input pInputText type="text" [(ngModel)]="RiskToolFormsData.ContactDetails" required name="RiskToolFormsData.ContactDetails" class="form-control mr-4"  [style]="{ width: '35%' }">
+                <input pInputText type="text" [(ngModel)]="RiskToolFormsData.ContactDetails" required
+                    name="RiskToolFormsData.ContactDetails" class="form-control mr-4" [style]="{ width: '35%' }">
             </ng-container>
             <ng-template #ContactDetails>
                 <label>{{RiskToolFormsData.ContactDetails}}</label>
@@ -295,23 +339,27 @@
                 <p>Bed rails fitting risk assessment</p>
             </div>
         </div>
-        <div class="col-md-7">
+        <div class="col-md-6">
             <ng-container *ngIf="this.isEditable; else BedRailsFitRisk">
-                <p-dropdown [required]="true" [options]="lstBedRailsFitRisk"   optionLabel="optionName" [(ngModel)]="RiskToolFormsData.BedRailsFitRisk" name="RiskToolFormsData.BedRailsFitRisk" optionValue="optionId" placeholder="--select--" [style]="{ width: '100%' }">
+                <p-dropdown [required]="true" [options]="lstBedRailsFitRisk" optionLabel="optionName"
+                    [(ngModel)]="RiskToolFormsData.BedRailsFitRisk" name="RiskToolFormsData.BedRailsFitRisk"
+                    optionValue="optionId" placeholder="--select--" [style]="{ width: '100%' }">
                 </p-dropdown>
             </ng-container>
             <ng-template #BedRailsFitRisk>
                 <label>{{RiskToolFormsData.BedRailsFitRiskName}}</label>
-            </ng-template> 
+            </ng-template>
         </div>
         <div class="col-md-4">
             <div class="labelcontent">
                 <p>If any of the above are deemed, ''not acceptable'' what actions are being taken</p>
             </div>
         </div>
-        <div class="col-md-7">
+        <div class="col-md-6">
             <ng-container *ngIf="this.isEditable; else NotUseBedRailFitRiskAction">
-                <input pInputText type="text" [(ngModel)]="RiskToolFormsData.NotUseBedRailFitRiskAction" required name="RiskToolFormsData.NotUseBedRailFitRiskAction" class="form-control mr-4"  [style]="{ width: '35%' }">
+                <input pInputText type="text" [(ngModel)]="RiskToolFormsData.NotUseBedRailFitRiskAction" required
+                    name="RiskToolFormsData.NotUseBedRailFitRiskAction" class="form-control mr-4"
+                    [style]="{ width: '35%' }">
                 <p class="mb-4">By what date and whom</p>
             </ng-container>
             <ng-template #NotUseBedRailFitRiskAction>
@@ -323,7 +371,7 @@
                 <p>THIS FORM SHOULD BE REVIEWED MONTHLY OR BEFORE IF NECESSARY</p>
             </div>
         </div>
-        <div class="col-md-7">
+        <div class="col-md-6">
             <ng-container *ngIf="this.isEditable; else MonthlyReview">
                 <p-checkbox [(ngModel)]="RiskToolFormsData.MonthlyReview" [binary]="true" inputId="binary"></p-checkbox>
             </ng-container>
@@ -336,11 +384,12 @@
                 <p>Next review date</p>
             </div>
         </div>
-        <div class="col-md-7 my-3">
+        <div class="col-md-6 my-3">
             <div class="input-group date">
                 <ng-container *ngIf="this.isEditable; else ReviewDate">
-                    <p-calendar name="RiskToolFormsData.ReviewDate" [showIcon]="true" inputId="icon" class="iconcal" [(ngModel)]="RiskToolFormsData.ReviewDate"
-                        [readonlyInput]="true" appendTo="body" [maxDate]="" #dobref=""></p-calendar>
+                    <p-calendar name="RiskToolFormsData.ReviewDate" [showIcon]="true" inputId="icon" class="iconcal"
+                        [(ngModel)]="RiskToolFormsData.ReviewDate" [readonlyInput]="true" appendTo="body" [maxDate]=""
+                        #dobref=""></p-calendar>
                     <div *ngIf="" class="alert alert-danger">
                     </div>
                 </ng-container>
@@ -353,37 +402,21 @@
             <ng-container *ngIf="isEditable; else savePdf">
                 <div>
                     <span class="p-ml-left mr-4">
-                        <button
-                            pButton
-                            title="New"
-                            label="Save as Unfinished"
-                            (click)="saveAsUnfinished()"
-                        ></button>
+                        <button pButton title="New" label="Save as Unfinished" (click)="saveAsUnfinished()"></button>
                         <span class="total-txt"></span>
                     </span>
                 </div>
                 <div>
                     <span class="p-ml-left mr-4">
-                        <button
-                            pButton
-                            title="New"
-                            label="Complete"
-                            (click)="completeForm()"
-                            [disabled]="
+                        <button pButton title="New" label="Complete" (click)="completeForm()" [disabled]="
                                 RiskToolFormsData.IsFormCompleted
-                            "
-                        ></button>
+                            "></button>
                         <span class="total-txt"></span>
                     </span>
                 </div>
             </ng-container>
             <ng-template #savePdf>
-                <button
-                    pButton
-                    title="Save as PDF"
-                    label="Save as PDF"
-                    (click)="SaveAsPDF()"
-                ></button>
+                <button pButton title="Save as PDF" label="Save as PDF" (click)="SaveAsPDF()"></button>
             </ng-template>
         </div>
     </div>

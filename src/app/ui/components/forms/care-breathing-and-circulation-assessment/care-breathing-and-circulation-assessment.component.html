@@ -46,7 +46,7 @@
                         and circulation </p>
                 </div>
             </div>
-            <div class="col-md-7 mt-4 ">
+            <div class="col-md-6 mt-4 ">
                 <ng-container *ngIf="isEditable==true">
                     <p-dropdown placeholder="--select--" [(ngModel)]="careBreathAssFormsData.careBreathDecision"
                         name="ddlCareBreathDecision" [style]="{ width: '100%' }" [options]="lstBreathDecisionMaster"
@@ -57,22 +57,35 @@
                     <p>{{careBreathAssFormsData.decisionName}}</p>
                 </ng-container>
             </div>
-            <div class="col-md-1 form-icon mt-4">
-                <i class="fa-solid fa-info"></i>
+            <div class="col-md-2 form-icon mt-4 d-flex justify-content-start">
+                <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                    <span class="tooltiptext">Mapped to : <b>Observation</b><br> Care domain:<b> My Breathing and
+                            Circulation Plan</b> <br> Sub domain: <b>Capacity</b>
+                        <hr> Mapped to : <b>Intervention</b> <br>
+                        Care domain : <b> My Breathing and Circulation Plan</b> <br> Sub domain: <b>Capacity </b>
+                    </span>
+                </div>
             </div>
             <div class="col-md-4">
                 <div class="labelcontent">
                     <p>Detail specific decision relating to the resident's breathing and circulation</p>
                 </div>
             </div>
-            <div class="col-md-7 form-text ">
+            <div class="col-md-6 form-text ">
                 <input *ngIf="isEditable==true" pInputText type="text" name="txtDetailsSpecificDecision"
                     [(ngModel)]="careBreathAssFormsData.detailsSpecificDecision" class="form-control" />
                 <p *ngIf="isEditable!=true">{{careBreathAssFormsData.detailsSpecificDecision}}</p>
                 <p class=" mb-4" *ngIf="isEditable==true">Only answer if the resident lacks capacity</p>
             </div>
-            <div class="col-md-1 form-icon">
-                <i class="fa-solid fa-info"></i>
+
+            <div class="col-md-2 form-icon mt-4 d-flex justify-content-start">
+                <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                    <span class="tooltiptext">Mapped to : <b> Observation</b><br> Care domain:<b> My Breathing and
+                            Circulation Plan</b>
+                        <hr> Mapped to : <b>Intervention</b> <br>
+                        Care domain : <b> My Breathing and Circulation Plan</b> <br> Sub domain:<b> Capicity</b>
+                    </span>
+                </div>
             </div>
 
             <div class="col-md-4">
@@ -80,13 +93,21 @@
                     <P>History of breathing difficulties and Chest infections</P>
                 </div>
             </div>
-            <div class="col-md-7 form-text">
+            <div class="col-md-6 form-text">
                 <input *ngIf="isEditable==true" pInputText type="text" name="txtHistoryBreathingDificulty"
                     [(ngModel)]="careBreathAssFormsData.historyBreathingDificulty" class="form-control" />
                 <p *ngIf="isEditable!=true">{{careBreathAssFormsData.historyBreathingDificulty}}</p>
             </div>
-            <div class="col-md-1 form-icon">
-                <i class="fa-solid fa-info"></i>
+            <div class="col-md-2 form-icon mt-4 d-flex justify-content-start">
+                <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                    <span class="tooltiptext">Mapped to : <b>Observation</b><br> Care domain:<b> My Breathing and
+                            Circulation Plan</b><br> Sub domain: <b>My Breathing & Circulation Plan </b>
+                        <hr> Mapped to :
+                        <b>Intervention</b> <br>
+                        Care domain : <b> My Breathing and Circulation Plan</b> <br> Sub domain: <b>My Breathing &
+                            Circulation Plan </b>
+                    </span>
+                </div>
             </div>
 
             <div class="col-md-4">
@@ -94,7 +115,7 @@
                     <p>Breathing difficulties</p>
                 </div>
             </div>
-            <div class="col-md-7 form-text">
+            <div class="col-md-6 form-text">
                 <ng-container *ngIf="isEditable==true">
                     <p-dropdown placeholder="--select--" [(ngModel)]="careBreathAssFormsData.breathDifficulties"
                         name="ddlBreathDifficulties" [style]="{ width: '100%' }"
@@ -105,32 +126,47 @@
                     <p>{{careBreathAssFormsData.dificultyName}}</p>
                 </ng-container>
             </div>
-            <div class="col-md-1 form-icon">
-                <i class="fa-solid fa-info"></i>
+            <div class="col-md-2 form-icon mt-4 d-flex justify-content-start">
+                <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                    <span class="tooltiptext">Mapped to : <b>Observation</b><br> Care domain:<b> My Breathing and
+                            Circulation Plan</b><br> Sub domain: <b>My Breathing & Circulation Plan </b>
+                        <hr> Mapped to :
+                        <b>Intervention</b> <br>
+                        Care domain : <b> My Breathing and Circulation Plan</b> <br> Sub domain: <b>My Breathing &
+                            Circulation Plan </b>
+                    </span>
+                </div>
             </div>
 
             <div class="col-md-4">
                 <div class="labelcontent">
-                    <p>Details of breathing difficulties and support required what is their baseline/normal presentation
+                    <p>Details of breathing difficulties and support required what is their baseline/normal
+                        presentation
                         look like</p>
                 </div>
             </div>
-            <div class="col-md-7 form-text">
+            <div class="col-md-6 form-text">
                 <input *ngIf="isEditable==true" pInputText type="text" name="txtDetailsBreathingDificulty"
                     [(ngModel)]="careBreathAssFormsData.detailsBreathingDificulty" class="form-control" />
                 <p *ngIf="isEditable!=true">{{careBreathAssFormsData.detailsBreathingDificulty}}</p>
             </div>
-            <div class="col-md-1 form-icon">
-                <i class="fa-solid fa-info"></i>
+            <div class="col-md-2 form-icon mt-4 d-flex justify-content-start">
+                <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                    <span class="tooltiptext">Mapped to : <b>Observation</b><br> Care domain:<b> My Breathing and
+                            Circulation Plan</b><br> Sub domain: <b>My Breathing & Circulation Support Plan </b>
+                        <hr> Mapped to :
+                        <b>Intervention</b> <br>
+                        Care domain : <b> My Breathing and Circulation Plan</b> <br> Sub domain: <b>My Breathing &
+                            Circulation Plan </b>
+                    </span>
+                </div>
             </div>
-
             <div class="col-md-4">
                 <div class="labelcontent">
                     <p>Smoking history</p>
-
                 </div>
             </div>
-            <div class="col-md-7 form-text">
+            <div class="col-md-6 form-text">
                 <ng-container *ngIf="isEditable==true">
                     <p-dropdown placeholder="--select--" [(ngModel)]="careBreathAssFormsData.smokingHistory"
                         name="ddlSmokingHistory" [style]="{ width: '100%' }"
@@ -141,15 +177,23 @@
                     <p>{{careBreathAssFormsData.habitName}}</p>
                 </ng-container>
             </div>
-            <div class="col-md-1 form-icon">
-                <i class="fa-solid fa-info"></i>
+            <div class="col-md-2 form-icon mt-4 d-flex justify-content-start">
+                <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                    <span class="tooltiptext">Mapped to : <b>Observation</b><br> Care domain:<b> My Breathing and
+                            Circulation Plan</b><br> Sub domain: <b>My Breathing & Circulation Support Plan </b>
+                        <hr> Mapped to :
+                        <b>Intervention</b> <br>
+                        Care domain : <b> My Breathing and Circulation Plan</b> <br> Sub domain: <b>My Breathing &
+                            Circulation Plan </b>
+                    </span>
+                </div>
             </div>
             <div class="col-md-4">
                 <div class="labelcontent">
                     <p>Smoking details</p>
                 </div>
             </div>
-            <div class="col-md-7 form-text">
+            <div class="col-md-6 form-text">
                 <input *ngIf="isEditable==true" pInputText type="text" name="txtSmokingDetails"
                     [(ngModel)]="careBreathAssFormsData.smokingDetails" class="form-control" />
                 <p *ngIf="isEditable!=true">{{careBreathAssFormsData.smokingDetails}}</p>
@@ -161,34 +205,51 @@
                     when
                     they smoke</p>
             </div>
-            <div class="col-md-1 form-icon">
-                <i class="fa-solid fa-info"></i>
+            <div class="col-md-2 form-icon mt-4 d-flex justify-content-start">
+                <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                    <span class="tooltiptext">Mapped to : <b>Observation</b><br> Care domain:<b> My Breathing and
+                            Circulation Plan</b><br> Sub domain: <b>My Breathing & Circulation Plan </b>
+                        <hr> Mapped to :
+                        <b>Intervention</b> <br>
+                        Care domain : <b> My Breathing and Circulation Plan</b> <br> Sub domain: <b>My Breathing &
+                            Circulation Plan </b>
+                    </span>
+                </div>
             </div>
             <div class="col-md-4">
                 <div class="labelcontent">
                     <p>Hazards relating to the resident smoking</p>
                 </div>
             </div>
-            <div class="col-md-7 form-text">
+            <div class="col-md-6 form-text">
                 <input *ngIf="isEditable==true" pInputText type="text" name="txtHazardSmokingDetails"
                     [(ngModel)]="careBreathAssFormsData.hazardSmokingDetails" class="form-control" />
                 <p *ngIf="isEditable!=true">{{careBreathAssFormsData.hazardSmokingDetails}}</p>
-                <p class=" mb-4" *ngIf="isEditable==true">Who is at risk of harm if a fire were to start. What factors
+                <p class=" mb-4" *ngIf="isEditable==true">Who is at risk of harm if a fire were to start. What
+                    factors
                     further increase the risk
                     of
                     fire. What
                     specific equipment is required e.g. fire retardant tabard, combustibles use of flammable topical
                     applications</p>
             </div>
-            <div class="col-md-1 form-icon">
-                <i class="fa-solid fa-info"></i>
+            <div class="col-md-2 form-icon mt-4 d-flex justify-content-start">
+                <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                    <span class="tooltiptext">Mapped to : <b>Observation</b><br> Care domain:<b> My Breathing and
+                            Circulation Plan</b><br> Sub domain: <b>My Breathing & Circulation Plan </b>
+                        <hr> Mapped to :
+                        <b>Intervention</b> <br>
+                        Care domain : <b> My Breathing and Circulation Plan</b> <br> Sub domain: <b>My Breathing &
+                            Circulation Plan </b>
+                    </span>
+                </div>
             </div>
             <div class="col-md-4">
                 <div class="labelcontent">
                     <p>If the resident does smoke detail action plan</p>
                 </div>
             </div>
-            <div class="col-md-7 form-text">
+            <div class="col-md-6 form-text">
                 <ng-container *ngIf="isEditable==true">
                     <p-dropdown placeholder="--select--" [(ngModel)]="careBreathAssFormsData.smokeActionPlan"
                         name="ddlSmokeActionPlan" [style]="{ width: '100%' }"
@@ -198,21 +259,27 @@
                 <ng-container *ngIf="isEditable!=true">
                     <p>{{careBreathAssFormsData.smokingActionPlan}}</p>
                 </ng-container>
-                <p class=" mb-4" *ngIf="isEditable==true">Include where the nearest firefighting equipment is, are staff
+                <p class=" mb-4" *ngIf="isEditable==true">Include where the nearest firefighting equipment is, are
+                    staff
                     trained to use it, do
                     there
                     need to be
                     further emergency procedures in place</p>
             </div>
-            <div class="col-md-1 form-icon">
-                <i class="fa-solid fa-info"></i>
+            <div class="col-md-2 form-icon mt-4 d-flex justify-content-start">
+                <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                    <span class="tooltiptext">Mapped to : <b>Observation</b><br> Care domain:<b> My Breathing and
+                            Circulation Plan</b><br> Sub domain: <b>My Breathing & Circulation Plan </b>
+
+                    </span>
+                </div>
             </div>
             <div class="col-md-4">
                 <div class="labelcontent">
                     <p>Cough / sputum</p>
                 </div>
             </div>
-            <div class="col-md-7 form-text">
+            <div class="col-md-6 form-text">
                 <ng-container *ngIf="isEditable==true">
                     <p-dropdown placeholder="--select--" [(ngModel)]="careBreathAssFormsData.coughType"
                         name="ddlCoughType" [style]="{ width: '100%' }" [options]="lstCareAssBreathCoughTypeMaster"
@@ -223,28 +290,44 @@
                     <p>{{careBreathAssFormsData.coughTypeName}}</p>
                 </ng-container>
             </div>
-            <div class="col-md-1 form-icon">
-                <i class="fa-solid fa-info"></i>
+            <div class="col-md-2 form-icon mt-4 d-flex justify-content-start">
+                <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                    <span class="tooltiptext">Mapped to : <b>Observation</b><br> Care domain:<b> My Breathing and
+                            Circulation Plan</b><br> Sub domain: <b>My Breathing & Circulation Support Plan </b>
+                        <hr> Mapped to :
+                        <b>Intervention</b> <br>
+                        Care domain : <b> My Breathing and Circulation Plan</b> <br> Sub domain: <b>My Breathing &
+                            Circulation Plan </b>
+                    </span>
+                </div>
             </div>
             <div class="col-md-4">
                 <div class="labelcontent">
                     <p>Cough / sputum details and support required</p>
                 </div>
             </div>
-            <div class="col-md-7 form-text">
+            <div class="col-md-6 form-text">
                 <input *ngIf="isEditable==true" pInputText type="text" name="txtCoughDetails"
                     [(ngModel)]="careBreathAssFormsData.coughDetails" class="form-control" />
                 <p *ngIf="isEditable!=true">{{careBreathAssFormsData.coughDetails}}</p>
             </div>
-            <div class="col-md-1 form-icon">
-                <i class="fa-solid fa-info"></i>
+            <div class="col-md-2 form-icon mt-4 d-flex justify-content-start">
+                <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                    <span class="tooltiptext">Mapped to : <b>Observation</b><br> Care domain:<b> My Breathing and
+                            Circulation Plan</b><br> Sub domain: <b>My Breathing & Circulation Plan </b>
+                        <hr> Mapped to :
+                        <b>Intervention</b> <br>
+                        Care domain : <b> My Breathing and Circulation Plan</b> <br> Sub domain: <b>My Breathing &
+                            Circulation Plan </b>
+                    </span>
+                </div>
             </div>
             <div class="col-md-4">
                 <div class="labelcontent">
                     <p>Tracheostomy</p>
                 </div>
             </div>
-            <div class="col-md-7 form-text">
+            <div class="col-md-6 form-text">
                 <ng-container *ngIf="isEditable==true">
                     <p-dropdown placeholder="--select--" [(ngModel)]="careBreathAssFormsData.tracheostomy"
                         name="ddlTracheostomy" [style]="{ width: '100%' }"
@@ -255,25 +338,43 @@
                     <p>{{careBreathAssFormsData.tracheostomyName}}</p>
                 </ng-container>
             </div>
-            <div class="col-md-1 form-icon">
-                <i class="fa-solid fa-info"></i>
+            <div class="col-md-2 form-icon mt-4 d-flex justify-content-start">
+                <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                    <span class="tooltiptext">Mapped to : <b> Observation</b><br> Care domain:<b> My Breathing and
+                            Circulation Plan</b><br> Sub domain: <b>My Breathing & Circulation Plan </b>
+                        <hr> Mapped to :
+                        <b>Intervention</b> <br>
+                        Care domain : <b> My Breathing and Circulation Plan</b> <br> Sub domain: <b>My Breathing &
+                            Circulation Plan </b>
+                    </span>
+                </div>
             </div>
             <div class="col-md-4">
                 <div class="labelcontent">
                     <p>Details of Tracheostomy and support required</p>
                 </div>
             </div>
-            <div class="col-md-7 form-text">
+            <div class="col-md-6 form-text">
                 <input *ngIf="isEditable==true" pInputText type="text" name="txtTracheostomyDetails"
                     [(ngModel)]="careBreathAssFormsData.tracheostomyDetails" class="form-control" />
                 <p *ngIf="isEditable!=true">{{careBreathAssFormsData.tracheostomyDetails}}</p>
-                <p class=" mb-4" *ngIf="isEditable==true">Size of tube, frequency of change, suction, any other support
+                <p class=" mb-4" *ngIf="isEditable==true">Size of tube, frequency of change, suction, any other
+                    support
                     for care and management
                     of
                     tracheostomy</p>
             </div>
-            <div class="col-md-1 form-icon">
-                <i class="fa-solid fa-info"></i>
+            <div class="col-md-2 form-icon mt-4 d-flex justify-content-start">
+                <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                    <span class="tooltiptext">Mapped to : <b>Observation</b><br> Care domain:<b> My Breathing and
+                            Circulation supportPlan</b><br> Sub domain: <b>My Breathing & Circulation Plan </b>
+                        <hr> Mapped to :
+                        <b>Intervention</b> <br>
+                        Care domain : <b> My Breathing and Circulation Support Plan</b> <br> Sub domain: <b>My Breathing
+                            &
+                            Circulation Plan </b>
+                    </span>
+                </div>
             </div>
             <div class="col-md-4">
                 <div class="labelcontent">
@@ -281,7 +382,7 @@
 
                 </div>
             </div>
-            <div class="col-md-7 form-text">
+            <div class="col-md-6 form-text">
                 <ng-container *ngIf="isEditable==true">
                     <p-dropdown placeholder="--select--" [(ngModel)]="careBreathAssFormsData.machineType"
                         name="ddlMachineType" [style]="{ width: '100%' }" [options]="lstCareAssBreathMachineTypeUsed"
@@ -292,33 +393,52 @@
                     <p>{{careBreathAssFormsData.machineName}}</p>
                 </ng-container>
             </div>
-            <div class="col-md-1 form-icon">
-                <i class="fa-solid fa-info"></i>
+            <div class="col-md-2 form-icon mt-4 d-flex justify-content-start">
+                <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                    <span class="tooltiptext">Mapped to : <b>Observation</b><br> Care domain:<b> My Breathing and
+                            Circulation Support Plan</b><br> Sub domain : <b>My Breathing & Circulation Plan </b>
+                        <hr> Mapped to :
+                        <b>Intervention</b> <br>
+                        Care domain : <b> My Breathing and Circulation Support Plan</b> <br> Sub domain: <b>My Breathing
+                            &
+                            Circulation Plan </b>
+                    </span>
+                </div>
             </div>
             <div class="col-md-4">
                 <div class="labelcontent">
                     <p>Oxygen details</p>
                 </div>
             </div>
-            <div class="col-md-7 form-text">
+            <div class="col-md-6 form-text">
                 <input *ngIf="isEditable==true" pInputText type="text" name="txtOxygenDetails"
                     [(ngModel)]="careBreathAssFormsData.oxygenDetails" class="form-control" />
                 <p *ngIf="isEditable!=true">{{careBreathAssFormsData.oxygenDetails}}</p>
-                <p class=" mb-4" *ngIf="isEditable==true">Oxygen prescribed (refer to MAR, resident general saturation %
+                <p class=" mb-4" *ngIf="isEditable==true">Oxygen prescribed (refer to MAR, resident general
+                    saturation %
                     given via face mask /
                     other,
                     continuous,
                     night, PRN, assistance required, reason for oxygen)</p>
             </div>
-            <div class="col-md-1 form-icon">
-                <i class="fa-solid fa-info"></i>
+            <div class="col-md-2 form-icon mt-4 d-flex justify-content-start">
+                <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                    <span class="tooltiptext">Mapped to : <b>Observation</b><br> Care domain:<b> My Breathing and
+                            Circulation Support Plan</b><br> Sub domain: <b>My Breathing & Circulation Plan </b>
+                        <hr> Mapped to :
+                        <b>Intervention</b> <br>
+                        Care domain : <b> My Breathing and Circulation Support Plan</b> <br> Sub domain: <b>My Breathing
+                            &
+                            Circulation Plan </b>
+                    </span>
+                </div>
             </div>
             <div class="col-md-4">
                 <div class="labelcontent">
                     <p>Inhaler use</p>
                 </div>
             </div>
-            <div class="col-md-7 form-text">
+            <div class="col-md-6 form-text">
                 <ng-container *ngIf="isEditable==true">
                     <p-dropdown placeholder="--select--" [(ngModel)]="careBreathAssFormsData.inhealerType"
                         name="ddlInhealerType" [style]="{ width: '100%' }"
@@ -329,41 +449,64 @@
                     <p>{{careBreathAssFormsData.inhealerName}}</p>
                 </ng-container>
             </div>
-            <div class="col-md-1 form-icon">
-                <i class="fa-solid fa-info"></i>
+            <div class="col-md-2 form-icon mt-4 d-flex justify-content-start">
+                <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                    <span class="tooltiptext">Mapped to : <b>Observation</b><br> Care domain:<b> My Breathing and
+                            Circulation Support Plan</b><br> Sub domain: <b>My Breathing & Circulation Plan </b>
+                        <hr> Mapped to :
+                        <b>Intervention</b> <br>
+                        Care domain : <b> My Breathing and Circulation Support Plan</b> <br> Sub domain: <b>My Breathing
+                            &
+                            Circulation Plan </b>
+                    </span>
+                </div>
             </div>
             <div class="col-md-4">
                 <div class="labelcontent">
                     <p>Details of Inhaler use, and support required</p>
                 </div>
             </div>
-            <div class="col-md-7 form-text">
+            <div class="col-md-6 form-text">
                 <input *ngIf="isEditable==true" pInputText type="text" name="txtInhealerDetails"
                     [(ngModel)]="careBreathAssFormsData.inhealerDetails" class="form-control" />
                 <p *ngIf="isEditable!=true">{{careBreathAssFormsData.inhealerDetails}}</p>
             </div>
-            <div class="col-md-1 form-icon">
-                <i class="fa-solid fa-info"></i>
+            <div class="col-md-2 form-icon mt-4 d-flex justify-content-start">
+                <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                    <span class="tooltiptext">Mapped to : <b>Observation</b><br> Care domain:<b> My Breathing and
+                            Circulation Support Plan</b><br> Sub domain: <b>My Breathing & Circulation Plan </b>
+
+                    </span>
+                </div>
             </div>
             <div class="col-md-4">
                 <div class="labelcontent">
                     <p>Cardiac history</p>
                 </div>
             </div>
-            <div class="col-md-7 form-text">
+            <div class="col-md-6 form-text">
                 <input *ngIf="isEditable==true" pInputText type="text" name="txtCardiacHistory"
                     [(ngModel)]="careBreathAssFormsData.cardiacHistory" class="form-control" />
                 <p *ngIf="isEditable!=true">{{careBreathAssFormsData.cardiacHistory}}</p>
             </div>
-            <div class="col-md-1 form-icon">
-                <i class="fa-solid fa-info"></i>
+            <div class="col-md-2 form-icon mt-4 d-flex justify-content-start">
+                <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                    <span class="tooltiptext">Mapped to : <b>Observation</b><br> Care domain:<b> My Breathing and
+                            Circulation Support Plan</b><br> Sub domain: <b>My Breathing & Circulation Plan </b>
+                        <hr> Mapped to :
+                        <b>Intervention</b> <br>
+                        Care domain : <b> My Breathing and Circulation Support Plan</b> <br> Sub domain: <b>My Breathing
+                            &
+                            Circulation Plan </b>
+                    </span>
+                </div>
             </div>
             <div class="col-md-4">
                 <div class="labelcontent">
                     <p>Chest pain, Angina, Pacemaker</p>
                 </div>
             </div>
-            <div class="col-md-7 form-text">
+            <div class="col-md-6 form-text">
                 <ng-container *ngIf="isEditable==true">
                     <p-dropdown placeholder="--select--" [(ngModel)]="careBreathAssFormsData.creticalTreatment"
                         name="ddlCreticalTreatment" [style]="{ width: '100%' }"
@@ -375,58 +518,94 @@
                     <p>{{careBreathAssFormsData.crtTreatName}}</p>
                 </ng-container>
             </div>
-            <div class="col-md-1 form-icon">
-                <i class="fa-solid fa-info"></i>
+            <div class="col-md-2 form-icon mt-4 d-flex justify-content-start">
+                <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                    <span class="tooltiptext">Mapped to : <b>Observation</b><br> Care domain:<b> My Breathing and
+                            Circulation Support Plan</b><br> Sub domain: <b>My Breathing & Circulation Plan </b>
+                        <hr> Mapped to :
+                        <b>Intervention</b> <br>
+                        Care domain : <b> My Breathing and Circulation Support Plan</b> <br> Sub domain: <b>My Breathing
+                            &
+                            Circulation Plan </b>
+                    </span>
+                </div>
             </div>
             <div class="col-md-4">
                 <div class="labelcontent">
                     <p>Chest pain, Angina, Pacemaker support required</p>
                 </div>
             </div>
-            <div class="col-md-7 form-text">
+            <div class="col-md-6 form-text">
                 <input *ngIf="isEditable==true" pInputText type="text" name="txtCreticalTreatmentDetails"
                     [(ngModel)]="careBreathAssFormsData.CreticalTreatmentDetails" class="form-control" />
                 <p *ngIf="isEditable!=true">{{careBreathAssFormsData.creticalTreatmentDetails}}</p>
                 <p class=" mb-4" *ngIf="isEditable==true">Include all details</p>
             </div>
-            <div class="col-md-1 form-icon">
-                <i class="fa-solid fa-info"></i>
+            <div class="col-md-2 form-icon mt-4 d-flex justify-content-start">
+                <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                    <span class="tooltiptext">Mapped to : <b>Observation</b><br> Care domain:<b> My Breathing and
+                            Circulation Support Plan</b><br> Sub domain: <b>My Breathing & Circulation Plan </b>
+                        <hr> Mapped to :
+                        <b>Intervention</b> <br>
+                        Care domain : <b> My Breathing and Circulation Support Plan</b> <br> Sub domain: <b>My Breathing
+                            &
+                            Circulation Plan </b>
+                    </span>
+                </div>
             </div>
             <div class="col-md-4">
                 <div class="labelcontent">
                     <p>Blood pressure and Circulatory problems</p>
                 </div>
             </div>
-            <div class="col-md-7 form-text">
+            <div class="col-md-6 form-text">
                 <input *ngIf="isEditable==true" pInputText type="text" name="txtBloodPressureCircDetails"
                     [(ngModel)]="careBreathAssFormsData.bloodPressureCircDetails" class="form-control" />
                 <p *ngIf="isEditable!=true">{{careBreathAssFormsData.bloodPressureCircDetails}}</p>
                 <p class=" mb-4" *ngIf="isEditable==true">High / low frequency, detail in full including support and
                     assistance required</p>
             </div>
-            <div class="col-md-1 form-icon">
-                <i class="fa-solid fa-info"></i>
+            <div class="col-md-2 form-icon mt-4 d-flex justify-content-start">
+                <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                    <span class="tooltiptext">Mapped to : <b>Observation</b><br> Care domain:<b> My Breathing and
+                            Circulation Support Plan</b><br> Sub domain: <b>My Breathing & Circulation Plan </b>
+                        <hr> Mapped to :
+                        <b>Intervention</b> <br>
+                        Care domain : <b> My Breathing and Circulation Support Plan</b> <br> Sub domain: <b>My Breathing
+                            &
+                            Circulation Plan </b>
+                    </span>
+                </div>
             </div>
             <div class="col-md-4">
                 <div class="labelcontent">
                     <p>Is the resident prescribed anticoagulant therapy</p>
                 </div>
             </div>
-            <div class="col-md-7 form-text">
+            <div class="col-md-6 form-text">
                 <input *ngIf="isEditable==true" pInputText type="text" name="txtAnticoagulantTherapyDetails"
                     [(ngModel)]="careBreathAssFormsData.anticoagulantTherapyDetails" class="form-control" />
                 <p *ngIf="isEditable!=true">{{careBreathAssFormsData.anticoagulantTherapyDetails}}</p>
                 <p class=" mb-4" *ngIf="isEditable==true">Enter the details of their therapy</p>
             </div>
-            <div class="col-md-1 form-icon">
-                <i class="fa-solid fa-info"></i>
+            <div class="col-md-2 form-icon mt-4 d-flex justify-content-start">
+                <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                    <span class="tooltiptext">Mapped to : <b>Observation</b><br> Care domain:<b> My Breathing and
+                            Circulation Support Plan</b><br> Sub domain: <b>My Breathing & Circulation Plan </b>
+                        <hr> Mapped to :
+                        <b>Intervention</b> <br>
+                        Care domain : <b> My Breathing and Circulation Support Plan</b> <br> Sub domain: <b>My Breathing
+                            &
+                            Circulation Plan </b>
+                    </span>
+                </div>
             </div>
             <div class="col-md-4">
                 <div class="labelcontent">
                     <p>Goals the resident wishes to achieve</p>
                 </div>
             </div>
-            <div class="col-md-7 form-text">
+            <div class="col-md-6 form-text">
                 <ng-container *ngIf="isEditable==true">
                     <p-dropdown placeholder="--select--" [(ngModel)]="careBreathAssFormsData.goalsWishesDetails"
                         name="ddlGoalsWishesDetails" [style]="{ width: '100%' }"
@@ -437,28 +616,38 @@
                     <p>{{careBreathAssFormsData.goalWishesName}}</p>
                 </ng-container>
             </div>
-            <div class="col-md-1 form-icon">
-                <i class="fa-solid fa-info"></i>
+            <div class="col-md-2 form-icon mt-4 d-flex justify-content-start">
+                <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                    <span class="tooltiptext">Mapped to : <b>Agreed outcome</b><br> Care domain:<b> My Breathing and
+                            Circulation Support Plan</b><br> Sub domain: <b>My Breathing & Circulation Plan </b>
+
+                    </span>
+                </div>
             </div>
             <div class="col-md-4">
                 <div class="labelcontent">
                     <p>Does the resident have a specific goal personal to them</p>
                 </div>
             </div>
-            <div class="col-md-7 form-text">
+            <div class="col-md-6 form-text">
                 <input *ngIf="isEditable==true" pInputText type="text" name="txtSpecificGoalDetails"
                     [(ngModel)]="careBreathAssFormsData.specificGoalDetails" class="form-control" />
                 <p *ngIf="isEditable!=true">{{careBreathAssFormsData.specificGoalDetails}}</p>
             </div>
-            <div class="col-md-1 form-icon">
-                <i class="fa-solid fa-info"></i>
+            <div class="col-md-2 form-icon mt-4 d-flex justify-content-start">
+                <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                    <span class="tooltiptext">Mapped to : <b>Agreed outcome</b><br> Care domain:<b> My Breathing and
+                            Circulation Support Plan</b><br> Sub domain: <b>My Breathing & Circulation Plan </b>
+
+                    </span>
+                </div>
             </div>
             <div class="col-md-4">
                 <div class="labelcontent">
                     <p>Strategies to manage the resident's breathing and circulation</p>
                 </div>
             </div>
-            <div class="col-md-7 form-text">
+            <div class="col-md-6 form-text">
                 <ng-container *ngIf="isEditable==true">
                     <p-dropdown placeholder="--select--" [(ngModel)]="careBreathAssFormsData.strategiesManage"
                         name="ddlStrategiesManage" [style]="{ width: '100%' }"
@@ -469,60 +658,93 @@
                     <p>{{careBreathAssFormsData.strategiesName}}</p>
                 </ng-container>
             </div>
-            <div class="col-md-1 form-icon ">
-                <i class="fa-solid fa-info"></i>
+            <div class="col-md-2 form-icon mt-4 d-flex justify-content-start">
+                <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                    <span class="tooltiptext">Mapped to : <b>Observation</b><br> Care domain:<b> My Breathing and
+                            Circulation Support Plan</b><br> Sub domain: <b>My Breathing & Circulation Plan </b>
+                        <hr> Mapped to :
+                        <b>Intervention</b> <br>
+                        Care domain : <b> My Breathing and Circulation Support Plan</b>
+                    </span>
+                </div>
             </div>
             <div class="col-md-4">
                 <div class="labelcontent">
                     <p>Additional information</p>
                 </div>
             </div>
-            <div class="col-md-7 form-text">
+            <div class="col-md-6 form-text">
                 <input *ngIf="isEditable==true" pInputText type="text" name="txtAdditionalInfo"
                     [(ngModel)]="careBreathAssFormsData.additionalInfo" class="form-control" />
                 <p *ngIf="isEditable!=true">{{careBreathAssFormsData.additionalInfo}}</p>
             </div>
-            <div class="col-md-1 form-icon">
-                <i class="fa-solid fa-info"></i>
+            <div class="col-md-2 form-icon mt-4 d-flex justify-content-start">
+                <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                    <span class="tooltiptext">Mapped to : <b>Observation</b><br> Care domain:<b> My Breathing and
+                            Circulation Support  Plan</b><br> Sub domain: <b>My Breathing & Circulation Plan </b>
+                        <hr> Mapped to :
+                        <b>Intervention</b> <br>
+                        Care domain : <b> My Breathing and Circulation Support Plan</b> <br> Sub domain: <b>My Breathing &
+                            Circulation Plan </b>
+                    </span>
+                </div>
             </div>
             <div class="col-md-4">
                 <div class="labelcontent">
                     <p>Are there any other identified risks relating to breathing & circulation</p>
                 </div>
             </div>
-            <div class="col-md-7 form-text">
+            <div class="col-md-6 form-text">
                 <input *ngIf="isEditable==true" pInputText type="text" name="txtOtherIdentificationDetails"
                     [(ngModel)]="careBreathAssFormsData.otherIdentificationDetails" class="form-control" />
                 <p *ngIf="isEditable!=true">{{careBreathAssFormsData.otherIdentificationDetails}}</p>
-                <p class=" mb-4" *ngIf="isEditable==true"> Specify any other risks that have not been identified above
+                <p class=" mb-4" *ngIf="isEditable==true"> Specify any other risks that have not been identified
+                    above
                 </p>
             </div>
-            <div class="col-md-1 form-icon ">
-                <i class="fa-solid fa-info"></i>
+            <div class="col-md-2 form-icon mt-4 d-flex justify-content-start">
+                <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                    <span class="tooltiptext">Mapped to : <b>Observation</b><br> Care domain:<b> My Breathing and
+                            Circulation Support Plan</b><br> Sub domain: <b>My Breathing & Circulation  Plan </b>
+                        <hr> Mapped to :
+                        <b>Intervention</b> <br>
+                        Care domain : <b> My Breathing and Circulation Support Plan</b> <br> Sub domain: <b>My Breathing &
+                            Circulation Plan </b>
+                    </span>
+                </div>
             </div>
             <div class="col-md-4">
                 <div class="labelcontent">
                     <p>Action to manage additional identified risks</p>
                 </div>
             </div>
-            <div class="col-md-7 form-text">
+            <div class="col-md-6 form-text">
                 <input *ngIf="isEditable==true" pInputText type="text" name="txtActAddIdentificationDetails"
                     [(ngModel)]="careBreathAssFormsData.actAddIdentificationDetails" class="form-control" />
                 <p *ngIf="isEditable!=true">{{careBreathAssFormsData.actAddIdentificationDetails}}</p>
             </div>
-            <div class="col-md-1 form-icon">
-                <i class="fa-solid fa-info"></i>
+            <div class="col-md-2 form-icon mt-4 d-flex justify-content-start">
+                <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                    <span class="tooltiptext">Mapped to : <b>Observation</b><br> Care domain:<b> My Breathing and
+                            Circulation Support Plan</b><br> Sub domain: <b>My Breathing & Circulation  Plan </b>
+                        <hr> Mapped to :
+                        <b>Intervention</b> <br>
+                        Care domain : <b> My Breathing and Circulation Support Plan</b> <br> Sub domain: <b>My Breathing &
+                            Circulation Plan </b>
+                    </span>
+                </div>
             </div>
             <div class="col-md-4">
                 <div class="labelcontent implabel">
                     <p>MONTHLY REVIEW (or before)</p>
                 </div>
             </div>
-            <div class="col-md-7 form-text">
+            <div class="col-md-6 form-text">
                 <p-checkbox *ngIf="isEditable==true" name="ChkMonthlyReview"
                     [(ngModel)]="careBreathAssFormsData.isMonthlyReview" [binary]="true" inputId="binary"></p-checkbox>
                 <p *ngIf="isEditable!=true">{{(careBreathAssFormsData.isMonthlyReview==true?'Yes':'No')}}</p>
-                <p class=" mb-4" *ngIf="isEditable==true">This form should be reviewed MONTHLY or before if there are
+                <p class=" mb-4" *ngIf="isEditable==true">This form should be reviewed MONTHLY or before if there
+                    are
                     significant changes. Enter
                     review date below.
                 </p>
@@ -532,7 +754,7 @@
                     <p>Next review date</p>
                 </div>
             </div>
-            <div class="col-md-7">
+            <div class="col-md-6">
                 <div class="input-group date" *ngIf="isEditable==true">
                     <p-calendar [required]="true" name="txtNextReviewDate"
                         [(ngModel)]="careBreathAssFormsData.nextReviewDate" [showIcon]="true" inputId="icon"
@@ -545,7 +767,6 @@
                     :customDateFormat.DEF_DATE_TIME}}</p>
 
             </div>
-
             <div class="d-flex justify-content-end">
                 <div>
                     <span class="p-ml-left mr-4">

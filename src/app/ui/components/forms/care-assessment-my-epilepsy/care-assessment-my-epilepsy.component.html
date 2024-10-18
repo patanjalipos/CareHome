@@ -31,7 +31,7 @@
         <div class="col-md-4 mt-4 labelcontent">
             <p>What type of Epilepsy or Epilepsy syndrome do you have?</p>
         </div>
-        <div class="col-md-7 mt-4">
+        <div class="col-md-6 mt-4">
             <ng-container *ngIf="this.isEditable; else EpilepsyType">
                 <p-dropdown [required]="true" [options]="lstEpilepsyType" optionLabel="optionName"
                     [(ngModel)]="EpilepsySupportFormsData.epilepsyType" name="EpilepsyType" optionValue="optionId"
@@ -42,13 +42,19 @@
                 <label>{{EpilepsySupportFormsData.epilepsyTypeName}}</label>
             </ng-template>
         </div>
-        <div class="col-md-1 mt-4  form-icon">
-            <i class="fa-solid fa-info"></i>
+        <div class="col-md-2 form-icon mt-4 d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext"> Mapped to : <b>Observation
+                    </b><br> Care domain : <b>My medication, Healthcare, Treatments and Management Support Plan </b>
+                    <br>
+                    Sub domain : <b>Epilepsy/Seizures </b>
+                </span>
+            </div>
         </div>
         <div class="col-md-4 labelcontent">
             <p>What kind of seizures do you experience?</p>
         </div>
-        <div class="col-md-7">
+        <div class="col-md-6">
             <ng-container *ngIf="this.isEditable; else Seizures">
                 <p-dropdown [required]="true" [options]="lstSeizures" optionLabel="optionName"
                     [(ngModel)]="EpilepsySupportFormsData.seizures" name="Seizures" optionValue="optionId"
@@ -59,28 +65,40 @@
                 <label>{{EpilepsySupportFormsData.seizuresName}}</label>
             </ng-template>
         </div>
-        <div class="col-md-1 form-icon">
-            <i class="fa-solid fa-info"></i>
+        <div class="col-md-2 form-icon  d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext"> Mapped to : <b>Observation
+                    </b><br> Care domain : <b>My medication, Healthcare, Treatments and Management Support Plan </b>
+                    <br>
+                    Sub domain : <b>Epilepsy/Seizures </b>
+                </span>
+            </div>
         </div>
         <div class="col-md-4 labelcontent">
             <p>The residents presentation or reason for onset of seizures prior to seizure</p>
         </div>
-        <div class="col-md-7">
+        <div class="col-md-6">
             <ng-container *ngIf="this.isEditable; else SeizuresReason">
                 <input pInputText type="text" [(ngModel)]="EpilepsySupportFormsData.seizuresReason" required
-                    name="SeizuresReason" class="form-control mr-4" [style]="{ width: '35%' }">
+                    name="SeizuresReason" class="form-control mr-4" [style]="{ width: '100%' }">
             </ng-container>
             <ng-template #SeizuresReason>
                 <label>{{EpilepsySupportFormsData.seizuresReason}}</label>
             </ng-template>
         </div>
-        <div class="col-md-1 form-icon">
-            <i class="fa-solid fa-info"></i>
+        <div class="col-md-2 form-icon  d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext"> Mapped to : <b>Observation
+                    </b><br> Care domain : <b>My medication, Healthcare, Treatments and Management Support Plan </b>
+                    <br>
+                    Sub domain : <b>Epilepsy/Seizures </b>
+                </span>
+            </div>
         </div>
         <div class="col-md-4 labelcontent">
             <p>If resident experiences Tonic Clonic seizures</p>
         </div>
-        <div class="col-md-7">
+        <div class="col-md-6">
             <ng-container *ngIf="this.isEditable; else TonicClonicSeizures">
                 <p-dropdown [required]="true" [options]="lstTonicClonicSeizures" optionLabel="optionName"
                     [(ngModel)]="EpilepsySupportFormsData.tonicClonicSeizures" name="TonicClonicSeizures"
@@ -92,13 +110,19 @@
                 <label>{{EpilepsySupportFormsData.tonicClonicSeizuresName}}</label>
             </ng-template>
         </div>
-        <div class="col-md-1 form-icon">
-            <i class="fa-solid fa-info"></i>
+        <div class="col-md-2 form-icon  d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext"> Mapped to : <b>Intervention
+                    </b><br> Care domain : <b>My medication, Healthcare, Treatments and Management Support Plan </b>
+                    <br>
+                    Sub domain : <b>Epilepsy/Seizures </b>
+                </span>
+            </div>
         </div>
         <div class="col-md-4 labelcontent">
             <p>If resident experiences Focal (Partial) Seizures please choose all options below</p>
         </div>
-        <div class="col-md-7">
+        <div class="col-md-6">
             <ng-container *ngIf="this.isEditable; else FocalSeizuresCheck">
                 <p-dropdown [required]="true" [options]="lstFocalSeizuresCheck" optionLabel="optionName"
                     [(ngModel)]="EpilepsySupportFormsData.focalSeizuresCheck" name="FocalSeizuresCheck"
@@ -109,13 +133,19 @@
                 <label>{{EpilepsySupportFormsData.focalSeizuresCheckName}}</label>
             </ng-template>
         </div>
-        <div class="col-md-1 form-icon">
-            <i class="fa-solid fa-info"></i>
+        <div class="col-md-2 form-icon  d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext"> Mapped to : <b>Intervention
+                    </b><br> Care domain : <b>My medication, Healthcare, Treatments and Management Support Plan </b>
+                    <br>
+                    Sub domain : <b>Epilepsy/Seizures </b>
+                </span>
+            </div>
         </div>
         <div class="col-md-4 labelcontent">
             <p>What tests have had? Have they had any surgery for your epilepsy?</p>
         </div>
-        <div class="col-md-7">
+        <div class="col-md-6">
             <ng-container *ngIf="this.isEditable; else TestCheck">
                 <p-dropdown [required]="true" [options]="lstTestCheck" optionLabel="optionName"
                     [(ngModel)]="EpilepsySupportFormsData.testCheck" name="TestCheck" optionValue="optionId"
@@ -127,13 +157,19 @@
                 <label>{{EpilepsySupportFormsData.testCheckName}}</label>
             </ng-template>
         </div>
-        <div class="col-md-1 form-icon">
-            <i class="fa-solid fa-info"></i>
+        <div class="col-md-2 form-icon  d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext"> Mapped to : <b>Observation
+                    </b><br> Care domain : <b>My medication, Healthcare, Treatments and Management Support Plan </b>
+                    <br>
+                    Sub domain : <b>Epilepsy/Seizures </b>
+                </span>
+            </div>
         </div>
         <div class="col-md-4 labelcontent">
             <p>How is your epilepsy being treated/Managed</p>
         </div>
-        <div class="col-md-7">
+        <div class="col-md-6">
             <ng-container *ngIf="this.isEditable; else EpilepsyTreatment">
                 <p-dropdown [required]="true" [options]="lstEpilepsyTreatment" optionLabel="optionName"
                     [(ngModel)]="EpilepsySupportFormsData.epilepsyTreatment" name="EpilepsyTreatment"
@@ -144,46 +180,64 @@
                 <label>{{EpilepsySupportFormsData.epilepsyTreatmentName}}</label>
             </ng-template>
         </div>
-        <div class="col-md-1 form-icon">
-            <i class="fa-solid fa-info"></i>
+        <div class="col-md-2 form-icon  d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext"> Mapped to : <b>Intervention
+                    </b><br> Care domain : <b>My medication, Healthcare, Treatments and Management Support Plan </b>
+                    <br>
+                    Sub domain : <b>Epilepsy/Seizures </b>
+                </span>
+            </div>
         </div>
         <div class="col-md-4 labelcontent">
             <p>What medications have you taken previously to tear your epilepsy</p>
         </div>
-        <div class="col-md-7">
+        <div class="col-md-6">
             <ng-container *ngIf="this.isEditable; else EpilepsyMedication">
                 <input pInputText type="text" [(ngModel)]="EpilepsySupportFormsData.epilepsyMedication" required
-                    name="EpilepsyMedication" class="form-control mr-4" [style]="{ width: '35%' }">
+                    name="EpilepsyMedication" class="form-control mr-4" [style]="{ width: '100%' }">
             </ng-container>
             <ng-template #EpilepsyMedication>
                 <label>{{EpilepsySupportFormsData.epilepsyMedication}}</label>
             </ng-template>
         </div>
-        <div class="col-md-1 form-icon">
-            <i class="fa-solid fa-info"></i>
+        <div class="col-md-2 form-icon  d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext"> Mapped to : <b>Observation
+                    </b><br> Care domain : <b>My medication, Healthcare, Treatments and Management Support Plan </b>
+                    <br>
+                    Sub domain : <b>Epilepsy/Seizures </b>
+                </span>
+            </div>
         </div>
         <div class="col-md-4 labelcontent">
             <p>What other health conditions do you have?</p>
         </div>
-        <div class="col-md-7">
+        <div class="col-md-6">
             <ng-container *ngIf="this.isEditable; else OtherHealthCondition">
                 <input pInputText type="text" [(ngModel)]="EpilepsySupportFormsData.otherHealthCondition" required
-                    name="OtherHealthCondition" class="form-control mr-4" [style]="{ width: '35%' }">
+                    name="OtherHealthCondition" class="form-control mr-4" [style]="{ width: '100%' }">
             </ng-container>
             <ng-template #OtherHealthCondition>
                 <label>{{EpilepsySupportFormsData.otherHealthCondition}}</label>
             </ng-template>
         </div>
-        <div class="col-md-1 form-icon">
-            <i class="fa-solid fa-info"></i>
+        <div class="col-md-2 form-icon  d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext"> Mapped to : <b>Observation
+                    </b><br> Care domain : <b>My medication, Healthcare, Treatments and Management Support Plan </b>
+                    <br>
+                    Sub domain : <b>Epilepsy/Seizures </b>
+                </span>
+            </div>
         </div>
         <div class="col-md-4 labelcontent">
             <p>What happens to you in a seizure?</p>
         </div>
-        <div class="col-md-7">
+        <div class="col-md-6">
             <ng-container *ngIf="this.isEditable; else SeizureCheck">
                 <input pInputText type="text" [(ngModel)]="EpilepsySupportFormsData.seizureCheck" required
-                    name="SeizureCheck" class="form-control mr-4" [style]="{ width: '35%' }">
+                    name="SeizureCheck" class="form-control mr-4" [style]="{ width: '100%' }">
                 <p class="mb-4">If the resident is unable to tell us are we able to get the information from others
                     around
                     them or the GP</p>
@@ -193,16 +247,22 @@
             </ng-template>
 
         </div>
-        <div class="col-md-1 form-icon">
-            <i class="fa-solid fa-info"></i>
+        <div class="col-md-2 form-icon  d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext"> Mapped to : <b>Observation
+                    </b><br> Care domain : <b>My medication, Healthcare, Treatments and Management Support Plan </b>
+                    <br>
+                    Sub domain : <b>Epilepsy/Seizures </b>
+                </span>
+            </div>
         </div>
         <div class="col-md-4 labelcontent">
             <p>How long does your seizure normally last?</p>
         </div>
-        <div class="col-md-7">
+        <div class="col-md-6">
             <ng-container *ngIf="this.isEditable; else SeizureDuration">
                 <input pInputText type="text" [(ngModel)]="EpilepsySupportFormsData.seizureDuration" required
-                    name="SeizureDuration" class="form-control mr-4" [style]="{ width: '35%' }">
+                    name="SeizureDuration" class="form-control mr-4" [style]="{ width: '100%' }">
                 <p class="mb-4">If the resident is unable to tell us are we able to get the information from others
                     around
                     them or the GP, please do not leave this area blank if it is not known please write this</p>
@@ -212,17 +272,23 @@
             </ng-template>
 
         </div>
-        <div class="col-md-1 form-icon">
-            <i class="fa-solid fa-info"></i>
+        <div class="col-md-2 form-icon  d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext"> Mapped to : <b>Observation
+                    </b><br> Care domain : <b>My medication, Healthcare, Treatments and Management Support Plan </b>
+                    <br>
+                    Sub domain : <b>Epilepsy/Seizures </b>
+                </span>
+            </div>
         </div>
         <div class="col-md-4 labelcontent">
             <p>How long do you take to recover once your seizure has finished and how do you present during this time
             </p>
         </div>
-        <div class="col-md-7">
+        <div class="col-md-6">
             <ng-container *ngIf="this.isEditable; else RecoveryDuration">
                 <input pInputText type="text" [(ngModel)]="EpilepsySupportFormsData.recoveryDuration" required
-                    name="RecoveryDuration" class="form-control mr-4" [style]="{ width: '35%' }">
+                    name="RecoveryDuration" class="form-control mr-4" [style]="{ width: '100%' }">
                 <p class="mb-4">Please include the question in your answer. If the resident is unable to tell us are we
                     able
                     to get the information from others around them or the GP</p>
@@ -232,13 +298,19 @@
             </ng-template>
 
         </div>
-        <div class="col-md-1 form-icon">
-            <i class="fa-solid fa-info"></i>
+        <div class="col-md-2 form-icon  d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext"> Mapped to : <b>Observation
+                    </b><br> Care domain : <b>My medication, Healthcare, Treatments and Management Support Plan </b>
+                    <br>
+                    Sub domain : <b>Epilepsy/Seizures </b>
+                </span>
+            </div>
         </div>
         <div class="col-md-4 labelcontent">
             <p> What emergency medication/rescue meds do you have prescribed and when is this to be administered</p>
         </div>
-        <div class="col-md-7">
+        <div class="col-md-6">
             <ng-container *ngIf="this.isEditable; else EmergencyMedication">
                 <p-dropdown [required]="true" [options]="lstEmergencyMedication" optionLabel="optionName"
                     [(ngModel)]="EpilepsySupportFormsData.emergencyMedication" name="EmergencyMedication"
@@ -249,13 +321,19 @@
                 <label>{{EpilepsySupportFormsData.emergencyMedicationName}}</label>
             </ng-template>
         </div>
-        <div class="col-md-1 form-icon">
-            <i class="fa-solid fa-info"></i>
+        <div class="col-md-2 form-icon  d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext"> Mapped to : <b>Intervention
+                    </b><br> Care domain : <b>My medication, Healthcare, Treatments and Management Support Plan </b>
+                    <br>
+                    Sub domain : <b>Epilepsy/Seizures </b>
+                </span>
+            </div>
         </div>
         <div class="col-md-4 labelcontent">
             <p> Is there anything that makes your seizures more likely?</p>
         </div>
-        <div class="col-md-7">
+        <div class="col-md-6">
             <ng-container *ngIf="this.isEditable; else SeizuresAffect">
                 <p-dropdown [required]="true" [options]="lstSeizuresAffect" optionLabel="optionName"
                     [(ngModel)]="EpilepsySupportFormsData.seizuresAffect" name="SeizuresAffect" optionValue="optionId"
@@ -266,6 +344,7 @@
                 <label>{{EpilepsySupportFormsData.seizuresAffectName}}</label>
             </ng-template>
         </div>
+
         <div class="d-flex justify-content-end">
             <ng-container *ngIf="isEditable; else savePdf">
                 <div>
