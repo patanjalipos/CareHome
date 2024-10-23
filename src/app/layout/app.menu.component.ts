@@ -28,12 +28,12 @@ export class AppMenuComponent implements OnInit {
                 .subscribe(
                     data => {
                         if (data.actionResult.success == true) {
-                            var tdata = JSON.parse(data.actionResult.result);
+                          var tdata = data.actionResult.result;
                             tdata = tdata ? tdata : [];
                             this.model = tdata;
                          
                             localStorage.removeItem('UerRoleAccess');
-                            var tdata2 = JSON.parse(data.actionResult.result2);
+                            var tdata2 = data.actionResult.result2;
                             tdata2 = tdata2 ? tdata2 : [];
                             localStorage.setItem('UerRoleAccess', JSON.stringify(tdata2));
 

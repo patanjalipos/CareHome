@@ -40,13 +40,12 @@
                 </div>
             </div>
         </div>
-
         <div class="col-md-4 mt-4">
             <div class="labelcontent">
                 <p>Name all parties who have assisted with information</p>
             </div>
         </div>
-        <div class="col-md-7 mt-4 form-text">
+        <div class="col-md-6 mt-4 form-text">
             <ng-container *ngIf="this.isEditable; else ChartheadName">
                 <input pInputText type="text" name="PreAdmissionAssessmentFormsData.ChartheadName" class="form-control"
                     [(ngModel)]="PreAdmissionAssessmentFormsData.ChartheadName" />
@@ -58,8 +57,12 @@
                     }}</label>
             </ng-template>
         </div>
-        <div class="col-md-1 form-icon mt-4">
-            <i class="fa-solid fa-info"></i>
+        <div class="col-md-2 form-icon d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext"> Mapped to : <b>Observation
+                    </b><br> Care domain : <b>Contact Details of people Involved in my care</b>
+                </span>
+            </div>
         </div>
         <div class="col-md-4">
             <div class="labelcontent">
@@ -69,7 +72,7 @@
                 </p>
             </div>
         </div>
-        <div class="col-md-7 form-text">
+        <div class="col-md-6 form-text">
             <ng-container *ngIf="this.isEditable; else PersonCapacity">
                 <p-dropdown name="PreAdmissionAssessmentFormsData.PersonCapacity"
                     [(ngModel)]="PreAdmissionAssessmentFormsData.PersonCapacity"
@@ -87,8 +90,13 @@
                     }}</label>
             </ng-template>
         </div>
-        <div class="col-md-1 form-icon mt-4">
-            <i class="fa-solid fa-info"></i>
+        <div class="col-md-2 form-icon d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext"> Mapped to : <b>Observation
+                    </b><br> Care domain : <b>My Care inclusion Support Plan</b>
+
+                </span>
+            </div>
         </div>
 
         <div class="col-md-4">
@@ -99,7 +107,7 @@
                 </p>
             </div>
         </div>
-        <div class="col-md-7 form-text">
+        <div class="col-md-6 form-text">
             <ng-container *ngIf="this.isEditable; else ProfessionalDocObtained">
                 <p-dropdown name="PreAdmissionAssessmentFormsData.ProfessionalDocObtained" [(ngModel)]="
                         PreAdmissionAssessmentFormsData.ProfessionalDocObtained
@@ -118,15 +126,22 @@
                     }}</label>
             </ng-template>
         </div>
-        <div class="col-md-1 form-icon mt-4">
-            <i class="fa-solid fa-info"></i>
+        <div class="col-md-2 form-icon d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext"> Mapped to : <b>Observation
+                    </b><br> Care domain : <b>My Care Inclusion Support Plan </b>
+                    <hr> Mapped to : <b>Intervention</b>
+                    Care domain : <b>My Care inclusion Support Plan</b>
+
+                </span>
+            </div>
         </div>
         <div class="col-md-4">
             <div class="labelcontent">
                 <p>Where is the resident moving in from</p>
             </div>
         </div>
-        <div class="col-md-7 form-text">
+        <div class="col-md-6 form-text">
             <ng-container *ngIf="this.isEditable; else ResidentMovingFrom">
                 <p-dropdown name="PreAdmissionAssessmentFormsData.ResidentMovingFrom" [(ngModel)]="
                         PreAdmissionAssessmentFormsData.ResidentMovingFrom
@@ -140,19 +155,18 @@
                     }}</label>
             </ng-template>
         </div>
-        <div class="col-md-1 form-icon mt-4">
-            <i class="fa-solid fa-info"></i>
-        </div>
+
         <div class="col-md-4">
             <div class="labelcontent">
                 <p>Payment / funding</p>
             </div>
         </div>
-        <div class="col-md-7 form-text">
+        <div class="col-md-6 form-text">
             <ng-container *ngIf="this.isEditable; else Payment">
                 <p-dropdown name="PreAdmissionAssessmentFormsData.Payment"
                     [(ngModel)]="PreAdmissionAssessmentFormsData.Payment" [options]="LstPreAdmPaymentOptionsMaster"
-                    optionLabel="optionName" optionValue="optionId" placeholder="--select--" [style]="{ width: '100%' }">
+                    optionLabel="optionName" optionValue="optionId" placeholder="--select--"
+                    [style]="{ width: '100%' }">
                 </p-dropdown>
                 <p class="mb-4">Update resident admission details</p>
             </ng-container>
@@ -160,8 +174,12 @@
                 <label>{{ PreAdmissionAssessmentFormsData.PaymentName }}</label>
             </ng-template>
         </div>
-        <div class="col-md-1 form-icon mt-4">
-            <i class="fa-solid fa-info"></i>
+        <div class="col-md-2 form-icon d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext">Mapped to : <b>Observation
+                    </b><br> Care domain : <b>My Care Inclusion Support Plan </b>
+                </span>
+            </div>
         </div>
         <div class="col-md-4">
             <div class="labelcontent">
@@ -171,7 +189,7 @@
                 </p>
             </div>
         </div>
-        <div class="col-md-7 form-text">
+        <div class="col-md-6 form-text">
             <ng-container *ngIf="this.isEditable; else PeronsCurrentAbilities">
                 <p-dropdown name="PreAdmissionAssessmentFormsData.PeronsCurrentAbilities" [(ngModel)]="
                         PreAdmissionAssessmentFormsData.PeronsCurrentAbilities
@@ -191,15 +209,19 @@
                     }}</label>
             </ng-template>
         </div>
-        <div class="col-md-1 form-icon mt-4">
-            <i class="fa-solid fa-info"></i>
+        <div class="col-md-2 form-icon d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext">Mapped to : <b>Observation
+                    </b><br> Care domain : <b>My Care Inclusion Support Plan </b>
+                </span>
+            </div>
         </div>
         <div class="col-md-4">
             <div class="labelcontent">
                 <p>Advanced care planning (ACP)</p>
             </div>
         </div>
-        <div class="col-md-7 form-text">
+        <div class="col-md-6 form-text">
             <ng-container *ngIf="this.isEditable; else AdvancedCarePlanning">
                 <p-dropdown [(ngModel)]="
                         PreAdmissionAssessmentFormsData.AdvancedCarePlanning
@@ -213,15 +235,20 @@
                     }}</label>
             </ng-template>
         </div>
-        <div class="col-md-1 form-icon mt-4">
-            <i class="fa-solid fa-info"></i>
+        <div class="col-md-2 form-icon d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext">Mapped to : <b>Intervention
+                    </b><br> Care domain : <b>My Wishes for the future (ACP) Support Plan</b> <br> Sub domain : <b>
+                        Wishes for the future</b>
+                </span>
+            </div>
         </div>
         <div class="col-md-4">
             <div class="labelcontent">
                 <p>Medical history and medical conditions</p>
             </div>
         </div>
-        <div class="col-md-7 form-text">
+        <div class="col-md-6 form-text">
             <ng-container *ngIf="this.isEditable; else MedicalHistoryCondition">
                 <p-dropdown [(ngModel)]="
                         PreAdmissionAssessmentFormsData.MedicalHistoryCondition
@@ -241,15 +268,21 @@
                     }}</label>
             </ng-template>
         </div>
-        <div class="col-md-1 form-icon mt-4">
-            <i class="fa-solid fa-info"></i>
+        <div class="col-md-2 form-icon d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext">Mapped to : <b>Intervention
+                    </b><br> Care domain : <b>My Medication, Health Care,Treatments and management Support plan </b>
+                    <br> Sub domain : <b>
+                        past medical History</b>
+                </span>
+            </div>
         </div>
         <div class="col-md-4">
             <div class="labelcontent">
                 <p>Social and spiritual, activities and interests</p>
             </div>
         </div>
-        <div class="col-md-7 form-text">
+        <div class="col-md-6 form-text">
             <ng-container *ngIf="this.isEditable; else SocialAndSpiritual">
                 <input pInputText type="text" required name="PreAdmissionAssessmentFormsData.SocialActivitiesInterests"
                     class="form-control" [(ngModel)]="
@@ -267,15 +300,22 @@
                     }}</label>
             </ng-template>
         </div>
-        <div class="col-md-1 form-icon mt-4">
-            <i class="fa-solid fa-info"></i>
+        <div class="col-md-2 form-icon d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext">Mapped to : <b>Intervention
+                    </b><br> Care domain : <b>My Activities and Interest, Community Inclusion and Cultural Support Plan
+                    </b>
+                    <br> Sub domain : <b>
+                        My Activities & Interest and Social and cultural plan </b>
+                </span>
+            </div>
         </div>
         <div class="col-md-4">
             <div class="labelcontent">
                 <p>Connecting and Communicating</p>
             </div>
         </div>
-        <div class="col-md-7 form-text">
+        <div class="col-md-6 form-text">
             <ng-container *ngIf="isEditable; else ConnectingAndCommunicatingLabel">
                 <p-dropdown name="PreAdmissionAssessmentFormsData.ConnectingAndCommunicating" [(ngModel)]="
                         PreAdmissionAssessmentFormsData.ConnectingAndCommunicating
@@ -293,8 +333,14 @@
                     }}</label>
             </ng-template>
         </div>
-        <div class="col-md-1 form-icon mt-4">
-            <i class="fa-solid fa-info"></i>
+        <div class="col-md-2 form-icon d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext">Mapped to : <b>Intervention
+                    </b><br> Care domain : <b>My Communication Support Plan </b>
+                    <br> Sub domain : <b>
+                        Person Centered Information </b>
+                </span>
+            </div>
         </div>
         <div class="col-md-4">
             <div class="labelcontent">
@@ -304,7 +350,7 @@
                 </p>
             </div>
         </div>
-        <div class="col-md-7 form-text">
+        <div class="col-md-6 form-text">
             <ng-container *ngIf="isEditable; else PersonalSafetyLabel">
                 <p-dropdown [(ngModel)]="PreAdmissionAssessmentFormsData.PersonalSafety"
                     name="PreAdmissionAssessmentFormsData.PersonalSafety"
@@ -323,15 +369,21 @@
                     }}</label>
             </ng-template>
         </div>
-        <div class="col-md-1 form-icon mt-4">
-            <i class="fa-solid fa-info"></i>
+        <div class="col-md-2 form-icon d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext">Mapped to : <b>Intervention
+                    </b><br> Care domain : <b>My Maintaning a Safe Environment Support plan </b>
+                    <br> Sub domain : <b>
+                        Person Centered Information</b>
+                </span>
+            </div>
         </div>
         <div class="col-md-4">
             <div class="labelcontent">
                 <p>Leaving the Home unescorted - Herbert protocol</p>
             </div>
         </div>
-        <div class="col-md-7 form-text">
+        <div class="col-md-6 form-text">
             <ng-container *ngIf="isEditable; else LeavingHomeUnescortedLabel">
                 <input pInputText type="text" required name="PreAdmissionAssessmentFormsData.LeavingHomeUnescorted"
                     class="form-control" [(ngModel)]="
@@ -349,15 +401,21 @@
                     }}</label>
             </ng-template>
         </div>
-        <div class="col-md-1 form-icon mt-4">
-            <i class="fa-solid fa-info"></i>
+        <div class="col-md-2 form-icon d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext">Mapped to : <b>Intervention
+                    </b><br> Care domain : <b>My Maintaning a Safe Environment Support plan </b>
+                    <br> Sub domain : <b>
+                        Person Centered Information</b>
+                </span>
+            </div>
         </div>
         <div class="col-md-4">
             <div class="labelcontent">
                 <p>Does the resident experience any mental health conditions</p>
             </div>
         </div>
-        <div class="col-md-7 form-text">
+        <div class="col-md-6 form-text">
             <ng-container *ngIf="isEditable; else ResidentExpAnyMHConditionsLabel">
                 <p-dropdown [(ngModel)]="
                         PreAdmissionAssessmentFormsData.ResidentExpAnyMHConditions
@@ -376,15 +434,21 @@
                     }}</label>
             </ng-template>
         </div>
-        <div class="col-md-1 form-icon mt-4">
-            <i class="fa-solid fa-info"></i>
+        <div class="col-md-2 form-icon d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext">Mapped to : <b>Observation
+                    </b><br> Care domain : <b>My Mental Health and Well Being Support plan </b>
+                    <br> Sub domain : <b>
+                        Person Centered Information</b>
+                </span>
+            </div>
         </div>
         <div class="col-md-4">
             <div class="labelcontent">
                 <p>Speech, sight and hearing</p>
             </div>
         </div>
-        <div class="col-md-7 form-text">
+        <div class="col-md-6 form-text">
             <ng-container *ngIf="isEditable; else SpeechSightHearingLabel">
                 <p-dropdown [(ngModel)]="
                         PreAdmissionAssessmentFormsData.SpeechSightHearing
@@ -399,15 +463,21 @@
                     }}</label>
             </ng-template>
         </div>
-        <div class="col-md-1 form-icon mt-4">
-            <i class="fa-solid fa-info"></i>
+        <div class="col-md-2 form-icon d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext">Mapped to : <b>Observation
+                    </b><br> Care domain : <b>My Communication Support Plan </b>
+                    <br> Sub domain : <b>
+                        Person Centered Information</b>
+                </span>
+            </div>
         </div>
         <div class="col-md-4">
             <div class="labelcontent">
                 <p>Speech, sight and hearing details</p>
             </div>
         </div>
-        <div class="col-md-7 form-text">
+        <div class="col-md-6 form-text">
             <ng-container *ngIf="isEditable; else SpeechSightHearingDetailsLabel">
                 <input pInputText type="text" required name="PreAdmissionAssessmentFormsData.SpeechSightHearingDetails"
                     class="form-control" [(ngModel)]="
@@ -424,15 +494,21 @@
                     }}</label>
             </ng-template>
         </div>
-        <div class="col-md-1 form-icon mt-4">
-            <i class="fa-solid fa-info"></i>
+        <div class="col-md-2 form-icon d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext">Mapped to : <b>Observation
+                    </b><br> Care domain : <b>My Communication Support Plan </b>
+                    <br> Sub domain : <b>
+                        How I Express Myself, Understand the world around me and make my need known </b>
+                </span>
+            </div>
         </div>
         <div class="col-md-4">
             <div class="labelcontent">
                 <p>Breathing and circulation</p>
             </div>
         </div>
-        <div class="col-md-7 form-text">
+        <div class="col-md-6 form-text">
             <ng-container *ngIf="isEditable; else BreathingCirculationLabel">
                 <input pInputText type="text" required name="PreAdmissionAssessmentFormsData.BreathingCirculation"
                     class="form-control" [(ngModel)]="
@@ -451,15 +527,21 @@
                     }}</label>
             </ng-template>
         </div>
-        <div class="col-md-1 form-icon mt-4">
-            <i class="fa-solid fa-info"></i>
+        <div class="col-md-2 form-icon d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext">Mapped to : <b>Intervention
+                    </b><br> Care domain : <b>My Breathing and Circulation Support plan </b>
+                    <br> Sub domain : <b>
+                        My Breathing and Circulation Plan </b>
+                </span>
+            </div>
         </div>
         <div class="col-md-4">
             <div class="labelcontent">
                 <p>Falls and mobility</p>
             </div>
         </div>
-        <div class="col-md-7 form-text">
+        <div class="col-md-6 form-text">
             <ng-container *ngIf="isEditable; else FallsAndMobilityLabel">
                 <p-dropdown [(ngModel)]="
                         PreAdmissionAssessmentFormsData.FallsAndMobility
@@ -474,15 +556,21 @@
                     }}</label>
             </ng-template>
         </div>
-        <div class="col-md-1 form-icon mt-4">
-            <i class="fa-solid fa-info"></i>
+        <div class="col-md-2 form-icon d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext">Mapped to : <b>Intervention
+                    </b><br> Care domain : <b>My On the Move falls Risk Awareness Support Plan </b>
+                    <br> Sub domain : <b>
+                        Risk Score </b>
+                </span>
+            </div>
         </div>
         <div class="col-md-4">
             <div class="labelcontent">
                 <p>Falls and mobility details</p>
             </div>
         </div>
-        <div class="col-md-7 form-text">
+        <div class="col-md-6 form-text">
             <ng-container *ngIf="isEditable; else FallsAndMobilityDetailsLabel">
                 <input pInputText type="text" required name="PreAdmissionAssessmentFormsData.FallsAndMobilityDetails"
                     class="form-control" [(ngModel)]="
@@ -499,34 +587,47 @@
                     }}</label>
             </ng-template>
         </div>
-        <div class="col-md-1 form-icon mt-4">
-            <i class="fa-solid fa-info"></i>
+        <div class="col-md-2 form-icon d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext">Mapped to : <b>Intervention
+                    </b><br> Care domain : <b>My On the Move falls Risk Awareness Support Plan </b>
+                    <br> Sub domain : <b>
+                        Falls </b>
+                </span>
+            </div>
         </div>
         <div class="col-md-4">
             <div class="labelcontent">
                 <p>Pain status</p>
             </div>
         </div>
-        <div class="col-md-7 form-text">
+        <div class="col-md-6 form-text">
             <ng-container *ngIf="isEditable; else PainStatusLabel">
                 <p-dropdown [(ngModel)]="PreAdmissionAssessmentFormsData.PainStatus"
                     name="PreAdmissionAssessmentFormsData.PainStatus" [options]="LstPreAdmPainStatusOptionMaster"
-                    optionLabel="optionName" optionValue="optionId" placeholder="--select--" [style]="{ width: '100%' }">
+                    optionLabel="optionName" optionValue="optionId" placeholder="--select--"
+                    [style]="{ width: '100%' }">
                 </p-dropdown>
             </ng-container>
             <ng-template #PainStatusLabel>
                 <label>{{ PreAdmissionAssessmentFormsData.PainStatusName }}</label>
             </ng-template>
         </div>
-        <div class="col-md-1 form-icon mt-4">
-            <i class="fa-solid fa-info"></i>
+        <div class="col-md-2 form-icon d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext">Mapped to : <b>Observation
+                    </b><br> Care domain : <b>My Medication healthcare , Treatments and Mangement support Plan </b>
+                    <br> Sub domain : <b>
+                        Pain</b>
+                </span>
+            </div>
         </div>
         <div class="col-md-4">
             <div class="labelcontent">
                 <p>Pain management details</p>
             </div>
         </div>
-        <div class="col-md-7 form-text">
+        <div class="col-md-6 form-text">
             <ng-container *ngIf="isEditable; else PainManagementDetailsLabel">
                 <input pInputText type="text" required name="PreAdmissionAssessmentFormsData.PainManagementDetails"
                     class="form-control" [(ngModel)]="
@@ -546,15 +647,21 @@
                     }}</label>
             </ng-template>
         </div>
-        <div class="col-md-1 form-icon mt-4">
-            <i class="fa-solid fa-info"></i>
+        <div class="col-md-2 form-icon d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext">Mapped to : <b>Observation
+                    </b><br> Care domain : <b>My Medication healthcare , Treatments and Mangement support Plan </b>
+                    <br> Sub domain : <b>
+                        pain </b>
+                </span>
+            </div>
         </div>
         <div class="col-md-4">
             <div class="labelcontent">
                 <p>Skin assessment</p>
             </div>
         </div>
-        <div class="col-md-7 form-text">
+        <div class="col-md-6 form-text">
             <ng-container *ngIf="isEditable; else SkinAssessmentLabel">
                 <p-dropdown [(ngModel)]="PreAdmissionAssessmentFormsData.SkinAssessment"
                     name="PreAdmissionAssessmentFormsData.SkinAssessment"
@@ -572,15 +679,21 @@
                     }}</label>
             </ng-template>
         </div>
-        <div class="col-md-1 form-icon mt-4">
-            <i class="fa-solid fa-info"></i>
+        <div class="col-md-2 form-icon d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext">Mapped to : <b>Observation
+                    </b><br> Care domain : <b>My Skin Care Support Plan </b>
+                    <br> Sub domain : <b>
+                        My Skin care Plan </b>
+                </span>
+            </div>
         </div>
         <div class="col-md-4">
             <div class="labelcontent">
                 <p>Skin Details</p>
             </div>
         </div>
-        <div class="col-md-7 form-text">
+        <div class="col-md-6 form-text">
             <ng-container *ngIf="isEditable; else SkinDetailsLabel">
                 <input pInputText type="text" required [(ngModel)]="PreAdmissionAssessmentFormsData.SkinDetails"
                     name="PreAdmissionAssessmentFormsData.SkinDetails" class="form-control" />
@@ -589,15 +702,21 @@
                 <label>{{ PreAdmissionAssessmentFormsData.SkinDetails }}</label>
             </ng-template>
         </div>
-        <div class="col-md-1 form-icon mt-4">
-            <i class="fa-solid fa-info"></i>
+        <div class="col-md-2 form-icon d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext">Mapped to : <b>Intervention
+                    </b><br> Care domain : <b>My Skin Care Support Plan </b>
+                    <br> Sub domain : <b>
+                        My Skin care Plan </b>
+                </span>
+            </div>
         </div>
         <div class="col-md-4">
             <div class="labelcontent">
                 <p>Eating and drinking assessment</p>
             </div>
         </div>
-        <div class="col-md-7 form-text">
+        <div class="col-md-6 form-text">
             <ng-container *ngIf="isEditable; else EatingDrinkingAssessmentLabel">
                 <p-dropdown [(ngModel)]="
                         PreAdmissionAssessmentFormsData.EatingDrinkingAssessment
@@ -612,15 +731,21 @@
                     }}</label>
             </ng-template>
         </div>
-        <div class="col-md-1 form-icon mt-4">
-            <i class="fa-solid fa-info"></i>
+        <div class="col-md-2 form-icon d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext">Mapped to : <b>Intervention
+                    </b><br> Care domain : <b>My Nutrition and Hydration Support Plan </b>
+                    <br> Sub domain : <b>
+                        ISDDI Triangle</b>
+                </span>
+            </div>
         </div>
         <div class="col-md-4">
             <div class="labelcontent">
                 <p>Eating and drinking details</p>
             </div>
         </div>
-        <div class="col-md-7 form-text">
+        <div class="col-md-6 form-text">
             <ng-container *ngIf="isEditable; else EatingDrinkingDetailsLabel">
                 <input pInputText type="text" required name="PreAdmissionAssessmentFormsData.EatingDrinkingDetails"
                     class="form-control" [(ngModel)]="
@@ -640,15 +765,21 @@
                     }}</label>
             </ng-template>
         </div>
-        <div class="col-md-1 form-icon mt-4">
-            <i class="fa-solid fa-info"></i>
+        <div class="col-md-2 form-icon d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext">Mapped to : <b>Intervention
+                    </b><br> Care domain : <b>My Nutrition and Hydration Support Plan </b>
+                    <br> Sub domain : <b>
+                        My Nutrition and Hydration plan</b>
+                </span>
+            </div>
         </div>
         <div class="col-md-4">
             <div class="labelcontent">
                 <p>Promotion of continence</p>
             </div>
         </div>
-        <div class="col-md-7 form-text">
+        <div class="col-md-6 form-text">
             <ng-container *ngIf="isEditable; else PromotionOfContinenceLabel">
                 <p-dropdown name="PreAdmissionAssessmentFormsData.PromotionOfContinence" [(ngModel)]="
                         PreAdmissionAssessmentFormsData.PromotionOfContinence
@@ -662,15 +793,21 @@
                     }}</label>
             </ng-template>
         </div>
-        <div class="col-md-1 form-icon mt-4">
-            <i class="fa-solid fa-info"></i>
+        <div class="col-md-2 form-icon d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext">Mapped to : <b>Intervention
+                    </b><br> Care domain : <b>My Continence Promotion Support Plan </b>
+                    <br> Sub domain : <b>
+                        Person Centerd Information</b>
+                </span>
+            </div>
         </div>
         <div class="col-md-4">
             <div class="labelcontent">
                 <p>Promoting Continence details</p>
             </div>
         </div>
-        <div class="col-md-7 form-text">
+        <div class="col-md-6 form-text">
             <ng-container *ngIf="isEditable; else PromotionOfContinenceDetailsLabel">
                 <input pInputText type="text" required
                     name="PreAdmissionAssessmentFormsData.PromotionOfContinenceDetails" class="form-control"
@@ -690,15 +827,21 @@
                     }}</label>
             </ng-template>
         </div>
-        <div class="col-md-1 form-icon mt-4">
-            <i class="fa-solid fa-info"></i>
+        <div class="col-md-2 form-icon d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext">Mapped to : <b>Intervention
+                    </b><br> Care domain : <b>My Continence Promotion Support Plan </b>
+                    <br> Sub domain : <b>
+                        My Continence Plan</b>
+                </span>
+            </div>
         </div>
         <div class="col-md-4">
             <div class="labelcontent">
                 <p>Feeling fresh and clean and promotion of self identity</p>
             </div>
         </div>
-        <div class="col-md-7 form-text">
+        <div class="col-md-6 form-text">
             <ng-container *ngIf="isEditable; else FeelingFreshAndCleanLabel">
                 <p-dropdown [(ngModel)]="
                         PreAdmissionAssessmentFormsData.FeelingFreshAndClean
@@ -713,15 +856,27 @@
                     }}</label>
             </ng-template>
         </div>
-        <div class="col-md-1 form-icon mt-4">
-            <i class="fa-solid fa-info"></i>
+        <div class="col-md-2 form-icon d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext">Mapped to : <b>Observation
+                    </b><br> Care domain : <b>My Personal Care and Projection of Self Image , Oral Care , Foot Support
+                        Plan </b>
+                    <br> Sub domain : <b>
+                        Personal Care</b>
+                    <hr>
+                    Mapped to : <b>Intervention
+                    </b><br> Care domain : <b>My Personal Care and Projection of Self Image , Oral Care , Foot Support
+                        Plan </b>
+
+                </span>
+            </div>
         </div>
         <div class="col-md-4">
             <div class="labelcontent">
                 <p>Feeling fresh and clean detail</p>
             </div>
         </div>
-        <div class="col-md-7 form-text">
+        <div class="col-md-6 form-text">
             <ng-container *ngIf="isEditable; else FeelingFreshAndCleanDetailsLabel">
                 <input pInputText type="text" required
                     name="PreAdmissionAssessmentFormsData.FeelingFreshAndCleanDetails" class="form-control" [(ngModel)]="
@@ -741,15 +896,22 @@
                     }}</label>
             </ng-template>
         </div>
-        <div class="col-md-1 form-icon mt-4">
-            <i class="fa-solid fa-info"></i>
+        <div class="col-md-2 form-icon d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext">Mapped to : <b>Observation
+                    </b><br> Care domain : <b>My Personal Care and Projection of Self Image , Oral Care , Foot Support
+                        Plan </b>
+                    <br> Sub domain : <b>
+                        Personal Care</b>
+                </span>
+            </div>
         </div>
         <div class="col-md-4">
             <div class="labelcontent">
                 <p>Sleeping and resting</p>
             </div>
         </div>
-        <div class="col-md-7 form-text">
+        <div class="col-md-6 form-text">
             <ng-container *ngIf="isEditable; else SleepingAndRestingLabel">
                 <p-dropdown name="PreAdmissionAssessmentFormsData.SleepingAndResting" [(ngModel)]="
                         PreAdmissionAssessmentFormsData.SleepingAndResting
@@ -763,15 +925,22 @@
                     }}</label>
             </ng-template>
         </div>
-        <div class="col-md-1 form-icon mt-4">
-            <i class="fa-solid fa-info"></i>
+        <div class="col-md-2 form-icon d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext">Mapped to : <b>Observation
+                    </b><br> Care domain : <b>My sleep and resting support Plan
+                        Plan </b>
+                    <br> Sub domain : <b>
+                        Personal Centerd Information</b>
+                </span>
+            </div>
         </div>
         <div class="col-md-4">
             <div class="labelcontent">
                 <p>Sleeping and resting details</p>
             </div>
         </div>
-        <div class="col-md-7 form-text">
+        <div class="col-md-6 form-text">
             <ng-container *ngIf="isEditable; else SleepingAndRestingDetailsLabel">
                 <input pInputText type="text" required name="PreAdmissionAssessmentFormsData.SleepingAndRestingDetails"
                     class="form-control" [(ngModel)]="
@@ -791,15 +960,22 @@
                     }}</label>
             </ng-template>
         </div>
-        <div class="col-md-1 form-icon mt-4">
-            <i class="fa-solid fa-info"></i>
+        <div class="col-md-2 form-icon d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext">Mapped to : <b>Observation
+                    </b><br> Care domain : <b>My sleep and resting support Plan
+                        Plan </b>
+                    <br> Sub domain : <b>
+                        Personal Centerd Information</b>
+                </span>
+            </div>
         </div>
         <div class="col-md-4">
             <div class="labelcontent">
                 <p>Expressing sexuality</p>
             </div>
         </div>
-        <div class="col-md-7 form-text">
+        <div class="col-md-6 form-text">
             <ng-container *ngIf="isEditable; else ExpressingSexualityLabel">
                 <p-dropdown name="PreAdmissionAssessmentFormsData.ExpressingSexuality" [(ngModel)]="
                         PreAdmissionAssessmentFormsData.ExpressingSexuality
@@ -813,15 +989,22 @@
                     }}</label>
             </ng-template>
         </div>
-        <div class="col-md-1 form-icon mt-4">
-            <i class="fa-solid fa-info"></i>
+        <div class="col-md-2 form-icon d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext">Mapped to : <b>Observation
+                    </b><br> Care domain : <b>My Mental Health and Well being Support Plan
+                        Plan </b>
+                    <br> Sub domain : <b>
+                        Personal Centerd Information</b>
+                </span>
+            </div>
         </div>
         <div class="col-md-4">
             <div class="labelcontent">
                 <p>Expressing sexuality details</p>
             </div>
         </div>
-        <div class="col-md-7 form-text">
+        <div class="col-md-6 form-text">
             <ng-container *ngIf="isEditable; else ExpressingSexualityDetailsLabel">
                 <input pInputText type="text" required name="PreAdmissionAssessmentFormsData.ExpressingSexualityDetails"
                     class="form-control" [(ngModel)]="
@@ -841,8 +1024,15 @@
                     }}</label>
             </ng-template>
         </div>
-        <div class="col-md-1 form-icon mt-4">
-            <i class="fa-solid fa-info"></i>
+        <div class="col-md-2 form-icon d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext">Mapped to : <b>Intervention
+                    </b><br> Care domain : <b>My Mental Health and Well being Support Plan
+                        Plan </b>
+                    <br> Sub domain : <b>
+                        Personal Centerd Information</b>
+                </span>
+            </div>
         </div>
         <div class="col-md-4">
             <div class="labelcontent">
@@ -853,7 +1043,7 @@
                 </p>
             </div>
         </div>
-        <div class="col-md-7 form-text">
+        <div class="col-md-6 form-text">
             <ng-container *ngIf="isEditable; else EngagementEmpowermentLabel">
                 <input pInputText type="text" required name="PreAdmissionAssessmentFormsData.EngagementEmpowerment"
                     class="form-control" [(ngModel)]="
@@ -866,8 +1056,15 @@
                     }}</label>
             </ng-template>
         </div>
-        <div class="col-md-1 form-icon mt-4">
-            <i class="fa-solid fa-info"></i>
+        <div class="col-md-2 form-icon d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext">Mapped to : <b>Observation
+                    </b><br> Care domain : <b>My Mental Health and Well being Support Plan
+                        Plan </b>
+                    <br> Sub domain : <b>
+                        Personal Centerd Information</b>
+                </span>
+            </div>
         </div>
         <div class="col-md-4">
             <div class="labelcontent">
@@ -877,7 +1074,7 @@
                 </p>
             </div>
         </div>
-        <div class="col-md-7 form-text">
+        <div class="col-md-6 form-text">
             <ng-container *ngIf="isEditable; else EpilepsySeizureManagementLabel">
                 <p-dropdown name="PreAdmissionAssessmentFormsData.EpilepsySeizureManagement" [(ngModel)]="
                         PreAdmissionAssessmentFormsData.EpilepsySeizureManagement
@@ -890,10 +1087,15 @@
                     PreAdmissionAssessmentFormsData.EpilepsySeizureManagementName
                     }}</label>
             </ng-template>
-
         </div>
-        <div class="col-md-1 form-icon mt-4">
-            <i class="fa-solid fa-info"></i>
+        <div class="col-md-2 form-icon d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext">Mapped to : <b>Observation
+                    </b><br> Care domain : <b>My Medication , healthcare, Treatments and Management Support Plan </b>
+                    <br> Sub domain : <b>
+                        Epilepsy / Seizures </b>
+                </span>
+            </div>
         </div>
         <div class="col-md-4">
             <div class="labelcontent">
@@ -903,7 +1105,7 @@
                 </p>
             </div>
         </div>
-        <div class="col-md-7 form-text">
+        <div class="col-md-6 form-text">
             <ng-container *ngIf="isEditable; else RescueMedicationsLabel">
                 <input pInputText type="text" required name="PreAdmissionAssessmentFormsData.RescueMedications"
                     class="form-control" [(ngModel)]="
@@ -920,15 +1122,21 @@
                     }}</label>
             </ng-template>
         </div>
-        <div class="col-md-1 form-icon mt-4">
-            <i class="fa-solid fa-info"></i>
+        <div class="col-md-2 form-icon d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext">Mapped to : <b>Intervention
+                    </b><br> Care domain : <b>My Medication , healthcare, Treatments and Management Support Plan </b>
+                    <br> Sub domain : <b>
+                        Epilepsy / Seizures </b>
+                </span>
+            </div>
         </div>
         <div class="col-md-4">
             <div class="labelcontent">
                 <p>Infection status</p>
             </div>
         </div>
-        <div class="col-md-7 form-text">
+        <div class="col-md-6 form-text">
             <ng-container *ngIf="isEditable; else InfectionStatusLabel">
                 <p-dropdown name="PreAdmissionAssessmentFormsData.InfectionStatus" [(ngModel)]="
                         PreAdmissionAssessmentFormsData.InfectionStatus
@@ -941,17 +1149,23 @@
                     PreAdmissionAssessmentFormsData.InfectionStatusName
                     }}</label>
             </ng-template>
-            
+
         </div>
-        <div class="col-md-1 form-icon mt-4">
-            <i class="fa-solid fa-info"></i>
+        <div class="col-md-2 form-icon d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext">Mapped to : <b>Observation
+                    </b><br> Care domain : <b>My Infection Prevation and Control support plan </b>
+                    <br> Sub domain : <b>
+                        person Centerd Information </b>
+                </span>
+            </div>
         </div>
         <div class="col-md-4">
             <div class="labelcontent">
                 <p>Infection details</p>
             </div>
         </div>
-        <div class="col-md-7 form-text">
+        <div class="col-md-6 form-text">
             <ng-container *ngIf="isEditable; else InfectionDetailsLabel">
                 <input pInputText type="text" required name="PreAdmissionAssessmentFormsData.InfectionDetails"
                     class="form-control" [(ngModel)]="
@@ -969,35 +1183,48 @@
                     }}</label>
             </ng-template>
         </div>
-        <div class="col-md-1 form-icon mt-4">
-            <i class="fa-solid fa-info"></i>
+        <div class="col-md-2 form-icon d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext">Mapped to : <b>Observation
+                    </b><br> Care domain : <b>My Infection Prevation and Control support plan </b>
+                    <br> Sub domain : <b>
+                        person Centerd Information </b>
+                </span>
+            </div>
         </div>
         <div class="col-md-4">
             <div class="labelcontent">
                 <p>Medication</p>
             </div>
         </div>
-        <div class="col-md-7 form-text">
+        <div class="col-md-6 form-text">
             <ng-container *ngIf="isEditable; else MedicationDropdownLabel">
                 <p-dropdown [(ngModel)]="PreAdmissionAssessmentFormsData.Medication"
                     name="PreAdmissionAssessmentFormsData.Medication" [options]="LstPreAdmMedicationOptionMaster"
-                    optionLabel="optionName" optionValue="optionId" placeholder="--select--" [style]="{ width: '100%' }">
+                    optionLabel="optionName" optionValue="optionId" placeholder="--select--"
+                    [style]="{ width: '100%' }">
                 </p-dropdown>
             </ng-container>
             <ng-template #MedicationDropdownLabel>
                 <label>{{ PreAdmissionAssessmentFormsData.MedicationName }}</label>
             </ng-template>
-            
+
         </div>
-        <div class="col-md-1 form-icon mt-4">
-            <i class="fa-solid fa-info"></i>
+        <div class="col-md-2 form-icon d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext">Mapped to : <b>Observation
+                    </b><br> Care domain : <b>My Medication , healthcare, Treatments and Management Support Plan </b>
+                    <br> Sub domain : <b>
+                        Medication </b>
+                </span>
+            </div>
         </div>
         <div class="col-md-4">
             <div class="labelcontent">
                 <p>Medication details</p>
             </div>
         </div>
-        <div class="col-md-7 form-text">
+        <div class="col-md-6 form-text">
             <ng-container *ngIf="isEditable; else MedicationDetailsLabel">
                 <input pInputText type="text" required name="PreAdmissionAssessmentFormsData.MedicationDetails"
                     class="form-control" [(ngModel)]="
@@ -1017,15 +1244,21 @@
                     }}</label>
             </ng-template>
         </div>
-        <div class="col-md-1 form-icon mt-4">
-            <i class="fa-solid fa-info"></i>
+        <div class="col-md-2 form-icon d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext">Mapped to : <b>Intervention
+                    </b><br> Care domain : <b>My Medication , healthcare, Treatments and Management Support Plan </b>
+                    <br> Sub domain : <b>
+                        Medication </b>
+                </span>
+            </div>
         </div>
         <div class="col-md-4">
             <div class="labelcontent">
                 <p>First aid for epileptic seizure</p>
             </div>
         </div>
-        <div class="col-md-7 form-text">
+        <div class="col-md-6 form-text">
             <ng-container *ngIf="isEditable; else FirstAidDropdownLabel">
                 <p-dropdown [(ngModel)]="
                         PreAdmissionAssessmentFormsData.FirstAidEpilepticSeizure
@@ -1041,8 +1274,14 @@
                     }}</label>
             </ng-template>
         </div>
-        <div class="col-md-1 form-icon mt-4">
-            <i class="fa-solid fa-info"></i>
+        <div class="col-md-2 form-icon d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext">Mapped to : <b>Intervention
+                    </b><br> Care domain : <b>My Medication , healthcare, Treatments and Management Support Plan </b>
+                    <br> Sub domain : <b>
+                        Epilepsy / Seizures </b>
+                </span>
+            </div>
         </div>
         <div class="col-md-4">
             <div class="labelcontent">
@@ -1052,7 +1291,7 @@
                 </p>
             </div>
         </div>
-        <div class="col-md-7 form-text">
+        <div class="col-md-6 form-text">
             <ng-container *ngIf="isEditable; else OverallGoalLabel">
                 <input pInputText type="text" required name="PreAdmissionAssessmentFormsData.OverallGoal"
                     class="form-control" [(ngModel)]="PreAdmissionAssessmentFormsData.OverallGoal" />
@@ -1065,8 +1304,14 @@
                 <label>{{ PreAdmissionAssessmentFormsData.OverallGoal }}</label>
             </ng-template>
         </div>
-        <div class="col-md-1 form-icon mt-4 form-icon">
-            <i class="fa-solid fa-info"></i>
+        <div class="col-md-2 form-icon d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext">Mapped to : <b>Agreed OutCome
+                    </b><br> Care domain : <b>My Mental Health and Well Being Support Plan </b>
+                    <br> Sub domain : <b>
+                        Well being </b>
+                </span>
+            </div>
         </div>
         <div class="col-md-4">
             <div class="labelcontent">
@@ -1074,12 +1319,13 @@
                     understands and accepts that there is CCTV in use throughout the Care Community grounds?</p>
             </div>
         </div>
-        <div class="col-md-7 form-text">
+        <div class="col-md-6 form-text">
             <ng-container *ngIf="isEditable; else CCTVPolicyDropdownLabel">
                 <p-dropdown [(ngModel)]="
                         PreAdmissionAssessmentFormsData.CCTVPolicy
                     " name="PreAdmissionAssessmentFormsData.CCTVPolicy" [options]="LstPreAdmCCTVPolicyOptionsMaster"
-                    optionLabel="optionName" optionValue="optionId" placeholder="--select--" [style]="{ width: '100%' }">
+                    optionLabel="optionName" optionValue="optionId" placeholder="--select--"
+                    [style]="{ width: '100%' }">
                 </p-dropdown>
             </ng-container>
             <ng-template #CCTVPolicyDropdownLabel>
@@ -1088,8 +1334,14 @@
                     }}</label>
             </ng-template>
         </div>
-        <div class="col-md-1 form-icon mt-4">
-            <i class="fa-solid fa-info"></i>
+        <div class="col-md-2 form-icon d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext">Mapped to : <b>Observation
+                    </b><br> Care domain : <b>My Communication Support Plan </b>
+                    <br> Sub domain : <b>
+                        Person Centerd Information </b>
+                </span>
+            </div>
         </div>
         <div class="d-flex justify-content-end">
             <ng-container *ngIf="isEditable; else savePdf">

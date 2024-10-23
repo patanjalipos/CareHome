@@ -19,15 +19,15 @@ export class GpDoctorVisitCommunicationRecordComponent extends AppComponentBase 
   GPDoctorVisitCommDetails: any = <any>{};
   //Form which is selected to edit or view
   isEditable: boolean; //Need to be passed from form Dashboard
-  StatementType: string = null;
+  statementType: string = null;
   //Patient Details
   userId: any;
   ResidentAdmissionInfoId: any;
   //CreatedBy or ModifiedBy
   loginId: any;
   lstComRelayMaster: any[] = [];
-  lstFamilyComRelayMaster:any[]=[];
-  lstFamilyComReasonMaster:any[]=[];
+  lstFamilyComRelayMaster: any[] = [];
+  lstFamilyComReasonMaster: any[] = [];
   constructor(
     private _UtilityService: UtilityService,
     private _ConstantServices: ConstantsService,
@@ -49,7 +49,7 @@ export class GpDoctorVisitCommunicationRecordComponent extends AppComponentBase 
       this.GPDoctorVisitCommDetailsByid(
         this.preSelectedFormData.selectedFormID
       );
-      this.StatementType = 'Update';
+      this.statementType = 'Update';
     }
     else {
       this.ResetModel();
@@ -61,8 +61,8 @@ export class GpDoctorVisitCommunicationRecordComponent extends AppComponentBase 
       this.lstFamilyComRelayMaster = responses[0];
     });
     //this.GetFamilyRelayMaster();
-    this.GPDoctorVisitCommDetails.DateOfGPCommunication=new Date();
-    this.GPDoctorVisitCommDetails.TimeOfGPCommunication=new Date();
+    this.GPDoctorVisitCommDetails.DateOfGPCommunication = new Date();
+    this.GPDoctorVisitCommDetails.TimeOfGPCommunication = new Date();
   }
   ngOnChanges(changes: SimpleChanges): void {
     this.isEditable = this.preSelectedFormData.isEditable;
@@ -71,32 +71,32 @@ export class GpDoctorVisitCommunicationRecordComponent extends AppComponentBase 
       this.GPDoctorVisitCommDetailsByid(
         this.preSelectedFormData.selectedFormID
       );
-      this.StatementType = 'Update';
+      this.statementType = 'Update';
     } else {
       this.ResetModel();
     }
   }
 
-  getDropdownMasterLists(formMasterId: string, dropdownName: string,status:number): Observable<any> {
+  getDropdownMasterLists(formMasterId: string, dropdownName: string, status: number): Observable<any> {
     this._UtilityService.showSpinner();
-    return this._UserServices.GetDropDownMasterList(formMasterId,dropdownName, status).pipe(
-        map((response) => {
-            this._UtilityService.hideSpinner();
-            if (response.actionResult.success) {
-                return JSON.parse(response.actionResult.result);
-            } else {
-                return [];
-            }
-        }),
-        catchError((error) => {
-            this._UtilityService.hideSpinner();
-            this._UtilityService.showErrorAlert(error.message);
+    return this._UserServices.GetDropDownMasterList(formMasterId, dropdownName, status).pipe(
+      map((response) => {
+        this._UtilityService.hideSpinner();
+        if (response.actionResult.success) {
+          return response.actionResult.result;
+        } else {
+          return [];
+        }
+      }),
+      catchError((error) => {
+        this._UtilityService.hideSpinner();
+        this._UtilityService.showErrorAlert(error.message);
 
-            return of([]); // Returning empty array in case of error
-        })
+        return of([]); // Returning empty array in case of error
+      })
     );
-}
-  
+  }
+
   GPDoctorVisitCommDetailsByid(formId: string) {
     this._UtilityService.showSpinner();
     this.unsubscribe.add = this._UserServices
@@ -105,11 +105,11 @@ export class GpDoctorVisitCommunicationRecordComponent extends AppComponentBase 
         next: (data) => {
           this._UtilityService.hideSpinner();
           if (data.actionResult.success == true) {
-            var tdata = JSON.parse(data.actionResult.result);
+          var tdata = data.actionResult.result;
             tdata = tdata ? tdata : {};
             this.GPDoctorVisitCommDetails = tdata;
-            this.GPDoctorVisitCommDetails.DateOfGPCommunication = new Date(this.GPDoctorVisitCommDetails.DateOfGPCommunication);
-            this.GPDoctorVisitCommDetails.TimeOfGPCommunication = new Date(this.GPDoctorVisitCommDetails.TimeOfGPCommunication);
+            this.GPDoctorVisitCommDetails.dateOfGPCommunication = new Date(this.GPDoctorVisitCommDetails.dateOfGPCommunication);
+            this.GPDoctorVisitCommDetails.timeOfGPCommunication = new Date(this.GPDoctorVisitCommDetails.timeOfGPCommunication);
           } else {
             this.GPDoctorVisitCommDetails = {};
           }
@@ -123,7 +123,7 @@ export class GpDoctorVisitCommunicationRecordComponent extends AppComponentBase 
   ResetModel() {
     this.isEditable = true;
     this.GPDoctorVisitCommDetails = <any>{};
-    this.StatementType = 'Insert';
+    this.statementType = 'Insert';
   }
   saveAsUnfinished() {
     this.GPDoctorVisitCommDetails.IsFormCompleted = false;
@@ -136,11 +136,11 @@ export class GpDoctorVisitCommunicationRecordComponent extends AppComponentBase 
   Save() {
     if (this.userId != null && this.ResidentAdmissionInfoId != null) {
       this.GPDoctorVisitCommDetails.userId = this.userId;
-      this.GPDoctorVisitCommDetails.StartedBy = localStorage.getItem('userId');
-      this.GPDoctorVisitCommDetails.LastEnteredBy = localStorage.getItem('userId');
-      this.GPDoctorVisitCommDetails.ResidentAdmissionInfoId = this.ResidentAdmissionInfoId;
+      this.GPDoctorVisitCommDetails.startedBy = localStorage.getItem('userId');
+      this.GPDoctorVisitCommDetails.lastEnteredBy = localStorage.getItem('userId');
+      this.GPDoctorVisitCommDetails.residentAdmissionInfoId = this.ResidentAdmissionInfoId;
       const objectBody: any = {
-        StatementType: this.StatementType,
+        StatementType: this.statementType,
         GPDoctorVisitCommunicationDetailsForm: this.GPDoctorVisitCommDetails,
       };
       this._UtilityService.showSpinner();

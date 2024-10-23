@@ -17,6 +17,7 @@ import { UtilityService } from 'src/app/utility/utility.service';
 import { PreAdmissionAssessmentFormsService } from './pre-admission-assessment-forms.service';
 import { Observable, catchError, forkJoin, map, of } from 'rxjs';
 import { UserService } from 'src/app/ui/service/user.service';
+import { log } from 'console';
 
 @Component({
     selector: 'app-pre-admission-assessment-forms',
@@ -25,8 +26,7 @@ import { UserService } from 'src/app/ui/service/user.service';
 })
 export class PreAdmissionAssessmentFormsComponent
     extends AppComponentBase
-    implements OnInit
-{
+    implements OnInit {
     customDateFormat = CustomDateFormat;
 
     //Dropdown Lists
@@ -59,7 +59,7 @@ export class PreAdmissionAssessmentFormsComponent
 
     PreAdmissionAssessmentFormsData: any = <any>{};
     isEditable: boolean; //Need to be passed from form Dashboard
-    StatementType: string = null;
+    statementType: string = null;
 
     //Patient Details
     userId: any;
@@ -111,7 +111,7 @@ export class PreAdmissionAssessmentFormsComponent
             'CCTVPolicy'
         ];
 
-        forkJoin(collectionNames.map((collectionName) => this.getDropdownMasterLists(FormTypes.PreAdmission,collectionName,1))).subscribe((responses: any[]) => {
+        forkJoin(collectionNames.map((collectionName) => this.getDropdownMasterLists(FormTypes.PreAdmission, collectionName, 1))).subscribe((responses: any[]) => {
             this.LstPreAdmPersonCapacityOptionsMaster = responses[0];
             this.LstPreAdmProfessionalDocObtainedOptionsMaster = responses[1];
             this.LstPreAdmResidentMovingOptionsMaster = responses[2];
@@ -144,10 +144,14 @@ export class PreAdmissionAssessmentFormsComponent
                 this.preSelectedFormData.selectedFormID
             );
 
-            this.StatementType = 'Update';
+            this.statementType = 'Update';
         } else {
             this.ResetModel();
         }
+        console.log("drop down value");
+        console.log(this.LstPreAdmMedicationOptionMaster);
+        
+        
     }
     ngOnChanges(changes: SimpleChanges): void {
         this.isEditable = this.preSelectedFormData.isEditable;
@@ -157,21 +161,21 @@ export class PreAdmissionAssessmentFormsComponent
             this.GetPreAdmissionFormDetails(
                 this.preSelectedFormData.selectedFormID
             );
-            
-            
-            this.StatementType = 'Update';
+
+
+            this.statementType = 'Update';
         } else {
             this.ResetModel();
         }
     }
 
-    getDropdownMasterLists(formMasterId: string, dropdownName: string,status:number): Observable<any> {
+    getDropdownMasterLists(formMasterId: string, dropdownName: string, status: number): Observable<any> {
         this._UtilityService.showSpinner();
-        return this._UserServices.GetDropDownMasterList(formMasterId,dropdownName, status).pipe(
+        return this._UserServices.GetDropDownMasterList(formMasterId, dropdownName, status).pipe(
             map((response) => {
                 this._UtilityService.hideSpinner();
                 if (response.actionResult.success) {
-                    return JSON.parse(response.actionResult.result);
+                    return response.actionResult.result;
                 } else {
                     return [];
                 }
@@ -179,27 +183,27 @@ export class PreAdmissionAssessmentFormsComponent
             catchError((error) => {
                 this._UtilityService.hideSpinner();
                 this._UtilityService.showErrorAlert(error.message);
-           
+
                 return of([]); // Returning empty array in case of error
             })
         );
     }
 
-    SaveAsPDF() {}
-    
+    SaveAsPDF() { }
+
     ResetModel() {
         this.isEditable = true;
         this.PreAdmissionAssessmentFormsData = <any>{};
-        this.StatementType = 'Insert';
+        this.statementType = 'Insert';
     }
 
     saveAsUnfinished() {
-        this.PreAdmissionAssessmentFormsData.IsFormCompleted = false;
+        this.PreAdmissionAssessmentFormsData.isFormCompleted = false;
         this.Save();
     }
 
     completeForm() {
-        this.PreAdmissionAssessmentFormsData.IsFormCompleted = true;
+        this.PreAdmissionAssessmentFormsData.isFormCompleted = true;
         this.Save();
     }
 
@@ -212,11 +216,11 @@ export class PreAdmissionAssessmentFormsComponent
             this.PreAdmissionAssessmentFormsData.userId = this.userId;
             this.PreAdmissionAssessmentFormsData.residentAdmissionInfoId =
                 this.residentAdmissionInfoId;
-            this.PreAdmissionAssessmentFormsData.StartedBy = this.loginId;
-            this.PreAdmissionAssessmentFormsData.LastEnteredBy = this.loginId;
+            this.PreAdmissionAssessmentFormsData.startedBy = this.loginId;
+            this.PreAdmissionAssessmentFormsData.lastEnteredBy = this.loginId;
 
             const objectBody: any = {
-                StatementType: this.StatementType,
+                statementType: this.statementType,
                 preAdmissionForm: this.PreAdmissionAssessmentFormsData,
             };
             this._UtilityService.showSpinner();
@@ -256,7 +260,7 @@ export class PreAdmissionAssessmentFormsComponent
                 next: (data) => {
                     this._UtilityService.hideSpinner();
                     if (data.actionResult.success == true) {
-                        var tdata = JSON.parse(data.actionResult.result);
+                      var tdata = data.actionResult.result;
                         tdata = tdata ? tdata : {};
                         this.PreAdmissionAssessmentFormsData = tdata;
                     } else {

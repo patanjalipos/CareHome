@@ -9,193 +9,193 @@ import { MustStep5NutritionalManagementService } from './must-step5-nutritional-
 import { UserService } from 'src/app/ui/service/user.service';
 
 @Component({
-  selector: 'app-must-step5-nutritional-management',
-  templateUrl: './must-step5-nutritional-management.component.html',
-  styleUrls: ['./must-step5-nutritional-management.component.scss']
+    selector: 'app-must-step5-nutritional-management',
+    templateUrl: './must-step5-nutritional-management.component.html',
+    styleUrls: ['./must-step5-nutritional-management.component.scss']
 })
 export class MustStep5NutritionalManagementComponent extends AppComponentBase implements OnInit {
-  @Input() preSelectedFormData: any=<any>{};
-  @Output() EmitUpdateForm: EventEmitter<any> = new EventEmitter<any>();
+    @Input() preSelectedFormData: any = <any>{};
+    @Output() EmitUpdateForm: EventEmitter<any> = new EventEmitter<any>();
 
-  customDateFormat = CustomDateFormat;
-  isEditable: boolean;
-  NutritionalManagementFormsData:any = <any>{};
-  residentAdmissionInfoId:any;
-  loginId: any;
-  userId: any;
-  StatementType: string = null;
+    customDateFormat = CustomDateFormat;
+    isEditable: boolean;
+    NutritionalManagementFormsData: any = <any>{};
+    residentAdmissionInfoId: any;
+    loginId: any;
+    userId: any;
+    statementType: string = null;
 
-  lstNutritionalProblems: any[] = [];
-  lstNutritionalAims: any[] = [];
-  lstInterventions: any[] = [];
+    lstNutritionalProblems: any[] = [];
+    lstNutritionalAims: any[] = [];
+    lstInterventions: any[] = [];
 
-  constructor(private _ConstantServices: ConstantsService,private route: ActivatedRoute,private _UtilityService: UtilityService,private _UserServices : UserService, private datePipe: DatePipe,private _Nutritional: MustStep5NutritionalManagementService) {
+    constructor(private _ConstantServices: ConstantsService, private route: ActivatedRoute, private _UtilityService: UtilityService, private _UserServices: UserService, private datePipe: DatePipe, private _Nutritional: MustStep5NutritionalManagementService) {
 
-    super();
-    this._ConstantServices.ActiveMenuName = "Nutritional Management Plan Form";
-    this.loginId = localStorage.getItem('userId');
-   }
-
-   ngOnChanges(changes: SimpleChanges): void {
-    this.isEditable = this.preSelectedFormData.isEditable;
-    
-    if (this.preSelectedFormData.selectedFormID != null) {
-      this.NutritionalManagementFormsData = <any>{};
-        this.GetNutritionalManagementDetails(
-            this.preSelectedFormData.selectedFormID
-        );
-        this.StatementType = 'Update';
+        super();
+        this._ConstantServices.ActiveMenuName = "Nutritional Management Plan Form";
+        this.loginId = localStorage.getItem('userId');
     }
-    else {
-      this.ResetModel();
+
+    ngOnChanges(changes: SimpleChanges): void {
+        this.isEditable = this.preSelectedFormData.isEditable;
+
+        if (this.preSelectedFormData.selectedFormID != null) {
+            this.NutritionalManagementFormsData = <any>{};
+            this.GetNutritionalManagementDetails(
+                this.preSelectedFormData.selectedFormID
+            );
+            this.statementType = 'Update';
+        }
+        else {
+            this.ResetModel();
+        }
     }
-  }
 
-  ngOnInit(): void {
+    ngOnInit(): void {
 
-    this.userId = this.preSelectedFormData.userId;
-    this.residentAdmissionInfoId = this.preSelectedFormData.residentAdmissionInfoId;
+        this.userId = this.preSelectedFormData.userId;
+        this.residentAdmissionInfoId = this.preSelectedFormData.residentAdmissionInfoId;
 
-    const collectionNames = [
-      'NutritionalProblems',
-      'NutritionalAims',
-      'Interventions'
-  ];
+        const collectionNames = [
+            'NutritionalProblems',
+            'NutritionalAims',
+            'Interventions'
+        ];
 
-  forkJoin(collectionNames.map((collectionName) => this.getDropdownMasterLists(FormTypes.MUSTStep5NutritionalManagement,collectionName,1))).subscribe((responses: any[]) => {
-      this.lstNutritionalProblems = responses[0];
-      this.lstNutritionalAims = responses[1];
-      this.lstInterventions = responses[2];
-  });
+        forkJoin(collectionNames.map((collectionName) => this.getDropdownMasterLists(FormTypes.MUSTStep5NutritionalManagement, collectionName, 1))).subscribe((responses: any[]) => {
+            this.lstNutritionalProblems = responses[0];
+            this.lstNutritionalAims = responses[1];
+            this.lstInterventions = responses[2];
+        });
 
-    this.isEditable = this.preSelectedFormData.isEditable;
-  
-    if (this.preSelectedFormData.selectedFormID != null) {
-      this.NutritionalManagementFormsData = <any>{};
-        this.GetNutritionalManagementDetails(
-            this.preSelectedFormData.selectedFormID
-        );
-        this.StatementType = 'Update';
+        this.isEditable = this.preSelectedFormData.isEditable;
+
+        if (this.preSelectedFormData.selectedFormID != null) {
+            this.NutritionalManagementFormsData = <any>{};
+            this.GetNutritionalManagementDetails(
+                this.preSelectedFormData.selectedFormID
+            );
+            this.statementType = 'Update';
+        }
+        else {
+            this.ResetModel();
+        }
     }
-    else {
-      this.ResetModel();
-  }
-  }
 
-  SaveAsPDF() {}
+    SaveAsPDF() { }
 
-  GetNutritionalManagementDetails(formId: string) {
-    this._UtilityService.showSpinner();
-    this.unsubscribe.add = this._Nutritional
-        .GetNutritionalManagementDetails(formId)
-        .subscribe({
-            next: (data) => {
+    GetNutritionalManagementDetails(formId: string) {
+        this._UtilityService.showSpinner();
+        this.unsubscribe.add = this._Nutritional
+            .GetNutritionalManagementDetails(formId)
+            .subscribe({
+                next: (data) => {
+                    this._UtilityService.hideSpinner();
+                    if (data.actionResult.success == true) {
+                      var tdata = data.actionResult.result;
+                        tdata = tdata ? tdata : {};
+
+                        this.NutritionalManagementFormsData = tdata;
+
+                        this.NutritionalManagementFormsData.reviewDate = this.datePipe.transform(this.NutritionalManagementFormsData.reviewDate, 'MM/dd/yyyy');
+
+                    } else {
+                        this.NutritionalManagementFormsData = {};
+                    }
+                },
+                error: (e) => {
+                    this._UtilityService.hideSpinner();
+                    this._UtilityService.showErrorAlert(e.message);
+                },
+            });
+    }
+
+
+    getDropdownMasterLists(formMasterId: string, dropdownName: string, status: number): Observable<any> {
+        this._UtilityService.showSpinner();
+        return this._UserServices.GetDropDownMasterList(formMasterId, dropdownName, status).pipe(
+            map((response) => {
                 this._UtilityService.hideSpinner();
-                if (data.actionResult.success == true) {
-                    var tdata = JSON.parse(data.actionResult.result);
-                    tdata = tdata ? tdata : {};
-
-                    this.NutritionalManagementFormsData = tdata;
-
-                    this.NutritionalManagementFormsData.ReviewDate = this.datePipe.transform(this.NutritionalManagementFormsData.ReviewDate,'MM/dd/yyyy');
-                    
+                if (response.actionResult.success) {
+                    return response.actionResult.result;
                 } else {
-                    this.NutritionalManagementFormsData = {};
+                    return [];
                 }
-            },
-            error: (e) => {
+            }),
+            catchError((error) => {
                 this._UtilityService.hideSpinner();
-                this._UtilityService.showErrorAlert(e.message);
-            },
-        });
-}
-
-
-getDropdownMasterLists(formMasterId: string, dropdownName: string,status:number): Observable<any> {
-  this._UtilityService.showSpinner();
-  return this._UserServices.GetDropDownMasterList(formMasterId,dropdownName, status).pipe(
-      map((response) => {
-          this._UtilityService.hideSpinner();
-          if (response.actionResult.success) {
-              return JSON.parse(response.actionResult.result);
-          } else {
-              return [];
-          }
-      }),
-      catchError((error) => {
-          this._UtilityService.hideSpinner();
-          this._UtilityService.showErrorAlert(error.message);
-          return of([]); // Returning empty array in case of error
-      })
-  );
-}
+                this._UtilityService.showErrorAlert(error.message);
+                return of([]); // Returning empty array in case of error
+            })
+        );
+    }
 
 
 
-saveAsUnfinished() {
+    saveAsUnfinished() {
 
-this.NutritionalManagementFormsData.isFormCompleted = false;
-this.Save();
-}
+        this.NutritionalManagementFormsData.isFormCompleted = false;
+        this.Save();
+    }
 
-completeForm() {
-this.NutritionalManagementFormsData.isFormCompleted = true;
-this.Save();
-}
+    completeForm() {
+        this.NutritionalManagementFormsData.isFormCompleted = true;
+        this.Save();
+    }
 
-Save() {
-  debugger
-if (this.userId != null && this.residentAdmissionInfoId != null && this.loginId!=null) {
-    
-    this.NutritionalManagementFormsData.userId = this.userId;
-    this.NutritionalManagementFormsData.residentAdmissionInfoId =
-        this.residentAdmissionInfoId;
-    this.NutritionalManagementFormsData.StartedBy = this.loginId;
-    this.NutritionalManagementFormsData.LastEnteredBy = this.loginId;
-    this.NutritionalManagementFormsData.ReviewDate = this.datePipe.transform(this.NutritionalManagementFormsData.ReviewDate,'yyyy-MM-dd');
-    
-        const objectBody: any = {
-          StatementType: this.StatementType,
-          nutritionalManagementPlanForm: this.NutritionalManagementFormsData,
-      };
+    Save() {
+        debugger
+        if (this.userId != null && this.residentAdmissionInfoId != null && this.loginId != null) {
 
-    this._UtilityService.showSpinner();
-    this.unsubscribe.add = this._Nutritional
-        .InsertUpdateNutritionalManagementForm(
-            objectBody
-        )
-        .subscribe({
-            next: (data) => {
-                this._UtilityService.hideSpinner();
-                if (data.actionResult.success == true){
-                    this.EmitUpdateForm.emit(true);
-                //   this.ResetModel();
-                    this._UtilityService.showSuccessAlert(
-                        data.actionResult.errMsg
-                    );
-                  }
-                else
-                    this._UtilityService.showWarningAlert(
-                        data.actionResult.errMsg
-                    );
-            },
-            error: (e) => {
-                this._UtilityService.hideSpinner();
-                this._UtilityService.showErrorAlert(e.message);
-            },
-        });
-} else {
-    this._UtilityService.showWarningAlert(
-        'Nutritional Management Plan details are missing.'
-    );
-}
-}
+            this.NutritionalManagementFormsData.userId = this.userId;
+            this.NutritionalManagementFormsData.residentAdmissionInfoId =
+                this.residentAdmissionInfoId;
+            this.NutritionalManagementFormsData.startedBy = this.loginId;
+            this.NutritionalManagementFormsData.lastEnteredBy = this.loginId;
+            this.NutritionalManagementFormsData.reviewDate = this.datePipe.transform(this.NutritionalManagementFormsData.reviewDate, 'yyyy-MM-dd');
+
+            const objectBody: any = {
+                statementType: this.statementType,
+                nutritionalManagementPlanForm: this.NutritionalManagementFormsData,
+            };
+
+            this._UtilityService.showSpinner();
+            this.unsubscribe.add = this._Nutritional
+                .InsertUpdateNutritionalManagementForm(
+                    objectBody
+                )
+                .subscribe({
+                    next: (data) => {
+                        this._UtilityService.hideSpinner();
+                        if (data.actionResult.success == true) {
+                            this.EmitUpdateForm.emit(true);
+                            //   this.ResetModel();
+                            this._UtilityService.showSuccessAlert(
+                                data.actionResult.errMsg
+                            );
+                        }
+                        else
+                            this._UtilityService.showWarningAlert(
+                                data.actionResult.errMsg
+                            );
+                    },
+                    error: (e) => {
+                        this._UtilityService.hideSpinner();
+                        this._UtilityService.showErrorAlert(e.message);
+                    },
+                });
+        } else {
+            this._UtilityService.showWarningAlert(
+                'Nutritional Management Plan details are missing.'
+            );
+        }
+    }
 
 
-ResetModel() {
-  this.isEditable = true;
-  this.NutritionalManagementFormsData = <any>{};
-  this.StatementType = 'Insert';
-}
+    ResetModel() {
+        this.isEditable = true;
+        this.NutritionalManagementFormsData = <any>{};
+        this.statementType = 'Insert';
+    }
 
 }

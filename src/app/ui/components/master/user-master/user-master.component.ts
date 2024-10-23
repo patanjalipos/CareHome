@@ -141,7 +141,7 @@ export class UserMasterComponent extends AppComponentBase implements OnInit {
         next: (data) => {
           this._UtilityService.hideSpinner();
           if (data.actionResult.success == true) {
-            var tdata = JSON.parse(data.actionResult.result);
+          var tdata = data.actionResult.result;
             tdata = tdata ? tdata : [];
             this.lstUserType = tdata;
 
@@ -172,7 +172,7 @@ export class UserMasterComponent extends AppComponentBase implements OnInit {
         next: (data) => {
           this._UtilityService.hideSpinner();
           if (data.actionResult.success == true) {
-            var tdata = JSON.parse(data.actionResult.result);
+          var tdata = data.actionResult.result;
             tdata = tdata ? tdata : [];
             this.lstUserMaster = tdata;
 
@@ -212,7 +212,7 @@ export class UserMasterComponent extends AppComponentBase implements OnInit {
         next: (data) => {
           this._UtilityService.hideSpinner();
           if (data.actionResult.success == true) {
-            var tdata = JSON.parse(data.actionResult.result);
+          var tdata = data.actionResult.result;
             tdata = tdata ? tdata : [];
             this.RegistrationMainModel = tdata;
 
@@ -252,7 +252,7 @@ export class UserMasterComponent extends AppComponentBase implements OnInit {
             this.RegistrationMainModel.statementtype = "Update";
 
             if (data.actionResult.result2?.length > 0) {
-              var tdata1 = JSON.parse(data.actionResult.result2);
+              var tdata1 = data.actionResult.result2;
               tdata1 = tdata1 ? tdata1 : [];
               if (tdata1?.length > 0)
                 this.lstFacilityResident = tdata1;
@@ -577,7 +577,7 @@ export class UserMasterComponent extends AppComponentBase implements OnInit {
         next: (data) => {
           this._UtilityService.hideSpinner();
           if (data.actionResult.success == true) {
-            var tdata = JSON.parse(data.actionResult.result);
+          var tdata = data.actionResult.result;
             tdata = tdata ? tdata : [];
             this.lstHomeMaster = tdata;
             this.lstHomeMaster.map(m => {
@@ -609,7 +609,7 @@ export class UserMasterComponent extends AppComponentBase implements OnInit {
         next: (data) => {
           this._UtilityService.hideSpinner();
           if (data.actionResult.success == true) {
-            var tdata = JSON.parse(data.actionResult.result);
+          var tdata = data.actionResult.result;
             tdata = tdata ? tdata : [];
             this.lstHomeMaster[i].ResidentList = tdata; 
             if (selectedResident != null && selectedResident != undefined) {
@@ -642,9 +642,8 @@ export class UserMasterComponent extends AppComponentBase implements OnInit {
   //
 
   onNodeSelectMenuAccess(event) {
-    //console.log("NodeSelect Menu Access I Access", this.lstActionItemAccess);
-    // var OldData=JSON.parse(JSON.stringify(this.lstActionItemAccess));
-    var OldData = JSON.parse(JSON.stringify(this.lstActionItemAccess));
+    
+    var OldData = this.lstActionItemAccess;
 
     //////Preapre User Authorization Action Item////////
     var UserAuthorizationIAccess: any[] = [];
@@ -686,13 +685,13 @@ export class UserMasterComponent extends AppComponentBase implements OnInit {
           else
             IAccessChildren.push(IAccessDetailsR);
         }
-        IAccessDetails.children = JSON.parse(JSON.stringify(IAccessChildren));
+        IAccessDetails.children = IAccessChildren;
         //IAccessDetails.children=[IAccessDetailsN];
       }
 
-      OldData.push(JSON.parse(JSON.stringify(IAccessDetails)));
+      OldData.push(IAccessDetails);
       this.lstActionItemAccess = [];
-      this.lstActionItemAccess = JSON.parse(JSON.stringify(OldData));
+      this.lstActionItemAccess = (OldData);
     }
     else {
       let bl: Boolean = false;
@@ -700,9 +699,9 @@ export class UserMasterComponent extends AppComponentBase implements OnInit {
         if (OldData[a]?.children != null && OldData[a]?.children?.length > 0 && OldData[a]?.data?.MenuItemId === event?.node?.parent?.data) {
           var IAccessDetails;
           IAccessDetails = { "data": { "MenuItemId": event.node.data, "MenuItemName": event.node.label, "Read": true, "ReadWrite": false, "Print": false, "Delete": false, "Download": false, "Cancel": false }, "dataval": { "MenuItemId": event.node.data, "MenuItemName": event.node.label, "Read": true, "ReadWrite": false, "Print": false, "Delete": false, "Download": false, "Cancel": false }, "children": [], "parent": [] };
-          OldData[a].children.push(JSON.parse(JSON.stringify(IAccessDetails)));
+          OldData[a].children.push(IAccessDetails);
           this.lstActionItemAccess = [];
-          this.lstActionItemAccess = JSON.parse(JSON.stringify(OldData));
+          this.lstActionItemAccess = OldData;
           bl = true;
         }
         if (OldData[a]?.children != null && OldData[a]?.children?.length > 0 && OldData[a]?.data?.MenuItemId != event?.node?.parent?.data) {
@@ -710,9 +709,9 @@ export class UserMasterComponent extends AppComponentBase implements OnInit {
             if (OldData[a]?.children[x]?.children != null && OldData[a]?.children[x]?.children?.length > 0 && OldData[a]?.children[x]?.data?.MenuItemId === event?.node?.parent?.data) {
               var IAccessDetails;
               IAccessDetails = { "data": { "MenuItemId": event.node.data, "MenuItemName": event.node.label, "Read": true, "ReadWrite": false, "Print": false, "Delete": false, "Download": false, "Cancel": false }, "dataval": { "MenuItemId": event.node.data, "MenuItemName": event.node.label, "Read": true, "ReadWrite": false, "Print": false, "Delete": false, "Download": false, "Cancel": false }, "children": [], "parent": [] };
-              OldData[a].children[x].children.push(JSON.parse(JSON.stringify(IAccessDetails)));
+              OldData[a].children[x].children.push(IAccessDetails);
               this.lstActionItemAccess = [];
-              this.lstActionItemAccess = JSON.parse(JSON.stringify(OldData));
+              this.lstActionItemAccess = OldData;
               bl = true;
             }
           }
@@ -726,17 +725,16 @@ export class UserMasterComponent extends AppComponentBase implements OnInit {
           var IAccessDetailsN;
           IAccessDetailsN = { "data": { "MenuItemId": event.node.data, "MenuItemName": event.node.label, "Read": true, "ReadWrite": false, "Print": false, "Delete": false, "Download": false, "Cancel": false }, "dataval": { "MenuItemId": event.node.data, "MenuItemName": event.node.label, "Read": true, "ReadWrite": false, "Print": false, "Delete": false, "Download": false, "Cancel": false }, "children": [], "parent": [] };
           IAccessDetails.children = [IAccessDetailsN];
-          OldData.push(JSON.parse(JSON.stringify(IAccessDetails)));
+          OldData.push(IAccessDetails);
 
           this.lstActionItemAccess = [];
-          this.lstActionItemAccess = JSON.parse(JSON.stringify(OldData));
+          this.lstActionItemAccess = (OldData);
         }
       }
     }
   }
   onNodeUnselectMenuAccess(event) {
-    // var OldData=JSON.parse(JSON.stringify(this.lstActionItemAccess));
-    //var OldData= JSON.parse(JSON.stringify(this.lstActionItemAccess));
+  
     var OldData = cloneDeep(this.lstActionItemAccess);
     //////Preapre User Authorization Action Item////////
     var UserAuthorizationIAccess: any[] = [];
@@ -766,13 +764,13 @@ export class UserMasterComponent extends AppComponentBase implements OnInit {
       if ((OldData[a]?.children == undefined && OldData[a]?.children == null || OldData[a]?.children?.length == 0) && OldData[a]?.data?.MenuItemId === event.node.data) {
         OldData = OldData.filter(f => f.data.MenuItemId !== event.node.data);
         this.lstActionItemAccess = [];
-        this.lstActionItemAccess = cloneDeep(OldData)/*JSON.parse(JSON.stringify(OldData))*/;
+        this.lstActionItemAccess = cloneDeep(OldData)
       }
       else if (OldData[a]?.children != undefined && OldData[a]?.children != null && OldData[a]?.children?.length > 0 && OldData[a]?.data.MenuItemId === event.node.data) {
         OldData = OldData.filter(f => f.data.MenuItemId !== event.node.data);
 
         this.lstActionItemAccess = [];
-        this.lstActionItemAccess = cloneDeep(OldData)/*JSON.parse(JSON.stringify(OldData))*/;
+        this.lstActionItemAccess = cloneDeep(OldData)
       }
       else if (OldData[a]?.children != undefined && OldData[a]?.children != null && OldData[a]?.children?.length > 0 && OldData[a]?.data?.MenuItemId != event.node.data) {
         for (var x = 0; x < OldData[a]?.children?.length; x++) {
@@ -782,7 +780,7 @@ export class UserMasterComponent extends AppComponentBase implements OnInit {
               OldData = OldData.filter(f => f.data.MenuItemId !== OldData[a].data.MenuItemId);
             }
             this.lstActionItemAccess = [];
-            this.lstActionItemAccess = cloneDeep(OldData) /*JSON.parse(JSON.stringify(OldData))*/;
+            this.lstActionItemAccess = cloneDeep(OldData)
           }
         }
       }
@@ -798,7 +796,7 @@ export class UserMasterComponent extends AppComponentBase implements OnInit {
         data => {
           this._UtilityService.hideSpinner();
           if (data.actionResult.success == true) {
-            var tdata = JSON.parse(data.actionResult.result);
+          var tdata = data.actionResult.result;
             tdata = tdata ? tdata : [];
             this.MenuitemMaster = tdata;
             this.CheckTreeSelectedValue();
@@ -905,10 +903,10 @@ export class UserMasterComponent extends AppComponentBase implements OnInit {
         next: (data) => {
           this._UtilityService.hideSpinner();
           if (data.actionResult.success == true) {
-            var tdata = JSON.parse(data.actionResult.result);
+          var tdata = data.actionResult.result;
             tdata = tdata ? tdata : [];
             this.lstActionItemAccess = tdata;
-            //console.log("Action Details",this.lstActionItemAccess);
+            console.log("Action Details",this.lstActionItemAccess);
           }
           else {
             this.lstActionItemAccess = [];

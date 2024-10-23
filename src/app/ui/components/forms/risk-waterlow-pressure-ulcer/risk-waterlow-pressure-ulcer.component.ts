@@ -24,7 +24,7 @@ export class RiskWaterlowPressureUlcerComponent extends AppComponentBase impleme
   residentAdmissionInfoId: any;
   loginId: any;
   userId: any;
-  StatementType: string = null;
+  statementType: string = null;
 
   lstWeightLoss: any[] = []
   lstAppetite: any[] = []
@@ -54,7 +54,7 @@ export class RiskWaterlowPressureUlcerComponent extends AppComponentBase impleme
       this.GetRiskAssessmentWaterFlowPressureDetails(
         this.preSelectedFormData.selectedFormID
       );
-      this.StatementType = 'Update';
+      this.statementType = 'Update';
     }
     else {
       this.ResetModel();
@@ -101,7 +101,7 @@ export class RiskWaterlowPressureUlcerComponent extends AppComponentBase impleme
       this.GetRiskAssessmentWaterFlowPressureDetails(
         this.preSelectedFormData.selectedFormID
       );
-      this.StatementType = 'Update';
+      this.statementType = 'Update';
     }
     else {
       this.ResetModel();
@@ -118,10 +118,10 @@ export class RiskWaterlowPressureUlcerComponent extends AppComponentBase impleme
         next: (data) => {
           this._UtilityService.hideSpinner();
           if (data.actionResult.success == true) {
-            var tdata = JSON.parse(data.actionResult.result);
+          var tdata = data.actionResult.result;
             tdata = tdata ? tdata : {};
             this.RiskAssessmentWaterFlowPressureFormsData = tdata;
-            this.RiskAssessmentWaterFlowPressureFormsData.NextReviewDate = new Date(this.RiskAssessmentWaterFlowPressureFormsData.NextReviewDate);
+            this.RiskAssessmentWaterFlowPressureFormsData.nextReviewDate = new Date(this.RiskAssessmentWaterFlowPressureFormsData.nextReviewDate);
 
           } else {
             this.RiskAssessmentWaterFlowPressureFormsData = {};
@@ -140,7 +140,7 @@ export class RiskWaterlowPressureUlcerComponent extends AppComponentBase impleme
       map((response) => {
         this._UtilityService.hideSpinner();
         if (response.actionResult.success) {
-          return JSON.parse(response.actionResult.result);
+          return response.actionResult.result;
         } else {
           return [];
         }
@@ -148,7 +148,7 @@ export class RiskWaterlowPressureUlcerComponent extends AppComponentBase impleme
       catchError((error) => {
         this._UtilityService.hideSpinner();
         this._UtilityService.showErrorAlert(error.message);
-    
+
         return of([]); // Returning empty array in case of error
       })
     );
@@ -172,13 +172,13 @@ export class RiskWaterlowPressureUlcerComponent extends AppComponentBase impleme
       this.RiskAssessmentWaterFlowPressureFormsData.userId = this.userId;
       this.RiskAssessmentWaterFlowPressureFormsData.residentAdmissionInfoId =
         this.residentAdmissionInfoId;
-      this.RiskAssessmentWaterFlowPressureFormsData.StartedBy = this.loginId;
-      this.RiskAssessmentWaterFlowPressureFormsData.LastEnteredBy = this.loginId;
+      this.RiskAssessmentWaterFlowPressureFormsData.startedBy = this.loginId;
+      this.RiskAssessmentWaterFlowPressureFormsData.lastEnteredBy = this.loginId;
 
-      this.RiskAssessmentWaterFlowPressureFormsData.NextReviewDate = new Date(this.datePipe.transform(this.RiskAssessmentWaterFlowPressureFormsData.NextReviewDate, 'yyyy-MM-dd'));
+      this.RiskAssessmentWaterFlowPressureFormsData.nextReviewDate = new Date(this.datePipe.transform(this.RiskAssessmentWaterFlowPressureFormsData.nextReviewDate, 'yyyy-MM-dd'));
 
       const objectBody: any = {
-        StatementType: this.StatementType,
+        statementType: this.statementType,
         riskAssWaterlowPressureForm: this.RiskAssessmentWaterFlowPressureFormsData,
       };
 
@@ -219,7 +219,7 @@ export class RiskWaterlowPressureUlcerComponent extends AppComponentBase impleme
   ResetModel() {
     this.isEditable = true;
     this.RiskAssessmentWaterFlowPressureFormsData = <any>{};
-    this.StatementType = 'Insert';
+    this.statementType = 'Insert';
   }
 
 }

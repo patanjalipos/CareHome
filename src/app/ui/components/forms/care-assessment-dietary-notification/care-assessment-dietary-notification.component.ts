@@ -35,7 +35,7 @@ export class CareAssessmentDietaryNotificationComponent
     //Form which is selected to edit or view
     isEditable: boolean;
     //Need to be passed from form Dashboard
-    StatementType: string = null;
+    statementType: string = null;
 
     //Patient Details
     userId: any;
@@ -74,7 +74,7 @@ export class CareAssessmentDietaryNotificationComponent
             this.GetSelectedFormDetails(
                 this.preSelectedFormData.selectedFormID
             );
-            this.StatementType = 'Update';
+            this.statementType = 'Update';
         } else {
             this.ResetModel();
         }
@@ -118,7 +118,7 @@ export class CareAssessmentDietaryNotificationComponent
                 this.preSelectedFormData.selectedFormID
             );
 
-            this.StatementType = 'Update';
+            this.statementType = 'Update';
         } else {
             this.ResetModel();
         }
@@ -127,12 +127,12 @@ export class CareAssessmentDietaryNotificationComponent
     SaveAsPDF() { }
 
     saveAsUnfinished() {
-        this.DietaryNotificationFormsData.IsFormCompleted = false;
+        this.DietaryNotificationFormsData.isFormCompleted = false;
         this.Save();
     }
 
     completeForm() {
-        this.DietaryNotificationFormsData.IsFormCompleted = true;
+        this.DietaryNotificationFormsData.isFormCompleted = true;
         this.Save();
     }
 
@@ -147,7 +147,7 @@ export class CareAssessmentDietaryNotificationComponent
                 map((response) => {
                     this._UtilityService.hideSpinner();
                     if (response.actionResult.success) {
-                        return JSON.parse(response.actionResult.result);
+                        return response.actionResult.result;
                     } else {
                         return [];
                     }
@@ -169,9 +169,10 @@ export class CareAssessmentDietaryNotificationComponent
                 next: (data) => {
                     this._UtilityService.hideSpinner();
                     if (data.actionResult.success == true) {
-                        var tdata = JSON.parse(data.actionResult.result);
+                      var tdata = data.actionResult.result;
                         tdata = tdata ? tdata : {};
                         this.DietaryNotificationFormsData = tdata;
+                        this.DietaryNotificationFormsData.nextReviewDate = new Date(this.DietaryNotificationFormsData.nextReviewDate);
                     } else {
                         this.DietaryNotificationFormsData = {};
                     }
@@ -189,15 +190,15 @@ export class CareAssessmentDietaryNotificationComponent
             this.residentAdmissionInfoId != null &&
             this.loginId != null
         ) {
-            this.DietaryNotificationFormsData.UserId = this.userId;
-            this.DietaryNotificationFormsData.ResidentAdmissionInfoId =
+            this.DietaryNotificationFormsData.userId = this.userId;
+            this.DietaryNotificationFormsData.residentAdmissionInfoId =
                 this.residentAdmissionInfoId;
-            this.DietaryNotificationFormsData.StartedBy = this.loginId;
-            this.DietaryNotificationFormsData.ModifiedBy = this.loginId;
-
+            this.DietaryNotificationFormsData.startedBy = this.loginId;
+            this.DietaryNotificationFormsData.modifiedBy = this.loginId;
+            this.DietaryNotificationFormsData.nextReviewDate = new Date(this.DietaryNotificationFormsData.nextReviewDate);
             const objectBody: any = {
-                StatementType: this.StatementType,
-                DietaryNotificationForm: this.DietaryNotificationFormsData,
+                statementType: this.statementType,
+                dietaryNotificationForm: this.DietaryNotificationFormsData,
             };
             this._UtilityService.showSpinner();
             this.unsubscribe.add = this._FormService
@@ -230,6 +231,6 @@ export class CareAssessmentDietaryNotificationComponent
     ResetModel() {
         this.isEditable = true;
         this.DietaryNotificationFormsData = <any>{};
-        this.StatementType = 'Insert';
+        this.statementType = 'Insert';
     }
 }

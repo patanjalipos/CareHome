@@ -187,7 +187,7 @@ export class FluidCombinedChartComponent extends AppComponentBase implements OnI
         map((response) => {
           this._UtilityService.hideSpinner();
           if (response.actionResult.success) {
-            return JSON.parse(response.actionResult.result);
+            return response.actionResult.result;
           } else {
             return [];
           }
@@ -285,7 +285,7 @@ export class FluidCombinedChartComponent extends AppComponentBase implements OnI
         next: (data) => {
           this._UtilityService.hideSpinner();
           if (data.actionResult.success == true) {
-            var tdata = JSON.parse(data.actionResult.result);
+          var tdata = data.actionResult.result;
             tdata = tdata ? tdata : [];
             this.fluidCombinedChartsLst = tdata;
             if (this.fluidCombinedChartsLst.length < 3 || (((this.fluidCombinedChartsLst.length) * (this.pageNumber + 1)) >= this.fluidCombinedChartsLst[0].countRecords)) {

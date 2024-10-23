@@ -172,7 +172,7 @@ GetChartDropDownMasterList(
           map((response) => {
               this._UtilityService.hideSpinner();
               if (response.actionResult.success) {
-                  return JSON.parse(response.actionResult.result);
+                  return response.actionResult.result;
               } else {
                   return [];
               }
@@ -194,7 +194,7 @@ GetSightingChartDetails(chartId: string) {
           next: (data) => {
               this._UtilityService.hideSpinner();
               if (data.actionResult.success == true) {
-                  var tdata = JSON.parse(data.actionResult.result);
+                var tdata = data.actionResult.result;
                   tdata = tdata ? tdata : {};
                   this.SightingChartData = tdata;
                   this.openAndClose();
@@ -343,7 +343,7 @@ getChartDataById(chartId: any, selectedChartId: any, selectedStartedOn: any, res
           next: (data) => {
               this._UtilityService.hideSpinner();
               if (data.actionResult.success == true) {
-                  var tdata = JSON.parse(data.actionResult.result);
+                var tdata = data.actionResult.result;
                   tdata = tdata ? tdata : [];
                   this.SightingChartLst = tdata;
                   if (this.SightingChartLst.length < 3 || (((this.SightingChartLst.length) * (this.pageNumber + 1)) >= this.SightingChartLst[0].countRecords)) {

@@ -3,48 +3,37 @@
         <div class="formheader">
             <div class="d-flex">
                 <div class="col-md-4">
-                    <label class="form-label"
-                        ><b> Started by (Name) :</b
-                        >{{ preSelectedFormData.StartedBy }}
+                    <label class="form-label"><b> Started by (Name) :</b>{{ preSelectedFormData.StartedBy }}
                     </label>
                 </div>
                 <div class="col-md-4">
-                    <label class="form-label"
-                        ><b>Designation :</b
-                        >{{ preSelectedFormData.StartedByDesignation }}
+                    <label class="form-label"><b>Designation :</b>{{ preSelectedFormData.StartedByDesignation }}
                     </label>
                 </div>
                 <div class="col-md-4">
                     <label class="form-label">
-                        <b>Date/Time : </b
-                        >{{
-                            preSelectedFormData.StartedOn
-                                | date : customDateFormat.DEF_DATE_TIME
-                        }}</label
-                    >
+                        <b>Date/Time : </b>{{
+                        preSelectedFormData.StartedOn
+                        | date : customDateFormat.DEF_DATE_TIME
+                        }}</label>
                 </div>
             </div>
             <div class="d-flex">
                 <div class="col-md-4">
                     <label class="form-label">
-                        <b>Last entered by (Name) :</b
-                        >{{ preSelectedFormData.ModifiedBy }}</label
-                    >
+                        <b>Last entered by (Name) :</b>{{ preSelectedFormData.ModifiedBy }}</label>
                 </div>
                 <div class="col-md-4">
                     <label class="form-label">
-                        <b>Designation :</b
-                        >{{ preSelectedFormData.ModifiedByDesignation }}</label
-                    >
+                        <b>Designation :</b>{{ preSelectedFormData.ModifiedByDesignation }}</label>
                 </div>
                 <div class="col-md-4">
                     <label class="form-label">
                         <b>Date/Time :</b>
                         {{
-                            preSelectedFormData.ModifiedOn
-                                | date : customDateFormat.DEF_DATE_TIME
-                        }}</label
-                    >
+                        preSelectedFormData.ModifiedOn
+                        | date : customDateFormat.DEF_DATE_TIME
+                        }}</label>
                 </div>
             </div>
         </div>
@@ -54,29 +43,28 @@
                 <p>Speech and comprehension impairment</p>
             </div>
         </div>
-        <div class="col-md-7 mt-4">
+        <div class="col-md-6 mt-4">
             <ng-container *ngIf="isEditable; else SpeechLabel">
-                <p-dropdown
-                    placeholder="--select--"
-                    [style]="{ width: '100%' }"
-                    [(ngModel)]="
-                        CareSpeechLanguageFormData.SpeechComprehensionImpairment
-                    "
-                    optionLabel="optionName"
-                    optionValue="optionId"
-                    [options]="speechComprehensionImpairmentOptions"
-                >
+                <p-dropdown placeholder="--select--" [style]="{ width: '100%' }" [(ngModel)]="
+                        CareSpeechLanguageFormData.speechComprehensionImpairment
+                    " optionLabel="optionName" optionValue="optionId" [options]="speechComprehensionImpairmentOptions">
                 </p-dropdown>
             </ng-container>
             <ng-template #SpeechLabel>
                 <label>{{
-                    CareSpeechLanguageFormData.SpeechComprehensionImpairmentName
-                }}</label>
+                    CareSpeechLanguageFormData.speechComprehensionImpairmentName
+                    }}</label>
             </ng-template>
         </div>
 
-        <div class="col-md-1 mt-4 form-icon">
-            <i class="fa-solid fa-info"></i>
+        <div class="col-md-2 form-icon mt-4  d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext"> Mapped to : <b>Observation
+                    </b><br> Care domain : <b>My Communication Support Plan </b>
+                    <br> Sub domain : <b>How i express myself , understand the world around me and make my needs known
+                    </b>
+                </span>
+            </div>
         </div>
 
         <div class="col-md-4">
@@ -84,29 +72,31 @@
                 <p>Non-verbal communication</p>
             </div>
         </div>
-        <div class="col-md-7">
+        <div class="col-md-6">
             <ng-container *ngIf="isEditable; else NonVerbalLabel">
-                <p-dropdown
-                    placeholder="--select--"
-                    [style]="{ width: '100%' }"
-                    [(ngModel)]="
-                        CareSpeechLanguageFormData.NonVerbalCommunication
-                    "
-                    optionLabel="optionName"
-                    optionValue="optionId"
-                    [options]="nonVerbalCommunicationOptions"
-                >
+                <p-dropdown placeholder="--select--" [style]="{ width: '100%' }" [(ngModel)]="
+                        CareSpeechLanguageFormData.nonVerbalCommunication
+                    " optionLabel="optionName" optionValue="optionId" [options]="nonVerbalCommunicationOptions">
                 </p-dropdown>
             </ng-container>
             <ng-template #NonVerbalLabel>
                 <label>{{
-                    CareSpeechLanguageFormData.NonVerbalCommunicationName
-                }}</label>
+                    CareSpeechLanguageFormData.nonVerbalCommunicationName
+                    }}</label>
             </ng-template>
         </div>
 
-        <div class="col-md-1 form-icon">
-            <i class="fa-solid fa-info"></i>
+        <div class="col-md-2 form-icon   d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext"> Mapped to : <b>Observation
+                    </b><br> Care domain : <b>My Communication Support Plan </b>
+                    <br> Sub domain : <b>Person Centerd Information </b>
+                    <hr>
+                    Mapped to : <b>Intervention
+                    </b><br> Care domain : <b>My Communication Support Plan </b>
+
+                </span>
+            </div>
         </div>
 
         <div class="col-md-4">
@@ -114,58 +104,55 @@
                 <p>Effect of speech / language impairment</p>
             </div>
         </div>
-        <div class="col-md-7">
+        <div class="col-md-6">
             <ng-container *ngIf="isEditable; else SpeechEffectLabel">
-                <p-dropdown
-                    placeholder="--select--"
-                    [style]="{ width: '100%' }"
-                    [(ngModel)]="
-                        CareSpeechLanguageFormData.SpeechLanguageImpairmentEffect
-                    "
-                    optionLabel="optionName"
-                    optionValue="optionId"
-                    [options]="speechImpairmentEffectOptions"
-                >
+                <p-dropdown placeholder="--select--" [style]="{ width: '100%' }" [(ngModel)]="
+                        CareSpeechLanguageFormData.speechLanguageImpairmentEffect
+                    " optionLabel="optionName" optionValue="optionId" [options]="speechImpairmentEffectOptions">
                 </p-dropdown>
             </ng-container>
             <ng-template #SpeechEffectLabel>
                 <label>{{
-                    CareSpeechLanguageFormData.SpeechLanguageImpairmentEffectName
-                }}</label>
+                    CareSpeechLanguageFormData.speechLanguageImpairmentEffectName
+                    }}</label>
             </ng-template>
         </div>
 
-        <div class="col-md-1 form-icon">
-            <i class="fa-solid fa-info"></i>
+        <div class="col-md-2 form-icon   d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext"> Mapped to : <b>Observation
+                    </b><br> Care domain : <b>My Communication Support Plan </b>
+                    <br> Sub domain : <b>Person Centerd Information </b>
+                </span>
+            </div>
         </div>
 
         <div class="col-md-4">
             <div class="labelcontent">
-                <p>Interventions</p>
+                <p>Interventions to promote the residents ability to communicate - what do we do to promote our
+                    understanding</p>
             </div>
         </div>
-        <div class="col-md-7 form-text">
+        <div class="col-md-6 form-text">
             <ng-container *ngIf="isEditable; else InterventionsLabel">
-                <input
-                    pInputText
-                    type="text"
-                    required
-                    name="Interventions"
-                    class="form-control"
-                    [(ngModel)]="CareSpeechLanguageFormData.Interventions"
-                />
+                <input pInputText type="text" required name="Interventions" class="form-control"
+                    [(ngModel)]="CareSpeechLanguageFormData.interventions" />
                 <p class="mb-4">
                     Interpret body language gestures used good day/bad day
                     day/night variances assistive aids used support required
                 </p>
             </ng-container>
             <ng-template #InterventionsLabel>
-                <label>{{ CareSpeechLanguageFormData.Interventions }}</label>
+                <label>{{ CareSpeechLanguageFormData.interventions }}</label>
             </ng-template>
         </div>
 
-        <div class="col-md-1 form-icon">
-            <i class="fa-solid fa-info"></i>
+        <div class="col-md-2 form-icon   d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext"> Mapped to : <b>Intervention
+                    </b><br> Care domain : <b>My Communication Support Plan </b>
+                </span>
+            </div>
         </div>
 
         <div class="col-md-4">
@@ -173,29 +160,26 @@
                 <p>Does the resident have goals for speech and language</p>
             </div>
         </div>
-        <div class="col-md-7">
+        <div class="col-md-6">
             <ng-container *ngIf="isEditable; else GoalsSpeechLanguageLabel">
-                <p-dropdown
-                    placeholder="--select--"
-                    [style]="{ width: '100%' }"
-                    [(ngModel)]="
-                        CareSpeechLanguageFormData.GoalsForSpeechLanguage
-                    "
-                    optionLabel="optionName"
-                    optionValue="optionId"
-                    [options]="goalsSpeechLanguageOptions"
-                >
+                <p-dropdown placeholder="--select--" [style]="{ width: '100%' }" [(ngModel)]="
+                        CareSpeechLanguageFormData.goalsForSpeechLanguage
+                    " optionLabel="optionName" optionValue="optionId" [options]="goalsSpeechLanguageOptions">
                 </p-dropdown>
             </ng-container>
             <ng-template #GoalsSpeechLanguageLabel>
                 <label>{{
-                    CareSpeechLanguageFormData.GoalsForSpeechLanguageName
-                }}</label>
+                    CareSpeechLanguageFormData.goalsForSpeechLanguageName
+                    }}</label>
             </ng-template>
         </div>
 
-        <div class="col-md-1 form-icon">
-            <i class="fa-solid fa-info"></i>
+        <div class="col-md-2 form-icon   d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext"> Mapped to : <b>Agreed outcome
+                    </b><br> Care domain : <b>My Communication Support Plan </b>
+                </span>
+            </div>
         </div>
 
         <div class="col-md-4">
@@ -203,18 +187,12 @@
                 <p>Professional Input / referral</p>
             </div>
         </div>
-        <div class="col-md-7 form-text">
+        <div class="col-md-6 form-text">
             <ng-container *ngIf="isEditable; else ProfessionalInputLabel">
-                <input
-                    pInputText
-                    type="text"
-                    required
-                    name="ProfessionalInputReferral"
-                    class="form-control"
+                <input pInputText type="text" required name="ProfessionalInputReferral" class="form-control"
                     [(ngModel)]="
-                        CareSpeechLanguageFormData.ProfessionalInputReferral
-                    "
-                />
+                        CareSpeechLanguageFormData.professionalInputReferral
+                    " />
                 <p class="mb-4">
                     Include SALT / Speech/ Language therapy or other
                     professional input
@@ -222,13 +200,16 @@
             </ng-container>
             <ng-template #ProfessionalInputLabel>
                 <label>{{
-                    CareSpeechLanguageFormData.ProfessionalInputReferral
-                }}</label>
+                    CareSpeechLanguageFormData.professionalInputReferral
+                    }}</label>
             </ng-template>
         </div>
-
-        <div class="col-md-1 form-icon">
-            <i class="fa-solid fa-info"></i>
+        <div class="col-md-2 form-icon   d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext"> Mapped to : <b>Agreed outcome
+                    </b><br> Care domain : <b>My Communication Support Plan </b>
+                </span>
+            </div>
         </div>
 
         <div class="col-md-4">
@@ -239,33 +220,31 @@
                 </p>
             </div>
         </div>
-        <div class="col-md-7 form-text">
-            <ng-container
-                *ngIf="isEditable; else OtherSpeechLanguageRisksInput"
-            >
-                <input
-                    pInputText
-                    type="text"
-                    required
-                    name="OtherSpeechLanguageRisks"
-                    class="form-control"
-                    [(ngModel)]="
-                        CareSpeechLanguageFormData.OtherSpeechLanguageRisks
-                    "
-                />
+        <div class="col-md-6 form-text">
+            <ng-container *ngIf="isEditable; else OtherSpeechLanguageRisksInput">
+                <input pInputText type="text" required name="OtherSpeechLanguageRisks" class="form-control" [(ngModel)]="
+                        CareSpeechLanguageFormData.otherSpeechLanguageRisks
+                    " />
                 <p class="mb-4">
                     Specify any other risks that have not been identified above
                 </p>
             </ng-container>
             <ng-template #OtherSpeechLanguageRisksInput>
                 <label>{{
-                    CareSpeechLanguageFormData.OtherSpeechLanguageRisks
-                }}</label>
+                    CareSpeechLanguageFormData.otherSpeechLanguageRisks
+                    }}</label>
             </ng-template>
         </div>
 
-        <div class="col-md-1 form-icon">
-            <i class="fa-solid fa-info"></i>
+        <div class="col-md-2 form-icon   d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext"> Mapped to : <b>Obseveton
+                    </b><br> Care domain : <b>My Communication Support Plan </b>
+                    <hr>
+                    Mapped to : <b>Intervention
+                    </b><br> Care domain : <b>My Communication Support Plan </b>
+                </span>
+            </div>
         </div>
 
         <div class="col-md-4">
@@ -273,43 +252,36 @@
                 <p>Action to manage additional risk identified</p>
             </div>
         </div>
-        <div class="col-md-7 form-text">
+        <div class="col-md-6 form-text">
             <ng-container *ngIf="isEditable; else ActionToManageAdditionalRiskInput">
-                <input
-                    pInputText
-                    type="text"
-                    required
-                    name="ActionToManageAdditionalRisk"
-                    class="form-control"
-                    [(ngModel)]="CareSpeechLanguageFormData.ActionToManageAdditionalRisk"
-                />
+                <input pInputText type="text" required name="ActionToManageAdditionalRisk" class="form-control"
+                    [(ngModel)]="CareSpeechLanguageFormData.actionToManageAdditionalRisk" />
             </ng-container>
             <ng-template #ActionToManageAdditionalRiskInput>
-                <label>{{ CareSpeechLanguageFormData.ActionToManageAdditionalRisk }}</label>
+                <label>{{ CareSpeechLanguageFormData.actionToManageAdditionalRisk }}</label>
             </ng-template>
         </div>
-        
-
-        <div class="col-md-1 form-icon">
-            <i class="fa-solid fa-info"></i>
+        <div class="col-md-2 form-icon   d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext">
+                    Mapped to : <b>Intervention
+                    </b><br> Care domain : <b>My Communication Support Plan </b>
+                </span>
+            </div>
         </div>
 
         <div class="col-md-4 labelcontent">
             <p>3 MONTHLY REVIEW (or before)</p>
         </div>
-        <div class="col-md-7 form-text mb-4">
+        <div class="col-md-6 form-text mb-4">
             <ng-container *ngIf="isEditable; else MonthlyReviewLabel">
-                <p-checkbox
-                    name="ChkMonthlyReview"
-                    [binary]="true"
-                    inputId="binary"
-                    [(ngModel)]="CareSpeechLanguageFormData.MonthlyReview"
-                ></p-checkbox>
+                <p-checkbox name="ChkMonthlyReview" [binary]="true" inputId="binary"
+                    [(ngModel)]="CareSpeechLanguageFormData.monthlyReview"></p-checkbox>
             </ng-container>
             <ng-template #MonthlyReviewLabel>
                 <label>{{
-                    CareSpeechLanguageFormData.MonthlyReview ? "Yes" : "No"
-                }}</label>
+                    CareSpeechLanguageFormData.monthlyReview ? "Yes" : "No"
+                    }}</label>
             </ng-template>
         </div>
 
@@ -318,31 +290,19 @@
                 <p>Next review date</p>
             </div>
         </div>
-        <div class="col-md-7">
+        <div class="col-md-6">
             <div class="input-group date">
                 <ng-container *ngIf="isEditable; else NextReviewDateLabel">
-                    <p-calendar
-                        name="nextReviewDate"
-                        [showIcon]="true"
-                        inputId="icon"
-                        [dateFormat]=""
-                        class="iconcal"
-                        [readonlyInput]="true"
-                        appendTo="body"
-                        [minDate]=""
-                        [(ngModel)]="
-                            CareSpeechLanguageFormData.NextReviewDate
-                        "
-                    ></p-calendar>
-                    <div
-                        *ngIf=""
-                        class="alert alert-danger"
-                    ></div>
+                    <p-calendar name="nextReviewDate" [showIcon]="true" inputId="icon" [dateFormat]="" class="iconcal"
+                        [readonlyInput]="true" appendTo="body" [minDate]="" [(ngModel)]="
+                            CareSpeechLanguageFormData.nextReviewDate
+                        "></p-calendar>
+                    <div *ngIf="" class="alert alert-danger"></div>
                 </ng-container>
                 <ng-template #NextReviewDateLabel>
                     <label>{{
-                        CareSpeechLanguageFormData.NextReviewDate
-                    }}</label>
+                        CareSpeechLanguageFormData.nextReviewDate
+                        }}</label>
                 </ng-template>
             </div>
         </div>
@@ -350,37 +310,21 @@
             <ng-container *ngIf="isEditable; else savePdf">
                 <div>
                     <span class="p-ml-left mr-4">
-                        <button
-                            pButton
-                            title="New"
-                            label="Save as Unfinished"
-                            (click)="saveAsUnfinished()"
-                        ></button>
+                        <button pButton title="New" label="Save as Unfinished" (click)="saveAsUnfinished()"></button>
                         <span class="total-txt"></span>
                     </span>
                 </div>
                 <div>
                     <span class="p-ml-left mr-4">
-                        <button
-                            pButton
-                            title="New"
-                            label="Complete"
-                            (click)="completeForm()"
-                            [disabled]="
-                                CareSpeechLanguageFormData.IsFormCompleted
-                            "
-                        ></button>
+                        <button pButton title="New" label="Complete" (click)="completeForm()" [disabled]="
+                                CareSpeechLanguageFormData.isFormCompleted
+                            "></button>
                         <span class="total-txt"></span>
                     </span>
                 </div>
             </ng-container>
             <ng-template #savePdf>
-                <button
-                    pButton
-                    title="Save as PDF"
-                    label="Save as PDF"
-                    (click)="SaveAsPDF()"
-                ></button>
+                <button pButton title="Save as PDF" label="Save as PDF" (click)="SaveAsPDF()"></button>
             </ng-template>
         </div>
     </div>

@@ -52,6 +52,14 @@ export class BodyMappingRecordComponent extends AppComponentBase implements OnIn
         this.residentAdmissionInfoId =
             this.preSelectedFormData.residentAdmissionInfoId;
         this.isEditable = this.preSelectedFormData.isEditable;
+
+        if(this.preSelectedFormData.Date != null) {
+            this.BodyMappingFormsData.DateTimeObservation = new Date(this.preSelectedFormData.Date);
+        }
+        else {
+        this.BodyMappingFormsData.DateTimeObservation=new Date();
+        }
+
         const collectionNames = [
             'ReasonObservation'
         ];
@@ -59,7 +67,6 @@ export class BodyMappingRecordComponent extends AppComponentBase implements OnIn
         forkJoin(collectionNames.map((collectionName) => this.getDropdownMasterLists(FormTypes.BodyMappingRecord, collectionName, 1))).subscribe((responses: any[]) => {
             this.lstBodyMappingMaster = responses[0];
         });
-        this.BodyMappingFormsData.DateTimeObservation=new Date();
         // this.GetBodyMappingReasonMaster();
     }
 
@@ -69,7 +76,7 @@ export class BodyMappingRecordComponent extends AppComponentBase implements OnIn
             map((response) => {
                 this._UtilityService.hideSpinner();
                 if (response.actionResult.success) {
-                    return JSON.parse(response.actionResult.result);
+                    return response.actionResult.result;
                 } else {
                     return [];
                 }
@@ -106,7 +113,7 @@ export class BodyMappingRecordComponent extends AppComponentBase implements OnIn
                 next: (data) => {
                     this._UtilityService.hideSpinner();
                     if (data.actionResult.success == true) {
-                        var tdata = JSON.parse(data.actionResult.result);
+                      var tdata = data.actionResult.result;
                         tdata = tdata ? tdata : {};
                         this.BodyMappingFormsData = tdata;
                         this.BodyMappingFormsData.DateTimeObservation = new Date(this.BodyMappingFormsData.DateTimeObservation);
@@ -122,6 +129,7 @@ export class BodyMappingRecordComponent extends AppComponentBase implements OnIn
                 },
             });
     }
+
     ResetModel() {
         this.isEditable = true;
         this.BodyMappingFormsData = <any>{};

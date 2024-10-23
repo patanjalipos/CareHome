@@ -59,7 +59,7 @@ export class ResidentDocumentsComponent extends AppComponentBase implements OnIn
         next: (data) => {
           this._UtilityService.hideSpinner();
           if (data.actionResult.success == true) {
-            var tdata = JSON.parse(data.actionResult.result);
+          var tdata = data.actionResult.result;
             tdata = tdata ? tdata : [];
             this.lstResidentMaster = tdata;
           }
@@ -80,7 +80,7 @@ export class ResidentDocumentsComponent extends AppComponentBase implements OnIn
         next: (data) => {
           this._UtilityService.hideSpinner();
           if (data.actionResult.success == true) {
-            var tdata = JSON.parse(data.actionResult.result);
+          var tdata = data.actionResult.result;
             tdata = tdata ? tdata : [];
             this.groupedResidentTag = tdata;
           }
@@ -114,7 +114,7 @@ export class ResidentDocumentsComponent extends AppComponentBase implements OnIn
         next: (data) => {
           this._UtilityService.hideSpinner();
           if (data.actionResult.success == true) {
-            var tdata = JSON.parse(data.actionResult.result);
+          var tdata = data.actionResult.result;
             tdata = tdata ? tdata : [];
             this.lstMaster = tdata;
             this.filteredValuesLength = this.lstMaster?.length;
@@ -140,7 +140,7 @@ export class ResidentDocumentsComponent extends AppComponentBase implements OnIn
         next: (data) => {
           this._UtilityService.hideSpinner();
           if (data.actionResult.success == true) {
-            var tdata = JSON.parse(data.actionResult.result);
+          var tdata = data.actionResult.result;
             tdata = tdata ? tdata : [];
             this.master = tdata;
           }

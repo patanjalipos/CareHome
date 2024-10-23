@@ -140,7 +140,7 @@ export class BloodPressureChartComponent
                 next: (data) => {
                     this._UtilityService.hideSpinner();
                     if (data.actionResult.success == true) {
-                        var tdata = JSON.parse(data.actionResult.result);
+                      var tdata = data.actionResult.result;
 
                         tdata = tdata ? tdata : {};
                         this.bloodPressureChartFormData = tdata;
@@ -176,7 +176,7 @@ export class BloodPressureChartComponent
     //             next: (data) => {
     //                 this._UtilityService.hideSpinner();
     //                 if (data.actionResult.success == true) {
-    //                     var tdata = JSON.parse(data.actionResult.result);
+    //                   var tdata = data.actionResult.result;
     //                     tdata = tdata ? tdata : [];
     //                     this.Clinical = tdata;
     //                 }
@@ -367,7 +367,7 @@ export class BloodPressureChartComponent
                 next: (data) => {
                     this._UtilityService.hideSpinner();
                     if (data.actionResult.success == true) {
-                        var tdata = JSON.parse(data.actionResult.result);
+                      var tdata = data.actionResult.result;
                         tdata = tdata ? tdata : [];
                         this.bloodPressureChartsLst = tdata;
                         if (this.bloodPressureChartsLst.length < 3 || (((this.bloodPressureChartsLst.length) * (this.pageNumber + 1)) >= this.bloodPressureChartsLst[0].countRecords)) {

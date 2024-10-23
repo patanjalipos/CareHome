@@ -23,7 +23,7 @@ export class CareFeelingFreshAndCleanComponent extends AppComponentBase implemen
   residentAdmissionInfoId: any;
   loginId: any;
   userId: any;
-  StatementType: string = null;
+  statementType: string = null;
 
   lstAppearance: any[] = [];
   lstCapacity: any[] = [];
@@ -59,7 +59,7 @@ export class CareFeelingFreshAndCleanComponent extends AppComponentBase implemen
       this.GetCareAssessmentFreshAndCleanDetails(
         this.preSelectedFormData.selectedFormID
       );
-      this.StatementType = 'Update';
+      this.statementType = 'Update';
     }
     else {
       this.ResetModel();
@@ -115,7 +115,7 @@ export class CareFeelingFreshAndCleanComponent extends AppComponentBase implemen
       this.GetCareAssessmentFreshAndCleanDetails(
         this.preSelectedFormData.selectedFormID
       );
-      this.StatementType = 'Update';
+      this.statementType = 'Update';
     }
     else {
       this.ResetModel();
@@ -132,10 +132,10 @@ export class CareFeelingFreshAndCleanComponent extends AppComponentBase implemen
         next: (data) => {
           this._UtilityService.hideSpinner();
           if (data.actionResult.success == true) {
-            var tdata = JSON.parse(data.actionResult.result);
+          var tdata = data.actionResult.result;
             tdata = tdata ? tdata : {};
             this.CareAssessmentFreshAndCleanFormsData = tdata;
-            this.CareAssessmentFreshAndCleanFormsData.NextReviewDate = new Date(this.CareAssessmentFreshAndCleanFormsData.NextReviewDate);
+            this.CareAssessmentFreshAndCleanFormsData.nextReviewDate = new Date(this.CareAssessmentFreshAndCleanFormsData.nextReviewDate);
           } else {
             this.CareAssessmentFreshAndCleanFormsData = {};
           }
@@ -153,7 +153,7 @@ export class CareFeelingFreshAndCleanComponent extends AppComponentBase implemen
       map((response) => {
         this._UtilityService.hideSpinner();
         if (response.actionResult.success) {
-          return JSON.parse(response.actionResult.result);
+          return response.actionResult.result;
         } else {
           return [];
         }
@@ -161,7 +161,7 @@ export class CareFeelingFreshAndCleanComponent extends AppComponentBase implemen
       catchError((error) => {
         this._UtilityService.hideSpinner();
         this._UtilityService.showErrorAlert(error.message);
-    
+
         return of([]); // Returning empty array in case of error
       })
     );
@@ -188,18 +188,18 @@ export class CareFeelingFreshAndCleanComponent extends AppComponentBase implemen
       this.CareAssessmentFreshAndCleanFormsData.userId = this.userId;
       this.CareAssessmentFreshAndCleanFormsData.residentAdmissionInfoId =
         this.residentAdmissionInfoId;
-      this.CareAssessmentFreshAndCleanFormsData.StartedBy = this.loginId;
-      this.CareAssessmentFreshAndCleanFormsData.LastEnteredBy = this.loginId;
+      this.CareAssessmentFreshAndCleanFormsData.startedBy = this.loginId;
+      this.CareAssessmentFreshAndCleanFormsData.lastEnteredBy = this.loginId;
 
-      this.CareAssessmentFreshAndCleanFormsData.NextReviewDate = new Date(this.datePipe.transform(this.CareAssessmentFreshAndCleanFormsData.NextReviewDate, 'yyyy-MM-dd'));
+      this.CareAssessmentFreshAndCleanFormsData.nextReviewDate = new Date(this.datePipe.transform(this.CareAssessmentFreshAndCleanFormsData.nextReviewDate, 'yyyy-MM-dd'));
 
       const objectBody: any = {
-        StatementType: this.StatementType,
+        statementType: this.statementType,
         careAssessmentFreshAndCleanForm: this.CareAssessmentFreshAndCleanFormsData,
       };
 
 
-  
+
 
       this._UtilityService.showSpinner();
       this.unsubscribe.add = this._CareFreshAndClean
@@ -237,7 +237,7 @@ export class CareFeelingFreshAndCleanComponent extends AppComponentBase implemen
   ResetModel() {
     this.isEditable = true;
     this.CareAssessmentFreshAndCleanFormsData = <any>{};
-    this.StatementType = 'Insert';
+    this.statementType = 'Insert';
   }
 
 }

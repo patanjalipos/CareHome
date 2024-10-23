@@ -25,7 +25,7 @@ export class DistrictNurseVisitCommunicationComponent extends AppComponentBase i
   uniqueReferenceId: any;
   loginId: any;
   userId: any;
-  StatementType: string = null;
+  statementType: string = null;
 
   lstCommStatus: any[] = [];
 
@@ -44,7 +44,7 @@ export class DistrictNurseVisitCommunicationComponent extends AppComponentBase i
       this.GetDistrictNurseVisitDetails(
         this.preSelectedFormData.selectedFormID
       );
-      this.StatementType = 'Update';
+      this.statementType = 'Update';
     }
     else {
       this.ResetModel();
@@ -71,7 +71,7 @@ export class DistrictNurseVisitCommunicationComponent extends AppComponentBase i
       this.GetDistrictNurseVisitDetails(
         this.preSelectedFormData.selectedFormID
       );
-      this.StatementType = 'Update';
+      this.statementType = 'Update';
     }
     else {
       this.ResetModel();
@@ -93,7 +93,7 @@ export class DistrictNurseVisitCommunicationComponent extends AppComponentBase i
       map((response) => {
         this._UtilityService.hideSpinner();
         if (response.actionResult.success) {
-          return JSON.parse(response.actionResult.result);
+          return response.actionResult.result;
         } else {
           return [];
         }
@@ -115,11 +115,11 @@ export class DistrictNurseVisitCommunicationComponent extends AppComponentBase i
         next: (data) => {
           this._UtilityService.hideSpinner();
           if (data.actionResult.success == true) {
-            var tdata = JSON.parse(data.actionResult.result);
+          var tdata = data.actionResult.result;
             tdata = tdata ? tdata : {};
 
             this.DistrictNurseFormsData = tdata;
-            this.DistrictNurseFormsData.NurseVisitDate = this.datePipe.transform(this.DistrictNurseFormsData.NurseVisitDate, 'MM/dd/yyyy')
+            this.DistrictNurseFormsData.nurseVisitDate = this.datePipe.transform(this.DistrictNurseFormsData.nurseVisitDate, 'MM/dd/yyyy')
 
           } else {
             this.DistrictNurseFormsData = {};
@@ -149,11 +149,11 @@ export class DistrictNurseVisitCommunicationComponent extends AppComponentBase i
       this.DistrictNurseFormsData.userId = this.userId;
       this.DistrictNurseFormsData.residentAdmissionInfoId =
         this.residentAdmissionInfoId;
-      this.DistrictNurseFormsData.StartedBy = this.loginId;
-      this.DistrictNurseFormsData.LastEnteredBy = this.loginId;
-      this.DistrictNurseFormsData.NurseVisitDate = this.datePipe.transform(this.DistrictNurseFormsData.NurseVisitDate, 'yyyy-MM-dd');
+      this.DistrictNurseFormsData.startedBy = this.loginId;
+      this.DistrictNurseFormsData.lastEnteredBy = this.loginId;
+      this.DistrictNurseFormsData.nurseVisitDate = this.datePipe.transform(this.DistrictNurseFormsData.nurseVisitDate, 'yyyy-MM-dd');
       const objectBody: any = {
-        StatementType: this.StatementType,
+        statementType: this.statementType,
         districtNurseVisitCommunicationForm: this.DistrictNurseFormsData,
       };
 
@@ -192,7 +192,7 @@ export class DistrictNurseVisitCommunicationComponent extends AppComponentBase i
   ResetModel() {
     this.isEditable = true;
     this.DistrictNurseFormsData = <any>{};
-    this.StatementType = 'Insert';
+    this.statementType = 'Insert';
   }
 
 

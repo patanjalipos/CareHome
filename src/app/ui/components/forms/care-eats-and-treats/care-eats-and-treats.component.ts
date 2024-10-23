@@ -25,7 +25,7 @@ export class CareEatsAndTreatsComponent extends AppComponentBase implements OnIn
   residentAdmissionInfoId:any;
   loginId: any;
   userId: any;
-  StatementType: string = null;
+  statementType: string = null;
   checked:boolean = false;
 
   lstResidentStatusOfCapacity:any[] = [];
@@ -55,7 +55,7 @@ export class CareEatsAndTreatsComponent extends AppComponentBase implements OnIn
         this.GetCareAssessmentEatsAndDrinksDetails(
             this.preSelectedFormData.selectedFormID
         );
-        this.StatementType = 'Update';
+        this.statementType = 'Update';
     }
     else {
       this.ResetModel();
@@ -99,7 +99,7 @@ export class CareEatsAndTreatsComponent extends AppComponentBase implements OnIn
         this.GetCareAssessmentEatsAndDrinksDetails(
             this.preSelectedFormData.selectedFormID
         );
-        this.StatementType = 'Update';
+        this.statementType = 'Update';
     }
     else {
       this.ResetModel();
@@ -115,10 +115,10 @@ export class CareEatsAndTreatsComponent extends AppComponentBase implements OnIn
             next: (data) => {
                 this._UtilityService.hideSpinner();
                 if (data.actionResult.success == true) {
-                    var tdata = JSON.parse(data.actionResult.result);
+                  var tdata = data.actionResult.result;
                     tdata = tdata ? tdata : {};
                     this.CareAssessmentEatsAndDrinksFormsData = tdata;
-                    this.CareAssessmentEatsAndDrinksFormsData.NextReviewDate = new Date(this.CareAssessmentEatsAndDrinksFormsData.NextReviewDate);
+                    this.CareAssessmentEatsAndDrinksFormsData.nextReviewDate = new Date(this.CareAssessmentEatsAndDrinksFormsData.nextReviewDate);
                 } else {
                     this.CareAssessmentEatsAndDrinksFormsData = {};
                 }
@@ -136,7 +136,7 @@ getDropdownMasterLists(formMasterId: string, dropdownName: string,status:number)
         map((response) => {
             this._UtilityService.hideSpinner();
             if (response.actionResult.success) {
-                return JSON.parse(response.actionResult.result);
+                return response.actionResult.result;
             } else {
                 return [];
             }
@@ -171,12 +171,12 @@ if (this.userId != null && this.residentAdmissionInfoId != null && this.loginId!
     this.CareAssessmentEatsAndDrinksFormsData.residentAdmissionInfoId =
         this.residentAdmissionInfoId;
     this.CareAssessmentEatsAndDrinksFormsData.StartedBy = this.loginId;
-    this.CareAssessmentEatsAndDrinksFormsData.LastEnteredBy = this.loginId;
+    this.CareAssessmentEatsAndDrinksFormsData.lastEnteredBy = this.loginId;
 
-    this.CareAssessmentEatsAndDrinksFormsData.NextReviewDate = new Date(this.datePipe.transform(this.CareAssessmentEatsAndDrinksFormsData.NextReviewDate, 'yyyy-MM-dd'));
+    this.CareAssessmentEatsAndDrinksFormsData.nextReviewDate = new Date(this.datePipe.transform(this.CareAssessmentEatsAndDrinksFormsData.nextReviewDate, 'yyyy-MM-dd'));
     
         const objectBody: any = {
-          StatementType: this.StatementType,
+          statementType: this.statementType,
           careAssessmentEatsAndDrinksForm: this.CareAssessmentEatsAndDrinksFormsData,
       };
       
@@ -218,7 +218,7 @@ if (this.userId != null && this.residentAdmissionInfoId != null && this.loginId!
 ResetModel() {
   this.isEditable = true;
   this.CareAssessmentEatsAndDrinksFormsData = <any>{};
-  this.StatementType = 'Insert';
+  this.statementType = 'Insert';
 }
 
 }

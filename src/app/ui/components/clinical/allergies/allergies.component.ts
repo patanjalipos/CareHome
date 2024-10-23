@@ -86,15 +86,15 @@ constructor(
   {
     if(this.status=='All')
     {
-      this.lstExtraItemDetails=JSON.parse(JSON.stringify(this.lstExtraItemDetailsFilter)); 
+      this.lstExtraItemDetails=this.lstExtraItemDetailsFilter; 
     }
     else if(this.status=='Active')
     {
-      this.lstExtraItemDetails=JSON.parse(JSON.stringify(this.lstExtraItemDetailsFilter.filter(e => e.status == this.status))); 
+      this.lstExtraItemDetails=this.lstExtraItemDetailsFilter.filter(e => e.status == this.status); 
     }
     else
     {
-      this.lstExtraItemDetails=JSON.parse(JSON.stringify(this.lstExtraItemDetailsFilter.filter(e => e.status !== "Active"))); 
+      this.lstExtraItemDetails=this.lstExtraItemDetailsFilter.filter(e => e.status !== "Active"); 
     }
   }
   AddNewAllergy()
@@ -182,13 +182,13 @@ constructor(
         next:(data) => {
           this._UtilityService.hideSpinner();          
           if (data.actionResult.success == true) {
-            var tdata = JSON.parse(data.actionResult.result);
+          var tdata = data.actionResult.result;
             tdata = tdata ? tdata : [];
             this.Clinical = tdata;            
             this.Clinical.statementtype = "Update";
             if(data.actionResult.result2!=null && data.actionResult.result2!=undefined && data.actionResult.result2?.length>0)
             {
-              var tdata2 = JSON.parse(data.actionResult.result2);
+              var tdata2 =data.actionResult.result2;
               tdata2 = tdata2 ? tdata2 : [];              
               this.lstExtraItemDetails=tdata2; 
               this.lstExtraItemDetails.forEach((d, index) => { 
@@ -196,7 +196,7 @@ constructor(
                   }) 
         
               this.extraItemRowCounter=this.lstExtraItemDetails?.length;    
-              this.lstExtraItemDetailsFilter=JSON.parse(JSON.stringify(this.lstExtraItemDetails)); 
+              this.lstExtraItemDetailsFilter=this.lstExtraItemDetails; 
               this.isDisabled=this.lstExtraItemDetailsFilter.filter(e => e.Status === "Active")?.length>0?true:false;
               var lstExtraItemDetailsSelected = this.lstExtraItemDetailsFilter.filter(e => e.Status === "Active");
               this.allergies="";

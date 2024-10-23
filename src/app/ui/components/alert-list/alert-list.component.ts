@@ -77,9 +77,10 @@ export class AlertListComponent extends AppComponentBase implements OnInit {
       .GetAllAlert(this.importData, '')
       .subscribe({
         next: (data) => {
+          console.log(data);
           this._UtilityService.hideSpinner();
           if (data.actionResult.success == true) {
-            var tdata = JSON.parse(data.actionResult.result);
+          var tdata = data.actionResult.result;
             tdata = tdata ? tdata : [];
             this.AlertList = tdata;
             this.AlertList.forEach(chart => {
@@ -160,7 +161,7 @@ export class AlertListComponent extends AppComponentBase implements OnInit {
           if (data.actionResult.success == true) {
 
             this.alertCount = data.actionResult.value;
-            var tdata = JSON.parse(data.actionResult.result);
+          var tdata = data.actionResult.result;
             tdata = tdata ? tdata : [];
             this.ResidentMaster = tdata;
           }

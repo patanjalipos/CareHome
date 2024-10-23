@@ -1,0 +1,260 @@
+<div class="bg-white mt-3 p-2 col-md-12 d-flex justify-content-between">
+
+    <ul class="nav nav-tabs" id="myTab" role="tablist">
+        <li class="nav-item" role="presentation">
+            <button type="button" class="nav-link" [ngClass]="{'active': isSummaryCarePlan}"
+                (click)="showData('SummaryCarePlan')">Summary Care plan</button>
+        </li>
+        <li class="nav-item" role="presentation">
+            <button type="button" class="nav-link" [ngClass]="{'active': isExtendedCarePlan}"
+                (click)="showData('ExtendedCarePlan')">Extended Care
+                plan</button>
+        </li>
+        <li class="nav-item" role="presentation">
+            <button type="button" class="nav-link" [ngClass]="{'active': isEvaluate}"
+                (click)="showData('Evaluate')">Evaluate</button>
+        </li>
+
+    </ul>
+
+    <div class="col-md-2">
+        <button pButton type="button" label="Download" class="btn mr-2"></button>
+        <button pButton type="button" label="Print View" class="btn"></button>
+    </div>
+</div>
+
+<div *ngIf="isEvaluate">
+    <div class="row mt-5">
+        <div class="col-md-12">
+            <h4>Care Plan</h4>
+        </div>
+    </div>
+    <p-accordion [multiple]="true">
+        <p-accordionTab>
+            <p-header class="w-100">
+                <div class="acc-tab">
+                    <span>Evaluate Care Plan</span>
+                    <div *ngIf="isEvaluate">
+                        <button pButton type="button" label="Evaluate" class="btn mr-2" (click)="$event.stopPropagation(); showPopup()"></button>
+                    </div>
+                </div>
+            </p-header>
+        </p-accordionTab>
+    </p-accordion>
+</div>
+
+
+
+<div class="row mt-5">
+    <div class="col-md-12">
+        <h4>Care Domains</h4>
+    </div>
+</div>
+<div class="row p-3">
+    <div class="col-md-11" *ngIf="isSummaryCarePlan">
+        <div class="bg-white border border-1 border-block mb-4">
+            <div class="card-header">
+                My Infection Prevention and Control Support Plan
+            </div>
+            <div class="formheader">
+                Goal
+            </div>
+            <div class="d-flex justify-content-between align-items-center p-3">
+                <div class="col-md-4">
+                    <div class="dotted-line"></div>
+                </div>
+                <div class="col-md-4 text-center mt-3">
+                    <h4>Acute Care and Infection Control Plan</h4>
+                </div>
+                <div class="col-md-4">
+                    <div class="dotted-line"></div>
+                </div>
+            </div>
+            <div class="formheader m-3 p-3">
+                all is well
+            </div>
+        </div>
+
+        <div class="bg-white border border-1 border-block ">
+            <div class="card-header">
+                My Maintaining a safe Environment Support Plan
+            </div>
+            <div class="formheader">
+                Goal
+            </div>
+            <div class="d-flex justify-content-between align-items-center p-3">
+                <div class="col-md-4">
+                    <div class="dotted-line"></div>
+                </div>
+                <div class="col-md-4 text-center mt-3">
+                    <h4>Person Centered Information</h4>
+                </div>
+                <div class="col-md-4">
+                    <div class="dotted-line"></div>
+                </div>
+            </div>
+
+
+            <div class="d-flex justify-content-between align-items-center p-3">
+                <div class="col-md-4">
+                    <div class="dotted-line"></div>
+                </div>
+                <div class="col-md-4 text-center mt-3">
+                    <h4>Risk Score for Evacuation</h4>
+                </div>
+                <div class="col-md-4">
+                    <div class="dotted-line"></div>
+                </div>
+            </div>
+
+            <div class="d-flex justify-content-between align-items-center p-3">
+                <div class="col-md-4">
+                    <div class="dotted-line"></div>
+                </div>
+                <div class="col-md-4 text-center mt-3">
+                    <h4>Personal Emergency Evacuation Plan</h4>
+                </div>
+                <div class="col-md-4">
+                    <div class="dotted-line"></div>
+                </div>
+            </div>
+            <div class="formheader m-3 p-3">
+                all is well
+            </div>
+        </div>
+    </div>
+
+    <div class="row note mt-1" *ngIf="isExtendedCarePlan||isEvaluate">
+        <p-accordion [multiple]="true">
+            <p-accordionTab>
+                <p-header class="w-100">
+                    <div class="acc-tab">
+                        <span>My Infection Prevention and control Support Plan</span>
+                        <div *ngIf="isEvaluate">
+                            <button pButton type="button" label="Evaluate"
+                                (click)="$event.stopPropagation(); showPopup()" class="btn mr-2"></button>
+                        </div>
+                    </div>
+                </p-header>
+            </p-accordionTab>
+
+            <p-accordionTab>
+                <p-header class="w-100">
+                    <div class="acc-tab">
+                        <span>My Maintaining a Safe Environment Support Plan</span>
+                        <div *ngIf="isEvaluate">
+                            <button pButton type="button" label="Evaluate"
+                                (click)="$event.stopPropagation(); showPopup()" class="btn mr-2"></button>
+                        </div>
+                    </div>
+                </p-header>
+            </p-accordionTab>
+            <p-accordionTab>
+                <p-header class="w-100">
+                    <div class="acc-tab">
+                        <span>My Medication, Healthcare, Treatment and Management Support Plan</span>
+                        <div *ngIf="isEvaluate">
+                            <button pButton type="button" label="Evaluate" class="btn mr-2"
+                                (click)="$event.stopPropagation(); showPopup()"></button>
+                        </div>
+                    </div>
+                </p-header>
+            </p-accordionTab>
+            <p-accordionTab>
+                <p-header class="w-100">
+                    <div class="acc-tab">
+                        <span>My on the move and falls Risk Awareness Support Plan</span>
+                        <div *ngIf="isEvaluate">
+                            <button pButton type="button" label="Evaluate" class="btn mr-2"
+                                (click)="$event.stopPropagation(); showPopup()"></button>
+                        </div>
+                    </div>
+                </p-header>
+            </p-accordionTab>
+            <p-accordionTab>
+                <p-header class="w-100">
+                    <div class="acc-tab">
+                        <span>My Communicatin Support Plan</span>
+                        <div *ngIf="isEvaluate">
+                            <button pButton type="button" label="Evaluate" class="btn mr-2"
+                                (click)="$event.stopPropagation(); showPopup()"></button>
+                        </div>
+                    </div>
+                </p-header>
+            </p-accordionTab>
+            <p-accordionTab>
+
+                <p-header class="w-100">
+                    <div class="acc-tab">
+                        <span>My Personal care and Projection of self image,oral care,foot Support Plan</span>
+                        <div *ngIf="isEvaluate">
+                            <button pButton type="button" label="Evaluate" class="btn mr-2"
+                                (click)="$event.stopPropagation(); showPopup()"></button>
+                        </div>
+                    </div>
+                </p-header>
+            </p-accordionTab>
+            <p-accordionTab>
+                <p-header class="w-100">
+                    <div class="acc-tab">
+                        <span>My Skin care Support Plan</span>
+                        <div *ngIf="isEvaluate">
+                            <button pButton type="button" label="Evaluate" class="btn mr-2"
+                                (click)="$event.stopPropagation(); showPopup()"></button>
+                        </div>
+                    </div>
+                </p-header>
+            </p-accordionTab>
+            <p-accordionTab>
+                <p-header class="w-100">
+                    <div class="acc-tab">
+                        <span>My Nutrition and Hydration Support Plan</span>
+                        <div *ngIf="isEvaluate">
+                            <button pButton type="button" label="Evaluate" class="btn mr-2"
+                                (click)="$event.stopPropagation(); showPopup()"></button>
+                        </div>
+                    </div>
+                </p-header>
+            </p-accordionTab>
+            <p-accordionTab>
+                <p-header class="w-100">
+                    <div class="acc-tab">
+                        <span>My Mental health and well being support plan</span>
+                        <div *ngIf="isEvaluate">
+                            <button pButton type="button" label="Evaluate" class="btn mr-2"
+                                (click)="$event.stopPropagation(); showPopup()"></button>
+                        </div>
+                    </div>
+                </p-header>
+            </p-accordionTab>
+            <p-accordionTab>
+                <p-header class="w-100">
+                    <div class="acc-tab">
+                        <span>My Activities and intersts,community inclusion and cultural support plan</span>
+                        <div *ngIf="isEvaluate">
+                            <button pButton type="button" label="Evaluate" class="btn mr-2"
+                                (click)="$event.stopPropagation(); showPopup()"></button>
+                        </div>
+                    </div>
+                </p-header>
+            </p-accordionTab>
+            <p-accordionTab>
+                <p-header class="w-100">
+                    <div class="acc-tab">
+                        <span>Care plan detail</span>
+                        <div *ngIf="isEvaluate">
+                            <button pButton type="button" label="Evaluate" class="btn mr-2"
+                                (click)="$event.stopPropagation(); showPopup()"></button>
+                        </div>
+                    </div>
+                </p-header>
+            </p-accordionTab>
+        </p-accordion>
+    </div>
+</div>
+
+<div *ngIf="isShowPopup">
+    <p-dialog header=" Add evalucation note" [modal]="true" [draggable]="false" [style]="{ width: '55rem'}" [(visible)]="isShowPopup">
+        <app-care-plan-popup></app-care-plan-popup>
+    </p-dialog>
+</div>

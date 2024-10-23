@@ -23,7 +23,7 @@ export class ThePoolActivityLevelComponent extends AppComponentBase implements O
   residentAdmissionInfoId:any;
   loginId: any;
   userId: any;
-  StatementType: string = null;
+  statementType: string = null;
 
   lstBathingAndWashing  : any[] = [];
   lstDressed: any[] = [];
@@ -56,7 +56,7 @@ export class ThePoolActivityLevelComponent extends AppComponentBase implements O
         this.GetPoolActivityDetails(
             this.preSelectedFormData.selectedFormID
         );
-        this.StatementType = 'Update';
+        this.statementType = 'Update';
     }
     else {
       this.ResetModel();
@@ -109,7 +109,7 @@ this.isEditable = this.preSelectedFormData.isEditable;
         this.GetPoolActivityDetails(
             this.preSelectedFormData.selectedFormID
         );
-        this.StatementType = 'Update';
+        this.statementType = 'Update';
     }
     else {
       this.ResetModel();
@@ -126,7 +126,7 @@ this.isEditable = this.preSelectedFormData.isEditable;
             next: (data) => {
                 this._UtilityService.hideSpinner();
                 if (data.actionResult.success == true) {
-                    var tdata = JSON.parse(data.actionResult.result);
+                  var tdata = data.actionResult.result;
                     tdata = tdata ? tdata : {};
                     this.PoolActivityFormsData = tdata;
                 } else {
@@ -146,7 +146,7 @@ getDropdownMasterLists(formMasterId: string, dropdownName: string,status:number)
       map((response) => {
           this._UtilityService.hideSpinner();
           if (response.actionResult.success) {
-              return JSON.parse(response.actionResult.result);
+              return response.actionResult.result;
           } else {
               return [];
           }
@@ -178,11 +178,11 @@ if (this.userId != null && this.residentAdmissionInfoId != null && this.loginId!
     this.PoolActivityFormsData.userId = this.userId;
     this.PoolActivityFormsData.residentAdmissionInfoId =
         this.residentAdmissionInfoId;
-    this.PoolActivityFormsData.StartedBy = this.loginId;
-    this.PoolActivityFormsData.LastEnteredBy = this.loginId;
+    this.PoolActivityFormsData.startedBy = this.loginId;
+    this.PoolActivityFormsData.lastEnteredBy = this.loginId;
     
         const objectBody: any = {
-          StatementType: this.StatementType,
+          statementType: this.statementType,
           poolActivityForm: this.PoolActivityFormsData
       };
 
@@ -222,7 +222,7 @@ if (this.userId != null && this.residentAdmissionInfoId != null && this.loginId!
 ResetModel() {
   this.isEditable = true;
   this.PoolActivityFormsData = <any>{};
-  this.StatementType = 'Insert';
+  this.statementType = 'Insert';
 }
 
 

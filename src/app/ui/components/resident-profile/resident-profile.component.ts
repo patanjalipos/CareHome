@@ -354,11 +354,13 @@ export class ResidentProfileComponent extends AppComponentBase implements OnInit
       .subscribe
       ({
         next: (data) => {
+          console.log(data);
+          
           this._UtilityService.hideSpinner();
           if (data.actionResult.success == true) {
 
             this.alertCount = data.actionResult.value;
-            var tdata = JSON.parse(data.actionResult.result);
+          var tdata = data.actionResult.result;
             tdata = tdata ? tdata : [];
             this.ResidentMaster = tdata;
             if (this.ResidentMaster.ProfileImage != undefined && this.ResidentMaster.ProfileImage != null && this.ResidentMaster.ProfileImage != '') {
@@ -369,17 +371,16 @@ export class ResidentProfileComponent extends AppComponentBase implements OnInit
             else {
               this.imageSrc = "";
             }
-            if (data.actionResult.result2 != null && data.actionResult.result2 != undefined && data.actionResult.result2?.length > 0) {
-              var tdata2 = JSON.parse(data.actionResult.result2);
+            if (data.actionResult.result2 != null && data.actionResult.result2 != undefined) {
+              var tdata2 = data.actionResult.result2;
               this.allergies = tdata2.AllergyNotes;
               if (tdata2.Allergen) {
                 this.allergies = ((this.allergies != '' && this.allergies != null && this.allergies != undefined) ? (this.allergies + ', ') : this.allergies) + tdata2.Allergen;
               }
-
             }
-
-            if (data.actionResult.result3 != null && data.actionResult.result3 != undefined && data.actionResult.result3?.length > 0) {
-              var tdata3 = JSON.parse(data.actionResult.result3);
+            
+            if (data.actionResult.result3 != null && data.actionResult.result3 != undefined) {
+              var tdata3 = data.actionResult.result3;
               this.allIndicator = tdata3.AllIndicator;
               if (tdata3.allIndicator) {
                 this.allIndicator = ((this.allIndicator != '' && this.allIndicator != null && this.allIndicator != undefined) ? (this.allIndicator + ', ') : this.allIndicator) + tdata2.allIndicator;

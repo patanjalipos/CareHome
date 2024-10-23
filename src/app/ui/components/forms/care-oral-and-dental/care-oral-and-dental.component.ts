@@ -36,7 +36,7 @@ export class CareOralAndDentalComponent
     //Form which is selected to edit or view
     isEditable: boolean;
     //Need to be passed from form Dashboard
-    StatementType: string = null;
+    statementType: string = null;
 
     //Patient Details
     userId: any;
@@ -76,7 +76,7 @@ export class CareOralAndDentalComponent
             this.GetSelectedFormDetails(
                 this.preSelectedFormData.selectedFormID
             );
-            this.StatementType = 'Update';
+            this.statementType = 'Update';
         } else {
             this.ResetModel();
         }
@@ -126,7 +126,7 @@ export class CareOralAndDentalComponent
                 this.preSelectedFormData.selectedFormID
             );
 
-            this.StatementType = 'Update';
+            this.statementType = 'Update';
         } else {
             this.ResetModel();
         }
@@ -135,12 +135,12 @@ export class CareOralAndDentalComponent
     SaveAsPDF() { }
 
     saveAsUnfinished() {
-        this.CareOralAndDentalFormData.IsFormCompleted = false;
+        this.CareOralAndDentalFormData.isFormCompleted = false;
         this.Save();
     }
 
     completeForm() {
-        this.CareOralAndDentalFormData.IsFormCompleted = true;
+        this.CareOralAndDentalFormData.isFormCompleted = true;
         this.Save();
     }
 
@@ -155,7 +155,7 @@ export class CareOralAndDentalComponent
                 map((response) => {
                     this._UtilityService.hideSpinner();
                     if (response.actionResult.success) {
-                        return JSON.parse(response.actionResult.result);
+                        return response.actionResult.result;
                     } else {
                         return [];
                     }
@@ -163,7 +163,7 @@ export class CareOralAndDentalComponent
                 catchError((error) => {
                     this._UtilityService.hideSpinner();
                     this._UtilityService.showErrorAlert(error.message);
-                  
+
                     return of([]); // Returning empty array in case of error
                 })
             );
@@ -177,10 +177,10 @@ export class CareOralAndDentalComponent
                 next: (data) => {
                     this._UtilityService.hideSpinner();
                     if (data.actionResult.success == true) {
-                        var tdata = JSON.parse(data.actionResult.result);
+                      var tdata = data.actionResult.result;
                         tdata = tdata ? tdata : {};
                         this.CareOralAndDentalFormData = tdata;
-                        this.CareOralAndDentalFormData.NextReviewDate = new Date(this.CareOralAndDentalFormData.NextReviewDate);
+                        this.CareOralAndDentalFormData.nextReviewDate = new Date(this.CareOralAndDentalFormData.nextReviewDate);
                     } else {
                         this.CareOralAndDentalFormData = {};
                     }
@@ -198,17 +198,17 @@ export class CareOralAndDentalComponent
             this.residentAdmissionInfoId != null &&
             this.loginId != null
         ) {
-            this.CareOralAndDentalFormData.UserId = this.userId;
-            this.CareOralAndDentalFormData.ResidentAdmissionInfoId =
+            this.CareOralAndDentalFormData.userId = this.userId;
+            this.CareOralAndDentalFormData.residentAdmissionInfoId =
                 this.residentAdmissionInfoId;
-            this.CareOralAndDentalFormData.StartedBy = this.loginId;
-            this.CareOralAndDentalFormData.ModifiedBy = this.loginId;
+            this.CareOralAndDentalFormData.startedBy = this.loginId;
+            this.CareOralAndDentalFormData.modifiedBy = this.loginId;
 
-            this.CareOralAndDentalFormData.NextReviewDate = new Date(this.datePipe.transform(this.CareOralAndDentalFormData.NextReviewDate, 'yyyy-MM-dd'));
+            this.CareOralAndDentalFormData.nextReviewDate = new Date(this.datePipe.transform(this.CareOralAndDentalFormData.nextReviewDate, 'yyyy-MM-dd'));
 
             const objectBody: any = {
-                StatementType: this.StatementType,
-                CareOralAndDentalForm: this.CareOralAndDentalFormData,
+                statementType: this.statementType,
+                careOralAndDentalForm: this.CareOralAndDentalFormData,
             };
 
             this._UtilityService.showSpinner();
@@ -242,6 +242,6 @@ export class CareOralAndDentalComponent
     ResetModel() {
         this.isEditable = true;
         this.CareOralAndDentalFormData = <any>{};
-        this.StatementType = 'Insert';
+        this.statementType = 'Insert';
     }
 }

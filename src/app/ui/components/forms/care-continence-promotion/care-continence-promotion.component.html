@@ -3,104 +3,79 @@
         <div class="formheader">
             <div class="d-flex">
                 <div class="col-md-4">
-                    <label class="form-label"
-                        ><b> Started by (Name) :</b
-                        >{{ preSelectedFormData.StartedBy }}
+                    <label class="form-label"><b> Started by (Name) :</b>{{ preSelectedFormData.StartedBy }}
                     </label>
                 </div>
                 <div class="col-md-4">
-                    <label class="form-label"
-                        ><b>Designation :</b
-                        >{{ preSelectedFormData.StartedByDesignation }}
+                    <label class="form-label"><b>Designation :</b>{{ preSelectedFormData.StartedByDesignation }}
                     </label>
                 </div>
                 <div class="col-md-4">
                     <label class="form-label">
-                        <b>Date/Time : </b
-                        >{{
-                            preSelectedFormData.StartedOn
-                                | date : customDateFormat.DEF_DATE_TIME
-                        }}</label
-                    >
+                        <b>Date/Time : </b>{{
+                        preSelectedFormData.StartedOn
+                        | date : customDateFormat.DEF_DATE_TIME
+                        }}</label>
                 </div>
             </div>
             <div class="d-flex">
                 <div class="col-md-4">
                     <label class="form-label">
-                        <b>Last entered by (Name) :</b
-                        >{{ preSelectedFormData.ModifiedBy }}</label
-                    >
+                        <b>Last entered by (Name) :</b>{{ preSelectedFormData.ModifiedBy }}</label>
                 </div>
                 <div class="col-md-4">
                     <label class="form-label">
-                        <b>Designation :</b
-                        >{{ preSelectedFormData.ModifiedByDesignation }}</label
-                    >
+                        <b>Designation :</b>{{ preSelectedFormData.ModifiedByDesignation }}</label>
                 </div>
                 <div class="col-md-4">
                     <label class="form-label">
                         <b>Date/Time :</b>
                         {{
-                            preSelectedFormData.ModifiedOn
-                                | date : customDateFormat.DEF_DATE_TIME
-                        }}</label
-                    >
+                        preSelectedFormData.ModifiedOn
+                        | date : customDateFormat.DEF_DATE_TIME
+                        }}</label>
                 </div>
             </div>
         </div>
         <div class="col-md-4 mt-4">
             <div class="labelcontent">
-                <P
-                    >Does the resident have insight into their continence
-                    needs</P
-                >
+                <P>Does the resident have insight into their continence
+                    needs</P>
             </div>
         </div>
-        <div class="col-md-7 mt-4 form-text">
+        <div class="col-md-6 mt-4 form-text">
             <ng-container *ngIf="isEditable; else InsightLabel">
-                <p-dropdown
-                    name="InsightIntoContinenceNeeds"
-                    [(ngModel)]="
-                        CareContinencePromotionFormsData.InsightIntoContinenceNeeds
-                    "
-                    [options]="LstContPromInsightIntoContinenceNeedsOptions"
-                    optionLabel="optionName"
-                    optionValue="optionId"
-                    placeholder="--select--"
-                    [style]="{ width: '100%' }"
-                >
+                <p-dropdown name="InsightIntoContinenceNeeds" [(ngModel)]="
+                        CareContinencePromotionFormsData.insightIntoContinenceNeeds
+                    " [options]="LstContPromInsightIntoContinenceNeedsOptions" optionLabel="optionName"
+                    optionValue="optionId" placeholder="--select--" [style]="{ width: '100%' }">
                 </p-dropdown>
             </ng-container>
             <ng-template #InsightLabel>
                 <label>{{
-                    CareContinencePromotionFormsData.InsightIntoContinenceNeedsName
-                }}</label>
+                    CareContinencePromotionFormsData.insightIntoContinenceNeedsName
+                    }}</label>
             </ng-template>
         </div>
 
-        <div class="col-md-1 form-icon mt-4">
-            <i class="fa-solid fa-info"></i>
+        <div class="col-md-2 form-icon mt-4 d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext">Mapped to : <b>Observation</b><br> Care domain : <b>My Continence promotion
+                        Support
+                        plan <br></b> Sub domain : <b>Capacity</b> </span>
+            </div>
         </div>
         <div class="col-md-4">
             <div class="labelcontent">
-                <P
-                    >Detail the specific decision made relating to the
-                    resident's bowel and bladder management</P
-                >
+                <P>Detail the specific decision made relating to the
+                    resident's bowel and bladder management</P>
             </div>
         </div>
-        <div class="col-md-7 form-text">
+        <div class="col-md-6 form-text">
             <ng-container *ngIf="isEditable; else BowelBladderDecisionLabel">
-                <input
-                    pInputText
-                    type="text"
-                    required
-                    name="bowelBladderDecision"
-                    class="form-control"
-                    [(ngModel)]="
-                        CareContinencePromotionFormsData.BowelBladderDecision
-                    "
-                />
+                <input pInputText type="text" required name="bowelBladderDecision" class="form-control" [(ngModel)]="
+                        CareContinencePromotionFormsData.bowelBladderDecision
+                    " />
                 <p class="mb-4">
                     Specific catheter care, treatment / bladder wash,
                     professional intervention Only answer if the resident lacks
@@ -109,13 +84,20 @@
             </ng-container>
             <ng-template #BowelBladderDecisionLabel>
                 <label>{{
-                    CareContinencePromotionFormsData.BowelBladderDecision
-                }}</label>
+                    CareContinencePromotionFormsData.bowelBladderDecision
+                    }}</label>
             </ng-template>
         </div>
 
-        <div class="col-md-1 form-icon">
-            <i class="fa-solid fa-info"></i>
+        <div class="col-md-2 form-icon mt-4 d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext">Mapped to : <b>Observation</b><br> Care domain : <b>My Continence promotion
+                        Support
+                        plan</b><br> Sub domain : <b>My Continence Plan </b>
+                    <hr>Mapped to :<b>Intervention </b> <br> Care domain : <b>My Continence promotion Support
+                        plan</b> Sub domain : <b>My Continence Plan </b>
+                </span>
+            </div>
         </div>
 
         <div class="col-md-4">
@@ -124,18 +106,11 @@
             </div>
         </div>
 
-        <div class="col-md-7 form-text">
+        <div class="col-md-6 form-text">
             <ng-container *ngIf="isEditable; else BowelBladderHistoryLabel">
-                <input
-                    pInputText
-                    type="text"
-                    required
-                    name="bowelBladderHistory"
-                    class="form-control"
-                    [(ngModel)]="
-                        CareContinencePromotionFormsData.BowelBladderHistory
-                    "
-                />
+                <input pInputText type="text" required name="bowelBladderHistory" class="form-control" [(ngModel)]="
+                        CareContinencePromotionFormsData.bowelBladderHistory
+                    " />
                 <p class="mb-4">
                     Include any history of diseases affecting their bowel /
                     bladder, prescribed diuretics, and management plan. Include
@@ -144,13 +119,18 @@
             </ng-container>
             <ng-template #BowelBladderHistoryLabel>
                 <label>{{
-                    CareContinencePromotionFormsData.BowelBladderHistory
-                }}</label>
+                    CareContinencePromotionFormsData.bowelBladderHistory
+                    }}</label>
             </ng-template>
         </div>
-
-        <div class="col-md-1 form-icon">
-            <i class="fa-solid fa-info"></i>
+        <div class="col-md-2 form-icon mt-4 d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext">Mapped to : <b>Observation</b><br> Care domain : <b>My Continence promotion
+                        Support
+                        plan</b><br> Sub domain : <b>My Continence Plan </b>
+                
+                </span>
+            </div>
         </div>
 
         <div class="col-md-4">
@@ -162,18 +142,11 @@
             </div>
         </div>
 
-        <div class="col-md-7 form-text">
+        <div class="col-md-6 form-text">
             <ng-container *ngIf="isEditable; else SupportRequiredLabel">
-                <input
-                    pInputText
-                    type="text"
-                    required
-                    name="supportRequired"
-                    class="form-control"
-                    [(ngModel)]="
-                        CareContinencePromotionFormsData.SupportRequired
-                    "
-                />
+                <input pInputText type="text" required name="supportRequired" class="form-control" [(ngModel)]="
+                        CareContinencePromotionFormsData.supportRequired
+                    " />
                 <p class="mb-4">
                     Assistance needed to aid the resident to remain as
                     independent as possible, orientation day/night variances,
@@ -185,13 +158,19 @@
             </ng-container>
             <ng-template #SupportRequiredLabel>
                 <label>{{
-                    CareContinencePromotionFormsData.SupportRequired
-                }}</label>
+                    CareContinencePromotionFormsData.supportRequired
+                    }}</label>
             </ng-template>
         </div>
 
-        <div class="col-md-1 form-icon">
-            <i class="fa-solid fa-info"></i>
+        <div class="col-md-2 form-icon mt-4 d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext">Mapped to : <b>Intervention</b><br> Care domain : <b>My Continence promotion
+                        Support
+                        plan</b><br> Sub domain : <b>My Continence Plan </b>
+
+                </span>
+            </div>
         </div>
         <div class="col-md-4">
             <div class="labelcontent">
@@ -199,57 +178,42 @@
             </div>
         </div>
 
-        <div class="col-md-7 form-text">
-            <ng-container
-                *ngIf="isEditable; else ResidentColostomyIleostomyLabel"
-            >
-                <p-dropdown
-                    name="ResidentColostomyIleostomy"
-                    [(ngModel)]="
-                        CareContinencePromotionFormsData.ResidentColostomyIleostomy
-                    "
-                    [options]="LstContPromResidentColostomyIleostomyOptions"
-                    optionLabel="optionName"
-                    optionValue="optionId"
-                    placeholder="--select--"
-                    [style]="{ width: '100%' }"
-                >
+        <div class="col-md-6 form-text">
+            <ng-container *ngIf="isEditable; else ResidentColostomyIleostomyLabel">
+                <p-dropdown name="ResidentColostomyIleostomy" [(ngModel)]="
+                        CareContinencePromotionFormsData.residentColostomyIleostomy
+                    " [options]="LstContPromResidentColostomyIleostomyOptions" optionLabel="optionName"
+                    optionValue="optionId" placeholder="--select--" [style]="{ width: '100%' }">
                 </p-dropdown>
             </ng-container>
             <ng-template #ResidentColostomyIleostomyLabel>
                 <label>{{
-                    CareContinencePromotionFormsData.ResidentColostomyIleostomyName
-                }}</label>
+                    CareContinencePromotionFormsData.residentColostomyIleostomyName
+                    }}</label>
             </ng-template>
         </div>
-
-        <div class="col-md-1 form-icon">
-            <i class="fa-solid fa-info"></i>
+        <div class="col-md-2 form-icon mt-4 d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext">Mapped to : <b>Observation</b><br> Care domain : <b>My Continence promotion
+                        Support
+                        plan</b><br> Sub domain : <b>My Continence Plan </b>
+               
+                </span>
+            </div>
         </div>
         <div class="col-md-4">
             <div class="labelcontent">
-                <P
-                    >Support required to assist the resident with their
-                    colostomy / ileostomy</P
-                >
+                <P>Support required to assist the resident with their
+                    colostomy / ileostomy</P>
             </div>
         </div>
 
-        <div class="col-md-7 form-text">
-            <ng-container
-                *ngIf="isEditable; else SupportRequiredForColostomyLabel"
-            >
-                <p-dropdown
-                    name="SupportRequiredForColostomy"
-                    [(ngModel)]="
-                        CareContinencePromotionFormsData.SupportRequiredForColostomy
-                    "
-                    [options]="LstContPromSupportRequiredForColostomyOptions"
-                    optionLabel="optionName"
-                    optionValue="optionId"
-                    placeholder="--select--"
-                    [style]="{ width: '100%' }"
-                >
+        <div class="col-md-6 form-text">
+            <ng-container *ngIf="isEditable; else SupportRequiredForColostomyLabel">
+                <p-dropdown name="SupportRequiredForColostomy" [(ngModel)]="
+                        CareContinencePromotionFormsData.supportRequiredForColostomy
+                    " [options]="LstContPromSupportRequiredForColostomyOptions" optionLabel="optionName"
+                    optionValue="optionId" placeholder="--select--" [style]="{ width: '100%' }">
                 </p-dropdown>
                 <p class="mb-4">
                     SELECT ALL THAT APPLY FOR THE CARING OF A STOMA E.g.
@@ -259,13 +223,19 @@
             </ng-container>
             <ng-template #SupportRequiredForColostomyLabel>
                 <label>{{
-                    CareContinencePromotionFormsData.SupportRequiredForColostomyName
-                }}</label>
+                    CareContinencePromotionFormsData.supportRequiredForColostomyName
+                    }}</label>
             </ng-template>
         </div>
 
-        <div class="col-md-1 form-icon">
-            <i class="fa-solid fa-info"></i>
+        <div class="col-md-2 form-icon mt-4 d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext">Mapped to : <b>Intervention</b><br> Care domain : <b>My Continence promotion
+                        Support
+                        plan</b><br> Sub domain : <b>My Continence Plan </b>
+                
+                </span>
+            </div>
         </div>
         <div class="col-md-4">
             <div class="labelcontent">
@@ -273,28 +243,28 @@
             </div>
         </div>
 
-        <div class="col-md-7 form-text">
+        <div class="col-md-6 form-text">
             <ng-container *ngIf="isEditable; else CatheterCareLabel">
-                <p-dropdown
-                    name="CatheterCare"
-                    [(ngModel)]="CareContinencePromotionFormsData.CatheterCare"
-                    [options]="LstContPromCatheterCareOptions"
-                    optionLabel="optionName"
-                    optionValue="optionId"
-                    placeholder="--select--"
-                    [style]="{ width: '100%' }"
-                >
+                <p-dropdown name="CatheterCare" [(ngModel)]="CareContinencePromotionFormsData.catheterCare"
+                    [options]="LstContPromCatheterCareOptions" optionLabel="optionName" optionValue="optionId"
+                    placeholder="--select--" [style]="{ width: '100%' }">
                 </p-dropdown>
             </ng-container>
             <ng-template #CatheterCareLabel>
                 <label>{{
-                    CareContinencePromotionFormsData.CatheterCareName
-                }}</label>
+                    CareContinencePromotionFormsData.catheterCareName
+                    }}</label>
             </ng-template>
         </div>
-
-        <div class="col-md-1 form-icon">
-            <i class="fa-solid fa-info"></i>
+        <div class="col-md-2 form-icon mt-4 d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext">Mapped to : <b>Observation</b><br> Care domain : <b>My Continence promotion
+                        Support
+                        plan</b><br> Sub domain : <b>My Continence Plan </b>
+                    <hr>Mapped to :<b>Intervention </b> <br> Care domain : <b>My Continence promotion Support
+                        plan</b> Sub domain : <b>My Continence Plan </b>
+                </span>
+            </div>
         </div>
         <div class="col-md-4">
             <div class="labelcontent">
@@ -302,61 +272,57 @@
             </div>
         </div>
 
-        <div class="col-md-7 form-text">
+        <div class="col-md-6 form-text">
             <ng-container *ngIf="isEditable; else ResidentGoalLabel">
-                <input
-                    pInputText
-                    type="text"
-                    required
-                    name="residentGoal"
-                    class="form-control"
-                    [(ngModel)]="CareContinencePromotionFormsData.ResidentGoal"
-                />
+                <input pInputText type="text" required name="residentGoal" class="form-control"
+                    [(ngModel)]="CareContinencePromotionFormsData.residentGoal" />
             </ng-container>
             <ng-template #ResidentGoalLabel>
                 <label>{{
-                    CareContinencePromotionFormsData.ResidentGoal
-                }}</label>
+                    CareContinencePromotionFormsData.residentGoal
+                    }}</label>
             </ng-template>
         </div>
 
-        <div class="col-md-1 form-icon">
-            <i class="fa-solid fa-info"></i>
+        <div class="col-md-2 form-icon mt-4 d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext">Mapped to : <b>Agreed Outcome </b><br> Care domain : <b>My Continence promotion
+                        Support
+                        plan</b><br> Sub domain : <b>My Continence Plan </b>
+                
+                </span>
+            </div>
         </div>
 
         <div class="col-md-4">
             <div class="labelcontent">
-                <P
-                    >Clinical observations implemented to promote monitoring and
-                    promotion of continence needs</P
-                >
+                <P>Clinical observations implemented to promote monitoring and
+                    promotion of continence needs</P>
             </div>
         </div>
 
-        <div class="col-md-7 form-text">
+        <div class="col-md-6 form-text">
             <ng-container *ngIf="isEditable; else ClinicalObservationsLabel">
-                <p-dropdown
-                    name="ClinicalObservations"
-                    [(ngModel)]="
-                        CareContinencePromotionFormsData.ClinicalObservations
-                    "
-                    [options]="LstContPromClinicalObservationsOptions"
-                    optionLabel="optionName"
-                    optionValue="optionId"
-                    placeholder="--select--"
-                    [style]="{ width: '100%' }"
-                >
+                <p-dropdown name="ClinicalObservations" [(ngModel)]="
+                        CareContinencePromotionFormsData.clinicalObservations
+                    " [options]="LstContPromClinicalObservationsOptions" optionLabel="optionName"
+                    optionValue="optionId" placeholder="--select--" [style]="{ width: '100%' }">
                 </p-dropdown>
             </ng-container>
             <ng-template #ClinicalObservationsLabel>
                 <label>{{
-                    CareContinencePromotionFormsData.ClinicalObservationsName
-                }}</label>
+                    CareContinencePromotionFormsData.clinicalObservationsName
+                    }}</label>
             </ng-template>
         </div>
-
-        <div class="col-md-1 form-icon">
-            <i class="fa-solid fa-info"></i>
+        <div class="col-md-2 form-icon mt-4 d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext">Mapped to : <b>Intervention</b><br> Care domain : <b>My Continence promotion
+                        Support
+                        plan</b><br> Sub domain : <b>My Continence Plan </b>
+                 
+                </span>
+            </div>
         </div>
         <div class="col-md-4">
             <div class="labelcontent">
@@ -364,18 +330,11 @@
             </div>
         </div>
 
-        <div class="col-md-7 form-text">
+        <div class="col-md-6 form-text">
             <ng-container *ngIf="isEditable; else ProfessionalInputLabel">
-                <input
-                    pInputText
-                    type="text"
-                    required
-                    name="professionalInput"
-                    class="form-control"
-                    [(ngModel)]="
-                        CareContinencePromotionFormsData.ProfessionalInput
-                    "
-                />
+                <input pInputText type="text" required name="professionalInput" class="form-control" [(ngModel)]="
+                        CareContinencePromotionFormsData.professionalInput
+                    " />
                 <p class="mb-4">
                     Continence advisor, stoma nurse, district nurse, other
                     (input / referral)
@@ -383,36 +342,32 @@
             </ng-container>
             <ng-template #ProfessionalInputLabel>
                 <label>{{
-                    CareContinencePromotionFormsData.ProfessionalInput
-                }}</label>
+                    CareContinencePromotionFormsData.professionalInput
+                    }}</label>
             </ng-template>
         </div>
-
-        <div class="col-md-1 form-icon">
-            <i class="fa-solid fa-info"></i>
+        <div class="col-md-2 form-icon mt-4 d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext">Mapped to : <b>Intervention</b><br> Care domain : <b>My Continence promotion
+                        Support
+                        plan</b><br> Sub domain : <b>My Continence Plan </b>
+               
+                </span>
+            </div>
         </div>
         <div class="col-md-4">
             <div class="labelcontent">
-                <P
-                    >Are there any other identified risks relating to bowel and
-                    bladder</P
-                >
+                <P>Are there any other identified risks relating to bowel and
+                    bladder</P>
             </div>
         </div>
 
-        <div class="col-md-7 form-text">
+        <div class="col-md-6 form-text">
             <ng-container *ngIf="isEditable; else IdentifiedRisksLabel">
-                <p-dropdown
-                    name="IdentifiedRisks"
-                    [(ngModel)]="
-                        CareContinencePromotionFormsData.IdentifiedRisks
-                    "
-                    [options]="LstContPromIdentifiedRisksOptions"
-                    optionLabel="optionName"
-                    optionValue="optionId"
-                    placeholder="--select--"
-                    [style]="{ width: '100%' }"
-                >
+                <p-dropdown name="IdentifiedRisks" [(ngModel)]="
+                        CareContinencePromotionFormsData.identifiedRisks
+                    " [options]="LstContPromIdentifiedRisksOptions" optionLabel="optionName" optionValue="optionId"
+                    placeholder="--select--" [style]="{ width: '100%' }">
                 </p-dropdown>
                 <p class="mb-4">
                     Specify any other risks that have not been identified above
@@ -420,45 +375,49 @@
             </ng-container>
             <ng-template #IdentifiedRisksLabel>
                 <label>{{
-                    CareContinencePromotionFormsData.IdentifiedRisksName
-                }}</label>
+                    CareContinencePromotionFormsData.identifiedRisksName
+                    }}</label>
             </ng-template>
         </div>
 
-        <div class="col-md-1 form-icon">
-            <i class="fa-solid fa-info"></i>
+        <div class="col-md-2 form-icon mt-4 d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext">Mapped to : <b>Observation</b><br> Care domain : <b>My Continence promotion
+                        Support
+                        plan</b><br> Sub domain : <b>My Continence Plan </b>
+                   
+                </span>
+            </div>
         </div>
-
         <div class="col-md-4">
             <div class="labelcontent">
                 <P>Action to manage additional risk identified</P>
             </div>
         </div>
 
-        <div class="col-md-7 form-text">
+        <div class="col-md-6 form-text">
             <ng-container *ngIf="isEditable; else RiskManagementLabel">
-                <p-dropdown
-                    name="RiskManagement"
-                    [(ngModel)]="
-                        CareContinencePromotionFormsData.RiskManagement
-                    "
-                    [options]="LstContPromRiskManagementOptions"
-                    optionLabel="optionName"
-                    optionValue="optionId"
-                    placeholder="--select--"
-                    [style]="{ width: '100%' }"
-                >
+                <p-dropdown name="RiskManagement" [(ngModel)]="
+                        CareContinencePromotionFormsData.riskManagement
+                    " [options]="LstContPromRiskManagementOptions" optionLabel="optionName" optionValue="optionId"
+                    placeholder="--select--" [style]="{ width: '100%' }">
                 </p-dropdown>
             </ng-container>
             <ng-template #RiskManagementLabel>
                 <label>{{
-                    CareContinencePromotionFormsData.RiskManagementName
-                }}</label>
+                    CareContinencePromotionFormsData.riskManagementName
+                    }}</label>
             </ng-template>
         </div>
 
-        <div class="col-md-1 form-icon">
-            <i class="fa-solid fa-info"></i>
+        <div class="col-md-2 form-icon mt-4 d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext">Mapped to : <b>intervention </b><br> Care domain : <b>My Continence promotion
+                        Support
+                        plan</b><br> Sub domain : <b>My Continence Plan </b>
+                   
+                </span>
+            </div>
         </div>
         <div class="col-md-4">
             <div class="labelcontent">
@@ -466,32 +425,29 @@
             </div>
         </div>
 
-        <div class="col-md-7 form-text">
-            <ng-container
-                *ngIf="isEditable; else PromoteHealthyBladderAndBowelLabel"
-            >
-                <p-dropdown
-                    name="PromoteHealthyBladderAndBowel"
-                    [(ngModel)]="
-                        CareContinencePromotionFormsData.PromoteHealthyBladderAndBowel
-                    "
-                    [options]="LstContPromoteHealthyBladderAndBowelOptions"
-                    optionLabel="optionName"
-                    optionValue="optionId"
-                    placeholder="--select--"
-                    [style]="{ width: '100%' }"
-                >
+        <div class="col-md-6 form-text">
+            <ng-container *ngIf="isEditable; else PromoteHealthyBladderAndBowelLabel">
+                <p-dropdown name="PromoteHealthyBladderAndBowel" [(ngModel)]="
+                        CareContinencePromotionFormsData.promoteHealthyBladderAndBowel
+                    " [options]="LstContPromoteHealthyBladderAndBowelOptions" optionLabel="optionName"
+                    optionValue="optionId" placeholder="--select--" [style]="{ width: '100%' }">
                 </p-dropdown>
             </ng-container>
             <ng-template #PromoteHealthyBladderAndBowelLabel>
                 <label>{{
-                    CareContinencePromotionFormsData.PromoteHealthyBladderAndBowelName
-                }}</label>
+                    CareContinencePromotionFormsData.promoteHealthyBladderAndBowelName
+                    }}</label>
             </ng-template>
         </div>
 
-        <div class="col-md-1 form-icon">
-            <i class="fa-solid fa-info"></i>
+        <div class="col-md-2 form-icon mt-4 d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext">Mapped to : <b>Observation</b><br> Care domain : <b>My Continence promotion
+                        Support
+                        plan</b><br> Sub domain : <b>My Continence Plan </b>
+                 
+                </span>
+            </div>
         </div>
         <div class="col-md-4">
             <div class="labelcontent">
@@ -499,31 +455,29 @@
             </div>
         </div>
 
-        <div class="col-md-7 form-text">
+        <div class="col-md-6 form-text">
             <ng-container *ngIf="isEditable; else LegDrainageBagChangeLabel">
-                <p-dropdown
-                    name="LegDrainageBagChange"
-                    [(ngModel)]="
-                        CareContinencePromotionFormsData.LegDrainageBagChange
-                    "
-                    [options]="LstContPromLegDrainageBagChangeOptions"
-                    optionLabel="optionName"
-                    optionValue="optionId"
-                    placeholder="--select--"
-                    [style]="{ width: '100%' }"
-                >
+                <p-dropdown name="LegDrainageBagChange" [(ngModel)]="
+                        CareContinencePromotionFormsData.legDrainageBagChange
+                    " [options]="LstContPromLegDrainageBagChangeOptions" optionLabel="optionName"
+                    optionValue="optionId" placeholder="--select--" [style]="{ width: '100%' }">
                 </p-dropdown>
                 <p class="mb-4">Choose all areas below</p>
             </ng-container>
             <ng-template #LegDrainageBagChangeLabel>
                 <label>{{
-                    CareContinencePromotionFormsData.LegDrainageBagChangeName
-                }}</label>
+                    CareContinencePromotionFormsData.legDrainageBagChangeName
+                    }}</label>
             </ng-template>
         </div>
-
-        <div class="col-md-1 form-icon">
-            <i class="fa-solid fa-info"></i>
+        <div class="col-md-2 form-icon mt-4 d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext">Mapped to : <b>Intervention </b><br> Care domain : <b>My Continence promotion
+                        Support
+                        plan</b><br> Sub domain : <b>My Continence Plan </b>
+               
+                </span>
+            </div>
         </div>
         <div class="col-md-4">
             <div class="labelcontent">
@@ -531,19 +485,12 @@
             </div>
         </div>
 
-        <div class="col-md-7 form-text">
+        <div class="col-md-6 form-text">
             <ng-container *ngIf="isEditable; else NightDrainageBagRemovalLabel">
-                <p-dropdown
-                    name="NightDrainageBagRemoval"
-                    [(ngModel)]="
-                        CareContinencePromotionFormsData.NightDrainageBagRemoval
-                    "
-                    [options]="LstContPromNightDrainageBagRemovalOptions"
-                    optionLabel="optionName"
-                    optionValue="optionId"
-                    placeholder="--select--"
-                    [style]="{ width: '100%' }"
-                >
+                <p-dropdown name="NightDrainageBagRemoval" [(ngModel)]="
+                        CareContinencePromotionFormsData.nightDrainageBagRemoval
+                    " [options]="LstContPromNightDrainageBagRemovalOptions" optionLabel="optionName"
+                    optionValue="optionId" placeholder="--select--" [style]="{ width: '100%' }">
                 </p-dropdown>
                 <p class="mb-4">
                     Select all below if using single use drainage bags
@@ -551,13 +498,18 @@
             </ng-container>
             <ng-template #NightDrainageBagRemovalLabel>
                 <label>{{
-                    CareContinencePromotionFormsData.NightDrainageBagRemovalName
-                }}</label>
+                    CareContinencePromotionFormsData.nightDrainageBagRemovalName
+                    }}</label>
             </ng-template>
         </div>
-
-        <div class="col-md-1 form-icon">
-            <i class="fa-solid fa-info"></i>
+        <div class="col-md-2 form-icon mt-4 d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext">Mapped to : <b>Intervention </b><br> Care domain : <b>My Continence promotion
+                        Support
+                        plan</b><br> Sub domain : <b>My Continence Plan </b>
+                   
+                </span>
+            </div>
         </div>
         <div class="col-md-4">
             <div class="labelcontent">
@@ -568,34 +520,31 @@
             </div>
         </div>
 
-        <div class="col-md-7 form-text">
-            <ng-container
-                *ngIf="isEditable; else ContinenceAidBestPracticeGuidanceLabel"
-            >
-                <p-dropdown
-                    name="ContinenceAidBestPracticeGuidance"
-                    [(ngModel)]="
-                        CareContinencePromotionFormsData.ContinenceAidBestPracticeGuidance
-                    "
-                    [options]="
+        <div class="col-md-6 form-text">
+            <ng-container *ngIf="isEditable; else ContinenceAidBestPracticeGuidanceLabel">
+                <p-dropdown name="ContinenceAidBestPracticeGuidance" [(ngModel)]="
+                        CareContinencePromotionFormsData.continenceAidBestPracticeGuidance
+                    " [options]="
                         LstContPromContinenceAidBestPracticeGuidanceOptions
-                    "
-                    optionLabel="optionName"
-                    optionValue="optionId"
-                    placeholder="--select--"
-                    [style]="{ width: '100%' }"
-                >
+                    " optionLabel="optionName" optionValue="optionId" placeholder="--select--"
+                    [style]="{ width: '100%' }">
                 </p-dropdown>
             </ng-container>
             <ng-template #ContinenceAidBestPracticeGuidanceLabel>
                 <label>{{
-                    CareContinencePromotionFormsData.ContinenceAidBestPracticeGuidanceName
-                }}</label>
+                    CareContinencePromotionFormsData.continenceAidBestPracticeGuidanceName
+                    }}</label>
             </ng-template>
         </div>
 
-        <div class="col-md-1 form-icon">
-            <i class="fa-solid fa-info"></i>
+        <div class="col-md-2 form-icon mt-4 d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext">Mapped to : <b>Intervention </b><br> Care domain : <b>My Continence promotion
+                        Support
+                        plan</b><br> Sub domain : <b>My Continence Plan </b>
+                
+                </span>
+            </div>
         </div>
         <div class="col-md-4">
             <div class="labelcontent implabel">
@@ -603,14 +552,11 @@
             </div>
         </div>
 
-        <div class="col-md-7 form-text">
+        <div class="col-md-6 form-text">
             <ng-container *ngIf="isEditable; else FormReviewStateLabel">
-                <p-triStateCheckbox
-                    inputId="tricheckbox"
-                    [(ngModel)]="
-                        CareContinencePromotionFormsData.FormReviewState
-                    "
-                ></p-triStateCheckbox>
+                <p-triStateCheckbox inputId="tricheckbox" [(ngModel)]="
+                        CareContinencePromotionFormsData.formReviewState
+                    "></p-triStateCheckbox>
                 <p class="mb-4">
                     This form should be reviewed EVERY MONTH or before if there
                     are significant changes. Enter review date below.
@@ -618,9 +564,9 @@
             </ng-container>
             <ng-template #FormReviewStateLabel>
                 <label>{{
-                    CareContinencePromotionFormsData.FormReviewState
-                        | date : customDateFormat.DEF_DATE
-                }}</label>
+                    CareContinencePromotionFormsData.formReviewState
+                    | date : customDateFormat.DEF_DATE
+                    }}</label>
             </ng-template>
         </div>
 
@@ -630,32 +576,22 @@
             </div>
         </div>
 
-        <div class="col-md-7">
+        <div class="col-md-6">
             <ng-container *ngIf="isEditable; else NextReviewDateCalendarLabel">
                 <div class="input-group date">
-                    <p-calendar
-                        name="nextReviewDate"
-                        [showIcon]="true"
-                        inputId="icon"
-                        [dateFormat]="'yy-mm-dd'"
-                        class="iconcal"
-                        [(ngModel)]="
-                            CareContinencePromotionFormsData.NextReviewDate
-                        "
-                        [maxDate]=""
-                    ></p-calendar>
-                    <div
-                        *ngIf="!CareContinencePromotionFormsData.NextReviewDate"
-                        class="alert alert-danger"
-                    >
+                    <p-calendar name="nextReviewDate" [showIcon]="true" inputId="icon" [dateFormat]="'yy-mm-dd'"
+                        class="iconcal" [(ngModel)]="
+                            CareContinencePromotionFormsData.nextReviewDate
+                        " [maxDate]=""></p-calendar>
+                    <div *ngIf="!CareContinencePromotionFormsData.nextReviewDate" class="alert alert-danger">
                         Next review date is required.
                     </div>
                 </div>
             </ng-container>
             <ng-template #NextReviewDateCalendarLabel>
                 <label>{{
-                    CareContinencePromotionFormsData.NextReviewDate |  date : customDateFormat.DEF_DATE
-                }}</label>
+                    CareContinencePromotionFormsData.nextReviewDate | date : customDateFormat.DEF_DATE
+                    }}</label>
             </ng-template>
         </div>
 
@@ -663,37 +599,21 @@
             <ng-container *ngIf="isEditable; else savePdf">
                 <div>
                     <span class="p-ml-left mr-4">
-                        <button
-                            pButton
-                            title="New"
-                            label="Save as Unfinished"
-                            (click)="saveAsUnfinished()"
-                        ></button>
+                        <button pButton title="New" label="Save as Unfinished" (click)="saveAsUnfinished()"></button>
                         <span class="total-txt"></span>
                     </span>
                 </div>
                 <div>
                     <span class="p-ml-left mr-4">
-                        <button
-                            pButton
-                            title="New"
-                            label="Complete"
-                            (click)="completeForm()"
-                            [disabled]="
-                                CareContinencePromotionFormsData.IsFormCompleted
-                            "
-                        ></button>
+                        <button pButton title="New" label="Complete" (click)="completeForm()" [disabled]="
+                                CareContinencePromotionFormsData.isFormCompleted
+                            "></button>
                         <span class="total-txt"></span>
                     </span>
                 </div>
             </ng-container>
             <ng-template #savePdf>
-                <button
-                    pButton
-                    title="Save as PDF"
-                    label="Save as PDF"
-                    (click)="SaveAsPDF()"
-                ></button>
+                <button pButton title="Save as PDF" label="Save as PDF" (click)="SaveAsPDF()"></button>
             </ng-template>
         </div>
     </div>

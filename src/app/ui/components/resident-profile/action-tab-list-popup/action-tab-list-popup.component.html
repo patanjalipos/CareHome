@@ -1,0 +1,307 @@
+<!--For Action View-->
+<div *ngIf="popupCheck == false">
+    <hr style="border: 1px solid black; margin: 0px;">
+    <div class="row">
+        <div class="col-md-5 my-5">
+            <label class="bold fs-5" [ngClass]="{'text-success':ActionTakenData.actionStatus == 'Completed',
+             'text-primary': ActionTakenData.actionStatus == 'Current',
+             'text-danger':ActionTakenData.actionStatus == 'Missed'
+            }">Body Mapping Record</label>
+            <div class="my-5">
+                <label>Due on {{ActionTakenData.Date | date:customDateFormat.DEF_DATE_TIME}}</label>
+            </div>
+        </div>
+        <div class="col-md-4 d-flex my-5">
+            <div class="profile-img">
+                <img [src]="imageSrc" class="mr-2" width="200" *ngIf="
+                        imageSrc != null &&
+                        imageSrc != undefined &&
+                        imageSrc != ''" />
+
+            </div>
+            <div>
+
+                <label class="bold fs-5">{{ActionTakenData.residentDetails.Title}}.
+                    {{ActionTakenData.residentDetails.FullName}}</label>
+
+                <label>{{ calculateAge(ActionTakenData.residentDetails.DateOfBirth) }}yrs
+                    ({{ActionTakenData.residentDetails.DateOfBirth | date}}) </label>
+            </div>
+
+        </div>
+        <div class="col-md-3 my-5">
+            <label>Room no - {{ActionTakenData.residentDetails.RoomNumber}}</label><i
+                *ngIf="ActionTakenData.isPrioritiseStatus" class="fa-regular fa-flag ms-5 fa-2x"
+                style="color: red;"></i><br>
+            <label>{{ActionTakenData.residentDetails.Residency}}</label>
+        </div>
+    </div>
+    <p-checkbox *ngIf="ActionTakenData.actionStatus != 'Completed'" (onChange)="Save(0)" class="my-5"
+        [(ngModel)]="ActionTakenData.isPrioritiseStatus" [binary]="true" inputId="binary"
+        label="Prioritise Action?"></p-checkbox>
+
+    <div class="row" *ngIf="ActionTakenData.actionStatus != 'Completed'">
+        <div class="col-md-2">
+            <label class="bold">Select User: </label>
+        </div>
+        <div class="col-md-10">
+            <ng-container *ngIf="ActionTakenData.isEditable==true">
+                <p-dropdown (onChange)="Save(1)" placeholder="--select--" [(ngModel)]="ActionTakenData.assignedUser"
+                    name="ActionTakenData.assignedUser" [style]="{ width: '100%' }" [options]="ActionTakenData.userList"
+                    optionLabel="FullName" optionValue="UserId" appendTo="body">
+                </p-dropdown>
+            </ng-container>
+        </div>
+        <div class="col-md-4">
+            <ng-container *ngIf="ActionTakenData.isEditable!=true">
+                <p>{{ActionTakenData.assignedUser}}</p>
+            </ng-container>
+        </div>
+    </div>
+
+    <hr style="border: 1px solid black; margin: 0px;">
+    <div class="col-md-12 my-5" *ngIf="ActionTakenData.actionStatus == 'Completed'">
+        <label>Started By {{ActionTakenData.startedByName}}</label><br>
+        <label>Started On {{ActionTakenData.startedOn | date:customDateFormat.DEF_DATE_TIME}}</label><br><br>
+        <label>Completed By {{ActionTakenData.notRequiredReason || ActionTakenData.completionAfterDueDateReason ?
+            ActionTakenData.assignedUserName : ActionTakenData.lastEnteredByName}}</label><br>
+        <label>Completed On {{ActionTakenData.lastEnteredOn | date:customDateFormat.DEF_DATE_TIME}}</label><br>
+        <!-- <label class="form-label bold">Please enter action taken<span class="required">*</span></label> -->
+        <!-- <textarea pInputTextarea rows="4" class="form-control" name="ActionRemark" [required]="true"
+            [style]="{ height: '100px !important' }" [(ngModel)]="ActionTakenData.actionRemarks"></textarea> -->
+    </div>
+    <div class="col-md-12 my-5" *ngIf="buttonCheck == 0">
+        <label class="form-label bold">Reason why not required<span class="required">*</span></label>
+        <textarea pInputTextarea rows="4" class="form-control" name="notRequiredReason" [required]="true"
+            [style]="{ height: '100px !important' }" [(ngModel)]="ActionTakenData.notRequiredReason"></textarea>
+    </div>
+    <div class="col-md-12 my-5" *ngIf="buttonCheck == 2">
+        <label class="form-label bold">Please enter the reason for completing after the due date<span
+                class="required">*</span></label>
+        <textarea pInputTextarea rows="4" class="form-control" name="completionDueDateReason" [required]="true"
+            [style]="{ height: '100px !important' }"
+            [(ngModel)]="ActionTakenData.completionAfterDueDateReason"></textarea>
+    </div>
+    <hr style="border: 1px solid black; margin: 0px;"> <br>
+    <div class=" col-md-12 flex">
+        <p-button class="me-2" *ngIf="buttonCheck == null" label="Close" severity="secondary"
+            (click)="PopupClose()"></p-button>
+        <p-button *ngIf="buttonCheck != null" class="me-2" label="Cancel" severity="secondary"
+            (click)="Cancel()"></p-button>
+        <span *ngIf="ActionTakenData.actionStatus != 'Completed'">
+            <span *ngIf="buttonCheck == null" class="ms-0">
+                <p-button class="mx-1" label="Start this action" severity="secondary"
+                    (click)="ButtonChange(1)"></p-button>
+                <p-button class="mx-1" label="Mark Completed" severity="secondary" (click)="ButtonChange(2)"></p-button>
+                <p-button class="mx-1" label="Mark not required" severity="secondary"
+                    (click)="ButtonChange(0)"></p-button>
+            </span>
+        </span>
+        <span class="ms-auto" *ngIf="ActionTakenData.actionStatus != 'Completed'">
+            <p-button *ngIf="buttonCheck == null" label="Edit" severity="secondary" (click)="Edit(true)"></p-button>
+            <p-button *ngIf="buttonCheck != null" label="Save" severity="secondary" (click)="Save(2)"></p-button>
+        </span>
+    </div>
+</div>
+
+<!--For Edit Action-->
+
+<div *ngIf="popupCheck">
+    <hr style="border: 1px solid black; margin: 0px;">
+    <div class="row">
+        <div class="col-md-12 my-5">
+            <label class="me-3">Action Type</label>
+            <p-radioButton class="ms-5" name="actionType" value="custom" [(ngModel)]="actionType"
+                inputId="ingredient1"></p-radioButton>
+            <label for="ingredient1" class="ml-2">
+                Custom
+            </label>
+
+            <p-radioButton class="ms-5" name="actionType" value="assessmentForm" [(ngModel)]="actionType"
+                inputId="ingredient1"></p-radioButton>
+            <label for="ingredient1" class="ml-2">
+                Assessment Form
+            </label>
+        </div>
+    </div>
+
+    <div class="row" *ngIf="actionType == 'custom'">
+        <div class="col-md-2">
+            <label for="actionStatus" class="me-5">Action Name</label>
+        </div>
+        <div class="col-md-10">
+            <input pInputText type="text" class="ms-5" id="actionStatus" name="actionStatus"
+                [(ngModel)]="ActionTakenData.actionStatus" class="form-control" />
+        </div>
+    </div>
+
+    <div class="row" *ngIf="actionType == 'assessmentForm'">
+        <div class="col-md-2">
+            <label for="actionStatus" class="me-5">Form Type</label>
+        </div>
+        <div class="col-md-10">
+            <p-dropdown placeholder="--select--" [(ngModel)]="formMasterId"
+                name="formMasterId" [style]="{ width: '100%' }" [options]="ActionTakenData.formList"
+                optionLabel="FormName" optionValue="FormMasterId" appendTo="body">
+            </p-dropdown>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-2">
+            <label for="actionStatus" class="me-5">Action notes(optional)</label>
+        </div>
+        <div class="col-md-10">
+            <textarea pInputTextarea rows="4" class="form-control" name="notRequiredReason" [required]="true"
+                [style]="{ height: '100px !important' }" [(ngModel)]="ActionTakenData.notRequiredReason"></textarea>
+        </div>
+    </div>
+
+    <div class="row my-5">
+        <div class="col-md-2">
+            <label for="actionStatus" class="me-5">When should this action occur?</label>
+        </div>
+        <div class="col-md-4">
+            <p-calendar [required]="true" [showTime]="true" name="Date" [(ngModel)]="ActionTakenData.Date"
+                [showIcon]="true" inputId="icon" [dateFormat]="" class="iconcal" [readonlyInput]="true" appendTo="body"
+                [maxDate]="" #dobref=""></p-calendar>
+        </div>
+    </div>
+    <div class="row my-5">
+        <div class="col-md-2">
+            <label for="actionStatus" class="me-5">Edit Reason</label>
+        </div>
+        <div class="col-md-10">
+            <textarea pInputTextarea rows="4" class="form-control" name="notRequiredReason" [required]="true"
+                [style]="{ height: '100px !important' }" [(ngModel)]="ActionTakenData.notRequiredReason"></textarea>
+        </div>
+    </div>
+    <div class="row my-5">
+        <div class="col-md-2">
+            <label for="actionStatus" class="me-5">Select Resident</label>
+        </div>
+
+        <div class="col-md-4 d-flex" *ngIf="ActionTakenData.assignedUser || ActionTakenData.lastEnteredBy">
+            <div class="profile-img">
+                <img [src]="imageSrc" alt="{{ ActionTakenData.residentDetails.FullName }}" width="150" *ngIf="
+            imageSrc != null &&
+            imageSrc != undefined &&
+            imageSrc != ''">
+            </div>
+            <div class="ms-3">
+                <p>{{ ActionTakenData.residentDetails.FullName }}</p>
+                <p>{{ calculateAge(ActionTakenData.residentDetails.DateOfBirth) }}yrs
+                    ({{ActionTakenData.residentDetails.DateOfBirth | date}})</p>
+            </div>
+        </div>
+        <br>
+        <br>
+        <div class="col-md-6">
+            <p-dropdown placeholder="--select--" [(ngModel)]="ActionTakenData.userId"
+                name="ActionTakenData.userId" [style]="{ width: '100%' }" [options]="ActionTakenData.userList"
+                optionLabel="FullName" optionValue="UserId" appendTo="body" [showClear]="true">
+            </p-dropdown>
+        </div>
+
+    </div>
+
+    <hr style="border: 1px solid black; margin: 0px;"> <br>
+    <div class=" col-md-12 flex">
+        <p-button class="me-2" label="Cancel" severity="secondary" (click)="Cancel()"></p-button>
+
+        <span class="ms-auto">
+            <p-button label="Update action" severity="secondary" (click)="Save(3)"></p-button>
+        </span>
+    </div>
+    <!-- <div class="col-md-4 d-flex my-5">
+            <div class="profile-img">
+                <img [src]="imageSrc" class="mr-2" width="200" *ngIf="
+                        imageSrc != null &&
+                        imageSrc != undefined &&
+                        imageSrc != ''" />
+
+            </div>
+            <div>
+
+                <label class="bold fs-5">{{ActionTakenData.residentDetails.Title}}.
+                    {{ActionTakenData.residentDetails.FullName}}</label>
+
+                <label>{{ calculateAge(ActionTakenData.residentDetails.DateOfBirth) }}yrs
+                    ({{ActionTakenData.residentDetails.DateOfBirth | date}}) </label>
+            </div>
+
+        </div>
+        <div class="col-md-3 my-5">
+            <label>Room no - {{ActionTakenData.residentDetails.RoomNumber}}</label><i
+                *ngIf="ActionTakenData.isPrioritiseStatus" class="fa-regular fa-flag ms-5 fa-2x"
+                style="color: red;"></i><br>
+            <label>{{ActionTakenData.residentDetails.Residency}}</label>
+        </div> -->
+
+    <!-- <p-checkbox *ngIf="ActionTakenData.actionStatus != 'Completed'" (onChange)="Save(0)" class="my-5"
+        [(ngModel)]="ActionTakenData.isPrioritiseStatus" [binary]="true" inputId="binary"
+        label="Prioritise Action?"></p-checkbox>
+
+    <div class="row" *ngIf="ActionTakenData.actionStatus != 'Completed'">
+        <div class="col-md-2">
+            <label class="bold">Select User: </label>
+        </div>
+        <div class="col-md-10">
+            <ng-container *ngIf="ActionTakenData.isEditable==true">
+                <p-dropdown (onChange)="Save(1)" placeholder="--select--" [(ngModel)]="ActionTakenData.assignedUser"
+                    name="ActionTakenData.assignedUser" [style]="{ width: '100%' }" [options]="ActionTakenData.userList"
+                    optionLabel="FullName" optionValue="UserId" appendTo="body">
+                </p-dropdown>
+            </ng-container>
+        </div>
+        <div class="col-md-4">
+            <ng-container *ngIf="ActionTakenData.isEditable!=true">
+                <p>{{ActionTakenData.assignedUser}}</p>
+            </ng-container>
+        </div>
+    </div>
+
+    <hr style="border: 1px solid black; margin: 0px;">
+    <div class="col-md-12 my-5" *ngIf="ActionTakenData.actionStatus == 'Completed'">
+        <label>Started By {{ActionTakenData.startedByName}}</label><br>
+        <label>Started On {{ActionTakenData.startedOn | date:customDateFormat.DEF_DATE_TIME}}</label><br><br>
+        <label>Completed By {{ActionTakenData.notRequiredReason || ActionTakenData.completionAfterDueDateReason ?
+            ActionTakenData.assignedUserName : ActionTakenData.lastEnteredByName}}</label><br>
+        <label>Completed On {{ActionTakenData.lastEnteredOn | date:customDateFormat.DEF_DATE_TIME}}</label><br> -->
+    <!-- <label class="form-label bold">Please enter action taken<span class="required">*</span></label> -->
+    <!-- <textarea pInputTextarea rows="4" class="form-control" name="ActionRemark" [required]="true"
+            [style]="{ height: '100px !important' }" [(ngModel)]="ActionTakenData.actionRemarks"></textarea> -->
+    <!-- </div>
+    <div class="col-md-12 my-5" *ngIf="buttonCheck == 0">
+        <label class="form-label bold">Reason why not required<span class="required">*</span></label>
+        <textarea pInputTextarea rows="4" class="form-control" name="notRequiredReason" [required]="true"
+            [style]="{ height: '100px !important' }" [(ngModel)]="ActionTakenData.notRequiredReason"></textarea>
+    </div>
+    <div class="col-md-12 my-5" *ngIf="buttonCheck == 2">
+        <label class="form-label bold">Please enter the reason for completing after the due date<span
+                class="required">*</span></label>
+        <textarea pInputTextarea rows="4" class="form-control" name="completionDueDateReason" [required]="true"
+            [style]="{ height: '100px !important' }"
+            [(ngModel)]="ActionTakenData.completionAfterDueDateReason"></textarea>
+    </div>
+    <hr style="border: 1px solid black; margin: 2rem;">
+    <div class=" col-md-12 flex">
+        <p-button class="me-2" *ngIf="buttonCheck == null" label="Close" severity="secondary"
+            (click)="PopupClose()"></p-button>
+        <p-button *ngIf="buttonCheck != null" class="me-2" label="Cancel" severity="secondary"
+            (click)="Cancel()"></p-button>
+        <span *ngIf="ActionTakenData.actionStatus != 'Completed'">
+            <span *ngIf="buttonCheck == null" class="ms-0">
+                <p-button class="mx-1" label="Start this action" severity="secondary"
+                    (click)="ButtonChange(1)"></p-button>
+                <p-button class="mx-1" label="Mark Completed" severity="secondary" (click)="ButtonChange(2)"></p-button>
+                <p-button class="mx-1" label="Mark not required" severity="secondary"
+                    (click)="ButtonChange(0)"></p-button>
+            </span>
+        </span>
+        <span class="ms-auto" *ngIf="ActionTakenData.actionStatus != 'Completed'">
+            <p-button *ngIf="buttonCheck == null" label="Edit" severity="secondary" (click)="Edit(true)"></p-button>
+            <p-button *ngIf="buttonCheck != null" label="Save" severity="secondary" (click)="Save(2)"></p-button>
+        </span>
+    </div> -->
+</div>

@@ -3,48 +3,37 @@
         <div class="formheader">
             <div class="d-flex">
                 <div class="col-md-4">
-                    <label class="form-label"
-                        ><b> Started by (Name) :</b
-                        >{{ preSelectedFormData.StartedBy }}
+                    <label class="form-label"><b> Started by (Name) :</b>{{ preSelectedFormData.StartedBy }}
                     </label>
                 </div>
                 <div class="col-md-4">
-                    <label class="form-label"
-                        ><b>Designation :</b
-                        >{{ preSelectedFormData.StartedByDesignation }}
+                    <label class="form-label"><b>Designation :</b>{{ preSelectedFormData.StartedByDesignation }}
                     </label>
                 </div>
                 <div class="col-md-4">
                     <label class="form-label">
-                        <b>Date/Time : </b
-                        >{{
-                            preSelectedFormData.StartedOn
-                                | date : customDateFormat.DEF_DATE_TIME
-                        }}</label
-                    >
+                        <b>Date/Time : </b>{{
+                        preSelectedFormData.StartedOn
+                        | date : customDateFormat.DEF_DATE_TIME
+                        }}</label>
                 </div>
             </div>
             <div class="d-flex">
                 <div class="col-md-4">
                     <label class="form-label">
-                        <b>Last entered by (Name) :</b
-                        >{{ preSelectedFormData.ModifiedBy }}</label
-                    >
+                        <b>Last entered by (Name) :</b>{{ preSelectedFormData.ModifiedBy }}</label>
                 </div>
                 <div class="col-md-4">
                     <label class="form-label">
-                        <b>Designation :</b
-                        >{{ preSelectedFormData.ModifiedByDesignation }}</label
-                    >
+                        <b>Designation :</b>{{ preSelectedFormData.ModifiedByDesignation }}</label>
                 </div>
                 <div class="col-md-4">
                     <label class="form-label">
                         <b>Date/Time :</b>
                         {{
-                            preSelectedFormData.ModifiedOn
-                                | date : customDateFormat.DEF_DATE_TIME
-                        }}</label
-                    >
+                        preSelectedFormData.ModifiedOn
+                        | date : customDateFormat.DEF_DATE_TIME
+                        }}</label>
                 </div>
             </div>
         </div>
@@ -56,160 +45,144 @@
                 main meal at Teatime, and what's their go-to food?
             </p>
         </div>
-        <div class="col-md-7 mt-4 form-text">
+        <div class="col-md-6 mt-4 form-text">
             <ng-container *ngIf="isEditable; else ResidentLikesLabel">
-                <input
-                    pInputText
-                    type="text"
-                    required
-                    name="residentLikes"
-                    class="form-control"
-                    [(ngModel)]="DietaryNotificationFormsData.ResidentLikes"
-                />
+                <input pInputText type="text" required name="residentLikes" class="form-control"
+                    [(ngModel)]="DietaryNotificationFormsData.residentLikes" />
             </ng-container>
             <ng-template #ResidentLikesLabel>
-                <label>{{ DietaryNotificationFormsData.ResidentLikes }}</label>
+                <label>{{ DietaryNotificationFormsData.residentLikes }}</label>
             </ng-template>
         </div>
-
-        <div class="col-md-1 mt-4 form-icon">
-            <i class="fa-solid fa-info"></i>
+        <div class="col-md-2 form-icon mt-4 d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext">Mapped to : <b>Observation
+                    </b><br>Care domain : <b>My Nutrition and Hydration support Plan </b> <br> Sub
+                    domain :
+                    <b>Person Centerd Information </b>
+                </span>
+            </div>
         </div>
-
         <div class="col-md-4 labelcontent">
             <p>
                 Please include the question in your answer: what are the
                 residents' Food & Drink dislikes?
             </p>
         </div>
-        <div class="col-md-7 form-text">
+        <div class="col-md-6 form-text">
             <ng-container *ngIf="isEditable; else ResidentDislikesLabel">
-                <input
-                    pInputText
-                    type="text"
-                    required
-                    name="residentDislikes"
-                    class="form-control"
-                    [(ngModel)]="DietaryNotificationFormsData.ResidentDislikes"
-                />
+                <input pInputText type="text" required name="residentDislikes" class="form-control"
+                    [(ngModel)]="DietaryNotificationFormsData.residentDislikes" />
             </ng-container>
             <ng-template #ResidentDislikesLabel>
                 <label>{{
-                    DietaryNotificationFormsData.ResidentDislikes
-                }}</label>
+                    DietaryNotificationFormsData.residentDislikes
+                    }}</label>
             </ng-template>
         </div>
 
-        <div class="col-md-1 form-icon">
-            <i class="fa-solid fa-info"></i>
+        <div class="col-md-2 form-icon mt-4 d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext">Mapped to : <b>Observation
+                    </b><br>Care domain : <b>My Nutrition and Hydration support Plan </b> <br> Sub
+                    domain :
+                    <b>Person Centerd Information </b>
+                </span>
+            </div>
         </div>
 
         <div class="col-md-4 labelcontent">
             <p>Does the resident have any special dietary requirements?</p>
         </div>
-        <div class="col-md-7 form-text">
-            <ng-container
-                *ngIf="isEditable; else SpecialDietaryRequirementsLabel"
-            >
-                <p-dropdown
-                    placeholder="--select--"
-                    [style]="{ width: '100%' }"
-                    [(ngModel)]="
-                        DietaryNotificationFormsData.SpecialDietaryRequirement
-                    "
-                    [options]="specialDietaryOptions"
-                     optionLabel="optionName"
-                    optionValue="optionId"
-                >
+        <div class="col-md-6 form-text">
+            <ng-container *ngIf="isEditable; else SpecialDietaryRequirementsLabel">
+                <p-dropdown placeholder="--select--" [style]="{ width: '100%' }" [(ngModel)]="
+                        DietaryNotificationFormsData.specialDietaryRequirement
+                    " [options]="specialDietaryOptions" optionLabel="optionName" optionValue="optionId">
                 </p-dropdown>
             </ng-container>
             <ng-template #SpecialDietaryRequirementsLabel>
                 <label>{{
-                    DietaryNotificationFormsData.SpecialDietaryRequirementName
-                }}</label>
+                    DietaryNotificationFormsData.specialDietaryRequirementName
+                    }}</label>
             </ng-template>
         </div>
 
-        <div class="col-md-1 form-icon">
-            <i class="fa-solid fa-info"></i>
+        <div class="col-md-2 form-icon mt-4 d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext">Mapped to : <b>Intervention
+                    </b><br>Care domain : <b>My Nutrition and Hydration support Plan </b> <br> Sub
+                    domain :
+                    <b>My Nutrition and Hydration Plan </b>
+                </span>
+            </div>
         </div>
 
         <div class="col-md-4 labelcontent">
             <p>Detail special cultural/religious requirements</p>
         </div>
-        <div class="col-md-7 form-text">
+        <div class="col-md-6 form-text">
             <ng-container *ngIf="isEditable; else SpecialRequirementsLabel">
-                <input
-                    pInputText
-                    type="text"
-                    required
-                    name="specialCulturalReligiousRequirements"
-                    class="form-control"
+                <input pInputText type="text" required name="specialCulturalReligiousRequirements" class="form-control"
                     [(ngModel)]="
-                        DietaryNotificationFormsData.SpecialCulturalReligiousRequirements
-                    "
-                />
+                        DietaryNotificationFormsData.specialCulturalReligiousRequirements
+                    " />
                 <p class="mb-4">E.g. vegan / vegetarian / halal / other</p>
             </ng-container>
             <ng-template #SpecialRequirementsLabel>
                 <label>{{
-                    DietaryNotificationFormsData.SpecialCulturalReligiousRequirements
-                }}</label>
+                    DietaryNotificationFormsData.specialCulturalReligiousRequirements
+                    }}</label>
             </ng-template>
         </div>
-
-        <div class="col-md-1 form-icon">
-            <i class="fa-solid fa-info"></i>
+        <div class="col-md-2 form-icon mt-4 d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext">Mapped to : <b>Intervention
+                    </b><br>Care domain : <b>My Nutrition and Hydration support Plan </b> <br> Sub
+                    domain :
+                    <b>My Nutrition and Hydration Plan</b>
+                </span>
+            </div>
         </div>
 
         <div class="col-md-4 labelcontent">
             <p>Detail finger food requirements</p>
         </div>
-        <div class="col-md-7 form-text">
+        <div class="col-md-6 form-text">
             <ng-container *ngIf="isEditable; else FingerFoodRequirementsLabel">
-                <input
-                    pInputText
-                    type="text"
-                    required
-                    name="fingerFoodRequirements"
-                    class="form-control"
-                    [(ngModel)]="
-                        DietaryNotificationFormsData.FingerFoodRequirements
-                    "
-                />
+                <input pInputText type="text" required name="fingerFoodRequirements" class="form-control" [(ngModel)]="
+                        DietaryNotificationFormsData.fingerFoodRequirements
+                    " />
             </ng-container>
             <ng-template #FingerFoodRequirementsLabel>
                 <label>{{
-                    DietaryNotificationFormsData.FingerFoodRequirements
-                }}</label>
+                    DietaryNotificationFormsData.fingerFoodRequirements
+                    }}</label>
             </ng-template>
         </div>
-
-        <div class="col-md-1 form-icon">
-            <i class="fa-solid fa-info"></i>
+        <div class="col-md-2 form-icon mt-4 d-flex justify-content-start">
+            <div class="tooltip"> <i class="fa-solid fa-info"></i>
+                <span class="tooltiptext">Mapped to : <b>Intervention
+                    </b><br>Care domain : <b>My Nutrition and Hydration support Plan </b> <br> Sub
+                    domain :
+                    <b>My Nutrition and Hydration Plan</b>
+                </span>
+            </div>
         </div>
-
         <!-- Details of choking risk -->
         <div class="col-md-4 labelcontent">
             <p>Details of choking risk</p>
         </div>
-        <div class="col-md-7 form-text">
+        <div class="col-md-6 form-text">
             <ng-container *ngIf="isEditable; else ChokingRiskLabel">
-                <input
-                    pInputText
-                    type="text"
-                    required
-                    name="chokingRiskDetails"
-                    class="form-control"
-                    [(ngModel)]="
-                        DietaryNotificationFormsData.ChokingRiskDetails
-                    "
-                />
+                <input pInputText type="text" required name="chokingRiskDetails" class="form-control" [(ngModel)]="
+                        DietaryNotificationFormsData.chokingRiskDetails
+                    " />
             </ng-container>
             <ng-template #ChokingRiskLabel>
                 <label>{{
-                    DietaryNotificationFormsData.ChokingRiskDetails
-                }}</label>
+                    DietaryNotificationFormsData.chokingRiskDetails
+                    }}</label>
             </ng-template>
         </div>
 
@@ -217,24 +190,17 @@
         <div class="col-md-4 labelcontent">
             <p>Detail modified diet</p>
         </div>
-        <div class="col-md-7 form-text">
+        <div class="col-md-6 form-text">
             <ng-container *ngIf="isEditable; else ModifiedDietLabel">
-                <p-dropdown
-                    placeholder="--select--"
-                    [style]="{ width: '100%' }"
-                    [(ngModel)]="
-                        DietaryNotificationFormsData.ModifiedDietDetails
-                    "
-                    [options]="modifiedDietOptions"
-                     optionLabel="optionName"
-                    optionValue="optionId"
-                >
+                <p-dropdown placeholder="--select--" [style]="{ width: '100%' }" [(ngModel)]="
+                        DietaryNotificationFormsData.modifiedDietDetails
+                    " [options]="modifiedDietOptions" optionLabel="optionName" optionValue="optionId">
                 </p-dropdown>
             </ng-container>
             <ng-template #ModifiedDietLabel>
                 <label>{{
-                    DietaryNotificationFormsData.ModifiedDietDetailsName
-                }}</label>
+                    DietaryNotificationFormsData.modifiedDietDetailsName
+                    }}</label>
             </ng-template>
         </div>
 
@@ -242,23 +208,16 @@
         <div class="col-md-4 labelcontent">
             <p>Details of dietitian input</p>
         </div>
-        <div class="col-md-7 form-text">
+        <div class="col-md-6 form-text">
             <ng-container *ngIf="isEditable; else DietitianInputLabel">
-                <input
-                    pInputText
-                    type="text"
-                    required
-                    name="dietitianInputDetails"
-                    class="form-control"
-                    [(ngModel)]="
-                        DietaryNotificationFormsData.DietitianInputDetails
-                    "
-                />
+                <input pInputText type="text" required name="dietitianInputDetails" class="form-control" [(ngModel)]="
+                        DietaryNotificationFormsData.dietitianInputDetails
+                    " />
             </ng-container>
             <ng-template #DietitianInputLabel>
                 <label>{{
-                    DietaryNotificationFormsData.DietitianInputDetails
-                }}</label>
+                    DietaryNotificationFormsData.dietitianInputDetails
+                    }}</label>
             </ng-template>
         </div>
 
@@ -266,23 +225,17 @@
         <div class="col-md-4 labelcontent">
             <p>Details of nutritional supplements</p>
         </div>
-        <div class="col-md-7 form-text">
+        <div class="col-md-6 form-text">
             <ng-container *ngIf="isEditable; else NutritionalSupplementsLabel">
-                <input
-                    pInputText
-                    type="text"
-                    required
-                    name="nutritionalSupplementsDetails"
-                    class="form-control"
+                <input pInputText type="text" required name="nutritionalSupplementsDetails" class="form-control"
                     [(ngModel)]="
-                        DietaryNotificationFormsData.NutritionalSupplementsDetails
-                    "
-                />
+                        DietaryNotificationFormsData.nutritionalSupplementsDetails
+                    " />
             </ng-container>
             <ng-template #NutritionalSupplementsLabel>
                 <label>{{
-                    DietaryNotificationFormsData.NutritionalSupplementsDetails
-                }}</label>
+                    DietaryNotificationFormsData.nutritionalSupplementsDetails
+                    }}</label>
             </ng-template>
         </div>
 
@@ -290,25 +243,18 @@
         <div class="col-md-4 labelcontent">
             <p>Thickened Fluids</p>
         </div>
-        <div class="col-md-7 form-text">
+        <div class="col-md-6 form-text">
             <ng-container *ngIf="isEditable; else ThickenedFluidsLabel">
-                <p-dropdown
-                    placeholder="--select--"
-                    [style]="{ width: '100%' }"
-                    [(ngModel)]="
-                        DietaryNotificationFormsData.ThickenedFluidsDetails
-                    "
-                    [options]="thickenedFluidsOptions"
-                     optionLabel="optionName"
-                    optionValue="optionId"
-                >
+                <p-dropdown placeholder="--select--" [style]="{ width: '100%' }" [(ngModel)]="
+                        DietaryNotificationFormsData.thickenedFluidsDetails
+                    " [options]="thickenedFluidsOptions" optionLabel="optionName" optionValue="optionId">
                 </p-dropdown>
                 <p class="mb-4">Required by the catering staff</p>
             </ng-container>
             <ng-template #ThickenedFluidsLabel>
                 <label>{{
-                    DietaryNotificationFormsData.ThickenedFluidsDetailsName
-                }}</label>
+                    DietaryNotificationFormsData.thickenedFluidsDetailsName
+                    }}</label>
             </ng-template>
         </div>
 
@@ -316,21 +262,15 @@
         <div class="col-md-4 labelcontent">
             <p>Details of nil by mouth</p>
         </div>
-        <div class="col-md-7 form-text">
+        <div class="col-md-6 form-text">
             <ng-container *ngIf="isEditable; else NilByMouthLabel">
-                <input
-                    pInputText
-                    type="text"
-                    required
-                    name="nilByMouthDetails"
-                    class="form-control"
-                    [(ngModel)]="DietaryNotificationFormsData.NilByMouthDetails"
-                />
+                <input pInputText type="text" required name="nilByMouthDetails" class="form-control"
+                    [(ngModel)]="DietaryNotificationFormsData.nilByMouthDetails" />
             </ng-container>
             <ng-template #NilByMouthLabel>
                 <label>{{
-                    DietaryNotificationFormsData.NilByMouthDetails
-                }}</label>
+                    DietaryNotificationFormsData.nilByMouthDetails
+                    }}</label>
             </ng-template>
         </div>
 
@@ -338,71 +278,47 @@
         <div class="col-md-4 labelcontent">
             <p>Details of food & drink allergies</p>
         </div>
-        <div class="col-md-7 form-text">
+        <div class="col-md-6 form-text">
             <ng-container *ngIf="isEditable; else AllergiesLabel">
-                <input
-                    pInputText
-                    type="text"
-                    required
-                    name="foodDrinkAllergiesDetails"
-                    class="form-control"
+                <input pInputText type="text" required name="foodDrinkAllergiesDetails" class="form-control"
                     [(ngModel)]="
-                        DietaryNotificationFormsData.FoodDrinkAllergiesDetails
-                    "
-                />
+                        DietaryNotificationFormsData.foodDrinkAllergiesDetails
+                    " />
             </ng-container>
             <ng-template #AllergiesLabel>
                 <label>{{
-                    DietaryNotificationFormsData.FoodDrinkAllergiesDetails
-                }}</label>
+                    DietaryNotificationFormsData.foodDrinkAllergiesDetails
+                    }}</label>
             </ng-template>
         </div>
 
         <div class="col-md-4 labelcontent">
             <p>Food & drink to avoid due to medication</p>
         </div>
-        <div class="col-md-7 form-text">
-            <ng-container
-                *ngIf="isEditable; else AvoidFoodDueToMedicationLabel"
-            >
-                <input
-                    pInputText
-                    type="text"
-                    required
-                    name="foodToAvoidDueToMedication"
-                    class="form-control"
+        <div class="col-md-6 form-text">
+            <ng-container *ngIf="isEditable; else AvoidFoodDueToMedicationLabel">
+                <input pInputText type="text" required name="foodToAvoidDueToMedication" class="form-control"
                     [(ngModel)]="
-                        DietaryNotificationFormsData.FoodToAvoidDueToMedication
-                    "
-                />
+                        DietaryNotificationFormsData.foodToAvoidDueToMedication
+                    " />
                 <p class="mb-4">E.g. anticoagulant - avoid cranberry juice</p>
             </ng-container>
             <ng-template #AvoidFoodDueToMedicationLabel>
                 <label>{{
-                    DietaryNotificationFormsData.FoodToAvoidDueToMedication
-                }}</label>
+                    DietaryNotificationFormsData.foodToAvoidDueToMedication
+                    }}</label>
             </ng-template>
         </div>
 
-        <div class="col-md-1 form-icon">
-            <i class="fa-solid fa-info"></i>
-        </div>
 
         <div class="col-md-4 labelcontent">
             <p>Special cutlery & crockery needed</p>
         </div>
-        <div class="col-md-7 form-text">
+        <div class="col-md-6 form-text">
             <ng-container *ngIf="isEditable; else SpecialCutleryCrockeryLabel">
-                <input
-                    pInputText
-                    type="text"
-                    required
-                    name="specialCutleryCrockery"
-                    class="form-control"
-                    [(ngModel)]="
-                        DietaryNotificationFormsData.SpecialCutleryCrockery
-                    "
-                />
+                <input pInputText type="text" required name="specialCutleryCrockery" class="form-control" [(ngModel)]="
+                        DietaryNotificationFormsData.specialCutleryCrockery
+                    " />
                 <p class="mb-4">
                     For example - thick handles, plate guard, lipped bowl,
                     beaker, etc
@@ -410,8 +326,8 @@
             </ng-container>
             <ng-template #SpecialCutleryCrockeryLabel>
                 <label>{{
-                    DietaryNotificationFormsData.SpecialCutleryCrockery
-                }}</label>
+                    DietaryNotificationFormsData.specialCutleryCrockery
+                    }}</label>
             </ng-template>
         </div>
 
@@ -419,23 +335,16 @@
         <div class="col-md-4 labelcontent">
             <p>What size of meals does the resident generally prefer</p>
         </div>
-        <div class="col-md-7 form-text">
+        <div class="col-md-6 form-text">
             <ng-container *ngIf="isEditable; else MealSizeLabel">
-                <p-dropdown
-                    placeholder="--select--"
-                    [style]="{ width: '100%' }"
-                    [(ngModel)]="
-                        DietaryNotificationFormsData.MealSizePreference
-                    "
-                    [options]="mealSizeOptions"
-                     optionLabel="optionName"
-                    optionValue="optionId"
-                ></p-dropdown>
+                <p-dropdown placeholder="--select--" [style]="{ width: '100%' }" [(ngModel)]="
+                        DietaryNotificationFormsData.mealSizePreference
+                    " [options]="mealSizeOptions" optionLabel="optionName" optionValue="optionId"></p-dropdown>
             </ng-container>
             <ng-template #MealSizeLabel>
                 <label>{{
-                    DietaryNotificationFormsData.MealSizePreferenceName
-                }}</label>
+                    DietaryNotificationFormsData.mealSizePreferenceName
+                    }}</label>
             </ng-template>
         </div>
 
@@ -443,24 +352,18 @@
         <div class="col-md-4 labelcontent">
             <p>Would the resident like to meet with the chef / cook</p>
         </div>
-        <div class="col-md-7 form-text">
+        <div class="col-md-6 form-text">
             <ng-container *ngIf="isEditable; else MeetChefLabel">
-                <p-dropdown
-                    placeholder="--select--"
-                    [style]="{ width: '100%' }"
-                    [(ngModel)]="
-                        DietaryNotificationFormsData.MeetChefPreference
-                    "
-                    [options]="meetChefPreferenceOptions"
-                     optionLabel="optionName"
-                    optionValue="optionId"
-                ></p-dropdown>
+                <p-dropdown placeholder="--select--" [style]="{ width: '100%' }" [(ngModel)]="
+                        DietaryNotificationFormsData.meetChefPreference
+                    " [options]="meetChefPreferenceOptions" optionLabel="optionName"
+                    optionValue="optionId"></p-dropdown>
                 <p class="mb-4">Required by the catering staff</p>
             </ng-container>
             <ng-template #MeetChefLabel>
                 <label>{{
-                    DietaryNotificationFormsData.MeetChefPreferenceName
-                }}</label>
+                    DietaryNotificationFormsData.meetChefPreferenceName
+                    }}</label>
             </ng-template>
         </div>
 
@@ -468,23 +371,17 @@
         <div class="col-md-4 labelcontent">
             <p>Details of subcutaneous fluids</p>
         </div>
-        <div class="col-md-7 form-text">
+        <div class="col-md-6 form-text">
             <ng-container *ngIf="isEditable; else SubcutaneousFluidsLabel">
-                <input
-                    pInputText
-                    type="text"
-                    required
-                    name="subcutaneousFluidsDetails"
-                    class="form-control"
+                <input pInputText type="text" required name="subcutaneousFluidsDetails" class="form-control"
                     [(ngModel)]="
-                        DietaryNotificationFormsData.SubcutaneousFluidsDetails
-                    "
-                />
+                        DietaryNotificationFormsData.subcutaneousFluidsDetails
+                    " />
             </ng-container>
             <ng-template #SubcutaneousFluidsLabel>
                 <label>{{
-                    DietaryNotificationFormsData.SubcutaneousFluidsDetails
-                }}</label>
+                    DietaryNotificationFormsData.subcutaneousFluidsDetails
+                    }}</label>
             </ng-template>
         </div>
 
@@ -492,18 +389,12 @@
         <div class="col-md-4 labelcontent">
             <p>Enteral feeding requirements</p>
         </div>
-        <div class="col-md-7 form-text">
+        <div class="col-md-6 form-text">
             <ng-container *ngIf="isEditable; else EnteralFeedingLabel">
-                <input
-                    pInputText
-                    type="text"
-                    required
-                    name="enteralFeedingRequirements"
-                    class="form-control"
+                <input pInputText type="text" required name="enteralFeedingRequirements" class="form-control"
                     [(ngModel)]="
-                        DietaryNotificationFormsData.EnteralFeedingRequirements
-                    "
-                />
+                        DietaryNotificationFormsData.enteralFeedingRequirements
+                    " />
                 <p class="mb-4">
                     Please detail the regime currently in place when it gets put
                     up and taken down what we use for flushes in between med
@@ -512,8 +403,8 @@
             </ng-container>
             <ng-template #EnteralFeedingLabel>
                 <label>{{
-                    DietaryNotificationFormsData.EnteralFeedingRequirements
-                }}</label>
+                    DietaryNotificationFormsData.enteralFeedingRequirements
+                    }}</label>
             </ng-template>
         </div>
 
@@ -521,23 +412,16 @@
         <div class="col-md-4 labelcontent">
             <p>Any additional instructions / information</p>
         </div>
-        <div class="col-md-7 form-text">
+        <div class="col-md-6 form-text">
             <ng-container *ngIf="isEditable; else AdditionalInstructionsLabel">
-                <input
-                    pInputText
-                    type="text"
-                    required
-                    name="additionalInstructions"
-                    class="form-control"
-                    [(ngModel)]="
-                        DietaryNotificationFormsData.AdditionalInstructions
-                    "
-                />
+                <input pInputText type="text" required name="additionalInstructions" class="form-control" [(ngModel)]="
+                        DietaryNotificationFormsData.additionalInstructions
+                    " />
             </ng-container>
             <ng-template #AdditionalInstructionsLabel>
                 <label>{{
-                    DietaryNotificationFormsData.AdditionalInstructions
-                }}</label>
+                    DietaryNotificationFormsData.additionalInstructions
+                    }}</label>
             </ng-template>
         </div>
 
@@ -545,19 +429,15 @@
         <div class="col-md-4 labelcontent">
             <p>3 MONTHLY REVIEW (or before)</p>
         </div>
-        <div class="col-md-7 form-text mb-4">
+        <div class="col-md-6 form-text mb-4">
             <ng-container *ngIf="isEditable; else MonthlyReviewLabel">
-                <p-checkbox
-                    name="ChkMonthlyReview"
-                    [binary]="true"
-                    inputId="binary"
-                    [(ngModel)]="DietaryNotificationFormsData.MonthlyReview"
-                ></p-checkbox>
+                <p-checkbox name="ChkMonthlyReview" [binary]="true" inputId="binary"
+                    [(ngModel)]="DietaryNotificationFormsData.monthlyReview"></p-checkbox>
             </ng-container>
             <ng-template #MonthlyReviewLabel>
                 <label>{{
-                    DietaryNotificationFormsData.MonthlyReview ? "Yes" : "No"
-                }}</label>
+                    DietaryNotificationFormsData.monthlyReview ? "Yes" : "No"
+                    }}</label>
             </ng-template>
         </div>
 
@@ -567,31 +447,19 @@
                 <p>Next review date</p>
             </div>
         </div>
-        <div class="col-md-7">
+        <div class="col-md-6">
             <div class="input-group date">
                 <ng-container *ngIf="isEditable; else NextReviewDateLabel">
-                    <p-calendar
-                        name="nextReviewDate"
-                        [showIcon]="true"
-                        inputId="icon"
-                        [dateFormat]=""
-                        class="iconcal"
-                        [readonlyInput]="true"
-                        appendTo="body"
-                        [minDate]=""
-                        [(ngModel)]="
-                            DietaryNotificationFormsData.NextReviewDate
-                        "
-                    ></p-calendar>
-                    <div
-                        *ngIf=""
-                        class="alert alert-danger"
-                    ></div>
+                    <p-calendar name="nextReviewDate" [showIcon]="true" inputId="icon" [dateFormat]="" class="iconcal"
+                        [readonlyInput]="true" appendTo="body" [minDate]="" [(ngModel)]="
+                            DietaryNotificationFormsData.nextReviewDate
+                        "></p-calendar>
+                    <div *ngIf="" class="alert alert-danger"></div>
                 </ng-container>
                 <ng-template #NextReviewDateLabel>
                     <label>{{
-                        DietaryNotificationFormsData.NextReviewDate
-                    }}</label>
+                        DietaryNotificationFormsData.nextReviewDate
+                        }}</label>
                 </ng-template>
             </div>
         </div>
@@ -600,37 +468,21 @@
             <ng-container *ngIf="isEditable; else savePdf">
                 <div>
                     <span class="p-ml-left mr-4">
-                        <button
-                            pButton
-                            title="New"
-                            label="Save as Unfinished"
-                            (click)="saveAsUnfinished()"
-                        ></button>
+                        <button pButton title="New" label="Save as Unfinished" (click)="saveAsUnfinished()"></button>
                         <span class="total-txt"></span>
                     </span>
                 </div>
                 <div>
                     <span class="p-ml-left mr-4">
-                        <button
-                            pButton
-                            title="New"
-                            label="Complete"
-                            (click)="completeForm()"
-                            [disabled]="
-                                DietaryNotificationFormsData.IsFormCompleted
-                            "
-                        ></button>
+                        <button pButton title="New" label="Complete" (click)="completeForm()" [disabled]="
+                                DietaryNotificationFormsData.isFormCompleted
+                            "></button>
                         <span class="total-txt"></span>
                     </span>
                 </div>
             </ng-container>
             <ng-template #savePdf>
-                <button
-                    pButton
-                    title="Save as PDF"
-                    label="Save as PDF"
-                    (click)="SaveAsPDF()"
-                ></button>
+                <button pButton title="Save as PDF" label="Save as PDF" (click)="SaveAsPDF()"></button>
             </ng-template>
         </div>
     </div>

@@ -247,7 +247,7 @@ export class FluidIntakeChartComponent extends AppComponentBase implements OnIni
         next: (data) => {
           this._UtilityService.hideSpinner();
           if (data.actionResult.success == true) {
-            var tdata = JSON.parse(data.actionResult.result);
+          var tdata = data.actionResult.result;
             tdata = tdata ? tdata : [];
             this.FluidIntakeChartsLst = tdata;
             if (this.FluidIntakeChartsLst.length < 3 || (((this.FluidIntakeChartsLst.length) * (this.pageNumber + 1)) >= this.FluidIntakeChartsLst[0].countRecords)) {
@@ -279,7 +279,7 @@ export class FluidIntakeChartComponent extends AppComponentBase implements OnIni
         map((response) => {
           this._UtilityService.hideSpinner();
           if (response.actionResult.success) {
-            return JSON.parse(response.actionResult.result);
+            return response.actionResult.result;
           } else {
             return [];
           }

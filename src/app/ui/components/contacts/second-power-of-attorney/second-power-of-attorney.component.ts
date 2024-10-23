@@ -45,7 +45,7 @@ export class SecondPowerOfAttorneyComponent extends AppComponentBase implements 
     this.unsubscribe.add = this._MasterServices.GetAttorneyTypeMaster(importData).subscribe({
       next: (data) => {
         if (data.actionResult.success == true) {
-          var tdata = JSON.parse(data.actionResult.result);
+        var tdata = data.actionResult.result;
           tdata = tdata ? tdata : [];
           this.lstAttorneyTypeMaster = tdata;
         }
@@ -77,7 +77,7 @@ export class SecondPowerOfAttorneyComponent extends AppComponentBase implements 
         next:(data) => {
           this._UtilityService.hideSpinner();          
           if (data.actionResult.success == true) {
-            var tdata = JSON.parse(data.actionResult.result);
+          var tdata = data.actionResult.result;
             tdata = tdata ? tdata : [];
             this.Contact = tdata;       
            

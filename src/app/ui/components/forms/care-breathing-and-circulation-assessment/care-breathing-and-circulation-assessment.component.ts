@@ -19,11 +19,11 @@ export class CareBreathingAndCirculationAssessmentComponent extends AppComponent
     @Output() EmitUpdateForm: EventEmitter<any> = new EventEmitter<any>();
 
     customDateFormat = CustomDateFormat;
-    CareBreathAssFormsData: any = <any>{};
+    careBreathAssFormsData: any = <any>{};
     //Form which is selected to edit or view
 
     isEditable: boolean; //Need to be passed from form Dashboard
-    StatementType: string = null;
+    statementType: string = null;
 
     //Patient Details
     userId: any;
@@ -94,12 +94,12 @@ export class CareBreathingAndCirculationAssessmentComponent extends AppComponent
         this.isEditable = this.preSelectedFormData.isEditable;
 
         if (this.preSelectedFormData.selectedFormID != null) {
-            this.CareBreathAssFormsData = <any>{};
+            this.careBreathAssFormsData = <any>{};
             this.GetCareBreathCirculationByid(
                 this.preSelectedFormData.selectedFormID
             );
 
-            this.StatementType = 'Update';
+            this.statementType = 'Update';
         } else {
             this.ResetModel();
         }
@@ -108,12 +108,12 @@ export class CareBreathingAndCirculationAssessmentComponent extends AppComponent
         this.isEditable = this.preSelectedFormData.isEditable;
 
         if (this.preSelectedFormData.selectedFormID != null) {
-            this.CareBreathAssFormsData = <any>{};
+            this.careBreathAssFormsData = <any>{};
             this.GetCareBreathCirculationByid(
                 this.preSelectedFormData.selectedFormID
             );
 
-            this.StatementType = 'Update';
+            this.statementType = 'Update';
         } else {
             this.ResetModel();
         }
@@ -125,7 +125,7 @@ export class CareBreathingAndCirculationAssessmentComponent extends AppComponent
             map((response) => {
                 this._UtilityService.hideSpinner();
                 if (response.actionResult.success) {
-                    return JSON.parse(response.actionResult.result);
+                    return response.actionResult.result;
                 } else {
                     return [];
                 }
@@ -133,7 +133,7 @@ export class CareBreathingAndCirculationAssessmentComponent extends AppComponent
             catchError((error) => {
                 this._UtilityService.hideSpinner();
                 this._UtilityService.showErrorAlert(error.message);
-               
+
                 return of([]); // Returning empty array in case of error
             })
         );
@@ -146,13 +146,13 @@ export class CareBreathingAndCirculationAssessmentComponent extends AppComponent
                 next: (data) => {
                     this._UtilityService.hideSpinner();
                     if (data.actionResult.success == true) {
-                        var tdata = JSON.parse(data.actionResult.result);
+                      var tdata = data.actionResult.result;
                         tdata = tdata ? tdata : {};
-                        this.CareBreathAssFormsData = tdata;
-                        this.CareBreathAssFormsData.NextReviewDate = new Date(this.CareBreathAssFormsData.NextReviewDate);
-                        
+                        this.careBreathAssFormsData = tdata;
+                        this.careBreathAssFormsData.nextReviewDate = new Date(this.careBreathAssFormsData.nextReviewDate);
+
                     } else {
-                        this.CareBreathAssFormsData = {};
+                        this.careBreathAssFormsData = {};
                     }
                 },
                 error: (e) => {
@@ -163,24 +163,24 @@ export class CareBreathingAndCirculationAssessmentComponent extends AppComponent
     }
     ResetModel() {
         this.isEditable = true;
-        this.CareBreathAssFormsData = <any>{};
-        this.StatementType = 'Insert';
+        this.careBreathAssFormsData = <any>{};
+        this.statementType = 'Insert';
     }
- 
+
     saveAsUnfinished() {
-        this.CareBreathAssFormsData.isFormCompleted = false;
+        this.careBreathAssFormsData.isFormCompleted = false;
         this.Save();
     }
     Save() {
         if (this.userId != null && this.residentAdmissionInfoId != null) {
-            this.CareBreathAssFormsData.userId = this.userId;
-            this.CareBreathAssFormsData.StartedBy = localStorage.getItem('userId');
-            this.CareBreathAssFormsData.LastEnteredBy = localStorage.getItem('userId');
-            this.CareBreathAssFormsData.residentAdmissionInfoId = this.residentAdmissionInfoId;
-            this.CareBreathAssFormsData.NextReviewDate = new Date(this.datepipe.transform(this.CareBreathAssFormsData.NextReviewDate, 'yyyy-MM-dd'));
+            this.careBreathAssFormsData.userId = this.userId;
+            this.careBreathAssFormsData.startedBy = localStorage.getItem('userId');
+            this.careBreathAssFormsData.lastEnteredBy = localStorage.getItem('userId');
+            this.careBreathAssFormsData.residentAdmissionInfoId = this.residentAdmissionInfoId;
+            this.careBreathAssFormsData.nextReviewDate = new Date(this.datepipe.transform(this.careBreathAssFormsData.nextReviewDate, 'yyyy-MM-dd'));
             const objectBody: any = {
-                StatementType: this.StatementType,
-                CareAssBrthCirc: this.CareBreathAssFormsData,
+                statementType: this.statementType,
+                careAssBrthCirc: this.careBreathAssFormsData,
             };
             this._UtilityService.showSpinner();
             this.unsubscribe.add = this._care_breath
@@ -212,7 +212,7 @@ export class CareBreathingAndCirculationAssessmentComponent extends AppComponent
         }
     }
     completeForm() {
-        this.CareBreathAssFormsData.isFormCompleted = true;
+        this.careBreathAssFormsData.isFormCompleted = true;
         this.Save();
     }
 

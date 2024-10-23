@@ -501,7 +501,7 @@ export class PainChartComponent extends AppComponentBase implements OnInit {
                 next: (data) => {
                     this._UtilityService.hideSpinner();
                     if (data.actionResult.success == true) {
-                        var tdata = JSON.parse(data.actionResult.result);
+                      var tdata = data.actionResult.result;
                         tdata = tdata ? tdata : {};
                         this.painChartFormData = tdata;
                         console.log("PainChartFormData", this.painChartFormData);
@@ -537,7 +537,7 @@ export class PainChartComponent extends AppComponentBase implements OnInit {
     //             next: (data) => {
     //                 this._UtilityService.hideSpinner();
     //                 if (data.actionResult.success == true) {
-    //                     var tdata = JSON.parse(data.actionResult.result);
+    //                   var tdata = data.actionResult.result;
     //                     tdata = tdata ? tdata : {};
     //                     this.painChartRecordData = tdata;
     //                     this.lastRecordData = this.painChartRecordData.selectedBodyParts;
@@ -575,7 +575,7 @@ export class PainChartComponent extends AppComponentBase implements OnInit {
                 map((response) => {
                     this._UtilityService.hideSpinner();
                     if (response.actionResult.success) {
-                        return JSON.parse(response.actionResult.result);
+                        return response.actionResult.result;
                     } else {
                         return [];
                     }
@@ -607,7 +607,7 @@ export class PainChartComponent extends AppComponentBase implements OnInit {
                 next: (data) => {
                     this._UtilityService.hideSpinner();
                     if (data.actionResult.success == true) {
-                        var tdata = JSON.parse(data.actionResult.result);
+                      var tdata = data.actionResult.result;
                         tdata = tdata ? tdata : [];
                         this.PainChartLst = tdata;
                         this.BodyPartsName = [];

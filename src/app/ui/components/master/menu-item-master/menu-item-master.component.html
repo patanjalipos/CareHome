@@ -1,138 +1,139 @@
-<div *ngIf="mode==null">   
-        <div class="card">
-                <p-table #dt [value]="lstMenuItemMaster" responsiveLayout="scroll" styleClass="p-datatable-striped"
-                    [rowHover]="true" [globalFilterFields]="['MenuItemName','MenuItemURL','ParentMenuName','ModuleName']"
-                     scrollHeight="calc(100vh - 155px)">
-                    <ng-template pTemplate="caption">
-                        <div class="flex justify-content-between flex-column sm:flex-row search-res">
-                            <span class="p-ml-left">
-                                <button pButton title="New" label="Add New" class="p-button-outlined mr-2" icon="pi pi-plus"
-                                (click)="AddNewMenuItemType()"></button>
-                                <span class="total-txt">
-                                {{lstMenuItemMaster?.length>0?'Total Records:
-                                '+filteredValuesLength:''}} </span> 
-                            </span>    
-                            <span class="p-ml-auto">
-                                <button pButton title="Export Data" label=" " class="p-button-outlined mr-2"
-                                    icon="pi pi-download" (click)="exportToItemExcel();"></button>
-                                <span class="p-input-icon-left">
-                                    <i class="pi pi-search"></i>
-                                    <input #filtr pInputText type="text" (input)="onGlobalFilter(dt, $event)"
+<div *ngIf="mode==null">
+    <div class="card">
+        <p-table #dt [value]="lstMenuItemMaster" responsiveLayout="scroll" styleClass="p-datatable-striped"
+            [rowHover]="true" [globalFilterFields]="['MenuItemName','MenuItemURL','ParentMenuName','ModuleName']"
+            scrollHeight="calc(100vh - 155px)">
+            <ng-template pTemplate="caption">
+                <div class="flex justify-content-between flex-column sm:flex-row search-res">
+                    <span class="p-ml-left">
+                        <button pButton title="New" label="Add New" class="p-button-outlined mr-2" icon="pi pi-plus"
+                            (click)="AddNewMenuItemType()"></button>
+                        <span class="total-txt">
+                            {{lstMenuItemMaster?.length>0?'Total Records:
+                            '+filteredValuesLength:''}} </span>
+                    </span>
+                    <span class="p-ml-auto">
+                        <button pButton title="Export Data" label=" " class="p-button-outlined mr-2"
+                            icon="pi pi-download" (click)="exportToItemExcel();"></button>
+                        <span class="p-input-icon-left">
+                            <i class="pi pi-search"></i>
+                            <input #filtr pInputText type="text" (input)="onGlobalFilter(dt, $event)"
                                 placeholder="Search..." /></span>
-                                <span class="m-3">
-                                    <button pButton title="Filters" label="Filters" class="p-button-outlined mr-2" icon="pi pi-filter" 
-                                    (click)="ShowFilters()" style="height: 40px; width: 100px;"></button>  
-                                </span>
-                            </span>
-                        </div>
-                        <div *ngIf="isMenuMaster">
-                            <app-filteration [ComponentName]="ComponentName" (FiltrationOutputData)="GetMenuMasterFilterData($event)"></app-filteration>       
-                        </div> 
-                    </ng-template>
-                    <ng-template pTemplate="emptymessage" let-columns>
-                        <tr>
-                            <td [attr.colspan]="columns?.length">
-                                No records found
-                            </td>
-                        </tr>
-                    </ng-template>
-                    <ng-template pTemplate="header">
-                        <tr>
-                            <th>User Type</th>
-                            <th>Menu Name</th>
-                            <th>Menu URL</th>
-                            <th>Parent Menu</th>
-                            <th>Order No.</th>
-                            <th>Status</th>
-                            <th>Action</th>
-                        </tr>
-                    </ng-template>
-                    <ng-template pTemplate="body" let-dt let-i="rowIndex">
-                        <tr>
-                            <td>{{dt.ModuleName}}</td>
-                            <td>{{dt.MenuItemName}}</td>
-                            <td>{{dt.MenuItemURL}}</td>
-                            <td>{{dt.ParentMenuName}}</td>
-                            <td>{{dt.OrderNo}}</td>
-                            <td>{{dt.Status==1?'Active':'Inactive'}}</td>
-                             <td>
-                                <a title="View/Edit" (click)="LoadMenuItemMasterById(dt.MenuItemId)">
-                                    <i class="fa fa-eye" aria-hidden="true"></i>
-                                </a>
-                            </td> 
-                        </tr>
-                    </ng-template>
-                </p-table>
-            </div>
-        
-    </div>
-    <div *ngIf="mode!=null">       
-            <form #myForm="ngForm">
-                <div class="card">
-                    <div class="row">
-                        <div class="col-md-3"> 
-                                <label class="form-label">User Type <span class="required">*</span></label>
-                                <p-multiSelect [required]="true" name="ddlUserType" display="chip" 
-                                    [options]="lstUserTypeMaster" [(ngModel)]="selectedUserType" optionLabel="UserTypeName" optionValue="UserTypeId" 
-                                    placeholder="Please Select User Type" [style]="{width: '100%'}" #usertyperef="ngModel">                                    
-                                </p-multiSelect>                                
-                        </div>
-                        <div class="col-md-3"> 
-                               <label class="form-label">Menu Name <span class="required">*</span></label>
-                                <input pInputText type="text" required name="MenuItemName"
-                                    [(ngModel)]="MenuItemMaster.MenuItemName" class="form-control" #menuname="ngModel"/>
-                                    
-                        </div>
-                        <div class="col-md-3"> 
-                                <label class="form-label">Menu URL</label>
-                                <input pInputText type="text" name="MenuItemURL"
-                                    [(ngModel)]="MenuItemMaster.MenuItemURL" class="form-control" />                           
-                        </div>
-                        <div class="col-md-3"> 
-                                <label class="form-label">SubMenu <span class="required">*</span></label>
-                                <p-dropdown [required]="true" [options]="stlstsubmenu" [(ngModel)]="MenuItemMaster.SubMenu"
-                                [ngModelOptions]="{standalone: true}" optionLabel="name" optionValue="code"
-                                placeholder="Select" [style]="{width: '100%'}">
-                            </p-dropdown>                             
-                        </div>
-                        <div class="col-md-3"> 
-                                <label class="form-label">Parent Menu</label>
-                                <p-dropdown name="ddlParentMenuName" [options]="lstParentMenuItemMaster"
-                                    [(ngModel)]="MenuItemMaster.ParentMenuId" [disabled]="MenuItemMaster.SubMenu=='Y'?false:true"
-                                    optionLabel="MenuItemName" optionValue="MenuItemId" [filter]="true"
-                                    placeholder="Please Select Parent Menu" [style]="{width: '100%'}"
-                                    >
-                                </p-dropdown>
-                        </div> 
-                        <div class="col-md-3"> 
-                                <label class="form-label">Icon</label>
-                                <input pInputText type="text"  name="IconName"
-                                    [(ngModel)]="MenuItemMaster.IconName" class="form-control" />                           
-                        </div>                        
-                        <div class="col-md-3"> 
-                                <label class="form-label">Order No. <span class="required">*</span></label>
-                                <p-inputNumber [required]="true" name="txtOrder" [(ngModel)]="MenuItemMaster.OrderNo" mode="decimal" [useGrouping]="false" [maxlength]="3"></p-inputNumber>
-                                                       
-                        </div>
-                        <div class="col-md-3">
-                            <label class="form-label">Status<span class="required">*</span></label>
-                            <p-dropdown [required]="true" [options]="stlststatus" [(ngModel)]="MenuItemMaster.Status"
-                                [ngModelOptions]="{standalone: true}" optionLabel="name" optionValue="code"
-                                placeholder="Select" [style]="{width: '100%'}">
-                            </p-dropdown>
-                        </div>
-                    </div>
-                    <div class="row">
-                    <div class="col-12">
-                        <div class="flex flex-wrap gap-2">
-                            <button pButton pRipple type="button" label="Submit" class="btn-primary" (click)="Save()"
-                                [disabled]="!myForm.form.valid"></button>
-                            <button pButton pRipple type="button" label="Close" class="btn-primary"
-                                (click)="CloseModal()"></button>
-                            </div>
-                        </div>
-                    </div>
+                        <span class="m-3">
+                            <button pButton title="Filters" label="Filters" class="p-button-outlined mr-2"
+                                icon="pi pi-filter" (click)="ShowFilters()"
+                                style="height: 40px; width: 100px;"></button>
+                        </span>
+                    </span>
                 </div>
-                </form>         
+                <div *ngIf="isMenuMaster">
+                    <app-filteration [ComponentName]="ComponentName"
+                        (FiltrationOutputData)="GetMenuMasterFilterData($event)"></app-filteration>
+                </div>
+            </ng-template>
+            <ng-template pTemplate="emptymessage" let-columns>
+                <tr>
+                    <td [attr.colspan]="columns?.length">
+                        No records found
+                    </td>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="header">
+                <tr>
+                    <th>User Type</th>
+                    <th>Menu Name</th>
+                    <th>Menu URL</th>
+                    <th>Parent Menu</th>
+                    <th>Order No.</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-dt let-i="rowIndex">
+                <tr>
+                    <td>{{dt.ModuleName}}</td>
+                    <td>{{dt.MenuItemName}}</td>
+                    <td>{{dt.MenuItemURL}}</td>
+                    <td>{{dt.ParentMenuName}}</td>
+                    <td>{{dt.OrderNo}}</td>
+                    <td>{{dt.Status==1?'Active':'Inactive'}}</td>
+                    <td>
+                        <a title="View/Edit" (click)="LoadMenuItemMasterById(dt.MenuItemId)">
+                            <i class="fa fa-eye" aria-hidden="true"></i>
+                        </a>
+                    </td>
+                </tr>
+            </ng-template>
+        </p-table>
     </div>
 
+</div>
+<div *ngIf="mode!=null">
+    <form #myForm="ngForm">
+        <div class="card">
+            <div class="row">
+                <div class="col-md-3">
+                    <label class="form-label">User Type <span class="required">*</span></label>
+                    <p-multiSelect [required]="true" name="ddlUserType" display="chip" [options]="lstUserTypeMaster"
+                        [(ngModel)]="selectedUserType" optionLabel="UserTypeName" optionValue="UserTypeId"
+                        placeholder="Please Select User Type" [style]="{width: '100%'}" #usertyperef="ngModel">
+                    </p-multiSelect>
+                </div>
+                <div class="col-md-3">
+                    <label class="form-label">Menu Name <span class="required">*</span></label>
+                    <input pInputText type="text" required name="MenuItemName" [(ngModel)]="MenuItemMaster.MenuItemName"
+                        class="form-control" #menuname="ngModel" />
+
+                </div>
+                <div class="col-md-3">
+                    <label class="form-label">Menu URL</label>
+                    <input pInputText type="text" name="MenuItemURL" [(ngModel)]="MenuItemMaster.MenuItemURL"
+                        class="form-control" />
+                </div>
+                <div class="col-md-3">
+                    <label class="form-label">SubMenu <span class="required">*</span></label>
+                    <p-dropdown [required]="true" [options]="stlstsubmenu" [(ngModel)]="MenuItemMaster.SubMenu"
+                        [ngModelOptions]="{standalone: true}" optionLabel="name" optionValue="code" placeholder="Select"
+                        [style]="{width: '100%'}">
+                    </p-dropdown>
+                </div>
+                <div class="col-md-3">
+                    <label class="form-label">Parent Menu</label>
+                    <p-dropdown name="ddlParentMenuName" [options]="lstParentMenuItemMaster"
+                        [(ngModel)]="MenuItemMaster.ParentMenuId" [disabled]="MenuItemMaster.SubMenu=='Y'?false:true"
+                        optionLabel="MenuItemName" optionValue="MenuItemId" [filter]="true"
+                        placeholder="Please Select Parent Menu" [style]="{width: '100%'}">
+                    </p-dropdown>
+                </div>
+                <div class="col-md-3">
+                    <label class="form-label">Icon</label>
+                    <input pInputText type="text" name="IconName" [(ngModel)]="MenuItemMaster.IconName"
+                        class="form-control" />
+                </div>
+                <div class="col-md-3">
+                    <label class="form-label">Order No. <span class="required">*</span></label>
+                    <p-inputNumber [required]="true" name="txtOrder" [(ngModel)]="MenuItemMaster.OrderNo" mode="decimal"
+                        [useGrouping]="false" [maxlength]="3"></p-inputNumber>
+
+                </div>
+                <div class="col-md-3">
+                    <label class="form-label">Status<span class="required">*</span></label>
+                    <p-dropdown [required]="true" [options]="stlststatus" [(ngModel)]="MenuItemMaster.Status"
+                        [ngModelOptions]="{standalone: true}" optionLabel="name" optionValue="code" placeholder="Select"
+                        [style]="{width: '100%'}">
+                    </p-dropdown>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <div class="flex flex-wrap gap-2">
+                        <button pButton pRipple type="button" label="Submit" class="btn-primary" (click)="Save()"
+                            [disabled]="!myForm.form.valid"></button>
+                        <button pButton pRipple type="button" label="Close" class="btn-primary"
+                            (click)="CloseModal()"></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

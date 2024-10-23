@@ -123,7 +123,7 @@ export class DietPlannerComponent implements OnInit {
   LoadDietPlan()
   {
     if (this.DietPlan) {
-      var dietPlan = JSON.parse(JSON.stringify(this.DietPlan));
+      var dietPlan = this.DietPlan;
       this.events = [];
       for (var i = 0; i < dietPlan.length; i++) {
         this.events = [
